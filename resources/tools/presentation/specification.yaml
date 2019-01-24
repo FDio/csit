@@ -490,17 +490,23 @@
 
     plot-vpp-soak-2n-skx:
       csit-vpp-perf-verify-master-2n-skx:
-      - 207  # SOAK sel
+      - 248  # SOAK sel
+      - 251  # SOAK sel
 
     plot-vpp-vsc-2n-skx:
       csit-vpp-perf-verify-master-2n-skx:
       - 237
+      - 243
 
     plot-vpp-csc-2n-skx:
       csit-vpp-perf-verify-master-2n-skx:
       - 226
       - 231
       - 233
+
+    plot-vpp-csp-2n-skx:
+      csit-vpp-perf-verify-master-2n-skx:
+        - 247
 
     plot-vpp-throughput-latency-3n-skx:
       csit-vpp-perf-verify-1810-3n-skx:
@@ -1040,7 +1046,7 @@
           size: 16
         zeroline: True
         rangemode: "tozero"
-        # range: [0,100]
+        range: [0,100]
       legend:
         orientation: "h"
         font:
@@ -1321,11 +1327,14 @@
     - 24  # NDRPDR sel
     - 27  # NDRPDR sel
     csit-vpp-perf-verify-master-2n-skx:
-    - 207  # SOAK sel
+    - 248  # SOAK sel
+    - 251  # SOAK sel
     - 237  # VSC
     - 226  # CSC
     - 231  # CSC
     - 233  # CSC
+    - 243  # VSC
+    - 247  # CSP
     csit-vpp-perf-check-1804:
     - 5   # mrr - full
     - 6   # mrr - sel
@@ -5298,10 +5307,10 @@
 ###                                P L O T S                                 ###
 ################################################################################
 
-# Soak test - example
+# Soak test - 30min Soak Test (PLRsearch), boxes
 -
   type: "plot"
-  title: "VPP Throughput Soak: Example"
+  title: "VPP Throughput: 30min Soak Test (PLRsearch) boxes"
   algorithm: "plot_soak_boxes"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/example-soak-boxes"
@@ -5317,14 +5326,15 @@
   - "L2BDMACLRN"
   - "IP4FWD"
   - "IP6FWD"
+  - "VHOST"
   layout:
-    title: "example-30min-boxes"
+    title: "30min Soak Test (PLRsearch)"
     layout: "plot-soak-throughput"
 
-# Soak test - example
+# Soak test - example, not used
 -
   type: "plot"
-  title: "VPP Throughput Soak: Example"
+  title: "VPP Throughput: 30min Soak Test (PLRsearch) bars"
   algorithm: "plot_soak_bars"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/example-soak-bars"
@@ -5340,17 +5350,20 @@
   - "L2BDMACLRN"
   - "IP4FWD"
   - "IP6FWD"
+  - "VHOST"
   layout:
-    title: "example-30min-bars"
+    title: "30min Soak Test (PLRsearch)"
     layout: "plot-soak-throughput"
 
-# Heatmap - example
+################################################################################
+# Plots - NF Density
+
 -
   type: "plot"
-  title: "Service Density: l2sw-2n-skx-x710-64b-2t1c-base-vsc-mrr"
+  title: "Packet Throughput: 64B-1c-eth-l2bd-{a}vhost-{b}chain-{c}vm-l3fwdip4-mrr"
   algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base-vsc-mrr"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-2t1c-base-vsc-mrr"
   data: "plot-vpp-vsc-2n-skx"
   filter: "'NIC_Intel-X710' and
            'NF_DENSITY' and
@@ -5364,16 +5377,45 @@
   - "name"
   - "tags"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean MRR) [Mpps]"
   layout:
-    title: "<b>Network Service Density Matrix: Packet Throughput View</b>"
+    title: "<b>Throughput:</b> eth-l2bd-{2*X*Y}vhost-{Y}chain-{X*Y}vm-l3fwdip4-mrr"
     layout: "plot-service-density"
 
 -
   type: "plot"
-  title: "Service Density: l2sw-2n-skx-x710-64b-2t1c-base-csc-mrr"
+  title: "Packet Throughput: 64B-2c-eth-l2bd-{a}vhost-{b}chain-{c}vm-l3fwdip4-mrr"
   algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base-csc-mrr"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-4t2c-base-vsc-mrr"
+  data: "plot-vpp-vsc-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           'NF_DENSITY' and
+           'VM' and
+           'CHAIN' and
+           '64B' and
+           '4T2C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = VNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{2*X*Y}vhost-{Y}chain-{X*Y}vm-l3fwdip4-mrr"
+    layout: "plot-service-density"
+
+-
+  type: "plot"
+  title: "Packet Throughput: 64B-1c-eth-l2bd-{a}memif-{b}chain-{c}drc-vppip4-mrr"
+  algorithm: "plot_service_density_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-2t1c-base-csc-mrr"
   data: "plot-vpp-csc-2n-skx"
   filter: "'NIC_Intel-X710' and
            'NF_DENSITY' and
@@ -5387,8 +5429,89 @@
   - "name"
   - "tags"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = CNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean MRR) [Mpps]"
   layout:
-    title: "<b>Network Service Density Matrix: Packet Throughput View</b>"
+    title: "<b>Throughput:</b> eth-l2bd-{2*X*Y}memif-{Y}chain-{X*Y}drc-vppip4-mrr"
+    layout: "plot-service-density"
+
+-
+  type: "plot"
+  title: "Packet Throughput: 64B-2c-eth-l2bd-{a}memif-{b}chain-{c}drc-vppip4-mrr"
+  algorithm: "plot_service_density_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-4t2c-base-csc-mrr"
+  data: "plot-vpp-csc-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           'NF_DENSITY' and
+           'DOCKER' and
+           'CHAIN' and
+           '64B' and
+           '4T2C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = CNFs per Service Chain"
+  y-axis: "Y = Number of Service Chains"
+  z-axis: "64B Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{2*X*Y}memif-{Y}chain-{X*Y}drc-vppip4-mrr"
+    layout: "plot-service-density"
+
+-
+  type: "plot"
+  title: "Packet Throughput: 64B-1c-eth-l2bd-{a}memif-{b}pipe-{c}drc-vppip4-mrr"
+  algorithm: "plot_service_density_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-2t1c-base-csp-mrr"
+  data: "plot-vpp-csp-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           'NF_DENSITY' and
+           'DOCKER' and
+           'PIPELINE' and
+           '64B' and
+           '2T1C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = CNFs per Service Pipeline"
+  y-axis: "Y = Number of Service Pipelines"
+  z-axis: "64B Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{2*Y}memif-{Y}pipe-{X*Y}drc-vppip4-mrr"
+    layout: "plot-service-density"
+
+-
+  type: "plot"
+  title: "Packet Throughput: 64B-2c-eth-l2bd-{a}memif-{b}pipe-{c}drc-vppip4-mrr"
+  algorithm: "plot_service_density_heatmap"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-4t2c-base-csp-mrr"
+  data: "plot-vpp-csp-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           'NF_DENSITY' and
+           'DOCKER' and
+           'PIPELINE' and
+           '64B' and
+           '4T2C' and
+           'MRR'"
+  parameters:
+  - "result"
+  - "name"
+  - "tags"
+  include-tests: "MRR" # "PDR" | "NDR" | "MRR"
+  x-axis: "X = CNFs per Service Pipeline"
+  y-axis: "Y = Number of Service Pipelines"
+  z-axis: "64B Packet Throughput (mean MRR) [Mpps]"
+  layout:
+    title: "<b>Throughput:</b> eth-l2bd-{2*Y}memif-{Y}pipe-{X*Y}drc-vppip4-mrr"
     layout: "plot-service-density"
 
 ################################################################################
@@ -6265,7 +6388,7 @@
     title: "l2sw-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP L2 3n-skx-x710 features
+ Packet Throughput - VPP L2 3n-skx-x710 features
 -
   type: "plot"
   title: "VPP Throughput: l2sw-3n-skx-x710-64b-2t1c-features-ndr"
