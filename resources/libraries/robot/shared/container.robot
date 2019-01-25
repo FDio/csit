@@ -151,6 +151,10 @@
 | | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
 | | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
 | | ... | nodes=${nf_nodes}
+| | ... | ELSE IF | '${container_chain_topology}' == 'pipeline_ip4'
+| | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
+| | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
+| | ... | nodes=${nf_nodes}
 | | ... | ELSE IF | '${container_chain_topology}' == 'cross_horiz'
 | | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
 | | ... | dut1_if=${dut1_if2} | dut2_if=${dut2_if2}
