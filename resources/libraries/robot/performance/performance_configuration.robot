@@ -3105,6 +3105,68 @@
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
+| Initialize L2 Bridge Domain for pipeline with memif pairs
+| | [Documentation]
+| | ... | Create pairs of Memif interfaces on all defined VPP nodes. Put each
+| | ... | Memif interface to separate L2 bridge domain with one physical or
+| | ... | virtual interface to create a service pipeline on DUT node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nf_chain - NF pipe. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per pipeline. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 Bridge Domain for pipeline with memif pairs \
+| | ... | \| 1 \| 1 \|
+| | ...
+| | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if1} | ${1}
+| | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if2} | ${2}
+| | | ${nf_id_frst}= | Evaluate | (${nf_chain}-${1}) * ${nf_nodes} + ${1}
+| | | ${nf_id_last}= | Evaluate | (${nf_chain}-${1}) * ${nf_nodes} + ${nf_nodes}
+| | | ${sid_frst}= | Evaluate | ${nf_id_frst} * ${2} - ${1}
+| | | ${sid_last}= | Evaluate | ${nf_id_last} * ${2}
+| | | Set up single memif interface on DUT node | ${nodes['${dut}']}
+| | | ... | memif-${dut}_CNF | mid=${nf_id_frst} | sid=${sid_frst}
+| | | ... | memif_if=${dut}-memif-${nf_id_frst}-if1
+| | | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
+| | | Set up single memif interface on DUT node | ${nodes['${dut}']}
+| | | ... | memif-${dut}_CNF | mid=${nf_id_last} | sid=${sid_last}
+| | | ... | memif_if=${dut}-memif-${nf_id_last}-if2
+| | | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
+| | | Add interface to bridge domain | ${nodes['${dut}']}
+| | | ... | ${${dut}-memif-${nf_id_frst}-if1} | ${1}
+| | | Add interface to bridge domain | ${nodes['${dut}']}
+| | | ... | ${${dut}-memif-${nf_id_last}-if2} | ${2}
+
+| Initialize L2 Bridge Domain for multiple pipelines with memif pairs
+| | [Documentation]
+| | ... | Create pairs of Memif interfaces for defined number of NF pipelines
+| | ... | with defined number of NF nodes on all defined VPP nodes. Add each
+| | ... | Memif interface into L2 bridge domains with learning enabled
+| | ... | with physical inteface or Memif interface of another NF.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nf_chains - Number of pipelines of NFs. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per pipeline. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 Bridge Domain for multiple pipelines with memif \
+| | ... | pairs \| 1 \| 1 \|
+| | ...
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
+| | ...
+| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
+| | | Initialize L2 Bridge Domain for pipeline with memif pairs
+| | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
+| | Set interfaces in path up
+| | Show Memif on all DUTs | ${nodes}
+
 | Initialize L2 Bridge Domain with memif pairs and VLAN in circular topology
 | | [Documentation]
 | | ... | Create pairs of Memif interfaces on all defined VPP nodes. Put each
@@ -3349,9 +3411,10 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${sock}= | Set Variable | memif-${dut}_CNF
+| | | ${sid}= | Evaluate | (${number} * ${2}) - ${1}
 | | | Set up single memif interface on DUT node | ${nodes['${dut}']} | ${sock}
-| | | ... | ${number} | ${dut}-memif-${number}-if1 | ${rxq_count_int}
-| | | ... | ${rxq_count_int}
+| | | ... | mid=${number} | sid=${sid} | memif_if=${dut}-memif-${number}-if1
+| | | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
 | | | Configure L2XC | ${nodes['${dut}']} | ${${dut}_if1}
 | | | ... | ${${dut}-memif-${number}-if1}
 | | Set single interfaces in path up
@@ -3381,9 +3444,10 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${sock}= | Set Variable | memif-${dut}_CNF
+| | | ${sid}= | Evaluate | (${number} * ${2}) - ${1}
 | | | Set up single memif interface on DUT node | ${nodes['${dut}']} | ${sock}
-| | | ... | ${number} | ${dut}-memif-${number}-if1 | ${rxq_count_int}
-| | | ... | ${rxq_count_int}
+| | | ... | mid=${number} | sid=${sid} | memif_if=${dut}-memif-${number}-if1
+| | | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
 | | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if1}
 | | | ... | ${number}
 | | | Add interface to bridge domain | ${nodes['${dut}']}
