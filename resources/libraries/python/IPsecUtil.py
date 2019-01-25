@@ -544,7 +544,8 @@ class IPsecUtil(object):
         with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
             for i in range(0, n_tunnels):
                 integ = ''
-                if crypto_alg.alg_name != 'aes-gcm-128':
+                # if crypto_alg.alg_name != 'aes-gcm-128':
+                if crypto_alg.alg_name != 'xxx':
                     integ = 'integ_alg {integ_alg} '\
                             'local_integ_key {local_integ_key} '\
                             'remote_integ_key {remote_integ_key} '\
