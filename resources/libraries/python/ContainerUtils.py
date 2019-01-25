@@ -179,69 +179,153 @@ class ContainerManager(object):
             guest_dir = self.engine.container.mnt[0].split(':')[1]
 
             if chain_topology == 'chain':
-                self.engine.create_vpp_startup_config()
-                self.engine.create_vpp_exec_config(
-                    container_vat_template,
-                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
-                    socket1='{dir}/memif-{c.name}-{sid}'.
-                    format(c=self.engine.container, sid=sid1, dir=guest_dir),
-                    socket2='{dir}/memif-{c.name}-{sid}'.
-                    format(c=self.engine.container, sid=sid2, dir=guest_dir))
+                self._configure_vpp_chain_l2xc(mid1=mid1, mid2=mid2,
+                                               sid1=sid1, sid2=sid2,
+                                               guest_dir=guest_dir,
+                                               **kwargs)
             elif chain_topology == 'cross_horiz':
-                try:
-                    dut1_if = kwargs['dut1_if']
-                    dut2_if = kwargs['dut2_if']
-                except KeyError:
-                    raise AttributeError('DUT interfaces not specified!')
-                if 'DUT1' in self.engine.container.name:
-                    if_pci = Topology.get_interface_pci_addr(
-                        self.engine.container.node, dut1_if)
-                    if_name = Topology.get_interface_name(
-                        self.engine.container.node, dut1_if)
-                if 'DUT2' in self.engine.container.name:
-                    if_pci = Topology.get_interface_pci_addr(
-                        self.engine.container.node, dut2_if)
-                    if_name = Topology.get_interface_name(
-                        self.engine.container.node, dut2_if)
-                self.engine.create_vpp_startup_config_dpdk_dev(if_pci)
-                self.engine.create_vpp_exec_config(
-                    container_vat_template,
-                    mid1=mid1, sid1=sid1, if_name=if_name,
-                    socket1='{dir}/memif-{c.name}-{sid}'.
-                    format(c=self.engine.container, sid=sid1, dir=guest_dir))
+                self._configure_vpp_cross_horiz(mid1=mid1, mid2=mid2,
+                                                sid1=sid1, sid2=sid2,
+                                                guest_dir=guest_dir,
+                                                **kwargs)
             elif chain_topology == 'chain_functional':
-                memif_rx_mode = 'interrupt'
-                self.engine.create_vpp_startup_config_func_dev()
-                self.engine.create_vpp_exec_config(
-                    container_vat_template,
-                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
-                    socket1='{dir}/memif-{c.name}-{sid}'.
-                    format(c=self.engine.container, sid=sid1, dir=guest_dir),
-                    socket2='{dir}/memif-{c.name}-{sid}'.
-                    format(c=self.engine.container, sid=sid2, dir=guest_dir),
-                    rx_mode=memif_rx_mode)
+                self._configure_vpp_chain_functional(mid1=mid1, mid2=mid2,
+                                                     sid1=sid1, sid2=sid2,
+                                                     guest_dir=guest_dir,
+                                                     **kwargs)
             elif chain_topology == 'chain_ip4':
-                self.engine.create_vpp_startup_config()
-                vif1_mac = kwargs['tg_if1_mac'] \
-                    if (mid1 - 1) % kwargs['nodes'] + 1 == 1 \
-                    else '52:54:00:00:{0:02X}:02'.format(mid1-1)
-                vif2_mac = kwargs['tg_if2_mac'] \
-                    if (mid2 - 1) % kwargs['nodes'] + 1 == kwargs['nodes'] \
-                    else '52:54:00:00:{0:02X}:01'.format(mid2+1)
-                self.engine.create_vpp_exec_config(
-                    container_vat_template,
-                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
-                    socket1='{dir}/memif-{c.name}-{sid}'.
-                    format(c=self.engine.container, sid=sid1, dir=guest_dir),
-                    socket2='{dir}/memif-{c.name}-{sid}'.
-                    format(c=self.engine.container, sid=sid2, dir=guest_dir),
-                    mac1='52:54:00:00:{0:02X}:01'.format(mid1),
-                    mac2='52:54:00:00:{0:02X}:02'.format(mid2),
-                    vif1_mac=vif1_mac, vif2_mac=vif2_mac)
+                self._configure_vpp_chain_ip4(mid1=mid1, mid2=mid2,
+                                              sid1=sid1, sid2=sid2,
+                                              guest_dir=guest_dir,
+                                              **kwargs)
+            elif chain_topology == 'pipeline_ip4':
+                self._configure_vpp_pipeline_ip4(mid1=mid1, mid2=mid2,
+                                                 sid1=sid1, sid2=sid2,
+                                                 guest_dir=guest_dir,
+                                                 **kwargs)
             else:
                 raise RuntimeError('Container topology {topology} not '
                                    'implemented'.
                                    format(topology=chain_topology))
+
+    def _configure_vpp_chain_l2xc(self, **kwargs):
+        """Configure VPP in chain topology with l2xc.
+
+        :param kwargs: Named parameters.
+        :param kwargs: dict
+        """
+        self.engine.create_vpp_startup_config()
+        self.engine.create_vpp_exec_config('memif_create_chain_l2xc.vat',
+            mid1=kwargs['mid1'], mid2=kwargs['mid2'],
+            sid1=kwargs['sid1'], sid2=kwargs['sid2'],
+            socket1='{guest_dir}/memif-{c.name}-{sid1}'.
+            format(c=self.engine.container, **kwargs),
+            socket2='{guest_dir}/memif-{c.name}-{sid2}'.
+            format(c=self.engine.container, **kwargs))
+
+    def _configure_vpp_cross_horiz(self, **kwargs):
+        """Configure VPP in cross horizontal topology (single memif).
+
+        :param kwargs: Named parameters.
+        :param kwargs: dict
+        """
+        if 'DUT1' in self.engine.container.name:
+            if_pci = Topology.get_interface_pci_addr(
+                self.engine.container.node, dut1_if)
+            if_name = Topology.get_interface_name(
+                self.engine.container.node, dut1_if)
+        if 'DUT2' in self.engine.container.name:
+            if_pci = Topology.get_interface_pci_addr(
+                self.engine.container.node, dut2_if)
+            if_name = Topology.get_interface_name(
+                self.engine.container.node, dut2_if)
+        self.engine.create_vpp_startup_config_dpdk_dev(if_pci)
+        self.engine.create_vpp_exec_config('memif_create_cross_horizon.vat',
+            mid1=kwargs['mid1'], sid1=kwargs['sid1'], if_name=if_name,
+            socket1='{guest_dir}/memif-{c.name}-{sid1}'.
+            format(c=self.engine.container, **kwargs))
+
+    def _configure_vpp_chain_functional(self, **kwargs):
+        """Configure VPP in chain topology with l2xc (functional).
+
+        :param kwargs: Named parameters.
+        :param kwargs: dict
+        """
+        self.engine.create_vpp_startup_config_func_dev()
+        self.engine.create_vpp_exec_config('memif_create_chain_functional.vat',
+            mid1=kwargs['mid1'], mid2=kwargs['mid2'],
+            sid1=kwargs['sid1'], sid2=kwargs['sid2'],
+            socket1='{guest_dir}/memif-{c.name}-{sid1}'.
+            format(c=self.engine.container, **kwargs),
+            socket2='{guest_dir}/memif-{c.name}-{sid2}'.
+            format(c=self.engine.container, **kwargs),
+            rx_mode='interrupt')
+
+    def _configure_vpp_chain_ip4(self, **kwargs):
+        """Configure VPP in chain topology with ip4.
+
+        :param kwargs: Named parameters.
+        :param kwargs: dict
+        """
+        self.engine.create_vpp_startup_config()
+
+        vif1_mac = kwargs['tg_if1_mac'] \
+            if (kwargs['mid1'] - 1) % kwargs['nodes'] + 1 == 1 \
+            else '52:54:00:00:{0:02X}:02'.format(kwargs['mid1'] - 1)
+        vif2_mac = kwargs['tg_if2_mac'] \
+            if (kwargs['mid2'] - 1) % kwargs['nodes'] + 1 == kwargs['nodes'] \
+            else '52:54:00:00:{0:02X}:01'.format(kwargs['mid2'] + 1)
+        self.engine.create_vpp_exec_config('memif_create_chain_ip4.vat',
+            mid1=kwargs['mid1'], mid2=kwargs['mid2'],
+            sid1=kwargs['sid1'], sid2=kwargs['sid2'],
+            socket1='{guest_dir}/memif-{c.name}-{sid1}'.
+            format(c=self.engine.container, **kwargs),
+            socket2='{guest_dir}/memif-{c.name}-{sid2}'.
+            format(c=self.engine.container, **kwargs),
+            mac1='52:54:00:00:{0:02X}:01'.format(kwargs['mid1']),
+            mac2='52:54:00:00:{0:02X}:02'.format(kwargs['mid2']),
+            vif1_mac=vif1_mac, vif2_mac=vif2_mac)
+
+    def _configure_vpp_pipeline_ip4(self, **kwargs):
+        """Configure VPP in pipeline topology with ip4.
+
+        :param kwargs: Named parameters.
+        :param kwargs: dict
+        """
+        self.engine.create_vpp_startup_config()
+        node = (kwargs['mid1'] - 1) % kwargs['nodes'] + 1
+        mid1 = kwargs['mid1']
+        mid2 = kwargs['mid2']
+        role1 = 'master'
+        role2 = 'master' \
+            if node == kwargs['nodes'] or node == kwargs['nodes'] and node == 1\
+            else 'slave'
+        vif1_mac = kwargs['tg_if1_mac'] \
+            if (kwargs['mid1'] - 1) % kwargs['nodes'] + 1 == 1 \
+            else '52:54:00:00:{0:02X}:02'.format(kwargs['mid1'] - 1)
+        vif2_mac = kwargs['tg_if2_mac'] \
+            if (kwargs['mid2'] - 1) % kwargs['nodes'] + 1 == kwargs['nodes'] \
+            else '52:54:00:00:{0:02X}:01'.format(kwargs['mid2'] + 1)
+        socket1 = '{guest_dir}/memif-{c.name}-{sid1}'.\
+            format(c=self.engine.container, **kwargs) \
+            if node == 1 else '{guest_dir}/memif-pipe-{mid1}'.\
+            format(c=self.engine.container, **kwargs)
+        socket2 = '{guest_dir}/memif-{c.name}-{sid2}'.\
+            format(c=self.engine.container, **kwargs) \
+            if node == 1 and kwargs['nodes'] == 1 or node == kwargs['nodes'] \
+            else '{guest_dir}/memif-pipe-{mid2}'.\
+            format(c=self.engine.container, **kwargs)
+        kwargs['mid2'] = kwargs['mid2'] \
+            if node == kwargs['nodes'] or node == kwargs['nodes'] and node == 1\
+            else kwargs['mid2'] + 1
+
+        self.engine.create_vpp_exec_config('memif_create_pipeline_ip4.vat',
+            mid1=kwargs['mid1'], mid2=kwargs['mid2'],
+            sid1=kwargs['sid1'], sid2=kwargs['sid2'],
+            socket1=socket1, socket2=socket2, role1=role1, role2=role2,
+            mac1='52:54:00:00:{0:02X}:01'.format(mid1),
+            mac2='52:54:00:00:{0:02X}:02'.format(mid2),
+            vif1_mac=vif1_mac, vif2_mac=vif2_mac)
 
     def stop_all_containers(self):
         """Stop all containers."""
@@ -346,7 +430,7 @@ class ContainerEngine(object):
                      'rm -f "${deb}"')
         self.execute(
             'dpkg -i --force-all '
-            '{guest_dir}/openvpp-testing/download_dir/*.deb'.
+            '{guest_dir}/install_dir/*.deb'.
             format(guest_dir=self.container.mnt[0].split(':')[1]))
         self.execute('apt-get -f install -y')
         self.execute('apt-get install -y ca-certificates')
