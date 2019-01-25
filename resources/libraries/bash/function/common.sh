@@ -650,11 +650,93 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrANDnic_intel-x710AND1cAND64bANDip4base"
-                                "mrrANDnic_intel-x710AND1cAND78bANDip6base"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2bdbase"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2xcbase"
-                                "!dot1q")
+                test_tag_array=(# vic
+                            "ndrpdrANDnic_cisco-vic-1227AND64b"
+                            "ndrpdrANDnic_cisco-vic-1385AND64b"
+                            # memif
+                            "ndrpdrANDmemifANDethAND64b"
+                            "ndrpdrANDmemifANDethANDimix"
+                            # crypto
+                            "ndrpdrANDipsecAND64b"
+                            # ip4 base
+                            "ndrpdrANDip4baseAND64b"
+                            # ip4 scale FIB 2M
+                            "ndrpdrANDip4fwdANDfib_2mAND64b"
+                            # ip4 scale FIB 200k
+                            "ndrpdrANDip4fwdANDfib_200kANDnic_intel-*710AND64b"
+                            # ip4 scale FIB 20k
+                            "ndrpdrANDip4fwdANDfib_20kANDnic_intel-*710AND64b"
+                            # ip4 scale ACL
+                            "ndrpdrANDip4fwdANDacl1AND10k_flowsAND64b"
+                            "ndrpdrANDip4fwdANDacl50AND10k_flowsAND64b"
+                            # ip4 scale NAT44
+                            "ndrpdrANDip4fwdANDnat44ANDbaseAND64b"
+                            "ndrpdrANDip4fwdANDnat44ANDsrc_user_4000AND64b"
+                            # ip4 features
+                            "ndrpdrANDip4fwdANDfeatureANDnic_intel-*710AND64b"
+                            # TODO: Remove when tags in
+                            # tests/vpp/perf/ip4/*-ipolicemarkbase-*.robot
+                            # are fixed
+                            "ndrpdrANDip4fwdANDpolice_markANDnic_intel-*710AND64b"
+                            # ip4 tunnels
+                            "ndrpdrANDip4fwdANDencapANDip6unrlayANDip4ovrlayANDnic_intel-x520-da2AND64b"
+                            "ndrpdrANDip4fwdANDencapANDnic_intel-*710AND64b"
+                            "ndrpdrANDl2ovrlayANDencapANDnic_intel-*710AND64b"
+                            # ip6 base
+                            "ndrpdrANDip6baseANDethAND78b"
+                            # ip6 features
+                            "ndrpdrANDip6fwdANDfeatureANDnic_intel-*710AND78b"
+                            # ip6 scale FIB 2M
+                            "ndrpdrANDip6fwdANDfib_2mANDnic_intel-*710AND78b"
+                            # ip6 scale FIB 200k
+                            "ndrpdrANDip6fwdANDfib_200kANDnic_intel-*710AND78b"
+                            # ip6 scale FIB 20k
+                            "ndrpdrANDip6fwdANDfib_20kANDnic_intel-*710AND78b"
+                            # ip6 tunnels
+                            "ndrpdrANDip6fwdANDencapANDnic_intel-x520-da2AND78b"
+                            # l2xc base
+                            "ndrpdrANDl2xcfwdANDbaseAND64b"
+                            # l2xc scale ACL
+                            "ndrpdrANDl2xcANDacl1AND10k_flowsAND64b"
+                            "ndrpdrANDl2xcANDacl50AND10k_flowsAND64b"
+                            # l2xc scale FIB 2M
+                            "ndrpdrANDl2xcANDfib_2mAND64b"
+                            # l2xc scale FIB 200k
+                            "ndrpdrANDl2xcANDfib_200kANDnic_intel-*710AND64b"
+                            # l2xc scale FIB 20k
+                            "ndrpdrANDl2xcANDfib_20kANDnic_intel-*710AND64b"
+                            # l2bd base
+                            "ndrpdrANDl2bdmaclrnANDbaseAND64b"
+                            # l2bd scale ACL
+                            "ndrpdrANDl2bdmaclrnANDacl1AND10k_flowsAND64b"
+                            "ndrpdrANDl2bdmaclrnANDacl50AND10k_flowsAND64b"
+                            # l2bd scale FIB 2M
+                            "ndrpdrANDl2bdmaclrnANDfib_1mAND64b"
+                            # l2bd scale FIB 200k
+                            "ndrpdrANDl2bdmaclrnANDfib_100kANDnic_intel-*710AND64b"
+                            # l2bd scale FIB 20k
+                            "ndrpdrANDl2bdmaclrnANDfib_10kANDnic_intel-*710AND64b"
+                            # l2 patch base
+                            "ndrpdrANDl2patchAND64b"
+                            # srv6
+                            "ndrpdrANDsrv6ANDnic_intel-x520-da2AND78b"
+                            # vts
+                            "ndrpdrANDvtsANDnic_intel-x520-da2AND114b"
+                            # vm vhost l2xc base
+                            "ndrpdrANDvhostANDl2xcfwdANDbaseAND64b"
+                            "ndrpdrANDvhostANDl2xcfwdANDbaseANDimix"
+                            # vm vhost l2bd base
+                            "ndrpdrANDvhostANDl2bdmaclrnANDbaseAND64b"
+                            "ndrpdrANDvhostANDl2bdmaclrnANDbaseANDimix"
+                            # vm vhost ip4 base
+                            "ndrpdrANDvhostANDip4fwdANDbaseAND64b"
+                            "ndrpdrANDvhostANDip4fwdANDbaseANDimix"
+                            # Exclude
+                            "!ndrpdrANDip6baseANDdot1qAND78b"
+                            "!vhost_256ANDnic_intel-x520-da2"
+                            "!vhostANDnic_intel-xl710"
+                            "!cfs_opt"
+                            "!lbond_dpdk")
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
