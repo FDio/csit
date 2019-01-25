@@ -8,6 +8,8 @@ VPP Performance
     packet_throughput_graphs/index
     throughput_speedup_multi_core/index
     packet_latency_graphs/index
+    soak_tests/index
+    service_density_matrix/index
     http_server_performance/index
     comparisons/index
     throughput_trending
