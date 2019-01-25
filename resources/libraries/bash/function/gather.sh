@@ -273,7 +273,8 @@ function gather_vpp () {
                 warn "Downloading latest VPP packages from Packagecloud."
             else
                 warn "Downloading stable VPP packages from Packagecloud."
-                if [[ "${TEST_CODE}" == *"device"* ]];
+                if [[ "${TEST_CODE}" == *"device"* ]] ||
+                   [[ "${TEST_CODE}" == *"ligato"* ]];
                 then
                     VPP_VERSION="$(<"${CSIT_DIR}/VPP_STABLE_VER_UBUNTU_BIONIC")" || {
                         die "Read VPP stable version failed."
