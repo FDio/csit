@@ -19,3 +19,12 @@
    mode: '644'
   notify: ['Enable csit-initialize-vfs.service']
   tags: copy-vf-service
+
+- name: Set isolcpus and pstate parameter
+  lineinfile:
+    path: '/etc/default/grub'
+    state: 'present'
+    regexp: '^GRUB_CMDLINE_LINUX='
+    line: 'GRUB_CMDLINE_LINUX="hugepagesz=2M hugepages=65536"'
+  notify: ['Update GRUB']
+
