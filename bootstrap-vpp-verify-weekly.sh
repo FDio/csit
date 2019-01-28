@@ -68,7 +68,7 @@ else
 fi
 
 VIRL_DIR_LOC="/tmp/"
-VPP_PKGS=(vpp*.$PACKAGE)
+VPP_PKGS=(*vpp*.$PACKAGE)
 VPP_PKGS_FULL=("${VPP_PKGS[@]/#/${VIRL_DIR_LOC}}")
 echo ${VPP_PKGS[@]}
 
