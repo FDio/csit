@@ -124,9 +124,16 @@ function clean_environment () {
     # Kill docker containers.
     docker rm --force "${DCR_UUIDS[@]}" || die "Cleanup containers failed!"
 
-    # Remove DUT1 /tmp volume
-    docker volume rm "${DCR_VOLUMES[dut1]}" || {
-        die "Failed to remove DUT1 /tmp volume!"
+    # Check if some container is using volume and remove all the hanged
+    # containers before removing volume. Command will not fail in case there
+    # are no containers to remove.
+    docker rm --force $(docker ps -q --filter volume=${DCR_VOLUMES[dut1]}) || {
+        warn "Failed to remove hanged containers or nothing to remove!"
+    }
+
+    # Remove DUT1 volume.
+    docker volume rm --force "${DCR_VOLUMES[dut1]}" || {
+        die "Failed to remove DUT1 volume!"
     }
 
     # Rebind interfaces back to kernel drivers.
