@@ -320,6 +320,7 @@ function run_test_set() {
         --exclude PERFTEST \
         --exclude SOFTWIRE \
         --exclude ${SKIP_PATCH} \
+        --exclude SKIP_TEST \
         --noncritical EXPECTED_FAILING \
         --output ${LOG_PATH}/log_test_set_run${nr} \
         tests/"
@@ -332,6 +333,7 @@ function run_test_set() {
         --exclude PERFTEST \
         --exclude SOFTWIRE \
         --exclude ${SKIP_PATCH} \
+        --exclude SKIP_TEST \
         --noncritical EXPECTED_FAILING \
         --output ${LOG_PATH}/log_test_set_run${nr} \
         tests/
