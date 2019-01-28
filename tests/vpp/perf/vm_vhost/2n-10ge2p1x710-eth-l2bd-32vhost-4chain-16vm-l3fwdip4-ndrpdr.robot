@@ -57,7 +57,7 @@
 # X710 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-4c16n
+| ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-4c4n
 
 *** Keywords ***
 | Local Template

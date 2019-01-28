@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -268,7 +268,10 @@ class CpuUtils(object):
         dt_req = ((kwargs['chains'] * kwargs['nodeness']) + kwargs['dtcr'] - 1)\
             / kwargs['dtcr']
 
-        if kwargs['skip_cnt'] + mt_req + dt_req > cpu_list_len:
+        cpu_req = kwargs['skip_cnt'] + mt_req + dt_req
+        if smt_used and cpu_req > cpu_list_len / CpuUtils.NR_OF_THREADS:
+            raise RuntimeError("Not enough CPU cores available for placement!")
+        elif not smt_used and cpu_req > cpu_list_len:
             raise RuntimeError("Not enough CPU cores available for placement!")
 
         offset = (kwargs['node_id'] - 1) + (kwargs['chain_id'] - 1)\
