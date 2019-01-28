@@ -298,12 +298,26 @@ function get_available_interfaces () {
         fi
     done
 
-    for netdev in "${tg_side[@]::2}"; do
-        TG_NETDEVS+=(${netdev})
-    done
-    for netdev in "${dut1_side[@]::2}"; do
-        DUT1_NETDEVS+=(${netdev})
-    done
+    case "${case_text}" in
+        "1n_skx")
+            # Pick up first two DUT1 interfaces binded to i40evf.
+            for netdev in "${dut1_side[@]::2}"; do
+                DUT1_NETDEVS+=(${netdev})
+            done
+            # Corresponding TG interfaces will be same ID.SUB_ID, but on
+            # opposite linked device.
+            for netdev in "${DUT1_NETDEVS[@]}"; do
+                TG_NETDEVS+=(${netdev/$dut1_netdev/$tg_netdev})
+            done
+            ;;
+        *)
+            for netdev in "${tg_side[@]::2}"; do
+                TG_NETDEVS+=(${netdev})
+            done
+            for netdev in "${dut1_side[@]::2}"; do
+                DUT1_NETDEVS+=(${netdev})
+            done
+    esac
 
     for NETDEV in "${TG_NETDEVS[@]}"; do
         get_pci_addr
