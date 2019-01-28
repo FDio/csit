@@ -5,3 +5,7 @@
   command: systemctl enable csit-initialize-vfs.service
   tags: enable-vf-service
 
+- name: Update GRUB
+  command: update-grub
+  tags: update-grub
+
