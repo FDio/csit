@@ -4,6 +4,154 @@
 Test Methodology
 ================
 
+VPP Forwarding Modes
+--------------------
+
+VPP is tested in a number of L2 and IP packet lookup and forwarding
+modes. Within each mode baseline and scale tests are executed, the
+latter with varying number of lookup entries.
+
+L2 Ethernet Switching
+~~~~~~~~~~~~~~~~~~~~~
+
+VPP is tested in three L2 forwarding modes:
+
+- *l2patch*: L2 patch, the fastest point-to-point L2 path that loops
+  packets between two interfaces without any Ethernet frame checks or
+  lookups.
+- *l2xc*: L2 cross-connect, point-to-point L2 path with all Ethernet frame
+  checks, but no MAC learning and no MAC lookup.
+- *l2bd*: L2 bridge-domain, multipoint-to-multipoint L2 path with all
+  Ethernet frame checks, with MAC learning (unless static MACs are used)
+  and MAC lookup.
+
+l2bd tests are executed in baseline and scale configurations:
+
+- *l2bdbase*: low number of L2 flows (253 per direction) is switched by
+  VPP. They drive the content of MAC FIB size (506 total MAC entries).
+  Both source and destination MAC addresses are incremented on a packet
+  by packet basis.
+
+- *l2bdscale*: high number of L2 flows is switched by VPP. Tested MAC
+  FIB sizes include: i) 10k (5k unique flows per direction), ii) 100k
+  (2x 50k flows) and iii) 1M (2x 500k). Both source and destination MAC
+  addresses are incremented on a packet by packet basis, ensuring new
+  entries are learn refreshed and looked up at every packet, making it
+  the worst case scenario.
+
+Ethernet wire encapsulations tested include: untagged, dot1q, dot1ad.
+
+IPv4 Routing
+~~~~~~~~~~~~
+
+IPv4 routing tests are executed in baseline and scale configurations:
+
+- *ip4base*: low number of IPv4 flows (253 per direction) is routed by
+  VPP. They drive the content of IPv4 FIB size (506 total /32 prefixes).
+  Destination IPv4 addresses are incremented on a packet by packet
+  basis.
+
+- *ip4scale*: high number of IPv4 flows is routed by VPP. Tested IPv4
+  FIB sizes of /32 prefixes include: i) 20k (10k unique flows per
+  direction), ii) 200k (2x 100k flows) and iii) 2M (2x 1M). Destination
+  IPv4 addresses are incremented on a packet by packet basis, ensuring
+  new FIB entries are looked up at every packet, making it the worst
+  case scenario.
+
+IPv6 Routing
+~~~~~~~~~~~~
+
+IPv6 routing tests are executed in baseline and scale configurations:
+
+- *ip6base*: low number of IPv6 flows (253 per direction) is routed by
+  VPP. They drive the content of IPv6 FIB size (506 total /128 prefixes).
+  Destination IPv6 addresses are incremented on a packet by packet
+  basis.
+
+- *ip6scale*: high number of IPv6 flows is routed by VPP. Tested IPv6
+  FIB sizes of /128 prefixes include: i) 20k (10k unique flows per
+  direction), ii) 200k (2x 100k flows) and iii) 2M (2x 1M). Destination
+  IPv6 addresses are incremented on a packet by packet basis, ensuring
+  new FIB entries are looked up at every packet, making it the worst
+  case scenario.
+
+SRv6 Routing
+~~~~~~~~~~~~
+
+SRv6 routing tests are executed in a number of baseline configurations,
+in each case SR policy and steering policy are configured for one
+direction and one (or two) SR behaviours (functions) in the other
+directions:
+
+- *srv6enc1sid*: One SID (no SRH present), one SR function - End.
+- *srv6enc2sids*: Two SIDs (SRH present), two SR functions - End and
+  End.DX6.
+- *srv6enc2sids-nodecaps*: Two SIDs (SRH present) without decapsulation,
+  one SR function - End.
+- *srv6proxy-dyn*: Dynamic SRv6 proxy, one SR function - End.AD.
+- *srv6proxy-masq*: Masquerading SRv6 proxy, one SR function - End.AM.
+- *srv6proxy-stat*: Static SRv6 proxy, one SR function - End.AS.
+
+In all listed cases low number of IPv6 flows (253 per direction) is
+routed by VPP.
+
+Tunnel Encapsulations
+---------------------
+
+Tunnel encapsulations testing is grouped based on the type of outer
+header: IPv4 or IPv6.
+
+IPv4 Tunnels
+~~~~~~~~~~~~
+
+VPP is tested in the following IPv4 tunnel baseline configurations:
+
+- *ip4vxlan-l2bdbase*: VXLAN over IPv4 tunnels with L2 bridge-domain MAC
+  switching.
+- *ip4vxlan-l2xcbase*: VXLAN over IPv4 tunnels with L2 cross-connect.
+- *ip4lispip4-ip4base*: LISP over IPv4 tunnels with IPv4 routing.
+- *ip4lispip6-ip6base*: LISP over IPv4 tunnels with IPv6 routing.
+
+In all cases listed above low number of MAC, IPv4, IPv6 flows (253 per
+direction) is switched or routed by VPP.
+
+In addition selected IPv4 tunnels are tested at scale:
+
+- *dot1q--ip4vxlanscale-l2bd*: VXLAN over IPv4 tunnels with L2 bridge-
+  domain MAC switching, with scaled up dot1q VLANs (10, 100, 1k),
+  mapped to scaled up L2 bridge-domains (10, 100, 1k), that are in turn
+  mapped to (10, 100, 1k) VXLAN tunnels. 64.5k flows are transmitted per
+  direction.
+
+IPv6 Tunnels
+~~~~~~~~~~~~
+
+VPP is tested in the following IPv6 tunnel baseline configurations:
+
+- *ip6lispip4-ip4base*: LISP over IPv4 tunnels with IPv4 routing.
+- *ip6lispip6-ip6base*: LISP over IPv4 tunnels with IPv6 routing.
+
+In all cases listed above low number of IPv4, IPv6 flows (253 per
+direction) is routed by VPP.
+
+VPP Features
+------------
+
+
+Access Control List
+~~~~~~~~~~~~~~~~~~~
+
+stateless
+stateful
+
+NAT44
+~~~~~
+
+
+Ingress Policer
+~~~~~~~~~~~~~~~
+
+
 Data Plane Throughput
 ---------------------
 
