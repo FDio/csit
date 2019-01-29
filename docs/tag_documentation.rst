@@ -212,6 +212,10 @@ Performance Type Tags
     and reports total sent/received packets over trial duration.
     The result is an average of 10 trials of 1 second duration.
 
+.. topic:: SOAK
+
+    Performance tests using PLRsearch to find the critical load.
+
 Ethernet Frame Size Tags
 ------------------------
 
