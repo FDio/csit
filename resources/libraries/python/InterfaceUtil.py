@@ -19,6 +19,8 @@ from robot.api import logger
 
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DUTSetup import DUTSetup
+from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiErrors import PapiError
 from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.parsers.JsonParser import JsonParser
@@ -1620,3 +1622,109 @@ class InterfaceUtil(object):
                     node, 'vlan_subif{nr}'.format(nr=subif_id)), bd_id=bd_id))
 
         VatExecutor().write_and_execute_script(node, tmp_fn, commands)
+
+    @staticmethod
+    def vpp_set_interface_rx_placement(node, sw_if_index, worker_id):
+        """Set interface RX placement to worker ID on node.
+
+        :param node: Node to run command on.
+        :param sw_if_index: SW interface index.
+        :type worker_id: Worker ID.
+        :type node: dict
+        :type sw_if_index: int
+        :type worker_id: int
+        :raises PapiError: If no reply received or failed to run command.
+        """
+        api_data = list()
+        api = dict(api_name='sw_interface_set_rx_placement')
+        api_args = dict(sw_if_index=sw_if_index, worker_id=worker_id)
+        api['api_args'] = api_args
+        api_data.append(api)
+
+        api_reply = None
+        with PapiExecutor(node) as papi_executor:
+            papi_executor.execute_papi(api_data)
+            try:
+                papi_executor.papi_should_have_passed()
+            except AssertionError:
+                raise RuntimeError('Failed to run {api_name} on host '
+                                   '{host}!'.format(host=node['host'], **api))
+            api_reply = papi_executor.get_papi_reply()
+
+        if not api_reply:
+            raise PapiError('No reply received for {api_name} on host {host}!'.
+                            format(host=node['host'], **api))
+
+    @staticmethod
+    def vpp_set_interface_rx_placement_on_all_duts(nodes, sw_if_index=1,
+                                                   worker_id=1):
+        """Set interface RX placement to worker ID on all DUTs.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                InterfaceUtil.vpp_set_interface_rx_placement(
+                    node, sw_if_index, worker_id)
+
+    @staticmethod
+    def vpp_set_rr_rx_placement_on_all_duts(nodes, worker_threads=1):
+        """Set interface RX placement to worker ID on all DUTs.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
+        for ifc in node['interfaces'].values():
+            if 'VirtualEthernet' in ifc['name'] or 'Memif' in ifc['name']:
+                for worker_id in range(worker_threads):
+                    InterfaceUtil.vpp_set_interface_rx_placement_on_all_duts(
+                        nodes, ifc['vpp_sw_index'], worker_id)
+
+    @staticmethod
+    def vpp_dump_interface_rx_placement(node):
+        """Dump interface RX placement on node.
+
+        :param node: Node to run command on.
+        :type node: dict
+        :raises PapiError: If no reply received or failed to run command.
+        """
+        api_data = list()
+        for ifc in node['interfaces'].values():
+            if ifc['vpp_sw_index'] is not None:
+                api = dict(api_name='sw_interface_rx_placement_dump')
+                api_args = dict(sw_if_index=ifc['vpp_sw_index'])
+                api['api_args'] = api_args
+                api_data.append(api)
+
+        api_reply = None
+        with PapiExecutor(node) as papi_executor:
+            papi_executor.execute_papi(api_data)
+            try:
+                papi_executor.papi_should_have_passed()
+            except AssertionError:
+                raise RuntimeError('Failed to run {api_name} on host '
+                                   '{host}!'.format(host=node['host'], **api))
+            api_reply = papi_executor.get_papi_reply()
+
+        if api_reply is not None:
+            for item in api_reply:
+                data = item['api_reply'][0]['sw_interface_rx_placement_details']
+                for ifc in node['interfaces'].values():
+                    if ifc['vpp_sw_index'] == data['sw_if_index']:
+                        logger.info('{sw_name} thread_id:\t{worker_id}'.
+                                    format(sw_name=ifc['name'], **data))
+        else:
+            raise PapiError('No reply received for {api_name} on host {host}!'.
+                            format(host=node['host'], **api))
+
+    @staticmethod
+    def vpp_dump_interface_rx_placement_on_all_duts(nodes):
+        """Dump interface RX placement on all DUTs.
+
+        :param nodes: Topology nodes.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                InterfaceUtil.vpp_dump_interface_rx_placement(node)
