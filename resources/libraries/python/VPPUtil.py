@@ -317,3 +317,36 @@ class VPPUtil(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 VPPUtil.show_event_logger_on_dut(node)
+
+    @staticmethod
+    def vpp_show_threads(node):
+        """Show VPP threads on node.
+
+        :param node: Node to run command on.
+        :type node: dict
+        :returns: VPP thread data.
+        :rtype: list
+        :raises RuntimeError: If failed to run command on host.
+        :raises PapiError: If no API reply received.
+        """
+        api_data = list()
+        api = dict(api_name='show_threads')
+        api_args = dict()
+        api['api_args'] = api_args
+        api_data.append(api)
+
+        with PapiExecutor(node) as papi_executor:
+            papi_executor.execute_papi(api_data)
+            try:
+                papi_executor.papi_should_have_passed()
+                api_reply = papi_executor.get_papi_reply()
+            except (AssertionError, JSONDecodeError):
+                raise RuntimeError('Failed to run {api_name} on host '
+                                   '{host}!'.format(host=node['host'], **api))
+
+        if api_reply:
+            return \
+                api_reply[0]['api_reply']['show_threads_reply']['thread_data']
+        else:
+            raise PapiError('No reply received for {api_name} on host {host}!'.
+                            format(host=node['host'], **api))
