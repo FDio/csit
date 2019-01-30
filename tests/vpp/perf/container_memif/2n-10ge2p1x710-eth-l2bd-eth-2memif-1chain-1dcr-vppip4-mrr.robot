@@ -96,7 +96,7 @@
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-eth-l2bd-2memif-1chain-1dcr-vppip4-mrr
-| | [Tags] | 64B | 2C
+| | [Tags] | 64B | 2C | THIS
 | | framesize=${64} | phy_cores=${2}
 
 | tc03-64B-4c-eth-l2bd-2memif-1chain-1dcr-vppip4-mrr
