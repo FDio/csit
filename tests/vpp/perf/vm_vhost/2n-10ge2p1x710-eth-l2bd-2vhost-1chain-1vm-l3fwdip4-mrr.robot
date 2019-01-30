@@ -24,8 +24,8 @@
 | Suite Teardown | Tear down 2-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance mrr test with vhost and VM with dpdk-testpmd
-| ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
+#| Test Teardown | Tear down performance mrr test with vhost and VM with dpdk-testpmd
+#| ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ...
 | Test Template | Local Template
 | ...
@@ -84,12 +84,13 @@
 | | And Configure chains of NFs with dpdk-testpmd-mac connected via vhost-user
 | | ... | nf_chains=${1} | nf_nodes=${1} | jumbo=${jumbo}
 | | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
-| | Then Traffic should pass with maximum rate
-| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | And VPP dump interface RX placement on all DUTs | ${nodes}
+#| | Then Traffic should pass with maximum rate
+#| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2bd-2vhost-1chain-1vm-l3fwdip4-mrr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-eth-l2bd-2vhost-1chain-1vm-l3fwdip4-mrr
