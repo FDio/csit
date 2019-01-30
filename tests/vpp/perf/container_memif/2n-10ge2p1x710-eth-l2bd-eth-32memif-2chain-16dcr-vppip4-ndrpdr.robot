@@ -92,7 +92,7 @@
 | | And Set up performance test with containers
 | | ... | nf_chains=${2} | nf_nodes=${8} | auto_scale=${False}
 | | And Initialize L2 Bridge Domain for multiple chains with memif pairs
-| | ... | nf_chains=${2} | nf_nodes=${8}
+| | ... | nf_chains=${2} | nf_nodes=${8} | auto_scale=${False}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
