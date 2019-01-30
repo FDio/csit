@@ -141,7 +141,7 @@ class ContainerManager(object):
             self.engine.container = self.containers[container]
             # We need to install supervisor client/server system to control VPP
             # as a service
-            self.engine.execute('apt-get update')
+            self.engine.execute('sleep 3; apt-get update')
             self.engine.install_supervisor()
             self.engine.install_vpp()
             self.engine.restart_vpp()
