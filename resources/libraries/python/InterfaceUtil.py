@@ -19,6 +19,8 @@ from robot.api import logger
 
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DUTSetup import DUTSetup
+from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiErrors import PapiError
 from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.parsers.JsonParser import JsonParser
@@ -1620,3 +1622,110 @@ class InterfaceUtil(object):
                     node, 'vlan_subif{nr}'.format(nr=subif_id)), bd_id=bd_id))
 
         VatExecutor().write_and_execute_script(node, tmp_fn, commands)
+
+    @staticmethod
+    def vpp_sw_interface_rx_placement_dump(node):
+        """Dump VPP interface RX placement on node.
+
+        :param node: Node to run command on.
+        :type node: dict
+        :returns: Thread mapping information as a list of dictionaries.
+        :rtype: list
+        :raises RuntimeError: If failed to run command on host.
+        :raises PapiError: If no API reply received.
+        """
+        api_data = list()
+        for ifc in node['interfaces'].values():
+            if ifc['vpp_sw_index'] is not None:
+                api = dict(api_name='sw_interface_rx_placement_dump')
+                api_args = dict(sw_if_index=ifc['vpp_sw_index'])
+                api['api_args'] = api_args
+                api_data.append(api)
+
+        with PapiExecutor(node) as papi_executor:
+            papi_executor.execute_papi(api_data)
+            try:
+                papi_executor.papi_should_have_passed()
+                api_reply = papi_executor.get_papi_reply()
+            except AssertionError, JSONDecodeError:
+                raise RuntimeError('Failed to run {api_name} on host '
+                                   '{host}!'.format(host=node['host'], **api))
+
+        if api_reply:
+            thr_mapping = [s['sw_interface_rx_placement_details'] \
+                for r in api_reply for s in r['api_reply']]
+            return sorted(thr_mapping, key=lambda k: k['sw_if_index'])
+        else:
+            raise PapiError('No reply received for {api_name} on host {host}!'.
+                            format(host=node['host'], **api))
+
+    @staticmethod
+    def vpp_sw_interface_set_rx_placement(node, sw_if_index, queue_id,
+                                          worker_id):
+        """Set interface RX placement to worker on node.
+
+        :param node: Node to run command on.
+        :param sw_if_index: VPP SW interface index.
+        :param queue_id: VPP interface queue ID.
+        :param worker_id: VPP worker ID (indexing from 0).
+        :type node: dict
+        :type sw_if_index: int
+        :type queue_id: int
+        :type worker_id: int
+        :raises RuntimeError: If failed to run command on host.
+        :raises PapiError: If no API reply received.
+        """
+        api_data = list()
+        api = dict(api_name='sw_interface_set_rx_placement')
+        api_args = dict(sw_if_index=sw_if_index, queue_id=queue_id,
+                        worker_id=worker_id)
+        api['api_args'] = api_args
+        api_data.append(api)
+
+        with PapiExecutor(node) as papi_executor:
+            papi_executor.execute_papi(api_data)
+            try:
+                papi_executor.papi_should_have_passed()
+                api_reply = papi_executor.get_papi_reply()
+            except AssertionError, JSONDecodeError:
+                raise RuntimeError('Failed to run {api_name} on host '
+                                   '{host}!'.format(host=node['host'], **api))
+
+        if not api_reply:
+            raise PapiError('No reply received for {api_name} on host {host}!'.
+                            format(host=node['host'], **api))
+
+    @staticmethod
+    def vpp_round_robin_rx_placement(node, prefix):
+        """Set Round Robin interface RX placement on all worker threads
+        on node.
+
+        :param node: Topology nodes.
+        :param prefix: Interface name prefix.
+        :type node: dict
+        :type prefix: str
+        """
+        worker_id = 0
+        worker_cnt = len(VPPUtil.vpp_show_threads(node)) - 1
+        for placement in InterfaceUtil.vpp_sw_interface_rx_placement_dump(node):
+            for interface in node['interfaces'].values():
+                if placement['sw_if_index'] == interface['vpp_sw_index'] \
+                    and prefix in interface['name']:
+                    InterfaceUtil.vpp_sw_interface_set_rx_placement(
+                        node, placement['sw_if_index'], placement['queue_id'],
+                        worker_id % worker_cnt)
+                    worker_id += 1
+
+    @staticmethod
+    def vpp_round_robin_rx_placement_on_all_duts(nodes, prefix):
+        """Set Round Robin interface RX placement on all worker threads
+        on all DUTs.
+
+        :param nodes: Topology nodes.
+        :param prefix: Interface name prefix.
+        :type nodes: dict
+        :type prefix: str
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                InterfaceUtil.vpp_round_robin_rx_placement(node, prefix)
