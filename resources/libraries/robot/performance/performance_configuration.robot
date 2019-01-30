@@ -3031,6 +3031,8 @@
 | | ... | - dut - DUT node. Type: dictionary
 | | ... | - nf_chain - NF chain. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
@@ -3042,7 +3044,11 @@
 | | ... | \| ${dut} \| 1 \| 1 \|
 | | ...
 | | [Arguments] | ${dut} | ${nf_chain}=${1} | ${nf_nodes}=${1}
+| | ... | ${auto_scale}=${True}
 | | ...
+| | ${rxq}= | Run Keyword If | '${auto_scale}' == ${True}
+| | ... | Set Variable | ${rxq_count_int}
+| | ... | ELSE | Set Variable | ${1}
 | | ${bd_id2}= | Evaluate | ${nf_nodes}+1
 | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if1} | ${1}
 | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if2}
@@ -3053,7 +3059,7 @@
 | | | ${sock2}= | Set Variable | memif-${dut}_CNF
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${nf_id} | ${dut}-memif-${nf_id}-if1
-| | | ... | ${dut}-memif-${nf_id}-if2 | ${rxq_count_int} | ${rxq_count_int}
+| | | ... | ${dut}-memif-${nf_id}-if2 | ${rxq} | ${rxq}
 | | | ${bd_id2}= | Evaluate | ${nf_node}+1
 | | | Add interface to bridge domain | ${nodes['${dut}']}
 | | | ... | ${${dut}-memif-${nf_id}-if1} | ${nf_node}
@@ -3069,17 +3075,20 @@
 | | ... | *Arguments:*
 | | ... | - nf_chain - NF chain. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 Bridge Domain with memif pairs \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1}
+| | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 Bridge Domain with memif pairs on DUT node | ${dut}
 | | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
+| | | ... | auto_scale=${auto_scale}
 
 | Initialize L2 Bridge Domain for multiple chains with memif pairs
 | | [Documentation]
@@ -3091,17 +3100,19 @@
 | | ... | *Arguments:*
 | | ... | - nf_chains - Number of chains of NFs. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 Bridge Domain for multiple chains with memif pairs \
 | | ... | \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
 | | ...
 | | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
 | | | Initialize L2 Bridge Domain with memif pairs | nf_chain=${nf_chain}
-| | | ... | nf_nodes=${nf_nodes}
+| | | ... | nf_nodes=${nf_nodes} | auto_scale=${auto_scale}
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
@@ -3114,14 +3125,19 @@
 | | ... | *Arguments:*
 | | ... | - nf_chain - NF pipe. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per pipeline. Type: integer
+| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 Bridge Domain for pipeline with memif pairs \
 | | ... | \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1}
+| | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
 | | ...
+| | ${rxq}= | Run Keyword If | '${auto_scale}' == ${True}
+| | ... | Set Variable | ${rxq_count_int}
+| | ... | ELSE | Set Variable | ${1}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if1} | ${1}
@@ -3133,11 +3149,11 @@
 | | | Set up single memif interface on DUT node | ${nodes['${dut}']}
 | | | ... | memif-${dut}_CNF | mid=${nf_id_frst} | sid=${sid_frst}
 | | | ... | memif_if=${dut}-memif-${nf_id_frst}-if1
-| | | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
+| | | ... | rxq=${rxq} | txq=${rxq}
 | | | Set up single memif interface on DUT node | ${nodes['${dut}']}
 | | | ... | memif-${dut}_CNF | mid=${nf_id_last} | sid=${sid_last}
 | | | ... | memif_if=${dut}-memif-${nf_id_last}-if2
-| | | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
+| | | ... | rxq=${rxq} | txq=${rxq}
 | | | Add interface to bridge domain | ${nodes['${dut}']}
 | | | ... | ${${dut}-memif-${nf_id_frst}-if1} | ${1}
 | | | Add interface to bridge domain | ${nodes['${dut}']}
@@ -3153,17 +3169,20 @@
 | | ... | *Arguments:*
 | | ... | - nf_chains - Number of pipelines of NFs. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per pipeline. Type: integer
+| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 Bridge Domain for multiple pipelines with memif \
 | | ... | pairs \| 1 \| 1 \|
 | | ...
-| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
 | | ...
 | | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
 | | | Initialize L2 Bridge Domain for pipeline with memif pairs
 | | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
+| | | ... | auto_scale=${auto_scale}
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
