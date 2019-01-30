@@ -86,7 +86,7 @@
 | | And Set up performance test with containers
 | | ... | nf_chains=${4} | nf_nodes=${2} | auto_scale=${False}
 | | And Initialize L2 Bridge Domain for multiple chains with memif pairs
-| | ... | nf_chains=${4} | nf_nodes=${2}
+| | ... | nf_chains=${4} | nf_nodes=${2} | auto_scale=${False}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
