@@ -105,10 +105,6 @@
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc03-64B-4c-eth-l2bd-4memif-2pipe-16dcr-vppip4-ndrpdr
-| | [Tags] | 64B | 4C
-| | framesize=${64} | phy_cores=${4}
-
 | tc04-1518B-1c-eth-l2bd-4memif-2pipe-16dcr-vppip4-ndrpdr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
@@ -116,10 +112,6 @@
 | tc05-1518B-2c-eth-l2bd-4memif-2pipe-16dcr-vppip4-ndrpdr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
-
-| tc06-1518B-4c-eth-l2bd-4memif-2pipe-16dcr-vppip4-ndrpdr
-| | [Tags] | 1518B | 4C
-| | framesize=${1518} | phy_cores=${4}
 
 | tc07-9000B-1c-eth-l2bd-4memif-2pipe-16dcr-vppip4-ndrpdr
 | | [Tags] | 9000B | 1C
@@ -129,10 +121,6 @@
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-eth-l2bd-4memif-2pipe-16dcr-vppip4-ndrpdr
-| | [Tags] | 9000B | 4C
-| | framesize=${9000} | phy_cores=${4}
-
 | tc10-IMIX-1c-eth-l2bd-4memif-2pipe-16dcr-vppip4-ndrpdr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
@@ -140,7 +128,3 @@
 | tc11-IMIX-2c-eth-l2bd-4memif-2pipe-16dcr-vppip4-ndrpdr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
-
-| tc12-IMIX-4c-eth-l2bd-4memif-2pipe-16dcr-vppip4-ndrpdr
-| | [Tags] | IMIX | 4C
-| | framesize=IMIX_v4_1 | phy_cores=${4}
