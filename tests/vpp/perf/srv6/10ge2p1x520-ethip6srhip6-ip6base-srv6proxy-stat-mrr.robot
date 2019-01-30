@@ -114,7 +114,7 @@
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
 | | ... | ${s_limit} | ${framesize} | overhead=${srv6_overhead_3sids}
 | | And Apply startup configuration on all VPP DUTs
-| | And Set up performance test with containers | chains=${1} | nodeness=${1}
+| | And Set up performance test with containers | nf_chains=${1} | nf_nodes=${1}
 | | When Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'static_proxy' behaviour in 3-node circular topology
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
