@@ -2307,6 +2307,8 @@
 | | ... | - perf_qemu_qsz - Virtio Queue Size. Type: int
 | | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
 | | ... | Type: bool
+| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ...
 | | ... | *Note:*
 | | ... | KW uses test variables \${rxq_count_int}, \${thr_count_int} and
@@ -2320,9 +2322,12 @@
 | | ...
 | | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name} | ${nf_cpus}
 | | ... | ${qemu_id}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
-| | ... | ${use_tuned_cfs}=${False}
+| | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${True}
 | | ...
 | | ${nf_cpus_count}= | Get Length | ${nf_cpus}
+| | ${rxq}= | Run Keyword If | '${auto_scale}' == ${True}
+| | ... | Set Variable | ${rxq_count_int}
+| | ... | ELSE | Set Variable | ${1}
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${nodes['${dut}']}
@@ -2356,8 +2361,7 @@
 | | Dpdk Testpmd Start | ${vm} | eal_corelist=${testpmd_cpus}
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=io | pmd_disable_hw_vlan=${TRUE}
 | | ... | pmd_rxd=${perf_qemu_qsz} | pmd_txd=${perf_qemu_qsz}
-| | ... | pmd_rxq=${rxq_count_int} | pmd_txq=${rxq_count_int}
-| | ... | pmd_max_pkt_len=${max_pkt_len}
+| | ... | pmd_rxq=${rxq} | pmd_txq=${rxq} | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
 | Configure guest VMs with dpdk-testpmd connected via vhost-user on node
@@ -2424,6 +2428,7 @@
 | | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
 | | All VPP Interfaces Ready Wait | ${nodes}
+| | VPP round robin RX placement on all DUTs | ${nodes}
 
 | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
 | | [Documentation]
@@ -2447,6 +2452,8 @@
 | | ... | - perf_qemu_qsz - Virtio Queue Size. Type: int
 | | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
 | | ... | Type: bool
+| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ...
 | | ... | *Note:*
 | | ... | KW uses test variables \${rxq_count_int}, \${thr_count_int} and
@@ -2461,9 +2468,12 @@
 | | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name}
 | | ... | ${eth0_mac} | ${eth1_mac} | ${nf_cpus} | ${qemu_id}=${1}
 | | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
-| | ... | ${use_tuned_cfs}=${False}
+| | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${True}
 | | ...
 | | ${nf_cpus_count}= | Get Length | ${nf_cpus}
+| | ${rxq}= | Run Keyword If | '${auto_scale}' == ${True}
+| | ... | Set Variable | ${rxq_count_int}
+| | ... | ELSE | Set Variable | ${1}
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${nodes['${dut}']}
@@ -2498,8 +2508,7 @@
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${TRUE}
 | | ... | pmd_rxd=${perf_qemu_qsz} | pmd_txd=${perf_qemu_qsz}
-| | ... | pmd_rxq=${rxq_count_int} | pmd_txq=${rxq_count_int}
-| | ... | pmd_max_pkt_len=${max_pkt_len}
+| | ... | pmd_rxq=${rxq} | pmd_txq=${rxq} | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
 
 | Configure guest VMs with dpdk-testpmd-mac connected via vhost-user on node
@@ -2571,6 +2580,7 @@
 | | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
 | | All VPP Interfaces Ready Wait | ${nodes}
+| | VPP round robin RX placement on all DUTs | ${nodes}
 
 | Configure chain of NFs with dpdk-testpmd-mac connected via vhost-user on node
 | | [Documentation]
@@ -2588,6 +2598,8 @@
 | | ... | - perf_qemu_qsz - Virtio Queue Size. Type: integer
 | | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
 | | ... | Type: boolean
+| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
@@ -2596,7 +2608,7 @@
 | | ...
 | | [Arguments] | ${dut} | ${nf_chains}=${1} | ${nf_chain}=${1}
 | | ... | ${nf_nodes}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
-| | ... | ${use_tuned_cfs}=${False}
+| | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${False}
 | | ...
 | | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
@@ -2625,6 +2637,7 @@
 | | | ... | ${dut} | ${sock1} | ${sock2} | ${nf_name} | ${vif1_mac}
 | | | ... | ${vif2_mac} | ${nf_cpus} | qemu_id=${qemu_id} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
+| | | ... | auto_scale=${auto_scale}
 | | | Set To Dictionary | ${${dut}_vm_refs} | ${nf_name} | ${vm}
 
 | Configure chain of NFs with dpdk-testpmd-mac connected via vhost-user
@@ -2642,6 +2655,8 @@
 | | ... | - perf_qemu_qsz - Virtio Queue Size. Type: integer
 | | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
 | | ... | Type: boolean
+| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
@@ -2650,7 +2665,7 @@
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_chain}=${1} | ${nf_nodes}=${1}
 | | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
-| | ... | ${use_tuned_cfs}=${False}
+| | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${False}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
@@ -2658,6 +2673,7 @@
 | | | ... | ${dut} | nf_chains=${nf_chains} | nf_chain=${nf_chain}
 | | | ... | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
+| | | ... | auto_scale=${auto_scale}
 
 | Configure chains of NFs with dpdk-testpmd-mac connected via vhost-user
 | | [Documentation]
@@ -2673,6 +2689,8 @@
 | | ... | - perf_qemu_qsz - Virtio Queue Size. Type: integer
 | | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
 | | ... | Type: boolean
+| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
@@ -2681,13 +2699,15 @@
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${jumbo}=${False}
 | | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
+| | ... | ${auto_scale}=${False}
 | | ...
 | | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
 | | | Configure chain of NFs with dpdk-testpmd-mac connected via vhost-user
 | | | ... | nf_chains=${nf_chains} | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
 | | | ... | jumbo=${jumbo} | perf_qemu_qsz=${perf_qemu_qsz}
-| | | ... | use_tuned_cfs=${False}
+| | | ... | use_tuned_cfs=${False} | auto_scale=${auto_scale}
 | | All VPP Interfaces Ready Wait | ${nodes}
+| | VPP round robin RX placement on all DUTs | ${nodes}
 
 | Initialize LISP IPv4 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG \
@@ -3020,6 +3040,7 @@
 | | | Initialize L2 xconnect with memif pairs on DUT node | ${dut} | ${count}
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
+| | VPP round robin RX placement on all DUTs | ${nodes}
 
 | Initialize L2 Bridge Domain with memif pairs on DUT node
 | | [Documentation]
@@ -3115,6 +3136,7 @@
 | | | ... | nf_nodes=${nf_nodes} | auto_scale=${auto_scale}
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
+| | VPP round robin RX placement on all DUTs | ${nodes}
 
 | Initialize L2 Bridge Domain for pipeline with memif pairs
 | | [Documentation]
@@ -3185,6 +3207,7 @@
 | | | ... | auto_scale=${auto_scale}
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
+| | VPP round robin RX placement on all DUTs | ${nodes}
 
 | Initialize L2 Bridge Domain with memif pairs and VLAN in circular topology
 | | [Documentation]
@@ -3261,6 +3284,7 @@
 | | ... | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 | | ...
 | | Show Memif on all DUTs | ${nodes}
+| | VPP round robin RX placement on all DUTs | ${nodes}
 
 | Initialize IPv4 routing with memif pairs on DUT node
 | | [Documentation]
@@ -3405,6 +3429,7 @@
 | | | Initialize IPv4 routing with memif pairs on DUT node | ${dut} | ${count}
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
+| | VPP round robin RX placement on all DUTs | ${nodes}
 
 | Initialize L2 xconnect for single memif
 | | [Documentation]
@@ -3438,6 +3463,7 @@
 | | | ... | ${${dut}-memif-${number}-if1}
 | | Set single interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
+| | VPP round robin RX placement on all DUTs | ${nodes}
 
 | Initialize L2 Bridge Domain for single memif
 | | [Documentation]
@@ -3473,6 +3499,7 @@
 | | | ... | ${${dut}-memif-${number}-if1} | ${number}
 | | Set single interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
+| | VPP round robin RX placement on all DUTs | ${nodes}
 
 | Configure ACLs on a single interface
 | | [Documentation]
