@@ -77,7 +77,7 @@
 
 - name: Copy grub file
   template:
-   src: 'files/grub'
+   src: 'files/grub_{{ ansible_machine }}'
    dest: '/etc/default/grub'
    owner: 'root'
    group: 'root'
