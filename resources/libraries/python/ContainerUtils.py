@@ -784,7 +784,7 @@ class Docker(ContainerEngine):
                 return
 
         if not self.container.image:
-            setattr(self.container, 'image', 'snergster/csit-sut:latest')
+            setattr(self.container, 'image', Constants.DOCKER_UBUNTU_SUT_IMAGE)
 
         cmd = 'docker pull {image}'.format(image=self.container.image)
 

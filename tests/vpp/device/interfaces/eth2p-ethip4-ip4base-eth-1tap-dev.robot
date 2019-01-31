@@ -82,9 +82,9 @@
 | | ... | ${tap_int1} | ${tap1_NM_ip} | ${prefix}
 | | And Add Route | ${dut_node}
 | | ... | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1}
+| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${tg_ip_address} | ${tg_to_dut_if1_mac}
-| | And Add Arp On Dut | ${dut_node} | ${int1}
+| | And Add Arp On Dut | ${dut_node} | ${int1}
 | | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
 | | Then Send ICMP echo request and verify answer | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
@@ -114,9 +114,9 @@
 | | ... | ${tap_int1} | ${tap1_NM_mac} | ${namespace1}
 | | And Set Linux Interface IP | ${dut_node}
 | | ... | ${tap_int1} | ${tap1_NM_ip} | ${prefix} | ${namespace1}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1}
+| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${tg_ip_address} | ${tg_to_dut_if1_mac}
-| | And Add Arp On Dut | ${dut_node} | ${int1}
+| | And Add Arp On Dut | ${dut_node} | ${int1}
 | | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
 | | And Add Route | ${dut_node}
 | | ... | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip} | ${namespace1}

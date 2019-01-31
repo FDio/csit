@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,18 +17,13 @@
 
 set -euo pipefail
 
-# Add Intel Corporation Ethernet Controller 10G X550T to blacklist.
-# See http://pci-ids.ucw.cz/v2.2/pci.ids for more info.
-pci_blacklist=($(lspci -Dmmd ':1563:0200' | cut -f1 -d' '))
-
-# Add Intel Corporation Ethernet Controller X710 for 10GbE SFP+ to whitelist.
-# See http://pci-ids.ucw.cz/v2.2/pci.ids for more info.
-pci_whitelist=($(lspci -Dmmd ':1572:0200' | cut -f1 -d' '))
+SCRIPT_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
+source "${SCRIPT_DIR}/csit-initialize-vfs-data.sh"
 
 # Initilize whitelisted NICs with maximum number of VFs.
 pci_idx=0
-for pci_addr in ${pci_whitelist[@]}; do
-    if ! [[ ${pci_blacklist[*]} =~ "${pci_addr}" ]]; then
+for pci_addr in ${PCI_WHITELIST[@]}; do
+    if ! [[ ${PCI_BLACKLIST[*]} =~ "${pci_addr}" ]]; then
         pci_path="/sys/bus/pci/devices/${pci_addr}"
         # SR-IOV initialization
         case "${1:-start}" in
@@ -46,7 +41,12 @@ for pci_addr in ${pci_whitelist[@]}; do
                 pf=$(basename "${pci_path}"/net/*)
                 for vf in $(seq "${sriov_totalvfs}"); do
                     # PCI address index in array (pairing siblings).
-                    vlan_pf_idx=$(( pci_idx % (${#pci_whitelist[@]} / 2) ))
+                    if [[ -n ${PF_INDICES[@]} ]]
+                    then
+                        vlan_pf_idx=${PF_INDICES[$pci_addr]}
+                    else
+                        vlan_pf_idx=$(( pci_idx % (${#PCI_WHITELIST[@]} / 2) ))
+                    fi
                     # 802.1Q base offset.
                     vlan_bs_off=1100
                     # 802.1Q PF PCI address offset.

@@ -51,6 +51,11 @@ all:
             10.32.8.11: null #s29-t26-sut1
             10.32.8.12: null #s30-t35-sut1
             10.32.8.13: null #s31-t35-sut2
+    thunderx2:
+      children:
+        vpp_device:
+          hosts:
+            10.30.51.69: null #s27-t13-sut1
     taishan:
       children:
 #        tg:
