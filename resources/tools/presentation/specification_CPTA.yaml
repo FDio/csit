@@ -903,7 +903,7 @@
     - title: "VPP 1T1C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-1t1c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '1T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '1T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -911,7 +911,7 @@
     - title: "VPP 2T2C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-2t2c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '2T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '2T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -919,7 +919,7 @@
     - title: "VPP 4T4C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-4t4c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '4T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'FIB_1M') and '4T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1001,7 +1001,7 @@
     - title: "VPP 1T1C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-1t1c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE' or 'FEATURE') and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE' or 'FEATURE') and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1009,7 +1009,7 @@
     - title: "VPP 2T2C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-2t2c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1017,7 +1017,7 @@
     - title: "VPP 4T4C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-4t4c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T4C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T4C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1027,7 +1027,7 @@
     - title: "VPP 1T1C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-1t1c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1035,7 +1035,7 @@
     - title: "VPP 2T2C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-2t2c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1043,7 +1043,7 @@
     - title: "VPP 4T4C IPv4 64B MRR Trending 3n-hsw"
       output-file-name: "ip4-4t4c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1207,7 +1207,7 @@
     - title: "VPP 1T1C L2 Container memif 64B MRR Trending 3n-hsw"
       output-file-name: "container-memif-l2-1t1c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1215,7 +1215,7 @@
     - title: "VPP 2T2C L2 Container memif 64B MRR Trending 3n-hsw"
       output-file-name: "container-memif-l2-2t2c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1223,7 +1223,7 @@
     - title: "VPP 4T4C L2 Container memif 64B MRR Trending 3n-hsw"
       output-file-name: "container-memif-l2-4t4c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1233,7 +1233,7 @@
     - title: "VPP 1T1C L2 Container memif IMIX MRR Trending 3n-hsw"
       output-file-name: "container-memif-imix-l2-1t1c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and 'IMIX' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and 'IMIX' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1241,7 +1241,7 @@
     - title: "VPP 2T2C L2 Container memif IMIX MRR Trending 3n-hsw"
       output-file-name: "container-memif-imix-l2-2t2c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and 'IMIX' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and 'IMIX' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1249,7 +1249,7 @@
     - title: "VPP 4T4C L2 Container memif IMIX MRR Trending 3n-hsw"
       output-file-name: "container-memif-imix-l2-4t4c-x520-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X520-DA2' and 'MRR' and 'IMIX' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q'"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and 'IMIX' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1259,7 +1259,7 @@
     - title: "VPP 1T1C L2 Container memif 64B MRR Trending 3n-hsw"
       output-file-name: "container-memif-l2-1t1c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1267,7 +1267,7 @@
     - title: "VPP 2T2C L2 Container memif 64B MRR Trending 3n-hsw"
       output-file-name: "container-memif-l2-2t2c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1275,7 +1275,7 @@
     - title: "VPP 4T4C L2 Container memif 64B MRR Trending 3n-hsw"
       output-file-name: "container-memif-l2-4t4c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and 'MRR' and '64B' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1285,7 +1285,7 @@
     - title: "VPP 1T1C L2 Container memif IMIX MRR Trending 3n-hsw"
       output-file-name: "container-memif-imix-l2-1t1c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and 'MRR' and 'IMIX' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and 'MRR' and 'IMIX' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1293,7 +1293,7 @@
     - title: "VPP 2T2C L2 Container memif IMIX MRR Trending 3n-hsw"
       output-file-name: "container-memif-imix-l2-2t2c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and 'MRR' and 'IMIX' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and 'MRR' and 'IMIX' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1301,7 +1301,7 @@
     - title: "VPP 4T4C L2 Container memif IMIX MRR Trending 3n-hsw"
       output-file-name: "container-memif-imix-l2-4t4c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and 'MRR' and 'IMIX' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and 'MRR' and 'IMIX' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1311,7 +1311,7 @@
     - title: "VPP 1T1C L2 Container memif 64B MRR Trending 3n-hsw"
       output-file-name: "container-memif-l2-1t1c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1319,7 +1319,7 @@
     - title: "VPP 2T2C L2 Container memif 64B MRR Trending 3n-hsw"
       output-file-name: "container-memif-l2-2t2c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1327,7 +1327,7 @@
     - title: "VPP 4T4C L2 Container memif 64B MRR Trending 3n-hsw"
       output-file-name: "container-memif-l2-4t4c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1337,7 +1337,7 @@
     - title: "VPP 1T1C L2 Container memif IMIX MRR Trending 3n-hsw"
       output-file-name: "container-memif-imix-l2-1t1c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q'"
+      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1345,7 +1345,7 @@
     - title: "VPP 2T2C L2 Container memif IMIX MRR Trending 3n-hsw"
       output-file-name: "container-memif-imix-l2-2t2c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q'"
+      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -1353,7 +1353,7 @@
     - title: "VPP 4T4C L2 Container memif IMIX MRR Trending 3n-hsw"
       output-file-name: "container-memif-imix-l2-4t4c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q'"
+      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2140,7 +2140,7 @@
     - title: "VPP 2T1C IPv4 64B MRR Trending 3n-skx"
       output-file-name: "ip4-2t1c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2148,7 +2148,7 @@
     - title: "VPP 4T2C IPv4 64B MRR Trending 3n-skx"
       output-file-name: "ip4-4t2c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2156,7 +2156,7 @@
     - title: "VPP 8T4C IPv4 64B MRR Trending 3n-skx"
       output-file-name: "ip4-8t4c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2344,7 +2344,7 @@
     - title: "VPP 2T1C L2 Container memif 64B MRR Trending 3n-skx"
       output-file-name: "container-memif-l2-2t1c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2352,7 +2352,7 @@
     - title: "VPP 4T2C L2 Container memif 64B MRR Trending 3n-skx"
       output-file-name: "container-memif-l2-4t2c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2360,7 +2360,7 @@
     - title: "VPP 8T4C L2 Container memif 64B MRR Trending 3n-skx"
       output-file-name: "container-memif-l2-8t4c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2370,7 +2370,7 @@
     - title: "VPP 2T1C L2 Container memif 64B MRR Trending 3n-skx"
       output-file-name: "container-memif-l2-2t1c-xxv710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2378,7 +2378,7 @@
     - title: "VPP 4T2C L2 Container memif 64B MRR Trending 3n-skx"
       output-file-name: "container-memif-l2-4t2c-xxv710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2386,7 +2386,7 @@
     - title: "VPP 8T4C L2 Container memif 64B MRR Trending 3n-skx"
       output-file-name: "container-memif-l2-8t4c-xxv710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2396,7 +2396,7 @@
     - title: "VPP 2T1C L2 Container memif IMIX MRR Trending 3n-skx"
       output-file-name: "container-memif-imix-l2-2t1c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q'"
+      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2404,7 +2404,7 @@
     - title: "VPP 4T2C L2 Container memif IMIX MRR Trending 3n-skx"
       output-file-name: "container-memif-imix-l2-4t2c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q'"
+      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2412,7 +2412,7 @@
     - title: "VPP 8T4C L2 Container memif IMIX MRR Trending 3n-skx"
       output-file-name: "container-memif-imix-l2-8t4c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q'"
+      filter: "'NIC_Intel-X710' and 'MRR' and 'IMIX' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2422,7 +2422,7 @@
     - title: "VPP 2T1C L2 Container memif IMIX MRR Trending 3n-skx"
       output-file-name: "container-memif-imix-l2-2t1c-xxv710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and 'IMIX' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and 'IMIX' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2430,7 +2430,7 @@
     - title: "VPP 4T2C L2 Container memif IMIX MRR Trending 3n-skx"
       output-file-name: "container-memif-imix-l2-4t2c-xxv710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and 'IMIX' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and 'IMIX' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2438,7 +2438,7 @@
     - title: "VPP 8T4C L2 Container memif IMIX MRR Trending 3n-skx"
       output-file-name: "container-memif-imix-l2-8t4c-xxv710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and 'IMIX' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and 'IMIX' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2967,7 +2967,7 @@
     - title: "VPP 2T1C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-2t1c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2975,7 +2975,7 @@
     - title: "VPP 4T2C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-4t2c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2983,7 +2983,7 @@
     - title: "VPP 8T4C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-8t4c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3017,7 +3017,7 @@
     - title: "VPP 2T1C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-2t1c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3025,7 +3025,7 @@
     - title: "VPP 4T2C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-4t2c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3033,7 +3033,7 @@
     - title: "VPP 8T4C IPv4 64B MRR Trending 2n-skx"
       output-file-name: "ip4-8t4c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '8T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3171,7 +3171,7 @@
     - title: "VPP 2T1C L2 Container memif 64B MRR Trending 2n-skx"
       output-file-name: "container-memif-l2-2t1c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'DRV_AVF'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'DRV_AVF' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3179,7 +3179,7 @@
     - title: "VPP 4T2C L2 Container memif 64B MRR Trending 2n-skx"
       output-file-name: "container-memif-l2-4t2c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'DRV_AVF'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'DRV_AVF' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3187,7 +3187,7 @@
     - title: "VPP 8T4C L2 Container memif 64B MRR Trending 2n-skx"
       output-file-name: "container-memif-l2-8t4c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'DRV_AVF'"
+      filter: "'NIC_Intel-X710' and 'MRR' and '64B' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and not 'VHOST' and not 'DRV_AVF' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3197,7 +3197,7 @@
     - title: "VPP 2T1C L2 Container memif 64B MRR Trending 2n-skx"
       output-file-name: "container-memif-l2-2t1c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '2T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3205,7 +3205,7 @@
     - title: "VPP 4T2C L2 Container memif 64B MRR Trending 2n-skx"
       output-file-name: "container-memif-l2-4t2c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '4T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3213,7 +3213,7 @@
     - title: "VPP 8T4C L2 Container memif 64B MRR Trending 2n-skx"
       output-file-name: "container-memif-l2-8t4c-xxv710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+      filter: "'NIC_Intel-XXV710' and 'MRR' and '64B' and 'BASE' and '8T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3223,7 +3223,7 @@
     - title: "VPP 2T1C VM vhost ethip4 64B MRR Trending 2n-skx"
       output-file-name: "vm-vhost-ethip4-2t1c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '2T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '2T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3231,7 +3231,7 @@
     - title: "VPP 4T2C VM vhost ethip4 64B MRR Trending 2n-skx"
       output-file-name: "vm-vhost-ethip4-4t2c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '4T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '4T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3239,7 +3239,7 @@
     - title: "VPP 8T4C VM vhost ethip4 64B MRR Trending 2n-skx"
       output-file-name: "vm-vhost-ethip4-8t4c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '8T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '8T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3275,7 +3275,7 @@
     - title: "VPP 2T1C VM vhost ethip4 IMIX MRR Trending 2n-skx"
       output-file-name: "vm-vhost-imix-ethip4-2t1c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '2T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '2T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3283,7 +3283,7 @@
     - title: "VPP 4T2C VM vhost ethip4 IMIX MRR Trending 2n-skx"
       output-file-name: "vm-vhost-imix-ethip4-4t2c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '4T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '4T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3291,7 +3291,7 @@
     - title: "VPP 8T4C VM vhost ethip4 IMIX MRR Trending 2n-skx"
       output-file-name: "vm-vhost-imix-ethip4-8t4c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '8T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '8T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3327,7 +3327,7 @@
     - title: "VPP 2T1C VM vhost eth 64B MRR Trending 2n-skx"
       output-file-name: "vm-vhost-eth-2t1c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '2T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '2T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
 
       parameters:
       - "result"
@@ -3336,7 +3336,7 @@
     - title: "VPP 4T2C VM vhost eth 64B MRR Trending 2n-skx"
       output-file-name: "vm-vhost-eth-4t2c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '4T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '4T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3344,7 +3344,7 @@
     - title: "VPP 8T4C VM vhost eth 64B MRR Trending 2n-skx"
       output-file-name: "vm-vhost-eth-8t4c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '8T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and '64B' and 'MRR' and '8T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3381,7 +3381,7 @@
     - title: "VPP 2T1C VM vhost eth IMIX MRR Trending 2n-skx"
       output-file-name: "vm-vhost-imix-eth-2t1c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '2T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '2T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
 
       parameters:
       - "result"
@@ -3390,7 +3390,7 @@
     - title: "VPP 4T2C VM vhost eth IMIX MRR Trending 2n-skx"
       output-file-name: "vm-vhost-imix-eth-4t2c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '4T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '4T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3398,7 +3398,7 @@
     - title: "VPP 8T4C VM vhost eth IMIX MRR Trending 2n-skx"
       output-file-name: "vm-vhost-imix-eth-8t4c-x710-2n-skx"
       data: "plot-performance-trending-vpp-2n-skx"
-      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '8T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+      filter: "'NIC_Intel-X710' and 'IMIX' and 'MRR' and '8T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS' and not 'NF_DENSITY'"
       parameters:
       - "result"
       layout: "plot-cpta"
