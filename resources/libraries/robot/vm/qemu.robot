@@ -97,3 +97,8 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Qemu Set Node | ${nodes['${dut}']}
 | | | Qemu Kill
+
+| Copy nested qemu image
+| | [Arguments] | ${dut}cp
+| | Exec Cmd | ${nodes['${dut}']}
+| | ... | sudo cp ~/csit-nested-1.7.img /var/lib/vm/csit-nested-1.7.img
