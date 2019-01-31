@@ -13,6 +13,8 @@
 
 """Constants used in CSIT."""
 
+import os.path
+import glob
 
 class Constants(object):
     """Constants used in CSIT.
@@ -21,6 +23,11 @@ class Constants(object):
     Figure out how to set the attributes by parsing a file
     that works regardless of current working directory.
     """
+
+    # Repository root
+    REPO_ROOT = os.path.dirname(__file__)
+    while '.git' not in os.listdir(REPO_ROOT):
+        REPO_ROOT = os.path.dirname(REPO_ROOT)
 
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = '/tmp/openvpp-testing'
@@ -58,14 +65,32 @@ class Constants(object):
     # QEMU binary path
     QEMU_BIN_PATH = '/usr/bin'
 
+    # QEMU VM kernel dir
+    QEMU_VM_KERNEL_DIR = '/opt/boot/'
+
     # QEMU VM kernel image path
-    QEMU_VM_KERNEL = '/opt/boot/vmlinuz'
+    QEMU_VM_KERNEL = glob.glob(os.path.join(QEMU_VM_KERNEL_DIR, 'vmlinuz*'))
+    if QEMU_VM_KERNEL:
+        QEMU_VM_KERNEL = QEMU_VM_KERNEL[-1]  # -1 is latest
+    else:
+        QEMU_VM_KERNEL = None
+
+    # QEMU VM initrd path
+    QEMU_VM_INITRD = glob.glob(os.path.join(QEMU_VM_KERNEL_DIR, 'initrd.img*'))
+    if QEMU_VM_INITRD:
+        QEMU_VM_INITRD = QEMU_VM_INITRD[-1]  # -1 is latest
+    else:
+        QEMU_VM_INITRD = None
 
     # QEMU VM nested image path
     QEMU_VM_IMAGE = '/var/lib/vm/vhost-nested.img'
 
     # QEMU VM DPDK path
     QEMU_VM_DPDK = '/opt/dpdk-19.02'
+
+    # Docker container SUT image
+    with open(os.path.join(REPO_ROOT, 'VPP_DEVICE_IMAGE_UBUNTU')) as dev_img:
+        DOCKER_UBUNTU_SUT_IMAGE = dev_img.readline()
 
     # TRex install version
     TREX_INSTALL_VERSION = '2.54'

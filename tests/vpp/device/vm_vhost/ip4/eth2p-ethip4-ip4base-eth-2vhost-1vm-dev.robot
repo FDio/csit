@@ -12,25 +12,13 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.InterfaceUtil
-| Library | resources.libraries.python.IPUtil
-| Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.topology.Topology
-| Library | resources.libraries.python.Trace
-| Library | resources.libraries.python.VhostUser
-| Library | resources.libraries.python.VPPUtil
-| ...
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP4FWD | BASE | ETH | VHOST | 1VM
 | ...
-| Suite Setup | Setup suite single link
+| Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | vhost
 | ...
@@ -42,8 +30,8 @@
 | ... | both links.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
 | ... | two static IPv4 /24 route entries. Qemu Guest is connected to VPP via \
-| ... | vhost-user interfaces. Guest is configured with linux bridge \
-| ... | interconnecting vhost-user interfaces.
+| ... | vhost-user interfaces. Guest is running VPP ip4 interconnecting \
+| ... | vhost-user interfaces.
 | ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets are sent in \
 | ... | one direction by TG on links to DUT1; on receive TG verifies packets \
 | ... | for correctness and their IPv4 src-addr, dst-addr and MAC addresses.
@@ -52,60 +40,30 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
-| ${net1}= | 10.0.1.0
-| ${net3}= | 10.0.3.0
-| ${net1_ip1}= | 10.0.1.1
-| ${net1_ip2}= | 10.0.1.2
-| ${net2_ip1}= | 10.0.2.1
-| ${net2_ip2}= | 10.0.2.2
-| ${net3_ip1}= | 10.0.3.1
-| ${net3_ip2}= | 10.0.3.2
-| ${prefix_length}= | 24
-| ${fib_table_2}= | 20
-| ${sock1}= | /tmp/sock1
-| ${sock2}= | /tmp/sock2
+| ${nf_chains}= | ${1}
+| ${nf_nodes}= | ${1}
+| ${tg_if1_ip}= | 10.10.10.2
+| ${tg_if2_ip}= | 20.20.20.2
 
 *** Test Cases ***
 | tc01-eth2p-ethip4-ip4base-eth-2vhost-1vm-device
 | | [Documentation]
 | | ... | Test uses two VRFs to route IPv4 traffic through two vhost-user \
 | | ... | interfaces. Both interfaces are configured with IP addresses from \
-| | ... | the same network. There is created linux bridge on VM to pass packet \
+| | ... | the same network. The VM is running VPP ip4 to pass packet \
 | | ... | from one vhost-user interface to another one.
 | | ...
 | | Given Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure interfaces in path up
-| | ${vhost1}= | And Vpp Create Vhost User Interface | ${dut_node} | ${sock1}
-| | ${vhost2}= | And Vpp Create Vhost User Interface | ${dut_node} | ${sock2}
-| | And Set Interface State | ${dut_node} | ${vhost1} | up
-| | And Set Interface State | ${dut_node} | ${vhost2} | up
-| | And Add Fib Table | ${dut_node} | ${fib_table_2}
-| | And Assign Interface To Fib Table | ${dut_node}
-| | ... | ${vhost2} | ${fib_table_2}
-| | And Assign Interface To Fib Table | ${dut_node}
-| | ... | ${dut_to_tg_if2} | ${fib_table_2}
-| | And Configure IP addresses on interfaces
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_ip1} | ${prefix_length}
-| | ... | ${dut_node} | ${vhost1} | ${net2_ip1} | ${prefix_length}
-| | ... | ${dut_node} | ${vhost2} | ${net2_ip2} | ${prefix_length}
-| | ... | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip1} | ${prefix_length}
-| | ${vhost2_mac}= | And Get Vhost User Mac By SW Index
-| | ... | ${dut_node} | ${vhost2}
-| | And Vpp Route Add | ${dut_node} | ${net3} | ${prefix_length}
-| | ... | gateway=${net2_ip2} | interface=${vhost1}
-| | And Vpp Route Add | ${dut_node} | ${net1} | ${prefix_length}
-| | ... | gateway=${net2_ip1} | interface=${vhost2}
-| | ... | vrf=${fib_table_2}
-| | VPP Add IP Neighbor | ${dut_node} | ${vhost1} | ${net2_ip2} | ${vhost2_mac}
-| | VPP Add IP Neighbor
-| | ... | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2} | ${tg_to_dut_if2_mac}
-| | And Configure VM for vhost L2BD forwarding
-| | ... | ${dut_node} | ${sock1} | ${sock2}
+| | When Initialize IPv4 forwarding with vhost in 2-node circular topology
+| | ... | nf_nodes=${nf_nodes}
+| | And Configure chains of NFs connected via vhost-user on single node
+| | ... | DUT1 | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
+| | ... | vnf=vpp_chain_ip4_noarp | pinning=${False}
+| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | Then Send packet and verify headers
-| | ... | ${tg_node} | ${net1_ip2} | ${net3_ip2}
-| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
-| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
+| | ... | ${tg} | ${tg_if1_ip} | ${tg_if2_ip}
+| | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
+| | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}

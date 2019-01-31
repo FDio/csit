@@ -12,15 +12,13 @@
 # limitations under the License.
 
 *** Settings ***
-| Library  | resources.libraries.python.Trace
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
+| Resource | resources/libraries/robot/shared/traffic.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2BDMACLRN | BASE | ETH | VHOST | 1VM
 | ...
-| Suite Setup | Setup suite single link
+| Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | vhost
 | ...
@@ -33,7 +31,8 @@
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with two L2 \
 | ... | bridge-domains (L2BD) switching combined with MAC learning enabled. \
 | ... | Qemu Guest is connected to VPP via vhost-user interfaces. Guest is \
-| ... | configured with linux bridge interconnecting vhost-user interfaces.
+| ... | configured with VPP l2 cross-connect interconnecting vhost-user \
+| ... | interfaces.
 | ... | *[Ver] TG verification:* Test ICMPv4 (or ICMPv6) Echo Request packets \
 | ... | are sent in both directions by TG on links to DUT1 via VM; on \
 | ... | receive TG verifies packets for correctness and their IPv4 (IPv6) \
@@ -43,74 +42,44 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
-| ${bd_id1}= | 1
-| ${bd_id2}= | 2
-| ${sock1}= | /tmp/sock1
-| ${sock2}= | /tmp/sock2
+| ${nf_chains}= | ${1}
+| ${nf_nodes}= | ${1}
 
 *** Test Cases ***
 | tc01-eth2p-ethip4-l2bdbasemaclrn-eth-2vhost-1vm-device
 | | [Documentation]
 | | ... | [Top] TG=DUT=VM. [Enc] Eth-IPv4-ICMPv4. [Cfg] On DUT1 configure \
 | | ... | two L2BDs with MAC learning, each with vhost-user i/f to local \
-| | ... | VM and i/f to TG; configure VM to loop pkts back betwen its two \
-| | ... | virtio i/fs. [Ver] Make TG verify ICMPv4 Echo Req pkts are \
+| | ... | VM and i/f to TG; configure VPP in VM to loop pkts back betwen its \
+| | ... | two virtio i/fs. [Ver] Make TG verify ICMPv4 Echo Req pkts are \
 | | ... | switched thru DUT1 and VM in both directions and are correct on \
 | | ... | receive. [Ref]
 | | ...
 | | Given Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure interfaces in path up
-| | And Configure vhost interfaces for L2BD forwarding | ${dut_node}
-| | ... | ${sock1}
-| | ... | ${sock2}
-| | And Create bridge domain | ${dut_node} | ${bd_id1}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${bd_id1}
-| | And Add interface to bridge domain | ${dut_node} | ${vhost_if1}
-| | ... | ${bd_id1}
-| | And Create bridge domain | ${dut_node} | ${bd_id2}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
-| | ... | ${bd_id2}
-| | And Add interface to bridge domain | ${dut_node} | ${vhost_if2}
-| | ... | ${bd_id2}
-| | And Configure VM for vhost L2BD forwarding | ${dut_node} | ${sock1}
-| | ... | ${sock2}
-| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | When Initialize L2 bridge domains with Vhost-User | nf_nodes=${nf_nodes}
+| | And Configure chains of NFs connected via vhost-user on single node
+| | ... | DUT1 | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
+| | ... | vnf=vpp_chain_l2xc | pinning=${False}
+| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg}
+| | ... | ${tg_if1} | ${tg_if2}
 
 | tc02-eth2p-ethip6-l2bdbasemaclrn-eth-2vhost-1vm-device
 | | [Documentation]
 | | ... | [Top] TG=DUT=VM. [Enc] Eth-IPv6-ICMPv6. [Cfg] On DUT1 configure \
 | | ... | two L2BDs with MAC learning, each with vhost-user i/f to local \
-| | ... | VM and i/f to TG; configure VM to loop pkts back betwen its two \
-| | ... | virtio i/fs. [Ver] Make TG verify ICMPv6 Echo Req pkts are \
+| | ... | VM and i/f to TG; configure VPP in VM to loop pkts back betwen its \
+| | ... | two virtio i/fs. [Ver] Make TG verify ICMPv6 Echo Req pkts are \
 | | ... | switched thru DUT1 and VM in both directions and are correct on \
 | | ... | receive. [Ref]
 | | ...
 | | Given Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure interfaces in path up
-| | And Configure vhost interfaces for L2BD forwarding | ${dut_node}
-| | ... | ${sock1}
-| | ... | ${sock2}
-| | And Create bridge domain | ${dut_node} | ${bd_id1}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${bd_id1}
-| | And Add interface to bridge domain | ${dut_node} | ${vhost_if1}
-| | ... | ${bd_id1}
-| | And Create bridge domain | ${dut_node} | ${bd_id2}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
-| | ... | ${bd_id2}
-| | And Add interface to bridge domain | ${dut_node} | ${vhost_if2}
-| | ... | ${bd_id2}
-| | And Configure VM for vhost L2BD forwarding | ${dut_node} | ${sock1}
-| | ... | ${sock2}
-| | Then Send ICMPv6 bidirectionally and verify received packets | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | When Initialize L2 bridge domains with Vhost-User | nf_nodes=${nf_nodes}
+| | And Configure chains of NFs connected via vhost-user on single node
+| | ... | DUT1 | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
+| | ... | vnf=vpp_chain_l2xc | pinning=${False}
+| | Then Send ICMPv6 bidirectionally and verify received packets | ${tg}
+| | ... | ${tg_if1} | ${tg_if2}

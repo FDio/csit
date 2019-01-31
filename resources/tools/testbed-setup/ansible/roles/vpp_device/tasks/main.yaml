@@ -1,6 +1,13 @@
 ---
 # file: roles/vpp_device/tasks/main.yaml
 
+- name: Load vfio-pci by default
+  lineinfile:
+    path: '/etc/modules'
+    state: 'present'
+    line: 'vfio-pci'
+  tags: load-vfio-pci
+
 - name: Copy csit-initialize-vfs.sh
   copy:
    src: 'files/csit-initialize-vfs.sh'
@@ -9,6 +16,26 @@
    group: 'root'
    mode: '744'
   tags: copy-vf-script
+
+- name: Copy csit-initialize-vfs-data.sh
+  copy:
+   src: 'files/{{ vfs_data_file }}'
+   dest: '/usr/local/bin/csit-initialize-vfs-data.sh'
+   owner: 'root'
+   group: 'root'
+   mode: '744'
+  tags: copy-vf-data-script
+  when: vfs_data_file is defined
+
+- name: Copy default csit-initialize-vfs-data.sh
+  copy:
+   src: 'files/csit-initialize-vfs-default.sh'
+   dest: '/usr/local/bin/csit-initialize-vfs-data.sh'
+   owner: 'root'
+   group: 'root'
+   mode: '744'
+  tags: copy-vf-data-script
+  when: vfs_data_file is not defined
 
 - name: Start csit-initialize-vfs.service
   copy:
@@ -35,3 +62,6 @@
   tags: set-grub
 
 - meta: flush_handlers
+
+- name: Kernel VM install
+  import_tasks: '../../common/tasks/kernel_install.yaml'
