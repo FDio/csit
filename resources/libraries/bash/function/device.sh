@@ -253,7 +253,24 @@ function get_available_interfaces () {
             tg_netdev=(enp24)
             dut1_netdev=(enp59)
             ;;
-        "1n_vbox")
+       "1n_tx2")
+            # Add Intel Corporation XL710/X710 Virtual Function to the
+            # whitelist.
+            pci_id="0x154c"
+            tg_netdev=(enp5s2 enp5s3 enp5s4 enp5s5
+                       enp5s6 enp5s7 enp5s8 enp5s9)
+            tg_netdev+=(enp8s2 enp8s3 enp8s4 enp8s5
+                        enp8s6 enp8s7 enp8s8 enp8s9)
+            tg_netdev+=(enp8s10 enp8s11 enp8s12 enp8s13
+                        enp8s14 enp8s15 enp8s16 enp8s17)
+            dut1_netdev=(enp133s2 enp133s3 enp133s4 enp133s5
+                         enp133s6 enp133s7 enp133s8 enp133s9)
+            dut1_netdev+=(enp133s10 enp133s11 enp133s12 enp133s13
+                          enp133s14 enp133s15 enp133s16 enp133s17)
+            dut1_netdev+=(enp5s10 enp5s11 enp5s12 enp5s13
+                          enp5s14 enp5s15 enp5s16 enp5s17)
+            ;;
+       "1n_vbox")
             # Add Intel Corporation 82545EM Gigabit Ethernet Controller to the
             # whitelist.
             pci_id="0x100f"
@@ -264,7 +281,7 @@ function get_available_interfaces () {
             die "Unknown specification: ${case_text}!"
     esac
 
-    net_path="/sys/bus/pci/devices/*/net/*"
+    device_count=2
 
     # TG side of connections.
     TG_NETDEVS=()
@@ -277,47 +294,40 @@ function get_available_interfaces () {
     DUT1_NETMACS=()
     DUT1_DRIVERS=()
 
-    # Following code is filtering available VFs represented by network device
-    # name. Only allowed VFs PCI IDs are used.
-    for netdev in \
-        $(find ${net_path} -type d -name . -o -prune -exec basename '{}' ';');
+    # Find the first ${device_count} number of available TG Linux network
+    # VF device names. Only allowed VF PCI IDs are filtered.
+    for netdev in ${tg_netdev[@]}
     do
-        if grep -q "${pci_id}" "/sys/class/net/${netdev}/device/device"; then
-            # We will filter to TG/DUT1 side of connection (this can be in
-            # future overriden by more advanced conditions for mapping).
-            for sub in ${tg_netdev[@]}; do
-                if [[ "${netdev#*$sub}" != "${netdev}" ]]; then
-                    tg_side+=(${netdev})
-                fi
-            done
-            for sub in ${dut1_netdev[@]}; do
-                if [[ "${netdev#*$sub}" != "${netdev}" ]]; then
-                    dut1_side+=(${netdev})
-                fi
-            done
+        for netdev_path in $(grep -l "${pci_id}" \
+                             /sys/class/net/${netdev}*/device/device \
+                             2> /dev/null)
+        do
+            if [[ ${#TG_NETDEVS[@]} -lt ${device_count} ]]; then
+                tg_netdev_name=$(dirname ${netdev_path})
+                tg_netdev_name=$(dirname ${tg_netdev_name})
+                TG_NETDEVS+=($(basename ${tg_netdev_name}))
+            else
+                break
+            fi
+        done
+        if [[ ${#TG_NETDEVS[@]} -eq ${device_count} ]]; then
+            break
         fi
     done
 
-    case "${case_text}" in
-        "1n_skx")
-            # Pick up first two DUT1 interfaces binded to i40evf.
-            for netdev in "${dut1_side[@]::2}"; do
-                DUT1_NETDEVS+=(${netdev})
-            done
-            # Corresponding TG interfaces will be same ID.SUB_ID, but on
-            # opposite linked device.
-            for netdev in "${DUT1_NETDEVS[@]}"; do
-                TG_NETDEVS+=(${netdev/$dut1_netdev/$tg_netdev})
-            done
-            ;;
-        *)
-            for netdev in "${tg_side[@]::2}"; do
-                TG_NETDEVS+=(${netdev})
-            done
-            for netdev in "${dut1_side[@]::2}"; do
-                DUT1_NETDEVS+=(${netdev})
-            done
-    esac
+    i=0
+    for netdev in "${TG_NETDEVS[@]}"; do
+        # Find the index of selected tg netdev among tg_netdevs
+        # e.g. enp8s5f7 is a vf of netdev enp8s5 with index 11
+        # and the corresponding dut1 netdev is enp133s13.
+        while [[ "${netdev}" != "${tg_netdev[$i]}"* ]]; do
+            ((i++))
+        done
+        # Rename tg netdev to dut1 netdev
+        # e.g. enp8s5f7 -> enp133s13f7
+        DUT1_NETDEVS+=(${netdev/${tg_netdev[$i]}/${dut1_netdev[$i]}})
+        # Don't need to reset i, all netdevs are sorted.
+    done
 
     for NETDEV in "${TG_NETDEVS[@]}"; do
         get_pci_addr
