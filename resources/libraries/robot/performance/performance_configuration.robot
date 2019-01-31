@@ -2423,7 +2423,7 @@
 | | | Configure guest VMs with dpdk-testpmd connected via vhost-user on node
 | | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
-| | All VPP Interfaces Ready Wait | ${nodes}
+| | All VPP Interfaces Ready Wait | ${nodes} | timeout=${90}
 
 | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
 | | [Documentation]
