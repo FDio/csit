@@ -103,6 +103,8 @@
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And VPP IPsec Backend Dump | ${dut1}
+| | And VPP IPsec Backend Dump | ${dut2}
 | | And Initialize IPSec in 3-node circular topology
 | | And Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | gateway=${dut2_if1_ip4}
 | | ... | interface=${dut1_if2}
