@@ -13,6 +13,8 @@
 
 """Constants used in CSIT."""
 
+import os.path
+
 
 class Constants(object):
     """Constants used in CSIT.
@@ -66,6 +68,9 @@ class Constants(object):
 
     # QEMU VM DPDK path
     QEMU_VM_DPDK = '/opt/dpdk-19.02'
+
+    # Docker container SUT image
+    DOCKER_SUT_IMAGE_UBUNTU = 'snergster/csit-sut:latest'
 
     # TRex install version
     TREX_INSTALL_VERSION = '2.54'

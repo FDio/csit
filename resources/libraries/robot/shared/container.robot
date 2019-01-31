@@ -56,12 +56,13 @@
 | | | ${root}= | Run Keyword If | ${dut1_uuid_length}
 | | | ... | Get Docker Mergeddir | ${nodes['DUT1']} | ${dut1_uuid}
 | | | ... | ELSE | Set Variable | ${EMPTY}
+| | | ${node_arch}= | Get Node Arch | ${dut}
 | | | ${mnt}= | Create List
 | | | ... | ${root}/tmp/:/mnt/host/
 | | | ... | ${root}/dev/vfio/:/dev/vfio/
 | | | ... | ${root}/usr/bin/vpp:/usr/bin/vpp
 | | | ... | ${root}/usr/bin/vppctl:/usr/bin/vppctl
-| | | ... | ${root}/usr/lib/x86_64-linux-gnu/:/usr/lib/x86_64-linux-gnu/
+| | | ... | ${root}/usr/lib/${node_arch}-linux-gnu/:/usr/lib/${node_arch}-linux-gnu/
 | | | ... | ${root}/usr/share/vpp/:/usr/share/vpp/
 | | | ${nf_cpus}= | Set Variable | ${None}
 | | | ${nf_cpus}= | Run Keyword If | ${pinning}
