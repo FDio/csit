@@ -43,7 +43,7 @@ function activate_docker_topology () {
     device_image="$(< ${CSIT_DIR}/VPP_DEVICE_IMAGE)"
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "1n_skx")
+        "1n_skx" | "1n_tx2")
             # We execute reservation over csit-shim-dcr (ssh) which runs sourced
             # script's functions. Env variables are read from ssh output
             # back to localhost for further processing.
@@ -292,7 +292,7 @@ function deactivate_docker_topology () {
 
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
-        "1n_skx")
+        "1n_skx" | "1n_tx2")
             hostname=$(grep search /etc/resolv.conf | cut -d' ' -f3)
             ssh="ssh root@${hostname} -p 6022"
             env_vars="$(env | grep CSIT_ | tr '\n' ' ' )"
@@ -374,6 +374,10 @@ function get_test_code () {
         *"1n-skx"*)
             NODENESS="1n"
             FLAVOR="skx"
+            ;;
+       *"1n-tx2"*)
+            NODENESS="1n"
+            FLAVOR="tx2"
             ;;
         *"2n-skx"*)
             NODENESS="2n"
@@ -766,7 +770,7 @@ function select_vpp_device_tags () {
 
     TAGS=()
 
-    # We will prefix with perftest to prevent running other tests
+    # We will prefix with devicetest to prevent running other tests
     # (e.g. Functional).
     prefix="devicetestAND"
     if [[ "${TEST_CODE}" == "vpp-"* ]]; then
@@ -807,7 +811,7 @@ function select_topology () {
                        )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
             ;;
-        "1n_skx")
+        "1n_skx" | "1n_tx2")
             TOPOLOGIES=(
                         "${TOPOLOGIES_DIR}/vpp_device.template"
                        )
