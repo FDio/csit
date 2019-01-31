@@ -782,7 +782,7 @@ function select_topology () {
             TOPOLOGIES=(
                         "${TOPOLOGIES_DIR}/lf_2n_skx_testbed21.yaml"
                         #"${TOPOLOGIES_DIR}/lf_2n_skx_testbed22.yaml"
-                        #"${TOPOLOGIES_DIR}/lf_2n_skx_testbed23.yaml"
+                        "${TOPOLOGIES_DIR}/lf_2n_skx_testbed23.yaml"
                         "${TOPOLOGIES_DIR}/lf_2n_skx_testbed24.yaml"
                        )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
