@@ -599,15 +599,21 @@ class IPsecUtil(object):
                 raddr_ip1 = ip_address(raddr_ip1_i + addr_incr*i)
                 raddr_ip2 = ip_address(raddr_ip2_i + addr_incr*i)
                 dut1_if = Topology.get_interface_name(node1, if1_key)
-                dut1 = 'ip_add_del_route {raddr}/{mask} via {addr} ipsec{i}\n'\
+                # dut1 = 'ip_add_del_route {raddr}/{mask} via {addr} ipsec{i}\n'\
+                #        'exec set interface unnumbered ipsec{i} use {uifc}\n'\
+                #        'sw_interface_set_flags ipsec{i} admin-up\n'\
+                dut1 = 'exec ip route add {raddr}/{mask} via {addr} ipsec{i}\n'\
                        'exec set interface unnumbered ipsec{i} use {uifc}\n'\
-                       'sw_interface_set_flags ipsec{i} admin-up\n'\
+                       'exec set interface state ipsec{i} up\n'\
                        .format(raddr=raddr_ip2, mask=raddr_range,
                                addr=if2_ip_addr, i=i, uifc=dut1_if)
                 dut2_if = Topology.get_interface_name(node2, if2_key)
-                dut2 = 'ip_add_del_route {raddr}/{mask} via {addr} ipsec{i}\n'\
+                # dut2 = 'ip_add_del_route {raddr}/{mask} via {addr} ipsec{i}\n'\
+                #        'exec set interface unnumbered ipsec{i} use {uifc}\n'\
+                #        'sw_interface_set_flags ipsec{i} admin-up\n'\
+                dut2 = 'exec ip route add {raddr}/{mask} via {addr} ipsec{i}\n'\
                        'exec set interface unnumbered ipsec{i} use {uifc}\n'\
-                       'sw_interface_set_flags ipsec{i} admin-up\n'\
+                       'exec set interface state ipsec{i} up\n'\
                        .format(raddr=raddr_ip1, mask=raddr_range,
                                addr=if1_ip_addr, i=i, uifc=dut2_if)
                 tmp_f1.write(dut1)
