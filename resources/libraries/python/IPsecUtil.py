@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,10 +16,13 @@
 import os
 from ipaddress import ip_network, ip_address
 
-from enum import Enum
+from enum import Enum, IntEnum
+from robot.api import logger
 
-from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiErrors import PapiError, PapiCommandError
 from resources.libraries.python.topology import Topology
+from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
 
 
@@ -39,6 +42,7 @@ class CryptoAlg(Enum):
     AES_CBC_192 = ('aes-cbc-192', 'AES-CBC', 24)
     AES_CBC_256 = ('aes-cbc-256', 'AES-CBC', 32)
     AES_GCM_128 = ('aes-gcm-128', 'AES-GCM', 20)
+    AES_GCM_192 = ('aes-gcm-192', 'AES-GCM', 28)
 
     def __init__(self, alg_name, scapy_name, key_len):
         self.alg_name = alg_name
@@ -53,11 +57,18 @@ class IntegAlg(Enum):
     SHA_384_192 = ('sha-384-192', 'SHA2-384-192', 48)
     SHA_512_256 = ('sha-512-256', 'SHA2-512-256', 64)
     AES_GCM_128 = ('aes-gcm-128', 'AES-GCM', 20)
+    AES_GCM_192 = ('aes-gcm-192', 'AES-GCM', 28)
 
     def __init__(self, alg_name, scapy_name, key_len):
         self.alg_name = alg_name
         self.scapy_name = scapy_name
         self.key_len = key_len
+
+
+class IPsecProto(IntEnum):
+    """IPsec protocol."""
+    ESP = 1
+    AH = 0
 
 
 class IPsecUtil(object):
@@ -127,6 +138,15 @@ class IPsecUtil(object):
         return CryptoAlg.AES_GCM_128
 
     @staticmethod
+    def crypto_alg_aes_gcm_192():
+        """Return encryption algorithm aes-gcm-192.
+
+        :returns: CryptoAlg enum AES_GCM_192 object.
+        :rtype: CryptoAlg
+        """
+        return CryptoAlg.AES_GCM_192
+
+    @staticmethod
     def get_crypto_alg_key_len(crypto_alg):
         """Return encryption algorithm key length.
 
@@ -194,6 +214,15 @@ class IPsecUtil(object):
         return IntegAlg.AES_GCM_128
 
     @staticmethod
+    def integ_alg_aes_gcm_192():
+        """Return integrity algorithm AES-GCM-192.
+
+        :returns: IntegAlg enum AES_GCM_192 object.
+        :rtype: IntegAlg
+        """
+        return IntegAlg.AES_GCM_192
+
+    @staticmethod
     def get_integ_alg_key_len(integ_alg):
         """Return integrity algorithm key length.
 
@@ -214,6 +243,102 @@ class IPsecUtil(object):
         :rtype: str
         """
         return integ_alg.scapy_name
+
+    @staticmethod
+    def ipsec_proto_esp():
+        """Return IPSec protocol ESP.
+
+        :returns: IPsecProto enum ESP object.
+        :rtype: IPsecProto
+        """
+        return int(IPsecProto.ESP)
+
+    @staticmethod
+    def ipsec_proto_ah():
+        """Return IPSec protocol AH.
+
+        :returns: IPsecProto enum AH object.
+        :rtype: IPsecProto
+        """
+        return int(IPsecProto.AH)
+
+    @staticmethod
+    def vpp_ipsec_select_backend(node, protocol, index=1):
+        """Select IPsec backend.
+
+        :param node: VPP node to select IPsec backend on.
+        :param protocol: IPsec protocol.
+        :param index: Backend index.
+        :type node: dict
+        :type protocol: IPsecProto
+        :type index: int
+        """
+        # TODO: move composition of api data to separate method
+        api_data = list()
+        api = dict(api_name='ipsec_select_backend')
+        api_args = dict(protocol=protocol)
+        api_args['index'] = index
+        api['api_args'] = api_args
+        api_data.append(api)
+
+        api_reply = None
+        with PapiExecutor(node) as papi_executor:
+            papi_executor.execute_papi(api_data)
+            try:
+                papi_executor.papi_should_have_passed()
+            except AssertionError:
+                raise PapiError('Failed to select IPsec backend on host {host}'.
+                                format(host=node['host']))
+            api_reply = papi_executor.get_papi_reply()
+
+        if api_reply is not None:
+            api_r = api_reply[0]['api_reply']['ipsec_select_backend_reply']
+            if api_r['retval'] == 0:
+                logger.trace('IPsec backend successfully selected on host '
+                             '{host}'.format(host=node['host']))
+            else:
+                raise PapiError('Failed to select IPsec backend on host {host}'.
+                                format(host=node['host']))
+        else:
+            raise PapiError('No reply received for ipsec_select_backend API '
+                            'command on host {host}'.format(host=node['host']))
+
+    @staticmethod
+    def vpp_ipsec_backend_dump(node):
+        """Dump IPsec backends.
+
+        :param node: VPP node to dump IPsec backend on.
+        :type node: dict
+        """
+        # TODO: move composition of api data to separate method
+        api_data = list()
+        api = dict(api_name='ipsec_backend_dump')
+        api_args = dict()
+        api['api_args'] = api_args
+        api_data.append(api)
+
+        api_reply = None
+        with PapiExecutor(node) as papi_executor:
+            papi_executor.execute_papi(api_data)
+            try:
+                papi_executor.papi_should_have_passed()
+            except AssertionError:
+                raise PapiError('Failed to dump IPsec backends on host {host}'.
+                                format(host=node['host']))
+            api_reply = papi_executor.get_papi_reply()
+
+        if api_reply is not None:
+            # api_r = api_reply[0]['api_reply']['ipsec_select_backend_reply']
+            # if api_r['retval'] == 0:
+            #     logger.trace('IPsec backend successfully selected on host '
+            #                  '{host}'.format(host=node['host']))
+            # else:
+            #     raise PapiError('Failed to select IPsec backend on host {host}'.
+            #                     format(host=node['host']))
+            logger.trace('IPsec backend dump\n{dump}'.format(dump=api_reply))
+        else:
+            raise PapiError('No reply received for ipsec_select_backend API '
+                            'command on host {host}'.format(host=node['host']))
 
     @staticmethod
     def vpp_ipsec_add_sad_entry(node, sad_id, spi, crypto_alg, crypto_key,
@@ -237,7 +362,7 @@ class IPsecUtil(object):
         :type spi: int
         :type crypto_alg: CryptoAlg
         :type crypto_key: str
-        :type integ_alg: str
+        :type integ_alg: IntegAlg
         :type integ_key: str
         :type tunnel_src: str
         :type tunnel_dst: str
@@ -248,7 +373,7 @@ class IPsecUtil(object):
             if tunnel_src is not None and tunnel_dst is not None else ''
 
         out = VatExecutor.cmd_from_template(node,
-                                            "ipsec/ipsec_sad_add_entry.vat",
+                                            'ipsec/ipsec_sad_add_entry.vat',
                                             sad_id=sad_id, spi=spi,
                                             calg=crypto_alg.alg_name, ckey=ckey,
                                             ialg=integ_alg.alg_name, ikey=ikey,
@@ -326,7 +451,7 @@ class IPsecUtil(object):
         ikey = integ_key.encode('hex')
 
         out = VatExecutor.cmd_from_template(node,
-                                            "ipsec/ipsec_sa_set_key.vat",
+                                            'ipsec/ipsec_sa_set_key.vat',
                                             sa_id=sa_id,
                                             ckey=ckey, ikey=ikey)
         VatJsonUtil.verify_vat_retval(
@@ -342,7 +467,7 @@ class IPsecUtil(object):
         :type node: dict
         :type spd_id: int
         """
-        out = VatExecutor.cmd_from_template(node, "ipsec/ipsec_spd_add.vat",
+        out = VatExecutor.cmd_from_template(node, 'ipsec/ipsec_spd_add.vat',
                                             spd_id=spd_id)
         VatJsonUtil.verify_vat_retval(
             out[0],
@@ -363,7 +488,7 @@ class IPsecUtil(object):
             if isinstance(interface, basestring) else interface
 
         out = VatExecutor.cmd_from_template(node,
-                                            "ipsec/ipsec_interface_add_spd.vat",
+                                            'ipsec/ipsec_interface_add_spd.vat',
                                             spd_id=spd_id, sw_if_id=sw_if_index)
         VatJsonUtil.verify_vat_retval(
             out[0],
@@ -431,7 +556,7 @@ class IPsecUtil(object):
                 p=rport_range.split('-'))
 
         out = VatExecutor.cmd_from_template(node,
-                                            "ipsec/ipsec_spd_add_entry.vat",
+                                            'ipsec/ipsec_spd_add_entry.vat',
                                             spd_id=spd_id, priority=priority,
                                             action=act_str, direction=direction,
                                             selector=selector)
@@ -544,7 +669,8 @@ class IPsecUtil(object):
         with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
             for i in range(0, n_tunnels):
                 integ = ''
-                if crypto_alg.alg_name != 'aes-gcm-128':
+                # if crypto_alg.alg_name != 'aes-gcm-128':
+                if not crypto_alg.alg_name.startswith('aes-gcm-'):
                     integ = 'integ_alg {integ_alg} '\
                             'local_integ_key {local_integ_key} '\
                             'remote_integ_key {remote_integ_key} '\
@@ -594,20 +720,56 @@ class IPsecUtil(object):
         os.remove(tmp_fn1)
         os.remove(tmp_fn2)
 
+        # with VatTerminal(node1) as vat_ter:
+        #     response = vat_ter.vat_terminal_exec_cmd_from_template(
+        #         "interface_dump.vat")
+        # if_dump_node1 = response[0]
+        # with VatTerminal(node2) as vat_ter:
+        #     response = vat_ter.vat_terminal_exec_cmd_from_template(
+        #         "interface_dump.vat")
+        # if_dump_node2 = response[0]
+        # ipsec_sw_ifx_node1 = dict()
+        # ipsec_sw_ifx_node2 = dict()
+        # for i in range(0, n_tunnels):
+        #     for if_data in if_dump_node1:
+        #         if if_data['interface_name'] == 'ipsec{i}'.format(i=i):
+        #             ipsec_sw_ifx_node1['ipsec{i}'.format(i=i)] = \
+        #                 int(if_data['sw_if_index'])
+        #             break
+        #     else:
+        #         raise RuntimeError('No sw_if_index found for ipsec{i} on node '
+        #                            '{host}'.format(i=i, host=node1['host']))
+        #     for if_data in if_dump_node2:
+        #         if if_data['interface_name'] == 'ipsec{i}'.format(i=i):
+        #             ipsec_sw_ifx_node2['ipsec{i}'.format(i=i)] = \
+        #                 int(if_data['sw_if_index'])
+        #             break
+        #     else:
+        #         raise RuntimeError('No sw_if_index found for ipsec{i} on node '
+        #                            '{host}'.format(i=i, host=node2['host']))
+
         with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
             for i in range(0, n_tunnels):
                 raddr_ip1 = ip_address(raddr_ip1_i + addr_incr*i)
                 raddr_ip2 = ip_address(raddr_ip2_i + addr_incr*i)
+                # sw_idx1 = ipsec_sw_ifx_node1['ipsec{i}'.format(i=i)]
+                # sw_idx2 = ipsec_sw_ifx_node2['ipsec{i}'.format(i=i)]
                 dut1_if = Topology.get_interface_name(node1, if1_key)
-                dut1 = 'ip_add_del_route {raddr}/{mask} via {addr} ipsec{i}\n'\
+                # dut1 = 'ip_add_del_route {raddr}/{mask} via {addr} ipsec{i}\n'\
+                #        'exec set interface unnumbered ipsec{i} use {uifc}\n'\
+                #        'sw_interface_set_flags ipsec{i} admin-up\n'\
+                dut1 = 'exec ip route add {raddr}/{mask} via {addr} ipsec{i}\n'\
                        'exec set interface unnumbered ipsec{i} use {uifc}\n'\
-                       'sw_interface_set_flags ipsec{i} admin-up\n'\
+                       'exec set interface state ipsec{i} up\n'\
                        .format(raddr=raddr_ip2, mask=raddr_range,
                                addr=if2_ip_addr, i=i, uifc=dut1_if)
                 dut2_if = Topology.get_interface_name(node2, if2_key)
-                dut2 = 'ip_add_del_route {raddr}/{mask} via {addr} ipsec{i}\n'\
+                # dut2 = 'ip_add_del_route {raddr}/{mask} via {addr} ipsec{i}\n'\
+                #        'exec set interface unnumbered ipsec{i} use {uifc}\n'\
+                #        'sw_interface_set_flags ipsec{i} admin-up\n'\
+                dut2 = 'exec ip route add {raddr}/{mask} via {addr} ipsec{i}\n'\
                        'exec set interface unnumbered ipsec{i} use {uifc}\n'\
-                       'sw_interface_set_flags ipsec{i} admin-up\n'\
+                       'exec set interface state ipsec{i} up\n'\
                        .format(raddr=raddr_ip1, mask=raddr_range,
                                addr=if1_ip_addr, i=i, uifc=dut2_if)
                 tmp_f1.write(dut1)
@@ -726,5 +888,5 @@ class IPsecUtil(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        VatExecutor().execute_script("ipsec/ipsec_show.vat", node,
+        VatExecutor().execute_script('ipsec/ipsec_show.vat', node,
                                      json_out=False)
