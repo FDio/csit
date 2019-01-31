@@ -555,7 +555,7 @@ function select_tags () {
             test_tag_array=("ndrpdrAND64bAND1c"
                             "ndrpdrAND78bAND1c")
             ;;
-        *"mrr-daily"* | *"mrr-weekly"* )
+        *"mrr-daily"* )
             test_tag_array=(# vic
                             "mrrANDnic_cisco-vic-1227AND64b"
                             "mrrANDnic_cisco-vic-1385AND64b"
@@ -644,7 +644,14 @@ function select_tags () {
                             "!vhost_256ANDnic_intel-x520-da2"
                             "!vhostANDnic_intel-xl710"
                             "!cfs_opt"
-                            "!lbond_dpdk")
+                            "!lbond_dpdk"
+                            "!nf_density")
+            ;;
+        *"mrr-weekly"* )
+            test_tag_array=(# NF Density tests
+                            "mrrANDnf_density"
+                            # DPDK
+                            "mrrANDdpdkAND64b")
             ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
