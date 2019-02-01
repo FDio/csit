@@ -660,7 +660,7 @@
 | | Create all '${container_group}' containers
 | | Configure VPP in all '${container_group}' containers
 | | Stop VPP service on all DUTs | ${nodes}
-| | Install VPP in all '${container_group}' containers
+| | Start VPP in all '${container_group}' containers
 | | Start VPP service on all DUTs | ${nodes}
 | | Append To List | ${container_groups} | ${container_group}
 
