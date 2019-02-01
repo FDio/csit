@@ -135,16 +135,15 @@ class ContainerManager(object):
             self.engine.container = self.containers[container]
             self.engine.execute(command)
 
-    def install_vpp_in_all_containers(self):
-        """Install VPP into all containers."""
+    def start_vpp_in_all_containers(self):
+        """Start VPP into all containers."""
         for container in self.containers:
             self.engine.container = self.containers[container]
             # We need to install supervisor client/server system to control VPP
             # as a service
             self.engine.execute('sleep 3; apt-get update')
             self.engine.install_supervisor()
-            self.engine.install_vpp()
-            self.engine.restart_vpp()
+            self.engine.start_vpp()
 
     def restart_vpp_in_all_containers(self):
         """Restart VPP on all containers."""
@@ -415,36 +414,19 @@ class ContainerEngine(object):
                          'nodaemon=false\n\n',
                          config_file=SUPERVISOR_CONF))
 
-    def install_vpp(self):
-        """Install VPP inside a container."""
-        self.execute('ln -s /dev/null /etc/sysctl.d/80-vpp.conf')
-        # Workaround for install xenial vpp build on bionic ubuntu.
-        self.execute('apt-get install -y wget')
-        self.execute('deb=$(mktemp) && wget -O "${deb}" '
-                     'http://launchpadlibrarian.net/336117627/'
-                     'libmbedcrypto0_2.5.1-1ubuntu1_amd64.deb && '
-                     'dpkg -i "${deb}" && '
-                     'rm -f "${deb}"')
-        self.execute('deb=$(mktemp) && wget -O "${deb}" '
-                     'http://launchpadlibrarian.net/252876048/'
-                     'libboost-system1.58.0_1.58.0+dfsg-5ubuntu3_amd64.deb && '
-                     'dpkg -i "${deb}" && '
-                     'rm -f "${deb}"')
-        self.execute(
-            'dpkg -i --force-all '
-            '{guest_dir}/openvpp-testing/download_dir/*.deb'.
-            format(guest_dir=self.container.mnt[0].split(':')[1]))
-        self.execute('apt-get -f install -y')
-        self.execute('apt-get install -y ca-certificates')
+    def start_vpp(self):
+        """Start VPP inside a container."""
         self.execute('echo "{config}" >> {config_file}'.
                      format(
                          config='[program:vpp]\n'
                          'command=/usr/bin/vpp -c /etc/vpp/startup.conf\n'
+                         'autostart=false\n'
                          'autorestart=false\n'
                          'redirect_stderr=true\n'
                          'priority=1',
                          config_file=SUPERVISOR_CONF))
         self.execute('supervisorctl reload')
+        self.execute('supervisorctl start vpp')
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
@@ -608,7 +590,7 @@ class LXC(ContainerEngine):
                 return
 
         image = self.container.image if self.container.image else\
-            "-d ubuntu -r xenial -a amd64"
+            "-d ubuntu -r bionic -a amd64"
 
         cmd = 'lxc-create -t download --name {c.name} -- {image} '\
             '--no-validate'.format(c=self.container, image=image)
@@ -627,11 +609,14 @@ class LXC(ContainerEngine):
         if self.container.mnt:
             for mount in self.container.mnt:
                 host_dir, guest_dir = mount.split(':')
+                options = 'bind,create=dir' \
+                    if guest_dir.endswith('/') else 'bind,create=file'
                 entry = 'lxc.mount.entry = {host_dir} '\
                     '/var/lib/lxc/{c.name}/rootfs{guest_dir} none ' \
-                    'bind,create=dir 0 0'.format(c=self.container,
+                    '{options} 0 0'.format(c=self.container,
                                                  host_dir=host_dir,
-                                                 guest_dir=guest_dir)
+                                                 guest_dir=guest_dir,
+                                                 options=options)
                 ret, _, _ = self.container.ssh.exec_command_sudo(
                     "sh -c 'echo \"{e}\" >> /var/lib/lxc/{c.name}/config'".
                     format(e=entry, c=self.container))
