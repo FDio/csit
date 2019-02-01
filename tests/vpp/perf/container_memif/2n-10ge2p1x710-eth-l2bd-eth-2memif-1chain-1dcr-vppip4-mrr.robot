@@ -59,7 +59,7 @@
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-1c1n
 # Container
-| ${container_engine}= | Docker
+| ${container_engine}= | LXC
 | ${container_chain_topology}= | chain_ip4
 
 *** Keywords ***
