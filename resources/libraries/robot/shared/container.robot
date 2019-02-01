@@ -14,9 +14,6 @@
 *** Settings ***
 | Documentation | Keywords related to linux containers
 | ...
-| Library | Collections
-| Library | String
-| ...
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.topology.Topology
 
@@ -34,34 +31,38 @@
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
 | | ... |   network function as DUT, otherwise use single physical core for
 | | ... |   every network function. Type: boolean
-| | ... | - set_nf_cpus: Set False if CPUs allocatation for network function per
-| | ... | SUT/DUT not required. Type: boolean, default value: ${True}
+| | ... | - nested: Set True if starting nested containers.
+| | ... | Type: boolean, default value: ${False}
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Construct container on all DUTs \| 1 \| 1 \| 1 \| 1 \| ${True} \|
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${nf_chain}=${1}
-| | ... | ${nf_node}=${1} | ${auto_scale}=${True} | ${set_nf_cpus}=${True}
+| | ... | ${nf_node}=${1} | ${auto_scale}=${True} | ${nested}=${False}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
 | | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
-| | | ${tmp}= | Get Variable Value | ${tmp_volume} | /tmp
-| | | ${mnt}= | Create List | ${tmp}:/mnt/host | /dev/vfio:/dev/vfio
-| | | ${nf_cpus}= | Run Keyword If | ${set_nf_cpus}
+| | | ${uuid}= | Get Variable Value | ${dcr_uuid} | ${Empty}
+| | | ${root}= | Get Variable Value | ${dcr_root} | ${Empty}
+| | | ${mnt}= | Create List
+| | | ... | ${root}/tmp/:/mnt/host/
+| | | ... | ${root}/dev/vfio/:/dev/vfio/
+| | | ... | ${root}/usr/bin/vpp:/usr/bin/vpp
+| | | ... | ${root}/usr/bin/vppctl:/usr/bin/vppctl
+| | | ... | ${root}/usr/lib/x86_64-linux-gnu/:/usr/lib/x86_64-linux-gnu/
+| | | ... | ${root}/usr/share/vpp/:/usr/share/vpp/
+| | | ${nf_cpus}= | Set Variable | ${None}
+| | | ${nf_cpus}= | Run Keyword Unless | ${nested}
 | | | ... | Create network function CPU list | ${dut}
 | | | ... | chains=${nf_chains} | nodeness=${nf_nodes} | chain_id=${nf_chain}
 | | | ... | node_id=${nf_node} | auto_scale=${auto_scale}
-| | | ... | ELSE | Set Variable | ${None}
-| | | ${uuid_str}= | Run Keyword If | '${tmp}' == '/tmp'
-| | | ... | Set Variable | ${EMPTY}
-| | | ... | ELSE | Remove String | ${tmp} | ${dut}_VOL
 | | | &{cont_args}= | Create Dictionary
-| | | ... | name=${dut}_${container_group}${nf_id}${uuid_str}
+| | | ... | name=${dut}_${container_group}${nf_id}${uuid}
 | | | ... | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
-| | | Run Keyword If | ${set_nf_cpus}
+| | | Run Keyword Unless | ${nested}
 | | | ... | Set To Dictionary | ${cont_args} | cpuset_cpus=${nf_cpus}
 | | | Run Keyword | ${container_group}.Construct container | &{cont_args}
 
@@ -75,8 +76,8 @@
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
 | | ... |   network function as DUT, otherwise use single physical core for
 | | ... |   every network function. Type: boolean
-| | ... | - set_nf_cpus: Set False if CPUs allocatation for network function per
-| | ... | SUT/DUT not required. Type: boolean, default value: ${True}
+| | ... | - nested: Set True if starting nested containers.
+| | ... | Type: boolean, default value: ${False}
 | | ...
 | | ... | *Example:*
 | | ...
@@ -84,12 +85,12 @@
 | | ... | \| ${True} \|
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${nf_chain}=${1}
-| | ... | ${auto_scale}=${True} | ${set_nf_cpus}=${True}
+| | ... | ${auto_scale}=${True} | ${nested}=${False}
 | | ...
 | | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
 | | | Construct container on all DUTs | nf_chains=${nf_chains}
 | | | ... | nf_nodes=${nf_nodes} | nf_chain=${nf_chain} | nf_node=${nf_node}
-| | | ... | auto_scale=${auto_scale} | set_nf_cpus=${set_nf_cpus}
+| | | ... | auto_scale=${auto_scale} | nested=${nested}
 
 | Construct chains of containers on all DUTs
 | | [Documentation] | Construct 1..N chains of 1..N CNFs on all DUT nodes.
@@ -102,20 +103,20 @@
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
 | | ... |   network function as DUT, otherwise use single physical core for
 | | ... |   every network function. Type: boolean
-| | ... | - set_nf_cpus: Set False if CPUs allocatation for network function per
-| | ... | SUT/DUT not required. Type: boolean, default value: ${True}
+| | ... | - nested: Set True if starting nested containers.
+| | ... | Type: boolean, default value: ${False}
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Construct chains of containers on all DUTs \| 1 \| 1 \|
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
-| | ... | ${set_nf_cpus}=${True}
+| | ... | ${nested}=${False}
 | | ...
 | | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
 | | | Construct chain of containers on all DUTs | nf_chains=${nf_chains}
 | | | ... | nf_nodes=${nf_nodes} | nf_chain=${nf_chain}
-| | | ... | auto_scale=${auto_scale} | set_nf_cpus=${set_nf_cpus}
+| | | ... | auto_scale=${auto_scale} | nested=${nested}
 
 | Acquire all '${group}' containers
 | | [Documentation] | Acquire all container(s) in specific container group on
@@ -129,11 +130,11 @@
 | | ...
 | | Run Keyword | ${group}.Create all containers
 
-| Install VPP in all '${group}' containers
-| | [Documentation] | Install VPP on all container(s) in specific container
+| Start VPP in all '${group}' containers
+| | [Documentation] | Start VPP on all container(s) in specific container
 | | ... | group on all DUT nodes.
 | | ...
-| | Run Keyword | ${group}.Install VPP In All Containers
+| | Run Keyword | ${group}.Start VPP In All Containers
 
 | Restart VPP in all '${group}' containers
 | | [Documentation] | Restart VPP on all container(s) in specific container
