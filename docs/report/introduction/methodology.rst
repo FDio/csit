@@ -792,6 +792,85 @@ VMs as described earlier in :ref:`tested_physical_topologies`.
 Further documentation is available in
 :ref:`container_orchestration_in_csit`.
 
+NFV Service Density
+-------------------
+
+Network Function Virtualization (NFV) service density tests focus on
+measuring total per server throughput at varied NFV service “packing”
+densities. The goal is compare and contrast performance of different
+network topologies and virtualization technologies, and their impact on
+vswitch in NFV service configurations.
+
+Each NFV service instance consists of a set of Network Functions (NFs),
+running in VMs (VNFs) or in Containers (CNFs), that are connected into a
+virtual network topology using vswitch running in Linux user-mode. In
+order to provide a most complete picture, each network topology and
+service configuration is tested in different service density setups by
+varying two parameters:
+
+- Number of service instances (e.g. 1,2,4..10).
+- Number of NFs per service instance (e.g. 1,2,4..10).
+
+The initial implementation of NFV service density tests in
+|csit-release| is using two NF applications:
+
+- VNF: DPDK L3fwd running in KVM VM, configured with /8 IPv4 prefix
+  routing. L3fwd got chosen as a lightweight IPv4 NF application.
+- CNF: VPP running in Docker Container, configured with /24 IPv4 prefix
+  routing. VPP got chosen as a lightweight IPv4 NF application that
+  supports memif (L3fwd does not).
+
+Service Configurations
+~~~~~~~~~~~~~~~~~~~~~~
+
+Following NFV network topologies and service configurations are tested:
+
+- VNF Service Chains (VSC) with L2 vswitch
+
+  - *Network*: Sets of VNFs dual-homed to VPP vswitch over virtio-vhost
+    links. Each set belongs to separate service instance.
+  - *Service*: VPP L2 bridge-domain contexts form logical service chains
+    of VNF sets and connect each chain to physical interfaces.
+
+- CNF Service Chains (CSC) with L2 vswitch
+
+  - *Network*: Sets of CNFs dual-homed to VPP vswitch over memif links.
+    Each set belongs to separate service instance.
+  - *Service*: VPP L2 bridge-domain contexts form logical service chains
+    of CNF sets and connect each chain to physical interfaces.
+
+- CNF Service Pipelines (CSP) with L2 vswitch
+
+  - *Network*: Sets of CNFs connected into pipelines over a series of
+    memif links, with edge CNFs single-homed to VPP vswitch over memif
+    links. Each set belongs to separate service instance.
+  - *Service*: VPP L2 bridge-domain contexts connect each CNF pipeline
+    to physical interfaces.
+
+Core Mapping Ratios
+~~~~~~~~~~~~~~~~~~~
+
+CSIT defines specific ratios for mapping physical cores (with associated
+sibling logical cores) to software threads of vSwitch and VNFs/CNFs,
+with separate ratios defined for main control threads and data-plane
+threads.
+
+Following core mapping ratios are tested in |csit-release|:
+
+- vSwitch
+
+  - (core:data) = (1:1), (2:1)
+  - (core:main) = (1:1)
+
+- VNF and CNF
+
+  - (core:data) = (1:1)
+  - (core:main) = (1:2)
+
+Maximum tested service densities are limited by a number of physical
+cores per NUMA. |csit-release| allocates cores within NUMA0. Support for
+multi NUMA tests is to be added in future release.
+
 VPP_Device Functional
 ---------------------
 
