@@ -647,6 +647,26 @@ class DUTSetup(object):
         return True
 
     @staticmethod
+    def get_docker_mergeddir(node, uuid):
+        """Get Docker overlay for MergedDir diff.
+
+        :param node: DUT node.
+        :param uuid: Docker UUID.
+        :type node: dict
+        :type uuid: str
+        :returns: Docker container MergedDir.
+        :rtype: str
+        :raises RuntimeError: If getting output failed.
+        """
+        command = "docker inspect --format='"\
+            "{{{{.GraphDriver.Data.MergedDir}}}}' {uuid}".format(uuid=uuid)
+        message = 'Failed to get directory of {uuid} on host {host}'.\
+            format(uuid=uuid, host=node['host'])
+
+        stdout, _ = exec_cmd_no_error(node, command, sudo=True, message=message)
+        return stdout.strip()
+
+    @staticmethod
     def get_huge_page_size(node):
         """Get default size of huge pages in system.
 
