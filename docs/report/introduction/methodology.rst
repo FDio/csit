@@ -792,6 +792,68 @@ VMs as described earlier in :ref:`tested_physical_topologies`.
 Further documentation is available in
 :ref:`container_orchestration_in_csit`.
 
+NFV Service Density
+-------------------
+
+NFV service density tests focus on measuring total per server throughput
+at varied NFV service “packing” densities. Each NFV service instance
+consists of a set of NFs (VNFs or CNFs) connected in a service topology
+using vswitch running in Linux user-mode.
+
+In order to provide a most complete service density picture, each
+service topology is tested in different configurations varying two
+parameters: number of service instances (e.g. 1,2,4..10) and number of
+NFs per service instance (e.g. 1,2,4..10).
+
+Service Topologies
+~~~~~~~~~~~~~~~~~~
+
+Following NFV service topologies and workloads are tested:
+
+- VNF Service Chains (VSC) with L2 vswitch
+
+  - *Service*: set of VNFs, each dual-homed over virtio-vhost virtual
+    links to VPP vswitch, VNF is DPDK L3fwd in KVM VM.
+  - *vswitch*: VPP L2 bridge-domain contexts forming a logical service
+    chain of VNFs and connecting each chain to physical interfaces.
+
+- CNF Service Chains (CSC) with L2 vswitch
+
+  - *Service*: set of CNFs, each dual-homed over memif-memif virtual
+    links to VPP vswitch, CNF is VPP IPv4 router in Docker Container.
+  - *vswitch*: VPP L2 bridge-domain contexts forming a logical service
+    chain of CNFs and connecting each chain to physical interfaces.
+
+- CNF Service Pipelines (CSP) with L2 vswitch
+
+  - *Service*: pipeline of CNFs dual-homed over memif-memif virtual
+    links to VPP vswitch, CNF is VPP IPv4 router in Docker Container.
+  - *vswitch*: VPP L2 bridge-domain contexts connecting each pipeline to
+    physical interfaces.
+
+Core Mapping Ratios
+~~~~~~~~~~~~~~~~~~~
+
+CSIT defines specific ratios for mapping physical cores to software
+threads of vSwitch and VNFs/CNFs, with separate ratios defined for main
+control threads and data-plane threads.
+
+Following core mapping ratios are tested in |csit-release|:
+
+- vSwitch
+
+  - (core:data) = (1:1), (2:1)
+  - (core:main) = (1:1)
+
+- VNF and CNF
+
+  - (core:data) = (1:1)
+  - (core:main) = (1:2)
+
+Maximum tested service densities are limited by a number of physical
+cores per NUMA. |csit-release| allocates cores within NUMA0. Support for
+multi NUMA tests is to be added in future release.
+
 VPP_Device Functional
 ---------------------
 
