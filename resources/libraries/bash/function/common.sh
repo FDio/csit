@@ -737,7 +737,7 @@ function select_tags () {
                             "!vhostANDnic_intel-xl710"
                             "!cfs_opt"
                             "!lbond_dpdk"
-                            "!nf_densityAND4c")
+                            "!nf_density")
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
