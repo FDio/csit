@@ -49,7 +49,10 @@
 | | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
 | | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
 | | | ${tmp}= | Get Variable Value | ${tmp_volume} | /tmp
-| | | ${mnt}= | Create List | ${tmp}:/mnt/host | /dev/vfio:/dev/vfio
+| | | ${mnt}= | Create List | ${tmp}/:/mnt/host/ | /dev/vfio/:/dev/vfio/
+| | | ... | /usr/bin/vpp:/usr/bin/vpp | /usr/include/vpp/:/usr/include/vpp/
+| | | ... | /usr/share/vpp/:/usr/share/vpp/
+| | | ... | /usr/lib/x86_64-linux-gnu/:/usr/lib/x86_64-linux-gnu/
 | | | ${nf_cpus}= | Run Keyword If | ${set_nf_cpus}
 | | | ... | Create network function CPU list | ${dut}
 | | | ... | chains=${nf_chains} | nodeness=${nf_nodes} | chain_id=${nf_chain}
@@ -134,6 +137,12 @@
 | | ... | group on all DUT nodes.
 | | ...
 | | Run Keyword | ${group}.Install VPP In All Containers
+
+| Start VPP in all '${group}' containers
+| | [Documentation] | Start VPP on all container(s) in specific container
+| | ... | group on all DUT nodes.
+| | ...
+| | Run Keyword | ${group}.Start VPP In All Containers
 
 | Restart VPP in all '${group}' containers
 | | [Documentation] | Restart VPP on all container(s) in specific container
