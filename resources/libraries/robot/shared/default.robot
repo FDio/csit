@@ -552,9 +552,8 @@
 | | ... | default value: ${1}
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variables:
-| | ... | - tmp_volume - Docker volume mounted as /tmp directory on DUT1.
-| | ... | - dcr_uuid - UUID string (including prefix - underscore character) of
-| | ... | DUT1 /tmp volume.
+| | ... | - dcr_uuid - Parent container UUID.
+| | ... | - dcr_root - Parent container overlay.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -567,19 +566,18 @@
 | | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
 | | ... | engine=${container_engine} | WITH NAME | ${container_group}
 | | ...
-| | ${tmp_volume}= | Get Environment Variable | CSIT_DUT1_VOL
-| | ${dcr_uuid}= | Remove String | ${tmp_volume} | DUT1_VOL
-| | Set Test Variable | ${tmp_volume}
+| | ${dcr_uuid}= | Get Environment Variable | CSIT_DUT1_UUID
+| | ${dcr_root}= | Run Keyword | Get Docker Mergeddir | ${nodes['DUT1']}
+| | ... | ${dcr_uuid}
 | | Set Test Variable | ${dcr_uuid}
+| | Set Test Variable | ${dcr_root}
 | | ...
 | | Construct chains of containers on all DUTs | ${chains} | ${nodeness}
-| | ... | set_nf_cpus=${False}
+| | ... | nested=${True}
 | | Acquire all '${container_group}' containers
 | | Create all '${container_group}' containers
 | | Configure VPP in all '${container_group}' containers
-| | Stop VPP service on all DUTs | ${nodes}
-| | Install VPP in all '${container_group}' containers
-| | Start VPP service on all DUTs | ${nodes}
+| | Start VPP in all '${container_group}' containers
 | | Append To List | ${container_groups} | ${container_group}
 
 | Tear down TAP functional test
