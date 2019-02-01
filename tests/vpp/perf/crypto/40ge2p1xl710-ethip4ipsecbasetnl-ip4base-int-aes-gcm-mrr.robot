@@ -86,6 +86,7 @@
 | | ...
 | | ${encr_alg} = | Crypto Alg AES GCM 128
 | | ${auth_alg} = | Integ Alg AES GCM 128
+| | ${ipsec_proto} = | IPsec Proto ESP
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
@@ -97,6 +98,8 @@
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
+| | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
 | | And VPP IPsec Backend Dump | ${dut1}
 | | And VPP IPsec Backend Dump | ${dut2}
 | | And Initialize IPSec in 3-node circular topology
@@ -109,7 +112,7 @@
 
 *** Test Cases ***
 | tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | TEST
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr
