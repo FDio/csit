@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5883fe82_1e27f0a6",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-04T11:19:22Z",
+      "side": 1,
+      "message": "This document is getting long. Should we separate the sections into sub-pages? They look independent enough to me.",
+      "range": {
+        "startLine": 795,
+        "startChar": 0,
+        "endLine": 795,
+        "endChar": 19
+      },
+      "revId": "a326a7d47f6d824ff204849acc5bbded99861562",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "689013ca_97cbd3b0",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-04T11:19:22Z",
+      "side": 1,
+      "message": "Define what these are (or link to an existing definition).",
+      "range": {
+        "startLine": 800,
+        "startChar": 26,
+        "endLine": 800,
+        "endChar": 38
+      },
+      "revId": "a326a7d47f6d824ff204849acc5bbded99861562",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18614475_b439154a",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-04T11:19:22Z",
+      "side": 1,
+      "message": "Explain why we use a different application than in CNF.",
+      "range": {
+        "startLine": 816,
+        "startChar": 33,
+        "endLine": 816,
+        "endChar": 43
+      },
+      "revId": "a326a7d47f6d824ff204849acc5bbded99861562",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cea7a33f_5f204b03",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-04T11:19:22Z",
+      "side": 1,
+      "message": "I do not think most readers will grasp implications of this word missing from line 829.\nEither make this text more explicit, or define what is the difference between chains and pipelines in general.",
+      "range": {
+        "startLine": 822,
+        "startChar": 28,
+        "endLine": 822,
+        "endChar": 32
+      },
+      "revId": "a326a7d47f6d824ff204849acc5bbded99861562",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b908629_8bf1d762",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-04T11:19:22Z",
+      "side": 1,
+      "message": "Is it obvious that we have two logical cores per physical core?\nIf not, it would be better to talk about logical cores (not sure how critical the sibling relations are).",
+      "range": {
+        "startLine": 837,
+        "startChar": 41,
+        "endLine": 837,
+        "endChar": 55
+      },
+      "revId": "a326a7d47f6d824ff204849acc5bbded99861562",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
