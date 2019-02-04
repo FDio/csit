@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "305c0fcd_416ed134",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-04T14:51:42Z",
+      "side": 1,
+      "message": "Do you mean separate H2 methodology sections? If so I agree.",
+      "parentUuid": "5883fe82_1e27f0a6",
+      "range": {
+        "startLine": 795,
+        "startChar": 0,
+        "endLine": 795,
+        "endChar": 19
+      },
+      "revId": "a326a7d47f6d824ff204849acc5bbded99861562",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "689013ca_97cbd3b0",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 1
