@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdfb2043_a6af1251",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-04T14:22:36Z",
+      "side": 1,
+      "message": "F",
+      "range": {
+        "startLine": 42,
+        "startChar": 64,
+        "endLine": 42,
+        "endChar": 65
+      },
+      "revId": "2d46c1e6c69927aaea29f1bcf835f0baf3b2772e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
