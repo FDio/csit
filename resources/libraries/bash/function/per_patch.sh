@@ -54,45 +54,22 @@ function build_vpp_ubuntu_amd64 () {
 
     set -exuo pipefail
 
-    # TODO: Make sure whether this works on other distros/archs too.
-
+    # This function is using Vagrant script to build VPP with all dependencies
+    # that is ARCH/OS aware. VPP repo is SSOT for building mechanics and CSIT
+    # is consuming artifacts. This way if VPP will introduce change in building
+    # mechanics they will not be blocked by CSIT repo.
     # Arguments:
     # - ${1} - String identifier for echo, can be unset.
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
     # Directories updated:
     # - ${VPP_DIR} - Whole subtree, many files (re)created by the build process.
-    # - ${VPP_DIR}/build-root - Final build artifacts for CSIT end up here.
-    # - ${VPP_DIR}/dpdk - The dpdk artifact is built, but moved to build-root/.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
     cd "${VPP_DIR}" || die "Change directory command failed."
     echo 'Building using "make build-root/vagrant/build.sh"'
     # TODO: Do we want to support "${DRYRUN}" == "True"?
-    make UNATTENDED=yes install-dep || die "Make install-dep failed."
-    # The per_patch script calls this function twice, first for the new commit,
-    # then for its parent commit. On Jenkins, no dpdk is installed at first,
-    # locally it might have been installed. New dpdk is installed second call.
-    # If make detects installed vpp-ext-deps with matching version,
-    # it skips building vpp-ext-deps entirely.
-    # On the other hand, if parent uses different dpdk version,
-    # the new vpp-ext-deps is built, but the old one is not removed
-    # from the build directory if present. (Further functions move both,
-    # and during test dpkg would decide randomly which version gets installed.)
-    # As per_patch is too dumb (yet) to detect any of that,
-    # the only safe solution is to clean build directory and force rebuild.
-    # TODO: Make this function smarter and skip DPDK rebuilds if possible.
-    cmd=("dpkg-query" "--showformat='$${Version}'" "--show" "vpp-ext-deps")
-    installed_deb_ver="$(sudo "${cmd[@]}" || true)"
-    if [[ -n "${installed_deb_ver}" ]]; then
-        sudo dpkg --purge "vpp-ext-deps" || {
-            die "DPDK package uninstalation failed."
-        }
-    fi
-    make UNATTENDED=yes install-ext-deps || {
-        die "Make install-ext-deps failed."
-    }
     build-root/vagrant/"build.sh" || die "Vagrant VPP build script failed."
     echo "*******************************************************************"
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
@@ -142,19 +119,20 @@ function download_builds () {
     # - VPP_DIR - Path to WORKSPACE, parent of created directories.
     # Directories created:
     # - archive - Ends up empty, not to be confused with ${ARCHIVE_DIR}.
-    # - build_new - Holding built artifacts of the patch under test (PUT).
+    # - build_current - Holding built artifacts of the patch under test (PUT).
     # - built_parent - Holding built artifacts of parent of PUT.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "build-root" "build_parent" "build_new" "archive" "csit_new" || {
+    dirs=("build-root" "build_parent" "build_current" "archive" "csit_current")
+    rm -rf ${dirs[@]} || {
         die "Directory removal failed."
     }
     wget -N --progress=dot:giga "${1}" || die "Wget download failed."
     unzip "archive.zip" || die "Archive extraction failed."
     mv "archive/build_parent" ./ || die "Move operation failed."
-    mv "archive/build_new" ./ || die "Move operation failed."
+    mv "archive/build_current" ./ || die "Move operation failed."
 }
 
 
@@ -167,16 +145,16 @@ function initialize_csit_dirs () {
     # Variables read:
     # - VPP_DIR - Path to WORKSPACE, parent of created directories.
     # Directories created:
-    # - csit_new - Holding test results of the patch under test (PUT).
+    # - csit_current - Holding test results of the patch under test (PUT).
     # - csit_parent - Holding test results of parent of PUT.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "csit_new" "csit_parent" || {
+    rm -rf "csit_current" "csit_parent" || {
         die "Directory deletion failed."
     }
-    mkdir -p "csit_new" "csit_parent" || {
+    mkdir -p "csit_current" "csit_parent" || {
         die "Directory creation failed."
     }
 }
@@ -212,55 +190,6 @@ function parse_bmrr_results () {
 }
 
 
-function prepare_build_parent () {
-
-    set -exuo pipefail
-
-    # Variables read:
-    # - VPP_DIR - Path to existing directory, parent to accessed directories.
-    # Directories read:
-    # - build-root - Existing directory with built VPP artifacts (also DPDK).
-    # Directories updated:
-    # - ${VPP_DIR} - A local git repository, parent commit gets checked out.
-    # - build_new - Old contents removed, content of build-root copied here.
-    # Functions called:
-    # - die - Print to stderr and exit, defined in common.sh
-
-    cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "build_new" || die "Remove operation failed."
-    mkdir -p "build_new" || die "Directory creation failed."
-    mv "build-root"/*".deb" "build_new"/ || die "Move operation failed."
-    # The previous build could have left some incompatible leftovers,
-    # e.g. DPDK artifacts of different version (in build/external).
-    # Also, there usually is a copy of dpdk artifact in build-root.
-    git clean -dffx "build"/ "build-root"/ || die "Git clean operation failed."
-    # Finally, check out the parent commit.
-    git checkout HEAD~ || die "Git checkout operation failed."
-    # Display any other leftovers.
-    git status || die "Git status operation failed."
-}
-
-
-function prepare_test () {
-
-    set -exuo pipefail
-
-    # Variables read:
-    # - VPP_DIR - Path to existing directory, parent of accessed directories.
-    # Directories read:
-    # - build-root - Existing directory with built VPP artifacts (also DPDK).
-    # Directories updated:
-    # - build_parent - Old directory removed, build-root debs moved here.
-    # Functions called:
-    # - die - Print to stderr and exit, defined in common.sh
-
-    cd "${VPP_DIR}" || die "Change directory operation failed."
-    rm -rf "build_parent" || die "Remove failed."
-    mkdir -p "build_parent" || die "Directory creation operation failed."
-    mv "build-root"/*".deb" "build_parent"/ || die "Move operation failed."
-}
-
-
 function select_build () {
 
     set -exuo pipefail
@@ -283,6 +212,59 @@ function select_build () {
     cp "${source_dir}"/*".deb" "${DOWNLOAD_DIR}" || die "Copy operation failed."
     # TODO: Is there a nice way to create symlinks,
     #   so that if job fails on robot, results can be archived?
+}
+
+
+function set_aside_commit_build_artifacts () {
+
+    set -exuo pipefail
+
+    # Function is copying VPP built artifacts from actual checkout commit for
+    # further use and clean git.
+    # Variables read:
+    # - VPP_DIR - Path to existing directory, parent to accessed directories.
+    # Directories read:
+    # - build-root - Existing directory with built VPP artifacts (also DPDK).
+    # Directories updated:
+    # - ${VPP_DIR} - A local git repository, parent commit gets checked out.
+    # - build_current - Old contents removed, content of build-root copied here.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+
+    cd "${VPP_DIR}" || die "Change directory operation failed."
+    rm -rf "build_current" || die "Remove operation failed."
+    mkdir -p "build_current" || die "Directory creation failed."
+    mv "build-root"/*".deb" "build_current"/ || die "Move operation failed."
+    # The previous build could have left some incompatible leftovers,
+    # e.g. DPDK artifacts of different version (in build/external).
+    # Also, there usually is a copy of dpdk artifact in build-root.
+    git clean -dffx "build"/ "build-root"/ || die "Git clean operation failed."
+    # Finally, check out the parent commit.
+    git checkout HEAD~ || die "Git checkout operation failed."
+    # Display any other leftovers.
+    git status || die "Git status operation failed."
+}
+
+
+function set_aside_parent_build_artifacts () {
+
+    set -exuo pipefail
+
+    # Function is copying VPP built artifacts from parent checkout commit for
+    # further use. Checkout to parent is not part of this function.
+    # Variables read:
+    # - VPP_DIR - Path to existing directory, parent of accessed directories.
+    # Directories read:
+    # - build-root - Existing directory with built VPP artifacts (also DPDK).
+    # Directories updated:
+    # - build_parent - Old directory removed, build-root debs moved here.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+
+    cd "${VPP_DIR}" || die "Change directory operation failed."
+    rm -rf "build_parent" || die "Remove failed."
+    mkdir -p "build_parent" || die "Directory creation operation failed."
+    mv "build-root"/*".deb" "build_parent"/ || die "Move operation failed."
 }
 
 
