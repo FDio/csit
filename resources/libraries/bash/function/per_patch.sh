@@ -70,29 +70,6 @@ function build_vpp_ubuntu_amd64 () {
     cd "${VPP_DIR}" || die "Change directory command failed."
     echo 'Building using "make build-root/vagrant/build.sh"'
     # TODO: Do we want to support "${DRYRUN}" == "True"?
-    make UNATTENDED=yes install-dep || die "Make install-dep failed."
-    # The per_patch script calls this function twice, first for the new commit,
-    # then for its parent commit. On Jenkins, no dpdk is installed at first,
-    # locally it might have been installed. New dpdk is installed second call.
-    # If make detects installed vpp-ext-deps with matching version,
-    # it skips building vpp-ext-deps entirely.
-    # On the other hand, if parent uses different dpdk version,
-    # the new vpp-ext-deps is built, but the old one is not removed
-    # from the build directory if present. (Further functions move both,
-    # and during test dpkg would decide randomly which version gets installed.)
-    # As per_patch is too dumb (yet) to detect any of that,
-    # the only safe solution is to clean build directory and force rebuild.
-    # TODO: Make this function smarter and skip DPDK rebuilds if possible.
-    cmd=("dpkg-query" "--showformat='$${Version}'" "--show" "vpp-ext-deps")
-    installed_deb_ver="$(sudo "${cmd[@]}" || true)"
-    if [[ -n "${installed_deb_ver}" ]]; then
-        sudo dpkg --purge "vpp-ext-deps" || {
-            die "DPDK package uninstalation failed."
-        }
-    fi
-    make UNATTENDED=yes install-ext-deps || {
-        die "Make install-ext-deps failed."
-    }
     build-root/vagrant/"build.sh" || die "Vagrant VPP build script failed."
     echo "*******************************************************************"
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
@@ -212,10 +189,37 @@ function parse_bmrr_results () {
 }
 
 
-function prepare_build_parent () {
+function select_build () {
 
     set -exuo pipefail
 
+    # Arguments:
+    # - ${1} - Path to directory to copy VPP artifacts from. Required.
+    # Variables read:
+    # - DOWNLOAD_DIR - Path to directory where Robot takes builds to test from.
+    # - VPP_DIR - Path to existing directory, root for relative paths.
+    # Directories read:
+    # - ${1} - Existing directory with built new VPP artifacts (and DPDK).
+    # Directories updated:
+    # - ${DOWNLOAD_DIR} - Old content removed, .deb files from ${1} copied here.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+
+    cd "${VPP_DIR}" || die "Change directory operation failed."
+    source_dir="$(readlink -e "$1")"
+    rm -rf "${DOWNLOAD_DIR}"/* || die "Cleanup of download dir failed."
+    cp "${source_dir}"/*".deb" "${DOWNLOAD_DIR}" || die "Copy operation failed."
+    # TODO: Is there a nice way to create symlinks,
+    #   so that if job fails on robot, results can be archived?
+}
+
+
+function set_aside_commit_build_artifacts () {
+
+    set -exuo pipefail
+
+    # Function is copying VPP built artifacts from actual checkout commit for
+    # further use and clean git.
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
     # Directories read:
@@ -241,10 +245,12 @@ function prepare_build_parent () {
 }
 
 
-function prepare_test () {
+function set_aside_parent_build_artifacts () {
 
     set -exuo pipefail
 
+    # Function is copying VPP built artifacts from parent checkout commit for
+    # further use. Checkout to parent is not part of this function.
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent of accessed directories.
     # Directories read:
@@ -258,31 +264,6 @@ function prepare_test () {
     rm -rf "build_parent" || die "Remove failed."
     mkdir -p "build_parent" || die "Directory creation operation failed."
     mv "build-root"/*".deb" "build_parent"/ || die "Move operation failed."
-}
-
-
-function select_build () {
-
-    set -exuo pipefail
-
-    # Arguments:
-    # - ${1} - Path to directory to copy VPP artifacts from. Required.
-    # Variables read:
-    # - DOWNLOAD_DIR - Path to directory where Robot takes builds to test from.
-    # - VPP_DIR - Path to existing directory, root for relative paths.
-    # Directories read:
-    # - ${1} - Existing directory with built new VPP artifacts (and DPDK).
-    # Directories updated:
-    # - ${DOWNLOAD_DIR} - Old content removed, .deb files from ${1} copied here.
-    # Functions called:
-    # - die - Print to stderr and exit, defined in common.sh
-
-    cd "${VPP_DIR}" || die "Change directory operation failed."
-    source_dir="$(readlink -e "$1")"
-    rm -rf "${DOWNLOAD_DIR}"/* || die "Cleanup of download dir failed."
-    cp "${source_dir}"/*".deb" "${DOWNLOAD_DIR}" || die "Copy operation failed."
-    # TODO: Is there a nice way to create symlinks,
-    #   so that if job fails on robot, results can be archived?
 }
 
 
