@@ -53,6 +53,10 @@ Additional information about graph data:
     result files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
 
+.. raw:: latex
+
+    \clearpage
+
 .. raw:: html
 
     <center><b>
