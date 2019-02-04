@@ -83,16 +83,16 @@ function build_vpp_ubuntu_amd64 () {
     # As per_patch is too dumb (yet) to detect any of that,
     # the only safe solution is to clean build directory and force rebuild.
     # TODO: Make this function smarter and skip DPDK rebuilds if possible.
-    cmd=("dpkg-query" "--showformat='$${Version}'" "--show" "vpp-ext-deps")
-    installed_deb_ver="$(sudo "${cmd[@]}" || true)"
-    if [[ -n "${installed_deb_ver}" ]]; then
-        sudo dpkg --purge "vpp-ext-deps" || {
-            die "DPDK package uninstalation failed."
-        }
-    fi
-    make UNATTENDED=yes install-ext-deps || {
-        die "Make install-ext-deps failed."
-    }
+#    cmd=("dpkg-query" "--showformat='$${Version}'" "--show" "vpp-ext-deps")
+#    installed_deb_ver="$(sudo "${cmd[@]}" || true)"
+#    if [[ -n "${installed_deb_ver}" ]]; then
+#        sudo dpkg --purge "vpp-ext-deps" || {
+#            die "DPDK package uninstalation failed."
+#        }
+#    fi
+#    make UNATTENDED=yes install-ext-deps || {
+#        die "Make install-ext-deps failed."
+#    }
     build-root/vagrant/"build.sh" || die "Vagrant VPP build script failed."
     echo "*******************************************************************"
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
