@@ -70,29 +70,6 @@ function build_vpp_ubuntu_amd64 () {
     cd "${VPP_DIR}" || die "Change directory command failed."
     echo 'Building using "make build-root/vagrant/build.sh"'
     # TODO: Do we want to support "${DRYRUN}" == "True"?
-    make UNATTENDED=yes install-dep || die "Make install-dep failed."
-    # The per_patch script calls this function twice, first for the new commit,
-    # then for its parent commit. On Jenkins, no dpdk is installed at first,
-    # locally it might have been installed. New dpdk is installed second call.
-    # If make detects installed vpp-ext-deps with matching version,
-    # it skips building vpp-ext-deps entirely.
-    # On the other hand, if parent uses different dpdk version,
-    # the new vpp-ext-deps is built, but the old one is not removed
-    # from the build directory if present. (Further functions move both,
-    # and during test dpkg would decide randomly which version gets installed.)
-    # As per_patch is too dumb (yet) to detect any of that,
-    # the only safe solution is to clean build directory and force rebuild.
-    # TODO: Make this function smarter and skip DPDK rebuilds if possible.
-    cmd=("dpkg-query" "--showformat='$${Version}'" "--show" "vpp-ext-deps")
-    installed_deb_ver="$(sudo "${cmd[@]}" || true)"
-    if [[ -n "${installed_deb_ver}" ]]; then
-        sudo dpkg --purge "vpp-ext-deps" || {
-            die "DPDK package uninstalation failed."
-        }
-    fi
-    make UNATTENDED=yes install-ext-deps || {
-        die "Make install-ext-deps failed."
-    }
     build-root/vagrant/"build.sh" || die "Vagrant VPP build script failed."
     echo "*******************************************************************"
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
