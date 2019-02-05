@@ -65,10 +65,10 @@ class Constants(object):
     QEMU_VM_DPDK = '/opt/dpdk-19.02'
 
     # TRex install version
-    TREX_INSTALL_VERSION = '2.35'
+    TREX_INSTALL_VERSION = '2.54'
 
     # TRex install directory
-    TREX_INSTALL_DIR = '/opt/trex-core-2.35'
+    TREX_INSTALL_DIR = '/opt/trex-core-2.54'
 
     # Honeycomb directory location at topology nodes:
     REMOTE_HC_DIR = '/opt/honeycomb'
