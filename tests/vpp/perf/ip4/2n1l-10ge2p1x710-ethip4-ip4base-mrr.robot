@@ -19,10 +19,10 @@
 | ...
 | Suite Setup | Set up 2-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X710
-| Suite Teardown | Tear down 2-node performance topology
+#| Suite Teardown | Tear down 2-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance mrr test
+#| Test Teardown | Tear down performance mrr test
 | ...
 | Test Template | Local Template
 | ...
@@ -76,7 +76,7 @@
 
 *** Test Cases ***
 | tc01-64B-1c-ethip4-ip4base-mrr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-ethip4-ip4base-mrr
