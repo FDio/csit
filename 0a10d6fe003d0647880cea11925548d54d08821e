@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "412bb6fb_d2025d20",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-05T21:23:42Z",
+      "side": 1,
+      "message": "Updated paragraph should address both of your points.",
+      "parentUuid": "02b85084_06b21c56",
+      "range": {
+        "startLine": 801,
+        "startChar": 62,
+        "endLine": 802,
+        "endChar": 7
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b954b4f_c3336cf5",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-05T13:09:15Z",
       "side": 1,
       "message": "Also this needs to be defined.\nIn our case, service instance is a packet path visiting several NFs linearly (no branching, no drops).\nIn case of multiple (identical) instances, a bridge domain just after the input physical device decides which instance is used for the packet (as our generated traffic contains MAC addresses matching those of edge NFs).\n(And we have multiple \"flows\" in both directions, but I think that is already said elsewhere.)",
+      "range": {
+        "startLine": 811,
+        "startChar": 12,
+        "endLine": 811,
+        "endChar": 29
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a40e6f23_aa4b6890",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-05T21:23:42Z",
+      "side": 1,
+      "message": "See updated paragraph that defines what service instances are, and also covers role of the vswitch.",
+      "parentUuid": "9b954b4f_c3336cf5",
       "range": {
         "startLine": 811,
         "startChar": 12,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "21a902f2_5d4d091b",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-05T21:23:42Z",
+      "side": 1,
+      "message": "L3fwd is indeed faster than VPP due to not performing mandatory packet operations as you say. In all other CSIT tests we use DPDK app testpmd as a reference VM workload. Here, as we need IPv4 routing, we have used DPDK L3fwd as a reference. Unfortunately L3fwd does not support memif, so we need to use VPP for containers. This is the practice in CSIT for some time.\n\nIn any case, neither L3fwd in VM, nor VPP in Container are expected to be bottleneck in the tests. \n\nSee updated text.",
+      "parentUuid": "3645f3bd_1e8f7467",
+      "range": {
+        "startLine": 818,
+        "startChar": 33,
+        "endLine": 818,
+        "endChar": 44
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2b5b1f34_7f1e644b",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2019-02-05T13:09:15Z",
       "side": 1,
       "message": "Guest-level network?",
+      "range": {
+        "startLine": 830,
+        "startChar": 5,
+        "endLine": 830,
+        "endChar": 12
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e67237bd_b747dea6",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-05T21:23:42Z",
+      "side": 1,
+      "message": "Network Topolog, IOW how VNFs, CNFs are connected to vswitch and to each other.",
+      "parentUuid": "2b5b1f34_7f1e644b",
       "range": {
         "startLine": 830,
         "startChar": 5,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "2db8cc44_0fa35246",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-05T21:23:42Z",
+      "side": 1,
+      "message": "Service Configuration, IOW vswitch service configuration.",
+      "parentUuid": "c5173818_5f5e1eb8",
+      "range": {
+        "startLine": 832,
+        "startChar": 5,
+        "endLine": 832,
+        "endChar": 12
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4313f481_7b6650f3",
         "filename": "docs/report/introduction/methodology.rst",
         "patchSetId": 2
@@ -128,6 +248,30 @@
       "writtenOn": "2019-02-05T13:09:15Z",
       "side": 1,
       "message": "pair of sibling\n\nFor readers from future where 1 physical core consists of 4 logical cores.",
+      "range": {
+        "startLine": 854,
+        "startChar": 0,
+        "endLine": 854,
+        "endChar": 7
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de41abbd_091be820",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-05T21:23:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4313f481_7b6650f3",
       "range": {
         "startLine": 854,
         "startChar": 0,
