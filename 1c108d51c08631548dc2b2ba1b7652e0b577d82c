@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9f427dc2_bbde15fd",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-05T11:46:33Z",
+      "side": 1,
+      "message": "bound",
+      "range": {
+        "startLine": 303,
+        "startChar": 48,
+        "endLine": 303,
+        "endChar": 54
+      },
+      "revId": "1c108d51c08631548dc2b2ba1b7652e0b577d82c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fc239889_3f5c2ba5",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-05T11:46:33Z",
+      "side": 1,
+      "message": "What is the intended us for this case?\nI think it could lead to the VLAN mismatch.",
+      "range": {
+        "startLine": 313,
+        "startChar": 8,
+        "endLine": 313,
+        "endChar": 10
+      },
+      "revId": "1c108d51c08631548dc2b2ba1b7652e0b577d82c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
