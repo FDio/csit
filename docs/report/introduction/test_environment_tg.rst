@@ -9,7 +9,7 @@ TG Version
 DPDK Version
 ~~~~~~~~~~~~
 
-DPDK v17.11
+DPDK v18.08
 
 TG Build Script Used
 ~~~~~~~~~~~~~~~~~~~~
