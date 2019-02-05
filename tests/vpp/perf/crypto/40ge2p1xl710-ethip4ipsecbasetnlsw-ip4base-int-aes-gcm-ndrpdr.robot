@@ -92,6 +92,7 @@
 | | Set Test Variable | ${min_rate} | ${10000}
 | | ${encr_alg} = | Crypto Alg AES GCM 128
 | | ${auth_alg} = | Integ Alg AES GCM 128
+| | ${ipsec_proto} = | IPsec Proto ESP
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
@@ -104,6 +105,10 @@
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
+| | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
+| | And VPP IPsec Backend Dump | ${dut1}
+| | And VPP IPsec Backend Dump | ${dut2}
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
