@@ -21,7 +21,7 @@ import struct
 from random import choice
 from string import letters
 
-from trex_stl_lib.api import *
+from trex.stl.api import *
 
 
 class TrafficStreamsBaseClass(object):
