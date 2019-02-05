@@ -28,7 +28,7 @@ Stream profile:
 
 from re import finditer
 
-from trex_stl_lib.api import *
+from trex.stl.api import *
 from profile_trex_stateless_base_class import TrafficStreamsBaseClass
 
 
