@@ -13,7 +13,7 @@ continuous VPP testing by extending existing test environments.
 Furthermore it describes and summarizes implementation details of Integration
 and System tests platform *1-Node VPP_Device*. It aims to provide a complete
 end-to-end view of *1-Node VPP_Device* environment in order to improve
-extendibility and maintenance, under the guideline of VPP core team.
+extendability and maintenance, under the guideline of VPP core team.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
@@ -22,9 +22,22 @@ interpreted as described in :rfc:`8174`.
 Overview
 --------
 
-.. todo: Covert to SVG
+.. only:: latex
 
-.. image:: vpp-device.png
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/vpp_device_tests/}}
+                \includegraphics[width=0.90\textwidth]{vpp_device}
+                \label{fig:vpp_device}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: vpp_device.svg
+        :alt: vpp_device
+        :align: center
 
 Physical Testbeds
 -----------------
@@ -36,7 +49,7 @@ project. Two 1-node testbed topologies are used:
 
 - **2-Container Topology**: Consisting of one Docker container acting as SUT
   (System Under Test) and one Docker container as TG (Traffic Generator), both
-  connected in ring topology via physical NIC crossconnecting.
+  connected in ring topology via physical NIC cross-connecting.
 
 Current FD.io production testbeds are built with servers based on one
 processor generation of Intel Xeons: Skylake (Platinum 8180). Testbeds built
@@ -83,7 +96,7 @@ NIC interfaces are shared using Linux vfio_pci and VPP VF drivers:
 - DPDK VF driver,
 - Fortville AVF driver.
 
-Provided Intel x710-da4 4p10GE NICs suppport 32 VFs per interface, 128 per NIC.
+Provided Intel x710-da4 4p10GE NICs support 32 VFs per interface, 128 per NIC.
 
 Complete 1n-skx testbeds specification is available on `CSIT LF Testbeds
 <https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Skx,_Arm,_Atom.>`_ wiki page.
@@ -152,7 +165,7 @@ service.
 Versioning
 ~~~~~~~~~~
 
-As of initial version of vpp-device, we do have only single `:latest` version of
+As of initial version of vpp-device, we do have only single latest version of
 Docker image hosted on [dockerhub]_. This will be addressed as further
 improvement with proper semantic versioning.
 
