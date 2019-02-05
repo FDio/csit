@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -28,7 +28,7 @@ Stream profile:
    - Destination IP address range:  10.0.0.0 - 10.0.19.135
 """
 
-from trex_stl_lib.api import *
+from trex.stl.api import *
 from profile_trex_stateless_base_class import TrafficStreamsBaseClass
 
 
