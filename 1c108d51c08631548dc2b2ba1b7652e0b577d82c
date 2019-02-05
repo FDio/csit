@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b24e1ccd_1940c2f6",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-05T11:24:03Z",
+      "side": 0,
+      "message": "Have you Sandbox-tested what happens (after deleting this block) on perpatch perf job triggered on a VPP change which edits DPDK version?",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 8
+      },
+      "revId": "1c108d51c08631548dc2b2ba1b7652e0b577d82c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
