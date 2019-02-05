@@ -107,7 +107,7 @@ def main():
                                 sudo=True)
 
             # Kill all containers.
-            execute_command_ssh(ssh, 'docker rm $(sudo docker ps -a -q)',
+            execute_command_ssh(ssh, 'docker rm --force $(sudo docker ps -q)',
                                 sudo=True)
 
             # Destroy kubernetes.
