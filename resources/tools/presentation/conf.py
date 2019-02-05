@@ -116,7 +116,7 @@ rst_epilog = """
            vpp_prev_release='18.10',
            dpdkrelease='18.08',  # 18.11
            sdpdkrelease='1808',
-           trex_version='v2.35',
+           trex_version='v2.53',
            csit_ubuntu_ver='csit-ubuntu-16.04.1_2019-01-04_2.3',
            csit_centos_ver='csit-centos-7.4-1711_2019-01-04_2.1')
 

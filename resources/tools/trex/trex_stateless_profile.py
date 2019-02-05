@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -22,10 +22,9 @@ import sys
 import argparse
 import json
 
-sys.path.insert(0, "/opt/trex-core-2.35/scripts/automation/"
-                   "trex_control_plane/stl/")
-
-from trex_stl_lib.api import *
+sys.path.insert(0, "/opt/trex-core-2.53/scripts/automation/"
+                   "trex_control_plane/interactive/")
+from trex.stl.api import *
 
 
 def fmt_latency(lat_min, lat_avg, lat_max):
@@ -155,7 +154,7 @@ def send_traffic_bidirection(profile_file, duration, framesize, rate,
 
     try:
         # Create the client:
-        client = STLClient(verbose_level=LoggerApi.VERBOSE_QUIET)
+        client = STLClient()
         # Connect to server:
         client.connect()
         # Prepare our ports (the machine has 0 <--> 1 with static route):

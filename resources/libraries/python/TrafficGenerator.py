@@ -301,13 +301,13 @@ class TrafficGenerator(AbstractMeasurer):
                 if test_type == 'L2' or test_type == 'L3':
                     (ret, _, _) = ssh.exec_command(
                         "sh -c 'cd {0}/scripts/ && "
-                        "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /tmp/trex.log "
-                        "2>&1 &' > /dev/null"\
+                        "sudo nohup ./t-rex-64 -i -c 7 > "
+                        "/tmp/trex.log 2>&1 &' > /dev/null"\
                         .format(Constants.TREX_INSTALL_DIR))
                 elif test_type == 'L7':
                     (ret, _, _) = ssh.exec_command(
                         "sh -c 'cd {0}/scripts/ && "
-                        "sudo nohup ./t-rex-64 --astf -i -c 7 --iom 0 > "
+                        "sudo nohup ./t-rex-64 --astf -i -c 7 > "
                         "/tmp/trex.log 2>&1 &' > /dev/null"\
                         .format(Constants.TREX_INSTALL_DIR))
                 else:
@@ -318,10 +318,9 @@ class TrafficGenerator(AbstractMeasurer):
 
                 # get TRex server info
                 (ret, _, _) = ssh.exec_command(
-                    "sh -c 'sleep 3; "
+                    "sh -c 'sleep 5; "
                     "{0}/resources/tools/trex/trex_server_info.py'"\
-                    .format(Constants.REMOTE_FW_DIR),
-                    timeout=120)
+                    .format(Constants.REMOTE_FW_DIR))
                 if int(ret) == 0:
                     # If we get info TRex is running
                     return

@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -42,10 +42,10 @@ class Constants(object):
     QEMU_INSTALL_DIR = '/opt/qemu-2.11.2'
 
     # TRex install version
-    TREX_INSTALL_VERSION = '2.35'
+    TREX_INSTALL_VERSION = '2.53'
 
     # TRex install directory
-    TREX_INSTALL_DIR = '/opt/trex-core-2.35'
+    TREX_INSTALL_DIR = '/opt/trex-core-2.53'
 
     # Kubernetes templates location
     RESOURCES_TPL_K8S = 'resources/templates/kubernetes'

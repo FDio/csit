@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,9 +29,9 @@ Functionality:
 import sys
 import json
 
-sys.path.insert(0, "/opt/trex-core-2.35/scripts/automation/"+\
-                   "trex_control_plane/stl/")
-from trex_stl_lib.api import *
+sys.path.insert(0, "/opt/trex-core-2.53/scripts/automation/"+\
+                   "trex_control_plane/interactive/")
+from trex.stl.api import *
 
 
 def stop_all_traffic_streams():
