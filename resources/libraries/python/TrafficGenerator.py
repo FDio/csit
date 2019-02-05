@@ -18,7 +18,7 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from .DropRateSearch import DropRateSearch
 from .Constants import Constants
-from .ssh import SSH
+from .ssh import SSH, exec_cmd_no_error
 from .topology import NodeType
 from .topology import NodeSubTypeTG
 from .topology import Topology
@@ -203,9 +203,9 @@ class TrafficGenerator(AbstractMeasurer):
             raise RuntimeError('Node type is not a TG')
         self._node = tg_node
 
-        if tg_node['subtype'] == NodeSubTypeTG.TREX:
+        if self._node['subtype'] == NodeSubTypeTG.TREX:
             ssh = SSH()
-            ssh.connect(tg_node)
+            ssh.connect(self._node)
 
             (ret, _, _) = ssh.exec_command(
                 "sudo -E sh -c '{0}/resources/tools/trex/"
@@ -215,10 +215,10 @@ class TrafficGenerator(AbstractMeasurer):
             if int(ret) != 0:
                 raise RuntimeError('TRex installation failed.')
 
-            if1_pci = Topology().get_interface_pci_addr(tg_node, tg_if1)
-            if2_pci = Topology().get_interface_pci_addr(tg_node, tg_if2)
-            if1_addr = Topology().get_interface_mac(tg_node, tg_if1)
-            if2_addr = Topology().get_interface_mac(tg_node, tg_if2)
+            if1_pci = Topology().get_interface_pci_addr(self._node, tg_if1)
+            if2_pci = Topology().get_interface_pci_addr(self._node, tg_if2)
+            if1_addr = Topology().get_interface_mac(self._node, tg_if1)
+            if2_addr = Topology().get_interface_mac(self._node, tg_if2)
 
             if osi_layer == 'L2':
                 if1_adj_addr = if2_addr
@@ -229,8 +229,8 @@ class TrafficGenerator(AbstractMeasurer):
                 if2_adj_addr = Topology().get_interface_mac(tg_if2_adj_node,
                                                             tg_if2_adj_if)
             elif osi_layer == 'L7':
-                if1_addr = Topology().get_interface_ip4(tg_node, tg_if1)
-                if2_addr = Topology().get_interface_ip4(tg_node, tg_if2)
+                if1_addr = Topology().get_interface_ip4(self._node, tg_if1)
+                if2_addr = Topology().get_interface_ip4(self._node, tg_if2)
                 if1_adj_addr = Topology().get_interface_ip4(tg_if1_adj_node,
                                                             tg_if1_adj_if)
                 if2_adj_addr = Topology().get_interface_ip4(tg_if2_adj_node,
@@ -252,8 +252,7 @@ class TrafficGenerator(AbstractMeasurer):
             if osi_layer == 'L2' or osi_layer == 'L3':
                 (ret, _, _) = ssh.exec_command(
                     "sudo sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
-                    "- port_limit: 2\n"
-                    "  version: 2\n"
+                    "- version: 2\n"
                     "  interfaces: [\"{0}\",\"{1}\"]\n"
                     "  port_info:\n"
                     "      - dest_mac: [{2}]\n"
@@ -269,8 +268,7 @@ class TrafficGenerator(AbstractMeasurer):
             elif osi_layer == 'L7':
                 (ret, _, _) = ssh.exec_command(
                     "sudo sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
-                    "- port_limit: 2\n"
-                    "  version: 2\n"
+                    "- version: 2\n"
                     "  interfaces: [\"{0}\",\"{1}\"]\n"
                     "  port_info:\n"
                     "      - ip: [{2}]\n"
@@ -286,49 +284,75 @@ class TrafficGenerator(AbstractMeasurer):
             if int(ret) != 0:
                 raise RuntimeError('TRex config generation error')
 
-            for _ in range(0, 3):
-                # kill TRex only if it is already running
-                ssh.exec_command(
-                    "sh -c 'pgrep t-rex && sudo pkill t-rex && sleep 3'")
+            self._startup_trex(osi_layer)
 
-                # configure TRex
-                (ret, _, _) = ssh.exec_command(
-                    "sh -c 'cd {0}/scripts/ && sudo ./trex-cfg'"\
-                    .format(Constants.TREX_INSTALL_DIR))
-                if int(ret) != 0:
-                    raise RuntimeError('trex-cfg failed')
+    def _startup_trex(self, osi_layer):
+        """Startup sequence for the TRex traffic generator.
 
-                # start TRex
-                if osi_layer == 'L2' or osi_layer == 'L3':
-                    (ret, _, _) = ssh.exec_command(
-                        "sh -c 'cd {0}/scripts/ && "
-                        "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /tmp/trex.log "
-                        "2>&1 &' > /dev/null"\
-                        .format(Constants.TREX_INSTALL_DIR))
-                elif osi_layer == 'L7':
-                    (ret, _, _) = ssh.exec_command(
-                        "sh -c 'cd {0}/scripts/ && "
-                        "sudo nohup ./t-rex-64 --astf -i -c 7 --iom 0 > "
-                        "/tmp/trex.log 2>&1 &' > /dev/null"\
-                        .format(Constants.TREX_INSTALL_DIR))
-                else:
-                    raise ValueError("Unknown Test Type")
-                if int(ret) != 0:
-                    ssh.exec_command("sh -c 'cat /tmp/trex.log'")
-                    raise RuntimeError('t-rex-64 startup failed')
+        :param osi_layer: 'L2', 'L3' or 'L7' - OSI Layer testing type.
+        :type osi_layer: str
+        :raises RuntimeError: If node subtype is not a TREX or startup failed.
+        """
+        if self._node['subtype'] != NodeSubTypeTG.TREX:
+            raise RuntimeError('Node subtype is not a TREX!')
 
-                # get TRex server info
-                (ret, _, _) = ssh.exec_command(
-                    "sh -c 'sleep 3; "
-                    "{0}/resources/tools/trex/trex_server_info.py'"\
-                    .format(Constants.REMOTE_FW_DIR),
-                    timeout=120)
-                if int(ret) == 0:
-                    # If we get info TRex is running
-                    return
-            # after max retries TRex is still not responding to API
-            # critical error occurred
-            raise RuntimeError('t-rex-64 startup failed')
+        for _ in range(0, 3):
+            # Kill TRex only if it is already running.
+            cmd = "sh -c 'pgrep t-rex && pkill t-rex && sleep 3 || true'"
+            exec_cmd_no_error(self._node, cmd, sudo=True,
+                              message='Kill TRex failed!')
+
+            # Configure TRex.
+            ports = ''
+            for port in self._node['interfaces'].values():
+                ports += ' {pci}'.format(pci=port.get('pci_address'))
+
+            cmd = ("sh -c 'cd {dir}/scripts/ && "
+                   "./dpdk_nic_bind.py -u {ports} || true'"
+                   .format(dir=Constants.TREX_INSTALL_DIR, ports=ports))
+            exec_cmd_no_error(self._node, cmd, sudo=True,
+                              message='Unbind PCI ports from driver failed!')
+
+            cmd = ("sh -c 'cd {dir}/scripts/ && ./trex-cfg'"
+                   .format(dir=Constants.TREX_INSTALL_DIR))
+            exec_cmd_no_error(self._node, cmd, sudo=True,
+                              message='Config TRex failed!')
+
+            # Start TRex.
+            if osi_layer == 'L2' or osi_layer == 'L3':
+                cmd = ("sh -c 'cd {dir}/scripts/ && "
+                       "nohup ./t-rex-64 -i -c 7 > "
+                       "/tmp/trex.log 2>&1 &' > /dev/null"
+                       .format(dir=Constants.TREX_INSTALL_DIR))
+            elif osi_layer == 'L7':
+                cmd = ("sh -c 'cd {dir}/scripts/ && "
+                       "nohup ./t-rex-64 --astf -i -c 7 > "
+                       "/tmp/trex.log 2>&1 &' > /dev/null"
+                       .format(dir=Constants.TREX_INSTALL_DIR))
+            else:
+                raise RuntimeError("Unknown Test Type!")
+
+            try:
+                exec_cmd_no_error(self._node, cmd, sudo=True)
+            except RuntimeError:
+                cmd = "sh -c 'cat /tmp/trex.log'"
+                exec_cmd_no_error(self._node, cmd, sudo=True,
+                                  message='Get TRex logs failed!')
+                raise RuntimeError('Start TRex failed!')
+
+            # Test if TRex starts successfuly.
+            cmd = ("sh -c 'sleep 10; "
+                   "{dir}/resources/tools/trex/trex_server_info.py'"
+                   .format(dir=Constants.REMOTE_FW_DIR))
+            try:
+                exec_cmd_no_error(self._node, cmd, sudo=True,
+                                  message='Test TRex failed!')
+            except RuntimeError:
+                continue
+            return
+        # After max retries TRex is still not responding to API critical error
+        # occurred.
+        raise RuntimeError('Start TRex failed after multiple retries!')
 
     @staticmethod
     def is_trex_running(node):
