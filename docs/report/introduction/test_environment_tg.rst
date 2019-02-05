@@ -9,7 +9,7 @@ TG Version
 DPDK Version
 ~~~~~~~~~~~~
 
-DPDK v17.11
+DPDK v18.08
 
 TG Build Script Used
 ~~~~~~~~~~~~~~~~~~~~
@@ -22,8 +22,7 @@ TG Startup Configuration
 ::
 
     $ cat /etc/trex_cfg.yaml
-    - port_limit      : 2
-      version         : 2
+    - version         : 2
       interfaces      : ["0000:0d:00.0","0000:0d:00.1"]
       port_info       :
         - dest_mac        :   [0x3c,0xfd,0xfe,0x9c,0xee,0xf5]
@@ -36,7 +35,7 @@ TG Startup Command
 
 ::
 
-    $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /tmp/trex.log 2>&1 &'> /dev/null
+    $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7 > /tmp/trex.log 2>&1 &'> /dev/null
 
 TG API Driver
 ~~~~~~~~~~~~~
