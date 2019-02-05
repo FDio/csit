@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,21 +17,20 @@
 
 Requirements:
 - T-REX: https://github.com/cisco-system-traffic-generator/trex-core
- - compiled and running T-REX process (eg. ./t-rex-64 -i -c 4)
- - trex_stl_lib.api library
+ - compiled and running T-REX process (eg. ./t-rex-64 -i)
+ - trex.stl.api library
 - Script must be executed on a node with T-REX instance
 
 Functionality:
 1. Stop any running traffic
-
 """
 
 import sys
 import json
 
-sys.path.insert(0, "/opt/trex-core-2.35/scripts/automation/"+\
-                   "trex_control_plane/stl/")
-from trex_stl_lib.api import *
+sys.path.insert(0, "/opt/trex-core-2.54/scripts/automation/"+\
+                   "trex_control_plane/interactive/")
+from trex.stl.api import *
 
 
 def stop_all_traffic_streams():
@@ -39,9 +38,8 @@ def stop_all_traffic_streams():
 
     :return: nothing
     """
-
     # create client
-    client = STLClient(verbose_level=LoggerApi.VERBOSE_QUIET)
+    client = STLClient()
 
     try:
         # connect to server
@@ -62,29 +60,15 @@ def stop_all_traffic_streams():
 
         print("\npackets lost from 0 --> 1:   {0} pkts".format(lost_a))
         print("packets lost from 1 --> 0:   {0} pkts".format(lost_b))
-
     except STLError as ex_error:
-        print_error(str(ex_error))
+        sys.stderr.write(str(ex_error))
         sys.exit(1)
-
     finally:
         client.disconnect()
 
 
-def print_error(msg):
-    """Print error message on stderr.
-
-    :param msg: Error message to print.
-    :type msg: string
-    :return: nothing
-    """
-
-    sys.stderr.write(msg+'\n')
-
-
 def main():
     """Main function."""
-
     stop_all_traffic_streams()
 
 

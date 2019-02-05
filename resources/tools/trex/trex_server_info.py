@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,8 +17,8 @@
 
 Requirements:
 - T-REX: https://github.com/cisco-system-traffic-generator/trex-core
- - compiled and running T-REX process (eg. ./t-rex-64 -i -c 4)
- - trex_stl_lib.api library
+ - compiled and running T-REX process (eg. ./t-rex-64 -i)
+ - trex.stl.api library
 - Script must be executed on a node with T-REX instance
 
 Functionality:
@@ -28,17 +28,15 @@ Functionality:
 
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.35/scripts/automation/"+\
-                   "trex_control_plane/stl/")
-from trex_stl_lib.api import *
-
+sys.path.insert(0, "/opt/trex-core-2.54/scripts/automation/"+\
+                   "trex_control_plane/interactive/")
+from trex.stl.api import *
 
 def get_server_system_info():
     """Check server info and quit.
 
     :return: nothing
     """
-
     # create client
     client = STLClient()
 
@@ -46,30 +44,16 @@ def get_server_system_info():
         # connect to server
         client.connect()
         # get server info
-        print client.get_server_system_info()
-
+        print(client.get_server_system_info())
     except STLError as ex_error:
-        print_error(str(ex_error))
+        sys.stderr.write(str(ex_error))
         sys.exit(1)
-
     finally:
         client.disconnect()
 
 
-def print_error(msg):
-    """Print error message on stderr.
-
-    :param msg: Error message to print.
-    :type msg: string
-    :return: nothing
-    """
-
-    sys.stderr.write(msg+'\n')
-
-
 def main():
     """Main function."""
-
     get_server_system_info()
 
 
