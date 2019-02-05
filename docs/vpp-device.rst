@@ -22,9 +22,23 @@ interpreted as described in :rfc:`8174`.
 Overview
 --------
 
-.. todo: Covert to SVG
 
-.. image:: vpp-device.png
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/vpp_device_tests/}}
+                \includegraphics[width=0.90\textwidth]{vpp_device}
+                \label{fig:vpp_device}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: vpp_device.svg
+        :alt: vpp_device
+        :align: center
 
 Physical Testbeds
 -----------------
