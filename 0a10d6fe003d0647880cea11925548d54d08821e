@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02b85084_06b21c56",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-05T13:09:15Z",
+      "side": 1,
+      "message": "1. We shuld probably define vswitch as the host application taking care of all host-level (virtual) networking, including connections to physical interfaces and NFs (when they do not use horizontal memif which is totally unrelated to vswitch).\n\n2. We should explain why we are sure that in our tests the vswitch (and not NFs themselves) is the bottleneck.",
+      "range": {
+        "startLine": 801,
+        "startChar": 62,
+        "endLine": 802,
+        "endChar": 7
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b954b4f_c3336cf5",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-05T13:09:15Z",
+      "side": 1,
+      "message": "Also this needs to be defined.\nIn our case, service instance is a packet path visiting several NFs linearly (no branching, no drops).\nIn case of multiple (identical) instances, a bridge domain just after the input physical device decides which instance is used for the packet (as our generated traffic contains MAC addresses matching those of edge NFs).\n(And we have multiple \"flows\" in both directions, but I think that is already said elsewhere.)",
+      "range": {
+        "startLine": 811,
+        "startChar": 12,
+        "endLine": 811,
+        "endChar": 29
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3645f3bd_1e8f7467",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-05T13:09:15Z",
+      "side": 1,
+      "message": "Mention which one is faster.\nI suspect either VPP inside VM is faster for IPv4 routing than L3fwd, or L3fwd skips some steps (checksums, TTL).\nEither way, using VPP inside both NFs would be more fair; we can be sure the \"processing\" part is the same, so only vswitch load (and/or perhaps vhost interface effectiveness, compared to memif) decide the performance.\n\nIf there are other motives (both VMs and VPP tends to use more memory, or we want to give VNFs faster processing to show CNF are faster overall despite that), we should write them here.",
+      "range": {
+        "startLine": 818,
+        "startChar": 33,
+        "endLine": 818,
+        "endChar": 44
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b5b1f34_7f1e644b",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-05T13:09:15Z",
+      "side": 1,
+      "message": "Guest-level network?",
+      "range": {
+        "startLine": 830,
+        "startChar": 5,
+        "endLine": 830,
+        "endChar": 12
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5173818_5f5e1eb8",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 832,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-05T13:09:15Z",
+      "side": 1,
+      "message": "Host-level network?",
+      "range": {
+        "startLine": 832,
+        "startChar": 5,
+        "endLine": 832,
+        "endChar": 12
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4313f481_7b6650f3",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-05T13:09:15Z",
+      "side": 1,
+      "message": "pair of sibling\n\nFor readers from future where 1 physical core consists of 4 logical cores.",
+      "range": {
+        "startLine": 854,
+        "startChar": 0,
+        "endLine": 854,
+        "endChar": 7
+      },
+      "revId": "0a10d6fe003d0647880cea11925548d54d08821e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
