@@ -16,6 +16,24 @@
       "revId": "124101d22151239b0411a73ae4d2bf8d70970937",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2184b1cf_8a1ac43f",
+        "filename": "docs/vpp_device.svg",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-02-05T13:50:00Z",
+      "side": 1,
+      "message": "I haven\u0027t found a way how to link it to the report (html and pdf versions) from docs/ directory.",
+      "parentUuid": "1e5ca4eb_e174e0f3",
+      "revId": "124101d22151239b0411a73ae4d2bf8d70970937",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
