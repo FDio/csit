@@ -245,7 +245,7 @@
 | | ...
 | | [Arguments] | ${frame_size} | ${topology_type} | ${minimum_transmit_rate}
 | | ... | ${maximum_transmit_rate} | ${packet_loss_ratio}=${1e-7}
-| | ... | ${timeout}=${1800.0}
+| | ... | ${timeout}=${120.0}
 | | ...
 | | ${min_rate} = | Set Variable | ${minimum_transmit_rate*2}
 | | ${average} | ${stdev} = | Perform soak search | ${frame_size}
