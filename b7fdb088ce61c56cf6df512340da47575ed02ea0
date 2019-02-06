@@ -118,6 +118,53 @@
       "revId": "b7fdb088ce61c56cf6df512340da47575ed02ea0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a52a163c_8d361c44",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-06T13:38:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e7b2d38_e45331bd",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "b7fdb088ce61c56cf6df512340da47575ed02ea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab2ee6e9_c9d231ff",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-06T13:38:17Z",
+      "side": 1,
+      "message": "Updated this section as it wasn\u0027t clear how many threads are actually mapped to what :)",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 19
+      },
+      "revId": "b7fdb088ce61c56cf6df512340da47575ed02ea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
