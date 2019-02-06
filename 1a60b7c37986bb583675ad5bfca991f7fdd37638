@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72b609bb_c2d0a842",
+        "filename": "docs/testing_in_vagrant.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-06T15:10:13Z",
+      "side": 1,
+      "message": "Please do not introduce trailing whitespace.",
+      "range": {
+        "startLine": 8,
+        "startChar": 70,
+        "endLine": 8,
+        "endChar": 73
+      },
+      "revId": "1a60b7c37986bb583675ad5bfca991f7fdd37638",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "42452319_329668ed",
+        "filename": "resources/tools/vagrant/Vagrantfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-06T15:10:13Z",
+      "side": 1,
+      "message": "Spaces, not tabs please.",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 52,
+        "endChar": 3
+      },
+      "revId": "1a60b7c37986bb583675ad5bfca991f7fdd37638",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
