@@ -22,7 +22,7 @@ from time import time, sleep
 from paramiko import RSAKey, SSHClient, AutoAddPolicy
 from paramiko.ssh_exception import SSHException, NoValidConnectionsError
 from robot.api import logger
-from scp import SCPClient
+from scp import SCPClient, SCPException
 
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
@@ -467,3 +467,33 @@ def exec_cmd_no_error(node, cmd, timeout=600, sudo=False, message=None):
         raise RuntimeError(msg)
 
     return stdout, stderr
+
+def scp_node(node, local_path, remote_path, get=False, timeout=30):
+    """Copy files from local_path to remote_path or vice versa.
+
+    :param node: SUT node.
+    :param local_path: Path to local file that should be uploaded; or
+        path where to save remote file.
+    :param remote_path: Remote path where to place uploaded file; or
+        path to remote file which should be downloaded.
+    :param get: scp operation to perform. Default is put.
+    :param timeout: Timeout value in seconds.
+    :type node: dict
+    :type local_path: str
+    :type remote_path: str
+    :type get: bool
+    :type timeout: int
+    :raises RuntimeError: If SSH connection failed or SCP transfer failed.
+    """
+    ssh = SSH()
+
+    try:
+        ssh.connect(node)
+    except SSHException:
+        raise RuntimeError('Failed to connect to {host}!'
+                           .format(host=node['host']))
+    try:
+        ssh.scp(local_path, remote_path, get, timeout)
+    except SCPException:
+        raise RuntimeError('SCP execution failed on {host}!'
+                           .format(host=node['host']))
