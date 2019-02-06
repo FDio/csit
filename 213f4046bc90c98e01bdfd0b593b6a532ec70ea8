@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b26d0d5_b4e4cf04",
+        "filename": "resources/libraries/robot/ip/ip6.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-06T16:49:21Z",
+      "side": 1,
+      "message": "Is there any verification? Base did compare conter value, but it got deleted.",
+      "range": {
+        "startLine": 29,
+        "startChar": 59,
+        "endLine": 29,
+        "endChar": 72
+      },
+      "revId": "213f4046bc90c98e01bdfd0b593b6a532ec70ea8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
