@@ -467,3 +467,28 @@ def exec_cmd_no_error(node, cmd, timeout=600, sudo=False, message=None):
         raise RuntimeError(msg)
 
     return stdout, stderr
+
+def scp_node(node, local_path, remote_path, get=False, timeout=30):
+    """Copy files from local_path to remote_path or vice versa.
+
+    :param node: DUT node.
+    :param local_path: Path to local file that should be uploaded; or
+    path where to save remote file.
+    :param remote_path: Remote path where to place uploaded file; or
+    path to remote file which should be downloaded.
+    :param get: scp operation to perform. Default is put.
+    :param timeout: Timeout value in seconds.
+    :type node: dict
+    :type local_path: str
+    :type remote_path: str
+    :type get: bool
+    :type timeout: int
+    """
+    ssh = SSH()
+
+    try:
+        ssh.connect(ssh_node)
+    except SSHException as err:
+        raise RuntimeError('Failed to connect to node {err}'.
+                           format(err=repr(err))
+    ssh.scp(local_path, remote_path, get, timeout)
