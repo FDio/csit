@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "68686b9b_6c47cce2",
+        "filename": "resources/libraries/bash/entry/per_patch_device.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-06T08:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da927444_5ef09b52",
+      "range": {
+        "startLine": 29,
+        "startChar": 39,
+        "endLine": 29,
+        "endChar": 51
+      },
+      "revId": "32c806ddbf1d7b08ffabe3fca0bbeaa2b80ebd85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "52d7b95c_64afec50",
         "filename": "resources/libraries/bash/entry/per_patch_device.sh",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-05T11:24:03Z",
       "side": 1,
       "message": "Now that two entry scripts use (parts of) this function, it should probably be split (and named better). For example this entry does not need the \"checkout parent commit\" part.\n\nProbably applies to other per_patch functions as well.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "32c806ddbf1d7b08ffabe3fca0bbeaa2b80ebd85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd63e84a_ec8d93b4",
+        "filename": "resources/libraries/bash/entry/per_patch_device.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-06T08:25:57Z",
+      "side": 1,
+      "message": "I renamed to better reflect and add documentation. I like the concept that it builds and clean it for further operations. It makes sense for functional as well maybe in future for verifying parent vs current commit to eliminate e.g. chain collateral failures. So far i will use only current commit.",
+      "parentUuid": "52d7b95c_64afec50",
       "range": {
         "startLine": 45,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fbe34b52_11f9511d",
+        "filename": "resources/libraries/bash/entry/per_patch_device.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-06T08:25:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97a8b6c7_8c055983",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "32c806ddbf1d7b08ffabe3fca0bbeaa2b80ebd85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "884bc217_ab332722",
         "filename": "resources/libraries/bash/entry/per_patch_device.sh",
         "patchSetId": 6
@@ -82,6 +154,30 @@
       "writtenOn": "2019-02-05T11:24:03Z",
       "side": 1,
       "message": "When \"build_parent\" is not really used, the directories could be named better.\nPerhaps *_current or *_default instead of *_new, used by both entry scripts, and assumed to be the default argument value. *_parent can stay.",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 24
+      },
+      "revId": "32c806ddbf1d7b08ffabe3fca0bbeaa2b80ebd85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2d0a4f7_8285fa47",
+        "filename": "resources/libraries/bash/entry/per_patch_device.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-06T08:25:57Z",
+      "side": 1,
+      "message": "Used _current.",
+      "parentUuid": "884bc217_ab332722",
       "range": {
         "startLine": 51,
         "startChar": 13,
