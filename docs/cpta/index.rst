@@ -36,6 +36,7 @@ analysis and anomaly detection methodology.
     trending/srv6
     trending/link_bonding
     trending/vts
+    trending/nf_service_density
     trending/dpdk
 
 .. toctree::
