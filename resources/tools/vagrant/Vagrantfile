@@ -1,115 +1,90 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at:
-
-#     http://www.apache.org/licenses/LICENSE-2.0
-
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 # -*- mode: ruby -*-
-# vi: set ts=2 sw=2 sts=2 et ft=ruby :
+# vi: set ft=ruby :
 
-$user_addition = <<-SHELL
-    sudo deluser csit
-    sudo adduser --disabled-password --gecos "" csit
-    echo csit:csit | sudo chpasswd
-    sudo adduser csit vagrant
-    id csit
-    echo "csit ALL=(root) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/csit
-    sudo chmod 0440 /etc/sudoers.d/csit
-SHELL
+Vagrant.configure("2") do |config|
 
-$install_prereqs = <<-SHELL
-    sudo apt-get -y update
-    sudo apt-get -y -f install
-    sudo apt-get -y install python-virtualenv python-dev iproute2 debhelper dkms
-    sudo update-alternatives --install /bin/sh sh /bin/bash 100
-SHELL
+    # Base box definition, currently using
+    #  Official Ubuntu 18.04 LTS (Bionic Beaver) Daily Build
+    config.vm.box = "ubuntu/bionic64"
 
-$install_vpp = <<-SHELL
-    sudo apt-get -y purge vpp\*
-    cd /vagrant
-    vpp_pkgs="$(echo vpp*.deb)"
-    if [ "$vpp_pkgs" != "vpp*.deb" ]; then
-        sudo dpkg -i vpp*.deb
-    fi
-SHELL
+    # Disable automatic box update checking
+    config.vm.box_check_update = false
 
-
-def add_dut(config, name, mgmt_ip, port1, port2, port3, port4)
-  config.vm.box_check_update = false
-  config.vm.define name do |node|
-    node.vm.box = "fdio-csit/ubuntu-14.04.4_2016-05-25_1.0"
-    node.vm.hostname = name
-    node.vm.provision "shell", inline: $user_addition
-    node.vm.provision "shell", inline: $install_prereqs
-    node.vm.provision "shell", inline: $install_vpp
-
-    node.vm.network "private_network", ip: mgmt_ip
-    node.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: port1
-    node.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: port2
-    node.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: port3
-    node.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: port4
-    node.vm.provider "virtualbox" do |vb|
-      vb.memory = "3232"
-      vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nicpromisc5", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nicpromisc6", "allow-all"]
+    # Configure cached packages to be shared between instances of the same base box.
+    if Vagrant.has_plugin?("vagrant-cachier")
+        config.cache.scope = :box
     end
-  end
-end
 
-net_prefix = ''
-if ENV.key?('VPP_VAGRANT_NET_PREFIX')
-  net_prefix = ENV['VPP_VAGRANT_NET_PREFIX'] + '_'
-end
-
-def add_tg(config, name, mgmt_ip, port1, port2, port3, port4, port5, port6)
-  config.vm.box_check_update = false
-  config.vm.define name do |node|
+    # Configure proxy if needed
     if Vagrant.has_plugin?("vagrant-proxyconf")
-      if ENV["http_proxy"]
-        config.proxy.http     = ENV["http_proxy"]
-      end
-      if ENV["https_proxy"]
-        config.proxy.https    = ENV["https_proxy"]
-      end
-      if ENV["no_proxy"]
-        config.proxy.no_proxy = ENV["no_proxy"]
-      end
+        config.proxy.http     = "http://192.168.0.2:3128/"
+        config.proxy.https    = "http://192.168.0.2:3128/"
+        config.proxy.ftp      = "http://192.168.0.2:3128/"
+        config.proxy.no_proxy = "localhost,127.0.0.1"
     end
-    node.vm.box = "fdio-csit/ubuntu-14.04.4_2016-05-25_1.0"
-    node.vm.hostname = name
-    node.vm.provision "shell", inline: $user_addition
-    node.vm.provision "shell", inline: $install_prereqs
 
-    node.vm.network "private_network", ip: mgmt_ip
-    node.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: port1
-    node.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: port2
-    node.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: port3
-    node.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: port4
-    node.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: port5
-    node.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: port6
-    node.vm.provider "virtualbox" do |vb|
-      vb.memory = "2048"
-      vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nicpromisc5", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nicpromisc6", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nicpromisc7", "allow-all"]
-      vb.customize ["modifyvm", :id, "--nicpromisc8", "allow-all"]
+    # Configure testing network interfaces (TG)
+    config.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: "link1", nic_type: "82545EM", mac: "0800270fe04d"
+    config.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: "link2", nic_type: "82545EM", mac: "08002761f7ad"
+    config.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: "link3", nic_type: "82545EM", mac: "080027dc5da4"
+
+    # Configure testing network interfaces (SUT)
+    config.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: "link1", nic_type: "82545EM", mac: "080027385e58"
+    config.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: "link2", nic_type: "82545EM", mac: "080027e3f542"
+    config.vm.network "private_network", type: "dhcp", auto_config: false, virtualbox__intnet: "link3", nic_type: "82545EM", mac: "0800274f7c63"
+
+    # Virtualbox machine configuration
+    config.vm.provider "virtualbox" do |vb|
+        vb.name = "vppdevice-bionic"
+        # Run in headless mode
+        vb.gui = false
+
+        # Customize the amount of memory and CPUs assigned:
+        #   - for VPP at least 3GB RAM and 2 cores is recommended
+        vb.memory = "8192"
+        vb.cpus = "4"
+
+        # Configure network testing interfaces
+        vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+        vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+        vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
+        vb.customize ["modifyvm", :id, "--nicpromisc5", "allow-all"]
+        vb.customize ["modifyvm", :id, "--nicpromisc6", "allow-all"]
+        vb.customize ["modifyvm", :id, "--nicpromisc7", "allow-all"]
     end
-  end
-end
 
-Vagrant.configure(2) do |config|
-  add_tg(config,  "tg",   "192.168.255.100/24", net_prefix + "tg_tg", net_prefix + "tg_tg", net_prefix + "tg_dut1_1", net_prefix + "tg_dut1_2", net_prefix + "tg_dut2_1", net_prefix + "tg_dut2_2")
-  add_dut(config, "dut1", "192.168.255.101/24", net_prefix + "tg_dut1_1", net_prefix + "tg_dut1_2", net_prefix + "dut1_dut2_1", net_prefix + "dut1_dut2_2")
-  add_dut(config, "dut2", "192.168.255.102/24", net_prefix + "tg_dut2_1", net_prefix + "tg_dut2_2", net_prefix + "dut1_dut2_1", net_prefix + "dut1_dut2_2")
+    # Provision the box using ansible local (no Ansible installation needed on host)
+    config.vm.provision "ansible_local" do |ansible|
+        ansible.version = "latest"
+        ansible.compatibility_mode = "2.0"
+        ansible.become = true
+        ansible.verbose = false
+        ansible.limit = "all"
+        ansible.inventory_path = "ansible/vppdevice"
+        ansible.playbook = "ansible/master.yml"
+    end
+
+    config.vm.post_up_message = <<-MESSAGE
+
+    Your virtual machine is configured!
+
+    Login to the box using command:
+       vagrant ssh
+
+    To run some tests use the VPP Device bootstrap script, eg:
+        cd /home/vagrant/csit/resources/libraries/bash/entry
+       ./bootstrap_vpp_device.sh csit-vpp-device-master-ubuntu1804-1n-vbox
+
+    To run only selected tests based on TAGS, export environment variables
+    before running the test suite:
+       export GERRIT_EVENT_TYPE="comment-added"
+       export GERRIT_EVENT_COMMENT_TEXT="devicetest memif"
+       ./bootstrap_vpp_device.sh csit-vpp-device-master-ubuntu1804-1n-vbox
+
+    For more information please visit:
+       https://docs.fd.io/csit/rls1810/report/index.html
+       https://docs.fd.io/csit/master/trending/
+
+    MESSAGE
+
 end

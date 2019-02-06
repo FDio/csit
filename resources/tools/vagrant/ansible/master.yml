@@ -1,0 +1,3 @@
+---
+# file: master.yml
+- import_playbook: vppdevice.yml

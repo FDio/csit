@@ -58,7 +58,7 @@ class VPPUtil(object):
             exec_cmd_no_error(node, command, timeout=30, sudo=True)
 
     @staticmethod
-    def start_vpp_service(node, retries=60):
+    def start_vpp_service(node, retries=120):
         """Start VPP service on the specified node.
 
         :param node: VPP node.

@@ -1,0 +1,120 @@
+---
+# file: csit/tasks/main.yml
+
+- name: Upload config to rename network interfaces
+  copy:
+    src: files/99-vppdevice.yaml
+    dest: /etc/netplan/99-vppdevice.yaml
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Apply network config changes
+  command: /usr/sbin/netplan apply
+
+- name: Install required system tools and packages
+  apt:
+    name:
+      - wget
+      - curl
+      - python-pip
+      - virtualenv
+      - libpcap-dev
+    state: present
+
+- name: Adjust number of hugepages
+  sysctl:
+    name: vm.nr_hugepages
+    value: 512
+    state: present
+    sysctl_file: /etc/sysctl.d/90-csit.conf
+    reload: yes
+
+- name: Add an Apt signing key, for docker-ce repository
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add docker-ce apt repository if not present
+  apt_repository:
+    repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+
+- name: Install docker-ce if it's not already installed
+  apt:
+    name: docker-ce
+    state: present
+
+- name: "Add user for running tests: {{ csit.test_user.name }}"
+  user:
+    name: "{{ csit.test_user.name }}"
+    password: "{{ csit.test_user.password }}"
+    home: "{{ csit.test_user.home }}"
+    shell: "{{ csit.test_user.shell }}"
+
+- name: "Allow passwordless sudo for user: {{ csit.test_user.name }}"
+  lineinfile:
+    path: "/etc/sudoers.d/{{ csit.test_user.name }}"
+    line: "{{ csit.test_user.name }} ALL=(ALL) NOPASSWD:ALL"
+    create: yes
+
+- name: Add vagrant user to docker group
+  user:
+    name: vagrant
+    groups:
+      - docker
+
+- name: Reload groups for current session
+  command: /usr/bin/newgrp docker
+
+- name: Load required kernel modules
+  modprobe:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - vfio-pci
+
+- name: Enable required kernel modules on boot
+  lineinfile:
+    path: /etc/modules
+    line: "{{ item }}"
+    state: present
+    insertafter: EOF
+  with_items:
+    - vfio-pci
+
+- name: Clone CSIT repository
+  become_user: vagrant
+  git:
+    repo: "{{ csit.repository.url }}"
+    dest: "{{ csit.home }}"
+    accept_hostkey: yes
+    version: "{{ csit.repository.version }}"
+
+- name: Install and update pip and virtualenv
+  become_user: vagrant
+  pip:
+    name:
+      - pip
+      - virtualenv
+    state: latest
+
+- name: Prepare python virtual environmant for CSIT
+  become_user: vagrant
+  command: "/usr/bin/virtualenv {{ csit.home }}/env"
+  args:
+    chdir: "{{ csit.home }}"
+    creates: "{{ csit.home }}/env/bin/activate"
+
+- name: Install python dependencies (from {{ csit.home }}/requirements.txt)
+  become_user: vagrant
+  shell: source {{ csit.home }}/env/bin/activate && pip install --timeout 300 -r {{ csit.home }}/requirements.txt
+  args:
+    executable: /bin/bash
+
+- name: Load csit docker image from local drive if it exists (/vagrant/csit-sut.tar)
+  shell: |
+    if [ -z "$(docker images -q `cat {{ csit.home }}/VPP_DEVICE_IMAGE`)" ] && [ -e /vagrant/csit-sut.tar ]; then
+      docker load -i /vagrant/csit-sut.tar;
+    fi;
+  ignore_errors: yes

@@ -1,0 +1,12 @@
+---
+# Settings for VPP Device host group
+csit:
+  home: '/home/vagrant/csit'
+  test_user:
+    name: 'testuser'
+    password: '$6$/mAr/JDJc0u6/i$sLBptji85Xo/vdAv43bP4NpTaAfSBY8p3G7Uj9p4fKysrvs7XF8.FmlC56j4AzOun6nnf7PA.elytvfWoEHCL1'
+    home: '/home/testuser'
+    shell: '/bin/bash'
+  repository:
+    url: 'https://gerrit.fd.io/r/csit'
+    version: 'HEAD'
