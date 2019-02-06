@@ -355,8 +355,12 @@ def _generate_all_charts(spec, input_data):
                     if chart_data.get(test_name, None) is None:
                         chart_data[test_name] = OrderedDict()
                     try:
-                        chart_data[test_name][int(index)] = \
-                            test["result"]["receive-rate"]
+                        chart_data[test_name][int(index)] = dict(
+                            data=test["result"]["receive-rate"],
+                            tags=test["tags"]
+                        )
+                        # chart_data[test_name][int(index)]["data"] = \
+                        #     test["result"]["receive-rate"]
                     except (KeyError, TypeError):
                         pass
 
@@ -365,37 +369,77 @@ def _generate_all_charts(spec, input_data):
             tst_lst = list()
             for bld in builds_dict[job_name]:
                 itm = tst_data.get(int(bld), '')
+                if itm:
+                    itm = itm["data"]
                 if not isinstance(itm, str):
                     itm = itm.avg
                 tst_lst.append(str(itm))
             csv_tbl.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
+
         # Generate traces:
         traces = list()
         index = 0
-        for test_name, test_data in chart_data.items():
-            if not test_data:
-                logs.append(("WARNING", "No data for the test '{0}'".
-                             format(test_name)))
-                continue
-            message = "index: {index}, test: {test}".format(
-                index=index, test=test_name)
-            test_name = test_name.split('.')[-1]
-            try:
-                trace, rslt = _generate_trending_traces(
-                    test_data,
-                    job_name=job_name,
-                    build_info=build_info,
-                    name='-'.join(test_name.split('-')[2:-1]),
-                    color=COLORS[index])
-            except IndexError:
-                message = "Out of colors: {}".format(message)
-                logs.append(("ERROR", message))
-                logging.error(message)
+        groups = graph.get("groups", None)
+        logging.info(groups)
+        logging.info(chart_data)
+
+        if groups:
+            for group in groups:
+                for tag in group:
+                    logging.info(tag)
+                    for test_name, test_data in chart_data.items():
+                        if not test_data:
+                            logs.append(("WARNING",
+                                         "No data for the test '{0}'".
+                                         format(test_name)))
+                            continue
+                        logging.info(test_data["tags"])
+                        if tag in test_data["tags"]:
+                            message = "index: {index}, test: {test}".format(
+                                index=index, test=test_name)
+                            test_name = test_name.split('.')[-1]
+                            try:
+                                trace, rslt = _generate_trending_traces(
+                                    test_data["data"],
+                                    job_name=job_name,
+                                    build_info=build_info,
+                                    name='-'.join(test_name.split('-')[2:-1]),
+                                    color=COLORS[index])
+                            except IndexError:
+                                message = "Out of colors: {}".format(message)
+                                logs.append(("ERROR", message))
+                                logging.error(message)
+                                index += 1
+                                continue
+                            traces.extend(trace)
+                            res.append(rslt)
+                            index += 1
+                            break
+        else:
+            for test_name, test_data in chart_data.items():
+                if not test_data:
+                    logs.append(("WARNING", "No data for the test '{0}'".
+                                 format(test_name)))
+                    continue
+                message = "index: {index}, test: {test}".format(
+                    index=index, test=test_name)
+                test_name = test_name.split('.')[-1]
+                try:
+                    trace, rslt = _generate_trending_traces(
+                        test_data["data"],
+                        job_name=job_name,
+                        build_info=build_info,
+                        name='-'.join(test_name.split('-')[2:-1]),
+                        color=COLORS[index])
+                except IndexError:
+                    message = "Out of colors: {}".format(message)
+                    logs.append(("ERROR", message))
+                    logging.error(message)
+                    index += 1
+                    continue
+                traces.extend(trace)
+                res.append(rslt)
                 index += 1
-                continue
-            traces.extend(trace)
-            res.append(rslt)
-            index += 1
 
         if traces:
             # Generate the chart:
