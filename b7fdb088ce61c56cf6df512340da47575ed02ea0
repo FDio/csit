@@ -70,6 +70,30 @@
       "revId": "b7fdb088ce61c56cf6df512340da47575ed02ea0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "88a1d507_ccf0c129",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-06T13:06:25Z",
+      "side": 1,
+      "message": "Use \"Network Configuration\" instead. vswitch represents a network shared by many services.",
+      "parentUuid": "045d19af_14f0aacc",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "b7fdb088ce61c56cf6df512340da47575ed02ea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
