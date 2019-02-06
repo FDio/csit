@@ -369,33 +369,69 @@ def _generate_all_charts(spec, input_data):
                     itm = itm.avg
                 tst_lst.append(str(itm))
             csv_tbl.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
+
         # Generate traces:
         traces = list()
         index = 0
-        for test_name, test_data in chart_data.items():
-            if not test_data:
-                logs.append(("WARNING", "No data for the test '{0}'".
-                             format(test_name)))
-                continue
-            message = "index: {index}, test: {test}".format(
-                index=index, test=test_name)
-            test_name = test_name.split('.')[-1]
-            try:
-                trace, rslt = _generate_trending_traces(
-                    test_data,
-                    job_name=job_name,
-                    build_info=build_info,
-                    name='-'.join(test_name.split('-')[2:-1]),
-                    color=COLORS[index])
-            except IndexError:
-                message = "Out of colors: {}".format(message)
-                logs.append(("ERROR", message))
-                logging.error(message)
+        groups = graph.get("groups", None)
+
+        if groups:
+            for group in groups:
+                for tag in group:
+                    logging.info(tag)
+                    for test_name, test_data in chart_data.items():
+                        if not test_data:
+                            logs.append(("WARNING",
+                                         "No data for the test '{0}'".
+                                         format(test_name)))
+                            continue
+                        logging.info(test_data["tags"])
+                        if tag in test_data["tags"]:
+                            message = "index: {index}, test: {test}".format(
+                                index=index, test=test_name)
+                            test_name = test_name.split('.')[-1]
+                            try:
+                                trace, rslt = _generate_trending_traces(
+                                    test_data,
+                                    job_name=job_name,
+                                    build_info=build_info,
+                                    name='-'.join(test_name.split('-')[2:-1]),
+                                    color=COLORS[index])
+                            except IndexError:
+                                message = "Out of colors: {}".format(message)
+                                logs.append(("ERROR", message))
+                                logging.error(message)
+                                index += 1
+                                continue
+                            traces.extend(trace)
+                            res.append(rslt)
+                            index += 1
+                            break
+        else:
+            for test_name, test_data in chart_data.items():
+                if not test_data:
+                    logs.append(("WARNING", "No data for the test '{0}'".
+                                 format(test_name)))
+                    continue
+                message = "index: {index}, test: {test}".format(
+                    index=index, test=test_name)
+                test_name = test_name.split('.')[-1]
+                try:
+                    trace, rslt = _generate_trending_traces(
+                        test_data,
+                        job_name=job_name,
+                        build_info=build_info,
+                        name='-'.join(test_name.split('-')[2:-1]),
+                        color=COLORS[index])
+                except IndexError:
+                    message = "Out of colors: {}".format(message)
+                    logs.append(("ERROR", message))
+                    logging.error(message)
+                    index += 1
+                    continue
+                traces.extend(trace)
+                res.append(rslt)
                 index += 1
-                continue
-            traces.extend(trace)
-            res.append(rslt)
-            index += 1
 
         if traces:
             # Generate the chart:
