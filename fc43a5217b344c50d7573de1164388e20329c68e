@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a9f30243_96d3ab5c",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-06T14:04:57Z",
+      "side": 1,
+      "message": "Oops forgot to delete.",
+      "parentUuid": "f4e60166_a7f2fe63",
+      "range": {
+        "startLine": 73,
+        "startChar": 28,
+        "endLine": 74,
+        "endChar": 51
+      },
+      "revId": "fc43a5217b344c50d7573de1164388e20329c68e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3cc3f754_72eb8451",
         "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-06T13:43:13Z",
       "side": 1,
       "message": "single space",
+      "range": {
+        "startLine": 78,
+        "startChar": 38,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "fc43a5217b344c50d7573de1164388e20329c68e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87eb572b_657e7124",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-06T14:04:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cc3f754_72eb8451",
       "range": {
         "startLine": 78,
         "startChar": 38,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "6e02cd52_7ace7b4b",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-06T14:04:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36dcddc3_050da2c9",
+      "range": {
+        "startLine": 100,
+        "startChar": 67,
+        "endLine": 100,
+        "endChar": 68
+      },
+      "revId": "fc43a5217b344c50d7573de1164388e20329c68e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12a74f3d_3f8c1429",
         "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "b74c6ef0_beed6b6f",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-06T14:04:57Z",
+      "side": 1,
+      "message": ", 1 thread per NF,",
+      "parentUuid": "12a74f3d_3f8c1429",
+      "range": {
+        "startLine": 101,
+        "startChar": 61,
+        "endLine": 101,
+        "endChar": 62
+      },
+      "revId": "fc43a5217b344c50d7573de1164388e20329c68e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1e332f01_50ee1531",
         "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2019-02-06T13:43:13Z",
       "side": 1,
       "message": "NFs",
+      "range": {
+        "startLine": 102,
+        "startChar": 25,
+        "endLine": 102,
+        "endChar": 37
+      },
+      "revId": "fc43a5217b344c50d7573de1164388e20329c68e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e2bc35e_7347e06e",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-06T14:04:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e332f01_50ee1531",
       "range": {
         "startLine": 102,
         "startChar": 25,
