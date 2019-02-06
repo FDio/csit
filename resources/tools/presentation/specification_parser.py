@@ -425,13 +425,14 @@ class Specification(object):
             for job, builds in data_set.items():
                 if builds:
                     if isinstance(builds, dict):
-                        build_nr = builds.get("end", None)
+                        build_end = builds.get("end", None)
                         try:
-                            build_nr = int(build_nr)
+                            build_end = int(build_end)
                         except ValueError:
                             # defined as a range <start, build_type>
-                            build_nr = self._get_build_number(job, build_nr)
-                        builds = [x for x in range(builds["start"], build_nr+1)]
+                            build_end = self._get_build_number(job, build_end)
+                        builds = [x for x in range(builds["start"], build_end+1)
+                                  if x not in builds.get("skip", list())]
                         self.configuration["data-sets"][set_name][job] = builds
 
         # Data sets: add sub-sets to sets (only one level):
@@ -515,13 +516,14 @@ class Specification(object):
             for job, builds in self._cfg_yaml[idx]["builds"].items():
                 if builds:
                     if isinstance(builds, dict):
-                        build_nr = builds.get("end", None)
+                        build_end = builds.get("end", None)
                         try:
-                            build_nr = int(build_nr)
+                            build_end = int(build_end)
                         except ValueError:
                             # defined as a range <start, build_type>
-                            build_nr = self._get_build_number(job, build_nr)
-                        builds = [x for x in range(builds["start"], build_nr+1)]
+                            build_end = self._get_build_number(job, build_end)
+                        builds = [x for x in range(builds["start"], build_end+1)
+                                  if x not in builds.get("skip", list())]
                     self._specification["input"]["builds"][job] = list()
                     for build in builds:
                         self._specification["input"]["builds"][job]. \
