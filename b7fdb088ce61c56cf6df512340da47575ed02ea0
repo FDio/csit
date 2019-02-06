@@ -94,6 +94,30 @@
       "revId": "b7fdb088ce61c56cf6df512340da47575ed02ea0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e7b2d38_e45331bd",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-06T13:25:04Z",
+      "side": 1,
+      "message": "\u003e Network Configuration\n\n+1.",
+      "parentUuid": "88a1d507_ccf0c129",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "b7fdb088ce61c56cf6df512340da47575ed02ea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
