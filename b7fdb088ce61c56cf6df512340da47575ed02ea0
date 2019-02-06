@@ -22,6 +22,30 @@
       "revId": "b7fdb088ce61c56cf6df512340da47575ed02ea0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83c45e22_8b73b9ef",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-06T11:29:11Z",
+      "side": 1,
+      "message": "\"Service\" stands for what inter-connected NFs do. vswitch provides the service level inter-connection. Replace with \"vswitch Service Configuration\"?",
+      "parentUuid": "40b2da53_ed14acc7",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "b7fdb088ce61c56cf6df512340da47575ed02ea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
