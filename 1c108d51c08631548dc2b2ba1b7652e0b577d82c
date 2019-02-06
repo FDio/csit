@@ -46,6 +46,30 @@
       "revId": "1c108d51c08631548dc2b2ba1b7652e0b577d82c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f5a85f1_5046556d",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-06T12:42:43Z",
+      "side": 0,
+      "message": "\u003e testing is in my plan of course.\n\nGreat. Here [1] is a Change to test on.\n\n[1] https://gerrit.fd.io/r/17340",
+      "parentUuid": "e86e7f4a_1f3e2c8d",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 8
+      },
+      "revId": "1c108d51c08631548dc2b2ba1b7652e0b577d82c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
