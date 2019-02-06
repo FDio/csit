@@ -25,6 +25,7 @@ import plotly.exceptions as plerr
 
 from collections import OrderedDict
 from datetime import datetime
+from copy import deepcopy
 
 from utils import archive_input_data, execute_command, \
     classify_anomalies, Worker
@@ -347,6 +348,7 @@ def _generate_all_charts(spec, input_data):
             return
 
         chart_data = dict()
+        chart_tags = dict()
         for job, job_data in data.iteritems():
             if job != job_name:
                 continue
@@ -357,6 +359,7 @@ def _generate_all_charts(spec, input_data):
                     try:
                         chart_data[test_name][int(index)] = \
                             test["result"]["receive-rate"]
+                        chart_tags[test_name] = test.get("tags", None)
                     except (KeyError, TypeError):
                         pass
 
@@ -369,45 +372,126 @@ def _generate_all_charts(spec, input_data):
                     itm = itm.avg
                 tst_lst.append(str(itm))
             csv_tbl.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
+
         # Generate traces:
         traces = list()
         index = 0
-        for test_name, test_data in chart_data.items():
-            if not test_data:
-                logs.append(("WARNING", "No data for the test '{0}'".
-                             format(test_name)))
-                continue
-            message = "index: {index}, test: {test}".format(
-                index=index, test=test_name)
-            test_name = test_name.split('.')[-1]
-            try:
-                trace, rslt = _generate_trending_traces(
-                    test_data,
-                    job_name=job_name,
-                    build_info=build_info,
-                    name='-'.join(test_name.split('-')[2:-1]),
-                    color=COLORS[index])
-            except IndexError:
-                message = "Out of colors: {}".format(message)
-                logs.append(("ERROR", message))
-                logging.error(message)
+        groups = graph.get("groups", None)
+        visibility = list()
+
+        if groups:
+            for group in groups:
+                visible = list()
+                for tag in group:
+                    for test_name, test_data in chart_data.items():
+                        if not test_data:
+                            logs.append(("WARNING",
+                                         "No data for the test '{0}'".
+                                         format(test_name)))
+                            continue
+                        if tag in chart_tags[test_name]:
+                            message = "index: {index}, test: {test}".format(
+                                index=index, test=test_name)
+                            test_name = test_name.split('.')[-1]
+                            try:
+                                trace, rslt = _generate_trending_traces(
+                                    test_data,
+                                    job_name=job_name,
+                                    build_info=build_info,
+                                    name='-'.join(test_name.split('-')[2:-1]),
+                                    color=COLORS[index])
+                            except IndexError:
+                                message = "Out of colors: {}".format(message)
+                                logs.append(("ERROR", message))
+                                logging.error(message)
+                                index += 1
+                                continue
+                            traces.extend(trace)
+                            visible.extend([True for _ in range(len(trace))])
+                            res.append(rslt)
+                            index += 1
+                            break
+                visibility.append(visible)
+        else:
+            for test_name, test_data in chart_data.items():
+                if not test_data:
+                    logs.append(("WARNING", "No data for the test '{0}'".
+                                 format(test_name)))
+                    continue
+                message = "index: {index}, test: {test}".format(
+                    index=index, test=test_name)
+                test_name = test_name.split('.')[-1]
+                try:
+                    trace, rslt = _generate_trending_traces(
+                        test_data,
+                        job_name=job_name,
+                        build_info=build_info,
+                        name='-'.join(test_name.split('-')[2:-1]),
+                        color=COLORS[index])
+                except IndexError:
+                    message = "Out of colors: {}".format(message)
+                    logs.append(("ERROR", message))
+                    logging.error(message)
+                    index += 1
+                    continue
+                traces.extend(trace)
+                res.append(rslt)
                 index += 1
-                continue
-            traces.extend(trace)
-            res.append(rslt)
-            index += 1
 
         if traces:
             # Generate the chart:
-            graph["layout"]["title"] = \
-                "<b>{title}</b>".format(title=graph.get("title", ""))
+            try:
+                layout = deepcopy(graph["layout"])
+            except KeyError as err:
+                logging.error("Finished with error: No layout defined")
+                logging.error(repr(err))
+                return
+            if groups:
+                show = list()
+                for i in range(len(visibility)):
+                    visible = list()
+                    for r in range(len(visibility)):
+                        for _ in range(len(visibility[r])):
+                            visible.append(i == r)
+                    show.append(visible)
+
+                buttons = list()
+                buttons.append(dict(
+                    label="All",
+                    method="update",
+                    args=[{"visible": [True for _ in range(len(show[0]))]}, ]
+                ))
+                for i in range(len(groups)):
+                    try:
+                        label = graph["group-names"][i]
+                    except (IndexError, KeyError):
+                        label = "Group {num}".format(num=i + 1)
+                    buttons.append(dict(
+                        label=label,
+                        method="update",
+                        args=[{"visible": show[i]}, ]
+                    ))
+
+                layout['updatemenus'] = list([
+                    dict(
+                        active=0,
+                        type="dropdown",
+                        direction="down",
+                        xanchor="left",
+                        yanchor="bottom",
+                        x=-0.12,
+                        y=1.0,
+                        buttons=buttons
+                    )
+                ])
+
             name_file = "{0}-{1}{2}".format(spec.cpta["output-file"],
                                             graph["output-file-name"],
                                             spec.cpta["output-file-type"])
 
             logs.append(("INFO", "    Writing the file '{0}' ...".
                          format(name_file)))
-            plpl = plgo.Figure(data=traces, layout=graph["layout"])
+            plpl = plgo.Figure(data=traces, layout=layout)
             try:
                 ploff.plot(plpl, show_link=False, auto_open=False,
                            filename=name_file)
