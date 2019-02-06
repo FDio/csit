@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7dc233b_dcc8c548",
+        "filename": "resources/libraries/bash/entry/per_patch_device.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-06T12:42:43Z",
+      "side": 1,
+      "message": "This change looks good now, but this name change implies interactions with ci-management.\n\nThe safe order of merging will go like this:\n1. Ci-management Change for per-patch perf job which archives all (csit_current, csit_new, csit_parent).\n2. This Change\n3. Ci-management Change for per-patch job to archive new names only (csit_current, csit_parent). Plus whatever device per-patch job needs on ci-management side.\n\nFor Sandbox, I want to see both per-patch jobs running as after step 3.",
+      "range": {
+        "startLine": 56,
+        "startChar": 27,
+        "endLine": 56,
+        "endChar": 41
+      },
+      "revId": "20fcdf068d80f34ef3edcd42211040215a1ef947",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
