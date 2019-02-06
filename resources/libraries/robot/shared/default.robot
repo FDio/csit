@@ -19,6 +19,7 @@
 | Library | OperatingSystem
 | Library | String
 | ...
+| Library | resources.libraries.python.CoreDumpUtil
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.L2Util
@@ -431,6 +432,7 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Apply Config | restart_vpp=${restart_vpp}
+| | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
 
 | Save VPP PIDs
