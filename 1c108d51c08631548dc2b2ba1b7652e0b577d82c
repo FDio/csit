@@ -22,6 +22,30 @@
       "revId": "1c108d51c08631548dc2b2ba1b7652e0b577d82c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e86e7f4a_1f3e2c8d",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-06T08:30:29Z",
+      "side": 0,
+      "message": "DPDK is obsolete, testing is in my plan of course. Doing the above mechanics was abandoned in latest vpp master, see maybe console log from make as it complains (but ignores errors). Reason for why I am doing this is documented in latest patch. I want SSOT script in VPP repo to handle compilation. To remove compile dependency away from CSIT. This way we are not blocker in case of heavy refactor like we have in past week. I want \"them\" to manage vagrant script and in case of they change mechanics they can properly fix on their side.",
+      "parentUuid": "b24e1ccd_1940c2f6",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 8
+      },
+      "revId": "1c108d51c08631548dc2b2ba1b7652e0b577d82c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
