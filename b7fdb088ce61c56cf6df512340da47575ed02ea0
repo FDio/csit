@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "40b2da53_ed14acc7",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-06T09:38:04Z",
+      "side": 1,
+      "message": "Vswitch Configuration?\n\nInclude explanation from [0] into the text.\nThe other usages of the word \"service\" are \"service density\" and \"service instance\", where \"service\" stands for what NFs do, not what vswitch does.\n\n[0] https://gerrit.fd.io/r/#/c/17242/2/docs/report/introduction/methodology.rst@832",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 26
+      },
+      "revId": "b7fdb088ce61c56cf6df512340da47575ed02ea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
