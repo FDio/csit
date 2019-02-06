@@ -1,0 +1,21 @@
+network:
+    version: 2
+    renderer: networkd
+    ethernets:
+        enp0s8:
+            match:
+                macaddress: 08:00:27:0f:e0:4d
+            set-name: eth1
+        enp0s9:
+            match:
+                macaddress: 08:00:27:61:f7:ad
+            set-name: eth2
+        enp0s10:
+            match:
+                macaddress: 08:00:27:38:5e:58
+            set-name: eth3
+        enp0s16:
+            match:
+                macaddress: 08:00:27:e3:f5:42
+            set-name: eth4
+            
