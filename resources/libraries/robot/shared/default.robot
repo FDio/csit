@@ -19,6 +19,7 @@
 | Library | OperatingSystem
 | Library | String
 | ...
+| Library | resources.libraries.python.CoreDumpUtil
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.L2Util
@@ -156,13 +157,13 @@
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run keyword | ${dut}.Add DPDK Uio Driver
-| | | Run keyword | ${dut}.Add Heapsize | 4G
-| | | Run keyword | ${dut}.Add Statseg size | 4G
+#| | | Run keyword | ${dut}.Add Heapsize | 4G
+#| | | Run keyword | ${dut}.Add Statseg size | 4G
 | | | Run keyword | ${dut}.Add Plugin | disable | default
 | | | Run keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
-| | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
-| | | Run keyword | ${dut}.Add IP Heap Size | 4G
+#| | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
+#| | | Run keyword | ${dut}.Add IP Heap Size | 4G
 
 | Add worker threads and rxqueues to all DUTs
 | | [Documentation] | Setup worker threads and rxqueues in vpp startup
@@ -431,6 +432,7 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Apply Config | restart_vpp=${restart_vpp}
+| | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
 
 | Save VPP PIDs
