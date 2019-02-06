@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,17 +17,19 @@
 | Library | resources.libraries.python.SetupFramework
 | Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.CpuUtils
+| ...
 | Suite Setup | Run Keywords | Setup performance global Variables
-| ...         | AND          | Setup Framework | ${nodes}
-| ...         | AND          | Install Vpp On All Duts | ${nodes}
-| ...         | ${packages_dir}
-| ...         | AND          | Verify Vpp On All Duts | ${nodes}
-| ...         | AND          | Verify UIO Driver on all DUTs | ${nodes}
-| ...         | AND          | Setup All DUTs | ${nodes}
-| ...         | AND          | Show Vpp Version On All Duts | ${nodes}
-| ...         | AND          | Get CPU Layout from all nodes | ${nodes}
-| ...         | AND          | Update All Interface Data On All Nodes
-| ...                        | ${nodes} | skip_tg=${True} | numa_node=${True}
+| ... | AND | Setup Framework | ${nodes}
+| ... | AND | Setup Corekeeper on All Nodes | ${nodes}
+| ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
+| ... | AND | Verify Vpp on All Duts | ${nodes}
+| ... | AND | Verify UIO Driver on all DUTs | ${nodes}
+| ... | AND | Setup All DUTs | ${nodes}
+| ... | AND | Show Vpp Version on All Duts | ${nodes}
+| ... | AND | Get CPU Layout from All nodes | ${nodes}
+| ... | AND | Update All Interface Data on All Nodes | ${nodes}
+| ... | skip_tg=${True} | numa_node=${True}
+| ...
 | Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
