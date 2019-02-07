@@ -18,11 +18,11 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Resource | resources/libraries/robot/tcp/tcp_setup.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | HTTP | TCP
-| ... | NIC_Intel-X520-DA2
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | HTTP | TCP
+| ... | NIC_Intel-X710
 | ...
-| Suite Setup | Set up 3-node performance topology with wrk and DUT's NIC model
-| ... | Intel-X520-DA2
+| Suite Setup | Set up 2-node performance topology with wrk and DUT's NIC model
+| ... | Intel-X710
 | ...
 | Test Setup | Set up tcp performance test
 | Test Teardown | Tear down performance test with wrk
