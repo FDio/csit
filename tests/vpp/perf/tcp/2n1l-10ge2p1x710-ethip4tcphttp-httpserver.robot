@@ -18,11 +18,11 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Resource | resources/libraries/robot/tcp/tcp_setup.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | HTTP | TCP
-| ... | NIC_Intel-X520-DA2
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | HTTP | TCP
+| ... | NIC_Intel-X710
 | ...
-| Suite Setup | Set up 3-node performance topology with wrk and DUT's NIC model
-| ... | Intel-X520-DA2
+| Suite Setup | Set up 2-node performance topology with wrk and DUT's NIC model
+| ... | Intel-X710
 | ...
 | Test Setup | Set up tcp performance test
 | Test Teardown | Tear down performance test with wrk
@@ -55,7 +55,7 @@
 | | | Run keyword | ${dut}.Add TCP preallocated connections | 1000000
 | | | Run keyword | ${dut}.Add TCP preallocated half open connections | 1000000
 #| | | Run keyword | ${dut}.Add session event queue length | 1000000
-#| | | Run keyword | ${dut}.Add session preallocated sessions | 1000000
+| | | Run keyword | ${dut}.Add session preallocated sessions | 1000000
 #| | | Run keyword | ${dut}.Add session v4 session table buckets | 500000
 #| | | Run keyword | ${dut}.Add session v4 session table memory | 1g
 #| | | Run keyword | ${dut}.Add session v4 halfopen table buckets | 2500000
