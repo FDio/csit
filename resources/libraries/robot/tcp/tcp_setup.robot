@@ -71,6 +71,7 @@
 | | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.70.2 | 24
 | | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.80.2 | 24
 | | Vpp Node Interfaces Ready Wait | ${dut1}
-| | Start HTTP server params | ${dut1} | ${prealloc_fifos} | ${fifo_size}
-| | ... | ${private_segment_size}
+#| | Start HTTP server params | ${dut1} | ${prealloc_fifos} | ${fifo_size}
+#| | ... | ${private_segment_size}
+| | Start HTTP server | ${dut1}
 | | Sleep | 30
