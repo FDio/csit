@@ -32,7 +32,7 @@
 | | | Run keyword | ${dut}.Add Unix Log
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
-| | | Run keyword | ${dut}.Add DPDK Socketmem | 4096,4096
+#| | | Run keyword | ${dut}.Add DPDK Socketmem | 4096,4096
 | | | Run keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run keyword | ${dut}.Add DPDK Uio Driver
 | | | Run keyword | ${dut}.Add Heapsize | 4G
@@ -73,4 +73,5 @@
 | | Vpp Node Interfaces Ready Wait | ${dut1}
 | | Start HTTP server params | ${dut1} | ${prealloc_fifos} | ${fifo_size}
 | | ... | ${private_segment_size}
+#| | Start HTTP server | ${dut1}
 | | Sleep | 30
