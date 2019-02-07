@@ -559,8 +559,50 @@
 | | ...
 | | [Arguments] | ${iface_model}
 | | ...
-| | Set variables in 3-node circular topology with DUT interface model
-| | ... | ${iface_model}
+| | Set up performance topology with wrk and DUT's NIC model | ${iface_model}
+| | ... | Set variables in 3-node circular topology with DUT interface model
+
+| Set up 2-node performance topology with wrk and DUT's NIC model
+| | [Documentation]
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Installs the traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - iface_model - Interface model. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up 2-node performance topology with wrk and DUT's NIC model\
+| | ... | \| Intel-X710 \|
+| | ...
+| | [Arguments] | ${iface_model}
+| | ...
+| | Set up performance topology with wrk and DUT's NIC model | ${iface_model}
+| | ... | Set variables in 2-node circular topology with DUT interface model
+
+| Set up performance topology with wrk and DUT's NIC model
+| | [Documentation]
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Installs the traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - iface_model - Interface model. Type: string
+| | ... | - set_kw - Keyword to setup required 2-node / 3-node topology.
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up performance topology with wrk and DUT's NIC model\
+| | ... | \| Intel-X520-DA2 \| Set variables in 3-node circular topology with \
+| | ... | DUT interface model \|
+| | ...
+| | [Arguments] | ${iface_model} | ${set_kw}
+| | ...
+| | Run Keyword | ${set_kw} | ${iface_model}
 | | Iface update numa node | ${tg}
 # Make sure TRex is stopped
 | | ${running}= | Is TRex running | ${tg}
