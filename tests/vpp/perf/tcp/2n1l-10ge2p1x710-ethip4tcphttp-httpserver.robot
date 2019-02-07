@@ -18,11 +18,11 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Resource | resources/libraries/robot/tcp/tcp_setup.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | HTTP | TCP
-| ... | NIC_Intel-X520-DA2
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | HTTP | TCP
+| ... | NIC_Intel-X710
 | ...
-| Suite Setup | Set up 3-node performance topology with wrk and DUT's NIC model
-| ... | Intel-X520-DA2
+| Suite Setup | Set up 2-node performance topology with wrk and DUT's NIC model
+| ... | Intel-X710
 | ...
 | Test Setup | Set up tcp performance test
 | Test Teardown | Tear down performance test with wrk
@@ -71,12 +71,12 @@
 | | ... | ELSE IF | '${test_type}' == 'rps'
 | | ... | Run keywords
 | | ... | Set up HTTP server with paramters on the VPP node
-| | ... | 500000 | 4 | 4000m | AND
+| | ... | 200000 | 128 | 4000m | AND
 | | ... | Measure requests per second | ${traffic_profile}
 | | ... | ELSE IF | '${test_type}' == 'cps'
 | | ... | Run keywords
 | | ... | Set up HTTP server with paramters on the VPP node
-| | ... | 31000 | 64 | 4000m | AND
+| | ... | 200000 | 16 | 4000m | AND
 | | ... | Measure connections per second | ${traffic_profile}
 
 *** Test Cases ***
