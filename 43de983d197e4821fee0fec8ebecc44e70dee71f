@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e2b76697_acbad3c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-07T19:08:54Z",
+      "side": 1,
+      "message": "After 100% of addressing all comments ;)",
+      "parentUuid": "78a581c1_e02d5f40",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 31
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bbedb559_46c141dd",
         "filename": "resources/libraries/python/CoreDumpUtil.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-07T16:50:13Z",
       "side": 1,
       "message": "Why not just \u00271\u0027? Better be safe then sorry.",
+      "range": {
+        "startLine": 82,
+        "startChar": 57,
+        "endLine": 82,
+        "endChar": 68
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e2ff614_0323e663",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-07T19:08:54Z",
+      "side": 1,
+      "message": "I am not sure i follow. Size in in MB or KB. 1 would mean 1MB limit?",
+      "parentUuid": "bbedb559_46c141dd",
       "range": {
         "startLine": 82,
         "startChar": 57,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "bb1fb8b5_111a341f",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-07T19:08:54Z",
+      "side": 1,
+      "message": "ok.",
+      "parentUuid": "1260b764_d8944f4b",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 13
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb5f9991_d9dbc812",
         "filename": "resources/libraries/python/CoreDumpUtil.py",
         "patchSetId": 3
@@ -82,6 +154,30 @@
       "writtenOn": "2019-02-07T16:50:13Z",
       "side": 1,
       "message": "Hmm, what about timestamp with enough precision to avoid conflicts and readable enough for humans to parse?\nOr something else that would help a person which downloaded multiple cores and then tries to pair them with job runs and tests?",
+      "range": {
+        "startLine": 109,
+        "startChar": 55,
+        "endLine": 109,
+        "endChar": 64
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dd4bfac6_0c279cc8",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-07T19:08:54Z",
+      "side": 1,
+      "message": "Maybe TestCase name with DUT host name?",
+      "parentUuid": "fb5f9991_d9dbc812",
       "range": {
         "startLine": 109,
         "startChar": 55,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "fa3cc187_1cd36d6b",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-07T19:08:54Z",
+      "side": 1,
+      "message": "I need to fix this as this command is producing empty archive if file does not exist, this why commit is ready for review and pylint but I need to fix this. It is working correctly in case of files produced and they are transferred and zipped and all ok.\n\nThe only way seems to be more complex FOR cycle.",
+      "parentUuid": "398ecffb_673590fd",
+      "range": {
+        "startLine": 111,
+        "startChar": 41,
+        "endLine": 111,
+        "endChar": 47
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a29a1b69_42d8644b",
         "filename": "resources/libraries/robot/performance/performance_setup.robot",
         "patchSetId": 3
@@ -128,6 +248,30 @@
       "writtenOn": "2019-02-07T16:50:13Z",
       "side": 1,
       "message": "This does not imply a core file has been created, see my previous comment.",
+      "range": {
+        "startLine": 676,
+        "startChar": 19,
+        "endLine": 676,
+        "endChar": 30
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5cbc49f_7bffdce0",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-07T19:08:54Z",
+      "side": 1,
+      "message": "Hmm, you are right. But do we care if test passed? I haven\u0027t seen really such case. As every KW takes time, i am not sure we want to burn time?",
+      "parentUuid": "a29a1b69_42d8644b",
       "range": {
         "startLine": 676,
         "startChar": 19,
