@@ -22,6 +22,121 @@
       "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bbedb559_46c141dd",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-07T16:50:13Z",
+      "side": 1,
+      "message": "Why not just \u00271\u0027? Better be safe then sorry.",
+      "range": {
+        "startLine": 82,
+        "startChar": 57,
+        "endLine": 82,
+        "endChar": 68
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1260b764_d8944f4b",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-07T16:50:13Z",
+      "side": 1,
+      "message": "Perhaps mention that if a core has been processed already, this keyword does not enable the limit for another one?",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 13
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb5f9991_d9dbc812",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-07T16:50:13Z",
+      "side": 1,
+      "message": "Hmm, what about timestamp with enough precision to avoid conflicts and readable enough for humans to parse?\nOr something else that would help a person which downloaded multiple cores and then tries to pair them with job runs and tests?",
+      "range": {
+        "startLine": 109,
+        "startChar": 55,
+        "endLine": 109,
+        "endChar": 64
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "398ecffb_673590fd",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-07T16:50:13Z",
+      "side": 1,
+      "message": "Should we check the number of files, and skip lines 124-125 if it is zero?",
+      "range": {
+        "startLine": 111,
+        "startChar": 41,
+        "endLine": 111,
+        "endChar": 47
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a29a1b69_42d8644b",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-07T16:50:13Z",
+      "side": 1,
+      "message": "This does not imply a core file has been created, see my previous comment.",
+      "range": {
+        "startLine": 676,
+        "startChar": 19,
+        "endLine": 676,
+        "endChar": 30
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
