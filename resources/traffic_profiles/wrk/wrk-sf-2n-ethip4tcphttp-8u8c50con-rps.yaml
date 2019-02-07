@@ -29,12 +29,13 @@ duration: 30
 
 # Total number of threads to use.
 # Type: integer
-nr-of-threads: 1
+nr-of-threads: 12
 
 # Total number of HTTP connections to keep open with each thread handling
 # N = connections/threads.
 # Type: integer
-nr-of-connections: 50
+#nr-of-connections: 50
+nr-of-connections: 500
 
 # Path to LuaJIT script.
 # Type: string
