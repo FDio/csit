@@ -372,8 +372,7 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
         + " param_sampled_cov " + repr(param_sampled_cov)
         + " value_log_variance " + str(value_log_variance)
         + " value_log_secondary_variance " + str(value_log_secondary_variance))
-    value_stdev = math.exp(
-        (2 * value_log_variance - value_log_secondary_variance) / 2.0)
+    value_stdev = math.exp(value_log_variance / 2.0)
     debug_list.append("top_weight_param[0] " + repr(top_weight_param[0]))
     # Intentionally returning param_focus_avg and param_focus_cov,
     # instead of possibly hyper-focused bias or sampled.
