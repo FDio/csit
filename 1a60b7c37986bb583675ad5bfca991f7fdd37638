@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "038b2c0d_2f6db52c",
+        "filename": "docs/testing_in_vagrant.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-07T15:17:30Z",
+      "side": 1,
+      "message": "try to keep line max 80 chars.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 96
+      },
+      "revId": "1a60b7c37986bb583675ad5bfca991f7fdd37638",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "221db835_4138a1e7",
+        "filename": "resources/tools/vagrant/Vagrantfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-07T15:17:30Z",
+      "side": 1,
+      "message": "replace by spaces",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "1a60b7c37986bb583675ad5bfca991f7fdd37638",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "42452319_329668ed",
         "filename": "resources/tools/vagrant/Vagrantfile",
         "patchSetId": 1
@@ -41,6 +87,75 @@
         "startChar": 2,
         "endLine": 52,
         "endChar": 3
+      },
+      "revId": "1a60b7c37986bb583675ad5bfca991f7fdd37638",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44af20fa_71ef80ae",
+        "filename": "resources/tools/vagrant/ansible/roles/common/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-07T15:17:30Z",
+      "side": 1,
+      "message": "remove spaces",
+      "range": {
+        "startLine": 11,
+        "startChar": 9,
+        "endLine": 11,
+        "endChar": 10
+      },
+      "revId": "1a60b7c37986bb583675ad5bfca991f7fdd37638",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5019229_6efe906b",
+        "filename": "resources/tools/vagrant/ansible/roles/common/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-07T15:17:30Z",
+      "side": 1,
+      "message": "remove dead code.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 108
+      },
+      "revId": "1a60b7c37986bb583675ad5bfca991f7fdd37638",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b3f6878b_01cdc6c7",
+        "filename": "resources/tools/vagrant/ansible/roles/csit/files/99-vppdevice.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-07T15:17:30Z",
+      "side": 1,
+      "message": "can we name them to better reflect connections?\n\neg:\nenpTGa\nenpTGb\nenpSUTa\nenpSUTb\n\nThis way we can easily change device.sh to map pairs.",
+      "range": {
+        "startLine": 8,
+        "startChar": 22,
+        "endLine": 8,
+        "endChar": 26
       },
       "revId": "1a60b7c37986bb583675ad5bfca991f7fdd37638",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
