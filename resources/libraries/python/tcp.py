@@ -32,7 +32,7 @@ class TCPUtils(object):
         :type node: dict
         """
 
-        with VatTerminal(node) as vat:
+        with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template(
                 "start_http_server.vat")
 

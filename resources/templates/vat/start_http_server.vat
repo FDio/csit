@@ -1,1 +1,1 @@
-exec test http server static
+exec test http server
