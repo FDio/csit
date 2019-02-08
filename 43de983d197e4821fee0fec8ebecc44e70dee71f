@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "ef852681_5e1e4437",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-08T08:36:55Z",
+      "side": 1,
+      "message": "It is in blocks, so not a count.",
+      "parentUuid": "3e2ff614_0323e663",
+      "range": {
+        "startLine": 82,
+        "startChar": 57,
+        "endLine": 82,
+        "endChar": 68
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1260b764_d8944f4b",
         "filename": "resources/libraries/python/CoreDumpUtil.py",
         "patchSetId": 3
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "ok.",
       "parentUuid": "1260b764_d8944f4b",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 13
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "960677c7_a4f1bfd5",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-08T08:36:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb1fb8b5_111a341f",
       "range": {
         "startLine": 90,
         "startChar": 12,
@@ -225,6 +273,30 @@
       "side": 1,
       "message": "I need to fix this as this command is producing empty archive if file does not exist, this why commit is ready for review and pylint but I need to fix this. It is working correctly in case of files produced and they are transferred and zipped and all ok.\n\nThe only way seems to be more complex FOR cycle.",
       "parentUuid": "398ecffb_673590fd",
+      "range": {
+        "startLine": 111,
+        "startChar": 41,
+        "endLine": 111,
+        "endChar": 47
+      },
+      "revId": "43de983d197e4821fee0fec8ebecc44e70dee71f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bd6e86f_fbc1638c",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-08T08:36:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa3cc187_1cd36d6b",
       "range": {
         "startLine": 111,
         "startChar": 41,
