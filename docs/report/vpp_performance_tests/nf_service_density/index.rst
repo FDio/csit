@@ -5,10 +5,10 @@
 
 .. _network_service_density:
 
-NF Service Density
-==================
+NFV Service Density
+===================
 
-NF Service Density is benchmarked in three distinct NF service
+NFV Service Density is benchmarked in three distinct NF service
 configurations:
 
 - VNF Service Chains

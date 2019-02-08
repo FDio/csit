@@ -38,7 +38,7 @@
 
     <center><b>
 
-:index:`Packet Throughput: srv6-3n-hsw-x520-78b-1t1c-features-ndr`
+
 
 .. raw:: html
 
@@ -64,7 +64,7 @@
 
     \clearpage
 
-:index:`Packet Throughput: srv6-3n-hsw-x520-78b-1t1c-features-pdr`
+
 
 .. raw:: html
 
@@ -93,7 +93,7 @@
 
     <center><b>
 
-:index:`Packet Throughput: srv6-3n-hsw-x520-78b-2t2c-features-ndr`
+
 
 .. raw:: html
 
@@ -119,7 +119,7 @@
 
     \clearpage
 
-:index:`Packet Throughput: srv6-3n-hsw-x520-78b-2t2c-features-pdr`
+
 
 .. raw:: html
 

@@ -75,7 +75,7 @@ Additional information about graph data:
 
     <center><b>
 
-:index:`CNF Service Pipelines: 64B-1c-eth-l2bd-{2*Y}memif-{Y}pipe-{X*Y}drc-vppip4-mrr`
+:index:`CNF Service Pipelines: 64B-1c-eth-l2bd-{2Y}memif-{Y}pipe-{XY}drc-vppip4-mrr`
 
 .. raw:: html
 
@@ -108,7 +108,7 @@ Additional information about graph data:
 
     <center><b>
 
-:index:`CNF Service Pipelines: 64B-2c-eth-l2bd-{2*Y}memif-{Y}pipe-{X*Y}drc-vppip4-mrr`
+:index:`CNF Service Pipelines: 64B-2c-eth-l2bd-{2Y}memif-{Y}pipe-{XY}drc-vppip4-mrr`
 
 .. raw:: html
 
