@@ -54,6 +54,7 @@
 | | | ... | ${root}/usr/bin/vppctl:/usr/bin/vppctl
 | | | ... | ${root}/usr/lib/x86_64-linux-gnu/:/usr/lib/x86_64-linux-gnu/
 | | | ... | ${root}/usr/share/vpp/:/usr/share/vpp/
+| | | ... | ${root}/usr/lib/vpp_plugins/:/usr/lib/vpp_plugins/
 | | | ${nf_cpus}= | Set Variable | ${None}
 | | | ${nf_cpus}= | Run Keyword Unless | ${nested}
 | | | ... | Create network function CPU list | ${dut}

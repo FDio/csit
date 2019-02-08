@@ -991,21 +991,27 @@ class InterfaceUtil(object):
         Topology.update_interface_mac_address(node, if_key, ifc_mac)
 
     @staticmethod
-    def vpp_create_avf_interface(node, vf_pci_addr):
+    def vpp_create_avf_interface(node, vf_pci_addr, num_rx_queues=None):
         """Create AVF interface on VPP node.
 
         :param node: DUT node from topology.
         :param vf_pci_addr: Virtual Function PCI address.
+        :param num_rx_queues: Number of RX queues.
         :type node: dict
         :type vf_pci_addr: str
+        :type num_rx_queues: int
         :returns: Interface key (name) in topology.
         :rtype: str
         :raises RuntimeError: If it is not possible to create AVF interface on
             the node.
         """
+        num_rx_queues = 'num-rx-queues {num_rx_queues}'\
+            .format(num_rx_queues=num_rx_queues) if num_rx_queues else ''
+
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template('create_avf_interface.vat',
-                                                    vf_pci_addr=vf_pci_addr)
+                                                    vf_pci_addr=vf_pci_addr,
+                                                    num_rx_queues=num_rx_queues)
             output = vat.vat_stdout
 
         if output is not None:
