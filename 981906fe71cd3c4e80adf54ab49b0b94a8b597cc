@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fa07d48_ec23a273",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-08T09:51:45Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 53,
+        "startChar": 31,
+        "endLine": 53,
+        "endChar": 37
+      },
+      "revId": "981906fe71cd3c4e80adf54ab49b0b94a8b597cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c6b4b31_eb70f103",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-08T09:51:45Z",
+      "side": 1,
+      "message": "How long does it take to finish when there is no core? If it is more than a second, this should be behind Run Keyword If Test Failed.",
+      "range": {
+        "startLine": 674,
+        "startChar": 4,
+        "endLine": 674,
+        "endChar": 31
+      },
+      "revId": "981906fe71cd3c4e80adf54ab49b0b94a8b597cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ccd7fb04_a9ea4921",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-08T09:51:45Z",
+      "side": 1,
+      "message": "mrr\n\nWe do not have \"functional mrr\" so \"mrr\" already implies \"performance\".\n\nUnless you want every teardown in this file to start with \"Tear down performance\" (with \"test\" or \"suite\" somewhere).",
+      "range": {
+        "startLine": 751,
+        "startChar": 12,
+        "endLine": 751,
+        "endChar": 27
+      },
+      "revId": "981906fe71cd3c4e80adf54ab49b0b94a8b597cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
