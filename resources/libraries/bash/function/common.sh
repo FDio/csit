@@ -236,7 +236,7 @@ function compose_pybot_arguments () {
             PYBOT_ARGS+=("--suite" "tests.${DUT}.func")
             ;;
         *"perf"*)
-            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.l2")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.ip4")
             ;;
         *)
             die "Unknown specification: ${TEST_CODE}"
