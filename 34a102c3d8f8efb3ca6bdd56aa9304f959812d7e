@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e4249a3c_de00479a",
+        "filename": "resources/libraries/python/CoreDumpUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-08T14:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0674072f_cf57d878",
+      "range": {
+        "startLine": 127,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 47
+      },
+      "revId": "34a102c3d8f8efb3ca6bdd56aa9304f959812d7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d054a735_4b14991b",
         "filename": "resources/libraries/python/ssh.py",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-08T13:58:27Z",
       "side": 1,
       "message": "indentation",
+      "range": {
+        "startLine": 476,
+        "startChar": 4,
+        "endLine": 476,
+        "endChar": 35
+      },
+      "revId": "34a102c3d8f8efb3ca6bdd56aa9304f959812d7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff8a8d1c_bec874eb",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-08T14:47:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d054a735_4b14991b",
       "range": {
         "startLine": 476,
         "startChar": 4,
