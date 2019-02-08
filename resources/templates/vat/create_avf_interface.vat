@@ -1,1 +1,1 @@
-avf_create {vf_pci_addr}
+avf_create {vf_pci_addr} {num_rx_queues}
