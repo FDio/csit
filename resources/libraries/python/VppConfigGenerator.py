@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -341,15 +341,6 @@ class VppConfigGenerator(object):
         :type value: str
         """
         path = ['dpdk', 'log-level']
-        self.add_config_item(self._nodeconfig, value, path)
-
-    def add_dpdk_socketmem(self, value):
-        """Add DPDK socket memory configuration.
-
-        :param value: Socket memory size.
-        :type value: str
-        """
-        path = ['dpdk', 'socket-mem']
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_num_mbufs(self, value):
