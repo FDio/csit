@@ -159,6 +159,10 @@ function gather_ligato () {
         die "Failed to extract VPP packages for kubernetes!"
     }
 
+    pushd "${DOWNLOAD_DIR}/" || die
+    apt-get -y download libboost-dev || die
+    popd || die
+
     ligato_repo_url="https://github.com/ligato/"
     vpp_agent_stable_ver="$(< "${CSIT_DIR}/VPP_AGENT_STABLE_VER")" || {
         die "Failed to read vpp-agent stable version!"
@@ -232,7 +236,7 @@ function gather_ligato () {
     docker_image="$(readlink -e "prod_vpp_agent.tar.gz")" || {
         die "Failed to get Docker image path!"
     }
-    rm -r "${DOWNLOAD_DIR}/vpp"* || die "Failed to remove VPP packages!"
+    rm -r "${DOWNLOAD_DIR}/"*.deb || die "Failed to remove DEB packages!"
     mv "${docker_image}" "${DOWNLOAD_DIR}"/ || die "Failed to move image!"
 }
 
