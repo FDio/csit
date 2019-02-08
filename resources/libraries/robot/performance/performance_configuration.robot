@@ -129,9 +129,9 @@
 | | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
 | | | ... | ${${dut}_if2_vf0}
 | | | ${dut_eth_vf_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | | ... | ${if1_pci}
+| | | ... | ${if1_pci} | ${rxq_count_int}
 | | | ${dut_eth_vf_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
-| | | ... | ${if2_pci}
+| | | ... | ${if2_pci} | ${rxq_count_int}
 | | | Set Test Variable | ${${dut}_if1} | ${dut_eth_vf_if1}
 | | | Set Test Variable | ${${dut}_if2} | ${dut_eth_vf_if2}
 | | Set interfaces in path up
