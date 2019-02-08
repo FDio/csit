@@ -75,7 +75,7 @@ Additional information about graph data:
 
     <center><b>
 
-:index:`VNF Service Chains: 64b-1c-eth-l2bd-{2*X*Y}vhost-{Y}chain-{X*Y}vm-l3fwdip4-mrr`
+:index:`VNF Service Chains: 64b-1c-eth-l2bd-{2XY}vhost-{Y}chain-{XY}vm-l3fwdip4-mrr`
 
 .. raw:: html
 
@@ -108,7 +108,7 @@ Additional information about graph data:
 
     <center><b>
 
-:index:`VNF Service Chains: 64b-2c-eth-l2bd-{2*X*Y}vhost-{Y}chain-{X*Y}vm-l3fwdip4-mrr`
+:index:`VNF Service Chains: 64b-2c-eth-l2bd-{2XY}vhost-{Y}chain-{XY}vm-l3fwdip4-mrr`
 
 .. raw:: html
 
