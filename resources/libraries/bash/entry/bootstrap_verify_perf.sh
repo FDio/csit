@@ -34,16 +34,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
 common_dirs || die
-get_test_code "${1-}" || die
-get_test_tag_string || die
-select_topology || die
-gather_build || die
-check_download_dir || die
 activate_virtualenv "${CSIT_DIR}" || die
-reserve_testbed || die
-select_tags || die
-compose_pybot_arguments || die
-run_pybot || die
-untrap_and_unreserve_testbed || die
-copy_archives || die
-die_on_pybot_error || die
+pip freeze
+python --version
+python "${CSIT_DIR}/num.py"
