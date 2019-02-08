@@ -236,7 +236,13 @@ function compose_pybot_arguments () {
             PYBOT_ARGS+=("--suite" "tests.${DUT}.func")
             ;;
         *"perf"*)
-            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.vm_vhost")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.container_memif")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.crypto")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.ip4_tunnels")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.ip6")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.ip6_tunnels")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.srv6")
+            PYBOT_ARGS+=("--suite" "tests.${DUT}.perf.vts")
             ;;
         *)
             die "Unknown specification: ${TEST_CODE}"
