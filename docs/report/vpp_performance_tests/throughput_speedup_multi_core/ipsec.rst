@@ -17,7 +17,7 @@ VPP worker thread(s), a.k.a. VPP data plane thread(s), and their
 physical CPU core(s) placement.
 
 CSIT source code for the test cases used for plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1810>`_.
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/crypto?h=rls1901>`_.
 
 .. toctree::
 

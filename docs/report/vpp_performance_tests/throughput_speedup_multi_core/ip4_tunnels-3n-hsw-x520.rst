@@ -37,15 +37,9 @@
 
     .. raw:: html
 
-        <center><b>
-
-    :index:`Speedup Multi-core: ip4tun-3n-hsw-x520-64b-base_and_scale-ndr`
-
-    .. raw:: html
-
-        </b>
+        <center>
         <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -57,21 +51,15 @@
                 \label{fig:ip4tun-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
         \end{figure}
 
-    .. raw:: html
-
-        <center><b>
-
     .. raw:: latex
 
         \clearpage
 
-    :index:`Speedup Multi-core: ip4tun-3n-hsw-x520-64b-base_and_scale-pdr`
-
     .. raw:: html
 
-        </b>
+        <center>
         <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-base_and_scale-pdr-tsa.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -92,15 +80,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Speedup Multi-core: ip4tun-3n-hsw-x520-64b-base_and_features-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-base_and_features-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -112,21 +94,15 @@
             \label{fig:ip4tun-3n-hsw-x520-64b-base_and_features-ndr-tsa}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Speedup Multi-core: ip4tun-3n-hsw-x520-64b-base_and_features-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-base_and_features-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

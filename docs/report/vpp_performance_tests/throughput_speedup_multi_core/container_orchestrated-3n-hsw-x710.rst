@@ -36,15 +36,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Speedup Multi-core: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -56,21 +50,15 @@
             \label{fig:k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr-tsa}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Speedup Multi-core: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -92,15 +80,9 @@
 
     .. raw:: html
 
-        <center><b>
-
-    :index:`Speedup Multi-core: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr`
-
-    .. raw:: html
-
-        </b>
+        <center>
         <iframe id="ifrm07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr-tsa.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -112,21 +94,15 @@
                 \label{fig:k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr-tsa}
         \end{figure}
 
-    .. raw:: html
-
-        <center><b>
-
     .. raw:: latex
 
         \clearpage
 
-    :index:`Speedup Multi-core: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr`
-
     .. raw:: html
 
-        </b>
+        <center>
         <iframe id="ifrm08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr-tsa.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
