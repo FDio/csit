@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a37db1a_b2bdc3d2",
+        "filename": "resources/tools/vagrant/Vagrantfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T08:32:45Z",
+      "side": 1,
+      "message": "not needed spaces?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 4
+      },
+      "revId": "a5452b7982ef48b98a0e92c701a04d0c9dc8b889",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "938c0fbc_6b4e84ec",
+        "filename": "resources/tools/vagrant/ansible/roles/csit/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T08:32:45Z",
+      "side": 1,
+      "message": "I would rather prefer to create 90-csit.conf, similarly physical testbeds are installed;\nconsider.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 15
+      },
+      "revId": "a5452b7982ef48b98a0e92c701a04d0c9dc8b889",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f48e46b_49f3316a",
+        "filename": "resources/tools/vagrant/ansible/roles/csit/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T08:32:45Z",
+      "side": 1,
+      "message": "not needed spaces",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 2
+      },
+      "revId": "a5452b7982ef48b98a0e92c701a04d0c9dc8b889",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a886674b_5ebb20fc",
+        "filename": "resources/tools/vagrant/ansible/roles/csit/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T08:32:45Z",
+      "side": 1,
+      "message": "Can we please use VPP_DEVICE_IMAGE instead? That way we do not hardcore anything there. And in case of location/version will change we do not need to update Vagrant.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 20
+      },
+      "revId": "a5452b7982ef48b98a0e92c701a04d0c9dc8b889",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
