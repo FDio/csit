@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0029d855_1ddf77be",
+        "filename": "bootstrap.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-11T13:11:20Z",
+      "side": 1,
+      "message": "I prefer the quoted version, as in Base.",
+      "range": {
+        "startLine": 241,
+        "startChar": 5,
+        "endLine": 241,
+        "endChar": 16
+      },
+      "revId": "e1fd945559c350477d6fec179d966ff2f50f46d3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
