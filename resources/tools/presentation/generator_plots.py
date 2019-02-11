@@ -1125,13 +1125,16 @@ def plot_service_density_heatmap(plot, input_data):
                                       nr=None,
                                       mean=None,
                                       stdev=None)
-                if plot["include-tests"] == "MRR":
-                    result = test["result"]["receive-rate"].avg
-                elif plot["include-tests"] == "PDR":
-                    result = test["throughput"]["PDR"]["LOWER"]
-                elif plot["include-tests"] == "NDR":
-                    result = test["throughput"]["NDR"]["LOWER"]
-                else:
+                try:
+                    if plot["include-tests"] == "MRR":
+                        result = test["result"]["receive-rate"].avg
+                    elif plot["include-tests"] == "PDR":
+                        result = test["throughput"]["PDR"]["LOWER"]
+                    elif plot["include-tests"] == "NDR":
+                        result = test["throughput"]["NDR"]["LOWER"]
+                    else:
+                        result = None
+                except TypeError:
                     result = None
 
                 if result:
