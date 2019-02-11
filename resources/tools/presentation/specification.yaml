@@ -162,12 +162,14 @@
       # TODO Add new data
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
 
     vpp-nic-comparison-3n-hsw:
       # TODO: Add new data
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
 
     vpp-performance-changes-3n-skx:
@@ -195,18 +197,20 @@
       - 25  # NDRPDR sel
       # TODO Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
 
     vpp-nic-comparison-3n-skx:
       # TODO: Add new data
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
 
     vpp-performance-changes-2n-skx:
       csit-vpp-perf-verify-1807-2n-skx:
@@ -255,10 +259,11 @@
       - 19  # NDRPDR sel
       # TODO: Add new data
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
 
     vpp-compare-testbeds-mrr:
       # TODO: Add new data
@@ -271,10 +276,11 @@
     vpp-compare-topologies:
       # TODO: Add new data
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
       # TODO: Add new data
       csit-vpp-perf-verify-1901-2n-skx:
       - 5   # NDRPDR sel
@@ -399,15 +405,17 @@
       # TODO: Add new data
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
 
     plot-throughput-speedup-analysis-3n-skx:
       # TODO: Add new data
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
 
     plot-throughput-speedup-analysis-2n-skx:
       # TODO: Add new data
@@ -422,6 +430,7 @@
       # TODO: Add new data
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
 
     plot-vpp-soak-2n-skx:
@@ -431,34 +440,28 @@
       - 248  # SOAK sel
       - 251  # SOAK sel
 
-    plot-vpp-vsc-2n-skx:
-      # TODO: Replace with new data
-      # csit-vpp-perf-verify-1901-2n-skx:
-      csit-vpp-perf-verify-master-2n-skx:
-      - 237
-      - 243
+    plot-vpp-nfv-2n-skx:
+      # TODO: Add new data
+      csit-vpp-perf-verify-1901-2n-skx:
+      - 28  # NFV NDRPDR
+      - 29  # NFV NDRPDR
+      - 32  # NFV NDRPDR
 
-    plot-vpp-csc-2n-skx:
-      # TODO: Replace with new data
-      # csit-vpp-perf-verify-1901-2n-skx:
-      csit-vpp-perf-verify-master-2n-skx:
-      - 226
-      - 231
-      - 233
-
-    plot-vpp-csp-2n-skx:
-      # TODO: Replace with new data
-      # csit-vpp-perf-verify-1901-2n-skx:
-      csit-vpp-perf-verify-master-2n-skx:
-      - 247
+    plot-vpp-nfv-2n-skx-mrr:
+      # TODO: Add new data
+      csit-vpp-perf-verify-1901-2n-skx:
+      - 24  # NFV MRR
+      - 26  # NFV MRR
+      - 27  # NFV MRR
 
     plot-vpp-throughput-latency-3n-skx:
       # TODO: Add new data
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
 
     plot-vpp-throughput-latency-2n-skx:
       # TODO: Add new data
@@ -564,7 +567,9 @@
       csit-dpdk-perf-verify-1901-3n-hsw:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
       - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
 
     dpdk-performance-changes-3n-skx:
       csit-dpdk-perf-verify-1807-3n-skx:
@@ -610,7 +615,9 @@
       csit-dpdk-perf-verify-1901-3n-hsw:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
       - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
 
     dpdk-compare-topologies:
       # TODO: Replace with new data
@@ -651,7 +658,9 @@
       csit-dpdk-perf-verify-1901-3n-hsw:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
       - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-skx:
       # TODO: Replace with new data
@@ -675,9 +684,7 @@
 
     # HoneyComb Functional
     hc-func-results:
-      # TODO: Replace with new data
-      # csit-hc2vpp-verify-func-1901-ubuntu1604:
-      csit-hc2vpp-verify-func-1810-ubuntu1604:
+      csit-hc2vpp-verify-func-1901-ubuntu1604:
       - 3
 
     # NSH SFC Functional
@@ -1163,6 +1170,7 @@
     csit-vpp-perf-verify-1901-3n-hsw:
     - 35  # MRR sel
     - 10  # NDRPDR sel
+    - 18  # NDRPDR sel F
     - 19  # NDRPDR sel
     csit-vpp-perf-verify-1807-3n-skx:
     - 31  # MRR full
@@ -1207,10 +1215,11 @@
     - 25  # NDRPDR sel
     csit-vpp-perf-verify-1901-3n-skx:
     - 32  # MRR sel
-    - 28  # NDRPDR sel
     - 18  # NDRPDR sel
     - 19  # NDRPDR sel
     - 20  # NDRPDR sel
+    - 28  # NDRPDR sel
+    - 31  # NDRPDR sel
     csit-vpp-perf-verify-1807-2n-skx:
     - 27  # MRR full
     - 31  # MRR sel
@@ -1258,15 +1267,15 @@
     - 12  # NDRPDR sel
     - 13  # NDRPDR sel
     - 16  # NDRPDR sel fails
+    - 24  # NFV MRR
+    - 26  # NFV MRR
+    - 27  # NFV MRR
+    - 28  # NFV NDRPDR
+    - 29  # NFV NDRPDR
+    - 32  # NFV NDRPDR
     csit-vpp-perf-verify-master-2n-skx:
     - 248  # SOAK sel
     - 251  # SOAK sel
-    - 237  # VSC
-    - 226  # CSC
-    - 231  # CSC
-    - 233  # CSC
-    - 243  # VSC
-    - 247  # CSP
     csit-ligato-perf-verify-1810-3n-hsw:
     - 5   # full
     - 6   # sel
@@ -1279,6 +1288,8 @@
     - 16  # sel
     - 17  # sel
     - 18  # sel
+    # TODO: Add new data
+    # csit-ligato-perf-verify-1901-3n-hsw:
     csit-dpdk-perf-verify-1807-3n-hsw:
     - 11
     - 12  # full
@@ -1304,7 +1315,9 @@
     csit-dpdk-perf-verify-1901-3n-hsw:
     - 3   # NDRPDR sel
     - 4   # NDRPDR sel
+    - 5   # NDRPDR sel
     - 6   # NDRPDR sel
+    - 7   # NDRPDR sel
     csit-dpdk-perf-verify-1807-3n-skx:
     - 1   # NDRPDR sel
     - 2   # NDRPDR sel
@@ -1350,7 +1363,7 @@
     - 1
     csit-dmm-functional-1810-ubuntu1604-virl:
     - 1
-    csit-hc2vpp-verify-func-1810-ubuntu1604:
+    csit-hc2vpp-verify-func-1901-ubuntu1604:
     - 3
 
 -
@@ -1854,6 +1867,7 @@
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -1907,6 +1921,7 @@
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -1960,6 +1975,7 @@
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -2013,6 +2029,7 @@
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -2062,10 +2079,11 @@
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2114,10 +2132,11 @@
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2166,10 +2185,11 @@
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2218,10 +2238,11 @@
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -2451,16 +2472,18 @@
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   data: "vpp-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and 'NDRPDR' and '1C'"
@@ -2481,16 +2504,18 @@
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   data: "vpp-compare-testbeds"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and 'NDRPDR' and '2C'"
@@ -2511,16 +2536,18 @@
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   data: "vpp-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and 'NDRPDR' and '1C'"
@@ -2541,16 +2568,18 @@
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR sel
+      - 18  # NDRPDR sel F
       - 19  # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   data: "vpp-compare-testbeds"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'NIC_Intel-X710' and 'NDRPDR' and '2C'"
@@ -2570,10 +2599,11 @@
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   compare:
     title: "2-Node Skx"
     data:
@@ -2603,10 +2633,11 @@
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   compare:
     title: "2-Node Skx"
     data:
@@ -2636,10 +2667,11 @@
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   compare:
     title: "2-Node Skx"
     data:
@@ -2669,10 +2701,11 @@
     data:
       # TODO: Add new data:
       csit-vpp-perf-verify-1901-3n-skx:
-      - 28  # NDRPDR sel
       - 18  # NDRPDR sel
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
+      - 28  # NDRPDR sel
+      - 31  # NDRPDR sel
   compare:
     title: "2-Node Skx"
     data:
@@ -3870,7 +3903,9 @@
       csit-dpdk-perf-verify-1901-3n-hsw:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
       - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -3921,7 +3956,9 @@
       csit-dpdk-perf-verify-1901-3n-hsw:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
       - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -3972,7 +4009,9 @@
       csit-dpdk-perf-verify-1901-3n-hsw:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
       - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -4023,7 +4062,9 @@
       csit-dpdk-perf-verify-1901-3n-hsw:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
       - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
   data: "dpdk-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
@@ -4277,7 +4318,9 @@
       csit-dpdk-perf-verify-1901-3n-hsw:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
       - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
@@ -4384,7 +4427,9 @@
       csit-dpdk-perf-verify-1901-3n-hsw:
       - 3   # NDRPDR sel
       - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
       - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
   compare:
     title: "3-Node Skx"
     data:
@@ -5265,7 +5310,7 @@
   algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-2t1c-base-vsc-mrr"
-  data: "plot-vpp-vsc-2n-skx"
+  data: "plot-vpp-nfv-2n-skx-mrr"
   filter: "'NIC_Intel-X710' and
            'NF_DENSITY' and
            'VM' and
@@ -5291,7 +5336,7 @@
   algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-4t2c-base-vsc-mrr"
-  data: "plot-vpp-vsc-2n-skx"
+  data: "plot-vpp-nfv-2n-skx-mrr"
   filter: "'NIC_Intel-X710' and
            'NF_DENSITY' and
            'VM' and
@@ -5317,7 +5362,7 @@
   algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-2t1c-base-csc-mrr"
-  data: "plot-vpp-csc-2n-skx"
+  data: "plot-vpp-nfv-2n-skx-mrr"
   filter: "'NIC_Intel-X710' and
            'NF_DENSITY' and
            'DOCKER' and
@@ -5343,7 +5388,7 @@
   algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-4t2c-base-csc-mrr"
-  data: "plot-vpp-csc-2n-skx"
+  data: "plot-vpp-nfv-2n-skx-mrr"
   filter: "'NIC_Intel-X710' and
            'NF_DENSITY' and
            'DOCKER' and
@@ -5369,7 +5414,7 @@
   algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-2t1c-base-csp-mrr"
-  data: "plot-vpp-csp-2n-skx"
+  data: "plot-vpp-nfv-2n-skx-mrr"
   filter: "'NIC_Intel-X710' and
            'NF_DENSITY' and
            'DOCKER' and
@@ -5395,7 +5440,7 @@
   algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-4t2c-base-csp-mrr"
-  data: "plot-vpp-csp-2n-skx"
+  data: "plot-vpp-nfv-2n-skx-mrr"
   filter: "'NIC_Intel-X710' and
            'NF_DENSITY' and
            'DOCKER' and
@@ -15846,6 +15891,7 @@
            '2T1C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
@@ -15878,6 +15924,7 @@
            '4T2C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
@@ -15910,6 +15957,7 @@
            '2T1C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
@@ -15942,6 +15990,7 @@
            '4T2C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
@@ -15975,6 +16024,7 @@
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -16010,6 +16060,7 @@
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -16045,6 +16096,7 @@
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -16080,6 +16132,7 @@
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -16117,6 +16170,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -16152,6 +16206,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -16187,6 +16242,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -16222,6 +16278,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -16258,6 +16315,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -16292,6 +16350,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -16326,6 +16385,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -16360,6 +16420,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -22720,6 +22781,7 @@
            '2T1C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'DOT1Q'"
   parameters:
   - "latency"
@@ -22748,6 +22810,7 @@
            '4T2C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'DOT1Q'"
   parameters:
   - "latency"
@@ -22778,6 +22841,7 @@
            'VHOST_1024' and
            not 'VXLAN' and
            not 'IP4FWD' and
+           not 'NF_DENSITY' and
            not '2VM'"
   parameters:
   - "latency"
@@ -22808,6 +22872,7 @@
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -22841,6 +22906,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -22872,6 +22938,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -22904,6 +22971,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD'"
   parameters:
   - "latency"
@@ -22934,6 +23002,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD'"
   parameters:
   - "latency"
@@ -28322,6 +28391,7 @@
            'IP4FWD' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
@@ -28349,6 +28419,7 @@
            'IP4FWD' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
@@ -28377,6 +28448,7 @@
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -28407,6 +28479,7 @@
            'L2BDMACLRN' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -28439,6 +28512,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -28469,6 +28543,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD' and
            not '2VM'"
   parameters:
@@ -28500,6 +28575,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -28529,6 +28605,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'NF_DENSITY' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
