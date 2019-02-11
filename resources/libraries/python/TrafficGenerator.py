@@ -458,10 +458,9 @@ class TrafficGenerator(AbstractMeasurer):
             self._latency.append(self._result.split(', ')[4].split('=')[1])
             self._latency.append(self._result.split(', ')[5].split('=')[1])
 
-    def trex_stl_start_unidirection(self, duration, rate, framesize,
-                                    traffic_type, tx_port=0, rx_port=1,
-                                    async_call=False, latency=False,
-                                    warmup_time=5.0):
+    def trex_stl_start_unidirection(
+            self, duration, rate, framesize, traffic_type, async_call=False,
+            latency=False, warmup_time=5.0, tx_port=0, rx_port=1):
         """Execute script on remote node over ssh to start unidirection traffic.
         The purpose of this function is to support performance test that need to
         measure unidirectional traffic, e.g. Load balancer maglev mode and l3dsr
@@ -472,21 +471,20 @@ class TrafficGenerator(AbstractMeasurer):
         :param framesize: L2 frame size to send (without padding and IPG).
         :param traffic_type: Module name as a traffic type identifier.
             See resources/traffic_profiles/trex for implemented modules.
-        :param tx_port: Traffic generator transmit port.
-        :param rx_port: Traffic generator receive port.
         :param latency: With latency measurement.
         :param async_call: If enabled then don't wait for all incomming trafic.
         :param warmup_time: Warmup time period.
+        :param tx_port: Traffic generator transmit port.
+        :param rx_port: Traffic generator receive port.
         :type duration: float
         :type rate: str
         :type framesize: str
         :type traffic_type: str
-        :type tx_port: integer
-        :type rx_port: integer
         :type latency: bool
         :type async_call: bool
         :type warmup_time: float
-        :returns: Nothing
+        :type tx_port: integer
+        :type rx_port: integer
         :raises RuntimeError: In case of TG driver issue.
         """
         ssh = SSH()
@@ -548,9 +546,10 @@ class TrafficGenerator(AbstractMeasurer):
         if self._node['subtype'] == NodeSubTypeTG.TREX:
             self.trex_stl_stop_remote_exec(self._node)
 
-    def send_traffic_on_tg(self, duration, rate, framesize, traffic_type,
-                           unidirection=False, tx_port=0, rx_port=1,
-                           warmup_time=5, async_call=False, latency=True):
+    def send_traffic_on_tg(
+            self, duration, rate, framesize, traffic_type, warmup_time=5,
+            async_call=False, latency=True, unidirection=False, tx_port=0,
+            rx_port=1):
         """Send traffic from all configured interfaces on TG.
 
         :param duration: Duration of test traffic generation in seconds.
@@ -558,22 +557,22 @@ class TrafficGenerator(AbstractMeasurer):
         :param framesize: Frame size (L2) in Bytes.
         :param traffic_type: Module name as a traffic type identifier.
             See resources/traffic_profiles/trex for implemented modules.
-        :param unidirection: Traffic is unidirectional.
-        :param tx_port: Traffic generator transmit port.
-        :param rx_port: Traffic generator receive port.
         :param warmup_time: Warmup phase in seconds.
         :param async_call: Async mode.
         :param latency: With latency measurement.
+        :param unidirection: Traffic is unidirectional.
+        :param tx_port: Traffic generator transmit port.
+        :param rx_port: Traffic generator receive port.
         :type duration: str
         :type rate: str
         :type framesize: str
         :type traffic_type: str
-        :type unidirection: bool
-        :type tx_port: integer
-        :type rx_port: integer
         :type warmup_time: float
         :type async_call: bool
         :type latency: bool
+        :type unidirection: bool
+        :type tx_port: integer
+        :type rx_port: integer
         :returns: TG output.
         :rtype: str
         :raises RuntimeError: If TG is not set, or if node is not TG,
@@ -687,7 +686,7 @@ class TrafficGenerator(AbstractMeasurer):
         unit_rate = str(transmit_rate / 2.0) + "pps"
         self.send_traffic_on_tg(
             duration, unit_rate, self.frame_size, self.traffic_type,
-            self.warmup_time, latency=True)
+            warmup_time=self.warmup_time, latency=True)
         transmit_count = int(self.get_sent())
         loss_count = int(self.get_loss())
         measurement = ReceiveRateMeasurement(
