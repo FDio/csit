@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ae0160f_7a9b7c3f",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-11T12:02:06Z",
+      "side": 1,
+      "message": "See line 689 on why it is always risky to shift established parameters to a different position.\nIn this case, all tests which use MLRsearch algorithm now take 5 seconds more on each trial measurement.",
+      "range": {
+        "startLine": 551,
+        "startChar": 27,
+        "endLine": 551,
+        "endChar": 45
+      },
+      "revId": "6abab7084716f4dc322574837b23f26a2ca9e2cb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
