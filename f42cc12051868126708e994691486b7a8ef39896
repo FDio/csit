@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92941104_2d50584b",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-02-11T14:12:15Z",
+      "side": 1,
+      "message": "Maybe we should unite the versions? The only difference is one character.",
+      "range": {
+        "startLine": 276,
+        "startChar": 16,
+        "endLine": 285,
+        "endChar": 18
+      },
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
