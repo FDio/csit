@@ -255,6 +255,10 @@ including those required by DUT/TG.
     # Mount vfio to be able to bind to see binded interfaces. We cannot use
     # --device=/dev/vfio as this does not see newly binded interfaces.
     --volume /dev/vfio:/dev/vfio
+    # Mount nested_vm image to be able to run VM tests.
+    --volume /var/lib/vm/vhost-nested.img:/var/lib/vm/vhost-nested.img
+    # Mount docker.sock to be able to use docker deamon of the host.
+    --volume /var/run/docker.sock:/var/run/docker.sock
     # Image of csit-sut-dcr
     snergster/csit-vpp-device-test:latest
 
@@ -503,12 +507,6 @@ Maintainability
 
 Stability
 ~~~~~~~~~
-
-.. note::
-
-    Improve NIC selection pair-wise: As of now script is taking first two
-    interfaces from discovered list regardless of sibling pairing. Implement
-    more advance method of selection of interfaces based on VF 802.1Q siblings.
 
 .. note::
 
