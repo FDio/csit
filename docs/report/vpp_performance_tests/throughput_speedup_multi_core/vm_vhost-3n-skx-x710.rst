@@ -44,7 +44,7 @@
 
     </b>
     <iframe id="ifrm25" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-skx-x710-64b-base-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -70,7 +70,7 @@
 
     </b>
     <iframe id="ifrm26" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-skx-x710-64b-base-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -99,7 +99,7 @@
 
     </b>
     <iframe id="ifrm27" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-skx-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -125,7 +125,7 @@
 
     </b>
     <iframe id="ifrm28" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-skx-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -154,7 +154,7 @@
 
     </b>
     <iframe id="ifrm29" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-skx-x710-64b-base-vm-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -180,7 +180,7 @@
 
     </b>
     <iframe id="ifrm30" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-skx-x710-64b-base-vm-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -209,7 +209,7 @@
 
     </b>
     <iframe id="ifrm31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-skx-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -235,7 +235,7 @@
 
     </b>
     <iframe id="ifrm32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-skx-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

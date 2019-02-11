@@ -45,7 +45,7 @@
 
         </b>
         <iframe id="ifrm17" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -74,7 +74,7 @@
 
         </b>
         <iframe id="ifrm18" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -103,7 +103,7 @@
 
         </b>
         <iframe id="ifrm19" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -132,7 +132,7 @@
 
         </b>
         <iframe id="ifrm20" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -161,7 +161,7 @@
 
         </b>
         <iframe id="ifrm21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -190,7 +190,7 @@
 
         </b>
         <iframe id="ifrm22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -219,7 +219,7 @@
 
         </b>
         <iframe id="ifrm23" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -248,7 +248,7 @@
 
         </b>
         <iframe id="ifrm24" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex

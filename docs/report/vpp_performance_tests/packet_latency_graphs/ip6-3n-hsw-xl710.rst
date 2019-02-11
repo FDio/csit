@@ -44,7 +44,7 @@
 
     </b>
     <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-xl710-78b-1t1c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -73,7 +73,7 @@
 
     </b>
     <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-xl710-78b-2t2c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

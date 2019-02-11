@@ -44,7 +44,7 @@
 
     </b>
     <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-1t1c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -73,7 +73,7 @@
 
     </b>
     <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-2t2c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -102,7 +102,7 @@
 
     </b>
     <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-1t1c-scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -131,7 +131,7 @@
 
     </b>
     <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-2t2c-scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -160,7 +160,7 @@
 
     </b>
     <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-1t1c-sw-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -189,7 +189,7 @@
 
     </b>
     <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ipsec-3n-hsw-xl710-64b-2t2c-sw-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

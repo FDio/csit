@@ -46,7 +46,7 @@
 
     </b>
     <iframe id="ifrm21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-2n-dnv-x553-64b-base-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -72,7 +72,7 @@
 
     </b>
     <iframe id="ifrm22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-2n-dnv-x553-64b-base-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

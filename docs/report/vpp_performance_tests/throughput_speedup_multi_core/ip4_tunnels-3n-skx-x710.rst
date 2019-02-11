@@ -44,7 +44,7 @@
 
     </b>
     <iframe id="ifrm09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -70,7 +70,7 @@
 
     </b>
     <iframe id="ifrm10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -99,7 +99,7 @@
 
     </b>
     <iframe id="ifrm11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-x710-64b-base_and_features-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -125,7 +125,7 @@
 
     </b>
     <iframe id="ifrm12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-skx-x710-64b-base_and_features-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

@@ -44,7 +44,7 @@
 
     </b>
     <iframe id="ifrm11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -70,7 +70,7 @@
 
     </b>
     <iframe id="ifrm12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -100,7 +100,7 @@
 
         </b>
         <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-base_and_features-ndr-tsa.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -126,7 +126,7 @@
 
         </b>
         <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-base_and_features-pdr-tsa.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex

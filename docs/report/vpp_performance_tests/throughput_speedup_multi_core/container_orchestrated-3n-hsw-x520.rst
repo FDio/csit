@@ -44,7 +44,7 @@
 
     </b>
     <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -70,7 +70,7 @@
 
     </b>
     <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -100,7 +100,7 @@
 
         </b>
         <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-ndr-tsa.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -126,7 +126,7 @@
 
         </b>
         <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-pdr-tsa.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex

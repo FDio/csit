@@ -36,15 +36,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput:  memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -56,21 +50,15 @@
             \label{fig:memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
-
-:index:`Packet Throughput:  memif-3n-skx-x710-64b-2t1c-base_and_scale-pdr`
 
 .. raw:: html
 
     </b>
     <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-skx-x710-64b-2t1c-base_and_scale-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -91,15 +79,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput:  memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -111,21 +93,15 @@
             \label{fig:memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Packet Throughput:  memif-3n-skx-x710-64b-4t2c-base_and_scale-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm16" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-skx-x710-64b-4t2c-base_and_scale-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

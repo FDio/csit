@@ -36,15 +36,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput: vts-3n-hsw-x520-114b-1t1c-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-1t1c-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -56,21 +50,15 @@
             \label{fig:vts-3n-hsw-x520-114b-1t1c-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Packet Throughput: vts-3n-hsw-x520-114b-1t1c-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-1t1c-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -91,15 +79,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput: vts-3n-hsw-x520-114b-2t2c-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-2t2c-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -111,21 +93,15 @@
             \label{fig:vts-3n-hsw-x520-114b-2t2c-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Packet Throughput: vts-3n-hsw-x520-114b-2t2c-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vts-3n-hsw-x520-114b-2t2c-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

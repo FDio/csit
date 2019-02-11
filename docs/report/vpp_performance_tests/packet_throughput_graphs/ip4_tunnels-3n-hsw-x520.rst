@@ -37,15 +37,9 @@
 
     .. raw:: html
 
-        <center><b>
-
-    :index:`Packet Throughput: ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr`
-
-    .. raw:: html
-
-        </b>
+        <center>
         <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -57,21 +51,15 @@
                 \label{fig:ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr}
         \end{figure}
 
-    .. raw:: html
-
-        <center><b>
-
     .. raw:: latex
 
         \clearpage
 
-    :index:`Packet Throughput: ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-pdr`
-
     .. raw:: html
 
-        </b>
+        <center>
         <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-pdr.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -83,6 +71,7 @@
                 \label{fig:ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-pdr}
         \end{figure}
 
+
     .. raw:: latex
 
         \clearpage
@@ -92,15 +81,9 @@
 
     .. raw:: html
 
-        <center><b>
-
-    :index:`Packet Throughput: ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr`
-
-    .. raw:: html
-
-        </b>
+        <center>
         <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -112,21 +95,15 @@
                 \label{fig:ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr}
         \end{figure}
 
-    .. raw:: html
-
-        <center><b>
-
     .. raw:: latex
 
         \clearpage
 
-    :index:`Packet Throughput: ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-pdr`
-
     .. raw:: html
 
-        </b>
+        <center>
         <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-pdr.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -147,15 +124,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput: ip4tun-3n-hsw-x520-64b-1t1c-base_and_features-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-1t1c-base_and_features-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -167,21 +138,15 @@
             \label{fig:ip4tun-3n-hsw-x520-64b-1t1c-base_and_features-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Packet Throughput: ip4tun-3n-hsw-x520-64b-1t1c-base_and_features-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-1t1c-base_and_features-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -202,15 +167,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput: ip4tun-3n-hsw-x520-64b-2t2c-base_and_features-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-2t2c-base_and_features-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -222,21 +181,15 @@
             \label{fig:ip4tun-3n-hsw-x520-64b-2t2c-base_and_features-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Packet Throughput: ip4tun-3n-hsw-x520-64b-2t2c-base_and_features-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x520-64b-2t2c-base_and_features-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
