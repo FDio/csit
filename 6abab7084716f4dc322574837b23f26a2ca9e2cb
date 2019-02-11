@@ -70,6 +70,30 @@
       "revId": "6abab7084716f4dc322574837b23f26a2ca9e2cb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ba55eda_91d008dd",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-11T13:34:31Z",
+      "side": 1,
+      "message": "Yes, **kwargs can be used as a way to disallow calling with positional arguments.\nBut that makes it harder for code checking tools to verify the types involved conform to what the docstring specifies (no, \"dict\" is not a useful type specification for kwargs object).\n\nThere are several ways how to avoid this kind of error, but I am not sure which one is best for CSIT.",
+      "parentUuid": "cf9c1454_7c8a2479",
+      "range": {
+        "startLine": 551,
+        "startChar": 27,
+        "endLine": 551,
+        "endChar": 45
+      },
+      "revId": "6abab7084716f4dc322574837b23f26a2ca9e2cb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
