@@ -425,6 +425,7 @@
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | ...
 | | Return From Keyword If | ${rate} <= 10000 | ${-1}
+| | # TODO: Remove this keyword, or suport unidirectional traffic.
 | | Send traffic on tg | ${duration} | ${rate}pps | ${framesize}
 | | ... | ${topology_type} | warmup_time=0
 | | Run keyword and return | Get latency
@@ -462,27 +463,27 @@
 | | ... | - rate - Rate for sending packets. Type: string
 | | ... | - framesize - L2 Frame Size [B] or IMIX_v4_1. Type: integer/string
 | | ... | - topology_type - Topology type. Type: string
-| | ... | - unidirection - False if traffic is bidirectional. Type: boolean
-| | ... | - tx_port - TX port of TG, default 0. Type: integer
-| | ... | - rx_port - RX port of TG, default 1. Type: integer
 | | ... | - subsamples - How many trials in this measurement. Type:int
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
 | | ... | - fail_no_traffic - Whether to fail on zero receive count. Type: boolean
+| | ... | - unidirection - False if traffic is bidirectional. Type: boolean
+| | ... | - tx_port - TX port of TG, default 0. Type: integer
+| | ... | - rx_port - RX port of TG, default 1. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Traffic should pass with maximum rate \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \| ${False} \| ${0} | ${1} \|
-| | ... | \| ${1} \| ${10.0} \| ${False} \|
+| | ... | \| 3-node-IPv4 \| ${1} \| ${10.0} \| ${False}
+| | ... | \| ${False} \| ${0} | ${1} \|
 | | ...
 | | [Arguments] | ${rate} | ${framesize} | ${topology_type}
-| | ... | ${unidirection}=${False} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ... | ${trial_duration}=${perf_trial_duration} | ${fail_no_traffic}=${True}
 | | ... | ${subsamples}=${perf_trial_multiplicity}
+| | ... | ${unidirection}=${False} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ...
 | | ${results} = | Send traffic at specified rate | ${trial_duration} | ${rate}
-| | ... | ${framesize} | ${topology_type} | ${unidirection}
-| | ... | ${tx_port} | ${rx_port} | ${subsamples}
+| | ... | ${framesize} | ${topology_type} | ${subsamples} | ${unidirection}
+| | ... | ${tx_port} | ${rx_port}
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
 | | ... | append=yes
@@ -500,19 +501,19 @@
 | | ... | - rate - Rate for sending packets. Type: string
 | | ... | - framesize - L2 Frame Size [B]. Type: integer/string
 | | ... | - topology_type - Topology type. Type: string
+| | ... | - subsamples - How many trials in this measurement. Type: int
 | | ... | - unidirection - False if traffic is bidirectional. Type: boolean
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
 | | ... | - rx_port - RX port of TG, default 1. Type: integer
-| | ... | - subsamples - How many trials in this measurement. Type: int
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Send traffic at specified rate \| ${1.0} \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \| ${False} \| ${0} | ${1} \| ${10} \|
+| | ... | \| 3-node-IPv4 \| ${10} \| ${False} \| ${0} | ${1} \|
 | | ...
 | | [Arguments] | ${trial_duration} | ${rate} | ${framesize}
-| | ... | ${topology_type} | ${unidirection}=${False} | ${tx_port}=${0}
-| | ... | ${rx_port}=${1} | ${subsamples}=${1}
+| | ... | ${topology_type} | ${subsamples}=${1} | ${unidirection}=${False}
+| | ... | ${tx_port}=${0} | ${rx_port}=${1}
 | | ...
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${framesize} | ${topology_type}
@@ -524,9 +525,11 @@
 | | ... | VPP enable elog traces on all DUTs | ${nodes}
 | | ${results} = | Create List
 | | :FOR | ${i} | IN RANGE | ${subsamples}
+| | | # The following line is skipping some default arguments,
+| | | # that is why subsequent arguments have to be named.
 | | | Send traffic on tg | ${trial_duration} | ${rate} | ${framesize}
-| | | ... | ${topology_type} | ${unidirection} | ${tx_port}
-| | | ... | ${rx_port} | warmup_time=0
+| | | ... | ${topology_type} | warmup_time=${0} | unidirection=${unidirection}
+| | | ... | tx_port=${tx_port} | rx_port=${rx_port}
 | | | ${rx} = | Get Received
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
@@ -561,9 +564,9 @@
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | ... | ${unidirection}=${False} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ...
-| | Send traffic on tg | -1 | ${rate} | ${framesize} | ${topology_type}
-| | ... | ${unidirection} | ${tx_port} | ${rx_port}
-| | ... | warmup_time=0 | async_call=${True} | latency=${False}
+| | Send traffic on tg | ${-1} | ${rate} | ${framesize} | ${topology_type}
+| | ... | warmup_time=${0} | async_call=${True} | latency=${False}
+| | ... | unidirection=${unidirection} | tx_port=${tx_port} | rx_port=${rx_port}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | Clear runtime counters on all DUTs | ${nodes}
 | | Sleep | ${duration}
