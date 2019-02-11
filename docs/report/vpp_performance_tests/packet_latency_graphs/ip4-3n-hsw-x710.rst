@@ -36,15 +36,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -65,15 +59,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -94,15 +82,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x710-64b-1t1c-features-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-1t1c-features-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -123,15 +105,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x710-64b-2t2c-features-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-2t2c-features-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -152,15 +128,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x710-64b-1t1c-features-nat44-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-1t1c-features-nat44-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -181,15 +151,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x710-64b-2t2c-features-nat44-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm16" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-2t2c-features-nat44-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -210,15 +174,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x710-64b-1t1c-features-iacl-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm17" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-1t1c-features-iacl-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -239,15 +197,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x710-64b-2t2c-features-iacl-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm18" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-2t2c-features-iacl-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -269,15 +221,9 @@
 
     .. raw:: html
 
-        <center><b>
-
-    :index:`Packet Latency: ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr`
-
-    .. raw:: html
-
-        </b>
+        <center>
         <iframe id="ifrm19" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -298,15 +244,9 @@
 
     .. raw:: html
 
-        <center><b>
-
-    :index:`Packet Latency: ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr`
-
-    .. raw:: html
-
-        </b>
+        <center>
         <iframe id="ifrm20" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex

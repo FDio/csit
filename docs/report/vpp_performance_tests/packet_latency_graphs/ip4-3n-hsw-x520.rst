@@ -36,15 +36,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -65,15 +59,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -94,15 +82,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x520-64b-1t1c-features-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x520-64b-1t1c-features-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -123,15 +105,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x520-64b-2t2c-features-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x520-64b-2t2c-features-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -152,15 +128,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x520-64b-1t1c-features-nat44-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x520-64b-1t1c-features-nat44-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -181,15 +151,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x520-64b-2t2c-features-nat44-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x520-64b-2t2c-features-nat44-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -210,15 +174,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x520-64b-1t1c-features-iacl-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x520-64b-1t1c-features-iacl-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -239,15 +197,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x520-64b-2t2c-features-iacl-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x520-64b-2t2c-features-iacl-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -268,15 +220,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x520-64b-1t1c-features-oacl-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x520-64b-1t1c-features-oacl-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -297,15 +243,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: ip4-3n-hsw-x520-64b-2t2c-features-oacl-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-x520-64b-2t2c-features-oacl-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

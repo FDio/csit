@@ -59,15 +59,9 @@ Additional information about graph data:
 
 .. raw:: html
 
-    <center><b>
-
-:index:`30min Soak Test (PLRsearch)`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/example-soak-boxes.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

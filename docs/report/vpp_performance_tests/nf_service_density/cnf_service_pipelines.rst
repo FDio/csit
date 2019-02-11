@@ -75,7 +75,6 @@ Additional information about graph data:
 
     <center>
     <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-2t1c-base-csp-mrr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -98,7 +97,6 @@ Additional information about graph data:
 
     <center>
     <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-4t2c-base-csp-mrr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -121,7 +119,6 @@ imix-2t1c-eth-l2bd
 
     <center>
     <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-2t1c-base-csp-mrr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -144,7 +141,6 @@ imix-4t2c-eth-l2bd
 
     <center>
     <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-4t2c-base-csp-mrr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -170,7 +166,6 @@ imix-4t2c-eth-l2bd
 
     <center>
     <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-2t1c-base-csp-ndr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -193,7 +188,6 @@ imix-4t2c-eth-l2bd
 
     <center>
     <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-4t2c-base-csp-ndr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -216,7 +210,6 @@ imix-2t1c-eth-l2bd
 
     <center>
     <iframe id="ifrm07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-2t1c-base-csp-ndr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -239,7 +232,6 @@ imix-4t2c-eth-l2bd
 
     <center>
     <iframe id="ifrm08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-4t2c-base-csp-ndr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -265,7 +257,6 @@ imix-4t2c-eth-l2bd
 
     <center>
     <iframe id="ifrm09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-2t1c-base-csp-pdr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -288,7 +279,6 @@ imix-4t2c-eth-l2bd
 
     <center>
     <iframe id="ifrm10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-4t2c-base-csp-pdr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -311,7 +301,6 @@ imix-2t1c-eth-l2bd
 
     <center>
     <iframe id="ifrm11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-2t1c-base-csp-pdr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -334,7 +323,6 @@ imix-4t2c-eth-l2bd
 
     <center>
     <iframe id="ifrm12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-4t2c-base-csp-pdr.html"></iframe>
-    <p><br></p>
     </center>
 
 .. raw:: latex

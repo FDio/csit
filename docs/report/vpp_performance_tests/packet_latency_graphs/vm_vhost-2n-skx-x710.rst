@@ -36,15 +36,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: vhost-l2sw-2n-skx-x710-64b-2t1c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm33" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-2t1c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -65,15 +59,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: vhost-l2sw-2n-skx-x710-64b-4t2c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm34" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-4t2c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -94,15 +82,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm35" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -123,15 +105,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm36" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -152,15 +128,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: vhost-l2sw-2n-skx-x710-64b-2t1c-base-vm-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm37" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-2t1c-base-vm-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -181,15 +151,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: vhost-l2sw-2n-skx-x710-64b-4t2c-base-vm-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm38" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-4t2c-base-vm-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -210,15 +174,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: vhost-ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm39" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -239,15 +197,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: vhost-ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm40" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

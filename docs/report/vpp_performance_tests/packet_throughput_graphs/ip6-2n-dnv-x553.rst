@@ -38,15 +38,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput: ip6-2n-dnv-x553-78b-1t1c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm37" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-dnv-x553-78b-1t1c-base-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -58,21 +52,15 @@
             \label{fig:ip6-2n-dnv-x553-78b-1t1c-base-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Packet Throughput: ip6-2n-dnv-x553-78b-1t1c-base-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm38" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-dnv-x553-78b-1t1c-base-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -93,15 +81,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput: ip6-2n-dnv-x553-78b-2t2c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm39" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-dnv-x553-78b-2t2c-base-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -113,21 +95,15 @@
             \label{fig:ip6-2n-dnv-x553-78b-2t2c-base-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Packet Throughput: ip6-2n-dnv-x553-78b-2t2c-base-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm40" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-dnv-x553-78b-2t2c-base-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

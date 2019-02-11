@@ -36,15 +36,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput: ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -56,21 +50,15 @@
             \label{fig:ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Packet Throughput: ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-1t1c-base_and_scale-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -91,15 +79,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput: ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -111,21 +93,15 @@
             \label{fig:ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Packet Throughput: ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-2t2c-base_and_scale-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -146,15 +122,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput: ip4tun-3n-hsw-x710-64b-1t1c-base_and_features-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-1t1c-base_and_features-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -166,21 +136,15 @@
             \label{fig:ip4tun-3n-hsw-x710-64b-1t1c-base_and_features-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Packet Throughput: ip4tun-3n-hsw-x710-64b-1t1c-base_and_features-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-1t1c-base_and_features-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -201,15 +165,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Throughput: ip4tun-3n-hsw-x710-64b-2t2c-base_and_features-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-2t2c-base_and_features-ndr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -221,21 +179,15 @@
             \label{fig:ip4tun-3n-hsw-x710-64b-2t2c-base_and_features-ndr}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Packet Throughput: ip4tun-3n-hsw-x710-64b-2t2c-base_and_features-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm16" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4tun-3n-hsw-x710-64b-2t2c-base_and_features-pdr.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
