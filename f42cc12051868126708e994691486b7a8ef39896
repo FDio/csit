@@ -2,6 +2,184 @@
   "comments": [
     {
       "key": {
+        "uuid": "7a13cf20_38b758f2",
+        "filename": "khem_diffs",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "This file is what?",
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "632cbeac_d72b8f55",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "What if command will fail like in my case? There is no warning.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 66
+      },
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "989f5417_6420d929",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "not working for me:\ntestuser@s5-t22-sut1:~$ ll /etc/apt/sources.list.d/fdio_*.list\n-rw-r--r-- 1 root root 230 Dec  4 19:50 /etc/apt/sources.list.d/fdio_master.list\n-rw-r--r-- 1 root root 233 Feb  5 06:50 /etc/apt/sources.list.d/fdio_release.list\n\ntestuser@s5-t22-sut1:~$ APT_FDIO_REPO_FILE\u003d$(ls \"/etc/apt/sources.list.d/fdio_*.list\")\nls: cannot access \u0027/etc/apt/sources.list.d/fdio_*.list\u0027: No such file or directory",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 66
+      },
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cdfa3eca_03ebce80",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "what if above command is matching two files?",
+      "range": {
+        "startLine": 68,
+        "startChar": 44,
+        "endLine": 68,
+        "endChar": 65
+      },
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "11a7f297_41a83e55",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "what if this command will fail? there is no warning",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 44
+      },
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26e59561_3ae5886b",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "not",
+      "range": {
+        "startLine": 71,
+        "startChar": 24,
+        "endLine": 71,
+        "endChar": 29
+      },
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "494c91d4_bdbf0319",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "what if the command will fail?",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 76
+      },
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bd77b48_dd40cecf",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "\"${vpppkg}\"",
+      "range": {
+        "startLine": 78,
+        "startChar": 29,
+        "endLine": 78,
+        "endChar": 36
+      },
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "92941104_2d50584b",
         "filename": "resources/libraries/bash/function/gather.sh",
         "patchSetId": 25
@@ -18,6 +196,93 @@
         "startChar": 16,
         "endLine": 285,
         "endChar": 18
+      },
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb22a280_ad16a327",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 25
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "Just wait untill rls1901 is out. this code is not there as perf is going to be UBuntu 1804 as well. See: https://gerrit.fd.io/r/#/c/17296/2/resources/libraries/bash/function/gather.sh",
+      "parentUuid": "92941104_2d50584b",
+      "range": {
+        "startLine": 276,
+        "startChar": 16,
+        "endLine": 285,
+        "endChar": 18
+      },
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74704806_b1e72dbe",
+        "filename": "tests/vpp/10ge2p1x520-ethip4-ip4base-mrr.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "wrong direcotry for this file",
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cafd9010_6955d3d5",
+        "filename": "topologies/available/lf_3n_tsh_testbed33.yaml",
+        "patchSetId": 25
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "2019, applies in every file you touch",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "f42cc12051868126708e994691486b7a8ef39896",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b576f56_030f9966",
+        "filename": "topologies/available/lf_3n_tsh_testbed33.yaml",
+        "patchSetId": 25
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-11T15:03:44Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 26
       },
       "revId": "f42cc12051868126708e994691486b7a8ef39896",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
