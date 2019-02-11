@@ -91,6 +91,29 @@
       "revId": "a5452b7982ef48b98a0e92c701a04d0c9dc8b889",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8651965b_eecfb115",
+        "filename": "resources/tools/vagrant/ansible/vppdevice",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-11T12:55:26Z",
+      "side": 1,
+      "message": "Does this have to be tab (instead of spaces)?",
+      "range": {
+        "startLine": 4,
+        "startChar": 9,
+        "endLine": 4,
+        "endChar": 10
+      },
+      "revId": "a5452b7982ef48b98a0e92c701a04d0c9dc8b889",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
