@@ -1,7 +1,7 @@
 K8s Container Memif
 -------------------
 
-|csit-release| includes tests of VPP topologies running in K8s
+CSIT includes tests of VPP topologies running in K8s
 orchestrated Pods/Containers and connected over memif virtual
 interfaces. In order to provide simple topology coding flexibility and
 extensibility container orchestration is done with `Kubernetes

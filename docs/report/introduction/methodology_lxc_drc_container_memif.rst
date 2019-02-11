@@ -1,7 +1,7 @@
 LXC/DRC Container Memif
 -----------------------
 
-|csit-release| includes tests taking advantage of VPP memif virtual
+CSIT includes tests taking advantage of VPP memif virtual
 interface (shared memory interface) to interconnect VPP running in
 Containers. VPP vswitch instance runs in bare-metal user-mode handling
 NIC interfaces and connecting over memif (Slave side) to VPPs running in

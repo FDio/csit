@@ -26,10 +26,15 @@ available for download.
    - **Packet Throughput**: NDR, PDR throughput graphs based on results
      from repeated same test job executions to verify repeatibility of
      measurements.
-   - **Packet Latency**: Latency graphs based on results from test job
-     executions.
    - **Speedup Multi-Core**: NDR, PDR throughput multi-core speedup
      graphs based on results from test job executions.
+   - **Packet Latency**: Latency graphs based on results from test job
+     executions.
+   - **Soak Tests**: Long duration soak tests are executed using PLRsearch
+     algorithm.
+   - **NFV Service Density**: Network Function Virtualization (NFV) service
+     density tests focus on measuring total per server throughput at varied NFV
+     service "packing" densities with vswitch providing host dataplane.
    - **HTTP/TCP Performance**: HTTP/TCP VPP test server performance
      graphs.
    - **Comparisons**: Performance comparisons between VPP releases and
@@ -59,6 +64,17 @@ available for download.
    - **Documentation**: Pointers to CSIT source code documentation for
      DPDK performance tests.
 
+#. VPP DEVICE: VPP functional tests executed in physical FD.io
+   testbeds using containers.
+
+   - **Overview**: Tested virtual topologies, test coverage and naming
+     specifics;
+   - **Release Notes**: Changes in |csit-release|, added tests,
+     environment or methodology changes, known issues.
+   - **Integration Tests**: Functional test environment configuration.
+   - **Documentation**: Pointers to CSIT source code documentation for
+     VPP functional tests.
+
 #. VPP FUNCTIONAL: VPP functional tests executed in virtual FD.io
    testbeds.
 
@@ -70,7 +86,7 @@ available for download.
    - **Documentation**: Pointers to CSIT source code documentation for
      VPP functional tests.
 
-#. HONEYCOMBE FUNCTIONAL: Honeycomb functional tests executed in
+#. HONEYCOMB FUNCTIONAL: Honeycomb functional tests executed in
    virtual FD.io testbeds.
 
    - **Overview**: Tested virtual topologies, test coverage and naming
