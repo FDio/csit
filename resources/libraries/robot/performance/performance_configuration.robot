@@ -2325,7 +2325,7 @@
 | | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${True}
 | | ...
 | | ${nf_cpus_count}= | Get Length | ${nf_cpus}
-| | ${rxq}= | Run Keyword If | '${auto_scale}' == ${True}
+| | ${rxq}= | Run Keyword If | ${auto_scale} == ${True}
 | | ... | Set Variable | ${rxq_count_int}
 | | ... | ELSE | Set Variable | ${1}
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
@@ -2471,7 +2471,7 @@
 | | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${True}
 | | ...
 | | ${nf_cpus_count}= | Get Length | ${nf_cpus}
-| | ${rxq}= | Run Keyword If | '${auto_scale}' == ${True}
+| | ${rxq}= | Run Keyword If | ${auto_scale} == ${True}
 | | ... | Set Variable | ${rxq_count_int}
 | | ... | ELSE | Set Variable | ${1}
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
@@ -3067,7 +3067,7 @@
 | | [Arguments] | ${dut} | ${nf_chain}=${1} | ${nf_nodes}=${1}
 | | ... | ${auto_scale}=${True}
 | | ...
-| | ${rxq}= | Run Keyword If | '${auto_scale}' == ${True}
+| | ${rxq}= | Run Keyword If | ${auto_scale} == ${True}
 | | ... | Set Variable | ${rxq_count_int}
 | | ... | ELSE | Set Variable | ${1}
 | | ${bd_id2}= | Evaluate | ${nf_nodes}+1
@@ -3157,7 +3157,7 @@
 | | ...
 | | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
 | | ...
-| | ${rxq}= | Run Keyword If | '${auto_scale}' == ${True}
+| | ${rxq}= | Run Keyword If | ${auto_scale} == ${True}
 | | ... | Set Variable | ${rxq_count_int}
 | | ... | ELSE | Set Variable | ${1}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
