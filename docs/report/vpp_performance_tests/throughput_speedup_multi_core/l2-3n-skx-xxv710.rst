@@ -36,15 +36,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Speedup Multi-core: l2sw-3n-skx-xxv710-64b-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-xxv710-64b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -56,21 +50,15 @@
             \label{fig:l2sw-3n-skx-xxv710-64b-base_and_scale-ndr-tsa}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Speedup Multi-core: l2sw-3n-skx-xxv710-64b-base_and_scale-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm16" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-xxv710-64b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

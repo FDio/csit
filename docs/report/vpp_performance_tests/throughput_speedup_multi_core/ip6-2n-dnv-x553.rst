@@ -38,15 +38,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Speedup Multi-core: ip6-2n-dnv-x553-78b-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm19" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-dnv-x553-78b-base-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -58,21 +52,15 @@
             \label{fig:ip6-2n-dnv-x553-78b-base-ndr-tsa}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Speedup Multi-core: ip6-2n-dnv-x553-78b-base-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm20" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-dnv-x553-78b-base-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

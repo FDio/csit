@@ -36,15 +36,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Speedup Multi-core: srv6-3n-hsw-x520-78b-1t1c-features-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/srv6-3n-hsw-x520-78b-features-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -56,21 +50,15 @@
             \label{fig:srv6-3n-hsw-x520-78b-features-ndr-tsa}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Speedup Multi-core: srv6-3n-hsw-x520-78b-1t1c-features-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/srv6-3n-hsw-x520-78b-features-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

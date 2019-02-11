@@ -36,15 +36,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Speedup Multi-core: vhost-l2sw-2n-skx-x710-64b-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm33" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-base-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -56,21 +50,15 @@
             \label{fig:vhost-l2sw-2n-skx-x710-64b-base-ndr-tsa}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Speedup Multi-core: vhost-l2sw-2n-skx-x710-64b-base-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm34" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-base-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -91,15 +79,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Speedup Multi-core: vhost-l2sw-2n-skx-x710-64b-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm35" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -111,21 +93,15 @@
             \label{fig:vhost-l2sw-2n-skx-x710-64b-base_and_scale-ndr-tsa}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Speedup Multi-core: vhost-l2sw-2n-skx-x710-64b-base_and_scale-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm36" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -146,15 +122,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Speedup Multi-core: vhost-l2sw-2n-skx-x710-64b-base-vm-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm37" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-base-vm-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -166,21 +136,15 @@
             \label{fig:vhost-l2sw-2n-skx-x710-64b-base-vm-ndr-tsa}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Speedup Multi-core: vhost-l2sw-2n-skx-x710-64b-base-vm-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm38" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-base-vm-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -201,15 +165,9 @@
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Speedup Multi-core: vhost-ip4-2n-skx-x710-64b-base_and_scale-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm39" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-2n-skx-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -221,21 +179,15 @@
             \label{fig:vhost-ip4-2n-skx-x710-64b-base_and_scale-ndr-tsa}
     \end{figure}
 
-.. raw:: html
-
-    <center><b>
-
 .. raw:: latex
 
     \clearpage
 
-:index:`Speedup Multi-core: vhost-ip4-2n-skx-x710-64b-base_and_scale-pdr`
-
 .. raw:: html
 
-    </b>
+    <center>
     <iframe id="ifrm40" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-2n-skx-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

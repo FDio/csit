@@ -49,7 +49,7 @@ plotted as individual points.
     <../../_static/archive/>`_.
 
     CSIT source code for the test cases used for plots can be found in
-    `CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/tcp?h=rls1810>`_.
+    `CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/tcp?h=rls1901>`_.
 
 .. raw:: latex
 
