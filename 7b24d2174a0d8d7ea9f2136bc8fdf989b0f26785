@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9947e36_aed1fbb3",
+        "filename": "docs/report/introduction/methodology_kvm_vms_vhost_user.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-11T15:10:04Z",
+      "side": 1,
+      "message": "Are the sizes varying anymore?",
+      "range": {
+        "startLine": 7,
+        "startChar": 13,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "7b24d2174a0d8d7ea9f2136bc8fdf989b0f26785",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
