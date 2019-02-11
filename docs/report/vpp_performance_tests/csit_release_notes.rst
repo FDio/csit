@@ -6,36 +6,13 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **BMRR Throughput**: MRR (Maximum Receive Rate) test code has been
-     updated with a configurable burst MRR parameters: trial duration
-     and number of trials in a single burst. Enables a new Burst MRR
-     (BMRR for short) methodology for more precise performance
-     trending. See updated :ref:`test_methodology` section
-     for more details.
-
-   - **2n-skx tests**: Added performamce tests for 2n-skx (2-Node Xeon
-     Skylake) testbeds: focus on baseline and scale tests, including
-     VM vhost and Container memif tests.
-
-   - **3n-skx tests**: Added performamce tests for 3n-skx (3-Node Xeon
-     Skylake) testbeds: VM vhost and Container memif tests.
-
-   - **VXLAN Scale Tests**: Added performamce tests for VXLAN scale with
-     dot1q and VPP L2BD.
-
-   - **AVF Driver Tests**: Added performamce tests for i40e AVF driver
-     on VPP, no DPDK required.
-
-   - **QAT**: Fixed reoccuring issues with QAT crypto accelerator cards.
-
-   - **VM Vhost Virtio Params Combinations**: Added performance tests
-     for VM vhost with different virtio parameters combinations:
-     indirect buffers, mergeable buffers.
-
-   - **K8s/Ligato in Trending**: Added K8s/Ligato Container memif tests
-     to daily trending.
-
-#. TEST FRAMEWORK
+   - **Service density 2n-skx tests**: Network Function Virtualization (NFV)
+     service density tests focus on measuring total per server throughput at
+     varied NFV service *packing* densities with vswitch providing host
+     dataplane. The goal is to compare and contrast performance of a shared
+     vswitch for different network topologies and virtualization technologies,
+     and their impact on vswitch performance and efficiency in a range of NFV
+     service configurations.
 
    - **Experimental Soak Tests**: Added performamce soak tests framework
      code for extended time duration tests and throughput discovery
@@ -43,23 +20,14 @@ Changes in |csit-release|
      days, weeks, months, years. See updated
      :ref:`test_methodology` section for more details.
 
-   - **Trending Tests BMRR**: Used new Burst MRR (BMRR) tests for daily
-     trending.
+#. TEST FRAMEWORK
 
-   - **Per VPP Patch Performance Checks**: Per VPP gerrit patch vs.
-     parent performance tests, anomaly detection and no verify voting
-     (-1/0/+1) yet. Manual trigger only. Not "marketed" to FD.io
-     community yet to avoid excessive LFN FD.io physical performance
-     testbed blocking.
+   - **Container code optimizations**: Optimized container library allows to
+     run containre_memif tests faster.
 
-   - **Patch-on-Patch Infra**: Added capability to run performance tests
-     using CSIT gerrit patch code testing VPP gerrit patch code, i.e.
-     before any VPP and/or CSIT code is merged into git branch.
-
-   - **CSIT PAPI Support**: Initial implementation of PAPI L1 KWs in
-     CSIT using VPP Python bindings. Required for migraing away from
-     VAT. Very few L1 KWs implemented ("show version", "show
-     interfaces").
+   - **CSIT PAPI Support**: Continue converting existing VAT L1 keywords to
+     PAPI L1 KWs in CSIT using VPP Python bindings. Required for migrating away
+     from VAT.
 
    - **General Code Housekeeping**: Ongoing RF keywords optimizations,
      removal of redundant RF keywords.
@@ -68,11 +36,7 @@ Changes in |csit-release|
 
    - **Graphs Layout Improvements**: Improved performance graphs layout
      for better readibility and maintenance: test grouping, axis
-     labels, descriptions, other informative decoration. Master report
-     generated. 744 graphs(!)
-
-   - **Performance Trending**: Further improvements of continuous
-     performance trending, anomaly detection and analysis.
+     labels, descriptions, other informative decoration.
 
 #. MISCELLANEOUS
 
@@ -100,16 +64,18 @@ List of known issues in |csit-release| for VPP performance tests:
 | 1  | `CSIT-570                               | Sporadic (1 in 200) NDR discovery test failures on x520. DPDK reporting rx-errors, indicating L1 issue.                         |
 |    | <https://jira.fd.io/browse/CSIT-570>`_  | Suspected issue with HW combination of X710-X520 in LF testbeds. Not observed outside of LF testbeds.                           |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 2  | `CSIT-1234                              | VPP IPSecHW scale interface mode 1core, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04.        |
-|    | <https://jira.fd.io/browse/CSIT-1234>`_ | ip4ipsecscale1000tnl-ip4base-int 1core CSIT-18.07/18.04 relative change: NDR -31%, PDR -32%, MRR -38%.                          |
+| 2  | `VPP-1562                               | Link bonding (mode LACP, transmit policy l34) test are failing due to VPP crashing producing core dump.                         |
+|    | <https://jira.fd.io/browse/VPP-1562>`_  |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 3  | `CSIT-1242                              | VPP xl710 ip4base test 1core, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-18.07 vs. CSIT-18.04.                  |
-|    | <https://jira.fd.io/browse/CSIT-1242>`_ | xl710 ip4base 1core CSIT-18.07/18.04 relative change: NDR -29%, high stdev.                                                     |
+| 3  | `CSIT-1427                              | Scale HW IPsec are failing due to issue with selecting ipsec backend in VPP.                                                    |
+|    | <https://jira.fd.io/browse/CSIT-1427>`_ |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 4  | `CSIT-1243                              | VPP nat44 base test 2core, low NDR and PDR 64B throughput in 3n-skx testbeds, compared to 3n-hsw testbeds.                      |
-|    | <https://jira.fd.io/browse/CSIT-1243>`_ | ip4base-nat44 2core 3n-skx/3n-hsw relative change: NDR -19%, PDR -22%.                                                          |
+| 4  | `VPP-1563                               | AVF L2patch tests are failing for all packet size and core combination. Reason: null-node blackholed packets in show error.     |
+|    | <https://jira.fd.io/browse/VPP-1563>`_  |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 5  | `CSIT-1246                              | Ligato K8S orchestrated tests are failing due to incompatibility of the latest released Ligato vpp-agent with VPP-18.07.        |
-|    | <https://jira.fd.io/browse/CSIT-1246>`_ | Past vpp-agent releases are not compatible either.                                                                              |
+| 5  | `CSIT-1234                              | VPP IPSecHW/IPSecsW scale interface mode, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-19.01 vs. CSIT-18.10.      |
+|    | <https://jira.fd.io/browse/CSIT-1234>`_ |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-
+| 6  | `CSIT-1428                              | VM vhost tests with RXQ more than 2 are failing on 3n-skx. Suspecting RXQ configuration issues.                                 |
+|    | <https://jira.fd.io/browse/CSIT-1428>`_ |                                                                                                                                 |
++----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
