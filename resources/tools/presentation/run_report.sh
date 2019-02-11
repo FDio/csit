@@ -38,7 +38,7 @@ export PYTHONPATH=`pwd`
 python pal.py \
     --specification specification.yaml \
     --release ${RELEASE} \
-    --week "06" \
+    --week "07" \
     --logging INFO \
     --force
 
