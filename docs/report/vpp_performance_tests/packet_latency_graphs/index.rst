@@ -57,6 +57,4 @@ Additional information about graph data:
     container_memif
     container_orchestrated
     ipsec
-
-..
     vts

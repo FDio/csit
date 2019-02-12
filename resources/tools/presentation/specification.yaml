@@ -10737,138 +10737,138 @@
     title: "ip4-3n-skx-x710-64b-4t2c-features-iacl-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP IPv4 3n-hsw-x710 features oacl
--
-  type: "plot"
-  title: "VPP Throughput: ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '2T1C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip4-3n-skx-x710-64b-2t1c-features-oacl-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-features-oacl-pdr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '2T1C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4-3n-skx-x710-64b-2t1c-features-oacl-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '4T2C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip4-3n-skx-x710-64b-4t2c-features-oacl-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-oacl-pdr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '4T2C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4-3n-skx-x710-64b-4t2c-features-oacl-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP IPv4 3n-hsw-x710 features oacl
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '2T1C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4-3n-skx-x710-64b-2t1c-features-oacl-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-features-oacl-pdr"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '2T1C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4-3n-skx-x710-64b-2t1c-features-oacl-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '4T2C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4-3n-skx-x710-64b-4t2c-features-oacl-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-oacl-pdr"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '4T2C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4-3n-skx-x710-64b-4t2c-features-oacl-pdr"
+#    layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv4 3n-hsw-xl710 base and scale
 -
@@ -11551,138 +11551,138 @@
     title: "ip4-3n-hsw-x710-64b-2t2c-features-iacl-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP IPv4 3n-skx-x710 features oacl
--
-  type: "plot"
-  title: "VPP Throughput: ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '1T1C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip4-3n-hsw-x710-64b-1t1c-features-oacl-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-features-oacl-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '1T1C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4-3n-hsw-x710-64b-1t1c-features-oacl-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '2T2C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip4-3n-hsw-x710-64b-2t2c-features-oacl-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-oacl-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '2T2C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4-3n-hsw-x710-64b-2t2c-features-oacl-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP IPv4 3n-skx-x710 features oacl
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4-3n-hsw-x710-64b-1t1c-features-oacl-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-features-oacl-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4-3n-hsw-x710-64b-1t1c-features-oacl-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4-3n-hsw-x710-64b-2t2c-features-oacl-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-oacl-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4-3n-hsw-x710-64b-2t2c-features-oacl-pdr"
+#    layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv4 2n-skx-x710 base and scale
 -
@@ -12069,138 +12069,138 @@
 
 ################################################################################
 
-# Packet Throughput - VPP IPv4 tunnels 3n-hsw-x520 base and scale
--
-  type: "plot"
-  title: "VPP Throughput: ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'ENCAP' and
-           'NDRPDR' and
-           '1T1C' and
-           ('VXLAN' or 'LISP') and
-           not 'VHOST' and
-           not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "not DOT1Q"
-  - "VXLAN_1"
-  - "VXLAN_10"
-  - "VXLAN_100"
-  - "VXLAN_1000"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'ENCAP' and
-           'NDRPDR' and
-           '1T1C' and
-           ('VXLAN' or 'LISP') and
-           not 'VHOST' and
-           not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "not DOT1Q"
-  - "VXLAN_1"
-  - "VXLAN_10"
-  - "VXLAN_100"
-  - "VXLAN_1000"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'ENCAP' and
-           'NDRPDR' and
-           '2T2C' and
-           ('VXLAN' or 'LISP') and
-           not 'VHOST' and
-           not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "not DOT1Q"
-  - "VXLAN_1"
-  - "VXLAN_10"
-  - "VXLAN_100"
-  - "VXLAN_1000"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'ENCAP' and
-           'NDRPDR' and
-           '2T2C' and
-           ('VXLAN' or 'LISP') and
-           not 'VHOST' and
-           not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "not DOT1Q"
-  - "VXLAN_1"
-  - "VXLAN_10"
-  - "VXLAN_100"
-  - "VXLAN_1000"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP IPv4 tunnels 3n-hsw-x520 base and scale
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'ENCAP' and
+#           'NDRPDR' and
+#           '1T1C' and
+#           ('VXLAN' or 'LISP') and
+#           not 'VHOST' and
+#           not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "not DOT1Q"
+#  - "VXLAN_1"
+#  - "VXLAN_10"
+#  - "VXLAN_100"
+#  - "VXLAN_1000"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'ENCAP' and
+#           'NDRPDR' and
+#           '1T1C' and
+#           ('VXLAN' or 'LISP') and
+#           not 'VHOST' and
+#           not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "not DOT1Q"
+#  - "VXLAN_1"
+#  - "VXLAN_10"
+#  - "VXLAN_100"
+#  - "VXLAN_1000"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'ENCAP' and
+#           'NDRPDR' and
+#           '2T2C' and
+#           ('VXLAN' or 'LISP') and
+#           not 'VHOST' and
+#           not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "not DOT1Q"
+#  - "VXLAN_1"
+#  - "VXLAN_10"
+#  - "VXLAN_100"
+#  - "VXLAN_1000"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'ENCAP' and
+#           'NDRPDR' and
+#           '2T2C' and
+#           ('VXLAN' or 'LISP') and
+#           not 'VHOST' and
+#           not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "not DOT1Q"
+#  - "VXLAN_1"
+#  - "VXLAN_10"
+#  - "VXLAN_100"
+#  - "VXLAN_1000"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
+#    layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv4 tunnels 3n-hsw-x520 - features
 -
@@ -21396,64 +21396,64 @@
     title: "ip4-3n-hsw-x710-64b-2t2c-features-iacl-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP IPv4 3n-hsw-x710 features oacl
--
-  type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '1T1C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  layout:
-    title: "ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '2T2C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  layout:
-    title: "ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP IPv4 3n-hsw-x710 features oacl
+#-
+#  type: "plot"
+#  title: "VPP Latency: ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  layout:
+#    title: "ip4-3n-hsw-x710-64b-1t1c-features-oacl-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  layout:
+#    title: "ip4-3n-hsw-x710-64b-2t2c-features-oacl-ndr"
+#    layout: "plot-latency"
 
 # Packet Latency - VPP IPv4 3n-hsw-xl710 base and scale
 -
@@ -21758,64 +21758,64 @@
     title: "ip4-3n-skx-x710-64b-4t2c-features-iacl-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP IPv4 3n-skx-x710 features oacl
--
-  type: "plot"
-  title: "VPP Latency: ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '2T1C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  layout:
-    title: "ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-ndr-oacl-lat"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           '4T2C' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  layout:
-    title: "ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP IPv4 3n-skx-x710 features oacl
+#-
+#  type: "plot"
+#  title: "VPP Latency: ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '2T1C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  layout:
+#    title: "ip4-3n-skx-x710-64b-2t1c-features-oacl-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-4t2c-features-ndr-oacl-lat"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           '4T2C' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  layout:
+#    title: "ip4-3n-skx-x710-64b-4t2c-features-oacl-ndr"
+#    layout: "plot-latency"
 
 # Packet Latency - VPP IPv4 2n-skx-x710 base and scale
 -
@@ -21937,64 +21937,64 @@
 
 ################################################################################
 
-# Packet Latency - VPP Ipv4 tunnels 3n-hsw-x520
--
-  type: "plot"
-  title: "VPP Latency: ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'ENCAP' and
-           'NDRPDR' and
-           '1T1C' and
-           ('VXLAN' or 'LISP') and
-           not 'VHOST' and
-           not 'IPSECHW'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "not DOT1Q"
-  - "VXLAN_1"
-  - "VXLAN_10"
-  - "VXLAN_100"
-  - "VXLAN_1000"
-  layout:
-    title: "ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'ENCAP' and
-           'NDRPDR' and
-           '2T2C' and
-           ('VXLAN' or 'LISP') and
-           not 'VHOST' and
-           not 'IPSECHW'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "not DOT1Q"
-  - "VXLAN_1"
-  - "VXLAN_10"
-  - "VXLAN_100"
-  - "VXLAN_1000"
-  layout:
-    title: "ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP Ipv4 tunnels 3n-hsw-x520
+#-
+#  type: "plot"
+#  title: "VPP Latency: ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'ENCAP' and
+#           'NDRPDR' and
+#           '1T1C' and
+#           ('VXLAN' or 'LISP') and
+#           not 'VHOST' and
+#           not 'IPSECHW'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "not DOT1Q"
+#  - "VXLAN_1"
+#  - "VXLAN_10"
+#  - "VXLAN_100"
+#  - "VXLAN_1000"
+#  layout:
+#    title: "ip4tun-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'ENCAP' and
+#           'NDRPDR' and
+#           '2T2C' and
+#           ('VXLAN' or 'LISP') and
+#           not 'VHOST' and
+#           not 'IPSECHW'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "not DOT1Q"
+#  - "VXLAN_1"
+#  - "VXLAN_10"
+#  - "VXLAN_100"
+#  - "VXLAN_1000"
+#  layout:
+#    title: "ip4tun-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
+#    layout: "plot-latency"
 
 # Packet Latency - VPP Ipv4 tunnels 3n-hsw-x520 - features
 -
@@ -22017,10 +22017,10 @@
   - "latency"
   - "parent"
   - "tags"
-  sort:
-  - "L2BDMACLRN"
-  - "L2XCFWD"
-  - "LISP"
+#  sort:
+#  - "L2BDMACLRN"
+#  - "L2XCFWD"
+#  - "LISP"
   layout:
     title: "ip4tun-3n-hsw-x520-64b-1t1c-base_and_features-ndr"
     layout: "plot-latency"
@@ -26148,62 +26148,62 @@
     title: "ip4-3n-hsw-x710-64b-features-iacl-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Speedup - VPP IPv4 3n-hsw-x710 features oacl
--
-  type: "plot"
-  title: "Speedup: ip4-3n-hsw-x710-64b-features-oacl-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-features-oacl-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  layout:
-    title: "ip4-3n-hsw-x710-64b-features-oacl-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip4-3n-hsw-x710-64b-features-oacl-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-features-oacl-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  layout:
-    title: "ip4-3n-hsw-x710-64b-features-oacl-pdr"
-    layout: "plot-throughput-speedup-analysis"
+## Speedup - VPP IPv4 3n-hsw-x710 features oacl
+#-
+#  type: "plot"
+#  title: "Speedup: ip4-3n-hsw-x710-64b-features-oacl-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-features-oacl-ndr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  layout:
+#    title: "ip4-3n-hsw-x710-64b-features-oacl-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "Speedup: ip4-3n-hsw-x710-64b-features-oacl-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-hsw-x710-64b-features-oacl-pdr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  layout:
+#    title: "ip4-3n-hsw-x710-64b-features-oacl-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv4 3n-hsw-xl710 base and scale
 -
@@ -26777,60 +26777,60 @@
     title: "ip4tun-3n-hsw-x520-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Speedup - VPP IPv4 Tunnels 3n-hsw-x520 - features
--
-  type: "plot"
-  title: "Speedup: ip4tun-3n-hsw-x520-64b-base_and_features-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-base_and_features-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'ENCAP' and
-           'NDRPDR' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
-           not 'DOT1Q' and
-           not 'VHOST' and
-           not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2BDMACLRN"
-  - "L2XCFWD"
-  - "LISP"
-  layout:
-    title: "ip4tun-3n-hsw-x520-64b-base_and_features-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "Speedup: ip4tun-3n-hsw-x520-64b-base_and_features-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-base_and_features-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'ENCAP' and
-           'NDRPDR' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
-           not 'DOT1Q' and
-           not 'VHOST' and
-           not 'IPSECHW'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2BDMACLRN"
-  - "L2XCFWD"
-  - "LISP"
-  layout:
-    title: "ip4tun-3n-hsw-x520-64b-base_and_features-pdr"
-    layout: "plot-throughput-speedup-analysis"
+## Speedup - VPP IPv4 Tunnels 3n-hsw-x520 - features
+#-
+#  type: "plot"
+#  title: "Speedup: ip4tun-3n-hsw-x520-64b-base_and_features-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-base_and_features-ndr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'ENCAP' and
+#           'NDRPDR' and
+#           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+#           not 'DOT1Q' and
+#           not 'VHOST' and
+#           not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2BDMACLRN"
+#  - "L2XCFWD"
+#  - "LISP"
+#  layout:
+#    title: "ip4tun-3n-hsw-x520-64b-base_and_features-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "Speedup: ip4tun-3n-hsw-x520-64b-base_and_features-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4tun-3n-hsw-x520-64b-base_and_features-pdr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'ENCAP' and
+#           'NDRPDR' and
+#           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+#           not 'DOT1Q' and
+#           not 'VHOST' and
+#           not 'IPSECHW'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2BDMACLRN"
+#  - "L2XCFWD"
+#  - "LISP"
+#  layout:
+#    title: "ip4tun-3n-hsw-x520-64b-base_and_features-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv4 Tunnels 3n-hsw-x710
 -

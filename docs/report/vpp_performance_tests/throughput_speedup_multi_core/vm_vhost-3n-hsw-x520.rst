@@ -70,53 +70,52 @@
             \label{fig:vhost-l2sw-3n-hsw-x520-64b-base-pdr-tsa}
     \end{figure}
 
-..
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    64b-base_and_scale-l2sw
-    -----------------------
+64b-base_and_scale-l2sw
+-----------------------
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
-                \label{fig:vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
+            \label{fig:vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
-    .. raw:: html
+.. raw:: html
 
-        <center>
-        <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa.html"></iframe>
-        <p><br></p>
-        </center>
+    <center>
+    <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
 
-    .. raw:: latex
+.. raw:: latex
 
-        \begin{figure}[H]
-            \centering
-                \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
-                \label{fig:vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
-        \end{figure}
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
+            \label{fig:vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
+    \end{figure}
 
-    .. raw:: latex
+.. raw:: latex
 
-        \clearpage
+    \clearpage
 
 64b-base-vm-l2sw
 ----------------
