@@ -47,12 +47,12 @@ Additional information about graph data:
 
 #. **Y-axis Labels**: number of service chains.
 
-#. **Z-axis Color Scale**: lists 64B Packet Throughput (mean MRR value)
+#. **Z-axis Color Scale**: lists 64B Packet Throughput (mean MRR/NDR/PDR value)
    in Mpps.
 
 #. **Hover Information**: specific test substring listing
    memif-chain-docker_container combinations, number of runs executed,
-   mean MRR throughput in Mpps, standard deviation.
+   mean MRR/NDR/PDR throughput in Mpps, standard deviation.
 
 .. note::
 

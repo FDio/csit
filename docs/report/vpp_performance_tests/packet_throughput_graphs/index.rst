@@ -35,6 +35,13 @@ Additional information about graph data:
 #. **Graph Legend**: lists X-axis indices with associated CSIT test
    suites executed to generate graphed test results.
 
+#. **Hover Information**: lists minimum, first quartile, median,
+   third quartile, and maximum. If either type of outlier is present the
+   whisker on the appropriate side is taken to 1.5×IQR from the quartile
+   (the "inner fence") rather than the max or min, and individual outlying
+   data points are displayed as unfilled circles (for suspected outliers)
+   or filled circles (for outliers). (The "outer fence" is 3×IQR from the
+   quartile.)
 
 .. note::
 
