@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bdcab456_5de70cf2",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-12T14:05:18Z",
+      "side": 1,
+      "message": "Is there a way to make interface numbering deterministic?\nBut good enough for rls1901, I guess.",
+      "range": {
+        "startLine": 102,
+        "startChar": 10,
+        "endLine": 102,
+        "endChar": 16
+      },
+      "revId": "2486310ac4d818976c6f607070f841d546a5936e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
