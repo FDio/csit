@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a23fef3_2a985347",
+        "filename": "docs/report/introduction/methodology_vpp_startup_settings.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-12T16:03:36Z",
+      "side": 1,
+      "message": "19.04",
+      "range": {
+        "startLine": 22,
+        "startChar": 69,
+        "endLine": 22,
+        "endChar": 74
+      },
+      "revId": "ce8da50e00b6ac21bd3068edcbd7fc349109c89b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
