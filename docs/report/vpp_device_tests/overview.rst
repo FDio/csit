@@ -7,11 +7,12 @@ Virtual Topologies
 CSIT VPP Device tests are executed in Physical containerized topologies
 created on demand using set of scripts hosted and developed under CSIT
 repository. It runs on physical baremetal servers hosted by LF FD.io project.
-Based on the packet path thru SUT Containers, two distinct logical topology
+Based on the packet path thru SUT Containers, three distinct logical topology
 types are used for VPP DUT data plane testing:
 
 #. vfNIC-to-vfNIC switching topologies.
-#. Nested-VM service switching topologies. (Planned to be added in rls1901)
+#. vfNIC-to-vhost-user switching topologies.
+#. vfNIC-to-memif switching topologies.
 
 vfNIC-to-vfNIC Switching
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,18 +51,79 @@ upon completion of all functional tests. Each node is a container running on
 physical server. During the test execution, all nodes are reachable thru
 the Management (not shown above for clarity).
 
+vfNIC-to-vhost-user Switching
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+vfNIC-to-vhost-user switching topology test cases require VPP DUT to communicate
+with Virtual Machine (VM) over Vhost-user virtual interfaces. VM is created on
+SUT1 for the duration of these particular test cases only. Virtual test topology
+with VM is shown in the figure below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/vpp_functional_tests/}}
+                \includegraphics[width=0.90\textwidth]{vf-2n-nic2vhost}
+                \label{fig:vf-2n-nic2vhost}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: ../vpp_functional_tests/vf-2n-nic2vhost.svg
+        :alt: vf-2n-nic2vhost
+        :align: center
+
+vfNIC-to-memif Switching
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+vfNIC-to-memif switching topology test cases require VPP DUT to communicate
+with another Docker Container over memif interfaces. Container is created for
+the duration of these particular test cases only and it is running the same VPP
+version as running on DUT. Virtual test topology with Memif is shown in
+the figure below.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/vpp_functional_tests/}}
+                \includegraphics[width=0.90\textwidth]{vf-2n-nic2memif}
+                \label{fig:vf-2n-nic2memif}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: ../vpp_functional_tests/vf-2n-nic2memif.svg
+        :alt: vf-2n-nic2memif
+        :align: center
+
 Functional Tests Coverage
 -------------------------
 
-|csit-release| includes following VPP functionality tested in virtual VM
+|csit-release| includes following VPP functionality tested in VPP Device
 environment:
 
 +-----------------------+----------------------------------------------+
 | Functionality         |  Description                                 |
 +=======================+==============================================+
-| IPv4                  | ICMPv4.                                      |
+| IPv4                  | IPv4 routing, ICMPv4.                        |
 +-----------------------+----------------------------------------------+
-| IPv6                  | ICMPv6.                                      |
+| IPv6                  | IPv4 routing, ICMPv6.                        |
++-----------------------+----------------------------------------------+
+| L2BD                  | L2 Bridge-Domain switching for untagged      |
+|                       | Ethernet.                                    |
++-----------------------+----------------------------------------------+
+| L2XC                  | L2 Cross-Connect switching for untagged      |
+|                       | Ethernet.                                    |
++-----------------------+----------------------------------------------+
+| Vhost-user Interface  | Baseline VPP vhost-user interface tests.     |
++-----------------------+----------------------------------------------+
+| Memif Interface       | Baseline VPP memif interface tests.          |
 +-----------------------+----------------------------------------------+
 
 Tests Naming
