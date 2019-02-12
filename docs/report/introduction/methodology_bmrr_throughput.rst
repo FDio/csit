@@ -19,7 +19,7 @@ Current parameters for BMRR tests:
   quoted sizes include frame CRC, but exclude per frame transmission
   overhead of 20B (preamble, inter frame gap).
 
-- Maximum load offered: 10GE and 40GE link (sub-)rates depending on NIC
+- Maximum load offered: 10GE, 25GE and 40GE link (sub-)rates depending on NIC
   tested, with the actual packet rate depending on frame size,
   transmission overhead and traffic generator NIC forwarding capacity.
 
@@ -37,8 +37,8 @@ Current parameters for BMRR tests:
 
 - Number of trials per burst: 10.
 
-Similarly to NDR/PDR throughput tests, MRR test should be reporting bi-
-directional link rate (or NIC rate, if lower) if tested VPP
+Similarly to NDR/PDR throughput tests, MRR test should be reporting
+bi-directional link rate (or NIC rate, if lower) if tested VPP
 configuration can handle the packet rate higher than bi-directional link
 rate, e.g. large packet tests and/or multi-core tests.
 

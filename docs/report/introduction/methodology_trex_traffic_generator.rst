@@ -6,9 +6,8 @@ Usage
 
 `TRex traffic generator <https://wiki.fd.io/view/TRex>`_ is used for all
 CSIT performance tests. TRex stateless mode is used to measure NDR and
-PDR throughputs using binary search (NDR and PDR discovery tests) and
-for quick checks of DUT performance against the reference NDRs (NDR
-check tests) for specific configuration.
+PDR throughputs using MLRsearch and to measure maximum transer rate
+in MRR tests.
 
 TRex is installed and run on the TG compute node. The typical procedure
 is:

@@ -12,8 +12,8 @@ Reported latency values are measured using following methodology:
 - TG reports min/avg/max latency values per stream direction, hence two
   sets of latency values are reported per test case; future release of
   TRex is expected to report latency percentiles.
-- Reported latency values are aggregate across two SUTs due to three
-  node topology used for all performance tests; for per SUT latency,
+- Reported latency values are aggregate across two SUTs if the three
+  node topology is used for given performance test; for per SUT latency,
   reported value should be divided by two.
 - 1usec is the measurement accuracy advertised by TRex TG for the setup
   used in FD.io labs used by CSIT project.
