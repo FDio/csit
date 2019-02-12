@@ -645,6 +645,30 @@
       - 1   # NDRPDR sel F
       - 2   # NDRPDR sel F
 
+    dpdk-performance-changes-2n-skx:
+      csit-dpdk-perf-verify-1810-2n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+      csit-dpdk-perf-verify-1901-2n-skx:
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+
     dpdk-compare-testbeds:
       # TODO: Replace with new data
       csit-dpdk-perf-verify-1901-3n-skx:
@@ -715,7 +739,6 @@
       - 2   # NDRPDR sel F
 
     plot-dpdk-throughput-latency-2n-skx:
-      # TODO: Add new data
       csit-dpdk-perf-verify-1901-2n-skx:
       - 2   # NDRPDR sel
       - 3   # NDRPDR sel
@@ -1404,17 +1427,17 @@
     csit-dpdk-perf-verify-1901-3n-skx:
     - 1   # NDRPDR sel
     - 2   # NDRPDR sel
-#    csit-dpdk-perf-verify-1810-2n-skx:
-#    - 3   # NDRPDR sel
-#    - 4   # NDRPDR sel
-#    - 5   # NDRPDR sel
-#    - 7   # NDRPDR sel
-#    - 8   # NDRPDR sel
-#    - 9   # NDRPDR sel
-#    - 10  # NDRPDR sel
-#    - 11  # NDRPDR sel
-#    - 12  # NDRPDR sel
-#    - 13  # NDRPDR sel
+    csit-dpdk-perf-verify-1810-2n-skx:
+    - 3   # NDRPDR sel
+    - 4   # NDRPDR sel
+    - 5   # NDRPDR sel
+    - 7   # NDRPDR sel
+    - 8   # NDRPDR sel
+    - 9   # NDRPDR sel
+    - 10  # NDRPDR sel
+    - 11  # NDRPDR sel
+    - 12  # NDRPDR sel
+    - 13  # NDRPDR sel
     csit-dpdk-perf-verify-1901-2n-skx:
     - 2   # NDRPDR sel
     - 3   # NDRPDR sel
@@ -4614,6 +4637,174 @@
 #  - "name"
 #  - "parent"
 #  - "result"
+
+# DPDK Performance Changes 2n-skx 2t1c pdr
+-
+  type: "table"
+  title: "DPDK Performance Changes 2n-skx 2t1c pdr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-pdr"
+  reference:
+    title: "rls1810"
+    data:
+      csit-dpdk-perf-verify-1810-2n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+  compare:
+    title: "rls1901"
+    data:
+      csit-dpdk-perf-verify-1901-2n-skx:
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Performance Changes 2n-skx 4t2c pdr
+-
+  type: "table"
+  title: "DPDK Performance Changes 2n-skx 4t2c pdr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-pdr"
+  reference:
+    title: "rls1810"
+    data:
+      csit-dpdk-perf-verify-1810-2n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+  compare:
+    title: "rls1901"
+    data:
+      csit-dpdk-perf-verify-1901-2n-skx:
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Performance Changes 2n-skx 2t1c ndr
+-
+  type: "table"
+  title: "DPDK Performance Changes 2n-skx 2t1c ndr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-2t1c-ndr"
+  reference:
+    title: "rls1810"
+    data:
+      csit-dpdk-perf-verify-1810-2n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+  compare:
+    title: "rls1901"
+    data:
+      csit-dpdk-perf-verify-1901-2n-skx:
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# DPDK Performance Changes 2n-skx 4t2c ndr
+-
+  type: "table"
+  title: "DPDK Performance Changes 2n-skx 4t2c ndr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,DPDK]}/performance-changes-2n-skx-4t2c-ndr"
+  reference:
+    title: "rls1810"
+    data:
+      csit-dpdk-perf-verify-1810-2n-skx:
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+  compare:
+    title: "rls1901"
+    data:
+      csit-dpdk-perf-verify-1901-2n-skx:
+      - 2   # NDRPDR sel
+      - 3   # NDRPDR sel
+      - 4   # NDRPDR sel
+      - 5   # NDRPDR sel
+      - 6   # NDRPDR sel
+      - 7   # NDRPDR sel
+      - 8   # NDRPDR sel
+      - 9   # NDRPDR sel
+      - 10  # NDRPDR sel
+      - 11  # NDRPDR sel
+  data: "dpdk-performance-changes-2n-skx"
+  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')" # "('NDRPDR' or 'NDRPDRDISC')" | "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
 
 # Detailed Test Results - DPDK Performance Results 3n-hsw
 -
