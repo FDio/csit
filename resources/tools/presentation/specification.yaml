@@ -481,7 +481,7 @@
       csit-vpp-perf-verify-1901-2n-skx:
       - 28  # NFV NDRPDR
       - 29  # NFV NDRPDR
-      # - 32  # NFV NDRPDR
+      - 32  # NFV NDRPDR
 
     plot-vpp-nfv-2n-skx-mrr:
       # TODO: Add new data
@@ -489,6 +489,7 @@
       - 24  # NFV MRR
       - 26  # NFV MRR
       - 27  # NFV MRR
+      - 35  # NFV MRR
 
     plot-vpp-throughput-latency-3n-skx:
       # TODO: Add new data
@@ -742,9 +743,8 @@
     # DMM Functional
     dmm-func-results:
       # TODO: Replace with new data
-      # csit-dmm-functional-1901-ubuntu1604-virl:
-      csit-dmm-functional-1810-ubuntu1604-virl:
-      - 1
+      csit-dmm-functional-1901-ubuntu1604-virl:
+      - 2
 
   plot-layouts:
 
@@ -1326,9 +1326,10 @@
     - 24  # NFV MRR
     - 26  # NFV MRR
     - 27  # NFV MRR
+    - 35  # NFV MRR
     - 28  # NFV NDRPDR
     - 29  # NFV NDRPDR
-    # - 32  # NFV NDRPDR
+    - 32  # NFV NDRPDR
     csit-vpp-perf-verify-master-2n-skx:
     - 248  # SOAK sel
     - 251  # SOAK sel
@@ -1433,8 +1434,8 @@
     - 49
     csit-nsh_sfc-verify-func-1810-ubuntu1604-virl:
     - 1
-    csit-dmm-functional-1810-ubuntu1604-virl:
-    - 1
+    csit-dmm-functional-1901-ubuntu1604-virl:
+    - 2
     csit-hc2vpp-verify-func-1901-ubuntu1604:
     - 3
 
