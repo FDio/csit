@@ -124,6 +124,7 @@ Example of DUT nodes configuration:
     DUT1:
         type: DUT
         host: "10.30.51.157"
+        arch: x86_64
         port: 22
         username: cisco
         honeycomb:
@@ -180,6 +181,7 @@ Example of DUT nodes configuration:
       DUT2:
         type: DUT
         host: "10.30.51.156"
+        arch: x86_64
         port: 22
         username: cisco
         honeycomb:
@@ -244,17 +246,17 @@ VPP Installed Packages - Ubuntu
 
 ::
 
-    $ dpkg -l vpp\*
     Desired=Unknown/Install/Remove/Purge/Hold
     | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
     |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
     ||/ Name           Version       Architecture Description
     +++-==============-=============-============-=============================================
-    ii  vpp            18.10-release amd64        Vector Packet Processing--executables
-    ii  vpp-dbg        18.10-release amd64        Vector Packet Processing--debug symbols
-    ii  vpp-dev        18.10-release amd64        Vector Packet Processing--development support
-    ii  vpp-lib        18.10-release amd64        Vector Packet Processing--runtime libraries
-    ii  vpp-plugins    18.10-release amd64        Vector Packet Processing--runtime plugins
+    ii  vpp            19.01-release amd64        Vector Packet Processing--executables
+    ii  vpp-api-python 19.01-release amd64        VPP Python API bindings
+    ii  vpp-dbg        19.01-release amd64        Vector Packet Processing--debug symbols
+    ii  vpp-dev        19.01-release amd64        Vector Packet Processing--development support
+    ii  vpp-lib        19.01-release amd64        Vector Packet Processing--runtime libraries
+    ii  vpp-plugins    19.01-release amd64        Vector Packet Processing--runtime plugins
 
 VPP Installed Packages - Centos
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -262,18 +264,66 @@ VPP Installed Packages - Centos
 ::
 
     $ rpm -qai vpp*
-    Name        : vpp
-    Version     : 18.10
+    Name        : vpp-selinux-policy
+    Version     : 19.01
     Release     : release
     Architecture: x86_64
-    Install Date: Wed 31 Oct 2018 07:58:58 AM EDT
-    Group       : Unspecified
-    Size        : 2489049
+    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
+    Group       : System Environment/Base
+    Size        : 102213
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.10-release.src.rpm
-    Build Date  : Tue 23 Oct 2018 03:08:17 AM EDT
-    Build Host  : dc3d24d75f0c
+    Source RPM  : vpp-19.01-release.src.rpm
+    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
+    Build Host  : ed28282db47e
+    Relocations : (not relocatable)
+    Summary     : VPP Security-Enhanced Linux (SELinux) policy
+    Description :
+    This package contains a tailored VPP SELinux policy
+    Name        : vpp-plugins
+    Version     : 19.01
+    Release     : release
+    Architecture: x86_64
+    Install Date: Thu 31 Jan 2019 07:16:37 AM EST
+    Group       : System Environment/Libraries
+    Size        : 84873573
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-19.01-release.src.rpm
+    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
+    Build Host  : ed28282db47e
+    Relocations : (not relocatable)
+    Summary     : Vector Packet Processing--runtime plugins
+    Description :
+    This package contains VPP plugins
+    Name        : vpp-api-python
+    Version     : 19.01
+    Release     : release
+    Architecture: x86_64
+    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
+    Group       : Development/Libraries
+    Size        : 163624
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-19.01-release.src.rpm
+    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
+    Build Host  : ed28282db47e
+    Relocations : (not relocatable)
+    Summary     : VPP api python bindings
+    Description :
+    This package contains the python bindings for the vpp api
+    Name        : vpp
+    Version     : 19.01
+    Release     : release
+    Architecture: x86_64
+    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
+    Group       : Unspecified
+    Size        : 2522340
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-19.01-release.src.rpm
+    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
+    Build Host  : ed28282db47e
     Relocations : (not relocatable)
     Summary     : Vector Packet Processing
     Description :
@@ -282,17 +332,17 @@ VPP Installed Packages - Centos
     vpp_api_test - vector packet engine API test tool
     vpp_json_test - vector packet engine JSON test tool
     Name        : vpp-lib
-    Version     : 18.10
+    Version     : 19.01
     Release     : release
     Architecture: x86_64
-    Install Date: Wed 31 Oct 2018 07:58:58 AM EDT
+    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
     Group       : System Environment/Libraries
-    Size        : 12012271
+    Size        : 12203613
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.10-release.src.rpm
-    Build Date  : Tue 23 Oct 2018 03:08:17 AM EDT
-    Build Host  : dc3d24d75f0c
+    Source RPM  : vpp-19.01-release.src.rpm
+    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
+    Build Host  : ed28282db47e
     Relocations : (not relocatable)
     Summary     : VPP libraries
     Description :
@@ -302,34 +352,18 @@ VPP Installed Packages - Centos
     vlib - vector processing library
     vlib-api - binary API library
     vnet -  network stack library
-    Name        : vpp-selinux-policy
-    Version     : 18.10
-    Release     : release
-    Architecture: x86_64
-    Install Date: Wed 31 Oct 2018 07:58:58 AM EDT
-    Group       : System Environment/Base
-    Size        : 86709
-    License     : ASL 2.0
-    Signature   : (none)
-    Source RPM  : vpp-18.10-release.src.rpm
-    Build Date  : Tue 23 Oct 2018 03:08:17 AM EDT
-    Build Host  : dc3d24d75f0c
-    Relocations : (not relocatable)
-    Summary     : VPP Security-Enhanced Linux (SELinux) policy
-    Description :
-    This package contains a tailored VPP SELinux policy
     Name        : vpp-devel
-    Version     : 18.10
+    Version     : 19.01
     Release     : release
     Architecture: x86_64
-    Install Date: Wed 31 Oct 2018 07:59:01 AM EDT
+    Install Date: Thu 31 Jan 2019 07:16:38 AM EST
     Group       : Development/Libraries
-    Size        : 12393361
+    Size        : 12835399
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-18.10-release.src.rpm
-    Build Date  : Tue 23 Oct 2018 03:08:17 AM EDT
-    Build Host  : dc3d24d75f0c
+    Source RPM  : vpp-19.01-release.src.rpm
+    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
+    Build Host  : ed28282db47e
     Relocations : (not relocatable)
     Summary     : VPP header files, static libraries
     Description :
@@ -341,22 +375,6 @@ VPP Installed Packages - Centos
     vnet - devices, classify, dhcp, ethernet flow, gre, ip, etc.
     vpp-api
     vppinfra
-    Name        : vpp-plugins
-    Version     : 18.10
-    Release     : release
-    Architecture: x86_64
-    Install Date: Wed 31 Oct 2018 07:59:01 AM EDT
-    Group       : System Environment/Libraries
-    Size        : 58835927
-    License     : ASL 2.0
-    Signature   : (none)
-    Source RPM  : vpp-18.10-release.src.rpm
-    Build Date  : Tue 23 Oct 2018 03:08:17 AM EDT
-    Build Host  : dc3d24d75f0c
-    Relocations : (not relocatable)
-    Summary     : Vector Packet Processing--runtime plugins
-    Description :
-    This package contains VPP plugins
 
 VPP Startup Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -464,6 +482,15 @@ to SW Crypto device.
         ## Whitelist specific interface by specifying PCI address
         # dev 0000:02:00.0
 
+        ## Blacklist specific device type by specifying PCI vendor:device
+            ## Whitelist entries take precedence
+        # blacklist 8086:10fb
+
+        ## Set interface name
+        # dev 0000:02:00.1 {
+        #	name eth0
+        # }
+
         ## Whitelist specific interface by specifying PCI address and in
         ## addition specify custom parameters for this interface
         # dev 0000:02:00.1 {
@@ -505,7 +532,7 @@ to SW Crypto device.
 
     # plugins {
         ## Adjusting the plugin path depending on where the VPP plugins are
-        #	path /home/bms/vpp/build-root/install-vpp-native/vpp/lib/vpp_plugins
+        #	path /ws/vpp/build-root/install-vpp-native/vpp/lib/vpp_plugins
 
         ## Disable all plugins by default and then selectively enable specific plugins
         # plugin default { disable }
@@ -516,9 +543,6 @@ to SW Crypto device.
         # plugin dpdk_plugin.so { disable }
         # plugin acl_plugin.so { disable }
     # }
-
-        ## Alternate syntax to choose plugin path
-        # plugin_path /home/bms/vpp/build-root/install-vpp-native/vpp/lib/vpp_plugins
 
 **SW Crypto Device Configuration**
 
@@ -578,6 +602,7 @@ Example of TG node configuration:::
     TG:
         type: TG
         host: "10.30.51.155"
+        arch: x86_64
         port: 22
         username: cisco
         priv_key: |
