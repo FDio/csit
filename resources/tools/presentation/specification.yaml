@@ -1475,8 +1475,8 @@
   format:
     html:
     - full
-#    pdf:
-#    - minimal
+    pdf:
+    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -25241,7 +25241,7 @@
            'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-            'MEMIF'"
+           'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -25271,6 +25271,7 @@
            'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -25300,7 +25301,8 @@
            'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-            'MEMIF'"
+           not 'NF_DENSITY' and
+           'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
@@ -25359,7 +25361,7 @@
            'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-            'MEMIF'"
+           'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
