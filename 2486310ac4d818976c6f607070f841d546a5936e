@@ -46,6 +46,30 @@
       "revId": "2486310ac4d818976c6f607070f841d546a5936e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "33541718_7f820a0e",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-12T14:42:42Z",
+      "side": 1,
+      "message": "Ah. I guess all other tests are already independent of such cabling details, and I do not expect any performance impact, so this is fine.",
+      "parentUuid": "7ed274f8_ad8d0978",
+      "range": {
+        "startLine": 102,
+        "startChar": 10,
+        "endLine": 102,
+        "endChar": 16
+      },
+      "revId": "2486310ac4d818976c6f607070f841d546a5936e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
