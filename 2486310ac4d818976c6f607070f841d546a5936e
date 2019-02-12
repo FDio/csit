@@ -22,6 +22,30 @@
       "revId": "2486310ac4d818976c6f607070f841d546a5936e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ed274f8_ad8d0978",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-12T14:32:09Z",
+      "side": 1,
+      "message": "Yes recable machines ;). ETA 1-2month in LF\nOtherwise l3fwd does not support port mapping parameter, this means there is just binary mask which to take. If you have interfaces like 0000:10:01.0 and 0000:10.00.0. the later one will always comes first in pci bus does not matter that CSIT sees it as 2nd in packet path. So not easy to solve.\n1st option is not very clever because if someone has same cabling as we do, he will have same problem.",
+      "parentUuid": "bdcab456_5de70cf2",
+      "range": {
+        "startLine": 102,
+        "startChar": 10,
+        "endLine": 102,
+        "endChar": 16
+      },
+      "revId": "2486310ac4d818976c6f607070f841d546a5936e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
