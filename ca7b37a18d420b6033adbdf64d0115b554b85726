@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ff308e7b_ba8de3fb",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-12T11:15:11Z",
+      "side": 0,
+      "message": "For rls1901 we should use dpdk-18.11:\nhttps://github.com/FDio/vpp/blob/stable/1901/build/external/packages/dpdk.mk#L24",
+      "range": {
+        "startLine": 102,
+        "startChar": 30,
+        "endLine": 102,
+        "endChar": 35
+      },
+      "revId": "ca7b37a18d420b6033adbdf64d0115b554b85726",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
