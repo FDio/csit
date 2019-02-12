@@ -118,6 +118,30 @@
       "revId": "6abab7084716f4dc322574837b23f26a2ca9e2cb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "436cb84f_ab2bed9d",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-12T09:33:12Z",
+      "side": 1,
+      "message": "In principle yes, in practice it took more editing [1] than that.\nMost of discussion here is about preventing similar mistakes in the future.\n\n[1] https://gerrit.fd.io/r/17464",
+      "parentUuid": "8aaa287d_09c962dd",
+      "range": {
+        "startLine": 551,
+        "startChar": 27,
+        "endLine": 551,
+        "endChar": 45
+      },
+      "revId": "6abab7084716f4dc322574837b23f26a2ca9e2cb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
