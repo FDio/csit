@@ -99,7 +99,7 @@ function gather_dpdk () {
     else
         echo "Downloading DPDK packages of specific version from repo..."
         # TODO: Can we autodetect this based on what CSIT-stable VPP uses?
-        dpdk_stable_ver="dpdk-18.08.tar.xz"
+        dpdk_stable_ver="dpdk-18.11.tar.xz"
     fi
     # TODO: Use "wget -N" instead checking for file presence?
     if [[ ! -f "${dpdk_stable_ver}" ]]; then
