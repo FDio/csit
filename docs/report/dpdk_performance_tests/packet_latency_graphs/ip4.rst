@@ -51,15 +51,9 @@ CSIT source code for the test cases used for plots can be found in
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: l3fwd-3n-hsw-x520-64b-1t1c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-hsw-x520-64b-1t1c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -80,15 +74,9 @@ CSIT source code for the test cases used for plots can be found in
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: l3fwd-3n-hsw-x520-64b-2t2c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-hsw-x520-64b-2t2c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -112,15 +100,9 @@ CSIT source code for the test cases used for plots can be found in
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: l3fwd-3n-hsw-x710-64b-1t1c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-hsw-x710-64b-1t1c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -141,15 +123,9 @@ CSIT source code for the test cases used for plots can be found in
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: l3fwd-3n-hsw-x710-64b-2t2c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-hsw-x710-64b-2t2c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -173,15 +149,9 @@ CSIT source code for the test cases used for plots can be found in
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: l3fwd-3n-hsw-xl710-64b-1t1c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-hsw-xl710-64b-1t1c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -202,15 +172,9 @@ CSIT source code for the test cases used for plots can be found in
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-hsw-xl710-64b-2t2c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -235,15 +199,9 @@ CSIT source code for the test cases used for plots can be found in
 
     .. raw:: html
 
-        <center><b>
-
-    :index:`Packet Latency: l3fwd-3n-skx-x710-64b-2t1c-base-ndr`
-
-    .. raw:: html
-
-        </b>
+        <center>
         <iframe id="ifrm07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-x710-64b-2t1c-base-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -264,15 +222,9 @@ CSIT source code for the test cases used for plots can be found in
 
     .. raw:: html
 
-        <center><b>
-
-    :index:`Packet Latency: l3fwd-3n-skx-x710-64b-4t2c-base-ndr`
-
-    .. raw:: html
-
-        </b>
+        <center>
         <iframe id="ifrm08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-x710-64b-4t2c-base-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -296,15 +248,9 @@ CSIT source code for the test cases used for plots can be found in
 
     .. raw:: html
 
-        <center><b>
-
-    :index:`Packet Latency: l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr`
-
-    .. raw:: html
-
-        </b>
+        <center>
         <iframe id="ifrm09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-xxv710-64b-2t1c-base-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -325,15 +271,9 @@ CSIT source code for the test cases used for plots can be found in
 
     .. raw:: html
 
-        <center><b>
-
-    :index:`Packet Latency: l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr`
-
-    .. raw:: html
-
-        </b>
+        <center>
         <iframe id="ifrm10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-3n-skx-xxv710-64b-4t2c-base-ndr-lat.html"></iframe>
-        <p><br><br></p>
+        <p><br></p>
         </center>
 
     .. raw:: latex
@@ -357,15 +297,9 @@ CSIT source code for the test cases used for plots can be found in
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: l3fwd-2n-skx-x710-64b-2t1c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-2n-skx-x710-64b-2t1c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -386,15 +320,9 @@ CSIT source code for the test cases used for plots can be found in
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: l3fwd-2n-skx-x710-64b-4t2c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-2n-skx-x710-64b-4t2c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -418,15 +346,9 @@ CSIT source code for the test cases used for plots can be found in
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-2n-skx-xxv710-64b-2t1c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex
@@ -447,15 +369,9 @@ CSIT source code for the test cases used for plots can be found in
 
 .. raw:: html
 
-    <center><b>
-
-:index:`Packet Latency: l3fwd-2n-skx-xxv710-64b-4t2c-base-ndr`
-
-.. raw:: html
-
-    </b>
+    <center>
     <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/dpdk/l3fwd-2n-skx-xxv710-64b-4t2c-base-ndr-lat.html"></iframe>
-    <p><br><br></p>
+    <p><br></p>
     </center>
 
 .. raw:: latex

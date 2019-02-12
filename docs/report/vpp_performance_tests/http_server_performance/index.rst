@@ -42,6 +42,25 @@ quartile / 25th percentile, 2nd quartile / 50th percentile / mean, 3rd
 quartile / 75th percentile, Max) across collected data set. Outliers are
 plotted as individual points.
 
+Additional information about graph data:
+
+#. **X-axis Labels**: indices of individual test suites as listed in
+   Graph Legend.
+
+#. **Y-axis Labels**: measured Connections Per Second [cps] or Requests Per
+   Second [rps] throughput values.
+
+#. **Graph Legend**: lists X-axis indices with associated CSIT test
+   suites executed to generate graphed test results.
+
+#. **Hover Information**: lists minimum, first quartile, median,
+   third quartile, and maximum. If either type of outlier is present the
+   whisker on the appropriate side is taken to 1.5×IQR from the quartile
+   (the "inner fence") rather than the max or min, and individual outlying
+   data points are displayed as unfilled circles (for suspected outliers)
+   or filled circles (for outliers). (The "outer fence" is 3×IQR from the
+   quartile.)
+
 .. note::
 
     Data sources for reported test results: i) `FD.io test executor vpp
