@@ -252,6 +252,9 @@ class ExecutionChecker(ResultVisitor):
     # TODO: Remove when definitely no NDRPDRDISC tests are used:
     REGEX_RATE = re.compile(r'^[\D\d]*FINAL_RATE:\s(\d+\.\d+)\s(\w+)')
 
+    REGEX_PLR_RATE = re.compile(r'PLRsearch lower bound::\s(\d+.\d+).*\n'
+                                r'PLRsearch upper bound::\s(\d+.\d+)')
+
     REGEX_NDRPDR_RATE = re.compile(r'NDR_LOWER:\s(\d+.\d+).*\n.*\n'
                                    r'NDR_UPPER:\s(\d+.\d+).*\n'
                                    r'PDR_LOWER:\s(\d+.\d+).*\n.*\n'
@@ -567,6 +570,33 @@ class ExecutionChecker(ResultVisitor):
 
         return throughput, status
 
+    def _get_plr_throughput(self, msg):
+        """Get PLRsearch lower bound and PLRsearch upper bound from the test
+        message.
+
+        :param msg: The test message to be parsed.
+        :type msg: str
+        :returns: Parsed data as a dict and the status (PASS/FAIL).
+        :rtype: tuple(dict, str)
+        """
+
+        throughput = {
+            "LOWER": -1.0,
+            "UPPER": -1.0
+        }
+        status = "FAIL"
+        groups = re.search(self.REGEX_PLR_RATE, msg)
+
+        if groups is not None:
+            try:
+                throughput["LOWER"] = float(groups.group(1))
+                throughput["UPPER"] = float(groups.group(2))
+                status = "PASS"
+            except (IndexError, ValueError):
+                pass
+
+        return throughput, status
+
     def _get_ndrpdr_latency(self, msg):
         """Get LATENCY from the test message.
 
@@ -739,6 +769,7 @@ class ExecutionChecker(ResultVisitor):
 
         if test.status == "PASS" and ("NDRPDRDISC" in tags or
                                       "NDRPDR" in tags or
+                                      "SOAK" in tags or
                                       "TCP" in tags or
                                       "MRR" in tags or
                                       "BMRR" in tags):
@@ -750,6 +781,8 @@ class ExecutionChecker(ResultVisitor):
                 test_result["type"] = "PDR"
             elif "NDRPDR" in tags:
                 test_result["type"] = "NDRPDR"
+            elif "SOAK" in tags:
+                test_result["type"] = "SOAK"
             elif "TCP" in tags:
                 test_result["type"] = "TCP"
             elif "MRR" in tags:
@@ -789,6 +822,10 @@ class ExecutionChecker(ResultVisitor):
                     self._get_ndrpdr_throughput(test.message)
                 test_result["latency"], test_result["status"] = \
                     self._get_ndrpdr_latency(test.message)
+
+            elif test_result["type"] in ("SOAK", ):
+                test_result["throughput"], test_result["status"] = \
+                    self._get_plr_throughput(test.message)
 
             elif test_result["type"] in ("TCP", ):
                 groups = re.search(self.REGEX_TCP, test.message)
