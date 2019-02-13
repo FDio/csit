@@ -132,11 +132,12 @@ class CoreDumpUtil(object):
             uuid = str(time()).replace('.', '')
             name = '{uuid}.tar.lzo.lrz.xz'.format(uuid=uuid)
 
-            command = ('[ -e {dir}/*.core ] && sudo tar c {dir}/*.core | '
+            command = ('[ -e {dir}/*.core ] && cd {dir} && '
+                       'sudo tar c *.core | '
                        'lzop -1 | '
                        'lrzip -n -T -p 1 -w 5 | '
-                       'xz -9e > {dir}/{name} && '
-                       'sudo rm -f {dir}/*.core'
+                       'xz -9e > {name} && '
+                       'sudo rm -f *.core'
                        .format(dir=Constants.CORE_DUMP_DIR, name=name))
             try:
                 exec_cmd_no_error(node, command, timeout=3600)
