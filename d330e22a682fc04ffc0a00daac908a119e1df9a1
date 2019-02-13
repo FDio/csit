@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "14306354_a757647c",
+        "filename": "docs/report/vpp_device_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-02-13T11:07:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "503565c8_ca101ff0",
+      "range": {
+        "startLine": 9,
+        "startChar": 54,
+        "endLine": 9,
+        "endChar": 58
+      },
+      "revId": "d330e22a682fc04ffc0a00daac908a119e1df9a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c62819c5_c7d0284b",
         "filename": "docs/report/vpp_device_tests/csit_release_notes.rst",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-13T09:24:23Z",
       "side": 1,
       "message": "to run or running",
+      "range": {
+        "startLine": 10,
+        "startChar": 11,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "d330e22a682fc04ffc0a00daac908a119e1df9a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b971cf7_0b0ea061",
+        "filename": "docs/report/vpp_device_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-02-13T11:07:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c62819c5_c7d0284b",
       "range": {
         "startLine": 10,
         "startChar": 11,
