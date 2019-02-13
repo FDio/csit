@@ -15,7 +15,7 @@ VPP is tested in the following IPv4 tunnel baseline configurations:
 - *ip4lispip4-ip4base*: LISP over IPv4 tunnels with IPv4 routing.
 - *ip4lispip6-ip6base*: LISP over IPv4 tunnels with IPv6 routing.
 
-In all cases listed above low number of MAC, IPv4, IPv6 flows (253 per
+In all cases listed above low number of MAC, IPv4, IPv6 flows (254 or 253 per
 direction) is switched or routed by VPP.
 
 In addition selected IPv4 tunnels are tested at scale:
