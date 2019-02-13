@@ -51,7 +51,7 @@ In all CSIT tests care is taken to ensure that each VPP worker handles
 the same amount of received packet load and does the same amount of
 packet processing work. This is achieved by evenly distributing per
 interface type (e.g. physical, virtual) receive queues over VPP workers
-using default VPP round- robin mapping and by loading these queues with
+using default VPP round-robin mapping and by loading these queues with
 the same amount of packet flows.
 
 If number of VPP workers is higher than number of physical or virtual
@@ -62,5 +62,5 @@ for virtual interfaces are used for this purpose.
 Section :ref:`throughput_speedup_multi_core` includes a set of graphs
 illustrating packet throughout speedup when running VPP worker threads
 on multiple cores. Note that in quite a few test cases running VPP
-workers on 2 or 4 physical cores hits the I/O bandwidth or packets-per-
-second limit of tested NIC.
+workers on 2 or 4 physical cores hits the I/O bandwidth
+or packets-per-second limit of tested NIC.

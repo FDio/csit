@@ -21,8 +21,8 @@ VPP is tested in three L2 forwarding modes:
 
 l2bd tests are executed in baseline and scale configurations:
 
-- *l2bdbase*: low number of L2 flows (253 per direction) is switched by
-  VPP. They drive the content of MAC FIB size (506 total MAC entries).
+- *l2bdbase*: low number of L2 flows (254 per direction) is switched by
+  VPP. They drive the content of MAC FIB size (508 total MAC entries).
   Both source and destination MAC addresses are incremented on a packet
   by packet basis.
 
@@ -40,8 +40,8 @@ IPv4 Routing
 
 IPv4 routing tests are executed in baseline and scale configurations:
 
-- *ip4base*: low number of IPv4 flows (253 per direction) is routed by
-  VPP. They drive the content of IPv4 FIB size (506 total /32 prefixes).
+- *ip4base*: low number of IPv4 flows (253 or 254 per direction) is routed by
+  VPP. They drive the content of IPv4 FIB size (506 or 508 total /32 prefixes).
   Destination IPv4 addresses are incremented on a packet by packet
   basis.
 
@@ -57,8 +57,8 @@ IPv6 Routing
 
 IPv6 routing tests are executed in baseline and scale configurations:
 
-- *ip6base*: low number of IPv6 flows (253 per direction) is routed by
-  VPP. They drive the content of IPv6 FIB size (506 total /128 prefixes).
+- *ip6base*: low number of IPv6 flows (253 or 254 per direction) is routed by
+  VPP. They drive the content of IPv6 FIB size (506 or 508 total /128 prefixes).
   Destination IPv6 addresses are incremented on a packet by packet
   basis.
 
