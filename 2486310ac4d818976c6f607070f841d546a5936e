@@ -70,6 +70,30 @@
       "revId": "2486310ac4d818976c6f607070f841d546a5936e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d7f402e_c4415983",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-13T06:52:10Z",
+      "side": 1,
+      "message": "Testpmd is completely independent as it is just looping from one to another port. With VPP we are able to configure ports, so no problems, but l2fwd requires routing and does not support any param. L3fwd is not really a production application, rather then it is sample dpdk app to demonstrate simple fixed routing thing.",
+      "parentUuid": "33541718_7f820a0e",
+      "range": {
+        "startLine": 102,
+        "startChar": 10,
+        "endLine": 102,
+        "endChar": 16
+      },
+      "revId": "2486310ac4d818976c6f607070f841d546a5936e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
