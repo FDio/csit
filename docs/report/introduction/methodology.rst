@@ -23,3 +23,4 @@ Test Methodology
     methodology_ipsec_on_intel_qat
     methodology_trex_traffic_generator
     methodology_http_tcp_with_wrk_tool
+    methodology_plrsearch
