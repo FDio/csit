@@ -69,6 +69,9 @@ function build_vpp_ubuntu_amd64 () {
 
     cd "${VPP_DIR}" || die "Change directory command failed."
     echo 'Building using "make build-root/vagrant/build.sh"'
+    pushd "build-data/platforms"
+    sed -i 's/-O2/-O0/g' *
+    popd
     # TODO: Do we want to support "${DRYRUN}" == "True"?
     make UNATTENDED=yes install-dep || die "Make install-dep failed."
     # The per_patch script calls this function twice, first for the new commit,
