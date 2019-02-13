@@ -77,6 +77,9 @@ List of known issues in |csit-release| for VPP performance tests:
 | 5  | `CSIT-1234                              | VPP IPSecHW/IPSecsW scale interface mode, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-19.01 vs. CSIT-18.10.      |
 |    | <https://jira.fd.io/browse/CSIT-1234>`_ |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 6  | `CSIT-1428                              | VM vhost tests with RXQ more than 2 are failing on 3n-skx. Suspecting RXQ configuration issues.                                 |
+| 6  | `CSIT-1428                              | VM vhost tests with RXQ 2 and more are failing and reporting incorrect measurements due to RXQ configuration issue.             |
 |    | <https://jira.fd.io/browse/CSIT-1428>`_ |                                                                                                                                 |
++----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| 7  | `CSIT-1431                              | AVF 4 cores tests are sporadically failing.                                                                                     |
+|    | <https://jira.fd.io/browse/CSIT-1431>`_ |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
