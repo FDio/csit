@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9843550b_01993386",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-14T15:49:56Z",
+      "side": 1,
+      "message": "Changes from patch set 22:\n\n+ Rebased (after a long time).\n+ RFC 8174 key words used.\n+ Minor additions and re-formulations.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 1
+      },
+      "revId": "26364c5e5f7d34c565c82e9f1a8da421ee5556e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
