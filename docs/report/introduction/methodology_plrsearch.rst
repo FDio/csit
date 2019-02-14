@@ -13,7 +13,7 @@ Eventually, a better description of the abstract search algorithm
 will appear at this IETF standard: `plrsearch draft`_.
 
 Motivation
-----------
+``````````
 
 Network providers are interested in throughput a device can sustain.
 
@@ -27,7 +27,7 @@ actually is.
 We need another algorithm, which takes this indeterminism into account.
 
 Model
------
+`````
 
 Each algorithm searches for an answer to a precisely formulated
 question. When the question involves indeterministic systems, it has to
@@ -55,7 +55,7 @@ generator detects duplicate packets on receive detection, and reports
 this as an error.
 
 Poisson distribution
---------------------
+````````````````````
 
 For given offered load, number of packets lost during trial measurement
 is assumed to come from `Poisson distribution`_,
@@ -112,7 +112,7 @@ in an attempt to speed up convergence, but such methods tend to be
 scpecific for a particular system under tests.
 
 Fitting function coefficients distribution
-------------------------------------------
+``````````````````````````````````````````
 
 To accomodate systems with different behaviours, the fitting function is
 expected to have few numeric parameters affecting its shape (mainly
@@ -136,7 +136,7 @@ stdev should refer to the equilibrium estimates based on the trend, not
 to immediate posterior values.
 
 Integration
------------
+```````````
 
 The posterior distributions for fitting function parameters will not be
 integrable in general.
@@ -146,7 +146,7 @@ time, so this time can be used for numeric integration (using suitable
 method, such as Monte Carlo) to achieve sufficient precision.
 
 Optimizations
--------------
+`````````````
 
 After enough trials, the posterior distribution will be concentrated in
 a narrow area of parameter space. The integration method should take
@@ -169,7 +169,7 @@ it only cares about overall counts of packets sent and packets lost),
 but debug output from traffic generator lists unidirectional values.
 
 Measurement delay
------------------
+`````````````````
 
 In a sample implemenation in FD.io CSIT project, there is roughly 0.5
 second delay between trials due to restrictons imposed by packet traffic
@@ -191,7 +191,7 @@ trial durations with configurable coefficients
 each subsequent trial being 0.2 second longer).
 
 Rounding errors and underflows
-------------------------------
+``````````````````````````````
 
 In order to avoid them, the current implementation tracks natural logarithm
 (instead of the original quantity) for any quantity which is never negative.
@@ -202,7 +202,7 @@ Specific functions for frequent operations
 are defined to handle None correctly.
 
 Fitting functions
------------------
+`````````````````
 
 Current implementation uses two fitting functions.
 In general, their estimates for critical rate differ,
@@ -257,7 +257,7 @@ During each measurement, two estimates are computed,
 even though only one (in alternating order) is used for next offered load.
 
 Stretch function
-________________
+----------------
 
 The original function (before applying logarithm) is primitive function
 to `logistic function`_.
@@ -265,13 +265,13 @@ The name "stretch" is used for related function
 in context of neural networks with sigmoid activation function.
 
 Erf function
-____________
+------------
 
 The original function is double primitive function to `Gaussian function`_.
 The name "erf" comes from error function, the first primitive to Gaussian.
 
 Prior distributions
--------------------
+```````````````````
 
 The numeric integrator expects all the parameters to be distributed
 (independently and) uniformly on an interval (-1, 1).
@@ -288,7 +288,7 @@ raised to a random power between zero and one;
 thus it follows a `reciprocal distribution`_.
 
 Integrator
-----------
+``````````
 
 After few measurements, the posterior distribution of fitting function
 arguments gets quite concentrated into a small area.
@@ -314,17 +314,17 @@ is concentrated at. The second phase (dominated by whole sample population)
 is actually relevant for the critical rate estimation.
 
 Caveats
--------
+```````
 
 Current implementation does not constrict the critical rate
 (as computed for every sample) to the min_rate, max_rate interval.
 
 Earlier implementations were targeting loss rate (as opposed to loss ratio).
-The chosen fitting functions do not even allow arbitrarily low loss ratios,
-especially if the "spread" value is high enough (relative to "mrr" value).
+The chosen fitting functions do allow arbitrarily low loss ratios,
+but may suffer from rounding errors in corresponding parameter regions.
 Internal loss rate target is computed from given loss ratio
-using the current trial offered load, which increases search instability
-if measurements with surprisingly high loss count appear.
+using the current trial offered load, which increases search instability,
+especially if measurements with surprisingly high loss count appear.
 
 As high loss count measurements add many bits of information,
 they need a large amount of small loss count measurements to balance them,
@@ -338,9 +338,16 @@ as the observed trends have varied characteristics.
 Probably, using a more realistic fitting functions
 will give better estimates than trend analysis.
 
-.. TODO: Add a 1901 result section when results are available.
+Graphical example
+`````````````````
 
-.. TODO: Add a graph of time evolution when 1901 run is available.
+The following picture shows the estimated average of the critical rate
+computed by the two fitting functions after each trial measurement
+within the 30 minute duration of a PLRsearch test run.
+
+.. image:: PLRsearch.svg
+
+.. TODO: Add a 1901 result section when results are available.
 
 .. _plrsearch draft: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-00
 .. _RFC 2544: https://tools.ietf.org/html/rfc2544
