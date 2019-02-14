@@ -1,4 +1,4 @@
-.. _plrsearch_algorithm:
+.. _`PLRsearch algorithm`:
 
 PLRsearch
 ^^^^^^^^^

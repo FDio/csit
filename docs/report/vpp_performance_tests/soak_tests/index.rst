@@ -33,8 +33,11 @@
 Soak Tests
 ==========
 
-Long duration soak tests are executed using PLRsearch algorithm. See
-methodology section for PLRsearch description.
+Long duration soak tests are executed using `PLRsearch algorithm`_.
+
+As soak tests are new, and take long time to run,
+only 6 tests were executed. From those, 4 tests encountered some caveat,
+making their results unreliable.
 
 Additional information about graph data:
 
@@ -42,12 +45,12 @@ Additional information about graph data:
 
 #. **X-axis Labels**: indices of test suites.
 
-#. **Y-axis Labels**: measured packet throughput values in [Mpps].
+#. **Y-axis Labels**: estimated intervals for packet throughput value in [Mpps].
 
 #. **Graph Legend**: list of X-axis indices with CSIT test suites.
 
-#. **Hover Information**: lists the lower and upper bounds of measured
-   throughput.
+#. **Hover Information**: lists the lower and upper bounds for the estimated
+   throughput value.
 
 .. note::
 
