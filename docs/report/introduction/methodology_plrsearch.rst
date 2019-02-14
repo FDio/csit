@@ -345,7 +345,22 @@ The following picture shows the estimated average of the critical rate
 computed by the two fitting functions after each trial measurement
 within the 30 minute duration of a PLRsearch test run.
 
-.. image:: PLRsearch.svg
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{PLRsearch}
+                \label{fig:PLRsearch}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: PLRsearch.svg
+        :alt: PLRsearch
+        :align: center
 
 .. TODO: Add a 1901 result section when results are available.
 

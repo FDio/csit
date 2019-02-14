@@ -20,6 +20,7 @@ CSIT-1901
     vpp_performance_tests/packet_throughput_graphs/index
     vpp_performance_tests/throughput_speedup_multi_core/index
     vpp_performance_tests/packet_latency_graphs/index
+    vpp_performance_tests/soak_tests/index
     vpp_performance_tests/nf_service_density/index
     vpp_performance_tests/comparisons/index
     vpp_performance_tests/throughput_trending
@@ -93,13 +94,13 @@ CSIT-1901
 
     detailed_test_results/vpp_performance_results/index
     detailed_test_results/vpp_mrr_results/index
-    detailed_test_results/cot_performance_results/index
     detailed_test_results/dpdk_performance_results/index
     detailed_test_results/vpp_functional_results/index
     detailed_test_results/vpp_device_results_ubuntu/index
     detailed_test_results/honeycomb_functional_results/index
     detailed_test_results/dmm_functional_results/index
 ..
+    detailed_test_results/cot_performance_results/index
     detailed_test_results/nshsfc_functional_results/index
 
 .. toctree::
@@ -108,9 +109,11 @@ CSIT-1901
 
     test_configuration/vpp_performance_configuration/index
     test_configuration/vpp_mrr_configuration/index
-    test_configuration/cot_performance_configuration/index
     test_configuration/vpp_functional_configuration/index
     test_configuration/vpp_device_configuration_ubuntu/index
+
+..
+    test_configuration/cot_performance_configuration/index
 
 .. toctree::
     :maxdepth: 2
