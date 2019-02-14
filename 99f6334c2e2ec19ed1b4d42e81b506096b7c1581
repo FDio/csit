@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "82e01c09_0542690b",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-14T12:41:14Z",
+      "side": 1,
+      "message": "Delete, as the results are being added in this Change.",
+      "range": {
+        "startLine": 365,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 62
+      },
+      "revId": "99f6334c2e2ec19ed1b4d42e81b506096b7c1581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
