@@ -319,4 +319,4 @@ and unrelated ones such as PAL) if there are any (in addition to library ones).
 Bash scripts and libraries
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TODO: Link here when document for this is ready.
+TODO: Link or copy the bash_code_style.rst document here.
