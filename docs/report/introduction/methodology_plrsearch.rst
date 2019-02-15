@@ -338,12 +338,24 @@ as the observed trends have varied characteristics.
 Probably, using a more realistic fitting functions
 will give better estimates than trend analysis.
 
-Graphical example
-`````````````````
+Graphical examples
+``````````````````
 
-The following picture shows the estimated average of the critical rate
-computed by the two fitting functions after each trial measurement
-within the 30 minute duration of a PLRsearch test run.
+The following pictures show the upper and lower bound (one sigma)
+on estimated critical rate, as computed by PLRsearch, after each trial measurement
+within the 30 minute duration of a test run.
+
+Both graphs are focusing on later estimates. Estimates computed from
+few initial measurements are wildly off the y-axis range shown.
+
+L2 patch
+--------
+
+This test case shows quite a narrow critical region. Both fitting functions
+give similar estimates, the graph shows the randomness of measurements,
+and a trend. Both fitting functions seem to be somewhat overestimating
+the critical rate. The final estimated interval is too narrow,
+a longer run would report estimates somewhat bellow the current lower bound.
 
 .. only:: latex
 
@@ -352,14 +364,40 @@ within the 30 minute duration of a PLRsearch test run.
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_tmp/src/introduction/}}
-                \includegraphics[width=0.90\textwidth]{PLRsearch}
-                \label{fig:PLRsearch}
+                \includegraphics[width=0.90\textwidth]{PLR_patch}
+                \label{fig:PLR_patch}
         \end{figure}
 
 .. only:: html
 
-    .. figure:: PLRsearch.svg
-        :alt: PLRsearch
+    .. figure:: PLR_patch.svg
+        :alt: PLR_patch
+        :align: center
+
+Vhost
+-----
+
+This test case shows quite broad critical region. Fitting functions give
+fairly differing estimates. One overestimates, the other underestimates.
+The graph mostly shows later measurements slowly bringing the esitames
+towards each other. The final estimated interval is too broad,
+a longer run would return a smaller interval withing the current one.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/introduction/}}
+                \includegraphics[width=0.90\textwidth]{PLR_vhost}
+                \label{fig:PLR_vhost}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: PLR_vhost.svg
+        :alt: PLR_vhost
         :align: center
 
 .. _plrsearch draft: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-00
