@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "72d58799_8b5cae87",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 23
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-15T13:05:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1e4ec8a_34eaf1dd",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 58
+      },
+      "revId": "26364c5e5f7d34c565c82e9f1a8da421ee5556e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "02f71aa4_791e19fd",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 23
@@ -59,6 +83,30 @@
       "writtenOn": "2019-02-15T07:47:50Z",
       "side": 1,
       "message": "ltl.",
+      "range": {
+        "startLine": 44,
+        "startChar": 77,
+        "endLine": 44,
+        "endChar": 81
+      },
+      "revId": "26364c5e5f7d34c565c82e9f1a8da421ee5556e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "43ef04c2_0e2db454",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 23
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-15T13:05:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02f71aa4_791e19fd",
       "range": {
         "startLine": 44,
         "startChar": 77,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "89fe74d5_7a4424ed",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 23
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-15T13:05:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87abe0f1_edfde702",
+      "range": {
+        "startLine": 255,
+        "startChar": 0,
+        "endLine": 255,
+        "endChar": 31
+      },
+      "revId": "26364c5e5f7d34c565c82e9f1a8da421ee5556e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "048444b7_074f7b5e",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 23
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "6f679698_f5724a27",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 23
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-15T13:05:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "048444b7_074f7b5e",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 31
+      },
+      "revId": "26364c5e5f7d34c565c82e9f1a8da421ee5556e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee7e6051_ae8ad177",
         "filename": "docs/bash_code_style.rst",
         "patchSetId": 23
@@ -128,6 +224,30 @@
       "writtenOn": "2019-02-15T07:47:50Z",
       "side": 1,
       "message": "ltl.",
+      "range": {
+        "startLine": 331,
+        "startChar": 71,
+        "endLine": 331,
+        "endChar": 81
+      },
+      "revId": "26364c5e5f7d34c565c82e9f1a8da421ee5556e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aea175cb_c05605b3",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 23
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-15T13:05:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee7e6051_ae8ad177",
       "range": {
         "startLine": 331,
         "startChar": 71,
