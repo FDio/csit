@@ -493,6 +493,7 @@
       - 29  # NFV NDRPDR
       - 32  # NFV NDRPDR
       - 39  # NFV NDRPDR
+      - 46  # NFV NDRPDR
 
     plot-vpp-nfv-2n-skx-mrr:
       # TODO: Add new data
@@ -1393,6 +1394,7 @@
     - 29  # NFV NDRPDR
     - 32  # NFV NDRPDR
     - 39  # NFV NDRPDR
+    - 46  # NFV NDRPDR
     - 45  # SOAK
     csit-ligato-perf-verify-1810-3n-hsw:
     - 5   # full
