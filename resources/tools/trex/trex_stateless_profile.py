@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -98,43 +98,6 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
     :type unidirection: bool
     """
 
-    #unidirection traffic
-    if unidirection:
-        send_traffic_unidirection(profile_file, duration, framesize, rate,
-                                  warmup_time, port_0, port_1, latency,
-                                  async_start)
-    #bidirection traffic
-    else:
-        send_traffic_bidirection(profile_file, duration, framesize, rate,
-                                 warmup_time, port_0, port_1, latency,
-                                 async_start)
-
-
-def send_traffic_bidirection(profile_file, duration, framesize, rate,
-                             warmup_time, port_0, port_1, latency,
-                             async_start=False):
-    """Send traffic bidirection and measure packet loss and latency.
-
-    :param profile_file: A python module with T-rex traffic profile.
-    :param framesize: Frame size.
-    :param duration: Duration of traffic run in seconds (-1=infinite).
-    :param rate: Traffic rate [percentage, pps, bps].
-    :param warmup_time: Traffic warm-up time in seconds, 0 = disable.
-    :param port_0: Port 0 on the traffic generator.
-    :param port_1: Port 1 on the traffic generator.
-    :param latency: With latency stats.
-    :param async_start: Start the traffic and exit.
-    :type profile_file: str
-    :type framesize: int or str
-    :type duration: float
-    :type rate: str
-    :type warmup_time: float
-    :type port_0: int
-    :type port_1: int
-    :type latency: bool
-    :type async_start: bool
-    """
-
     client = None
     total_rcvd = 0
     total_sent = 0
@@ -167,33 +130,37 @@ def send_traffic_bidirection(profile_file, duration, framesize, rate,
                                  resolve=False)
         if isinstance(framesize, int):
             client.add_streams(streams[0], ports=[port_0])
-            client.add_streams(streams[1], ports=[port_1])
+            if not unidirection:
+                client.add_streams(streams[1], ports=[port_1])
         elif isinstance(framesize, str):
             client.add_streams(streams[0:3], ports=[port_0])
-            client.add_streams(streams[3:6], ports=[port_1])
+            if not unidirection:
+                client.add_streams(streams[3:6], ports=[port_1])
         if latency:
             try:
                 if isinstance(framesize, int):
                     client.add_streams(streams[2], ports=[port_0])
-                    client.add_streams(streams[3], ports=[port_1])
+                    if not unidirection:
+                        client.add_streams(streams[3], ports=[port_1])
                 elif isinstance(framesize, str):
                     latency = False
             except STLError:
                 # Disable latency if NIC does not support requested stream type
                 print("##### FAILED to add latency streams #####")
                 latency = False
+        ports = [port_0]
+        if not unidirection:
+            ports.append(port_1)
         # Warm-up phase:
         if warmup_time > 0:
             # Clear the stats before injecting:
             client.clear_stats()
 
             # Choose rate and start traffic:
-            client.start(ports=[port_0, port_1], mult=rate,
-                         duration=warmup_time)
+            client.start(ports=ports, mult=rate, duration=warmup_time)
 
             # Block until done:
-            client.wait_on_traffic(ports=[port_0, port_1],
-                                   timeout=warmup_time+30)
+            client.wait_on_traffic(ports=ports, timeout=warmup_time+30)
 
             if client.get_warnings():
                 for warning in client.get_warnings():
@@ -206,11 +173,15 @@ def send_traffic_bidirection(profile_file, duration, framesize, rate,
             print(json.dumps(stats, indent=4, separators=(',', ': '),
                              sort_keys=True))
 
-            lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
-            lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
+            lost_a = stats[port_0]["opackets"] - stats[port_1]["ipackets"]
+            if not unidirection:
+                lost_b = stats[port_1]["opackets"] - stats[port_0]["ipackets"]
 
-            print("\npackets lost from 0 --> 1: {0} pkts".format(lost_a))
-            print("packets lost from 1 --> 0: {0} pkts".format(lost_b))
+            print("\npackets lost from {p0} --> {p1}: {v} pkts".format(
+                p0=port_0, p1=port_1, v=lost_a))
+            if not unidirection:
+                print("packets lost from {p1} --> {p0}: {v} pkts".format(
+                    p0=port_0, p1=port_1, v=lost_b))
 
         # Clear the stats before injecting:
         client.clear_stats()
@@ -218,11 +189,11 @@ def send_traffic_bidirection(profile_file, duration, framesize, rate,
         lost_b = 0
 
         # Choose rate and start traffic:
-        client.start(ports=[port_0, port_1], mult=rate, duration=duration)
+        client.start(ports=ports, mult=rate, duration=duration)
 
         if not async_start:
             # Block until done:
-            client.wait_on_traffic(ports=[port_0, port_1], timeout=duration+30)
+            client.wait_on_traffic(ports=ports, timeout=duration+30)
 
             if client.get_warnings():
                 for warning in client.get_warnings():
@@ -235,24 +206,33 @@ def send_traffic_bidirection(profile_file, duration, framesize, rate,
             print(json.dumps(stats, indent=4, separators=(',', ': '),
                              sort_keys=True))
 
-            lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
-            lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
+            lost_a = stats[port_0]["opackets"] - stats[port_1]["ipackets"]
+            if not unidirection:
+                lost_b = stats[port_1]["opackets"] - stats[port_0]["ipackets"]
 
             if latency:
                 lat_a = fmt_latency(
-                    str(stats["latency"][0]["latency"]["total_min"]),
-                    str(stats["latency"][0]["latency"]["average"]),
-                    str(stats["latency"][0]["latency"]["total_max"]))
-                lat_b = fmt_latency(
-                    str(stats["latency"][1]["latency"]["total_min"]),
-                    str(stats["latency"][1]["latency"]["average"]),
-                    str(stats["latency"][1]["latency"]["total_max"]))
+                    str(stats["latency"][port_0]["latency"]["total_min"]),
+                    str(stats["latency"][port_0]["latency"]["average"]),
+                    str(stats["latency"][port_0]["latency"]["total_max"]))
+                if not unidirection:
+                    lat_b = fmt_latency(
+                        str(stats["latency"][port_1]["latency"]["total_min"]),
+                        str(stats["latency"][port_1]["latency"]["average"]),
+                        str(stats["latency"][port_1]["latency"]["total_max"]))
 
-            total_sent = stats[0]["opackets"] + stats[1]["opackets"]
-            total_rcvd = stats[0]["ipackets"] + stats[1]["ipackets"]
+            if not unidirection:
+                total_sent = stats[0]["opackets"] + stats[1]["opackets"]
+                total_rcvd = stats[0]["ipackets"] + stats[1]["ipackets"]
+            else:
+                total_sent = stats[port_0]["opackets"]
+                total_rcvd = stats[port_1]["ipackets"]
 
-            print("\npackets lost from 0 --> 1:   {0} pkts".format(lost_a))
-            print("packets lost from 1 --> 0:   {0} pkts".format(lost_b))
+            print("\npackets lost from {p0} --> {p1}:   {v} pkts".format(
+                p0=port_0, p1=port_1, v=lost_a))
+            if not unidirection:
+                print("packets lost from {p1} --> {p0}:   {v} pkts".format(
+                p0=port0, p1=port1, v=lost_b))
 
     except STLError as err:
         sys.stderr.write("{0}\n".format(err))
@@ -270,161 +250,6 @@ def send_traffic_bidirection(profile_file, duration, framesize, rate,
                   "latencyStream1(usec)={5}".
                   format(rate, total_rcvd, total_sent, lost_a + lost_b,
                          lat_a, lat_b))
-
-
-def send_traffic_unidirection(profile_file, duration, framesize, rate,
-                              warmup_time, port_0, port_1, latency,
-                              async_start=False):
-    """Send traffic unidirection and measure packet loss and latency.
-
-    :param profile_file: A python module with T-rex traffic profile.
-    :param framesize: Frame size.
-    :param duration: Duration of traffic run in seconds (-1=infinite).
-    :param rate: Traffic rate [percentage, pps, bps].
-    :param warmup_time: Traffic warm-up time in seconds, 0 = disable.
-    :param port_0: Port 0 on the traffic generator.
-    :param port_1: Port 1 on the traffic generator.
-    :param latency: With latency stats.
-    :param async_start: Start the traffic and exit.
-    :type profile_file: str
-    :type framesize: int or str
-    :type duration: float
-    :type rate: str
-    :type warmup_time: float
-    :type port_0: int
-    :type port_1: int
-    :type latency: bool
-    :type async_start: bool
-    """
-
-    client = None
-    total_rcvd = 0
-    total_sent = 0
-    lost_a = 0
-    lat_a = "-1/-1/-1"
-
-    # Read the profile:
-    try:
-        print("### Profile file:\n{}".format(profile_file))
-        profile = STLProfile.load(profile_file, direction=0, port_id=0,
-                                  framesize=framesize)
-        streams = profile.get_streams()
-    except STLError as err:
-        print("Error while loading profile '{0}' {1}".format(profile_file, err))
-        sys.exit(1)
-
-    try:
-        # Create the client:
-        client = STLClient(verbose_level=LoggerApi.VERBOSE_QUIET)
-        # Connect to server:
-        client.connect()
-        # Prepare our ports:
-        if port_0 == port_1:
-            client.reset(ports=[port_0])
-            client.remove_all_streams(ports=[port_0])
-
-            if "macsrc" in profile_file:
-                client.set_port_attr(ports=[port_0], promiscuous=True,
-                                     resolve=False)
-        else:
-            client.reset(ports=[port_0, port_1])
-            client.remove_all_streams(ports=[port_0, port_1])
-
-            if "macsrc" in profile_file:
-                client.set_port_attr(ports=[port_0, port_1], promiscuous=True,
-                                     resolve=False)
-
-        if isinstance(framesize, int):
-            client.add_streams(streams[0], ports=[port_0])
-        elif isinstance(framesize, str):
-            client.add_streams(streams[0:3], ports=[port_0])
-        if latency:
-            try:
-                if isinstance(framesize, int):
-                    client.add_streams(streams[2], ports=[port_0])
-                elif isinstance(framesize, str):
-                    latency = False
-            except STLError:
-                # Disable latency if NIC does not support requested stream type
-                print("##### FAILED to add latency streams #####")
-                latency = False
-
-        # Warm-up phase:
-        if warmup_time > 0:
-            # Clear the stats before injecting:
-            client.clear_stats()
-
-            # Choose rate and start traffic:
-            client.start(ports=[port_0], mult=rate,
-                         duration=warmup_time)
-
-            # Block until done:
-            client.wait_on_traffic(ports=[port_0],
-                                   timeout=warmup_time+30)
-
-            if client.get_warnings():
-                for warning in client.get_warnings():
-                    print(warning)
-
-            # Read the stats after the test:
-            stats = client.get_stats()
-
-            print("##### Warmup statistics #####")
-            print(json.dumps(stats, indent=4, separators=(',', ': '),
-                             sort_keys=True))
-
-            lost_a = stats[port_0]["opackets"] - stats[port_1]["ipackets"]
-            print("\npackets lost : {0} pkts".format(lost_a))
-
-        # Clear the stats before injecting:
-        client.clear_stats()
-        lost_a = 0
-
-        # Choose rate and start traffic:
-        client.start(ports=[port_0], mult=rate, duration=duration)
-
-        if not async_start:
-            # Block until done:
-            client.wait_on_traffic(ports=[port_0], timeout=duration+30)
-
-            if client.get_warnings():
-                for warning in client.get_warnings():
-                    print(warning)
-
-            # Read the stats after the test
-            stats = client.get_stats()
-
-            print("##### Statistics #####")
-            print(json.dumps(stats, indent=4, separators=(',', ': '),
-                             sort_keys=True))
-
-            lost_a = stats[port_0]["opackets"] - stats[port_1]["ipackets"]
-
-            if latency:
-                lat_a = fmt_latency(
-                    str(stats["latency"][0]["latency"]["total_min"]),
-                    str(stats["latency"][0]["latency"]["average"]),
-                    str(stats["latency"][0]["latency"]["total_max"]))
-
-            total_sent = stats[port_0]["opackets"]
-            total_rcvd = stats[port_1]["ipackets"]
-
-            print("\npackets lost : {0} pkts".format(lost_a))
-
-    except STLError as err:
-        sys.stderr.write("{0}\n".format(err))
-        sys.exit(1)
-
-    finally:
-        if async_start:
-            if client:
-                client.disconnect(stop_traffic=False, release_ports=True)
-        else:
-            if client:
-                client.disconnect()
-            print("rate={0}, totalReceived={1}, totalSent={2}, "
-                  "frameLoss={3}, latencyStream0(usec)={4}".
-                  format(rate, total_rcvd, total_sent, lost_a, lat_a))
 
 
 def main():
