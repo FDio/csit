@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -38,6 +38,26 @@
 | ... | and PDR.
 
 *** Keywords ***
+| Get Average Frame Size
+| | [Documentation]
+| | ... | Framesize can be either integer in case of a single packet
+| | ... | in stream, or set of packets in case of IMIX type or simmilar.
+| | ... | This keyword returns average framesize, as float or argument type.
+| | ...
+| | ... | FIXME: Migrate callers to Get Max Rate And Jumbo
+| | ...
+| | ... | *Arguments:*
+| | ... | - framesize - Framesize. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Get Average Frame Size \| IMIX_v4_1 \|
+| | ...
+| | [Arguments] | ${framesize}
+| | ...
+| | Return From Keyword If | '${framesize}' == 'IMIX_v4_1' | ${353.83333}
+| | Return From Keyword | ${framesize}
+
 | Get Max Rate And Jumbo
 | | [Documentation]
 | | ... | Argument framesize can be either integer in case of a single packet
@@ -74,8 +94,7 @@
 | | [Arguments] | ${bps_limit} | ${framesize}
 | | ... | ${overhead}=${0} | ${pps_limit}=${None}
 | | ...
-| | ${avg_size} = | Set Variable If | '${framesize}' == 'IMIX_v4_1'
-| | ... | ${353.83333} | ${framesize}
+| | ${avg_size} = | Get Average Frame Size | ${framesize}
 | | ${max_size} = | Set Variable If | '${framesize}' == 'IMIX_v4_1'
 | | ... | ${1518} | ${framesize}
 | | # swo := size_with_overhead
@@ -86,6 +105,7 @@
 | | # For testing None see: https://groups.google.com/\
 | | #                       forum/#!topic/robotframework-users/XntFz0ocD9E
 | | ${limit_set} = | Set Variable | ${pps_limit != None}
+| | # TODO: Can our code handle float rate?
 | | ${rate} = | Evaluate | (${bps_limit}/((${avg_swo}+20)*8)).__trunc__()
 | | ${max_rate} = | Set Variable If | ${limit_set} and ${rate} > ${pps_limit}
 | | ... | ${pps_limit} | ${rate}
@@ -123,50 +143,6 @@
 | | ... | ${bps_limit} | ${framesize} | ${overhead} | ${pps_limit}
 | | Run Keyword If | not ${jumbo} | Add no multi seg to all DUTs
 | | Return From Keyword | ${max_rate} | ${jumbo}
-
-| Calculate pps
-| | [Documentation]
-| | ... | Calculate pps for given rate and L2 frame size,
-| | ... | additional 20B are added to L2 frame size as padding.
-| | ...
-| | ... | FIXME: Migrate callers to Get Max Rate And Jumbo
-| | ...
-| | ... | *Arguments*
-| | ... | - bps - Rate in bps. Type: integer
-| | ... | - framesize - L2 frame size in Bytes. Type: integer
-| | ...
-| | ... | *Return*
-| | ... | - Calculated pps. Type: integer
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Calculate pps \| 10000000000 \| 64 \|
-| | ...
-| | [Arguments] | ${bps} | ${framesize}
-| | ...
-| | ${framesize}= | Get Frame Size | ${framesize}
-| | ${ret}= | Evaluate | (${bps}/((${framesize}+20)*8)).__trunc__()
-| | Return From Keyword | ${ret}
-
-| Get Frame Size
-| | [Documentation]
-| | ... | Framesize can be either integer in case of a single packet
-| | ... | in stream, or set of packets in case of IMIX type or simmilar.
-| | ... | This keyword returns average framesize.
-| | ...
-| | ... | FIXME: Migrate callers to Get Max Rate And Jumbo
-| | ...
-| | ... | *Arguments:*
-| | ... | - framesize - Framesize. Type: integer or string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Get Frame Size \| IMIX_v4_1 \|
-| | ...
-| | [Arguments] | ${framesize}
-| | ...
-| | Return From Keyword If | '${framesize}' == 'IMIX_v4_1' | ${353.83333}
-| | Return From Keyword | ${framesize}
 
 | Find NDR and PDR intervals using optimized search
 | | [Documentation]
@@ -308,7 +284,7 @@
 | | ...
 | | [Arguments] | ${result} | ${framesize}
 | | ...
-| | ${framesize} = | Get Frame Size | ${framesize}
+| | ${framesize} = | Get Average Frame Size | ${framesize}
 | | Display single bound | NDR_LOWER
 | | ... | ${result.ndr_interval.measured_low.transmit_rate} | ${framesize}
 | | ... | ${result.ndr_interval.measured_low.latency}
@@ -346,7 +322,7 @@
 | | ...
 | | [Arguments] | ${avg} | ${stdev} | ${framesize}
 | | ...
-| | ${framesize} = | Get Frame Size | ${framesize}
+| | ${framesize} = | Get Average Frame Size | ${framesize}
 | | ${avg} = | Convert To Number | ${avg}
 | | ${stdev} = | Convert To Number | ${stdev}
 | | ${lower} = | Evaluate | ${avg} - ${stdev}
@@ -407,28 +383,6 @@
 | | ... | ${result.ndr_interval.measured_low.target_tr} / 2.0
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
 | | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
-
-| Measure latency pps
-| | [Documentation]
-| | ... | Send traffic at specified rate. Measure min/avg/max latency
-| | ...
-| | ... | *Arguments:*
-| | ... | - duration - Duration of traffic run [s]. Type: integer
-| | ... | - rate - Rate for sending packets. Type: integer
-| | ... | - framesize - L2 Frame Size [B] or IMIX_v4_1. Type: integer/string
-| | ... | - topology_type - Topology type. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Measure latency \| 10 \| 4.0 \| 64 \| 3-node-IPv4 \|
-| | ...
-| | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
-| | ...
-| | Return From Keyword If | ${rate} <= 10000 | ${-1}
-| | # TODO: Remove this keyword, or suport unidirectional traffic.
-| | Send traffic on tg | ${duration} | ${rate}pps | ${framesize}
-| | ... | ${topology_type} | warmup_time=0
-| | Run keyword and return | Get latency
 
 | Traffic should pass with no loss
 | | [Documentation]
@@ -575,6 +529,8 @@
 | | Stop traffic on tg
 
 | Create network function CPU list
+| | # TODO: Is there a better place for this keyword?
+| | # It is not exactly a performance utility.
 | | [Documentation]
 | | ... | Create list of CPUs allocated for network function base on SUT/DUT
 | | ... | placement and other network functions placement.
