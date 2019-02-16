@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6851b552_2324294c",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-16T07:33:34Z",
+      "side": 1,
+      "message": "you are limiting -o Dir::Etc::sourcelist which is good but in below command you are not.",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 43
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d11d52e1_d03994a9",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-16T07:33:34Z",
+      "side": 1,
+      "message": "packages",
+      "range": {
+        "startLine": 81,
+        "startChar": 4,
+        "endLine": 81,
+        "endChar": 7
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87ccd678_1f39b778",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-16T07:33:34Z",
+      "side": 1,
+      "message": "for package in ${packages}; do",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 14
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "603c5e46_a2a272db",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-16T07:33:34Z",
+      "side": 1,
+      "message": "package",
+      "range": {
+        "startLine": 96,
+        "startChar": 36,
+        "endLine": 96,
+        "endChar": 42
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "edd109bc_d4cc6194",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-16T07:33:34Z",
+      "side": 1,
+      "message": "package",
+      "range": {
+        "startLine": 97,
+        "startChar": 37,
+        "endLine": 97,
+        "endChar": 43
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a351d099_4778e184",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-16T07:33:34Z",
+      "side": 1,
+      "message": "What if grep will return -1?",
+      "range": {
+        "startLine": 99,
+        "startChar": 69,
+        "endLine": 99,
+        "endChar": 73
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "80153969_50512bf7",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-16T07:33:34Z",
+      "side": 1,
+      "message": "package",
+      "range": {
+        "startLine": 100,
+        "startChar": 37,
+        "endLine": 100,
+        "endChar": 43
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b4d3bc1_4c1cb933",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-16T07:33:34Z",
+      "side": 1,
+      "message": "if [[ ${pkg_info} \u003d\u003d *${VPP_VERSION}* ]]; then\n\n?\nWhich one is more safe?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 33
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "75cd4b3f_f96d61ca",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-16T07:33:34Z",
+      "side": 1,
+      "message": "package",
+      "range": {
+        "startLine": 103,
+        "startChar": 23,
+        "endLine": 103,
+        "endChar": 29
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db0287e0_a4fc51ec",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-16T07:33:34Z",
+      "side": 1,
+      "message": "artifacts+\u003d(${package[@]/%/\u003d${ver-}})\n\none liner instead of 3",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 35
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
