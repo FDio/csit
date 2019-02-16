@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a51b32cc_39cd667b",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-16T06:49:27Z",
+      "side": 1,
+      "message": "And what it is?\nIt is not usable for func testing it is performance only. And it is utility to compute NF placement. Maybe to do cpu_utils.robot\n\nBringing me back to thinking if we can have wrappers of python libraries in same named files?",
+      "range": {
+        "startLine": 530,
+        "startChar": 0,
+        "endLine": 531,
+        "endChar": 46
+      },
+      "revId": "8bc10a0cb3561fb44087231c0c7d56eed245bc15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
