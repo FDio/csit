@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca8b7112_1ee2ebbe",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-18T16:52:58Z",
+      "side": 1,
+      "message": "command\u003d\"apt-cache show \u0027${package}\u0027 | grep -o\"\n        command+\u003d\" \u0027Version: ${VPP_VERSION-}[^ ]*\u0027)\n        ver\u003d$(${command}) || die \"Something went wrong!\"\n\nThat way you do not need \"set +x\" to avoid printing ${pkg_info}.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 73
+      },
+      "revId": "0b3f6e65638c73b736094b08c718b7f55b03de93",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "651d7e84_872c4d75",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-18T16:52:58Z",
+      "side": 1,
+      "message": "Put into quotes.\n\nWe have finally merged https://gerrit.fd.io/r/17642\nso you can consult docs/bash_code_style.rst for current rules.",
+      "range": {
+        "startLine": 103,
+        "startChar": 21,
+        "endLine": 103,
+        "endChar": 38
+      },
+      "revId": "0b3f6e65638c73b736094b08c718b7f55b03de93",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
