@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4baba9e5_1a7bf971",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-18T09:51:45Z",
+      "side": 1,
+      "message": "I have a plan to do it globally. I thought there is already a Jira ticket for that, but I did not find it, so I have opened CSIT-1434.",
+      "parentUuid": "d5c78cfa_26c8576d",
+      "range": {
+        "startLine": 413,
+        "startChar": 0,
+        "endLine": 414,
+        "endChar": 31
+      },
+      "revId": "94b075ec7fbdf0621b75a47d1fd9e24b0e6b76aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d16f115b_be1a7db3",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "2d5b8d9f_c7cbc0c5",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-18T09:51:45Z",
+      "side": 1,
+      "message": "\"Verified\" by my brain, when comparing Base line 435 with new line 422 (see the lack of \" - 1\").",
+      "parentUuid": "d16f115b_be1a7db3",
+      "range": {
+        "startLine": 415,
+        "startChar": 19,
+        "endLine": 415,
+        "endChar": 25
+      },
+      "revId": "94b075ec7fbdf0621b75a47d1fd9e24b0e6b76aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5631120a_da259215",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2019-02-16T07:09:10Z",
       "side": 1,
       "message": "+ is not required with (), python will automatically join string",
+      "range": {
+        "startLine": 419,
+        "startChar": 12,
+        "endLine": 419,
+        "endChar": 14
+      },
+      "revId": "94b075ec7fbdf0621b75a47d1fd9e24b0e6b76aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f67279ab_df203952",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-18T09:51:45Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "5631120a_da259215",
       "range": {
         "startLine": 419,
         "startChar": 12,
