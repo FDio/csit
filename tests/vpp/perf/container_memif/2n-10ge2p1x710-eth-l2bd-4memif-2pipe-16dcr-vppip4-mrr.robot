@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER | 2R8C
-| ... | NF_DENSITY | CHAIN | NF_VPPIP4
+| ... | NF_DENSITY | PIPELINE | NF_VPPIP4
 | ...
 | Suite Setup | Run Keywords
 | ... | Set up 2-node performance topology with DUT's NIC model | L3
@@ -33,8 +33,8 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *Raw results L2BD test cases with memif 2 chains 16 docker
-| ... | containers*
+| Documentation | *Raw results L2BD test cases with 4memif 2 pipelines 16
+| ... | docker containers*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with
 | ... | single links between nodes.
@@ -60,7 +60,7 @@
 | ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-2c8n
 # Container
 | ${container_engine}= | Docker
-| ${container_chain_topology}= | chain_ip4
+| ${container_chain_topology}= | pipeline_ip4
 
 *** Keywords ***
 | Local Template
@@ -85,41 +85,40 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Set up performance test with containers
 | | ... | nf_chains=${2} | nf_nodes=${8} | auto_scale=${False}
-| | And Initialize L2 Bridge Domain for multiple chains with memif pairs
+| | And Initialize L2 Bridge Domain for multiple pipelines with memif pairs
 | | ... | nf_chains=${2} | nf_nodes=${8} | auto_scale=${False}
 | | Then Traffic should pass with maximum rate
 | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-64B-1c-eth-l2bd-32memif-2chain-16dcr-vppip4-mrr
+| tc01-64B-1c-eth-l2bd-4memif-2pipe-16dcr-vppip4-mrr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-64B-2c-eth-l2bd-32memif-2chain-16dcr-vppip4-mrr
+| tc02-64B-2c-eth-l2bd-4memif-2pipe-16dcr-vppip4-mrr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc04-1518B-1c-eth-l2bd-32memif-2chain-16dcr-vppip4-mrr
+| tc04-1518B-1c-eth-l2bd-4memif-2pipe-16dcr-vppip4-mrr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-eth-l2bd-32memif-2chain-16dcr-vppip4-mrr
+| tc05-1518B-2c-eth-l2bd-4memif-2pipe-16dcr-vppip4-mrr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc07-9000B-1c-eth-l2bd-32memif-2chain-16dcr-vppip4-mrr
+| tc07-9000B-1c-eth-l2bd-4memif-2pipe-16dcr-vppip4-mrr
 | | [Tags] | 9000B | 1C
 | | framesize=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-eth-l2bd-32memif-2chain-16dcr-vppip4-mrr
+| tc08-9000B-2c-eth-l2bd-4memif-2pipe-16dcr-vppip4-mrr
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc10-IMIX-1c-eth-l2bd-32memif-2chain-16dcr-vppip4-mrr
+| tc10-IMIX-1c-eth-l2bd-4memif-2pipe-16dcr-vppip4-mrr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-eth-l2bd-32memif-2chain-16dcr-vppip4-mrr
+| tc11-IMIX-2c-eth-l2bd-4memif-2pipe-16dcr-vppip4-mrr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
-
