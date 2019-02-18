@@ -201,7 +201,7 @@ class VatExecutor(object):
         return self._stderr
 
     @staticmethod
-    def cmd_from_template(node, vat_template_file, **vat_args):
+    def cmd_from_template(node, vat_template_file, json_param=True, **vat_args):
         """Execute VAT script on specified node. This method supports
         script templates with parameters.
 
@@ -210,7 +210,7 @@ class VatExecutor(object):
         :param vat_args: Arguments to the template file.
         :returns: List of JSON objects returned by VAT.
         """
-        with VatTerminal(node) as vat:
+        with VatTerminal(node, json_param=json_param) as vat:
             return vat.vat_terminal_exec_cmd_from_template(vat_template_file,
                                                            **vat_args)
 
