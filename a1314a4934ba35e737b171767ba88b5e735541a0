@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "449c16f7_d5dca7e6",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-18T14:51:21Z",
+      "side": 1,
+      "message": "Should we create DPDK_VER file in ${CSIT_DIR} and read the intended vesion from there?",
+      "range": {
+        "startLine": 102,
+        "startChar": 25,
+        "endLine": 102,
+        "endChar": 36
+      },
+      "revId": "a1314a4934ba35e737b171767ba88b5e735541a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "55367b3e_59698edb",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-18T14:51:21Z",
+      "side": 1,
+      "message": "Probably not critical, but we could start using trap RETURN for popd. Exit codes should be fine [0].\n\n[0] https://stackoverflow.com/questions/36442572/how-to-make-return-trap-in-bash-preserve-the-return-code",
+      "range": {
+        "startLine": 155,
+        "startChar": 4,
+        "endLine": 155,
+        "endChar": 8
+      },
+      "revId": "a1314a4934ba35e737b171767ba88b5e735541a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
