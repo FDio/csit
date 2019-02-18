@@ -415,11 +415,16 @@ function get_test_tag_string () {
                 ;;
             *"perf"*)
                 # On parsing error, ${trigger} stays empty.
-                trigger="$(echo "${GERRIT_EVENT_COMMENT_TEXT}" \
-                    | grep -oE '(perftest$|perftest[[:space:]].+$)')" \
-                    || true
+                comment="${GERRIT_EVENT_COMMENT_TEXT}"
+                # As "perftest" can be followed by something, we substitute it.
+                comment="${comment/perftest-2n/perftest}"
+                comment="${comment/perftest-3n/perftest}"
+                comment="${comment/perftest-hsw/perftest}"
+                comment="${comment/perftest-skx/perftest}"
+                tag_string="$(echo "${comment}" \
+                    | grep -oE '(perftest$|perftest[[:space:]].+$)' || true)"
                 # Set test tags as string.
-                TEST_TAG_STRING="${trigger#$"perftest"}"
+                TEST_TAG_STRING="${tag_string#$"perftest"}"
                 ;;
             *)
                 die "Unknown specification: ${TEST_CODE}"
