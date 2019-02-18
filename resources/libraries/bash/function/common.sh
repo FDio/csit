@@ -658,11 +658,8 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrANDnic_intel-x710AND1cAND64bANDip4base"
-                                "mrrANDnic_intel-x710AND1cAND78bANDip6base"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2bdbase"
-                                "mrrANDnic_intel-x710AND1cAND64bANDl2xcbase"
-                                "!dot1q")
+                test_tag_array=("ndrpdrAND64b"
+                                "ndrpdrANDimix")
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
