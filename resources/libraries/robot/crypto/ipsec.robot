@@ -160,6 +160,7 @@
 | | [Arguments] | ${node} | ${interface} | ${crypto_alg} | ${crypto_key}
 | | ... | ${integ_alg} | ${integ_key} | ${l_spi} | ${r_spi} | ${l_ip}
 | | ... | ${r_ip} | ${l_tunnel}=${None} | ${r_tunnel}=${None}
+| | ... | ${is_ipv6}=${FALSE}
 | | Set Test Variable | ${l_sa_id} | ${10}
 | | Set Test Variable | ${r_sa_id} | ${20}
 | | ${spd_id}= | Set Variable | ${1}
@@ -174,15 +175,15 @@
 | | VPP IPsec Add SPD | ${node} | ${spd_id}
 | | VPP IPsec SPD Add If | ${node} | ${spd_id} | ${interface}
 | | ${action}= | Policy Action Bypass
-| | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_hi} | ${action}
-| | ... | inbound=${TRUE} | proto=${ESP_PROTO}
-| | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_hi} | ${action}
-| | ... | inbound=${FALSE} | proto=${ESP_PROTO}
+| | VPP IPsec Policy Add | ${node} | ${spd_id} | ${p_hi} | ${action}
+| | ... | inbound=${TRUE} | proto=${ESP_PROTO} | is_ipv6=${is_ipv6}
+| | VPP IPsec Policy Add | ${node} | ${spd_id} | ${p_hi} | ${action}
+| | ... | inbound=${FALSE} | proto=${ESP_PROTO} | is_ipv6=${is_ipv6}
 | | ${action}= | Policy Action Protect
-| | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_lo} | ${action}
+| | VPP IPsec Policy Add | ${node} | ${spd_id} | ${p_lo} | ${action}
 | | ... | sa_id=${r_sa_id} | laddr_range=${l_ip}
 | | ... | raddr_range=${r_ip} | inbound=${TRUE}
-| | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_lo} | ${action}
+| | VPP IPsec Policy Add | ${node} | ${spd_id} | ${p_lo} | ${action}
 | | ... | sa_id=${l_sa_id} | laddr_range=${l_ip}
 | | ... | raddr_range=${r_ip} | inbound=${FALSE}
 
