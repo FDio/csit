@@ -174,15 +174,15 @@
 | | VPP IPsec Add SPD | ${node} | ${spd_id}
 | | VPP IPsec SPD Add If | ${node} | ${spd_id} | ${interface}
 | | ${action}= | Policy Action Bypass
-| | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_hi} | ${action}
+| | VPP IPsec Policy Add | ${node} | ${spd_id} | ${p_hi} | ${action}
 | | ... | inbound=${TRUE} | proto=${ESP_PROTO}
-| | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_hi} | ${action}
+| | VPP IPsec Policy Add | ${node} | ${spd_id} | ${p_hi} | ${action}
 | | ... | inbound=${FALSE} | proto=${ESP_PROTO}
 | | ${action}= | Policy Action Protect
-| | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_lo} | ${action}
+| | VPP IPsec Policy Add | ${node} | ${spd_id} | ${p_lo} | ${action}
 | | ... | sa_id=${r_sa_id} | laddr_range=${l_ip}
 | | ... | raddr_range=${r_ip} | inbound=${TRUE}
-| | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_lo} | ${action}
+| | VPP IPsec Policy Add | ${node} | ${spd_id} | ${p_lo} | ${action}
 | | ... | sa_id=${l_sa_id} | laddr_range=${l_ip}
 | | ... | raddr_range=${r_ip} | inbound=${FALSE}
 
