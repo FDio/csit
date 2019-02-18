@@ -434,7 +434,7 @@ class Specification(object):
                         builds = [x for x in range(builds["start"], build_nr+1)]
                         self.configuration["data-sets"][set_name][job] = builds
 
-        # Data sets: add sub-sets to sets:
+        # Data sets: add sub-sets to sets (only one level):
         for set_name, data_set in self.configuration["data-sets"].items():
             if isinstance(data_set, list):
                 new_set = dict()
