@@ -27,6 +27,7 @@ function activate_docker_topology () {
     #
     # Variables read:
     # - BASH_FUNCTION_DIR - Path to existing directory this file is located in.
+    # - DOWNLOAD_DIR - Directory with downloaded or builded packages
     # - TOPOLOGIES - Available topologies.
     # - NODENESS - Node multiplicity of desired testbed.
     # - FLAVOR - Node flavor string, usually describing the processor.
@@ -40,6 +41,24 @@ function activate_docker_topology () {
     }
 
     device_image="$(< ${CSIT_DIR}/VPP_DEVICE_IMAGE)"
+    if [ ! -z "${device_image}" ]; then
+            dcr_image_pull=$(docker pull ${device_image}) || {
+            warn "Failed to get fresh image ${device_image}"
+            }
+            docker images prune -q
+        else
+        die "VPP_DEVICE_IMAGE not set"
+    fi
+    generate_dockerfile "${device_image}" || {
+            die "Dockerfile generation failed"
+            }
+    DCR_IMAGE_TAG_UUID="csit-sut-vpp-$(uuidgen):latest"
+    dcr_image_build=$(docker build -t ${DCR_IMAGE_TAG_UUID} \
+        -f ${DCR_DOCKERFILE} ${DOWNLOAD_DIR}) || {
+        die "Failed to build docker image with vpp"
+        rm -f ${DCR_DOCKERFILE} || die
+    }
+
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
         "1n_skx")
@@ -48,7 +67,8 @@ function activate_docker_topology () {
             # back to localhost for further processing.
             hostname=$(grep search /etc/resolv.conf | cut -d' ' -f3)
             ssh="ssh root@${hostname} -p 6022"
-            run="activate_wrapper ${NODENESS} ${FLAVOR} ${device_image}"
+            run="activate_wrapper ${NODENESS} ${FLAVOR} ${device_image} \
+		    ${DCR_IMAGE_TAG_UUID}"
             env_vars=$(${ssh} "$(declare -f); ${run}") || {
                 die "Topology reservation via shim-dcr failed!"
             }
@@ -61,7 +81,7 @@ function activate_docker_topology () {
         "1n_vbox")
             # We execute reservation on localhost. Sourced script automatially
             # sets environment variables for further processing.
-            activate_wrapper "${NODENESS}" "${FLAVOR}" "${device_image}" || die
+            activate_wrapper "${NODENESS}" "${FLAVOR}" "${device_image}" "${DCR_IMAGE_TAG_UUID}" || die
             ;;
         *)
             die "Unknown specification: ${case_text}!"
@@ -309,6 +329,12 @@ function deactivate_docker_topology () {
         *)
             die "Unknown specification: ${case_text}!"
     esac
+    # Remove builded docker image.
+    docker image rm --force "${DCR_IMAGE_TAG_UUID}" || {
+        die "Image cleanup failed!"
+    }
+
+
 }
 
 
@@ -876,3 +902,4 @@ function warn () {
 
     echo "$@" >&2
 }
+
