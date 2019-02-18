@@ -129,6 +129,9 @@ function clean_environment () {
     docker rm --force $(docker ps -q --filter name=${DCR_UUIDS[dut1]}) || {
         warn "Failed to remove hanged containers or nothing to remove!"
     }
+    # Remove buided docker mages and cocker files
+    docker image rm --force "${DCR_IMAGE_TAG_UUID}" || die "Image cleanup failed!"
+    rm -f ${DCR_DOCKERFILE} || die 
 
     # Rebind interfaces back to kernel drivers.
     for ADDR in ${TG_PCIDEVS[@]}; do
@@ -516,7 +519,10 @@ function start_topology_containers () {
     if ! installed docker; then
         die "Docker not present. Please install before continue!"
     fi
-
+    DCR_IMAGE_TAG_UUID="csit-sut-vpp-$(uuidgen):latest"
+    DCR_IMAGE_BUILD=$(docker build -t ${DCR_IMAGE_TAG_UUID} -f ${DCR_DOCKERFILE} ${DOWNLOAD_DIR}) || {
+	    die "Failed to build docker image with vpp"
+    }
     # If the IMAGE is not already loaded then docker run will pull the IMAGE,
     # and all image dependencies, before it starts the container.
     dcr_image="${1}"
@@ -550,11 +556,11 @@ function start_topology_containers () {
     declare -gA DCR_CPIDS
 
     # Run TG and DUT1. As initial version we do support only 2-node.
-    params=(${dcr_stc_params} --name csit-tg-$(uuidgen) ${dcr_image})
+    params=(${dcr_stc_params} --name csit-tg-$(uuidgen) ${DCR_IMAGE_TAG_UUID})
     DCR_UUIDS+=([tg]="$(docker run "${params[@]}")") || {
         die "Failed to start TG docker container!"
     }
-    params=(${dcr_stc_params} --name csit-dut1-$(uuidgen) ${dcr_image})
+    params=(${dcr_stc_params} --name csit-dut1-$(uuidgen) ${DCR_IMAGE_TAG_UUID})
     DCR_UUIDS+=([dut1]="$(docker run "${params[@]}")") || {
         die "Failed to start DUT1 docker container!"
     }
