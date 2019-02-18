@@ -868,3 +868,26 @@ function warn () {
 
     echo "$@" >&2
 }
+
+
+function get_os_family() {
+    # Get OS from /etc/os-release and store OS family debian/redhat on OS_ID variable
+    #
+    # Variables exported:
+    # - OS_FAMILY - OS family debina/redhat
+
+    set -exuo pipefail
+
+    case $(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g') in
+	ubuntu|debian)
+		export OS_FAMILY="debian"
+		;;
+        centos|opensuse)
+		export OS_FAMILY="redhat"
+		;;
+	*)
+		die "Get OS family failed."
+		;;
+	esac
+}
+
