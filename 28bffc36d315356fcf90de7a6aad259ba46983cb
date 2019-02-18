@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12fc2a64_91210bee",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-18T13:15:45Z",
+      "side": 1,
+      "message": "script",
+      "range": {
+        "startLine": 240,
+        "startChar": 71,
+        "endLine": 240,
+        "endChar": 76
+      },
+      "revId": "28bffc36d315356fcf90de7a6aad259ba46983cb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a165680a_d4a3d751",
+        "filename": "docs/bash_code_style.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-18T13:15:45Z",
+      "side": 1,
+      "message": "much",
+      "range": {
+        "startLine": 259,
+        "startChar": 48,
+        "endLine": 259,
+        "endChar": 52
+      },
+      "revId": "28bffc36d315356fcf90de7a6aad259ba46983cb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
