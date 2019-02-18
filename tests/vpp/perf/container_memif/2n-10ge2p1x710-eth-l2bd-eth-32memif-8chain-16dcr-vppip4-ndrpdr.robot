@@ -97,35 +97,34 @@
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
 *** Test Cases ***
-| tc01-64B-1c-eth-l2bd-32memif-8chain-16dcr-vppip4-ndrpdr
+| tc01-64B-1c-eth-l2bd-eth-32memif-8chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-64B-2c-eth-l2bd-32memif-8chain-16dcr-vppip4-ndrpdr
+| tc02-64B-2c-eth-l2bd-eth-32memif-8chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc04-1518B-1c-eth-l2bd-32memif-8chain-16dcr-vppip4-ndrpdr
+| tc04-1518B-1c-eth-l2bd-eth-32memif-8chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-eth-l2bd-32memif-8chain-16dcr-vppip4-ndrpdr
+| tc05-1518B-2c-eth-l2bd-eth-32memif-8chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc07-9000B-1c-eth-l2bd-32memif-8chain-16dcr-vppip4-ndrpdr
+| tc07-9000B-1c-eth-l2bd-eth-32memif-8chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 9000B | 1C
 | | framesize=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-eth-l2bd-32memif-8chain-16dcr-vppip4-ndrpdr
+| tc08-9000B-2c-eth-l2bd-eth-32memif-8chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc10-IMIX-1c-eth-l2bd-32memif-8chain-16dcr-vppip4-ndrpdr
+| tc10-IMIX-1c-eth-l2bd-eth-32memif-8chain-16dcr-vppip4-ndrpdr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-eth-l2bd-32memif-8chain-16dcr-vppip4-ndrpdr
+| tc11-IMIX-2c-eth-l2bd-eth-32memif-8chain-16dcr-vppip4-ndrpdr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
-

@@ -60,6 +60,7 @@ class Regenerator(object):
             "ip6": 78,
             "vxlan+ip4": 114  # What is the real minimum for latency stream?
         }
+        min_framesize_values = protocol_to_min_framesize.values()
 
         def get_iface_and_suite_id(filename):
             """Get interface and suite ID.
@@ -94,20 +95,30 @@ class Regenerator(object):
             :rtype: int
             """
             # TODO: Is there a better way to disable some combinations?
-            if kwargs["framesize"] == 9000 and "vic1227" in iface:
-                # Not supported in HW.
-                pass
-            elif kwargs["framesize"] == 9000 and "avf" in suite_id:
-                # Not supported by AVF driver.
-                # https://git.fd.io/vpp/tree/src/plugins/avf/README.md
-                pass
-            elif ("soak" in suite_id and
-                  (kwargs["phy_cores"] != 1
-                   or kwargs["framesize"] in (1518, 9000, "IMIX_v4_1"))):
+            emit = True
+            if kwargs["framesize"] == 9000:
+                if "vic1227" in iface:
+                    # Not supported in HW.
+                    emit = False
+                if "avf" in suite_id:
+                    # Not supported by AVF driver.
+                    # https://git.fd.io/vpp/tree/src/plugins/avf/README.md
+                    emit = False
+            if "-16vm-" in suite_id or "-16dcr-" in suite_id:
+                if kwargs["phy_cores"] > 3:
+                    # CSIT lab only has 28 (physical) core processors,
+                    # so these test would fail when attempting to assign cores.
+                    emit = False
+            if "soak" in suite_id:
                 # Soak test take too long, do not risk other than tc01.
-                pass
-            else:
+                if kwargs["phy_cores"] != 1:
+                    emit = False
+                if kwargs["framesize"] not in min_framesize_values:
+                    emit = False
+            if emit:
                 file_out.write(testcase.generate(num=num, **kwargs))
+            # We bump tc number in any case, so that future enables/disables
+            # do not affect the numbering of other test cases.
             return num + 1
 
         def add_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
