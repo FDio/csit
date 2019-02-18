@@ -20,9 +20,9 @@ from enum import Enum, IntEnum
 from robot.api import logger
 
 from resources.libraries.python.PapiExecutor import PapiExecutor
-from resources.libraries.python.PapiErrors import PapiError, PapiCommandError
+from resources.libraries.python.PapiErrors import PapiError
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
+from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
 
 
@@ -66,7 +66,7 @@ class IntegAlg(Enum):
 class IPsecProto(IntEnum):
     """IPsec protocol."""
     ESP = 1
-    AH = 0
+    SEC_AH = 0
 
 
 class IPsecUtil(object):
@@ -240,7 +240,7 @@ class IPsecUtil(object):
         :returns: IPsecProto enum AH object.
         :rtype: IPsecProto
         """
-        return int(IPsecProto.AH)
+        return int(IPsecProto.SEC_AH)
 
     @staticmethod
     def vpp_ipsec_select_backend(node, protocol, index=1):
@@ -308,13 +308,6 @@ class IPsecUtil(object):
             api_reply = papi_executor.get_papi_reply()
 
         if api_reply is not None:
-            # api_r = api_reply[0]['api_reply']['ipsec_select_backend_reply']
-            # if api_r['retval'] == 0:
-            #     logger.trace('IPsec backend successfully selected on host '
-            #                  '{host}'.format(host=node['host']))
-            # else:
-            #     raise PapiError('Failed to select IPsec backend on host {host}'.
-            #                     format(host=node['host']))
             logger.trace('IPsec backend dump\n{dump}'.format(dump=api_reply))
         else:
             raise PapiError('No reply received for ipsec_select_backend API '
@@ -349,7 +342,7 @@ class IPsecUtil(object):
         """
         ckey = crypto_key.encode('hex')
         ikey = integ_key.encode('hex')
-        tunnel = 'tunnel_src {0} tunnel_dst {1}'.format(tunnel_src, tunnel_dst)\
+        tunnel = 'tunnel-src {0} tunnel-dst {1}'.format(tunnel_src, tunnel_dst)\
             if tunnel_src is not None and tunnel_dst is not None else ''
 
         out = VatExecutor.cmd_from_template(node,
@@ -396,16 +389,16 @@ class IPsecUtil(object):
         tmp_filename = '/tmp/ipsec_sad_{0}_add_del_entry.script'.format(sad_id)
         ckey = crypto_key.encode('hex')
         ikey = integ_key.encode('hex')
-        tunnel = 'tunnel_src {0} tunnel_dst {1}'.format(tunnel_src, tunnel_dst)\
+        tunnel = 'tunnel-src {0} tunnel-dst {1}'.format(tunnel_src, tunnel_dst)\
             if tunnel_src is not None and tunnel_dst is not None else ''
 
-        integ = 'integ_alg {0} integ_key {1}'.format(integ_alg.alg_name, ikey)\
+        integ = 'integ-alg {0} integ-key {1}'.format(integ_alg.alg_name, ikey)\
             if crypto_alg.alg_name != 'aes-gcm-128' else ''
 
         with open(tmp_filename, 'w') as tmp_file:
             for i in range(0, n_entries):
-                buf_str = 'ipsec_sad_add_del_entry esp sad_id {0} spi {1} ' \
-                          'crypto_alg {2} crypto_key {3} {4} {5}\n'.format(
+                buf_str = 'exec ipsec sa add {0} esp spi {1} ' \
+                          'crypto-alg {2} crypto-key {3} {4} {5}\n'.format(
                               sad_id+i, spi+i, crypto_alg.alg_name, ckey, integ,
                               tunnel)
                 tmp_file.write(buf_str)
@@ -649,7 +642,6 @@ class IPsecUtil(object):
         with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
             for i in range(0, n_tunnels):
                 integ = ''
-                # if crypto_alg.alg_name != 'aes-gcm-128':
                 if not crypto_alg.alg_name.startswith('aes-gcm-'):
                     integ = 'integ_alg {integ_alg} '\
                             'local_integ_key {local_integ_key} '\
