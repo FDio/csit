@@ -124,4 +124,3 @@
 | tc11-IMIX-2c-eth-l2bd-32vhost-8chain-16vm-l3fwdip4-ndrpdr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
-
