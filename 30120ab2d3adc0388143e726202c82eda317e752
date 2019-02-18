@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "0cdda04d_da764472",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-02-18T09:28:59Z",
+      "side": 1,
+      "message": "-o Dir::Etc::sourcelist doesn\u0027t work with any other commands I\u0027m using here except for dumpavail",
+      "parentUuid": "6851b552_2324294c",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 43
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87ccd678_1f39b778",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 28
@@ -140,6 +164,30 @@
     },
     {
       "key": {
+        "uuid": "a5714b65_f13c5d56",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-02-18T09:28:59Z",
+      "side": 1,
+      "message": "When would that happen? Grep returns \"Normally the exit status is 0 if a line is selected, 1 if no lines were selected, and 2 if an error occurred.\" so I guess it would have to exit abnormally? I don\u0027t think that can occur here.",
+      "parentUuid": "a351d099_4778e184",
+      "range": {
+        "startLine": 99,
+        "startChar": 69,
+        "endLine": 99,
+        "endChar": 73
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80153969_50512bf7",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 28
@@ -186,6 +234,30 @@
     },
     {
       "key": {
+        "uuid": "5a591d16_d2730b87",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-02-18T09:28:59Z",
+      "side": 1,
+      "message": "Both seem equally safe to me.\n\npkg_info contains the full output of apt-cache show and that\u0027s very long for vpp packages because of all the versions. What I wanted to do here is parse the relevant stuff from the output and then work with that.",
+      "parentUuid": "2b4d3bc1_4c1cb933",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 33
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75cd4b3f_f96d61ca",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 28
@@ -220,6 +292,30 @@
       "writtenOn": "2019-02-16T07:33:34Z",
       "side": 1,
       "message": "artifacts+\u003d(${package[@]/%/\u003d${ver-}})\n\none liner instead of 3",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 35
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfbba103_ec6f9d80",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-02-18T09:28:59Z",
+      "side": 1,
+      "message": "I removed set -x from this loop because pkg_info contains a lot of unnecessary info that clogged the script output and instead added a few manual logs so that\u0027s why I ended with a few more lines. Making this a one liner would remove this log.",
+      "parentUuid": "db0287e0_a4fc51ec",
       "range": {
         "startLine": 103,
         "startChar": 0,
