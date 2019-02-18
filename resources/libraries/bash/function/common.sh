@@ -346,6 +346,19 @@ function die_on_pybot_error () {
 }
 
 
+function get_os_family() {
+    # Get OS from /etc/os-release and store OS family debian/redhat on OS_ID variable
+    #
+    # Variables exported:
+    # - OS_FAMILY - OS family debian/rhel
+
+    set -exuo pipefail
+
+    source /etc/os-release
+    export OS_FAMILY="$(echo ${ID_LIKE}|awk '{ print $1 }')"
+}
+
+
 function get_test_code () {
 
     set -exuo pipefail
@@ -876,3 +889,4 @@ function warn () {
 
     echo "$@" >&2
 }
+
