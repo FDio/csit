@@ -383,6 +383,7 @@
 | | ... | mode. Then update SA keys - use new keys.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node before\
 | | ... | and after SA keys update.
+| | [Tags] | EXPECTED_FAILING
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Generate keys for IPSec | ${encr_alg} | ${auth_alg}
