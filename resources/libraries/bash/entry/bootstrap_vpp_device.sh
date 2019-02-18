@@ -31,13 +31,16 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
+source "${BASH_FUNCTION_DIR}/dockerfile.sh" || die "Source failed."
 common_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
 select_topology || die
+get_os_family || die
 gather_build || die
 check_download_dir || die
 activate_virtualenv || die
+generate_dockerfile || die
 activate_docker_topology || die
 select_vpp_device_tags || die
 compose_pybot_arguments || die

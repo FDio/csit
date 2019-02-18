@@ -115,6 +115,7 @@ function clean_environment () {
     # - DCR_UUIDS - Docker Container UUIDs.
     # - DUT1_PCIDEVS - List of PCI addresses of devices of DUT1 container.
     # - TG_PCIDEVS - List of PCI addresses of devices of TG container.
+    # - DCR_IAMGE_TAG_UUID - Unique name of builded docker image
     # Variables set:
     # - ADDR - PCI address of network interface.
     # - DRIVER - Kernel driver.
@@ -129,6 +130,11 @@ function clean_environment () {
     docker rm --force $(docker ps -q --filter name=${DCR_UUIDS[dut1]}) || {
         warn "Failed to remove hanged containers or nothing to remove!"
     }
+    # Remove buided docker mages and cocker files
+    docker image rm --force "${DCR_IMAGE_TAG_UUID}" || {
+        die "Image cleanup failed!"
+    }
+    rm -f ${DCR_DOCKERFILE} || die
 
     # Rebind interfaces back to kernel drivers.
     for ADDR in ${TG_PCIDEVS[@]}; do
@@ -506,17 +512,32 @@ function start_topology_containers () {
     #
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
+    # - DCR_DOCKERFILE - Temporary dockerfile location
+    # - DOWNLOAD_DIR - Path to directory with VPP artifacts
     # Variables set:
     # - DCR_UUIDS - Docker Container UUIDs.
     # - DCR_PORTS - Docker Container SSH TCP ports.
     # - DCR_CPIDS - Docker Container PIDs (namespaces).
+    # - DCR_IMAGE_TAG_UUID - Unique docker image name.
 
     set -exuo pipefail
 
     if ! installed docker; then
         die "Docker not present. Please install before continue!"
     fi
-
+    if [ ! -z "$(< ${CSIT_DIR}/VPP_DEVICE_IMAGE))" ]; then
+            dcr_image_pull=$(docker pull $(< ${CSIT_DIR}/VPP_DEVICE_IMAGE)) || {
+            warn "Failed to get fresh image $(< ${CSIT_DIR}/VPP_DEVICE_IMAGE)"
+            }
+            docker images prune -q
+        else
+        die "VPP_DEVICE_IMAGE not set"
+    fi
+    DCR_IMAGE_TAG_UUID="csit-sut-vpp-$(uuidgen):latest"
+    dcr_image_build=$(docker build -t ${DCR_IMAGE_TAG_UUID} \
+        -f ${DCR_DOCKERFILE} ${DOWNLOAD_DIR}) || {
+        die "Failed to build docker image with vpp"
+    }
     # If the IMAGE is not already loaded then docker run will pull the IMAGE,
     # and all image dependencies, before it starts the container.
     dcr_image="${1}"
@@ -554,7 +575,7 @@ function start_topology_containers () {
     DCR_UUIDS+=([tg]="$(docker run "${params[@]}")") || {
         die "Failed to start TG docker container!"
     }
-    params=(${dcr_stc_params} --name csit-dut1-$(uuidgen) ${dcr_image})
+    params=(${dcr_stc_params} --name csit-dut1-$(uuidgen) ${DCR_IMAGE_TAG_UUID})
     DCR_UUIDS+=([dut1]="$(docker run "${params[@]}")") || {
         die "Failed to start DUT1 docker container!"
     }
@@ -592,3 +613,4 @@ function warn () {
 
     echo "$@" >&2
 }
+
