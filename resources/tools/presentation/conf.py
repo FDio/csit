@@ -45,7 +45,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-report_week = '07'
+report_week = '08'
 project = u'FD.io CSIT-1901.{week}'.format(week=report_week)
 copyright = u'2019, FD.io'
 author = u'FD.io CSIT'
@@ -114,7 +114,7 @@ rst_epilog = """
            csit_prev_release='1810',
            vpprelease='19.01',
            vpp_prev_release='18.10',
-           dpdkrelease='18.08',  # 18.11
+           dpdkrelease='18.11',
            sdpdkrelease='1808',
            trex_version='v2.35',
            csit_ubuntu_ver='csit-ubuntu-16.04.1_2019-01-04_2.3',
