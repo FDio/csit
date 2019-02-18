@@ -27,6 +27,7 @@ function activate_wrapper () {
     set -exuo pipefail
 
     enter_mutex || die
+    get_os_family || die
     get_available_interfaces "${1}" "${2}" || die
     start_topology_containers "${3}" || die
     bind_interfaces_to_containers || die
@@ -115,6 +116,7 @@ function clean_environment () {
     # - DCR_UUIDS - Docker Container UUIDs.
     # - DUT1_PCIDEVS - List of PCI addresses of devices of DUT1 container.
     # - TG_PCIDEVS - List of PCI addresses of devices of TG container.
+    # - DCR_IAMGE_TAG_UUID - Unique name of builded docker image
     # Variables set:
     # - ADDR - PCI address of network interface.
     # - DRIVER - Kernel driver.
@@ -129,6 +131,11 @@ function clean_environment () {
     docker rm --force $(docker ps -q --filter name=${DCR_UUIDS[dut1]}) || {
         warn "Failed to remove hanged containers or nothing to remove!"
     }
+    # Remove buided docker mages and cocker files
+    docker image rm --force "${DCR_IMAGE_TAG_UUID}" || {
+        die "Image cleanup failed!"
+    }
+    rm -f ${DCR_DOCKERFILE} || die
 
     # Rebind interfaces back to kernel drivers.
     for ADDR in ${TG_PCIDEVS[@]}; do
@@ -220,6 +227,82 @@ function exit_mutex () {
     warn "Mutex leave succeeded for PID $$."
 }
 
+function generate_dockerfile () {
+    # Generate temporary dockerfile based on $OS_ID variable
+    #
+    # variable read:
+    # - OS_FAMILY - detected OS family from os-release
+
+    set -exuo pipefail
+
+    case ${OS_FAMILY} in
+        debian)
+                generate_dpkg_dockerfile "${1}" || die
+                ;;
+        rhel)
+                generate_rpm_dockerfile "${1}" || die
+                ;;
+        *)
+                die "Your system is not supported."
+                ;;
+    esac
+}
+
+function generate_dpkg_dockerfile () {
+    # Create temporary Dockerfile for Debian based system with prepared VPP
+    # artifacts in download_dir.
+    #
+    # Variables read:
+    # - CSIT_DIR - Path to existing root of local CSIT git repository.
+    # Variables set:
+    # - DCR_DOCKERFILE - Temporary Docker file location
+
+    set -exuo pipefail
+
+    DCR_DOCKERFILE=$(mktemp)
+
+    if [ ! -z "${1}" ]; then
+
+    cat > ${DCR_DOCKERFILE} << __EOF__
+FROM ${1}
+COPY ./*.deb /tmp/vpp/
+RUN apt-get purge -y "*vpp*" \\
+ || dpkg -i --force-all /tmp/vpp/*.deb \\
+ && rm -f /tmp/vpp/*.deb
+__EOF__
+
+    else
+        die "VPP_DEVICE_IMAGE not set"
+    fi
+}
+
+function generate_rpm_dockerfile () {
+    # Create temporary Dockerfile for RedHat based system with prepared VPP
+    # artifacts in download_dir.
+    #
+    # Variables read:
+    # - CSIT_DIR - Path to existing root of local CSIT git repository.
+    # Variables set:
+    # - DCR_DOCKERFILE - Temporary Docker file location
+
+    set -exuo pipefail
+
+    DCR_DOCKERFILE=$(mktemp)
+
+    if [ ! -z "${1}" ]; then
+
+    cat > ${DCR_DOCKERFILE} << __EOF__
+FROM ${1}
+COPY ./*.rpm /tmp/vpp/
+RUN yum -y remove "*vpp*" \\
+ || rpm -ihv /tmp/vpp/*.rpm \\
+ && rm -f /tmp/vpp/*.rpm
+__EOF__
+
+    else
+        die "VPP_DEVICE_IMAGE not set"
+    fi
+}
 
 function get_available_interfaces () {
     # Find and get available Virtual functions.
@@ -380,6 +463,17 @@ function get_mac_addr () {
     fi
 }
 
+function get_os_family() {
+    # Get OS from /etc/os-release and store OS family debian/redhat on OS_ID variable
+    #
+    # Variables exported:
+    # - OS_FAMILY - OS family debian/rhel
+
+    set -exuo pipefail
+
+    source /etc/os-release
+    export OS_FAMILY="$(echo ${ID_LIKE}|awk '{ print $1 }')"
+}
 
 function get_pci_addr () {
     # Get PCI address in <domain>:<bus:<device>.<func> format from linux network
@@ -506,17 +600,33 @@ function start_topology_containers () {
     #
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
+    # - DCR_DOCKERFILE - Temporary dockerfile location
+    # - DOWNLOAD_DIR - Path to directory with VPP artifacts
     # Variables set:
     # - DCR_UUIDS - Docker Container UUIDs.
     # - DCR_PORTS - Docker Container SSH TCP ports.
     # - DCR_CPIDS - Docker Container PIDs (namespaces).
+    # - DCR_IMAGE_TAG_UUID - Unique docker image name.
 
     set -exuo pipefail
 
     if ! installed docker; then
         die "Docker not present. Please install before continue!"
     fi
-
+    if [ ! -z "${1}" ]; then
+            dcr_image_pull=$(docker pull ${1}) || {
+            warn "Failed to get fresh image ${1}"
+            }
+            docker images prune -q
+        else
+        die "VPP_DEVICE_IMAGE not set"
+    fi
+    generate_dockerfile "${1}"
+    DCR_IMAGE_TAG_UUID="csit-sut-vpp-$(uuidgen):latest"
+    dcr_image_build=$(docker build -t ${DCR_IMAGE_TAG_UUID} \
+        -f ${DCR_DOCKERFILE} ${DOWNLOAD_DIR}) || {
+        die "Failed to build docker image with vpp"
+    }
     # If the IMAGE is not already loaded then docker run will pull the IMAGE,
     # and all image dependencies, before it starts the container.
     dcr_image="${1}"
@@ -554,7 +664,7 @@ function start_topology_containers () {
     DCR_UUIDS+=([tg]="$(docker run "${params[@]}")") || {
         die "Failed to start TG docker container!"
     }
-    params=(${dcr_stc_params} --name csit-dut1-$(uuidgen) ${dcr_image})
+    params=(${dcr_stc_params} --name csit-dut1-$(uuidgen) ${DCR_IMAGE_TAG_UUID})
     DCR_UUIDS+=([dut1]="$(docker run "${params[@]}")") || {
         die "Failed to start DUT1 docker container!"
     }
@@ -592,3 +702,4 @@ function warn () {
 
     echo "$@" >&2
 }
+
