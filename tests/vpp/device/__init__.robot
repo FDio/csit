@@ -21,7 +21,6 @@
 | Suite Setup | Run Keywords | Setup Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
-| ... | AND | Install Vpp On All Duts | ${nodes} | ${packages_dir}
 | ... | AND | Verify Vpp On All Duts | ${nodes}
 | ... | AND | Get CPU Layout from all nodes | ${nodes}
 | ... | AND | Update All Interface Data On All Nodes | ${nodes}
@@ -38,11 +37,9 @@
 | | ... | - pkt_trace - Switch to enable packet trace for test
 | | ... | - dut_stats - Switch to enable DUT statistics
 | | ... | - vm_image - Guest VM disk image.
-| | ... | - packages_dir - Path to directory where VPP packages are stored.
 | | ... | - vpp_rpm_pkgs - Package list for CentOS based system.
 | | ... | - vpp_deb_pkgs - Package list for Debian based system.
 | | ...
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
 | | Set Global Variable | ${vm_image} | /var/lib/vm/csit-nested-1.7.img
-| | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
