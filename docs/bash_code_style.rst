@@ -235,7 +235,39 @@ here are some pros and cons:
 
     + This allows code blocks to support optional arguments.
 
-TODO: Translate the "function way" into list of rules.
++ Rules:
+
+  + Library files MUST be only "source"d. For example if "tox" calls a script,
+    it is an entry script.
+
+  + Library files (upon sourcing) MUST minimize size effect.
+
+    + The only permitted side effects MUST by directly related to:
+
+      + Defining functions (without executing them).
+
+      + Sourcing sub-library files.
+
+  + If a bash script indirectly call another bash script,
+    it is not a "source" operation, variables are not shared,
+    so the called script MUST be considered an entry script,
+    even if it implements logic fitting into a single function.
+
+  + Entry scripts SHOULD avoid duplicating any logic.
+
+    + Clear duplicated blocks MUST be moved into libraries as functions.
+
+    + Blocks with low amount of duplication MAY remain in entry scripts.
+
+    + Usual motives for not creating functions are:
+
+      + The extracted function would have too much logic for processing
+        arguments (instead of hardcoding values as in entry script).
+
+      + The arguments needed would be too verbose.
+
+        + And using "set +x" would take too much vertical space
+          (when compared to entry script implementation).
 
 Variables
 ~~~~~~~~~
