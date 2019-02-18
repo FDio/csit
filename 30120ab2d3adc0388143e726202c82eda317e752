@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "7e3abe57_d26aebb4",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-18T20:21:01Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "0cdda04d_da764472",
+      "range": {
+        "startLine": 81,
+        "startChar": 20,
+        "endLine": 81,
+        "endChar": 43
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87ccd678_1f39b778",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 28
@@ -188,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "74ce3a8c_facae07f",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-18T20:21:01Z",
+      "side": 1,
+      "message": "There is enforced -e so any 1 not find is killed without message?",
+      "parentUuid": "a5714b65_f13c5d56",
+      "range": {
+        "startLine": 99,
+        "startChar": 69,
+        "endLine": 99,
+        "endChar": 73
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80153969_50512bf7",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 28
@@ -258,6 +306,30 @@
     },
     {
       "key": {
+        "uuid": "ebfd17d1_4826776c",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-18T20:21:01Z",
+      "side": 1,
+      "message": "If -n and ${ver-} and no else clause means you do not want any other option and some ver must exists so i do not see fast fail in previous comman apart that -e will cut it anyway without any message why. That is why grep should be killed by || die",
+      "parentUuid": "5a591d16_d2730b87",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 33
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75cd4b3f_f96d61ca",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 28
@@ -316,6 +388,30 @@
       "side": 1,
       "message": "I removed set -x from this loop because pkg_info contains a lot of unnecessary info that clogged the script output and instead added a few manual logs so that\u0027s why I ended with a few more lines. Making this a one liner would remove this log.",
       "parentUuid": "db0287e0_a4fc51ec",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 35
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05b9e9cb_73343742",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-18T20:21:01Z",
+      "side": 1,
+      "message": "The log is below in apt-get you will see full install line and it is aligned with centos and suse",
+      "parentUuid": "dfbba103_ec6f9d80",
       "range": {
         "startLine": 103,
         "startChar": 0,
