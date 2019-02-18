@@ -98,6 +98,8 @@
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And VPP IPsec Backend Dump | ${dut1}
+| | And VPP IPsec Backend Dump | ${dut2}
 | | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
 | | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
 | | And VPP IPsec Backend Dump | ${dut1}
