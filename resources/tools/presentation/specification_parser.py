@@ -420,6 +420,8 @@ class Specification(object):
 
         # Data sets: Replace ranges by lists
         for set_name, data_set in self.configuration["data-sets"].items():
+            if not isinstance(data_set, dict):
+                continue
             for job, builds in data_set.items():
                 if builds:
                     if isinstance(builds, dict):
@@ -431,6 +433,19 @@ class Specification(object):
                             build_nr = self._get_build_number(job, build_nr)
                         builds = [x for x in range(builds["start"], build_nr+1)]
                         self.configuration["data-sets"][set_name][job] = builds
+
+        # Data sets: add sub-sets to sets:
+        for set_name, data_set in self.configuration["data-sets"].items():
+            if isinstance(data_set, list):
+                new_set = dict()
+                for item in data_set:
+                    try:
+                        new_set[item] = self.configuration["data-sets"][item]
+                    except KeyError:
+                        raise PresentationError(
+                            "Data set {0} is not defined in "
+                            "the configuration section.".format(item))
+                self.configuration["data-sets"][set_name] = new_set
 
         # Mapping table:
         mapping = None
@@ -602,6 +617,27 @@ class Specification(object):
                         self._specification["environment"]["paths"])
                 except KeyError:
                     pass
+
+                # add data sets
+                try:
+                    for item in ("reference", "compare"):
+                        if element.get(item, None):
+                            data_set = element[item].get("data", None)
+                            if data_set:
+                                element[item]["data"] = \
+                                    self.configuration["data-sets"][data_set]
+
+                    if element.get("history", None):
+                        for i in range(len(element["history"])):
+                            data_set = element["history"][i].get("data", None)
+                            if data_set:
+                                element["history"][i]["data"] = \
+                                    self.configuration["data-sets"][data_set]
+
+                except KeyError:
+                    raise PresentationError("Wrong data set used in {0}.".
+                                            format(element.get("title", "")))
+
                 self._specification["tables"].append(element)
                 count += 1
 
