@@ -349,7 +349,7 @@ class IPsecUtil(object):
         """
         ckey = crypto_key.encode('hex')
         ikey = integ_key.encode('hex')
-        tunnel = 'tunnel_src {0} tunnel_dst {1}'.format(tunnel_src, tunnel_dst)\
+        tunnel = 'tunnel-src {0} tunnel-dst {1}'.format(tunnel_src, tunnel_dst)\
             if tunnel_src is not None and tunnel_dst is not None else ''
 
         out = VatExecutor.cmd_from_template(node,
@@ -396,16 +396,16 @@ class IPsecUtil(object):
         tmp_filename = '/tmp/ipsec_sad_{0}_add_del_entry.script'.format(sad_id)
         ckey = crypto_key.encode('hex')
         ikey = integ_key.encode('hex')
-        tunnel = 'tunnel_src {0} tunnel_dst {1}'.format(tunnel_src, tunnel_dst)\
+        tunnel = 'tunnel-src {0} tunnel-dst {1}'.format(tunnel_src, tunnel_dst)\
             if tunnel_src is not None and tunnel_dst is not None else ''
 
-        integ = 'integ_alg {0} integ_key {1}'.format(integ_alg.alg_name, ikey)\
+        integ = 'integ-alg {0} integ-key {1}'.format(integ_alg.alg_name, ikey)\
             if crypto_alg.alg_name != 'aes-gcm-128' else ''
 
         with open(tmp_filename, 'w') as tmp_file:
             for i in range(0, n_entries):
-                buf_str = 'ipsec_sad_add_del_entry esp sad_id {0} spi {1} ' \
-                          'crypto_alg {2} crypto_key {3} {4} {5}\n'.format(
+                buf_str = 'exec ipsec sa add {0} esp spi {1} ' \
+                          'crypto-alg {2} crypto-key {3} {4} {5}\n'.format(
                               sad_id+i, spi+i, crypto_alg.alg_name, ckey, integ,
                               tunnel)
                 tmp_file.write(buf_str)
