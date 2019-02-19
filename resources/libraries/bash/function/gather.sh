@@ -97,9 +97,12 @@ function gather_dpdk () {
             die "Composite piped command failed."
         }
     else
-        echo "Downloading DPDK packages of specific version from repo..."
-        # TODO: Can we autodetect this based on what CSIT-stable VPP uses?
-        dpdk_stable_ver="dpdk-19.02.tar.xz"
+        echo "Downloading DPDK package of specific version from repo ..."
+        # Downloading DPDK version based on what VPP is using. Currently
+        # it is not easy way to detect from VPP version automatically.
+        dpdk_stable_ver="$(< "${CSIT_DIR}/DPDK_VPP_VER")" || {
+            die "Failed to read DPDK VPP version!"
+        }
     fi
     # TODO: Use "wget -N" instead checking for file presence?
     if [[ ! -f "${dpdk_stable_ver}" ]]; then
