@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ee36d60_2fe9f6b5",
+        "filename": "bootstrap.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T09:20:15Z",
+      "side": 1,
+      "message": "Also source common.sh, to avoid \"die: command not found\".",
+      "range": {
+        "startLine": 49,
+        "startChar": 60,
+        "endLine": 49,
+        "endChar": 72
+      },
+      "revId": "07eb18d206e09d3b9915792a8f6c475bb01e255a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
