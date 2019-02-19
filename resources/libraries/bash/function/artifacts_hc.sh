@@ -107,7 +107,8 @@ function download_centos_artifacts_hc () {
             die "Install HC artifact failed."
         }
     else
-        sudo yum -y install --downloadonly --downloaddir=. "${artifacts[@]}" || {
+        options="--downloadonly --downloaddir=."
+        sudo yum -y install "${options}" "${artifacts[@]}" || {
             die "Download HC artifacts failed."
         }
     fi

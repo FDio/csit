@@ -517,6 +517,7 @@ function start_topology_containers () {
         die "Docker not present. Please install before continue!"
     fi
 
+    # TODO: Use array of strings. Space at the ends of substrings looks ugly.
     # If the IMAGE is not already loaded then docker run will pull the IMAGE,
     # and all image dependencies, before it starts the container.
     dcr_image="${1}"
@@ -538,7 +539,8 @@ function start_topology_containers () {
     # --device=/dev/vfio as this does not see newly binded interfaces.
     dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
     # Mount nested_vm image to be able to run VM tests.
-    dcr_stc_params+="--volume /var/lib/vm/vhost-nested.img:/var/lib/vm/vhost-nested.img "
+    dcr_stc_params+="--volume /var/lib/vm/vhost-nested.img"
+    dcr_stc_params+=":/var/lib/vm/vhost-nested.img "
     # Mount docker.sock to be able to use docker deamon of the host.
     dcr_stc_params+="--volume /var/run/docker.sock:/var/run/docker.sock "
 
