@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c76feec8_a4ba7709",
+        "filename": "error_catching_is_hard.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T18:24:58Z",
+      "side": 1,
+      "message": "ZSH works\nBASH is overriding binary\n\nPlease put into bash coding style guide that we will forbid false macro?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 19
+      },
+      "revId": "9e0b90cdcb02b13b11b6d0ff86dea7c852fb7d73",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
