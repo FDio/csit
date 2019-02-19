@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7c3ffaea_58c29ad9",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-02-19T12:59:04Z",
+      "side": 1,
+      "message": "The two commands need to be decoupled - an error in apt-cache is a legitimate error but the grep is always a success - if a match is not found, we filter the package out and if it is found, we add it to be downloaded/installed.",
+      "parentUuid": "ca8b7112_1ee2ebbe",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 73
+      },
+      "revId": "0b3f6e65638c73b736094b08c718b7f55b03de93",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "651d7e84_872c4d75",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 29
