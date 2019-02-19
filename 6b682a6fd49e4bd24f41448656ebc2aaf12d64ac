@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6fc89b35_f1f1e8e4",
+        "filename": "resources/tools/testbed-setup/ansible/roles/common/tasks/ubuntu.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T13:34:56Z",
+      "side": 1,
+      "message": "too late :) you already install half of the system in above tasks.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 35
+      },
+      "revId": "6b682a6fd49e4bd24f41448656ebc2aaf12d64ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
