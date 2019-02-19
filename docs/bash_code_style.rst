@@ -120,6 +120,10 @@ Safety
     When was the last time you checked error code of "echo" command,
     for example?
 
+    + Another example: "set -e" in your function has no effect
+      if any ancestor call is done with logical or,
+      for example in "func || code=$?" construct.
+
   + As there is no reliable method of error detection, and there are two
     largely independent unreliable methods, the best what we can do
     is to apply both. So, code SHOULD explicitly
@@ -162,8 +166,26 @@ Bash options
 
     + Code MUST to store "$?" and call "set -e" immediatelly afterwards.
 
+    + Code MUST NOT use this approach when calling functions.
+
+      + That is because functions are instructed to apply "set -e" on their own
+        which (when triggered) will exit the whole entry script.
+
+        + Unless overriden by ERR trap.
+          But code SHOULD NOT set any ERR trap.
+
+      + If code needs exit code of a function, it is RECOMMENDED to use
+        pattern 'code="0"; called_function || code="${?}"'.
+
+        + In this case, contributor MUST make sure nothing in the
+          called_function sub-graph relies on "set -e" behavior,
+          because the call being part of "or construct" disables it.
+
   + Code MAY append "|| true" for benign commands,
     when it is clear non-zero exit codes make no difference.
+
+    + Also in this case, the contributor MUST make sure nothing within
+      the called sub-graph depends on "set -e", as it is disabled.
 
 + Code MUST apply "-u" as unset variable is generally a typo, thus an error.
 
@@ -376,6 +398,78 @@ Arguments or variables
 + For entry scripts, it is RECOMMENDED to use standard parsing capabilities.
 
   + For most Linux distros, "getopt" is RECOMMENDED.
+
+Working directory handling
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
++ Functions SHOULD act correctly without neither assuming
+  what the currect working directory is, nor changing it.
+
+  + That is why global variables and arguments SHOULD contain
+    (normalized) full paths.
+
+  + Motivation: Different call sites MAY rely on different working directories.
+
++ A function MAY return (also with nonzero exit code) when working directory
+  is changed.
+
+  + In this case the function documentation MUST clearly state where (and when)
+    is the working directory changed.
+
+    + Exception: Functions with undocumented exit code.
+
+    + Those functions MUST return nonzero code only on "set -e" or "die".
+
+      + Note that both "set -e" and "die" by default result in exit of the whole
+        entry script, but the caller MAY have altered that behavior
+        (by registering ERR trap, or redefining die function).
+
+    + Any callers which use "set +e" or "|| true" MUST make sure
+      their (and their caller ancestors') assumption on working directory
+      are not affected.
+
+      + Such callers SHOULD do that by restoring the original working directory
+        either in their code,
+
+      + or contributors SHOULD do such restoration in the function code,
+        (see below) if that is more convenient.
+
+  + Motivation: Callers MAY rely on this side effect to simplify their logic.
+
++ A function MAY assume a particular directory is already set
+  as the working directory (to save space).
+
+  + In this case function documentation MUST clearly state what the assumed
+    working directory is.
+
+  + Motivation: Callers MAY call several functions with common
+    directory of interest.
+
+    + Example: Several dowload actions to execute in sequence,
+      implemented as functions assuming ${DOWNLOAD_DIR}
+      is the working directory.
+
++ A function MAY change the working directory transiently,
+  before restoring it back before return.
+
+  + Such functions SHOULD use command "pushd" to change the working directory.
+
+  + Such functions SHOULD use "trap 'trap - RETURN; popd' RETURN"
+    imediately after the pushd.
+
+    + In that case, the "trap - RETURN" part MUST be included,
+      to restore any trap set by ancestor.
+
+    + Functions MAY call "trap - RETURN; popd" exlicitly.
+
+    + Such functions MUST NOT call another pushd (before an explicit popd),
+      as traps do not stack within a function.
+
++ If entry scripts also use traps to restore working directory (or other state),
+  they SHOULD use EXIT traps instead.
+
+  + That is because "exit" command, as well as the default behavior
+    of "die" or "set -e" cause direct exit (without skipping function returns).
 
 Function size
 ~~~~~~~~~~~~~
