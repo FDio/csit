@@ -13,12 +13,13 @@
 
 set -exuo pipefail
 
-# This library defines functions used mainly by "per_patch_perf.sh" entry script.
+# This library defines functions used mainly by
+# "per_patch_perf.sh" entry script.
 # Generally, the functions assume "common.sh" library has been sourced already.
 
 # Keep functions ordered alphabetically, please.
-
-# TODO: Add a link to bash style guide.
+# See bash code style guide located in docs.
+# TODO: Is the location stable enough to be mentioned explicitly?
 
 
 function archive_parse_test_results () {
