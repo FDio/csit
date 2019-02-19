@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73f0f6e7_178a11b0",
+        "filename": "resources/tools/testbed-setup/ansible/production",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:25:02Z",
+      "side": 1,
+      "message": "remove #",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 2
+      },
+      "revId": "9d8e28ace94294f802f5d863493c6b1ffa36f973",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d81771a3_55b67d80",
+        "filename": "resources/tools/testbed-setup/ansible/roles/common/tasks/aarch64.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:25:02Z",
+      "side": 1,
+      "message": "This file is ubuntu specific so include it into ubuntu.yaml",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 24
+      },
+      "revId": "9d8e28ace94294f802f5d863493c6b1ffa36f973",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce76a154_a8b1b204",
+        "filename": "resources/tools/testbed-setup/ansible/roles/common/tasks/x86_64.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:25:02Z",
+      "side": 1,
+      "message": "This file is ubuntu specific so include it into ubuntu.yaml",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 24
+      },
+      "revId": "9d8e28ace94294f802f5d863493c6b1ffa36f973",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de9fc785_4ed45d52",
+        "filename": "resources/tools/testbed-setup/ansible/roles/sut/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:25:02Z",
+      "side": 1,
+      "message": "any resaon why simply not:\nwhen: (\"taishan\" in groups) and inventory_hostname in groups[\u0027taishan\u0027]",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "9d8e28ace94294f802f5d863493c6b1ffa36f973",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
