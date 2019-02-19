@@ -91,6 +91,30 @@
       "revId": "9d8e28ace94294f802f5d863493c6b1ffa36f973",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "78eb57f2_59cfcbd0",
+        "filename": "resources/tools/testbed-setup/ansible/roles/sut/tasks/main.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-02-19T13:08:24Z",
+      "side": 1,
+      "message": "It\u0027s more generic - we could have multiple Taishan testbeds and only want the workaround to apply in some of them (or possible just some nodes).",
+      "parentUuid": "de9fc785_4ed45d52",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "9d8e28ace94294f802f5d863493c6b1ffa36f973",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
