@@ -1,0 +1,193 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53998193_61b5745c",
+        "filename": "resources/libraries/bash/entry/check/autogen.sh",
+        "patchSetId": 37
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T07:13:41Z",
+      "side": 1,
+      "message": "\u003e\u00262",
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a0b74ed_1dcaabc4",
+        "filename": "resources/libraries/bash/entry/check/line.sh",
+        "patchSetId": 37
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T07:13:41Z",
+      "side": 1,
+      "message": "\u003e\u00262\n\nJust like above sourcing. IT should go to stderr",
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3779881d_71899480",
+        "filename": "resources/libraries/bash/entry/check/pylint.sh",
+        "patchSetId": 37
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T07:13:41Z",
+      "side": 1,
+      "message": "\u003e\u00262",
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "847911f2_a2a7e724",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 37
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T07:13:41Z",
+      "side": 1,
+      "message": "i guess not needed to have it as global",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 77
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6c00cf5_70124907",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 37
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T07:13:41Z",
+      "side": 1,
+      "message": "THis is sort of strange.\n\nWe should i guess structure and precisely control how env are named like: robot_env, tox_env, report_env etc.",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 44
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8eb95ee8_481ea727",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 37
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T07:13:41Z",
+      "side": 1,
+      "message": "why??\n\n-U, --upgrade\n              Upgrade all packages to the newest available version.  This process is recursive regardless of whether a dependency is already satisfied.\n\nwe want precisely selected packages as defined.",
+      "range": {
+        "startLine": 126,
+        "startChar": 18,
+        "endLine": 126,
+        "endChar": 25
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0c618e0_67cfbfee",
+        "filename": "tox-requirements.txt",
+        "patchSetId": 37
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T07:13:41Z",
+      "side": 1,
+      "message": "fix the version now, avoiding troubleshooting later and allowing pre-cache. Otherwise -2 from me. We have to control environment and rather increase every week or so instead of relying on job that is changing all the time.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8500c8ce_c385e55f",
+        "filename": "tox.ini",
+        "patchSetId": 37
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T07:13:41Z",
+      "side": 1,
+      "message": "2019 everywhere",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4cb3e2a6_e75186d2",
+        "filename": "tox.ini",
+        "patchSetId": 37
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T07:13:41Z",
+      "side": 1,
+      "message": "have you tested with newer version? As part of moving forward?",
+      "range": {
+        "startLine": 37,
+        "startChar": 12,
+        "endLine": 37,
+        "endChar": 17
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
