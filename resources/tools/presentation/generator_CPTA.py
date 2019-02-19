@@ -399,8 +399,8 @@ def _generate_all_charts(spec, input_data):
 
         if traces:
             # Generate the chart:
-            graph["layout"]["xaxis"]["title"] = \
-                graph["layout"]["xaxis"]["title"].format(job=job_name)
+            graph["layout"]["title"] = \
+                "<b>{title}</b>".format(title=graph.get("title", ""))
             name_file = "{0}-{1}{2}".format(spec.cpta["output-file"],
                                             graph["output-file-name"],
                                             spec.cpta["output-file-type"])
