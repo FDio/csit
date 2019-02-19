@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "d271f760_246f5e8a",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1704
+      },
+      "writtenOn": "2019-02-19T07:30:22Z",
+      "side": 1,
+      "message": "rmi is an alias for image rm. I heard it wil be docker rmi will be deprecated.",
+      "parentUuid": "aefb0ccd_cd6ec725",
+      "range": {
+        "startLine": 133,
+        "startChar": 17,
+        "endLine": 133,
+        "endChar": 19
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "23dd7869_6c24c320",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 1
@@ -381,6 +405,30 @@
       "writtenOn": "2019-02-19T06:55:28Z",
       "side": 1,
       "message": "nice to have, but needed? Consider that every RUN is making layer (overlay) in docker image increasing size and also parent image will not have vpp.",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 28
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b21dcafa_641155c6",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1704
+      },
+      "writtenOn": "2019-02-19T07:30:22Z",
+      "side": 1,
+      "message": "just for safety if there is any package installed in underlaying image",
+      "parentUuid": "c60911f9_f89dddaf",
       "range": {
         "startLine": 61,
         "startChar": 4,
