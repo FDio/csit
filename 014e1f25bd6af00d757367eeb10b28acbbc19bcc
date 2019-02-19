@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9dd76892_9febd2de",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T18:10:06Z",
+      "side": 1,
+      "message": "Add documentation.",
+      "range": {
+        "startLine": 18,
+        "startChar": 32,
+        "endLine": 18,
+        "endChar": 33
+      },
+      "revId": "014e1f25bd6af00d757367eeb10b28acbbc19bcc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fad9df5_2e79dd8e",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T18:10:06Z",
+      "side": 1,
+      "message": "This might be useful for other functions as well. Move to a separate function (and write the result into a global variable).",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 9
+      },
+      "revId": "014e1f25bd6af00d757367eeb10b28acbbc19bcc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
