@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9909303d_b220fcb9",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T10:43:54Z",
+      "side": 1,
+      "message": "put into {} to avoid line over 80chars",
+      "range": {
+        "startLine": 133,
+        "startChar": 55,
+        "endLine": 133,
+        "endChar": 82
+      },
+      "revId": "93320dc25d199fcec7bf58384e9b8541a5680308",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bbddab05_5da3e12f",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T10:43:54Z",
+      "side": 1,
+      "message": "no tabs please , replace by spaces",
+      "range": {
+        "startLine": 524,
+        "startChar": 0,
+        "endLine": 524,
+        "endChar": 5
+      },
+      "revId": "93320dc25d199fcec7bf58384e9b8541a5680308",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1284ed9a_3060b9d6",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T10:43:54Z",
+      "side": 1,
+      "message": "${dcr_image}\n\nTG cannot be with VPP.",
+      "range": {
+        "startLine": 559,
+        "startChar": 56,
+        "endLine": 559,
+        "endChar": 77
+      },
+      "revId": "93320dc25d199fcec7bf58384e9b8541a5680308",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcc232cf_2d41560a",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T10:43:54Z",
+      "side": 1,
+      "message": "put on new line to keep 80char for line\n\nworkdir. or download_dir",
+      "range": {
+        "startLine": 40,
+        "startChar": 80,
+        "endLine": 40,
+        "endChar": 88
+      },
+      "revId": "93320dc25d199fcec7bf58384e9b8541a5680308",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a002e316_5342a868",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T10:43:54Z",
+      "side": 1,
+      "message": "not read, it is not variable",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 59
+      },
+      "revId": "93320dc25d199fcec7bf58384e9b8541a5680308",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b15ccb4b_97084ea5",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T10:43:54Z",
+      "side": 1,
+      "message": "on new line please.",
+      "range": {
+        "startLine": 62,
+        "startChar": 80,
+        "endLine": 62,
+        "endChar": 88
+      },
+      "revId": "93320dc25d199fcec7bf58384e9b8541a5680308",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79ac3e8c_71f3f012",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T10:43:54Z",
+      "side": 1,
+      "message": "not a bash variable",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 59
+      },
+      "revId": "93320dc25d199fcec7bf58384e9b8541a5680308",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
