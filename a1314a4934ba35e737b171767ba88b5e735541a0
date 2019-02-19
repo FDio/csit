@@ -93,6 +93,30 @@
       "revId": "a1314a4934ba35e737b171767ba88b5e735541a0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1949352b_ba80d2b4",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T14:03:41Z",
+      "side": 1,
+      "message": "Here [0] is my proposal. It is more complicated then I thought.\n\n[0] https://gerrit.fd.io/r/17687",
+      "parentUuid": "8fe487fc_e4367c7a",
+      "range": {
+        "startLine": 155,
+        "startChar": 4,
+        "endLine": 155,
+        "endChar": 8
+      },
+      "revId": "a1314a4934ba35e737b171767ba88b5e735541a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
