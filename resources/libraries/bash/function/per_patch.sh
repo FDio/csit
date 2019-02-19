@@ -17,6 +17,8 @@ set -exuo pipefail
 # Generally, the functions assume "common.sh" library has been sourced already.
 
 # Keep functions ordered alphabetically, please.
+# See bash code style guide located in docs.
+# TODO: Is the location stable enough to be mentioned explicitly?
 
 function archive_test_results () {
 

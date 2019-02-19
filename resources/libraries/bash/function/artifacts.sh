@@ -110,7 +110,8 @@ function download_centos_artifacts () {
             die "Install VPP artifact failed."
         }
     else
-        sudo yum -y install --downloadonly --downloaddir=. "${artifacts[@]}" || {
+        options="--downloadonly --downloaddir=."
+        sudo yum -y install "${options}" "${artifacts[@]}" || {
             die "Download VPP artifacts failed."
         }
     fi
@@ -143,7 +144,9 @@ function download_opensuse_artifacts () {
             die "Install VPP artifact failed."
         }
     else
-        sudo yum -y install --downloadonly --downloaddir=. "${artifacts[@]}" || {
+        # TODO: Noticed the repeated twoliner yet? Worthy of a function?
+        options="--downloadonly --downloaddir=."
+        sudo yum -y install "${options}" "${artifacts[@]}" || {
             die "Download VPP artifacts failed."
         }
     fi
