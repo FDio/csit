@@ -236,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "ae43ded7_d97ee430",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-02-19T12:59:04Z",
+      "side": 1,
+      "message": "This grep is always a success (both then we find and don\u0027t find a match), so I\u0027ll disable -e for it.",
+      "parentUuid": "74ce3a8c_facae07f",
+      "range": {
+        "startLine": 99,
+        "startChar": 69,
+        "endLine": 99,
+        "endChar": 73
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80153969_50512bf7",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 28
@@ -330,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "34215f4e_e6fde62d",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-02-19T12:59:04Z",
+      "side": 1,
+      "message": "The point is not to find some version but to find out if the version we want to work with actually does exist for each package and then filter out packages without that version.\n\nIf grep is killed then everything will be terminated, but grep is a success even if it doesn\u0027t find a match - if we don\u0027t find a match, we\u0027ll just skip the package, thus filtering it out.",
+      "parentUuid": "ebfd17d1_4826776c",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 33
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "75cd4b3f_f96d61ca",
         "filename": "resources/libraries/bash/function/artifacts.sh",
         "patchSetId": 28
@@ -412,6 +460,30 @@
       "side": 1,
       "message": "The log is below in apt-get you will see full install line and it is aligned with centos and suse",
       "parentUuid": "dfbba103_ec6f9d80",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 35
+      },
+      "revId": "30120ab2d3adc0388143e726202c82eda317e752",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "203246ad_6b5fd0c9",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 28
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-02-19T12:59:04Z",
+      "side": 1,
+      "message": "Ah ok, so it doesn\u0027t need to be here then.",
+      "parentUuid": "05b9e9cb_73343742",
       "range": {
         "startLine": 103,
         "startChar": 0,
