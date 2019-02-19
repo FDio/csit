@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d1d3537_a0a015ac",
+        "filename": "resources/libraries/bash/entry/per_patch_device.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T15:52:17Z",
+      "side": 1,
+      "message": "current",
+      "range": {
+        "startLine": 27,
+        "startChar": 10,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "b5c984d76279c4c7c6a7ae29dfbf2c79994c07cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
