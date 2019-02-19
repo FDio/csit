@@ -43,9 +43,3 @@ analysis and anomaly detection methodology.
     :caption: Performance Data
 
     Download <data/index>
-
-.. toctree::
-    :maxdepth: 2
-    :caption: Indices and tables
-
-    Index <indices>
