@@ -7,13 +7,7 @@
 .. raw:: html
 
     <a name="x520-imix-1t1c-base-l2xc"></a>
-    <center><b>
-
-:index:`3n-hsw-x520-l2sw-vhost-imix-base-l2xc-1t1c-mrr`
-
-.. raw:: html
-
-    </b>
+    <center>
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
@@ -27,13 +21,7 @@
 .. raw:: html
 
     <a name="x520-imix-2t2c-base-l2xc"></a>
-    <center><b>
-
-:index:`3n-hsw-x520-l2sw-vhost-imix-base-l2xc-2t2c-mrr`
-
-.. raw:: html
-
-    </b>
+    <center>
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
@@ -47,13 +35,7 @@
 .. raw:: html
 
     <a name="x520-imix-4t4c-base-l2xc"></a>
-    <center><b>
-
-:index:`3n-hsw-x520-l2sw-vhost-imix-base-l2xc-4t4c-mrr`
-
-.. raw:: html
-
-    </b>
+    <center>
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
