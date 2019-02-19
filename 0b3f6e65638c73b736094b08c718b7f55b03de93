@@ -45,6 +45,29 @@
       "revId": "0b3f6e65638c73b736094b08c718b7f55b03de93",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ab1858c_f11e1a1b",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 29
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:38:34Z",
+      "side": 1,
+      "message": "artifacts+\u003d(${packages[@]/%/\u003d${ver-}})\n\n+ as per Vratko you can remove +x so you will save lot of commands",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 34
+      },
+      "revId": "0b3f6e65638c73b736094b08c718b7f55b03de93",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
