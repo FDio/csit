@@ -1,0 +1,464 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "472782ad_04ecae33",
+        "filename": "resources/libraries/bash/entry/bootstrap_vpp_device.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "9",
+      "range": {
+        "startLine": 3,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfb86831_5b796705",
+        "filename": "resources/libraries/bash/entry/bootstrap_vpp_device.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 6
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65f116ae_2f5dd63b",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "|| {\ndie \"Image cleanup failed!\"\n}\n\nto avoid line over 80",
+      "range": {
+        "startLine": 133,
+        "startChar": 55,
+        "endLine": 133,
+        "endChar": 82
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aefb0ccd_cd6ec725",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "rmi?",
+      "range": {
+        "startLine": 133,
+        "startChar": 17,
+        "endLine": 133,
+        "endChar": 19
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23dd7869_6c24c320",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "remove blank space after line",
+      "range": {
+        "startLine": 134,
+        "startChar": 34,
+        "endLine": 134,
+        "endChar": 35
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d34dfbb_b43a8618",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "9",
+      "range": {
+        "startLine": 3,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 21
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eaafb173_e49cc4c3",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "directory.",
+      "range": {
+        "startLine": 19,
+        "startChar": 43,
+        "endLine": 19,
+        "endChar": 60
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f722ef4d_49082dc6",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "move to functions below",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 70
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7c6071e_2cc96adc",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 49
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31a1d449_4edb655f",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "I think this should be part of functions below",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 54
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4cbbb98_3c540027",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "we are enforcing spaces (4) instead of tabs.\n\nalso for readability i would prefer this to be more intended as part of case.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d29c7286_00e11c03",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "Something like:\n\nCreate docker file with VPP installation for Debian based system.",
+      "range": {
+        "startLine": 47,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8913dc17_b889a197",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08254e61_87687745",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "no",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 34
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c7e722e_3ff9c517",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "no",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 73
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8efe2410_6a7d70ce",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "Document as Variable set:",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 21
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c60911f9_f89dddaf",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "nice to have, but needed? Consider that every RUN is making layer (overlay) in docker image increasing size and also parent image will not have vpp.",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 28
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50362d6c_09a1347d",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 73
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95b84639_746d9c49",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "this",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 75
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "580b69cf_13b0befa",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T06:55:28Z",
+      "side": 1,
+      "message": "this will also dissapaer",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 78
+      },
+      "revId": "4f7dd4fefb3b4677c33bb41213af521c1fb0a182",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
