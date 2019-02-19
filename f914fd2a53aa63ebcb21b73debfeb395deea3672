@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4ee7a37_5288403d",
+        "filename": "resources/tools/presentation/generator_CPTA.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T18:47:54Z",
+      "side": 1,
+      "message": "What about presentation_new?",
+      "revId": "f914fd2a53aa63ebcb21b73debfeb395deea3672",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
