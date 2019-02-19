@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e142b9dc_6fcc74fa",
+        "filename": "DPDK_VPP_VER",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T12:26:45Z",
+      "side": 1,
+      "message": "The extension is not a part of the version, just a download technicality.",
+      "range": {
+        "startLine": 1,
+        "startChar": 10,
+        "endLine": 1,
+        "endChar": 17
+      },
+      "revId": "ad9e99dca6b0b72e6458e3658778c73d7ea1d6b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
