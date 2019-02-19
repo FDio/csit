@@ -564,6 +564,7 @@ function select_tags () {
                             "ndrpdrAND78bAND1c")
             ;;
         *"mrr-daily"* )
+            # TODO: Is there a way to lessen the indent?
             test_tag_array=(# vic
                             "mrrANDnic_cisco-vic-1227AND64b"
                             "mrrANDnic_cisco-vic-1385AND64b"
@@ -594,6 +595,7 @@ function select_tags () {
                             "mrrANDip4fwdANDpolice_markANDnic_intel-*710AND64b"
                             # ip4 tunnels
                             "mrrANDip4fwdANDencapANDip6unrlayANDip4ovrlayANDnic_intel-x520-da2AND64b"
+                            # TODO: How do we bring the previous line under 80?
                             "mrrANDip4fwdANDencapANDnic_intel-*710AND64b"
                             "mrrANDl2ovrlayANDencapANDnic_intel-*710AND64b"
                             # ip6 base
