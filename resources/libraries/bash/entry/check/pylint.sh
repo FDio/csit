@@ -19,7 +19,7 @@ set -exuo pipefail
 # to dissuade non-tox callers.
 
 # This script runs pylint and propagates its exit code.
-# Config is taken from pylint.cfg, and proper virtualenv is assumed to be active.
+# Config is taken from pylint.cfg and proper virtualenv is assumed to be active.
 # The pylint output stored to pylint.log (overwriting).
 
 # "set -eu" handles failures from the following two lines.
