@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "df76b48a_017fe7b3",
+        "filename": "resources/libraries/bash/entry/check/autogen.sh",
+        "patchSetId": 37
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T16:50:41Z",
+      "side": 1,
+      "message": "I decided to use stderr for all logging-like outputs (currently no other outputs are used).",
+      "parentUuid": "53998193_61b5745c",
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a0b74ed_1dcaabc4",
         "filename": "resources/libraries/bash/entry/check/line.sh",
         "patchSetId": 37
@@ -99,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "8a0f3dc8_857175eb",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 37
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T16:50:41Z",
+      "side": 1,
+      "message": "You are commenting about TODO from line 110.\nThe highlighted code is implemention logic from line 99 instead.",
+      "parentUuid": "b6c00cf5_70124907",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 44
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8eb95ee8_481ea727",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 37
@@ -122,6 +164,30 @@
     },
     {
       "key": {
+        "uuid": "832921a7_ef4e46e5",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 37
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T16:50:41Z",
+      "side": 1,
+      "message": "If requirements file selects a specific version, it will be used (and not upgraded to later version).\nIf requirements file selents a package without any version specified, it will be upgraded (if by some miracle an older version is already installed in this brand new virtual environment).\nIf requests file does not even mention a package, and it is already installed in the new virtual environment, it will not be affected (even when I want it to be). Examples: pkg-resources, pip, setuptools, wheel.\nNot sure what happens in dependency tree if multiple branches try to depend on different versions of the same package. I can imagine that if a package is in multiple dependency branches, and each link specifies an allowed interval of versions, and the intersection is also an interval, pip install (without -U) might chose the oldest version, but with -U it might select the newest version.\n\nIn either case, I see no clear downside for my rule of thumb \"\u0027pip install\u0027 should always be \u0027pip install --upgrade\u0027\".",
+      "parentUuid": "8eb95ee8_481ea727",
+      "range": {
+        "startLine": 126,
+        "startChar": 18,
+        "endLine": 126,
+        "endChar": 25
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0c618e0_67cfbfee",
         "filename": "tox-requirements.txt",
         "patchSetId": 37
@@ -133,6 +199,30 @@
       "writtenOn": "2019-02-19T07:13:41Z",
       "side": 1,
       "message": "fix the version now, avoiding troubleshooting later and allowing pre-cache. Otherwise -2 from me. We have to control environment and rather increase every week or so instead of relying on job that is changing all the time.",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f7882b0_4bdcc43d",
+        "filename": "tox-requirements.txt",
+        "patchSetId": 37
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T16:50:41Z",
+      "side": 1,
+      "message": "I do not agree in general, but I agree that for CSIT (with strict requirements due to VIRL), freezing all the versions is the less surprising thing to do.\nWill fix in next patch.",
+      "parentUuid": "d0c618e0_67cfbfee",
       "range": {
         "startLine": 4,
         "startChar": 0,
@@ -179,6 +269,30 @@
       "writtenOn": "2019-02-19T07:13:41Z",
       "side": 1,
       "message": "have you tested with newer version? As part of moving forward?",
+      "range": {
+        "startLine": 37,
+        "startChar": 12,
+        "endLine": 37,
+        "endChar": 17
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a09b174_b653aa1f",
+        "filename": "tox.ini",
+        "patchSetId": 37
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T16:50:41Z",
+      "side": 1,
+      "message": "That is a different task.\nFor this Change, I want the same version, so I can be sure the pylint results (as displayed by Jenkins) remain the same.",
+      "parentUuid": "4cb3e2a6_e75186d2",
       "range": {
         "startLine": 37,
         "startChar": 12,
