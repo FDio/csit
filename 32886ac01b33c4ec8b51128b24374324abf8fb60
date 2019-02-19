@@ -277,6 +277,30 @@
     },
     {
       "key": {
+        "uuid": "f0ed4af7_ac266ed8",
+        "filename": "tox-requirements.txt",
+        "patchSetId": 37
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-19T19:20:58Z",
+      "side": 1,
+      "message": "It is not only because of virl. It is best practice unless you want spent time debugging what is wrong with environment (eg Tibor with plotly). I spent several days in CNCF project debugging vagrant VM and it shows that new version of vagrant parent image was broken and silently updated on background freezing would help. In production environment inLF we cannot afford depend on many moving targets. What we can do is we can have verify job verifying every xyz new packages and then based on result move versions. This was discussee many times.",
+      "parentUuid": "3f7882b0_4bdcc43d",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8500c8ce_c385e55f",
         "filename": "tox.ini",
         "patchSetId": 37
