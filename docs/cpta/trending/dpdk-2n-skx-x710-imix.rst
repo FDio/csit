@@ -7,13 +7,7 @@
 .. raw:: html
 
     <a name="x710-imix-2t1c"></a>
-    <center><b>
-
-:index:`2n-skx-x710-dpdk-imix-2t1c-mrr`
-
-.. raw:: html
-
-    </b>
+    <center>
     Links to builds:
     <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-2n-skx" target="_blank">csit-ref</a>
@@ -27,13 +21,7 @@
 .. raw:: html
 
     <a name="x710-imix-4t2c"></a>
-    <center><b>
-
-:index:`2n-skx-x710-dpdk-imix-4t2c-mrr`
-
-.. raw:: html
-
-    </b>
+    <center>
     Links to builds:
     <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-2n-skx" target="_blank">csit-ref</a>
@@ -47,13 +35,7 @@
 .. raw:: html
 
     <a name="x710-imix-8t4c"></a>
-    <center><b>
-
-:index:`2n-skx-x710-dpdk-imix-8t4c-mrr`
-
-.. raw:: html
-
-    </b>
+    <center>
     Links to builds:
     <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master-2n-skx" target="_blank">csit-ref</a>

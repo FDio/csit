@@ -7,13 +7,7 @@
 .. raw:: html
 
     <a name="x710-64b-1t1c"></a>
-    <center><b>
-
-:index:`3n-hsw-x710-dpdk-64b-1t1c-mrr`
-
-.. raw:: html
-
-    </b>
+    <center>
     Links to builds:
     <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
@@ -27,13 +21,7 @@
 .. raw:: html
 
     <a name="x710-64b-2t2c"></a>
-    <center><b>
-
-:index:`3n-hsw-x710-dpdk-64b-2t2c-mrr`
-
-.. raw:: html
-
-    </b>
+    <center>
     Links to builds:
     <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>
@@ -47,13 +35,7 @@
 .. raw:: html
 
     <a name="x710-64b-4t4c"></a>
-    <center><b>
-
-:index:`3n-hsw-x710-dpdk-64b-4t4c-mrr`
-
-.. raw:: html
-
-    </b>
+    <center>
     Links to builds:
     <a href="http://fast.dpdk.org/rel/" target="_blank">dpdk-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-mrr-weekly-master" target="_blank">csit-ref</a>

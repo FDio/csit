@@ -7,13 +7,7 @@
 .. raw:: html
 
     <a name="x520-78b-1t1c"></a>
-    <center><b>
-
-:index:`3n-hsw-x520-srv6-78b-1t1c-mrr`
-
-.. raw:: html
-
-    </b>
+    <center>
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
@@ -27,14 +21,7 @@
 .. raw:: html
 
     <a name="x520-78b-2t2c"></a>
-    <center><b>
-
-:index:`3n-hsw-x520-srv6-78b-2t2c-mrr`
-
-.. raw:: html
-
-    </b>
-
+    <center>
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
@@ -48,13 +35,7 @@
 .. raw:: html
 
     <a name="x520-78b-4t4c"></a>
-    <center><b>
-
-:index:`3n-hsw-x520-srv6-78b-4t4c-mrr`
-
-.. raw:: html
-
-    </b>
+    <center>
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
