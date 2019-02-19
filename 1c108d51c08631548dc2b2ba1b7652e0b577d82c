@@ -70,6 +70,30 @@
       "revId": "1c108d51c08631548dc2b2ba1b7652e0b577d82c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0740ee20_9e3dd075",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-19T16:25:22Z",
+      "side": 0,
+      "message": "Looking at [2], I see newer DPDK sources being downloaded, build, and then wiped and older version being processed.\nIn other words, it works.\n\n[2] https://jenkins.fd.io/sandbox/job/vpp-csit-verify-perf-master-2n-skx/4/consoleText",
+      "parentUuid": "8f5a85f1_5046556d",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 8
+      },
+      "revId": "1c108d51c08631548dc2b2ba1b7652e0b577d82c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
