@@ -21,6 +21,8 @@ FD.io CSIT-1901 Report history and per .[ww] revision changes are listed below.
 |                |                                                            |
 |                |    a. :ref:`PLRsearch algorithm`                           |
 |                |                                                            |
+|                | 3. Removed Denverton.                                                           |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .07            | Initial version                                            |
 |                |                                                            |
