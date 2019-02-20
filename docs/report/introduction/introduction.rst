@@ -129,7 +129,6 @@ available for download.
      and latency.
    - **VPP Functional**: Detailed VPP functional results.
    - **Honeycomb Functional**: Detailed HoneyComb functional results.
-   - **NSH_SFC Functional**: Detailed nsh-plugin functional results.
    - **DMM Functional**: Detailed DMM functional results.
 
 #. TEST CONFIGURATION: VPP DUT configuration data based on VPP API

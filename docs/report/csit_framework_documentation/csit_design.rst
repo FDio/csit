@@ -101,7 +101,6 @@ A brief bottom-up description is provided here:
 
      - VPP;
      - Honeycomb;
-     - NSH_SFC;
 
    - Performance tests using physical testbed environment:
 
