@@ -181,6 +181,7 @@
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
+        - 16  # NDRPDR sel
 
     plot-ligato-throughput-speedup-analysis-3n-hsw:
       # TODO: Add new data
@@ -191,6 +192,7 @@
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
+        - 16  # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-hsw:
       csit-dpdk-perf-verify-1901-3n-hsw:
@@ -376,11 +378,11 @@
     # Results
 
     vpp-perf-results-3n-hsw:
-      # TODO: Add FULL data
       csit-vpp-perf-verify-1901-3n-hsw:
         - 38  # NDRPDR full
         - 43  # NDRPDR full
         - 45  # NDRPDR full
+        - 49  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1901-3n-skx:
@@ -1366,6 +1368,7 @@
       - 38  # NDRPDR full
       - 43  # NDRPDR full
       - 45  # NDRPDR full
+      - 49  # NDRPDR full
       - 10  # NDRPDR sel
       - 19  # NDRPDR sel
       - 31  # NDRPDR sel
@@ -1509,6 +1512,7 @@
       - 12  # NDRPDR sel
       - 13  # NDRPDR sel
       - 14  # NDRPDR sel
+      - 16  # NDRPDR sel
     csit-dpdk-perf-verify-1807-3n-hsw:
       - 11
       - 12  # full
