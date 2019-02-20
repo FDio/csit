@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aa41e659_a5c2d52f",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T14:04:33Z",
+      "side": 1,
+      "message": "Not set in this function, so it should be uppercase and documented.",
+      "range": {
+        "startLine": 133,
+        "startChar": 31,
+        "endLine": 133,
+        "endChar": 49
+      },
+      "revId": "563aac5544534f9a0dead4462f61a345c6fbd78b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a869714c_01e3012d",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T14:04:33Z",
+      "side": 1,
+      "message": "OS_FAMILY",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 12
+      },
+      "revId": "563aac5544534f9a0dead4462f61a345c6fbd78b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb8c3b38_351d1748",
+        "filename": "resources/libraries/bash/function/dockerfile.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T14:04:33Z",
+      "side": 1,
+      "message": "Please do not introduce trailing whitespace.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 4
+      },
+      "revId": "563aac5544534f9a0dead4462f61a345c6fbd78b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
