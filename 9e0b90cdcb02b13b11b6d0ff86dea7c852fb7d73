@@ -22,6 +22,30 @@
       "revId": "9e0b90cdcb02b13b11b6d0ff86dea7c852fb7d73",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "90b7c59f_30a46b4c",
+        "filename": "error_catching_is_hard.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T12:31:46Z",
+      "side": 1,
+      "message": "ZSH is a different language than Bash (similar to how python3 is different from python2).\nI do not think we want to migrate all out Bash stuff to ZSH.\n\nBuiltin \"false\" works just as any other command with exit code 1.\nYou can try \"ls ,\" or something else.",
+      "parentUuid": "c76feec8_a4ba7709",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 19
+      },
+      "revId": "9e0b90cdcb02b13b11b6d0ff86dea7c852fb7d73",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
