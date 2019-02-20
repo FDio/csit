@@ -46,6 +46,30 @@
       "revId": "9e0b90cdcb02b13b11b6d0ff86dea7c852fb7d73",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e53773e8_e3758a77",
+        "filename": "error_catching_is_hard.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-20T12:38:19Z",
+      "side": 1,
+      "message": "If it would be working in same way you would not create this test. as i said. BASH is behaving as is. Nothing to wonder about.",
+      "parentUuid": "90b7c59f_30a46b4c",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 19
+      },
+      "revId": "9e0b90cdcb02b13b11b6d0ff86dea7c852fb7d73",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
