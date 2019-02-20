@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "483c883a_65892224",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T13:00:53Z",
+      "side": 1,
+      "message": "Constants.\n\nValues such as \"csit_current\" do not change at runtime, and they are part of \"API contract\" with ci_management (jobs archive files from such named directories).",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "8577b4441fd99d1db694e6e9f07801c35ac17748",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "41e3b87e_27452b81",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T13:00:53Z",
+      "side": 1,
+      "message": "On ci-management side, you have to hardcode some values, or hardcode an environment variable name to read the values from. I do not think we want our entry scripts to export array variable PER_PATCH_DIRS_TO_ARCHIVE with values (\"csit_current\" \"csit_new\").",
+      "range": {
+        "startLine": 9,
+        "startChar": 48,
+        "endLine": 10,
+        "endChar": 8
+      },
+      "revId": "8577b4441fd99d1db694e6e9f07801c35ac17748",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a825494e_0b37fd53",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T13:00:53Z",
+      "side": 1,
+      "message": "Document cwd has changed.",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 6
+      },
+      "revId": "8577b4441fd99d1db694e6e9f07801c35ac17748",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "877d22e9_de73633a",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T13:00:53Z",
+      "side": 1,
+      "message": "set\n\nLine 62 reads what line 61 sets, not what caller has seen.",
+      "range": {
+        "startLine": 54,
+        "startChar": 16,
+        "endLine": 54,
+        "endChar": 20
+      },
+      "revId": "8577b4441fd99d1db694e6e9f07801c35ac17748",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
