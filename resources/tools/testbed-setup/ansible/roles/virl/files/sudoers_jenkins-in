@@ -1,1 +1,0 @@
-jenkins-in ALL=(root) NOPASSWD: /bin/rm -fr /scratch/*, /bin/rm -fr /nfs/scratch/*

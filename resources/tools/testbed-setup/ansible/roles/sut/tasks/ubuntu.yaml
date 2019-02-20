@@ -1,106 +1,23 @@
 ---
 # file: roles/sut/tasks/ubuntu.yaml
 
-- name: Install DKMS
+- name: Install CSIT dependencies
   apt:
-    name: 'dkms'
+    name: '{{ item }}'
     state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-dkms
-
-- name: Install pkg-config
-  apt:
-    name: 'pkg-config'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-pkg-config
-
-- name: Install libglib2.0-dev
-  apt:
-    name: 'libglib2.0-dev'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-libglib2.0-dev
-
-- name: Install autoconf
-  apt:
-    name: 'autoconf'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-autoconf
-
-- name: Install libtool
-  apt:
-    name: 'libtool'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-libtool
-
-- name: Install screen
-  apt:
-    name: 'screen'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-screen
-
-- name: Install libmbedcrypto1
-  apt:
-    name: 'libmbedcrypto1'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-libmbedcrypto1
-
-- name: Install libmbedtls10
-  apt:
-    name: 'libmbedtls10'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-libmbedtls10
-
-- name: Install libmbedx509-0
-  apt:
-    name: 'libmbedx509-0'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-libmbedx509-0
-
-- name: Install lxc
-  apt:
-    name: 'lxc'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-lxc
-
-- name: Install java
-  apt:
-    name: 'openjdk-8-jdk'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-java
-
-- name: Install Pixman (Qemu-dep)
-  apt:
-    name: 'libpixman-1-dev'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-pixman
-
-- name: Install python-cffi
-  apt:
-    name: 'python-cffi'
-    state: 'present'
-    update_cache: True
-  become: yes
-  tags: install-python-cffi
+    install_recommends: False
+  with_items:
+    - 'dkms'
+    - 'pkg-config'
+    - 'libglib2.0-dev'
+    - 'autoconf'
+    - 'libtool'
+    - 'screen'
+    - 'libmbedcrypto1'
+    - 'libmbedtls10'
+    - 'libmbedx509-0'
+    - 'lxc'
+    - 'openjdk-8-jdk'
+    - 'libpixman-1-dev'
+    - 'python-cffi'
+  tags: install-csit-dependencies
