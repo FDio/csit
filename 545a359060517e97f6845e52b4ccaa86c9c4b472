@@ -96,6 +96,29 @@
     },
     {
       "key": {
+        "uuid": "5cf7ff72_be0a81d2",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-20T12:29:43Z",
+      "side": 1,
+      "message": "This simply does not make sense in bidirectional traffic as there is no rx/tx port but are TXRX/RXTX",
+      "range": {
+        "startLine": 424,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 35
+      },
+      "revId": "545a359060517e97f6845e52b4ccaa86c9c4b472",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c047b9bd_fa0e678c",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 8
@@ -131,6 +154,30 @@
       "side": 1,
       "message": "Lines 396-397 describe the behavior of Base, which I want to keep.\nAs we have zero suites using the unidirection functionality, I cannot confirm how they would react to _ifaces_reordered.",
       "parentUuid": "c047b9bd_fa0e678c",
+      "range": {
+        "startLine": 426,
+        "startChar": 12,
+        "endLine": 426,
+        "endChar": 67
+      },
+      "revId": "545a359060517e97f6845e52b4ccaa86c9c4b472",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34dbeb25_d02db2ef",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-20T12:29:43Z",
+      "side": 1,
+      "message": "They would react exactly the same way. bi/uni does not have effect on how interfaces are mapped from PCI point of view. This reorder is because of DPDK driver.",
+      "parentUuid": "a748a13c_f13e464d",
       "range": {
         "startLine": 426,
         "startChar": 12,
