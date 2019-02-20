@@ -27,7 +27,7 @@ function ansible_host () {
     pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
     ssh-copy-id -o StrictHostKeyChecking=no testuser@"${HOST}"
     ansible-playbook --vault-id vault_pass --extra-vars '@vault.yml' \
-        --inventory production site.yaml --limit ${HOST} || {
+        --inventory lf_inventory site.yaml --limit ${HOST} || {
         die "Failed to ansible host!"
     }
     popd || die "Popd failed!"

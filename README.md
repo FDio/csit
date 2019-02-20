@@ -179,7 +179,7 @@ describing local VPP Device functional testing.
 
 ### Physical Testbed
 
-[Physical testbed preparation](resources/tools/testbed-setup/README.md)
+[Physical testbed preparation](resources/tools/testbed-setup/README.rst)
 documentation is describing PXE and Ansible setup process. All the software
 requirements for running Performance Teste are part of Ansible playbooks.
 
