@@ -15,11 +15,6 @@ all:
             10.30.51.22: null #t2-sut2
             10.30.51.25: null #t3-sut1
             10.30.51.26: null #t3-sut2
-#        virl: # WARNING, DO NOT ENABLE VIRL UNLESS YOU KNOW WHAT YOU ARE DOING
-#          hosts:
-#            10.30.51.28: null #t4-virl1
-#            10.30.51.29: null #t4-virl2
-#            10.30.51.30: null #t4-virl3
     skylake:
       children:
         tg:

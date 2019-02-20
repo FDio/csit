@@ -14,7 +14,7 @@
   lineinfile:
     path: '/etc/hosts'
     regexp: '^{{ ansible_default_ipv4.address }}.+$'
-    line: '{{ ansible_default_ipv4.address }} {{ hostname }}.linuxfoundation.org'
+    line: '{{ ansible_default_ipv4.address }} {{ hostname }}.{{ domain }}'
   tags: set-hostname
 
 - name: Set sudoers admin
@@ -44,3 +44,11 @@
    mode: '644'
   notify: ['Update GRUB']
   tags: copy-grub
+
+- name: Add permanent proxy settings
+  lineinfile:
+    path: "/etc/environment"
+    state: "present"
+    line: "{{ item.key }}={{ item.value }}"
+  with_dict: "{{ proxy_env }}"
+  when: proxy_env is defined
