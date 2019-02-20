@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d58b09a1_b2820936",
+        "filename": "resources/tools/testbed-setup/ansible/roles/tg_sut/files/requirements.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T15:26:35Z",
+      "side": 1,
+      "message": "We should probably add a comment about minimal (or exact) pip version needed. Juraj reports that hir ARM machine has run into a pip/scipy bug [1].\nNot exactly related to this Change, I just mention it so we do not forget.\n\n[1] https://github.com/pypa/pip/issues/25",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "70938c57564c1ad5e16db76d911e8df50c0e12a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
