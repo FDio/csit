@@ -22,6 +22,30 @@
       "revId": "70938c57564c1ad5e16db76d911e8df50c0e12a1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d27ee86a_a0500652",
+        "filename": "resources/tools/testbed-setup/ansible/roles/tg_sut/files/requirements.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-20T15:46:00Z",
+      "side": 1,
+      "message": "I know. Thinking further i am seeking to skip this entirely. Code is not running there. Apart few statics like TRex and i guess PAPI executor. So we are transferring /env within tarball, we should get is out there.",
+      "parentUuid": "d58b09a1_b2820936",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 5
+      },
+      "revId": "70938c57564c1ad5e16db76d911e8df50c0e12a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
