@@ -16,6 +16,24 @@
       "revId": "f914fd2a53aa63ebcb21b73debfeb395deea3672",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ff5e783_992b4e17",
+        "filename": "resources/tools/presentation/generator_CPTA.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-02-20T07:19:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4ee7a37_5288403d",
+      "revId": "f914fd2a53aa63ebcb21b73debfeb395deea3672",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
