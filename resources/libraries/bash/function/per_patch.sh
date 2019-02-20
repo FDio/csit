@@ -13,12 +13,36 @@
 
 set -exuo pipefail
 
-# This library defines functions used mainly by "per_patch_perf.sh" entry script.
+# This library defines functions used mainly by per patch entry scripts.
 # Generally, the functions assume "common.sh" library has been sourced already.
 
 # Keep functions ordered alphabetically, please.
 
-# TODO: Add a link to bash style guide.
+function archive_test_results () {
+
+    set -exuo pipefail
+
+    # Arguments:
+    # - ${1}: Directory to archive to. Required. Parent has to exist.
+    # Variable set:
+    # - TARGET - Target directory.
+    # Variables read:
+    # - ARCHIVE_DIR - Path to where robot result files are created in.
+    # - VPP_DIR - Path to existing directory, root for to relative paths.
+    # Directories updated:
+    # - ${1} - Created, and robot and parsing files are moved/created there.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common.sh
+
+    cd "${VPP_DIR}" || die "Change directory command failed."
+    TARGET="$(readlink -f "$1")"
+    mkdir -p "${TARGET}" || die "Directory creation failed."
+    for filename in "output.xml" "log.html" "report.html"; do
+        mv "${ARCHIVE_DIR}/${filename}" "${TARGET}/${filename}" || {
+            die "Attempt to move '${filename}' failed."
+        }
+    done
+}
 
 
 function archive_parse_test_results () {
@@ -28,23 +52,14 @@ function archive_parse_test_results () {
     # Arguments:
     # - ${1}: Directory to archive to. Required. Parent has to exist.
     # Variables read:
-    # - ARCHIVE_DIR - Path to where robot result files are created in.
-    # - VPP_DIR - Path to existing directory, root for to relative paths.
-    # Directories updated:
-    # - ${1} - Created, and robot and parsing files are moved/created there.
+    # - TARGET - Target directory.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
+    # - archive_test_results - Archiving results.
     # - parse_bmrr_results - See definition in this file.
 
-    cd "${VPP_DIR}" || die "Change directory command failed."
-    target="$(readlink -f "$1")"
-    mkdir -p "${target}" || die "Directory creation failed."
-    for filename in "output.xml" "log.html" "report.html"; do
-        mv "${ARCHIVE_DIR}/${filename}" "${target}/${filename}" || {
-            die "Attempt to move '${filename}' failed."
-        }
-    done
-    parse_bmrr_results "${target}" || {
+    archive_test_results "$1" || die
+    parse_bmrr_results "${TARGET}" || {
         die "The function should have died on error."
     }
 }

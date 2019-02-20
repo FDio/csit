@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -57,7 +57,7 @@ while 1:
     except IOError:
         break
     num_lines = len(parent_lines)
-    filename = "csit_new/{iter}/results.txt".format(iter=iteration)
+    filename = "csit_current/{iter}/results.txt".format(iter=iteration)
     with open(filename) as new_file:
         new_lines = new_file.readlines()
     if num_lines != len(new_lines):
@@ -82,7 +82,7 @@ for test_index in range(num_tests):
         new_values.extend(
             json.loads(new_iterations[iteration_index][test_index]))
     print "TRACE pre-hack parent: {p}".format(p=parent_values)
-    print "TRACE pre-hack new: {n}".format(n=new_values)
+    print "TRACE pre-hack current: {n}".format(n=new_values)
     parent_values = hack(parent_values)
     new_values = hack(new_values)
     parent_max = BitCountingMetadataFactory.find_max_value(parent_values)
@@ -93,9 +93,9 @@ for test_index in range(num_tests):
     new_factory = BitCountingMetadataFactory(val_max, parent_stats.avg)
     new_stats = new_factory.from_data(new_values)
     print "TRACE parent: {p}".format(p=parent_values)
-    print "TRACE new: {n}".format(n=new_values)
+    print "TRACE current: {n}".format(n=new_values)
     print "DEBUG parent: {p}".format(p=parent_stats)
-    print "DEBUG new: {n}".format(n=new_stats)
+    print "DEBUG current: {n}".format(n=new_stats)
     common_max = max(parent_stats.avg, new_stats.avg)
     difference = (new_stats.avg - parent_stats.avg) / common_max
     print "DEBUG difference: {d}%".format(d=100 * difference)
