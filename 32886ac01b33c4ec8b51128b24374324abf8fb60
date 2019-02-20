@@ -349,6 +349,30 @@
     },
     {
       "key": {
+        "uuid": "b99e90d8_a14e49fe",
+        "filename": "tox-requirements.txt",
+        "patchSetId": 37
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T14:23:08Z",
+      "side": 1,
+      "message": "I mention VIRL because it is highly impractical to create an automated job for testing version bumps in it.\nAre you implying vpp_device is similarly hard to deploy with changed versions?",
+      "parentUuid": "abd12f91_fb1becd0",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8500c8ce_c385e55f",
         "filename": "tox.ini",
         "patchSetId": 37
