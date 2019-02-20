@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "28be5363_2b596509",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T15:04:49Z",
+      "side": 1,
+      "message": "Done in #11.\nMore verbose edits in send_traffic_on_tg docsring, light edits in trex_stl_start_remote_exec docsring.",
+      "parentUuid": "bbcf7e06_d6b3e5ce",
+      "range": {
+        "startLine": 424,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 35
+      },
+      "revId": "545a359060517e97f6845e52b4ccaa86c9c4b472",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c047b9bd_fa0e678c",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 8
@@ -226,6 +250,30 @@
       "side": 1,
       "message": "So the unidirectional implementation i Base is wrong? Ok, will fix.",
       "parentUuid": "34dbeb25_d02db2ef",
+      "range": {
+        "startLine": 426,
+        "startChar": 12,
+        "endLine": 426,
+        "endChar": 67
+      },
+      "revId": "545a359060517e97f6845e52b4ccaa86c9c4b472",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ddfe1ee_c3c9a3b1",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T15:04:49Z",
+      "side": 1,
+      "message": "Done in #11.",
+      "parentUuid": "21ae7fda_f301e8c4",
       "range": {
         "startLine": 426,
         "startChar": 12,
