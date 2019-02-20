@@ -178,6 +178,9 @@
         - 8   # NDRPDR sel
         - 9   # NDRPDR sel
         - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
 
     plot-ligato-throughput-speedup-analysis-3n-hsw:
       # TODO: Add new data
@@ -185,6 +188,9 @@
         - 8   # NDRPDR sel
         - 9   # NDRPDR sel
         - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-hsw:
       csit-dpdk-perf-verify-1901-3n-hsw:
@@ -307,7 +313,7 @@
 
     # Denverton:
     intel-dnv-vpp:
-      # TODO: Replace with new data
+      # Not used
       intel-dnv-vpp-release-1810:
         - 1
 
@@ -416,7 +422,6 @@
 
     # VPP Ligato
     ligato-perf-results-3n-hsw:
-      # TODO: Add new data
       csit-ligato-perf-verify-1901-3n-hsw:
         - 10  # NDRPDR full
 
@@ -439,8 +444,7 @@
 
     # NSH SFC Functional
     nsh-func-results:
-      # TODO: Replace with new data
-      # csit-nsh_sfc-verify-func-1901-ubuntu1604-virl:
+      # Not used
       csit-nsh_sfc-verify-func-1810-ubuntu1604-virl:
         - 1
 
@@ -1304,7 +1308,7 @@
 
   builds:
 
-    # TODO: Replace with 1901 data
+    # Not used
     intel-dnv-vpp-release-1810:
       - 1
 
@@ -1502,6 +1506,9 @@
       - 8   # NDRPDR sel
       - 9   # NDRPDR sel
       - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+      - 14  # NDRPDR sel
     csit-dpdk-perf-verify-1807-3n-hsw:
       - 11
       - 12  # full
@@ -1596,7 +1603,7 @@
       - 50
     csit-vpp-device-1901-ubuntu1804-1n-skx:
       - 49
-    # TODO: Replace with 1901 data
+    # Not used
     csit-nsh_sfc-verify-func-1810-ubuntu1604-virl:
       - 1
     csit-dmm-functional-1901-ubuntu1604-virl:
