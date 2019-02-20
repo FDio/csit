@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca202159_5cb74310",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T12:26:22Z",
+      "side": 1,
+      "message": "Put into doublequtes.",
+      "range": {
+        "startLine": 128,
+        "startChar": 11,
+        "endLine": 128,
+        "endChar": 21
+      },
+      "revId": "fa0fe5c805169951c466d3b18091c0cfc52dd5ca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
