@@ -15,44 +15,17 @@
   tags: copy-apt-sources
   when: ansible_machine == 'x86_64'
 
-- name: Install python-apt
+- name: Install CSIT dependencies
   apt:
-    name: 'python-apt'
+    name: '{{ item }}'
     state: 'present'
-    update_cache: True
-  tags: install-python-apt
-
-- name: Install git
-  apt:
-    name: 'git'
-    state: 'present'
-    update_cache: True
-  tags: install-git
-
-- name: Install crudini
-  apt:
-    name: 'crudini'
-    state: 'present'
-    update_cache: True
-  tags: install-crudini
-
-- name: Install expect
-  apt:
-    name: 'expect'
-    state: 'present'
-    update_cache: True
-  tags: install-expect
-
-- name: Install socat
-  apt:
-    name: 'socat'
-    state: 'present'
-    update_cache: True
-  tags: install-socat
-
-- name: Install qemu
-  apt:
-    name: 'qemu-system'
-    state: 'present'
-    update_cache: True
-  tags: install-qemu
+    install_recommends: False
+  with_items:
+    - 'python-apt'
+    - 'python-setuptools'
+    - 'git'
+    - 'crudini'
+    - 'expect'
+    - 'socat'
+    - 'qemu-system'
+  tags: install-csit-dependencies

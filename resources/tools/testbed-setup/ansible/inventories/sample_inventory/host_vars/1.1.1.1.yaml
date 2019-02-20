@@ -1,0 +1,6 @@
+---
+# file: host_vars/x.x.x.x.yaml
+
+hostname: "t1-tg1"
+isolcpus: "1-17,19-35"
+cfs_cpus: "0,18"
