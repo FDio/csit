@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e497d736_dc155767",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T11:55:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d434bcb_297ceb87",
+      "range": {
+        "startLine": 418,
+        "startChar": 23,
+        "endLine": 418,
+        "endChar": 30
+      },
+      "revId": "545a359060517e97f6845e52b4ccaa86c9c4b472",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c2fb2f2_b7e8e6ab",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "8befaf1f_d98e815b",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T11:55:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c2fb2f2_b7e8e6ab",
+      "range": {
+        "startLine": 419,
+        "startChar": 23,
+        "endLine": 419,
+        "endChar": 30
+      },
+      "revId": "545a359060517e97f6845e52b4ccaa86c9c4b472",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c047b9bd_fa0e678c",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 8
@@ -59,6 +107,30 @@
       "writtenOn": "2019-02-19T16:40:47Z",
       "side": 1,
       "message": "why not: \np_0, p_1 \u003d (rx_port, tx_port) if self._ifaces_reordered else (tx_port, rx_port)",
+      "range": {
+        "startLine": 426,
+        "startChar": 12,
+        "endLine": 426,
+        "endChar": 67
+      },
+      "revId": "545a359060517e97f6845e52b4ccaa86c9c4b472",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a748a13c_f13e464d",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T11:55:51Z",
+      "side": 1,
+      "message": "Lines 396-397 describe the behavior of Base, which I want to keep.\nAs we have zero suites using the unidirection functionality, I cannot confirm how they would react to _ifaces_reordered.",
+      "parentUuid": "c047b9bd_fa0e678c",
       "range": {
         "startLine": 426,
         "startChar": 12,
