@@ -301,6 +301,30 @@
     },
     {
       "key": {
+        "uuid": "716982c9_16ddbf03",
+        "filename": "tox-requirements.txt",
+        "patchSetId": 37
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-20T12:37:41Z",
+      "side": 1,
+      "message": "\u003e verify job verifying every xyz new packages and then based on result move versions.\n\nI like that. I expect we will discuss this when we get rid of VIRL.",
+      "parentUuid": "f0ed4af7_ac266ed8",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "32886ac01b33c4ec8b51128b24374324abf8fb60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8500c8ce_c385e55f",
         "filename": "tox.ini",
         "patchSetId": 37
