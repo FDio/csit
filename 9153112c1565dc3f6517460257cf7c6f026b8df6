@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2c32aef_9ab816ca",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 36
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-21T14:46:32Z",
+      "side": 1,
+      "message": "I still do not understand why are we not failing here. it should be die \"...\" other wise if it will not found anything, what? It is fine that previous commands will do its job but this should be clear by reading code that this shall not pass.",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 77
+      },
+      "revId": "9153112c1565dc3f6517460257cf7c6f026b8df6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
