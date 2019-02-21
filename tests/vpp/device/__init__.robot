@@ -20,6 +20,7 @@
 | ...
 | Suite Setup | Run Keywords | Setup Global Variables
 | ... | AND | Setup Framework | ${nodes}
+| ... | AND | Setup Corekeeper on All Nodes | ${nodes}
 | ... | AND | Install Vpp On All Duts | ${nodes} | ${packages_dir}
 | ... | ${vpp_rpm_pkgs} | ${vpp_deb_pkgs}
 | ... | AND | Verify Vpp On All Duts | ${nodes}
