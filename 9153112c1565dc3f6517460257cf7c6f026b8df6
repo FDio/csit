@@ -46,6 +46,46 @@
       "revId": "9153112c1565dc3f6517460257cf7c6f026b8df6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "978061b7_b7ff4e22",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x82599-ethip4-ip4base-mrr.robot",
+        "patchSetId": 36
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-21T16:55:55Z",
+      "side": 1,
+      "message": "Why is there no -ndrpdr suite for this one?",
+      "revId": "9153112c1565dc3f6517460257cf7c6f026b8df6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94a4c600_888de386",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x82599-ethip4-ip4base-mrr.robot",
+        "patchSetId": 36
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-21T16:55:55Z",
+      "side": 1,
+      "message": "Is this a real tag?",
+      "range": {
+        "startLine": 18,
+        "startChar": 60,
+        "endLine": 18,
+        "endChar": 65
+      },
+      "revId": "9153112c1565dc3f6517460257cf7c6f026b8df6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
