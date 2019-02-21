@@ -6,6 +6,11 @@ FD.io CSIT-1901 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+| .09            | 1. Added more test runs:                                   |
+|                |                                                            |
+|                |    a. VPP K8s Container Memif on 3n-hsw testbed.           |
+|                |                                                            |
++----------------+------------------------------------------------------------+
 | .08            | 1. Added more test runs:                                   |
 |                |                                                            |
 |                |    a. VPP on 3n-hsw testbed,                               |

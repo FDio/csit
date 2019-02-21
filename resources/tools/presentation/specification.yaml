@@ -173,7 +173,6 @@
         - 37  # WRK
 
     plot-ligato-throughput-latency-3n-hsw:
-      # TODO: Add new data
       csit-ligato-perf-verify-1901-3n-hsw:
         - 8   # NDRPDR sel
         - 9   # NDRPDR sel
@@ -181,10 +180,12 @@
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
         - 16  # NDRPDR sel
+        - 17  # NDRPDR sel
+        - 18  # NDRPDR sel
 
     plot-ligato-throughput-speedup-analysis-3n-hsw:
-      # TODO: Add new data
       csit-ligato-perf-verify-1901-3n-hsw:
         - 8   # NDRPDR sel
         - 9   # NDRPDR sel
@@ -192,7 +193,10 @@
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
         - 16  # NDRPDR sel
+        - 17  # NDRPDR sel
+        - 18  # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-hsw:
       csit-dpdk-perf-verify-1901-3n-hsw:
@@ -1512,7 +1516,10 @@
       - 12  # NDRPDR sel
       - 13  # NDRPDR sel
       - 14  # NDRPDR sel
+      - 15  # NDRPDR sel
       - 16  # NDRPDR sel
+      - 17  # NDRPDR sel
+      - 18  # NDRPDR sel
     csit-dpdk-perf-verify-1807-3n-hsw:
       - 11
       - 12  # full
@@ -1627,7 +1634,6 @@
 ################################################################################
 ###                               T A B L E S                                ###
 ################################################################################
-
 
 # VPP Compare NICs 3n-hsw 1t1c ndr
 -
