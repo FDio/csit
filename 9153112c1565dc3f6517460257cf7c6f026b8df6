@@ -22,6 +22,30 @@
       "revId": "9153112c1565dc3f6517460257cf7c6f026b8df6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6758313_8e85ab8c",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 36
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-02-21T15:08:12Z",
+      "side": 1,
+      "message": "The loop starts with all packages in fdio_master and then filters the packages with ${VPP_VERSION} from these packages. If it finds ${VPP_VERSION} for a package, it adds it to artifacts and if it doesn\u0027t it skips the package (here skipping means doing nothing and moving to the next iteration in the loop).\n\nThe loop is demonstrated here: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-master-3n-skx/90/console\nIt starts with a bunch of packages such as honeycomb, libccnx-transport-rta, vpp etc. and tries to find out which of these packages have ${VPP_VERSION}, which is 19.04-rc0~97-g7da100b gotten from VPP_STABLE_VER. It then ends up with all vpp packages with this version.",
+      "parentUuid": "e2c32aef_9ab816ca",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 77
+      },
+      "revId": "9153112c1565dc3f6517460257cf7c6f026b8df6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
