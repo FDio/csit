@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db2b8d34_83a149c6",
+        "filename": "VPP_REPO_URL",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-21T11:31:53Z",
+      "side": 1,
+      "message": "This needs to be merged into rls1901 branch.",
+      "range": {
+        "startLine": 1,
+        "startChar": 50,
+        "endLine": 1,
+        "endChar": 54
+      },
+      "revId": "6321473158caaf6a007080e5005aee7ee4878261",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
