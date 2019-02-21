@@ -22,6 +22,53 @@
       "revId": "6321473158caaf6a007080e5005aee7ee4878261",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "32f67f0f_dd50d3bd",
+        "filename": "VPP_REPO_URL",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-21T11:39:33Z",
+      "side": 1,
+      "message": "No, I got it wrong. 1901 is for \"snapshot\" builds, but rls1901 is usually reserved for releases (including dot releases) only.",
+      "parentUuid": "db2b8d34_83a149c6",
+      "range": {
+        "startLine": 1,
+        "startChar": 50,
+        "endLine": 1,
+        "endChar": 54
+      },
+      "revId": "6321473158caaf6a007080e5005aee7ee4878261",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ecf4e8f_af65c9a9",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 2427,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-21T11:39:33Z",
+      "side": 1,
+      "message": "But this should be merged.",
+      "range": {
+        "startLine": 2427,
+        "startChar": 6,
+        "endLine": 2427,
+        "endChar": 28
+      },
+      "revId": "6321473158caaf6a007080e5005aee7ee4878261",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
