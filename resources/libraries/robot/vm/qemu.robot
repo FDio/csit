@@ -13,6 +13,7 @@
 *** Settings ***
 | Library | resources.libraries.python.QemuUtils
 | Library | resources.libraries.python.ssh.SSH
+| Library | resources.libraries.python.ssh
 
 *** Keywords ***
 
@@ -97,3 +98,8 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Qemu Set Node | ${nodes['${dut}']}
 | | | Qemu Kill
+
+| Copy nested qemu image
+| | [Arguments] | ${dut}
+| | Exec Cmd | ${nodes['${dut}']}
+| | ... | sudo cp ~/csit-nested-1.7.img /var/lib/vm/csit-nested-1.7.img
