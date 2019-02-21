@@ -18,34 +18,50 @@ set -x
 STREAM=$1
 OS=$2
 
-URL="https://nexus.fd.io/service/local/artifact/maven/content"
-VER="RELEASE"
-GROUP="io.fd.vpp"
-HC_GROUP="io.fd.hc2vpp"
-HC_ARTIFACTS="honeycomb"
+VERSION="RELEASE"
 # TODO(CSIT-994): reenable NSH
 # NSH_GROUP="io.fd.nsh_sfc"
 # NSH_ARTIFACTS="vpp-nsh-plugin"
-VPP_ARTIFACTS="vpp vpp-lib vpp-plugins"
-
-if [ "${OS}" == "ubuntu1604" ]; then
-    OS="ubuntu.xenial.main"
-    PACKAGE="deb deb.md5"
-    CLASS="deb"
-elif [ "${OS}" == "centos7" ]; then
-    OS="centos7"
-    PACKAGE="rpm rpm.md5"
-    CLASS=""
+# Figure out what system we are running on
+if [[ -f /etc/lsb-release ]];then
+    . /etc/lsb-release
+elif [[ -f /etc/redhat-release ]];then
+    sudo yum install -y redhat-lsb
+    DISTRIB_ID=`lsb_release -si`
+    DISTRIB_RELEASE=`lsb_release -sr`
+    DISTRIB_CODENAME=`lsb_release -sc`
+    DISTRIB_DESCRIPTION=`lsb_release -sd`
 fi
+echo "----- OS INFO -----"
+echo DISTRIB_ID: ${DISTRIB_ID}
+echo DISTRIB_RELEASE: ${DISTRIB_RELEASE}
+echo DISTRIB_CODENAME: ${DISTRIB_CODENAME}
+echo DISTRIB_DESCRIPTION: ${DISTRIB_DESCRIPTION}
 
-REPO="fd.io.${STREAM}.${OS}"
-
-# download latest honeycomb and nsh packages
-for ART in ${HC_ARTIFACTS}; do
-    for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${HC_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-    done
-done
+echo "----- DOWNLOADING HONEYCOMB AND JVPP PACKAGES -----"
+if ! [[ -z ${REPO_NAME} ]]; then
+    REPO_URL="https://packagecloud.io/fdio/${STREAM}"
+    echo "REPO_URL: ${REPO_URL}"
+    if [[ "$DISTRIB_ID" == "Ubuntu" ]]; then
+        if [[ -f /etc/apt/sources.list.d/99fd.io.list ]];then
+            echo "Deleting: /etc/apt/sources.list.d/99fd.io.list"
+            sudo rm /etc/apt/sources.list.d/99fd.io.list
+        fi
+        # clear before downloading
+        sudo rm *.deb
+        curl -s https://packagecloud.io/install/repositories/fdio/${STREAM}/script.deb.sh | sudo bash
+        apt-get download honeycomb vpp-api-java || true
+    elif [[ "$DISTRIB_ID" == "CentOS" ]]; then
+        if [[ -f /etc/yum.repos.d/fdio-master.repo ]]; then
+            echo "Deleting: /etc/yum.repos.d/fdio-master.repo"
+            sudo rm /etc/yum.repos.d/fdio-master.repo
+        fi
+        curl -s https://packagecloud.io/install/repositories/fdio/${STREAM}/script.rpm.sh | sudo bash
+        # clear before downloading
+        sudo rm *.rpm
+        sudo yum -y install --downloadonly --downloaddir=./ honeycomb vpp-api-java || true
+    fi
+fi
 
 # TODO(CSIT-994): reenable NSH
 # for ART in ${NSH_ARTIFACTS}; do
@@ -56,37 +72,66 @@ done
 
 # determine VPP dependency
 # use latest if honeycomb package does not depend on single VPP version, e.g. stable branches since HC2VPP-285
-VER="RELEASE"
-if [ "${OS}" == "centos7" ]; then
+VERSION="RELEASE"
+if [[ "${OS}" == "centos7" ]]; then
     HC_VPP_VER=`rpm -qpR honeycomb*.rpm | grep -oP 'vpp = \K.+'`
-    if [ "${HC_VPP_VER}" != "" ]; then
-        VER=${HC_VPP_VER}.x86_64
+    if [[ "${HC_VPP_VER}" != "" ]]; then
+        VERSION=${HC_VPP_VER}.x86_64
     fi
 else
     HC_VPP_VER=`dpkg -I honeycomb*.deb | grep -oP 'vpp \(= \K[^\)]+'`
-    if [ "${HC_VPP_VER}" != "" ]; then
-        VER=${HC_VPP_VER}_amd64
+    if [[ "${HC_VPP_VER}" != "" ]]; then
+        VERSION=${HC_VPP_VER}_amd64
     fi
 fi
 
-# download VPP packages
-for ART in ${VPP_ARTIFACTS}; do
-    for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-    done
-done
-
-# verify downloaded package
-if [ "${OS}" == "centos7" ]; then
-    FILES=*.rpm
-else
-    FILES=*.deb
+VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core"
+VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins"
+VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins"
+# Check OS and stream to set correct packages
+if [[ "$DISTRIB_ID" == "CentOS" ]]; then
+    VPP_ARTIFACTS=${VPP_RPM_ARTIFACTS}
+elif [[ "$DISTRIB_ID" == "Ubuntu" ]]; then
+    if [[ "$STREAM" == "1807 1810 1901" ]]; then
+        VPP_ARTIFACTS=${VPP_DEB_ARTIFACTS}
+    else
+        VPP_ARTIFACTS=${VPP_DEB_NEW_ARTIFACTS}
+    fi
 fi
+VPP_DEB_PACKAGES=""
+VPP_RPM_PACKAGES=""
+INSTALL_PACKAGES=""
+for ART in ${VPP_ARTIFACTS}; do
+    INSTALL_PACKAGES="$INSTALL_PACKAGES $ART*"
+    if [[ "${VERSION}" != 'RELEASE' ]]; then
+            VPP_DEB_PACKAGES="$VPP_DEB_PACKAGES $ART=$VERSION"
+            VPP_RPM_PACKAGES="$VPP_RPM_PACKAGES $ART-$VERSION"
+    else
+        VPP_DEB_PACKAGES="$VPP_DEB_PACKAGES $ART"
+        VPP_RPM_PACKAGES="$VPP_RPM_PACKAGES $ART"
+    fi
+done
 
-for FILE in ${FILES}; do
-    echo " "${FILE} >> ${FILE}.md5
-done
-for MD5FILE in *.md5; do
-    md5sum -c ${MD5FILE} || exit
-    rm ${MD5FILE}
-done
+echo "----- DOWNLOADING PACKAGES -----"
+REPO_URL="https://packagecloud.io/fdio/${STREAM}"
+echo "REPO_URL: ${REPO_URL}"
+if [[ "$DISTRIB_ID" == "Ubuntu" ]]; then
+    if [[ -f /etc/apt/sources.list.d/99fd.io.list ]];then
+        echo "Deleting: /etc/apt/sources.list.d/99fd.io.list"
+        sudo rm /etc/apt/sources.list.d/99fd.io.list
+    fi
+    if [[ "$DISTRIB_ID" == "bionic" ]]; then
+        sudo apt-get install -y libmbedcrypto1 libmbedtls10 libmbedx509-0
+    elif [[ "$DISTRIB_ID" == "xenial" ]]; then
+        sudo apt-get install -y libmbedcrypto0 libmbedtls10 libmbedx509-0
+    fi
+    curl -s https://packagecloud.io/install/repositories/fdio/${STREAM}/script.deb.sh | sudo bash
+    apt-get download ${VPP_DEB_PACKAGES} || true
+elif [[ "$DISTRIB_ID" == "CentOS" ]]; then
+    if [[ -f /etc/yum.repos.d/fdio-master.repo ]]; then
+        echo "Deleting: /etc/yum.repos.d/fdio-master.repo"
+        sudo rm /etc/yum.repos.d/fdio-master.repo
+    fi
+    curl -s https://packagecloud.io/install/repositories/fdio/${STREAM}/script.rpm.sh | sudo bash
+    sudo yum -y install --downloadonly --downloaddir=./ ${VPP_RPM_PACKAGES} || true
+fi

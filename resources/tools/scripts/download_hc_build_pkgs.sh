@@ -18,68 +18,88 @@ set -ex
 STREAM=$1
 OS=$2
 
-URL="https://nexus.fd.io/service/local/artifact/maven/content"
-VPP_GROUP="io.fd.vpp"
+VERSION=`../vpp-version`
+JVPP_VERSION=`../jvpp-version`
+# Figure out what system we are running on
+if [[ -f /etc/lsb-release ]];then
+    . /etc/lsb-release
+elif [[ -f /etc/redhat-release ]];then
+    sudo yum install -y redhat-lsb
+    DISTRIB_ID=`lsb_release -si`
+    DISTRIB_RELEASE=`lsb_release -sr`
+    DISTRIB_CODENAME=`lsb_release -sc`
+    DISTRIB_DESCRIPTION=`lsb_release -sd`
+fi
+echo "----- OS INFO -----"
+echo DISTRIB_ID: ${DISTRIB_ID}
+echo DISTRIB_RELEASE: ${DISTRIB_RELEASE}
+echo DISTRIB_CODENAME: ${DISTRIB_CODENAME}
+echo DISTRIB_DESCRIPTION: ${DISTRIB_DESCRIPTION}
+
+VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-api-java"
+VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
+VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
+# Check OS and stream to set correct packages
+if [[ "$DISTRIB_ID" == "CentOS" ]]; then
+    VPP_ARTIFACTS=${VPP_RPM_ARTIFACTS}
+elif [[ "$DISTRIB_ID" == "Ubuntu" ]]; then
+    if [[ "$STREAM" == "1807 1810 1901" ]]; then
+        VPP_ARTIFACTS=${VPP_DEB_ARTIFACTS}
+    else
+        VPP_ARTIFACTS=${VPP_DEB_NEW_ARTIFACTS}
+    fi
+fi
+VPP_DEB_PACKAGES=""
+VPP_RPM_PACKAGES=""
+INSTALL_PACKAGES=""
+for ART in ${VPP_ARTIFACTS}; do
+    INSTALL_PACKAGES="$INSTALL_PACKAGES $ART*"
+    if [[ "${VERSION}" != 'RELEASE' ]]; then
+        if [[ "$ART" == "vpp-api-java" ]]; then
+            VPP_DEB_PACKAGES="$VPP_DEB_PACKAGES $ART=$JVPP_VERSION"
+            VPP_RPM_PACKAGES="$VPP_RPM_PACKAGES $ART-$JVPP_VERSION"
+        else
+            VPP_DEB_PACKAGES="$VPP_DEB_PACKAGES $ART=$VERSION"
+            VPP_RPM_PACKAGES="$VPP_RPM_PACKAGES $ART-$VERSION"
+        fi
+    else
+        VPP_DEB_PACKAGES="$VPP_DEB_PACKAGES $ART"
+        VPP_RPM_PACKAGES="$VPP_RPM_PACKAGES $ART"
+    fi
+done
+
+echo "----- DOWNLOADING PACKAGES -----"
+REPO_URL="https://packagecloud.io/fdio/${STREAM}"
+echo "REPO_URL: ${REPO_URL}"
+if [[ "$DISTRIB_ID" == "Ubuntu" ]]; then
+    if [[ -f /etc/apt/sources.list.d/99fd.io.list ]];then
+        echo "Deleting: /etc/apt/sources.list.d/99fd.io.list"
+        sudo rm /etc/apt/sources.list.d/99fd.io.list
+    fi
+    if [[ "$DISTRIB_ID" == "bionic" ]]; then
+        sudo apt-get install -y libmbedcrypto1 libmbedtls10 libmbedx509-0
+    elif [[ "$DISTRIB_ID" == "xenial" ]]; then
+        sudo apt-get install -y libmbedcrypto0 libmbedtls10 libmbedx509-0
+    fi
+    curl -s https://packagecloud.io/install/repositories/fdio/${STREAM}/script.deb.sh | sudo bash
+    apt-get download ${VPP_DEB_PACKAGES} || true
+elif [[ "$DISTRIB_ID" == "CentOS" ]]; then
+    if [[ -f /etc/yum.repos.d/fdio-master.repo ]]; then
+        echo "Deleting: /etc/yum.repos.d/fdio-master.repo"
+        sudo rm /etc/yum.repos.d/fdio-master.repo
+    fi
+    curl -s https://packagecloud.io/install/repositories/fdio/${STREAM}/script.rpm.sh | sudo bash
+    sudo yum -y install --downloadonly --downloaddir=./ ${VPP_RPM_PACKAGES} || true
+fi
 # TODO(CSIT-994): reenable NSH
 # NSH_GROUP="io.fd.nsh_sfc"
 # NSH_ARTIFACTS="vpp-nsh-plugin"
-VPP_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
-
-if [ "${OS}" == "ubuntu1604" ]; then
-    OS="ubuntu.xenial.main"
-    PACKAGE="deb deb.md5"
-    CLASS="deb"
-elif [ "${OS}" == "centos7" ]; then
-    OS="centos7"
-    PACKAGE="rpm rpm.md5"
-    CLASS=""
-fi
-
-REPO="fd.io.${STREAM}.${OS}"
-
-# Use vpp packages based on vpp-version file from hc2vpp project
-VER=`../vpp-version`
-if [ "${VER}" != 'RELEASE' ]; then
-    if [ "${OS}" == "centos7" ]; then
-        VER="${VER}.x86_64"
-    else
-        VER="${VER}_amd64"
-    fi
-fi
-
-for ART in ${VPP_ARTIFACTS}; do
-    for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${VPP_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-    done
-done
-
-# TODO(CSIT-994): reenable NSH
-# for ART in ${NSH_ARTIFACTS}; do
-#     for PAC in ${PACKAGE}; do
-#         curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-#     done
-# done
-
-# verify downloaded packages
-if [ "${OS}" == "centos7" ]; then
-    FILES=*.rpm
-else
-    FILES=*.deb
-fi
-
-for FILE in ${FILES}; do
-    echo " "${FILE} >> ${FILE}.md5
-done
-for MD5FILE in *.md5; do
-    md5sum -c ${MD5FILE} || exit
-    rm ${MD5FILE}
-done
 
 # install vpp-api-java, this extracts jvpp .jar files into usr/share/java
-if [ "${OS}" == "centos7" ]; then
-    sudo rpm --nodeps --install vpp-api-java*
+if [[ "${OS}" == "centos7" ]]; then
+    sudo rpm --install ${INSTALL_PACKAGES}
 else
-    sudo dpkg --ignore-depends=vpp --install vpp-api-java*
+    sudo dpkg --install ${INSTALL_PACKAGES}
 fi
 
 # install jvpp jars into maven repo, so that maven picks them up when building hc2vpp
