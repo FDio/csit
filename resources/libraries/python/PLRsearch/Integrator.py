@@ -15,8 +15,8 @@
 
 See log_plus for an explanation why None acts as a special case "float" number.
 
-TODO: Separate optimizations specific to PLRsearch
-      and distribute as a standalone package so other projects may reuse.
+TODO: Separate optimizations specific to PLRsearch and distribute the rest
+      as a standalone package so other projects may reuse.
 """
 
 import math
@@ -29,6 +29,7 @@ import numpy
 # If your project copies code instead, make sure your pylint check does not
 # require these imports to be absolute and descending from your superpackage.
 from log_plus import log_plus
+import stat_trackers
 
 
 def try_estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
@@ -171,35 +172,18 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
     len_top = (dimension + 2) * (dimension + 1) / 2
     top_weight_param = list()
     samples = 0
-    log_sum_weight = None
+    weight_tracker = stat_trackers.ScalarStatTracker()
     # Importance sampling produces samples of higher weight (important)
     # more frequently, and corrects that by adding weight bonus
     # for the less frequently (unimportant) samples.
     # But "corrected_weight" is too close to "weight" to be readable,
     # so "importance" is used instead, even if it runs contrary to what
     # important region is.
-    log_sum_importance = None
-    log_importance_best = None
-    value_avg = 0.0
-    # 1x1 dimensional covariance matrix is just variance.
-    # As variance is never negative, we can track logarithm.
-    value_log_variance = None
-    # Here "secondary" means "excluding the weightest sample".
-    log_secondary_sum_importance = None
-    value_secondary_avg = 0.0
-    value_log_secondary_variance = None
-    param_sampled_avg = [0.0 for first in range(dimension)]
-    # TODO: Examine whether we can gain speed by tracking triangle only.
-    # Covariance matrix can contain negative element (off-diagonal),
-    # so no logarithm here. This can lead to zeroes on diagonal,
-    # but we have biasing to make sure it does not hurt much.
-    param_sampled_cov = [[0.0 for first in range(dimension)]
-                         for second in range(dimension)]
-    # The next two variables do NOT need to be initialized here,
-    # but pylint is not a mathematician enough to understand that.
-    param_top_avg = [0.0 for first in range(dimension)]
-    param_top_cov = [[0.0 for first in range(dimension)]
-                     for second in range(dimension)]
+    importance_tracker = stat_trackers.ScalarDualStatTracker()
+    param_sampled_tracker = stat_trackers.VectorStatTracker(dimension)
+    param_sampled_tracker.reset()
+    param_top_tracker = stat_trackers.VectorStatTracker(dimension)
+    param_top_tracker.reset()
     if not (param_hint_avg and param_hint_cov):
         # First call has Nones instead of useful hints.
         param_hint_avg = [0.0 for first in range(dimension)]
@@ -219,21 +203,24 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
             # We have both top samples and overall samples.
             # Mix them according to how much the weightest sample dominates.
             log_top_weight = top_weight_param[0][0]
-            log_weight_norm = log_plus(log_sum_weight, log_top_weight)
+            log_weight_norm = log_plus(
+                weight_tracker.log_sum_weight, log_top_weight)
             top_ratio = math.exp(log_top_weight - log_weight_norm)
-            sampled_ratio = math.exp(log_sum_weight - log_weight_norm)
+            sampled_ratio = math.exp(
+                weight_tracker.log_sum_weight - log_weight_norm)
             trace("log_top_weight", log_top_weight)
             trace("log_sum_weight", log_sum_weight)
             trace("top_ratio", top_ratio)
             trace("sampled_ratio", sampled_ratio)
             param_focus_avg = [
-                sampled_ratio * param_sampled_avg[first]
-                + top_ratio * param_top_avg[first]
+                sampled_ratio * param_sampled_tracker.averages[first]
+                + top_ratio * param_top_tracker.averages[first]
                 for first in range(dimension)]
             param_focus_cov = [[
-                scale_coeff * (
-                    sampled_ratio * param_sampled_cov[first][second]
-                    + top_ratio * param_top_cov[first][second])
+                (param_sampled_tracker.covariance_matrix[first][second]
+                 * sampled_ratio + top_ratio
+                 * param_top_tracker.covariance_matrix[first][second])
+                * scale_coeff
                 for first in range(dimension)] for second in range(dimension)]
         trace("param_focus_avg", param_focus_avg)
         trace("param_focus_cov", param_focus_cov)
@@ -255,7 +242,7 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
         trace("value", value)
         trace("log_weight", log_weight)
         # Update bias related statistics.
-        log_sum_weight = log_plus(log_sum_weight, log_weight)
+        weight_tracker.add(log_weight, log_weight)
         if len(top_weight_param) < len_top:
             top_weight_param.append((log_weight, sample_point))
         # Hack: top_weight_param[-1] is either the smallest,
@@ -267,26 +254,9 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
             top_weight_param.sort(key=lambda item: -item[0])
             trace("top_weight_param", top_weight_param)
             # top_weight_param has changed, recompute biases.
-            param_top_avg = top_weight_param[0][1]
-            param_top_cov = [[0.0 for first in range(dimension)]
-                             for second in range(dimension)]
-            top_item_count = 1
-            for _, near_top_param in top_weight_param[1:]:
-                top_item_count += 1
-                next_item_ratio = 1.0 / top_item_count
-                previous_items_ratio = 1.0 - next_item_ratio
-                param_shift = [
-                    near_top_param[first] - param_top_avg[first]
-                    for first in range(dimension)]
-                # Do not move center from the weightest sample.
-                for second in range(dimension):
-                    for first in range(dimension):
-                        param_top_cov[first][second] += (
-                            param_shift[first] * param_shift[second]
-                            * next_item_ratio)
-                        param_top_cov[first][second] *= previous_items_ratio
-            trace("param_top_avg", param_top_avg)
-            trace("param_top_cov", param_top_cov)
+            param_top_tracker.reset()
+            for _, param in top_weight_param:
+                param_top_tracker.add(param, 0.0)
         # The code above looked at weight (not importance).
         # The code below looks at importance (not weight).
         param_shift = [sample_point[first] - param_focus_avg[first]
@@ -299,74 +269,8 @@ def estimate_nd(communication_pipe, scale_coeff=10.0, trace_enabled=False):
         log_importance = log_weight + log_rarity
         trace("log_importance", log_importance)
         # Update sampled statistics.
-        old_log_sum_importance = log_sum_importance
-        log_sum_importance = log_plus(old_log_sum_importance, log_importance)
-        trace("new log_sum_weight", log_sum_weight)
-        trace("log_sum_importance", log_sum_importance)
-        if old_log_sum_importance is None:
-            param_sampled_avg = list(sample_point)
-            value_avg = value
-            # Other value related quantities stay None.
-            continue
-        previous_samples_ratio = math.exp(
-            old_log_sum_importance - log_sum_importance)
-        new_sample_ratio = math.exp(log_importance - log_sum_importance)
-        param_shift = [sample_point[first] - param_sampled_avg[first]
-                       for first in range(dimension)]
-        value_shift = value - value_avg
-        for first in range(dimension):
-            param_sampled_avg[first] += param_shift[first] * new_sample_ratio
-        old_value_avg = value_avg
-        value_avg += value_shift * new_sample_ratio
-        value_absolute_shift = abs(value_shift)
-        for second in range(dimension):
-            for first in range(dimension):
-                param_sampled_cov[first][second] += (
-                    param_shift[first] * param_shift[second] * new_sample_ratio)
-                param_sampled_cov[first][second] *= previous_samples_ratio
-        trace("param_sampled_avg", param_sampled_avg)
-        trace("param_sampled_cov", param_sampled_cov)
-        update_secondary_stats = True
-        if log_importance_best is None or log_importance > log_importance_best:
-            log_importance_best = log_importance
-            log_secondary_sum_importance = old_log_sum_importance
-            value_secondary_avg = old_value_avg
-            value_log_secondary_variance = value_log_variance
-            update_secondary_stats = False
-            # TODO: Update all primary quantities before secondary ones.
-            # (As opposed to current hybrid code.)
-        if value_absolute_shift > 0.0:
-            value_log_variance = log_plus(
-                value_log_variance, 2 * math.log(value_absolute_shift)
-                + log_importance - log_sum_importance)
-        if value_log_variance is not None:
-            value_log_variance -= log_sum_importance - old_log_sum_importance
-        if not update_secondary_stats:
-            continue
-        # TODO: Pylint says the following variable name is bad.
-        # Make sure the refactor uses shorter names.
-        old_log_secondary_sum_importance = log_secondary_sum_importance
-        log_secondary_sum_importance = log_plus(
-            old_log_secondary_sum_importance, log_importance)
-        if old_log_secondary_sum_importance is None:
-            value_secondary_avg = value
-            continue
-        new_sample_secondary_ratio = math.exp(
-            log_importance - log_secondary_sum_importance)
-        # TODO: No would-be variable named old_value_secondary_avg
-        # appears in subsequent computations. Probably means there is a bug.
-        value_secondary_shift = value - value_secondary_avg
-        value_secondary_absolute_shift = abs(value_secondary_shift)
-        value_secondary_avg += (
-            value_secondary_shift * new_sample_secondary_ratio)
-        if value_secondary_absolute_shift > 0.0:
-            value_log_secondary_variance = log_plus(
-                value_log_secondary_variance, (
-                    2 * math.log(value_secondary_absolute_shift)
-                    + log_importance - log_secondary_sum_importance))
-        if value_log_secondary_variance is not None:
-            value_log_secondary_variance -= (
-                log_secondary_sum_importance - old_log_secondary_sum_importance)
+        param_sampled_tracker.add(sample_point, log_importance)
+        importance_tracker.add(value, log_importance)
     debug_list.append("integrator used " + str(samples) + " samples")
     debug_list.append(
         "value_avg " + str(value_avg)
