@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -666,9 +666,16 @@
 
 # Tests teardowns
 
+| Tear down performance test
+| | [Documentation] | Common test teardown for performance tests.
+| | ...
+| | Remove All Added Ports On All DUTs From Topology | ${nodes}
+| | Show VAT History On All DUTs | ${nodes}
+| | Get Core Files on All Nodes | ${nodes}
+| | Set Test Variable | ${pkt_trace} | ${True}
+
 | Tear down performance discovery test
-| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
-| | ... | tests.
+| | [Documentation] | Common test teardown for ndrpdr performance tests.
 | | ...
 | | ... | *Arguments:*
 | | ... | - rate - Rate for sending packets. Type: string
@@ -682,10 +689,8 @@
 | | ...
 | | [Arguments] | ${rate} | ${framesize} | ${topology_type}
 | | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
-| | Run Keyword If Test Failed
-| | ... | Set Test Variable | ${pkt_trace} | ${True}
+| | Tear down performance test
+| | Show statistics on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
@@ -694,8 +699,7 @@
 | | [Documentation] | Common test teardown for max-received-rate performance
 | | ... | tests.
 | | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
+| | Tear down performance test
 
 | Tear down performance test with wrk
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
@@ -705,9 +709,7 @@
 | | ...
 | | ... | \| Tear down performance test with wrk \|
 | | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
-| | Show statistics on all DUTs | ${nodes}
+| | Tear down performance test
 
 | Tear down performance test with container
 | | [Documentation]
@@ -739,19 +741,15 @@
 | | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
 | | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
 | | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
+| | Tear down performance discovery test | ${rate} | ${framesize}
+| | ... | ${topology_type}
 | | Show VPP vhost on all DUTs | ${nodes}
-| | Show statistics on all DUTs | ${nodes}
-| | Run Keyword If Test Failed
-| | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
 | | Run keyword unless | ${dut1_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
 | | Run keyword unless | ${dut2_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
 
-| Tear down mrr test with vhost and VM with dpdk-testpmd
+| Tear down performance mrr test with vhost and VM with dpdk-testpmd
 | | [Documentation] | Common test teardown for mrr tests which use
 | | ... | vhost(s) and VM(s) with dpdk-testpmd.
 | | ...
@@ -770,10 +768,8 @@
 | | [Arguments] | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
 | | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
 | | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
+| | Tear down performance mrr test
 | | Show VPP vhost on all DUTs | ${nodes}
-| | Show statistics on all DUTs | ${nodes}
 | | Run keyword unless | ${dut1_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
 | | Run keyword unless | ${dut2_node}==${None}
@@ -817,71 +813,12 @@
 | | [Arguments] | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
 | | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
 | | ...
-| | Tear down mrr test with vhost and VM with dpdk-testpmd
+| | Tear down performance mrr test with vhost and VM with dpdk-testpmd
 | | ... | ${dut1_node} | ${dut1_vm_refs}
 | | ... | ${dut2_node} | ${dut2_vm_refs}
 | | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
-
-| Tear down performance pdrchk test with vhost and VM with dpdk-testpmd
-| | [Documentation] | Common test teardown for performance pdrchk tests which \
-| | ... | use vhost(s) and VM(s) with dpdk-testpmd.
-| | ...
-| | ... | *Arguments:*
-| | ... | - rate - Rate for sending packets. Type: string
-| | ... | - framesize - L2 Frame Size [B]. Type: integer
-| | ... | - topology_type - Topology type. Type: string
-| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
-| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down performance pdrchk test with vhost and VM with \
-| | ... | dpdk-testpmd \| 4.0mpps \| 64 \| 3-node-IPv4 \| ${node['DUT1']} \
-| | ... | \| ${dut_vm_refs} \| ${node['DUT2']} \| ${dut_vm_refs} \|
-| | ...
-| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
-| | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
-| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
-| | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
-| | Show VPP vhost on all DUTs | ${nodes}
-| | Show statistics on all DUTs | ${nodes}
-| | Run keyword unless | ${dut1_node}==${None}
-| | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
-| | Run keyword unless | ${dut2_node}==${None}
-| | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
-
-| Tear down performance mrr test with vhost and VM with dpdk-testpmd
-| | [Documentation] | Common test teardown for performance mrr tests which \
-| | ... | use vhost(s) and VM(s) with dpdk-testpmd.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
-| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down performance mrr test with vhost and VM with \
-| | ... | dpdk-testpmd \| ${node['DUT1']} \| ${dut_vm_refs} \| ${node['DUT2']} \
-| | ... | \| ${dut_vm_refs} \|
-| | ...
-| | [Arguments] | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
-| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
-| | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
-| | Show VPP vhost on all DUTs | ${nodes}
-| | Run keyword unless | ${dut1_node}==${None}
-| | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
-| | Run keyword unless | ${dut2_node}==${None}
-| | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
 
 | Tear down DPDK 2-node performance topology
 | | [Documentation]
@@ -1044,8 +981,7 @@
 | | ...
 | | ... | \| Tear down mrr test with SRv6 with encapsulation \|
 | | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
+| | Tear down performance mrr test
 | | Run Keyword If Test Failed | Show SR Policies on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Show SR Steering Policies on all DUTs | ${nodes}
