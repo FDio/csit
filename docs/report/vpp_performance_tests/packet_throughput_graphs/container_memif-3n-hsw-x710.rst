@@ -31,13 +31,13 @@
 3n-hsw-x710
 ~~~~~~~~~~~
 
-64b-1t1c-base_and_scale
------------------------
+64b-1t1c-base_and_features
+--------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr.html"></iframe>
+    <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x710-64b-1t1c-base_and_features-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr}
-            \label{fig:memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x710-64b-1t1c-base_and_features-ndr}
+            \label{fig:memif-3n-hsw-x710-64b-1t1c-base_and_features-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x710-64b-1t1c-base_and_scale-pdr.html"></iframe>
+    <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x710-64b-1t1c-base_and_features-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,21 +66,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x710-64b-1t1c-base_and_scale-pdr}
-            \label{fig:memif-3n-hsw-x710-64b-1t1c-base_and_scale-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x710-64b-1t1c-base_and_features-pdr}
+            \label{fig:memif-3n-hsw-x710-64b-1t1c-base_and_features-pdr}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-2t2c-base_and_scale
------------------------
+64b-2t2c-base_and_features
+--------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr.html"></iframe>
+    <iframe id="ifrm07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x710-64b-2t2c-base_and_features-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -89,8 +89,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr}
-            \label{fig:memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x710-64b-2t2c-base_and_features-ndr}
+            \label{fig:memif-3n-hsw-x710-64b-2t2c-base_and_features-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -100,7 +100,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x710-64b-2t2c-base_and_scale-pdr.html"></iframe>
+    <iframe id="ifrm08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x710-64b-2t2c-base_and_features-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -109,6 +109,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x710-64b-2t2c-base_and_scale-pdr}
-            \label{fig:memif-3n-hsw-x710-64b-2t2c-base_and_scale-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x710-64b-2t2c-base_and_features-pdr}
+            \label{fig:memif-3n-hsw-x710-64b-2t2c-base_and_features-pdr}
     \end{figure}
