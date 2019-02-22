@@ -5911,8 +5911,8 @@
   - "parent"
   - "tags"
   sort:
-  - "L2XCFWD"
   - "L2PATCH"
+  - "L2XCFWD"
   - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
@@ -5946,8 +5946,8 @@
   - "parent"
   - "tags"
   sort:
-  - "L2XCFWD"
   - "L2PATCH"
+  - "L2XCFWD"
   - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
@@ -5981,8 +5981,8 @@
   - "parent"
   - "tags"
   sort:
-  - "L2XCFWD"
   - "L2PATCH"
+  - "L2XCFWD"
   - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
@@ -6016,8 +6016,8 @@
   - "parent"
   - "tags"
   sort:
-  - "L2XCFWD"
   - "L2PATCH"
+  - "L2XCFWD"
   - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
@@ -6045,6 +6045,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6077,6 +6078,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6109,6 +6111,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6141,6 +6144,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6169,7 +6173,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            '1T1C' and
@@ -6182,11 +6186,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6204,7 +6205,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            '1T1C' and
@@ -6217,11 +6218,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6239,7 +6237,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            '2T2C' and
@@ -6252,11 +6250,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6274,7 +6269,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            '2T2C' and
@@ -6287,11 +6282,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6460,6 +6452,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6492,6 +6486,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6524,6 +6520,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6556,6 +6554,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6590,19 +6590,16 @@
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6626,19 +6623,16 @@
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6662,19 +6656,16 @@
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6698,19 +6689,16 @@
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7145,7 +7133,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7159,6 +7147,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7179,7 +7168,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7193,6 +7182,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7213,7 +7203,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7227,6 +7217,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7247,7 +7238,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7261,6 +7252,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7282,7 +7274,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7296,6 +7288,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7316,7 +7309,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7330,6 +7323,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7350,7 +7344,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7364,6 +7358,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7384,7 +7379,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7398,6 +7393,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7419,7 +7415,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7433,6 +7429,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7453,7 +7450,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7467,6 +7464,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7487,7 +7485,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7501,6 +7499,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7521,7 +7520,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7535,6 +7534,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7556,7 +7556,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7570,6 +7570,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7590,7 +7591,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7604,6 +7605,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7624,7 +7626,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7638,6 +7640,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7658,7 +7661,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7672,6 +7675,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7693,8 +7697,9 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -7707,6 +7712,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7727,8 +7733,9 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -7741,6 +7748,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7761,8 +7769,9 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -7775,6 +7784,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7795,8 +7805,9 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -7809,6 +7820,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7830,7 +7842,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7844,6 +7856,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7864,7 +7877,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7878,6 +7891,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7898,7 +7912,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7912,6 +7926,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7932,7 +7947,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7946,6 +7961,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7971,6 +7987,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8004,6 +8021,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8037,6 +8055,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8070,6 +8089,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8104,6 +8124,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8137,6 +8158,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8170,6 +8192,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8203,6 +8226,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8237,6 +8261,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8270,6 +8295,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8303,6 +8329,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8336,6 +8363,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8370,6 +8398,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8403,6 +8432,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8436,6 +8466,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8469,6 +8500,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8505,13 +8537,13 @@
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -8538,13 +8570,13 @@
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -8571,13 +8603,13 @@
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -8604,13 +8636,13 @@
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -8793,7 +8825,8 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -8801,7 +8834,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -8827,7 +8860,8 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -8835,7 +8869,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -8861,7 +8895,8 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -8869,7 +8904,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -8895,7 +8930,8 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -8903,7 +8939,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -19618,6 +19654,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19647,6 +19684,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19677,6 +19715,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19706,6 +19745,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19736,6 +19776,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19765,6 +19806,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19795,6 +19837,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19824,6 +19867,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
