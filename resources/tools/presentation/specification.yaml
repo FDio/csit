@@ -1628,8 +1628,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -5911,8 +5911,8 @@
   - "parent"
   - "tags"
   sort:
-  - "L2XCFWD"
   - "L2PATCH"
+  - "L2XCFWD"
   - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
@@ -5946,8 +5946,8 @@
   - "parent"
   - "tags"
   sort:
-  - "L2XCFWD"
   - "L2PATCH"
+  - "L2XCFWD"
   - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
@@ -5981,8 +5981,8 @@
   - "parent"
   - "tags"
   sort:
-  - "L2XCFWD"
   - "L2PATCH"
+  - "L2XCFWD"
   - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
@@ -6016,8 +6016,8 @@
   - "parent"
   - "tags"
   sort:
-  - "L2XCFWD"
   - "L2PATCH"
+  - "L2XCFWD"
   - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
@@ -6045,6 +6045,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6077,6 +6078,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6109,6 +6111,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6141,6 +6144,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6169,7 +6173,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            '1T1C' and
@@ -6182,11 +6186,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6204,7 +6205,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            '1T1C' and
@@ -6217,11 +6218,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6239,7 +6237,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            '2T2C' and
@@ -6252,11 +6250,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6274,7 +6269,7 @@
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            '2T2C' and
@@ -6287,11 +6282,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6460,6 +6452,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6492,6 +6486,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6524,6 +6520,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6556,6 +6554,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -6590,19 +6590,16 @@
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6626,19 +6623,16 @@
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6662,19 +6656,16 @@
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -6698,19 +6689,16 @@
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7145,7 +7133,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7159,6 +7147,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7179,7 +7168,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7193,6 +7182,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7213,7 +7203,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7227,6 +7217,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7247,7 +7238,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7261,6 +7252,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7282,7 +7274,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7296,6 +7288,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7316,7 +7309,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7330,6 +7323,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7350,7 +7344,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7364,6 +7358,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7384,7 +7379,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7398,6 +7393,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7419,7 +7415,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7433,6 +7429,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7453,7 +7450,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7467,6 +7464,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7487,7 +7485,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7501,6 +7499,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7521,7 +7520,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7535,6 +7534,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7556,7 +7556,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7570,6 +7570,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7590,7 +7591,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7604,6 +7605,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7624,7 +7626,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7638,6 +7640,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7658,7 +7661,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7672,6 +7675,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7693,8 +7697,9 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -7707,6 +7712,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7727,8 +7733,9 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -7741,6 +7748,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7761,8 +7769,9 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -7775,6 +7784,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7795,8 +7805,9 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -7809,6 +7820,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7830,7 +7842,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7844,6 +7856,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7864,7 +7877,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7878,6 +7891,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7898,7 +7912,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7912,6 +7926,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7932,7 +7947,7 @@
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -7946,6 +7961,7 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -7971,6 +7987,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8004,6 +8021,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8037,6 +8055,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8070,6 +8089,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8104,6 +8124,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8137,6 +8158,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8170,6 +8192,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8203,6 +8226,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8237,6 +8261,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8270,6 +8295,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8303,6 +8329,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8336,6 +8363,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8370,6 +8398,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8403,6 +8432,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8436,6 +8466,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8469,6 +8500,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -8505,13 +8537,13 @@
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -8538,13 +8570,13 @@
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -8571,13 +8603,13 @@
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -8604,13 +8636,13 @@
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -8793,7 +8825,8 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -8801,7 +8834,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -8827,7 +8860,8 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -8835,7 +8869,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -8861,7 +8895,8 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -8869,7 +8904,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -8895,7 +8930,8 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -8903,7 +8939,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -8930,15 +8966,16 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -8963,15 +9000,16 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -8996,15 +9034,16 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -9029,15 +9068,16 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -9063,15 +9103,16 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -9096,15 +9137,16 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -9129,15 +9171,16 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -9162,15 +9205,16 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -9198,13 +9242,13 @@
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -9231,13 +9275,13 @@
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -9264,13 +9308,13 @@
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -9297,13 +9341,13 @@
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -9341,6 +9385,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -9379,6 +9424,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -9417,6 +9463,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -9455,6 +9502,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -9482,7 +9530,7 @@
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9490,7 +9538,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -9516,7 +9564,7 @@
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9524,7 +9572,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -9550,7 +9598,7 @@
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9558,7 +9606,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -9584,7 +9632,7 @@
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9592,7 +9640,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -9619,8 +9667,7 @@
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9628,6 +9675,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -9652,8 +9700,7 @@
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9661,6 +9708,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -9685,8 +9733,7 @@
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9694,6 +9741,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -9718,8 +9766,7 @@
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9727,6 +9774,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -10016,6 +10064,7 @@
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -10048,6 +10097,7 @@
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -10080,6 +10130,7 @@
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -10112,6 +10163,7 @@
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -10155,6 +10207,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -10193,6 +10246,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -10231,6 +10285,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -10269,6 +10324,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -10296,7 +10352,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -10304,7 +10360,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -10330,7 +10386,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -10338,7 +10394,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -10364,7 +10420,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -10372,7 +10428,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -10398,7 +10454,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -10406,7 +10462,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -10433,8 +10489,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -10442,6 +10497,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -10466,8 +10522,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -10475,6 +10530,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -10499,8 +10555,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -10508,6 +10563,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -10532,8 +10588,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -10541,6 +10596,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -10701,13 +10757,13 @@
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -10734,13 +10790,13 @@
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -10767,13 +10823,13 @@
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -10800,13 +10856,13 @@
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -10834,13 +10890,13 @@
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -10867,13 +10923,13 @@
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -10900,13 +10956,13 @@
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -10933,13 +10989,13 @@
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -11217,7 +11273,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11226,6 +11282,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11249,7 +11306,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11258,6 +11315,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11281,7 +11339,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11290,6 +11348,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11313,7 +11372,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11322,6 +11381,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11346,7 +11406,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -11354,6 +11414,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -11379,7 +11440,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -11387,6 +11448,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -11412,7 +11474,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -11420,6 +11482,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -11445,7 +11508,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -11453,6 +11516,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -11479,7 +11543,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP' or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11488,6 +11552,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11511,7 +11576,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11520,6 +11585,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11543,7 +11609,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11552,6 +11618,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11575,7 +11642,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11584,6 +11651,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11608,7 +11676,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T1C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -11616,6 +11684,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -11641,7 +11710,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T1C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -11649,6 +11718,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -11674,7 +11744,7 @@
            'ENCAP' and
            'NDRPDR' and
            '4T2C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -11682,6 +11752,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -11707,7 +11778,7 @@
            'ENCAP' and
            'NDRPDR' and
            '4T2C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -11715,6 +11786,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -11741,7 +11813,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T1C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11750,6 +11822,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11773,7 +11846,7 @@
            'ENCAP' and
            'NDRPDR' and
            '4T2C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11782,6 +11855,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11805,7 +11879,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T1C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11814,6 +11888,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11837,7 +11912,7 @@
            'ENCAP' and
            'NDRPDR' and
            '4T2C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -11846,6 +11921,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -11992,150 +12068,150 @@
     title: "ip6-3n-hsw-x520-78b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP IPv6 3n-hsw-x520 - features
--
-  type: "plot"
-  title: "VPP Throughput: ip6-3n-hsw-x520-78b-1t1c-base_and_features-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-1t1c-base_and_features-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '78B' and
-           ('IP6BASE' or
-            'POLICE_MARK' or
-            'COPWHLIST' or
-            'IACLDST') and
-           'NDRPDR' and
-           '1T1C' and
-           'IP6FWD' and
-           not 'SRv6' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "IP6BASE"
-  - "POLICE_MARK"
-  - "COPWHLIST"
-  - "IACLDST"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip6-3n-hsw-x520-78b-1t1c-base_and_features-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip6-3n-hsw-x520-78b-2t2c-base_and_features-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-2t2c-base_and_features-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '78B' and
-           ('IP6BASE' or
-            'POLICE_MARK' or
-            'COPWHLIST' or
-            'IACLDST') and
-           'NDRPDR' and
-           '2T2C' and
-           'IP6FWD' and
-           not 'SRv6' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "IP6BASE"
-  - "POLICE_MARK"
-  - "COPWHLIST"
-  - "IACLDST"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip6-3n-hsw-x520-78b-2t2c-base_and_features-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip6-3n-hsw-x520-78b-1t1c-base_and_features-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-1t1c-base_and_features-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '78B' and
-           ('IP6BASE' or
-            'POLICE_MARK' or
-            'COPWHLIST' or
-            'IACLDST') and
-           'NDRPDR' and
-           '1T1C' and
-           'IP6FWD' and
-           not 'SRv6' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "IP6BASE"
-  - "POLICE_MARK"
-  - "COPWHLIST"
-  - "IACLDST"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip6-3n-hsw-x520-78b-1t1c-base_and_features-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: ip6-3n-hsw-x520-78b-2t2c-base_and_features-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-2t2c-base_and_features-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '78B' and
-           ('IP6BASE' or
-            'POLICE_MARK' or
-            'COPWHLIST' or
-            'IACLDST') and
-           'NDRPDR' and
-           '2T2C' and
-           'IP6FWD' and
-           not 'SRv6' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "IP6BASE"
-  - "POLICE_MARK"
-  - "COPWHLIST"
-  - "IACLDST"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "ip6-3n-hsw-x520-78b-2t2c-base_and_features-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP IPv6 3n-hsw-x520 - features
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip6-3n-hsw-x520-78b-1t1c-base_and_features-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-1t1c-base_and_features-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '78B' and
+#           ('IP6BASE' or
+#            'POLICE_MARK' or
+#            'COPWHLIST' or
+#            'IACLDST') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'IP6FWD' and
+#           not 'SRv6' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "IP6BASE"
+#  - "POLICE_MARK"
+#  - "COPWHLIST"
+#  - "IACLDST"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip6-3n-hsw-x520-78b-1t1c-base_and_features-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip6-3n-hsw-x520-78b-2t2c-base_and_features-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-2t2c-base_and_features-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '78B' and
+#           ('IP6BASE' or
+#            'POLICE_MARK' or
+#            'COPWHLIST' or
+#            'IACLDST') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'IP6FWD' and
+#           not 'SRv6' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "IP6BASE"
+#  - "POLICE_MARK"
+#  - "COPWHLIST"
+#  - "IACLDST"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip6-3n-hsw-x520-78b-2t2c-base_and_features-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip6-3n-hsw-x520-78b-1t1c-base_and_features-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-1t1c-base_and_features-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '78B' and
+#           ('IP6BASE' or
+#            'POLICE_MARK' or
+#            'COPWHLIST' or
+#            'IACLDST') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'IP6FWD' and
+#           not 'SRv6' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "IP6BASE"
+#  - "POLICE_MARK"
+#  - "COPWHLIST"
+#  - "IACLDST"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip6-3n-hsw-x520-78b-1t1c-base_and_features-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: ip6-3n-hsw-x520-78b-2t2c-base_and_features-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip6-3n-hsw-x520-78b-2t2c-base_and_features-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '78B' and
+#           ('IP6BASE' or
+#            'POLICE_MARK' or
+#            'COPWHLIST' or
+#            'IACLDST') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'IP6FWD' and
+#           not 'SRv6' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "IP6BASE"
+#  - "POLICE_MARK"
+#  - "COPWHLIST"
+#  - "IACLDST"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "ip6-3n-hsw-x520-78b-2t2c-base_and_features-pdr"
+#    layout: "plot-throughput"
 
 # Packet Throughput - VPP IPv6 3n-hsw-x710
 -
@@ -13907,146 +13983,146 @@
     title: "vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP vhost l2sw 3n-hsw-x520
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP vhost l2sw 3n-hsw-x520
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-pdr"
+#    layout: "plot-throughput"
 
 # Packet Throughput - VPP vhost l2sw 3n-hsw-x520 - base
 -
@@ -14071,11 +14147,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14106,11 +14184,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14141,11 +14221,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14176,11 +14258,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14205,6 +14289,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
+           not 'DOT1Q' and
            not 'VXLAN' and
            not 'IP4FWD' and
            not 'LBOND'"
@@ -14240,6 +14325,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
+           not 'DOT1Q' and
            not 'VXLAN' and
            not 'IP4FWD' and
            not 'LBOND'"
@@ -14275,6 +14361,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
+           not 'DOT1Q' and
            not 'VXLAN' and
            not 'IP4FWD' and
            not 'LBOND'"
@@ -14310,6 +14397,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
+           not 'DOT1Q' and
            not 'VXLAN' and
            not 'IP4FWD' and
            not 'LBOND'"
@@ -14346,13 +14434,13 @@
            '1T1C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -14378,13 +14466,13 @@
            '2T2C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -14410,13 +14498,13 @@
            '1T1C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -14442,13 +14530,13 @@
            '2T2C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -14459,146 +14547,146 @@
     title: "vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP vhost l2sw 3n-hsw-x710
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP vhost l2sw 3n-hsw-x710
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-pdr"
+#    layout: "plot-throughput"
 
 # Packet Throughput - VPP vhost l2sw 3n-hsw-x710 - base
 -
@@ -14623,11 +14711,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14658,11 +14748,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14693,11 +14785,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14728,11 +14822,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14764,11 +14860,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14799,11 +14897,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14834,11 +14934,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14869,11 +14971,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -14882,553 +14986,553 @@
     title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base-vm-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP vhost ip4 3n-hsw-xl710
--
-  type: "plot"
-  title: "VPP Throughput: vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           'ETH' and
-           'IP4FWD' and
-           '1T1C' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'DOT1Q'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "1VM"
-  - "2VM"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           'ETH' and
-           'IP4FWD' and
-           '2T2C' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'DOT1Q'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "1VM"
-  - "2VM"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           'ETH' and
-           'IP4FWD' and
-           '1T1C' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'DOT1Q'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "1VM"
-  - "2VM"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           'ETH' and
-           'IP4FWD' and
-           '2T2C' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'DOT1Q'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "1VM"
-  - "2VM"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
-    layout: "plot-throughput"
-
-# Packet Throughput - VPP vhost l2sw 3n-hsw-xl710
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
-    layout: "plot-throughput"
-
-# Packet Throughput - VPP vhost l2sw 3n-hsw-xl710 - base
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '1T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
+## Packet Throughput - VPP vhost ip4 3n-hsw-xl710
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'ETH' and
+#           'IP4FWD' and
+#           '1T1C' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'DOT1Q'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
 #  sort:
 #  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '1T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
+#  - "1VM"
+#  - "2VM"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'ETH' and
+#           'IP4FWD' and
+#           '2T2C' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'DOT1Q'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
 #  sort:
 #  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '2T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
+#  - "1VM"
+#  - "2VM"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'ETH' and
+#           'IP4FWD' and
+#           '1T1C' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'DOT1Q'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
 #  sort:
 #  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '2T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
+#  - "1VM"
+#  - "2VM"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'ETH' and
+#           'IP4FWD' and
+#           '2T2C' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'DOT1Q'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
 #  sort:
 #  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-pdr"
-    layout: "plot-throughput"
+#  - "1VM"
+#  - "2VM"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
+#    layout: "plot-throughput"
+#
+## Packet Throughput - VPP vhost l2sw 3n-hsw-xl710
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-pdr"
+#    layout: "plot-throughput"
 
-# Packet Throughput - VPP vhost l2sw 3n-hsw-xl710 - base vm
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-pdr"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP vhost l2sw 3n-hsw-xl710 - base
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '1T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '1T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '2T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '2T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-pdr"
+#    layout: "plot-throughput"
+#
+## Packet Throughput - VPP vhost l2sw 3n-hsw-xl710 - base vm
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-pdr"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-pdr"
+#    layout: "plot-throughput"
 
 # Packet Throughput - VPP vhost ip4 3n-skx-x710
 -
@@ -15452,7 +15556,6 @@
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -15484,7 +15587,6 @@
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -15516,7 +15618,6 @@
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -15548,7 +15649,6 @@
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -15559,146 +15659,146 @@
     title: "vhost-ip4-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP vhost l2sw 3n-skx-x710
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP vhost l2sw 3n-skx-x710
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-pdr"
+#    layout: "plot-throughput"
 
 # Packet Throughput - VPP vhost l2sw 3n-skx-x710 - base
 -
@@ -15724,11 +15824,11 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -15760,11 +15860,11 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -15796,11 +15896,11 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -15832,11 +15932,11 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -15868,11 +15968,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -15903,11 +16005,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -15938,11 +16042,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -15973,11 +16079,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   traces:
     hoverinfo: "x+y"
     boxpoints: "outliers"
@@ -16003,13 +16111,13 @@
            'VHOST_1024' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -16036,13 +16144,13 @@
            'VHOST_1024' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -16069,13 +16177,13 @@
            'VHOST_1024' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -16102,13 +16210,13 @@
            'VHOST_1024' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -16119,150 +16227,150 @@
     title: "vhost-ip4-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP vhost l2sw 2n-skx-x710
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'NF_DENSITY' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'NF_DENSITY' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'NF_DENSITY' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'NF_DENSITY' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP vhost l2sw 2n-skx-x710
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'NF_DENSITY' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'NF_DENSITY' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'NF_DENSITY' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'NF_DENSITY' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
+#    layout: "plot-throughput"
 
 # Packet Throughput - VPP vhost l2sw 2n-skx-x710 - base
 -
@@ -16427,6 +16535,7 @@
            not 'CFS_OPT' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -16462,6 +16571,7 @@
            not 'CFS_OPT' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -16497,6 +16607,7 @@
            not 'CFS_OPT' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -16532,6 +16643,7 @@
            not 'CFS_OPT' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -16566,13 +16678,13 @@
            '2T1C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -16598,13 +16710,13 @@
            '4T2C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -16630,13 +16742,13 @@
            '2T1C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -16662,13 +16774,13 @@
            '4T2C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   traces:
@@ -16679,146 +16791,146 @@
     title: "vhost-ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP vhost l2sw 2n-skx-xxv710
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
-    layout: "plot-throughput"
-
--
-  type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP vhost l2sw 2n-skx-xxv710
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr"
+#    layout: "plot-throughput"
+#
+#-
+#  type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
+#    layout: "plot-throughput"
 
 # Packet Throughput - VPP vhost l2sw 2n-skx-xxv710 - base
 -
@@ -16978,6 +17090,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -17012,6 +17125,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -17046,6 +17160,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -17080,6 +17195,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -19618,6 +19734,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19647,6 +19764,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19677,6 +19795,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19706,6 +19825,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19736,6 +19856,7 @@
            '1T1C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19765,6 +19886,7 @@
            '2T2C' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19795,6 +19917,7 @@
            '1T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19824,6 +19947,7 @@
            '2T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
