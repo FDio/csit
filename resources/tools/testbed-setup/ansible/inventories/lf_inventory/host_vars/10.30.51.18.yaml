@@ -12,3 +12,6 @@ sysctl:
   vm:
     nr_hugepages: 36864
     max_map_count: 20000
+
+cimc_hostname: '10.30.50.18'
+cobbler_profile: '{{ ansible_distribution|lower }}-18.04-{{ ansible_machine }}'

@@ -8,3 +8,6 @@ virl_l2_gateway: "10.30.53.1"
 virl_l2_network: "10.30.53.0/24"
 virl_l2_ip: "10.30.53.254"
 virl_public_port: "eth4"
+
+cimc_hostname: '10.30.50.29'
+cobbler_profile: '{{ ansible_distribution|lower }}-18.04-{{ ansible_machine }}'
