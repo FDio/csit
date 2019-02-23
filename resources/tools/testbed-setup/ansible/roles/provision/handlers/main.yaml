@@ -1,0 +1,12 @@
+---
+# file: roles/provision/handlers/main.yaml
+
+- name: IPMI specific
+  import_tasks: ipmi.yaml
+  when: inventory_ipmi_hostname is defined
+  tags: ipmi-handlers
+
+- name: CIMC specific
+  import_tasks: cimc.yaml
+  when: inventory_cimc_hostname is defined
+  tags: cimc-handlers

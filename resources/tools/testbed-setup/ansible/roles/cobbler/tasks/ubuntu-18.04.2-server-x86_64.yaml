@@ -1,0 +1,35 @@
+---
+# file: roles/cobbler/tasks/ubuntu-18.04.2-server-x86_64.yaml
+
+- name: Download Ubuntu 18.04.2 Server x86_64 with check (sha256)
+  get_url:
+    url: 'http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.2-server-amd64.iso'
+    dest: '/mnt/ubuntu-18.04.2-server-amd64.iso'
+    checksum: 'sha256:a2cb36dc010d98ad9253ea5ad5a07fd6b409e3412c48f1860536970b073c98f5'
+  register: __iso_downloaded
+  tags: cobbler-import-image
+
+- name: Create directory for Ubuntu 18.04.2 Server x86_64 mount
+  file:
+    path: '/mnt/ubuntu-18.04.2-server-x86_64'
+    state: 'directory'
+  register: __mount_directory_created
+  tags: cobbler-import-image
+
+- name: Mount Ubuntu 18.04.2 Server x86_64 iso
+  mount:
+    src: '/mnt/ubuntu-18.04.2-server-amd64.iso'
+    path: '/mnt/ubuntu-18.04.2-server-x86_64'
+    fstype: 'iso9660'
+    opts: 'ro,loop'
+    state: mounted
+  when: __iso_downloaded and __mount_directory_created
+  tags: cobbler-import-image
+
+- name: Run cobbler distro import for Ubuntu 18.04.2 Server x86_64
+  command: |
+      docker exec -i cobbler cobbler import
+      --path=/mnt/ubuntu-18.04.2-server-x86_64
+      --name=ubuntu-18.04.2-server-x86_64
+      --kickstart=/var/lib/cobbler/kickstarts/ubuntu-18.04.2-server-x86_64.seed
+  tags: cobbler-import-image

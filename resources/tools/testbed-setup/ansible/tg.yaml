@@ -6,6 +6,8 @@
   become: yes
   become_user: root
   roles:
+    - role: provision
+      tags: provision
     - role: common
       tags: common
     - role: tg

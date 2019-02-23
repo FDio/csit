@@ -1,0 +1,43 @@
+---
+# file: roles/provision/tasks/main.yaml
+
+- name: Ensure the system exists in Cobbler
+  cobbler_system:
+    host: '{{ cobbler_hostname }}'
+    port: 60080
+    interfaces:
+      br1:
+        ipaddress: '{{ ansible_default_ipv4.address }}'
+        macaddress: '{{ ansible_default_ipv4.macaddress }}'
+    name: '{{ hostname }}'
+    password: '{{ cobbler_password }}'
+    properties:
+      hostname: '{{ hostname }}'
+      gateway: '{{ ansible_default_ipv4.gateway }}'
+      profile: '{{ cobbler_profile }}'
+      name_servers: '{{ name_servers }}'
+      name_servers_search: '{{ name_servers_search }}'
+      kickstart: '/var/lib/cobbler/kickstarts/{{ cobbler_profile }}.seed'
+      kernel_options: '"interface={{ ansible_default_ipv4.interface }}"'
+      netboot_enabled: yes
+    username: '{{ cobbler_username }}'
+    use_ssl: no
+    validate_certs: no
+  when: provision_enabled
+  delegate_to: localhost
+  tags: cobbler-include
+
+- name: Commit Cobbler changes
+  cobbler_sync:
+    host: '{{ cobbler_hostname }}'
+    port: 60080
+    password: '{{ cobbler_password }}'
+    username: '{{ cobbler_username }}'
+    use_ssl: no
+    validate_certs: no
+  run_once: yes
+  when: provision_enabled
+  delegate_to: localhost
+  register: __included_in_cobbler
+  notify: ['Boot from network', 'Power cycle server']
+  tags: cobbler-include
