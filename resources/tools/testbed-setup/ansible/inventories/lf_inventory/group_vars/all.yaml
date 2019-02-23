@@ -46,3 +46,7 @@ jitter:
   directory: '/tmp/pma_tools'
   core: 7
   iterations: 30
+
+# Cobbler settings
+cobbler_hostname: 'x.x.x.x'
+cobbler_profile: 'profile'
