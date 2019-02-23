@@ -73,7 +73,7 @@ skipx
 
 ###
 
-preseed live-installer/net-image string http://10.30.51.28/download/ubuntu/install/filesystem.squashfs
+preseed live-installer/net-image string http://$http_server/cobbler/links/$distro_name/install/filesystem.squashfs
 preseed user-setup/allow-password-weak boolean true
 
 

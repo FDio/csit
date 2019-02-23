@@ -1,0 +1,39 @@
+---
+# file: roles/provision/tasks/main.yaml
+
+- name: Ensure the system exists in Cobbler
+  cobbler_system:
+    host: '{{ cobbler_hostname }}'
+    port: 60080
+    interfaces:
+      eth0:
+        ipaddress: '{{ ansible_default_ipv4.address }}'
+        macaddress: '{{ ansible_default_ipv4.macaddress }}'
+    name: '{{ inventory_hostname }}'
+    password: '{{ cobbler_password }}'
+    properties:
+      hostname: '{{ inventory_hostname }}'
+      gateway: '10.30.51.1'
+      profile: '{{ cobbler_profile }}'
+      kickstart: '/var/lib/cobbler/kickstarts/{{ cobbler_profile }}.ks'
+      name_servers: '{{ name_servers }}'
+      name_servers_search: '{{ name_servers_search }}'
+      netboot_enabled: yes
+    username: '{{ cobbler_username }}'
+    use_ssl: no
+    validate_certs: no
+  delegate_to: localhost
+  tags: cobbler-include
+
+- name: Commit Cobbler changes
+  cobbler_sync:
+    host: '{{ cobbler_hostname }}'
+    port: 60080
+    password: '{{ cobbler_password }}'
+    username: '{{ cobbler_username }}'
+    use_ssl: no
+    validate_certs: no
+  run_once: yes
+  delegate_to: localhost
+  register: __included_in_cobbler
+  tags: cobbler-include

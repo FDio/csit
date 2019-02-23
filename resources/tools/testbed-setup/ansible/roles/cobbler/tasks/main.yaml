@@ -1,0 +1,55 @@
+---
+# file: roles/cobbler/tasks/main.yaml
+
+- name: Sync the cobbler docker directory
+  synchronize:
+    src: 'files'
+    dest: '/home/{{ ansible_user }}/cobbler_docker'
+  register: __cobbler_image_built
+  tags: cobbler-build-image
+
+- name: Build the cobbler docker image
+  docker_image:
+     path: '/home/{{ ansible_user }}/cobbler_docker/files'
+     name: 'csit/cobbler'
+     buildargs:
+       cobbler_pass: '{{ cobbler_pass }}'
+       cobbler_web_pass: '{{ cobbler_password }}'
+       cobbler_ip_addr: '{{ inventory_hostname }}'
+       cobbler_http_port: 60080
+  when: __cobbler_image_built
+  tags: cobbler-build-image
+
+- name: Run Cobbler image
+  docker_container:
+    name: 'cobbler'
+    image: 'csit/cobbler'
+    published_ports:
+      - 69:69/udp
+      - 60080:80
+      - 60443:443
+      - 25151:25151
+    volumes:
+      - '/mnt:/mnt:ro'
+  register: __cobbler_image_running
+  tags: cobbler-run-image
+
+- name: Run cobbler setup get-loaders
+  command: 'docker exec -i cobbler cobbler get-loaders'
+  when: __cobbler_image_running
+  tags: cobbler-run-image
+
+- name: Run cobbler setup sync
+  command: 'docker exec -i cobbler cobbler sync'
+  when: __cobbler_image_running
+  tags: cobbler-run-image
+
+- name: Run cobbler setup check
+  command: 'docker exec -i cobbler cobbler check'
+  when: __cobbler_image_running
+  tags: cobbler-run-image
+
+- name: Add Ubuntu 18.04.2 Server x86_64 to cobbler
+  include_tasks: 'ubuntu-18.04.2-server-x86_64.yaml'
+  when: __cobbler_image_running
+  tags: cobbler-run-image

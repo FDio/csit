@@ -12,3 +12,6 @@ sysctl:
   vm:
     nr_hugepages: 4096
     max_map_count: 20000
+
+ipmi_hostname: '10.30.50.52'
+cobbler_profile: 'ubuntu-18.04.2-server-x86_64'
