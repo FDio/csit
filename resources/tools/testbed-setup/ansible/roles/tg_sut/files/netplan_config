@@ -9,4 +9,4 @@ network:
       dhcp4: false
       gateway4: {{ ansible_default_ipv4["gateway"] }}
       nameservers:
-        addresses: {{ name_servers }}
+        addresses: [ {{ name_servers }} ]
