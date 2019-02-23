@@ -4,3 +4,4 @@
 hostname: "t1-sut1"
 isolcpus: "1-17,19-35"
 cfs_cpus: "0,18"
+inventory_cimc_hostname: "10.30.50.17"
