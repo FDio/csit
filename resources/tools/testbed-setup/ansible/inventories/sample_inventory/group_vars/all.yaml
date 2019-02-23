@@ -1,13 +1,14 @@
 ---
 # file: group_vars/all.yaml
 
-# General settings
+# General variables
 ansible_python_interpreter: '/usr/bin/python2.7'
-ansible_become_pass: '{{ inventory_sudo_pass }}'
-# Domain is used in /etc/hosts file on target machine.
-domain: 'linuxfoundation.org'
-# DNS is used in /etc/netplan/01-netcfg.yaml on target machine.
-dns_servers: "[ 199.204.44.24, 199.204.47.54 ]"
+# provision via cobbler
+provision_enabled: True
+# name_servers_search is used in /etc/hosts file on target machine.
+name_servers_search: 'linuxfoundation.org'
+# name_servers is used in /etc/netplan/01-netcfg.yaml
+name_servers: "199.204.44.24, 199.204.47.54"
 
 # Proxy settings: Uncomment and fill the proper values. These variables will be
 # set globally by writing into /etc/environment file on target machine.
@@ -40,3 +41,15 @@ kubernetes_channel: 'main'
 kubernetes_version: '1.11.0-00'
 kubernetes_repository: 'deb http://apt.kubernetes.io/ kubernetes-xenial {{ kubernetes_channel }}'
 kubernetes_apt_package_name: '{{ kubernetes_version }}'
+
+# DPDK settings.
+dpdk:
+  target_dir: '/opt'
+  version: 'dpdk-19.02'
+  url: 'https://fast.dpdk.org/rel'
+
+# Calibration settings.
+jitter:
+  directory: '/tmp/pma_tools'
+  core: 7
+  iterations: 30

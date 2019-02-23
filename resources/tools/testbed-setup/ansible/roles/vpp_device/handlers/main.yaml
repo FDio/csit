@@ -1,11 +1,27 @@
 ---
 # file: roles/vpp_device/handlers/main.yaml
 
-- name: Enable csit-initialize-vfs.service
-  command: systemctl enable csit-initialize-vfs.service
-  tags: enable-vf-service
+- name: Start csit-initialize-vfs.service
+  systemd:
+    enabled: yes
+    state: started
+    name: csit-initialize-vfs.service
+  tags: start-vf-service
 
 - name: Update GRUB
   command: update-grub
   tags: update-grub
 
+- name: Reboot server
+  reboot:
+    reboot_timeout: 3600
+  tags: reboot-server
+
+- name: Wait for server to restart
+  wait_for:
+    host: '{{ inventory_hostname }}'
+    search_regex: OpenSSH
+    port: 22
+    delay: 60
+    timeout: 3600
+  tags: reboot-server
