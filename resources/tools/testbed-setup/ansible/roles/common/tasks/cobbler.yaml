@@ -1,0 +1,61 @@
+---
+# file: roles/common/tasks/cobbler.yaml
+
+- name: Ensure the system exists in Cobbler
+  cobbler_system:
+    host: '{{ cobbler_hostname }}'
+    username: '{{ cobbler_username }}'
+    password: '{{ cobbler_password }}'
+    name: '{{ inventory_hostname }}'
+    properties:
+      profile: '{{ cobbler_profile }}'
+      name_servers: '{{ name_servers }}'
+      name_servers_search: '{{ name_servers_search }}'
+    interfaces:
+      eno1:
+        ipaddress: '{{ ansible_default_ipv4.address }}'
+        macaddress: '{{ ansible_default_ipv4.macaddress }}'
+  delegate_to: localhost
+  tags: cobbler-include
+
+- name: Enable network boot in Cobbler
+  cobbler_system:
+    host: '{{ cobbler_hostname }}'
+    username: '{{ cobbler_username }}'
+    password: '{{ cobbler_password }}'
+    name: '{{ inventory_hostname }}'
+    properties:
+      netboot_enabled: yes
+    state: present
+  delegate_to: localhost
+  tags: cobbler-boot-network
+
+- name: Commit Cobbler changes
+  cobbler_sync:
+    host: '{{ cobbler_hostname }}'
+    username: '{{ cobbler_username }}'
+    password: '{{ cobbler_password }}'
+    name: '{{ inventory_hostname }}'
+  run_once: yes
+  delegate_to: localhost
+  tags: cobbler-sync
+
+- name: Query a specific system in Cobbler
+  cobbler_system:
+    host: '{{ cobbler_hostname }}'
+    username: '{{ cobbler_username }}'
+    password: '{{ cobbler_password }}'
+    name: '{{ inventory_hostname }}'
+  register: cobbler_properties
+  delegate_to: localhost
+  tags: cobbler-system
+
+- name: Ensure the system does not exist in Cobbler
+  cobbler_system:
+    host: '{{ cobbler_hostname }}'
+    username: '{{ cobbler_username }}'
+    password: '{{ cobbler_password }}'
+    name: '{{ inventory_hostname }}'
+    state: absent
+  delegate_to: localhost
+  tags: cobbler-remove
