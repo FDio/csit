@@ -1,0 +1,95 @@
+---
+# file: roles/common/handlers/cimc.yaml
+
+- name: CIMC Power up server
+  imc_rest:
+    hostname: '{{ inventory_cimc_hostname }}'
+    username: '{{ inventory_cimc_username }}'
+    password: '{{ inventory_cimc_password }}'
+    validate_certs: no
+    content: |
+      <configConfMo><inConfig>
+        <computeRackUnit dn="sys/rack-unit-1" adminPower="up"/>
+      </inConfig></configConfMo>
+  delegate_to: localhost
+  tags: cimc-power-up
+
+- name: CIMC Power down server
+  imc_rest:
+    hostname: '{{ inventory_cimc_hostname }}'
+    username: '{{ inventory_cimc_username }}'
+    password: '{{ inventory_cimc_password }}'
+    validate_certs: no
+    content: |
+      <configConfMo><inConfig>
+        <computeRackUnit dn="sys/rack-unit-1" adminPower="down"/>
+      </inConfig></configConfMo>
+  delegate_to: localhost
+  tags: cimc-power-down
+
+- name: CIMC Power cycle server
+  imc_rest:
+    hostname: '{{ inventory_cimc_hostname }}'
+    username: '{{ inventory_cimc_username }}'
+    password: '{{ inventory_cimc_password }}'
+    validate_certs: no
+    content: |
+      <!-- Power cycle server -->
+      <configConfMo><inConfig>
+        <computeRackUnit dn="sys/rack-unit-1" adminPower="cycle-immediate"/>
+      </inConfig></configConfMo>
+  delegate_to: localhost
+  tags: cimc-power-cycle
+
+- name: CIMC Boot from network
+  imc_rest:
+    hostname: '{{ inventory_cimc_hostname }}'
+    username: '{{ inventory_cimc_username }}'
+    password: '{{ inventory_cimc_password }}'
+    validate_certs: no
+    content: |
+      <!-- Configure PXE boot -->
+      <configConfMo><inConfig>
+        <lsbootLan dn="sys/rack-unit-1/boot-policy/lan-read-only" access="read-only" order="1" prot="pxe" type="lan"/>
+      </inConfig></configConfMo>
+  delegate_to: localhost
+  tags: cimc-boot-network
+
+- name: CIMC Boot from storage
+  imc_rest:
+    hostname: '{{ inventory_cimc_hostname }}'
+    username: '{{ inventory_cimc_username }}'
+    password: '{{ inventory_cimc_password }}'
+    validate_certs: no
+    content: |
+      <configConfMo><inConfig>
+        <lsbootStorage dn="sys/rack-unit-1/boot-policy/storage-read-write" access="read-write" order="1" type="storage"/>
+      </inConfig></configConfMo>
+  delegate_to: localhost
+  tags: cimc-boot-storage
+
+- name: CIMC Configure using multiple XML fragments
+  imc_rest:
+    hostname: '{{ inventory_cimc_hostname }}'
+    username: '{{ inventory_cimc_username }}'
+    password: '{{ inventory_cimc_password }}'
+    validate_certs: no
+    timeout: 120
+    content: |
+      <!-- Configure Serial-on-LAN -->
+      <configConfMo><inConfig>
+        <solIf dn="sys/rack-unit-1/sol-if" adminState="enable" speed=="115200" comport="com0"/>
+      </inConfig></configConfMo>
+
+      <!-- Configure Console Redirection -->
+      <configConfMo><inConfig>
+        <biosVfConsoleRedirection dn="sys/rack-unit-1/bios/bios-settings/Console-redirection"
+          vpBaudRate="115200"
+          vpConsoleRedirection="com-0"
+          vpFlowControl="none"
+          vpTerminalType="vt100"
+          vpPuttyKeyPad="LINUX"
+          vpRedirectionAfterPOST="Always Enable"/>
+      </inConfig></configConfMo>
+  delegate_to: localhost
+  tags: cimc-xml-fragments

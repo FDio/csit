@@ -4,3 +4,4 @@
 hostname: "s7-t23-sut1"
 isolcpus: "1-27,29-55,57-83,85-111"
 cfs_cpus: "0,28,56,84"
+inventory_ipmi_hostname: "10.30.50.51"
