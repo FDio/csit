@@ -1,0 +1,35 @@
+---
+# file: roles/cobbler_prepare/tasks/main.yaml
+
+- name: Ensure the system exists in Cobbler
+  cobbler_system:
+    host: '{{ cobbler.hostname }}'
+    interfaces:
+      eth0:
+        ipaddress: '{{ ansible_default_ipv4.address }}'
+        macaddress: '{{ ansible_default_ipv4.macaddress }}'
+    name: '{{ inventory_hostname }}'
+    password: '{{ cobbler.password }}'
+    properties:
+      hostname: '{{ inventory_hostname }}'
+      profile: '{{ cobbler.profile }}'
+      name_servers: '{{ name_servers }}'
+      name_servers_search: '{{ name_servers_search }}'
+      netboot_enabled: yes
+    username: '{{ cobbler.username }}'
+    use_ssl: no
+    validate_certs: no
+  delegate_to: localhost
+  tags: cobbler-include
+
+- name: Commit Cobbler changes
+  cobbler_sync:
+    host: '{{ cobbler.hostname }}'
+    password: '{{ cobbler.password }}'
+    username: '{{ cobbler.username }}'
+    use_ssl: no
+    validate_certs: no
+  run_once: yes
+  delegate_to: localhost
+  tags: cobbler-sync
+

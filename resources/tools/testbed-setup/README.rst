@@ -160,6 +160,11 @@ Optional: IPMI - From PXE boostrap server
 Ansible machine
 ~~~~~~~~~~~~~~~
 
+Baremetal provisioning of machine via Cobbler module
+....................................................
+
+# TODO: (remove all steps above and document usage of cobbler module)
+
 Prerequisities for running Ansible
 ..................................
 
@@ -239,6 +244,10 @@ Running Ansible
    `ansible-playbook --vault-password-file=vault_pass --extra-vars '@vault.yml'
    --inventory <inventory_file> site.yaml --limit x.x.x.x`
 
+#. Run ansible on selected hosts with selected tags:
+   `ansible-playbook --vault-password-file=vault_pass --extra-vars '@vault.yml'
+   --inventory <inventory_file> site.yaml --limit x.x.x.x --tags copy-90-csit`
+
 .. note::
 
    In case you want to provision only particular role. You can use tags: `tg`,
@@ -247,4 +256,4 @@ Running Ansible
 Reboot hosts
 ------------
 
-Manually reboot hosts after Ansible provisioning succeeded.
+# TODO: Document rebooting of machine via IMPI/CIMC/reboot handler.
