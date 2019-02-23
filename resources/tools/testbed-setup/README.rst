@@ -166,6 +166,11 @@ Optional: IPMI - From PXE boostrap server
 Ansible machine
 ~~~~~~~~~~~~~~~
 
+Baremetal provisioning of machine via Cobbler module
+....................................................
+
+# TODO: (remove all steps above and document usage of cobbler module)
+
 Prerequisities for running Ansible
 ..................................
 
@@ -187,7 +192,8 @@ Ansible structure
 .................
 
 Ansible is defining roles `TG` (Traffic Generator), `SUT` (System Under Test),
-`VPP_DEVICE` (vpp_device host for functional testing).
+`VPP_DEVICE` (vpp_device host for functional testing). `COMMON` (Applicable
+for all servers in inventory).
 
 Each Host has corresponding Ansible role mapped and is applied only if Host
 with that role is present in inventory file. As a part of optimization the role
@@ -228,6 +234,16 @@ Ansible structure is described below:
    ├── vault.yml                       # Ansible vualt storage.
    └── vpp_device.yaml                 # vpp_device playbook.
 
+Tagging
+.......
+
+Every task, handler, role, playbook is tagged with self-explanatory tags that
+could be used to limit which objects are applied to target systems.
+
+You can see which tags are applied to tasks, roles, and static imports by
+running `ansible-playbook` with the `--list-tasks` option. You can display all
+tags applied to the tasks with the `--list-tags` option.
+
 Running Ansible
 ...............
 
@@ -243,4 +259,4 @@ Running Ansible
 Reboot hosts
 ------------
 
-Manually reboot hosts after Ansible provisioning succeeded.
+# TODO: Docuement rebooting of machine via IMPI/CIMC/reboot handler.
