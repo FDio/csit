@@ -40,3 +40,7 @@ kubernetes_channel: 'main'
 kubernetes_version: '1.11.0-00'
 kubernetes_repository: 'deb http://apt.kubernetes.io/ kubernetes-xenial {{ kubernetes_channel }}'
 kubernetes_apt_package_name: '{{ kubernetes_version }}'
+
+# Cobbler settings
+cobbler_hostname: 'x.x.x.x'
+cobbler_profile: 'profile'
