@@ -1,9 +1,10 @@
 ---
-# file: group_vars/all.yaml
+# file: lf_inventory/group_vars/all.yaml
 
 # General variables
 ansible_python_interpreter: '/usr/bin/python2.7'
-ansible_become_pass: '{{ inventory_sudo_pass }}'
+# provision via cobbler
+provision_enabled: true
 # name_servers_search is used in /etc/hosts file on target machine.
 name_servers_search: 'linuxfoundation.org'
 # name_servers is used in /etc/netplan/01-netcfg.yaml

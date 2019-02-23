@@ -15,6 +15,9 @@ all:
             10.30.51.22: null #t2-sut2
             10.30.51.25: null #t3-sut1
             10.30.51.26: null #t3-sut2
+        cobbler:
+          hosts:
+            10.30.51.28: null #s4-virl1
     skylake:
       children:
         tg:

@@ -1,0 +1,75 @@
+---
+# file: roles/cobbler/tasks/main.yaml
+
+- name: Download Ubuntu 18.04.2 with file with check (sha256)
+  get_url:
+    url: 'http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.2-server-amd64.iso'
+    dest: '/mnt/ubuntu-18.04.2-server-x86_64.iso'
+    checksum: 'sha256:a2cb36dc010d98ad9253ea5ad5a07fd6b409e3412c48f1860536970b073c98f5'
+  register: download_ubuntu_iso
+  tags: prepare-iso
+
+- name: Create directory for Ubuntu 18.04.2 mount
+  file:
+    path: '/mnt/ubuntu-18.04.2-server-x86_64'
+    state: 'directory'
+  register: mount_directory_created
+  tags: prepare-iso
+
+- name: Mount Ubuntu 18.04.2 iso
+  become: yes
+  command: 'mount -o loop,ro /mnt/ubuntu-18.04.2-server-x86_64.iso /mnt/ubuntu-18.04.2-server-x86_64'
+  when: (download_ubuntu_iso and mount_directory_created)
+  tags: prepare-iso
+
+- name: Upload the docker directory to the host
+  synchronize:
+    src: 'files'
+    dest: '/tmp/cobbler_docker'
+  tags: build-cobbler-image
+
+- name: Build Cobbler image
+  docker_image:
+     path: '/tmp/cobbler_docker/files'
+     name: 'csit/cobbler'
+     buildargs:
+       cobbler_pass: '{{ cobbler_password }}'
+       cobbler_web_pass: '{{ cobbler_password }}'
+       cobbler_ip_addr: '{{ inventory_hostname }}'
+       cobbler_http_port: 60080
+  register: build_cobbler_image
+  tags: build-cobbler-image
+
+- name: Run Cobbler image
+  docker_container:
+    name: 'cobbler'
+    image: 'csit/cobbler'
+    published_ports:
+      - 69:69/udp
+      - 60080:80
+      - 60443:443
+      - 25151:25151
+    volumes:
+      - '/mnt:/mnt:ro'
+  register: run_cobbler_image
+  tags: run-cobbler-image
+
+- name: Run Cobbler setup get-loaders
+  command: 'docker exec -i cobbler cobbler get-loaders'
+  when: run_cobbler_image
+  tags: run-cobbler-image
+
+- name: Run Cobbler setup sync
+  command: 'docker exec -i cobbler cobbler sync'
+  when: run_cobbler_image
+  tags: run-cobbler-image
+
+- name: Run Cobbler setup check
+  command: 'docker exec -i cobbler cobbler check'
+  when: run_cobbler_image
+  tags: run-cobbler-image
+
+- name: Run Cobbler setup import
+  command: 'docker exec -i cobbler cobbler import --path=/mnt/ubuntu-18.04.2-server-x86_64 --name=ubuntu-18.04.2-server-x86_64 --kickstart=/var/lib/cobbler/kickstarts/ubuntu-18.04.2-server-x86_64.ks'
+  when: run_cobbler_image
+  tags: run-cobbler-image
