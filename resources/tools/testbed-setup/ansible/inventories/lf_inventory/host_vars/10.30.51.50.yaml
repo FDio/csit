@@ -4,3 +4,6 @@
 hostname: "s1-t11-sut1"
 grub:
   nr_hugepages: 65536
+
+ipmi_hostname: '10.30.50.47'
+cobbler_profile: '{{ ansible_distribution|lower }}-18.04-{{ ansible_machine }}'

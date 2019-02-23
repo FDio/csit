@@ -1,0 +1,55 @@
+---
+# file: roles/cobbler/tasks/main.yaml
+
+- name: Download Ubuntu 18.04.2 with file with check (sha256)
+  get_url:
+    url: "http://cdimage.ubuntu.com/ubuntu/releases/18.04/release/ubuntu-18.04.2-server-amd64.iso"
+    dest: "/mnt/ubuntu-18.04.2-server-x86_64.iso"
+    checksum: "sha256:a2cb36dc010d98ad9253ea5ad5a07fd6b409e3412c48f1860536970b073c98f5"
+  tags: download-ubuntu-bionic
+
+- name: Mount Ubuntu 18.04.2 iso
+  mount:
+    path: "/mnt/ubuntu-18.04.2-server-x86_64"
+    src: "/mnt/ubuntu-18.04.2-server-x86_64.iso"
+    fstype: "iso9660"
+    opts: "ro,noauto"
+    state: "present"
+  tags: mount-ubuntu-bionic
+
+- name: Build Cobbler image
+  docker_image:
+     path: files/
+     name: "csit/cobbler"
+     buildargs:
+       cobbler_pass: "{{ cobbler_password }}"
+       cobbler_web_pass: "{{ cobbler_password }}"
+       cobbler_ip_addr: "{{ cobbler_hostname }}"
+       cobbler_http_port: 60080
+  tags: build-cobbler-image
+
+- name: Run Cobbler image
+  docker_container:
+    name: "cobbler"
+    image: "csit/cobbler"
+    state: "present"
+    recreate: "yes"
+    volumes:
+      - "/mnt:/mnt:ro"
+  tags: run-cobbler-image
+
+- name: Run Cobbler setup get-loaders
+  command: "docker exec -it cobbler cobbler get-loaders"
+  tagd: run-cobbler-image
+
+- name: Run Cobbler setup sync
+  command: "docker exec -it cobbler cobbler sync"
+  tagd: run-cobbler-image
+
+- name: Run Cobbler setup check
+  command: "docker exec -it cobbler cobbler check"
+  tagd: run-cobbler-image
+
+- name: Run Cobbler setup import
+  command: "docker exec -it cobbler cobbler import --path=/mnt/{{ cobbler_profile }} --name={{ cobbler_profile }} --kickstart=/var/lib/cobbler/kickstarts/{{ cobbler_profile }}.ks"
+  tagd: run-cobbler-image
