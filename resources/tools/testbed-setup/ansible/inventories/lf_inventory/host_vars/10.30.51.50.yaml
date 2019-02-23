@@ -4,3 +4,6 @@
 hostname: "s1-t11-sut1"
 grub:
   nr_hugepages: 65536
+
+ipmi_hostname: '10.30.50.47'
+cobbler_profile: 'ubuntu-18.04.2-server-x86_64'
