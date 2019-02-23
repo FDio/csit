@@ -8,3 +8,6 @@ virl_l2_gateway: "10.30.54.1"
 virl_l2_network: "10.30.54.0/24"
 virl_l2_ip: "10.30.54.254"
 virl_public_port: "eth0"
+
+inventory_cimc_hostname: '10.30.50.30'
+cobbler_profile: 'ubuntu-18.04.2-server-x86_64'

@@ -1,14 +1,17 @@
 ---
 # file: host_vars/x.x.x.x.yaml
 
-hostname: "t1-tg1"
+hostname: 't1-tg1'
 grub:
-  - isolcpus: "1-27,29-55,57-83,85-111"
-  - nohz_full: "1-27,29-55,57-83,85-111"
-  - rcu_nocbs: "1-27,29-55,57-83,85-111"
+  - isolcpus: '1-27,29-55,57-83,85-111'
+  - nohz_full: '1-27,29-55,57-83,85-111'
+  - rcu_nocbs: '1-27,29-55,57-83,85-111'
 sysctl:
   - kernel:
-    - watchdog_cpumask: "0,28,56,84"
+    - watchdog_cpumask: '0,28,56,84'
   - vm:
     - nr_hugepages: 4096
     - max_map_count: 20000
+
+inventory_ipmi_hostname: 'x.x.x.x'
+cobbler_profile: 'ubuntu-18.04.2-server-x86_64'

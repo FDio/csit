@@ -1,18 +1,22 @@
 ---
 # file: roles/tg_sut/tasks/x86_64.yaml
 
-- name: Configure x86_64 kernel parameters
-  lineinfile:
-    path: '/etc/default/grub'
-    state: 'present'
-    regexp: '^GRUB_CMDLINE_LINUX='
-    line: 'GRUB_CMDLINE_LINUX="isolcpus={{ grub.isolcpus }} nohz_full={{ grub.nohz_full }} rcu_nocbs={{ grub.rcu_nocbs }} numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 intel_idle.max_cstate=1 hpet=disable tsc=reliable mce=off"'
-  notify: ['Update GRUB']
-  tags: set-grub
-
 - name: Load msr by default
   lineinfile:
     path: '/etc/modules'
     state: 'present'
     line: 'msr'
   tags: disable-turbo-boost
+
+- name: Configure x86_64 kernel parameters
+  lineinfile:
+    path: '/etc/default/grub'
+    state: 'present'
+    regexp: '^GRUB_CMDLINE_LINUX='
+    line: 'GRUB_CMDLINE_LINUX="isolcpus={{ grub.isolcpus }} nohz_full={{ grub.nohz_full }} rcu_nocbs={{ grub.rcu_nocbs }} numa_balancing=disable intel_pstate=disable intel_iommu=on iommu=pt nmi_watchdog=0 audit=0 nosoftlockup processor.max_cstate=1 intel_idle.max_cstate=1 hpet=disable tsc=reliable mce=off"'
+  notify:
+    - 'Update GRUB'
+    - 'Reboot server'
+  tags: set-grub
+
+- meta: flush_handlers

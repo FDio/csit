@@ -1,28 +1,61 @@
 ---
 # file: roles/common/tasks/main.yaml
 
+- name: Ensure the system exists in Cobbler
+  cobbler_system:
+    host: '{{ cobbler_hostname }}'
+    port: 60080
+    interfaces:
+      br1:
+        ipaddress: '{{ ansible_default_ipv4.address }}'
+        macaddress: '{{ ansible_default_ipv4.macaddress }}'
+    name: '{{ hostname }}'
+    password: '{{ cobbler_password }}'
+    properties:
+      hostname: '{{ hostname }}'
+      gateway: '{{ ansible_default_ipv4.gateway }}'
+      profile: '{{ cobbler_profile }}'
+      name_servers: '{{ name_servers }}'
+      name_servers_search: '{{ name_servers_search }}'
+      kickstart: '/var/lib/cobbler/kickstarts/{{ cobbler_profile }}.seed'
+      kernel_options: '"interface={{ ansible_default_ipv4.interface }}"'
+      netboot_enabled: yes
+    username: '{{ cobbler_username }}'
+    use_ssl: no
+    validate_certs: no
+  when: provision_enabled
+  delegate_to: localhost
+  tags: cobbler-include
+
+- name: Commit Cobbler changes
+  cobbler_sync:
+    host: '{{ cobbler_hostname }}'
+    port: 60080
+    password: '{{ cobbler_password }}'
+    username: '{{ cobbler_username }}'
+    use_ssl: no
+    validate_certs: no
+  run_once: yes
+  when: provision_enabled
+  delegate_to: localhost
+  register: __included_in_cobbler
+  notify:
+    - 'Boot from network'
+    - 'Reboot server'
+  tags: cobbler-include
+
+- meta: flush_handlers
+
 - name: Add permanent proxy settings
   lineinfile:
-    path: "/etc/environment"
-    state: "present"
-    line: "{{ item.key }}={{ item.value }}"
-  with_dict: "{{ proxy_env }}"
+    path: '/etc/environment'
+    state: 'present'
+    line: '{{ item.key }}={{ item.value }}'
+  with_dict: '{{ proxy_env }}'
   when: proxy_env is defined
 
 - name: Install distribution - release - machine prerequisites
   include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-
-- name: Set hostname
-  hostname:
-      name: '{{ hostname }}'
-  tags: set-hostname
-
-- name: Ensure hostname is in /etc/hosts
-  lineinfile:
-    path: '/etc/hosts'
-    regexp: '^{{ ansible_default_ipv4.address }}.+$'
-    line: '{{ ansible_default_ipv4.address }} {{ hostname }}.{{ name_servers_search }}'
-  tags: set-hostname
 
 - name: Set sudoers admin
   lineinfile:
@@ -49,13 +82,9 @@
    owner: 'root'
    group: 'root'
    mode: '644'
-  notify: ['Update GRUB']
+  notify:
+    - 'Update GRUB'
+    - 'Reboot server'
   tags: copy-grub
 
-- name: Add permanent proxy settings
-  lineinfile:
-    path: "/etc/environment"
-    state: "present"
-    line: "{{ item.key }}={{ item.value }}"
-  with_dict: "{{ proxy_env }}"
-  when: proxy_env is defined
+- meta: flush_handlers

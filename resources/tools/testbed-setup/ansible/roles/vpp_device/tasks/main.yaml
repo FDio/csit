@@ -10,21 +10,28 @@
    mode: '744'
   tags: copy-vf-script
 
-- name: Copy csit-initialize-vfs.service
+- name: Start csit-initialize-vfs.service
   copy:
    src: 'files/csit-initialize-vfs.service'
    dest: '/etc/systemd/system/'
    owner: 'root'
    group: 'root'
    mode: '644'
-  notify: ['Enable csit-initialize-vfs.service']
-  tags: copy-vf-service
+  notify:
+    - 'Start csit-initialize-vfs.service'
+  tags: start-vf-service
 
-- name: Set isolcpus and pstate parameter
+- meta: flush_handlers
+
+- name: Set hugepages in GRUB
   lineinfile:
     path: '/etc/default/grub'
     state: 'present'
     regexp: '^GRUB_CMDLINE_LINUX='
     line: 'GRUB_CMDLINE_LINUX="hugepagesz=2M hugepages={{ grub.nr_hugepages }}"'
-  notify: ['Update GRUB']
+  notify:
+    - 'Update GRUB'
+    - 'Reboot server'
   tags: set-grub
+
+- meta: flush_handlers

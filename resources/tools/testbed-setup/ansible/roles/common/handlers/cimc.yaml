@@ -1,0 +1,69 @@
+---
+# file: roles/common/handlers/cimc.yaml
+
+- name: Boot from network
+  imc_rest:
+    hostname: '{{ inventory_cimc_hostname }}'
+    username: '{{ inventory_cimc_username }}'
+    password: '{{ inventory_cimc_password }}'
+    validate_certs: no
+    content: |
+      <!-- Configure PXE boot -->
+      <configConfMo><inConfig>
+        <lsbootLan dn="sys/rack-unit-1/boot-policy/lan-read-only" access="read-only" order="1" prot="pxe" type="lan"/>
+      </inConfig></configConfMo>
+  delegate_to: localhost
+  tags: boot-network
+
+- name: Boot from storage
+  imc_rest:
+    hostname: '{{ inventory_cimc_hostname }}'
+    username: '{{ inventory_cimc_username }}'
+    password: '{{ inventory_cimc_password }}'
+    validate_certs: no
+    content: |
+      <configConfMo><inConfig>
+        <lsbootStorage dn="sys/rack-unit-1/boot-policy/storage-read-write" access="read-write" order="1" type="storage"/>
+      </inConfig></configConfMo>
+  delegate_to: localhost
+  tags: boot-storage
+
+- name: Power up server
+  imc_rest:
+    hostname: '{{ inventory_cimc_hostname }}'
+    username: '{{ inventory_cimc_username }}'
+    password: '{{ inventory_cimc_password }}'
+    validate_certs: no
+    content: |
+      <configConfMo><inConfig>
+        <computeRackUnit dn="sys/rack-unit-1" adminPower="up"/>
+      </inConfig></configConfMo>
+  delegate_to: localhost
+  tags: power-up
+
+- name: Power down server
+  imc_rest:
+    hostname: '{{ inventory_cimc_hostname }}'
+    username: '{{ inventory_cimc_username }}'
+    password: '{{ inventory_cimc_password }}'
+    validate_certs: no
+    content: |
+      <configConfMo><inConfig>
+        <computeRackUnit dn="sys/rack-unit-1" adminPower="down"/>
+      </inConfig></configConfMo>
+  delegate_to: localhost
+  tags: power-down
+
+- name: Power cycle server
+  imc_rest:
+    hostname: '{{ inventory_cimc_hostname }}'
+    username: '{{ inventory_cimc_username }}'
+    password: '{{ inventory_cimc_password }}'
+    validate_certs: no
+    content: |
+      <!-- Power cycle server -->
+      <configConfMo><inConfig>
+        <computeRackUnit dn="sys/rack-unit-1" adminPower="cycle-immediate"/>
+      </inConfig></configConfMo>
+  delegate_to: localhost
+  tags: power-cycle

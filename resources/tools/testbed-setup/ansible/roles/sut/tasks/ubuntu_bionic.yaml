@@ -20,6 +20,9 @@
       - 'python-cffi-backend'
       - 'python3-cffi'
       - 'python3-cffi-backend'
+      - 'libnuma-dev'
+      - 'lzop'
+      - 'lrzip'
     state: 'present'
     install_recommends: False
   tags: install-csit-dependencies

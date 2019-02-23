@@ -1,13 +1,14 @@
 ---
-# file: group_vars/all.yaml
+# file: lf_inventory/group_vars/all.yaml
 
 # General variables
 ansible_python_interpreter: '/usr/bin/python2.7'
-ansible_become_pass: '{{ inventory_sudo_pass }}'
+# provision via cobbler
+provision_enabled: False
 # name_servers_search is used in /etc/hosts file on target machine.
 name_servers_search: 'linuxfoundation.org'
 # name_servers is used in /etc/netplan/01-netcfg.yaml
-name_servers: "[ 199.204.44.24, 199.204.47.54 ]"
+name_servers: "199.204.44.24, 199.204.47.54"
 
 # Proxy settings: Uncomment and fill the proper values. These variables will be
 # set globally by writing into /etc/environment file on target machine.
