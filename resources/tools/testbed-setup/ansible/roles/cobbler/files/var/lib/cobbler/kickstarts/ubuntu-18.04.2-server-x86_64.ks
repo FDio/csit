@@ -36,7 +36,7 @@ install
 #Installation media
 #cdrom
 #nfs --server=server.com --dir=/path/to/ubuntu/
-url --url http://10.30.51.28/download/ubuntu
+url --url http://$http_server/cobbler/links/$distro_name/ubuntu
 
 #System bootloader configuration
 bootloader --location=mbr
@@ -73,9 +73,8 @@ skipx
 
 ###
 
-preseed live-installer/net-image string http://10.30.51.28/download/ubuntu/install/filesystem.squashfs
+preseed live-installer/net-image string http://$http_server/cobbler/links/$distro_name/install/filesystem.squashfs
 preseed user-setup/allow-password-weak boolean true
-
 
 %packages
 openssh-server

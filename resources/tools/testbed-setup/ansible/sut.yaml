@@ -6,6 +6,9 @@
   become: yes
   become_user: root
   roles:
+    - role: provision
+      when: provision_enabled
+      tags: provision
     - role: common
       tags: common
     - role: sut

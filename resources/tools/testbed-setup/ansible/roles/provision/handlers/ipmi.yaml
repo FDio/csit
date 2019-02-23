@@ -1,0 +1,47 @@
+---
+# file: roles/provision/handlers/ipmi.yaml
+
+- name: Boot from network
+  ipmi_boot:
+    name: '{{ inventory_ipmi_hostname }}'
+    user: '{{ inventory_ipmi_username }}'
+    password: '{{ inventory_ipmi_password }}'
+    bootdev: network
+  delegate_to: localhost
+  tags: boot-network
+
+- name: Boot from storage
+  ipmi_boot:
+    name: '{{ inventory_ipmi_hostname }}'
+    user: '{{ inventory_ipmi_username }}'
+    password: '{{ inventory_ipmi_password }}'
+    bootdev: hd
+  delegate_to: localhost
+  tags: boot-storage
+
+- name: Power up server
+  ipmi_power:
+    name: '{{ inventory_ipmi_hostname }}'
+    user: '{{ inventory_ipmi_username }}'
+    password: '{{ inventory_ipmi_password }}'
+    state: on
+  delegate_to: localhost
+  tags: power-up
+
+- name: Power down server
+  ipmi_power:
+    name: '{{ inventory_ipmi_hostname }}'
+    user: '{{ inventory_ipmi_username }}'
+    password: '{{ inventory_ipmi_password }}'
+    state: off
+  delegate_to: localhost
+  tags: power-down
+
+- name: Power cycle server
+  ipmi_power:
+    name: '{{ inventory_ipmi_hostname }}'
+    user: '{{ inventory_ipmi_username }}'
+    password: '{{ inventory_ipmi_password }}'
+    state: boot
+  delegate_to: localhost
+  tags: power-cycle

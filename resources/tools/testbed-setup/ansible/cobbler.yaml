@@ -1,0 +1,10 @@
+---
+# file: cobbler.yaml
+
+- hosts: cobbler
+  remote_user: testuser
+  become: yes
+  become_user: root
+  roles:
+    - role: cobbler
+      tags: cobbler

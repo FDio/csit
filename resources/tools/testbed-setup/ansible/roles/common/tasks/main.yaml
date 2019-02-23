@@ -3,10 +3,10 @@
 
 - name: Add permanent proxy settings
   lineinfile:
-    path: "/etc/environment"
-    state: "present"
-    line: "{{ item.key }}={{ item.value }}"
-  with_dict: "{{ proxy_env }}"
+    path: '/etc/environment'
+    state: 'present'
+    line: '{{ item.key }}={{ item.value }}'
+  with_dict: '{{ proxy_env }}'
   when: proxy_env is defined
 
 - name: Install distribution - release - machine prerequisites
@@ -51,11 +51,3 @@
    mode: '644'
   notify: ['Update GRUB']
   tags: copy-grub
-
-- name: Add permanent proxy settings
-  lineinfile:
-    path: "/etc/environment"
-    state: "present"
-    line: "{{ item.key }}={{ item.value }}"
-  with_dict: "{{ proxy_env }}"
-  when: proxy_env is defined
