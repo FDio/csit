@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6d78fd7a_857c0d18",
+        "filename": "resources/tools/testbed-setup/README.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-25T11:48:31Z",
+      "side": 1,
+      "message": "If you document --list-tags, you can also document how to do the limiting.",
+      "range": {
+        "startLine": 241,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 22
+      },
+      "revId": "f043b7b8673e014fbe8f9eb39b94fe4fd8cba392",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7321174a_80b9d440",
+        "filename": "resources/tools/testbed-setup/README.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-25T11:48:31Z",
+      "side": 1,
+      "message": "delete",
+      "range": {
+        "startLine": 262,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 13
+      },
+      "revId": "f043b7b8673e014fbe8f9eb39b94fe4fd8cba392",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
