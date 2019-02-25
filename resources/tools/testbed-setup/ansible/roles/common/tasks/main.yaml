@@ -22,7 +22,7 @@
   lineinfile:
     path: '/etc/hosts'
     regexp: '^{{ ansible_default_ipv4.address }}.+$'
-    line: '{{ ansible_default_ipv4.address }} {{ hostname }}.{{ domain }}'
+    line: '{{ ansible_default_ipv4.address }} {{ hostname }}.{{ name_servers_search }}'
   tags: set-hostname
 
 - name: Set sudoers admin
