@@ -25,6 +25,6 @@
     path: '/etc/default/grub'
     state: 'present'
     regexp: '^GRUB_CMDLINE_LINUX='
-    line: 'GRUB_CMDLINE_LINUX="hugepagesz=2M hugepages=65536"'
+    line: 'GRUB_CMDLINE_LINUX="hugepagesz=2M hugepages={{ grub.nr_hugepages }}"'
   notify: ['Update GRUB']
-
+  tags: set-grub

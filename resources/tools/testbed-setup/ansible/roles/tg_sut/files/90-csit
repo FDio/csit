@@ -1,6 +1,6 @@
 # change the minimum size of the hugepage pool.
 # 2G VPP, 16x2G for Fullbox VM, 2G reserve
-vm.nr_hugepages=36864
+vm.nr_hugepages={{ sysctl.vm.nr_hugepages }}
 
 # this file contains the maximum number of memory map areas a process
 # may have. memory map areas are used as a side-effect of calling
@@ -11,7 +11,7 @@ vm.nr_hugepages=36864
 # programs, particularly malloc debuggers, may consume lots of them,
 # e.g., up to one or two maps per allocation.
 # must be greater than or equal to (2 * vm.nr_hugepages).
-vm.max_map_count=200000
+vm.max_map_count={{ sysctl.vm.max_map_count }}
 
 # hugetlb_shm_group contains group id that is allowed to create sysv
 # shared memory segment using hugetlb page.
@@ -77,4 +77,4 @@ kernel.randomize_va_space=0
 # typically this value would only be touched in the nohz_full case
 # to re-enable cores that by default were not running the watchdog,
 # if a kernel lockup was suspected on those cores.
-kernel.watchdog_cpumask={{ cfs_cpus }}
+kernel.watchdog_cpumask={{ sysctl.kernel.watchdog_cpumask }}
