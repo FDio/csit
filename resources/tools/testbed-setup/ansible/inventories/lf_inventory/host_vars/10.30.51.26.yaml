@@ -2,5 +2,13 @@
 # file: host_vars/10.30.51.26.yaml
 
 hostname: "t3-sut2"
-isolcpus: "1-17,19-35"
-cfs_cpus: "0,18"
+grub:
+  isolcpus: "1-17,19-35"
+  nohz_full: "1-17,19-35"
+  rcu_nocbs: "1-17,19-35"
+sysctl:
+  kernel:
+    watchdog_cpumask: "0,18"
+  vm:
+    nr_hugepages: 36864
+    max_map_count: 20000

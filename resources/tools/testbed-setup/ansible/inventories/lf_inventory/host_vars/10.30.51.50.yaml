@@ -2,5 +2,5 @@
 # file: host_vars/10.30.51.50.yaml
 
 hostname: "s1-t11-sut1"
-isolcpus: "1-27,29-55,57-83,85-111"
-cfs_cpus: "0,28,56,84"
+grub:
+  nr_hugepages: 65536

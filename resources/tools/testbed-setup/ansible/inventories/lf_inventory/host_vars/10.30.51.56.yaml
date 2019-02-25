@@ -2,5 +2,13 @@
 # file: host_vars/10.30.51.56.yaml
 
 hostname: "s9-t24-sut1"
-isolcpus: "1-27,29-55,57-83,85-111"
-cfs_cpus: "0,28,56,84"
+grub:
+  isolcpus: "1-27,29-55,57-83,85-111"
+  nohz_full: "1-27,29-55,57-83,85-111"
+  rcu_nocbs: "1-27,29-55,57-83,85-111"
+sysctl:
+  kernel:
+    watchdog_cpumask: "0,28,56,84"
+  vm:
+    nr_hugepages: 36864
+    max_map_count: 20000
