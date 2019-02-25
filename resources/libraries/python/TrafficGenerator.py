@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -168,12 +168,13 @@ class TrafficGenerator(AbstractMeasurer):
         """
         return self._latency
 
-    def initialize_traffic_generator(self, tg_node, tg_if1, tg_if2,
-                                     tg_if1_adj_node, tg_if1_adj_if,
-                                     tg_if2_adj_node, tg_if2_adj_if,
-                                     test_type,
-                                     tg_if1_dst_mac=None, tg_if2_dst_mac=None):
+    def initialize_traffic_generator(
+            self, tg_node, tg_if1, tg_if2, tg_if1_adj_node, tg_if1_adj_if,
+            tg_if2_adj_node, tg_if2_adj_if, test_type, tg_if1_dst_mac=None,
+            tg_if2_dst_mac=None):
         """TG initialization.
+
+        TODO: Document why do we need (and how do we use) _ifaces_reordered.
 
         :param tg_node: Traffic generator node.
         :param tg_if1: TG - name of first interface.
@@ -386,9 +387,10 @@ class TrafficGenerator(AbstractMeasurer):
         if int(ret) != 0:
             raise RuntimeError('TRex stateless runtime error')
 
-    def trex_stl_start_remote_exec(self, duration, rate, framesize,
-                                   traffic_type, async_call=False,
-                                   latency=True, warmup_time=5.0):
+    def trex_stl_start_remote_exec(
+            self, duration, rate, framesize, traffic_type, async_call=False,
+            latency=True, warmup_time=5.0, unidirection=False, tx_port=0,
+            rx_port=1):
         """Execute script on remote node over ssh to start traffic.
 
         :param duration: Time expresed in seconds for how long to send traffic.
@@ -399,6 +401,11 @@ class TrafficGenerator(AbstractMeasurer):
         :param async_call: If enabled then don't wait for all incomming trafic.
         :param latency: With latency measurement.
         :param warmup_time: Warmup time period.
+        :param unidirection: Traffic is unidirectional. Default: False
+        :param tx_port: Traffic generator transmit port for first flow.
+            Default: 0
+        :param rx_port: Traffic generator receive port for first flow.
+            Default: 1
         :type duration: float
         :type rate: str
         :type framesize: str
@@ -406,34 +413,33 @@ class TrafficGenerator(AbstractMeasurer):
         :type async_call: bool
         :type latency: bool
         :type warmup_time: float
-        :returns: Nothing
+        :type unidirection: bool
+        :type tx_port: int
+        :type rx_port: int
         :raises RuntimeError: In case of TG driver issue.
         """
         ssh = SSH()
         ssh.connect(self._node)
+        reorder = self._ifaces_reordered  # Just to make the next line fit.
+        p_0, p_1 = (rx_port, tx_port) if reorder else (tx_port, rx_port)
+        command = (
+            "sh -c '{tool}/resources/tools/trex/trex_stateless_profile.py"
+            " --profile {prof}/resources/traffic_profiles/trex/{traffic}.py"
+            " --duration {duration} --frame_size {framesize} --rate {rate}"
+            " --warmup_time {warmup} --port_0 {p_0} --port_1 {p_1}").format(
+                tool=Constants.REMOTE_FW_DIR, prof=Constants.REMOTE_FW_DIR,
+                traffic=traffic_type, duration=duration, framesize=framesize,
+                rate=rate, warmup=warmup_time, p_0=p_0, p_1=p_1)
+        if async_call:
+            command += " --async"
+        if latency:
+            command += " --latency"
+        if unidirection:
+            command += " --unidirection"
+        command += "'"
 
-        _async = "--async" if async_call else ""
-        _latency = "--latency" if latency else ""
-        _p0, _p1 = (2, 1) if self._ifaces_reordered else (1, 2)
-
-        profile_path = ("{0}/resources/traffic_profiles/trex/"
-                        "{1}.py".format(Constants.REMOTE_FW_DIR,
-                                        traffic_type))
         (ret, stdout, _) = ssh.exec_command(
-            "sh -c "
-            "'{0}/resources/tools/trex/trex_stateless_profile.py "
-            "--profile {1} "
-            "--duration {2} "
-            "--frame_size {3} "
-            "--rate {4} "
-            "--warmup_time {5} "
-            "--port_0 {6} "
-            "--port_1 {7} "
-            "{8} "   # --async
-            "{9}'".  # --latency
-            format(Constants.REMOTE_FW_DIR, profile_path, duration, framesize,
-                   rate, warmup_time, _p0 - 1, _p1 - 1, _async, _latency),
-            timeout=float(duration) + 60)
+            command, timeout=float(duration) + 60)
 
         if int(ret) != 0:
             raise RuntimeError('TRex stateless runtime error')
@@ -446,94 +452,14 @@ class TrafficGenerator(AbstractMeasurer):
         else:
             # last line from console output
             line = stdout.splitlines()[-1]
-
             self._result = line
             logger.info('TrafficGen result: {0}'.format(self._result))
-
             self._received = self._result.split(', ')[1].split('=')[1]
             self._sent = self._result.split(', ')[2].split('=')[1]
             self._loss = self._result.split(', ')[3].split('=')[1]
-
             self._latency = []
             self._latency.append(self._result.split(', ')[4].split('=')[1])
             self._latency.append(self._result.split(', ')[5].split('=')[1])
-
-    def trex_stl_start_unidirection(
-            self, duration, rate, framesize, traffic_type, async_call=False,
-            latency=False, warmup_time=5.0, tx_port=0, rx_port=1):
-        """Execute script on remote node over ssh to start unidirection traffic.
-        The purpose of this function is to support performance test that need to
-        measure unidirectional traffic, e.g. Load balancer maglev mode and l3dsr
-        mode test.
-
-        :param duration: Time expresed in seconds for how long to send traffic.
-        :param rate: Traffic rate expressed with units (pps, %)
-        :param framesize: L2 frame size to send (without padding and IPG).
-        :param traffic_type: Module name as a traffic type identifier.
-            See resources/traffic_profiles/trex for implemented modules.
-        :param latency: With latency measurement.
-        :param async_call: If enabled then don't wait for all incomming trafic.
-        :param warmup_time: Warmup time period.
-        :param tx_port: Traffic generator transmit port.
-        :param rx_port: Traffic generator receive port.
-        :type duration: float
-        :type rate: str
-        :type framesize: str
-        :type traffic_type: str
-        :type latency: bool
-        :type async_call: bool
-        :type warmup_time: float
-        :type tx_port: integer
-        :type rx_port: integer
-        :raises RuntimeError: In case of TG driver issue.
-        """
-        ssh = SSH()
-        ssh.connect(self._node)
-
-        _latency = "--latency" if latency else ""
-        _async = "--async" if async_call else ""
-
-        profile_path = ("{0}/resources/traffic_profiles/trex/"
-                        "{1}.py".format(Constants.REMOTE_FW_DIR,
-                                        traffic_type))
-        (ret, stdout, _) = ssh.exec_command(
-            "sh -c "
-            "'{0}/resources/tools/trex/trex_stateless_profile.py "
-            "--profile {1} "
-            "--duration {2} "
-            "--frame_size {3} "
-            "--rate {4} "
-            "--warmup_time {5} "
-            "--port_0 {6} "
-            "--port_1 {7} "
-            "{8} "  # --async
-            "{9} "  # --latency
-            "{10}'".  # --unidirection
-            format(Constants.REMOTE_FW_DIR, profile_path, duration, framesize,
-                   rate, warmup_time, tx_port, rx_port, _async, _latency,
-                   "--unidirection"),
-            timeout=float(duration) + 60)
-
-        if int(ret) != 0:
-            raise RuntimeError('TRex unidirection runtime error')
-        elif async_call:
-            #no result
-            self._received = None
-            self._sent = None
-            self._loss = None
-            self._latency = None
-        else:
-            # last line from console output
-            line = stdout.splitlines()[-1]
-
-            self._result = line
-            logger.info('TrafficGen result: {0}'.format(self._result))
-
-            self._received = self._result.split(', ')[1].split('=')[1]
-            self._sent = self._result.split(', ')[2].split('=')[1]
-            self._loss = self._result.split(', ')[3].split('=')[1]
-            self._latency = []
-            self._latency.append(self._result.split(', ')[4].split('=')[1])
 
     def stop_traffic_on_tg(self):
         """Stop all traffic on TG.
@@ -552,6 +478,19 @@ class TrafficGenerator(AbstractMeasurer):
             rx_port=1):
         """Send traffic from all configured interfaces on TG.
 
+        Note that bidirectional traffic also contains flows
+        transmitted from rx_port and received in tx_port.
+        But some tests use asymmetric traffic, so those arguments are relevant.
+
+        Also note that traffic generator uses DPDK driver which might
+        reorder port numbers based on wiring and PCI numbering.
+        This method handles that, so argument values are invariant,
+        but you can see swapped valued in debug logs.
+
+        TODO: Is it better to have less descriptive argument names
+        just to make them less probable to be viewed as misleading or confusing?
+        See https://gerrit.fd.io/r/#/c/17625/11/resources/libraries/python/TrafficGenerator.py@406
+
         :param duration: Duration of test traffic generation in seconds.
         :param rate: Offered load per interface (e.g. 1%, 3gbps, 4mpps, ...).
         :param framesize: Frame size (L2) in Bytes.
@@ -560,9 +499,11 @@ class TrafficGenerator(AbstractMeasurer):
         :param warmup_time: Warmup phase in seconds.
         :param async_call: Async mode.
         :param latency: With latency measurement.
-        :param unidirection: Traffic is unidirectional.
-        :param tx_port: Traffic generator transmit port.
-        :param rx_port: Traffic generator receive port.
+        :param unidirection: Traffic is unidirectional. Default: False
+        :param tx_port: Traffic generator transmit port for first flow.
+            Default: 0
+        :param rx_port: Traffic generator receive port for first flow.
+            Default: 1
         :type duration: str
         :type rate: str
         :type framesize: str
@@ -571,8 +512,8 @@ class TrafficGenerator(AbstractMeasurer):
         :type async_call: bool
         :type latency: bool
         :type unidirection: bool
-        :type tx_port: integer
-        :type rx_port: integer
+        :type tx_port: int
+        :type rx_port: int
         :returns: TG output.
         :rtype: str
         :raises RuntimeError: If TG is not set, or if node is not TG,
@@ -590,15 +531,9 @@ class TrafficGenerator(AbstractMeasurer):
         if node['subtype'] is None:
             raise RuntimeError('TG subtype not defined')
         elif node['subtype'] == NodeSubTypeTG.TREX:
-            if unidirection:
-                self.trex_stl_start_unidirection(duration, rate, framesize,
-                                                 traffic_type, tx_port,
-                                                 rx_port, async_call, latency,
-                                                 warmup_time)
-            else:
-                self.trex_stl_start_remote_exec(duration, rate, framesize,
-                                                traffic_type, async_call,
-                                                latency, warmup_time)
+            self.trex_stl_start_remote_exec(
+                duration, rate, framesize, traffic_type, async_call, latency,
+                warmup_time, unidirection, tx_port, rx_port)
         else:
             raise NotImplementedError("TG subtype not supported")
 
