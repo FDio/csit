@@ -176,18 +176,17 @@ class DUTSetup(object):
                                    'on node: {0}\n {1}'.
                                    format(node['host'], stdout + stderr))
 
-            if len(stdout.splitlines()) == 1:
+            pid_list = stdout.split()
+            if len(pid_list) == 1:
                 return int(stdout)
-            elif not stdout.splitlines():
+            elif not pid_list:
                 logger.debug("No VPP PID found on node {0}".
                              format(node['host']))
                 continue
             else:
                 logger.debug("More then one VPP PID found on node {0}".
                              format(node['host']))
-                ret_list = list()
-                for line in stdout.splitlines():
-                    ret_list.append(int(line))
+                ret_list = [int(pid) for pid in pid_list]
                 return ret_list
 
         return None
