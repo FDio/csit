@@ -70,3 +70,17 @@ class Constants(object):
 
     # Core dump directory
     CORE_DUMP_DIR = '/tmp'
+
+    # Mapping from NIC name to its bps and pps limits.
+    # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.
+    NIC_LIMITS = {
+        # VIC-1385 and XL710 could have ~40Gbps limit, not 24.5Gbps.
+        # Make sure we use 24.5Gbps just because the TG NIC is 25ge.
+        "Cisco-VIC-1227": (10000000000, 18750000),
+        "Cisco-VIC-1385": (24500000000, 18750000),
+        "Intel-X520-DA2": (10000000000, 18750000),
+        "Intel-X553": (10000000000, 18750000),
+        "Intel-X710": (10000000000, 18750000),
+        "Intel-XL710": (24500000000, 18750000),
+        "Intel-XXV710": (24500000000, 18750000),
+    }
