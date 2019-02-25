@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4813b3b6_92eb580c",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-02-25T12:03:27Z",
+      "side": 1,
+      "message": "Consider:\nreturn [int(pid) for pid in pid_list]",
+      "range": {
+        "startLine": 189,
+        "startChar": 15,
+        "endLine": 190,
+        "endChar": 31
+      },
+      "revId": "4e8ed05f71f3a07c947f0f7d8076315b8eaadf82",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
