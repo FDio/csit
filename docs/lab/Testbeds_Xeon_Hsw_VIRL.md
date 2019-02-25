@@ -147,6 +147,10 @@ Name | Comment
 10.30.50.28 | t4-sut1
 10.30.50.29 | t4-sut2
 10.30.50.30 | t4-sut3
+10.30.50.32 | nomad1
+10.30.50.33 | nomad2
+10.30.50.34 | nomad3
+10.30.50.35 | nomad4
 10.30.50.255 | Broadcast
 
 #### Management VLAN IP Addresses allocation
@@ -165,8 +169,8 @@ Name | Comment
 10.30.51.10 | netgate-2
 10.30.51.11 | netgate-3
 10.30.51.12 | softiron-1
-10.30.51.13 | softiron-2
-10.30.51.14 | softiron-3
+10.30.51.13 | nomad1arm arm cluster controller
+10.30.51.14 | nomad2arm arm cluster controller
 10.30.51.15 | LF Reserved
 10.30.51.16 | t1-tg1
 10.30.51.17 | t1-sut1
@@ -180,9 +184,18 @@ Name | Comment
 10.30.51.28 | t4-sut1
 10.30.51.29 | t4-sut2
 10.30.51.30 | t4-sut3
+10.30.51.32 | nomad1
+10.30.51.33 | nomad2
+10.30.51.34 | nomad3
+10.30.51.35 | nomad4
+10.30.51.38 | nomad3arm
+10.30.51.39 | nomad4arm
+10.30.51.40 | nomad5arm
+10.30.51.50 | 1device s1-t11-sut1
+10.30.51.51 | 1device s1-t12-sut1
 10.30.51.31-10.30.51.105 | VIRL1
-10.30.51.106-10.30.51.180 | VIRL2
-10.30.51.181-10.30.51.254 | VIRL3
+10.30.51.106-10.30.51.180 | VIRL2  1device cluster controller
+10.30.51.181-10.30.51.254 | VIRL3  x86 nomad infra server/client
 10.30.51.255 | Broadcast
 
 ### Testbeds1,2,3 Naming: Servers, Ports
