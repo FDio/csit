@@ -149,15 +149,11 @@ class VPPUtil(object):
         :type verbose: bool
         :raises PapiError: If no reply received for show_version API command.
         """
-        # TODO: move composition of api data to separate method
-        api_data = list()
-        api = dict(api_name='show_version')
-        api_args = dict()
-        api['api_args'] = api_args
-        api_data.append(api)
-
         api_reply = None
         with PapiExecutor(node) as papi_executor:
+            api_data = list()
+            api_data.append(papi_executor.compose_api_data(
+                api_name='show_version'))
             papi_executor.execute_papi(api_data)
             try:
                 papi_executor.papi_should_have_passed()
@@ -329,24 +325,21 @@ class VPPUtil(object):
         :raises RuntimeError: If failed to run command on host.
         :raises PapiError: If no API reply received.
         """
-        api_data = list()
-        api = dict(api_name='show_threads')
-        api_args = dict()
-        api['api_args'] = api_args
-        api_data.append(api)
-
         with PapiExecutor(node) as papi_executor:
+            api_data = list()
+            api_data.append(papi_executor.compose_api_data(
+                api_name='show_threads'))
             papi_executor.execute_papi(api_data)
             try:
                 papi_executor.papi_should_have_passed()
                 api_reply = papi_executor.get_papi_reply()
             except AssertionError:
-                raise RuntimeError('Failed to run {api_name} on host '
-                                   '{host}!'.format(host=node['host'], **api))
+                raise RuntimeError('Failed to run {api_name} on host {host}!'.
+                                   format(host=node['host'], **api_data[0]))
 
         if api_reply:
             return \
                 api_reply[0]['api_reply']['show_threads_reply']['thread_data']
         else:
             raise PapiError('No reply received for {api_name} on host {host}!'.
-                            format(host=node['host'], **api))
+                            format(host=node['host'], **api_data[0]))

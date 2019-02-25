@@ -253,16 +253,12 @@ class IPsecUtil(object):
         :type protocol: IPsecProto
         :type index: int
         """
-        # TODO: move composition of api data to separate method
-        api_data = list()
-        api = dict(api_name='ipsec_select_backend')
-        api_args = dict(protocol=protocol)
-        api_args['index'] = index
-        api['api_args'] = api_args
-        api_data.append(api)
-
         api_reply = None
         with PapiExecutor(node) as papi_executor:
+            api_data = list()
+            api_data.append(papi_executor.compose_api_data(
+                api_name='ipsec_select_backend', protocol=protocol,
+                index=index))
             papi_executor.execute_papi(api_data)
             try:
                 papi_executor.papi_should_have_passed()
@@ -290,15 +286,11 @@ class IPsecUtil(object):
         :param node: VPP node to dump IPsec backend on.
         :type node: dict
         """
-        # TODO: move composition of api data to separate method
-        api_data = list()
-        api = dict(api_name='ipsec_backend_dump')
-        api_args = dict()
-        api['api_args'] = api_args
-        api_data.append(api)
-
         api_reply = None
         with PapiExecutor(node) as papi_executor:
+            api_data = list()
+            api_data.append(papi_executor.compose_api_data(
+                api_name='ipsec_backend_dump'))
             papi_executor.execute_papi(api_data)
             try:
                 papi_executor.papi_should_have_passed()
@@ -308,6 +300,7 @@ class IPsecUtil(object):
             api_reply = papi_executor.get_papi_reply()
 
         if api_reply is not None:
+            # TODO: process dump to more readable format
             # api_r = api_reply[0]['api_reply']['ipsec_select_backend_reply']
             # if api_r['retval'] == 0:
             #     logger.trace('IPsec backend successfully selected on host '

@@ -129,6 +129,33 @@ class PapiExecutor(object):
                 api_name=api_name, api_reply=self._process_reply(api_reply))
             self._api_reply.append(api_reply_processed)
 
+    @staticmethod
+    def compose_api_data(api_name, **kwargs):
+        """Compose arguments for API command.
+
+        :param api_name: API command.
+        :param kwargs: Optional key-value arguments.
+        :type api_name: str
+        :type kwargs: dict
+        :returns: Api data dictionary:
+            {
+                "api_name": api_name,
+                "api_args":{
+                    arg1: value1,
+                    arg2: value2,
+                    ...
+                    }
+            }.
+        :rtype: dict
+        """
+        api = dict(api_name=api_name)
+        api_args = dict()
+        for key in kwargs:
+            api_args[key] = kwargs[key]
+        api['api_args'] = api_args
+
+        return api
+
     def execute_papi(self, api_data, timeout=120):
         """Execute PAPI command(s) on remote node and store the result.
 
