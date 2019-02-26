@@ -10,6 +10,16 @@ FD.io CSIT-1901 Report history and per .[ww] revision changes are listed below.
 |                |                                                            |
 |                |    a. VPP K8s Container Memif on 3n-hsw testbed.           |
 |                |                                                            |
+|                | 2. Removed TCP/IP tests.                                   |
+|                |                                                            |
+|                | 3. Reorganized graphs:                                     |
+|                |                                                            |
+|                |    a. :ref:`VPP_Packet_Throughput`                         |
+|                |    b. :ref:`throughput_speedup_multi_core`                 |
+|                |    c. :ref:`VPP_Packet_Latency`                            |
+|                |                                                            |
+|                |                                                            |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .08            | 1. Added more test runs:                                   |
 |                |                                                            |

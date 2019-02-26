@@ -22,5 +22,7 @@ Test Methodology
     methodology_vpp_device_functional
     methodology_ipsec_on_intel_qat
     methodology_trex_traffic_generator
-    methodology_http_tcp_with_wrk_tool
     methodology_plrsearch
+
+..
+    methodology_http_tcp_with_wrk_tool
