@@ -6,6 +6,11 @@
   become: yes
   become_user: root
   roles:
-    - common
-    - sut
-    - tg_sut
+    - role: common
+      tags: common
+    - role: tg
+      tags: tg
+    - role: tg_sut
+      tags: tg_sut
+    - role: calibration
+      tags: calibration
