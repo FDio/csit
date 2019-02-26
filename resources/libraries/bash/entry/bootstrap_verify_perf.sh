@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -33,12 +33,14 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
+source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
 select_topology || die
 gather_build || die
 check_download_dir || die
+ansible_hosts "calibration" || die
 activate_virtualenv "${CSIT_DIR}" || die
 reserve_testbed || die
 select_tags || die
