@@ -31,13 +31,13 @@
 3n-hsw-x520
 ~~~~~~~~~~~
 
-78b-base_and_scale
-------------------
+78b-base
+--------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-x520-78b-base_and_scale-ndr-tsa.html"></iframe>
+    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-x520-78b-base-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-x520-78b-base_and_scale-ndr-tsa}
-            \label{fig:ip6-3n-hsw-x520-78b-base_and_scale-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-x520-78b-base-ndr-tsa}
+            \label{fig:ip6-3n-hsw-x520-78b-base-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-x520-78b-base_and_scale-pdr-tsa.html"></iframe>
+    <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-x520-78b-base-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,49 +66,10 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-x520-78b-base_and_scale-pdr-tsa}
-            \label{fig:ip6-3n-hsw-x520-78b-base_and_scale-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-x520-78b-base-pdr-tsa}
+            \label{fig:ip6-3n-hsw-x520-78b-base-pdr-tsa}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
-
-78b-base_and_features
----------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-x520-78b-base_and_features-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-x520-78b-base_and_features-ndr-tsa}
-            \label{fig:ip6-3n-hsw-x520-78b-base_and_features-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-x520-78b-base_and_features-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-x520-78b-base_and_features-pdr-tsa}
-            \label{fig:ip6-3n-hsw-x520-78b-base_and_features-pdr-tsa}
-    \end{figure}

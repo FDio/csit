@@ -31,13 +31,13 @@
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
-64b-1t1c-base_and_scale
------------------------
+64b-1t1c-base
+-------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
+    <iframe id="ifrm21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-xl710-64b-1t1c-base-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,21 +46,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
-            \label{fig:ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-xl710-64b-1t1c-base-ndr-lat}
+            \label{fig:ip4-3n-hsw-xl710-64b-1t1c-base-ndr-lat}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-2t2c-base_and_scale
------------------------
+64b-2t2c-base
+-------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
+    <iframe id="ifrm22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-xl710-64b-2t2c-base-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -69,6 +69,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
-            \label{fig:ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-xl710-64b-2t2c-base-ndr-lat}
+            \label{fig:ip4-3n-hsw-xl710-64b-2t2c-base-ndr-lat}
     \end{figure}
