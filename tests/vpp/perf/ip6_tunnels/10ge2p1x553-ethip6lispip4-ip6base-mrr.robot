@@ -17,7 +17,7 @@
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
-| ... | NIC_Intel-X520-DA2 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
+| ... | NIC_Intel-X553 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | ${nic_name}
@@ -43,7 +43,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC6830.
 
 *** Variables ***
-| ${nic_name}= | Intel-X520-DA2
+| ${nic_name}= | Intel-X553
 # LISP overhead
 | ${overhead}= | 48
 # Traffic profile:
