@@ -88,6 +88,9 @@ rst_epilog = """
 .. _CSIT DMM Functional Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.dmm.func.html
 .. _CSIT VPP Device Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.device.html
 .. _VPP test framework documentation: https://docs.fd.io/vpp/{vpprelease}/vpp_make_test/html/
+.. _FD.io CSIT Testbeds - Xeon Haswell: https://git.fd.io/csit/tree/docs/lab/Testbeds_Xeon_Hsw_VIRL.md?h={release}
+.. _FD.io CSIT testbeds - Xeon Skylake, Arm, Atom: https://git.fd.io/csit/tree/docs/lab/Testbeds_Xeon_Skx_Arm_Atom.md?h={release}
+.. _Ansible inventory - hosts: https://git.fd.io/csit/tree/resources/tools/testbed-setup/ansible/inventories/lf_inventory/host_vars?h={release}
 .. _FD.io test executor dpdk performance job 3n-hsw: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-3n-hsw
 .. _FD.io test executor dpdk performance job 3n-skx: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-3n-skx
 .. _FD.io test executor dpdk performance job 2n-skx: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-verify-{srelease}-2n-skx

@@ -3,12 +3,10 @@ Calibration Data - Haswell
 
 Following sections include sample calibration data measured on t1-sut1
 server running in one of the Intel Xeon Haswell testbeds as specified in
-`CSIT/Testbeds: Xeon Hsw, VIRL
-<https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Hsw,_VIRL.#FD.io_CSIT_testbeds_-_Xeon_Haswell.2C_VIRL>`_.
+`FD.io CSIT Testbeds - Xeon Haswell`_.
 
 Calibration data obtained from all other servers in Haswell testbeds
 shows the same or similar values.
-
 
 Linux cmdline
 ~~~~~~~~~~~~~

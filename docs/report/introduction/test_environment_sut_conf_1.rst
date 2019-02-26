@@ -69,6 +69,15 @@ Linux Boot Parameters
   virtualized environment.
 - **hpet=disable** - [X86-32,HPET] Disable HPET and use PIT instead.
 
+Hugepages Configuration
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Huge pages are namaged via sysctl configuration located in
+`/etc/sysctl.d/90-csit.conf` on each testbed. Default huge page size is 2M.
+The exact amount of huge pages depends on testbed. All the values are defined
+in `Ansible inventory - hosts` files.
+
+
 Applied Boot Cmdline
 ~~~~~~~~~~~~~~~~~~~~
 
