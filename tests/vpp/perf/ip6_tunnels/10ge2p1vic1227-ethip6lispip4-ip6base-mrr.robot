@@ -17,7 +17,7 @@
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
-| ... | NIC_Intel-X520-DA2 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
+| ... | NIC_Cisco-VIC-1227 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | ${nic_name}
@@ -43,7 +43,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC6830.
 
 *** Variables ***
-| ${nic_name}= | Intel-X520-DA2
+| ${nic_name}= | Cisco-VIC-1227
 # LISP overhead
 | ${overhead}= | 48
 # Traffic profile:
@@ -106,18 +106,6 @@
 | tc06-1518B-4c-ethip6lispip4-ip6base-mrr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
-
-| tc07-9000B-1c-ethip6lispip4-ip6base-mrr
-| | [Tags] | 9000B | 1C
-| | framesize=${9000} | phy_cores=${1}
-
-| tc08-9000B-2c-ethip6lispip4-ip6base-mrr
-| | [Tags] | 9000B | 2C
-| | framesize=${9000} | phy_cores=${2}
-
-| tc09-9000B-4c-ethip6lispip4-ip6base-mrr
-| | [Tags] | 9000B | 4C
-| | framesize=${9000} | phy_cores=${4}
 
 | tc10-IMIX-1c-ethip6lispip4-ip6base-mrr
 | | [Tags] | IMIX | 1C

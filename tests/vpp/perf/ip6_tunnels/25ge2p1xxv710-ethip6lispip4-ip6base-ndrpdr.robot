@@ -16,8 +16,8 @@
 | Resource | resources/libraries/robot/overlay/lisp_static_adjacency.robot
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
-| ... | NIC_Intel-X520-DA2 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-XXV710 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | ${nic_name}
@@ -25,7 +25,8 @@
 | ...
 | Test Setup | Set up performance test
 | ...
-| Test Teardown | Tear down performance mrr test
+| Test Teardown | Tear down performance discovery test | ${min_rate}pps
+| ... | ${framesize} | ${traffic_profile}
 | ...
 | Test Template | Local Template
 | ...
@@ -38,12 +39,15 @@
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6\
 | ... | routing and static routes. LISPoIPv4 tunnel is configured between\
 | ... | DUT1 and DUT2. DUT1 and DUT2 tested with ${nic_name}.
-| ... | *[Ver] TG verification:* In MaxReceivedRate tests TG sends traffic\
-| ... | at line rate and reports total received/sent packets over trial period.\
+| ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
+| ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop\
+| ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
+| ... | of packets transmitted. NDR and PDR are discovered for different\
+| ... | Ethernet L2 frame sizes using MLRsearch library.\
 | ... | *[Ref] Applicable standard specifications:* RFC6830.
 
 *** Variables ***
-| ${nic_name}= | Intel-X520-DA2
+| ${nic_name}= | Intel-XXV710
 # LISP overhead
 | ${overhead}= | 48
 # Traffic profile:
@@ -55,8 +59,7 @@
 | | ... | [Cfg] DUT runs IPv6 LISP remote static mappings and whitelist\
 | | ... | filters config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.\
-| | ... | [Ver] Measure MaxReceivedRate for ${framesize}B frames using single\
-| | ... | trial throughput test.\
+| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
 | | ... | *Arguments:*
 | | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
@@ -65,6 +68,9 @@
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
+| | ...
+| | Set Test Variable | ${framesize}
+| | Set Test Variable | ${min_rate} | ${10000}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
@@ -79,54 +85,54 @@
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
-| | Then Traffic should pass with maximum rate
-| | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+| | Then Find NDR and PDR intervals using optimized search
+| | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
 *** Test Cases ***
-| tc01-78B-1c-ethip6lispip4-ip6base-mrr
+| tc01-78B-1c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | 78B | 1C
 | | framesize=${78} | phy_cores=${1}
 
-| tc02-78B-2c-ethip6lispip4-ip6base-mrr
+| tc02-78B-2c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | 78B | 2C
 | | framesize=${78} | phy_cores=${2}
 
-| tc03-78B-4c-ethip6lispip4-ip6base-mrr
+| tc03-78B-4c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | 78B | 4C
 | | framesize=${78} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip6lispip4-ip6base-mrr
+| tc04-1518B-1c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip6lispip4-ip6base-mrr
+| tc05-1518B-2c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip6lispip4-ip6base-mrr
+| tc06-1518B-4c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip6lispip4-ip6base-mrr
+| tc07-9000B-1c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | 9000B | 1C
 | | framesize=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip6lispip4-ip6base-mrr
+| tc08-9000B-2c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip6lispip4-ip6base-mrr
+| tc09-9000B-4c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip6lispip4-ip6base-mrr
+| tc10-IMIX-1c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip6lispip4-ip6base-mrr
+| tc11-IMIX-2c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip6lispip4-ip6base-mrr
+| tc12-IMIX-4c-ethip6lispip4-ip6base-ndrpdr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
