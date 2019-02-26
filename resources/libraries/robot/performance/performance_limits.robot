@@ -14,7 +14,7 @@
 *** Settings ***
 | Documentation | Performance suite keywords - Handling NIC and TG limits.
 | Library | Collections
-| Variables | ${CURDIR}/nic_limits.yaml
+| Variables | ${CURDIR}/../../python/Constants.py
 
 *** Keywords ***
 | Get Average Frame Size
@@ -76,7 +76,7 @@
 | | [Arguments] | ${nic_name} | ${framesize} | ${overhead}=${0}
 | | ...
 | | ${pps_limit} = | Set Variable | ${18750000}
-| | ${bps_limit} = | Get From Dictionary | ${NIC_LIMITS} | ${nic_name}
+| | ${bps_limit} = | Get From Dictionary | ${NIC_NAME_TO_LIMIT} | ${nic_name}
 | | ${avg_size} = | Get Average Frame Size | ${framesize}
 | | ${max_size} = | Set Variable If | '${framesize}' == 'IMIX_v4_1'
 | | ... | ${1518} | ${framesize}

@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,6 +17,7 @@ from glob import glob
 from os import getcwd
 
 from .DefaultTestcase import DefaultTestcase
+from resources.libraries.python.Constants import Constants
 
 
 class Regenerator(object):
@@ -61,6 +62,10 @@ class Regenerator(object):
             "vxlan+ip4": 114  # What is the real minimum for latency stream?
         }
         min_framesize_values = protocol_to_min_framesize.values()
+        nic_names = Constants.NIC_NAME_TO_CODE.keys()
+        primary_name = "Intel-X710"
+        primary_code = Constants.NIC_NAME_TO_CODE[primary_name]
+        len_primary_code = len(primary_code)
 
         def get_iface_and_suite_id(filename):
             """Get interface and suite ID.
@@ -158,13 +163,29 @@ class Regenerator(object):
         ]
         for filename in glob(pattern):
             print "Regenerating filename:", filename
+            iface, suite_id = get_iface_and_suite_id(filename)
+            if not iface.endswith(primary_code):
+                print "Ignoring non-primary NIC."
+                continue
             with open(filename, "r") as file_in:
                 text = file_in.read()
-                text_prolog = "".join(text.partition("*** Test Cases ***")[:-1])
-            iface, suite_id = get_iface_and_suite_id(filename)
+            text_prolog = "".join(text.partition("*** Test Cases ***")[:-1])
+            first_third, _, the_rest = text_prolog.partition(primary_name)
+            second_third, _, third_third = the_rest.partition(primary_name)
+            if len(third_third) < 1 or primary_name in third_third:
+                print "Ignoring malformed prolog."
+                continue
             testcase = self.testcase_class(suite_id)
-            with open(filename, "w") as file_out:
-                file_out.write(text_prolog)
-                add_testcases(testcase, iface, suite_id, file_out, kwargs_list)
+            prolog_thirds = first_third, second_third, third_third
+            iface_prefix = iface[:-len_primary_code]
+            for nic_name in nic_names:
+                nic_code = Constants.NIC_NAME_TO_CODE[nic_name]
+                iface = iface_prefix + nic_code
+                text_prolog = nic_name.join(prolog_thirds)
+                nic_filename = filename.replace(primary_code, nic_code)
+                with open(nic_filename, "w") as file_out:
+                    file_out.write(text_prolog)
+                    add_testcases(
+                        testcase, iface, suite_id, file_out, kwargs_list)
         print "Regenerator ends."
         print  # To make autogen check output more readable.
