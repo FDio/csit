@@ -45,8 +45,6 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-# X710-DA2 bandwidth limit
-| ${s_limit}= | ${10000000000}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n-ethip4-ip4src254
 
@@ -69,7 +67,7 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${s_limit} | ${framesize}
+| | ... | Intel-X710 | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 bridge domain in circular topology
 | | Then Traffic should pass with maximum rate
