@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "472bc356_bc7378f1",
+        "filename": "resources/libraries/python/autogen/Copyright.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-26T07:28:19Z",
+      "side": 1,
+      "message": "This is i think not right to be enforced i guess, maybe PTL should decide but what if tests are delivered by ARM/Pantheon or Intel? And does copyright make sense under apache?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 64
+      },
+      "revId": "2e386221079ed364d950776b7d4cddfd6dc2cab3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
