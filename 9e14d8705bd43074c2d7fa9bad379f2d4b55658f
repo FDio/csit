@@ -22,6 +22,30 @@
       "revId": "9e14d8705bd43074c2d7fa9bad379f2d4b55658f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b268f04f_63b1fc4f",
+        "filename": "docs/lab/Testbeds_Xeon_Hsw_VIRL.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-26T09:30:27Z",
+      "side": 1,
+      "message": "i would say?\n\nnomadX-hsw\nnomadX-arm\nnomadX-tsh\nnomadX-skx",
+      "parentUuid": "bcfaa7bb_f029f805",
+      "range": {
+        "startLine": 150,
+        "startChar": 14,
+        "endLine": 150,
+        "endChar": 20
+      },
+      "revId": "9e14d8705bd43074c2d7fa9bad379f2d4b55658f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
