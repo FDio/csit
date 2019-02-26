@@ -26,7 +26,7 @@ from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.constants import Constants as con
+from resources.libraries.python.Constants import Constants as con
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import Topology
 

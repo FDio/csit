@@ -22,7 +22,7 @@ from robot.api import logger
 
 from resources.libraries.python.HTTPRequest import HTTPRequest, HTTPCodes, \
     HTTPRequestError
-from resources.libraries.python.constants import Constants as Const
+from resources.libraries.python.Constants import Constants as Const
 from resources.libraries.python.honeycomb.HoneycombUtil import HoneycombError
 from resources.libraries.python.honeycomb.HoneycombUtil \
     import HoneycombUtil as HcUtil

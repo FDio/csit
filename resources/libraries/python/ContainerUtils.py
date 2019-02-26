@@ -19,7 +19,7 @@
 from collections import OrderedDict, Counter
 
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.constants import Constants
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
