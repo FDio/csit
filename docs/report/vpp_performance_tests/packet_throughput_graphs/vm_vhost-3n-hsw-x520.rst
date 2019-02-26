@@ -115,7 +115,7 @@
 
 .. raw:: latex
 
-\clearpage
+    \clearpage
 
 64b-1t1c-base-vm-l2sw
 ---------------------

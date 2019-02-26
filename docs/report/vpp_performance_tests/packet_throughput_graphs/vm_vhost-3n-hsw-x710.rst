@@ -166,7 +166,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm27" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_features-vm-ndr.html"></iframe>
+    <iframe id="ifrm33" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_features-vm-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -186,7 +186,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm28" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_features-vm-pdr.html"></iframe>
+    <iframe id="ifrm34" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_features-vm-pdr.html"></iframe>
     <p><br></p>
     </center>
 
