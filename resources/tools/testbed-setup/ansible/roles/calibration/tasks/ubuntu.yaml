@@ -1,0 +1,11 @@
+---
+# file: roles/calibration/tasks/ubuntu.yaml
+
+- name: Install calibration dependencies
+  apt:
+    name: '{{ item }}'
+    state: 'present'
+    install_recommends: False
+  with_items:
+    - 'spectre-meltdown-checker'
+  tags: install-csit-dependencies
