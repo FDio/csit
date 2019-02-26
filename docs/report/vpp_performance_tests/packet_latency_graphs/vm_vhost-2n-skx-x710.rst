@@ -31,13 +31,13 @@
 2n-skx-x710
 ~~~~~~~~~~~
 
-64b-2t1c-base-l2sw
-------------------
+64b-2t1c-base_and_features-l2sw
+-------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm33" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-2t1c-base-ndr-lat.html"></iframe>
+    <iframe id="ifrm33" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_features-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,21 +46,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-2n-skx-x710-64b-2t1c-base-ndr-lat}
-            \label{fig:vhost-l2sw-2n-skx-x710-64b-2t1c-base-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_features-ndr-lat}
+            \label{fig:vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_features-ndr-lat}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-4t2c-base-l2sw
-------------------
+64b-4t2c-base_and_features-l2sw
+-------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm34" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-4t2c-base-ndr-lat.html"></iframe>
+    <iframe id="ifrm34" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_features-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -69,8 +69,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-2n-skx-x710-64b-4t2c-base-ndr-lat}
-            \label{fig:vhost-l2sw-2n-skx-x710-64b-4t2c-base-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_features-ndr-lat}
+            \label{fig:vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_features-ndr-lat}
     \end{figure}
 
 .. raw:: latex
