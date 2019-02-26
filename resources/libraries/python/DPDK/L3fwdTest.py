@@ -16,7 +16,7 @@ This module exists to provide the l3fwd test for DPDK on topology nodes.
 """
 
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.constants import Constants
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.topology import NodeType, Topology
 
 

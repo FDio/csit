@@ -284,7 +284,7 @@ and unrelated ones such as PAL) if there are any (in addition to library ones).
 
   + It is NOT RECOMMENDED to use hard-coded constants (e.g. numbers,
     paths without any description). It is RECOMMENDED to use
-    configuration file(s), like /csit/resources/libraries/python/constants.py,
+    configuration file(s), like /csit/resources/libraries/python/Constants.py,
     with appropriate comments.
 
   + The code SHALL log at the lowest possible level of implementation,

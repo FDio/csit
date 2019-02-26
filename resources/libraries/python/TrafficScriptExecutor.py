@@ -13,7 +13,7 @@
 
 """Traffic script executor library."""
 
-from resources.libraries.python.constants import Constants
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import SSH
 
 __all__ = ['TrafficScriptExecutor']
