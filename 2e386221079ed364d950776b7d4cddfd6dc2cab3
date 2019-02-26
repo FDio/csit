@@ -22,6 +22,30 @@
       "revId": "2e386221079ed364d950776b7d4cddfd6dc2cab3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc3e9008_6c2ff3c3",
+        "filename": "resources/libraries/python/autogen/Copyright.py",
+        "patchSetId": 40
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-26T12:27:37Z",
+      "side": 1,
+      "message": "Copyright makes sense. But you are right, we have contributors with different copyrights.\n\nRemoving the file, as it is not used anyway.",
+      "parentUuid": "472bc356_bc7378f1",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 64
+      },
+      "revId": "2e386221079ed364d950776b7d4cddfd6dc2cab3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
