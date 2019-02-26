@@ -27,6 +27,11 @@ Server SUT and DUT performance depends on server and processor type,
 hence results for testbeds based on different servers must be reported
 separately, and compared if appropriate.
 
+Complete technical specifications of compute servers used in CSIT
+physical testbeds are maintained in FD.io CSIT repository:
+`FD.io CSIT testbeds - Xeon Skylake, Arm, Atom`_ and
+`FD.io CSIT Testbeds - Xeon Haswell`_.
+
 Following sections describe existing production testbed types.
 
 3-Node Xeon Haswell (3n-hsw)
@@ -75,10 +80,6 @@ NIC models:
 All Intel Xeon Haswell servers run with Intel Hyper-Threading disabled,
 making the number of logical cores exposed to Linux match the number of
 18 physical cores per processor socket.
-
-Complete 3n-hsw testbeds specification is available on
-`CSIT LF testbed <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_
-wiki page.
 
 Total of three 3n-hsw testbeds are in operation in FD.io labs.
 
@@ -129,10 +130,6 @@ All Intel Xeon Skylake servers run with Intel Hyper-Threading enabled,
 doubling the number of logical cores exposed to Linux, with 56 logical
 cores and 28 physical cores per processor socket.
 
-Complete 3n-skx testbeds specification is available on
-`CSIT LF lab extension <https://wiki.fd.io/view/CSIT/fdio_csit_lab_ext_lld_draft>`_
-wiki page.
-
 Total of two 3n-skx testbeds are in operation in FD.io labs.
 
 2-Node Xeon Skylake (2n-skx)
@@ -181,9 +178,5 @@ NIC models:
 All Intel Xeon Skylake servers run with Intel Hyper-Threading enabled,
 doubling the number of logical cores exposed to Linux, with 56 logical
 cores and 28 physical cores per processor socket.
-
-Complete 2n-skx testbed specification is available on
-`CSIT/Testbeds: Xeon Skx, Arm, Atom
-<https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Skx,_Arm,_Atom.>`_ wiki page.
 
 Total of four 2n-skx testbeds are in operation in FD.io labs.

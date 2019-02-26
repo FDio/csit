@@ -1,8 +1,12 @@
 ## FD.io CSIT testbeds - Xeon Skylake, Arm, Atom
-This is a low-level design implemented as an extensions of FD.io CSIT lab to accommodate the new Intel Xeon Skylake, Arm AArch64 and Atom devices. Content has been copied from [FD.io CSIT testbeds wiki page: Xeon_skx, Arm, Atom](https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Skx,_Arm,_Atom).
+
+This is a low-level design implemented as an extensions of FD.io CSIT lab to
+accommodate the new Intel Xeon Skylake, Arm AArch64 and Atom devices.
 
 ## Testbeds Overview
+
 ### Testbeds Type Breakdown
+
 ```
  #.  CSIT_tb.           Purpose.    SUT.  TG.   #tb.  #SUTs.  #TGs. #skx_node.
  1.  1-node Xeon.       func.       skx.  n/a.  2.    2.      0.    2.
@@ -10,33 +14,64 @@ This is a low-level design implemented as an extensions of FD.io CSIT lab to acc
  3.  3-node Xeon.       perf.       skx.  skx.  2.    4.      2.    6.
  4.  tcp-l47.           tcp-stack.  skx.  ps1.  1.    1.      1.    1.
  5.  atom-netgate.      perf+func.  net.  skx.  1.    3.      1.    1.
- 6.  aarch64-d05        perf+func.  arm.  skx.  2.    2.      1.    1.
- 7.  aarch64-mcbin      perf        arm.  skx.  1.    2.      1.    1.
-                                                 Total skx_node:   20.
+ 6.  aarch64-d05        perf        arm.  skx.  1.    2.      1.    1/2.
+ 7.  aarch64-mcbin      perf        arm.  skx.  1.    2.      1.    1/2.
+ 8.  1-node aarch64     func        arm.  n/a.  1.    1.      0.    0.
+                                                 Total skx_node:   19.
 ```
 
 ### 1-Node Xeon Testbeds
-One 1-node Xeon testbed for VPP_Device tests is built using one SUT (Type-6 server), with NIC ports connected back-to-back.
+
+One 1-node Xeon testbed for VPP_Device tests is built using one SUT (Type-6
+server), with NIC ports connected back-to-back.
 
 ### 2-Node Xeon Testbeds
-Four 2-node Xeon testbeds (are expected to be built|are built), with each testbed using one SUTs (Type-1 server) and one TG (Type-2 server) connected back-to-back. NIC cards placement into slots and NIC ports connectivity is following the testbed specification included in next sections.
+
+Four 2-node Xeon testbeds (are expected to be built|are built), with each
+testbed using one SUTs (Type-1 server) and one TG (Type-2 server) connected
+back-to-back. NIC cards placement into slots and NIC ports connectivity is
+following the testbed specification included in next sections.
 
 ### 3-Node Xeon Testbeds
-Two 3-node Xeon testbeds (are expected to be built|are built), with each testbed using two SUTs (Type-1 server) and one TG (Type-2 server) connected in full-mesh triangle. NIC cards placement into slots and NIC ports connectivity is following the testbed specification included in next sections.
 
-### Arm Testbeds
-One 3-node Huawei testbeds (are expected to be built|are built), with each testbed using two SUTs (Type-3 server) and one TG (Type-2 server) connected in full-mesh triangle.
+Two 3-node Xeon testbeds (are expected to be built|are built), with each testbed
+using two SUTs (Type-1 server) and one TG (Type-2 server) connected in full-mesh
+triangle. NIC cards placement into slots and NIC ports connectivity is following
+the testbed specification included in next sections.
 
-One 3-node Marvell testbeds (are expected to be built|are built), with each testbed using two SUTs (Type-4 server) and one TG (Type-2 server) connected in full-mesh triangle.
+### 1-Node Arm Marvell ThunderX2 Testbed
+
+One 1-node ThunderX2 testbed for VPP_Device tests is expected to be built using
+one SUT (Type-9 server), with NIC ports connected back-to-back.
+
+### 3-Node Arm Huawei TaiShan Testbed
+
+One 3-node TaiShan testbed is built, with each testbed using two SUTs (Type-3
+server) and one TG (Type-2 server) connected in full-mesh triangle. NIC cards
+placement into slots and NIC ports connectivity is following the testbed
+specification included in next sections.
+
+### 3-Node Arm Marvell MACCHIATObin Testbed
+
+One 3-node MACCHIATObin testbeds is built, with each testbed using two SUTs
+(Type-4 server) and one TG (Type-2 server) connected in full-mesh triangle.
+Built-in NIC ports connectivity is following the testbed specification included
+in next sections.
 
 ### TCP/IP and L47 Testbeds
+
 One 2-node Ixia PS One and Xeon server testbed, for TCP/IP host stack tests.
 
 ### Atom Testbeds
-One 3-node Atom (Netgate based) testbed is built consisting of three SUTs (Type-5 Netgate device.) NIC cards placement into slots and NIC ports connectivity is following the testbed specification included in the next section.
+One 3-node Atom (Netgate based) testbed is built consisting of three SUTs
+(Type-5 Netgate device.) NIC cards placement into slots and NIC ports
+connectivity is following the testbed specification included in the next
+section.
 
 ## Inventory
+
 ### Appliances
+
 ```
 1. Ixia PerfectStorm One Appliance
     - 1 * PS10GE4NG
@@ -51,8 +86,14 @@ One 3-node Atom (Netgate based) testbed is built consisting of three SUTs (Type-
 ```
 
 ### Arm Servers
+
 ```
 1. Arm Cortex A-72 servers
+    - 1 * ThunderX2
+        - Chassis: Marvell ThunderX2
+        - Processors: 2* ThunderX2 CN9975 ~ 112* ThunderX2.
+        - RAM Memory: 4* 32GB RDIMM
+        - Disks: 1* 480GB SSD Micron, 1* 1000GB HDD Seagate_25
     - 2 * Huawei TaiShan 2280.
         - Chassis: Huawei TaiShan 2280.
         - Processors: 1* hip07-d05 ~ 64* Arm Cortex-A72.
@@ -68,22 +109,24 @@ One 3-node Atom (Netgate based) testbed is built consisting of three SUTs (Type-
 Platform Name and Specification | Role | Status | Hostname | IP | IPMI | Cores | RAM | Ethernet | Distro
 ------------------------------- | ---- | ------ | -------- | -- | ---- | ----- | --- | -------- | ------
 [SoftIron OverDrive 1000](https://softiron.com/development-tools/overdrive-1000/) | CI build server | Up, Not Running Jobs | softiron-1 | 10.30.51.12 | N/A | 4 | 8GB |  | openSUSE
-  | CI build server | Up, Not Running Jobs | softiron-2 | 10.30.51.13 | N/A | 4 | 8GB |   | openSUSE
-  | CI build server | Up, Not Running Jobs | softiron-3 | 10.30.51.14 | N/A | 4 | 8GB |   | openSUSE
-[Cavium ThunderX](https://cavium.com/product-thunderx-arm-processors.html) | CI build server | Up, Running VPP CI | nomad3arm | 10.30.51.38 | 10.30.50.38 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
-  | CI build server | Up, Running VPP CI | nomad4arm | 10.30.51.39 | 10.30.50.39 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
-  | CI build server | Up, Running VPP CI | nomad5arm | 10.30.51.40 | 10.30.50.40 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
-  | CI build server | Up, Not Running Jobs, USB_NIC broken, QSFP wiring to be added | fdio-cavium4 | 10.30.51.65 | 10.30.50.65 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 18.04.1
-  | VPP dev debug | Up | fdio-cavium5 | 10.30.51.66 | 10.30.50.66 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 18.04.1
-  | CI build server | Up, Not Running Jobs, USB_NIC broken, QSFP wiring to be added | fdio-cavium6 | 10.30.51.67 | 10.30.50.67 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 16.04.1
-  | VPP dev debug | Up | fdio-cavium7 | 10.30.51.68 | 10.30.50.68 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 16.04.1
-Huawei TaiShan 2280 | CSIT Performance | Up, Manual perf experiments | s15-t33-sut1 | 10.30.51.36 | 10.30.50.36 | 64 | 128GB | 2x10GbE SFP+ Intel 82599 / 2x25GbE SFP28 Mellanox CX-4 | Ubuntu 17.10
-  | CSIT Performance | Up, Manual perf experiments | s16-t33-sut2 | 10.30.51.37 | 10.30.50.37 | 64 | 128GB | 2x10GbE SFP+ Intel 82599 / 2x25GbE SFP28 Mellanox CX-4 | Ubuntu 17.10
+  | | CI build server | Up, Not Running Jobs | softiron-2 | 10.30.51.13 | N/A | 4 | 8GB |   | openSUSE
+  | | CI build server | Up, Not Running Jobs | softiron-3 | 10.30.51.14 | N/A | 4 | 8GB |   | openSUSE
+[Marvell ThunderX](https://www.marvell.com/server-processors/thunderx-arm-processors/) | CI build server | Up, Running VPP CI | nomad3arm | 10.30.51.38 | 10.30.50.38 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
+  | | CI build server | Up, Running VPP CI | nomad4arm | 10.30.51.39 | 10.30.50.39 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
+  | | CI build server | Up, Running VPP CI | nomad5arm | 10.30.51.40 | 10.30.50.40 | 96 | 128GB | 3x40GbE QSFP+ / 4x10GbE SFP+ | Ubuntu 16.04
+  | | CI build server | Up, Not Running Jobs, USB_NIC broken, QSFP wiring to be added | nomad6arm | 10.30.51.65 | 10.30.50.65 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 18.04.1
+  | | VPP dev debug | Up | nomad7arm | 10.30.51.66 | 10.30.50.66 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 18.04.1
+  | | CI build server | Up, Not Running Jobs, USB_NIC broken, QSFP wiring to be added | nomad8arm | 10.30.51.67 | 10.30.50.67 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 16.04.1
+  | | VPP dev debug | Up | nomad9arm | 10.30.51.68 | 10.30.50.68 | 96 | 256GB | 2xQSFP+ / USB Ethernet | Ubuntu 16.04.1
+[Marvell ThunderX2](https://www.marvell.com/server-processors/thunderx2-arm-processors/) | VPP device server | Being Provisioned | s27-t13-sut1 | 10.30.51.69 | 10.30.50.69 | 112 | 128GB | 3x40GbE QSFP+ XL710-QDA2 | Ubuntu 18.04.1
+Huawei TaiShan 2280 | CSIT Performance | Up, Manual perf experiments | s17-t33-sut1 | 10.30.51.36 | 10.30.50.36 | 64 | 128GB | 2x10GbE SFP+ Intel 82599 / 2x25GbE SFP28 Mellanox CX-4 | Ubuntu 17.10
+  | | CSIT Performance | Up, Manual perf experiments | s18-t33-sut2 | 10.30.51.37 | 10.30.50.37 | 64 | 128GB | 2x10GbE SFP+ Intel 82599 / 2x25GbE SFP28 Mellanox CX-4 | Ubuntu 17.10
 [Marvell MACCHIATObin](http://macchiatobin.net/) | CSIT Performance | Up, Manual experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | s20-t34-sut1 | 10.30.51.41 | 10.30.51.49, then connect to /dev/ttyUSB0 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.4
-  | CSIT Performance | Up, Manual experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | s21-t34-sut2 | 10.30.51.42 | 10.30.51.49, then connect to /dev/ttyUSB1 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.5
-  | VPP dev debug | Up, Manual VPP Device experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | fdio-mcbin3 | 10.30.51.43 | 10.30.51.49, then connect to /dev/ttyUSB2 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.5
+  | | CSIT Performance | Up, Manual experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | s21-t34-sut2 | 10.30.51.42 | 10.30.51.49, then connect to /dev/ttyUSB1 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.5
+  | | VPP dev debug | Up, Manual VPP Device experiments, Full Skx TG too much for it - suggest to use LXC/DRC TG(!) | fdio-mcbin3 | 10.30.51.43 | 10.30.51.49, then connect to /dev/ttyUSB2 | 4 | 16GB | 2x10GbE SFP+ | Ubuntu 16.04.5
 
 ### Xeon and Atom Servers
+
 ```
 1. Intel Xeon servers:
     - 20 * SuperMicro SYS-7049GP-TRT with Xeon Skylake processors.
@@ -101,6 +144,7 @@ Huawei TaiShan 2280 | CSIT Performance | Up, Manual perf experiments | s15-t33-s
 ```
 
 ### Network Interface Cards
+
 ```
 1. 10GE NICs
     - 14 * Intel® Ethernet Converged Network Adapter X710-DA4
@@ -115,7 +159,9 @@ Huawei TaiShan 2280 | CSIT Performance | Up, Manual perf experiments | s15-t33-s
 ```
 
 ### Pluggables and Cables
+
 Pluggables:
+
 ```
 1. 10GE SFP+
     - 16 * Intel E10GSFPSR Ethernet SFP+ SR Optics
@@ -129,6 +175,7 @@ Pluggables:
 ```
 
 Standalone cables:
+
 ```
 1. 10GE
     - None
@@ -141,25 +188,36 @@ Standalone cables:
 ```
 
 ### Other Network Cards
+
 Any QATs?
 
 ## Installation Status
-Lab installation status is tracked by LF IT team in [FD.io Server Status](https://docs.google.com/document/d/16TdvGC73wuNQjkP355MTXRckv7yqnaxJkWwX7G7izEo/edit?ts=5b10411b#heading=h.dprb64shku8u).
+
+Lab installation status is tracked by LF IT team in
+[FD.io Server Status](https://docs.google.com/document/d/16TdvGC73wuNQjkP355MTXRckv7yqnaxJkWwX7G7izEo/edit?ts=5b10411b#heading=h.dprb64shku8u).
 
 ## Server/Device Management and Naming
+
 ### Server Management Requirements
+
 Total of 20 SM SYS-7049GP-TRT servers are made available for FD.IO CSIT testbed.
-For management purposes, each server must have following two ports connected to the management network:
+For management purposes, each server must have following two ports connected to
+the management network:
+
 ```
 - 1GE IPMI port
   - IPMI - Intelligent Platform Management Interface.
-  - Required for access to embedded server management with WebUI, CLI, SNMPv3, IPMIv2.0, for firmware (BIOS) and OS updates.
+  - Required for access to embedded server management with WebUI, CLI, SNMPv3,
+    IPMIv2.0, for firmware (BIOS) and OS updates.
 - 1GE/10GE management port
   - hostOS management port for general system management.
 ```
 
 ### Server and Port Naming Convention
-Following naming convention is used within this page to specify physical connectivity and wiring across defined CSIT testbeds:
+
+Following naming convention is used within this page to specify physical
+connectivity and wiring across defined CSIT testbeds:
+
 ```
 - testbedname: testbedN.
 - hostname:
@@ -179,7 +237,10 @@ Following naming convention is used within this page to specify physical connect
 ```
 
 ### Server Management - Addressing
-Each server has a LOM (Lights-Out-Management e.g. SM IPMI) and a Management port, which are connected to two different VLANs.
+
+Each server has a LOM (Lights-Out-Management e.g. SM IPMI) and a Management
+port, which are connected to two different VLANs.
+
 ```
 1. LOM (IPMI) VLAN:
     - Subnet: 10.30.50.0/24
@@ -194,6 +255,7 @@ Each server has a LOM (Lights-Out-Management e.g. SM IPMI) and a Management port
     - DNS1: 199.204.44.24
     - DNS2: 199.204.47.54
 ```
+
 To access these hosts, an VPN connection is required.
 
 ### LOM (IPMI) VLAN IP Addresses
@@ -203,9 +265,14 @@ To access these hosts, an VPN connection is required.
 ..
 
 ## Testbeds Specification - Target Build
+
 ### Server/Ports Naming, NIC Placement
+
 #### 1-Node Xeon
-Each server in 1-node Xeon topology has its NIC cards placed, and NIC cards and ports indexed per following specification:
+
+Each server in 1-node Xeon topology has its NIC cards placed, and NIC cards and
+ports indexed per following specification:
+
 ```
 - Server1 [Type-6]:
     - testbedname: testbed11.
@@ -238,7 +305,10 @@ Each server in 1-node Xeon topology has its NIC cards placed, and NIC cards and 
 ```
 
 #### 2-Node Xeon
-Each server in 2-node Xeon topology has its NIC cards placed, and NIC cards and ports indexed per following specification:
+
+Each server in 2-node Xeon topology has its NIC cards placed, and NIC cards and
+ports indexed per following specification:
+
 ```
 - Server3 [Type-1]:
     - testbedname: testbed21.
@@ -355,7 +425,10 @@ Each server in 2-node Xeon topology has its NIC cards placed, and NIC cards and 
 ```
 
 #### 3-Node Xeon
-Each server in 3-node Xeon topology has its NIC cards placed, and NIC cards and ports indexed per following specification:
+
+Each server in 3-node Xeon topology has its NIC cards placed, and NIC cards and
+ports indexed per following specification:
+
 ```
 - Server11 [Type-1]:
     - testbedname: testbed31.
@@ -443,8 +516,27 @@ Each server in 3-node Xeon topology has its NIC cards placed, and NIC cards and 
         - s16-t32-tg1-c9/p2 - FUTURE 100GE-port2 ConnectX5-2p100GE.
 ```
 
+#### 1-Node Arm
+
+```
+- Server17 [Type-3]:
+    - testbedname: testbed13.
+    - hostname: s27-t13-sut1.
+    - IPMI IP: 10.30.50.69
+    - Host IP: 10.30.51.69
+    - portnames:
+        - s27-t13-sut1-c1/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s27-t13-sut1-c1/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s27-t13-sut1-c3/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s27-t13-sut1-c3/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+        - s27-t13-sut1-c6/p1 - 40GE-port1 XL710-QDA2-2p40GE.
+        - s27-t13-sut1-c6/p2 - 40GE-port2 XL710-QDA2-2p40GE.
+```
+
 #### 3-Node Arm
+
 Note: Server19 (TG) is shared between testbed33 & testbed34
+
 ```
 - Server17 [Type-3]:
     - testbedname: testbed33.
@@ -452,22 +544,22 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
     - IPMI IP: 10.30.50.36
     - Host IP: 10.30.51.36
     - portnames:
-        - s17-t33-sut1-ca/p1 - 10GE-port1 82599-2p10GE.
-        - s17-t33-sut1-ca/p2 - 10GE-port2 82599-2p10GE.
-        - s17-t33-sut1-c2/p1 - 25GE-port1 cx4-2p25GE.
-        - s17-t33-sut1-c2/p2 - 25GE-port2 cx4-2p25GE.
+        - s17-t33-sut1-c6/p1 - 10GE-port1 82599-2p10GE.
+        - s17-t33-sut1-c6/p2 - 10GE-port2 82599-2p10GE.
+        - s17-t33-sut1-c4/p1 - 25GE-port1 cx4-2p25GE.
+        - s17-t33-sut1-c4/p2 - 25GE-port2 cx4-2p25GE.
 - Server18 [Type-3]:
     - testbedname: testbed33.
     - hostname: s18-t33-sut2.
     - IPMI IP: 10.30.50.37
     - Host IP: 10.30.51.37
     - portnames:
-        - s18-t33-sut2-ca/p1 - 10GE-port1 82599-2p10GE.
-        - s18-t33-sut2-ca/p2 - 10GE-port2 82599-2p10GE.
-        - s18-t33-sut2-c2/p1 - 25GE-port1 cx4-2p25GE.
-        - s18-t33-sut2-c2/p2 - 25GE-port2 cx4-2p25GE.
+        - s18-t33-sut2-c6/p1 - 10GE-port1 82599-2p10GE.
+        - s18-t33-sut2-c6/p2 - 10GE-port2 82599-2p10GE.
+        - s18-t33-sut2-c4/p1 - 25GE-port1 cx4-2p25GE.
+        - s18-t33-sut2-c4/p2 - 25GE-port2 cx4-2p25GE.
 - Server19 [Type-2]:
-    - testbedname: testbed33.
+    - testbednames: testbed33 and testbed34.
     - hostname: s19-t33t34-tg1.
     - IPMI IP: 10.30.50.46
     - Host IP: 10.30.51.49
@@ -478,6 +570,10 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
         - s19-t33t34-tg1-c2/p4 - 10GE-port4 x710-4p10GE.
         - s19-t33t34-tg1-c4/p1 - 25GE-port1 xxv710-DA2-2p25GE.
         - s19-t33t34-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
+        - s19-t33t34-tg1-c10/p1 - 10GE-port1 x710-4p10GE.
+        - s19-t33t34-tg1-c10/p2 - 10GE-port2 x710-4p10GE.
+        - s19-t33t34-tg1-c10/p3 - 10GE-port3 x710-4p10GE.
+        - s19-t33t34-tg1-c10/p4 - 10GE-port4 x710-4p10GE.
 - Server20 [Type-4]:
     - testbedname: testbed34.
     - hostname: s20-t34-sut1.
@@ -497,7 +593,10 @@ Note: Server19 (TG) is shared between testbed33 & testbed34
 ```
 
 #### TCP/IP and L47
-Each server (appliance) in 2-node TCP/IP topology has its NIC cards placed, and NIC cards and ports indexed per following specification:
+
+Each server (appliance) in 2-node TCP/IP topology has its NIC cards placed, and
+NIC cards and ports indexed per following specification:
+
 ```
 - Server25 [Type-8]:
     - testbedname: testbed25.
@@ -522,7 +621,9 @@ Each server (appliance) in 2-node TCP/IP topology has its NIC cards placed, and 
 ```
 
 #### 3-Node Atom
+
 Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
+
 ```
 - Server22 [Type-5]:
     - testbedname: testbed35.
@@ -554,8 +655,12 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
 ```
 
 ### Physical Connectivity within Testbeds
+
 #### 1-Node Xeon
-Two 1-Node testbeds are constructed by connecting 2 Xeon servers using below specification:
+
+Two 1-Node testbeds are constructed by connecting 2 Xeon servers using below
+specification:
+
 ```
 - testbed11:
     - ring1 10GE-ports x710-4p10GE:
@@ -578,7 +683,10 @@ Two 1-Node testbeds are constructed by connecting 2 Xeon servers using below spe
 ```
 
 #### 2-Node Xeon
-Four 2-Node testbeds are constructed by connecting 8 Xeon servers using below specification:
+
+Four 2-Node testbeds are constructed by connecting 8 Xeon servers using below
+specification:
+
 ```
 - testbed21:
     - ring1 10GE-ports x710-4p10GE on SUT:
@@ -647,7 +755,10 @@ Four 2-Node testbeds are constructed by connecting 8 Xeon servers using below sp
 ```
 
 #### 3-Node Xeon
-Two 3-Node testbeds are constructed by connecting 6 Xeon servers using below specification:
+
+Two 3-Node testbeds are constructed by connecting 6 Xeon servers using below
+specification:
+
 ```
 - testbed31:
     - ring1 10GE-ports x710-4p10GE on SUTs:
@@ -691,18 +802,43 @@ Two 3-Node testbeds are constructed by connecting 6 Xeon servers using below spe
         - s16-t32-tg1-c10/p3 to s16-t32-tg1-c10/p4.
 ```
 
+
+#### 1-Node Arm
+
+One 1-Node testbed is constructed by connecting 1 Arm server using below
+specification:
+
+```
+- testbed13:
+    - ring1 40GE-ports XL710-QDA2-2p40GE on SUTs:
+        - s27-t13-sut1-c1/p2 - s27-t13-sut1-c3/p1.
+    - ring2 40GE-ports XL710-QDA2-2p40GE on SUTs:
+        - s27-t13-sut1-c3/p2 - s27-t13-sut1-c6/p1.
+    - ring3 40GE-ports XL710-QDA2-2p40GE on SUTs:
+        - s27-t13-sut1-c6/p2 - s27-t13-sut1-c1/p1.
+```
+
 #### 3-Node Arm
-One 3-Node testbed is constructed by connecting 3 Arm servers using below specification:
+
+One 3-Node testbed is constructed by connecting 2 TaiShan servers and one Xeon
+server using below specification:
+
 ```
 - testbed33:
     - ring1 10GE-ports 82599-2p10GE on SUTs:
-        - t33t34-tg1-c2/p1 - t33-sut1-ca/p1.
-        - t33-sut1-ca/p2 - t33-sut2-ca/p1.
-        - t33-sut2-ca/p2 - t33t34-tg1-c2/p2.
+        - t33t34-tg1-c2/p2 - t33-sut1-c6/p2.
+        - t33-sut1-c6/p1 - t33-sut2-c6/p2.
+        - t33-sut2-c6/p1 - t33t34-tg1-c2/p1.
     - ring2 25GE-ports cx4-2p25GE on SUTs:
-        - t33t34-tg1-c4/p1 - t33-sut1-c2/p1.
-        - t33-sut1-c2/p2 - t33-sut2-c2/p1.
-        - t33-sut2-c2/p2 - t33t34-tg1-c4/p2.
+        - t33t34-tg1-c4/p2 - t33-sut1-c4/p2.
+        - t33-sut1-c4/p1 - t33-sut2-c4/p2.
+        - t33-sut2-c4/p1 - t33t34-tg1-c4/p1.
+```
+
+One 3-Node testbed is constructed by connecting 2 MACCHIATObin servers and one
+Xeon server using below specification:
+
+```
 - testbed34:
     - ring1 10GE-ports Marvell on SUTs:
         - t33t34-tg1-c2/p3 - t34-sut1-ca/p1.
@@ -711,7 +847,10 @@ One 3-Node testbed is constructed by connecting 3 Arm servers using below specif
 ```
 
 #### TCP/IP and L47
-One 2-Node TCP/IP testbed is constructed by connecting Ixia PSOne and 1 Xeon server using below specification:
+
+One 2-Node TCP/IP testbed is constructed by connecting Ixia PSOne and 1 Xeon
+server using below specification:
+
 ```
 - testbed25:
     - link1 10GE-port x710-4p10GE on SUT:
@@ -725,13 +864,19 @@ One 2-Node TCP/IP testbed is constructed by connecting Ixia PSOne and 1 Xeon ser
 ```
 
 #### 3-Node Atom
+
 ..
 
 ## Server Specification
+
 ### Hardware Configuration
-The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware server configurations:
+
+The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware
+server configurations:
+
 ```
-1. Type-1: Purpose - (Intel Xeon Processor) SUT for SW Data Plane Workload i.e. VPP, testpmd.
+1. Type-1: Purpose - (Intel Xeon Processor) SUT for SW Data Plane Workload i.e.
+   VPP, testpmd.
     - Quantity: TBD based on testbed allocation.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -771,7 +916,8 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: x710-4p10GE Intel.
-3. Type-3: Purpose - (Arm hip07-d05 Processor) SUT for SW Data Plane Workload i.e. VPP, testpmd.
+3. Type-3: Purpose - (Arm hip07-d05 Processor) SUT for SW Data Plane Workload
+   i.e. VPP, testpmd.
     - Quantity: 2
     - Physical connectivity:
         - IPMI(?) and host management ports.
@@ -782,9 +928,10 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
         - RAM Memory: 8* 16GB DDR4-2400MT/s
         - Disks: 1* 4TB SATA HDD
     - NICs configuration:
-        - PCIe Slot2 e9:00.xx: connectx4-2p25GE Mellanox.
-        - PCIe Slota 11:00.xx: 82599-2p10GE Intel.
-4. Type-4: Purpose - (Arm Armada 8040 Processor) SUT for SW Data Plane Workload i.e. VPP, testpmd.
+        - PCIe Slot4 e9:00.xx: connectx4-2p25GE Mellanox.
+        - PCIe Slot6 11:00.xx: 82599-2p10GE Intel.
+4. Type-4: Purpose - (Arm Armada 8040 Processor) SUT for SW Data Plane Workload
+   i.e. VPP, testpmd.
     - Quantity: 3
     - Physical connectivity:
         - Host management ports.
@@ -796,7 +943,8 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
         - Disks: 1* 128GB(?) SATA SDD
     - NICs configuration:
         - pp2-2p10GE Marvell (on-chip Ethernet ports ; marvell plugin in VPP)
-5. Type-5: Purpose - (Intel Atom Processor) SUT for SW Data Plane Workload i.e. VPP, testpmd.
+5. Type-5: Purpose - (Intel Atom Processor) SUT for SW Data Plane Workload i.e.
+   VPP, testpmd.
     - Quantity: TBD based on testbed allocation.
     - Physical connectivity:
         - Management: serial Port (usb) for console
@@ -829,7 +977,8 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-7. Type-7: Purpose - Ixia PerfectStorm One Appliance TG for TCP/IP performance tests.
+7. Type-7: Purpose - Ixia PerfectStorm One Appliance TG for TCP/IP performance
+   tests.
     - Quantity: 1.
     - Physical connectivity:
         - Host management interface: 10/100/1000-BaseT.
@@ -868,7 +1017,8 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-9. Type-9: Purpose - (Cavium ThunderX2 Processor) SUT for VPP_Device functional tests.
+9. Type-9: Purpose - (Marvell ThunderX2 Processor) SUT for VPP_Device functional
+   tests.
     - Quantity: 1
     - Physical connectivity:
         - IPMI and host management ports.
@@ -880,10 +1030,13 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
         - RAM Memory: 4* 32GB RDIMM
         - Disks: 1* 480GB SSD Micron, 1* 1000GB HDD Seagate_25
     - NICs configuration:
-        - PCIe Slotx <TBD>: XL710-QDA2.
-        - PCIe Sloty <TBD>: XL710-QDA2.
-  - PCIe Slotz <TBD>: XL710-QDA2.
-10. Type-10: Purpose - (Intel Atom C3000 Processor) SUT for SW Data Plane Workload i.e. VPP, testpmd.
+        - Numa0:
+            - PCIe Slot1 05:00.xx: XL710-QDA2.
+            - PCIe Slot3 08:00.xx: XL710-QDA2.
+        - Numa1:
+            - PCIe Slot6 85:00.xx: XL710-QDA2.
+10. Type-10: Purpose - (Intel Atom C3000 Processor) SUT for SW Data Plane
+    Workload i.e. VPP, testpmd.
     - Quantity: 4
     - Physical connectivity:
         - IPMI and host management ports.
@@ -900,7 +1053,9 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ### Xeon Skx Server BIOS Configuration
+
 #### Boot Feature
+
 ```
   |  Quiet Boot                                [Enabled]               |Boot option                  |
   |                                                                    |                             |
@@ -920,6 +1075,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 #### CPU Configuration
+
 ```
   |  Processor Configuration                                           |Enables Hyper Threading      |
   |  --------------------------------------------------                |(Software Method to          |
@@ -954,6 +1110,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ##### Advanced Power Management Configuration
+
 ```
   |  Advanced Power Management Configuration                           |Switch CPU Power Management  |
   |  --------------------------------------------------                |profile                      |
@@ -968,6 +1125,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ###### CPU P State Control
+
 ```
   |  CPU P State Control                                               |Enable/Disable EIST          |
   |                                                                    |(P-States)                   |
@@ -976,6 +1134,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ###### Hardware PM State Control
+
 ```
   |  Hardware PM State Control                                         |Disable: Hardware chooses a  |
   |                                                                    |P-state based on OS Request  |
@@ -989,6 +1148,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ###### CPU C State Control
+
 ```
   |  CPU C State Control                                               |Autonomous Core C-State      |
   |                                                                    |Control                      |
@@ -998,6 +1158,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ###### Package C State Control
+
 ```
   |  Package C State Control                                           |Package C State limit        |
   |                                                                    |                             |
@@ -1005,6 +1166,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ###### CPU T State Control
+
 ```
   |  CPU T State Control                                               |Enable/Disable Software      |
   |                                                                    |Controlled T-States          |
@@ -1012,6 +1174,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ##### Chipset Configuration
+
 ```
   |  WARNING: Setting wrong values in below sections may cause         |North Bridge Parameters      |
   |           system to malfunction.                                   |                             |
@@ -1020,6 +1183,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ###### North Bridge
+
 ```
   |> UPI Configuration                                                 |Displays and provides        |
   |> Memory Configuration                                              |option to change the UPI     |
@@ -1027,6 +1191,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ###### UPI Configuration
+
 ```
   |  UPI Configuration                                                 |Choose Topology Precedence   |
   |  --------------------------------------------------                |to degrade features if       |
@@ -1051,6 +1216,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ###### Memory Configuration
+
 ```
   |                                                                    |POR - Enforces Plan Of       |
   |  --------------------------------------------------                |Record restrictions for      |
@@ -1071,6 +1237,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ###### IIO Configuration
+
 ```
   |  IIO Configuration                                                 |Expose IIO DFX devices and   |
   |  --------------------------------------------------                |other CPU devices like PMON  |
@@ -1088,6 +1255,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ###### CPU1 Configuration
+
 ```
   |  IOU0 (IIO PCIe Br1)                       [Auto]                  |Selects PCIe port            |
   |  IOU1 (IIO PCIe Br2)                       [Auto]                  |Bifurcation for selected     |
@@ -1098,6 +1266,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ###### CPU2 Configuration
+
 ```
   |  IOU0 (IIO PCIe Br1)                       [Auto]                  |Selects PCIe port            |
   |  IOU1 (IIO PCIe Br2)                       [Auto]                  |Bifurcation for selected     |
@@ -1108,6 +1277,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ##### South Bridge
+
 ```
   |                                                                    |Enables Legacy USB support.  |
   |  USB Module Version                        17                      |AUTO option disables legacy  |
@@ -1127,6 +1297,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 #### PCIe/PCI/PnP Configuration
+
 ```
   |  PCI Bus Driver Version                    A5.01.12                |Enables or Disables 64bit    |
   |                                                                    |capable Devices to be        |
@@ -1154,6 +1325,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 #### ACPI Settings
+
 ```
   |  ACPI Settings                                                     |Enable or Disable Non        |
   |                                                                    |uniform Memory Access        |
@@ -1164,6 +1336,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 #### DMIDECODE
+
 ```
   # dmidecode 3.1
   Getting SMBIOS data from sysfs.
@@ -1364,6 +1537,7 @@ The new FD.io CSIT-CPL lab (is expected to contain|contains) following hardware 
 ```
 
 ### Xeon Skx Server Firmware Inventory
+
 ```
 Host.           IPMI IP.      BIOS. CPLD.     Aptio SU.   CPU Microcode.  PCI Bus.   ME Operation FW.    X710 Firmware.            XXV710 Firmware.          i40e.
 s1-t11-sut1.    10.30.50.47.  2.1.  03.B1.03. 2.19.1268.  02000043.       A5.01.12.  4.0.4.294.          6.01 0x80003554 1.1747.0. 6.01 0x80003554 1.1747.0. 2.1.14-k.
