@@ -17,7 +17,7 @@ import time
 
 from robot.api import logger
 
-from resources.libraries.python.constants import Constants
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.PapiErrors import PapiError

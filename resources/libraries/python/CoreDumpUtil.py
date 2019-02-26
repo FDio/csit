@@ -15,7 +15,7 @@
 
 from time import time
 
-from resources.libraries.python.constants import Constants
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.LimitUtil import LimitUtil
 from resources.libraries.python.SysctlUtil import SysctlUtil

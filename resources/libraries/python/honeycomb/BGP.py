@@ -13,7 +13,7 @@
 
 """Keywords to manipulate BGP configuration using Honeycomb REST API."""
 
-from resources.libraries.python.constants import Constants as Const
+from resources.libraries.python.Constants import Constants as Const
 from resources.libraries.python.HTTPRequest import HTTPCodes
 from resources.libraries.python.honeycomb.HoneycombSetup import HoneycombError
 from resources.libraries.python.honeycomb.HoneycombUtil \

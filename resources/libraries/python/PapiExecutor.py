@@ -19,7 +19,7 @@ import json
 from paramiko.ssh_exception import SSHException
 from robot.api import logger
 
-from resources.libraries.python.constants import Constants
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.PapiErrors import PapiInitError, \
     PapiJsonFileError, PapiCommandError, PapiCommandInputError
 # TODO: from resources.libraries.python.PapiHistory import PapiHistory
