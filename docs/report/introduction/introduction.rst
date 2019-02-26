@@ -35,8 +35,6 @@ available for download.
    - **NFV Service Density**: Network Function Virtualization (NFV) service
      density tests focus on measuring total per server throughput at varied NFV
      service "packing" densities with vswitch providing host dataplane.
-   - **HTTP/TCP Performance**: HTTP/TCP VPP test server performance
-     graphs.
    - **Comparisons**: Performance comparisons between VPP releases and
      between different testbed types.
    - **Throughput Trending**: References to continuous VPP performance
