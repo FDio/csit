@@ -3,8 +3,7 @@ Calibration Data - Skylake
 
 Following sections include sample calibration data measured on
 s11-t31-sut1 server running in one of the Intel Xeon Skylake testbeds as
-specified in `CSIT Testbeds: Xeon Skx, Arm, Atom
-<https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Skx,_Arm,_Atom.#Server_Specification>`_.
+specified in `FD.io CSIT testbeds - Xeon Skylake, Arm, Atom`_.
 
 Calibration data obtained from all other servers in Skylake testbeds
 shows the same or similar values.
