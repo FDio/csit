@@ -31,8 +31,8 @@
 3n-skx-xxv710
 ~~~~~~~~~~~~~
 
-64b-2t1c-base_and_scale
------------------------
+64b-2t1c-base
+-------------
 
 .. raw:: html
 
@@ -74,8 +74,8 @@
 
     \clearpage
 
-64b-4t2c-base_and_scale
------------------------
+64b-4t2c-base
+-------------
 
 .. raw:: html
 
