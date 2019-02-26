@@ -1,0 +1,31 @@
+---
+# file: roles/calibration/tasks/main.yaml
+
+- name: Ubuntu specific
+  import_tasks: ubuntu.yaml
+  when: ansible_distribution|lower == 'ubuntu'
+
+- name: Run Spectre Meltdown checker
+  raw: 'spectre-meltdown-checker --no-color'
+  register: spectre_meltdown_output
+  tags: run-spectre-meltdown-checker
+
+- debug: var=spectre_meltdown_output.stdout_lines
+
+- name: Clone Jitter tool
+  git:
+    repo: 'https://gerrit.fd.io/r/pma_tools'
+    dest: '{{ jitter.directory }}'
+  tags: run-jitter-tool
+
+- name: Compile Jitter tool
+  raw: 'cd {{ jitter.directory }}/jitter && make'
+  tags: run-jitter-tool
+
+- name: Run Jitter tool
+  raw: '{{ jitter.directory }}/jitter/jitter -c {{ jitter.core }} -i {{ jitter.iterations }} -f'
+  become: yes
+  register: jitter_output
+  tags: run-jitter-tool
+
+- debug: var=jitter_output.stdout_lines

@@ -40,3 +40,9 @@ kubernetes_channel: 'main'
 kubernetes_version: '1.11.0-00'
 kubernetes_repository: 'deb http://apt.kubernetes.io/ kubernetes-xenial {{ kubernetes_channel }}'
 kubernetes_apt_package_name: '{{ kubernetes_version }}'
+
+# Calibration settings.
+jitter:
+  directory: '/tmp/pma_tools'
+  core: 7
+  iterations: 30
