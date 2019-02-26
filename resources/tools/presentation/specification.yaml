@@ -18876,8 +18876,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -18907,8 +18907,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -18931,6 +18931,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "latency"
@@ -18959,6 +18960,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "latency"
@@ -18976,14 +18978,14 @@
 # Packet Latency - VPP L2 3n-hsw-xl710 base and scale
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
+  title: "VPP Latency: l2sw-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            '1T1C' and
@@ -18996,25 +18998,22 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   layout:
-    title: "l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+    title: "l2sw-3n-hsw-xl710-64b-1t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
+  title: "VPP Latency: l2sw-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            '2T2C' and
@@ -19027,13 +19026,10 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   layout:
-    title: "l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+    title: "l2sw-3n-hsw-xl710-64b-2t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP L2 3n-skx-x710 base and scale
@@ -19116,6 +19112,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "latency"
@@ -19144,6 +19142,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "latency"
@@ -19161,10 +19161,10 @@
 # Packet Latency - VPP L2 3n-skx-xxv710 base and scale
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
+  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-2t1c-base-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -19174,29 +19174,26 @@
            '2T1C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   layout:
-    title: "l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
+    title: "l2sw-3n-skx-xxv710-64b-2t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
-  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
+  title: "VPP Latency: l2sw-3n-skx-xxv710-64b-4t2c-base-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-4t2c-base-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -19206,21 +19203,18 @@
            '4T2C' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   layout:
-    title: "l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
+    title: "l2sw-3n-skx-xxv710-64b-4t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP L2 2n-skx-x710 base and scale
@@ -19354,17 +19348,17 @@
 # Packet Latency - VPP Container Memif 3n-hsw-x520
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-3n-hsw-x520-64b-1t1c-base_and_features-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-1t1c-base_and_features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -19378,23 +19372,24 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+    title: "memif-3n-hsw-x520-64b-1t1c-base_and_features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-3n-hsw-x520-64b-2t2c-base_and_features-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-2t2c-base_and_features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -19408,24 +19403,25 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
+    title: "memif-3n-hsw-x520-64b-2t2c-base_and_features-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP Container Memif 3n-hsw-x710
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-3n-hsw-x710-64b-1t1c-base_and_features-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-1t1c-base_and_features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -19439,23 +19435,24 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
+    title: "memif-3n-hsw-x710-64b-1t1c-base_and_features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-3n-hsw-x710-64b-2t2c-base_and_features-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-2t2c-base_and_features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -19469,24 +19466,25 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
+    title: "memif-3n-hsw-x710-64b-2t2c-base_and_features-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP Container Memif 3n-hsw-xl710
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-3n-hsw-xl710-64b-1t1c-base_and_features-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-1t1c-base_and_features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -19500,23 +19498,24 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+    title: "memif-3n-hsw-xl710-64b-1t1c-base_and_features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-3n-hsw-xl710-64b-2t2c-base_and_features-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-2t2c-base_and_features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -19530,24 +19529,25 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+    title: "memif-3n-hsw-xl710-64b-2t2c-base_and_features-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP Container Memif 3n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-3n-skx-x710-64b-2t1c-base_and_features-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-2t1c-base_and_features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -19561,23 +19561,24 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
+    title: "memif-3n-skx-x710-64b-2t1c-base_and_features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
-  title: "VPP Latency: memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-3n-skx-x710-64b-4t2c-base_and_features-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-4t2c-base_and_features-ndr-lat"
   data: "plot-vpp-throughput-latency-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -19591,25 +19592,27 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
+    title: "memif-3n-skx-x710-64b-4t2c-base_and_features-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP Container Memif 2n-skx-x710
 -
   type: "plot"
-  title: "VPP Latency: memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-2n-skx-x710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-2t1c-base-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19622,24 +19625,26 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
+    title: "memif-2n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
-  title: "VPP Latency: memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-2n-skx-x710-64b-4t2c-base-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-4t2c-base-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "latency"
@@ -19652,24 +19657,25 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
+    title: "memif-2n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP Container Memif 2n-skx-xxv710
 -
   type: "plot"
-  title: "VPP Latency: memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -19683,23 +19689,24 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
+    title: "memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
     layout: "plot-latency"
 
 -
   type: "plot"
-  title: "VPP Latency: memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
+  title: "VPP Latency: memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat"
   data: "plot-vpp-throughput-latency-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
            '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -19713,8 +19720,9 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
+    title: "memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
     layout: "plot-latency"
 
 ################################################################################
@@ -19980,6 +19988,7 @@
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -20009,6 +20018,7 @@
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -20108,7 +20118,8 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -20116,7 +20127,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -20138,7 +20149,8 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -20146,7 +20158,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -20169,15 +20181,16 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -20198,15 +20211,16 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -20228,15 +20242,16 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -20257,15 +20272,16 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -20289,13 +20305,13 @@
            '1T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -20318,13 +20334,13 @@
            '2T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -20358,6 +20374,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -20392,6 +20409,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -20415,7 +20433,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -20423,7 +20441,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -20445,7 +20463,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -20453,7 +20471,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -20476,8 +20494,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -20485,6 +20502,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -20505,8 +20523,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -20514,6 +20531,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -20653,6 +20671,7 @@
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -20681,6 +20700,7 @@
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -20720,6 +20740,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -20754,6 +20775,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -20777,7 +20799,7 @@
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -20785,7 +20807,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -20807,7 +20829,7 @@
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -20815,7 +20837,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -20838,8 +20860,7 @@
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -20847,6 +20868,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -20868,7 +20890,7 @@
            '4T2C' and
            'IP4FWD' and
            'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -20876,6 +20898,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -20958,13 +20981,13 @@
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -20987,13 +21010,13 @@
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -21017,13 +21040,13 @@
            '2T1C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -21046,13 +21069,13 @@
            '4T2C' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -21135,7 +21158,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -21143,10 +21166,11 @@
   - "latency"
   - "parent"
   - "tags"
-#  sort:
-#  - "L2BDMACLRN"
-#  - "L2XCFWD"
-#  - "LISP"
+  sort:
+  - "IP4BASE"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "LISP"
   layout:
     title: "ip4tun-3n-hsw-x520-64b-1t1c-base_and_features-ndr"
     layout: "plot-latency"
@@ -21163,7 +21187,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -21172,6 +21196,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -21192,7 +21217,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -21200,6 +21225,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -21221,7 +21247,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -21229,6 +21255,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -21251,7 +21278,7 @@
            'ENCAP' and
            'NDRPDR' and
            '1T1C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP' or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -21260,6 +21287,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -21279,7 +21307,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T2C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP' or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -21288,6 +21316,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -21308,7 +21337,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T1C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -21316,6 +21345,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -21337,7 +21367,7 @@
            'ENCAP' and
            'NDRPDR' and
            '4T2C' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -21345,6 +21375,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -21367,7 +21398,7 @@
            'ENCAP' and
            'NDRPDR' and
            '2T1C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -21376,6 +21407,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -21395,7 +21427,7 @@
            'ENCAP' and
            'NDRPDR' and
            '4T2C' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -21404,6 +21436,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -22073,68 +22106,68 @@
     title: "vhost-ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP vhost l2sw 3n-hsw-x520
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP vhost l2sw 3n-hsw-x520
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
+#    layout: "plot-latency"
 
 # Packet Latency - VPP vhost l2sw 3n-hsw-x520 - base
 -
@@ -22159,11 +22192,13 @@
   - "latency"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-1t1c-base-ndr"
     layout: "plot-latency"
@@ -22190,11 +22225,13 @@
   - "latency"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-2t2c-base-ndr"
     layout: "plot-latency"
@@ -22215,6 +22252,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
+           not 'DOT1Q' and
            not 'VXLAN' and
            not 'IP4FWD' and
            not 'LBOND'"
@@ -22246,6 +22284,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
+           not 'DOT1Q' and
            not 'VXLAN' and
            not 'IP4FWD' and
            not 'LBOND'"
@@ -22278,13 +22317,13 @@
            '1T1C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
@@ -22306,81 +22345,81 @@
            '2T2C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
     title: "vhost-ip4-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP vhost l2sw 3n-hsw-x710
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP vhost l2sw 3n-hsw-x710
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base_and_scale-ndr"
+#    layout: "plot-latency"
 
 # Packet Latency - VPP vhost l2sw 3n-hsw-x710 - base
 -
@@ -22405,11 +22444,13 @@
   - "latency"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base-ndr"
     layout: "plot-latency"
@@ -22436,11 +22477,13 @@
   - "latency"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base-ndr"
     layout: "plot-latency"
@@ -22468,11 +22511,13 @@
   - "latency"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-1t1c-base-vm-ndr"
     layout: "plot-latency"
@@ -22499,258 +22544,260 @@
   - "latency"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-2t2c-base-vm-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP vhost ip4 3n-hsw-xl710
--
-  type: "plot"
-  title: "VPP Latency: vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           'ETH' and
-           'IP4FWD' and
-           '1T1C' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'DOT1Q'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "1VM"
-  - "2VM"
-  layout:
-    title: "vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           'ETH' and
-           'IP4FWD' and
-           '2T2C' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'DOT1Q'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "1VM"
-  - "2VM"
-  layout:
-    title: "vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
-    layout: "plot-latency"
-
-# Packet Latency - VPP vhost l2sw 3n-hsw-xl710
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
-    layout: "plot-latency"
-
-# Packet Latency - VPP vhost l2sw 3n-hsw-xl710 - base
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '1T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
+## Packet Latency - VPP vhost ip4 3n-hsw-xl710
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'ETH' and
+#           'IP4FWD' and
+#           '1T1C' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'DOT1Q'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
 #  sort:
 #  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '2T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
+#  - "1VM"
+#  - "2VM"
+#  layout:
+#    title: "vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'ETH' and
+#           'IP4FWD' and
+#           '2T2C' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'DOT1Q'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
 #  sort:
 #  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr"
-    layout: "plot-latency"
-
-# Packet Latency - VPP vhost l2sw 3n-hsw-xl710 - base vm
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '1T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'IP4FWD'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
 #  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'IP4FWD'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr"
-    layout: "plot-latency"
+#  - "2VM"
+#  layout:
+#    title: "vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+#    layout: "plot-latency"
+#
+## Packet Latency - VPP vhost l2sw 3n-hsw-xl710
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr"
+#    layout: "plot-latency"
+#
+## Packet Latency - VPP vhost l2sw 3n-hsw-xl710 - base
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '1T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '2T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr"
+#    layout: "plot-latency"
+#
+## Packet Latency - VPP vhost l2sw 3n-hsw-xl710 - base vm
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '1T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr"
+#    layout: "plot-latency"
 
 # Packet Latency - VPP vhost ip4 3n-skx-x710
 -
@@ -22774,7 +22821,6 @@
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
@@ -22802,75 +22848,74 @@
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
     title: "vhost-ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP vhost l2sw 3n-skx-x710
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP vhost l2sw 3n-skx-x710
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-skx-x710-64b-4t2c-base_and_scale-ndr"
+#    layout: "plot-latency"
 
 # Packet Latency - VPP vhost l2sw 3n-skx-x710 - base
 -
@@ -22896,11 +22941,11 @@
   - "latency"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-latency"
@@ -22928,11 +22973,11 @@
   - "latency"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-latency"
@@ -22960,11 +23005,13 @@
   - "latency"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-2t1c-base-vm-ndr"
     layout: "plot-latency"
@@ -22991,11 +23038,13 @@
   - "latency"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-4t2c-base-vm-ndr"
     layout: "plot-latency"
@@ -23017,13 +23066,13 @@
            'VHOST_1024' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
@@ -23046,83 +23095,83 @@
            'VHOST_1024' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "latency"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
     title: "vhost-ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP vhost l2sw 2n-skx-x710
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not 'NF_DENSITY' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'NF_DENSITY' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP vhost l2sw 2n-skx-x710
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not 'NF_DENSITY' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'NF_DENSITY' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
+#    layout: "plot-latency"
 
 # Packet Latency - VPP vhost l2sw 2n-skx-x710 - base
 -
@@ -23207,6 +23256,7 @@
            not 'CFS_OPT' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "latency"
@@ -23238,6 +23288,7 @@
            not 'CFS_OPT' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "latency"
@@ -23268,6 +23319,7 @@
            '2T1C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "latency"
@@ -23296,6 +23348,7 @@
            '4T2C' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "latency"
@@ -23309,68 +23362,68 @@
     title: "vhost-ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP vhost l2sw 2n-skx-xxv710
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-latency-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP vhost l2sw 2n-skx-xxv710
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr-lat"
+#  data: "plot-vpp-throughput-latency-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
+#    layout: "plot-latency"
 
 # Packet Latency - VPP vhost l2sw 2n-skx-xxv710 - base
 -
@@ -23452,6 +23505,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "latency"
@@ -23482,6 +23536,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "latency"
@@ -24150,16 +24205,16 @@
 # Speedup - VPP Container Memif 3n-hsw-x520
 -
   type: "plot"
-  title: "Speedup: memif-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
+  title: "Speedup: memif-3n-hsw-x520-64b-base_and_features-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-base_and_features-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -24173,22 +24228,23 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-x520-64b-base_and_scale-ndr"
+    title: "memif-3n-hsw-x520-64b-base_and_features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
   type: "plot"
-  title: "Speedup: memif-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
+  title: "Speedup: memif-3n-hsw-x520-64b-base_and_features-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x520-64b-base_and_features-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -24202,23 +24258,24 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-x520-64b-base_and_scale-pdr"
+    title: "memif-3n-hsw-x520-64b-base_and_features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP Container Memif 3n-hsw-x710
 -
   type: "plot"
-  title: "Speedup: memif-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
+  title: "Speedup: memif-3n-hsw-x710-64b-base_and_features-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-base_and_features-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -24232,22 +24289,23 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-x710-64b-base_and_scale-ndr"
+    title: "memif-3n-hsw-x710-64b-base_and_features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
   type: "plot"
-  title: "Speedup: memif-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
+  title: "Speedup: memif-3n-hsw-x710-64b-base_and_features-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-x710-64b-base_and_features-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -24261,23 +24319,24 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-x710-64b-base_and_scale-pdr"
+    title: "memif-3n-hsw-x710-64b-base_and_features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP Container Memif 3n-hsw-xl710
 -
   type: "plot"
-  title: "Speedup: memif-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+  title: "Speedup: memif-3n-hsw-xl710-64b-base_and_features-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-base_and_features-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -24291,22 +24350,23 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-xl710-64b-base_and_scale-ndr"
+    title: "memif-3n-hsw-xl710-64b-base_and_features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
   type: "plot"
-  title: "Speedup: memif-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
+  title: "Speedup: memif-3n-hsw-xl710-64b-base_and_features-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-hsw-xl710-64b-base_and_features-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -24320,23 +24380,24 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-hsw-xl710-64b-base_and_scale-pdr"
+    title: "memif-3n-hsw-xl710-64b-base_and_features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP Container Memif 3n-skx-x710
 -
   type: "plot"
-  title: "Speedup: memif-3n-skx-x710-64b-base_and_scale-ndr-tsa"
+  title: "Speedup: memif-3n-skx-x710-64b-base_and_features-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-base_and_scale-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-base_and_features-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -24350,22 +24411,23 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-skx-x710-64b-base_and_scale-ndr"
+    title: "memif-3n-skx-x710-64b-base_and_features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
   type: "plot"
-  title: "Speedup: memif-3n-skx-x710-64b-base_and_scale-pdr-tsa"
+  title: "Speedup: memif-3n-skx-x710-64b-base_and_features-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-base_and_scale-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-3n-skx-x710-64b-base_and_features-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -24379,23 +24441,24 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-3n-skx-x710-64b-base_and_scale-pdr"
+    title: "memif-3n-skx-x710-64b-base_and_features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP Container Memif 2n-skx-x710
 -
   type: "plot"
-  title: "Speedup: memif-2n-skx-x710-64b-base_and_scale-ndr-tsa"
+  title: "Speedup: memif-2n-skx-x710-64b-base-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-base_and_scale-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-base-ndr-tsa"
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            not 'NF_DENSITY' and
            'MEMIF'"
@@ -24410,22 +24473,23 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-2n-skx-x710-64b-base_and_scale-ndr"
+    title: "memif-2n-skx-x710-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
   type: "plot"
-  title: "Speedup: memif-2n-skx-x710-64b-base_and_scale-pdr-tsa"
+  title: "Speedup: memif-2n-skx-x710-64b-base-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-base_and_scale-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-x710-64b-base-pdr-tsa"
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            not 'NF_DENSITY' and
            'MEMIF'"
@@ -24440,23 +24504,24 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-2n-skx-x710-64b-base_and_scale-pdr"
+    title: "memif-2n-skx-x710-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP Container Memif 2n-skx-xxv710
 -
   type: "plot"
-  title: "Speedup: memif-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
+  title: "Speedup: memif-2n-skx-xxv710-64b-base_and_features-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-base_and_features-ndr-tsa"
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -24470,22 +24535,23 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-2n-skx-xxv710-64b-base_and_scale-ndr"
+    title: "memif-2n-skx-xxv710-64b-base_and_features-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
   type: "plot"
-  title: "Speedup: memif-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
+  title: "Speedup: memif-2n-skx-xxv710-64b-base_and_features-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-base_and_features-pdr-tsa"
   data: "plot-throughput-speedup-analysis-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
            ('BASE' or 'SCALE') and
            'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
            not 'VHOST' and
            'MEMIF'"
   parameters:
@@ -24499,8 +24565,9 @@
   - "L2BDMACLRN"
   - "L2BDMACLRN"
   - "L2BDMACLRN"
+  - "IP4FWD"
   layout:
-    title: "memif-2n-skx-xxv710-64b-base_and_scale-pdr"
+    title: "memif-2n-skx-xxv710-64b-base_and_features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
@@ -24519,6 +24586,7 @@
            'NDRPDR' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -24547,6 +24615,7 @@
            'NDRPDR' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -24576,6 +24645,7 @@
            'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -24604,6 +24674,7 @@
            'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -24633,6 +24704,7 @@
            'NDRPDR' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -24661,6 +24733,7 @@
            'NDRPDR' and
            'L2XCFWD' and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -24690,6 +24763,7 @@
            'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -24718,6 +24792,7 @@
            'NDRPDR' and
            ('L2BDMACSTAT' or 'L2BDMACLRN') and
            not 'VHOST' and
+           not 'NF_DENSITY' and
            'MEMIF'"
   parameters:
   - "throughput"
@@ -24749,6 +24824,7 @@
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -24777,6 +24853,7 @@
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -24873,7 +24950,8 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -24881,7 +24959,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -24902,7 +24980,8 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
+           not 'DOT1Q' and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -24910,7 +24989,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -24932,15 +25011,16 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -24960,15 +25040,16 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -24989,15 +25070,16 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -25017,15 +25099,16 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -25048,13 +25131,13 @@
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -25076,13 +25159,13 @@
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20K"
   - "FIB_200K"
@@ -25115,6 +25198,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -25148,6 +25232,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -25170,7 +25255,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -25178,7 +25263,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -25199,7 +25284,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -25207,7 +25292,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -25229,8 +25314,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -25238,6 +25322,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -25257,8 +25342,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -25266,6 +25350,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -25400,6 +25485,7 @@
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -25427,6 +25513,7 @@
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -25465,6 +25552,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -25498,6 +25586,7 @@
   - "parent"
   - "tags"
   sort:
+  - "DOT1Q"
   - "IP4BASE"
   - "NAT44"
   - "POLICE_MARK"
@@ -25520,7 +25609,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -25528,7 +25617,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -25549,7 +25638,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'NAT44' and
+           ('NAT44' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -25557,7 +25646,7 @@
   - "parent"
   - "tags"
   sort:
-  - "BASE"
+  - "IP4BASE"
   - "BASE"
   - "SRC_USER_10"
   - "SRC_USER_100"
@@ -25579,8 +25668,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -25588,6 +25676,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -25607,8 +25696,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           'IACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
+           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -25616,6 +25704,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "ACL_STATELESS"
   - "ACL_STATEFUL"
   - "ACL_STATELESS"
@@ -25695,13 +25784,13 @@
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -25723,13 +25812,13 @@
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -25752,13 +25841,13 @@
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -25780,13 +25869,13 @@
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
+           not 'DOT1Q' and
            not 'VHOST'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "DOT1Q"
   - "IP4BASE"
   - "FIB_20k"
   - "FIB_200k"
@@ -25915,7 +26004,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -25924,6 +26013,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -25942,7 +26032,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -25951,6 +26041,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -25970,7 +26061,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -25978,6 +26069,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -25998,7 +26090,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           ('VXLAN' or 'LISP') and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -26006,6 +26098,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -26027,7 +26120,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP' or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -26036,6 +26129,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -26054,7 +26148,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP' or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -26063,6 +26157,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -26082,8 +26177,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -26091,6 +26185,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -26111,8 +26206,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           'VXLAN' and
-           'L2BDMACLRN' and
+           ('VXLAN' or 'LISP' or 'IP4BASE' and not 'DOT1Q') and
            not 'VHOST' and
            not 'IPSECHW'"
   parameters:
@@ -26120,6 +26214,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "LISP"
   - "VXLAN_1"
   - "VXLAN_10"
@@ -26141,7 +26236,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -26150,6 +26245,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -26168,7 +26264,7 @@
            '64B' and
            'ENCAP' and
            'NDRPDR' and
-           ('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') and
+           (('VXLAN' and ('L2BDMACLRN' or 'L2XCFWD') or 'LISP') or 'IP4BASE') and
            not 'DOT1Q' and
            not 'VHOST' and
            not 'IPSECHW'"
@@ -26177,6 +26273,7 @@
   - "parent"
   - "tags"
   sort:
+  - "IP4BASE"
   - "L2BDMACLRN"
   - "L2XCFWD"
   - "LISP"
@@ -27146,8 +27243,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -27177,8 +27274,8 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   - "FIB_10K"
   - "FIB_100K"
   - "FIB_1M"
@@ -27200,6 +27297,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -27227,6 +27325,7 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -27244,14 +27343,14 @@
 # Speedup - VPP L2 3n-hsw-xl710 base and scale
 -
   type: "plot"
-  title: "Speedup: l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+  title: "Speedup: l2sw-3n-hsw-xl710-64b-base-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-base-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
@@ -27263,25 +27362,22 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   layout:
-    title: "l2sw-3n-hsw-xl710-64b-base_and_scale-ndr"
+    title: "l2sw-3n-hsw-xl710-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
   type: "plot"
-  title: "Speedup: l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
+  title: "Speedup: l2sw-3n-hsw-xl710-64b-base-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-xl710-64b-base-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-hsw"
   filter: "'NIC_Intel-XL710' and
            '64B' and
-           ('BASE' or 'SCALE') and
+           'BASE' and
            'NDRPDR' and
            'ETH' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
@@ -27293,13 +27389,10 @@
   - "tags"
   sort:
   - "L2PATCH"
-  - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2XCFWD"
+  - "L2BDMACLRN"
   layout:
-    title: "l2sw-3n-hsw-xl710-64b-base_and_scale-pdr"
+    title: "l2sw-3n-hsw-xl710-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP L2 3n-skx-x710 base and scale
@@ -27379,6 +27472,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -27406,6 +27501,8 @@
            (('L2BDMACLRN' and ('L2BDBASE' or 'DOT1Q')) or ('L2XCFWD' and ('L2XCBASE' or 'DOT1Q'))) and
            not 'ACL' and
            not 'VHOST' and
+           not 'DRV_AVF' and
+           not 'L2OVRLAY' and
            not 'MEMIF'"
   parameters:
   - "throughput"
@@ -27423,10 +27520,10 @@
 # Speedup - VPP L2 3n-skx-xxv710 base and scale
 -
   type: "plot"
-  title: "Speedup: l2sw-3n-skx-xxv710-64b-base_and_scale-ndr-tsa"
+  title: "Speedup: l2sw-3n-skx-xxv710-64b-base-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-base_and_scale-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-base-ndr-tsa"
   data: "plot-throughput-speedup-analysis-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -27435,29 +27532,26 @@
            'ETH' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   layout:
-    title: "l2sw-3n-skx-xxv710-64b-base_and_scale-ndr"
+    title: "l2sw-3n-skx-xxv710-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 -
   type: "plot"
-  title: "Speedup: l2sw-3n-skx-xxv710-64b-base_and_scale-pdr-tsa"
+  title: "Speedup: l2sw-3n-skx-xxv710-64b-base-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-base_and_scale-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-base-pdr-tsa"
   data: "plot-throughput-speedup-analysis-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -27466,21 +27560,18 @@
            'ETH' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
            not 'VHOST' and
-           not 'MEMIF' and
-           not 'DRV_AVF'"
+           not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
   - "L2PATCH"
+  - "L2PATCH"
   - "L2XCBASE"
-  - "BASE"
-  - "FIB_10K"
-  - "FIB_100K"
-  - "FIB_1M"
+  - "L2BDMACLRN"
   layout:
-    title: "l2sw-3n-skx-xxv710-64b-base_and_scale-pdr"
+    title: "l2sw-3n-skx-xxv710-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP L2 2n-skx-x710 base and scale
@@ -27717,65 +27808,65 @@
     title: "vhost-ip4-3n-hsw-x520-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Packet Speedup - VPP vhost l2sw 3n-hsw-x520
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr"
-    layout: "plot-throughput-speedup-analysis"
+## Packet Speedup - VPP vhost l2sw 3n-hsw-x520
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x520-64b-base_and_scale-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x520-64b-base_and_scale-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 # Packet Speedup - VPP vhost l2sw 3n-hsw-x520 - base
 -
@@ -27799,11 +27890,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -27829,11 +27922,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x520-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -27853,6 +27948,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
+           not 'DOT1Q' and
            not 'VXLAN' and
            not 'IP4FWD' and
            not 'LBOND'"
@@ -27883,6 +27979,7 @@
            ('L2BDMACLRN' or 'L2XCFWD') and
            'VHOST_1024' and
            not 'CFS_OPT' and
+           not 'DOT1Q' and
            not 'VXLAN' and
            not 'IP4FWD' and
            not 'LBOND'"
@@ -27914,13 +28011,13 @@
            'IP4FWD' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
@@ -27941,79 +28038,79 @@
            'IP4FWD' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
     title: "vhost-ip4-3n-hsw-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Packet Speedup - VPP vhost l2sw 3n-hsw-x710
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr"
-    layout: "plot-throughput-speedup-analysis"
+## Packet Speedup - VPP vhost l2sw 3n-hsw-x710
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x710-64b-base_and_scale-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-x710-64b-base_and_scale-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 # Packet Speedup - VPP vhost l2sw 3n-hsw-x710 - base
 -
@@ -28037,11 +28134,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -28067,11 +28166,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -28098,11 +28199,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-base-vm-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -28128,250 +28231,252 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-hsw-x710-64b-base-vm-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Packet Speedup - VPP vhost ip4 3n-hsw-xl710
--
-  type: "plot"
-  title: "VPP Speedup: vhost-ip4-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           'ETH' and
-           'IP4FWD' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'DOT1Q'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "1VM"
-  - "2VM"
-  layout:
-    title: "vhost-ip4-3n-hsw-xl710-64b-base_and_scale-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           'ETH' and
-           'IP4FWD' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'DOT1Q'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "not CFS_OPT"
-  - "1VM"
-  - "2VM"
-  layout:
-    title: "vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr"
-    layout: "plot-throughput-speedup-analysis"
-
-# Packet Speedup - VPP vhost l2sw 3n-hsw-xl710
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr"
-    layout: "plot-throughput-speedup-analysis"
-
-# Packet Speedup - VPP vhost l2sw 3n-hsw-xl710 - base
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
+## Packet Speedup - VPP vhost ip4 3n-hsw-xl710
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-ip4-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'ETH' and
+#           'IP4FWD' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'DOT1Q'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
 #  sort:
 #  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-base-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
+#  - "1VM"
+#  - "2VM"
+#  layout:
+#    title: "vhost-ip4-3n-hsw-xl710-64b-base_and_scale-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'ETH' and
+#           'IP4FWD' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'DOT1Q'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
 #  sort:
 #  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-base-pdr"
-    layout: "plot-throughput-speedup-analysis"
-
-# Packet Speedup - VPP vhost l2sw 3n-hsw-xl710 - base vm
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base-vm-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base-vm-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
 #  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-base-vm-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base-vm-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base-vm-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-hsw"
-  filter: "'NIC_Intel-XL710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  layout:
-    title: "vhost-l2sw-3n-hsw-xl710-64b-base-vm-pdr"
-    layout: "plot-throughput-speedup-analysis"
+#  - "2VM"
+#  layout:
+#    title: "vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+## Packet Speedup - VPP vhost l2sw 3n-hsw-xl710
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+## Packet Speedup - VPP vhost l2sw 3n-hsw-xl710 - base
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base-ndr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-base-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base-pdr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-base-pdr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+## Packet Speedup - VPP vhost l2sw 3n-hsw-xl710 - base vm
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base-vm-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base-vm-ndr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-base-vm-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-hsw-xl710-64b-base-vm-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-hsw-xl710-64b-base-vm-pdr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-hsw"
+#  filter: "'NIC_Intel-XL710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  layout:
+#    title: "vhost-l2sw-3n-hsw-xl710-64b-base-vm-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 # Packet Speedup - VPP vhost ip4 3n-skx-x710
 -
@@ -28394,7 +28499,6 @@
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
@@ -28421,73 +28525,72 @@
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
     title: "vhost-ip4-3n-skx-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Packet Speedup - VPP vhost l2sw 3n-skx-x710
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-skx-x710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-skx-x710-64b-base_and_scale-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-3n-skx-x710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-3n-skx-x710-64b-base_and_scale-pdr"
-    layout: "plot-throughput-speedup-analysis"
+## Packet Speedup - VPP vhost l2sw 3n-skx-x710
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-skx-x710-64b-base_and_scale-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-base_and_scale-ndr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-skx-x710-64b-base_and_scale-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-3n-skx-x710-64b-base_and_scale-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-3n-skx-x710-64b-base_and_scale-pdr-tsa"
+#  data: "plot-throughput-speedup-analysis-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-3n-skx-x710-64b-base_and_scale-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 # Packet Speedup - VPP vhost l2sw 3n-skx-x710 - base
 -
@@ -28512,11 +28615,11 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-base-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -28543,11 +28646,11 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-base-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -28574,11 +28677,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-base-vm-ndr"
     layout: "plot-throughput-speedup-analysis"
@@ -28604,11 +28709,13 @@
   - "throughput"
   - "parent"
   - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
+  sort:
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2BDMACLRN"
+  - "L2XCFWD"
+  - "L2XCFWD"
+  - "L2XCFWD"
   layout:
     title: "vhost-l2sw-3n-skx-x710-64b-base-vm-pdr"
     layout: "plot-throughput-speedup-analysis"
@@ -28629,13 +28736,13 @@
            'VHOST_1024' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
@@ -28657,81 +28764,81 @@
            'VHOST_1024' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
   sort:
-  - "not CFS_OPT"
   - "1VM"
   - "2VM"
   layout:
     title: "vhost-ip4-2n-skx-x710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Packet Speedup - VPP vhost l2sw 2n-skx-x710
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-2n-skx-x710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'NF_DENSITY' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-2n-skx-x710-64b-base_and_scale-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-2n-skx-x710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'NF_DENSITY' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-2n-skx-x710-64b-base_and_scale-pdr"
-    layout: "plot-throughput-speedup-analysis"
+## Packet Speedup - VPP vhost l2sw 2n-skx-x710
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-2n-skx-x710-64b-base_and_scale-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-base_and_scale-ndr-tsa"
+#  data: "plot-throughput-speedup-analysis-2n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'NF_DENSITY' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-x710-64b-base_and_scale-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-2n-skx-x710-64b-base_and_scale-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-x710-64b-base_and_scale-pdr-tsa"
+#  data: "plot-throughput-speedup-analysis-2n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'NF_DENSITY' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-x710-64b-base_and_scale-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 # Packet Speedup - VPP vhost l2sw 2n-skx-x710 - base
 -
@@ -28813,6 +28920,7 @@
            not 'CFS_OPT' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -28843,6 +28951,7 @@
            not 'CFS_OPT' and
            not 'VXLAN' and
            not 'NF_DENSITY' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -28872,6 +28981,7 @@
            'IP4FWD' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
@@ -28899,6 +29009,7 @@
            'IP4FWD' and
            'VHOST_1024' and
            not 'VXLAN' and
+           not 'CFS_OPT' and
            not 'DOT1Q'"
   parameters:
   - "throughput"
@@ -28912,66 +29023,66 @@
     title: "vhost-ip4-2n-skx-xxv710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Packet Speedup - VPP vhost l2sw 2n-skx-xxv710
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
--
-  type: "plot"
-  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
-  data: "plot-throughput-speedup-analysis-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'L2BDMACLRN' and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "VM"  # "not CFS_OPT"
-#  - "CFS_OPT"
-#  - "FIB_10K"
-#  - "FIB_100K"
-#  - "FIB_1M"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-pdr"
-    layout: "plot-throughput-speedup-analysis"
+## Packet Speedup - VPP vhost l2sw 2n-skx-xxv710
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-ndr-tsa"
+#  data: "plot-throughput-speedup-analysis-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#-
+#  type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-pdr-tsa"
+#  data: "plot-throughput-speedup-analysis-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'L2BDMACLRN' and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "VM"  # "not CFS_OPT"
+##  - "CFS_OPT"
+##  - "FIB_10K"
+##  - "FIB_100K"
+##  - "FIB_1M"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-base_and_scale-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 # Packet Speedup - VPP vhost l2sw 2n-skx-xxv710 - base
 -
@@ -29050,6 +29161,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"
@@ -29079,6 +29191,7 @@
            'VHOST_1024' and
            not 'CFS_OPT' and
            not 'VXLAN' and
+           not 'DOT1Q' and
            not 'IP4FWD'"
   parameters:
   - "throughput"

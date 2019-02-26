@@ -31,13 +31,13 @@
 3n-hsw-x520
 ~~~~~~~~~~~
 
-64b-base_and_scale
-------------------
+64b-base_and_features
+---------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x520-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x520-64b-base_and_features-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
-            \label{fig:memif-3n-hsw-x520-64b-base_and_scale-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x520-64b-base_and_features-ndr-tsa}
+            \label{fig:memif-3n-hsw-x520-64b-base_and_features-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x520-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-3n-hsw-x520-64b-base_and_features-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +66,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
-            \label{fig:memif-3n-hsw-x520-64b-base_and_scale-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-3n-hsw-x520-64b-base_and_features-pdr-tsa}
+            \label{fig:memif-3n-hsw-x520-64b-base_and_features-pdr-tsa}
     \end{figure}
