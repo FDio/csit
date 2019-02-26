@@ -24,11 +24,9 @@ Server Specifications
 ---------------------
 
 Complete technical specifications of compute servers used in CSIT
-physical testbeds are maintained on FD.io wiki pages: `CSIT/Testbeds:
-Xeon Hsw, VIRL
-<https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Hsw,_VIRL.#FD.io_CSIT_testbeds_-_Xeon_Haswell.2C_VIRL>`_
-and `CSIT Testbeds: Xeon Skx, Arm, Atom
-<https://wiki.fd.io/view/CSIT/Testbeds:_Xeon_Skx,_Arm,_Atom.#Server_Specification>`_.
+physical testbeds are maintained in FD.io CSIT repository:
+`FD.io CSIT testbeds - Xeon Skylake, Arm, Atom`_ and
+`FD.io CSIT Testbeds - Xeon Haswell`_.
 
 Pre-Test Server Calibration
 ---------------------------
