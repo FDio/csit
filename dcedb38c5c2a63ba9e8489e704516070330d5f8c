@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2ad215c_0f2e2b0e",
+        "filename": "resources/libraries/robot/performance/nic_limits.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-26T09:03:52Z",
+      "side": 1,
+      "message": "if only this is required then it makes sense to put in topo file?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 29
+      },
+      "revId": "dcedb38c5c2a63ba9e8489e704516070330d5f8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2695ff0_bc6e24f8",
+        "filename": "tests/vpp/perf/l2/40ge2p1xl710-eth-l2bdbasemaclrn-mrr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-26T09:03:52Z",
+      "side": 1,
+      "message": "Do you want to keep it there? \nMaybe it is easier to have as variable and use it in Suite setup and this KW.",
+      "range": {
+        "startLine": 72,
+        "startChar": 10,
+        "endLine": 72,
+        "endChar": 21
+      },
+      "revId": "dcedb38c5c2a63ba9e8489e704516070330d5f8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
