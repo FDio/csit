@@ -98,12 +98,6 @@ Set CIMC/IPMI address, username, password and hostname an BIOS.
 Bootstrap the host
 ``````````````````
 
-Convenient way to re-stage host via script:
-
-.. code-block:: bash
-
-   sudo ./bootstrap_setup_testbed.sh <linux_ip> <mgmt_ip> <username> <pass>
-
 Optional: CIMC - From PXE boostrap server
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
