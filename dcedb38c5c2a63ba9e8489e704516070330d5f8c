@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "34cdcafe_27004c1e",
+        "filename": "resources/libraries/robot/performance/nic_limits.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-26T09:41:50Z",
+      "side": 1,
+      "message": "We have multiple topo files, I want to avoid copypaste errors.\n\nFuture implementation (tracking whole path looking for the bootleneck) would still benefit from a centralized name_to_limit mapping (with different values for 40ge NICs).\n\nUnless we have a lab where there are two NICs with some detail (such as firmware version) affecting the limit, I do not think we need to write limits into topology file.",
+      "parentUuid": "e2ad215c_0f2e2b0e",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 29
+      },
+      "revId": "dcedb38c5c2a63ba9e8489e704516070330d5f8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2695ff0_bc6e24f8",
         "filename": "tests/vpp/perf/l2/40ge2p1xl710-eth-l2bdbasemaclrn-mrr.robot",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-26T09:03:52Z",
       "side": 1,
       "message": "Do you want to keep it there? \nMaybe it is easier to have as variable and use it in Suite setup and this KW.",
+      "range": {
+        "startLine": 72,
+        "startChar": 10,
+        "endLine": 72,
+        "endChar": 21
+      },
+      "revId": "dcedb38c5c2a63ba9e8489e704516070330d5f8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "662ee763_4f476cd8",
+        "filename": "tests/vpp/perf/l2/40ge2p1xl710-eth-l2bdbasemaclrn-mrr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-26T09:41:50Z",
+      "side": 1,
+      "message": "\u003e as variable\n\nGood idea, will do.",
+      "parentUuid": "d2695ff0_bc6e24f8",
       "range": {
         "startLine": 72,
         "startChar": 10,
