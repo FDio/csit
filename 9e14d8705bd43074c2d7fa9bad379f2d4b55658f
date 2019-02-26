@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "435c04f3_1c9903f7",
+        "filename": "docs/lab/Testbeds_Xeon_Hsw_VIRL.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-26T16:45:31Z",
+      "side": 1,
+      "message": "I proposed to merge the two files - original build (this file: Testbeds_Xeon_Hsw_VIRL.md) and Xeon_skx and Arm one (Testbeds_Xeon_Skx_Arm_Atom.md) - into a single doc. The concern is that it will make the doc quite large. Will look into separating out human generated documentation (incl. server and testbed hardware specs) and then have per server type file with captures of their bios, lscpu, lspci, dmidecode outputs. On my todo list..",
+      "parentUuid": "80630705_58e6bd38",
+      "revId": "9e14d8705bd43074c2d7fa9bad379f2d4b55658f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcfaa7bb_f029f805",
         "filename": "docs/lab/Testbeds_Xeon_Hsw_VIRL.md",
         "patchSetId": 1
@@ -54,6 +72,30 @@
       "side": 1,
       "message": "i would say?\n\nnomadX-hsw\nnomadX-arm\nnomadX-tsh\nnomadX-skx",
       "parentUuid": "bcfaa7bb_f029f805",
+      "range": {
+        "startLine": 150,
+        "startChar": 14,
+        "endLine": 150,
+        "endChar": 20
+      },
+      "revId": "9e14d8705bd43074c2d7fa9bad379f2d4b55658f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "acef8ff0_5c1c08d8",
+        "filename": "docs/lab/Testbeds_Xeon_Hsw_VIRL.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-26T16:45:31Z",
+      "side": 1,
+      "message": "I meant populating the section \"Server Hardware Configuration\"",
+      "parentUuid": "b268f04f_63b1fc4f",
       "range": {
         "startLine": 150,
         "startChar": 14,
