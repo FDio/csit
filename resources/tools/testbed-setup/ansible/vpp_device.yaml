@@ -6,5 +6,7 @@
   become: yes
   become_user: root
   roles:
-    - common
-    - vpp_device
+    - role: common
+      tags: common
+    - role: vpp_device
+      tags: vpp_device
