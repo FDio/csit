@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b904e37d_bdab28d8",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-26T07:26:46Z",
+      "side": 1,
+      "message": "i guess this will not pass tox but, ok",
+      "range": {
+        "startLine": 492,
+        "startChar": 7,
+        "endLine": 492,
+        "endChar": 98
+      },
+      "revId": "7fe606190988677e25d82960e445b5c44c7f0cf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
