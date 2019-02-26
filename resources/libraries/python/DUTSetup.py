@@ -15,7 +15,7 @@
 
 from robot.api import logger
 
-from resources.libraries.python.constants import Constants
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 

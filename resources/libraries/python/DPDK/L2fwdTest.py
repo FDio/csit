@@ -16,7 +16,7 @@ DUT nodes.
 """
 
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.constants import Constants
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.topology import NodeType, Topology
 
 

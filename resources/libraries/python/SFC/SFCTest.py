@@ -17,7 +17,7 @@ the NSH SFC functional test.
 """
 
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.constants import Constants as con
+from resources.libraries.python.Constants import Constants as con
 from resources.libraries.python.topology import Topology
 
 

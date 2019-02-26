@@ -15,7 +15,12 @@
 
 
 class Constants(object):
-    """Constants used in CSIT."""
+    """Constants used in CSIT.
+
+    TODO: Yaml files are easier for humans to edit.
+    Figure out how to set the attributes by parsing a file
+    that works regardless of current working directory.
+    """
 
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = '/tmp/openvpp-testing'
