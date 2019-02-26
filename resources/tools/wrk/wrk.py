@@ -24,7 +24,7 @@ from robot.api import logger
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.CpuUtils import CpuUtils
-from resources.libraries.python.constants import Constants
+from resources.libraries.python.Constants import Constants
 
 from resources.tools.wrk.wrk_traffic_profile_parser import WrkTrafficProfile
 from resources.tools.wrk.wrk_errors import WrkError

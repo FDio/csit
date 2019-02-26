@@ -23,7 +23,7 @@ from distutils.version import StrictVersion
 from robot.api import logger
 
 from resources.libraries.python.ssh import SSH, SSHTimeout
-from resources.libraries.python.constants import Constants
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.topology import NodeType, Topology
 
