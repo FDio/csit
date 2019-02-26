@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7eeeaa4_e32bafe3",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-26T16:19:54Z",
+      "side": 1,
+      "message": "Usually I prefer stateless objects, but this begs for:\n\n\npapi_executor.clear().add(\n    api_name\u003d\u0027ipsec_select_backend\u0027,\n    protocol\u003dprotocol, index\u003dindex).execute()",
+      "range": {
+        "startLine": 258,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 48
+      },
+      "revId": "d7d0a16e8492b6de8f2b6bb2a0544003d724a364",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bf2871e7_4aad4366",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-26T16:19:54Z",
+      "side": 1,
+      "message": "Replace .execute() from my previous comment with:\n\n.execute_should_pass(error_message_template, node[\"host\"])",
+      "range": {
+        "startLine": 264,
+        "startChar": 30,
+        "endLine": 264,
+        "endChar": 55
+      },
+      "revId": "d7d0a16e8492b6de8f2b6bb2a0544003d724a364",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
