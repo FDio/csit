@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "81f51ff1_3be40b98",
+        "filename": "tests/vpp/perf/ip6_tunnels/10ge2p1x710-ethip6lispip4-ip6base-mrr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-26T16:26:16Z",
+      "side": 1,
+      "message": "I know, this will not work now.\n\n\u003cmy very deep thinking blog\u003e\nQ: Do we need to select per NIC if we have auto generator in place?\nA: no, suites are fitted just exactly for topology file containing only suite for tests.\nQ: But how do you solve the problem, if i do not want to run them all?\nA: I maybe can parametrize generator\nQ: But this breaks the logic of tagging boolean logic, no?\nA: Yes, per patch user wants only partial selection based on quite good commit-message parsing logic, based on tags.\nQ: Why do for ** do not upgrade Robot?\nA: Ehm, yes it is on the list, but RF is not still implemented?\n\nQ: why to bother with this now?\nA: Yeah auto-generator v1.0-v5.0 for quick impl. lets skip and contribute smaller steps instead of collapsing half of CSIT (really for stability issues, to avoid human error in next release when doing very large changes.)\n\u003c/my very deep thinking blog\u003e",
+      "parentUuid": "775ded72_2354dc95",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 23
+      },
+      "revId": "a5914f789a19053716e38fae5e254de7864ec1b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5c9ae612_7df28ef6",
         "filename": "tests/vpp/perf/ip6_tunnels/10ge2p1x710-ethip6lispip4-ip6base-mrr.robot",
         "patchSetId": 5
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Do you have a link?\n\nI will move this one, but there are others (at keyword level) which should remain visible (when I find a good looking formatting).",
       "parentUuid": "798a08cc_5e0ab2cc",
+      "range": {
+        "startLine": 42,
+        "startChar": 66,
+        "endLine": 42,
+        "endChar": 74
+      },
+      "revId": "a5914f789a19053716e38fae5e254de7864ec1b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2df11f0d_8d898883",
+        "filename": "tests/vpp/perf/ip6_tunnels/10ge2p1x710-ethip6lispip4-ip6base-mrr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-26T16:26:16Z",
+      "side": 1,
+      "message": "https://docs.fd.io/csit/master/doc/tests.vpp.perf.container_memif.html#ge2p1x520-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr-suite\n\nthere is docs verify job triggered for every patch that produce this in jenkins artifacts. once merged, docs merge job will put it on nexus.",
+      "parentUuid": "00024f73_1d7d26f8",
       "range": {
         "startLine": 42,
         "startChar": 66,
