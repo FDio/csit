@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,16 +18,12 @@
 
 import argparse
 import binascii
-import fnmatch
 import json
 import os
 import sys
 
 sys.path.append('/tmp/openvpp-testing')
-try:
-    from resources.libraries.python.PapiErrors import *
-except:
-    raise
+
 
 # Sphinx creates auto-generated documentation by importing the python source
 # files and collecting the docstrings from them. The NO_VPP_PAPI flag allows
@@ -54,7 +50,7 @@ if do_import:
         sys.path.append(modules_path)
         from vpp_papi import VPP
     else:
-        raise PapiInitError('vpp_papi module not found')
+        raise RuntimeError('vpp_papi module not found')
 
 # client name
 CLIENT_NAME = 'csit_papi'
@@ -75,7 +71,7 @@ def papi_init():
         vpp = VPP()
         return vpp
     except Exception as err:
-        raise PapiInitError('PAPI init failed:\n{exc}'.format(exc=repr(err)))
+        raise RuntimeError('PAPI init failed:\n{err}'.format(err=repr(err)))
 
 
 def papi_connect(vpp_client, name='vpp_api'):
@@ -101,7 +97,7 @@ def papi_disconnect(vpp_client):
 
 
 def papi_run(vpp_client, api_name, api_args):
-    """api_name
+    """Run PAPI.
 
     :param vpp_client: VPP instance.
     :param api_name: VPP API name.
@@ -120,7 +116,8 @@ def convert_reply(api_r):
     """Process API reply / a part of API reply for smooth converting to
     JSON string.
 
-    # Apply binascii.hexlify() method for string values.
+    Apply binascii.hexlify() method for string values.
+
     :param api_r: API reply.
     :type api_r: Vpp_serializer reply object (named tuple)
     :returns: Processed API reply / a part of API reply.
@@ -164,9 +161,8 @@ def process_reply(api_reply):
 def main():
     """Main function for the Python API provider.
 
-    :raises PapiCommandInputError: If invalid attribute name or invalid value is
-        used in API call.
-    :raises PapiCommandError: If PAPI command(s) execution failed.
+    :raises RuntimeError: If invalid attribute name or invalid value is
+        used in API call or if PAPI command(s) execution failed.
     """
 
     parser = argparse.ArgumentParser()
@@ -201,14 +197,16 @@ def main():
             reply.append(api_reply)
         except (AttributeError, ValueError) as err:
             papi_disconnect(vpp)
-            raise PapiCommandInputError(
-                'PAPI command {api}({args}) input error:\n{exc}'.format(
-                    api=api_name, args=api_args), exc=repr(err))
+            raise RuntimeError('PAPI command {api}({args}) input error:\n{err}'.
+                               format(api=api_name,
+                                      args=api_args,
+                                      err=repr(err)))
         except Exception as err:
             papi_disconnect(vpp)
-            raise PapiCommandError(
-                'PAPI command {api}({args}) error:\n{exc}'.format(
-                    api=api_name, args=api_args), exc=repr(err))
+            raise RuntimeError('PAPI command {api}({args}) error:\n{exc}'.
+                               format(api=api_name,
+                                      args=api_args,
+                                      exc=repr(err)))
     papi_disconnect(vpp)
 
     return json.dumps(reply)
