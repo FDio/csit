@@ -202,13 +202,13 @@ def main():
         except (AttributeError, ValueError) as err:
             papi_disconnect(vpp)
             raise PapiCommandInputError(
-                'PAPI command {api}({args}) input error:\n{exc}'.format(
-                    api=api_name, args=api_args), exc=repr(err))
+                'PAPI command {api}({args}) input error:\n{exc}'.
+                format(api=api_name, args=api_args, exc=repr(err)))
         except Exception as err:
             papi_disconnect(vpp)
             raise PapiCommandError(
-                'PAPI command {api}({args}) error:\n{exc}'.format(
-                    api=api_name, args=api_args), exc=repr(err))
+                'PAPI command {api}({args}) error:\n{exc}'.
+                format(api=api_name, args=api_args, exc=repr(err)))
     papi_disconnect(vpp)
 
     return json.dumps(reply)
