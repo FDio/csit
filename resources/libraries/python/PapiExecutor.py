@@ -39,6 +39,7 @@ class PapiExecutor(object):
         self._json_data = None
         self._api_reply = list()
         self._api_data = None
+        self._api_command_list = list()
 
         self._ssh = SSH()
         try:
@@ -53,6 +54,54 @@ class PapiExecutor(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         pass
+
+    def clear(self):
+        """Empty the internal command list; return self.
+
+        Use when not sure whether previous usage has left something in the list.
+
+        :returns: self, so that method chaining is possible.
+        :rtype: PapiExecutor
+        """
+        self._api_command_list = list()
+        return self
+
+    def execute(self, timeout=120):
+        """Turn internal command list into proper data and execute; return self.
+
+        This method also clears the internal command list.
+
+        :param timeout: Timeout in seconds.
+        :type timeout: int
+        :returns: self, so that method chaining is possible.
+        :rtype: PapiExecutor
+        :raises SSHTimeout: If PAPI command(s) execution is timed out.
+        :raises PapiInitError: If PAPI initialization failed.
+        :raises PapiJsonFileError: If no api.json file found.
+        :raises PapiCommandError: If PAPI command(s) execution failed.
+        :raises PapiCommandInputError: If invalid attribute name or invalid
+            value is used in API call.
+        :raises RuntimeError: If PAPI executor failed due to another reason.
+        """
+        local_list = self._api_command_list
+        # Clear first as execution may fail.
+        self.clear()
+        self.execute_papi(local_list, timeout)
+        return self
+
+    def add(self, command, **kwargs):
+        """Add next command to internal command list; return self.
+
+        :param command: VPP API command.
+        :param kwargs: Optional key-value arguments.
+        :type api_name: str
+        :type kwargs: dict
+        :returns: self, so that method chaining is possible.
+        :rtype: PapiExecutor
+        """
+        item = self.compose_api_data(command, **kwargs)
+        self._api_command_list.append(item)
+        return self
 
     @staticmethod
     def _process_api_data(api_d):
@@ -132,6 +181,9 @@ class PapiExecutor(object):
     @staticmethod
     def compose_api_data(api_name, **kwargs):
         """Compose arguments for API command.
+
+        FIXME: No need to have this exposed when we have add().
+        Squash this implementation into add().
 
         :param api_name: API command.
         :param kwargs: Optional key-value arguments.
