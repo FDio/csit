@@ -140,49 +140,48 @@ class VPPUtil(object):
 
     @staticmethod
     def vpp_show_version(node, verbose=False):
-        """Run "show_version" API command.
+        """Run "show_version" PAPI command.
 
         :param node: Node to run command on.
         :param verbose: Show version, compile date and compile location if True
             otherwise show only version.
         :type node: dict
         :type verbose: bool
-        :raises PapiError: If no reply received for show_version API command.
+        :raises RuntimeError: If no PAPI command(s) executed.
+        :raises AssertionError: If no reply received for show_version PAPI
+            command.
+        :raises KeyError: If the structure of 'VPP version' is not as expected.
         """
-        # TODO: move composition of api data to separate method
-        api_data = list()
-        api = dict(api_name='show_version')
-        api_args = dict()
-        api['api_args'] = api_args
-        api_data.append(api)
 
-        api_reply = None
-        with PapiExecutor(node) as papi_executor:
-            papi_executor.execute_papi(api_data)
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add('show_version', kwargs={}).execute()
             try:
-                papi_executor.papi_should_have_passed()
-            except AssertionError:
-                raise RuntimeError('Failed to get VPP version on host: {host}'.
-                                   format(host=node['host']))
-            api_reply = papi_executor.get_papi_reply()
+                papi_exec.papi_should_have_passed()
+            except (RuntimeError, AssertionError) as err:
+                logger.error('Failed to get VPP version on host: {host}'.
+                             format(host=node['host']))
+                logger.error(repr(err))
+                raise
 
-        if api_reply is not None:
-            version_data = api_reply[0]['api_reply']['show_version_reply']
-            ver = version_data['version'].rstrip('\0x00')
+        if not papi_resp.replay:
+            raise RuntimeError('No reply received for show_version PAPI '
+                               'command on host {host}'.
+                               format(host=node['host']))
+        try:
+            data = papi_resp.replay[0]['api_reply']['show_version_reply']
+            version = ('VPP version:      {ver}'.
+                       format(ver=data['version'].rstrip('\0x00')))
             if verbose:
-                date = version_data['build_date'].rstrip('\0x00')
-                loc = version_data['build_directory'].rstrip('\0x00')
-                version = \
-                    'VPP Version:        {ver}\n' \
-                    'Compile date:       {date}\n' \
-                    'Compile location:   {loc}\n '\
-                    .format(ver=ver, date=date, loc=loc)
-            else:
-                version = 'VPP version:{ver}'.format(ver=ver)
+                version += ('Compile date:     {date}\n'
+                            'Compile location: {loc}\n '.
+                            format(date=data['build_date'].rstrip('\0x00'),
+                                   loc=data['build_directory'].rstrip('\0x00')))
             logger.info(version)
-        else:
-            raise PapiError('No reply received for show_version API command on '
-                            'host {host}'.format(host=node['host']))
+        except KeyError as err:
+            logger.error("The structure of 'VPP version' is not as expected.\n"
+                         "PAPI replay: {rep}".format(rep=papi_resp.replay))
+            logger.error(repr(err))
+            raise
 
     @staticmethod
     def vpp_show_version_verbose(node):
