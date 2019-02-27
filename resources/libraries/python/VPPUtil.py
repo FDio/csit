@@ -20,7 +20,6 @@ from robot.api import logger
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiExecutor
-from resources.libraries.python.PapiErrors import PapiError
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
@@ -140,49 +139,48 @@ class VPPUtil(object):
 
     @staticmethod
     def vpp_show_version(node, verbose=False):
-        """Run "show_version" API command.
+        """Run "show_version" PAPI command.
 
         :param node: Node to run command on.
         :param verbose: Show version, compile date and compile location if True
             otherwise show only version.
         :type node: dict
         :type verbose: bool
-        :raises PapiError: If no reply received for show_version API command.
+        :raises RuntimeError: If no PAPI command(s) executed.
+        :raises AssertionError: If no reply received for show_version PAPI
+            command.
+        :raises KeyError: If the structure of 'VPP version' is not as expected.
         """
-        # TODO: move composition of api data to separate method
-        api_data = list()
-        api = dict(api_name='show_version')
-        api_args = dict()
-        api['api_args'] = api_args
-        api_data.append(api)
 
-        api_reply = None
-        with PapiExecutor(node) as papi_executor:
-            papi_executor.execute_papi(api_data)
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add('show_version').execute()
             try:
-                papi_executor.papi_should_have_passed()
-            except AssertionError:
-                raise RuntimeError('Failed to get VPP version on host: {host}'.
-                                   format(host=node['host']))
-            api_reply = papi_executor.get_papi_reply()
+                papi_exec.papi_should_have_passed()
+            except (RuntimeError, AssertionError) as err:
+                logger.error('Failed to get VPP version on host: {host}'.
+                             format(host=node['host']))
+                logger.error(repr(err))
+                raise
 
-        if api_reply is not None:
-            version_data = api_reply[0]['api_reply']['show_version_reply']
-            ver = version_data['version'].rstrip('\0x00')
+        if not papi_resp.replay:
+            raise RuntimeError('No reply received for show_version PAPI '
+                               'command on host {host}'.
+                               format(host=node['host']))
+        try:
+            data = papi_resp.replay[0]['api_reply']['show_version_reply']
+            version = ('VPP version:      {ver}\n'.
+                       format(ver=data['version'].rstrip('\0x00')))
             if verbose:
-                date = version_data['build_date'].rstrip('\0x00')
-                loc = version_data['build_directory'].rstrip('\0x00')
-                version = \
-                    'VPP Version:        {ver}\n' \
-                    'Compile date:       {date}\n' \
-                    'Compile location:   {loc}\n '\
-                    .format(ver=ver, date=date, loc=loc)
-            else:
-                version = 'VPP version:{ver}'.format(ver=ver)
+                version += ('Compile date:     {date}\n'
+                            'Compile location: {loc}\n '.
+                            format(date=data['build_date'].rstrip('\0x00'),
+                                   loc=data['build_directory'].rstrip('\0x00')))
             logger.info(version)
-        else:
-            raise PapiError('No reply received for show_version API command on '
-                            'host {host}'.format(host=node['host']))
+        except KeyError as err:
+            logger.error("The structure of 'VPP version' is not as expected.\n"
+                         "PAPI replay:\n{rep}".format(rep=papi_resp.replay))
+            logger.error(repr(err))
+            raise
 
     @staticmethod
     def vpp_show_version_verbose(node):
@@ -326,27 +324,30 @@ class VPPUtil(object):
         :type node: dict
         :returns: VPP thread data.
         :rtype: list
-        :raises RuntimeError: If failed to run command on host.
-        :raises PapiError: If no API reply received.
+        :raises RuntimeError: If no PAPI command(s) executed.
+        :raises AssertionError: If no reply received for show_threads PAPI
+            command.
+        :raises KeyError: If the structure of show_threads is not as expected.
         """
-        api_data = list()
-        api = dict(api_name='show_threads')
-        api_args = dict()
-        api['api_args'] = api_args
-        api_data.append(api)
 
-        with PapiExecutor(node) as papi_executor:
-            papi_executor.execute_papi(api_data)
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add('show_threads').execute()
             try:
-                papi_executor.papi_should_have_passed()
-                api_reply = papi_executor.get_papi_reply()
-            except AssertionError:
-                raise RuntimeError('Failed to run {api_name} on host '
-                                   '{host}!'.format(host=node['host'], **api))
+                papi_exec.papi_should_have_passed()
+            except (RuntimeError, AssertionError) as err:
+                logger.error('Failed to get VPP version on host: {host}'.
+                             format(host=node['host']))
+                logger.error(repr(err))
+                raise
 
-        if api_reply:
-            return \
-                api_reply[0]['api_reply']['show_threads_reply']['thread_data']
-        else:
-            raise PapiError('No reply received for {api_name} on host {host}!'.
-                            format(host=node['host'], **api))
+        if not papi_resp.replay:
+            raise RuntimeError('No reply received for {api} on host {host}!'.
+                               format(api='show_threads', host=node['host']))
+        try:
+            return papi_resp.replay[0]['api_reply']\
+                ['show_threads_reply']['thread_data']
+        except KeyError as err:
+            logger.error("The structure of 'show_threads' is not as expected.\n"
+                         "PAPI replay:\n{rep}".format(rep=papi_resp.replay))
+            logger.error(repr(err))
+            raise
