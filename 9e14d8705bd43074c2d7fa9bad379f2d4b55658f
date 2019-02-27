@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "cc4a8ae7_bf685da8",
+        "filename": "docs/lab/Testbeds_Xeon_Hsw_VIRL.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-02-27T21:31:20Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/#/c/17918/ for merged testbed specs.",
+      "parentUuid": "435c04f3_1c9903f7",
+      "revId": "9e14d8705bd43074c2d7fa9bad379f2d4b55658f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bcfaa7bb_f029f805",
         "filename": "docs/lab/Testbeds_Xeon_Hsw_VIRL.md",
         "patchSetId": 1
