@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "08b9399c_3ee14180",
+        "filename": "resources/libraries/bash/entry/bootstrap_verify_perf.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-27T19:16:11Z",
+      "side": 1,
+      "message": "yes agree, this more like testing ansible stability in long term view. e.g are we able fast enough run ansible reliable enough? plus this jitter is not harming.",
+      "parentUuid": "38807c20_7e8d5d4b",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 13
+      },
+      "revId": "957bb56e0a888918eaa00909bd4a737ebf0a1e72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e64adfa6_86431866",
         "filename": "resources/libraries/bash/function/ansible.sh",
         "patchSetId": 15
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-27T18:10:50Z",
       "side": 1,
       "message": "Not sure whether this is \"duts\" or \"nodes\" (it probably is not \"tgs\").",
+      "range": {
+        "startLine": 19,
+        "startChar": 17,
+        "endLine": 19,
+        "endChar": 22
+      },
+      "revId": "957bb56e0a888918eaa00909bd4a737ebf0a1e72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dfc74097_93ad787d",
+        "filename": "resources/libraries/bash/function/ansible.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-27T19:16:11Z",
+      "side": 1,
+      "message": "all hosts in topology file. Terminology is following what is in topolgy file. Ansible is not following testing terminology TG/SUT/DUT but rather referencing \"hosts\" as systems with operating system (from integration point view, not testing wise).",
+      "parentUuid": "e64adfa6_86431866",
       "range": {
         "startLine": 19,
         "startChar": 17,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3ff1263d_38d93861",
+        "filename": "resources/libraries/bash/function/ansible.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-27T19:16:11Z",
+      "side": 1,
+      "message": "typo, i will fix in next iter.",
+      "parentUuid": "5ce7d4fd_6ef57059",
+      "range": {
+        "startLine": 25,
+        "startChar": 21,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "957bb56e0a888918eaa00909bd4a737ebf0a1e72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "835e23fa_059c09d1",
         "filename": "resources/libraries/bash/function/ansible.sh",
         "patchSetId": 15
@@ -82,6 +154,30 @@
       "writtenOn": "2019-02-27T18:10:50Z",
       "side": 1,
       "message": "Add a TODO to de-duplicate data there with data in topologies/available/.",
+      "range": {
+        "startLine": 45,
+        "startChar": 45,
+        "endLine": 45,
+        "endChar": 50
+      },
+      "revId": "957bb56e0a888918eaa00909bd4a737ebf0a1e72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e9ad59e_f2e5eef9",
+        "filename": "resources/libraries/bash/function/ansible.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-27T19:16:11Z",
+      "side": 1,
+      "message": "this will be tricky but maybe doable. Let me explain. Ansible is here for a while (so do CSIT). Ansible has strict structure (yaml) of inventory file, CSIT is more in our hands. From my point of view it makes sense to serialise one to another e.g Ansible is first in executing so it can generate our topology file. We can have broad discuss what is better. but keep in mind that we cannot change Ansible format of defining topology, we can change ours. In this stage those two are not compatible, but long term we will generate ours from Ansible?",
+      "parentUuid": "835e23fa_059c09d1",
       "range": {
         "startLine": 45,
         "startChar": 45,
