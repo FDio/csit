@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "38807c20_7e8d5d4b",
+        "filename": "resources/libraries/bash/entry/bootstrap_verify_perf.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-27T18:10:50Z",
+      "side": 1,
+      "message": "In future we might want to optimize, for example run only for daily jobs, not for verify. But I agree that impact is small, so no need to hurry.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 13
+      },
+      "revId": "957bb56e0a888918eaa00909bd4a737ebf0a1e72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e64adfa6_86431866",
+        "filename": "resources/libraries/bash/function/ansible.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-27T18:10:50Z",
+      "side": 1,
+      "message": "Not sure whether this is \"duts\" or \"nodes\" (it probably is not \"tgs\").",
+      "range": {
+        "startLine": 19,
+        "startChar": 17,
+        "endLine": 19,
+        "endChar": 22
+      },
+      "revId": "957bb56e0a888918eaa00909bd4a737ebf0a1e72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ce7d4fd_6ef57059",
+        "filename": "resources/libraries/bash/function/ansible.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-27T18:10:50Z",
+      "side": 1,
+      "message": "You mean it is a directory, and its subdirectory (of hardcoded name) contains the addresses?",
+      "range": {
+        "startLine": 25,
+        "startChar": 21,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "957bb56e0a888918eaa00909bd4a737ebf0a1e72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "835e23fa_059c09d1",
+        "filename": "resources/libraries/bash/function/ansible.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-27T18:10:50Z",
+      "side": 1,
+      "message": "Add a TODO to de-duplicate data there with data in topologies/available/.",
+      "range": {
+        "startLine": 45,
+        "startChar": 45,
+        "endLine": 45,
+        "endChar": 50
+      },
+      "revId": "957bb56e0a888918eaa00909bd4a737ebf0a1e72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
