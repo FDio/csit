@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "a7bc219f_d5cfedab",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-27T09:50:26Z",
+      "side": 1,
+      "message": "fix these pylints",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 75
+      },
+      "revId": "d7d0a16e8492b6de8f2b6bb2a0544003d724a364",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7eeeaa4_e32bafe3",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 1
@@ -66,6 +89,69 @@
         "endLine": 264,
         "endChar": 55
       },
+      "revId": "d7d0a16e8492b6de8f2b6bb2a0544003d724a364",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b4067b83_517aa8fd",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-27T09:50:26Z",
+      "side": 1,
+      "message": "9",
+      "range": {
+        "startLine": 1,
+        "startChar": 19,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "d7d0a16e8492b6de8f2b6bb2a0544003d724a364",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "38dbb2bf_293a6c6f",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-27T09:50:26Z",
+      "side": 1,
+      "message": "VPP API",
+      "range": {
+        "startLine": 14,
+        "startChar": 10,
+        "endLine": 14,
+        "endChar": 13
+      },
+      "revId": "d7d0a16e8492b6de8f2b6bb2a0544003d724a364",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fefc5706_c3cf4b12",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-27T09:50:26Z",
+      "side": 1,
+      "message": "VPP API",
       "revId": "d7d0a16e8492b6de8f2b6bb2a0544003d724a364",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
