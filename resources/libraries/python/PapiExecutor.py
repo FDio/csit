@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,7 +16,6 @@
 import binascii
 import json
 
-from paramiko.ssh_exception import SSHException
 from robot.api import logger
 
 from resources.libraries.python.constants import Constants
@@ -32,19 +31,23 @@ class PapiExecutor(object):
     """Contains methods for executing Python API commands on DUTs."""
 
     def __init__(self, node):
+
+        self._node = node
+
         self._stdout = None
         self._stderr = None
         self._ret_code = None
-        self._node = node
+
         self._json_data = None
         self._api_reply = list()
         self._api_data = None
+        self._api_command_list = list()
 
         self._ssh = SSH()
         try:
             self._ssh.connect(node)
-        except:
-            raise SSHException('Cannot open SSH connection to host {host} to '
+        except IOError:
+            raise RuntimeError('Cannot open SSH connection to host {host} to '
                                'execute PAPI command(s)'.
                                format(host=self._node['host']))
 
@@ -53,6 +56,53 @@ class PapiExecutor(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         pass
+
+    def clear(self):
+        """Empty the internal command list; return self.
+
+        Use when not sure whether previous usage has left something in the list.
+
+        :returns: self, so that method chaining is possible.
+        :rtype: PapiExecutor
+        """
+
+        self._api_command_list = list()
+        self._stdout = None
+        self._stderr = None
+        self._ret_code = None
+
+        return self
+
+    def execute(self, timeout=120):
+        """Turn internal command list into proper data and execute; return self.
+
+        This method also clears the internal command list.
+
+        :param timeout: Timeout in seconds.
+        :type timeout: int
+        :returns: self, so that method chaining is possible.
+        :rtype: PapiExecutor
+
+        """
+        local_list = self._api_command_list
+        # Clear first as execution may fail.
+        self.clear()
+        self._execute_papi(local_list, timeout)
+        return self
+
+    def add(self, command, **kwargs):
+        """Add next command to internal command list; return self.
+
+        :param command: VPP API command.
+        :param kwargs: Optional key-value arguments.
+        :type command: str
+        :type kwargs: dict
+        :returns: self, so that method chaining is possible.
+        :rtype: PapiExecutor
+        """
+
+        self._api_command_list.append(dict(api_name=command, api_args=kwargs))
+        return self
 
     @staticmethod
     def _process_api_data(api_d):
@@ -68,8 +118,12 @@ class PapiExecutor(object):
 
         api_data_processed = list()
         for api in api_d:
-            api_name = api['api_name']
-            api_args = api['api_args']
+            try:
+                api_name = api['api_name']
+                api_args = api['api_args']
+            except KeyError:
+                continue
+
             api_processed = dict(api_name=api_name)
             api_args_processed = dict()
             for a_k, a_v in api_args.iteritems():
@@ -77,6 +131,7 @@ class PapiExecutor(object):
                 api_args_processed[str(a_k)] = value
             api_processed['api_args'] = api_args_processed
             api_data_processed.append(api_processed)
+
         return api_data_processed
 
     @staticmethod
@@ -112,9 +167,7 @@ class PapiExecutor(object):
         """
 
         if isinstance(api_reply, list):
-            reverted_reply = list()
-            for a_r in api_reply:
-                reverted_reply.append(self._revert_api_reply(a_r))
+            reverted_reply = [self._revert_api_reply(a_r) for a_r in api_reply]
         else:
             reverted_reply = self._revert_api_reply(api_reply)
         return reverted_reply
@@ -123,14 +176,50 @@ class PapiExecutor(object):
         """Process received JSON data."""
 
         for data in self._json_data:
-            api_name = data['api_name']
-            api_reply = data['api_reply']
-            api_reply_processed = dict(
-                api_name=api_name, api_reply=self._process_reply(api_reply))
+            try:
+                api_reply_processed = dict(
+                    api_name=data['api_name'],
+                    api_reply=self._process_reply(data['api_reply']))
+            except KeyError:
+                continue
+
             self._api_reply.append(api_reply_processed)
 
-    def execute_papi(self, api_data, timeout=120):
+    # @staticmethod
+    # def compose_api_data(api_name, **kwargs):
+    #     """Compose arguments for API command.
+    #
+    #     FIXME: No need to have this exposed when we have add().
+    #     TODO: Remove
+    #     Squash this implementation into add().
+    #
+    #     :param api_name: API command.
+    #     :param kwargs: Optional key-value arguments.
+    #     :type api_name: str
+    #     :type kwargs: dict
+    #     :returns: Api data dictionary:
+    #         {
+    #             "api_name": api_name,
+    #             "api_args":{
+    #                 arg1: value1,
+    #                 arg2: value2,
+    #                 ...
+    #                 }
+    #         }.
+    #     :rtype: dict
+    #     """
+    #     api = dict(api_name=api_name)
+    #     api_args = dict()
+    #     for key in kwargs:
+    #         api_args[key] = kwargs[key]
+    #     api['api_args'] = api_args
+    #
+    #     return api
+
+    def _execute_papi(self, api_data, timeout=120):
         """Execute PAPI command(s) on remote node and store the result.
+
+        FIXME: Revise the exceptions
 
         :param api_data: List of APIs with their arguments.
         :param timeout: Timeout in seconds.
@@ -144,6 +233,10 @@ class PapiExecutor(object):
             value is used in API call.
         :raises RuntimeError: If PAPI executor failed due to another reason.
         """
+
+        if not api_data:
+            raise RuntimeError()
+
         self._api_data = api_data
         api_data_processed = self._process_api_data(api_data)
         json_data = json.dumps(api_data_processed)
@@ -179,6 +272,8 @@ class PapiExecutor(object):
         """Read return code from last executed script and raise exception if the
         PAPI command(s) didn't fail.
 
+        FIXME: Revise the exceptions
+
         :raises RuntimeError: When no PAPI command executed.
         :raises AssertionError: If PAPI command(s) execution passed.
         """
@@ -194,6 +289,8 @@ class PapiExecutor(object):
         """Read return code from last executed script and raise exception if the
         PAPI command(s) failed.
 
+        FIXME: Revise the exceptions
+
         :raises RuntimeError: When no PAPI command executed.
         :raises AssertionError: If PAPI command(s) execution failed.
         """
@@ -205,18 +302,21 @@ class PapiExecutor(object):
                 "PAPI command(s) execution failed, but success was expected: "
                 "{apis}".format(apis=self._api_data))
 
-    def get_papi_stdout(self):
+    @property
+    def stdout(self):
         """Returns value of stdout from last executed PAPI command(s)."""
 
         return self._stdout
 
-    def get_papi_stderr(self):
+    @property
+    def stderr(self):
         """Returns value of stderr from last executed PAPI command(s)."""
 
         return self._stderr
 
-    def get_papi_reply(self):
-        """Returns api reply from last executed PAPI command(s)."""
+    @property
+    def reply(self):
+        """Returns API reply from last executed PAPI command(s)."""
 
         self._json_data = json.loads(self._stdout)
         self._process_json_data()
