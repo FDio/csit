@@ -20,7 +20,6 @@ from robot.api import logger
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiExecutor
-from resources.libraries.python.PapiErrors import PapiError
 from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.parsers.JsonParser import JsonParser
@@ -1637,33 +1636,32 @@ class InterfaceUtil(object):
         :type node: dict
         :returns: Thread mapping information as a list of dictionaries.
         :rtype: list
-        :raises RuntimeError: If failed to run command on host.
-        :raises PapiError: If no API reply received.
+        :raises RuntimeError: If no API reply received.
+        :raises KeyError, IndexError: If the structure of
+            'sw_interface_rx_placement_details' is not as expected.
         """
-        api_data = list()
-        for ifc in node['interfaces'].values():
-            if ifc['vpp_sw_index'] is not None:
-                api = dict(api_name='sw_interface_rx_placement_dump')
-                api_args = dict(sw_if_index=ifc['vpp_sw_index'])
-                api['api_args'] = api_args
-                api_data.append(api)
 
-        with PapiExecutor(node) as papi_executor:
-            papi_executor.execute_papi(api_data)
-            try:
-                papi_executor.papi_should_have_passed()
-                api_reply = papi_executor.get_papi_reply()
-            except AssertionError:
-                raise RuntimeError('Failed to run {api_name} on host '
-                                   '{host}!'.format(host=node['host'], **api))
-
-        if api_reply:
-            thr_mapping = [s['sw_interface_rx_placement_details'] \
-                for r in api_reply for s in r['api_reply']]
+        cmd = 'sw_interface_rx_placement_dump'
+        cmd_reply = 'sw_interface_rx_placement_details'
+        with PapiExecutor(node) as papi_exec:
+            err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".\
+                format(cmd=cmd, host=node['host'])
+            for ifc in node['interfaces'].values():
+                papi_exec.add(cmd, sw_if_index=ifc['vpp_sw_index'])
+            papi_resp = papi_exec.execute_should_pass(err_msg)
+        if not papi_resp.reply:
+            raise RuntimeError("No reply received for '{cmd_reply}' on host "
+                               "{host}!".format(cmd=cmd, host=node['host']))
+        try:
+            thr_mapping = [s[cmd_reply] for r in papi_resp.reply
+                           for s in r['api_reply']]
             return sorted(thr_mapping, key=lambda k: k['sw_if_index'])
-        else:
-            raise PapiError('No reply received for {api_name} on host {host}!'.
-                            format(host=node['host'], **api))
+        except (KeyError, IndexError) as err:
+            logger.error("The structure of '{cmd_reply}' is not as expected.\n"
+                         "PAPI replay:\n{rep}\n{err}".
+                         format(cmd_reply=cmd_reply, rep=papi_resp.reply,
+                                err=repr(err)))
+            raise
 
     @staticmethod
     def vpp_sw_interface_set_rx_placement(node, sw_if_index, queue_id,
@@ -1678,28 +1676,35 @@ class InterfaceUtil(object):
         :type sw_if_index: int
         :type queue_id: int
         :type worker_id: int
-        :raises RuntimeError: If failed to run command on host.
-        :raises PapiError: If no API reply received.
+        :raises RuntimeError: If failed to run command on host or if no API
+            reply received.
+        :raises KeyError, IndexError: If the structure of
+            'sw_interface_set_rx_placement_reply' is not as expected.
         """
-        api_data = list()
-        api = dict(api_name='sw_interface_set_rx_placement')
-        api_args = dict(sw_if_index=sw_if_index, queue_id=queue_id,
+
+        cmd = 'sw_interface_set_rx_placement'
+        cmd_reply = 'sw_interface_set_rx_placement_reply'
+        with PapiExecutor(node) as papi_exec:
+            err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".\
+                format(host=node['host'], cmd=cmd)
+            args = dict(sw_if_index=sw_if_index, queue_id=queue_id,
                         worker_id=worker_id)
-        api['api_args'] = api_args
-        api_data.append(api)
-
-        with PapiExecutor(node) as papi_executor:
-            papi_executor.execute_papi(api_data)
-            try:
-                papi_executor.papi_should_have_passed()
-                api_reply = papi_executor.get_papi_reply()
-            except AssertionError:
-                raise RuntimeError('Failed to run {api_name} on host '
-                                   '{host}!'.format(host=node['host'], **api))
-
-        if not api_reply:
-            raise PapiError('No reply received for {api_name} on host {host}!'.
-                            format(host=node['host'], **api))
+            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
+        if not papi_resp.reply:
+            raise RuntimeError("No reply received for '{cmd}' on host "
+                               "{host}!".format(host=node['host'], cmd=cmd))
+        try:
+            data = papi_resp.reply[0]['api_reply'][cmd_reply]
+            if data['retval'] != 0:
+                raise RuntimeError("Failed to set interface RX placement "
+                                   "to worker on host {host}".
+                                   format(host=node['host']))
+        except (KeyError, IndexError) as err:
+            logger.error("The structure of '{cmd_reply}' is not "
+                         "as expected.\nPAPI replay:\n{rep}\n{err}".
+                         format(cmd_reply=cmd_reply, rep=papi_resp.reply,
+                                err=repr(err)))
+            raise
 
     @staticmethod
     def vpp_round_robin_rx_placement(node, prefix):
