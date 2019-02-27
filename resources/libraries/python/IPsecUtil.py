@@ -20,7 +20,6 @@ from enum import Enum, IntEnum
 from robot.api import logger
 
 from resources.libraries.python.PapiExecutor import PapiExecutor
-from resources.libraries.python.PapiErrors import PapiError
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
@@ -252,36 +251,21 @@ class IPsecUtil(object):
         :type node: dict
         :type protocol: IPsecProto
         :type index: int
+        :raises RuntimeError: If failed to select IPsec backend or if no API
+            reply received.
         """
-        # TODO: move composition of api data to separate method
-        api_data = list()
-        api = dict(api_name='ipsec_select_backend')
-        api_args = dict(protocol=protocol)
-        api_args['index'] = index
-        api['api_args'] = api_args
-        api_data.append(api)
 
-        api_reply = None
-        with PapiExecutor(node) as papi_executor:
-            papi_executor.execute_papi(api_data)
-            try:
-                papi_executor.papi_should_have_passed()
-            except AssertionError:
-                raise PapiError('Failed to select IPsec backend on host {host}'.
-                                format(host=node['host']))
-            api_reply = papi_executor.get_papi_reply()
-
-        if api_reply is not None:
-            api_r = api_reply[0]['api_reply']['ipsec_select_backend_reply']
-            if api_r['retval'] == 0:
-                logger.trace('IPsec backend successfully selected on host '
-                             '{host}'.format(host=node['host']))
-            else:
-                raise PapiError('Failed to select IPsec backend on host {host}'.
-                                format(host=node['host']))
-        else:
-            raise PapiError('No reply received for ipsec_select_backend API '
-                            'command on host {host}'.format(host=node['host']))
+        cmd = 'ipsec_select_backend'
+        cmd_reply = 'ipsec_select_backend_reply'
+        err_msg = 'Failed to select IPsec backend on host {host}'.format(
+            host=node['host'])
+        args = dict(protocol=protocol, index=index)
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
+        data = papi_resp.reply[0]['api_reply'][cmd_reply]
+        if data['retval'] != 0:
+            raise RuntimeError('Failed to select IPsec backend on host {host}'.
+                               format(host=node['host']))
 
     @staticmethod
     def vpp_ipsec_backend_dump(node):
@@ -290,34 +274,20 @@ class IPsecUtil(object):
         :param node: VPP node to dump IPsec backend on.
         :type node: dict
         """
-        # TODO: move composition of api data to separate method
-        api_data = list()
-        api = dict(api_name='ipsec_backend_dump')
-        api_args = dict()
-        api['api_args'] = api_args
-        api_data.append(api)
 
-        api_reply = None
-        with PapiExecutor(node) as papi_executor:
-            papi_executor.execute_papi(api_data)
-            try:
-                papi_executor.papi_should_have_passed()
-            except AssertionError:
-                raise PapiError('Failed to dump IPsec backends on host {host}'.
-                                format(host=node['host']))
-            # After API change there is returned VPP internal enum object
-            # representing VPP IPSEC protocol instead of integer representation
-            # so JSON fails to decode it - we need to check if it is Python API
-            # bug or we need to adapt vpp_papi_provider to correctly encode
-            # such object into JSON
-            # api_reply = papi_executor.get_papi_reply()
-            api_reply = papi_executor.get_papi_stdout()
-
-        if api_reply is not None:
-            logger.trace('IPsec backend dump\n{dump}'.format(dump=api_reply))
-        else:
-            raise PapiError('No reply received for ipsec_select_backend API '
-                            'command on host {host}'.format(host=node['host']))
+        with PapiExecutor(node) as papi_exec:
+            err_msg = 'Failed to dump IPsec backends on host {host}'.\
+                format(host=node['host'])
+            papi_resp = papi_exec.add('ipsec_backend_dump').execute_should_pass(
+                err_msg, process_reply=False)
+        # After API change there is returned VPP internal enum object
+        # representing VPP IPSEC protocol instead of integer representation
+        # so JSON fails to decode it - we need to check if it is Python API
+        # bug or we need to adapt vpp_papi_provider to correctly encode
+        # such object into JSON
+        # logger.trace('IPsec backend dump\n{dump}'.
+        # format(dump=papi_resp.reply))
+        logger.trace('IPsec backend dump\n{dump}'.format(dump=papi_resp.stdout))
 
     @staticmethod
     def vpp_ipsec_add_sad_entry(node, sad_id, spi, crypto_alg, crypto_key,
