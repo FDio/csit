@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,10 +17,10 @@
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
-| ... | NIC_Intel-X520-DA2 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
+| ... | NIC_Intel-X710 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L3 | Intel-X520-DA2
+| ... | L3 | ${nic_name}
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
@@ -37,15 +37,13 @@
 | ... | Eth-IPv6 on TG-DUTn for IPv6 routing over LISPoIPv4 tunnel.\
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6\
 | ... | routing and static routes. LISPoIPv4 tunnel is configured between\
-| ... | DUT1 and DUT2. DUT1 and DUT2 tested with 2p10GE NIC X520 Niantic\
-| ... | by Intel.\
+| ... | DUT1 and DUT2. DUT1 and DUT2 tested with ${nic_name}.
 | ... | *[Ver] TG verification:* In MaxReceivedRate tests TG sends traffic\
 | ... | at line rate and reports total received/sent packets over trial period.\
 | ... | *[Ref] Applicable standard specifications:* RFC6830.
 
 *** Variables ***
-# X520-DA2 bandwidth limit
-| ${s_limit}= | ${10000000000}
+| ${nic_name}= | Intel-X710
 # LISP overhead
 | ${overhead}= | 48
 # Traffic profile:
@@ -71,7 +69,7 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${s_limit} | ${framesize} | overhead=${overhead}
+| | ... | ${nic_name} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 over IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip6o4} | ${dut1_to_tg_ip6o4} | ${dut2_to_dut1_ip6o4}
