@@ -22,6 +22,8 @@ set -exuo pipefail
 
 
 function activate_docker_topology () {
+    set -exuo pipefail
+
     # Create virtual vpp-device topology. Output of the function is topology
     # file describing created environment saved to a file.
     #
@@ -32,8 +34,6 @@ function activate_docker_topology () {
     # - FLAVOR - Node flavor string, usually describing the processor.
     # Variables set:
     # - WORKING_TOPOLOGY - Path to topology file.
-
-    set -exuo pipefail
 
     source "${BASH_FUNCTION_DIR}/device.sh" || {
         die "Source failed!"
@@ -128,6 +128,25 @@ function activate_virtualenv () {
     }
     # Most CSIT Python scripts assume PYTHONPATH is set and exported.
     export PYTHONPATH="${root_path}" || die "Export failed."
+}
+
+
+function archive_tests () {
+
+    set -exuo pipefail
+
+    # Create .tar.xz of generated/tests for archiving.
+
+    # Directory read:
+    # - ${GENERATED_DIR}/tests - Tree of executed suites to archive.
+    # File rewriten:
+    # - ${ARCHIVE_DIR}/tests.tar.xz - Archive of generated tests.
+
+    # TODO: Is there a reason to keep this separate from generate_tests?
+
+    tar c "${GENERATED_DIR}/tests" | xz -9e > "${ARCHIVE_DIR}/tests.tar.xz" || {
+        die "Error creating archive of generated tests."
+    }
 }
 
 
@@ -366,7 +385,7 @@ function generate_tests () {
     # within any subdirectory after copying.
 
     # This is a separate function, because this code is called
-    # both by run_pybot and autogen checker.
+    # both by autogen checker and entries calling run_pybot.
 
     # TODO: Is it worth to put */tests to their own *_DIR variables?
 
@@ -543,13 +562,11 @@ function run_pybot () {
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # - ARCHIVE_DIR - Path to store robot result files in.
     # - PYBOT_ARGS, EXPANDED_TAGS - See compose_pybot_arguments.sh
+    # - GENERATED_DIR - Tests are assumed to be generated under there.
     # Variables set:
     # - PYBOT_EXIT_STATUS - Exit status of most recent pybot invocation.
     # Functions called:
     # - die - Print to stderr and exit.
-
-    # TODO: Is there a use to skips suite autogeneration?
-    generate_tests
 
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${PYBOT_ARGS[@]}")
     all_options+=("${EXPANDED_TAGS[@]}")

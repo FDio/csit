@@ -41,10 +41,13 @@ work_dir="$(pwd)" || die
 trap "cd '${work_dir}'" EXIT || die
 
 generate_tests
+
 rm -rf "${GENERATED_DIR}/tests_tmp"
 cp -r "${GENERATED_DIR}/tests" "${GENERATED_DIR}/tests_tmp"
 # Default cp behavior is to put inside a targed dir, not to override.
 cp -rf "${CSIT_DIR}/tests"/* "${GENERATED_DIR}/tests_tmp"/
+# TODO: Do we want to archive ${GENERATED_DIR}?
+# I think archiving the diff is enough.
 
 diff_cmd=("diff" "-dur" "${GENERATED_DIR}/tests_tmp" "${GENERATED_DIR}/tests")
 lines="$("${diff_cmd[@]}" | tee "autogen.log" | wc -l)" || die
