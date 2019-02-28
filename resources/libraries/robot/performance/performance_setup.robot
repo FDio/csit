@@ -15,6 +15,7 @@
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.tools.wrk.wrk
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
+| Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 | Resource | resources/libraries/robot/tcp/tcp_setup.robot
 | Documentation | Performance suite keywords - Suite and test setups and
