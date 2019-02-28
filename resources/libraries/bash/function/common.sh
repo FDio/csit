@@ -365,6 +365,9 @@ function generate_tests () {
     # The generation is done by executing any *.py executable
     # within any subdirectory after copying.
 
+    # This is a separate function, because this code is called
+    # both by run_pybot and autogen checker.
+
     # TODO: Is it worth to put */tests to their own *_DIR variables?
 
     # Directories read:
