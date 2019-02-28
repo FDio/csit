@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a964b067_c0076a85",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-28T07:17:55Z",
+      "side": 1,
+      "message": "docker",
+      "range": {
+        "startLine": 133,
+        "startChar": 37,
+        "endLine": 133,
+        "endChar": 43
+      },
+      "revId": "560a6eb154bf2b78513055670b3a77a14784582d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce48f874_fc183e61",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-28T07:17:55Z",
+      "side": 1,
+      "message": "images",
+      "range": {
+        "startLine": 133,
+        "startChar": 27,
+        "endLine": 133,
+        "endChar": 32
+      },
+      "revId": "560a6eb154bf2b78513055670b3a77a14784582d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8fe7b185_1353ce77",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-28T07:17:55Z",
+      "side": 1,
+      "message": "files.",
+      "range": {
+        "startLine": 133,
+        "startChar": 48,
+        "endLine": 133,
+        "endChar": 49
+      },
+      "revId": "560a6eb154bf2b78513055670b3a77a14784582d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3055e7e9_82990942",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-28T07:17:55Z",
+      "side": 1,
+      "message": "builded",
+      "range": {
+        "startLine": 133,
+        "startChar": 13,
+        "endLine": 133,
+        "endChar": 19
+      },
+      "revId": "560a6eb154bf2b78513055670b3a77a14784582d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c02526b_7195a13f",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-02-28T07:17:55Z",
+      "side": 1,
+      "message": "missing dot",
+      "revId": "560a6eb154bf2b78513055670b3a77a14784582d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
