@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2b012f7_0df852a6",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 16
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-28T11:57:35Z",
+      "side": 1,
+      "message": "the built",
+      "range": {
+        "startLine": 332,
+        "startChar": 13,
+        "endLine": 332,
+        "endChar": 20
+      },
+      "revId": "c5a50f867175e7be47495ed829287f9120a45475",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
