@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4382d4b1_f4944db5",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-28T13:53:46Z",
+      "side": 1,
+      "message": "Now that I think about it, most callers would be interested in _api_reply instead.\n\nOr a composite class (PapiResponse) where _api_reply is one field and SshResponse (lines 37-39) other filed.\nPossibly also another field for a list of exceptions, if we have an execute() variant told to ignore some of them.",
+      "range": {
+        "startLine": 83,
+        "startChar": 18,
+        "endLine": 83,
+        "endChar": 22
+      },
+      "revId": "5111a5ae4af7761f841f1992eb71f75103603d07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
