@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c6785a0_4fb1a90e",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-28T12:34:58Z",
+      "side": 1,
+      "message": "Mention the ipv6 specifics in all affected descriptions.",
+      "range": {
+        "startLine": 486,
+        "startChar": 34,
+        "endLine": 486,
+        "endChar": 37
+      },
+      "revId": "73cb03cb5b5bc6751895311b22e4b998d73e8c6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
