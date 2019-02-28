@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,10 +17,10 @@
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X520-DA2 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
+| ... | NIC_Intel-X710 | IP6FWD | ENCAP | LISP | IP6UNRLAY | IP6OVRLAY
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L3 | Intel-X520-DA2
+| ... | L3 | ${nic_name}
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
@@ -34,12 +34,11 @@
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.\
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6-LISP-IPv4 on DUT1-DUT2,\
-| ... | Eth-IPv6 on TG-DUTn for IPv6 routing over LISPoIPv4 tunnel.\
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv6-LISP-IPv6 on DUT1-DUT2,\
+| ... | Eth-IPv6 on TG-DUTn for IPv6 routing over LISPoIPv6 tunnel.\
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6\
-| ... | routing and static routes. LISPoIPv4 tunnel is configured between\
-| ... | DUT1 and DUT2. DUT1 and DUT2 tested with 2p10GE NIC X520 Niantic\
-| ... | by Intel.\
+| ... | routing and static routes. LISPoIPv6 tunnel is configured between\
+| ... | DUT1 and DUT2. DUT1 and DUT2 tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -48,10 +47,9 @@
 | ... | *[Ref] Applicable standard specifications:* RFC6830.
 
 *** Variables ***
-# X520-DA2 bandwidth limit
-| ${s_limit}= | ${10000000000}
+| ${nic_name}= | Intel-X710
 # LISP overhead
-| ${overhead}= | 48
+| ${overhead}= | 8
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip6-ip6src253
 
@@ -77,64 +75,64 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${s_limit} | ${framesize} | overhead=${overhead}
+| | ... | ${nic_name} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize LISP IPv6 over IPv4 forwarding in 3-node circular topology
-| | ... | ${dut1_to_dut2_ip6o4} | ${dut1_to_tg_ip6o4} | ${dut2_to_dut1_ip6o4}
-| | ... | ${dut2_to_tg_ip6o4} | ${tg_prefix6o4} | ${dut_prefix6o4}
+| | When Initialize LISP IPv6 forwarding in 3-node circular topology
+| | ... | ${dut1_to_dut2_ip6} | ${dut1_to_tg_ip6} | ${dut2_to_dut1_ip6}
+| | ... | ${dut2_to_tg_ip6} | ${prefix6}
 | | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
-| | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
-| | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
+| | ... | ${duts_locator_set} | ${dut1_ip6_eid} | ${dut2_ip6_eid}
+| | ... | ${dut1_ip6_static_adjacency} | ${dut2_ip6_static_adjacency}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
 *** Test Cases ***
-| tc01-78B-1c-ethip6lispip4-ip6base-ndrpdr
+| tc01-78B-1c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | 78B | 1C
 | | framesize=${78} | phy_cores=${1}
 
-| tc02-78B-2c-ethip6lispip4-ip6base-ndrpdr
+| tc02-78B-2c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | 78B | 2C
 | | framesize=${78} | phy_cores=${2}
 
-| tc03-78B-4c-ethip6lispip4-ip6base-ndrpdr
+| tc03-78B-4c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | 78B | 4C
 | | framesize=${78} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip6lispip4-ip6base-ndrpdr
+| tc04-1518B-1c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip6lispip4-ip6base-ndrpdr
+| tc05-1518B-2c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip6lispip4-ip6base-ndrpdr
+| tc06-1518B-4c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | 1518B | 4C
 | | framesize=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip6lispip4-ip6base-ndrpdr
+| tc07-9000B-1c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | 9000B | 1C
 | | framesize=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip6lispip4-ip6base-ndrpdr
+| tc08-9000B-2c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip6lispip4-ip6base-ndrpdr
+| tc09-9000B-4c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | 9000B | 4C
 | | framesize=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip6lispip4-ip6base-ndrpdr
+| tc10-IMIX-1c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip6lispip4-ip6base-ndrpdr
+| tc11-IMIX-2c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip6lispip4-ip6base-ndrpdr
+| tc12-IMIX-4c-ethip6lispip6-ip6base-ndrpdr
 | | [Tags] | IMIX | 4C
 | | framesize=IMIX_v4_1 | phy_cores=${4}
