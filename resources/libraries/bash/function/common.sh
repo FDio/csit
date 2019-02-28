@@ -49,7 +49,8 @@ function activate_docker_topology () {
             hostname=$(grep search /etc/resolv.conf | cut -d' ' -f3)
             ssh="ssh root@${hostname} -p 6022"
             run="activate_wrapper ${NODENESS} ${FLAVOR} ${device_image}"
-            env_vars=$(${ssh} "$(declare -f); ${run}") || {
+            # backtics to avoid https://midnight-commander.org/ticket/2142
+            env_vars=`${ssh} "$(declare -f); ${run}"` || {
                 die "Topology reservation via shim-dcr failed!"
             }
             set -a
@@ -168,6 +169,8 @@ function common_dirs () {
 
     set -exuo pipefail
 
+    # Set global variables, create some directories (without touching content).
+
     # Variables set:
     # - BASH_FUNCTION_DIR - Path to existing directory this file is located in.
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
@@ -177,6 +180,9 @@ function common_dirs () {
     # - PYTHON_SCRIPTS_DIR - Path to existing tools subdirectory "scripts".
     # - ARCHIVE_DIR - Path to created CSIT subdirectory "archive".
     # - DOWNLOAD_DIR - Path to created CSIT subdirectory "download_dir".
+    # - GENERATED_DIR - Path to created CSIT subdirectory "generated".
+    # Directories created if not present:
+    # ARCHIVE_DIR, DOWNLOAD_DIR, GENERATED_DIR.
     # Functions called:
     # - die - Print to stderr and exit.
 
@@ -210,6 +216,10 @@ function common_dirs () {
         die "Readlink failed."
     }
     mkdir -p "${DOWNLOAD_DIR}" || die "Mkdir failed."
+    GENERATED_DIR="$(readlink -f "${CSIT_DIR}/generated")" || {
+        die "Readlink failed."
+    }
+    mkdir -p "${GENERATED_DIR}" || die "Mkdir failed."
 }
 
 
@@ -343,6 +353,38 @@ function die_on_pybot_error () {
     if [[ "${PYBOT_EXIT_STATUS}" != "0" ]]; then
         die "${PYBOT_EXIT_STATUS}" "Test failures are present!"
     fi
+}
+
+
+function generate_tests () {
+
+    set -exuo pipefail
+
+    # Populate ${GENERATED_DIR}/tests based on ${CSIT_DIR}/tests/.
+    # Any previously existing content of ${GENERATED_DIR}/tests is wiped before.
+    # The generation is done by executing any *.py executable
+    # within any subdirectory after copying.
+
+    # TODO: Is it worth to put */tests to their own *_DIR variables?
+
+    # Directories read:
+    # - ${CSIT_DIR}/tests - Used as templates for the generated tests.
+    # Directories written:
+    # - ${GENERATED_DIR}/tests - Overwritten by the generated tests.
+
+    rm -rf "${GENERATED_DIR}/tests"
+    cp -r "${CSIT_DIR}/tests" "${GENERATED_DIR}/tests"
+    cmd_line=("find" "${GENERATED_DIR}/tests" "-type" "f")
+    cmd_line+=("-executable" "-name" "*.py")
+    file_list=$("${cmd_line[@]}") || die
+
+    for gen in ${file_list}; do
+        directory="$(dirname "${gen}")" || die
+        filename="$(basename "${gen}")" || die
+        pushd "${directory}" || die
+        ./"${filename}" || die
+        popd || die
+    done
 }
 
 
@@ -494,13 +536,6 @@ function run_pybot () {
 
     set -exuo pipefail
 
-    # Currently, VPP-1361 causes occasional test failures.
-    # If real result is more important than time, we can retry few times.
-    # TODO: We should be retrying on test case level instead.
-
-    # Arguments:
-    # - ${1} - Optional number of pybot invocations to try to avoid failures.
-    #   Default: 1.
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # - ARCHIVE_DIR - Path to store robot result files in.
@@ -510,29 +545,19 @@ function run_pybot () {
     # Functions called:
     # - die - Print to stderr and exit.
 
-    # Set ${tries} as an integer variable, to fail on non-numeric input.
-    local -i "tries" || die "Setting type of variable failed."
-    tries="${1:-1}" || die "Argument evaluation failed."
+    # TODO: Is there a use to skips suite autogeneration?
+    generate_tests
+
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${PYBOT_ARGS[@]}")
     all_options+=("${EXPANDED_TAGS[@]}")
 
-    while true; do
-        if [[ "${tries}" -le 0 ]]; then
-            break
-        else
-            tries="$((${tries} - 1))"
-        fi
-        pushd "${CSIT_DIR}" || die "Change directory operation failed."
-        set +e
-        # TODO: Make robot tests not require "$(pwd)" == "${CSIT_DIR}".
-        pybot "${all_options[@]}" "${CSIT_DIR}/tests/"
-        PYBOT_EXIT_STATUS="$?"
-        set -e
-        popd || die "Change directory operation failed."
-        if [[ "${PYBOT_EXIT_STATUS}" == "0" ]]; then
-            break
-        fi
-    done
+    pushd "${CSIT_DIR}" || die "Change directory operation failed."
+    set +e
+    # TODO: Make robot tests not require "$(pwd)" == "${CSIT_DIR}".
+    pybot "${all_options[@]}" "${GENERATED_DIR}/tests/"
+    PYBOT_EXIT_STATUS="$?"
+    set -e
+    popd || die "Change directory operation failed."
 }
 
 
