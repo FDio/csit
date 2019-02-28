@@ -187,6 +187,30 @@
       "revId": "957bb56e0a888918eaa00909bd4a737ebf0a1e72",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86959347_0bcefa78",
+        "filename": "resources/libraries/bash/function/ansible.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-02-28T09:11:57Z",
+      "side": 1,
+      "message": "\u003e Ansible is first in executing so it can generate our topology file.\n\n+1. And as topology file generation is a later task, TODO is enough.\n\nThere may be a chicken adn egg problem, as currently testbed reservation uses topology file, and ansible is run only after that.",
+      "parentUuid": "6e9ad59e_f2e5eef9",
+      "range": {
+        "startLine": 45,
+        "startChar": 45,
+        "endLine": 45,
+        "endChar": 50
+      },
+      "revId": "957bb56e0a888918eaa00909bd4a737ebf0a1e72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
