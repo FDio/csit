@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "65ea2969_ac5c4eb3",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T11:58:49Z",
+      "side": 1,
+      "message": "Do you expect other subclasses than PapiResponse?",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 26
+      },
+      "revId": "4c384f883f2da0f57c016195f44da07fd2345d7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a31563a3_bc00c39e",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T11:58:49Z",
+      "side": 1,
+      "message": "The question is, do we want our code robust (so third parties can feel safe when messing with it) or minimalistic (so CSIT code is easier to read, but sensitive to abuse).\n\nIf we want the robust way, there should be a call to super() and similar stuff (root classes) described in [2]. Also we should do type checks on arguments and similar.\n\nCurrently I prefer CSIT code to be lightweight but still documented. That means no properties, no private fields or methods, but still full docstrings.\n\n[2] https://rhettinger.wordpress.com/2011/05/26/super-considered-super/",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 16
+      },
+      "revId": "4c384f883f2da0f57c016195f44da07fd2345d7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "544e6bee_a71eacd4",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T11:58:49Z",
+      "side": 1,
+      "message": "reply?",
+      "range": {
+        "startLine": 74,
+        "startChar": 19,
+        "endLine": 74,
+        "endChar": 25
+      },
+      "revId": "4c384f883f2da0f57c016195f44da07fd2345d7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "59bd3bc4_fe4061fb",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T11:58:49Z",
+      "side": 1,
+      "message": "Do you expect anyone do overwrite PapiResponse fields and then complain about resulting consequences?",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 13
+      },
+      "revId": "4c384f883f2da0f57c016195f44da07fd2345d7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5806fbaa_a8293de4",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T11:58:49Z",
+      "side": 1,
+      "message": "Store PapiResponse object if needed.\nIdeally, we would not store the response at all (leaving that to caller of .execute), but some tests are still using the old methods.",
+      "range": {
+        "startLine": 142,
+        "startChar": 13,
+        "endLine": 142,
+        "endChar": 20
+      },
+      "revId": "4c384f883f2da0f57c016195f44da07fd2345d7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "995045cc_b143e1a6",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T11:58:49Z",
+      "side": 1,
+      "message": "Do this already on execution.",
+      "range": {
+        "startLine": 188,
+        "startChar": 13,
+        "endLine": 188,
+        "endChar": 31
+      },
+      "revId": "4c384f883f2da0f57c016195f44da07fd2345d7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d993735_8b667f2f",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T11:58:49Z",
+      "side": 1,
+      "message": "execute_should_pass(\u0027Failed to get VPP version on host: {host}\u0027, host\u003dnode[\u0027host\u0027])\n\nWe do not want to paste 158-164 block at every papi call site.",
+      "range": {
+        "startLine": 157,
+        "startChar": 54,
+        "endLine": 157,
+        "endChar": 63
+      },
+      "revId": "4c384f883f2da0f57c016195f44da07fd2345d7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39de7fc2_8f42c003",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T11:58:49Z",
+      "side": 1,
+      "message": "Not needed, 170-184 block can handle that.",
+      "range": {
+        "startLine": 166,
+        "startChar": 8,
+        "endLine": 166,
+        "endChar": 14
+      },
+      "revId": "4c384f883f2da0f57c016195f44da07fd2345d7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
