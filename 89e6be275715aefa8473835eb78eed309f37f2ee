@@ -22,6 +22,30 @@
       "revId": "89e6be275715aefa8473835eb78eed309f37f2ee",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "efea23c0_3bb51f63",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 39
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-01T14:45:08Z",
+      "side": 1,
+      "message": "They are not up streaming it anywhere. So we cannot use due to chick\u0026egg.\nI am not against python, if they can wrap it to ansible module (as this is python in fact). I would be more than happy!!!,\nthen we can do only ansible task install vpp\u003dversion and we are done.\n\nBut so far Juraj code is good for this release.",
+      "parentUuid": "9301a688_a0c6001b",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 27
+      },
+      "revId": "89e6be275715aefa8473835eb78eed309f37f2ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
