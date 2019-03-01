@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9301a688_a0c6001b",
+        "filename": "resources/libraries/bash/function/artifacts.sh",
+        "patchSetId": 39
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T13:13:00Z",
+      "side": 1,
+      "message": "The implementations are getting complicated.\n\nAdd a TODO to unify with scripts [3] in VPP repository and use them (somehow).\n\n[3] https://github.com/FDio/vpp/blob/e869269121b61883d55f2469fabf3c751b525d0f/extras/vpp_config/vpplib/VPPUtil.py#L256-L277",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 27
+      },
+      "revId": "89e6be275715aefa8473835eb78eed309f37f2ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
