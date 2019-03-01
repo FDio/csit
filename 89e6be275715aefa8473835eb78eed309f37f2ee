@@ -46,6 +46,29 @@
       "revId": "89e6be275715aefa8473835eb78eed309f37f2ee",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "00b89f2b_9d5fd007",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 39
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T14:48:57Z",
+      "side": 1,
+      "message": "It seems that adding multiple Copyright lines really is the correct way to describe a file edited by multiple copyright holders.\n\nChecking [2], I am reasonably sure Pantheon is not affiliated with Cisco.\n\n[1] https://opensource.stackexchange.com/questions/886/copyright-and-contributing-to-an-open-source-project\n[2] https://en.wikipedia.org/wiki/Affiliate_(commerce)",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 2,
+        "endChar": 10
+      },
+      "revId": "89e6be275715aefa8473835eb78eed309f37f2ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
