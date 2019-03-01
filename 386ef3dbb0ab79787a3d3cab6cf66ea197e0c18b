@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76bcdec2_f275a440",
+        "filename": "resources/tools/papi/vpp_papi_provider.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-03-01T13:47:37Z",
+      "side": 1,
+      "message": "It\u0027s not needed when PapiErrors is not imported.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 39
+      },
+      "revId": "386ef3dbb0ab79787a3d3cab6cf66ea197e0c18b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
