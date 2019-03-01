@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4bba64d_24149dab",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T17:43:37Z",
+      "side": 1,
+      "message": "Improvement for v2.0: https://jmespath.readthedocs.io/en/latest/\n\nI mean, have some utility that hides 271-276 block, and if it also can incorporate checks like line 265 even better.",
+      "range": {
+        "startLine": 264,
+        "startChar": 34,
+        "endLine": 264,
+        "endChar": 80
+      },
+      "revId": "9f98caf43de82ecfd952ab3bfab0bf753def33d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7c0c9d4_2f9cef14",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T17:43:37Z",
+      "side": 1,
+      "message": "An alternative to v2.0 is to simplify even more. Do we really need to spend 6 lines just to add one more log message, when the errors are obvioulsy happening in the parsing part of vpp_ipsec_select_backend?\n\nJust put logger.trace(papi_resp) before line 263 and not except anything.",
+      "range": {
+        "startLine": 272,
+        "startChar": 12,
+        "endLine": 272,
+        "endChar": 24
+      },
+      "revId": "9f98caf43de82ecfd952ab3bfab0bf753def33d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
