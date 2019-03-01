@@ -122,4 +122,3 @@
 | tc11-IMIX-2c-eth-l2bd-8memif-4pipe-16dcr-vppip4-mrr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
-

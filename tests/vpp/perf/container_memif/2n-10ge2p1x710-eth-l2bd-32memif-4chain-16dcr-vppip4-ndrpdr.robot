@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER | 4R2C
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER | 4R4C
 | ... | NF_DENSITY | CHAIN | NF_VPPIP4
 | ...
 | Suite Setup | Run Keywords
@@ -35,7 +35,7 @@
 | Test Template | Local Template
 | ...
 | Documentation | **RFC2544: Pkt throughput L2BD test cases with memif 4 chains
-| ... | 8 docker container*
+| ... | 16 docker container*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with
 | ... | single links between nodes.
@@ -61,7 +61,7 @@
 # X710-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-4c2n
+| ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-4c4n
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_ip4
@@ -90,57 +90,41 @@
 | | ... | ${s_limit} | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | And Set up performance test with containers
-| | ... | nf_chains=${4} | nf_nodes=${2} | auto_scale=${False}
+| | ... | nf_chains=${4} | nf_nodes=${4} | auto_scale=${False}
 | | And Initialize L2 Bridge Domain for multiple chains with memif pairs
-| | ... | nf_chains=${4} | nf_nodes=${2} | auto_scale=${False}
+| | ... | nf_chains=${4} | nf_nodes=${4} | auto_scale=${False}
 | | Then Find NDR and PDR intervals using optimized search
 | | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
 *** Test Cases ***
-| tc01-64B-1c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
+| tc01-64B-1c-eth-l2bd-32memif-4chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 64B | 1C
 | | framesize=${64} | phy_cores=${1}
 
-| tc02-64B-2c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
+| tc02-64B-2c-eth-l2bd-32memif-4chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 64B | 2C
 | | framesize=${64} | phy_cores=${2}
 
-| tc03-64B-4c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
-| | [Tags] | 64B | 4C
-| | framesize=${64} | phy_cores=${4}
-
-| tc04-1518B-1c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
+| tc04-1518B-1c-eth-l2bd-32memif-4chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 1518B | 1C
 | | framesize=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
+| tc05-1518B-2c-eth-l2bd-32memif-4chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 1518B | 2C
 | | framesize=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
-| | [Tags] | 1518B | 4C
-| | framesize=${1518} | phy_cores=${4}
-
-| tc07-9000B-1c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
+| tc07-9000B-1c-eth-l2bd-32memif-4chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 9000B | 1C
 | | framesize=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
+| tc08-9000B-2c-eth-l2bd-32memif-4chain-16dcr-vppip4-ndrpdr
 | | [Tags] | 9000B | 2C
 | | framesize=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
-| | [Tags] | 9000B | 4C
-| | framesize=${9000} | phy_cores=${4}
-
-| tc10-IMIX-1c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
+| tc10-IMIX-1c-eth-l2bd-32memif-4chain-16dcr-vppip4-ndrpdr
 | | [Tags] | IMIX | 1C
 | | framesize=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
+| tc11-IMIX-2c-eth-l2bd-32memif-4chain-16dcr-vppip4-ndrpdr
 | | [Tags] | IMIX | 2C
 | | framesize=IMIX_v4_1 | phy_cores=${2}
-
-| tc12-IMIX-4c-eth-l2bd-16memif-4chain-8dcrr-vppip4-ndrpdr
-| | [Tags] | IMIX | 4C
-| | framesize=IMIX_v4_1 | phy_cores=${4}
