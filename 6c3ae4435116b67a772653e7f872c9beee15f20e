@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da2189a2_14f02be1",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T13:59:55Z",
+      "side": 1,
+      "message": "reply",
+      "range": {
+        "startLine": 203,
+        "startChar": 48,
+        "endLine": 203,
+        "endChar": 54
+      },
+      "revId": "6c3ae4435116b67a772653e7f872c9beee15f20e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a973b138_666d55b7",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T13:59:55Z",
+      "side": 1,
+      "message": "\u003d\u003d",
+      "range": {
+        "startLine": 241,
+        "startChar": 29,
+        "endLine": 241,
+        "endChar": 31
+      },
+      "revId": "6c3ae4435116b67a772653e7f872c9beee15f20e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "11eecb94_3e26da91",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-01T13:59:55Z",
+      "side": 1,
+      "message": "raise RuntimeError, so lines 212-213 and 239-240 are not needed.",
+      "range": {
+        "startLine": 327,
+        "startChar": 12,
+        "endLine": 327,
+        "endChar": 18
+      },
+      "revId": "6c3ae4435116b67a772653e7f872c9beee15f20e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
