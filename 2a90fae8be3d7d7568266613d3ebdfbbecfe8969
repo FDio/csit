@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6297e622_77875449",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-03T18:46:17Z",
+      "side": 1,
+      "message": "Terms section looks good, some comments on nits below.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 5
+      },
+      "revId": "2a90fae8be3d7d7568266613d3ebdfbbecfe8969",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99ac71d6_af28a4c8",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-03T18:46:17Z",
+      "side": 1,
+      "message": "Q: Why is this needed?",
+      "range": {
+        "startLine": 13,
+        "startChar": 44,
+        "endLine": 13,
+        "endChar": 61
+      },
+      "revId": "2a90fae8be3d7d7568266613d3ebdfbbecfe8969",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91450003_f78afe14",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-03T18:46:17Z",
+      "side": 1,
+      "message": "edit: calculates",
+      "range": {
+        "startLine": 16,
+        "startChar": 28,
+        "endLine": 16,
+        "endChar": 35
+      },
+      "revId": "2a90fae8be3d7d7568266613d3ebdfbbecfe8969",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d60afc97_bb2b3624",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-03T18:46:17Z",
+      "side": 1,
+      "message": "edit: Subsequently",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 10
+      },
+      "revId": "2a90fae8be3d7d7568266613d3ebdfbbecfe8969",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c67d1c3_827a14c0",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-03T18:46:17Z",
+      "side": 1,
+      "message": "edit: trial measurement can be performed, e.g. with different offered load and duration.",
+      "range": {
+        "startLine": 17,
+        "startChar": 20,
+        "endLine": 18,
+        "endChar": 30
+      },
+      "revId": "2a90fae8be3d7d7568266613d3ebdfbbecfe8969",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a19d2cbe_1ab5392c",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-03T18:46:17Z",
+      "side": 1,
+      "message": "edit: Throughput",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 11
+      },
+      "revId": "2a90fae8be3d7d7568266613d3ebdfbbecfe8969",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc8e48f6_03cce51f",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-03T18:46:17Z",
+      "side": 1,
+      "message": "Add references to RFC2544 and RFC1242, where this definition is taken from.",
+      "range": {
+        "startLine": 25,
+        "startChar": 26,
+        "endLine": 25,
+        "endChar": 76
+      },
+      "revId": "2a90fae8be3d7d7568266613d3ebdfbbecfe8969",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c9a1962_f0b0f337",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-03T18:46:17Z",
+      "side": 1,
+      "message": "edit: produce",
+      "range": {
+        "startLine": 51,
+        "startChar": 35,
+        "endLine": 51,
+        "endChar": 39
+      },
+      "revId": "2a90fae8be3d7d7568266613d3ebdfbbecfe8969",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afac8722_b5d87623",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-03T18:46:17Z",
+      "side": 1,
+      "message": "Q: Can this really be any formula? Or can any recommendation be given here e.g. n-degree polynomials?",
+      "range": {
+        "startLine": 61,
+        "startChar": 27,
+        "endLine": 61,
+        "endChar": 38
+      },
+      "revId": "2a90fae8be3d7d7568266613d3ebdfbbecfe8969",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
