@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1422080_58f4ffd2",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-04T10:02:18Z",
+      "side": 1,
+      "message": "reply",
+      "range": {
+        "startLine": 167,
+        "startChar": 31,
+        "endLine": 167,
+        "endChar": 37
+      },
+      "revId": "617f3905cb1a5177a0e30cbda4bc8e2235756e84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
