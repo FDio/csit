@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "39462bed_867566cb",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-04T15:00:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d13f3c6_1c94c687",
+      "range": {
+        "startLine": 26,
+        "startChar": 5,
+        "endLine": 26,
+        "endChar": 62
+      },
+      "revId": "0ddbc5861263474c1ff1a48620261c0b3aa4bb5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b88a6394_43e111a0",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fe6a2448_94f3c157",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-04T15:00:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b88a6394_43e111a0",
+      "range": {
+        "startLine": 66,
+        "startChar": 88,
+        "endLine": 66,
+        "endChar": 91
+      },
+      "revId": "0ddbc5861263474c1ff1a48620261c0b3aa4bb5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ceb6f129_e6323c26",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2019-03-01T15:25:13Z",
       "side": 1,
       "message": "Is this accurate? Some of these ips have been assigned to servers on this very page. The latest assigned has been 10.30.51.69 to the tx2 AFAIK.",
+      "range": {
+        "startLine": 241,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 24
+      },
+      "revId": "0ddbc5861263474c1ff1a48620261c0b3aa4bb5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "777e777d_80b04331",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-04T15:00:19Z",
+      "side": 1,
+      "message": "You are right. I have updated the summary tables for IP addr allocation based on the content of this doc. Will need to update entries that are marked by \"TO BE VERIFIED\".",
+      "parentUuid": "ceb6f129_e6323c26",
       "range": {
         "startLine": 241,
         "startChar": 0,
