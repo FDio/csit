@@ -14,6 +14,7 @@
 *** Settings ***
 | Variables | resources/libraries/python/topology.py
 | Variables | resources/libraries/python/VatHistory.py
+| Variables | resources/libraries/python/PapiHistory.py
 | ...
 | Library | Collections
 | Library | OperatingSystem
@@ -27,6 +28,7 @@
 | Library | resources.libraries.python.Tap
 | Library | resources.libraries.python.TGSetup
 | Library | resources.libraries.python.VatHistory
+| Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.VppCounters
 | Library | resources.libraries.python.VPPUtil
 | Library | resources.libraries.python.Trace
@@ -470,14 +472,14 @@
 | | Save VPP PIDs
 | | Configure all TGs for traffic script
 | | Update All Interface Data On All Nodes | ${nodes}
-| | Reset VAT History On All DUTs | ${nodes}
+| | Reset PAPI History On All DUTs | ${nodes}
 
 | Tear down functional test
 | | [Documentation] | Common test teardown for functional tests.
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show Packet Trace on All DUTs | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
+| | Show PAPI History On All DUTs | ${nodes}
 | | Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
 
@@ -490,7 +492,7 @@
 | | Save VPP PIDs
 | | Configure all TGs for traffic script
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg_udev=${True}
-| | Reset VAT History On All DUTs | ${nodes}
+| | Reset PAPI History On All DUTs | ${nodes}
 
 | Tear down VPP device test
 # TODO: Generalize this KW if it will not diverge from Functional derivate too
@@ -499,7 +501,7 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show Packet Trace on All DUTs | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
+| | Show PAPI History On All DUTs | ${nodes}
 | | Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
 
@@ -508,7 +510,7 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show Packet Trace on All DUTs | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
+| | Show PAPI History On All DUTs | ${nodes}
 | | Show Vpp Settings | ${nodes['DUT1']}
 | | Show Vpp Settings | ${nodes['DUT2']}
 | | Vpp Show Errors On All DUTs | ${nodes}
@@ -529,7 +531,7 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show Packet Trace on All DUTs | ${nodes}
-| | Show VAT History On All DUTs | ${nodes}
+| | Show PAPI History On All DUTs | ${nodes}
 | | Show Vpp Settings | ${nodes['DUT1']}
 | | Show Vpp Settings | ${nodes['DUT2']}
 | | Vpp Show Errors On All DUTs | ${nodes}
