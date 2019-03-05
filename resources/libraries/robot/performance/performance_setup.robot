@@ -608,12 +608,14 @@
 | | [Documentation] | Common test setup for performance tests.
 | | ...
 | | Reset VAT History On All DUTs | ${nodes}
+| | Reset PAPI History On All DUTs | ${nodes}
 | | Create base startup configuration of VPP on all DUTs
 
 | Set up tcp performance test
 | | [Documentation] | Common test setup for TCP performance tests.
 | | ...
 | | Reset VAT History On All DUTs | ${nodes}
+| | Reset PAPI History On All DUTs | ${nodes}
 | | Create base startup configuration of VPP for TCP tests on all DUTs
 
 | Set up performance test with Ligato Kubernetes
@@ -671,6 +673,7 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
+| | Show PAPI History On All DUTs | ${nodes}
 | | Get Core Files on All Nodes | ${nodes}
 | | Set Test Variable | ${pkt_trace} | ${True}
 
