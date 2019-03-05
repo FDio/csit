@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "d59dfbc3_1f0af38b",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Wrap lines to reasonable length.",
+      "range": {
+        "startLine": 44,
+        "startChar": 90,
+        "endLine": 44,
+        "endChar": 94
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99f8f9fc_26ade946",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 1
@@ -18,6 +41,29 @@
         "startChar": 57,
         "endLine": 46,
         "endChar": 73
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5292533b_1b29ea83",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": ", or a",
+      "range": {
+        "startLine": 46,
+        "startChar": 297,
+        "endLine": 46,
+        "endChar": 298
       },
       "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -65,6 +111,75 @@
     },
     {
       "key": {
+        "uuid": "080b367f_b767a02b",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Is it usual for the first paragaph of Motivation to be the exact copy of the first paragraph of Abstract?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 1
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d429eec7_7659c838",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "methodology?\n\nI am not sure what does \"framework\" mean here.",
+      "range": {
+        "startLine": 57,
+        "startChar": 73,
+        "endLine": 57,
+        "endChar": 94
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a27e72c8_a33f49e4",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Does this Draft actually talk about services spanning nultiple compute nodes?",
+      "range": {
+        "startLine": 59,
+        "startChar": 68,
+        "endLine": 59,
+        "endChar": 75
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aee61d5d_1eb510b4",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 1
@@ -104,6 +219,29 @@
         "startChar": 432,
         "endLine": 67,
         "endChar": 520
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd121cd3_d1242c1d",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "comma",
+      "range": {
+        "startLine": 68,
+        "startChar": 129,
+        "endLine": 68,
+        "endChar": 130
       },
       "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -157,6 +295,190 @@
     },
     {
       "key": {
+        "uuid": "172f5ba2_9f14ce2e",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Define this in Terminology.",
+      "range": {
+        "startLine": 104,
+        "startChar": 114,
+        "endLine": 104,
+        "endChar": 128
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c64c8f7d_38829fda",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Also point-to-point, or does this include bridge domains?",
+      "range": {
+        "startLine": 104,
+        "startChar": 223,
+        "endLine": 104,
+        "endChar": 228
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea5aa474_7fd2e545",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "The current Draft does not let NFs do those (in any non-trivial manner).",
+      "range": {
+        "startLine": 106,
+        "startChar": 431,
+        "endLine": 106,
+        "endChar": 451
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ace75888_a5f0a861",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "through",
+      "range": {
+        "startLine": 119,
+        "startChar": 195,
+        "endLine": 119,
+        "endChar": 199
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "222b8146_b7c858b4",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Write a service layer definition what does not rely on a service layer definition.",
+      "range": {
+        "startLine": 119,
+        "startChar": 101,
+        "endLine": 119,
+        "endChar": 117
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "41c25f0b_b9356900",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "NFVs",
+      "range": {
+        "startLine": 119,
+        "startChar": 200,
+        "endLine": 119,
+        "endChar": 212
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "695b73ae_6bcdcaba",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "As long as those functions do not do non-trivial routing decisions, such as dropping packets, or deciding which NF (of at least two) should process a packet next.\nOr getting packets from two different NFs at once.",
+      "range": {
+        "startLine": 127,
+        "startChar": 29,
+        "endLine": 127,
+        "endChar": 47
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87c6695f_57691569",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "These two options are completely determined by the network layer.",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 1
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb2d3289_ff51f05c",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 1
@@ -168,6 +490,30 @@
       "writtenOn": "2019-03-05T09:28:07Z",
       "side": 1,
       "message": "Connecting together?",
+      "range": {
+        "startLine": 146,
+        "startChar": 3,
+        "endLine": 146,
+        "endChar": 22
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50928d8b_1fbdefaa",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "\"Examples\" or \"Figures\".",
+      "parentUuid": "cb2d3289_ff51f05c",
       "range": {
         "startLine": 146,
         "startChar": 3,
@@ -220,6 +566,144 @@
     },
     {
       "key": {
+        "uuid": "1b3ef58d_79aee0ae",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Mention SR-IOV, or chose another method of distinguishing from VNFs.",
+      "range": {
+        "startLine": 176,
+        "startChar": 9,
+        "endLine": 176,
+        "endChar": 25
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f1cda598_5a01c22a",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "focus on",
+      "range": {
+        "startLine": 182,
+        "startChar": 19,
+        "endLine": 182,
+        "endChar": 29
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7cd8757_1359267d",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "single space",
+      "range": {
+        "startLine": 182,
+        "startChar": 58,
+        "endLine": 182,
+        "endChar": 60
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dae8f4c8_790768ea",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Define in Terminology.",
+      "range": {
+        "startLine": 187,
+        "startChar": 23,
+        "endLine": 187,
+        "endChar": 39
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8fcdcafb_f3b05116",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Therefore this Draft does not describe (at leas up to line 299) a complete benchmarking methodology, just a SUT configuration part for any (two-port) methodology.\n\nWe are not describing how to prepare SUT with ARP. We allow testing for latency, jitter and other quantities not related to throughput.\nWe do not support datacenter cases like TG sending traffic to two ports where SUT has only one outgoing port.",
+      "range": {
+        "startLine": 198,
+        "startChar": 146,
+        "endLine": 198,
+        "endChar": 168
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c6e74a22_66020d51",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "... but details are not described here any further.\n\nWe probably should mention RSS and rx queues at least when presenting fd.io results.",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 18
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "06740f21_60711973",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 1
@@ -240,6 +724,167 @@
       "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c3d0d9b_9f18656d",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "like",
+      "range": {
+        "startLine": 205,
+        "startChar": 129,
+        "endLine": 205,
+        "endChar": 130
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "468f6e1a_b3425c7e",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Why not logical?",
+      "range": {
+        "startLine": 205,
+        "startChar": 80,
+        "endLine": 205,
+        "endChar": 88
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "802beb7d_02945a0f",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Define in Terminology that we are talking about VPP-based applications.\nFor example, some applications could have zero main threads (making pcmr4appX meaningless).",
+      "range": {
+        "startLine": 207,
+        "startChar": 6,
+        "endLine": 207,
+        "endChar": 43
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "baec439c_951d4b12",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "I am sure thread pinning should be mentioned somewhere, maybe even sibling threads.",
+      "range": {
+        "startLine": 211,
+        "startChar": 67,
+        "endLine": 211,
+        "endChar": 68
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d74c4c1_4d089cca",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Are we benchmarking the applications or the whole system end-to-end?\nAnd why \"application\" and not \"NF\"?",
+      "range": {
+        "startLine": 213,
+        "startChar": 42,
+        "endLine": 213,
+        "endChar": 65
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ffd6b22a_faa11c69",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Mention this is \"the host data-plane\".",
+      "range": {
+        "startLine": 225,
+        "startChar": 86,
+        "endLine": 225,
+        "endChar": 87
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a872ef3_031934ec",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T12:13:32Z",
+      "side": 1,
+      "message": "Are we really not going to mention \"logical cores\" nor \"hyperthreading\" at all in this Draft?",
+      "range": {
+        "startLine": 232,
+        "startChar": 34,
+        "endLine": 232,
+        "endChar": 35
+      },
+      "revId": "ee88fb62f937378c91eb3e45bc93f84bd96502e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
