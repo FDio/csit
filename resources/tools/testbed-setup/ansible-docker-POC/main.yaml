@@ -1,0 +1,269 @@
+---
+ - hosts: localhost
+   vars:
+       teststring: "csit-vpp-device-master-ubuntu1804-1n-vbox"
+       nodenes: "3n"
+       flawor: "hsw"
+       csit_dir: "/home/vagrant/csit"
+       download_dir: "{{ csit_dir }}/download_dir"
+       topologies_dir: "{{ csit_dir}}/topologies/available"
+       topologies:
+               - "{{ topologies_dir }}/lf_3n_hsw_testbed1.yaml"
+               - "{{ topologies_dir }}/lf_3n_hsw_testbed2.yaml"
+               - "{{ topologies_dir }}/lf_3n_hsw_testbed3.yaml"
+       topologies_tags: "3_node_single_link_topo"
+       vpp_version: "19.04-rc0~298-g5fced04ba~b2181"
+#       vpp_version: "19.04-rc0~102-g22c0ece2~b1983"
+       vpp_packages: [ "vpp", "vpp-dbg", "vpp-dev", "vpp-api-python", "libvppinfra", "libvppinfra-dev", "vpp-plugin-core", "vpp-plugin-dpdk" ]
+       vpp_device_image: "snergster/csit-sut"
+
+       CSIT_ENV:
+           CSIT_DIR: "{{ csit_dir }}"
+           CSIT_TG_HOST: "10.0.2.15"
+           CSIT_TG_PORT: "{{ csit_tg_dcr.ansible_facts.docker_container.NetworkSettings.Ports['22/tcp'][0]['HostPort'] }}"
+           CSIT_TG_ARCH: "{{ ansible_facts.architecture }}"
+           CSIT_TG_UUID: "{{ csit_tg_dcr.ansible_facts.docker_container.Id }}"
+           CSIT_DUT1_HOST: "10.0.2.15"
+           CSIT_DUT1_PORT: "{{ csit_dut1_dcr.ansible_facts.docker_container.NetworkSettings.Ports['22/tcp'][0]['HostPort'] }}"
+           CSIT_DUT1_ARCH: "{{ ansible_facts.architecture }}"
+           CSIT_DUT1_UUID: "{{ csit_dut1_dcr.ansible_facts.docker_container.Id }}"
+           CSIT_TG_INTERFACES_PORT1_MAC: "{{ tg_netmacs.results.0.stdout }}"
+           CSIT_TG_INTERFACES_PORT1_PCI: "{{ tg_pcidevs.results.0.stdout }}"
+           CSIT_TG_INTERFACES_PORT1_DRV: "{{ tg_drivers.results.0.stdout }}"
+           CSIT_TG_INTERFACES_PORT2_MAC: "{{ tg_netmacs.results.1.stdout }}"
+           CSIT_TG_INTERFACES_PORT2_PCI: "{{ tg_pcidevs.results.1.stdout }}"
+           CSIT_TG_INTERFACES_PORT2_DRV: "{{ tg_drivers.results.1.stdout }}"
+           CSIT_DUT1_INTERFACES_PORT1_MAC: "{{ dut1_netmacs.results.0.stdout }}"
+           CSIT_DUT1_INTERFACES_PORT1_PCI: "{{ dut1_pcidevs.results.0.stdout }}"
+           CSIT_DUT1_INTERFACES_PORT1_DRV: "{{ dut1_drivers.results.0.stdout }}"
+           CSIT_DUT1_INTERFACES_PORT2_MAC: "{{ dut1_netmacs.results.1.stdout }}"
+           CSIT_DUT1_INTERFACES_PORT2_PCI: "{{ dut1_pcidevs.results.1.stdout }}"
+           CSIT_DUT1_INTERFACES_PORT2_DRV: "{{ dut1_drivers.results.1.stdout }}"
+           DOWNLOAD_DIR: "{{ download_dir }}"
+           PYTHONPATH: "{{ csit_dir }}"
+           DUT: "vpp"
+
+   tasks:
+     - name: Setup env
+       block:
+             - name: Is 1n-vbox
+               set_fact:
+                       nodenes: "1n"
+                       flawor: "vbox"
+                       topologies:
+                               - "{{ topologies_dir }}/vpp_device.template"
+                       topologies_tags: "2_node_single_link_topo"
+                       pci_id: "0x100f"
+                       tg_netdevs:
+                               - "eth1"
+                               - "eth2"
+                       dut1_netdevs:
+                               - "eth3"
+                               - "eth4"
+               when: teststring is search(".*1n-vbox.*")
+
+             - name: Is 1n-sxc
+               set_fact:
+                       nodenes: "1n"
+                       flawor: "sxc"
+                       topologies:
+                               - "{{ topologies_dir }}/vpp_device.template"
+                       topologies_tags: "2_node_single_link_topo"
+                       pci_id: "0x154c"
+                       tg_netdevs:
+                               - "enp24"
+                       dut1_netdevs:
+                               - "enp59"
+               when: teststring is search(".*1n-sxc.*")
+
+             - name: is 2n-sxc
+               set_fact:
+                       nodenes: "2n"
+                       flawor: "sxc"
+               when: teststring is search(".*2n-sxc.*")
+
+             - name: is 3n-sxc
+               set_fact:
+                       nodenes: "3n"
+                       flawor: "sxc"
+               when: teststring is search(".*3n-sxc.*") 
+             
+             - name: Get repo
+               shell: curl -s https://packagecloud.io/install/repositories/fdio/master/script.deb.sh | bash
+               args:
+                       warn: False
+               become: yes
+
+             - name: Download packages
+               shell: apt-get -y download "{{ item }}={{ vpp_version }}"
+               args:
+                       chdir: "{{ download_dir }}"
+                       warn: False
+               loop: "{{ vpp_packages }}"
+
+             - name: Activate virtualenv
+               pip:
+                       requirements: "{{ csit_dir }}/requirements.txt"
+                       virtualenv: "{{ csit_dir }}/env"
+
+             - name: Create Dockerfile
+               template:
+                       src: dockerfile-dpkg.j2
+                       dest: "{{ download_dir }}/Dockerfile"
+
+             - name: Build docker image
+               docker_image:
+                       name: csit-sut-vpp-ans
+                       path: "{{ download_dir }}"
+                       force: True
+
+             - name: TG Docker start
+               docker_container:
+                       name: csit-tg-dcr
+                       state: started
+                       image: snergster/csit-sut
+                       published_ports: all
+                       privileged: True
+                       auto_remove: True
+                       shm_size: 512M
+                       tmpfs: /sys/bus/pci/devices
+                       volumes:
+                               - /dev/vfio:/dev/vfio
+                               - /var/lib/vm/vhost-nested.img:/var/lib/vm/vhost-nested.img
+                               - /var/run/docker.sock:/var/run/docker.sock
+               register: csit_tg_dcr
+
+             - name: DUT Docker start
+               docker_container:
+                       name: csit-dut-dcr
+                       state: started
+                       image: csit-sut-vpp-ans
+                       published_ports: all
+                       privileged: True
+                       auto_remove: True
+                       shm_size: 512M
+                       tmpfs: /sys/bus/pci/devices
+                       volumes:
+                               - /dev/vfio:/dev/vfio
+                               - /var/lib/vm/vhost-nested.img:/var/lib/vm/vhost-nested.img
+                               - /var/run/docker.sock:/var/run/docker.sock
+               register: csit_dut1_dcr
+
+               # List of all available interfaces
+             - name: Get available interfaces
+               shell: find /sys/bus/pci/devices/*/net/* -type d -name . -o -prune -exec basename '{}' ';'
+               register: available_interfaces
+
+               # Get interfaces info
+             - name: Get TG interfaces pcis
+               shell: readlink /sys/class/net/{{ item }}/device | xargs basename
+               loop: "{{ tg_netdevs }}"
+               register: tg_pcidevs
+
+             - name: Get TG interfaces drivers
+               shell: readlink /sys/class/net/{{ item }}/device/driver | xargs basename
+               loop: "{{ tg_netdevs }}"
+               register: tg_drivers
+
+             - name: Get TG interfaces macs
+               shell: cat /sys/class/net/{{ item }}/address
+               loop: "{{ tg_netdevs }}"
+               register: tg_netmacs
+
+             - name: Get DUT1 interfaces pci
+               shell: readlink /sys/class/net/{{ item }}/device | xargs basename 
+               loop: "{{ dut1_netdevs }}"
+               register: dut1_pcidevs
+
+             - name: Get DUT1 interfaces drivers
+               shell: readlink /sys/class/net/{{ item }}/device/driver | xargs basename
+               loop: "{{ dut1_netdevs }}"
+               register: dut1_drivers
+
+             - name: Get DUT1 interfaces macs
+               shell: cat /sys/class/net/{{ item }}/address
+               loop: "{{ dut1_netdevs }}"
+               register: dut1_netmacs
+
+             - name: Create Topology file
+               template:
+                       src: vpp_device.template.j2
+                       dest: /tmp/topology.yaml
+
+               # Bind interafces to dockers
+             - name: Link TG interfaces pcis
+               shell: docker exec {{ csit_tg_dcr.ansible_facts.docker_container.Id }} ln -s /sys/devices/pci0000:00/{{ item }} /sys/bus/pci/devices/{{ item }}
+               loop: "{{ tg_pcidevs | json_query('results[*].stdout') }}"
+
+             - name: Link DUT1 interfaces pcis
+               shell: docker exec {{ csit_dut1_dcr.ansible_facts.docker_container.Id }} ln -s /sys/devices/pci0000:00/{{ item }} /sys/bus/pci/devices/{{ item }}
+               loop: "{{ dut1_pcidevs |  json_query('results[*].stdout') }}"
+
+             - name: Add interfaces to TG namespace
+               shell: ip link set {{ item }} netns {{ csit_tg_dcr.ansible_facts.docker_container.State.Pid }}
+               become: yes
+               loop: "{{ tg_netdevs }}"
+
+             - name: Add interfaces to DUT1 namespace
+               shell: ip link set {{ item }} netns {{ csit_dut1_dcr.ansible_facts.docker_container.State.Pid }}
+               become: yes
+               loop: "{{ dut1_netdevs }}"
+
+             - name: Print CSIT_ENV
+               debug:
+                       msg: "{{ CSIT_ENV }}"
+
+             - name: Run Pybot
+               shell: env/bin/pybot --outputdir /home/vagrant/csit/archive --loglevel TRACE --variable TOPOLOGY_PATH:/tmp/topology.yaml --suite tests.vpp.device /home/vagrant/csit/tests/
+               delegate_to: 127.0.0.1
+               environment: "{{ CSIT_ENV }}"
+               args:
+                       chdir: "{{ csit_dir }}"
+               register: pybot
+               ignore_errors: True
+
+             - name: Print pybot results
+               debug:
+                       msg: "{{ pybot.stdout_lines }}"
+
+       always:
+             - name: TG Docker remove
+               docker_container:
+                       name: csit-tg-dcr
+                       state: absent
+
+             - name: DUT Docker remove
+               docker_container:
+                       name: csit-dut-dcr
+                       state: absent
+
+             - name: Remove docker image
+               docker_image:
+                       name: csit-sut-vpp-ans
+                       state: absent
+
+             - name: Unbind interfaces from driver on TG namespace
+               shell: echo {{ item }} | tee /sys/bus/pci/devices/{{ item }}/driver/unbind
+               become: yes
+               loop: "{{ tg_pcidevs | json_query('results[*].stdout') }}"
+               ignore_errors: True
+
+             - name: Bind interfaces from TG namespace to driver
+               shell: echo {{ item }} | tee /sys/bus/pci/drivers/e1000/bind
+               become: yes
+               loop: "{{ tg_pcidevs | json_query('results[*].stdout') }}"
+               ignore_errors: True
+
+             - name: Unbind interfaces from driver on DUT1 namespace
+               shell: echo {{ item }} | tee /sys/bus/pci/devices/{{ item }}/driver/unbind
+               become: yes
+               loop: "{{ dut1_pcidevs | json_query('results[*].stdout') }}"
+               ignore_errors: True
+
+             - name: Bind interfaces from DUT1 namespace to driver
+               shell: echo {{ item }} | tee /sys/bus/pci/drivers/e1000/bind
+               become: yes
+               loop: "{{ dut1_pcidevs | json_query('results[*].stdout') }}"
+               ignore_errors: True
+
+
