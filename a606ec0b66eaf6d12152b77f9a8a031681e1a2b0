@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6eb267b1_5a9a491b",
+        "filename": "resources/tools/scripts/download_hc_build_pkgs.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-05T06:38:00Z",
+      "side": 1,
+      "message": "Why not os-release? This is just so complicated and you must install additional stuff",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "a606ec0b66eaf6d12152b77f9a8a031681e1a2b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ddf3dae3_469dd7be",
+        "filename": "resources/tools/scripts/download_hc_build_pkgs.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-05T06:38:00Z",
+      "side": 1,
+      "message": "Do you need to install this? For download below not,",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 28
+      },
+      "revId": "a606ec0b66eaf6d12152b77f9a8a031681e1a2b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5202cc66_6df1e972",
+        "filename": "resources/tools/scripts/download_hc_build_pkgs.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-05T06:38:00Z",
+      "side": 1,
+      "message": "You can extract it directly not via install",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 43
+      },
+      "revId": "a606ec0b66eaf6d12152b77f9a8a031681e1a2b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
