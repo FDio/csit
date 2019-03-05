@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "00af0e9b_de2c60b2",
+        "filename": "resources/libraries/python/PapiHistory.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T16:50:01Z",
+      "side": 1,
+      "message": "Looking at patch #7, it is not done.\nMy recommendation (instead of #7 lines 23-42):\n\n    DICT__DUTS_PAPI_HISTORY \u003d dict()\n    PapiHistory.reset_papi_history_on_all_duts(DICT__nodes)",
+      "parentUuid": "189954ea_d9730ba5",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 8
+      },
+      "revId": "d3aadbb2512c5060b7f1f3aceb059ae10632e61d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "acc5de08_803bce36",
         "filename": "resources/libraries/python/PapiHistory.py",
         "patchSetId": 3
