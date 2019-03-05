@@ -20,11 +20,9 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import SSH, SSHTimeout
+from resources.libraries.python.PapiHistory import PapiHistory
 
 __all__ = ["PapiExecutor", "PapiResponse"]
-
-# TODO: Implement Papi History
-# from resources.libraries.python.PapiHistory import PapiHistory
 
 
 class PapiResponse(object):
@@ -148,6 +146,7 @@ class PapiExecutor(object):
         :returns: self, so that method chaining is possible.
         :rtype: PapiExecutor
         """
+        PapiHistory.add_to_papi_history(self._node, command, **kwargs)
         self._api_command_list.append(dict(api_name=command, api_args=kwargs))
         return self
 
@@ -284,7 +283,7 @@ class PapiExecutor(object):
 
         Apply binascii.unhexlify() method for unicode values.
 
-        FIXME: Remove the disabled code whne definitely not needed.
+        FIXME: Remove the disabled code when definitely not needed.
 
         :param api_r: API reply.
         :type api_r: dict
