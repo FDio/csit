@@ -1,0 +1,5 @@
+FROM {{ vpp_device_image }}
+COPY ./*{{ vpp_version }}*.deb /tmp/vpp/
+RUN apt-get purge -y "*vpp*" \
+ ; dpkg -i --force-all /tmp/vpp/*.deb \
+ && rm -f /tmp/vpp/*.deb
