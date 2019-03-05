@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "541eda0d_3aada722",
+        "filename": "resources/libraries/python/PapiHistory.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T16:50:01Z",
+      "side": 1,
+      "message": "Make \"args\" a list, and use \",\".join() in order to skip the trailing comma.",
+      "range": {
+        "startLine": 82,
+        "startChar": 32,
+        "endLine": 82,
+        "endChar": 34
+      },
+      "revId": "7c4a269bf33b209934780fc8ac882ac0bfcb86cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "077c15b9_6b25cbdd",
+        "filename": "resources/libraries/python/PapiHistory.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T16:50:01Z",
+      "side": 1,
+      "message": "In patch #3 I implied lines 65 and 105 should retain the if, not to become the only lines without the ifs.\n\nMaybe it is time to (add TODO to) turn nodes type into a proper class, and implement .duts() method to \"for\" over?",
+      "range": {
+        "startLine": 108,
+        "startChar": 25,
+        "endLine": 108,
+        "endChar": 34
+      },
+      "revId": "7c4a269bf33b209934780fc8ac882ac0bfcb86cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "78bce003_559aa438",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T16:50:01Z",
+      "side": 1,
+      "message": "In transition period there will be tests with both VAT and PAPI calls, and listing them this way loses the ordering information.\nWe could include timestamps, but it would be better to create a common class (ApiHistory) so both VAT and PAPI calls add their \"full commands\" there.",
+      "range": {
+        "startLine": 610,
+        "startChar": 10,
+        "endLine": 610,
+        "endChar": 13
+      },
+      "revId": "7c4a269bf33b209934780fc8ac882ac0bfcb86cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
