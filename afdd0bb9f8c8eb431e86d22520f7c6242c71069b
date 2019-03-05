@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5790a653_d9fbb675",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T08:48:23Z",
+      "side": 1,
+      "message": "Comments here apply to other call sites too.",
+      "revId": "afdd0bb9f8c8eb431e86d22520f7c6242c71069b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "687dcc0e_7b09ce83",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T08:48:23Z",
+      "side": 1,
+      "message": "API reply\n\nSo that if VPP changes its API again (and CSIT changes implementation to follow it), callers of this L1 keyword do not need to wonder whether the changed docstring is relevant to them.",
+      "range": {
+        "startLine": 257,
+        "startChar": 12,
+        "endLine": 257,
+        "endChar": 40
+      },
+      "revId": "afdd0bb9f8c8eb431e86d22520f7c6242c71069b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac88bd97_0797fa60",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T08:48:23Z",
+      "side": 1,
+      "message": "You can prepare msg and args before line 262 (so you have more horizontal space to use).",
+      "range": {
+        "startLine": 265,
+        "startChar": 12,
+        "endLine": 265,
+        "endChar": 16
+      },
+      "revId": "afdd0bb9f8c8eb431e86d22520f7c6242c71069b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1fd1eb29_d2a78f05",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T08:48:23Z",
+      "side": 1,
+      "message": "I still think we are doing too much reporting here. From the whole 267-280 block I would leave just lines 271-274.",
+      "range": {
+        "startLine": 267,
+        "startChar": 8,
+        "endLine": 267,
+        "endChar": 14
+      },
+      "revId": "afdd0bb9f8c8eb431e86d22520f7c6242c71069b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a73c55e0_526ae6bf",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T08:48:23Z",
+      "side": 1,
+      "message": "Add a code comment explaining a typical situation where we need this.",
+      "range": {
+        "startLine": 265,
+        "startChar": 16,
+        "endLine": 265,
+        "endChar": 24
+      },
+      "revId": "afdd0bb9f8c8eb431e86d22520f7c6242c71069b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "32740b81_2facf4b9",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T08:48:23Z",
+      "side": 1,
+      "message": "Add more detail on what to fix.",
+      "range": {
+        "startLine": 283,
+        "startChar": 10,
+        "endLine": 283,
+        "endChar": 15
+      },
+      "revId": "afdd0bb9f8c8eb431e86d22520f7c6242c71069b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
