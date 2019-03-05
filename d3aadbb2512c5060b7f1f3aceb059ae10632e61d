@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "25926a21_579246e6",
+        "filename": "resources/libraries/python/PapiHistory.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-05T13:55:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9eea2ba1_bc1f6a38",
+      "range": {
+        "startLine": 27,
+        "startChar": 20,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "d3aadbb2512c5060b7f1f3aceb059ae10632e61d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "919ba8a7_dfda43b2",
         "filename": "resources/libraries/python/PapiHistory.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-03-05T12:24:55Z",
       "side": 1,
       "message": "Why duplicating what reset_papi_history_on_all_duts does?",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 8
+      },
+      "revId": "d3aadbb2512c5060b7f1f3aceb059ae10632e61d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "189954ea_d9730ba5",
+        "filename": "resources/libraries/python/PapiHistory.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-05T13:55:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "919ba8a7_dfda43b2",
       "range": {
         "startLine": 30,
         "startChar": 4,
