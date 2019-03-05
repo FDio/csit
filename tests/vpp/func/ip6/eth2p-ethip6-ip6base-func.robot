@@ -26,10 +26,12 @@
 | ... | Configure all TGs for traffic script
 | Test Setup | Run Keywords | Save VPP PIDs | AND
 | ... | Reset VAT History On All DUTs | ${nodes} | AND
+| ... | Reset PAPI History On All DUTs | ${nodes} | AND
 | ... | Clear interface counters on all vpp nodes in topology | ${nodes}
 | Test Teardown | Run Keywords
 | ... | Show packet trace on all DUTs | ${nodes} | AND
 | ... | Show VAT History On All DUTs | ${nodes}  | AND
+| ... | Show PAPI History On All DUTs | ${nodes} | AND
 | ... | Verify VPP PID in Teardown
 | Documentation | *IPv6 routing test cases*
 | ...
