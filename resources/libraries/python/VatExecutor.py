@@ -21,7 +21,7 @@ from robot.api import logger
 
 from resources.libraries.python.ssh import SSH, SSHTimeout
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.VatHistory import VatHistory
+from resources.libraries.python.PapiHistory import PapiHistory
 
 __all__ = ['VatExecutor']
 
@@ -109,7 +109,9 @@ class VatExecutor(object):
             remote_file_path = vat_name
             with open(vat_name, 'r') as vat_file:
                 for line in vat_file:
-                    VatHistory.add_to_vat_history(node, line.replace('\n', ''))
+                    PapiHistory.add_to_papi_history(node,
+                                                    line.replace('\n', ''),
+                                                    papi=False)
         else:
             remote_file_path = '{0}/{1}/{2}'.format(Constants.REMOTE_FW_DIR,
                                                     Constants.RESOURCES_TPL_VAT,
@@ -283,7 +285,7 @@ class VatTerminal(object):
         :returns: Command output in python representation of JSON format or
             None if not in JSON mode.
         """
-        VatHistory.add_to_vat_history(self._node, cmd)
+        PapiHistory.add_to_papi_history(self._node, cmd, papi=False)
         logger.debug("Executing command in VAT terminal: {0}".format(cmd))
         try:
             out = self._ssh.interactive_terminal_exec_command(self._tty, cmd,
