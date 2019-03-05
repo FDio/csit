@@ -140,6 +140,30 @@
       "revId": "a606ec0b66eaf6d12152b77f9a8a031681e1a2b0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db142900_fb2ee688",
+        "filename": "resources/tools/scripts/download_hc_build_pkgs.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-05T17:07:21Z",
+      "side": 1,
+      "message": "\u003e \"would need more commands\"\n\nCan you add a comment into the code itself?\nPeople reading line 113 (of patch #19) may wonder why are we doing it that way.",
+      "parentUuid": "086b9838_f138a51d",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 43
+      },
+      "revId": "a606ec0b66eaf6d12152b77f9a8a031681e1a2b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
