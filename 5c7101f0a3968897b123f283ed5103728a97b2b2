@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7021679b_57e2a325",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-06T16:46:36Z",
+      "side": 1,
+      "message": "service instances?",
+      "range": {
+        "startLine": 108,
+        "startChar": 54,
+        "endLine": 108,
+        "endChar": 62
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "11a4c7b2_00ada7fc",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-06T16:46:36Z",
+      "side": 1,
+      "message": "\"It includes\" or \"That includes\".",
+      "range": {
+        "startLine": 138,
+        "startChar": 55,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8be293be_2f9320e5",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-06T16:46:36Z",
+      "side": 1,
+      "message": "Add to Terminology.",
+      "range": {
+        "startLine": 138,
+        "startChar": 41,
+        "endLine": 138,
+        "endChar": 53
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb55ebaf_aa9b6ffd",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-06T16:46:36Z",
+      "side": 1,
+      "message": "Theoretically, as we are not able to distinguish filtered packets from packets lost (without some white box way of looking at counters inside NFs).",
+      "range": {
+        "startLine": 150,
+        "startChar": 49,
+        "endLine": 150,
+        "endChar": 58
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "57ecaaba_d68476cc",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-06T16:46:36Z",
+      "side": 1,
+      "message": "Theoretically, as we only allow packets to RSS into a particular service instance and then \"follow the one way road\", which is close to zero decisions.",
+      "range": {
+        "startLine": 151,
+        "startChar": 40,
+        "endLine": 151,
+        "endChar": 60
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de420a83_d0e9f1d9",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-06T16:46:36Z",
+      "side": 1,
+      "message": "This is the important category. Configuration and Topology are just consequences of how to implement a particular path, so it is not clear to me why they are listed in a separate-looking way.",
+      "range": {
+        "startLine": 201,
+        "startChar": 3,
+        "endLine": 201,
+        "endChar": 14
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "355ed868_58287d0c",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-06T16:46:36Z",
+      "side": 1,
+      "message": "I still believe logical cores are more critical, specifically for VPP where single context switch of Linux kernel costs you thousands of packets lost (not just delayed).",
+      "range": {
+        "startLine": 346,
+        "startChar": 4,
+        "endLine": 346,
+        "endChar": 17
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
