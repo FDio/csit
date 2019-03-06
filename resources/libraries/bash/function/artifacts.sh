@@ -98,7 +98,8 @@ function download_ubuntu_artifacts () {
         pkg_info=$(apt-cache show ${package}) || {
             die "apt-cache show on ${package} failed."
         }
-        ver=$(echo ${pkg_info} | grep -o "Version: ${VPP_VERSION-}[^ ]*") || true
+        ver=$(echo ${pkg_info} | grep -o "Version: ${VPP_VERSION-}[^ ]*" \
+              head -1) || true
         if [ -n "${ver-}" ]; then
             echo "Found '${VPP_VERSION-}' among '${package}' versions."
             ver=$(echo "$ver" | cut -d " " -f 2)
