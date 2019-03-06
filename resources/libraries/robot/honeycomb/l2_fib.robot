@@ -12,9 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.honeycomb.HcAPIKwBridgeDomain.BridgeDomainKeywords
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
+| Resource | resources/libraries/robot/honeycomb/papi.robot
 
 *** Keywords ***
 | Honeycomb adds L2 FIB entry to bridge domain
@@ -151,7 +151,7 @@
 
 | L2 FIB entry from VAT should be
 | | [Documentation] | Retrieves the operational data about the specified L2 \
-| | ... | FIB entry using VAT and checks if it is as expected.
+| | ... | FIB entry using Python API and checks if it is as expected.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -164,13 +164,13 @@
 | | ...
 | | [Arguments] | ${node} | ${bd_index} | ${l2_fib_ref_data}
 | | ...
-| | ${l2_fib_data}= | Get L2 FIB entry VAT | ${node} | ${bd_index}
+| | ${l2_fib_data}= | Get L2 FIB entry PAPI | ${node} | ${bd_index}
 | | ... | ${l2_fib_ref_data['mac']}
 | | Compare Data Structures | ${l2_fib_data} | ${l2_fib_ref_data}
 
 | L2 FIB Table from VAT should be empty
 | | [Documentation] | Check if the L2 FIB table in the specified bridge domain \
-| | ... | is empty. VAT is used to get operational data.
+| | ... | is empty. Python API is used to get operational data.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -182,5 +182,5 @@
 | | ...
 | | [Arguments] | ${node} | ${bd_index}
 | | ...
-| | ${l2_fib_data}= | Get L2 FIB table VAT | ${node} | ${bd_index}
+| | ${l2_fib_data}= | Get L2 FIB table PAPI | ${node} | ${bd_index}
 | | Should be empty | ${l2_fib_data}
