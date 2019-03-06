@@ -1,44 +1,39 @@
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+# SuperMicro Xeon Skylake Servers - Hardware and BIOS Configuration
 
-	- [SuperMicro Xeon Skylake Servers - Hardware and BIOS Configuration](#supermicro-xeon-skylake-servers-hardware-and-bios-configuration)
-		- [Linux lscpu TODO](#linux-lscpu-todo)
-		- [Linux dmidecode pci TODO](#linux-dmidecode-pci-todo)
-		- [Linux dmidecode memory TODO](#linux-dmidecode-memory-todo)
-		- [Xeon Skx Server BIOS Configuration](#xeon-skx-server-bios-configuration)
-			- [Boot Feature](#boot-feature)
-			- [CPU Configuration](#cpu-configuration)
-				- [Advanced Power Management Configuration](#advanced-power-management-configuration)
-					- [CPU P State Control](#cpu-p-state-control)
-					- [Hardware PM State Control](#hardware-pm-state-control)
-					- [CPU C State Control](#cpu-c-state-control)
-					- [Package C State Control](#package-c-state-control)
-					- [CPU T State Control](#cpu-t-state-control)
-				- [Chipset Configuration](#chipset-configuration)
-					- [North Bridge](#north-bridge)
-					- [UPI Configuration](#upi-configuration)
-					- [Memory Configuration](#memory-configuration)
-					- [IIO Configuration](#iio-configuration)
-					- [CPU1 Configuration](#cpu1-configuration)
-					- [CPU2 Configuration](#cpu2-configuration)
-				- [South Bridge](#south-bridge)
-			- [PCIe/PCI/PnP Configuration](#pciepcipnp-configuration)
-			- [ACPI Settings](#acpi-settings)
-			- [DMIDECODE](#dmidecode)
-		- [Xeon Skx Server Firmware Inventory](#xeon-skx-server-firmware-inventory)
+1. [Linux lscpu TODO](#linux-lscpu-todo)
+1. [Linux dmidecode pci TODO](#linux-dmidecode-pci-todo)
+1. [Linux dmidecode memory TODO](#linux-dmidecode-memory-todo)
+1. [Xeon Skx Server BIOS Configuration](#xeon-skx-server-bios-configuration)
+   1. [Boot Feature](#boot-feature)
+   1. [CPU Configuration](#cpu-configuration)
+      1. [Advanced Power Management Configuration](#advanced-power-management-configuration)
+         1. [CPU P State Control](#cpu-p-state-control)
+         1. [Hardware PM State Control](#hardware-pm-state-control)
+         1. [CPU C State Control](#cpu-c-state-control)
+         1. [Package C State Control](#package-c-state-control)
+         1. [CPU T State Control](#cpu-t-state-control)
+      1. [Chipset Configuration](#chipset-configuration)
+         1. [North Bridge](#north-bridge)
+         1. [UPI Configuration](#upi-configuration)
+         1. [Memory Configuration](#memory-configuration)
+         1. [IIO Configuration](#iio-configuration)
+         1. [CPU1 Configuration](#cpu1-configuration)
+         1. [CPU2 Configuration](#cpu2-configuration)
+      1. [South Bridge](#south-bridge)
+   1. [PCIe/PCI/PnP Configuration](#pciepcipnp-configuration)
+   1. [ACPI Settings](#acpi-settings)
+   1. [DMIDECODE](#dmidecode)
+1. [Xeon Skx Server Firmware Inventory](#xeon-skx-server-firmware-inventory)
 
-<!-- /TOC -->
+## Linux lscpu TODO
 
-## SuperMicro Xeon Skylake Servers - Hardware and BIOS Configuration
+## Linux dmidecode pci TODO
 
-### Linux lscpu TODO
+## Linux dmidecode memory TODO
 
-### Linux dmidecode pci TODO
+## Xeon Skx Server BIOS Configuration
 
-### Linux dmidecode memory TODO
-
-### Xeon Skx Server BIOS Configuration
-
-#### Boot Feature
+### Boot Feature
 
 ```
   |  Quiet Boot                                [Enabled]               |Boot option                  |
@@ -58,7 +53,7 @@
   |  Throttle on Power Fail                    [Disabled]              |                             |
 ```
 
-#### CPU Configuration
+### CPU Configuration
 
 ```
   |  Processor Configuration                                           |Enables Hyper Threading      |
@@ -93,7 +88,7 @@
   |> Advanced Power Management Configuration                           |                             |
 ```
 
-##### Advanced Power Management Configuration
+#### Advanced Power Management Configuration
 
 ```
   |  Advanced Power Management Configuration                           |Switch CPU Power Management  |
@@ -108,7 +103,7 @@
   |> CPU T State Control                                               |                             |
 ```
 
-###### CPU P State Control
+##### CPU P State Control
 
 ```
   |  CPU P State Control                                               |Enable/Disable EIST          |
@@ -117,7 +112,7 @@
   |  EIST PSD Function                         [HW_ALL]                |                             |
 ```
 
-###### Hardware PM State Control
+##### Hardware PM State Control
 
 ```
   |  Hardware PM State Control                                         |Disable: Hardware chooses a  |
@@ -131,7 +126,7 @@
   |                                                                    |P-state (no OS guidance)     |
 ```
 
-###### CPU C State Control
+##### CPU C State Control
 
 ```
   |  CPU C State Control                                               |Autonomous Core C-State      |
@@ -141,7 +136,7 @@
   |  Enhanced Halt State (C1E)                 [Disable]               |                             |
 ```
 
-###### Package C State Control
+##### Package C State Control
 
 ```
   |  Package C State Control                                           |Package C State limit        |
@@ -149,7 +144,7 @@
   |  Package C State                           [C0/C1 state]           |                             |
 ```
 
-###### CPU T State Control
+##### CPU T State Control
 
 ```
   |  CPU T State Control                                               |Enable/Disable Software      |
@@ -157,7 +152,7 @@
   |  Software Controlled T-States              [Disable]               |                             |
 ```
 
-##### Chipset Configuration
+#### Chipset Configuration
 
 ```
   |  WARNING: Setting wrong values in below sections may cause         |North Bridge Parameters      |
@@ -166,7 +161,7 @@
   |> South Bridge                                                      |                             |
 ```
 
-###### North Bridge
+##### North Bridge
 
 ```
   |> UPI Configuration                                                 |Displays and provides        |
@@ -174,7 +169,7 @@
   |> IIO Configuration                                                 |Settings                     |
 ```
 
-###### UPI Configuration
+##### UPI Configuration
 
 ```
   |  UPI Configuration                                                 |Choose Topology Precedence   |
@@ -199,7 +194,7 @@
   |  Isoc Mode                                 [Auto]                  |                             |
 ```
 
-###### Memory Configuration
+##### Memory Configuration
 
 ```
   |                                                                    |POR - Enforces Plan Of       |
@@ -220,7 +215,7 @@
   |> Memory RAS Configuration                                          |                             |
 ```
 
-###### IIO Configuration
+##### IIO Configuration
 
 ```
   |  IIO Configuration                                                 |Expose IIO DFX devices and   |
@@ -238,7 +233,7 @@
   |  PCI-E Completion Timeout Disable          [No]                    |                             |
 ```
 
-###### CPU1 Configuration
+##### CPU1 Configuration
 
 ```
   |  IOU0 (IIO PCIe Br1)                       [Auto]                  |Selects PCIe port            |
@@ -249,7 +244,7 @@
   |> CPU1 SLOT9 PCI-E 3.0 X16                                          |                             |
 ```
 
-###### CPU2 Configuration
+##### CPU2 Configuration
 
 ```
   |  IOU0 (IIO PCIe Br1)                       [Auto]                  |Selects PCIe port            |
@@ -260,7 +255,7 @@
   |> CPU2 SLOT10 PCI-E 3.0 X16                                         |                             |
 ```
 
-##### South Bridge
+#### South Bridge
 
 ```
   |                                                                    |Enables Legacy USB support.  |
@@ -280,7 +275,7 @@
   |    Azalia PME Enable                       [Disabled]              |                             |
 ```
 
-#### PCIe/PCI/PnP Configuration
+### PCIe/PCI/PnP Configuration
 
 ```
   |  PCI Bus Driver Version                    A5.01.12                |Enables or Disables 64bit    |
@@ -308,7 +303,7 @@
   |> Network Stack Configuration                                       |                             |
 ```
 
-#### ACPI Settings
+### ACPI Settings
 
 ```
   |  ACPI Settings                                                     |Enable or Disable Non        |
@@ -319,7 +314,7 @@
   |  ACPI Sleep State                          [S3 (Suspend to RAM)]   |                             |
 ```
 
-#### DMIDECODE
+### DMIDECODE
 
 ```
   # dmidecode 3.1
@@ -520,7 +515,7 @@
                 Power/Performance Control
 ```
 
-### Xeon Skx Server Firmware Inventory
+## Xeon Skx Server Firmware Inventory
 
 ```
 Host.           IPMI IP.      BIOS. CPLD.     Aptio SU.   CPU Microcode.  PCI Bus.   ME Operation FW.    X710 Firmware.            XXV710 Firmware.          i40e.

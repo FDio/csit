@@ -1,16 +1,11 @@
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+# Cisco UCS c240m4 Xeon Haswell Servers - Hardware and BIOS Configuration
 
-	- [Cisco UCS c240m4 Xeon Haswell Servers - Hardware and BIOS Configuration](#cisco-ucs-c240m4-xeon-haswell-servers-hardware-and-bios-configuration)
-		- [Linux lscpu](#linux-lscpu)
-		- [Linux dmidecode pci](#linux-dmidecode-pci)
-		- [Linux dmidecode memory](#linux-dmidecode-memory)
-		- [Xeon Hsw Server BIOS Configuration](#xeon-hsw-server-bios-configuration)
+1. [Linux lscpu](#linux-lscpu)
+1. [Linux dmidecode pci](#linux-dmidecode-pci)
+1. [Linux dmidecode memory](#linux-dmidecode-memory)
+1. [Xeon Hsw Server BIOS Configuration](#xeon-hsw-server-bios-configuration)
 
-<!-- /TOC -->
-
-## Cisco UCS c240m4 Xeon Haswell Servers - Hardware and BIOS Configuration
-
-### Linux lscpu
+## Linux lscpu
 
 ```
  $ lscpu
@@ -42,7 +37,7 @@
  cqm_llc cqm_occup_llc dtherm arat pln pts
 ```
 
-### Linux dmidecode pci
+## Linux dmidecode pci
 
 ```
  $ dmidecode --type 9 | grep 'Handle\|Slot\|Type\|Address'
@@ -148,7 +143,7 @@
      Bus Address: 0000:00:1f.7
 ```
 
-### Linux dmidecode memory
+## Linux dmidecode memory
 
 ```
  $ dmidecode -t memory
@@ -669,7 +664,7 @@
      Configured Clock Speed: Unknown
 ```
 
-### Xeon Hsw Server BIOS Configuration
+## Xeon Hsw Server BIOS Configuration
 
 ```
  C240 / # scope bios
