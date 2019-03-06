@@ -33,7 +33,7 @@ echo DISTRIB_DESCRIPTION: ${PRETTY_NAME}
 
 VERSION=`../vpp-version`
 JVPP_VERSION=`../jvpp-version`
-VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-api-java"
+VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk vpp-api-java"
 VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
 VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
 IGNORE_DEPS=""

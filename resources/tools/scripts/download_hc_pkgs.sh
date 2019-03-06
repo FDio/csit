@@ -76,7 +76,7 @@ else
     fi
 fi
 
-VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core"
+VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk"
 VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins"
 VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins"
 # Check OS and stream to set correct packages
