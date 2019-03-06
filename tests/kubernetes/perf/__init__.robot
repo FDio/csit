@@ -42,8 +42,6 @@
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
 | | ... | - dcr_image - vpp-agent docker image
-| | ... | - perf_pdr_loss_acceptance - Loss acceptance treshold
-| | ... | - perf_pdr_loss_acceptance_type - Loss acceptance treshold type
 | | ... | - pkt_trace - Switch to enable packet trace for test
 | | ... | - dut_stats - Switch to enable DUT statistics
 | | ... | - uio_driver - Default UIO driver
@@ -51,8 +49,6 @@
 | | ...
 | | Set Global Variable | ${dcr_image}
 | | ... | /tmp/openvpp-testing/download_dir/prod_vpp_agent.tar.gz
-| | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
-| | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${False}
 | | @{plugins_to_enable}= | Create List | dpdk_plugin.so
