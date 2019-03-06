@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7a2292c6_3ec00b9a",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-06T20:14:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7021679b_57e2a325",
+      "range": {
+        "startLine": 108,
+        "startChar": 54,
+        "endLine": 108,
+        "endChar": 62
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "11a4c7b2_00ada7fc",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 2
@@ -71,6 +95,54 @@
     },
     {
       "key": {
+        "uuid": "be8210b5_b14b2677",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-06T20:14:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11a4c7b2_00ada7fc",
+      "range": {
+        "startLine": 138,
+        "startChar": 55,
+        "endLine": 138,
+        "endChar": 63
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96e3cfe0_a40ef552",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-06T20:14:59Z",
+      "side": 1,
+      "message": "Replaced with \"NFV topology describes the number of network functions per service instance, and their inter-connections over packet interfaces.\"\nNo need for term definition.",
+      "parentUuid": "8be293be_2f9320e5",
+      "range": {
+        "startLine": 138,
+        "startChar": 41,
+        "endLine": 138,
+        "endChar": 53
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb55ebaf_aa9b6ffd",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2019-03-06T16:46:36Z",
       "side": 1,
       "message": "Theoretically, as we are not able to distinguish filtered packets from packets lost (without some white box way of looking at counters inside NFs).",
+      "range": {
+        "startLine": 150,
+        "startChar": 49,
+        "endLine": 150,
+        "endChar": 58
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b5239cd2_cd41b4bd",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-06T20:14:59Z",
+      "side": 1,
+      "message": "These are just example NFV service use cases. Isn\u0027t it clear from the text? Suggestions to make it clearer?",
+      "parentUuid": "fb55ebaf_aa9b6ffd",
       "range": {
         "startLine": 150,
         "startChar": 49,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "45fe5961_e881a14f",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-06T20:14:59Z",
+      "side": 1,
+      "message": "Same as previous comment: These are just example NFV service use cases. Isn\u0027t it clear from the text? Suggestions to make it clearer?",
+      "parentUuid": "57ecaaba_d68476cc",
+      "range": {
+        "startLine": 151,
+        "startChar": 40,
+        "endLine": 151,
+        "endChar": 60
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de420a83_d0e9f1d9",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 2
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "ccfab196_fa179cce",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-06T20:14:59Z",
+      "side": 1,
+      "message": "Not sure I follow you here. From the NFV service instance implementation perspective, it\u0027s the packet path that is the consequence of topology and configuration. And that\u0027s how it\u0027s described.",
+      "parentUuid": "de420a83_d0e9f1d9",
+      "range": {
+        "startLine": 201,
+        "startChar": 3,
+        "endLine": 201,
+        "endChar": 14
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "355ed868_58287d0c",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 2
@@ -151,6 +295,30 @@
       "writtenOn": "2019-03-06T16:46:36Z",
       "side": 1,
       "message": "I still believe logical cores are more critical, specifically for VPP where single context switch of Linux kernel costs you thousands of packets lost (not just delayed).",
+      "range": {
+        "startLine": 346,
+        "startChar": 4,
+        "endLine": 346,
+        "endChar": 17
+      },
+      "revId": "5c7101f0a3968897b123f283ed5103728a97b2b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c97f7380_c2b48579",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-06T20:14:59Z",
+      "side": 1,
+      "message": "When we talk about physical cores in terms of resource allocation, we actually mean allocating sibling logical cores. So context switching case doesn\u0027t apply.",
+      "parentUuid": "355ed868_58287d0c",
       "range": {
         "startLine": 346,
         "startChar": 4,
