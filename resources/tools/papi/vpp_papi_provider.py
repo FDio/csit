@@ -46,6 +46,7 @@ if do_import:
     if modules_path:
         sys.path.append(modules_path)
         from vpp_papi import VPP
+        from vpp_papi.vpp_stats import VPPStats
     else:
         raise RuntimeError('vpp_papi module not found')
 
