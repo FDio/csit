@@ -64,6 +64,7 @@
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | VPP get bridge domain data | ${nodes['DUT1']}
 
 | tc02-eth2p-ethicmpv6-l2bdbase-device
 | | [Documentation]
@@ -85,3 +86,4 @@
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv6 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | VPP get bridge domain data | ${nodes['DUT1']} | bd_id=${bd_id}
