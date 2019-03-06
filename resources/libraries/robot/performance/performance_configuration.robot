@@ -2428,7 +2428,7 @@
 | | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
 | | All VPP Interfaces Ready Wait | ${nodes}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
+#| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
 | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
 | | [Documentation]
@@ -2580,7 +2580,7 @@
 | | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
 | | All VPP Interfaces Ready Wait | ${nodes}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
+#| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
 | Configure chain of NFs with dpdk-testpmd-mac connected via vhost-user on node
 | | [Documentation]
@@ -2707,7 +2707,7 @@
 | | | ... | jumbo=${jumbo} | perf_qemu_qsz=${perf_qemu_qsz}
 | | | ... | use_tuned_cfs=${False} | auto_scale=${auto_scale}
 | | All VPP Interfaces Ready Wait | ${nodes}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
+#| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
 | Initialize LISP IPv4 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG \
@@ -3040,7 +3040,7 @@
 | | | Initialize L2 xconnect with memif pairs on DUT node | ${dut} | ${count}
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
+#| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
 
 | Initialize L2 Bridge Domain with memif pairs on DUT node
 | | [Documentation]
@@ -3136,7 +3136,7 @@
 | | | ... | nf_nodes=${nf_nodes} | auto_scale=${auto_scale}
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
+#| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
 
 | Initialize L2 Bridge Domain for pipeline with memif pairs
 | | [Documentation]
@@ -3207,7 +3207,7 @@
 | | | ... | auto_scale=${auto_scale}
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
+#| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
 
 | Initialize L2 Bridge Domain with memif pairs and VLAN in circular topology
 | | [Documentation]
@@ -3284,7 +3284,7 @@
 | | ... | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 | | ...
 | | Show Memif on all DUTs | ${nodes}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
+#| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
 
 | Initialize IPv4 routing with memif pairs on DUT node
 | | [Documentation]
@@ -3429,7 +3429,7 @@
 | | | Initialize IPv4 routing with memif pairs on DUT node | ${dut} | ${count}
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
+#| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
 
 | Initialize L2 xconnect for single memif
 | | [Documentation]
@@ -3463,7 +3463,7 @@
 | | | ... | ${${dut}-memif-${number}-if1}
 | | Set single interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
+#| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
 
 | Initialize L2 Bridge Domain for single memif
 | | [Documentation]
