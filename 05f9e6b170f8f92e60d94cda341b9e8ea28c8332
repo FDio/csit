@@ -22,6 +22,30 @@
       "revId": "05f9e6b170f8f92e60d94cda341b9e8ea28c8332",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7117945_694fec5b",
+        "filename": "resources/tools/papi/vpp_papi_provider.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-03-06T12:50:34Z",
+      "side": 1,
+      "message": "It\u0027s not only about importing VPPStats class. You need to create separete object and work with it, e.g.\nfrom vpp_papi.vpp_stats import VPPStats\nstats \u003d VPPStats(\u0027/var/run/stats.socks\u0027)\ndir \u003d stats.ls([\u0027^/if\u0027, \u0027/err/ip4-input\u0027, \u0027/sys/node/ip4-input\u0027])\ncounters \u003d stats.dump(dir)\n# Print the RX counters for the first interface on the first worker core\nprint (\u0027RX interface core 0, sw_if_index 0\u0027, counters[\u0027/if/rx\u0027][0][0])\n(see https://docs.fd.io/vpp/19.04/md_src_vpp_stats_stats.html)\n\nVPPStats support should be implemented in separate commit.",
+      "parentUuid": "eac5190c_26d170a4",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "05f9e6b170f8f92e60d94cda341b9e8ea28c8332",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
