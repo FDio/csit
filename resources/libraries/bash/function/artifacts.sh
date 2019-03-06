@@ -72,6 +72,24 @@ function download_ubuntu_artifacts () {
         artifacts+=(${vpp[@]/%/=${VPP_VERSION-}})
     fi
 
+    set +x
+    for package in ${packages}; do
+        # Filter packages with given version
+        pkg_info=$(apt-cache show ${package}) || {
+            die "apt-cache show on ${package} failed."
+        }
+        ver=$(echo ${pkg_info} | grep -o "Version: ${VPP_VERSION-}[^ ]*" | \
+              head -1) || true
+        if [ -n "${ver-}" ]; then
+            echo "Found '${VPP_VERSION-}' among '${package}' versions."
+            ver=$(echo "$ver" | cut -d " " -f 2)
+            artifacts+=(${package[@]/%/=${ver-}})
+        else
+            echo "Didn't find '${VPP_VERSION-}' among '${package}' versions."
+        fi
+    done
+    set -x
+
     if [ "${INSTALL:-false}" = true ]; then
         sudo apt-get -y install "${artifacts[@]}" || {
             die "Install VPP artifacts failed."
