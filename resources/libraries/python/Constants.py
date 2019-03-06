@@ -110,3 +110,9 @@ class Constants(object):
         "40ge2p1xl710": "Intel-XL710",
         "25ge2p1xxv710": "Intel-XXV710",
     }
+
+    PERF_TYPE_TO_KEYWORD = {
+        "mrr": "Traffic should pass with maximum rate",
+        "ndrpdr": "Find NDR and PDR intervals using optimized search",
+        "soak": "Find critical load using PLRsearch",
+    }

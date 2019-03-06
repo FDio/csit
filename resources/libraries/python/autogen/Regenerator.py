@@ -80,6 +80,9 @@ class Regenerator(object):
         primary_name = "Intel-X710"
         primary_code = Constants.NIC_NAME_TO_CODE[primary_name]
         len_primary_code = len(primary_code)
+        primary_type = "ndrpdr"
+        primary_keyword = Constants.SUITE_TYPE_TO_KEYWORD[primary_type]
+        suite_types = Constants.SUITE_TYPE_TO_KEYWORD.keys()
 
         def get_iface_and_suite_id(filename):
             """Get interface and suite ID.
@@ -159,6 +162,28 @@ class Regenerator(object):
                 num = add_testcase(
                         testcase, iface, suite_id, file_out, num, **tc_kwargs)
 
+        def replace_defensively(whole, to_replace, replace_with, how_many):
+            """Replace substrings while checking the number of occurences.
+
+            Return edited copy of the text (so original string is not affected).
+
+            :param whole: The text to perform replacements on.
+            :param to_replace: Substring occurences of which to replace.
+            :param replace_with: Substring to replace occurences with.
+            :param how_many: Number of occurences to expect.
+            :type whole: str
+            :type to_replace: str
+            :type replace_with: str
+            :type how_many: int
+            :return: The whole text after replacements are done.
+            :rtype: str
+            :raise ValueError: If number of occurences does not match.
+            """
+            found = whole.count(to_replace)
+            if found != how_many:
+                raise ValueError("Number of occurences does not match.")
+            return whole.replace(to_replace, replace_with)
+
         if not self.quiet:
             eprint("Regenerator starts at {cwd}".format(cwd=getcwd()))
         min_framesize = protocol_to_min_framesize[protocol]
@@ -176,36 +201,38 @@ class Regenerator(object):
             {"framesize": "IMIX_v4_1", "phy_cores": 2},
             {"framesize": "IMIX_v4_1", "phy_cores": 4}
         ]
-        for filename in glob(pattern):
+        for in_filename in glob(pattern):
             if not self.quiet:
-                eprint("Regenerating filename:", filename)
-            iface, suite_id = get_iface_and_suite_id(filename)
+                eprint("Regenerating in_filename:", in_filename)
+            if not in_filename.endswith(primary_type + ".robot"):
+                eprint("Error: non-primary suite type encountered.")
+                sys.exit(1)
+            iface, suite_id = get_iface_and_suite_id(in_filename)
             if not iface.endswith(primary_code):
                 eprint("Error: non-primary NIC encountered.")
                 sys.exit(1)
-            with open(filename, "r") as file_in:
+            with open(in_filename, "r") as file_in:
                 text = file_in.read()
-            text_prolog = "".join(text.partition("*** Test Cases ***")[:-1])
-            first_third, _, the_rest = text_prolog.partition(primary_name)
-            second_third, _, third_third = the_rest.partition(primary_name)
-            if len(third_third) < 1 or primary_name in third_third:
-                eprint("Error: malformed prolog.")
-                sys.exit(1)
-            testcase = self.testcase_class(suite_id)
-            with open(filename, "w") as file_out:
-                file_out.write(text_prolog)
-                add_testcases(testcase, iface, suite_id, file_out, kwargs_list)
-            prolog_thirds = first_third, second_third, third_third
-            iface_prefix = iface[:-len_primary_code]
-            for nic_name in nic_names:
-                nic_code = Constants.NIC_NAME_TO_CODE[nic_name]
-                iface = iface_prefix + nic_code
-                text_prolog = nic_name.join(prolog_thirds)
-                nic_filename = filename.replace(primary_code, nic_code)
-                with open(nic_filename, "w") as file_out:
-                    file_out.write(text_prolog)
-                    add_testcases(
-                        testcase, iface, suite_id, file_out, kwargs_list)
+            in_prolog = "".join(text.partition("*** Test Cases ***")[:-1])
+            for suite_type in suite_types:
+                tmp_filename = replace_defensively(
+                    in_filename, primary_type, suite_type, 1)
+                suite_keyword = Constants.SUITE_TYPE_TO_KEYWORD[suite_type]
+                tmp_prolog = replace_defensively(
+                    in_prolog, primary_keyword, suite_keyword, 1)
+                iface, suite_id = get_iface_and_suite_id(tmp_filename)
+                testcase = self.testcase_class(suite_id)
+                for nic_name in nic_names:
+                    nic_code = Constants.NIC_NAME_TO_CODE[nic_name]
+                    out_filename = replace_defensively(
+                        tmp_filename, primary_code, nic_code, 1)
+                    out_prolog = replace_defensively(
+                        tmp_prolog, primary_name, nic_name, 2)
+                    iface, suite_id = get_iface_and_suite_id(out_filename)
+                    with open(out_filename, "w") as file_out:
+                        file_out.write(out_prolog)
+                        add_testcases(
+                            testcase, iface, suite_id, file_out, kwargs_list)
         if not self.quiet:
             eprint("Regenerator ends.")
         eprint()  # To make autogen check output more readable.
