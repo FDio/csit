@@ -519,8 +519,8 @@
 | | Send traffic on tg | ${-1} | ${rate} | ${framesize} | ${topology_type}
 | | ... | warmup_time=${0} | async_call=${True} | latency=${False}
 | | ... | unidirection=${unidirection} | tx_port=${tx_port} | rx_port=${rx_port}
-| | Run Keyword If | ${dut_stats}==${True}
-| | ... | Clear runtime counters on all DUTs | ${nodes}
+#| | Run Keyword If | ${dut_stats}==${True}
+#| | ... | Clear runtime counters on all DUTs | ${nodes}
 | | Sleep | ${duration}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | Show runtime counters on all DUTs | ${nodes}
