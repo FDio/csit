@@ -84,12 +84,12 @@ class PapiHistory(object):
         :param node: DUT node to show PAPI command history for.
         :type node: dict
         """
-        history = "\nNo PAPI command executed"
-        if DICT__DUTS_PAPI_HISTORY[node['host']]:
-            history = "".join(["\n{}".format(
-                cmd) for cmd in DICT__DUTS_PAPI_HISTORY[node['host']]])
+        history_list = DICT__DUTS_PAPI_HISTORY[node['host']]
+        if not history_list:
+            history_list = ("No PAPI command executed", )
         logger.trace(
-            "{0} PAPI command history:\n{1}\n".format(node['host'], history))
+            "{0} PAPI command history:\n\n{1}\n".format(
+                node['host'], "\n".join(history_list)))
 
     @staticmethod
     def show_papi_history_on_all_duts(nodes):
