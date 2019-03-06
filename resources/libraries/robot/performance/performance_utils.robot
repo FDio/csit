@@ -44,9 +44,9 @@
 | | ... | using an optimized search algorithm.
 | | ... | Display results as formatted test message.
 | | ... | Fail if a resulting lower bound has too high loss fraction.
-| | ... | Proceed with Perform additional measurements based on NDRPDR result.
 | | ... | Input rates are understood as uni-directional,
 | | ... | reported result contains bi-directional rates.
+| | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ...
 | | ... | TODO: Should the trial duration of the additional
 | | ... | measurements be configurable?
@@ -54,7 +54,6 @@
 | | ... | *Arguments:*
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
 | | ... | - topology_type - Topology type. Type: string
-| | ... | - minimum_transmit_rate - Lower limit of search [pps]. Type: float
 | | ... | - maximum_transmit_rate - Upper limit of search [pps]. Type: float
 | | ... | - packet_loss_ratio - Accepted loss during search. Type: float
 | | ... | - final_relative_width - Maximal width multiple of upper. Type: float
@@ -67,28 +66,25 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Find NDR and PDR intervals using optimized search \| \${64} \| \
-| | ... | 3-node-IPv4 \| \${100000} \| \${14880952} \| \${0.005} \| \${0.005} \
+| | ... | 3-node-IPv4 \| \${14880952} \| \${0.005} \| \${0.005} \
 | | ... | \| \${30.0} \| \${1.0} \| \${2} \| ${600.0} \| ${2} \|
 | | ...
-| | [Arguments] | ${frame_size} | ${topology_type} | ${minimum_transmit_rate}
-| | ... | ${maximum_transmit_rate} | ${packet_loss_ratio}=${0.005}
-| | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${30.0}
-| | ... | ${initial_trial_duration}=${1.0}
+| | [Arguments] | ${frame_size} | ${topology_type} | ${maximum_transmit_rate}
+| | ... | ${packet_loss_ratio}=${0.005} | ${final_relative_width}=${0.005}
+| | ... | ${final_trial_duration}=${30.0} | ${initial_trial_duration}=${1.0}
 | | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${720.0}
 | | ... | ${doublings}=${2}
 | | ...
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${topology_type} | ${minimum_transmit_rate*2}
-| | ... | ${maximum_transmit_rate*2} | ${packet_loss_ratio}
-| | ... | ${final_relative_width} | ${final_trial_duration}
-| | ... | ${initial_trial_duration} | ${number_of_intermediate_phases}
-| | ... | timeout=${timeout} | doublings=${doublings}
+| | ... | ${topology_type} | ${20000} | ${maximum_transmit_rate*2}
+| | ... | ${packet_loss_ratio} | ${final_relative_width}
+| | ... | ${final_trial_duration} | ${initial_trial_duration}
+| | ... | ${number_of_intermediate_phases} | timeout=${timeout}
+| | ... | doublings=${doublings}
 | | Display result of NDRPDR search | ${result} | ${frame_size}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result.ndr_interval}
-| | Perform additional measurements based on NDRPDR result
-| | ... | ${result} | ${frame_size} | ${topology_type}
 
 | Find critical load using PLRsearch
 | | [Documentation]
@@ -98,12 +94,11 @@
 | | ... | Fail if computed lower bound is below minimal rate.
 | | ... | Input rates are understood as uni-directional,
 | | ... | reported result contains bi-directional rates.
-| | ... | TODO: Any additional measurements for debug purposes?
+| | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ...
 | | ... | *Arguments:*
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
 | | ... | - topology_type - Topology type. Type: string
-| | ... | - minimum_transmit_rate - Lower limit of search [pps]. Type: float
 | | ... | - maximum_transmit_rate - Upper limit of search [pps]. Type: float
 | | ... | - packet_loss_ratio - Accepted loss during search. Type: float
 | | ... | - timeout - Stop when search duration is longer [s]. Type: float
@@ -111,13 +106,12 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Find critical load usingPLR search \| \${64} \| \
-| | ... | 3-node-IPv4 \| \${100000} \| \${14880952} \| \${1e-7} \| \${1800} \
+| | ... | 3-node-IPv4 \| \${14880952} \| \${1e-7} \| \${1800} \
 | | ...
-| | [Arguments] | ${frame_size} | ${topology_type} | ${minimum_transmit_rate}
-| | ... | ${maximum_transmit_rate} | ${packet_loss_ratio}=${1e-7}
-| | ... | ${timeout}=${1800.0}
+| | [Arguments] | ${frame_size} | ${topology_type} | ${maximum_transmit_rate}
+| | ... | ${packet_loss_ratio}=${1e-7} | ${timeout}=${1800.0}
 | | ...
-| | ${min_rate} = | Set Variable | ${minimum_transmit_rate*2}
+| | ${min_rate} = | Set Variable | ${20000}
 | | ${average} | ${stdev} = | Perform soak search | ${frame_size}
 | | ... | ${topology_type} | ${min_rate} | ${maximum_transmit_rate*2}
 | | ... | ${packet_loss_ratio} | timeout=${timeout}
@@ -252,31 +246,6 @@
 | | ${message} = | Set Variable If | ${lower_bound_lf} >= 1.0
 | | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
 | | Fail | ${message}
-
-| Perform additional measurements based on NDRPDR result
-| | [Documentation]
-| | ... | Perform any additional measurements which are not directly needed
-| | ... | for determining NDR nor PDR, but which are needed for gathering
-| | ... | additional data for debug purposes.
-| | ... | Currently, just "Traffic should pass with no loss" is called.
-| | ... | TODO: Move latency measurements from optimized search here.
-| | ...
-| | ... | *Arguments:*
-| | ... | - result - Measured result data per stream [pps]. Type: NdrPdrResult
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
-| | ... | - topology_type - Topology type. Type: string
-| | ...
-| | ... | *Example:*
-| | ... | \| Perform additional measurements based on NDRPDR result \
-| | ... | \| \${result} \| ${64} \| 3-node-IPv4 \|
-| | ...
-| | [Arguments] | ${result} | ${framesize} | ${topology_type}
-| | ...
-| | ${duration}= | Set Variable | 5.0
-| | ${rate_per_stream}= | Evaluate
-| | ... | ${result.ndr_interval.measured_low.target_tr} / 2.0
-| | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
-| | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
 
 | Traffic should pass with no loss
 | | [Documentation]

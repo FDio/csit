@@ -24,9 +24,7 @@
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| ...
-| Test Teardown | Tear down performance discovery test | ${min_rate}pps
-| ... | ${framesize} | ${traffic_profile}
+| Test Teardown | Tear down performance test
 | ...
 | Test Template | Local Template
 | ...
@@ -39,11 +37,7 @@
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6\
 | ... | routing and static routes. LISPoIPv4 tunnel is configured between\
 | ... | DUT1 and DUT2. DUT1 and DUT2 tested with ${nic_name}.
-| ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
-| ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop\
-| ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
-| ... | of packets transmitted. NDR and PDR are discovered for different\
-| ... | Ethernet L2 frame sizes using MLRsearch library.\
+| ... | *[Ver] TG verification:* FIXME.\
 | ... | *[Ref] Applicable standard specifications:* RFC6830.
 
 *** Variables ***
@@ -59,7 +53,7 @@
 | | ... | [Cfg] DUT runs IPv6 LISP remote static mappings and whitelist\
 | | ... | filters config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.\
-| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
+| | ... | [Ver] FIXME.\
 | | ...
 | | ... | *Arguments:*
 | | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
@@ -69,13 +63,11 @@
 | | ...
 | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | Set Test Variable | ${framesize}
-| | Set Test Variable | ${min_rate} | ${10000}
+| | Set Test Variable | \${framesize}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${nic_name} | ${framesize} | overhead=${overhead}
+| | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize LISP IPv6 over IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip6o4} | ${dut1_to_tg_ip6o4} | ${dut2_to_dut1_ip6o4}
@@ -86,7 +78,6 @@
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
 | | Then Find NDR and PDR intervals using optimized search
-| | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
 *** Test Cases ***
 | tc01-78B-1c-ethip6lispip4-ip6base-ndrpdr

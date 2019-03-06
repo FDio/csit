@@ -38,9 +38,9 @@
 | | ${framesize} = | Convert To Number | ${framesize}
 | | Return From Keyword | ${framesize}
 
-| Get Max Rate And Jumbo
+| Set Max Rate And Jumbo
 | | [Documentation]
-| | ... | Argument framesize can be either integer in case of a single packet
+| | ... | Input framesize can be either integer in case of a single packet
 | | ... | in stream, or IMIX string defining mix of packets.
 | | ... | For jumbo frames detection, the maximal packet size is relevant.
 | | ... | For maximal transmit rate, the average packet size is relevant.
@@ -53,27 +53,27 @@
 | | ...
 | | ... | TODO: Make pps limit also definable per NIC.
 | | ...
-| | ... | This keyword returns computed maximal unidirectional transmit rate
+| | ... | This keyword computes maximal unidirectional transmit rate
 | | ... | and jumbo boolean (some suites need that).
+| | ... | To streamline suite autogeneration, both input and output values
+| | ... | are communicated as test (or broader scope) variables,
+| | ... | instead of explicit arguments and return values.
 | | ...
-| | ... | *Arguments:*
-| | ... | - nic_name - Name of bottleneck NIC. Type: string
-| | ... | - framesize - Framesize in bytes or IMIX. Type: integer or string
-| | ... | - overhead - Overhead in bytes. Default: 0. Type: integer
+| | ... | *Test (or broader scope) variables read:*
+| | ... |   - nic_name - Name of bottleneck NIC. Type: string
+| | ... |   - framesize - Framesize in bytes or IMIX. Type: integer or string
+| | ... |   - overhead - Overhead in bytes. Default: 0. Type: integer
 | | ...
-| | ... | *Returns:*
-| | ... | - 2-tuple, consisting of:
-| | ... |   - Calculated unidirectional maximal transmit rate.
+| | ... | *Test variables set:*
+| | ... |   - max_rate - Calculated unidirectional maximal transmit rate.
 | | ... |     Type: integer or float
-| | ... |   - Jumbo boolean, true if jumbo packet support has to be enabled.
-| | ... |     Type: boolean
+| | ... |   - jumbo - Jumbo boolean, true if jumbo packet support
+| | ... |     has to be enabled. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Get Max Rate And Jumbo | Intel-X710 \| IMIX_v4_1 \
-| | ... | \| overhead=\${40} \|
-| | ...
-| | [Arguments] | ${nic_name} | ${framesize} | ${overhead}=${0}
+| | ... | \| Set test Variable \| \${framesize} \| IMIX_v4_1 \|
+| | ... | \| Set Max Rate And Jumbo \|
 | | ...
 | | ${pps_limit} = | Set Variable | ${18750000}
 | | ${bps_limit} = | Get From Dictionary | ${NIC_NAME_TO_LIMIT} | ${nic_name}
@@ -92,35 +92,30 @@
 | | ${rate} = | Evaluate | (${bps_limit}/((${avg_swo}+20)*8)).__trunc__()
 | | ${max_rate} = | Set Variable If | ${limit_set} and ${rate} > ${pps_limit}
 | | ... | ${pps_limit} | ${rate}
-| | Return From Keyword | ${max_rate} | ${jumbo}
+| | Set Test Variable | \${jumbo}
+| | Set Test Variable | \${max_rate}
 
-| Get Max Rate And Jumbo And Handle Multi Seg
+| Set Max Rate And Jumbo And Handle Multi Seg
 | | [Documentation]
-| | ... | This keyword adds correct multi seg configuration,
-| | ... | then returns the result of Get Max Rate And Jumbo keyword.
+| | ... | This keyword starts with Get Max Rate And Jumbo keyword,
+| | ... | then adds correct multi seg VPP configuration.
 | | ...
-| | ... | See Documentation of Get Max Rate And Jumbo for more details.
+| | ... | See Documentation of Set Max Rate And Jumbo for more details.
 | | ...
-| | ... | *Arguments:*
-| | ... | - nic_name - Name of bottleneck NIC. Type: string
-| | ... | - framesize - Framesize in bytes. Type: integer or string
-| | ... | - overhead - Overhead in bytes. Default: 0. Type: integer
+| | ... | *Test (or broader scope) variables read:*
+| | ... |   - nic_name - Name of bottleneck NIC. Type: string
+| | ... |   - framesize - Framesize in bytes or IMIX. Type: integer or string
+| | ... |   - overhead - Overhead in bytes. Default: 0. Type: integer
 | | ...
-| | ... | *Returns:*
-| | ... | - 2-tuple, consisting of:
-| | ... |   - Calculated unidirectional maximal transmit rate.
+| | ... | *Test variables set:*
+| | ... |   - max_rate - Calculated unidirectional maximal transmit rate.
 | | ... |     Type: integer or float
-| | ... |   - Jumbo boolean, true if jumbo packet support has to be enabled.
-| | ... |     Type: boolean
+| | ... |   - jumbo - Jumbo boolean, true if jumbo packet support
+| | ... |     has to be enabled. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Get Max Rate And Jumbo And Handle Multi Seg | Intel-X710 \
-| | ... | \| IMIX_v4_1 \| overhead=\${40} \|
+| | ... | \| Set Max Rate And Jumbo And Handle Multi Seg \|
 | | ...
-| | [Arguments] | ${nic_name} | ${framesize} | ${overhead}=${0}
-| | ...
-| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
-| | ... | ${nic_name} | ${framesize} | ${overhead}
+| | Set Max Rate And Jumbo
 | | Run Keyword If | not ${jumbo} | Add no multi seg to all DUTs
-| | Return From Keyword | ${max_rate} | ${jumbo}
