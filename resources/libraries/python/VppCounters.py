@@ -16,6 +16,7 @@
 import time
 
 from robot.api import logger
+from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
@@ -116,9 +117,17 @@ class VppCounters(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script("clear_runtime.vat", node, json_out=False)
-        vat.script_should_have_passed()
+        cmd = 'cli'
+        cmd_reply = 'cli_reply'
+        err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".format(
+            host=node['host'], cmd=cmd)
+        args = dict(cmd='clear runtime')
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
+        data = papi_resp.reply[0]['api_reply'][cmd_reply]
+        if data['retval'] != 0:
+            raise RuntimeError("Failed to clear runtime on host {host}".
+                               format(host=node['host']))
 
     @staticmethod
     def clear_runtime_counters_on_all_duts(nodes):
@@ -138,9 +147,17 @@ class VppCounters(object):
         :param node: Node to clear interface counters on.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script('clear_interface.vat', node)
-        vat.script_should_have_passed()
+        cmd = 'cli'
+        cmd_reply = 'cli_reply'
+        err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".format(
+            host=node['host'], cmd=cmd)
+        args = dict(cmd='clear interfaces')
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
+        data = papi_resp.reply[0]['api_reply'][cmd_reply]
+        if data['retval'] != 0:
+            raise RuntimeError("Failed to clear interfaces on host {host}".
+                               format(host=node['host']))
 
     @staticmethod
     def clear_interface_counters_on_all_duts(nodes):
