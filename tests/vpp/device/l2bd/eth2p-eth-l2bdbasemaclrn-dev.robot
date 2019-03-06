@@ -12,6 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
+| Library | resources.libraries.python.L2Util
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/l2/l2_traffic.robot
 | Resource | resources/libraries/robot/shared/default.robot
@@ -64,6 +65,8 @@
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | VPP get bridge domain data | ${nodes['DUT1']}
+| | Get L2 Fib Table | ${nodes['DUT1']} | int($bd_id)
 
 | tc02-eth2p-ethicmpv6-l2bdbase-device
 | | [Documentation]
@@ -85,3 +88,4 @@
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv6 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | VPP get bridge domain data | ${nodes['DUT1']} | bd_id=${bd_id}
