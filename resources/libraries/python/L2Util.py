@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,13 +13,27 @@
 
 """L2 Utilities Library."""
 
+import binascii
 from textwrap import wrap
 
-from robot.api.deco import keyword
+from enum import IntEnum
 
+from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.ssh import exec_cmd_no_error
+
+
+class L2VtrOp(IntEnum):
+    """VLAN tag rewrite operation."""
+    L2_VTR_DISABLED = 0
+    L2_VTR_PUSH_1 = 1
+    L2_VTR_PUSH_2 = 2
+    L2_VTR_POP_1 = 3
+    L2_VTR_POP_2 = 4
+    L2_VTR_TRANSLATE_1_1 = 5
+    L2_VTR_TRANSLATE_1_2 = 6
+    L2_VTR_TRANSLATE_2_1 = 7
+    L2_VTR_TRANSLATE_2_2 = 8
 
 
 class L2Util(object):
@@ -50,117 +64,145 @@ class L2Util(object):
         return ':'.join(wrap("{:012x}".format(mac_int), width=2))
 
     @staticmethod
-    def vpp_add_l2fib_entry(node, mac, interface, bd_id):
-        """ Create a static L2FIB entry on a vpp node.
+    def mac_to_bin(mac_str):
+        """Convert MAC address from string format (e.g. 01:02:03:04:05:06) to
+        binary representation (\x01\x02\x03\x04\x05\x06).
+
+        :param mac_str: MAC address in string representation.
+        :type mac_str: str
+        :returns: Binary representation of MAC address.
+        :rtype: binary
+        """
+        return binascii.unhexlify(mac_str.replace(':', ''))
+
+    @staticmethod
+    def bin_to_mac(mac_bin):
+        """Convert MAC address from binary representation
+        (\x01\x02\x03\x04\x05\x06) to string format (e.g. 01:02:03:04:05:06).
+
+        :param mac_bin: MAC address in binary representation.
+        :type mac_bin: binary
+        :returns: String representation of MAC address.
+        :rtype: str
+        """
+        x = ':'.join(binascii.hexlify(mac_bin)[i:i + 2] for i in range(0, 12, 2))
+        return str(x.decode('ascii'))
+
+    @staticmethod
+    def vpp_add_l2fib_entry(node, mac, interface, bd_id, static_mac=1,
+                            filter_mac=0, bvi_mac=0):
+        """ Create a static L2FIB entry on a VPP node.
 
         :param node: Node to add L2FIB entry on.
-        :param mac: Destination mac address.
+        :param mac: Destination mac address in string format 01:02:03:04:05:06.
         :param interface: Interface name or sw_if_index.
-        :param bd_id: Bridge domain id.
+        :param bd_id: Bridge domain index.
+        :param static_mac: Set to 1 to create static MAC entry.
+            (Default value = 1)
+        :param filter_mac: Set to 1 to drop packet that's source or destination
+            MAC address contains defined MAC address. (Default value = 0)
+        :param bvi_mac: Set to 1 to create entry that points to BVI interface.
+            (Default value = 0)
         :type node: dict
         :type mac: str
         :type interface: str or int
-        :type bd_id: int
+        :type bd_id: int or str
+        :type static_mac: int or str
+        :type filter_mac: int or str
+        :type bvi_mac: int or str
         """
+
         if isinstance(interface, basestring):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
         else:
             sw_if_index = interface
-        VatExecutor.cmd_from_template(node, "add_l2_fib_entry.vat",
-                                      mac=mac, bd=bd_id,
-                                      interface=sw_if_index)
+
+        cmd = 'l2fib_add_del'
+        err_msg = 'Failed to add L2FIB entry on host {host}'.format(
+            host=node['host'])
+        args = dict(mac=L2Util.mac_to_bin(mac),
+                    bd_id=int(bd_id),
+                    sw_if_index=sw_if_index,
+                    is_add=1,
+                    static_mac=int(static_mac),
+                    filter_mac=int(filter_mac),
+                    bvi_mac=int(bvi_mac))
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).execute_should_pass(err_msg).\
+                verify_reply(err_msg)
 
     @staticmethod
     def create_l2_bd(node, bd_id, flood=1, uu_flood=1, forward=1, learn=1,
                      arp_term=0):
-        """Create a l2 bridge domain on the chosen VPP node
+        """Create an L2 bridge domain on a VPP node.
 
-        Execute "bridge_domain_add_del bd_id {bd_id} flood {flood} uu-flood 1
-        forward {forward} learn {learn} arp-term {arp_term}" VAT command on
-        the node.
-
-        :param node: Node where we wish to crate the l2 bridge domain.
-        :param bd_id: Bridge domain index number.
-        :param flood: Enable flooding.
-        :param uu_flood: Enable uu_flood.
-        :param forward: Enable forwarding.
-        :param learn: Enable mac address learning to fib.
-        :param arp_term: Enable arp_termination.
+        :param node: Node where we wish to crate the L2 bridge domain.
+        :param bd_id: Bridge domain index.
+        :param flood: Enable/disable bcast/mcast flooding in the BD.
+            (Default value = 1)
+        :param uu_flood: Enable/disable unknown unicast flood in the BD.
+            (Default value = 1)
+        :param forward: Enable/disable forwarding on all interfaces in
+            the BD. (Default value = 1)
+        :param learn: Enable/disable MAC learning on all interfaces in the BD.
+            (Default value = 1)
+        :param arp_term: Enable/disable arp termination in the BD.
+            (Default value = 1)
         :type node: dict
-        :type bd_id: int
-        :type flood: bool
-        :type uu_flood: bool
-        :type forward: bool
-        :type learn: bool
-        :type arp_term: bool
+        :type bd_id: int or str
+        :type flood: int or str
+        :type uu_flood: int or str
+        :type forward: int or str
+        :type learn: int or str
+        :type arp_term: int or str
         """
-        VatExecutor.cmd_from_template(node, "l2_bd_create.vat",
-                                      bd_id=bd_id, flood=flood,
-                                      uu_flood=uu_flood, forward=forward,
-                                      learn=learn, arp_term=arp_term)
+
+        cmd = 'bridge_domain_add_del'
+        err_msg = 'Failed to create L2 bridge domain on host {host}'.format(
+            host=node['host'])
+        args = dict(bd_id=int(bd_id),
+                    flood=int(flood),
+                    uu_flood=int(uu_flood),
+                    forward=int(forward),
+                    learn=int(learn),
+                    arp_term=int(arp_term),
+                    is_add=1)
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).execute_should_pass(err_msg).\
+                verify_reply(err_msg)
 
     @staticmethod
-    def add_interface_to_l2_bd(node, interface, bd_id, shg=0):
-        """Add a interface to the l2 bridge domain.
+    def add_interface_to_l2_bd(node, interface, bd_id, shg=0, port_type=0):
+        """Add an interface to the L2 bridge domain.
 
         Get SW IF ID and add it to the bridge domain.
 
         :param node: Node where we want to execute the command that does this.
         :param interface: Interface name.
-        :param bd_id: Bridge domain index number to add Interface name to.
-        :param shg: Split horizon group.
+        :param bd_id: Bridge domain index.
+        :param shg: Split-horizon group index. (Default value = 0)
+        :param port_type: Port mode: 0 - normal, 1 - BVI, 2 - UU_FWD.
+            (Default value = 0)
         :type node: dict
         :type interface: str
-        :type bd_id: int
-        :type shg: int
+        :type bd_id: int or str
+        :type shg: int or str
+        :type port_type: int or str
         """
+
         sw_if_index = Topology.get_interface_sw_index(node, interface)
-        L2Util.add_sw_if_index_to_l2_bd(node, sw_if_index, bd_id, shg)
 
-    @staticmethod
-    def add_sw_if_index_to_l2_bd(node, sw_if_index, bd_id, shg=0):
-        """Add interface with sw_if_index to l2 bridge domain.
-
-        Execute the "sw_interface_set_l2_bridge sw_if_index {sw_if_index}
-        bd_id {bd_id} shg {shg} enable" VAT command on the given node.
-
-        :param node: Node where we want to execute the command that does this.
-        :param sw_if_index: Interface index.
-        :param bd_id: Bridge domain index number to add SW IF ID to.
-        :param shg: Split horizon group.
-        :type node: dict
-        :type sw_if_index: int
-        :type bd_id: int
-        :type shg: int
-        """
-        VatExecutor.cmd_from_template(node, "l2_bd_add_sw_if_index.vat",
-                                      bd_id=bd_id, sw_if_index=sw_if_index,
-                                      shg=shg)
-
-    @staticmethod
-    @keyword('Create dict used in bridge domain template file for node '
-             '"${node}" with links "${link_names}" and bd_id "${bd_id}"')
-    def create_bridge_domain_vat_dict(node, link_names, bd_id):
-        """Create dictionary that can be used in l2 bridge domain template.
-
-        The resulting dictionary looks like this:
-        'interface1': interface name of first interface
-        'interface2': interface name of second interface
-        'bd_id': bridge domain index
-
-        :param node: Node data dictionary.
-        :param link_names: List of names of links the bridge domain should be
-            connecting.
-        :param bd_id: Bridge domain index number.
-        :type node: dict
-        :type link_names: list
-        :returns: Dictionary used to generate l2 bridge domain VAT configuration
-            from template file.
-        :rtype: dict
-        """
-        bd_dict = Topology().get_interfaces_by_link_names(node, link_names)
-        bd_dict['bd_id'] = bd_id
-        return bd_dict
+        cmd = 'sw_interface_set_l2_bridge'
+        err_msg = 'Failed to add interface {ifc} to L2 bridge domain on host ' \
+                  '{host}'.format(ifc=interface, host=node['host'])
+        args = dict(rx_sw_if_index=sw_if_index,
+                    bd_id=int(bd_id),
+                    shg=int(shg),
+                    port_type=int(port_type),
+                    enable=1)
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).execute_should_pass(err_msg).\
+                verify_reply(err_msg)
 
     @staticmethod
     def vpp_add_l2_bridge_domain(node, bd_id, port_1, port_2, learn=True):
@@ -179,12 +221,40 @@ class L2Util(object):
         """
         sw_if_index1 = Topology.get_interface_sw_index(node, port_1)
         sw_if_index2 = Topology.get_interface_sw_index(node, port_2)
-        VatExecutor.cmd_from_template(node,
-                                      'l2_bridge_domain.vat',
-                                      sw_if_id1=sw_if_index1,
-                                      sw_if_id2=sw_if_index2,
-                                      bd_id=bd_id,
-                                      learn=int(learn))
+        learn_int = 1 if learn else 0
+
+        cmd1 = 'bridge_domain_add_del'
+        cmd_reply1 = 'bridge_domain_add_del_reply'
+        args1 = dict(bd_id=int(bd_id),
+                     flood=1,
+                     uu_flood=1,
+                     forward=1,
+                     learn=learn_int,
+                     arp_term=0,
+                     is_add=1)
+
+        cmd2 = 'sw_interface_set_l2_bridge'
+        cmd_reply2 = 'sw_interface_set_l2_bridge_reply'
+        args2 = dict(rx_sw_if_index=sw_if_index1,
+                     bd_id=int(bd_id),
+                     shg=0,
+                     port_type=0,
+                     enable=1)
+
+        args3 = dict(rx_sw_if_index=sw_if_index2,
+                     bd_id=int(bd_id),
+                     shg=0,
+                     port_type=0,
+                     enable=1)
+
+        err_msg = 'Failed to add L2 bridge domain with 2 interfaces on host' \
+                  ' {host}'.format(host=node['host'])
+        cmd_replies = [cmd_reply1, cmd_reply2, cmd_reply2]
+
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd1, **args1).add(cmd2, **args2).add(cmd2, **args3).\
+                execute_should_pass(err_msg).\
+                verify_replies(cmd_replies=cmd_replies, err_msg=err_msg)
 
     @staticmethod
     def vpp_setup_bidirectional_cross_connect(node, interface1, interface2):
@@ -208,13 +278,23 @@ class L2Util(object):
         else:
             sw_iface2 = interface2
 
-        with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
-                                                    interface1=sw_iface1,
-                                                    interface2=sw_iface2)
-            vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
-                                                    interface1=sw_iface2,
-                                                    interface2=sw_iface1)
+        cmd = 'sw_interface_set_l2_xconnect'
+        cmd_reply = 'sw_interface_set_l2_xconnect_reply'
+        args1 = dict(rx_sw_if_index=sw_iface1,
+                     tx_sw_if_index=sw_iface2,
+                     enable=1)
+        args2 = dict(rx_sw_if_index=sw_iface2,
+                     tx_sw_if_index=sw_iface1,
+                     enable=1)
+
+        cmd_replies = [cmd_reply, cmd_reply]
+        err_msg = 'Failed to add L2 cross-connect between two interfaces on' \
+                  ' host {host}'.format(host=node['host'])
+
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args1).add(cmd, **args2).\
+                execute_should_pass(err_msg).\
+                verify_replies(cmd_replies=cmd_replies, err_msg=err_msg)
 
     @staticmethod
     def vpp_setup_bidirectional_l2_patch(node, interface1, interface2):
@@ -238,13 +318,23 @@ class L2Util(object):
         else:
             sw_iface2 = interface2
 
-        with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template('l2_patch.vat',
-                                                    interface1=sw_iface1,
-                                                    interface2=sw_iface2)
-            vat.vat_terminal_exec_cmd_from_template('l2_patch.vat',
-                                                    interface1=sw_iface2,
-                                                    interface2=sw_iface1)
+        cmd = 'l2_patch_add_del'
+        cmd_reply = 'l2_patch_add_del_reply'
+        args1 = dict(rx_sw_if_index=sw_iface1,
+                     tx_sw_if_index=sw_iface2,
+                     is_add=1)
+        args2 = dict(rx_sw_if_index=sw_iface2,
+                     tx_sw_if_index=sw_iface1,
+                     is_add=1)
+
+        cmd_replies = [cmd_reply, cmd_reply]
+        err_msg = 'Failed to add L2 patch between two interfaces on' \
+                  ' host {host}'.format(host=node['host'])
+
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args1).add(cmd, **args2).\
+                execute_should_pass(err_msg).\
+                verify_replies(cmd_replies=cmd_replies, err_msg=err_msg)
 
     @staticmethod
     def linux_add_bridge(node, br_name, if_1, if_2, set_up=True):
@@ -294,7 +384,7 @@ class L2Util(object):
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def vpp_get_bridge_domain_data(node, bd_id=None):
+    def vpp_get_bridge_domain_data(node, bd_id=0xffffffff):
         """Get all bridge domain data from a VPP node. If a domain ID number is
         provided, return only data for the matching bridge domain.
 
@@ -306,18 +396,29 @@ class L2Util(object):
             or a single dictionary for the specified bridge domain.
         :rtype: list or dict
         """
-        with VatTerminal(node) as vat:
-            response = vat.vat_terminal_exec_cmd_from_template("l2_bd_dump.vat")
 
-        data = response[0]
+        # TODO: set following variable per whole suite
+        bitwise_non_zero = 0xffffffff   # equals to ~0 used in vpp code
 
-        if bd_id is not None:
-            for bridge_domain in data:
-                if bridge_domain["bd_id"] == bd_id:
+        cmd = 'bridge_domain_dump'
+        cmd_reply = 'bridge_domain_details'
+        args = dict(bd_id=bd_id)
+        err_msg = 'Failed to get L2FIB dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
 
-                    return bridge_domain
+        data = papi_resp.reply[0]['api_reply']
 
-        return data
+        bd_data = list() if bd_id == bitwise_non_zero else dict()
+        for bridge_domain in data:
+            if bd_id == bitwise_non_zero:
+                bd_data.append(bridge_domain[cmd_reply])
+            else:
+                if bridge_domain[cmd_reply]['bd_id'] == bd_id:
+                    return bridge_domain[cmd_reply]
+
+        return bd_data
 
     @staticmethod
     def l2_vlan_tag_rewrite(node, interface, tag_rewrite_method,
@@ -338,10 +439,13 @@ class L2Util(object):
         :type tag1_id: int
         :type tag2_id: int
         """
-        push_dot1q = 'push_dot1q 0' if not push_dot1q else ''
+        push_dot1q = 1 if push_dot1q else 0
 
-        tag1_id = 'tag1 {0}'.format(tag1_id) if tag1_id else ''
-        tag2_id = 'tag2 {0}'.format(tag2_id) if tag2_id else ''
+        tag1_id = int(tag1_id) if tag1_id else 0
+        tag2_id = int(tag2_id) if tag2_id else 0
+
+        vtr_oper = getattr(L2VtrOp, 'L2_VTR_{}'.format(
+            tag_rewrite_method.replace('-', '_').upper()))
 
         if isinstance(interface, basestring):
             iface_key = Topology.get_interface_by_name(node, interface)
@@ -349,73 +453,43 @@ class L2Util(object):
         else:
             sw_if_index = interface
 
-        with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template("l2_vlan_tag_rewrite.vat",
-                                                    sw_if_index=sw_if_index,
-                                                    tag_rewrite_method=
-                                                    tag_rewrite_method,
-                                                    push_dot1q=push_dot1q,
-                                                    tag1_optional=tag1_id,
-                                                    tag2_optional=tag2_id)
+        cmd = 'l2_interface_vlan_tag_rewrite'
+        args = dict(sw_if_index=sw_if_index,
+                    vtr_op=int(vtr_oper),
+                    push_dot1q=push_dot1q,
+                    tag1=tag1_id,
+                    tag2=tag2_id)
+        err_msg = 'Failed to set VLAN TAG rewrite on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).execute_should_pass(err_msg).\
+                verify_reply(err_msg)
 
     @staticmethod
-    def delete_bridge_domain_vat(node, bd_id):
-        """Delete the specified bridge domain from the node.
-
-        :param node: VPP node to delete a bridge domain from.
-        :param bd_id: Bridge domain ID.
-        :type node: dict
-        :type bd_id: int
-        """
-
-        with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template(
-                "l2_bridge_domain_delete.vat", bd_id=bd_id)
-
-    @staticmethod
-    def delete_l2_fib_entry(node, bd_id, mac):
-        """Delete the specified L2 FIB entry.
+    def get_l2_fib_table(node, bd_id):
+        """Retrieves the L2 FIB table.
 
         :param node: VPP node.
-        :param bd_id: Bridge domain ID.
-        :param mac: MAC address used as the key in L2 FIB entry.
+        :param bd_id: Index of the bridge domain.
         :type node: dict
         :type bd_id: int
-        :type mac: str
-        """
-
-        with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template("l2_fib_entry_delete.vat",
-                                                    mac=mac,
-                                                    bd_id=bd_id)
-
-    @staticmethod
-    def get_l2_fib_table_vat(node, bd_index):
-        """Retrieves the L2 FIB table using VAT.
-
-        :param node: VPP node.
-        :param bd_index: Index of the bridge domain.
-        :type node: dict
-        :type bd_index: int
         :returns: L2 FIB table.
         :rtype: list
         """
 
-        bd_data = L2Util.vpp_get_bridge_domain_data(node)
-        bd_id = bd_data[bd_index-1]["bd_id"]
+        cmd = 'l2_fib_table_dump'
+        cmd_reply = 'l2_fib_table_details'
+        args = dict(bd_id=bd_id)
+        err_msg = 'Failed to get L2FIB dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
 
-        try:
-            with VatTerminal(node) as vat:
-                table = vat.vat_terminal_exec_cmd_from_template(
-                    "l2_fib_table_dump.vat", bd_id=bd_id)
-
-            return table[0]
-        except ValueError:
-            return []
+        return papi_resp.reply[0]['api_reply'][cmd_reply]
 
     @staticmethod
-    def get_l2_fib_entry_vat(node, bd_index, mac):
-        """Retrieves the L2 FIB entry specified by MAC address using VAT.
+    def get_l2_fib_entry_by_mac(node, bd_index, mac):
+        """Retrieves the L2 FIB entry specified by MAC address using PAPI.
 
         :param node: VPP node.
         :param bd_index: Index of the bridge domain.
@@ -427,8 +501,12 @@ class L2Util(object):
         :rtype: dict
         """
 
-        table = L2Util.get_l2_fib_table_vat(node, bd_index)
+        bd_data = L2Util.vpp_get_bridge_domain_data(node)
+        bd_id = bd_data[bd_index-1]["bd_id"]
+
+        table = L2Util.get_l2_fib_table(node, bd_id)
+
         for entry in table:
-            if entry["mac"] == mac:
+            if entry['mac'] == mac:
                 return entry
         return {}
