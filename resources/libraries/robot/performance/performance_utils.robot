@@ -470,6 +470,7 @@
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${framesize} | ${topology_type}
 | | ... | ${unidirection} | ${tx_port} | ${rx_port}
+| | Show Memif On All Duts ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} | Clear all counters on all DUTs
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes}
@@ -491,6 +492,7 @@
 | | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | Show Packet Trace On All Duts | ${nodes} | maximum=${100}
+| | Show Memif On All Duts ${nodes}
 | | Return From Keyword | ${results}
 
 | Clear and show runtime counters with running traffic
