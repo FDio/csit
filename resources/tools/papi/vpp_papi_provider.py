@@ -120,17 +120,25 @@ def convert_reply(api_r):
     :returns: Processed API reply / a part of API reply.
     :rtype: dict
     """
-    unwanted_fields = ['count', 'index']
+    unwanted_fields = ['count', 'context']
 
     reply_dict = dict()
     reply_key = repr(api_r).split('(')[0]
     reply_value = dict()
     for item in dir(api_r):
         if not item.startswith('_') and item not in unwanted_fields:
-            # attr_value = getattr(api_r, item)
-            # value = binascii.hexlify(attr_value) \
-            #     if isinstance(attr_value, str) else attr_value
-            value = getattr(api_r, item)
+            attr_value = getattr(api_r, item)
+            if isinstance(attr_value, list) or isinstance(attr_value, dict):
+                value = attr_value
+            elif hasattr(attr_value, '__int__'):
+                value = int(attr_value)
+            elif hasattr(attr_value, '__str__'):
+                value = binascii.hexlify(str(attr_value))
+            elif hasattr(attr_value, '__repr__'):
+                value = repr(attr_value)
+            else:
+                value = attr_value
+            # value = getattr(api_r, item)
             reply_value[item] = value
     reply_dict[reply_key] = reply_value
     return reply_dict
@@ -206,7 +214,13 @@ def main():
                                       exc=repr(err)))
     papi_disconnect(vpp)
 
-    return json.dumps(reply)
+    try:
+        json_reply = json.dumps(reply)
+    except UnicodeDecodeError as err:
+        raise RuntimeError('PAPI reply {reply} error:\n{exc}'.format(
+            reply=reply, exc=repr(err)))
+
+    return json_reply
 
 
 if __name__ == '__main__':

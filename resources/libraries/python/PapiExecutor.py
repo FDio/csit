@@ -311,6 +311,8 @@ class PapiExecutor(object):
                         raise
                 papi_reply.append(api_reply_processed)
 
+        logger.debug("Processed PAPI reply: {reply}".format(reply=papi_reply))
+        
         return PapiResponse(papi_reply=papi_reply,
                             stdout=stdout,
                             stderr=stderr,
@@ -412,10 +414,10 @@ class PapiExecutor(object):
         reply_value = dict()
         for reply_key, reply_v in api_r.iteritems():
             for a_k, a_v in reply_v.iteritems():
-                # value = binascii.unhexlify(a_v) if isinstance(a_v, unicode) \
-                #     else a_v
-                # reply_value[a_k] = value
-                reply_value[a_k] = a_v
+                value = binascii.unhexlify(a_v) if isinstance(a_v, unicode) \
+                    else a_v
+                reply_value[a_k] = value
+                # reply_value[a_k] = a_v
             reply_dict[reply_key] = reply_value
         return reply_dict
 
