@@ -1,4 +1,4 @@
-# Cisco UCS c240m4 Xeon Haswell Servers - Hardware and BIOS Configuration
+# Cisco UCS c240m4 Haswell Servers - HW and BIOS Configuration
 
 1. [Linux lscpu](#linux-lscpu)
 1. [Linux dmidecode pci](#linux-dmidecode-pci)

@@ -1,4 +1,4 @@
-# SuperMicro Xeon Skylake Servers - Hardware and BIOS Configuration
+# SuperMicro Skylake Servers - HW and BIOS Configuration
 
 1. [Linux lscpu TODO](#linux-lscpu-todo)
 1. [Linux dmidecode pci TODO](#linux-dmidecode-pci-todo)

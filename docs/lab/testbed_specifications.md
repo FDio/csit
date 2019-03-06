@@ -1,6 +1,6 @@
 # FD.io CSIT Testbed Specifications
 
-1. [FD.io CSIT Testbed Specifications](#fdio-csit-testbed-specifications)
+1. [Purpose](#purpose)
 1. [Testbeds Overview](#testbeds-overview)
    1. [Summary List](#summary-list)
    1. [1-Node-Skylake Xeon Intel (1n-skx)](#1-node-skylake-xeon-intel-1n-skx)
@@ -22,27 +22,27 @@
    1. [Server and Port Naming](#server-and-port-naming)
 1. [Testbeds Configuration](#testbeds-configuration)
    1. [Per Testbed Server Allocation and Naming](#per-testbed-server-allocation-and-naming)
-      1 [1-Node-Skylake (1n-skx) PROD](#1-node-skylake-1n-skx-prod)
-      1 [1-Node-Thunderx2 (1n-tx2) WIP](#1-node-thunderx2-1n-tx2-wip)
-      1 [2-Node-Skylake (2n-skx) PROD](#2-node-skylake-2n-skx-prod)
-      1 [2-Node-Denverton (2n-dnv) TODO](#2-node-denverton-2n-dnv-todo)
-      1 [2-Node-IxiaPS1L47 (2n-ps1) VERIFY](#2-node-ixiaps1l47-2n-ps1-verify)
-      1 [3-Node-Haswell (3n-hsw) PROD](#3-node-haswell-3n-hsw-prod)
-      1 [3-Node-Skylake (3n-skx) PROD](#3-node-skylake-3n-skx-prod)
-      1 [3-Node-Rangeley (3n-rng) VERIFY](#3-node-rangeley-3n-rng-verify)
-      1 [3-Node-Taishan (3n-tsh) WIP](#3-node-taishan-3n-tsh-wip)
-      1 [3-Node-Mcbin (3n-mcb) TODO](#3-node-mcbin-3n-mcb-todo)
+      1. [1-Node-Skylake (1n-skx) PROD](#1-node-skylake-1n-skx-prod)
+      1. [1-Node-Thunderx2 (1n-tx2) WIP](#1-node-thunderx2-1n-tx2-wip)
+      1. [2-Node-Skylake (2n-skx) PROD](#2-node-skylake-2n-skx-prod)
+      1. [2-Node-Denverton (2n-dnv) TODO](#2-node-denverton-2n-dnv-todo)
+      1. [2-Node-IxiaPS1L47 (2n-ps1) VERIFY](#2-node-ixiaps1l47-2n-ps1-verify)
+      1. [3-Node-Haswell (3n-hsw) PROD](#3-node-haswell-3n-hsw-prod)
+      1. [3-Node-Skylake (3n-skx) PROD](#3-node-skylake-3n-skx-prod)
+      1. [3-Node-Rangeley (3n-rng) VERIFY](#3-node-rangeley-3n-rng-verify)
+      1. [3-Node-Taishan (3n-tsh) WIP](#3-node-taishan-3n-tsh-wip)
+      1. [3-Node-Mcbin (3n-mcb) TODO](#3-node-mcbin-3n-mcb-todo)
    1. [Per Testbed Wiring](#per-testbed-wiring)
-      1 [1-Node-Skylake (1n-skx) PROD](#1-node-skylake-1n-skx-prod)
-      1 [1-Node-Thunderx2 (1n-tx2) WIP](#1-node-thunderx2-1n-tx2-wip)
-      1 [2-Node-Skylake (2n-skx) PROD](#2-node-skylake-2n-skx-prod)
-      1 [2-Node-Denverton (2n-dnv) TODO](#2-node-denverton-2n-dnv-todo)
-      1 [2-Node-IxiaPS1L47 (2n-ps1) VERIFY](#2-node-ixiaps1l47-2n-ps1-verify)
-      1 [3-Node-Haswell (3n-hsw) PROD](#3-node-haswell-3n-hsw-prod)
-      1 [3-Node-Skylake (3n-skx) PROD](#3-node-skylake-3n-skx-prod)
-      1 [3-Node-Rangeley (3n-rng) TODO](#3-node-rangeley-3n-rng-todo)
-      1 [3-Node-Taishan (3n-tsh) WIP](#3-node-taishan-3n-tsh-wip)
-      1 [3-Node-Mcbin (3n-mcb) WIP](#3-node-mcbin-3n-mcb-wip)
+      1. [1-Node-Skylake (1n-skx) PROD](#1-node-skylake-1n-skx-prod)
+      1. [1-Node-Thunderx2 (1n-tx2) WIP](#1-node-thunderx2-1n-tx2-wip)
+      1. [2-Node-Skylake (2n-skx) PROD](#2-node-skylake-2n-skx-prod)
+      1. [2-Node-Denverton (2n-dnv) TODO](#2-node-denverton-2n-dnv-todo)
+      1. [2-Node-IxiaPS1L47 (2n-ps1) VERIFY](#2-node-ixiaps1l47-2n-ps1-verify)
+      1. [3-Node-Haswell (3n-hsw) PROD](#3-node-haswell-3n-hsw-prod)
+      1. [3-Node-Skylake (3n-skx) PROD](#3-node-skylake-3n-skx-prod)
+      1. [3-Node-Rangeley (3n-rng) TODO](#3-node-rangeley-3n-rng-todo)
+      1. [3-Node-Taishan (3n-tsh) WIP](#3-node-taishan-3n-tsh-wip)
+      1. [3-Node-Mcbin (3n-mcb) WIP](#3-node-mcbin-3n-mcb-wip)
 1. [Inventory](#inventory)
    1. [Appliances](#appliances)
    1. [Arm Servers](#arm-servers)
@@ -51,7 +51,7 @@
    1. [Pluggables and Cables](#pluggables-and-cables)
    1. [Other Parts](#other-parts)
 
-## FD.io CSIT Testbed Specifications
+## Purpose
 
 This note includes specification of the physical testbed infrastructure
 hosted by LFN FD.io CSIT project.
@@ -106,7 +106,11 @@ Each 2-Node-IxiaPS1L47 testbed includes one SUT (Type-B1 server) and one
 TG (Ixia PSOne appliance) with 10GE interfaces connected back-to-back.
 Used for FD.io TCP/IP and HTTP performance tests.
 
-### 3-Node-Haswell Xeon Intel (3n-skx)
+### 3-Node-Haswell Xeon Intel (3n-hsw)
+
+Each 3-Node-Haswell testbed includes two SUTs (Type-A1 servers) and one
+TG (Type-A2 server) connected in full-mesh triangle.
+Used for FD.io performance tests.
 
 ### 3-Node-Skylake Xeon Intel (3n-skx)
 
