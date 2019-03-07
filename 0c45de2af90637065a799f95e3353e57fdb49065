@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54e831a8_e0df5314",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-07T09:45:53Z",
+      "side": 1,
+      "message": "Documentation was correct, just the implementation got it wrong.",
+      "range": {
+        "startLine": 104,
+        "startChar": 21,
+        "endLine": 104,
+        "endChar": 29
+      },
+      "revId": "0c45de2af90637065a799f95e3353e57fdb49065",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
