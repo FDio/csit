@@ -406,7 +406,7 @@ FD.io CSIT lab contains following server types:
         - Disks: 1* 4TB SATA HDD
     - NICs configuration:
         - PCIe Slot4 e9:00.xx: connectx4-2p25GE Mellanox.
-        - PCIe Slot6 11:00.xx: 82599-2p10GE Intel.
+        - PCIe Slot6 11:00.xx: x520-2p10GE Intel.
 4. Type-B4: Purpose - MACCHIATObin Arm Marvell SUT for FD.io performance testing.
     - Quantity: 3
     - Physical connectivity:
@@ -1036,8 +1036,8 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - IPMI IP: 10.30.50.36
     - Host IP: 10.30.51.36
     - portnames:
-        - s17-t33-sut1-c6/p1 - 10GE-port1 82599-2p10GE.
-        - s17-t33-sut1-c6/p2 - 10GE-port2 82599-2p10GE.
+        - s17-t33-sut1-c6/p1 - 10GE-port1 x520-2p10GE.
+        - s17-t33-sut1-c6/p2 - 10GE-port2 x520-2p10GE.
         - s17-t33-sut1-c4/p1 - 25GE-port1 cx4-2p25GE.
         - s17-t33-sut1-c4/p2 - 25GE-port2 cx4-2p25GE.
 - ServerB18 [Type-B3]:
@@ -1046,8 +1046,8 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - IPMI IP: 10.30.50.37
     - Host IP: 10.30.51.37
     - portnames:
-        - s18-t33-sut2-c6/p1 - 10GE-port1 82599-2p10GE.
-        - s18-t33-sut2-c6/p2 - 10GE-port2 82599-2p10GE.
+        - s18-t33-sut2-c6/p1 - 10GE-port1 x520-2p10GE.
+        - s18-t33-sut2-c6/p2 - 10GE-port2 x520-2p10GE.
         - s18-t33-sut2-c4/p1 - 25GE-port1 cx4-2p25GE.
         - s18-t33-sut2-c4/p2 - 25GE-port2 cx4-2p25GE.
 - ServerB19 [Type-B2]:
@@ -1347,7 +1347,7 @@ To be completed.
 
 ```
 - testbed33:
-    - ring1 10GE-ports 82599-2p10GE on SUTs:
+    - ring1 10GE-ports x520-2p10GE on SUTs:
         - t33t34-tg1-c2/p2 - t33-sut1-c6/p2.
         - t33-sut1-c6/p1 - t33-sut2-c6/p2.
         - t33-sut2-c6/p1 - t33t34-tg1-c2/p1.

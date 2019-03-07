@@ -65,22 +65,22 @@ function download_ubuntu_artifacts () {
     }
     # If version is set we will add suffix.
     artifacts=()
-    BOTH_QUOTES='"'"'"
-    MATCH="[^${BOTH_QUOTES}]*"
-    QMATCH="[${BOTH_QUOTES}]\?"
-    SED_COMMAND="s#.*apt_source_path=${QMATCH}\(${MATCH}\)${QMATCH}#\1#p"
-    APT_FDIO_REPO_FILE=$(curl -s "${REPO_URL}"/script.deb.sh | \
-                         sed -n ${SED_COMMAND}) || {
+    both_quotes='"'"'"
+    match="[^${both_quotes}]*"
+    qmatch="[${both_quotes}]\?"
+    sed_command="s#.*apt_source_path=${qmatch}\(${match}\)${qmatch}#\1#p"
+    apt_fdio_repo_file=$(curl -s "${REPO_URL}"/script.deb.sh | \
+                         sed -n ${sed_command}) || {
                              die "Local fdio repo file path fetch failed."
                          }
 
-    if [ ! -f ${APT_FDIO_REPO_FILE} ]; then
-        die "${APT_FDIO_REPO_FILE} not found, \
+    if [ ! -f ${apt_fdio_repo_file} ]; then
+        die "${apt_fdio_repo_file} not found, \
             repository installation was not successful."
     fi
 
-    packages=$(apt-cache -o Dir::Etc::SourceList=${APT_FDIO_REPO_FILE} \
-               -o Dir::Etc::SourceParts=${APT_FDIO_REPO_FILE} dumpavail \
+    packages=$(apt-cache -o Dir::Etc::SourceList=${apt_fdio_repo_file} \
+               -o Dir::Etc::SourceParts=${apt_fdio_repo_file} dumpavail \
                | grep Package: | cut -d " " -f 2) || {
                    die "Retrieval of available VPP packages failed."
                }
