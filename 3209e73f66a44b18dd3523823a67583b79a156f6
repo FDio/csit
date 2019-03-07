@@ -1,0 +1,556 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "70213133_c257e1e0",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 15,
+        "startChar": 44,
+        "endLine": 15,
+        "endChar": 46
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7408b799_85934721",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "Assumptions",
+      "range": {
+        "startLine": 19,
+        "startChar": 10,
+        "endLine": 19,
+        "endChar": 21
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ca21139_93ef80d8",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "System Under Test (capital letters in titles)",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 17
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "faaf0348_2bf513ed",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "Methodology can not contain sub-systems, replace with \"setup\" or \"SUT\"?",
+      "range": {
+        "startLine": 26,
+        "startChar": 13,
+        "endLine": 26,
+        "endChar": 24
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "11167d7a_ca30a2eb",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "Need to add a note defining System Under Test that is being tested as a black box, and composed of a set of sub-systems, some of which are DUTs.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 72
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "428eb573_fd4a8407",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "This equally applies to SUT.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 39
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62053a5d_a56d4e45",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "system",
+      "range": {
+        "startLine": 36,
+        "startChar": 49,
+        "endLine": 36,
+        "endChar": 55
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae67b1d6_d28b8f3e",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "benchmarking system",
+      "range": {
+        "startLine": 37,
+        "startChar": 20,
+        "endLine": 37,
+        "endChar": 26
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "69543500_221a33e8",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "system",
+      "range": {
+        "startLine": 44,
+        "startChar": 50,
+        "endLine": 44,
+        "endChar": 56
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be479d92_c8ccc510",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "system",
+      "range": {
+        "startLine": 50,
+        "startChar": 3,
+        "endLine": 50,
+        "endChar": 9
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c87849f_b1e6fc7f",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "system",
+      "range": {
+        "startLine": 58,
+        "startChar": 5,
+        "endLine": 58,
+        "endChar": 11
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "103b756a_cb200ffa",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "Not sure it\u0027s needed here, unless it can be made applicable to networking, e.g. in-band control plane transactions (ARPs) or state programming transactions.",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 54
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6cfe259f_daf37a5e",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "This is good. [TODO Check for existing BMWG references that define traffic profiles. e.g. RFC 6985]",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 15
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "11312b54_d6f66aa9",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "benchmarking system",
+      "range": {
+        "startLine": 112,
+        "startChar": 41,
+        "endLine": 112,
+        "endChar": 47
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "859f9c82_06c17f13",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "If you mean ARP resolution or any other control plane related traffic e.g. for MAC learning, then let\u0027s give it as example(s), otherwise it\u0027s unclear.",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 33
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e47ce0f7_2a838f76",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "Generally speaking, offered load can have either a continuous load profile as specific constant rate with packets spaced evenly in time or a burst profile with defined burst rate, burst size, and inter-burst gap. We are currently only using the former, but traffic generators support the latter too.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 64
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe728ca7_1cc59171",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "do you mean probability-weighted average?",
+      "range": {
+        "startLine": 212,
+        "startChar": 23,
+        "endLine": 212,
+        "endChar": 39
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ddca7cac_0e1adcb5",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "If it\u0027s a probability-weighted average, then weighted average is also known as expected value. If so, then let\u0027s state that :)",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 49
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1259c240_f51f5e2f",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "I would prefer to have here some sort of explanation, vs. a pointer to many more assumptions.",
+      "range": {
+        "startLine": 228,
+        "startChar": 34,
+        "endLine": 228,
+        "endChar": 79
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6485326d_2d1ba2a8",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "I don\u0027t follow here.. is it because the trials are independent?",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 33
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "184e4850_cc4d4d55",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "set",
+      "range": {
+        "startLine": 269,
+        "startChar": 58,
+        "endLine": 269,
+        "endChar": 62
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c09f6455_81edcd7b",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "is called a deterministic device.",
+      "range": {
+        "startLine": 278,
+        "startChar": 50,
+        "endLine": 278,
+        "endChar": 51
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52af6f1f_08cf129d",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": "Not sure if it belongs here and unclear what it means :)",
+      "range": {
+        "startLine": 279,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 63
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8986c6e8_153ce531",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-07T22:36:15Z",
+      "side": 1,
+      "message": ", in line with [RFC 2544] definition.",
+      "range": {
+        "startLine": 289,
+        "startChar": 76,
+        "endLine": 289,
+        "endChar": 77
+      },
+      "revId": "3209e73f66a44b18dd3523823a67583b79a156f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
