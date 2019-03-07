@@ -22,6 +22,30 @@
       "revId": "cd3e20c098f96998d7b6db2c7423eaa75ceb99a6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "870db6ec_59956eef",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-07T12:18:49Z",
+      "side": 1,
+      "message": "Or even\n  .execute_should_pass(err_msg, True)\nif we can rely on cmd_reply \u003d\u003d cmd + \"_reply\".",
+      "parentUuid": "d18368f7_68147b22",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 39
+      },
+      "revId": "cd3e20c098f96998d7b6db2c7423eaa75ceb99a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
