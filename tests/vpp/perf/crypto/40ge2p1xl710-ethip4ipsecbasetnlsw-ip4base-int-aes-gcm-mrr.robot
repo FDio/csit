@@ -114,7 +114,7 @@
 
 *** Test Cases ***
 | tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | TEST3
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr
