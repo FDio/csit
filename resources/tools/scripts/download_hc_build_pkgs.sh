@@ -17,6 +17,7 @@ set -ex
 
 STREAM=$1
 OS=$2
+JVPP_SKIP=$3
 
 # Figure out what system we are running on
 if [[ -f /etc/os-release ]];then
@@ -33,9 +34,18 @@ echo DISTRIB_DESCRIPTION: ${PRETTY_NAME}
 
 VERSION=`../vpp-version`
 JVPP_VERSION=`../jvpp-version`
-VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk vpp-api-java"
-VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
-VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
+
+if [[ ${JVPP_SKIP} = true ]]; then
+    # Skipping download of JVPP because it was built from source
+    VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk"
+    VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins"
+    VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins"
+else
+    VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk vpp-api-java"
+    VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
+    VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
+fi
+
 IGNORE_DEPS=""
 # Check OS and stream to set correct packages
 if [[ "$ID" == "centos" ]]; then
