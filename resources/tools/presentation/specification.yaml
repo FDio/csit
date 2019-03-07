@@ -458,8 +458,10 @@
         - 44  # NDRPDR full
 
     vpp-mrr-results-3n-hsw:
-      csit-vpp-perf-verify-1901-3n-hsw:
-        - 35  # MRR sel
+#      csit-vpp-perf-verify-1901-3n-hsw:
+#        - 35  # MRR sel
+      csit-vpp-perf-verify-master-3n-hsw:
+        - 235  # TODO: REMOVE
 
     vpp-mrr-results-3n-skx:
       csit-vpp-perf-verify-1901-3n-skx:
@@ -1488,6 +1490,8 @@
       - 69  # NDRPDR LB
       - 70  # NDRPDR LB
       - 71  # NDRPDR LB
+    csit-vpp-perf-verify-master-3n-hsw:
+      - 235  # TODO: REMOVE
     csit-vpp-perf-verify-1807-3n-skx:
       - 31  # MRR full
       - 28  # MRR sel
@@ -1743,8 +1747,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -3076,14 +3080,14 @@
     data: "data name"
   -
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
+    data: "data conf-history"
   rows: "generated"
   data: "vpp-perf-results-3n-hsw"
   filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "parent"
   - "name"
-  - "vat-history"
+  - "conf-history"
 
 # Test configuration - VPP Performance Test Configs 3n-skx
 -
@@ -3098,14 +3102,14 @@
     data: "data name"
   -
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
+    data: "data conf-history"
   rows: "generated"
   data: "vpp-perf-results-3n-skx"
   filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "parent"
   - "name"
-  - "vat-history"
+  - "conf-history"
 
 # Test configuration - VPP Performance Test Configs 2n-skx
 -
@@ -3120,14 +3124,14 @@
     data: "data name"
   -
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
+    data: "data conf-history"
   rows: "generated"
   data: "vpp-perf-results-2n-skx"
   filter: "not 'NDRCHK' and not 'PDRCHK'"
   parameters:
   - "parent"
   - "name"
-  - "vat-history"
+  - "conf-history"
 
 # Test configuration - VPP Performance Test Configs 2n-dnv
 -
@@ -3142,14 +3146,14 @@
     data: "data name"
   -
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
+    data: "data conf-history"
   rows: "generated"
   data: "intel-dnv-vpp"
   filter: "'NDRPDR'"
   parameters:
   - "parent"
   - "name"
-  - "vat-history"
+  - "conf-history"
 
 # Test Operational Data - VPP Performance Operational Data 3n-hsw
 -
@@ -3340,14 +3344,14 @@
     data: "data name"
   -
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
+    data: "data conf-history"
   rows: "generated"
   data: "vpp-mrr-results-3n-hsw"
   filter: "'MRR'"
   parameters:
   - "parent"
   - "name"
-  - "vat-history"
+  - "conf-history"
 
 # Test configuration - VPP MRR Test Configs 3n-skx
 -
@@ -3362,14 +3366,14 @@
     data: "data name"
   -
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
+    data: "data conf-history"
   rows: "generated"
   data: "vpp-mrr-results-3n-skx"
   filter: "'MRR'"
   parameters:
   - "parent"
   - "name"
-  - "vat-history"
+  - "conf-history"
 
 # Test configuration - VPP MRR Test Configs 2n-skx
 -
@@ -3384,14 +3388,14 @@
     data: "data name"
   -
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
+    data: "data conf-history"
   rows: "generated"
   data: "vpp-mrr-results-2n-skx"
   filter: "'MRR'"
   parameters:
   - "parent"
   - "name"
-  - "vat-history"
+  - "conf-history"
 
 # Test configuration - VPP MRR Test Configs 2n-dnv
 -
@@ -3406,14 +3410,14 @@
     data: "data name"
   -
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
+    data: "data conf-history"
   rows: "generated"
   data: "intel-dnv-vpp"
   filter: "'MRR'"
   parameters:
   - "parent"
   - "name"
-  - "vat-history"
+  - "conf-history"
 
 # Detailed Test Results - VPP Functional Results - Ubuntu
 -
@@ -3481,14 +3485,14 @@
     data: "data name"
   -
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
+    data: "data conf-history"
   rows: "generated"
   data: "vpp-func-results-ubuntu"
   filter: "all"
   parameters:
   - "parent"
   - "name"
-  - "vat-history"
+  - "conf-history"
 
 # Test configuration - VPP Functional Test Configs - CentOS
 -
@@ -3503,14 +3507,14 @@
     data: "data name"
   -
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
+    data: "data conf-history"
   rows: "generated"
   data: "vpp-func-results-centos"
   filter: "all"
   parameters:
   - "parent"
   - "name"
-  - "vat-history"
+  - "conf-history"
 
 # Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw
 -
@@ -3573,14 +3577,14 @@
     data: "data name"
   -
     title: "VPP API Test (VAT) Commands History - Commands Used Per Test Case"
-    data: "data vat-history"
+    data: "data conf-history"
   rows: "generated"
   data: "vpp-device-results-ubuntu"
   filter: "all"
   parameters:
   - "parent"
   - "name"
-  - "vat-history"
+  - "conf-history"
 
 ################################################################################
 

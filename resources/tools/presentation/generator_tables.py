@@ -96,7 +96,7 @@ def table_details(table, input_data):
                     try:
                         col_data = str(data[job][build][test][column["data"].
                                        split(" ")[1]]).replace('"', '""')
-                        if column["data"].split(" ")[1] in ("vat-history",
+                        if column["data"].split(" ")[1] in ("conf-history",
                                                             "show-run"):
                             col_data = replace(col_data, " |br| ", "",
                                                maxreplace=1)
@@ -161,7 +161,7 @@ def table_merged_details(table, input_data):
                     try:
                         col_data = str(data[test][column["data"].
                                        split(" ")[1]]).replace('"', '""')
-                        if column["data"].split(" ")[1] in ("vat-history",
+                        if column["data"].split(" ")[1] in ("conf-history",
                                                             "show-run"):
                             col_data = replace(col_data, " |br| ", "",
                                                maxreplace=1)
