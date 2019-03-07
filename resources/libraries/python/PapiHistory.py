@@ -48,16 +48,19 @@ class PapiHistory(object):
                 PapiHistory.reset_papi_history(node)
 
     @staticmethod
-    def add_to_papi_history(node, cmd, papi=True, **kwargs):
+    def add_to_papi_history(node, csit_papi_command, papi=True, **kwargs):
         """Add command to PAPI command history on DUT node.
 
+        The argument name 'csit_papi_command' must be unique enough as it cannot
+        be repeated in kwargs.
+
         :param node: DUT node to add command to PAPI command history for.
-        :param cmd: Command to be added to PAPI command history.
+        :param csit_papi_command: Command to be added to PAPI command history.
         :param papi: Says if the command to store is PAPi or VAT. Remove when
             VAT executor is completely removed.
         :param kwargs: Optional key-value arguments.
         :type node: dict
-        :type cmd: str
+        :type csit_papi_command: str
         :type papi: bool
         :type kwargs: dict
         """
@@ -65,12 +68,13 @@ class PapiHistory(object):
             args = list()
             for key, val in kwargs.iteritems():
                 args.append("{key}={val}".format(key=key, val=val))
-            item = "{cmd}({args})".format(cmd=cmd, args=",".join(args))
+            item = "{cmd}({args})".format(cmd=csit_papi_command,
+                                          args=",".join(args))
         else:
             # This else part is here to store VAT commands.
             # VAT history is not used.
             # TODO: Remove when VatExecutor is completely removed.
-            item = "{cmd}".format(cmd=cmd)
+            item = "{cmd}".format(cmd=csit_papi_command)
         DICT__DUTS_PAPI_HISTORY[node['host']].append(item)
 
     @staticmethod

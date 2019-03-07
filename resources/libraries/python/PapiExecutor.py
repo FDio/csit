@@ -136,18 +136,22 @@ class PapiExecutor(object):
         self._api_command_list = list()
         return self
 
-    def add(self, command, **kwargs):
+    def add(self, csit_papi_command, **kwargs):
         """Add next command to internal command list; return self.
 
-        :param command: VPP API command.
+        The argument name 'csit_papi_command' must be unique enough as it cannot
+        be repeated in kwargs.
+
+        :param csit_papi_command: VPP API command.
         :param kwargs: Optional key-value arguments.
-        :type command: str
+        :type csit_papi_command: str
         :type kwargs: dict
         :returns: self, so that method chaining is possible.
         :rtype: PapiExecutor
         """
-        PapiHistory.add_to_papi_history(self._node, command, **kwargs)
-        self._api_command_list.append(dict(api_name=command, api_args=kwargs))
+        PapiHistory.add_to_papi_history(self._node, csit_papi_command, **kwargs)
+        self._api_command_list.append(dict(api_name=csit_papi_command,
+                                           api_args=kwargs))
         return self
 
     def execute(self, process_reply=True, ignore_errors=False, timeout=120):
