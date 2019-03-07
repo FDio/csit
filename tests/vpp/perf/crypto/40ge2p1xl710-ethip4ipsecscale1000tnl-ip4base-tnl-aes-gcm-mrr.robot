@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | MR
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | MRR
 | ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-XL710 | TNL_1000
 | ...
 | Suite Setup | Set up IPSec performance test suite | L3 | Intel-XL710
