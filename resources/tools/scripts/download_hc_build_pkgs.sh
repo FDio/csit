@@ -17,6 +17,7 @@ set -ex
 
 STREAM=$1
 OS=$2
+jvpp_commit_id=$3
 
 # Figure out what system we are running on
 if [[ -f /etc/os-release ]];then
@@ -33,9 +34,18 @@ echo DISTRIB_DESCRIPTION: ${PRETTY_NAME}
 
 VERSION=`../vpp-version`
 JVPP_VERSION=`../jvpp-version`
-VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk vpp-api-java"
-VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
-VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
+
+if [[ -n "${jvpp_commit_id}" ]]; then
+    # Skipping download of JVPP because it was built from source
+    VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk vpp-dev libvppinfra-dev"
+    VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-dev"
+    VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-devel"
+else
+    VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk vpp-api-java"
+    VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
+    VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
+fi
+
 IGNORE_DEPS=""
 # Check OS and stream to set correct packages
 if [[ "$ID" == "centos" ]]; then
@@ -87,6 +97,54 @@ fi
 # TODO(CSIT-994): reenable NSH
 # NSH_GROUP="io.fd.nsh_sfc"
 # NSH_ARTIFACTS="vpp-nsh-plugin"
+
+# If JVPP variable is set, clone and build JVPP from the specified commit
+# Otherwise skip this step, hc2vpp will use JVPP snapshots from Nexus
+if [[ -n "${jvpp_commit_id}" ]]; then
+    # first we need to install vpp and deps to be able to build jvpp
+    if [[ "$ID" == "centos" ]]; then
+        sudo rpm -i vpp-*.rpm
+    else
+        if [[ "$VERSION_CODENAME" == "xenial" ]]; then
+            sudo dpkg --ignore-depends=libmbedcrypto0,libmbedtls10,libmbedx509-0 -i vpp_*.deb vpp-dev_*.deb vpp-plugin-core_*.deb libvppinfra_*.deb libvppinfra-dev_*.deb
+        elif [[ "$VERSION_CODENAME" == "bionic" ]]; then
+            sudo dpkg --ignore-depends=libmbedcrypto1,libmbedtls10,libmbedx509-0 -i vpp_*.deb vpp-dev_*.deb vpp-plugin-core_*.deb libvppinfra_*.deb libvppinfra-dev_*.deb
+        else
+            echo "Error: Unsupported UBUNTU version."
+            exit 1
+        fi
+    fi
+    pwd
+    # create new dir for custom jvpp build (jvpp directory already exists in hc2vpp, therefore using jvpp_src)
+    mkdir jvpp_src
+    cd jvpp_src
+    git clone https://gerrit.fd.io/r/jvpp
+    cd jvpp
+    ref=`git ls-remote -q | grep ${jvpp_commit_id} | awk '{print $2}'`
+    git fetch origin ${ref} && git checkout FETCH_HEAD
+    ./clean.sh
+    if [[ "$ID" == "centos" ]]; then
+        cmake3 .
+    else
+        cmake .
+    fi
+    make package
+    if [[ $? != 0 ]]; then
+        echo "JVPP build failed."
+        exit 1
+    fi
+    pwd
+    cp build-root/packages/vpp-api-java* ${WORKSPACE}/hc2vpp
+    cd ${WORKSPACE}/hc2vpp
+    pwd
+    # Clean up when done.
+    if [[ "$ID" == "centos" ]]; then
+        sudo yum remove "*vpp*"
+    else
+        sudo apt remove "*vpp*"
+    fi
+    rm -rf jvpp_src
+fi
 
 # install vpp-api-java, this extracts jvpp .jar files into usr/share/java
 if [[ "${OS}" == "centos7" ]]; then
