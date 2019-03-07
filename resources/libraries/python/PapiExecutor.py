@@ -11,7 +11,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Python API executor library."""
+"""Python API executor library.
+
+This version supports only simple request / reply VPP API methods.
+
+TODO:
+ - Implement:
+   - Dump functions
+   - vpp-stats
+
+"""
 
 import binascii
 import json
@@ -22,7 +31,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import SSH, SSHTimeout
 from resources.libraries.python.PapiHistory import PapiHistory
 
-__all__ = ["PapiExecutor", "PapiResponse"]
+__all__ = ["PapiExecutor", "PapiResponse", "PapiDataItem", "PapiData"]
 
 
 class PapiResponse(object):
@@ -56,7 +65,7 @@ class PapiResponse(object):
         self.ret_code = ret_code
 
     def __str__(self):
-        """Return string with human readable description of the group.
+        """Return string with human readable description of the PapiResponse.
 
         :returns: Readable description.
         :rtype: str
@@ -84,6 +93,75 @@ class PapiResponse(object):
                        stdout=self.stdout,
                        stderr=self.stderr,
                        ret_code=self.ret_code))
+
+
+class PapiDataItem(object):
+    """Class for verified data from a PAPI response with a single PAPI reply.
+    """
+
+    def __init__(self, cmd_reply, data):
+        """Construct the PapiDataItem by setting the values needed.
+
+        :param cmd_reply: PAPI command reply.
+        :param data: Data for the PAPI command reply.
+        :type cmd_reply: str
+        :type data: dict
+        """
+        self.cmd_reply = cmd_reply
+        self.data = data
+
+    def __str__(self):
+        """Return string with human readable description of the PapiDataItem.
+
+        :returns: Readable description.
+        :rtype: str
+        """
+        return ("cmd_reply={cmd_reply} "
+                "data={data}".
+                format(cmd_reply=self.cmd_reply, data=self.data))
+
+    def __repr__(self):
+        """Return string executable as Python constructor call.
+
+        :returns: Executable constructor call.
+        :rtype: str
+        """
+        return ("PapiDataItem(cmd_reply={cmd_reply} "
+                "data={data})".
+                format(cmd_reply=self.cmd_reply, data=self.data))
+
+
+class PapiData(object):
+    """Class for verified data from a PAPI response with multiple PAPI replies.
+    """
+    def __init__(self):
+        """Construct the PapiData.
+        """
+        self.data = list()
+
+    def __str__(self):
+        """Return string with human readable description of the PapiData.
+
+        :returns: Readable description.
+        :rtype: str
+        """
+        return "data={data}".format(data=self.data)
+
+    def __repr__(self):
+        """Return string executable as Python constructor call.
+
+        :returns: Executable constructor call.
+        :rtype: str
+        """
+        return "PapiData(data={data})".format(data=self.data)
+
+    def add(self, item):
+        """Add a PapiDataItem to the list of items.
+
+        :param item: PapiDataItem to add to the list.
+        :type: PapiDataItem
+        """
+        self.data.append(item)
 
 
 class PapiExecutor(object):
@@ -205,9 +283,6 @@ class PapiExecutor(object):
         """Execute the PAPI commands and check the return code.
         Raise exception if the PAPI command(s) failed.
 
-        Note: There are two exceptions raised to distinguish two situations. If
-        not needed, re-implement using only RuntimeError.
-
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :param process_reply: Indicate whether or not to process PAPI reply.
         :param ignore_errors: If true, the errors in the reply are ignored.
@@ -219,8 +294,7 @@ class PapiExecutor(object):
         :returns: Papi response including: papi reply, stdout, stderr and
             return code.
         :rtype: PapiResponse
-        :raises RuntimeError: If no PAPI command(s) executed.
-        :raises AssertionError: If PAPI command(s) execution passed.
+        :raises AssertionError: If PAPI command(s) execution failed.
         """
 
         response = self.execute(process_reply=process_reply,
@@ -240,9 +314,6 @@ class PapiExecutor(object):
 
         It does not return anything as we expect it fails.
 
-        Note: There are two exceptions raised to distinguish two situations. If
-        not needed, re-implement using only RuntimeError.
-
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :param process_reply: Indicate whether or not to process PAPI reply.
         :param ignore_errors: If true, the errors in the reply are ignored.
@@ -251,7 +322,6 @@ class PapiExecutor(object):
         :type process_reply: bool
         :type ignore_errors: bool
         :type timeout: int
-        :raises RuntimeError: If no PAPI command(s) executed.
         :raises AssertionError: If PAPI command(s) execution passed.
         """
 
@@ -261,6 +331,98 @@ class PapiExecutor(object):
 
         if response.ret_code == 0:
             raise AssertionError(err_msg)
+
+    @staticmethod
+    def verify_reply(papi_resp, cmd_reply, idx=0,
+                     err_msg="Failed to verify PAPI command."):
+        """Verify and return data from the PAPI response.
+
+        Note: Use only with a simple request / reply command. In this case the
+        PAPI reply includes 'retval' which is checked in this method.
+
+        Use if PAPI response includes only one command reply.
+
+        Use it this way:
+
+        cmd_reply = 'command_reply'
+        err_msg = "User-defined error message"
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
+
+            data = papi_exec.verify_reply(papi_resp,
+                                          cmd_reply=cmd_reply,
+                                          err_msg)
+
+        :param papi_resp: PAPI response
+        :param cmd_reply: PAPI reply
+        :param idx: Index to PapiResponse.reply list
+        :param err_msg: The message used if the verification fails.
+        :type papi_resp: PapiResponse
+        :type cmd_reply: str
+        :type idx: int
+        :type err_msg: str
+        :returns: PapiDataItem including cmd_reply and corresponding verified
+            data.
+        :rtype: PapiDataItem
+        :raises RuntimeError: If the PAPI return value is not 0, so the reply
+            is not valid.
+        :raises KeyError, IndexError: If the reply does not have expected
+            structure.
+        """
+
+        data = papi_resp.reply[idx]['api_reply'][cmd_reply]
+        if data['retval'] != 0:
+            raise RuntimeError(err_msg)
+
+        return PapiDataItem(cmd_reply, data)
+
+    @staticmethod
+    def verify_replies(papi_resp, cmd_replies,
+                       err_msg="Failed to verify PAPI command."):
+        """Verify and return data from the PAPI response.
+
+        Note: Use only with request / reply commands. In this case each
+        PAPI reply includes 'retval' which is checked in this method.
+
+        Use if PAPI response includes more than one command reply.
+
+        Use it this way:
+
+        cmd_replies = [list of command replies which are expected in response]
+        err_msg = "User-defined error message"
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
+
+            data = papi_exec.verify_replies(papi_resp,
+                                            cmd_replies=cmd_replies,
+                                            err_msg)
+
+        :param papi_resp: PAPI response
+        :param cmd_replies: List of PAPI command replies
+        :param err_msg: The message used if the verification fails.
+        :type papi_resp: PapiResponse
+        :type cmd_reply: list of str
+        :type err_msg: str
+        :returns: PapiData as a list of PapiDataItem-s.
+        :rtype PapiData
+        :raises RuntimeError: If the PAPI response does not include at least one
+            of specified command replies.
+        """
+        data = PapiData()
+
+        for reply in cmd_replies:
+            for idx, resp in enumerate(papi_resp.reply):
+                resp_data = resp['api_replay'].get(reply, None)
+                if resp_data:
+                    data_item = PapiExecutor.verify_reply(
+                        papi_resp, reply, idx, err_msg)
+                    data.add(data_item)
+                    break
+            else:
+                # The data for this cmd_reply is not present.
+                raise RuntimeError(err_msg)
+
+        return data
 
     @staticmethod
     def _process_api_data(api_d):
