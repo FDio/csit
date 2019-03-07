@@ -481,8 +481,9 @@
 | | ... | ${topology_type} | ${nic_model}
 | | ${numvfs}= | Set Variable If
 | | ... | '${crypto_type}' == 'HW_cryptodev' | ${32}
-| | ... | '${crypto_type}' == 'SW_cryptodev' | ${0}
-| | Configure crypto device on all DUTs | force_init=${True} | numvfs=${numvfs}
+| | Run Keyword If | '${crypto_type}' == 'HW_cryptodev'
+| | ... | Configure crypto device on all DUTs | force_init=${True}
+| | ... | numvfs=${numvfs}
 | | Run Keyword If | '${crypto_type}' == 'HW_cryptodev'
 | | ... | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
 
