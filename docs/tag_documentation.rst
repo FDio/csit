@@ -75,10 +75,6 @@ NIC Model Tags
 
     Intel XXV710 NIC.
 
-.. topic:: NIC_Intel-82599ES
-
-    Intel 82599ES NIC.
-
 .. topic:: NIC_Cisco-VIC-1227
 
     VIC-1227 by Cisco.
