@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "726828d4_9d3e6d29",
+        "filename": "resources/tools/scripts/download_hc_build_pkgs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-07T12:16:40Z",
+      "side": 1,
+      "message": "This would be easier to maintain if you set lines 40-42 always, and then use +\u003d to add if not skip.",
+      "range": {
+        "startLine": 46,
+        "startChar": 21,
+        "endLine": 46,
+        "endChar": 22
+      },
+      "revId": "5018c206ef0157a4b8c62822d72d260883b4abff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
