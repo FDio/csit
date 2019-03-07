@@ -149,15 +149,15 @@ class VPPUtil(object):
         """
 
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add('show_version').execute_should_pass()
-        data = papi_resp.reply[0]['api_reply']['show_version_reply']
+            data = papi_exec.add('show_version').execute_should_pass().\
+                verify_reply()
         version = ('VPP version:      {ver}\n'.
                    format(ver=data['version'].rstrip('\0x00')))
         if verbose:
             version += ('Compile date:     {date}\n'
-                        'Compile location: {loc}\n '.
+                        'Compile location: {cl}\n '.
                         format(date=data['build_date'].rstrip('\0x00'),
-                               loc=data['build_directory'].rstrip('\0x00')))
+                               cl=data['build_directory'].rstrip('\0x00')))
         logger.info(version)
 
     @staticmethod
@@ -303,7 +303,6 @@ class VPPUtil(object):
         :returns: VPP thread data.
         :rtype: list
         """
-
         with PapiExecutor(node) as papi_exec:
-            resp = papi_exec.add('show_threads').execute_should_pass()
-        return resp.reply[0]['api_reply']['show_threads_reply']['thread_data']
+            return papi_exec.add('show_threads').execute_should_pass().\
+                verify_reply()["thread_data"]
