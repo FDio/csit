@@ -219,7 +219,6 @@ class PapiExecutor(object):
         :returns: Papi response including: papi reply, stdout, stderr and
             return code.
         :rtype: PapiResponse
-        :raises RuntimeError: If no PAPI command(s) executed.
         :raises AssertionError: If PAPI command(s) execution passed.
         """
 
@@ -251,7 +250,6 @@ class PapiExecutor(object):
         :type process_reply: bool
         :type ignore_errors: bool
         :type timeout: int
-        :raises RuntimeError: If no PAPI command(s) executed.
         :raises AssertionError: If PAPI command(s) execution passed.
         """
 
@@ -261,6 +259,55 @@ class PapiExecutor(object):
 
         if response.ret_code == 0:
             raise AssertionError(err_msg)
+
+    @staticmethod
+    def verify_reply(papi_resp, cmd_reply,
+                     err_msg="Failed to execute PAPI command."):
+        """Verify and return data from the PAPI reply.
+
+        Use it this way:
+
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
+
+            # Single cmd_reply (cmd_reply is a string):
+            data = papi_exec.verify_reply(papi_resp.reply,
+                                          cmd_reply=[cmd_reply, ],
+                                          err_msg)
+            # Multiple cmd_replies (cmd_reply is a list of strings):
+            data = papi_exec.verify_reply(papi_resp.reply,
+                                          cmd_reply=cmd_reply,
+                                          err_msg)
+
+        TODO: rtype: list of dictionaries??? [{cmd_reply: data}, ]
+
+        :param papi_resp: PAPI response including only reply/replies.
+        :param cmd_reply: List of expected PAPI replies.
+        :param err_msg: The message used if the PAPI command(s) execution fails.
+        :type papi_resp: list
+        :type cmd_reply: list of str
+        :type err_msg: str
+        :returns: PAPI data: [(cmd_reply, data), ]
+        :rtype list of tuples
+        :raises RuntimeError: If the return value is not 0 or if the cmd_reply
+            is not present in the response.
+        """
+
+        data = list()
+        for reply in cmd_reply:
+            for resp in papi_resp:
+                resp_data = resp['api_replay'].get(reply, None)
+                if resp_data:
+                    if resp_data['retval'] != 0:
+                        raise RuntimeError(err_msg)
+                    data.append((reply, resp_data))
+                    papi_resp.remove(resp_data)
+                    break
+            else:
+                # The data for this cmd_reply is not present.
+                raise RuntimeError(err_msg)
+
+        return data
 
     @staticmethod
     def _process_api_data(api_d):
