@@ -127,7 +127,7 @@ function activate_virtualenv () {
         die "Requirements installation failed."
     }
     # Most CSIT Python scripts assume PYTHONPATH is set and exported.
-    export PYTHONPATH="${root_path}" || die "Export failed."
+    export PYTHONPATH="${CSIT_DIR}" || die "Export failed."
 }
 
 
