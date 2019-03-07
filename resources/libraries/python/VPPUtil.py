@@ -150,14 +150,14 @@ class VPPUtil(object):
 
         with PapiExecutor(node) as papi_exec:
             papi_resp = papi_exec.add('show_version').execute_should_pass()
-        data = papi_resp.reply[0]['api_reply']['show_version_reply']
+            data = papi_exec.verify_reply(papi_resp, 'show_version_reply')
         version = ('VPP version:      {ver}\n'.
-                   format(ver=data['version'].rstrip('\0x00')))
+                   format(ver=data.data['version'].rstrip('\0x00')))
         if verbose:
             version += ('Compile date:     {date}\n'
-                        'Compile location: {loc}\n '.
-                        format(date=data['build_date'].rstrip('\0x00'),
-                               loc=data['build_directory'].rstrip('\0x00')))
+                        'Compile location: {l}\n '.
+                        format(date=data.data['build_date'].rstrip('\0x00'),
+                               l=data.data['build_directory'].rstrip('\0x00')))
         logger.info(version)
 
     @staticmethod
