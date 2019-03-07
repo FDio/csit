@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8989cde6_d4546c2e",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-07T14:24:20Z",
+      "side": 1,
+      "message": "good idea",
+      "parentUuid": "7f09eb9c_28ac843b",
+      "range": {
+        "startLine": 275,
+        "startChar": 52,
+        "endLine": 275,
+        "endChar": 65
+      },
+      "revId": "5ca93a006b6e239aa294a96e8e4b6fe02b573962",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26e40b10_c86cb71e",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "154f8d1b_c92c2900",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-07T14:24:20Z",
+      "side": 1,
+      "message": "I agree",
+      "parentUuid": "26e40b10_c86cb71e",
+      "range": {
+        "startLine": 282,
+        "startChar": 14,
+        "endLine": 282,
+        "endChar": 19
+      },
+      "revId": "5ca93a006b6e239aa294a96e8e4b6fe02b573962",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b723442_aa798dd8",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2019-03-07T13:58:39Z",
       "side": 1,
       "message": "Do you have a usage example for this? I do not like this tuple much.",
+      "range": {
+        "startLine": 290,
+        "startChar": 30,
+        "endLine": 290,
+        "endChar": 47
+      },
+      "revId": "5ca93a006b6e239aa294a96e8e4b6fe02b573962",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53e47422_370358b5",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-07T14:24:20Z",
+      "side": 1,
+      "message": "The structure of returned data will be defined in classes you mentioned above.\nJan, can you comment/suggest the structure of data?",
+      "parentUuid": "8b723442_aa798dd8",
       "range": {
         "startLine": 290,
         "startChar": 30,
