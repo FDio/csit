@@ -79,7 +79,7 @@ class ExecutionChecker(ResultVisitor):
                 "parent": "Name of the parent of the test",
                 "doc": "Test documentation",
                 "msg": "Test message",
-                "vat-history": "DUT1 and DUT2 VAT History",
+                "conf-history": "DUT1 and DUT2 VAT History",
                 "show-run": "Show Run",
                 "tags": ["tag 1", "tag 2", "tag n"],
                 "type": "NDRPDR",
@@ -199,7 +199,7 @@ class ExecutionChecker(ResultVisitor):
                     }
                 },
                 "lossTolerance": "lossTolerance",  # Only type: "PDR"
-                "vat-history": "DUT1 and DUT2 VAT History"
+                "conf-history": "DUT1 and DUT2 VAT History"
                 "show-run": "Show Run"
             },
             "ID" {
@@ -236,7 +236,7 @@ class ExecutionChecker(ResultVisitor):
                 "doc": "Test documentation"
                 "msg": "Test message"
                 "tags": ["tag 1", "tag 2", "tag n"],
-                "vat-history": "DUT1 and DUT2 VAT History"
+                "conf-history": "DUT1 and DUT2 VAT History"
                 "show-run": "Show Run"
                 "status": "PASS" | "FAIL"
             },
@@ -337,7 +337,7 @@ class ExecutionChecker(ResultVisitor):
         # 1 - VAT History of DUT1
         # 2 - VAT History of DUT2
         self._lookup_kw_nr = 0
-        self._vat_history_lookup_nr = 0
+        self._conf_history_lookup_nr = 0
 
         # Number of Show Running messages found
         # 0 - no message
@@ -366,6 +366,7 @@ class ExecutionChecker(ResultVisitor):
             "vpp-version": self._get_vpp_version,
             "dpdk-version": self._get_dpdk_version,
             "teardown-vat-history": self._get_vat_history,
+            "teardown-papi-history": self._get_papi_history,
             "test-show-runtime": self._get_show_run,
             "testbed": self._get_testbed
         }
@@ -454,9 +455,9 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
         if msg.message.count("VAT command history:"):
-            self._vat_history_lookup_nr += 1
-            if self._vat_history_lookup_nr == 1:
-                self._data["tests"][self._test_ID]["vat-history"] = str()
+            self._conf_history_lookup_nr += 1
+            if self._conf_history_lookup_nr == 1:
+                self._data["tests"][self._test_ID]["conf-history"] = str()
             else:
                 self._msg_type = None
             text = re.sub("[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3} "
@@ -464,9 +465,31 @@ class ExecutionChecker(ResultVisitor):
                 replace("\n\n", "\n").replace('\n', ' |br| ').\
                 replace('\r', '').replace('"', "'")
 
-            self._data["tests"][self._test_ID]["vat-history"] += " |br| "
-            self._data["tests"][self._test_ID]["vat-history"] += \
-                "**DUT" + str(self._vat_history_lookup_nr) + ":** " + text
+            self._data["tests"][self._test_ID]["conf-history"] += " |br| "
+            self._data["tests"][self._test_ID]["conf-history"] += \
+                "**DUT" + str(self._conf_history_lookup_nr) + ":** " + text
+
+    def _get_papi_history(self, msg):
+        """Called when extraction of PAPI command history is required.
+
+        :param msg: Message to process.
+        :type msg: Message
+        :returns: Nothing.
+        """
+        if msg.message.count("PAPI command history:"):
+            self._conf_history_lookup_nr += 1
+            if self._conf_history_lookup_nr == 1:
+                self._data["tests"][self._test_ID]["conf-history"] = str()
+            else:
+                self._msg_type = None
+            text = re.sub("[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3} "
+                          "PAPI command history:", "", msg.message, count=1). \
+                replace("\n\n", "\n").replace('\n', ' |br| ').\
+                replace('\r', '').replace('"', "'")
+
+            self._data["tests"][self._test_ID]["conf-history"] += " |br| "
+            self._data["tests"][self._test_ID]["conf-history"] += \
+                "**DUT" + str(self._conf_history_lookup_nr) + ":** " + text
 
     def _get_show_run(self, msg):
         """Called when extraction of VPP operational data (output of CLI command
@@ -1005,8 +1028,12 @@ class ExecutionChecker(ResultVisitor):
         """
 
         if teardown_kw.name.count("Show Vat History On All Duts"):
-            self._vat_history_lookup_nr = 0
+            self._conf_history_lookup_nr = 0
             self._msg_type = "teardown-vat-history"
+            teardown_kw.messages.visit(self)
+        elif teardown_kw.name.count("Show Papi History On All Duts"):
+            self._conf_history_lookup_nr = 0
+            self._msg_type = "teardown-papi-history"
             teardown_kw.messages.visit(self)
 
     def end_teardown_kw(self, teardown_kw):
