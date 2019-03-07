@@ -556,10 +556,15 @@ function select_tags () {
     # - TAGS - Array of processed tag boolean expressions.
 
     # NIC SELECTION
+    start_pattern='^  TG:'
+    end_pattern='^  [A-Za-z0-9]\+:'
+    sed_command="/${start_pattern}/,/${end_pattern}/d"
     # All topologies NICs
-    available=$(grep -hoPR "model: \K.*" "${TOPOLOGIES_DIR}"/* | sort -u)
+    available=$(sed "${sed_command}" "${TOPOLOGIES_DIR}"/* \
+                | grep -hoP "model: \K.*" | sort -u)
     # Selected topology NICs
-    reserved=$(grep -hoPR "model: \K.*" "${WORKING_TOPOLOGY}" | sort -u)
+    reserved=$(sed "${sed_command}" "${WORKING_TOPOLOGY}" \
+               | grep -hoP "model: \K.*" | sort -u)
     # All topologies NICs - Selected topology NICs
     exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}")))
 
