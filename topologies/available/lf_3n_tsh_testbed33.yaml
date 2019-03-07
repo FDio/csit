@@ -55,13 +55,13 @@ nodes:
         pci_address: "0000:11:00.0"
         link: link3
         driver: ixgbe
-        model: Intel-82599ES
+        model: Intel-X520-DA2
       port1:
         mac_address: "80:41:26:6f:19:82"
         pci_address: "0000:11:00.1"
         link: link1
         driver: ixgbe
-        model: Intel-82599ES
+        model: Intel-X520-DA2
   DUT2:
     type: DUT
     host: 10.30.51.37
@@ -76,10 +76,10 @@ nodes:
         pci_address: "0000:11:00.0"
         link: link2
         driver: ixgbe
-        model: Intel-82599ES
+        model: Intel-X520-DA2
       port1:
         mac_address: "80:41:26:6f:19:7e"
         pci_address: "0000:11:00.1"
         link: link3
         driver: ixgbe
-        model: Intel-82599ES
+        model: Intel-X520-DA2
