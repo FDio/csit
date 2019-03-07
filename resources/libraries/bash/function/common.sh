@@ -556,11 +556,16 @@ function select_tags () {
     # - TAGS - Array of processed tag boolean expressions.
 
     # NIC SELECTION
-    # All topologies NICs
-    available=$(grep -hoPR "model: \K.*" "${TOPOLOGIES_DIR}"/* | sort -u)
-    # Selected topology NICs
-    reserved=$(grep -hoPR "model: \K.*" "${WORKING_TOPOLOGY}" | sort -u)
-    # All topologies NICs - Selected topology NICs
+    start_pattern='^  TG:'
+    end_pattern='^  [A-Za-z0-9]\+:'
+    sed_command="/${start_pattern}/,/${end_pattern}/d"
+    # All topologies DUT NICs
+    available=$(sed "${sed_command}" "${TOPOLOGIES_DIR}"/* \
+                | grep -hoP "model: \K.*" | sort -u)
+    # Selected topology DUT NICs
+    reserved=$(sed "${sed_command}" "${WORKING_TOPOLOGY}" \
+               | grep -hoP "model: \K.*" | sort -u)
+    # All topologies DUT NICs - Selected topology DUT NICs
     exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}")))
 
     # Select default NIC
@@ -707,6 +712,10 @@ function select_tags () {
             ;;
         *"3n-tsh"*)
             test_tag_array+=("!ipsechw")
+            test_tag_array+=("!memif")
+            test_tag_array+=("!srv6_proxy")
+            test_tag_array+=("!vhost")
+            test_tag_array+=("!vts")
             ;;
         *)
             # Default to 3n-hsw due to compatibility.
