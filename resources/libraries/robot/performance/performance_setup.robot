@@ -221,8 +221,6 @@
 | | | ${vm}= | Get From Dictionary | ${dut_vm_refs} | ${vm_name}
 | | | ${index}= | Evaluate | ${index} + 1
 | | | Dpdk Testpmd Stop | ${vm}
-| | | Run Keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | | Run Keyword | ${vm_name}.Qemu Clear Socks
 | | | Run Keyword If | '${index}' == '${vms_number}' | ${vm_name}.Qemu Kill All
 
 | Tear down guest VM
@@ -245,8 +243,6 @@
 | | :FOR | ${vm_name} | IN | @{dut_vm_refs}
 | | | ${vm}= | Get From Dictionary | ${dut_vm_refs} | ${vm_name}
 | | | ${index}= | Evaluate | ${index} + 1
-| | | Run Keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | | Run Keyword | ${vm_name}.Qemu Clear Socks
 | | | Run Keyword If | '${index}' == '${vms_number}' | ${vm_name}.Qemu Kill All
 
 # Suite setups
