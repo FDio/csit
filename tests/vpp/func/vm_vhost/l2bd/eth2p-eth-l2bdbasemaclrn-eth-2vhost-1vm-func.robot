@@ -15,12 +15,11 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | HW_ENV | VM_ENV | VPP_VM_ENV
 | Test Setup | Set up functional test
 | Test Teardown | Run Keywords  | Tear down functional test
-| ... | AND | Stop and clear QEMU | ${dut_node} | ${vm_node}
+| ... | AND | Stop and clear QEMU | ${dut_node}
 | Documentation | *L2 bridge-domain test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT=VM 3-node topology with VM
