@@ -18,7 +18,6 @@
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | HW_ENV | VM_ENV | VPP_VM_ENV
@@ -52,7 +51,7 @@
 | | ... | i/fs to be switched by DUT to and from VM; verify all packets
 | | ... | are received. [Ref]
 | | ...
-| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node} | ${vm_node}
+| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node}
 | | ... | AND | Tear down functional test
 | | ...
 | | Given Configure path in 2-node circular topology
@@ -76,7 +75,7 @@
 | | ... | be switched by DUT to and from VM; verify all packets are
 | | ... | received. [Ref]
 | | ...
-| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node} | ${vm_node}
+| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node}
 | | ... | AND | Tear down functional test
 | | ...
 | | Given Configure path in 2-node circular topology
