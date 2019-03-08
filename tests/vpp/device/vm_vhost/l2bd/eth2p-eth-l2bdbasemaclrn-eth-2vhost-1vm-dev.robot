@@ -16,7 +16,6 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2BDMACLRN | BASE | ETH | VHOST | 1VM
@@ -24,7 +23,7 @@
 | Test Setup | Set up VPP device test
 | ...
 | Test Teardown | Run Keywords
-| ... | Stop and clear QEMU | ${dut_node} | ${vm_node}
+| ... | Stop and clear QEMU | ${dut_node}
 | ... | AND | Tear down VPP device test
 | ...
 | Documentation | *L2 bridge-domain test cases with vhost user interface*

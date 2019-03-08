@@ -17,7 +17,6 @@
 | Resource | resources/libraries/robot/overlay/vxlan.robot
 | Resource | resources/libraries/robot/l2/l2_traffic.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
-| Resource | resources/libraries/robot/vm/double_qemu_setup.robot
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.IPv6Setup
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
