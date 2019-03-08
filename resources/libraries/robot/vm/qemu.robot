@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -11,89 +11,95 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 *** Settings ***
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.QemuUtils
-| Library | resources.libraries.python.ssh.SSH
 
 *** Keywords ***
-
-| QEMU build list should exist
-| | [Documentation] | Return TRUE if variable QEMU_BUILD exist, otherwise FALSE
-| | ${ret} | ${tmp}=  | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | @{QEMU_BUILD}
-| | Return From Keyword If | "${ret}" == "PASS" | ${TRUE}
-| | Return From Keyword | ${FALSE}
-
-| Is QEMU ready on node
-| | [Documentation] | Check if QEMU was built on the node before
-| | [Arguments] | ${node}
-| | ${ret}= | QEMU build list should exist
-| | Return From Keyword If | ${ret} == ${FALSE} | ${FALSE}
-| | ${ret} | ${tmp}=  | Run Keyword And Ignore Error
-| | ... | Should Contain | ${QEMU_BUILD} | ${node['host']}
-| | Return From Keyword If | "${ret}" == "PASS" | ${TRUE}
-| | Return From Keyword | ${FALSE}
-
-| Add node to QEMU build list
-| | [Documentation] | Add node to the list of nodes with builded QEMU (global
-| | ...             | variable QEMU_BUILD)
-| | [Arguments] | ${node}
-| | ${ret}= | QEMU build list should exist
-| | Run Keyword If | ${ret} == ${TRUE}
-| | ... | Append To List | ${QEMU_BUILD} | ${node['host']}
-| | ... | ELSE | Set Global Variable | @{QEMU_BUILD} | ${node['host']}
-
-| Build QEMU on node
-| | [Documentation] | Build QEMU from sources on the Node. Nodes with successful
-| | ...             | QEMU build are stored in global variable list QEMU_BUILD
+| Configure QEMU vhost and run it
+| | [Documentation]
+| | ... | Setup Qemu with 4 vhost-user interfaces and 4 namespaces.
+| | ... | Each call will be different object instance.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - Node on which to build qemu. Type: dictionary
-| | ... | - force_install - If True, then remove previous build. Type: bool
-| | ... | - apply_patch - If True, then apply patches from qemu_patches dir.
-| | ... | Type: bool
+| | ... | - dut_node - Node where to setup qemu. Type: dict
+| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - sock3 - Socket path for third Vhost-User interface. Type: string
+| | ... | - sock4 - Socket path for forth Vhost-User interface. Type: string
+| | ... | - ip1 - IP address for namespace 1. Type: string
+| | ... | - ip2 - IP address for namespace 2. Type: string
+| | ... | - ip3 - IP address for namespace 3. Type: string
+| | ... | - ip4 - IP address for namespace 4. Type: string
+| | ... | - prefix_length - IP prefix length. Type: int
+| | ... | - qemu_name - Qemu instance name by which the object will be accessed.
+| | ... |               Type: string
+| | ... | - mac_ID - MAC address ID used to differentiate qemu instances and
+| | ... | namespaces assigned to them. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Build QEMU on node \| ${node['DUT1']} \| False \| False \|
+| | ... | \| Setup QEMU Vhost And Run\| {nodes['DUT1']} \| /tmp/sock1 \
+| | ... | \| /tmp/sock2 \| /tmp/sock3 \| /tmp/sock4 \| 16.0.0.1 \| 16.0.0.2 \
+| | ... | \| 16.0.0.3 \| 16.0.0.4 \| 24 \| qemu_instance_1 \| 06 \|
 | | ...
-| | [Arguments] | ${node} | ${force_install}=${False} | ${apply_patch}=${False}
-| | ${ready}= | Is QEMU ready on node | ${node}
-| | Return From Keyword If | ${ready} == ${TRUE}
-| | Build QEMU | ${node}
-| | Add node to QEMU build list | ${node}
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${sock3} | ${sock4}
+| | ... | ${ip1} | ${ip2} | ${ip3} | ${ip4} | ${prefix_length}
+| | ... | ${qemu_name} | ${mac_ID}=${None}
+| | ...
+| | Import Library | resources.libraries.python.QemuUtils \
+| | ... | node=${dut_node} | WITH NAME | ${qemu_name}
+| | Run keyword | ${qemu_name}.Qemu Add Vhost User If | ${sock1}
+| | Run keyword | ${qemu_name}.Qemu Add Vhost User If | ${sock2}
+| | Run keyword | ${qemu_name}.Qemu Add Vhost User If | ${sock3}
+| | Run keyword | ${qemu_name}.Qemu Add Vhost User If | ${sock4}
+| | ${vm}= | Run keyword | ${qemu_name}.Qemu Start
+| | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
+| | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
+| | ${vhost3}= | Get Vhost User If Name By Sock | ${vm} | ${sock3}
+| | ${vhost4}= | Get Vhost User If Name By Sock | ${vm} | ${sock4}
+| | Set Interface State | ${vm} | ${vhost1} | up | if_type=name
+| | Set Interface State | ${vm} | ${vhost2} | up | if_type=name
+| | Set Interface State | ${vm} | ${vhost3} | up | if_type=name
+| | Set Interface State | ${vm} | ${vhost4} | up | if_type=name
+| | Setup Network Namespace
+| | ... | ${vm} | nmspace1 | ${vhost1} | ${ip1} | ${prefix_length}
+| | Setup Network Namespace
+| | ... | ${vm} | nmspace2 | ${vhost2} | ${ip2} | ${prefix_length}
+| | Setup Network Namespace
+| | ... | ${vm} | nmspace3 | ${vhost3} | ${ip3} | ${prefix_length}
+| | Setup Network Namespace
+| | ... | ${vm} | nmspace4 | ${vhost4} | ${ip4} | ${prefix_length}
+| | Set Test Variable | ${${qemu_name}} | ${vm}
 
-| Build QEMU on all DUTs
-| | [Documentation] | Build QEMU from sources on all DUTs. Nodes with successful
-| | ...             | QEMU build are stored in global variable list QEMU_BUILD
+| Tear down QEMU
+| | [Documentation]
+| | ... | Stop specific qemu instance running on ${dut_node}.
 | | ...
 | | ... | *Arguments:*
-| | ... | - force_install - If True, then remove previous build. Type: bool
-| | ... | - apply_patch - If True, then apply patches from qemu_patches dir.
-| | ... | Type: bool
+| | ... | - dut_node - Node where to clean qemu. Type: dict
+| | ... | - qemu_name - Qemu instance by name. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Build QEMU on all DUTs \| False \| False \|
+| | ... | \| Tear down QEMU \| ${node['DUT1']} \| qemu_node_1 \|
 | | ...
-| | [Arguments] | ${force_install}=${False} | ${apply_patch}=${False}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Build QEMU on node | ${nodes['${dut}']} | ${force_install} |
-| | | ... | ${apply_patch}
+| | [Arguments] | ${dut_node} | ${qemu_name}
+| | ...
+| | Run Keyword | ${qemu_name}.Qemu Set Node | ${dut_node}
+| | Run Keyword | ${qemu_name}.Qemu Kill
 
 | Stop and clear QEMU
-| | [Documentation] | Stop QEMU, clear used sockets and close SSH connection
-| | ...             | running on ${dut}, ${vm} is VM node info dictionary
-| | ...             | returned by qemu_start or None.
-| | [Arguments] | ${dut} | ${vm}
+| | [Documentation]
+| | ... | Stop QEMU, clear used sockets running on ${dut}.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut_node - Node where to clean qemu. Type: dict
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down QEMU \| ${node['DUT1']} \|
+| | ...
+| | [Arguments] | ${dut}
+| | ...
 | | Qemu Set Node | ${dut}
 | | Qemu Kill
-| | Qemu Clear Socks
-| | Run Keyword If | ${vm} is not None | Disconnect | ${vm}
-
-| Kill Qemu on all DUTs
-| | [Documentation] | Kill QEMU processes on all DUTs.
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Qemu Set Node | ${nodes['${dut}']}
-| | | Qemu Kill

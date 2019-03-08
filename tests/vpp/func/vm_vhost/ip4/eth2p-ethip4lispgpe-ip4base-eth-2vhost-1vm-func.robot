@@ -24,7 +24,6 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 # Import configuration and test data:
@@ -34,7 +33,7 @@
 | ...
 | Test Setup | Set up functional test
 | ...
-| Test Teardown | Tear down LISP functional test with QEMU | ${vm_node}
+| Test Teardown | Tear down LISP functional test with QEMU
 | ...
 | Documentation | *ip4-lispgpe-ip4 encapsulation test cases*
 | ...
