@@ -33,7 +33,6 @@
 | Library | resources.libraries.python.topology.Topology
 | ...
 | Resource | resources/libraries/robot/shared/container.robot
-| Resource | resources/libraries/robot/vm/double_qemu_setup.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
 
 *** Keywords ***
@@ -518,22 +517,13 @@
 | | [Documentation] | Common test teardown for functional tests with LISP and\
 | | ... | QEMU.
 | | ...
-| | ... | *Arguments:*
-| | ... | - vm_node - VM to stop. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down LISP functional test with QEMU \| ${vm_node} \|
-| | ...
-| | [Arguments] | ${vm_node}
-| | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Show PAPI History On All DUTs | ${nodes}
 | | Show Vpp Settings | ${nodes['DUT1']}
 | | Show Vpp Settings | ${nodes['DUT2']}
 | | Vpp Show Errors On All DUTs | ${nodes}
-| | Stop and clear QEMU | ${nodes['DUT1']} | ${vm_node}
+| | Stop and clear QEMU | ${nodes['DUT1']}
 | | Verify VPP PID in Teardown
 
 | Set up TAP functional test
@@ -609,21 +599,17 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut1_node - Node Nr.1 where to clean qemu. Type: dictionary
-| | ... | - qemu_node1 - VM Nr.1 node info dictionary. Type: string
 | | ... | - dut2_node - Node Nr.2 where to clean qemu. Type: dictionary
-| | ... | - qemu_node2 - VM Nr.2 node info dictionary. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tear down FDS functional test \| ${dut1_node} \| ${qemu_node1}\
-| | ... | \| ${dut2_node} \| ${qemu_node2} \|
+| | ... | \| Tear down FDS functional test \| ${dut1_node} \| ${dut2_node} \|
 | | ...
-| | [Arguments] | ${dut1_node} | ${qemu_node1} | ${dut2_node}
-| | ... | ${qemu_node2}
+| | [Arguments] | ${dut1_node} | ${dut2_node}
 | | ...
 | | Tear down functional test
-| | Tear down QEMU | ${dut1_node} | ${qemu_node1} | qemu_node1
-| | Tear down QEMU | ${dut2_node} | ${qemu_node2} | qemu_node2
+| | Tear down QEMU | ${dut1_node} | qemu_node1
+| | Tear down QEMU | ${dut2_node} | qemu_node2
 
 | Tear down functional test with container
 | | [Documentation]

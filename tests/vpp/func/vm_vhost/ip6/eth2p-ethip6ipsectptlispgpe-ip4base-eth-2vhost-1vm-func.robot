@@ -22,7 +22,6 @@
 | Library | resources.libraries.python.VatJsonUtil
 | Library | resources.libraries.python.IPv6Setup
 | Library | resources.libraries.python.VhostUser
-| Library | resources.libraries.python.QemuUtils
 | Library  | resources.libraries.python.VPPUtil
 | Library | String
 | Resource | resources/libraries/robot/shared/traffic.robot
@@ -31,7 +30,6 @@
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 # Import configuration and test data:
@@ -41,7 +39,7 @@
 | ...
 | Test Setup | Set up functional test
 | ...
-| Test Teardown | Tear down LISP functional test with QEMU | ${vm_node}
+| Test Teardown | Tear down LISP functional test with QEMU
 | ...
 | Documentation | *IPv6 - ip4-ipsec-lispgpe-ip6 - main fib, virt2lisp, phy2lisp*
 | ...
