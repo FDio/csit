@@ -22,7 +22,6 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 # Import configuration and test data:
@@ -33,7 +32,7 @@
 | Test Setup | Run Keywords | Set up functional test
 | ... | AND | Vpp All Ra Suppress Link Layer | ${nodes}
 | ...
-| Test Teardown | Tear down LISP functional test with QEMU | ${vm_node}
+| Test Teardown | Tear down LISP functional test with QEMU
 | ...
 | Documentation | *ip6-lispgpe-ip6 encapsulation test cases*
 | ...
