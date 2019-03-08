@@ -16,7 +16,6 @@
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/vm/double_qemu_setup.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
 | Library  | resources.libraries.python.Trace
 | ...
@@ -24,8 +23,7 @@
 | ...
 | Test Setup | Set up functional test
 | ...
-| Test Teardown | Tear down FDS functional test | ${dut1_node} | ${qemu_node1}
-| ... | ${dut2_node} | ${qemu_node2}
+| Test Teardown | Tear down FDS functional test | ${dut1_node} | ${dut2_node}
 | ...
 | Documentation | *Tenant network FDS related.*
 | ...
