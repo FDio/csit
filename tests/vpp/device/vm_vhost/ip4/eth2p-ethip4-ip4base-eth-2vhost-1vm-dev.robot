@@ -25,7 +25,6 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP4FWD | BASE | ETH | VHOST | 1VM
@@ -33,7 +32,7 @@
 | Test Setup | Set up VPP device test
 | ...
 | Test Teardown | Run Keywords
-| ... | Stop and clear QEMU | ${dut_node} | ${vm_node}
+| ... | Stop and clear QEMU | ${dut_node}
 | ... | AND | Tear down VPP device test
 | ...
 | Documentation | *IPv4 routing test cases with vhost user interface*
