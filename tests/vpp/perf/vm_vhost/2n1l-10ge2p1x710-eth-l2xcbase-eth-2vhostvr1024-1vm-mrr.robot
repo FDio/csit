@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
-| Library | resources.libraries.python.QemuUtils
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-X710 | ETH | L2XCFWD | BASE | VHOST | 1VM | VHOST_1024
@@ -86,7 +85,7 @@
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | framesize=${64} | phy_cores=${1}
 
 | tc02-64B-2c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
