@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "bf7747fe_c3e4d6bf",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-03-08T08:34:40Z",
+      "side": 1,
+      "message": "But in case of dump command there is no retval it the reply:\n\u003e\u003e\u003e papi_fn \u003d getattr(vpp.api, \u0027sw_interface_dump\u0027)\n\u003e\u003e\u003e rv \u003d papi_fn()\n\u003e\u003e\u003e print rv\n[\nsw_interface_details(_0\u003d86, context\u003d2, sw_if_index\u003d0, sup_sw_if_index\u003d0, l2_address_length\u003d0, l2_address\u003d\u0027\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\u0027, interface_name\u003d\u0027local0\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\u0027, admin_up_down\u003d0, link_up_down\u003d0, link_duplex\u003d0, link_speed\u003d0, link_mtu\u003d0, mtu\u003d[0, 0, 0, 0], sub_id\u003d0, sub_dot1ad\u003d0, sub_dot1ah\u003d0, sub_number_of_tags\u003d0, sub_outer_vlan_id\u003d0, sub_inner_vlan_id\u003d0, sub_exact_match\u003d0, sub_default\u003d0, sub_outer_vlan_id_any\u003d0, sub_inner_vlan_id_any\u003d0, vtr_op\u003d0, vtr_push_dot1q\u003d0, vtr_tag1\u003d0, vtr_tag2\u003d0, tag\u003d\u0027\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\u0027, outer_tag\u003d0, b_dmac\u003d\u0027\\x00\\x00\\x00\\x00\\x00\\x00\u0027, b_smac\u003d\u0027\\x00\\x00\\x00\\x00\\x00\\x00\u0027, b_vlanid\u003d0, i_sid\u003d0),...\n\nso we will not call the verify_reply method...",
+      "parentUuid": "53d8f729_1e18d361",
+      "range": {
+        "startLine": 282,
+        "startChar": 14,
+        "endLine": 282,
+        "endChar": 19
+      },
+      "revId": "5ca93a006b6e239aa294a96e8e4b6fe02b573962",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b723442_aa798dd8",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 1
