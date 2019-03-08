@@ -24,7 +24,6 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Force Tags | VM_ENV | HW_ENV | 3_NODE_DOUBLE_LINK_TOPO
 | Test Setup | Set up functional test
@@ -60,7 +59,7 @@
 | | ... | Both have IP addresses from same network. On VM is set bridge to pass
 | | ... | packet from a one vhost user interface to another one.
 | | [Teardown] | Run Keywords
-| | ... | Stop and clear QEMU | ${dut_node} | ${vm_node} | AND
+| | ... | Stop and clear QEMU | ${dut_node} | AND
 | | ... | Tear down functional test
 | |
 | | Given Configure path in 2-node circular topology
