@@ -20,7 +20,6 @@
 | Resource | resources/libraries/robot/l2/l2_traffic.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | Library  | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.VhostUser
 | Library  | resources.libraries.python.Trace
@@ -33,7 +32,7 @@
 | ...
 | Test Setup | Set up functional test
 | ...
-| Test Teardown | Tear down LISP functional test with QEMU | ${vm_node}
+| Test Teardown | Tear down LISP functional test with QEMU
 | ...
 | Documentation | *LISP static adjacency test cases*
 | ...

@@ -15,13 +15,12 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/overlay/vxlan.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | Test Setup | Set up functional test
 | Test Teardown | Run Keywords
-| ... | resources.libraries.python.QemuUtils.Qemu Kill All | ${dut_node} | AND
+| ... | Stop and Clear QEMU | ${dut_node} | AND
 | ... | Tear down functional test
 | Documentation | *Vhost-User Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
