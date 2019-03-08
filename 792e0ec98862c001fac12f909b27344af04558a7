@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5cdde2e2_a2fd545f",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-08T15:55:51Z",
+      "side": 1,
+      "message": "Would \"quantify\" be a better word here?",
+      "range": {
+        "startLine": 114,
+        "startChar": 23,
+        "endLine": 114,
+        "endChar": 30
+      },
+      "revId": "792e0ec98862c001fac12f909b27344af04558a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d373e74_ee3f474e",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-08T15:55:51Z",
+      "side": 1,
+      "message": "This section mentions the \"Host Networking\" (Host data-plane) quite a lot of times, which somewhat contradicts the idea of building blocks mentioned above.",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 13
+      },
+      "revId": "792e0ec98862c001fac12f909b27344af04558a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5f5721aa_658e66ff",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-08T15:55:51Z",
+      "side": 1,
+      "message": "Maybe highlight (repeat) the focus on density/\"packing\", since the current reasoning is quite vague.",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 8
+      },
+      "revId": "792e0ec98862c001fac12f909b27344af04558a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2e119108_e4bbb8c2",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-08T15:55:51Z",
+      "side": 1,
+      "message": "It would be good to mention that \"row\" and \"column\" are meant in the context of matrix indexing, i.e. (row, column), since it could be understood as the top row being instances, and the first column being NFs per SI.",
+      "range": {
+        "startLine": 330,
+        "startChar": 0,
+        "endLine": 331,
+        "endChar": 58
+      },
+      "revId": "792e0ec98862c001fac12f909b27344af04558a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "168b1b30_c5e23b2f",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-08T15:55:51Z",
+      "side": 1,
+      "message": "Include this info in the density matrix example (see previous comment)",
+      "range": {
+        "startLine": 336,
+        "startChar": 46,
+        "endLine": 336,
+        "endChar": 59
+      },
+      "revId": "792e0ec98862c001fac12f909b27344af04558a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2aaee620_8f6b3aad",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-08T15:55:51Z",
+      "side": 1,
+      "message": "I think this needs a little more details. Consider providing a little more info on main/data threads - Maybe even include a picture.",
+      "range": {
+        "startLine": 361,
+        "startChar": 0,
+        "endLine": 363,
+        "endChar": 44
+      },
+      "revId": "792e0ec98862c001fac12f909b27344af04558a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "705db014_a6763ef1",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-08T15:55:51Z",
+      "side": 1,
+      "message": "See previous comment. I think the ratio scheme will seem confusing without a little more background.",
+      "range": {
+        "startLine": 371,
+        "startChar": 10,
+        "endLine": 371,
+        "endChar": 30
+      },
+      "revId": "792e0ec98862c001fac12f909b27344af04558a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37ea3503_c9a71916",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-08T15:55:51Z",
+      "side": 1,
+      "message": "It might be good to highlight this, as it is quite important and also relevant in the following \"Core Usage\" matrix",
+      "range": {
+        "startLine": 397,
+        "startChar": 0,
+        "endLine": 398,
+        "endChar": 63
+      },
+      "revId": "792e0ec98862c001fac12f909b27344af04558a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "117a6643_89f400a5",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-08T15:55:51Z",
+      "side": 1,
+      "message": "The NUMA limitation should be mentioned earlier with more detail (or left out since it isn\u0027t really relevant below).",
+      "range": {
+        "startLine": 400,
+        "startChar": 0,
+        "endLine": 401,
+        "endChar": 24
+      },
+      "revId": "792e0ec98862c001fac12f909b27344af04558a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ace0894_2ad8ee71",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-08T15:55:51Z",
+      "side": 1,
+      "message": "Better description of \"Row\" and \"Column\" (see earlier comment)",
+      "range": {
+        "startLine": 415,
+        "startChar": 0,
+        "endLine": 416,
+        "endChar": 66
+      },
+      "revId": "792e0ec98862c001fac12f909b27344af04558a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
