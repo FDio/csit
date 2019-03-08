@@ -32,7 +32,6 @@
 | Resource | resources/libraries/robot/l2/l2_patch.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/l2/tagging.robot
 | Resource | resources/libraries/robot/overlay/srv6.robot
 | Documentation | Performance suite keywords - configuration.
@@ -2321,40 +2320,32 @@
 | | ... | \| DUT1_VM2 \| qemu_id=${2} \|
 | | ...
 | | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name} | ${nf_cpus}
-| | ... | ${qemu_id}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${qemu_id}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${1024}
 | | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${True}
 | | ...
+| | ${apply_patch}= | Set Variable | ${False}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-patch/bin
+| | ... | ${perf_qemu_path}-base/bin
 | | ${nf_cpus_count}= | Get Length | ${nf_cpus}
 | | ${rxq}= | Run Keyword If | ${auto_scale} == ${True}
 | | ... | Set Variable | ${rxq_count_int}
 | | ... | ELSE | Set Variable | ${1}
-| | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
+| | Import Library | resources.libraries.python.QemuUtils | ${nodes['${dut}']}
+| | ... | qemu_id=${qemu_id} | smp=${nf_cpus_count} | mem=${2048}
+| | ... | img=${perf_vm_image} | bin_path=${perf_qemu_path}
 | | ... | WITH NAME | ${vm_name}
-| | Run keyword | ${vm_name}.Qemu Set Node | ${nodes['${dut}']}
-| | ${serial_port}= | Evaluate | ${qemu_id} + ${4555}
-| | Run keyword | ${vm_name}.Qemu Set Serial Port | ${serial_port}
-| | ${ssh_fwd_port}= | Evaluate | ${qemu_id} + ${10021}
-| | Run keyword | ${vm_name}.Qemu Set Ssh Fwd Port | ${ssh_fwd_port}
-| | Run keyword | ${vm_name}.Qemu Set Queue Count | ${rxq_count_int}
-| | Run keyword | ${vm_name}.Qemu Set Queue Size | ${perf_qemu_qsz}
-| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
-| | ... | jumbo_frames=${jumbo}
-| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | ... | jumbo_frames=${jumbo}
-| | ${apply_patch}= | Set Variable | ${False}
-| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
-| | ... | ${perf_qemu_path}-patch/bin/
-| | ... | ${perf_qemu_path}-base/bin/
+| | Run Keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | jumbo_frames=${jumbo} | queues=${rxq_count_int}
+| | ... | queue_size=${perf_qemu_qsz}
+| | Run Keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | jumbo_frames=${jumbo} | queues=${rxq_count_int}
+| | ... | queue_size=${perf_qemu_qsz}
 | | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${nodes['${dut}']}
 | | ... | apply_patch=${apply_patch}
-| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${nf_cpus_count} | ${nf_cpus_count}
-| | ... | 1 | 1
-| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
-| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | @{nf_cpus}
-| | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
+| | ${vm}= | Run Keyword | ${vm_name}.Qemu Start
+| | Run Keyword | ${vm_name}.Qemu Set Affinity | @{nf_cpus}
+| | Run Keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | ${max_pkt_len}= | Set Variable If | ${jumbo} | 9200 | ${EMPTY}
 | | ${testpmd_cpus}= | Cpu list per node str | ${nodes['${dut}']} | ${0}
 | | ... | cpu_cnt=${nf_cpus_count}
@@ -2382,10 +2373,10 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure guest VMs with dpdk-testpmd connected via \
-| | ... | vhost-user on node \| DUT1 \| 1 \| False \| 256 \|
+| | ... | vhost-user on node \| DUT1 \| 1 \| False \| 1024 \|
 | | ...
 | | [Arguments] | ${dut} | ${vm_count}=${1} | ${jumbo}=${False} |
-| | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
+| | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
 | | | ${nf_cpus}= | Create network function CPU list | ${dut}
@@ -2395,10 +2386,11 @@
 | | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
 | | | ${vm}=
 | | | ... | Configure guest VM with dpdk-testpmd connected via vhost-user
-| | | ... | ${dut} | ${sock1} | ${sock2} | ${dut}_VM${number}
+| | | ... | ${dut} | ${sock1} | ${sock2} | ${TEST NAME}${dut}_VM${number}
 | | | ... | ${nf_cpus} | qemu_id=${number} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
-| | | Set To Dictionary | ${${dut}_vm_refs} | ${dut}_VM${number} | ${vm}
+| | | Set To Dictionary | ${${dut}_vm_refs} | ${TEST NAME}${dut}_VM${number}
+| | | ... | ${vm}
 
 | Configure guest VMs with dpdk-testpmd connected via vhost-user
 | | [Documentation]
@@ -2417,10 +2409,10 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure guest VMs with dpdk-testpmd connected via vhost-user\
-| | ... | \| 1 \| False \| 256 \|
+| | ... | \| 1 \| False \| 1024 \|
 | | ...
-| | [Arguments] | ${vm_count}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
-| | ... | ${use_tuned_cfs}=${False}
+| | [Arguments] | ${vm_count}=${1} | ${jumbo}=${False}
+| | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
@@ -2467,37 +2459,29 @@
 | | ...
 | | [Arguments] | ${dut} | ${sock1} | ${sock2} | ${vm_name}
 | | ... | ${eth0_mac} | ${eth1_mac} | ${nf_cpus} | ${qemu_id}=${1}
-| | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${1024}
 | | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${True}
 | | ...
+| | ${apply_patch}= | Set Variable | ${False}
+| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
+| | ... | ${perf_qemu_path}-patch/bin
+| | ... | ${perf_qemu_path}-base/bin
 | | ${nf_cpus_count}= | Get Length | ${nf_cpus}
 | | ${rxq}= | Run Keyword If | ${auto_scale} == ${True}
 | | ... | Set Variable | ${rxq_count_int}
 | | ... | ELSE | Set Variable | ${1}
-| | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
+| | Import Library | resources.libraries.python.QemuUtils | ${nodes['${dut}']}
+| | ... | qemu_id=${qemu_id} | smp=${nf_cpus_count} | mem=${2048}
+| | ... | img=${perf_vm_image} | bin_path=${perf_qemu_path}
 | | ... | WITH NAME | ${vm_name}
-| | Run keyword | ${vm_name}.Qemu Set Node | ${nodes['${dut}']}
-| | ${serial_port}= | Evaluate | ${qemu_id} + ${4555}
-| | Run keyword | ${vm_name}.Qemu Set Serial Port | ${serial_port}
-| | ${ssh_fwd_port}= | Evaluate | ${qemu_id} + ${10021}
-| | Run keyword | ${vm_name}.Qemu Set Ssh Fwd Port | ${ssh_fwd_port}
-| | Run keyword | ${vm_name}.Qemu Set Queue Count | ${rxq_count_int}
-| | Run keyword | ${vm_name}.Qemu Set Queue Size | ${perf_qemu_qsz}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
-| | ... | jumbo_frames=${jumbo}
+| | ... | jumbo_frames=${jumbo} | queues=${rxq_count_int}
+| | ... | queue_size=${perf_qemu_qsz}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | ... | jumbo_frames=${jumbo}
-| | ${apply_patch}= | Set Variable | ${False}
-| | ${perf_qemu_path}= | Set Variable If | ${apply_patch}
-| | ... | ${perf_qemu_path}-patch/bin/
-| | ... | ${perf_qemu_path}-base/bin/
+| | ... | jumbo_frames=${jumbo} | queues=${rxq_count_int}
+| | ... | queue_size=${perf_qemu_qsz}
 | | Run Keyword If | ${qemu_build} | ${vm_name}.Build QEMU | ${nodes['${dut}']}
 | | ... | apply_patch=${False}
-| | Run keyword | ${vm_name}.Qemu Set Path | ${perf_qemu_path}
-| | Run keyword | ${vm_name}.Qemu Set Smp | ${nf_cpus_count} | ${nf_cpus_count}
-| | ... | 1 | 1
-| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{nf_cpus}
 | | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
@@ -2532,10 +2516,10 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure guest VMs with dpdk-testpmd-mac connected via \
-| | ... | vhost-user on node \| DUT1 \| 1 \| False \| 256 \|
+| | ... | vhost-user on node \| DUT1 \| 1 \| False \| 1024 \|
 | | ...
 | | [Arguments] | ${dut} | ${vm_count}=${1} | ${jumbo}=${False} |
-| | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
+| | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
 | | | ${nf_cpus}= | Create network function CPU list | ${dut}
@@ -2545,12 +2529,13 @@
 | | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
 | | | ${vm}=
 | | | ... | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
-| | | ... | ${dut} | ${sock1} | ${sock2} | ${dut}_VM${number}
+| | | ... | ${dut} | ${sock1} | ${sock2} | ${TEST NAME}${dut}_VM${number}
 | | | ... | ${${dut}-vhost-${number}-if1_mac}
 | | | ... | ${${dut}-vhost-${number}-if2_mac} | nf_cpus=${nf_cpus}
 | | | ... | qemu_id=${number} | jumbo=${jumbo} | perf_qemu_qsz=${perf_qemu_qsz}
 | | | ... | use_tuned_cfs=${use_tuned_cfs}
-| | | Set To Dictionary | ${${dut}_vm_refs} | ${dut}_VM${number} | ${vm}
+| | | Set To Dictionary | ${${dut}_vm_refs} | ${TEST NAME}${dut}_VM${number}
+| | | ... | ${vm}
 
 | Configure guest VMs with dpdk-testpmd-mac connected via vhost-user
 | | [Documentation]
@@ -2569,10 +2554,10 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure guest VMs with dpdk-testpmd-mac connected via vhost-user\
-| | ... | \| 1 \| False \| 256 \|
+| | ... | \| 1 \| False \| 1024 \|
 | | ...
-| | [Arguments] | ${vm_count}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
-| | ... | ${use_tuned_cfs}=${False}
+| | [Arguments] | ${vm_count}=${1} | ${jumbo}=${False}
+| | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
@@ -2604,10 +2589,10 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure chain of NFs with dpdk-testpmd-mac connected via \
-| | ... | vhost-user on node \| DUT1 \| 1 \| 1 \| 1 \| False \| 256 \|
+| | ... | vhost-user on node \| DUT1 \| 1 \| 1 \| 1 \| False \| 1024 \|
 | | ...
 | | [Arguments] | ${dut} | ${nf_chains}=${1} | ${nf_chain}=${1}
-| | ... | ${nf_nodes}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${nf_nodes}=${1} | ${jumbo}=${False} | ${perf_qemu_qsz}=${1024}
 | | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${False}
 | | ...
 | | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
@@ -2661,10 +2646,10 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure chain of NFs with dpdk-testpmd-mac connected via\
-| | ... | vhost-user \| 1 \| 1 \| 1 \| False \| 256 \|
+| | ... | vhost-user \| 1 \| 1 \| 1 \| False \| 1024 \|
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_chain}=${1} | ${nf_nodes}=${1}
-| | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${256}
+| | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${1024}
 | | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${False}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
@@ -2695,10 +2680,10 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure chains of VMs with dpdk-testpmd-mac connected via \
-| | ... | vhost-user \| 1 \| 1 \| False \| 256 \|
+| | ... | vhost-user \| 1 \| 1 \| False \| 1024 \|
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${jumbo}=${False}
-| | ... | ${perf_qemu_qsz}=${256} | ${use_tuned_cfs}=${False}
+| | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
 | | ... | ${auto_scale}=${False}
 | | ...
 | | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
