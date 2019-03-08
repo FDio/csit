@@ -16,17 +16,13 @@
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/overlay/vxlan.robot
 | Resource | resources/libraries/robot/l2/l2_traffic.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
-| Resource | resources/libraries/robot/vm/double_qemu_setup.robot
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.IPv6Setup
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
 | Test Setup | Set up functional test
 | Test Teardown | Run Keywords | Tear down functional test
-| ... | AND | Run keyword | Tear down QEMU | ${dut1_node}
-| ...                                     | ${${qemu1}} | ${qemu1}
-| ... | AND | Run keyword | Tear down QEMU | ${dut2_node}
-| ...                                     | ${${qemu2}} | ${qemu2}
+| ... | AND | Run keyword | Tear down QEMU | ${dut1_node} | ${qemu1}
+| ... | AND | Run keyword | Tear down QEMU | ${dut2_node} | ${qemu2}
 | Documentation | *L2BD with VM combined with VXLAN test cases - IPv6*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1-DUT2-TG 3-node circular topology

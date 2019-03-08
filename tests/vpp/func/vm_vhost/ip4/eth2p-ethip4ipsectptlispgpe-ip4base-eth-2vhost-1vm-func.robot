@@ -17,7 +17,6 @@
 | Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.LispUtil
 | Library | resources.libraries.python.VhostUser
-| Library | resources.libraries.python.QemuUtils
 | Library | resources.libraries.python.VPPUtil
 | Library | resources.libraries.python.IPsecUtil
 | Resource | resources/libraries/robot/shared/traffic.robot
@@ -25,7 +24,6 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/overlay/l2lisp.robot
@@ -37,7 +35,7 @@
 | ...
 | Test Setup | Set up functional test
 | ...
-| Test Teardown | Tear down LISP functional test with QEMU | ${vm_node}
+| Test Teardown | Tear down LISP functional test with QEMU
 | ...
 | Documentation | *IPv4-ip4-ipsec-lispgpe-ip4 - main fib, vrf (gpe_vni-to-vrf)*
 | ...
