@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "53d8f729_1e18d361",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-08T08:22:34Z",
+      "side": 1,
+      "message": "The idea is to provide verified data in simpler structure.\nThe executor will return verified data or raise an exception if verification fails.",
+      "parentUuid": "1376d4d1_4ae6d6b8",
+      "range": {
+        "startLine": 282,
+        "startChar": 14,
+        "endLine": 282,
+        "endChar": 19
+      },
+      "revId": "5ca93a006b6e239aa294a96e8e4b6fe02b573962",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b723442_aa798dd8",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 1
