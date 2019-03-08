@@ -32,7 +32,6 @@
 | Resource | resources/libraries/robot/l2/l2_xconnect.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/l2/tagging.robot
 | Documentation | Performance suite keywords - utilities to find and verify NDR
 | ... | and PDR.

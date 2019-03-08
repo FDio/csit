@@ -16,7 +16,6 @@
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/vm/double_qemu_setup.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
 | Library  | resources.libraries.python.Trace
 | ...

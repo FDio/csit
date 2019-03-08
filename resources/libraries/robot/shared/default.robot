@@ -33,7 +33,6 @@
 | Library | resources.libraries.python.topology.Topology
 | ...
 | Resource | resources/libraries/robot/shared/container.robot
-| Resource | resources/libraries/robot/vm/double_qemu_setup.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
 
 *** Keywords ***
