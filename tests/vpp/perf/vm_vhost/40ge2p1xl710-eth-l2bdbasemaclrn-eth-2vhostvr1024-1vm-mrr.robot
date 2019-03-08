@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
-| Library | resources.libraries.python.QemuUtils
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | MRR
 | ... | NIC_Intel-XL710 | ETH | L2BDMACLRN | BASE | VHOST | 1VM | VHOST_1024
