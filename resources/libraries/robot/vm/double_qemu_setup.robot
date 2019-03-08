@@ -44,15 +44,13 @@
 | | ... | ${ip1} | ${ip2} | ${ip3} | ${ip4} | ${prefix_length}
 | | ... | ${qemu_name} | ${mac_ID}
 | | Import Library | resources.libraries.python.QemuUtils \
-| | ... | WITH NAME | ${qemu_name}
+| | ... | node=${dut_node} | WITH NAME | ${qemu_name}
 | | ${qemu_add_vhost}= | Replace Variables | ${qemu_name}.Qemu Add Vhost User If
-| | ${qemu_set_node}= | Replace Variables | ${qemu_name}.Qemu Set Node
 | | ${qemu_start}= | Replace Variables | ${qemu_name}.Qemu Start
 | | Run keyword | ${qemu_add_vhost} | ${sock1} | mac=52:54:00:00:${mac_ID}:01
 | | Run keyword | ${qemu_add_vhost} | ${sock2} | mac=52:54:00:00:${mac_ID}:02
 | | Run keyword | ${qemu_add_vhost} | ${sock3} | mac=52:54:00:00:${mac_ID}:03
 | | Run keyword | ${qemu_add_vhost} | ${sock4} | mac=52:54:00:00:${mac_ID}:04
-| | Run keyword | ${qemu_set_node} | ${dut_node}
 | | ${vm}= | Run keyword | ${qemu_start}
 | | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
 | | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
@@ -86,10 +84,7 @@
 | | ... | \| Tear down QEMU \| ${node['DUT1']} \| ${vm} \| qemu_node_1 \|
 | | ...
 | | [Arguments] | ${dut_node} | ${vm} | ${qemu_name}
-| | ${set_node}= | Replace Variables | ${qemu_name}.Qemu Set Node
 | | ${kill}= | Replace Variables | ${qemu_name}.Qemu Kill
 | | ${clear_socks}= | Replace Variables | ${qemu_name}.Qemu Clear Socks
-| | Run Keyword | ${set_node} | ${dut_node}
 | | Run Keyword | ${kill}
 | | Run Keyword | ${clear_socks}
-| | Run Keyword If | ${vm} is not None | Disconnect | ${vm}
