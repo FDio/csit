@@ -25,6 +25,7 @@ from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
 
 class QemuOptions(object):
@@ -114,21 +115,40 @@ class QemuUtils(object):
         self._opt.add('vnf', vnf)
         # Temporary files.
         self._temp = QemuOptions()
-        self._temp.add('pid', '/var/run/qemu{id}.pid'.format(id=qemu_id))
+        self._temp.add('pid', '/var/run/qemu_{id}.pid'.format(id=qemu_id))
         # Computed parameters for QEMU command line.
         self._params = QemuOptions()
         if '/var/lib/vm/' in img:
-            self._temp.add('qmp', '/var/run/qmp{id}.sock'.format(id=qemu_id))
-            self._temp.add('qga', '/var/run/qga{id}.sock'.format(id=qemu_id))
-            self.add_nestedvm_params()
+            self._opt.add('vm_type', 'nestedvm')
+            self._temp.add('qmp', '/var/run/qmp_{id}.sock'.format(id=qemu_id))
+            self._temp.add('qga', '/var/run/qga_{id}.sock'.format(id=qemu_id))
+        elif '/opt/boot/vmlinuz' in img:
+            self._opt.add('vm_type', 'kernelvm')
+            self._temp.add('log', '/tmp/serial_{id}.log'.format(id=qemu_id))
+            self._temp.add('ini', '/etc/vm_init_{id}.sh'.format(id=qemu_id))
         else:
             raise RuntimeError('QEMU: Unknown VM image option!')
+
+    def add_params(self):
+        """Set QEMU parameters."""
+        self.add_default_params()
+        if self._opt.get('vm_type') == 'nestedvm':
+            self.add_nestedvm_params()
+        elif self._opt.get('vm_type') == 'kernelvm':
+            self.add_kernelvm_params()
+            if 'vpp' in self._opt.get('vnf'):
+                self.create_kernelvm_config_vpp()
+            else:
+                raise RuntimeError('QEMU: Unsupported VNF!')
+            self.create_kernelvm_init(vnf_bin=self._opt.get('vnf_bin'))
+        else:
+            raise RuntimeError('QEMU: Unsupported VM type!')
 
     def add_default_params(self):
         """Set default QEMU parameters."""
         self._params.add('daemonize', '')
         self._params.add('nodefaults', '')
-        self._params.add('name', 'vnf{qemu}'.
+        self._params.add('name', 'vnf{qemu},debug-threads=on'.
                          format(qemu=self._opt.get('qemu_id')))
         self._params.add('no-user-config', '')
         self._params.add('monitor', 'none')
@@ -152,7 +172,6 @@ class QemuUtils(object):
 
     def add_nestedvm_params(self):
         """Set NestedVM QEMU parameters."""
-        self.add_default_params()
         self._params.add('net', 'nic,macaddr=52:54:00:00:{qemu:02x}:ff'.
                          format(qemu=self._opt.get('qemu_id')))
         self._params.add('net', 'user,hostfwd=tcp::{info[port]}-:22'.
@@ -177,6 +196,84 @@ class QemuUtils(object):
                          format(qga=self._temp.get('qga')))
         self._params.add('device', 'isa-serial,chardev=qga0')
 
+    def add_kernelvm_params(self):
+        """Set KernelVM QEMU parameters."""
+        self._params.add('chardev', 'file,id=char0,path={log}'.
+                         format(log=self._temp.get('log')))
+        self._params.add('device', 'isa-serial,chardev=char0')
+        self._params.add('fsdev', 'local,id=root9p,path=/,security_model=none')
+        self._params.add('device',
+                         'virtio-9p-pci,fsdev=root9p,mount_tag=/dev/root')
+        self._params.add('kernel', '$(readlink -m {img}* | tail -1)'.
+                         format(img=self._opt.get('img')))
+        self._params.add('append',
+                         '"ro rootfstype=9p rootflags=trans=virtio '
+                          'console=ttyS0 tsc=reliable hugepages=256 '
+                          'init={init}"'.format(init=self._temp.get('ini')))
+
+    def create_kernelvm_config_vpp(self, **kwargs):
+        """Create QEMU VPP config files.
+
+        :param kwargs: Key-value pairs to replace content of VPP configuration
+            file.
+        :type kwargs: dict
+        """
+        startup = ('/etc/vpp/vm_startup_{id}.conf'.
+                   format(id=self._opt.get('qemu_id')))
+        running = ('/etc/vpp/vm_running_{id}.exec'.
+                   format(id=self._opt.get('qemu_id')))
+
+        self._temp.add('startup', startup)
+        self._temp.add('running', running)
+        self._opt.add(
+            'vnf_bin', '/usr/bin/vpp -c {startup}'.format(startup=startup))
+
+        # Create VPP startup configuration.
+        vpp_config = VppConfigGenerator()
+        vpp_config.set_node(self._node)
+        vpp_config.add_unix_nodaemon()
+        vpp_config.add_unix_cli_listen()
+        vpp_config.add_unix_exec(running)
+        vpp_config.add_cpu_main_core('0')
+        vpp_config.add_cpu_corelist_workers('1-{smp}'.
+                                            format(smp=self._opt.get('smp')-1))
+        vpp_config.add_dpdk_dev('0000:00:06.0', '0000:00:07.0')
+        vpp_config.add_dpdk_log_level('debug')
+        vpp_config.add_dpdk_no_tx_checksum_offload()
+        vpp_config.add_dpdk_no_multi_seg()
+        vpp_config.add_plugin('disable', 'default')
+        vpp_config.add_plugin('enable', 'dpdk_plugin.so')
+        vpp_config.apply_config(startup, restart_vpp=False)
+
+        # Create VPP running configuration.
+        template = '{res}/{tpl}.exec'.format(res=Constants.RESOURCES_TPL_VM,
+                                             tpl=self._opt.get('vnf'))
+        exec_cmd_no_error(self._node, 'rm -f {running}'.format(running=running),
+                          sudo=True)
+
+        with open(template, 'r') as src_file:
+           for line in src_file.readlines():
+                exec_cmd_no_error(self._node,
+                                  "echo '{l}' | sudo tee -a {running}".
+                                  format(l=line.format(**kwargs),
+                                         running=running))
+
+    def create_kernelvm_init(self, **kwargs):
+        """Create QEMU init script.
+
+        :param kwargs: Key-value pairs to replace content of init startup file.
+        :type kwargs: dict
+        """
+        template = '{res}/init.sh'.format(res=Constants.RESOURCES_TPL_VM)
+        init = self._temp.get('ini')
+        exec_cmd_no_error(self._node, 'rm -f {init}'.format(init=init),
+                          sudo=True)
+
+        with open(template, 'r') as src_file:
+           for line in src_file.readlines():
+                exec_cmd_no_error(self._node, "echo '{l}' | sudo tee -a {init}".
+                                  format(l=line.format(**kwargs), init=init))
+
     def qemu_set_node(self, node):
         """Set node to run QEMU on.
 
@@ -196,10 +293,10 @@ class QemuUtils(object):
         :returns: List of QEMU CPU pids.
         :rtype: list
         """
-        command = ('ls /proc/$(sudo cat {pid})/task/ | tail -{smp}'.
-                   format(pid=self._temp.get('pid'),
-                          smp=self._opt.get('smp')))
-        stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
+        command = ('grep -rwl "CPU" /proc/$(sudo cat {pid})/task/*/comm '
+                   '| xargs dirname | sed -e \'s/\/.*\///g\''.
+                   format(pid=self._temp.get('pid')))
+        stdout, _ = exec_cmd_no_error(self._node, command)
         return stdout.splitlines()
 
     def qemu_set_affinity(self, *host_cpus):
@@ -209,19 +306,22 @@ class QemuUtils(object):
         :param host_cpus: List of CPU cores.
         :type host_cpus: list
         """
-        # Wait for process respawn.
-        sleep(2)
-        qemu_cpus = self.get_qemu_pids()
+        try:
+            qemu_cpus = self.get_qemu_pids()
 
-        if len(qemu_cpus) != len(host_cpus):
-            raise ValueError('Host CPU count must match Qemu Thread count!')
+            if len(qemu_cpus) != len(host_cpus):
+                raise ValueError('Host CPU count must match Qemu Thread count!')
 
-        for qemu_cpu, host_cpu in zip(qemu_cpus, host_cpus):
-            command = ('taskset -pc {host_cpu} {thread}'.
-                       format(host_cpu=host_cpu, thread=qemu_cpu))
-            message = ('QEMU: Set affinity failed on {host}!'.
-                       format(host=self._node['host']))
-            exec_cmd_no_error(self._node, command, sudo=True, message=message)
+            for qemu_cpu, host_cpu in zip(qemu_cpus, host_cpus):
+                command = ('taskset -pc {host_cpu} {thread}'.
+                           format(host_cpu=host_cpu, thread=qemu_cpu))
+                message = ('QEMU: Set affinity failed on {host}!'.
+                           format(host=self._node['host']))
+                exec_cmd_no_error(self._node, command, sudo=True,
+                                  message=message)
+        except (RuntimeError, ValueError):
+            self.qemu_kill_all()
+            raise
 
     def qemu_set_scheduler_policy(self):
         """Set scheduler policy to SCHED_RR with priority 1 for all Qemu CPU
@@ -427,19 +527,21 @@ class QemuUtils(object):
         """
         DUTSetup.check_huge_page(self._node, '/mnt/huge', self._opt.get('mem'))
 
+        self.add_params()
+
         command = ('{bin_path}/qemu-system-{arch} {params}'.
                    format(bin_path=self._opt.get('bin_path'),
                           arch=Topology.get_node_arch(self._node),
                           params=self._params))
         message = ('QEMU: Start failed on {host}!'.
                    format(host=self._node['host']))
-
         try:
             exec_cmd_no_error(self._node, command, timeout=300, sudo=True,
                               message=message)
-            self._wait_until_vm_boot()
-            # Update interface names in VM node dict.
-            self._update_vm_interfaces()
+            sleep(1)
+#            self._wait_until_vm_boot()
+#            # Update interface names in VM node dict.
+#            self._update_vm_interfaces()
         except RuntimeError:
             self.qemu_kill_all()
             raise
