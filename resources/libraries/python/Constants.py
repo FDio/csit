@@ -55,6 +55,9 @@ class Constants(object):
     # Kubernetes templates location
     RESOURCES_TPL_K8S = 'resources/templates/kubernetes'
 
+    # KernelVM templates location
+    RESOURCES_TPL_VM = 'resources/templates/vm'
+
     # Honeycomb directory location at topology nodes:
     REMOTE_HC_DIR = '/opt/honeycomb'
 
