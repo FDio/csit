@@ -120,9 +120,12 @@ class QemuUtils(object):
         if '/var/lib/vm/vhost-nested' in img:
             self._temp.add('qmp', '/var/run/qmp{id}.sock'.format(id=qemu_id))
             self._temp.add('qga', '/var/run/qga{id}.sock'.format(id=qemu_id))
-            self.add_nested_params()
+            self.add_nestedvm_params()
+        elif '/opt/boot/vmlinuz' in img:
+            self._temp.add('log', '/tmp/serial{id}.log'.format(id=qemu_id))
+            self.add_kernelvm_params()
         else:
-            raise RuntimeError('QEMU: Unknown image option!')
+            raise RuntimeError('QEMU: Unknown VM image option!')
 
     def add_default_params(self):
         """Set default QEMU parameters."""
@@ -150,7 +153,7 @@ class QemuUtils(object):
         self._params.add('numa', 'node,memdev=mem')
         self._params.add('balloon', 'none')
 
-    def add_nested_params(self):
+    def add_nestedvm_params(self):
         """Set NestedVM QEMU parameters."""
         self.add_default_params()
         self._params.add('net', 'nic,macaddr=52:54:00:00:{qemu:02x}:ff'.
@@ -176,6 +179,22 @@ class QemuUtils(object):
                          'socket,path={qga},server,nowait,id=qga0'.
                          format(qga=self._temp.get('qga')))
         self._params.add('device', 'isa-serial,chardev=qga0')
+
+    def add_kernelvm_params(self):
+        """Set KernelVM QEMU parameters."""
+        self.add_default_params()
+        self._params.add('chardev', 'file,id=char0,path={log}.log'.
+                         format(log=self._temp.get('log')))
+        self._params.add('device', 'isa-serial,chardev=char0')
+        self._params.add('fsdev', 'local,id=root9p,path=/,security_model=none')
+        self._params.add('device',
+                         'virtio-9p-pci,fsdev=root9p,mount_tag=/dev/root'
+        self._params.add('kernel', '{img}'.format(img=self._opt.get('img')))
+        self._params.add('append',
+                         '"ro rootfstype=9p rootflags=trans=virtio '
+                          'console=ttyS0 tsc=reliable hugepages=256 '
+                          'init={init}"'.
+                          format(init=self._opt.get('init')))
 
     def qemu_set_node(self, node):
         """Set node to run QEMU on.
