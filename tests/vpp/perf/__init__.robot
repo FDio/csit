@@ -21,7 +21,7 @@
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
-| ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
+#| ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
 | ... | AND | Verify Vpp on All Duts | ${nodes}
 | ... | AND | Verify UIO Driver on all DUTs | ${nodes}
 | ... | AND | Setup All DUTs | ${nodes}
@@ -30,7 +30,7 @@
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 | ... | skip_tg=${True} | numa_node=${True}
 | ...
-| Suite Teardown | Cleanup Framework | ${nodes}
+#| Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup performance global Variables
@@ -52,6 +52,7 @@
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.7.img
+| | Set Global Variable | ${perf_vm_kernel} | /opt/boot/vmlinuz
 | | Set Global Variable | ${perf_qemu_path} | /opt/qemu-2.11.2
 | | Set Global Variable | ${qemu_build} | ${True}
 | | Set Global Variable | ${pkt_trace} | ${False}

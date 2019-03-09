@@ -146,6 +146,8 @@ class VPPUtil(object):
             otherwise show only version.
         :type node: dict
         :type verbose: bool
+        :returns: VPP version.
+        :rtype: str
         """
 
         with PapiExecutor(node) as papi_exec:
@@ -159,6 +161,7 @@ class VPPUtil(object):
                         format(date=data['build_date'].rstrip('\0x00'),
                                cl=data['build_directory'].rstrip('\0x00')))
         logger.info(version)
+        return data['version'].rstrip('\0x00')
 
     @staticmethod
     def vpp_show_version_verbose(node):
