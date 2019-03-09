@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9db973c3_a2fad696",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-09T16:35:10Z",
+      "side": 1,
+      "message": "minor typo: indices",
+      "range": {
+        "startLine": 319,
+        "startChar": 15,
+        "endLine": 319,
+        "endChar": 22
+      },
+      "revId": "b260a918e990ec309cfdb73c5fc3865e9fa0870c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "427f16ab_05a0766e",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-09T16:35:10Z",
+      "side": 1,
+      "message": "minor typo: indices",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 7
+      },
+      "revId": "b260a918e990ec309cfdb73c5fc3865e9fa0870c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2756598f_9656336d",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-09T16:35:10Z",
+      "side": 1,
+      "message": "minor typo: defined",
+      "range": {
+        "startLine": 339,
+        "startChar": 16,
+        "endLine": 339,
+        "endChar": 22
+      },
+      "revId": "b260a918e990ec309cfdb73c5fc3865e9fa0870c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0f0e9e9_2cc159f5",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-09T16:35:10Z",
+      "side": 1,
+      "message": "minor typo: service",
+      "range": {
+        "startLine": 369,
+        "startChar": 56,
+        "endLine": 369,
+        "endChar": 62
+      },
+      "revId": "b260a918e990ec309cfdb73c5fc3865e9fa0870c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "abbf8e9a_61106790",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1368
+      },
+      "writtenOn": "2019-03-09T16:35:10Z",
+      "side": 1,
+      "message": "Not used above (but might be good for future reference)",
+      "range": {
+        "startLine": 457,
+        "startChar": 0,
+        "endLine": 457,
+        "endChar": 55
+      },
+      "revId": "b260a918e990ec309cfdb73c5fc3865e9fa0870c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
