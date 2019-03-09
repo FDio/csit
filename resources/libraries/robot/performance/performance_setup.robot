@@ -199,6 +199,28 @@
 | | Set Suite Variable | ${dut2_if1_2}
 | | Set Suite Variable | ${dut2_if2}
 
+| Tear down guest VM
+| | [Documentation]
+| | ... | Stop all qemu processes running on ${dut_node}.
+| | ... | Argument is dictionary of all qemu nodes running with its names.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut_vm_refs - VM references on node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down guest VM \| ${node['DUT1']} \
+| | ... | \| ${dut_vm_refs} \|
+| | ...
+| | [Arguments] | ${dut_node} | ${dut_vm_refs}
+| | ${vms_number}= | Get Length | ${dut_vm_refs}
+| | ${index}= | Set Variable | ${0}
+| | :FOR | ${vm_name} | IN | @{dut_vm_refs}
+| | | ${vm}= | Get From Dictionary | ${dut_vm_refs} | ${vm_name}
+| | | ${index}= | Evaluate | ${index} + 1
+| | | Run Keyword If | '${index}' == '${vms_number}' | ${vm_name}.Qemu Kill All
+
 | Tear down guest VM with dpdk-testpmd
 | | [Documentation]
 | | ... | Stop all qemu processes with dpdk-testpmd running on ${dut_node}.
@@ -221,28 +243,6 @@
 | | | ${vm}= | Get From Dictionary | ${dut_vm_refs} | ${vm_name}
 | | | ${index}= | Evaluate | ${index} + 1
 | | | Dpdk Testpmd Stop | ${vm}
-| | | Run Keyword If | '${index}' == '${vms_number}' | ${vm_name}.Qemu Kill All
-
-| Tear down guest VM
-| | [Documentation]
-| | ... | Stop all qemu processes running on ${dut_node}.
-| | ... | Argument is dictionary of all qemu nodes running with its names.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut_vm_refs - VM references on node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down guest VM \| ${node['DUT1']} \
-| | ... | \| ${dut_vm_refs} \|
-| | ...
-| | [Arguments] | ${dut_node} | ${dut_vm_refs}
-| | ${vms_number}= | Get Length | ${dut_vm_refs}
-| | ${index}= | Set Variable | ${0}
-| | :FOR | ${vm_name} | IN | @{dut_vm_refs}
-| | | ${vm}= | Get From Dictionary | ${dut_vm_refs} | ${vm_name}
-| | | ${index}= | Evaluate | ${index} + 1
 | | | Run Keyword If | '${index}' == '${vms_number}' | ${vm_name}.Qemu Kill All
 
 # Suite setups
@@ -715,6 +715,37 @@
 | | :FOR | ${container_group} | IN | @{container_groups}
 | | | Destroy all '${container_group}' containers
 
+| Tear down performance test with vhost
+| | [Documentation] | Common test teardown for performance tests which use
+| | ... | vhost(s) and VM(s).
+| | ...
+| | ... | *Arguments:*
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
+| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down performance test with vhost \
+| | ... | \| 4.0mpps \| 64 \| 3-node-IPv4 \| ${node['DUT1']} \| ${dut_vm_refs} \
+| | ... | \| ${node['DUT2']} \| ${dut_vm_refs} \|
+| | ...
+| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
+| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
+| | ...
+| | Tear down performance discovery test | ${rate} | ${framesize}
+| | ... | ${topology_type}
+| | Show VPP vhost on all DUTs | ${nodes}
+| | Run keyword unless | ${dut1_node}==${None}
+| | ... | Tear down guest VM | ${dut1} | ${dut1_vm_refs}
+| | Run keyword unless | ${dut2_node}==${None}
+| | ... | Tear down guest VM | ${dut2} | ${dut2_vm_refs}
+
 | Tear down performance test with vhost and VM with dpdk-testpmd
 | | [Documentation] | Common test teardown for performance tests which use
 | | ... | vhost(s) and VM(s) with dpdk-testpmd.
@@ -745,6 +776,32 @@
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
 | | Run keyword unless | ${dut2_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
+
+| Tear down performance mrr test with vhost
+| | [Documentation] | Common test teardown for mrr tests which use
+| | ... | vhost(s) and VM(s).
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
+| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down performance test with vhost \
+| | ... | \| ${node['DUT1']} \| ${dut_vm_refs} \
+| | ... | \| ${node['DUT2']} \| ${dut_vm_refs} \|
+| | ...
+| | [Arguments] | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
+| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
+| | ...
+| | Tear down performance mrr test
+| | Show VPP vhost on all DUTs | ${nodes}
+| | Run keyword unless | ${dut1_node}==${None}
+| | ... | Tear down guest VM | ${dut1} | ${dut1_vm_refs}
+| | Run keyword unless | ${dut2_node}==${None}
+| | ... | Tear down guest VM | ${dut2} | ${dut2_vm_refs}
 
 | Tear down performance mrr test with vhost and VM with dpdk-testpmd
 | | [Documentation] | Common test teardown for mrr tests which use
