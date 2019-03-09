@@ -337,8 +337,8 @@
 | | ... | interface=${dut1_if2} | vrf=${fib_table_2}
 | | ${ip_base_start}= | Set Variable | ${4}
 | | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
-| | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
-| | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| | | ${sock1}= | Set Variable | /var/run/vpp/sock-${number}-1
+| | | ${sock2}= | Set Variable | /var/run/vpp/sock-${number}-2
 | | | ${fib_table_1}= | Evaluate | ${100}+${number}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
 | | | ${ip_base_vif1}= | Evaluate | ${ip_base_start}+(${number}-1)*2
@@ -457,8 +457,8 @@
 | | ... | interface=${dut2_if2} | vrf=${fib_table_2}
 | | ${ip_base_start}= | Set Variable | ${4}
 | | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
-| | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
-| | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| | | ${sock1}= | Set Variable | /var/run/vpp/sock-${number}-1
+| | | ${sock2}= | Set Variable | /var/run/vpp/sock-${number}-2
 | | | ${fib_table_1}= | Evaluate | ${100}+${number}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
 | | | ${ip_base_vif1}= | Evaluate | ${ip_base_start}+(${number}-1)*2
@@ -1157,8 +1157,8 @@
 | | [Arguments] | ${dut} | ${vm_count}=${1}
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
-| | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
-| | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| | | ${sock1}= | Set Variable | /var/run/vpp/sock-${number}-1
+| | | ${sock2}= | Set Variable | /var/run/vpp/sock-${number}-2
 | | | ${prev_index}= | Evaluate | ${number}-1
 | | | Configure vhost interfaces for L2BD forwarding | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if1
@@ -1717,8 +1717,8 @@
 | | ... | ${${dut}_if2} | ${bd_id2}
 | | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${qemu_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
-| | | ${sock1}= | Set Variable | /tmp/sock-${qemu_id}-1
-| | | ${sock2}= | Set Variable | /tmp/sock-${qemu_id}-2
+| | | ${sock1}= | Set Variable | /var/run/vpp/sock-${qemu_id}-1
+| | | ${sock2}= | Set Variable | /var/run/vpp/sock-${qemu_id}-2
 | | | Configure vhost interfaces for L2BD forwarding | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2}
 | | | ... | ${dut}-vhost-${qemu_id}-if1
@@ -2287,6 +2287,45 @@
 | | Add Eth Interface | ${dut1} | ${dut1_eth_bond_if1_name} | ifc_pfx=eth_bond
 | | Add Eth Interface | ${dut2} | ${dut2_eth_bond_if1_name} | ifc_pfx=eth_bond
 
+| Configure chains of NFs connected via vhost-user
+| | [Documentation]
+| | ... | Start 1..N chains of 1..N QEMU guests (VNFs) with two vhost-user\
+| | ... | interfaces and interconnecting NF.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nf_chains - Number of chains of NFs. Type: integer
+| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
+| | ... | in the test. Type: boolean
+| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: integer
+| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
+| | ... | Type: boolean
+| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
+| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
+| | ... | - vnf - Network function as a payload. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Configure chains of VMs connected via vhost-user
+| | ... | \| 1 \| 1 \| False \| 1024 \| False \| False \| vpp
+| | ...
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${jumbo}=${False}
+| | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
+| | ... | ${auto_scale}=${True} | ${vnf}=vpp
+| | ...
+| | Import Library | resources.libraries.python.QemuManager | ${nodes}
+| | ... | WITH NAME | vnf_manager
+| | Run Keyword | vnf_manager.Construct VMs on all nodes
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
+| | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
+| | ... | auto_scale=${auto_scale} | vnf=${vnf}
+| | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
+| | ... | cpu_count_int=${cpu_count_int} | rxq_count_int=${rxq_count_int}
+| | Run Keyword | vnf_manager.Start All VMs | pinning=${True}
+| | Run Keyword If | ${use_tuned_cfs} | vnf_manager.Set Scheduler All VMs
+| | All VPP Interfaces Ready Wait | ${nodes}
+| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
+
 | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | [Documentation]
 | | ... | Start QEMU guest with two vhost-user interfaces and interconnecting\
@@ -2382,8 +2421,8 @@
 | | | ${nf_cpus}= | Create network function CPU list | ${dut}
 | | | ... | chains=${1} | nodeness=${vm_count} | chain_id=${1}
 | | | ... | node_id=${number} | auto_scale=${True}
-| | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
-| | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| | | ${sock1}= | Set Variable | /var/run/vpp/sock-${number}-1
+| | | ${sock2}= | Set Variable | /var/run/vpp/sock-${number}-2
 | | | ${vm}=
 | | | ... | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | | ... | ${dut} | ${sock1} | ${sock2} | ${TEST NAME}${dut}_VM${number}
@@ -2525,8 +2564,8 @@
 | | | ${nf_cpus}= | Create network function CPU list | ${dut}
 | | | ... | chains=${1} | nodeness=${vm_count} | chain_id=${1}
 | | | ... | node_id=${number} | auto_scale=${True}
-| | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
-| | | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| | | ${sock1}= | Set Variable | /var/run/vpp/sock-${number}-1
+| | | ${sock2}= | Set Variable | /var/run/vpp/sock-${number}-2
 | | | ${vm}=
 | | | ... | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
 | | | ... | ${dut} | ${sock1} | ${sock2} | ${TEST NAME}${dut}_VM${number}
@@ -2602,8 +2641,8 @@
 | | | ... | chains=${nf_chains} | nodeness=${nf_nodes} | chain_id=${nf_chain}
 | | | ... | node_id=${nf_node} | auto_scale=${False}
 | | | ${qemu_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
-| | | ${sock1}= | Set Variable | /tmp/sock-${qemu_id}-1
-| | | ${sock2}= | Set Variable | /tmp/sock-${qemu_id}-2
+| | | ${sock1}= | Set Variable | /var/run/vpp/sock-${qemu_id}-1
+| | | ${sock2}= | Set Variable | /var/run/vpp/sock-${qemu_id}-2
 | | | ${nf_name}= | Set Variable | ${dut}_VM${qemu_id}
 | | | ${prev_qemu_id}= | Evaluate | ${qemu_id} - ${1}
 | | | ${next_qemu_id}= | Evaluate | ${qemu_id} + ${1}
