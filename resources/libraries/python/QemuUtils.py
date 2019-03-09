@@ -13,7 +13,8 @@
 
 """QEMU utilities library."""
 
-from time import time, sleep
+from time import sleep
+from string import Template
 import json
 from re import match
 # Disable due to pylint bug
@@ -25,6 +26,8 @@ from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
+from resources.libraries.python.VPPUtil import VPPUtil
 
 __all__ = ["QemuOptions", "QemuUtils"]
 
@@ -32,11 +35,11 @@ __all__ = ["QemuOptions", "QemuUtils"]
 class QemuOptions(object):
     """QEMU option class.
 
-    The class can handle input parameters or parameters that acts as QEMU
-    command line parameters. The only variable is a list of dictionaries
-    where dictionaries can be added multiple times. This emulates the QEMU
-    behavior where one command line parameter can be used multiple times (1..N).
-    Example can be device or object (so it is not an issue to have one memory
+    The class can handle input parameters that acts as QEMU command line
+    parameters. The only variable is a list of dictionaries where dictionaries
+    can be added multiple times. This emulates the QEMU behavior where one
+    command line parameter can be used multiple times (1..N). Example can be
+    device or object (so it is not an issue to have one memory
     block of 2G and and second memory block of 512M but from other numa).
 
     Class does support get value or string representation that will return
@@ -53,40 +56,24 @@ class QemuOptions(object):
     def add(self, variable, value):
         """Add parameter to the list.
 
-        :param variable: QEMU parameter.
-        :param value: Parameter value.
+        :param variable: QEMU parameter name (without dash).
+        :param value: Paired value.
         :type variable: str
         :type value: str or int
         """
         self.variables.append({str(variable): value})
 
-    def get(self, variable):
-        """Get parameter of variable(s) from list that matches input value.
-
-        :param variable: QEMU parameter to get.
-        :type variable: str
-        :returns: List of values or value that matches input parameter.
-        :rtype: list or str
-        """
-        selected = [d[variable] for d in self.variables if variable in d]
-        return selected if len(selected) > 1 else selected[0]
-
-    def get_values(self):
-        """Get all values from dict items in list.
-
-        :returns: List of all dictionary values.
-        :rtype: list
-        """
-        return [d.values()[0] for d in self.variables]
-
     def __str__(self):
         """Return space separated string of key value pairs.
+
+        The format is suitable to be pasted to qemu command line.
 
         :returns: Space separated string of key value pairs.
         :rtype: str
         """
         return " ".join(["-{k} {v}".format(k=d.keys()[0], v=d.values()[0])
                          for d in self.variables])
+
 
 class QemuUtils(object):
     """QEMU utilities."""
@@ -125,31 +112,37 @@ class QemuUtils(object):
         if node:
             self.qemu_set_node(node)
         # Input Options.
-        self._opt = QemuOptions()
-        self._opt.add('qemu_id', qemu_id)
-        self._opt.add('bin_path', bin_path)
-        self._opt.add('mem', int(mem))
-        self._opt.add('smp', int(smp))
-        self._opt.add('img', img)
-        self._opt.add('vnf', vnf)
+        self._opt = dict()
+        self._opt['qemu_id'] = qemu_id
+        self._opt['bin_path'] = bin_path
+        self._opt['mem'] = int(mem)
+        self._opt['smp'] = int(smp)
+        self._opt['img'] = img
+        self._opt['vnf'] = vnf
         # Temporary files.
-        self._temp = QemuOptions()
-        self._temp.add('pid', '/var/run/qemu_{id}.pid'.format(id=qemu_id))
-        # Computed parameters for QEMU command line.
+        self._temp = dict()
+        self._temp['pidfile'] = '/var/run/qemu_{id}.pid'.format(id=qemu_id)
         if '/var/lib/vm/' in img:
-            self._opt.add('vm_type', 'nestedvm')
-            self._temp.add('qmp', '/var/run/qmp_{id}.sock'.format(id=qemu_id))
-            self._temp.add('qga', '/var/run/qga_{id}.sock'.format(id=qemu_id))
+            self._opt['vm_type'] = 'nestedvm'
+            self._temp['qmp'] = '/var/run/qmp_{id}.sock'.format(id=qemu_id)
+            self._temp['qga'] = '/var/run/qga_{id}.sock'.format(id=qemu_id)
+        elif '/opt/boot/vmlinuz' in img:
+            self._opt['vm_type'] = 'kernelvm'
+            self._temp['log'] = '/tmp/serial_{id}.log'.format(id=qemu_id)
+            self._temp['ini'] = '/etc/vm_init_{id}.conf'.format(id=qemu_id)
         else:
             raise RuntimeError('QEMU: Unknown VM image option!')
+        # Computed parameters for QEMU command line.
         self._params = QemuOptions()
         self.add_params()
 
     def add_params(self):
         """Set QEMU command line parameters."""
         self.add_default_params()
-        if self._opt.get('vm_type') == 'nestedvm':
+        if self._opt.get('vm_type', '') == 'nestedvm':
             self.add_nestedvm_params()
+        elif self._opt.get('vm_type', '') == 'kernelvm':
+            self.add_kernelvm_params()
         else:
             raise RuntimeError('QEMU: Unsupported VM type!')
 
@@ -164,15 +157,15 @@ class QemuUtils(object):
         self._params.add('display', 'none')
         self._params.add('vga', 'none')
         self._params.add('enable-kvm', '')
-        self._params.add('pidfile', '{pid}'.
-                         format(pid=self._temp.get('pid')))
+        self._params.add('pidfile', '{pidfile}'.
+                         format(pidfile=self._temp.get('pidfile')))
         self._params.add('cpu', 'host')
         self._params.add('machine', 'pc,accel=kvm,usb=off,mem-merge=off')
         self._params.add('smp', '{smp},sockets=1,cores={smp},threads=1'.
                          format(smp=self._opt.get('smp')))
         self._params.add('object',
                          'memory-backend-file,id=mem,size={mem}M,'
-                         'mem-path=/mnt/huge,share=on'.
+                         'mem-path=/dev/hugepages,share=on'.
                          format(mem=self._opt.get('mem')))
         self._params.add('m', '{mem}M'.
                          format(mem=self._opt.get('mem')))
@@ -205,6 +198,98 @@ class QemuUtils(object):
                          format(qga=self._temp.get('qga')))
         self._params.add('device', 'isa-serial,chardev=qga0')
 
+    def add_kernelvm_params(self):
+        """Set KernelVM QEMU parameters."""
+        self._params.add('chardev', 'file,id=char0,path={log}'.
+                         format(log=self._temp.get('log')))
+        self._params.add('device', 'isa-serial,chardev=char0')
+        self._params.add('fsdev', 'local,id=root9p,path=/,security_model=none')
+        self._params.add('device',
+                         'virtio-9p-pci,fsdev=root9p,mount_tag=/dev/root')
+        self._params.add('kernel', '$(readlink -m {img}* | tail -1)'.
+                         format(img=self._opt.get('img')))
+        self._params.add('append',
+                         '"ro rootfstype=9p rootflags=trans=virtio '
+                         'console=ttyS0 tsc=reliable hugepages=256 '
+                         'init={init}"'.format(init=self._temp.get('ini')))
+
+    def create_kernelvm_config_vpp(self, **kwargs):
+        """Create QEMU VPP config files.
+
+        :param kwargs: Key-value pairs to replace content of VPP configuration
+            file.
+        :type kwargs: dict
+        """
+        startup = ('/etc/vpp/vm_startup_{id}.conf'.
+                   format(id=self._opt.get('qemu_id')))
+        running = ('/etc/vpp/vm_running_{id}.exec'.
+                   format(id=self._opt.get('qemu_id')))
+
+        self._temp['startup'] = startup
+        self._temp['running'] = running
+        self._opt['vnf_bin'] = ('/usr/bin/vpp -c {startup}'.
+                                format(startup=startup))
+
+        # Create VPP startup configuration.
+        vpp_config = VppConfigGenerator()
+        vpp_config.set_node(self._node)
+        vpp_config.add_unix_nodaemon()
+        vpp_config.add_unix_cli_listen()
+        vpp_config.add_unix_exec(running)
+        vpp_config.add_cpu_main_core('0')
+        vpp_config.add_cpu_corelist_workers('1-{smp}'.
+                                            format(smp=self._opt.get('smp')-1))
+        vpp_config.add_dpdk_dev('0000:00:06.0', '0000:00:07.0')
+        vpp_config.add_dpdk_log_level('debug')
+        vpp_config.add_dpdk_no_tx_checksum_offload()
+        vpp_config.add_dpdk_no_multi_seg()
+        vpp_config.add_plugin('disable', 'default')
+        vpp_config.add_plugin('enable', 'dpdk_plugin.so')
+        vpp_config.apply_config(startup, restart_vpp=False)
+
+        # Create VPP running configuration.
+        template = '{res}/{tpl}.exec'.format(res=Constants.RESOURCES_TPL_VM,
+                                             tpl=self._opt.get('vnf'))
+        exec_cmd_no_error(self._node, 'rm -f {running}'.format(running=running),
+                          sudo=True)
+
+        with open(template, 'r') as src_file:
+            src = Template(src_file.read())
+            exec_cmd_no_error(self._node, "echo '{out}' | sudo tee {running}".
+                              format(out=src.safe_substitute(**kwargs),
+                                     running=running))
+
+    def create_kernelvm_init(self, **kwargs):
+        """Create QEMU init script.
+
+        :param kwargs: Key-value pairs to replace content of init startup file.
+        :type kwargs: dict
+        """
+        template = '{res}/init.sh'.format(res=Constants.RESOURCES_TPL_VM)
+        init = self._temp.get('ini')
+        exec_cmd_no_error(self._node, 'rm -f {init}'.format(init=init),
+                          sudo=True)
+
+        with open(template, 'r') as src_file:
+            src = Template(src_file.read())
+            exec_cmd_no_error(self._node, "echo '{out}' | sudo tee {init}".
+                              format(out=src.safe_substitute(**kwargs),
+                                     init=init))
+            exec_cmd_no_error(self._node, "chmod +x {init}".
+                              format(init=init), sudo=True)
+
+    def configure_kernelvm_vnf(self, **kwargs):
+        """Create KernelVM VNF configurations.
+
+        :param kwargs: Key-value pairs for templating configs.
+        :type kwargs: dict
+        """
+        if 'vpp' in self._opt.get('vnf'):
+            self.create_kernelvm_config_vpp(**kwargs)
+        else:
+            raise RuntimeError('QEMU: Unsupported VNF!')
+        self.create_kernelvm_init(vnf_bin=self._opt.get('vnf_bin'))
+
     def qemu_set_node(self, node):
         """Set node to run QEMU on.
 
@@ -224,8 +309,8 @@ class QemuUtils(object):
         :returns: List of QEMU CPU pids.
         :rtype: list of str
         """
-        command = ("grep -rwl 'CPU' /proc/$(sudo cat {pid})/task/*/comm ".
-                   format(pid=self._temp.get('pid')))
+        command = ("grep -rwl 'CPU' /proc/$(sudo cat {pidfile})/task/*/comm ".
+                   format(pidfile=self._temp.get('pidfile')))
         command += (r"| xargs dirname | sed -e 's/\/.*\///g'")
 
         stdout, _ = exec_cmd_no_error(self._node, command)
@@ -306,10 +391,12 @@ class QemuUtils(object):
         mbuf = 'on,host_mtu=9200'
         self._params.add('device',
                          'virtio-net-pci,netdev=vhost{vhost},'
-                         'mac={mac},mq=on,vectors={vectors},csum=off,gso=off,'
+                         'mac={mac},bus=pci.0,addr={addr}.0,mq=on,'
+                         'vectors={vectors},csum=off,gso=off,'
                          'guest_tso4=off,guest_tso6=off,guest_ecn=off,'
                          'mrg_rxbuf={mbuf},{queue_size}'.
-                         format(vhost=self._vhost_id, mac=mac,
+                         format(addr=self._vhost_id+5,
+                                vhost=self._vhost_id, mac=mac,
                                 mbuf=mbuf if jumbo_frames else 'off',
                                 queue_size=queue_size,
                                 vectors=(2 * queues + 2)))
@@ -319,7 +406,7 @@ class QemuUtils(object):
         if_name = 'vhost{vhost}'.format(vhost=self._vhost_id)
         self._vm_info['interfaces'][if_name] = if_data
         # Add socket to temporary file list.
-        self._temp.add(if_name, socket)
+        self._temp[if_name] = socket
 
     def _qemu_qmp_exec(self, cmd):
         """Execute QMP command.
@@ -378,20 +465,26 @@ class QemuUtils(object):
 
         return json.loads(stdout.split('\n', 1)[0]) if stdout else dict()
 
-    def _wait_until_vm_boot(self, timeout=60):
-        """Wait until QEMU VM is booted.
+    def _wait_until_vm_boot(self):
+        """Wait until QEMU with NestedVM is booted."""
+        if self._opt.get('vm_type') == 'nestedvm':
+            self._wait_until_nestedvm_boot()
+            self._update_vm_interfaces()
+        elif self._opt.get('vm_type') == 'kernelvm':
+            self._wait_until_kernelvm_boot()
+        else:
+            raise RuntimeError('QEMU: Unsupported VM type!')
+
+    def _wait_until_nestedvm_boot(self, retries=12):
+        """Wait until QEMU with NestedVM is booted.
 
         First try to flush qga until there is output.
         Then ping QEMU guest agent each 5s until VM booted or timeout.
 
-        :param timeout: Waiting timeout in seconds (optional, default 60s).
-        :type timeout: int
+        :param retries: Number of retries with 5s between trials.
+        :type retries: int
         """
-        start = time()
-        while True:
-            if time() - start > timeout:
-                raise RuntimeError('timeout, VM not booted on {host}'.
-                                   format(host=self._node['host']))
+        for _ in range(retries):
             out = None
             try:
                 out = self._qemu_qga_flush()
@@ -403,10 +496,10 @@ class QemuUtils(object):
                 sleep(5)
             else:
                 break
-        while True:
-            if time() - start > timeout:
-                raise RuntimeError('timeout, VM not booted on {host}'.
-                                   format(host=self._node['host']))
+        else:
+            raise RuntimeError('QEMU: Timeout, VM not booted on {host}!'.
+                               format(host=self._node['host']))
+        for _ in range(retries):
             out = None
             try:
                 out = self._qemu_qga_exec('guest-ping')
@@ -427,8 +520,29 @@ class QemuUtils(object):
                 # again until timeout.
                 logger.trace('QGA guest-ping unexpected output {out}'.
                              format(out=out))
+        else:
+            raise RuntimeError('QEMU: Timeout, VM not booted on {host}!'.
+                               format(host=self._node['host']))
 
-        logger.trace('VM booted on {host}'.format(host=self._node['host']))
+    def _wait_until_kernelvm_boot(self, retries=60):
+        """Wait until QEMU KernelVM is booted.
+
+        :param retries: Number of retries.
+        :type retries: int
+        """
+        for retry in range(retries):
+            command = ('tail -1 {log}'.format(log=self._temp.get('log')))
+            stdout = None
+            try:
+                stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
+                sleep(1)
+            except RuntimeError:
+                pass
+            if VPPUtil.vpp_show_version(self._node) in stdout:
+                break
+        else:
+            raise RuntimeError('QEMU: Timeout, VM not booted on {host}!'.
+                               format(host=self._node['host']))
 
     def _update_vm_interfaces(self):
         """Update interface names in VM node dict."""
@@ -462,21 +576,19 @@ class QemuUtils(object):
         :returns: VM node info.
         :rtype: dict
         """
-        DUTSetup.check_huge_page(self._node, '/mnt/huge', self._opt.get('mem'))
-
         command = ('{bin_path}/qemu-system-{arch} {params}'.
                    format(bin_path=self._opt.get('bin_path'),
                           arch=Topology.get_node_arch(self._node),
                           params=self._params))
         message = ('QEMU: Start failed on {host}!'.
                    format(host=self._node['host']))
-
         try:
+            DUTSetup.check_huge_page(self._node, '/dev/hugepages',
+                                     self._opt.get('mem'))
+
             exec_cmd_no_error(self._node, command, timeout=300, sudo=True,
                               message=message)
             self._wait_until_vm_boot()
-            # Update interface names in VM node dict.
-            self._update_vm_interfaces()
         except RuntimeError:
             self.qemu_kill_all()
             raise
@@ -484,12 +596,12 @@ class QemuUtils(object):
 
     def qemu_kill(self):
         """Kill qemu process."""
-        exec_cmd(self._node, 'chmod +r {pid}'.
-                 format(pid=self._temp.get('pid')), sudo=True)
-        exec_cmd(self._node, 'kill -SIGKILL $(cat {pid})'.
-                 format(pid=self._temp.get('pid')), sudo=True)
+        exec_cmd(self._node, 'chmod +r {pidfile}'.
+                 format(pidfile=self._temp.get('pidfile')), sudo=True)
+        exec_cmd(self._node, 'kill -SIGKILL $(cat {pidfile})'.
+                 format(pidfile=self._temp.get('pidfile')), sudo=True)
 
-        for value in self._temp.get_values():
+        for value in self._temp.values():
             exec_cmd(self._node, 'rm -f {value}'.format(value=value), sudo=True)
 
     def qemu_kill_all(self, node=None):
@@ -502,7 +614,7 @@ class QemuUtils(object):
             self.qemu_set_node(node)
         exec_cmd(self._node, 'pkill -SIGKILL qemu', sudo=True)
 
-        for value in self._temp.get_values():
+        for value in self._temp.values():
             exec_cmd(self._node, 'rm -f {value}'.format(value=value), sudo=True)
 
     def qemu_version(self, version=None):
