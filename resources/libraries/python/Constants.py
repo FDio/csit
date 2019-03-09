@@ -46,6 +46,12 @@ class Constants(object):
     # QEMU install directory
     QEMU_INSTALL_DIR = '/opt/qemu-2.11.2'
 
+    # QEMU performance test VM kernel image path
+    QEMU_PERF_VM_KERNEL = '/opt/boot/vmlinuz'
+
+    # QEMU performance test VM nested image path
+    QEMU_PERF_VM_IMAGE = '/var/lib/vm/csit-nested-1.7.img'
+
     # TRex install version
     TREX_INSTALL_VERSION = '2.35'
 
@@ -54,6 +60,9 @@ class Constants(object):
 
     # Kubernetes templates location
     RESOURCES_TPL_K8S = 'resources/templates/kubernetes'
+
+    # KernelVM templates location
+    RESOURCES_TPL_VM = 'resources/templates/vm'
 
     # Honeycomb directory location at topology nodes:
     REMOTE_HC_DIR = '/opt/honeycomb'
