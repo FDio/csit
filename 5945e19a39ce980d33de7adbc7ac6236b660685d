@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f1d12fa_6376913c",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-11T11:33:51Z",
+      "side": 1,
+      "message": "Figure numbering?",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 6
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d2551bf_6a16be41",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-11T11:33:51Z",
+      "side": 1,
+      "message": "N",
+      "range": {
+        "startLine": 406,
+        "startChar": 40,
+        "endLine": 406,
+        "endChar": 43
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb506eb3_5b0436bc",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-11T11:33:51Z",
+      "side": 1,
+      "message": "M    ...  ...   ...   ...   ...   M*N",
+      "range": {
+        "startLine": 412,
+        "startChar": 4,
+        "endLine": 412,
+        "endChar": 7
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
