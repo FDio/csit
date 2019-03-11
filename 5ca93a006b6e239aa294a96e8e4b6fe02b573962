@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "00b7ab2e_a6228d42",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T09:49:36Z",
+      "side": 1,
+      "message": "If I recall correctly, *_dump commands can produce unknown number of *_details responses (which do not contain retval), so the recommended usage is to follow any *_dump with a dummy command (which returns *_reply with retval), so that when the client sees the dummy reply, it knows it has seen all the *_details.\nIt is in VPP documentation somewhere, together with the dummy command to use.\n\nIn long term we can add support to automatically insert the dummy command and put all the *_details together for easier parsing.\n\nIn short term, verify_reply could return nothing, and check retval of the _last_ command.",
+      "parentUuid": "bf7747fe_c3e4d6bf",
+      "range": {
+        "startLine": 282,
+        "startChar": 14,
+        "endLine": 282,
+        "endChar": 19
+      },
+      "revId": "5ca93a006b6e239aa294a96e8e4b6fe02b573962",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b723442_aa798dd8",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 1
