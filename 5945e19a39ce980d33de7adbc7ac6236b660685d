@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "cd032fb5_2031e235",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-11T20:38:17Z",
+      "side": 1,
+      "message": "Sticking to \"discover deterministic usage range\" as the target.",
+      "parentUuid": "e00c8f06_86228d29",
+      "range": {
+        "startLine": 64,
+        "startChar": 23,
+        "endLine": 64,
+        "endChar": 48
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b903918_a600ea79",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 6
@@ -402,6 +426,30 @@
     },
     {
       "key": {
+        "uuid": "ba8c744d_95d11a44",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-11T20:38:17Z",
+      "side": 1,
+      "message": "Addressed by separating out Requirements for host data-plane.",
+      "parentUuid": "a62d2d62_f2f28501",
+      "range": {
+        "startLine": 250,
+        "startChar": 20,
+        "endLine": 250,
+        "endChar": 38
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d2551bf_6a16be41",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 6
@@ -425,6 +473,30 @@
     },
     {
       "key": {
+        "uuid": "b86de887_4a06125c",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-11T20:38:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d2551bf_6a16be41",
+      "range": {
+        "startLine": 406,
+        "startChar": 40,
+        "endLine": 406,
+        "endChar": 43
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb506eb3_5b0436bc",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 6
@@ -436,6 +508,30 @@
       "writtenOn": "2019-03-11T11:33:51Z",
       "side": 1,
       "message": "M    ...  ...   ...   ...   ...   M*N",
+      "range": {
+        "startLine": 412,
+        "startChar": 4,
+        "endLine": 412,
+        "endChar": 7
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0c35927e_db703f0d",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-11T20:38:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb506eb3_5b0436bc",
       "range": {
         "startLine": 412,
         "startChar": 4,
@@ -613,6 +709,30 @@
     },
     {
       "key": {
+        "uuid": "8031837b_b4cc5c0f",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-11T20:38:17Z",
+      "side": 1,
+      "message": "cleaned up (patch #6) in lines 76 and 102, always using \"NF application\".",
+      "parentUuid": "2f26df89_6c84605e",
+      "range": {
+        "startLine": 493,
+        "startChar": 2,
+        "endLine": 493,
+        "endChar": 13
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b3b61a2_646af823",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 6
@@ -684,6 +804,30 @@
     },
     {
       "key": {
+        "uuid": "86d15edf_16fc97da",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-11T20:38:17Z",
+      "side": 1,
+      "message": "The resource unit described in the draft is a physical core per line 453 (patch #6). Sticking to that.",
+      "parentUuid": "10fb83cd_6d0cbf7b",
+      "range": {
+        "startLine": 504,
+        "startChar": 47,
+        "endLine": 504,
+        "endChar": 55
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7e618d23_b535c150",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 6
@@ -707,6 +851,30 @@
     },
     {
       "key": {
+        "uuid": "3076f7db_1cb3fec2",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-11T20:38:17Z",
+      "side": 1,
+      "message": "Removing TODO, as references to existing and emerging network benchmarking standards are listed in (patch #6) line 424. Focus of this draft is SUT  configuration.",
+      "parentUuid": "7e618d23_b535c150",
+      "range": {
+        "startLine": 574,
+        "startChar": 0,
+        "endLine": 574,
+        "endChar": 18
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce99b27c_6adacf61",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 6
@@ -718,6 +886,30 @@
       "writtenOn": "2019-03-11T12:59:07Z",
       "side": 1,
       "message": "Now mentioned in line 468, but should be also mentioned in context of https://gerrit.fd.io/r/#/c/17131/6/docs/ietf/draft-mkonstan-nf-service-density-00.md@180",
+      "range": {
+        "startLine": 583,
+        "startChar": 28,
+        "endLine": 583,
+        "endChar": 39
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1eb7a2d2_986feb65",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-11T20:38:17Z",
+      "side": 1,
+      "message": "Don\u0027t think it applies here. Leaving RSS text as per (pacth #6)  line 468.",
+      "parentUuid": "ce99b27c_6adacf61",
       "range": {
         "startLine": 583,
         "startChar": 28,
