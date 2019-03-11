@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c1fb88f_673c1229",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T18:05:40Z",
+      "side": 1,
+      "message": "The output is exactly as Wolframalpha offered. Log is natural logarithm, E^ is exponential function, multiplication is not explicitly marked.",
+      "range": {
+        "startLine": 901,
+        "startChar": 2,
+        "endLine": 901,
+        "endChar": 3
+      },
+      "revId": "b40455a965b6d88c4c05d02f4accd30b8bf095ef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
