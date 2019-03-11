@@ -192,6 +192,30 @@
     },
     {
       "key": {
+        "uuid": "be8a8ffc_2c41e0b2",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-11T11:50:04Z",
+      "side": 1,
+      "message": "Link to doc: https://wiki.fd.io/view/VPP/Python_API#Python_binding_for_the_VPP_API",
+      "parentUuid": "00b7ab2e_a6228d42",
+      "range": {
+        "startLine": 282,
+        "startChar": 14,
+        "endLine": 282,
+        "endChar": 19
+      },
+      "revId": "5ca93a006b6e239aa294a96e8e4b6fe02b573962",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b723442_aa798dd8",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 1
