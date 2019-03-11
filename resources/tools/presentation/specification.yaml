@@ -133,49 +133,51 @@
 
     plot-vpp-throughput-latency-3n-hsw:
       csit-vpp-perf-verify-1901-3n-hsw:
-        - 10  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 44  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 61  # NDRPDR LB
-        - 62  # NDRPDR LB
-        - 63  # NDRPDR LB
-        - 64  # NDRPDR LB
-        - 65  # NDRPDR LB
-        - 66  # NDRPDR LB
-        - 67  # NDRPDR LB
-        - 69  # NDRPDR LB
-        - 70  # NDRPDR LB
-        - 71  # NDRPDR LB
+#        - 10  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 40  # NDRPDR sel
+#        - 42  # NDRPDR sel
+#        - 44  # NDRPDR sel
+#        - 46  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 48  # NDRPDR sel
+#        - 61  # NDRPDR LB
+#        - 62  # NDRPDR LB
+#        - 63  # NDRPDR LB
+#        - 64  # NDRPDR LB
+#        - 65  # NDRPDR LB
+#        - 66  # NDRPDR LB
+#        - 67  # NDRPDR LB
+#        - 69  # NDRPDR LB
+#        - 70  # NDRPDR LB
+#        - 71  # NDRPDR LB
+        - 72  # 1901.1 NDRPDR sel
 
     plot-throughput-speedup-analysis-3n-hsw:
       csit-vpp-perf-verify-1901-3n-hsw:
-        - 10  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 44  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 61  # NDRPDR LB
-        - 62  # NDRPDR LB
-        - 63  # NDRPDR LB
-        - 64  # NDRPDR LB
-        - 65  # NDRPDR LB
-        - 66  # NDRPDR LB
-        - 67  # NDRPDR LB
-        - 69  # NDRPDR LB
-        - 70  # NDRPDR LB
-        - 71  # NDRPDR LB
+#        - 10  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 40  # NDRPDR sel
+#        - 42  # NDRPDR sel
+#        - 44  # NDRPDR sel
+#        - 46  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 48  # NDRPDR sel
+#        - 61  # NDRPDR LB
+#        - 62  # NDRPDR LB
+#        - 63  # NDRPDR LB
+#        - 64  # NDRPDR LB
+#        - 65  # NDRPDR LB
+#        - 66  # NDRPDR LB
+#        - 67  # NDRPDR LB
+#        - 69  # NDRPDR LB
+#        - 70  # NDRPDR LB
+#        - 71  # NDRPDR LB
+        - 72  # 1901.1 NDRPDR sel
 
     plot-vpp-http-server-performance:
       # TODO: Replace with new data
@@ -235,49 +237,51 @@
 
     plot-vpp-throughput-latency-3n-skx:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 28  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 33  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 54  # NDRPDR LB
-        - 57  # NDRPDR LB
-        - 58  # NDRPDR LB
-        - 59  # NDRPDR LB
-        - 60  # NDRPDR LB
-        - 63  # NDRPDR LB
-        - 64  # NDRPDR LB
-        - 65  # NDRPDR LB
-        - 66  # NDRPDR LB
-        - 67  # NDRPDR LB
+#        - 18  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 20  # NDRPDR sel
+#        - 28  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 33  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 38  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 48  # NDRPDR sel
+#        - 54  # NDRPDR LB
+#        - 57  # NDRPDR LB
+#        - 58  # NDRPDR LB
+#        - 59  # NDRPDR LB
+#        - 60  # NDRPDR LB
+#        - 63  # NDRPDR LB
+#        - 64  # NDRPDR LB
+#        - 65  # NDRPDR LB
+#        - 66  # NDRPDR LB
+#        - 67  # NDRPDR LB
+        - 68  # 1901.1 NDRPDR sel
 
     plot-throughput-speedup-analysis-3n-skx:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 28  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 33  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 54  # NDRPDR LB
-        - 57  # NDRPDR LB
-        - 58  # NDRPDR LB
-        - 59  # NDRPDR LB
-        - 60  # NDRPDR LB
-        - 63  # NDRPDR LB
-        - 64  # NDRPDR LB
-        - 65  # NDRPDR LB
-        - 66  # NDRPDR LB
-        - 67  # NDRPDR LB
+#        - 18  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 20  # NDRPDR sel
+#        - 28  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 33  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 38  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 48  # NDRPDR sel
+#        - 54  # NDRPDR LB
+#        - 57  # NDRPDR LB
+#        - 58  # NDRPDR LB
+#        - 59  # NDRPDR LB
+#        - 60  # NDRPDR LB
+#        - 63  # NDRPDR LB
+#        - 64  # NDRPDR LB
+#        - 65  # NDRPDR LB
+#        - 66  # NDRPDR LB
+#        - 67  # NDRPDR LB
+        - 68  # 1901.1 NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-skx:
       csit-dpdk-perf-verify-1901-3n-skx:
@@ -296,36 +300,37 @@
 
     plot-vpp-throughput-latency-2n-skx:
       csit-vpp-perf-verify-1901-2n-skx:
-        - 5   # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 34  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 43  # NDRPDR sel
+#        - 5   # NDRPDR sel
+#        - 12  # NDRPDR sel
+#        - 13  # NDRPDR sel
+#        - 21  # NDRPDR sel
+#        - 23  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 34  # NDRPDR sel
+#        - 40  # NDRPDR sel
+#        - 42  # NDRPDR sel
+#        - 43  # NDRPDR sel
+        - 64  # 1901.1 NDRPDR sel
 
     plot-throughput-speedup-analysis-2n-skx:
       csit-vpp-perf-verify-1901-2n-skx:
-        - 5   # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 34  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 43  # NDRPDR sel
+#        - 5   # NDRPDR sel
+#        - 12  # NDRPDR sel
+#        - 13  # NDRPDR sel
+#        - 21  # NDRPDR sel
+#        - 23  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 34  # NDRPDR sel
+#        - 40  # NDRPDR sel
+#        - 42  # NDRPDR sel
+#        - 43  # NDRPDR sel
+        - 64  # 1901.1 NDRPDR sel
 
     plot-vpp-soak-2n-skx:
       csit-vpp-perf-verify-1901-2n-skx:
         - 45  # SOAK sel
 
     plot-vpp-nfv-2n-skx:
-      # TODO: Add new data
       csit-vpp-perf-verify-1901-2n-skx:
         - 28  # NFV NDRPDR
         - 29  # NFV NDRPDR
@@ -334,7 +339,6 @@
         - 46  # NFV NDRPDR
 
     plot-vpp-nfv-2n-skx-mrr:
-      # TODO: Add new data
       csit-vpp-perf-verify-1901-2n-skx:
         - 24  # NFV MRR
         - 26  # NFV MRR
@@ -370,57 +374,65 @@
 
     vpp-nic-comparison-3n-hsw:
       csit-vpp-perf-verify-1901-3n-hsw:
-        - 10  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 44  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 61  # NDRPDR LB
-        - 62  # NDRPDR LB
-        - 63  # NDRPDR LB
-        - 64  # NDRPDR LB
-        - 65  # NDRPDR LB
-        - 66  # NDRPDR LB
-        - 67  # NDRPDR LB
-        - 69  # NDRPDR LB
-        - 70  # NDRPDR LB
-        - 71  # NDRPDR LB
+#        - 10  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 40  # NDRPDR sel
+#        - 42  # NDRPDR sel
+#        - 44  # NDRPDR sel
+#        - 46  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 48  # NDRPDR sel
+#        - 61  # NDRPDR LB
+#        - 62  # NDRPDR LB
+#        - 63  # NDRPDR LB
+#        - 64  # NDRPDR LB
+#        - 65  # NDRPDR LB
+#        - 66  # NDRPDR LB
+#        - 67  # NDRPDR LB
+#        - 69  # NDRPDR LB
+#        - 70  # NDRPDR LB
+#        - 71  # NDRPDR LB
+        - 72  # 1901.1 NDRPDR sel
 
     vpp-nic-comparison-3n-skx:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 28  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 33  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 54  # NDRPDR LB
-        - 57  # NDRPDR LB
-        - 58  # NDRPDR LB
-        - 59  # NDRPDR LB
-        - 60  # NDRPDR LB
+#        - 18  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 20  # NDRPDR sel
+#        - 28  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 33  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 38  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 48  # NDRPDR sel
+#        - 54  # NDRPDR LB
+#        - 57  # NDRPDR LB
+#        - 58  # NDRPDR LB
+#        - 59  # NDRPDR LB
+#        - 60  # NDRPDR LB
+#        - 63  # NDRPDR LB
+#        - 64  # NDRPDR LB
+#        - 65  # NDRPDR LB
+#        - 66  # NDRPDR LB
+#        - 67  # NDRPDR LB
+        - 68  # 1901.1 NDRPDR sel
 
     vpp-nic-comparison-2n-skx:
       csit-vpp-perf-verify-1901-2n-skx:
-        - 5   # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 34  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 43  # NDRPDR sel
+#        - 5   # NDRPDR sel
+#        - 12  # NDRPDR sel
+#        - 13  # NDRPDR sel
+#        - 21  # NDRPDR sel
+#        - 23  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 34  # NDRPDR sel
+#        - 40  # NDRPDR sel
+#        - 42  # NDRPDR sel
+#        - 43  # NDRPDR sel
+        - 64  # 1901.1 NDRPDR sel
 
     vpp-nic-comparison-3n-hsw-mrr:
       csit-vpp-perf-verify-1901-3n-hsw:
@@ -428,58 +440,67 @@
 
     vpp-nic-comparison-3n-skx-mrr:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 32  # MRR sel
+#        - 32  # MRR sel
+        - 69  # 1901.1 MRR sel
 
     vpp-nic-comparison-2n-skx-mrr:
       csit-vpp-perf-verify-1901-2n-skx:
-        - 22  # MRR sel
+#        - 22  # MRR sel
+        - 65  # 1901.1 MRR sel
 
     # Results
 
     vpp-perf-results-3n-hsw:
       csit-vpp-perf-verify-1901-3n-hsw:
-        - 38  # NDRPDR full
-        - 43  # NDRPDR full
-        - 45  # NDRPDR full
-        - 49  # NDRPDR full
+#        - 38  # NDRPDR full
+#        - 43  # NDRPDR full
+#        - 45  # NDRPDR full
+#        - 49  # NDRPDR full
+        - 72  # 1901.1 NDRPDR sel
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 37  # NDRPDR full
-        - 39  # NDRPDR full
-        - 40  # NDRPDR full
-        - 49  # NDRPDR full
+#        - 37  # NDRPDR full
+#        - 39  # NDRPDR full
+#        - 40  # NDRPDR full
+#        - 49  # NDRPDR full
+        - 68  # 1901.1 NDRPDR sel
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-1901-2n-skx:
-        - 25  # NDRPDR full
-        - 30  # NDRPDR full
-        - 33  # NDRPDR full
-        - 44  # NDRPDR full
+#        - 25  # NDRPDR full
+#        - 30  # NDRPDR full
+#        - 33  # NDRPDR full
+#        - 44  # NDRPDR full
+        - 64  # 1901.1 NDRPDR sel
 
     vpp-mrr-results-3n-hsw:
       csit-vpp-perf-verify-1901-3n-hsw:
-        - 35  # MRR sel
+#        - 35  # MRR sel
+        - 73  # 1901.1 MRR sel
+        - 74  # 1901.1 MRR sel
 
     vpp-mrr-results-3n-skx:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 32  # MRR sel
+#        - 32  # MRR sel
+        - 69  # 1901.1 MRR sel
 
     vpp-mrr-results-2n-skx:
       csit-vpp-perf-verify-1901-2n-skx:
-        - 22  # MRR sel
+#        - 22  # MRR sel
+        - 65  # 1901.1 MRR sel
 
     vpp-func-results-ubuntu:
       csit-vpp-functional-1901-ubuntu1604-virl:
-        - 48
+        - 173
 
     vpp-func-results-centos:
       csit-vpp-functional-1901-centos7-virl:
-        - 50
+        - 175
 
     vpp-device-results-ubuntu:
       csit-vpp-device-1901-ubuntu1804-1n-skx:
-        - 49
+        - 175
 
     # VPP Ligato
     ligato-perf-results-3n-hsw:
@@ -548,26 +569,27 @@
         - 42  # NDRPDR sel
     vpp-performance-changes-3n-hsw-cmp:
       csit-vpp-perf-verify-1901-3n-hsw:
-        - 10  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 44  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 61  # NDRPDR LB
-        - 62  # NDRPDR LB
-        - 63  # NDRPDR LB
-        - 64  # NDRPDR LB
-        - 65  # NDRPDR LB
-        - 66  # NDRPDR LB
-        - 67  # NDRPDR LB
-        - 69  # NDRPDR LB
-        - 70  # NDRPDR LB
-        - 71  # NDRPDR LB
+#        - 10  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 40  # NDRPDR sel
+#        - 42  # NDRPDR sel
+#        - 44  # NDRPDR sel
+#        - 46  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 48  # NDRPDR sel
+#        - 61  # NDRPDR LB
+#        - 62  # NDRPDR LB
+#        - 63  # NDRPDR LB
+#        - 64  # NDRPDR LB
+#        - 65  # NDRPDR LB
+#        - 66  # NDRPDR LB
+#        - 67  # NDRPDR LB
+#        - 69  # NDRPDR LB
+#        - 70  # NDRPDR LB
+#        - 71  # NDRPDR LB
+        - 72  # 1901.1 NDRPDR sel
     vpp-performance-changes-3n-hsw:
       - "vpp-performance-changes-3n-hsw-h1"
       - "vpp-performance-changes-3n-hsw-ref"
@@ -599,26 +621,27 @@
         - 25  # NDRPDR sel
     vpp-performance-changes-3n-skx-cmp:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 28  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 33  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 54  # NDRPDR LB
-        - 57  # NDRPDR LB
-        - 58  # NDRPDR LB
-        - 59  # NDRPDR LB
-        - 60  # NDRPDR LB
-        - 63  # NDRPDR LB
-        - 64  # NDRPDR LB
-        - 65  # NDRPDR LB
-        - 66  # NDRPDR LB
-        - 67  # NDRPDR LB
+#        - 18  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 20  # NDRPDR sel
+#        - 28  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 33  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 38  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 48  # NDRPDR sel
+#        - 54  # NDRPDR LB
+#        - 57  # NDRPDR LB
+#        - 58  # NDRPDR LB
+#        - 59  # NDRPDR LB
+#        - 60  # NDRPDR LB
+#        - 63  # NDRPDR LB
+#        - 64  # NDRPDR LB
+#        - 65  # NDRPDR LB
+#        - 66  # NDRPDR LB
+#        - 67  # NDRPDR LB
+        - 68  # 1901.1 NDRPDR sel
     vpp-performance-changes-3n-skx:
       - "vpp-performance-changes-3n-skx-h1"
       - "vpp-performance-changes-3n-skx-ref"
@@ -650,16 +673,17 @@
         - 27  # NDRPDR sel
     vpp-performance-changes-2n-skx-cmp:
       csit-vpp-perf-verify-1901-2n-skx:
-        - 5   # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 34  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 43  # NDRPDR sel
+#        - 5   # NDRPDR sel
+#        - 12  # NDRPDR sel
+#        - 13  # NDRPDR sel
+#        - 21  # NDRPDR sel
+#        - 23  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 34  # NDRPDR sel
+#        - 40  # NDRPDR sel
+#        - 42  # NDRPDR sel
+#        - 43  # NDRPDR sel
+        - 64  # 1901.1 NDRPDR sel
     vpp-performance-changes-2n-skx:
       - "vpp-performance-changes-2n-skx-h1"
       - "vpp-performance-changes-2n-skx-ref"
@@ -681,7 +705,9 @@
         - 9   # MRR sel
     vpp-performance-changes-3n-hsw-mrr-cmp:
       csit-vpp-perf-verify-1901-3n-hsw:
-        - 35  # MRR sel
+#        - 35  # MRR sel
+        - 73  # 1901.1 MRR sel
+        - 74  # 1901.1 MRR sel
     vpp-performance-changes-3n-hsw-mrr:
       - "vpp-performance-changes-3n-hsw-mrr-h1"
       - "vpp-performance-changes-3n-hsw-mrr-ref"
@@ -707,7 +733,8 @@
         - 13  # MRR sel
     vpp-performance-changes-3n-skx-mrr-cmp:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 32  # MRR sel
+#        - 32  # MRR sel
+        - 69  # 1901.1 MRR sel
     vpp-performance-changes-3n-skx-mrr:
       - "vpp-performance-changes-3n-skx-mrr-h1"
       - "vpp-performance-changes-3n-skx-mrr-ref"
@@ -733,7 +760,8 @@
         - 12  # MRR sel
     vpp-performance-changes-2n-skx-mrr-cmp:
       csit-vpp-perf-verify-1901-2n-skx:
-        - 22  # MRR sel
+#        - 22  # MRR sel
+        - 65  # 1901.1 MRR sel
     vpp-performance-changes-2n-skx-mrr:
       - "vpp-performance-changes-2n-skx-mrr-h1"
       - "vpp-performance-changes-2n-skx-mrr-ref"
@@ -853,58 +881,63 @@
 
     vpp-compare-testbeds-ref:
       csit-vpp-perf-verify-1901-3n-hsw:
-        - 10  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 44  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 61  # NDRPDR LB
-        - 62  # NDRPDR LB
-        - 63  # NDRPDR LB
-        - 64  # NDRPDR LB
-        - 65  # NDRPDR LB
-        - 66  # NDRPDR LB
-        - 67  # NDRPDR LB
-        - 69  # NDRPDR LB
-        - 70  # NDRPDR LB
-        - 71  # NDRPDR LB
+#        - 10  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 40  # NDRPDR sel
+#        - 42  # NDRPDR sel
+#        - 44  # NDRPDR sel
+#        - 46  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 48  # NDRPDR sel
+#        - 61  # NDRPDR LB
+#        - 62  # NDRPDR LB
+#        - 63  # NDRPDR LB
+#        - 64  # NDRPDR LB
+#        - 65  # NDRPDR LB
+#        - 66  # NDRPDR LB
+#        - 67  # NDRPDR LB
+#        - 69  # NDRPDR LB
+#        - 70  # NDRPDR LB
+#        - 71  # NDRPDR LB
+        - 72  # 1901.1 NDRPDR sel
     vpp-compare-testbeds-cmp:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 28  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 33  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 54  # NDRPDR LB
-        - 57  # NDRPDR LB
-        - 58  # NDRPDR LB
-        - 59  # NDRPDR LB
-        - 60  # NDRPDR LB
-        - 63  # NDRPDR LB
-        - 64  # NDRPDR LB
-        - 65  # NDRPDR LB
-        - 66  # NDRPDR LB
-        - 67  # NDRPDR LB
+#        - 18  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 20  # NDRPDR sel
+#        - 28  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 33  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 38  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 48  # NDRPDR sel
+#        - 54  # NDRPDR LB
+#        - 57  # NDRPDR LB
+#        - 58  # NDRPDR LB
+#        - 59  # NDRPDR LB
+#        - 60  # NDRPDR LB
+#        - 63  # NDRPDR LB
+#        - 64  # NDRPDR LB
+#        - 65  # NDRPDR LB
+#        - 66  # NDRPDR LB
+#        - 67  # NDRPDR LB
+        - 68  # 1901.1 NDRPDR sel
     vpp-compare-testbeds:
       - "vpp-compare-testbeds-ref"
       - "vpp-compare-testbeds-cmp"
 
     vpp-compare-testbeds-mrr-ref:
       csit-vpp-perf-verify-1901-3n-hsw:
-        - 35  # MRR sel
+#        - 35  # MRR sel
+        - 73  # 1901.1 MRR sel
+        - 74  # 1901.1 MRR sel
     vpp-compare-testbeds-mrr-cmp:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 32  # MRR sel
+#        - 32  # MRR sel
+        - 69  # 1901.1 MRR sel
     vpp-compare-testbeds-mrr:
       - "vpp-compare-testbeds-mrr-ref"
       - "vpp-compare-testbeds-mrr-cmp"
@@ -941,38 +974,52 @@
 
     vpp-compare-topologies-ref:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 28  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 33  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
+#        - 18  # NDRPDR sel
+#        - 19  # NDRPDR sel
+#        - 20  # NDRPDR sel
+#        - 28  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 33  # NDRPDR sel
+#        - 36  # NDRPDR sel
+#        - 38  # NDRPDR sel
+#        - 47  # NDRPDR sel
+#        - 48  # NDRPDR sel
+#        - 54  # NDRPDR LB
+#        - 57  # NDRPDR LB
+#        - 58  # NDRPDR LB
+#        - 59  # NDRPDR LB
+#        - 60  # NDRPDR LB
+#        - 63  # NDRPDR LB
+#        - 64  # NDRPDR LB
+#        - 65  # NDRPDR LB
+#        - 66  # NDRPDR LB
+#        - 67  # NDRPDR LB
+        - 68  # 1901.1 NDRPDR sel
     vpp-compare-topologies-cmp:
       csit-vpp-perf-verify-1901-2n-skx:
-        - 5   # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 34  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 43  # NDRPDR sel
+#        - 5   # NDRPDR sel
+#        - 12  # NDRPDR sel
+#        - 13  # NDRPDR sel
+#        - 21  # NDRPDR sel
+#        - 23  # NDRPDR sel
+#        - 31  # NDRPDR sel
+#        - 34  # NDRPDR sel
+#        - 40  # NDRPDR sel
+#        - 42  # NDRPDR sel
+#        - 43  # NDRPDR sel
+        - 64  # 1901.1 NDRPDR sel
     vpp-compare-topologies:
       - "vpp-compare-topologies-ref"
       - "vpp-compare-topologies-cmp"
 
     vpp-compare-topologies-mrr-ref:
       csit-vpp-perf-verify-1901-3n-skx:
-        - 32  # MRR sel
+#        - 32  # MRR sel
+        - 69  # 1901.1 MRR sel
     vpp-compare-topologies-mrr-cmp:
       csit-vpp-perf-verify-1901-2n-skx:
-        - 22  # MRR sel
+#        - 22  # MRR sel
+        - 65  # 1901.1 MRR sel
     vpp-compare-topologies-mrr:
       - "vpp-compare-topologies-mrr-ref"
       - "vpp-compare-topologies-mrr-cmp"
@@ -1463,31 +1510,34 @@
       - 36  # WRK
       - 37  # WRK
     csit-vpp-perf-verify-1901-3n-hsw:
-      - 35  # MRR sel
-      - 38  # NDRPDR full
-      - 43  # NDRPDR full
-      - 45  # NDRPDR full
-      - 49  # NDRPDR full
-      - 10  # NDRPDR sel
-      - 19  # NDRPDR sel
-      - 31  # NDRPDR sel
-      - 36  # NDRPDR sel
-      - 40  # NDRPDR sel
-      - 42  # NDRPDR sel
-      - 44  # NDRPDR sel
-      - 46  # NDRPDR sel
-      - 47  # NDRPDR sel
-      - 48  # NDRPDR sel
-      - 61  # NDRPDR LB
-      - 62  # NDRPDR LB
-      - 63  # NDRPDR LB
-      - 64  # NDRPDR LB
-      - 65  # NDRPDR LB
-      - 66  # NDRPDR LB
-      - 67  # NDRPDR LB
-      - 69  # NDRPDR LB
-      - 70  # NDRPDR LB
-      - 71  # NDRPDR LB
+#      - 35  # MRR sel
+#      - 38  # NDRPDR full
+#      - 43  # NDRPDR full
+#      - 45  # NDRPDR full
+#      - 49  # NDRPDR full
+#      - 10  # NDRPDR sel
+#      - 19  # NDRPDR sel
+#      - 31  # NDRPDR sel
+#      - 36  # NDRPDR sel
+#      - 40  # NDRPDR sel
+#      - 42  # NDRPDR sel
+#      - 44  # NDRPDR sel
+#      - 46  # NDRPDR sel
+#      - 47  # NDRPDR sel
+#      - 48  # NDRPDR sel
+#      - 61  # NDRPDR LB
+#      - 62  # NDRPDR LB
+#      - 63  # NDRPDR LB
+#      - 64  # NDRPDR LB
+#      - 65  # NDRPDR LB
+#      - 66  # NDRPDR LB
+#      - 67  # NDRPDR LB
+#      - 69  # NDRPDR LB
+#      - 70  # NDRPDR LB
+#      - 71  # NDRPDR LB
+      - 72  # 1901.1 NDRPDR sel
+      - 73  # 1901.1 MRR sel
+      - 74  # 1901.1 MRR sel
     csit-vpp-perf-verify-1807-3n-skx:
       - 31  # MRR full
       - 28  # MRR sel
@@ -1530,31 +1580,33 @@
       - 22  # NDRPDR sel
       - 25  # NDRPDR sel
     csit-vpp-perf-verify-1901-3n-skx:
-      - 32  # MRR sel
-      - 37  # NDRPDR full
-      - 39  # NDRPDR full
-      - 40  # NDRPDR full
-      - 49  # NDRPDR full
-      - 18  # NDRPDR sel
-      - 19  # NDRPDR sel
-      - 20  # NDRPDR sel
-      - 28  # NDRPDR sel
-      - 31  # NDRPDR sel
-      - 33  # NDRPDR sel
-      - 36  # NDRPDR sel
-      - 38  # NDRPDR sel
-      - 47  # NDRPDR sel
-      - 48  # NDRPDR sel
-      - 54  # NDRPDR LB
-      - 57  # NDRPDR LB
-      - 58  # NDRPDR LB
-      - 59  # NDRPDR LB
-      - 60  # NDRPDR LB
-      - 63  # NDRPDR LB
-      - 64  # NDRPDR LB
-      - 65  # NDRPDR LB
-      - 66  # NDRPDR LB
-      - 67  # NDRPDR LB
+#      - 32  # MRR sel
+#      - 37  # NDRPDR full
+#      - 39  # NDRPDR full
+#      - 40  # NDRPDR full
+#      - 49  # NDRPDR full
+#      - 18  # NDRPDR sel
+#      - 19  # NDRPDR sel
+#      - 20  # NDRPDR sel
+#      - 28  # NDRPDR sel
+#      - 31  # NDRPDR sel
+#      - 33  # NDRPDR sel
+#      - 36  # NDRPDR sel
+#      - 38  # NDRPDR sel
+#      - 47  # NDRPDR sel
+#      - 48  # NDRPDR sel
+#      - 54  # NDRPDR LB
+#      - 57  # NDRPDR LB
+#      - 58  # NDRPDR LB
+#      - 59  # NDRPDR LB
+#      - 60  # NDRPDR LB
+#      - 63  # NDRPDR LB
+#      - 64  # NDRPDR LB
+#      - 65  # NDRPDR LB
+#      - 66  # NDRPDR LB
+#      - 67  # NDRPDR LB
+      - 68  # 1901.1 NDRPDR sel
+      - 69  # 1901.1 MRR sel
     csit-vpp-perf-verify-1807-2n-skx:
       - 27  # MRR full
       - 31  # MRR sel
@@ -1596,21 +1648,21 @@
       - 24  # NDRPDR sel
       - 27  # NDRPDR sel
     csit-vpp-perf-verify-1901-2n-skx:
-      - 22  # MRR sel
-      - 25  # NDRPDR full
-      - 30  # NDRPDR full
-      - 33  # NDRPDR full
-      - 44  # NDRPDR full
-      - 5   # NDRPDR sel
-      - 12  # NDRPDR sel
-      - 13  # NDRPDR sel
-      - 21  # NDRPDR sel
-      - 23  # NDRPDR sel
-      - 31  # NDRPDR sel
-      - 34  # NDRPDR sel
-      - 40  # NDRPDR sel
-      - 42  # NDRPDR sel
-      - 43  # NDRPDR sel
+#      - 22  # MRR sel
+#      - 25  # NDRPDR full
+#      - 30  # NDRPDR full
+#      - 33  # NDRPDR full
+#      - 44  # NDRPDR full
+#      - 5   # NDRPDR sel
+#      - 12  # NDRPDR sel
+#      - 13  # NDRPDR sel
+#      - 21  # NDRPDR sel
+#      - 23  # NDRPDR sel
+#      - 31  # NDRPDR sel
+#      - 34  # NDRPDR sel
+#      - 40  # NDRPDR sel
+#      - 42  # NDRPDR sel
+#      - 43  # NDRPDR sel
       - 24  # NFV MRR
       - 26  # NFV MRR
       - 27  # NFV MRR
@@ -1622,7 +1674,8 @@
       - 39  # NFV NDRPDR
       - 46  # NFV NDRPDR
       - 45  # SOAK
-    # TODO: Add new data
+      - 64  # 1901.1 NDRPDR sel
+      - 65  # 1901.1 MRR sel
     csit-ligato-perf-verify-1901-3n-hsw:
       - 10  # NDRPDR full
       - 8   # NDRPDR sel
@@ -1724,11 +1777,11 @@
       - 20  # NDRPDR sel
       - 21  # NDRPDR sel
     csit-vpp-functional-1901-ubuntu1604-virl:
-      - 48
+      - 173
     csit-vpp-functional-1901-centos7-virl:
-      - 50
+      - 175
     csit-vpp-device-1901-ubuntu1804-1n-skx:
-      - 49
+      - 175
     # Not used
     csit-nsh_sfc-verify-func-1810-ubuntu1604-virl:
       - 1
