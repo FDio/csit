@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "e00c8f06_86228d29",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T17:02:49Z",
+      "side": 1,
+      "message": "Explain (in Terminology) that a \"deterministic usage range\" is not a \"range of deterministic usage\", just a \"usage range estimated assuming deterministic behavior\".",
+      "parentUuid": "f574226c_1126db80",
+      "range": {
+        "startLine": 64,
+        "startChar": 23,
+        "endLine": 64,
+        "endChar": 48
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b903918_a600ea79",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 6
@@ -565,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "2f26df89_6c84605e",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T17:02:49Z",
+      "side": 1,
+      "message": "The word \"application\" is already used (patch #6) in lines 76 and 102.",
+      "parentUuid": "839fbe55_e3cd1550",
+      "range": {
+        "startLine": 493,
+        "startChar": 2,
+        "endLine": 493,
+        "endChar": 13
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b3b61a2_646af823",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 6
@@ -600,6 +648,30 @@
       "side": 1,
       "message": "no, we haven\u0027t measured this. but we will..",
       "parentUuid": "9b3b61a2_646af823",
+      "range": {
+        "startLine": 504,
+        "startChar": 47,
+        "endLine": 504,
+        "endChar": 55
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10fb83cd_6d0cbf7b",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T17:02:49Z",
+      "side": 1,
+      "message": "Let me guess, we have tested NF-4c instead.\n\nIf yes, that means including the number of physical cores (in names in \"application\" column) is less useful than including the number of logical cores.\nIn contrast to what the word \"physical\" in line 453 (patch #6) would imply.",
+      "parentUuid": "0c67fb3b_709f1686",
       "range": {
         "startLine": 504,
         "startChar": 47,
