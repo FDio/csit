@@ -2,6 +2,144 @@
   "comments": [
     {
       "key": {
+        "uuid": "7ceab8a5_3f6a7dd5",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:54:41Z",
+      "side": 1,
+      "message": "service instances\n\nBecause each test uses just one type of NFV service.",
+      "range": {
+        "startLine": 60,
+        "startChar": 28,
+        "endLine": 60,
+        "endChar": 36
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68274fc9_c50d07f1",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:54:41Z",
+      "side": 1,
+      "message": "Not even PLRsearch claims to describe deterministic range.\nMLRsearch claims its results are NOT deterministic when SUT is not deterministic.",
+      "range": {
+        "startLine": 64,
+        "startChar": 23,
+        "endLine": 64,
+        "endChar": 48
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b903918_a600ea79",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:54:41Z",
+      "side": 1,
+      "message": "Mention that NFV decomposes complex services into interconnected simpler functions.",
+      "range": {
+        "startLine": 73,
+        "startChar": 58,
+        "endLine": 73,
+        "endChar": 59
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d0f5204_0f67716b",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:54:41Z",
+      "side": 1,
+      "message": "What NFV services in how many service instances",
+      "range": {
+        "startLine": 99,
+        "startChar": 3,
+        "endLine": 99,
+        "endChar": 33
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0211d859_112e809e",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:54:41Z",
+      "side": 1,
+      "message": "service instance?",
+      "range": {
+        "startLine": 148,
+        "startChar": 28,
+        "endLine": 148,
+        "endChar": 35
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a936a70_035cc174",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:54:41Z",
+      "side": 1,
+      "message": "This line can be moved one level up, as all three subsections are describing just one service instance.",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 8
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4f1d12fa_6376913c",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
         "patchSetId": 6
@@ -18,6 +156,29 @@
         "startChar": 0,
         "endLine": 204,
         "endChar": 6
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a62d2d62_f2f28501",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:54:41Z",
+      "side": 1,
+      "message": "Lines 231-237 sound line \"configuration\" is only related to NFs, not the host networking.",
+      "range": {
+        "startLine": 250,
+        "startChar": 20,
+        "endLine": 250,
+        "endChar": 38
       },
       "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -64,6 +225,98 @@
         "startChar": 4,
         "endLine": 412,
         "endChar": 7
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7d248a1_70b12d83",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:54:41Z",
+      "side": 1,
+      "message": "Without the apostrophe, as that would make it a possessive.\n\nExample: The NFs\u0027 performance is the performance of NFs.",
+      "range": {
+        "startLine": 419,
+        "startChar": 0,
+        "endLine": 419,
+        "endChar": 4
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82107a12_fa69d865",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:54:41Z",
+      "side": 1,
+      "message": "This sentence (and most of this paragraph) should be moved earlier, e.g. to \"Proposed Solution\" section.",
+      "range": {
+        "startLine": 424,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 13
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e9e9b60_e3714da9",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:54:41Z",
+      "side": 1,
+      "message": "Where do we clearly define the relations between NF, application and vSwitch?",
+      "range": {
+        "startLine": 493,
+        "startChar": 2,
+        "endLine": 493,
+        "endChar": 13
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9b3b61a2_646af823",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:54:41Z",
+      "side": 1,
+      "message": "Have we measured this? To see how bad it is to not give a whole LC to a dataplane thread.",
+      "range": {
+        "startLine": 504,
+        "startChar": 47,
+        "endLine": 504,
+        "endChar": 55
       },
       "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
