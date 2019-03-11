@@ -321,6 +321,52 @@
       "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e618d23_b535c150",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:59:07Z",
+      "side": 1,
+      "message": "This is in the process of being addressed, see https://gerrit.fd.io/r/#/c/17131/6/docs/ietf/draft-mkonstan-nf-service-density-00.md@424",
+      "range": {
+        "startLine": 574,
+        "startChar": 0,
+        "endLine": 574,
+        "endChar": 18
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce99b27c_6adacf61",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-00.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-11T12:59:07Z",
+      "side": 1,
+      "message": "Now mentioned in line 468, but should be also mentioned in context of https://gerrit.fd.io/r/#/c/17131/6/docs/ietf/draft-mkonstan-nf-service-density-00.md@180",
+      "range": {
+        "startLine": 583,
+        "startChar": 28,
+        "endLine": 583,
+        "endChar": 39
+      },
+      "revId": "5945e19a39ce980d33de7adbc7ac6236b660685d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
