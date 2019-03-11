@@ -3,104 +3,722 @@
 PLRsearch
 ^^^^^^^^^
 
-Abstract algorithm
-~~~~~~~~~~~~~~~~~~
+Motivation for PLRsearch
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. TODO: Refer to packet forwarding terminology, such as "offered load" and
-   "loss ratio".
-
-Eventually, a better description of the abstract search algorithm
-will appear at this IETF standard: `plrsearch draft`_.
-
-Motivation
-``````````
-
-Network providers are interested in throughput a device can sustain.
+Network providers are interested in throughput a system can sustain.
 
 `RFC 2544`_ assumes loss ratio is given by a deterministic function of
-offered load. But NFV software devices are not deterministic (enough).
-This leads for deterministic algorithms (such as MLRsearch with single
-trial) to return results, which when repeated show relatively high
-standard deviation, thus making it harder to tell what "the throughput"
-actually is.
+offered load. But NFV software systems are not deterministic enough.
+This makes deterministic algorithms (such as binary search per RFC 2544
+and MLRsearch with single trial) to return results,
+which when repeated show relatively high standard deviation,
+thus making it harder to tell what "the throughput" actually is.
 
 We need another algorithm, which takes this indeterminism into account.
 
-Model
-`````
 
-Each algorithm searches for an answer to a precisely formulated
-question. When the question involves indeterministic systems, it has to
-specify probabilities (or prior distributions) which are tied to a
-specific probabilistic model. Different models will have different
-number (and meaning) of parameters. Complicated (but more realistic)
-models have many parameters, and the math involved can be very
-convoluted. It is better to start with simpler probabilistic model, and
-only change it when the output of the simpler algorithm is not stable or
-useful enough.
+Relation to RFC 2544
+~~~~~~~~~~~~~~~~~~~~
 
-This document is focused on algorithms related to packet loss count
-only. No latency (or other information) is taken into account. For
-simplicity, only one type of measurement is considered: dynamically
-computed offered load, constant within trial measurement of
-predetermined trial duration.
+The aim of this document is to become an extension of `RFC 2544`_
+suitable for benchmarking more modern networking setups.
 
-The main idea of the search apgorithm is to iterate trial measurements,
+Since RFC 2544, some terms gained popularity, as they allow
+better granularity when distingushing details specific
+to packet processing in software devices.
+
+Some terms (examples below) present in RFC 2544
+gained connotations specific to hardware-based packet processing,
+while new terms (compatible with RFC 2544's black-box oriented testing)
+were introduced to encompass both hardware and software processing.
+
+This document uses the more modern general terms,
+as PLRsearch is not a hardware specific algorithm.
+
+TODO: Full list? Incorporate to Terms section?
+
+Frames
+``````
+
+In software networking, not every detail of on-wire frame is tracked.
+
+For example, every ethernet frame implies inter-frame gap
+and preamble, but those are not represented during the processing.
+
+This document uses the term "packet" for such abstractions of frames,
+even if the frame in question has no relations to IP packets.
+
+This could lead to confusion when used in ambiguous phrases,
+such as "packet size". But this document uses unambigous phrases
+like "packet rate", and refers to ambiguous packet properties
+only in qualitative sense.
+
+Device Under Test
+`````````````````
+
+In software networking, "device" denotes a specific piece of software
+tasked with packet processing. Such device is surrounded with other
+software components (such as operating system kernel),
+it is not possible to run devices without also running the other
+components, and hardware resources are shared between both.
+
+For purposes of testing, whe whole set of software components is called
+"system under test" (SUT). As SUT is the part of the whole test setup
+performance of which can be measured by RFC 2544 methods,
+this document uses SUT instead of RFC 2544's DUT.
+
+Device under test (DUT) can be re-introduced when analysing test results
+using whitebox techniques, but this document sticks to blackbox testing.
+
+Terms and Assumptions
+~~~~~~~~~~~~~~~~~~~~~
+
+TODO: "whole test setup"?
+
+System Under Test
+`````````````````
+
+System under test (SUT) is a part of the whole test setup whose performance
+is to be benchmarked. The complete methodology contains other parts,
+whose performance is either already established,
+or not affecting the benchmarking result.
+
+SUT configuration
+`````````````````
+
+Usually, system under test allows different configurations,
+affecting its performance. The rest of this document assumes
+a single configuration has been chosen.
+
+SUT setup
+`````````
+
+Similarly to RFC 2544, it is assumed that the system under test
+has been updated with all the routing information it needs,
+before the trial measurements (see below) start.
+
+Network traffic
+```````````````
+
+Network traffic is a type of interaction between system under test
+and the rest of the system (traffic generator), used to gather information
+about the system under test performance. PLRsearch is applicable only to areas
+where network traffic consists of packets.
+
+Packet
+``````
+
+Unit of interaction between traffic generator and the system under test.
+
+Packet offered
+--------------
+
+Packet can be offered, which means it is sent from traffic generator
+to the system under test.
+
+Each offered packet is assumed to become received or lost in a short time.
+
+Packet received
+---------------
+
+Packet can be received, which means the traffic generator verifies
+it has been processed. Typically, when it is succesfully sent
+from the system under test to traffic generator.
+
+It is assumed that each received packet has been caused by an offered packet,
+so the number of packets received cannot be larger than the number
+of packets offered.
+
+Packet lost
+-----------
+
+Packet can be lost, which means sent but not received in a timely manner.
+
+It is assumed that each lost packet has been caused by an offered packet,
+so the number of packets lost cannot be larger than the number
+of packets offered.
+
+Usually, the number of packets lost is computed
+as the number of packets offered, minus the number of packets received.
+
+Other packets
+-------------
+
+PLRsearch is not considering other packet behaviors known from networking
+(duplicated, reordered, greatly delayed), assuming the test specification
+reclassifies those behaviors to fit into the first three categories.
+
+Tasks as packets
+----------------
+
+Ethernet frames are the prime example of packets, but other units are possible.
+
+For example, a task processing system can fit the description.
+Packet offered can stand for task submitted, packet received
+for task processed successfully, and packet lost for task aborted
+(or not processed successfully for some other reason).
+
+In networking context, such a task can be a route update.
+
+Traffic profile
+```````````````
+
+Usually, the performance of the system under test depends on a "type"
+of a particular packet (for example size), and "composition"
+if the network traffic consists of a mixture of different packet types.
+
+Also, some systems under test contain multiple "ports"
+packets can be offered to and received from.
+
+All such qualities together (but not including properties of trial measurements)
+are called traffic profile.
+
+Similarly to system under test configuration, this document assumes
+only one traffic profile has been chosen for a particular test.
+
+Traffic generator
+`````````````````
+
+Traffic generator is the part of the whole test setup, distinct from
+the system under test, responsible both for offering packets in a highly
+predictable manner (so the number of packets offered is known),
+and for counting received packets in a precise enough way
+(to distinguish lost packets from tolerably delayed packets).
+
+Traffic generator must offer only packets compatible with the traffic profile,
+and only count similarly compatible packets as received.
+
+Offered load
+````````````
+
+Offered load is an aggregate rate (measured in packets per second)
+of network traffic offered to the system under test,
+the rate is kept constant for the duration of trial measurement.
+
+Trial measurement
+`````````````````
+
+Trial measurement is a process of stressing (previously setup) system under test
+by offering traffic of a particular offered load, for a particular duration.
+
+After that, the system has a short time to become idle,
+while the traffic generator decides how many packets were lost.
+
+After that, another trial measurement (possibly with different offered load
+and duration) can be immediately performed. Traffic generator should
+ignore received packets caused by packets offered in previous
+trial measurements.
+
+Trial duration
+``````````````
+
+Duration for which the traffic generator was offering packets
+at constant offered load.
+
+In theory, care has to be taken to ensure the offered load and trial duration
+predict integer number of packets to offer, and that the traffic generator
+really sends appropriate number of packets within precisely enough
+timed duration. In practice, such consideration do not change PLRsearch
+result in any significant way.
+
+Packet loss
+```````````
+
+Packet loss is any quantity describing a result of trial measurement.
+
+It can be loss count, loss rate or loss ratio.
+Packet loss is zero (or non-zero) if either of the three quantities are zero
+(or non-zero, respecively).
+
+Loss count
+----------
+
+Number of packets lost (or delayed too much) at a trial measurement
+by the system under test as determined by packet generator. Measured in packets.
+
+Loss rate
+---------
+
+Loss rate is computed as loss count divided by trial duration.
+Measured in packets per second.
+
+Loss ratio
+----------
+
+Loss ratio is computed as loss count divided by number of packets offered.
+Measured as a real (in practice rational) number between zero or one (including).
+
+Trial order independent system
+``````````````````````````````
+
+Trial order independent system is a system under test,
+proven (or just assumed) to produce trial measurement
+results that display trial order independence.
+
+That means when a pair of consequent trial measurements are performed,
+the probability to observe a pair of specific results is the same,
+as the probability to observe the reversed pair of results
+whe performing the reversed pair of consequent measurements.
+
+PLRsearch assumes the system under test is trial order independent.
+
+In practice, most system under test are not entirely trial order independent,
+but it is not easy to devise an algorithm taking that into account.
+
+Trial measurement result distribution
+`````````````````````````````````````
+
+When a trial order independent system is subjected to repeated
+trial measurements of constant offered load and duration,
+'law of large numbers'_ implies the observed loss count frequencies
+will converge to a specific probability distribution over possible loss counts.
+
+This probability distribution is called trial measurement result distribution,
+and it depends on all properties fixed when defining it.
+That includes the system under test, its chosen configuration,
+the chosen traffic profile, the offered load and the trial duration.
+
+As the system is trial order independent, trial measurement result distribution
+does not depend on results of few initial trial measurements,
+of any offered load or (finite) duration.
+
+Average loss ratio
+``````````````````
+
+Probability distribution over some (finite) set of states
+enables computation of probability-weighted average
+of any quantity evaluated on the states
+(called the expected value of the quantity).
+
+Average loss ratio is simply the expected value of loss ratio
+for a given trial measurement result distribution.
+
+Duration independent system
+```````````````````````````
+
+Duration independent system is a trial order independent system,
+whose trial measurement result distribution is proven (or just assumed)
+to display practical independence from trial duration.
+See definition of trial duration for discussion on practical
+versus theoretical.
+
+The only requirement is for average loss ratio to be independent
+of trial duration.
+
+In theory, that would necessitate each trial measurement result distribution
+to be a `binomial distribution`_. In practice, more distributions
+are allowed.
+
+PLRsearch assumes the system under test is duration independent,
+at least for trial durations typically chosen for trial measurements
+initiated by PLRsearch.
+
+Load regions
+````````````
+
+For a duration independent system, trial measurement result distribution
+depends only on offered load.
+
+It is convenient to name some areas of offered load space
+by possible trial results.
+
+Zero loss region
+----------------
+
+A particular offered load value is said to belong to zero loss region,
+if the probability of seeing non-zero loss trial measurement result
+is exactly zero, or at least practically indistinguishable from zero.
+
+Guaranteed loss region
+----------------------
+
+A particular offered load value is said to belong to guaranteed loss region,
+if the probability of seeing zero loss trial measurement result
+(for non-negligible count of packets offered)
+is exactly zero, or at least practically indistinguishable from zero.
+
+Non-deterministic region
+------------------------
+
+A particular offered load value is said to belong to non-deterministic region,
+if the probability of seeing zero loss trial measurement result
+(for non-negligible count of packets offered)
+practically distinguishable from both zero and one.
+
+Normal region ordering
+----------------------
+
+Although theoretically the three regions can be arbitrary sets,
+this document assumes they are intervals, where zero loss region
+contains values smaller than non-deterministic region,
+which in turn contains values smaller than guaranteed loss region.
+
+Deterministic system
+````````````````````
+
+A hypothetical duration independent system with normal region ordering,
+whose non-deterministic region is extremely narrow;
+only present due to "practical distinguishibility" and cases
+when the expected number of packets offered is not and integer.
+
+A duration independent system which is not deterministic
+is called non-deterministic system.
+
+Througphput
+```````````
+
+Throughput is the highest offered load provably causing zero packet loss
+for trial measurements of duration at least 60 seconds.
+
+For duration independent systems with normal region ordering,
+the throughput is the highest value within the zero loss region.
+
+Deterministic search
+````````````````````
+
+Any algorithm that assumes each measurement is a proof of the offered load
+belonging to zero loss region (or not) is called deterministic search.
+
+This definition includes algorithms based on "composite measurements"
+which perform multiple trial measurements, somehow re-classifying
+results pointing at non-deterministic region.
+
+`Binary search`_ is an example of deterministic search.
+
+Single run of a deterministic search launched against a deterministic system
+is guaranteed to find the throughput with any prescribed precision
+(not better than non-deterministic region width).
+
+Multiple runs of a deterministic search launched against
+a non-deterministic system can return varied results
+within non-deterministic region.
+The exact distribution of deterministic search results
+depends on the algorithm used.
+
+Probabilistic search
+````````````````````
+
+Any algorithm which performs probabilistic computations based on
+observed results of trial measurements, and which does not assume
+that non-deterministic region is practically absent
+is called probabilistic search.
+
+A probabilistic search algorithm, which would assume
+that non-deterministic region is practically absent,
+does not really need to perform probabilistic computations,
+so it would become a deterministic search.
+
+While probabilistic search for estimating throughput is possible,
+it would need a careful model for boundary between zero loss region
+and non-deterministic region, and it would need a lot of measurements
+of almost surely zero loss to reach good precision.
+
+Loss ratio function
+```````````````````
+
+For any duration independent system, the average loss ratio depends
+only on offered load (for a particular test setup).
+
+Loss ratio function is the name used for the function mapping
+offered load to average loss ratio.
+
+This function is initially unknown.
+
+TODO: "Normal loss ratio function": normal ordering, MRR limit, "convex".
+
+
+Target loss ratio
+`````````````````
+
+Input parameter of PLRsearch.
+The average loss ratio the output of PLRsearch aims to achieve.
+
+Critical load
+`````````````
+
+Aggregate rate of network traffic, which would lead to
+average loss ratio exactly matching target loss ratio
+(when used as the offered load for infinite many trial measurement).
+
+Critical load estimate
+``````````````````````
+
+Any quantitative description of the possible
+critical load PLRsearch is able to give
+after observing finite amount of trial measurements.
+
+Fitting function
+````````````````
+
+Any function PLRsearch uses internally instead of
+the unknown loss ratio function. Typically chosen from small set
+of formulas (shapes) with few parameters to tweak.
+
+Shape of fitting function
+`````````````````````````
+
+Any formula with few undetermined parameters.
+
+Parameter space
+```````````````
+
+A subset of `real coordinate space`_. A point of parameter
+space is a vector of real numbers. Fitting function is defined by shape
+(a formula with parameters) and point of parameter space (specifying values
+for the parameters).
+
+Abstract algorithm
+~~~~~~~~~~~~~~~~~~
+
+High level description
+``````````````````````
+
+Programming interface view
+--------------------------
+
+PLRsearch accepts some input arguments, then iteratively performs
+trial measurements at varying offered loads (and durations),
+and returns some estimates of critical load.
+
+PLRsearch input arguments form three groups.
+First group has a single argument: measurer. This is a callback (function)
+accepting offered load and duration, and returning the measured loss count.
+
+Second group consists load related arguments required for measurer to work
+correctly, typically minimal and maximal load to offer.
+Also, target loss ratio (if not hardcoded) is a required argument.
+
+Third group consists of time related arguments.
+Typically the duration for the first trial measurement, duration increment
+per subsequent trial measurement and total time for search.
+Some PLRsearch implementation may use estimation accuracy parameters
+as an exit condition instead of total search time.
+
+The returned quantities should describe the final (or best) estimate
+of critical load. Implementers can chose any description that suits their users,
+typically it is average and standard deviation, or lower and upper boundary.
+
+Main ideas
+``````````
+
+The search tries to perform measurements at offered load
+close to the critical load, because measurement results at offered loads
+far from the critical load give less information on precise location
+of the critical load. As virtually every trial measurement result
+alters the estimate of the critical load, offered loads vary
+as they approach the critical load.
+
+PLRsearch uses `Bayesian inference`_, computed using numerical integration,
+which takes long time to get reliable enough results.
+Therefore it takes some time before the most recent measurement result
+starts affecting subsequent offered loads and critical rate estimates.
+
+During the search, PLRsearch spawns few processes that perform numerical
+computations, the main process is calling the measurer to perform
+trial measurements, without any significant delays between them.
+The durations of the trial measurements are increasing linearly,
+as higher number of trial measurement results take longer to process.
+
+Probabilistic notions
+`````````````````````
+
+Before internals of PLRsearch are described, we need to define notions
+valid for situations when loss ratio is not entirely determined
+by offered load.
+
+Some of the notions already incorporate assumptions
+the PLRsearch algorithm applies.
+
+Loss count only
+---------------
+
+It is assumed that the traffic generator detects duplicate packets
+on receive, and reports this as an error.
+
+No latency (or other information) is taken into account.
+
+Independent trials
+------------------
+
+PLRsearch still assumes the system under test can be subjected
+to trial measurements. The loss count is no longer determined precisely,
+but it is assumed that for every system under test, its configuration,
+traffic type and trial duration, there is a probability distribution
+over possible loss counts.
+
+This implies trial measurements are probabilistic, but the distribution
+is independent of possible previous trial measurements.
+
+Independence from previous measurements is not guaranteed
+in the real world. The previous measurements may improve performance
+(via long-term warmup effects), or decrease performance (due to
+long-term resource leaks).
+
+Trial durations
+---------------
+
+`RFC 2544`_ motivates the usage of at least 60 second duration
+by the idea of the system under test slowly running out of resources
+(such as memory buffers).
+
+Practical results when measuring NFV software systems show
+that relative change of trial duration has negligible effects on
+average loss ratio, compared to relative change in offered load.
+
+While the standard deviation of loss ratio usually shows some effects
+of trial duration, they are hard to model; so further assumtions in PLRsearch
+will make it insensitive to trial duration.
+
+Target loss ratio
+-----------------
+
+Loss ratio function could be used to generalize throughput
+as the biggest offered load which still leads to zero average loss ratio.
+Unfortunately, most realistic loss ratio functions always predict
+non-zero (even if negligible) average loss ratio.
+
+On the other hand, users do not really require
+the average loss ratio to be an exact zero.
+Most users are satisfied when the average loss ratio is small enough.
+
+One of PLRsearch inputs is called target loss ratio.
+It is the loss ratio users would accept as negligible.
+
+TODO: Link to why we think 1e-7 is acceptable loss ratio.
+
+Critical load
+-------------
+
+Critical load (sometimes called critical rate) is the offered load
+which leads to average loss ratio to become exactly equal
+to the target loss ratio.
+
+In principle, there could be such loss ratio functions
+which allow more than one offered load to achieve target loss ratio.
+To avoid that, PLRsearch assumes only increasing loss ratio functions
+are possible.
+
+Similarly, some loss ratio functions may never return the target loss ratio.
+PLRsearch assumes loss ratio function is continuous, that
+the average loss ratio approaches zero as offered load approaches zero, and
+that the average loss ratio approaches one as offered load approaches infinity.
+
+Under these assumptions, each loss ratio function has unique critical load.
+PLRsearch attempts to locate the critical load.
+
+Load regions
+------------
+
+TODO: Rename to not confuse with zero/non-deterministic/guaranteed loss.
+
+Critical region is the interval of offered load close to critical load,
+where single measurement is not likely to distinguish whether
+the critical load is higher or lower than the current offered load.
+
+In typical case of small target loss ratio, rates below critical region
+form "zero loss region", and rates above form "high loss region".
+
+Finite models
+-------------
+
+Of course, finite amount of trial measurements, each of finite duration
+does not give enough information to pinpoint the critical load exactly.
+Therefore the output of PLRsearch is just an estimate with some precision.
+
+Aside of the usual substitution of infinitely precise real numbers
+by finitely precise floating point numbers, there are two other instances
+within PLRsearch where an objects of high information are replaced by
+objects of low information.
+
+One is the probability distribution of loss count, which is replaced
+by average loss ratio. The other is the loss ratio function,
+which is replaced by a few parameters, to be described later.
+
+PLRsearch building blocks
+`````````````````````````
+
+Here we define notions used by PLRsearch which are not applicable
+to other search methods, nor probabilistic systems under test, in general.
+
+Bayesian inference
+------------------
+
+Having reduced the model space significantly, the task of estimating
+the critical load becomes simple enough so that `Bayesian inference`_
+can be used (instead of neural networks,
+or other Artifical Intelligence methods).
+
+In this case, the few parameters describing the loss ration function
+become the model space. Given a prior over the model space,
+and trial duration results, a posterior distribution can be computed,
+together with quantities describing the critical load estimate.
+
+Iterative search
+----------------
+
+The idea PLRsearch is to iterate trial measurements,
 using `Bayesian inference`_ to compute both the current estimate
-of "the throughput" and the next offered load to measure at.
-The computations are done in parallel with the trial measurements.
+of the critical load and the next offered load to measure at.
 
-The following algorithm makes an assumption that packet traffic
-generator detects duplicate packets on receive detection, and reports
-this as an error.
+The required numerical computations are done
+in parallel with the trial measurements.
+
+This means the result of measurement "n" comes as an (additional) input
+to the computation running in parallel with measurement "n+1",
+and the outputs of the computation are used for determining the offered load
+for measurement "n+2".
+
+Other schemes are possible, aimed to increase the number of measurements
+(by decreasing their duration), which would have even higher number
+of measurements run before a result of a measurement affects offered load.
 
 Poisson distribution
-````````````````````
+--------------------
 
 For given offered load, number of packets lost during trial measurement
 is assumed to come from `Poisson distribution`_,
-each trial is assumed to be independent, and the (unknown) Poisson parameter
-(average number of packets lost per second) is assumed to be
-constant across trials.
-
-When comparing different offered loads, the average loss per second is
-assumed to increase, but the (deterministic) function from offered load
-into average loss rate is otherwise unknown. This is called "loss function".
-
-Given a target loss ratio (configurable), there is an unknown offered load
-when the average is exactly that. We call that the "critical load".
-If critical load seems higher than maximum offerable load, we should use
-the maximum offerable load to make search output more conservative.
+and the (unknown) Poisson parameter is expressed as average loss ratio.
 
 Side note: `Binomial distribution`_ is a better fit compared to Poisson
 distribution (acknowledging that the number of packets lost cannot be
 higher than the number of packets offered), but the difference tends to
-be relevant in loads far above the critical region, so using Poisson
-distribution helps the algorithm focus on critical region better.
+be relevant only in high loss region. Using Poisson
+distribution lowers the impact of measurements in high loss region,
+thus helping the algorithm to focus on critical region better.
 
-Of course, there are great many increasing functions (as candidates
-for loss function). The offered load has to be chosen for each trial,
-and the computed posterior distribution of critical load
-changes with each trial result.
+Fitting functions
+-----------------
+
+There are great many increasing functions (as candidates
+for the loss ratio function).
 
 To make the space of possible functions more tractable, some other
 simplifying assumptions are needed. As the algorithm will be examining
-(also) loads close to the critical load, linear approximation to the
-loss function in the critical region is important.
+(also) loads very close to the critical load, linear approximation to the
+loss rate function around the critical load is important.
 But as the search algorithm needs to evaluate the function also far
 away from the critical region, the approximate function has to be
-well-behaved for every positive offered load, specifically it cannot predict
-non-positive packet loss rate.
+reasonably behaved for every positive offered load,
+specifically it cannot predict non-positive packet loss ratio.
 
-Within this document, "fitting function" is the name for such a well-behaved
-function, which approximates the unknown loss function in the critical region.
+Within this document, "fitting function" is the name for such a reasonably
+behaved function, which approximates the loss ratio function
+well in the critical region.
+
+Measurement impact
+------------------
 
 Results from trials far from the critical region are likely to affect
 the critical rate estimate negatively, as the fitting function does not
-need to be a good approximation there. Discarding some results,
-or "suppressing" their impact with ad-hoc methods (other than
-using Poisson distribution instead of binomial) is not used, as such
-methods tend to make the overall search unstable. We rely on most of
+need to be a good approximation there. This is true mainly for high loss region,
+as in zero loss region even badly behaved fitting function predicts
+loss count to be "almost zero", so seeing a measurement confirming
+the loss has been zero indeed has small impact.
+
+Discarding some results, or "suppressing" their impact with ad-hoc methods
+(other than using Poisson distribution instead of binomial) is not used,
+as such methods tend to make the overall search unstable. We rely on most of
 measurements being done (eventually) within the critical region, and
 overweighting far-off measurements (eventually) for well-behaved fitting
 functions.
@@ -108,11 +726,11 @@ functions.
 Speaking about new trials, each next trial will be done at offered load
 equal to the current average of the critical load.
 Alternative methods for selecting offered load might be used,
-in an attempt to speed up convergence, but such methods tend to be
-scpecific for a particular system under tests.
+in an attempt to speed up convergence. For example by employing
+the aforementioned unstable ad-hoc methods.
 
 Fitting function coefficients distribution
-``````````````````````````````````````````
+------------------------------------------
 
 To accomodate systems with different behaviours, the fitting function is
 expected to have few numeric parameters affecting its shape (mainly
@@ -127,16 +745,18 @@ parameter is independently and uniformly distributed over a common
 interval. Implementers are to add non-linear transformations into their
 fitting functions if their prior is different.
 
-Exit condition for the search is either critical load stdev
-becoming small enough, or overal search time becoming long enough.
+Exit condition for the search is either the standard deviation
+of the critical load estimate becoming small enough (or similar),
+or overal search time becoming long enough.
 
-The algorithm should report both avg and stdev for critical load. If the
-reported averages follow a trend (without reaching equilibrium), avg and
-stdev should refer to the equilibrium estimates based on the trend, not
-to immediate posterior values.
+The algorithm should report both average and standard deviation
+for its critical load posterior. If the reported averages follow a trend
+(without reaching equilibrium), average and standard deviation
+should refer to the equilibrium estimates based on the trend,
+not to immediate posterior values.
 
 Integration
-```````````
+-----------
 
 The posterior distributions for fitting function parameters will not be
 integrable in general.
@@ -146,15 +766,15 @@ time, so this time can be used for numeric integration (using suitable
 method, such as Monte Carlo) to achieve sufficient precision.
 
 Optimizations
-`````````````
+-------------
 
 After enough trials, the posterior distribution will be concentrated in
-a narrow area of parameter space. The integration method should take
+a narrow area of the parameter space. The integration method should take
 advantage of that.
 
 Even in the concentrated area, the likelihood can be quite small, so the
-integration algorithm should track the logarithm of the likelihood, and
-also avoid underflow errors by other means.
+integration algorithm should avoid underflow errors by some means,
+for example by tracking the logarithm of the likelihood.
 
 FD.io CSIT Implementation Specifics
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -187,8 +807,8 @@ of the CPU the algorithm is able to use.
 
 All those timing related effects are addressed by arithmetically increasing
 trial durations with configurable coefficients
-(currently 10.2 seconds for the first trial,
-each subsequent trial being 0.2 second longer).
+(currently 5.1 seconds for the first trial,
+each subsequent trial being 0.1 second longer).
 
 Rounding errors and underflows
 ``````````````````````````````
@@ -211,7 +831,7 @@ on top of randomness error reported by integrator.
 Otherwise the reported stdev of critical rate estimate
 is unrealistically low.
 
-Both functions are not only increasing, but convex
+Both functions are not only increasing, but also convex
 (meaning the rate of increase is also increasing).
 
 As `primitive function`_ to any positive function is an increasing function,
@@ -252,8 +872,8 @@ At the end, both fitting function implementations
 contain multiple "if" branches, discontinuities are a possibility
 at range boundaries.
 
-Offered load for next trial measurement is the average of critical rate estimate.
-During each measurement, two estimates are computed,
+Offered load for next trial measurement is the average
+of critical rate estimate. During each measurement, two estimates are computed,
 even though only one (in alternating order) is used for next offered load.
 
 Stretch function
@@ -261,14 +881,24 @@ Stretch function
 
 The original function (before applying logarithm) is primitive function
 to `logistic function`_.
-The name "stretch" is used for related function
+The name "stretch" is used for related a function
 in context of neural networks with sigmoid activation function.
+
+Formula for stretch function: loss rate (r) computed from offered load (b),
+mrr parameter (m) and spread parameter (a):
+
+r = a (Log(E^(b/a) + E^(m/a)) - Log(1 + E^(m/a)))
 
 Erf function
 ------------
 
 The original function is double primitive function to `Gaussian function`_.
 The name "erf" comes from error function, the first primitive to Gaussian.
+
+Formula for erf function: loss rate (r) computed from offered load (b),
+mrr parameter (m) and spread parameter (a):
+
+r = (b + (a (E^(-((b - m)^2/a^2)) - E^(-(m^2/a^2))))/Sqrt[Pi] + (b - m) Erf[(b - m)/a] - m Erf[m/a])/2
 
 Prior distributions
 ```````````````````
@@ -298,37 +928,37 @@ with deliberately larger variance.
 If the generated sample falls outside (-1, 1) interval,
 another sample is generated.
 
-The center and the variance for the biased distribution has three sources.
-First is a prior information. After enough samples are generated,
-the biased distribution is constructed from a mixture of two sources.
-Top 12 most weight samples, and all samples (the mix ratio is computed
-from the relative weights of the two populations).
-When integration (run along a particular measurement) is finished,
-the mixture bias distribution is used as the prior information
-for the next integration.
+The the center and the covariance matrix for the biased distribution
+is based on the first and second moments of samples seen so far
+(within the computation), with the following additional features
+designed to avoid hyper-focused distributions.
+
+Each computation starts with the biased distribution inherited
+from the previous computation (zero point and unit covariance matrix
+is used in the first computation), but the overal weight of the data
+is set to the weight of the first sample of the computation.
+Also, the center is set to the first sample point.
+When additional samples come, their weight (including the importance correction)
+is compared to the weight of data seen so far (within the computation).
+If the new sample is more than one e-fold more impactful, both weight values
+(for data so far and for the new sample) are set to (geometric) average
+if the two weights. Finally, the actual sample generator uses covariance matrix
+scaled up by a configurable factor (8.0 by default).
 
 This combination showed the best behavior, as the integrator usually follows
-two phases. First phase (where the top 12 samples are dominating)
-is mainly important for locating the new area the posterior distribution
-is concentrated at. The second phase (dominated by whole sample population)
+two phases. First phase (where inherited biased distribution
+or single big sasmples are dominating) is mainly important
+for locating the new area the posterior distribution is concentrated at.
+The second phase (dominated by whole sample population)
 is actually relevant for the critical rate estimation.
 
 Caveats
 ```````
 
-Current implementation does not constrict the critical rate
-(as computed for every sample) to the min_rate, max_rate interval.
-
-Earlier implementations were targeting loss rate (as opposed to loss ratio).
-The chosen fitting functions do allow arbitrarily low loss ratios,
-but may suffer from rounding errors in corresponding parameter regions.
-Internal loss rate target is computed from given loss ratio
-using the current trial offered load, which increases search instability,
-especially if measurements with surprisingly high loss count appear.
-
 As high loss count measurements add many bits of information,
 they need a large amount of small loss count measurements to balance them,
-making the algorithm converge quite slowly.
+making the algorithm converge quite slowly. Typically, this happens
+when few initial measurements suggest spread way bigger then later measurements.
 
 Some systems evidently do not follow the assumption of repeated measurements
 having the same average loss rate (when offered load is the same).
@@ -340,6 +970,8 @@ will give better estimates than trend analysis.
 
 Graphical examples
 ``````````````````
+
+FIXME: Those are 1901 graphs, not reflecting later improvements.
 
 The following pictures show the upper and lower bound (one sigma)
 on estimated critical rate, as computed by PLRsearch, after each trial measurement
@@ -404,7 +1036,7 @@ a longer run would return a smaller interval within the current one.
 .. _RFC 2544: https://tools.ietf.org/html/rfc2544
 .. _Bayesian inference: https://en.wikipedia.org/wiki/Bayesian_statistics
 .. _Poisson distribution: https://en.wikipedia.org/wiki/Poisson_distribution
-.. _Binomial distribution: https://en.wikipedia.org/wiki/Binomial_distribution
+.. _binomial distribution: https://en.wikipedia.org/wiki/Binomial_distribution
 .. _primitive function: https://en.wikipedia.org/wiki/Antiderivative
 .. _logistic function: https://en.wikipedia.org/wiki/Logistic_function
 .. _Gaussian function: https://en.wikipedia.org/wiki/Gaussian_function
@@ -413,3 +1045,6 @@ a longer run would return a smaller interval within the current one.
 .. _Monte Carlo: https://en.wikipedia.org/wiki/Monte_Carlo_integration
 .. _importance sampling: https://en.wikipedia.org/wiki/Importance_sampling
 .. _bivariate Gaussian: https://en.wikipedia.org/wiki/Multivariate_normal_distribution
+.. _real coordinate space: https://en.wikipedia.org/wiki/Real_coordinate_space
+.. _law of large numbers: https://en.wikipedia.org/wiki/Law_of_large_numbers#Borel's_law_of_large_numbers
+.. _Binary search: https://en.wikipedia.org/wiki/Binary_search_algorithm
