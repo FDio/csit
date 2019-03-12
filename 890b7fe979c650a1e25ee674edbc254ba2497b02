@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "edb601d5_bfbd8ae2",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-12T15:04:56Z",
+      "side": 1,
+      "message": "I will do in next iter",
+      "parentUuid": "c39befae_1db51323",
+      "range": {
+        "startLine": 65,
+        "startChar": 8,
+        "endLine": 65,
+        "endChar": 16
+      },
+      "revId": "890b7fe979c650a1e25ee674edbc254ba2497b02",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5ecb5123_e3e61874",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 19
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9b430f3e_6519b85f",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-12T15:04:56Z",
+      "side": 1,
+      "message": "I will think a way.",
+      "parentUuid": "5ecb5123_e3e61874",
+      "range": {
+        "startLine": 78,
+        "startChar": 21,
+        "endLine": 78,
+        "endChar": 51
+      },
+      "revId": "890b7fe979c650a1e25ee674edbc254ba2497b02",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cecbd179_19fb7eee",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 19
@@ -59,6 +107,30 @@
       "writtenOn": "2019-03-12T14:39:45Z",
       "side": 1,
       "message": "list of str",
+      "range": {
+        "startLine": 197,
+        "startChar": 16,
+        "endLine": 197,
+        "endChar": 20
+      },
+      "revId": "890b7fe979c650a1e25ee674edbc254ba2497b02",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d32f4363_26017ef3",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-12T15:04:56Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "cecbd179_19fb7eee",
       "range": {
         "startLine": 197,
         "startChar": 16,
