@@ -341,7 +341,7 @@ class PapiExecutor(object):
         api_data_processed = self._process_api_data(api_data)
         json_data = json.dumps(api_data_processed)
 
-        cmd = "python {fw_dir}/{papi_provider} --json_data '{json}'".format(
+        cmd = "{fw_dir}/{papi_provider} --json_data '{json}'".format(
             fw_dir=Constants.REMOTE_FW_DIR,
             papi_provider=Constants.RESOURCES_PAPI_PROVIDER,
             json=json_data)
