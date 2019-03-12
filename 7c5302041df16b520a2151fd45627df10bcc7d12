@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5ade79b_b4d9a704",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-12T09:53:09Z",
+      "side": 1,
+      "message": "Commas instead of spaces. Applies to every __repr__.",
+      "range": {
+        "startLine": 88,
+        "startChar": 53,
+        "endLine": 88,
+        "endChar": 54
+      },
+      "revId": "7c5302041df16b520a2151fd45627df10bcc7d12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6220696_31ee3790",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-12T09:53:09Z",
+      "side": 1,
+      "message": "This implementation \"has a\" list. If you inherited from list, you can have implementation which \"is a\" list. I suspect \"is a\" would be more readable, but I would have to see the code to be sure.\n\nhttps://stackoverflow.com/questions/2218937/has-a-is-a-terminology-in-object-oriented-language",
+      "range": {
+        "startLine": 134,
+        "startChar": 15,
+        "endLine": 134,
+        "endChar": 21
+      },
+      "revId": "7c5302041df16b520a2151fd45627df10bcc7d12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d585fca_30686b8f",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-12T09:53:09Z",
+      "side": 1,
+      "message": "Your __repr__ describes a constructor with \"data\" argument. Fix the inconsistency and document constructor arguments (if any).",
+      "range": {
+        "startLine": 137,
+        "startChar": 21,
+        "endLine": 137,
+        "endChar": 22
+      },
+      "revId": "7c5302041df16b520a2151fd45627df10bcc7d12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "329b6012_e6911cc6",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-12T09:53:09Z",
+      "side": 1,
+      "message": "When I saw execute_should_* raises AssertionError, I expected the same here.",
+      "range": {
+        "startLine": 375,
+        "startChar": 18,
+        "endLine": 375,
+        "endChar": 30
+      },
+      "revId": "7c5302041df16b520a2151fd45627df10bcc7d12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d97f10b_4eb60e6c",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-12T09:53:09Z",
+      "side": 1,
+      "message": "In CSIT, this decorator usually hints we want to use the decorated function as a L1 keyword (to be called from Robot L2 keyword).\nOr it hints a simple utility function acting on an intermediary data type we do not bother to create a class for (to become a proper method of).\nThis looks like neither.\n\nIt would be better to make this a method of PapiResponse class (perhaps using a similar method of a new class line 49 should be list of).\n\nThis would allow more chaining (not sure about wrapping):\n  papi_exec.\n  add(cmd, **args).\n  execute_should_pass(exec_err_msg).\n  verify_replies(cmd_replies, ver_err_msg)",
+      "range": {
+        "startLine": 380,
+        "startChar": 4,
+        "endLine": 380,
+        "endChar": 17
+      },
+      "revId": "7c5302041df16b520a2151fd45627df10bcc7d12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e1286b5a_9f75879e",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-12T09:53:09Z",
+      "side": 1,
+      "message": "Another argument for the \"is a\" approach.",
+      "range": {
+        "startLine": 155,
+        "startChar": 30,
+        "endLine": 155,
+        "endChar": 39
+      },
+      "revId": "7c5302041df16b520a2151fd45627df10bcc7d12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
