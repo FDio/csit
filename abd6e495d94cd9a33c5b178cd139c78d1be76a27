@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc100d08_c6a52d75",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-12T13:50:38Z",
+      "side": 1,
+      "message": "if len(self.reply) !\u003d len(cmd_replies):\n    raise AssertionError()\nfor idx, rep in enumerate(self.reply):\n    cmd_reply \u003d cmd_replies[idx]",
+      "range": {
+        "startLine": 197,
+        "startChar": 8,
+        "endLine": 200,
+        "endChar": 50
+      },
+      "revId": "abd6e495d94cd9a33c5b178cd139c78d1be76a27",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30567b53_1303e4bb",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-12T13:50:38Z",
+      "side": 1,
+      "message": "data.append(self.verify_reply(cmd_reply, idx, err_msg))\n\n(Optionally, verify rep[\u0027api_reply\u0027].get(cmd_reply,None) is not None before that, if you do not like verify_reply throwing KeyError.)",
+      "range": {
+        "startLine": 201,
+        "startChar": 16,
+        "endLine": 209,
+        "endChar": 78
+      },
+      "revId": "abd6e495d94cd9a33c5b178cd139c78d1be76a27",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
