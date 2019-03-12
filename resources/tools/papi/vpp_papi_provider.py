@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Copyright (c) 2018 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -192,7 +192,7 @@ def main():
         api_args_unicode = data['api_args']
         api_reply = dict(api_name=api_name)
         api_args = dict()
-        for a_k, a_v in api_args_unicode.iteritems():
+        for a_k, a_v in api_args_unicode.items():
             value = binascii.unhexlify(a_v) if isinstance(a_v, unicode) else a_v
             api_args[str(a_k)] = value
         try:
