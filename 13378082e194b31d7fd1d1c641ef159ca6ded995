@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69332c68_696cdf36",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-12T13:18:28Z",
+      "side": 1,
+      "message": "I think this only works when the TG segment is not at the end of the file.",
+      "range": {
+        "startLine": 560,
+        "startChar": 15,
+        "endLine": 560,
+        "endChar": 16
+      },
+      "revId": "13378082e194b31d7fd1d1c641ef159ca6ded995",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d3c0a93_5542cd5b",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-12T13:18:28Z",
+      "side": 1,
+      "message": "Took me a while to figure out that this is used to hide TG NICs, by sending yaml with deleted content (over pipe to grep).\n\nNot sure whether it is tricky enough to need a code comment explanation.",
+      "range": {
+        "startLine": 561,
+        "startChar": 15,
+        "endLine": 561,
+        "endChar": 16
+      },
+      "revId": "13378082e194b31d7fd1d1c641ef159ca6ded995",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
