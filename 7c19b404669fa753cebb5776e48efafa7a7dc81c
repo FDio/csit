@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b6ad2fe_13edfbb4",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T11:32:00Z",
+      "side": 1,
+      "message": "Also mention what None value does.",
+      "range": {
+        "startLine": 86,
+        "startChar": 25,
+        "endLine": 86,
+        "endChar": 29
+      },
+      "revId": "7c19b404669fa753cebb5776e48efafa7a7dc81c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "771f9d29_bac7a616",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T11:32:00Z",
+      "side": 1,
+      "message": "Does this work for default value? None is not iterable.",
+      "range": {
+        "startLine": 109,
+        "startChar": 58,
+        "endLine": 109,
+        "endChar": 66
+      },
+      "revId": "7c19b404669fa753cebb5776e48efafa7a7dc81c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "49c52558_125dcee7",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T11:32:00Z",
+      "side": 1,
+      "message": "Also print the \"requests\" argument.",
+      "range": {
+        "startLine": 135,
+        "startChar": 36,
+        "endLine": 135,
+        "endChar": 37
+      },
+      "revId": "7c19b404669fa753cebb5776e48efafa7a7dc81c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d58b9e4_f84ab198",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T11:32:00Z",
+      "side": 1,
+      "message": "or None?",
+      "range": {
+        "startLine": 199,
+        "startChar": 27,
+        "endLine": 199,
+        "endChar": 38
+      },
+      "revId": "7c19b404669fa753cebb5776e48efafa7a7dc81c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c6217836_42ca1558",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T11:32:00Z",
+      "side": 1,
+      "message": "for idx, cmd_reply in enumerate(cmd_rpls):",
+      "range": {
+        "startLine": 212,
+        "startChar": 8,
+        "endLine": 213,
+        "endChar": 37
+      },
+      "revId": "7c19b404669fa753cebb5776e48efafa7a7dc81c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
