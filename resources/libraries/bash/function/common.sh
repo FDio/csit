@@ -686,6 +686,7 @@ function select_tags () {
                                 "mrrAND${DEFAULT_NIC}AND1cAND78bANDip6base"
                                 "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2bdbase"
                                 "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2xcbase"
+                                "mrrANDintel-xxv710AND1cAND64bANDip4baseANDdrv_avf"
                                 "!dot1q")
             else
                 # If trigger contains tags, split them into array.
