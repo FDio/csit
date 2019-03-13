@@ -46,6 +46,30 @@
       "revId": "6091d43cd55f1687322c72518a8dbeffce057adb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e232bef6_f3c438cf",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T18:22:35Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "a1a87639_49761e9c",
+      "range": {
+        "startLine": 46,
+        "startChar": 31,
+        "endLine": 46,
+        "endChar": 44
+      },
+      "revId": "6091d43cd55f1687322c72518a8dbeffce057adb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
