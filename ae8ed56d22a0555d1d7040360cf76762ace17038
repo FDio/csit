@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d40db62e_8d497798",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "Remove from title, use phrases like \"high level description\" after title.",
+      "range": {
+        "startLine": 2,
+        "startChar": 34,
+        "endLine": 2,
+        "endChar": 44
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "302a2a9f_a36afc4d",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "Is this your way to mark a TODO item?",
+      "range": {
+        "startLine": 14,
+        "startChar": 3,
+        "endLine": 14,
+        "endChar": 44
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93490d05_96a4c796",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "provide",
+      "range": {
+        "startLine": 18,
+        "startChar": 21,
+        "endLine": 18,
+        "endChar": 29
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d97242f_8ae3024b",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "key-value\n\nOr include Terms section to define commonly used abbreviations.",
+      "range": {
+        "startLine": 22,
+        "startChar": 26,
+        "endLine": 22,
+        "endChar": 28
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39ad51d4_a8d8d92d",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "operation",
+      "range": {
+        "startLine": 24,
+        "startChar": 48,
+        "endLine": 24,
+        "endChar": 57
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05c5eb24_aeb680c0",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "Not a .rst markup.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 2
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d9577ae1_e2a5a309",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "Container?",
+      "range": {
+        "startLine": 41,
+        "startChar": 10,
+        "endLine": 41,
+        "endChar": 16
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c127e5f5_8640f881",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "Please do not introduce trailing whitespace.",
+      "range": {
+        "startLine": 60,
+        "startChar": 80,
+        "endLine": 60,
+        "endChar": 81
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d9c05c7_00c4fabd",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "When is the operation declared complete? When redis-cli finishes pushing its config data, or is there some check for VPP done consuming them?",
+      "range": {
+        "startLine": 70,
+        "startChar": 32,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7398741_06d56fbd",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "What? If there is a bug, and the equality is only achieved with zero addresses, test would still pass (if it avoids division by zero)?\n\nThe test should declare some guarantee (data size, or size per second) and fail if the cli honors it but VPP fails verification.",
+      "range": {
+        "startLine": 77,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68d77bce_236e7806",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "ss",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 6
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eab2ee55_f15b65ca",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "The sentence should end with dot.\nYou mean some repeats will act as a warm-up and only the rest of repeats will be used for performance calculation?",
+      "range": {
+        "startLine": 84,
+        "startChar": 55,
+        "endLine": 84,
+        "endChar": 61
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adbeeba4_df2bd268",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T17:28:41Z",
+      "side": 1,
+      "message": "accepting pushed",
+      "range": {
+        "startLine": 91,
+        "startChar": 40,
+        "endLine": 91,
+        "endChar": 53
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
