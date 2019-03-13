@@ -15,6 +15,7 @@
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.tools.wrk.wrk
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
+| Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 | Resource | resources/libraries/robot/tcp/tcp_setup.robot
 | Documentation | Performance suite keywords - Suite and test setups and
@@ -259,19 +260,19 @@
 | | ... | argument. Initializes traffic generator.
 | | ...
 | | ... | *Arguments:*
-| | ... | - topology_type - Topology type. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ... | - nic_model - Interface model. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| 2-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${topology_type} | ${nic_model}
+| | [Arguments] | ${traffic_profile} | ${nic_model}
 | | ...
 | | Set variables in 2-node circular topology with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${topology_type}
+| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${traffic_profile}
 
 | Set up 2-node-switched performance topology with DUT's NIC model
 | | [Documentation]
@@ -281,7 +282,7 @@
 | | ... | argument. Initializes traffic generator.
 | | ...
 | | ... | *Arguments:*
-| | ... | - topology_type - Topology type. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ... | - nic_model - Interface model. Type: string
 | | ... | - tg_if1_dest_mac - Interface 1 destination MAC address. Type: string
 | | ... | - tg_if2_dest_mac - Interface 2 destination MAC address. Type: string
@@ -291,13 +292,13 @@
 | | ... | \| 2-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \
 | | ... | \| 22:22:33:44:55:66 \| 22:22:33:44:55:55 \|
 | | ...
-| | [Arguments] | ${topology_type} | ${nic_model} | ${tg_if1_dest_mac}
+| | [Arguments] | ${traffic_profile} | ${nic_model} | ${tg_if1_dest_mac}
 | | ... | ${tg_if2_dest_mac}
 | | ...
 | | Set variables in 2-node circular topology with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${topology_type}
+| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${traffic_profile}
 | | ... | ${tg_if1_dest_mac} | ${tg_if2_dest_mac}
 
 | Set up 3-node performance topology with DUT's NIC model
@@ -308,7 +309,7 @@
 | | ... | argument. Initializes traffic generator.
 | | ...
 | | ... | *Arguments:*
-| | ... | - topology_type - Topology type. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ... | - nic_model - Interface model. Type: string
 | | ...
 | | ... | *Example:*
@@ -316,12 +317,12 @@
 | | ... | \| Set up 3-node performance topology with DUT's NIC model \| L2 \
 | | ... | \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${topology_type} | ${nic_model}
+| | [Arguments] | ${traffic_profile} | ${nic_model}
 | | ...
 | | Set variables in 3-node circular topology with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${traffic_profile}
 
 | Set up 3-node performance topology with DUT's NIC model with double link between DUTs
 | | [Documentation]
@@ -331,7 +332,7 @@
 | | ... | argument. Initializes traffic generator.
 | | ...
 | | ... | *Arguments:*
-| | ... | - topology_type - Topology type. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ... | - nic_model - Interface model. Type: string
 | | ...
 | | ... | *Example:*
@@ -339,12 +340,12 @@
 | | ... | \| Set up 3-node performance topology with DUT's NIC model with \
 | | ... | double link between DUTs \| L2 \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${topology_type} | ${nic_model}
+| | [Arguments] | ${traffic_profile} | ${nic_model}
 | | ...
 | | Set variables in 3-node circular topology with DUT interface model with double link between DUTs
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${traffic_profile}
 
 | Set up DPDK 2-node performance topology with DUT's NIC model
 | | [Documentation]
@@ -354,7 +355,7 @@
 | | ... | environment.
 | | ...
 | | ... | *Arguments:*
-| | ... | - topology_type - Topology type. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ... | - nic_model - Interface model. Type: string
 | | ...
 | | ... | *Example:*
@@ -362,12 +363,12 @@
 | | ... | \| Set up DPDK 2-node performance topology with DUT's NIC model \
 | | ... | \| L2 \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${topology_type} | ${nic_model}
+| | [Arguments] | ${traffic_profile} | ${nic_model}
 | | ...
 | | Set variables in 2-node circular topology with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${topology_type}
+| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${traffic_profile}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Set up DPDK 3-node performance topology with DUT's NIC model
@@ -378,19 +379,19 @@
 | | ... | environment.
 | | ...
 | | ... | *Arguments:*
-| | ... | - topology_type - Topology type. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ... | - nic_model - Interface model. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| 3-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${topology_type} | ${nic_model}
+| | [Arguments] | ${traffic_profile} | ${nic_model}
 | | ...
 | | Set variables in 3-node circular topology with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${traffic_profile}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Initialize DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
 
@@ -403,7 +404,7 @@
 | | ... | It configures PCI device with VFs on all DUTs.
 | | ...
 | | ... | *Arguments:*
-| | ... | - topology_type - Topology type. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ... | - nic_model - Interface model. Type: string
 | | ... | - vf_driver - Virtual function driver. Type: string
 | | ... | - numvfs - Number of VFs. Type: integer
@@ -413,17 +414,17 @@
 | | ... | \| Set up SRIOV 2-node performance topology with DUT's NIC model \
 | | ... | \| L2 \| Intel-X520-DA2 \| AVF \|
 | | ...
-| | [Arguments] | ${topology_type} | ${nic_model} | ${vf_driver}
+| | [Arguments] | ${traffic_profile} | ${nic_model} | ${vf_driver}
 | | ... | ${numvfs}=${1}
 | | ...
 | | Set variables in 2-node circular topology with DUT interface model
 | | ... | ${nic_model}
 | | Run Keyword If | '${vf_driver}' == 'AVF'
 | | ... | Configure AVF interfaces on all DUTs | numvfs=${numvfs}
-| | ... | topology_type=${topology_type}
+| | ... | traffic_profile=${traffic_profile}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1_vf0} | ${dut1} | ${dut1_if2_vf0}
-| | ... | ${topology_type}
+| | ... | ${traffic_profile}
 
 | Set up SRIOV 3-node performance topology with DUT's NIC model
 | | [Documentation]
@@ -434,7 +435,7 @@
 | | ... | It configures PCI device with VFs on all DUTs.
 | | ...
 | | ... | *Arguments:*
-| | ... | - topology_type - Topology type. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ... | - nic_model - Interface model. Type: string
 | | ... | - vf_driver - Virtual function driver. Type: string
 | | ... | - numvfs - Number of VFs. Type: integer
@@ -444,17 +445,17 @@
 | | ... | \| Set up SRIOV 3-node performance topology with DUT's NIC model \
 | | ... | \| L2 \| Intel-X520-DA2 \| AVF \|
 | | ...
-| | [Arguments] | ${topology_type} | ${nic_model} | ${vf_driver}
+| | [Arguments] | ${traffic_profile} | ${nic_model} | ${vf_driver}
 | | ... | ${numvfs}=${1}
 | | ...
 | | Set variables in 3-node circular topology with DUT interface model
 | | ... | ${nic_model}
 | | Run Keyword If | '${vf_driver}' == 'AVF'
 | | ... | Configure AVF interfaces on all DUTs | numvfs=${numvfs}
-| | ... | topology_type=${topology_type}
+| | ... | traffic_profile=${traffic_profile}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1_vf0} | ${dut2} | ${dut2_if2_vf0}
-| | ... | ${topology_type}
+| | ... | ${traffic_profile}
 
 | Set up IPSec performance test suite
 | | [Documentation]
@@ -465,7 +466,7 @@
 | | ... | Then it configures crypto device and kernel module on all DUTs.
 | | ...
 | | ... | *Arguments:*
-| | ... | - topology_type - Topology type. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ... | - nic_model - Interface model. Type: string
 | | ... | - crypto_type - Crypto device type - HW_cryptodev or SW_cryptodev
 | | ... | (Optional). Type: string, default value: HW_cryptodev
@@ -475,10 +476,10 @@
 | | ... | \| Set up IPSec performance test suite \| L2 \
 | | ... | \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${topology_type} | ${nic_model} | ${crypto_type}=HW_cryptodev
+| | [Arguments] | ${traffic_profile} | ${nic_model} | ${crypto_type}=HW_cryptodev
 | | ...
 | | Set up 3-node performance topology with DUT's NIC model
-| | ... | ${topology_type} | ${nic_model}
+| | ... | ${traffic_profile} | ${nic_model}
 | | ${numvfs}= | Set Variable If
 | | ... | '${crypto_type}' == 'HW_cryptodev' | ${32}
 | | ... | '${crypto_type}' == 'SW_cryptodev' | ${0}
@@ -669,51 +670,36 @@
 | Tear down performance test
 | | [Documentation] | Common test teardown for performance tests.
 | | ...
+| | ... | TODO: Document at least some steps this keyword takes.
+| | ...
+| | ... | To save space in suites, this keyword does not accept
+| | ... | any explicit arguments. Instead, it requires few variables
+| | ... | to be defined in at least test scope.
+| | ...
+| | ... | *Test Variables needed:*
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - traffic_profile - Topology type. Type: string
+| | ... | - nodes - Parsed information object. Type: dict
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set Test Variable \| \${framesize} \| 64 \|
+| | ... | \| Tear down performance test \|
+| | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Get Core Files on All Nodes | ${nodes}
 | | Set Test Variable | ${pkt_trace} | ${True}
-
-| Tear down performance discovery test
-| | [Documentation] | Common test teardown for ndrpdr performance tests.
-| | ...
-| | ... | *Arguments:*
-| | ... | - rate - Rate for sending packets. Type: string
-| | ... | - framesize - L2 Frame Size [B]. Type: integer
-| | ... | - topology_type - Topology type. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down performance discovery test \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \|
-| | ...
-| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
-| | ...
-| | Tear down performance test
 | | Show statistics on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
-| | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
-
-| Tear down performance mrr test
-| | [Documentation] | Common test teardown for max-received-rate performance
-| | ... | tests.
-| | ...
-| | Tear down performance test
-
-| Tear down performance test with wrk
-| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
-| | ... | tests.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down performance test with wrk \|
-| | ...
-| | Tear down performance test
+| | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${10000}
+| | ... | ${framesize} | ${traffic_profile} | fail_on_loss=${False}
 
 | Tear down performance test with container
 | | [Documentation]
 | | ... | Common test teardown for performance tests which uses containers.
+| | ...
+| | ... | TODO: Call Tear down performance test?
 | | ...
 | | :FOR | ${container_group} | IN | @{container_groups}
 | | | Destroy all '${container_group}' containers
@@ -722,36 +708,9 @@
 | | [Documentation] | Common test teardown for performance tests which use
 | | ... | vhost(s) and VM(s) with dpdk-testpmd.
 | | ...
-| | ... | *Arguments:*
-| | ... | - rate - Rate for sending packets. Type: string
+| | ... | *Test Variables needed:*
 | | ... | - framesize - L2 Frame Size [B]. Type: integer
-| | ... | - topology_type - Topology type. Type: string
-| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
-| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down performance test with vhost and VM with dpdk-testpmd \
-| | ... | \| 4.0mpps \| 64 \| 3-node-IPv4 \| ${node['DUT1']} \| ${dut_vm_refs} \
-| | ... | \| ${node['DUT2']} \| ${dut_vm_refs} \|
-| | ...
-| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
-| | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
-| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
-| | ...
-| | Tear down performance discovery test | ${rate} | ${framesize}
-| | ... | ${topology_type}
-| | Show VPP vhost on all DUTs | ${nodes}
-| | Run keyword unless | ${dut1_node}==${None}
-| | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
-| | Run keyword unless | ${dut2_node}==${None}
-| | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
-
-| Tear down performance mrr test with vhost and VM with dpdk-testpmd
-| | [Documentation] | Common test teardown for mrr tests which use
-| | ... | vhost(s) and VM(s) with dpdk-testpmd.
+| | ... | - traffic_profile - Topology type. Type: string
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut1_node - Node where to clean qemu. Type: dictionary
@@ -768,7 +727,7 @@
 | | [Arguments] | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
 | | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
 | | ...
-| | Tear down performance mrr test
+| | Tear down performance test
 | | Show VPP vhost on all DUTs | ${nodes}
 | | Run keyword unless | ${dut1_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
@@ -779,30 +738,9 @@
 | | [Documentation] | Common test teardown for performance tests which use
 | | ... | vhost(s) and VM(s) with ACL and dpdk-testpmd.
 | | ...
-| | ... | *Arguments:*
-| | ... | - rate - Rate for sending packets. Type: string
+| | ... | *Test Variables needed:*
 | | ... | - framesize - L2 Frame Size [B]. Type: integer
-| | ... | - topology_type - Topology type. Type: string
-| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
-| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
-| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
-| | ...
-| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
-| | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
-| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
-| | ...
-| | Tear down performance test with vhost and VM with dpdk-testpmd
-| | ... | ${rate} | ${framesize} | ${topology_type}
-| | ... | ${dut1_node} | ${dut1_vm_refs}
-| | ... | ${dut2_node} | ${dut2_vm_refs}
-| | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
-| | Run Keyword If Test Failed | Run Keyword And Ignore Error
-| | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
-
-| Tear down mrr test with vhost and VM with dpdk-testpmd and ACL
-| | [Documentation] | Common test teardown for mrr tests which use
-| | ... | vhost(s) and VM(s) with ACL and dpdk-testpmd.
+| | ... | - traffic_profile - Topology type. Type: string
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut1_node - Node where to clean qemu. Type: dictionary
@@ -813,7 +751,7 @@
 | | [Arguments] | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
 | | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
 | | ...
-| | Tear down performance mrr test with vhost and VM with dpdk-testpmd
+| | Tear down performance test with vhost and VM with dpdk-testpmd
 | | ... | ${dut1_node} | ${dut1_vm_refs}
 | | ... | ${dut2_node} | ${dut2_vm_refs}
 | | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
@@ -825,6 +763,8 @@
 | | ... | Suite teardown phase with traffic generator teardown.
 | | ... | Cleanup DPDK test environment.
 | | ...
+| | ... | TODO: Call Tear down performance test?
+| | ...
 | | Teardown traffic generator | ${tg}
 | | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
@@ -833,116 +773,68 @@
 | | ... | Suite teardown phase with traffic generator teardown.
 | | ... | Cleanup DPDK test environment.
 | | ...
+| | ... | TODO: Call Tear down performance test?
+| | ...
 | | Teardown traffic generator | ${tg}
 | | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Cleanup DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
 
-| Tear down performance discovery test with NAT
-| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| Tear down performance test with NAT
+| | [Documentation] | Common test teardown for performance \
 | | ... | tests with NAT feature used.
 | | ...
-| | ... | *Arguments:*
-| | ... | - rate - Rate for sending packets. Type: string
+| | ... | *Test Variables needed:*
 | | ... | - framesize - L2 Frame Size [B]. Type: integer
-| | ... | - traffic_profile - Traffic profile. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tear down performance discovery test with NAT \| 100000pps \| 64 \
-| | ... | \| ${traffic_profile} \|
+| | ... | \| Tear down performance test with NAT \|
 | | ...
-| | [Arguments] | ${rate} | ${framesize} | ${traffic_profile}
-| | ...
-| | Tear down performance discovery test | ${rate} | ${framesize}
-| | ... | ${traffic_profile}
-| | Show NAT verbose | ${dut1}
-| | Show NAT verbose | ${dut2}
-
-| Tear down mrr test with NAT
-| | [Documentation] | Common test teardown for mrr performance \
-| | ... | tests with NAT feature used.
-| | ...
-| | ... | \| Tear down mrr test with NAT \|
-| | ...
-| | Tear down performance mrr test
+| | Tear down performance test
 | | Show NAT verbose | ${dut1}
 | | Show NAT verbose | ${dut2}
 
 | Tear down performance test with ACL
-| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | [Documentation] | Common test teardown for performance \
 | | ... | tests with ACL feature used.
 | | ...
-| | ... | *Arguments:*
-| | ... | - rate - Rate for sending packets. Type: string
+| | ... | *Test Variables needed:*
 | | ... | - framesize - L2 Frame Size [B]. Type: integer
-| | ... | - traffic_profile - Traffic profile. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tear down performance test with ACL \| 100000pps \| 64 \
-| | ... | \| ${traffic_profile} \|
+| | ... | \| Tear down performance test with ACL \|
 | | ...
-| | [Arguments] | ${rate} | ${framesize} | ${traffic_profile}
-| | ...
-| | Tear down performance discovery test | ${rate} | ${framesize}
-| | ... | ${traffic_profile}
-| | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
-| | Run Keyword If Test Failed | Run Keyword And Ignore Error
-| | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
-
-| Tear down mrr test with ACL
-| | [Documentation] | Common test teardown for mrr performance \
-| | ... | tests with ACL feature used.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down mrr test with ACL \|
-| | ...
-| | Tear down performance mrr test
+| | Tear down performance test
 | | Run Keyword If Test Failed | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 
 | Tear down performance test with MACIP ACL
-| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | [Documentation] | Common test teardown for performance \
 | | ... | tests with MACIP ACL feature used.
 | | ...
-| | ... | *Arguments:*
-| | ... | - rate - Rate for sending packets. Type: string
+| | ... | *Test Variables needed:*
 | | ... | - framesize - L2 Frame Size [B]. Type: integer
-| | ... | - traffic_profile - Traffic profile. Type: string
+| | ... | - traffic_profile - Topology type. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tear down performance test with MACIP ACL \| 100000pps \| 64 \
-| | ... | \| ${traffic_profile} \|
+| | ... | \| Tear down performance test with MACIP ACL \|
 | | ...
-| | [Arguments] | ${rate} | ${framesize} | ${traffic_profile}
-| | ...
-| | Tear down performance discovery test | ${rate} | ${framesize}
-| | ... | ${traffic_profile}
-| | Run Keyword If Test Failed | Run Keyword And Ignore Error
-| | ... | Vpp Log Macip Acl Settings | ${dut1}
-| | Run Keyword And Ignore Error
-| | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
-
-| Tear down mrr test with MACIP ACL
-| | [Documentation] | Common test teardown for mrr performance \
-| | ... | tests with MACIP ACL feature used.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down mrr test with MACIP ACL \|
-| | ...
-| | Tear down performance mrr test
+| | Tear down performance test
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Macip Acl Settings | ${dut1}
 | | Run Keyword And Ignore Error
 | | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
 
 | Tear down performance test with Ligato Kubernetes
-| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | [Documentation] | Common test teardown for performance \
 | | ... | tests with Ligato Kubernetes.
+| | ...
+| | ... | TODO: Call Tear down performance test?
 | | ...
 | | Run Keyword If Test Failed
 | | ... | Get Kubernetes logs on all DUTs | ${nodes} | csit
@@ -951,37 +843,18 @@
 | | Delete Kubernetes resource on all DUTs | ${nodes} | csit
 
 | Tear down performance test with SRv6 with encapsulation
-| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | [Documentation] | Common test teardown for performance \
 | | ... | tests with SRv6 with encapsulation feature used.
 | | ...
-| | ... | *Arguments:*
-| | ... | - rate - Rate for sending packets. Type: string
-| | ... | - framesize - L2 Frame Size [B]. Type: integer/string
-| | ... | - traffic_profile - Traffic profile. Type: string
+| | ... | *Test Variables needed:*
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - traffic_profile - Topology type. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tear down performance test with SRv6 with encapsulation \
-| | ... | \| 100000pps \| 64 \| ${traffic_profile} \|
+| | ... | \| Tear down performance test with SRv6 with encapsulation \|
 | | ...
-| | [Arguments] | ${rate} | ${framesize} | ${traffic_profile}
-| | ...
-| | Tear down performance discovery test | ${rate} | ${framesize}
-| | ... | ${traffic_profile}
-| | Run Keyword If Test Failed | Show SR Policies on all DUTs | ${nodes}
-| | Run Keyword If Test Failed
-| | ... | Show SR Steering Policies on all DUTs | ${nodes}
-| | Run Keyword If Test Failed | Show SR LocalSIDs on all DUTs | ${nodes}
-
-| Tear down mrr test with SRv6 with encapsulation
-| | [Documentation] | Common test teardown for mrr tests with SRv6 with \
-| | ... | encapsulation feature used.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down mrr test with SRv6 with encapsulation \|
-| | ...
-| | Tear down performance mrr test
+| | Tear down performance test
 | | Run Keyword If Test Failed | Show SR Policies on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Show SR Steering Policies on all DUTs | ${nodes}
