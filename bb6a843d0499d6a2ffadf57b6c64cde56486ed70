@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "51b3887c_5752339b",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-13T10:09:29Z",
+      "side": 1,
+      "message": ". Under investigation.",
+      "range": {
+        "startLine": 74,
+        "startChar": 91,
+        "endLine": 74,
+        "endChar": 92
+      },
+      "revId": "bb6a843d0499d6a2ffadf57b6c64cde56486ed70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
