@@ -34,29 +34,29 @@ class Testcase(object):
         """
         self.template = Template(template_string)
 
-    def generate(self, num, framesize, phy_cores):
+    def generate(self, num, frame_size, phy_cores):
         """Return string of test case code with placeholders filled.
 
         Fail if there are placeholders left unfilled.
 
         :param num: Test case number. Example value: 4.
-        :param framesize: Imix string or numeric frame size. Example: 74.
+        :param frame_size: Imix string or numeric frame size. Example: 74.
         :param phy_cores: Number of physical cores to use. Example: 2.
         :type num: int
-        :type framesize: str or int
+        :type frame_size: str or int
         :type phy_cores: int or str
         :returns: Filled template, usable as test case code.
         :rtype: str
         """
         try:
-            fsize = int(framesize)
+            fsize = int(frame_size)
             subst_dict = {
                 "frame_num": "${%d}" % fsize,
                 "frame_str": "%dB" % fsize
             }
         except ValueError:  # Assuming an IMIX string.
             subst_dict = {
-                "frame_num": str(framesize),
+                "frame_num": str(frame_size),
                 "frame_str": "IMIX"
             }
         cores_str = str(phy_cores)
