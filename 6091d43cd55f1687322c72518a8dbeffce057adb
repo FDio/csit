@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ec8f9a1_b7749d04",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T15:08:29Z",
+      "side": 1,
+      "message": "Is it allowed to add multiple times the same variable (with different or same values)? If not, it would be easier to just use (or inherit from) dict or (collections.OrderedDict).",
+      "range": {
+        "startLine": 46,
+        "startChar": 31,
+        "endLine": 46,
+        "endChar": 44
+      },
+      "revId": "6091d43cd55f1687322c72518a8dbeffce057adb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
