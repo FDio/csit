@@ -686,6 +686,7 @@ function select_tags () {
                                 "mrrAND${DEFAULT_NIC}AND1cAND78bANDip6base"
                                 "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2bdbase"
                                 "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2xcbase"
+                                "mrrANDnic_intel-xxv710AND1cAND64bANDip4baseANDdrv_avf"
                                 "!dot1q")
             else
                 # If trigger contains tags, split them into array.
@@ -723,9 +724,9 @@ function select_tags () {
     # (e.g. Functional).
     prefix="perftestAND"
     if [[ "${TEST_CODE}" == "vpp-"* ]]; then
-        # Automatic prefixing for VPP jobs to limit the NIC used and
-        # traffic evaluation to MRR.
-        prefix="${prefix}mrrAND${DEFAULT_NIC}AND"
+        # Automatic prefixing for VPP jobs to limit
+        # the traffic evaluation to MRR.
+        prefix="${prefix}mrrAND"
     fi
     for tag in "${test_tag_array[@]}"; do
         if [[ ${tag} == "!"* ]]; then
