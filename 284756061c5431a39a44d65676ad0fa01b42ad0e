@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "a15127df_e458a400",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T15:35:45Z",
+      "side": 1,
+      "message": "v2.0 uses different way to do text substitution.",
+      "parentUuid": "21d5ebfe_9ef16f46",
+      "range": {
+        "startLine": 189,
+        "startChar": 12,
+        "endLine": 189,
+        "endChar": 23
+      },
+      "revId": "284756061c5431a39a44d65676ad0fa01b42ad0e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c331d187_1f256fb0",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 13
@@ -128,6 +152,30 @@
       "writtenOn": "2019-03-13T06:46:09Z",
       "side": 1,
       "message": "be aware that if you not have any input files (like auto-generator 3.0 you will need w+",
+      "range": {
+        "startLine": 205,
+        "startChar": 41,
+        "endLine": 205,
+        "endChar": 42
+      },
+      "revId": "284756061c5431a39a44d65676ad0fa01b42ad0e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94ea6ff8_02e9570b",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T15:35:45Z",
+      "side": 1,
+      "message": "\"w+\" is for overwriting and reading at once. Regenerator will always read first (line 186) and close, only after that write and close (no matter whether different or the same file as the one read).",
+      "parentUuid": "c331d187_1f256fb0",
       "range": {
         "startLine": 205,
         "startChar": 41,
@@ -174,6 +222,30 @@
       "writtenOn": "2019-03-13T06:46:09Z",
       "side": 1,
       "message": "Maybe\n*mrr*.robot *soak*.robot *ndrpdr* (lets make is readable and specific to avoid unwanted behavior?)",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 50
+      },
+      "revId": "284756061c5431a39a44d65676ad0fa01b42ad0e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "adb63c2b_49d06794",
+        "filename": "tests/dpdk/perf/regenerate_testcases.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T15:35:45Z",
+      "side": 1,
+      "message": "v2.0 will have -ndrpdr.robot only.",
+      "parentUuid": "9229a7e8_c4a95d1a",
       "range": {
         "startLine": 20,
         "startChar": 0,
