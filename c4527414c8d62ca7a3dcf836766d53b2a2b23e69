@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "deba1d5b_d2168bba",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T11:59:18Z",
+      "side": 1,
+      "message": "Describe what happens if this is left None.",
+      "range": {
+        "startLine": 165,
+        "startChar": 26,
+        "endLine": 165,
+        "endChar": 36
+      },
+      "revId": "c4527414c8d62ca7a3dcf836766d53b2a2b23e69",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e1e30fb9_aa869cb4",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T11:59:18Z",
+      "side": 1,
+      "message": "Hmm, would we really need data.cmd_reply field, ever?\nverify_reply already checks it is the _reply we want.",
+      "range": {
+        "startLine": 155,
+        "startChar": 30,
+        "endLine": 155,
+        "endChar": 39
+      },
+      "revId": "c4527414c8d62ca7a3dcf836766d53b2a2b23e69",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
