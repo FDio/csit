@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9df39dd5_7cbb9251",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-13T18:22:35Z",
+      "side": 1,
+      "message": "For each occurence of parameter with matching variable, replace the value.\n\nIf that really is the intended behavior if multiple (or zero) parameters have the given variable name.",
+      "range": {
+        "startLine": 60,
+        "startChar": 11,
+        "endLine": 60,
+        "endChar": 41
+      },
+      "revId": "b3d06fd74e2b5cb5e70c535b385a67fab5dec9a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
