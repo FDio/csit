@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bc138495_aff734cd",
+        "filename": "resources/tools/disk-image-builder/csit-sut-dcr/ubuntu_1804_amd64/Dockerfile",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T14:27:42Z",
+      "side": 1,
+      "message": "i will fix i was just in rush to test.",
+      "parentUuid": "9553cbf9_3d094b88",
+      "range": {
+        "startLine": 124,
+        "startChar": 8,
+        "endLine": 124,
+        "endChar": 13
+      },
+      "revId": "bf3ce71ec5074eb30a866ea8b6e01aad03d58e64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ea15ee39_c0f720ac",
         "filename": "resources/tools/testbed-setup/ansible/roles/tg_sut/tasks/main.yaml",
         "patchSetId": 3
