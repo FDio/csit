@@ -48,10 +48,6 @@
 | ... | interfaces.
 
 *** Variables ***
-# XXV710-DA2 bandwidth limit ~50Gbps/2=25Gbps
-| ${s_25G}= | ${25000000000}
-# XXV710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
-| ${s_18.75Mpps}= | ${18750000}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
@@ -74,7 +70,7 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add DPDK no PCI to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
-| | ... | ${s_25G} | ${framesize} | pps_limit=${s_18.75Mpps}
+| | ... | Intel-XXV710 | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize AVF interfaces
 | | And Initialize L2 bridge domain in circular topology
