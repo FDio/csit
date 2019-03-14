@@ -33,6 +33,7 @@
 # TODO: Figure out a way to verify edits to this file automatically.
 
 # TODO: Split into directly needed packages and their dependencies.
+aenum==2.1.2
 docopt==0.6.2  # for pykwalify
 ecdsa==0.13
 enum34==1.1.2
