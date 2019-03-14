@@ -182,11 +182,11 @@ def main():
     papi_connect(vpp, CLIENT_NAME)
     for data in json_data:
         api_name = data['api_name']
-        api_args_unicode = data['api_args']
+        api_args_str = data['api_args']
         api_reply = dict(api_name=api_name)
         api_args = dict()
-        for a_k, a_v in api_args_unicode.items():
-            value = binascii.unhexlify(a_v) if isinstance(a_v, unicode) else a_v
+        for a_k, a_v in api_args_str.items():
+            value = binascii.unhexlify(a_v) if isinstance(a_v, str) else a_v
             api_args[str(a_k)] = value
         try:
             rep = papi_run(vpp, api_name, api_args)
