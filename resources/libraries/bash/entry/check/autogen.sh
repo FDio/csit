@@ -18,13 +18,16 @@ set -exuo pipefail
 # This file does not have executable flag nor shebang,
 # to dissuade non-tox callers.
 
-# This script run every executable *.py script anywhere within tests/ dir,
+# This script starts with copying ${CSIT_DIR}/tests to ${GENERATED_DIR}/.
+# Then the script runs every executable *.py script anywhere in the copied dir,
 # the working directory temporarily changed to where the *.py file is.
 # Proper virtualenv is assumed to be active.
-# If "git diff" sees any change, this script fails.
-# The diff output stored to autogen.log (overwriting).
-# The *.py files are assumed to be robot suite generators,
-# any change means the contribution does not match the generated code.
+# Then another directory in ${GENERATED_DIR} is created, where
+# the just generated content is copied and then overwitten by the non-generated.
+# If "diff -dur" sees any changes by the overwrite, this script fails.
+# The diff output is stored to autogen.log (overwriting).
+# The executed *.py files are assumed to be robot suite generators,
+# any change means the contribution is not consistent with the regenerated code.
 
 # "set -eu" handles failures from the following two lines.
 BASH_CHECKS_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
@@ -33,20 +36,21 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     echo "Source failed." >&2
     exit 1
 }
-
+common_dirs
 work_dir="$(pwd)" || die
 trap "cd '${work_dir}'" EXIT || die
-file_list="$(find ./tests -type f -executable -name '*.py')" || die
 
-for gen in ${file_list}; do
-    directory="$(dirname "${gen}")" || die
-    filename="$(basename "${gen}")" || die
-    pushd "${directory}" || die
-    ./"${filename}" || die
-    popd || die
-done
+generate_tests
 
-lines="$(git diff | tee "autogen.log" | wc -l)" || die
+rm -rf "${GENERATED_DIR}/tests_tmp"
+cp -r "${GENERATED_DIR}/tests" "${GENERATED_DIR}/tests_tmp"
+# Default cp behavior is to put inside a targed dir, not to override.
+cp -rf "${CSIT_DIR}/tests"/* "${GENERATED_DIR}/tests_tmp"/
+# TODO: Do we want to archive ${GENERATED_DIR}?
+# I think archiving the diff is enough.
+
+diff_cmd=("diff" "-dur" "${GENERATED_DIR}/tests_tmp" "${GENERATED_DIR}/tests")
+lines="$("${diff_cmd[@]}" | tee "autogen.log" | wc -l)" || die
 if [ "${lines}" != "0" ]; then
     # TODO: Decide which text goes to stdout and which to stderr.
     warn "Autogen conflict diff nonzero lines: ${lines}"

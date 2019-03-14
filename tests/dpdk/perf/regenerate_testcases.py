@@ -16,4 +16,5 @@
 from resources.libraries.python.autogen.Regenerator import Regenerator
 
 # Do not match __init__.robot
-Regenerator().regenerate_glob("*r.robot")
+# Match -mrr, -ndrpdr and -soak.
+Regenerator().regenerate_glob("*r.robot *k.robot")
