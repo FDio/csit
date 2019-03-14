@@ -1,3 +1,8 @@
+## [2.4] - 2019-03-14
+
+Added python3-cffi to apt list
+Added aenum to pip requirements
+
 ## [2.3] - 2019-01-04
 
 Added pexpect, dill, numpy, scipy to pip requirements
