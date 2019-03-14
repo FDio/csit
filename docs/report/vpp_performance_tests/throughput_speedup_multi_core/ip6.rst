@@ -25,5 +25,4 @@ CSIT source code for the test cases used for plots can be found in
     ip6-3n-skx-x710
     ip6-2n-skx-x710
     ip6-2n-skx-xxv710
-..
     ip6-2n-dnv-x553
