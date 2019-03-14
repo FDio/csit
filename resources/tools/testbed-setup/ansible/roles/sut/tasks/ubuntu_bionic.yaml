@@ -1,5 +1,5 @@
 ---
-# file: roles/sut/tasks/ubuntu.yaml
+# file: roles/sut/tasks/ubuntu_bionic.yaml
 
 - name: Install CSIT dependencies
   apt:
@@ -20,4 +20,7 @@
     - 'openjdk-8-jdk'
     - 'libpixman-1-dev'
     - 'python-cffi'
+    - 'python-cffi-backend'
+    - 'python3-cffi'
+    - 'python3-cffi-backend'
   tags: install-csit-dependencies

@@ -1,5 +1,5 @@
 ---
-# file: roles/tg_sut/tasks/ubuntu.yaml
+# file: roles/tg_sut/tasks/ubuntu_bionic.yaml
 
 - name: Install CSIT dependencies
   apt:
@@ -38,6 +38,7 @@
   apt:
     name: 'docker-{{ docker_edition }}={{ docker_apt_package_name }}'
     state: 'present'
+    force: yes
   tags: install-docker
 
 - name: Creates Docker service directory
