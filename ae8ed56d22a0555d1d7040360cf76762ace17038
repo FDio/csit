@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "87491aed_28f7951e",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1704
+      },
+      "writtenOn": "2019-03-14T11:37:38Z",
+      "side": 1,
+      "message": "it\u0027s way of marking selected option.",
+      "parentUuid": "302a2a9f_a36afc4d",
+      "range": {
+        "startLine": 14,
+        "startChar": 3,
+        "endLine": 14,
+        "endChar": 44
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1dfce37d_a324971e",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 1
@@ -352,6 +376,30 @@
     },
     {
       "key": {
+        "uuid": "61829513_367cb725",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1704
+      },
+      "writtenOn": "2019-03-14T11:37:38Z",
+      "side": 1,
+      "message": "Docker container",
+      "parentUuid": "d9577ae1_e2a5a309",
+      "range": {
+        "startLine": 41,
+        "startChar": 10,
+        "endLine": 41,
+        "endChar": 16
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb7c5e93_94bb680a",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 1
@@ -444,6 +492,30 @@
     },
     {
       "key": {
+        "uuid": "13434de7_355f0d0b",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1704
+      },
+      "writtenOn": "2019-03-14T11:37:38Z",
+      "side": 1,
+      "message": "Completing an operation will be confirmed by vpp-agent log record \"transaction complete\".",
+      "parentUuid": "5d9c05c7_00c4fabd",
+      "range": {
+        "startLine": 70,
+        "startChar": 32,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7398741_06d56fbd",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 1
@@ -455,6 +527,30 @@
       "writtenOn": "2019-03-13T17:28:41Z",
       "side": 1,
       "message": "What? If there is a bug, and the equality is only achieved with zero addresses, test would still pass (if it avoids division by zero)?\n\nThe test should declare some guarantee (data size, or size per second) and fail if the cli honors it but VPP fails verification.",
+      "range": {
+        "startLine": 77,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "686da0de_b4e42790",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1704
+      },
+      "writtenOn": "2019-03-14T11:37:38Z",
+      "side": 1,
+      "message": "we want to compare number of ip addresses configured in VPP / number of requested configured IP addresses from management console. If result \u003c 1, test is failed / dnf.\nTest result will be number of interfaces configured on interafce / time required for configuration. Ip address configuration rate per second.",
+      "parentUuid": "b7398741_06d56fbd",
       "range": {
         "startLine": 77,
         "startChar": 18,
@@ -552,6 +648,30 @@
         "startChar": 31,
         "endLine": 84,
         "endChar": 41
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fbd7a063_7ac5eec6",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1704
+      },
+      "writtenOn": "2019-03-14T11:37:38Z",
+      "side": 1,
+      "message": "exactly",
+      "parentUuid": "eab2ee55_f15b65ca",
+      "range": {
+        "startLine": 84,
+        "startChar": 55,
+        "endLine": 84,
+        "endChar": 61
       },
       "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
