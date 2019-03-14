@@ -25,6 +25,126 @@
     },
     {
       "key": {
+        "uuid": "12fb6b1c_72bb3656",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "Motivation",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 9
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9db55cfe_98734d22",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": ". at the and of sentence",
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77462828_5938d799",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "Define motivation? Is it because we are interested comparison or just for fun? Put there few words about the need of control plane bench marking",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 67
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac40a29a_0925c109",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "is there any material we can rely on?? https://datatracker.ietf.org/wg/bmwg/documents/\nis there applicable RFC we can use?",
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65515cbb_0d0d458f",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "define terminology like SUT, control plane etc (you can reuse texts from our wiki)",
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9328aa8_54a7ddf8",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "what route creation? IPv4? ip6? BGP?\nplease describe more verbose what this means.\n- Are you configuring routes on interface? \n- or directly dummy entries to FIB? \n- or you are creating dummy loopback interface?\nAre you doing route resolve or not?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 17
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "302a2a9f_a36afc4d",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 1
@@ -48,6 +168,29 @@
     },
     {
       "key": {
+        "uuid": "1dfce37d_a324971e",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "It is more \"Management control-plane agents",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 23
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93490d05_96a4c796",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 1
@@ -64,6 +207,29 @@
         "startChar": 21,
         "endLine": 18,
         "endChar": 29
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a1336f9_fcaeb155",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "Would be nice to provide links to original repositories with the proofs and references to the user.",
+      "range": {
+        "startLine": 20,
+        "startChar": 1,
+        "endLine": 20,
+        "endChar": 11
       },
       "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -117,6 +283,29 @@
     },
     {
       "key": {
+        "uuid": "763777d0_59919122",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "missing the method you are describing above.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 84
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "05c5eb24_aeb680c0",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 1
@@ -163,6 +352,29 @@
     },
     {
       "key": {
+        "uuid": "cb7c5e93_94bb680a",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "Do you plan to control this over SSH? eth0-eth0 or can this run on localhost? How does additional link impact performance",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 74
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c127e5f5_8640f881",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 1
@@ -179,6 +391,29 @@
         "startChar": 80,
         "endLine": 60,
         "endChar": 81
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6e2d3c59_8e87d5fa",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "I would recommend to start with only main thread with no interfaces and no WT for base line. Describe also table with scalability and core mapping e.g:\n\n1MT | 1PHY core pinned to core 1 | no WT\n2MT | 2PHY cores pinned to core 1,2 | no WT\n\nSystem core pinning:\nTake an inspiration from our report. We need to describe that core 0 is allocated for system and rest of the cores are eliminated from CFS.",
+      "range": {
+        "startLine": 61,
+        "startChar": 40,
+        "endLine": 61,
+        "endChar": 51
       },
       "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -232,6 +467,29 @@
     },
     {
       "key": {
+        "uuid": "f5216470_b371859b",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "Please define table of all the scale  option as i do not know how do you plan to implement 10-20x (based on cosmic rays?)",
+      "range": {
+        "startLine": 82,
+        "startChar": 34,
+        "endLine": 82,
+        "endChar": 46
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "68d77bce_236e7806",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 1
@@ -271,6 +529,29 @@
         "startChar": 55,
         "endLine": 84,
         "endChar": 61
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08dd878d_4c1b8b51",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:58:27Z",
+      "side": 1,
+      "message": "How do you plan to implement 5-10 in algorithm? Why 5? why 10? Is it enough to stress control plane by sending control-ping? Can warmup phase be same for all control plane agents?",
+      "range": {
+        "startLine": 84,
+        "startChar": 31,
+        "endLine": 84,
+        "endChar": 41
       },
       "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
