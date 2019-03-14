@@ -22,6 +22,30 @@
       "revId": "086f3a5065d744e00fe10289eb2f090b7bde208e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c5ef2bf_4b7e6b60",
+        "filename": "resources/libraries/robot/performance_utils.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-14T09:35:07Z",
+      "side": 1,
+      "message": "Trex duration -1 mean infinite. means we are able to run trex on background and stops it later.",
+      "parentUuid": "3a7f818d_38dee85e",
+      "range": {
+        "startLine": 539,
+        "startChar": 25,
+        "endLine": 539,
+        "endChar": 27
+      },
+      "revId": "086f3a5065d744e00fe10289eb2f090b7bde208e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
