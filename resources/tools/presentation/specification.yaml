@@ -366,7 +366,7 @@
     # Denverton:
     intel-dnv-vpp:
       # Not used
-      intel-dnv-vpp-release-1810:
+      intel-dnv-vpp-release-1901:
         - 1
 
     ###########################################################################
@@ -1465,7 +1465,7 @@
   builds:
 
     # Not used
-    intel-dnv-vpp-release-1810:
+    intel-dnv-vpp-release-1901:
       - 1
 
     csit-vpp-perf-verify-1807-3n-hsw:
