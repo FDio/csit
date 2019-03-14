@@ -31,8 +31,6 @@
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - perf_pdr_loss_acceptance - Loss acceptance treshold
-| | ... | - perf_pdr_loss_acceptance_type - Loss acceptance treshold type
 | | ... | - pkt_trace - Switch to enable packet trace for test
 | | ... | - dut_stats - Switch to enable DUT statistics
 | | ...
