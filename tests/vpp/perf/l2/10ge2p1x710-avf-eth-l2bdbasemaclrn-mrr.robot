@@ -48,8 +48,6 @@
 | ... | interfaces.
 
 *** Variables ***
-# X710-DA2 bandwidth limit
-| ${s_limit}= | ${10000000000}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
@@ -72,7 +70,7 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add DPDK no PCI to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
-| | ... | ${s_limit} | ${framesize}
+| | ... | Intel-X710 | ${framesize}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize AVF interfaces
 | | And Initialize L2 bridge domain in circular topology
