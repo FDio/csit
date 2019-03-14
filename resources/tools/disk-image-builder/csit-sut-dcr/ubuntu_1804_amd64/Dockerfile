@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,9 +14,8 @@
 FROM ubuntu:bionic-20180821
 
 MAINTAINER csit-dev <csit-dev@lists.fd.io>
-LABEL Description="CSIT vpp-device ubuntu 18.04 baseline image"
-LABEL Vendor="cisco.com"
-LABEL Version="0.4"
+LABEL Description="CSIT vpp-device ubuntu 18.04 baseline image (x86)"
+LABEL Version="0.6"
 
 # Setup the environment
 ENV DEBIAN_FRONTEND=noninteractive
@@ -82,6 +81,7 @@ RUN apt-get -q update \
         libnuma1 \
         python-cffi \
         python-enum34 \
+        python3-cffi \
  && rm -rf /var/lib/apt/lists/*
 
 # Configure locales
@@ -97,7 +97,7 @@ RUN mkdir -p /tmp/dumps \
  && mkdir -p /var/cache/vpp/python \
  && mkdir -p /var/run/sshd
 
-# PIP pre-cache
+# CSIT PIP pre-cache
 RUN pip install \
         docopt==0.6.2 \
         ecdsa==0.13 \
@@ -118,6 +118,10 @@ RUN pip install \
         dill==0.2.8.2 \
         numpy==1.14.5 \
         scipy==1.1.0
+
+# VPP PIP pre-cache
+RUN pip install \
+        aenum
 
 # SSH settings
 RUN echo 'root:Csit1234' | chpasswd \

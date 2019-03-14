@@ -1,24 +1,17 @@
 ---
-# file: roles/common/tasks/ubuntu.yaml
+# file: roles/common/tasks/ubuntu_bionic.yaml
 
-- name: Copy aarch64 apt sources file
+- name: Copy apt sources file
   template:
-    src: 'files/apt-sources-arm.list'
+    src: 'files/apt-sources_{{ ansible_distribution_release }}_{{ ansible_machine }}.list'
     dest: '/etc/apt/sources.list'
   tags: copy-apt-sources
-  when: ansible_machine == 'aarch64'
-
-- name: Copy x86_64 apt sources file
-  template:
-    src: 'files/apt-sources.list'
-    dest: '/etc/apt/sources.list'
-  tags: copy-apt-sources
-  when: ansible_machine == 'x86_64'
 
 - name: Install CSIT dependencies
   apt:
     name: '{{ item }}'
     state: 'present'
+    cache_valid_time: 3600
     install_recommends: False
   with_items:
     - 'python-apt'
