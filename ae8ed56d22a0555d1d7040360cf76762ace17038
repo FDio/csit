@@ -516,6 +516,30 @@
     },
     {
       "key": {
+        "uuid": "18e1023c_5b026d85",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-14T15:00:00Z",
+      "side": 1,
+      "message": "Ok. Now incorporate your responses into the document itself.",
+      "parentUuid": "13434de7_355f0d0b",
+      "range": {
+        "startLine": 70,
+        "startChar": 32,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7398741_06d56fbd",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 1
@@ -551,6 +575,30 @@
       "side": 1,
       "message": "we want to compare number of ip addresses configured in VPP / number of requested configured IP addresses from management console. If result \u003c 1, test is failed / dnf.\nTest result will be number of interfaces configured on interafce / time required for configuration. Ip address configuration rate per second.",
       "parentUuid": "b7398741_06d56fbd",
+      "range": {
+        "startLine": 77,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 33
+      },
+      "revId": "ae8ed56d22a0555d1d7040360cf76762ace17038",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "631c35c1_fa591138",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-14T15:00:00Z",
+      "side": 1,
+      "message": "This sounds like a \"search\" type of test. As in, use binary search to find the largest number which verifies, and return the measured speed for that largest number.\n\nThat could work. I can help with an algorithm with the best time usage.",
+      "parentUuid": "686da0de_b4e42790",
       "range": {
         "startLine": 77,
         "startChar": 18,
