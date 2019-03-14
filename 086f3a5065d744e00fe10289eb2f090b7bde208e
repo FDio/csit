@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a7f818d_38dee85e",
+        "filename": "resources/libraries/robot/performance_utils.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-14T09:20:28Z",
+      "side": 1,
+      "message": "Does anybody remember why we thought a negative duration is a good idea here?",
+      "range": {
+        "startLine": 539,
+        "startChar": 25,
+        "endLine": 539,
+        "endChar": 27
+      },
+      "revId": "086f3a5065d744e00fe10289eb2f090b7bde208e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
