@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a649cfd4_303d3935",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-15T13:58:21Z",
+      "side": 1,
+      "message": "I do not suppose we have a tag like drv_dpdk?",
+      "range": {
+        "startLine": 685,
+        "startChar": 74,
+        "endLine": 685,
+        "endChar": 84
+      },
+      "revId": "e1200800f0325850a4ccdef7b1183b493982cf85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
