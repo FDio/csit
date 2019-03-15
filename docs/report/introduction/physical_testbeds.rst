@@ -185,7 +185,7 @@ Total of four 2n-skx testbeds are in operation in FD.io labs.
 ------------------------------
 
 2n-dnv testbed is based on one Intel Server Board S2600WFT that is equipped
-with two Intel Xeon Skylake Platinum 8180 2.5 GHz 28 core processors and one
+with two Intel Atom CPU C3858 @ 2.00GHz 12 core processors and one
 SuperMicro SYS-E300-9A server that is equipped with one SuperMicro A2SDi-TP8F
 motherboard. Physical testbed topology is depicted in a figure below.
 
