@@ -293,7 +293,17 @@ class PapiExecutor(object):
 
         papi_reply = list()
         if process_reply:
-            json_data = json.loads(stdout)
+            try:
+                json_data = json.loads(stdout)
+            except ValueError:
+                logger.error("An error occured while processing the PAPI "
+                             "request:\n{rqst}".format(rqst=local_list))
+                logger.trace("ret_code = {ret_code}\n"
+                             "stdout:\n{stdout}\n"
+                             "stderr:\n{stderr}".format(ret_code=ret_code,
+                                                        stdout=stdout,
+                                                        stderr=stderr))
+                raise
             for data in json_data:
                 try:
                     api_reply_processed = dict(
