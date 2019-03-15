@@ -47,10 +47,6 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-# XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
-| ${s_24.5G}= | ${24500000000}
-# XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
-| ${s_18.75Mpps}= | ${18750000}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
@@ -73,7 +69,7 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
+| | ... | Intel-XL710 | ${framesize}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
