@@ -270,6 +270,85 @@ Testbed HW configuration
 The testbed HW configuration is described on
 `this FD.IO wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed#FD.IO_CSIT_testbed_-_Server_HW_Configuration>`_.
 
+Per-patch performance test
+--------------------------
+
+Updated for CSIT commit 5523f7ecbafd43f7c3d8a17c24bc70d83db39c0c.
+
+A methodology similar to trending analysis is used for comparing performance
+before a DUT code is changed. This can act as a verify job to disallow
+changed which would decrease performance without good reason.
+
+Existing jobs
+`````````````
+
+VPP is the only project currently using such jobs.
+They are not started automatically, must be triggered on demand.
+They allow full tag expressions, but some tags are enforced (such as MRR).
+Only the three types of tesbed based on Xeon processors have jobs created.
+
+Basic operation
+```````````````
+
+The job builds VPP .deb packages for both the patch under test
+(called "current") and its parent patch (called "parent").
+
+For each test (from a set defined by tag expression),
+both builds are subjected to several trial measurements (BMRR).
+After some filtering, samples are grouped to "parent" sequence,
+followed by "current" sequence. The same Minimal Description Length
+algorithm as in trending is used to decide whether it is one big group,
+or two smaller gropus. If it is one group, a "normal" result
+is declared for the test. If it is two groups and current average
+is less then parent average, the test is declared a regression.
+If it is two groups and current average is larger or equal,
+the test is declared a progression.
+
+The whole job fails (giving -1) if some trial measurement failed,
+or if any test was declared a regression.
+
+Temporary specifics
+```````````````````
+
+The Minimal Description Length analysis is performed by
+jumpavg-0.1.3 available on PyPI.
+
+In hopes of strengthening of signal (code performance) compared to noise
+(all other factors influencing the measured values), several workarounds
+are applied.
+
+Each build is tested 8 times with batch of 8 measurements,
+the builds being alternated between batches.
+
+From 64 values, top 8 and bottom 24 are removed (filtered out),
+as they contain outliers of low frequency and big impact on classification.
+
+Console output
+``````````````
+
+The following information os visible towards the end of Jenkins console output.
+
+The original 64 values are visible in trace output as "pre-hack" values,
+they appear in chronological order, and are available
+for alternative processing if needed.
+
+The 32 values after filtering are also visible in trace output,
+this time sorted by value (so people can see minimum and maximum).
+
+The next two debug outputs contain the jumpavg representation
+of the two sequences, where "bits" is the description length,
+for "current" sequence it includes effect from "parent" average value
+(jumpavg-0.1.3 penalizes sequences with too close averages).
+The representation of the big group is not visible.
+
+The next debug outupt is difference of averages. It is the current average
+minus the parent average, expressed as percentage of bigger of the averages
+(so not always as percentage of parent average, as people tend to assume).
+
+Finally, the test suite classification is visible.
+The algorithm does not tract test case names,
+so tect cases are indexed (from 0).
+
 .. _Minimum Description Length: https://en.wikipedia.org/wiki/Minimum_description_length
 .. _Occam's razor: https://en.wikipedia.org/wiki/Occam%27s_razor
 .. _bimodal distribution: https://en.wikipedia.org/wiki/Bimodal_distribution
