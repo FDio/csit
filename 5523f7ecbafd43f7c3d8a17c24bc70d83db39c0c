@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "419b9a5c_ae9d11d2",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-15T14:03:22Z",
+      "side": 1,
+      "message": "I am confused. The sentence still lists motherboard\u0026processor for one box (or is \"server board\" a server?) and server\u0026motherboard for the other box. And we should make it clear which box is TG and which is DUT.",
+      "range": {
+        "startLine": 190,
+        "startChar": 11,
+        "endLine": 190,
+        "endChar": 12
+      },
+      "revId": "5523f7ecbafd43f7c3d8a17c24bc70d83db39c0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
