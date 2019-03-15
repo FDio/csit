@@ -22,6 +22,30 @@
       "revId": "4b6cc0c25b43446cb496c837ec94a5356afb1125",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf2d2022_d24b0833",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-15T13:56:01Z",
+      "side": 1,
+      "message": "Sandbox run [0] shows the new test running and passing.\nUnfortunately, it also shows lines 685 and 688 triggering additional AVF tests on 3n-skx.\n\n[0] https://jenkins.fd.io/sandbox/job/vpp-csit-verify-perf-master-3n-skx/2/console",
+      "parentUuid": "91ff5ff6_cedea7e3",
+      "range": {
+        "startLine": 689,
+        "startChar": 32,
+        "endLine": 689,
+        "endChar": 87
+      },
+      "revId": "4b6cc0c25b43446cb496c837ec94a5356afb1125",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
