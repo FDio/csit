@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "617b9c97_c3ea6769",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-15T14:28:44Z",
+      "side": 1,
+      "message": "I have heard PAPI can communicate either via shared memory, or via unix domain socket. I imagine performances could be different.",
+      "range": {
+        "startLine": 17,
+        "startChar": 58,
+        "endLine": 17,
+        "endChar": 69
+      },
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
