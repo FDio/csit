@@ -46,8 +46,6 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-# Link limit:
-| ${s_limit}= | ${10000000000}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
@@ -70,7 +68,7 @@
 | | Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${s_limit} | ${framesize}
+| | ... | Cisco-VIC-1227 | ${framesize}
 | | Apply startup configuration on all VPP DUTs
 | | Initialize L2 bridge domain in circular topology
 | | Then Traffic should pass with maximum rate
