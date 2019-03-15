@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91ff5ff6_cedea7e3",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-15T11:45:04Z",
+      "side": 1,
+      "message": "I know Damjan requested, but just be aware that AVF is fragile and new code. This way it is my warning that this will impact other per patches as well by accidental -1.\n\nOtherwise i have no objection.",
+      "range": {
+        "startLine": 689,
+        "startChar": 32,
+        "endLine": 689,
+        "endChar": 87
+      },
+      "revId": "4b6cc0c25b43446cb496c837ec94a5356afb1125",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
