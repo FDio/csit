@@ -22,6 +22,30 @@
       "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1551541c_ff06878b",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1704
+      },
+      "writtenOn": "2019-03-15T14:33:26Z",
+      "side": 1,
+      "message": "Also we can comunicate with vpp-agent and sweetcomb multiple ways (netconf, restconf, grpc...) we can choose one of them, or test multiple methods for each of them.",
+      "parentUuid": "617b9c97_c3ea6769",
+      "range": {
+        "startLine": 17,
+        "startChar": 58,
+        "endLine": 17,
+        "endChar": 69
+      },
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
