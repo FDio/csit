@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b69d4c9_0b81629c",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-15T16:02:45Z",
+      "side": 1,
+      "message": "Similarly to report methodology, this could be chopped into smaller sub-pages.",
+      "range": {
+        "startLine": 3,
+        "startChar": 9,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "fa00a4ea03c9b13959a01981d6ccde839ed113b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
