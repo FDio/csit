@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db224727_602fc7c4",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-15T11:50:19Z",
+      "side": 1,
+      "message": "Remove duplicity SSH trace.",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 71
+      },
+      "revId": "948ac7ecb24bbc58b2bfc3a88e8a942f2dbb30e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
