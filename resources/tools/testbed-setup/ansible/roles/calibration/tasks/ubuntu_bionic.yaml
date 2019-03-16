@@ -1,5 +1,5 @@
 ---
-# file: roles/calibration/tasks/ubuntu.yaml
+# file: roles/calibration/tasks/ubuntu_bionic.yaml
 
 - name: Install calibration dependencies
   apt:

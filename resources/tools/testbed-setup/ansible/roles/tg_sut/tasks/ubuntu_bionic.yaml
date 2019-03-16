@@ -3,22 +3,20 @@
 
 - name: Install CSIT dependencies
   apt:
-    name: '{{ item }}'
+    name:
+      - 'python-dev'
+      - 'python-virtualenv'
+      - 'python-pip'
+      - 'libpcap-dev'
+      - 'cpufrequtils'
+      - 'cgroup-bin'
+      - 'zlib1g-dev'
+      - 'apt-transport-https'
+      - 'ca-certificates'
+      - 'software-properties-common'
+      - 'libnuma-dev'
     state: 'present'
     install_recommends: False
-  with_items:
-    - 'python-dev'
-    - 'python-virtualenv'
-    - 'python-pip'
-    - 'libpcap-dev'
-    - 'cpufrequtils'
-    - 'cgroup-bin'
-    - 'zlib1g-dev'
-    - 'apt-transport-https'
-    - 'ca-certificates'
-    - 'software-properties-common'
-    - 'cron'
-    - 'libnuma-dev'
   tags: install-csit-dependencies
 
 - name: Add an Apt signing key, for docker-ce repository
@@ -99,13 +97,12 @@
 
 - name: Install Kubernetes
   apt:
-    name: '{{ item }}={{ kubernetes_apt_package_name }}'
+    name:
+      - 'kubeadm={{ kubernetes_apt_package_name }}'
+      - 'kubectl={{ kubernetes_apt_package_name }}'
+      - 'kubelet={{ kubernetes_apt_package_name }}'
     state: 'present'
     force: yes
-  with_items:
-    - 'kubeadm'
-    - 'kubectl'
-    - 'kubelet'
   tags: install-kubernetes
 
 - name: Apply kubelet parameter

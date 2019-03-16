@@ -3,24 +3,23 @@
 
 - name: Install CSIT dependencies
   apt:
-    name: '{{ item }}'
+    name:
+      - 'dkms'
+      - 'pkg-config'
+      - 'libglib2.0-dev'
+      - 'autoconf'
+      - 'libtool'
+      - 'screen'
+      - 'libmbedcrypto1'
+      - 'libmbedtls10'
+      - 'libmbedx509-0'
+      - 'lxc'
+      - 'openjdk-8-jdk'
+      - 'libpixman-1-dev'
+      - 'python-cffi'
+      - 'python-cffi-backend'
+      - 'python3-cffi'
+      - 'python3-cffi-backend'
     state: 'present'
     install_recommends: False
-  with_items:
-    - 'dkms'
-    - 'pkg-config'
-    - 'libglib2.0-dev'
-    - 'autoconf'
-    - 'libtool'
-    - 'screen'
-    - 'libmbedcrypto1'
-    - 'libmbedtls10'
-    - 'libmbedx509-0'
-    - 'lxc'
-    - 'openjdk-8-jdk'
-    - 'libpixman-1-dev'
-    - 'python-cffi'
-    - 'python-cffi-backend'
-    - 'python3-cffi'
-    - 'python3-cffi-backend'
   tags: install-csit-dependencies

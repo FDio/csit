@@ -1,9 +1,8 @@
 ---
 # file: roles/calibration/tasks/main.yaml
 
-- name: Ubuntu specific
-  import_tasks: ubuntu.yaml
-  when: ansible_distribution|lower == 'ubuntu'
+- name: Install distribution - release - machine prerequisites
+  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
 
 - name: Run Spectre Meltdown checker
   raw: 'spectre-meltdown-checker --no-color'

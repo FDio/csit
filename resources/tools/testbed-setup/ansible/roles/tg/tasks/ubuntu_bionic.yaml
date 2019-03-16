@@ -3,9 +3,8 @@
 
 - name: Install CSIT dependencies
   apt:
-    name: '{{ item }}'
+    name:
+      - 'unzip'
     state: 'present'
     install_recommends: False
-  with_items:
-    - 'unzip'
   tags: install-csit-dependencies

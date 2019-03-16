@@ -55,8 +55,7 @@
 
 - name: Install CSIT PIP requirements
   pip:
-    name: '{{ item }}'
-  with_items:
+    name:
       - 'docopt==0.6.2'
       - 'ecdsa==0.13'
       - 'enum34==1.1.2'
@@ -80,7 +79,8 @@
 
 - name: Install VPP PIP requirements
   pip:
-    name: 'aenum'
+    name:
+      - 'aenum==2.1.2'
   tags: install-pip
 
 - name: Load vfio-pci by default

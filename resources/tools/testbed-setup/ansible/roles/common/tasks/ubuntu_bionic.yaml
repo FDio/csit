@@ -9,16 +9,16 @@
 
 - name: Install CSIT dependencies
   apt:
-    name: '{{ item }}'
+    name:
+      - 'python-apt'
+      - 'python-setuptools'
+      - 'git'
+      - 'crudini'
+      - 'expect'
+      - 'socat'
+      - 'qemu-system'
+      - 'build-essential'
     state: 'present'
     cache_valid_time: 3600
     install_recommends: False
-  with_items:
-    - 'python-apt'
-    - 'python-setuptools'
-    - 'git'
-    - 'crudini'
-    - 'expect'
-    - 'socat'
-    - 'qemu-system'
   tags: install-csit-dependencies
