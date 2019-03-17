@@ -8,8 +8,8 @@
   roles:
     - role: common
       tags: common
-    - role: tg
-      tags: tg
+    - role: sut
+      tags: sut
     - role: tg_sut
       tags: tg_sut
     - role: calibration
