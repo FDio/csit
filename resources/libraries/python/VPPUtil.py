@@ -19,6 +19,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
+from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
@@ -188,14 +189,11 @@ class VPPUtil(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script("show_interface.vat", node, json_out=False)
 
-        try:
-            vat.script_should_have_passed()
-        except AssertionError:
-            raise RuntimeError('Failed to get VPP interfaces on host: {name}'.
-                               format(name=node['host']))
+        if_data = InterfaceUtil.vpp_get_interface_data(node)
+        # TODO: return only base data
+        logger.trace('Interface data of host {host}:\n{if_data}'.format(
+            host=node['host'], if_data=if_data))
 
     @staticmethod
     def vpp_show_crypto_device_mapping(node):
