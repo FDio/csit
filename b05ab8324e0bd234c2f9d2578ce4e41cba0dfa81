@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "17b5b60c_70a6ad46",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T07:56:16Z",
+      "side": 1,
+      "message": "PAPI",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 4
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b483e3ea_08877fef",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T07:56:16Z",
+      "side": 1,
+      "message": "Currently we are creating branches per weekly basis. Which i think forward is not optimal (it is resource optimal, but not code optimal).\n\nShall we switch oper branch creating to \"API flag triggered\" instead of \"Date triggered\"?\n\nExample:\nVPP propose API change raising the bell as you describe. Corresponding job will automatically creates list of API with their CRCs. Ideally we should have our code implemented in the way that it will be 1:1 so API name is also name of our CSIT python function same does parameters.\n\nNew commit on CSIT side is created and once tested patch-on-patch our code is merged and oper branch created.\n\nCaveats: We need to come with oper branch naming derived from CRC. So VPP patch will pick oper branch based on CRC not the date as it is today. This way we are able to create branch for commits that already are on \"new API\".\n\nThoughts?",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 66
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c991817f_517470a8",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
