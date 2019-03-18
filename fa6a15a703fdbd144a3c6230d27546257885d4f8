@@ -192,6 +192,30 @@
     },
     {
       "key": {
+        "uuid": "9a6cf868_0bb50fe6",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-18T16:45:25Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/#/c/18368/2 has this #33 as parent.",
+      "parentUuid": "e144e3d0_3b54da83",
+      "range": {
+        "startLine": 49,
+        "startChar": 30,
+        "endLine": 49,
+        "endChar": 52
+      },
+      "revId": "fa6a15a703fdbd144a3c6230d27546257885d4f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d874296_0c0edb90",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 31
