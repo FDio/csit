@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "b491b195_99b9c222",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 8
+      },
+      "writtenOn": "2019-03-18T08:14:41Z",
+      "side": 1,
+      "message": "Backwards compatible is debatable. You might simplify this to \"changed\".\nBut do you not want to limit it to only APIs that is in use by CSIT?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 73
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c991817f_517470a8",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
@@ -59,6 +82,30 @@
       "writtenOn": "2019-03-18T03:26:12Z",
       "side": 1,
       "message": "It seems to me that this logic belongs in vppapigen. \nvppapigen could be modified to also emit a single consolidated file of all the api calls. If the shasum of the file is different from the last merged artifact in a given branch, a diff against the latest merged artifact in a given branch would indicate whether you have a backward compatible or incompatible changes.\n\nThe CI/CD job could open the jira ticket via a restful call if needed.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 26
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ae15ff46_eaae844b",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 8
+      },
+      "writtenOn": "2019-03-18T08:14:41Z",
+      "side": 1,
+      "message": "vppapigen only processes one API file at the time. Each JSON file, contains both a CRC per message, and a per-file CRC. If CSIT stores the CRC per-file (it uses) for the last run, and compare that with the CRC (vl_api_version in JSON)...\nWe could implement this with a helper PAPI. That would return you a dictionary of plugins / api files and corresponding version.",
+      "parentUuid": "c991817f_517470a8",
       "range": {
         "startLine": 73,
         "startChar": 0,
