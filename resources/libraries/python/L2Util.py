@@ -18,6 +18,7 @@ from textwrap import wrap
 
 from enum import IntEnum
 
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.ssh import exec_cmd_no_error
@@ -85,9 +86,9 @@ class L2Util(object):
         :returns: String representation of MAC address.
         :rtype: str
         """
-        x = ':'.join(binascii.hexlify(mac_bin)[i:i + 2]
-                     for i in range(0, 12, 2))
-        return str(x.decode('ascii'))
+        mac_str = ':'.join(binascii.hexlify(mac_bin)[i:i + 2]
+                           for i in range(0, 12, 2))
+        return str(mac_str.decode('ascii'))
 
     @staticmethod
     def vpp_add_l2fib_entry(node, mac, interface, bd_id, static_mac=1,
@@ -391,13 +392,9 @@ class L2Util(object):
         :rtype: list or dict
         """
 
-        # TODO: set following variable per whole suite when planned FIB API
-        # changes are merged in VPP
-        bitwise_non_zero = 0xffffffff   # equals to ~0 used in vpp code
-
         cmd = 'bridge_domain_dump'
         cmd_reply = 'bridge_domain_details'
-        args = dict(bd_id=bd_id if isinstance(bd_id, int) else int(bd_id))
+        args = dict(bd_id=int(bd_id))
         err_msg = 'Failed to get L2FIB dump on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
@@ -405,9 +402,9 @@ class L2Util(object):
 
         data = papi_resp.reply[0]['api_reply']
 
-        bd_data = list() if bd_id == bitwise_non_zero else dict()
+        bd_data = list() if bd_id == Constants.BITWISE_NON_ZERO else dict()
         for bridge_domain in data:
-            if bd_id == bitwise_non_zero:
+            if bd_id == Constants.BITWISE_NON_ZERO:
                 bd_data.append(bridge_domain[cmd_reply])
             else:
                 if bridge_domain[cmd_reply]['bd_id'] == bd_id:

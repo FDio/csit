@@ -40,6 +40,20 @@
 | | :FOR | ${interface} | IN | @{interfaces}
 | | | Set Interface State | @{interface} | up | if_type=name
 
+| Get interface Ipv4 addresses
+| | [Documentation] | Get IPv4 address for the given interface of the node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - DUT node data. Type: dictionary
+| | ... | - interface - Name of the interface on the VPP node. Type: string
+| | ...
+| | [Arguments] | ${node} | ${interface}
+| | ...
+| | [Return] | ${ip_data}
+| | ...
+| | ${ip_data}= | VPP get interface ip addresses
+| | ... | ${node} | ${interface} | ipv4
+
 | Configure routes for IPv4 test
 | | [Documentation] | Setup routing on all VPP nodes required for IPv4 tests
 | | [Arguments] | ${nodes} | ${nodes_addr}
