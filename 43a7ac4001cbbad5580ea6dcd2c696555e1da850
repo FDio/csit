@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34229933_5cc26dd9",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T12:53:55Z",
+      "side": 1,
+      "message": "I would prefer the function to be named: vpp_sw_interface_dump or sw_interface_dump with parameter name_filter and name_filter_valid. \n\nI think we should have functions that are 1:1 to VPP API and then special function as a wrapper if needed. But show_interfaces can call function directly with interfaces None and name_filter 0.",
+      "range": {
+        "startLine": 256,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 40
+      },
+      "revId": "43a7ac4001cbbad5580ea6dcd2c696555e1da850",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3cc42983_6fa11bb4",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T12:53:55Z",
+      "side": 1,
+      "message": "I would prefer just RAW data to print. We are printing lot of sentences just blowing the amount of logs. And it is then hard to parse those data with external tools.",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 48
+      },
+      "revId": "43a7ac4001cbbad5580ea6dcd2c696555e1da850",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
