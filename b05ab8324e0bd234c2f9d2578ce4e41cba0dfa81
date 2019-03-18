@@ -163,6 +163,30 @@
     },
     {
       "key": {
+        "uuid": "0e3f0e58_a06f19ed",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1709
+      },
+      "writtenOn": "2019-03-18T15:30:19Z",
+      "side": 1,
+      "message": "For sweetcomb and I guess it is the same for CSIT, if after adding a new field in API you compile sweetcomb again without changing source code, it might work... I think it is hard to know when it is backward-compatible, for any control agent I see the following scenarios:\n\n-Remove field(s) : can break compatibility if field was used\n-Add field(s) : can break compatibility if it is a required request field for a dump operation\n-Modify field type : can break compatibility if switch from int to string for instance\n-Modify field name: always break compatibility\n-Remove datastructure : can break compatibility if datastructure was used\n-Add datastructure : Never break compatibility",
+      "parentUuid": "81dee24c_466b42fd",
+      "range": {
+        "startLine": 62,
+        "startChar": 40,
+        "endLine": 62,
+        "endChar": 50
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b491b195_99b9c222",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
@@ -174,6 +198,30 @@
       "writtenOn": "2019-03-18T08:14:41Z",
       "side": 1,
       "message": "Backwards compatible is debatable. You might simplify this to \"changed\".\nBut do you not want to limit it to only APIs that is in use by CSIT?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 73
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c52690a5_7e43e1bd",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1709
+      },
+      "writtenOn": "2019-03-18T15:30:19Z",
+      "side": 1,
+      "message": "+1 about this. Ex: commit 4d5b917b1a7 would break compatibility for sweetcomb because field name changed, but sementic version was not incremented as a break in backward compatibility...\nIMHO, any change should trigger an alert to CSIT.",
+      "parentUuid": "b491b195_99b9c222",
       "range": {
         "startLine": 61,
         "startChar": 0,
