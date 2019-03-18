@@ -131,6 +131,19 @@ def process_json_request(args):
 
     reply = list()
 
+    def process_value(val):
+        if isinstance(val, dict):
+            val_dict = dict()
+            for val_k, val_v in val.iteritems():
+                val_dict[str(val_k)] = process_value(val_v)
+            return val_dict
+        elif isinstance(val, unicode):
+            return binascii.unhexlify(val)
+        elif isinstance(val, int):
+            return val
+        else:
+            return str(val)
+
     json_data = json.loads(args.data)
     vpp.connect(CLIENT_NAME)
     for data in json_data:
@@ -139,8 +152,7 @@ def process_json_request(args):
         api_reply = dict(api_name=api_name)
         api_args = dict()
         for a_k, a_v in api_args_unicode.items():
-            value = binascii.unhexlify(a_v) if isinstance(a_v, unicode) else a_v
-            api_args[str(a_k)] = value if isinstance(value, int) else str(value)
+            api_args[str(a_k)] = process_value(a_v)
         try:
             papi_fn = getattr(vpp.api, api_name)
             rep = papi_fn(**api_args)
