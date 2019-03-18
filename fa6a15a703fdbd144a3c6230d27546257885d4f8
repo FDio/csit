@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "3add1134_9d4beb47",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T15:07:28Z",
+      "side": 1,
+      "message": "It is what I want as I need duplicates key.\nI think you solution will more bloated in code and harder to read. This what we come with Tibor.\n\nRight now all operations are one-liner, with your approach it will be complex logic. But feel free to open commit and try to make it simpler.",
+      "parentUuid": "339fb1ea_4c36083d",
+      "range": {
+        "startLine": 49,
+        "startChar": 30,
+        "endLine": 49,
+        "endChar": 52
+      },
+      "revId": "fa6a15a703fdbd144a3c6230d27546257885d4f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d874296_0c0edb90",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 31
@@ -94,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "76ddbf96_97cbc331",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T15:07:28Z",
+      "side": 1,
+      "message": "Yes desired.",
+      "parentUuid": "2de8bd52_64e461aa",
+      "range": {
+        "startLine": 52,
+        "startChar": 15,
+        "endLine": 52,
+        "endChar": 20
+      },
+      "revId": "fa6a15a703fdbd144a3c6230d27546257885d4f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0fd99f27_635e1a77",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 31
@@ -105,6 +153,30 @@
       "writtenOn": "2019-03-18T13:28:28Z",
       "side": 1,
       "message": "Why not \"parameter\"? Or the other way around, and use \"self.parameters\" in line 39?",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 54,
+        "endChar": 23
+      },
+      "revId": "fa6a15a703fdbd144a3c6230d27546257885d4f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "73859d97_7630c5b6",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T15:07:28Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "0fd99f27_635e1a77",
       "range": {
         "startLine": 54,
         "startChar": 15,
@@ -140,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "49547a08_3598e1a9",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T15:07:28Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "b6054fa8_56cbf3b5",
+      "range": {
+        "startLine": 59,
+        "startChar": 36,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "fa6a15a703fdbd144a3c6230d27546257885d4f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "161885ce_4a2e2d66",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 31
@@ -151,6 +247,30 @@
       "writtenOn": "2019-03-18T13:28:28Z",
       "side": 1,
       "message": "Is the point of the output format to get a string pasteable to qemu invocation command line? If yes, mention it.",
+      "range": {
+        "startLine": 71,
+        "startChar": 59,
+        "endLine": 71,
+        "endChar": 60
+      },
+      "revId": "fa6a15a703fdbd144a3c6230d27546257885d4f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9d4fb14_e28da7a7",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T15:07:28Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "161885ce_4a2e2d66",
       "range": {
         "startLine": 71,
         "startChar": 59,
@@ -186,6 +306,30 @@
     },
     {
       "key": {
+        "uuid": "56d4da18_c7f6b5dc",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T15:07:28Z",
+      "side": 1,
+      "message": "so far i was using only single - as most of the options in doc was like this... I think both works, but as we start with single i just reuse.\nPoint of refactor was to have command line 1:1 with previous testing to avoid any issues in this area",
+      "parentUuid": "0291c75f_c2d6c7ef",
+      "range": {
+        "startLine": 76,
+        "startChar": 30,
+        "endLine": 76,
+        "endChar": 31
+      },
+      "revId": "fa6a15a703fdbd144a3c6230d27546257885d4f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39e8ecf7_6f34e32b",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 31
@@ -209,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "dd3c9abe_d3033594",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T15:07:28Z",
+      "side": 1,
+      "message": "I need to use class with repeatable keys, which is important for Qemu as it can support multiple values like having 3xMEM or 7xIMAGE. I know it looks like this but currently in short time i have no more time to model it better way. \n\nThat is why class above is shared.",
+      "parentUuid": "39e8ecf7_6f34e32b",
+      "range": {
+        "startLine": 116,
+        "startChar": 13,
+        "endLine": 116,
+        "endChar": 17
+      },
+      "revId": "fa6a15a703fdbd144a3c6230d27546257885d4f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c011d62_83ffb11d",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 31
@@ -220,6 +388,30 @@
       "writtenOn": "2019-03-18T13:28:28Z",
       "side": 1,
       "message": "\u0027pidfile\u0027 to make it clear the value is not numeric.",
+      "range": {
+        "startLine": 125,
+        "startChar": 23,
+        "endLine": 125,
+        "endChar": 28
+      },
+      "revId": "fa6a15a703fdbd144a3c6230d27546257885d4f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e2dddc03_427bd4fd",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-18T15:07:28Z",
+      "side": 1,
+      "message": "I will fix in next patch that is on top of this",
+      "parentUuid": "9c011d62_83ffb11d",
       "range": {
         "startLine": 125,
         "startChar": 23,
