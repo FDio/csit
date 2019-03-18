@@ -22,6 +22,7 @@ from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
 from resources.libraries.python.IPUtil import IPUtil
+from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
@@ -240,7 +241,7 @@ class InterfaceUtil(object):
     def vpp_get_interface_data(node, interface=None):
         """Get all interface data from a VPP node. If a name or
         sw_interface_index is provided, return only data for the matching
-        interface.
+        interface(s).
 
         :param node: VPP node to get interface data from.
         :param interface: Numeric index or name string of a specific interface.
@@ -252,23 +253,42 @@ class InterfaceUtil(object):
         :raises TypeError: if the data type of interface is neither basestring
             nor int.
         """
-        with VatTerminal(node) as vat:
-            response = vat.vat_terminal_exec_cmd_from_template(
-                "interface_dump.vat")
-
-        data = response[0]
 
         if interface is not None:
             if isinstance(interface, basestring):
-                param = "interface_name"
+                param = 'interface_name'
             elif isinstance(interface, int):
-                param = "sw_if_index"
+                param = 'sw_if_index'
             else:
                 raise TypeError
-            for data_if in data:
-                if data_if[param] == interface:
-                    return data_if
-            return dict()
+        else:
+            param = ''
+
+        cmd = 'sw_interface_dump'
+        cmd_reply = 'sw_interface_details'
+        args = dict(name_filter_valid=0, name_filter='')
+        err_msg = 'Failed to get interface dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
+
+        papi_if_dump = papi_resp.reply[0]['api_reply']
+
+        def process_if_dump(if_dump):
+            if_dump['interface_name'] = if_dump['interface_name'].rstrip('\x00')
+            if_dump['tag'] = if_dump['tag'].rstrip('\x00')
+            if_dump['l2_address'] = L2Util.bin_to_mac(if_dump['l2_address'])
+            if_dump['b_dmac'] = L2Util.bin_to_mac(if_dump['b_dmac'])
+            if_dump['b_smac'] = L2Util.bin_to_mac(if_dump['b_smac'])
+            return if_dump
+        
+        data = list() if interface is not None else dict()
+        for item in papi_if_dump:
+            if interface is None:
+                data.append(process_if_dump(item[cmd_reply]))
+            elif item[cmd_reply].get(param) == interface:
+                return process_if_dump(item[cmd_reply])
+
         return data
 
     @staticmethod
@@ -1670,17 +1690,13 @@ class InterfaceUtil(object):
 
         cmd = 'sw_interface_set_rx_placement'
         cmd_reply = 'sw_interface_set_rx_placement_reply'
-        err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".format(
-            host=node['host'], cmd=cmd)
+        err_msg = "Failed to set interface RX placement to worker on host " \
+                  "{host}!".format(host=node['host'])
         args = dict(sw_if_index=sw_if_index, queue_id=queue_id,
                     worker_id=worker_id)
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
-        data = papi_resp.reply[0]['api_reply'][cmd_reply]
-        if data['retval'] != 0:
-            raise RuntimeError("Failed to set interface RX placement "
-                               "to worker on host {host}".
-                               format(host=node['host']))
+            papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
     @staticmethod
     def vpp_round_robin_rx_placement(node, prefix):
