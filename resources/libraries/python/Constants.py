@@ -84,3 +84,6 @@ class Constants(object):
 
     # Core dump directory
     CORE_DUMP_DIR = '/tmp'
+
+    # Equivalent to ~0 used in vpp code
+    BITWISE_NON_ZERO = 0xffffffff
