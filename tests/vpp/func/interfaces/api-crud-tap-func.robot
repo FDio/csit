@@ -24,7 +24,7 @@
 | Library  | resources.libraries.python.Namespaces
 | Library  | resources.libraries.python.IPUtil
 | ...
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_TEST
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
 | ...
 | Test Setup | Set up TAP functional test
 | ...
@@ -39,9 +39,8 @@
 | ... | *[Ref] Applicable standard specifications:*
 
 *** Variables ***
-| ${tap_int1}= | tap_int1
-| ${tap_int2}= | tap_int2
-| ${mod_tap_name}= | tap_int1MOD
+| ${tap_int1}= | tap0
+| ${tap_int2}= | tap1
 
 *** Test Cases ***
 | TC01: Tap Interface Modify And Delete
@@ -55,16 +54,15 @@
 | | Given Configure path in 2-node circular topology | ${nodes['TG']}
 | | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1}
+| | ${int1}= | When Add Tap Interface | ${dut_node} | ${tap_int1}
 | | ${int2}= | And Add Tap Interface | ${dut_node} | ${tap_int2}
 | | And Set Interface State | ${dut_node} | ${int1} | up
 | | And Set Interface State | ${dut_node} | ${int2} | up
-| | When Modify Tap Interface | ${dut_node} | ${int1} | ${mod_tap_name}
-| | Then Check Tap Present | ${dut_node} | ${mod_tap_name}
+| | Then Check Tap Present | ${dut_node} | ${tap_int1}
 | | When Delete Tap Interface | ${dut_node} | ${int1}
 | | Then Run Keyword And Expect Error
-| | ... | Tap interface :${mod_tap_name} does not exist
-| | ... | Check Tap Present | ${dut_node} | ${mod_tap_name}
+| | ... | Tap interface :${tap_int1} does not exist
+| | ... | Check Tap Present | ${dut_node} | ${tap_int1}
 | | And Check Tap Present | ${dut_node} | ${tap_int2}
 | | When Delete Tap Interface | ${dut_node} | ${int2}
 | | Then Run Keyword And Expect Error
