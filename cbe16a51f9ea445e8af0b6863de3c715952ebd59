@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8874e65d_31cfcf0f",
+        "filename": "resources/tools/testbed-setup/ansible-docker-POC/dockerfile-dpkg.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-18T15:05:39Z",
+      "side": 1,
+      "message": "Ah. But if there was something installed, RC will be 0 and the dpkg install is skipped?\nSounds like neither \"||\" nor \"\u0026\u0026\" works in both cases, we need \";\".",
+      "parentUuid": "fa4112c1_5c44b7a9",
+      "range": {
+        "startLine": 4,
+        "startChar": 1,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "cbe16a51f9ea445e8af0b6863de3c715952ebd59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4343cdf0_5c19ae26",
         "filename": "resources/tools/testbed-setup/ansible-docker-POC/main.yaml",
         "patchSetId": 1
