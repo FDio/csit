@@ -34,7 +34,7 @@ class Tap(object):
         :returns: Returns a interface index.
         :rtype: int
         """
-        command = 'connect'
+        command = 'create'
         if mac is not None:
             args = 'tapname {} mac {}'.format(tap_name, mac)
         else:
