@@ -129,9 +129,9 @@
 | | ... | ${dut1_to_dut2_ip4_static_adjacency}
 | | ... | ${dut2_to_dut1_ip4_static_adjacency}
 | | ${lisp1_if_idx}= | resources.libraries.python.InterfaceUtil.Get Sw If Index
-| | ... | ${dut1_node} | lisp_gpe0
+| | ... | ${dut1_node} | lisp_gpe0.0
 | | ${lisp2_if_idx}= | resources.libraries.python.InterfaceUtil.Get Sw If Index
-| | ... | ${dut2_node} | lisp_gpe0
+| | ... | ${dut2_node} | lisp_gpe0.0
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Configure manual keyed connection for IPSec
 | | ... | ${dut1_node} | ${lisp1_if_idx} | ${encr_alg} | ${encr_key}
