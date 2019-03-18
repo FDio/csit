@@ -96,7 +96,20 @@ def _convert_reply(api_r):
     reply_value = dict()
     for item in dir(api_r):
         if not item.startswith('_') and item not in unwanted_fields:
-            reply_value[item] = getattr(api_r, item)
+            attr_value = getattr(api_r, item)
+            if isinstance(attr_value, list) or isinstance(attr_value, dict):
+                value = attr_value
+            elif hasattr(attr_value, '__int__'):
+                value = int(attr_value)
+            elif hasattr(attr_value, '__str__'):
+                value = binascii.hexlify(str(attr_value))
+            # Next handles parameters not supporting preferred integer or string
+            # representation to get it logged
+            elif hasattr(attr_value, '__repr__'):
+                value = repr(attr_value)
+            else:
+                value = attr_value
+            reply_value[item] = value
     reply_dict[reply_key] = reply_value
     return reply_dict
 
@@ -182,7 +195,11 @@ def process_stats(args):
         data = stats.dump(directory)
         reply.append(data)
 
-    return json.dumps(reply)
+    try:
+        return json.dumps(reply)
+    except UnicodeDecodeError as err:
+        raise RuntimeError('PAPI reply {reply} error:\n{exc}'.format(
+            reply=reply, exc=repr(err)))
 
 
 def main():
