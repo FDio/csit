@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa4112c1_5c44b7a9",
+        "filename": "resources/tools/testbed-setup/ansible-docker-POC/dockerfile-dpkg.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1704
+      },
+      "writtenOn": "2019-03-18T08:08:26Z",
+      "side": 1,
+      "message": "apt-get purge -y \"*vpp*\" will exit with RC 100 if there is no package intalled like vpp. That\u0027s the reason of using || instead \u0026\u0026",
+      "parentUuid": "d3528302_6f811609",
+      "range": {
+        "startLine": 4,
+        "startChar": 1,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "cbe16a51f9ea445e8af0b6863de3c715952ebd59",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4343cdf0_5c19ae26",
         "filename": "resources/tools/testbed-setup/ansible-docker-POC/main.yaml",
         "patchSetId": 1
