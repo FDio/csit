@@ -31,7 +31,7 @@ tg2_ip6 = '2001:cdba:2::2'
 prefix4 = 24
 prefix6 = 64
 vhost_ip = '2001:cdba:6::3'
-lisp_gpe_int = 'lisp_gpe0'
+lisp_gpe_int = 'lisp_gpe0.0'
 
 dut1_to_dut2_ip_static_adjacency = {'vni': 0,
                                     'deid': '2001:cdba:2::0',
