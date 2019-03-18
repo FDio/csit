@@ -17,21 +17,37 @@ from socket import AF_INET, AF_INET6, inet_ntop, inet_pton
 from socket import error as inet_error
 from time import time, sleep
 
+from enum import IntEnum, Enum
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DUTSetup import DUTSetup
-from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
 from resources.libraries.python.IPUtil import IPUtil
+from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
-from resources.libraries.python.VatJsonUtil import VatJsonUtil
 from resources.libraries.python.VPPUtil import VPPUtil
+
+
+class LinkBondLoadBalance(IntEnum):
+    """Link bonding load balance."""
+    L2 = 0
+    L34 = 1
+    L23 = 2
+
+
+class LinkBondMode(IntEnum):
+    """Link bonding load balance."""
+    ROUND_ROBIN = 1
+    ACTIVE_BACKUP = 2
+    XOR = 3
+    BROADCAST = 4
+    LACP = 5
 
 
 class InterfaceUtil(object):
@@ -40,7 +56,44 @@ class InterfaceUtil(object):
     __UDEV_IF_RULES_FILE = '/etc/udev/rules.d/10-network.rules'
 
     @staticmethod
-    def set_interface_state(node, interface, state, if_type="key"):
+    def pci_to_int(pci_str):
+        """Convert PCI address from string format (0000:18:0a.0) to
+        integer representation (169345024).
+
+        :param pci_str: PCI address in string representation.
+        :type pci_str: str
+        :returns: Integer representation of PCI address.
+        :rtype: int
+        """
+        x = list(pci_str.split(':')[0:2])
+        x.extend(pci_str.split(':')[2].split('.'))
+
+        return (int(x[0], 16) | int(x[1], 16) << 16 | int(x[2], 16) << 24 |
+                int(x[3], 16) << 29)
+
+    @staticmethod
+    def get_interface_sw_if_index(node, interface):
+        """Convert PCI address from string format (0000:18:0a.0) to
+        integer representation (169345024).
+
+        :param interface: Numeric index or name string of a specific interface.
+        :type interface: str or int
+        :returns: SW interface index.
+        :rtype: int
+        """
+        try:
+            sw_if_index = int(interface)
+        except ValueError:
+            sw_if_index = \
+                Topology.get_interface_sw_index_by_name(node, interface)
+        except TypeError as err:
+            raise TypeError('Wrong interface format {ifc}: {err}'.format(
+                ifc=interface, err=err.message))
+
+        return sw_if_index
+
+    @staticmethod
+    def set_interface_state(node, interface, state, if_type='key'):
         """Set interface state on a node.
 
         Function can be used for DUTs as well as for TGs.
@@ -59,31 +112,39 @@ class InterfaceUtil(object):
         :raises ValueError: If the node has an unknown node type.
         """
 
-        if if_type == "key":
+        if if_type == 'key':
             if isinstance(interface, basestring):
                 sw_if_index = Topology.get_interface_sw_index(node, interface)
                 iface_name = Topology.get_interface_name(node, interface)
             else:
                 sw_if_index = interface
-        elif if_type == "name":
+        elif if_type == 'name':
             iface_key = Topology.get_interface_by_name(node, interface)
             if iface_key is not None:
                 sw_if_index = Topology.get_interface_sw_index(node, iface_key)
             iface_name = interface
         else:
-            raise ValueError("if_type unknown: {}".format(if_type))
+            raise ValueError('Unknown if_type: {type}'.format(type=if_type))
 
         if node['type'] == NodeType.DUT:
             if state == 'up':
-                state = 'admin-up link-up'
+                admin_up_down = 1
             elif state == 'down':
-                state = 'admin-down link-down'
+                admin_up_down = 0
             else:
-                raise ValueError('Unexpected interface state: {}'.format(state))
-            VatExecutor.cmd_from_template(node, 'set_if_state.vat',
-                                          sw_if_index=sw_if_index, state=state)
+                raise ValueError('Unexpected interface state: {state}'.format(
+                    state=state))
+            cmd = 'sw_interface_set_flags'
+            err_msg = 'Failed to set interface state on host {host}'.format(
+                host=node['host'])
+            args = dict(sw_if_index=sw_if_index,
+                        admin_up_down=admin_up_down)
+            with PapiExecutor(node) as papi_exec:
+                papi_exec.add(cmd, **args).get_replies(err_msg).\
+                    verify_reply(err_msg=err_msg)
         elif node['type'] == NodeType.TG or node['type'] == NodeType.VM:
-            cmd = 'ip link set {} {}'.format(iface_name, state)
+            cmd = 'ip link set {ifc} {state}'.format(
+                ifc=iface_name, state=state)
             exec_cmd_no_error(node, cmd, sudo=True)
         else:
             raise ValueError('Node {} has unknown NodeType: "{}"'
@@ -145,11 +206,14 @@ class InterfaceUtil(object):
         else:
             sw_if_index = interface
 
-        if sw_if_index:
-            with VatTerminal(node, json_param=False) as vat:
-                vat.vat_terminal_exec_cmd_from_template(
-                    "hw_interface_set_mtu.vat", sw_if_index=sw_if_index,
-                    mtu=mtu)
+        cmd = 'hw_interface_set_mtu'
+        err_msg = 'Failed to set interface MTU on host {host}'.format(
+            host=node['host'])
+        args = dict(sw_if_index=sw_if_index,
+                    mtu=int(mtu))
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
     @staticmethod
     def vpp_set_interfaces_mtu_on_node(node, mtu=9200):
@@ -188,27 +252,23 @@ class InterfaceUtil(object):
         :raises RuntimeError: If the timeout period value has elapsed.
         """
         if_ready = False
-        not_ready = []
         start = time()
         while not if_ready:
+            not_ready = list()
             out = InterfaceUtil.vpp_get_interface_data(node)
-            if time() - start > timeout:
-                for interface in out:
-                    if interface.get('admin_up_down') == 1:
-                        if interface.get('link_up_down') != 1:
-                            logger.debug('{0} link-down'.format(
-                                interface.get('interface_name')))
-                raise RuntimeError('timeout, not up {0}'.format(not_ready))
-            not_ready = []
+            now = time()
             for interface in out:
                 if interface.get('admin_up_down') == 1:
                     if interface.get('link_up_down') != 1:
                         not_ready.append(interface.get('interface_name'))
             if not not_ready:
                 if_ready = True
+            elif now - start > timeout:
+                raise RuntimeError('Timeout, interfaces not up: {ifs}'.format(
+                    ifs=not_ready))
             else:
-                logger.debug('Interfaces still in link-down state: {0}, '
-                             'waiting...'.format(not_ready))
+                logger.debug('Interfaces still in link-down state:\n{ifs} '
+                             '\nWaiting...'.format(ifs=not_ready))
                 sleep(1)
 
     @staticmethod
@@ -244,7 +304,7 @@ class InterfaceUtil(object):
     def vpp_get_interface_data(node, interface=None):
         """Get all interface data from a VPP node. If a name or
         sw_interface_index is provided, return only data for the matching
-        interface.
+        interface(s).
 
         :param node: VPP node to get interface data from.
         :param interface: Numeric index or name string of a specific interface.
@@ -256,23 +316,45 @@ class InterfaceUtil(object):
         :raises TypeError: if the data type of interface is neither basestring
             nor int.
         """
-        with VatTerminal(node) as vat:
-            response = vat.vat_terminal_exec_cmd_from_template(
-                "interface_dump.vat")
-
-        data = response[0]
 
         if interface is not None:
             if isinstance(interface, basestring):
-                param = "interface_name"
+                param = 'interface_name'
             elif isinstance(interface, int):
-                param = "sw_if_index"
+                param = 'sw_if_index'
             else:
-                raise TypeError
-            for data_if in data:
-                if data_if[param] == interface:
-                    return data_if
-            return dict()
+                raise TypeError('Wrong interface format {ifc}'.format(
+                    ifc=interface))
+        else:
+            param = ''
+
+        cmd = 'sw_interface_dump'
+        cmd_reply = 'sw_interface_details'
+        args = dict(name_filter_valid=0,
+                    name_filter='')
+        err_msg = 'Failed to get interface dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
+
+        papi_if_dump = papi_resp.reply[0]['api_reply']
+
+        def process_if_dump(if_dump):
+            if_dump['interface_name'] = if_dump['interface_name'].rstrip('\x00')
+            if_dump['tag'] = if_dump['tag'].rstrip('\x00')
+            if_dump['l2_address'] = L2Util.bin_to_mac(if_dump['l2_address'])
+            if_dump['b_dmac'] = L2Util.bin_to_mac(if_dump['b_dmac'])
+            if_dump['b_smac'] = L2Util.bin_to_mac(if_dump['b_smac'])
+            return if_dump
+
+        data = list() if interface is None else dict()
+        for item in papi_if_dump:
+            if interface is None:
+                data.append(process_if_dump(item[cmd_reply]))
+            elif item[cmd_reply].get(param) == interface:
+                return process_if_dump(item[cmd_reply])
+
+        logger.debug('Interface data:\n{if_data}'.format(if_data=data))
         return data
 
     @staticmethod
@@ -292,14 +374,28 @@ class InterfaceUtil(object):
         if if_data['sup_sw_if_index'] != if_data['sw_if_index']:
             if_data = InterfaceUtil.vpp_get_interface_data(
                 node, if_data['sup_sw_if_index'])
-        try:
-            if_name = if_data["interface_name"]
-        except KeyError:
-            if_name = None
-        return if_name
+
+        return if_data.get('interface_name')
 
     @staticmethod
-    def vpp_get_interface_mac(node, interface=None):
+    def vpp_get_interface_sw_index(node, interface_name):
+        """Get interface name for the given SW interface index from actual
+        interface dump.
+
+        :param node: VPP node to get interface data from.
+        :param interface_name: Interface name.
+        :type node: dict
+        :type interface_name: str
+        :returns: Name of the given interface.
+        :rtype: str
+        """
+
+        if_data = InterfaceUtil.vpp_get_interface_data(node, interface_name)
+
+        return if_data.get('sw_if_index')
+
+    @staticmethod
+    def vpp_get_interface_mac(node, interface):
         """Get MAC address for the given interface from actual interface dump.
 
         :param node: VPP node to get interface data from.
@@ -314,51 +410,57 @@ class InterfaceUtil(object):
         if if_data['sup_sw_if_index'] != if_data['sw_if_index']:
             if_data = InterfaceUtil.vpp_get_interface_data(
                 node, if_data['sup_sw_if_index'])
-        mac_data = [str(hex(item))[2:] for item in if_data['l2_address'][:6]]
-        mac_data_nice = []
-        for item in mac_data:
-            if len(item) == 1:
-                item = '0' + item
-            mac_data_nice.append(item)
-        mac = ":".join(mac_data_nice)
-        return mac
+
+        return if_data.get('l2_address')
 
     @staticmethod
     def vpp_get_interface_ip_addresses(node, interface, ip_version):
         """Get list of IP addresses from an interface on a VPP node.
 
-         :param node: VPP node to get data from.
-         :param interface: Name of an interface on the VPP node.
-         :param ip_version: IP protocol version (ipv4 or ipv6).
-         :type node: dict
-         :type interface: str
-         :type ip_version: str
-         :returns: List of dictionaries, each containing IP address, subnet
+        TODO: Should not be moved to IPUtils?
+
+        :param node: VPP node to get data from.
+        :param interface: Name of an interface on the VPP node.
+        :param ip_version: IP protocol version (ipv4 or ipv6).
+        :type node: dict
+        :type interface: str
+        :type ip_version: str
+        :returns: List of dictionaries, each containing IP address, subnet
             prefix length and also the subnet mask for ipv4 addresses.
             Note: A single interface may have multiple IP addresses assigned.
-         :rtype: list
+        :rtype: list
         """
 
         try:
             sw_if_index = Topology.convert_interface_reference(
-                node, interface, "sw_if_index")
+                node, interface, 'sw_if_index')
         except RuntimeError:
             if isinstance(interface, basestring):
                 sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
             else:
                 raise
 
-        with VatTerminal(node) as vat:
-            response = vat.vat_terminal_exec_cmd_from_template(
-                "ip_address_dump.vat", ip_version=ip_version,
-                sw_if_index=sw_if_index)
+        is_ipv6 = 1 if ip_version == 'ipv6' else 0
 
-        data = response[0]
+        cmd = 'ip_address_dump'
+        cmd_reply = 'ip_address_details'
+        args = dict(sw_if_index=sw_if_index,
+                    is_ipv6=is_ipv6)
+        err_msg = 'Failed to get L2FIB dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
 
-        if ip_version == "ipv4":
+        data = list()
+        for item in papi_resp.reply[0]['api_reply']:
+            item[cmd_reply]['ip'] = inet_ntop(AF_INET6, item[cmd_reply]['ip']) \
+                if is_ipv6 else inet_ntop(AF_INET, item[cmd_reply]['ip'][0:4])
+            data.append(item[cmd_reply])
+
+        if ip_version == 'ipv4':
             for item in data:
-                item["netmask"] = convert_ipv4_netmask_prefix(
-                    item["prefix_length"])
+                item['netmask'] = convert_ipv4_netmask_prefix(
+                    item['prefix_length'])
         return data
 
     @staticmethod
@@ -477,11 +579,23 @@ class InterfaceUtil(object):
         :param node: Node selected from DICT__nodes.
         :type node: dict
         """
-        vat_executor = VatExecutor()
-        vat_executor.execute_script_json_out("dump_interfaces.vat", node)
-        interface_dump_json = vat_executor.get_script_stdout()
-        VatJsonUtil.update_vpp_interface_data_from_json(node,
-                                                        interface_dump_json)
+
+        interface_list = InterfaceUtil.vpp_get_interface_data(node)
+
+        for if_name, if_data in node['interfaces'].items():
+            for ifc in interface_list:
+                if ifc['l2_address'] == if_data['mac_address']:
+                    if_data['name'] = ifc['interface_name']
+                    if_data['vpp_sw_index'] = ifc['sw_if_index']
+                    if_data['mtu'] = ifc['mtu'][0]
+                    logger.trace('Interface {ifc} found by MAC {mac}'.format(
+                        ifc=if_name, mac=if_data['mac_address']))
+                    interface_list.remove(ifc)
+                    break
+            else:
+                logger.trace('Interface {ifc} not found by MAC {mac}'.format(
+                    ifc=if_name, mac=if_data['mac_address']))
+                if_data['vpp_sw_index'] = None
 
     @staticmethod
     def update_nic_interface_names(node):
@@ -654,7 +768,7 @@ class InterfaceUtil(object):
 
     @staticmethod
     def create_vlan_subinterface(node, interface, vlan):
-        """Create VLAN subinterface on node.
+        """Create VLAN sub-interface on node.
 
         :param node: Node to add VLAN subinterface on.
         :param interface: Interface name on which create VLAN subinterface.
@@ -667,36 +781,30 @@ class InterfaceUtil(object):
         :raises RuntimeError: if it is unable to create VLAN subinterface on the
             node.
         """
+
         iface_key = Topology.get_interface_by_name(node, interface)
         sw_if_index = Topology.get_interface_sw_index(node, iface_key)
 
-        output = VatExecutor.cmd_from_template(node, "create_vlan_subif.vat",
-                                               sw_if_index=sw_if_index,
-                                               vlan=vlan)
-        if output[0]["retval"] == 0:
-            sw_vlan_idx = output[0]["sw_if_index"]
-            logger.trace('VLAN subinterface with sw_if_index {} and VLAN ID {} '
-                         'created on node {}'.format(sw_vlan_idx,
-                                                     vlan, node['host']))
-            if_key = Topology.add_new_port(node, "vlan_subif")
-            Topology.update_interface_sw_if_index(node, if_key, sw_vlan_idx)
-            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_vlan_idx)
-            Topology.update_interface_name(node, if_key, ifc_name)
-        else:
-            raise RuntimeError('Unable to create VLAN subinterface on node {}'
-                               .format(node['host']))
+        cmd = 'create_vlan_subif'
+        args = dict(sw_if_index=sw_if_index,
+                    vlan_id=int(vlan))
+        err_msg = 'Failed to create VLAN sub-interface on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
-        with VatTerminal(node, False) as vat:
-            vat.vat_terminal_exec_cmd('exec show interfaces')
+        sw_if_idx = papi_resp['sw_if_index']
+        if_key = Topology.add_new_port(node, 'vlan_subif')
+        Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+        ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
+        Topology.update_interface_name(node, if_key, ifc_name)
 
-        return '{}.{}'.format(interface, vlan), sw_vlan_idx
+        return '{ifc}.{vlan}'.format(ifc=interface, vlan=vlan), sw_if_idx
 
     @staticmethod
     def create_vxlan_interface(node, vni, source_ip, destination_ip):
         """Create VXLAN interface and return sw if index of created interface.
-
-        Executes "vxlan_add_del_tunnel src {src} dst {dst} vni {vni}" VAT
-        command on the node.
 
         :param node: Node where to create VXLAN interface.
         :param vni: VXLAN Network Identifier.
@@ -711,22 +819,39 @@ class InterfaceUtil(object):
         :raises RuntimeError: if it is unable to create VxLAN interface on the
             node.
         """
-        output = VatExecutor.cmd_from_template(node, "vxlan_create.vat",
-                                               src=source_ip,
-                                               dst=destination_ip,
-                                               vni=vni)
-        output = output[0]
 
-        if output["retval"] == 0:
-            sw_if_idx = output["sw_if_index"]
-            if_key = Topology.add_new_port(node, "vxlan_tunnel")
-            Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
-            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
-            Topology.update_interface_name(node, if_key, ifc_name)
-            return sw_if_idx
-        else:
-            raise RuntimeError("Unable to create VXLAN interface on node {0}"
-                               .format(node))
+        try:
+            src_address = inet_pton(AF_INET6, source_ip)
+            dst_address = inet_pton(AF_INET6, destination_ip)
+            is_ipv6 = 1
+        except inet_error:
+            src_address = inet_pton(AF_INET, source_ip)
+            dst_address = inet_pton(AF_INET, destination_ip)
+            is_ipv6 = 0
+
+        cmd = 'vxlan_add_del_tunnel'
+        args = dict(is_add=1,
+                    is_ipv6=is_ipv6,
+                    instance=Constants.BITWISE_NON_ZERO,
+                    src_address=src_address,
+                    dst_address=dst_address,
+                    mcast_sw_if_index=Constants.BITWISE_NON_ZERO,
+                    encap_vrf_id=0,
+                    decap_next_index=Constants.BITWISE_NON_ZERO,
+                    vni=int(vni))
+        err_msg = 'Failed to create VXLAN tunnel interface on host {host}'.\
+            format(host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
+
+        sw_if_idx = papi_resp['sw_if_index']
+        if_key = Topology.add_new_port(node, 'vxlan_tunnel')
+        Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+        ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
+        Topology.update_interface_name(node, if_key, ifc_name)
+
+        return sw_if_idx
 
     @staticmethod
     def vxlan_dump(node, interface=None):
@@ -743,27 +868,51 @@ class InterfaceUtil(object):
         :raises TypeError: if the data type of interface is neither basestring
             nor int.
         """
-        param = "sw_if_index"
-        if interface is None:
-            param = ''
-            sw_if_index = ''
-        elif isinstance(interface, basestring):
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
-        elif isinstance(interface, int):
-            sw_if_index = interface
+
+        if interface is not None:
+            try:
+                sw_if_index = int(interface)
+            except ValueError:
+                sw_if_index = \
+                    Topology.get_interface_sw_index_by_name(node, interface)
+            except TypeError as err:
+                raise TypeError('Wrong interface format {ifc}: {err}'.format(
+                    ifc=interface, err=err.message))
         else:
-            raise TypeError("Wrong interface format {0}".format(interface))
+            sw_if_index = int(Constants.BITWISE_NON_ZERO)
 
-        with VatTerminal(node) as vat:
-            response = vat.vat_terminal_exec_cmd_from_template(
-                "vxlan_dump.vat", param=param, sw_if_index=sw_if_index)
+        cmd = 'vxlan_tunnel_dump'
+        cmd_reply = 'vxlan_tunnel_details'
+        args = dict(sw_if_index=sw_if_index)
+        err_msg = 'Failed to get VXLAN dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
 
-        if sw_if_index:
-            for vxlan in response[0]:
-                if vxlan["sw_if_index"] == sw_if_index:
-                    return vxlan
-            return {}
-        return response[0]
+        papi_vxlan_dump = papi_resp.reply[0]['api_reply']
+
+        def process_vxlan_dump(vxlan_dump):
+            if vxlan_dump['is_ipv6']:
+                vxlan_dump['src_address'] = \
+                    inet_ntop(AF_INET6, vxlan_dump['src_address'])
+                vxlan_dump['dst_address'] = \
+                    inet_ntop(AF_INET6, vxlan_dump['dst_address'])
+            else:
+                vxlan_dump['src_address'] = \
+                    inet_ntop(AF_INET, vxlan_dump['src_address'][0:4])
+                vxlan_dump['dst_address'] = \
+                    inet_ntop(AF_INET, vxlan_dump['dst_address'][0:4])
+            return vxlan_dump
+
+        data = list() if interface is None else dict()
+        for item in papi_vxlan_dump:
+            if interface is None:
+                data.append(process_vxlan_dump(item[cmd_reply]))
+            elif item[cmd_reply]['sw_if_index'] == sw_if_index:
+                return process_vxlan_dump(item[cmd_reply])
+
+        logger.debug('VXLAN data:\n{vxlan_data}'.format(vxlan_data=data))
+        return data
 
     @staticmethod
     def vhost_user_dump(node):
@@ -774,11 +923,29 @@ class InterfaceUtil(object):
         :returns: List of dictionaries with all vhost-user interfaces.
         :rtype: list
         """
-        with VatTerminal(node) as vat:
-            response = vat.vat_terminal_exec_cmd_from_template(
-                "vhost_user_dump.vat")
 
-        return response[0]
+        cmd = 'sw_interface_vhost_user_dump'
+        cmd_reply = 'sw_interface_vhost_user_details'
+        err_msg = 'Failed to get vhost-user dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd).get_dump(err_msg)
+
+        papi_vxlan_dump = papi_resp.reply[0]['api_reply']
+
+        def process_vhost_dump(vhost_dump):
+            vhost_dump['interface_name'] = \
+                vhost_dump['interface_name'].rstrip('\x00')
+            vhost_dump['sock_filename'] = \
+                vhost_dump['sock_filename'].rstrip('\x00')
+            return vhost_dump
+
+        data = list()
+        for item in papi_vxlan_dump:
+            data.append(process_vhost_dump(item[cmd_reply]))
+
+        logger.debug('Vhost-user data:\n{vhost_data}'.format(vhost_data=data))
+        return data
 
     @staticmethod
     def tap_dump(node, name=None):
@@ -793,15 +960,38 @@ class InterfaceUtil(object):
             a List of dictionaries containing all TAP data for the given node.
         :rtype: dict or list
         """
-        with VatTerminal(node) as vat:
-            response = vat.vat_terminal_exec_cmd_from_template(
-                "tap_dump.vat")
-        if name is None:
-            return response[0]
-        for item in response[0]:
-            if name == item['dev_name']:
-                return item
-        return {}
+
+        cmd = 'sw_interface_tap_v2_dump'
+        cmd_reply = 'sw_interface_tap_v2_details'
+        err_msg = 'Failed to get TAP dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd).get_dump(err_msg)
+
+        papi_tap_dump = papi_resp.reply[0]['api_reply']
+
+        def process_tap_dump(tap_dump):
+            tap_dump['dev_name'] = tap_dump['dev_name'].rstrip('\x00')
+            tap_dump['host_if_name'] = tap_dump['host_if_name'].rstrip('\x00')
+            tap_dump['host_namespace'] = \
+                tap_dump['host_namespace'].rstrip('\x00')
+            tap_dump['host_mac_addr'] = \
+                L2Util.bin_to_mac(tap_dump['host_mac_addr'])
+            tap_dump['host_ip4_addr'] = \
+                inet_ntop(AF_INET, tap_dump['host_ip4_addr'])
+            tap_dump['host_ip6_addr'] = \
+                inet_ntop(AF_INET6, tap_dump['host_ip6_addr'])
+            return tap_dump
+
+        data = list() if name is None else dict()
+        for item in papi_tap_dump:
+            if name is None:
+                data.append(process_tap_dump(item[cmd_reply]))
+            elif item[cmd_reply].get('dev_name').rstrip('\x00') == name:
+                return process_tap_dump(item[cmd_reply])
+
+        logger.debug('TAP data:\n{tap_data}'.format(tap_data=data))
+        return data
 
     @staticmethod
     def create_subinterface(node, interface, sub_id, outer_vlan_id=None,
@@ -828,45 +1018,43 @@ class InterfaceUtil(object):
         :raises RuntimeError: If it is not possible to create sub-interface.
         """
 
-        outer_vlan_id = 'outer_vlan_id {0}'.format(outer_vlan_id)\
-            if outer_vlan_id else ''
+        try:
+            sw_if_index = int(interface)
+        except ValueError:
+            sw_if_index = \
+                Topology.get_interface_sw_index_by_name(node, interface)
+        except TypeError as err:
+            raise TypeError('Wrong interface format {ifc}: {err}'.format(
+                ifc=interface, err=err.message))
 
-        inner_vlan_id = 'inner_vlan_id {0}'.format(inner_vlan_id)\
-            if inner_vlan_id else ''
+        subif_types = type_subif.split()
 
-        if type_subif is None:
-            type_subif = ''
+        cmd = 'create_subif'
+        args = dict(sw_if_index=sw_if_index,
+                    sub_id=int(sub_id),
+                    no_tags=1 if 'no_tags' in subif_types else 0,
+                    one_tag=1 if 'one_tag' in subif_types else 0,
+                    two_tags=1 if 'two_tags' in subif_types else 0,
+                    dot1ad=1 if 'dot1ad' in subif_types else 0,
+                    exact_match=1 if 'exact_match' in subif_types else 0,
+                    default_sub=1 if 'default_sub' in subif_types else 0,
+                    outer_vlan_id_any=1 if type_subif == 'default_sub' else 0,
+                    inner_vlan_id_any=1 if type_subif == 'default_sub' else 0,
+                    outer_vlan_id=int(outer_vlan_id) if outer_vlan_id else 0,
+                    inner_vlan_id=int(inner_vlan_id) if inner_vlan_id else 0)
+        err_msg = 'Failed to create sub-interface on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
-        if isinstance(interface, basestring):
-            iface_key = Topology.get_interface_by_name(node, interface)
-            sw_if_index = Topology.get_interface_sw_index(node, iface_key)
-        else:
-            sw_if_index = interface
+        sw_subif_idx = papi_resp['sw_if_index']
+        if_key = Topology.add_new_port(node, 'subinterface')
+        Topology.update_interface_sw_if_index(node, if_key, sw_subif_idx)
+        ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_subif_idx)
+        Topology.update_interface_name(node, if_key, ifc_name)
 
-        output = VatExecutor.cmd_from_template(node, "create_sub_interface.vat",
-                                               sw_if_index=sw_if_index,
-                                               sub_id=sub_id,
-                                               outer_vlan_id=outer_vlan_id,
-                                               inner_vlan_id=inner_vlan_id,
-                                               type_subif=type_subif)
-
-        if output[0]["retval"] == 0:
-            sw_vlan_idx = output[0]["sw_if_index"]
-            logger.trace('Created subinterface with index {}'
-                         .format(sw_vlan_idx))
-            if_key = Topology.add_new_port(node, "subinterface")
-            Topology.update_interface_sw_if_index(node, if_key, sw_vlan_idx)
-            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_vlan_idx)
-            Topology.update_interface_name(node, if_key, ifc_name)
-        else:
-            raise RuntimeError('Unable to create sub-interface on node {}'
-                               .format(node['host']))
-
-        with VatTerminal(node, json_param=False) as vat:
-            vat.vat_terminal_exec_cmd('exec show interfaces')
-
-        name = '{}.{}'.format(interface, sub_id)
-        return name, sw_vlan_idx
+        return '{ifc}.{s_id}'.format(ifc=interface, s_id=sub_id), sw_subif_idx
 
     @staticmethod
     def create_gre_tunnel_interface(node, source_ip, destination_ip):
@@ -886,11 +1074,9 @@ class InterfaceUtil(object):
         try:
             src_address = inet_pton(AF_INET6, source_ip)
             dst_address = inet_pton(AF_INET6, destination_ip)
-            is_ipv6 = 1
         except inet_error:
             src_address = inet_pton(AF_INET, source_ip)
             dst_address = inet_pton(AF_INET, destination_ip)
-            is_ipv6 = 0
 
         cmd = 'gre_tunnel_add_del'
         tunnel = dict(type=0,
@@ -926,17 +1112,22 @@ class InterfaceUtil(object):
         :raises RuntimeError: If it is not possible to create loopback on the
             node.
         """
-        out = VatExecutor.cmd_from_template(node, "create_loopback.vat")
-        if out[0].get('retval') == 0:
-            sw_if_idx = out[0].get('sw_if_index')
-            if_key = Topology.add_new_port(node, "loopback")
-            Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
-            ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
-            Topology.update_interface_name(node, if_key, ifc_name)
-            return sw_if_idx
-        else:
-            raise RuntimeError('Create loopback failed on node "{}"'
-                               .format(node['host']))
+
+        cmd = 'create_loopback'
+        args = dict(mac_address=0)
+        err_msg = 'Failed to create loopback interface on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
+
+        sw_if_idx = papi_resp['sw_if_index']
+        if_key = Topology.add_new_port(node, 'loopback')
+        Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+        ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
+        Topology.update_interface_name(node, if_key, ifc_name)
+
+        return sw_if_idx
 
     @staticmethod
     def vpp_create_bond_interface(node, mode, load_balance=None, mac=None):
@@ -956,22 +1147,28 @@ class InterfaceUtil(object):
         :raises RuntimeError: If it is not possible to create bond interface on
             the node.
         """
-        hw_addr = '' if mac is None else 'hw-addr {mac}'.format(mac=mac)
-        ldb = '' if load_balance is None \
-            else 'lb {ldb}'.format(ldb=load_balance)
 
-        output = VatExecutor.cmd_from_template(
-            node, 'create_bond_interface.vat', mode=mode, lb=ldb, mac=hw_addr)
+        cmd = 'bond_create'
+        args = dict(id=int(Constants.BITWISE_NON_ZERO),
+                    use_custom_mac=0 if mac is None else 1,
+                    mac_address=0 if mac is None else L2Util.mac_to_bin(mac),
+                    mode=getattr(LinkBondMode, '{md}'.format(
+                        md=mode.replace('-', '_').upper())).value,
+                    lb=0 if load_balance is None else getattr(
+                        LinkBondLoadBalance, '{lb}'.format(
+                            lb=load_balance.upper())).value)
+        err_msg = 'Failed to create bond interface on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
-        if output[0].get('retval') == 0:
-            sw_if_idx = output[0].get('sw_if_index')
-            InterfaceUtil.add_eth_interface(node, sw_if_idx=sw_if_idx,
-                                            ifc_pfx='eth_bond')
-            if_key = Topology.get_interface_by_sw_index(node, sw_if_idx)
-            return if_key
-        else:
-            raise RuntimeError('Create bond interface failed on "{host}"'.
-                               format(host=node['host']))
+        sw_if_idx = papi_resp['sw_if_index']
+        InterfaceUtil.add_eth_interface(node, sw_if_idx=sw_if_idx,
+                                        ifc_pfx='eth_bond')
+        if_key = Topology.get_interface_by_sw_index(node, sw_if_idx)
+
+        return if_key
 
     @staticmethod
     def add_eth_interface(node, ifc_name=None, sw_if_idx=None, ifc_pfx=None):
@@ -986,21 +1183,16 @@ class InterfaceUtil(object):
         :type sw_if_idx: int
         :type ifc_pfx: str
         """
+
         if_key = Topology.add_new_port(node, ifc_pfx)
 
-        vat_executor = VatExecutor()
-        vat_executor.execute_script_json_out("dump_interfaces.vat", node)
-        interface_dump_json = vat_executor.get_script_stdout()
-
         if ifc_name and sw_if_idx is None:
-            sw_if_idx = VatJsonUtil.get_interface_sw_index_from_json(
-                interface_dump_json, ifc_name)
+            sw_if_idx = InterfaceUtil.vpp_get_interface_sw_index(node, ifc_name)
         Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
         if sw_if_idx and ifc_name is None:
             ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
         Topology.update_interface_name(node, if_key, ifc_name)
-        ifc_mac = VatJsonUtil.get_interface_mac_from_json(
-            interface_dump_json, sw_if_idx)
+        ifc_mac = InterfaceUtil.vpp_get_interface_mac(node, sw_if_idx)
         Topology.update_interface_mac_address(node, if_key, ifc_mac)
 
     @staticmethod
@@ -1018,24 +1210,25 @@ class InterfaceUtil(object):
         :raises RuntimeError: If it is not possible to create AVF interface on
             the node.
         """
-        num_rx_queues = 'num-rx-queues {num_rx_queues}'\
-            .format(num_rx_queues=num_rx_queues) if num_rx_queues else ''
 
-        with VatTerminal(node, json_param=False) as vat:
-            vat.vat_terminal_exec_cmd_from_template('create_avf_interface.vat',
-                                                    vf_pci_addr=vf_pci_addr,
-                                                    num_rx_queues=num_rx_queues)
-            output = vat.vat_stdout
+        cmd = 'avf_create'
+        args = dict(pci_addr=InterfaceUtil.pci_to_int(vf_pci_addr),
+                    enable_elog=0,
+                    rxq_num=int(num_rx_queues) if num_rx_queues else 0,
+                    rxq_size=0,
+                    txq_size=0)
+        err_msg = 'Failed to create AVF interface on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
-        if output is not None:
-            sw_if_idx = int(output.split()[4])
-            InterfaceUtil.add_eth_interface(node, sw_if_idx=sw_if_idx,
-                                            ifc_pfx='eth_avf')
-            if_key = Topology.get_interface_by_sw_index(node, sw_if_idx)
-            return if_key
-        else:
-            raise RuntimeError('Create AVF interface failed on {host}'.
-                               format(host=node['host']))
+        sw_if_idx = papi_resp['sw_if_index']
+        InterfaceUtil.add_eth_interface(node, sw_if_idx=sw_if_idx,
+                                        ifc_pfx='eth_avf')
+        if_key = Topology.get_interface_by_sw_index(node, sw_if_idx)
+
+        return if_key
 
     @staticmethod
     def vpp_enslave_physical_interface(node, interface, bond_interface):
@@ -1050,18 +1243,21 @@ class InterfaceUtil(object):
         :raises RuntimeError: If it is not possible to enslave physical
             interface to bond interface on the node.
         """
-        ifc = Topology.get_interface_sw_index(node, interface)
-        bond_ifc = Topology.get_interface_sw_index(node, bond_interface)
 
-        output = VatExecutor.cmd_from_template(
-            node, 'enslave_physical_interface.vat', p_int=ifc, b_int=bond_ifc)
-
-        retval = output[0].get('retval', None)
-        if retval is None or int(retval) != 0:
-            raise RuntimeError('Enslave physical interface {ifc} to bond '
-                               'interface {bond} failed on node "{n}"'
-                               .format(ifc=interface, bond=bond_interface,
-                                       n=node['host']))
+        cmd = 'bond_enslave'
+        args = dict(sw_if_index=Topology.get_interface_sw_index(
+                        node, interface),
+                    bond_sw_if_index=Topology.get_interface_sw_index(
+                        node, bond_interface),
+                    is_passive=0,
+                    is_long_timeout=0)
+        err_msg = 'Failed to enslave physical interface {ifc} to bond ' \
+                  'interface {bond} on host {host}'.format(ifc=interface,
+                                                           bond=bond_interface,
+                                                           host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
     @staticmethod
     def vpp_show_bond_data_on_node(node, details=False):
@@ -1072,9 +1268,80 @@ class InterfaceUtil(object):
         :type node: dict
         :type details: bool
         """
-        cmd = 'exec show bond details' if details else 'exec show bond'
-        with VatTerminal(node, json_param=False) as vat:
-            vat.vat_terminal_exec_cmd(cmd)
+
+        cmd = 'sw_interface_bond_dump'
+        cmd_reply = 'sw_interface_bond_details'
+        err_msg = 'Failed to get bond interface dump on host {host}'.format(
+            host=node['host'])
+
+        data = ('Bond data on node {host}:\n'.format(host=node['host']))
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd).get_dump(err_msg)
+
+        papi_dump = papi_resp.reply[0]['api_reply']
+        for item in papi_dump:
+            data += ('{b}\n'.format(b=item[cmd_reply]['interface_name'].
+                                  rstrip('\x00')))
+            data += ('  mode: {m}\n'.
+                     format(m=LinkBondMode(item[cmd_reply]['mode']).name.
+                            lower()))
+            data += ('  load balance: {lb}\n'.
+                     format(lb=LinkBondLoadBalance(item[cmd_reply]['lb']).name.
+                            lower()))
+            data += ('  number of active slaves: {n}\n'.
+                     format(n=item[cmd_reply]['active_slaves']))
+            if details:
+                slave_data = InterfaceUtil.vpp_bond_slave_dump(
+                    node, Topology.get_interface_by_sw_index(
+                        node, item[cmd_reply]['sw_if_index']))
+                for slave in slave_data:
+                    if not slave['is_passive']:
+                        data += ('    {s}\n'.format(s=slave['interface_name']))
+            data += ('  number of slaves: {n}\n'.
+                     format(n=item[cmd_reply]['slaves']))
+            if details:
+                for slave in slave_data:
+                    data += ('    {s}\n'.format(s=slave['interface_name']))
+            data += ('  interface id: {i}\n'.
+                     format(i=item[cmd_reply]['id']))
+            data += ('  sw_if_index: {i}\n'.
+                     format(i=item[cmd_reply]['sw_if_index']))
+        logger.info(data)
+
+    @staticmethod
+    def vpp_bond_slave_dump(node, interface):
+        """Get bond interface slave(s) data on VPP node.
+
+        :param node: DUT node from topology.
+        :param interface: Physical interface key from topology file.
+        :type node: dict
+        :type interface: str
+        :returns: Bond slave interface data.
+        :rtype: dict
+        """
+        cmd = 'sw_interface_slave_dump'
+        cmd_reply = 'sw_interface_slave_details'
+        args = dict(sw_if_index=Topology.get_interface_sw_index(
+            node, interface))
+        err_msg = 'Failed to get slave dump on host {host}'.format(
+            host=node['host'])
+
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
+
+        papi_dump = papi_resp.reply[0]['api_reply']
+
+        def process_slave_dump(slave_dump):
+            slave_dump['interface_name'] = slave_dump['interface_name'].\
+                rstrip('\x00')
+            return slave_dump
+
+        data = list()
+        for item in papi_dump:
+            data.append(process_slave_dump(item[cmd_reply]))
+
+        logger.debug('Slave data:\n{slave_data}'.format(slave_data=data))
+        return data
 
     @staticmethod
     def vpp_show_bond_data_on_all_nodes(nodes, details=False):
@@ -1103,16 +1370,31 @@ class InterfaceUtil(object):
         :type ip_version: str
         :type table_index: int
         """
-        if isinstance(interface, basestring):
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
-        else:
-            sw_if_index = interface
 
-        with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template("input_acl_int.vat",
-                                                    sw_if_index=sw_if_index,
-                                                    ip_version=ip_version,
-                                                    table_index=table_index)
+        try:
+            sw_if_index = int(interface)
+        except ValueError:
+            sw_if_index = \
+                Topology.get_interface_sw_index_by_name(node, interface)
+        except TypeError as err:
+            raise TypeError('Wrong interface format {ifc}: {err}'.format(
+                ifc=interface, err=err.message))
+
+        cmd = 'input_acl_set_interface'
+        args = dict(sw_if_index=Topology.get_interface_sw_index(
+                        node, interface),
+                    ip4_table_index=table_index if ip_version == 'ip4'
+                    else Constants.BITWISE_NON_ZERO,
+                    ip6_table_index=table_index if ip_version == 'ip6'
+                    else Constants.BITWISE_NON_ZERO,
+                    l2_table_index=table_index if ip_version == 'l2'
+                    else Constants.BITWISE_NON_ZERO,
+                    is_add=1)
+        err_msg = 'Failed to enable input acl on interface {ifc}'.format(
+            ifc=interface)
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
     @staticmethod
     def get_interface_classify_table(node, interface):
@@ -1684,18 +1966,13 @@ class InterfaceUtil(object):
         """
 
         cmd = 'sw_interface_set_rx_placement'
-        cmd_reply = 'sw_interface_set_rx_placement_reply'
-        err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".format(
-            host=node['host'], cmd=cmd)
+        err_msg = "Failed to set interface RX placement to worker on host " \
+                  "{host}!".format(host=node['host'])
         args = dict(sw_if_index=sw_if_index, queue_id=queue_id,
                     worker_id=worker_id)
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
-        data = papi_resp.reply[0]['api_reply'][cmd_reply]
-        if data['retval'] != 0:
-            raise RuntimeError("Failed to set interface RX placement "
-                               "to worker on host {host}".
-                               format(host=node['host']))
+            papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
     @staticmethod
     def vpp_round_robin_rx_placement(node, prefix):
