@@ -77,3 +77,6 @@
 | | ...                            | ${dut2_to_tg} | ${dut2s_vxlan}
 | | Then Send ICMPv6 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
+| | And Get VXLAN dump | ${dut1_node}
+| | And Get VXLAN dump | ${dut1_node} | interface=vxlan_tunnel0
+| | And Get VXLAN dump | ${dut2_node} | interface=${dut2s_vxlan}
