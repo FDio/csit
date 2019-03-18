@@ -33,3 +33,14 @@
 | | ${eth_mtu}= | Evaluate | ${mtu} - 14 - 4
 | | Set Interface Ethernet MTU | ${tg_node} | ${tg_port} | ${eth_mtu}
 
+| Get Vhost dump
+| | [Documentation] | Get vhost-user dump.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - DUT node data. Type: dictionary
+| | ...
+| | [Arguments] | ${dut_node}
+| | ...
+| | [Return] | ${vhost_dump}
+| | ...
+| | ${vhost_dump}= | Vhost User Dump | ${dut_node}

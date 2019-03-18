@@ -64,7 +64,7 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes} | timeout=${600}
+| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
@@ -83,7 +83,7 @@
 | | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
-| | All VPP Interfaces Ready Wait | ${nodes} | timeout=${600}
+| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 
 | Set single interfaces in path up
 | | [Documentation]
@@ -104,7 +104,7 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
 | | | Run Keyword Unless | '${if1_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes} | timeout=${600}
+| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
@@ -2305,7 +2305,7 @@
 | | ... | rxq_count_int=${rxq_count_int}
 | | Run Keyword | vnf_manager.Start All VMs | pinning=${True}
 | | Run Keyword If | ${use_tuned_cfs} | vnf_manager.Set Scheduler All VMs
-| | All VPP Interfaces Ready Wait | ${nodes} | timeout=${600}
+| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
 | Configure guest VM with dpdk-testpmd connected via vhost-user
@@ -2434,7 +2434,7 @@
 | | | Configure guest VMs with dpdk-testpmd connected via vhost-user on node
 | | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
-| | All VPP Interfaces Ready Wait | ${nodes} | timeout=${90}
+| | All VPP Interfaces Ready Wait | ${nodes} | retries=${45}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
 | Configure guest VM with dpdk-testpmd-mac connected via vhost-user
@@ -2573,7 +2573,7 @@
 | | | Configure guest VMs with dpdk-testpmd-mac connected via vhost-user on node
 | | | ... | ${dut} | vm_count=${vm_count} | jumbo=${jumbo}
 | | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${False}
-| | All VPP Interfaces Ready Wait | ${nodes} | timeout=${90}
+| | All VPP Interfaces Ready Wait | ${nodes} | retries=${45}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
 | Initialize LISP IPv4 forwarding in 3-node circular topology
