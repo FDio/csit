@@ -46,6 +46,7 @@ if do_import:
     if modules_path:
         sys.path.append(modules_path)
         from vpp_papi import VPP
+        from vpp_papi import MACAddress
     else:
         raise RuntimeError('vpp_papi module not found')
 
@@ -186,7 +187,13 @@ def main():
         api_reply = dict(api_name=api_name)
         api_args = dict()
         for a_k, a_v in api_args_unicode.items():
-            value = binascii.unhexlify(a_v) if isinstance(a_v, unicode) else a_v
+            if isinstance(a_v, unicode):
+                value = binascii.unhexlify(a_v)
+            elif isinstance(a_v, int):
+                value = a_v
+            else:
+                value = str(a_v)
+            # value = binascii.unhexlify(a_v) if isinstance(a_v, unicode) else a_v
             api_args[str(a_k)] = value
         try:
             rep = papi_run(vpp, api_name, api_args)
