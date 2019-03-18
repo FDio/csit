@@ -29,52 +29,51 @@ from resources.libraries.python.topology import NodeType, Topology
 __all__ = ["QemuOptions", "QemuUtils"]
 
 
-class QemuOptions(object):
-    """QEMU option class."""
+class QemuOptions(dict):
+    """A class similar to dict, suitable for storing QEMU options.
+
+    The main differences is support for multiple values for the same parameter
+    and serialization to string pasteable to command line parameters.
+
+    Terms:
+    - option: Single word of command line.
+    - parameter: Option starting with dash. May be followed by value.
+    - value: Option not starting with dash. Must be preceded by parameter.
+    """
 
     # Use one instance of class per tests.
     ROBOT_LIBRARY_SCOPE = 'TEST CASE'
 
-    def __init__(self):
-        self.variables = list()
+    def add(self, parameter, value=""):
+        """Add parameter possibly with value to the options.
 
-    def add(self, variable, value):
-        """Add parameter to the list.
+        It is possible to add multiple values for the same parameter,
+        in that case the parameter will appear multiple times in command line.
 
-        :param variable: QEMU parameter.
-        :param value: Parameter value.
+        :param variable: QEMU parameter name (without dash).
+        :param value: Paired value.
         :type variable: str
         :type value: str or int
         """
-        self.variables.append({str(variable): value})
-
-    def get(self, variable):
-        """Get value of variable(s) from list that matches input paramter.
-
-        :param variable: QEMU parameter to get.
-        :type variable: str
-        :returns: List of values or value that matches input parameter.
-        :rtype: list or str
-        """
-        selected = [d[variable] for d in self.variables if variable in d]
-        return selected if len(selected) > 1 else selected[0]
-
-    def get_values(self):
-        """Get all values from dict items in list.
-
-        :returns: List of all dictionary values.
-        :rtype: list
-        """
-        return [d.values()[0] for d in self.variables]
+        if parameter in self:
+            self[parameter].append(value)
+        else:
+            self[parameter] = [value]
 
     def __str__(self):
         """Return space separated string of key value pairs.
 
+        The format is suitable to be pasted to qemu command line.
+
         :returns: Space separated string of key value pairs.
         :rtype: str
         """
-        return " ".join(["-{k} {v}".format(k=d.keys()[0], v=d.values()[0])
-                         for d in self.variables])
+        # TODO: Un-double spaces emited for parameters not followed by value.
+        options = list()
+        for parameter in self.keys():
+            options.append("-{param}".format(param=parameter))
+            options.append(self[parameter])
+        return " ".join(options)
 
 class QemuUtils(object):
     """QEMU utilities."""
@@ -113,21 +112,21 @@ class QemuUtils(object):
         if node:
             self.qemu_set_node(node)
         # Input Options.
-        self._opt = QemuOptions()
-        self._opt.add('qemu_id', qemu_id)
-        self._opt.add('bin_path', bin_path)
-        self._opt.add('mem', int(mem))
-        self._opt.add('smp', int(smp))
-        self._opt.add('img', img)
-        self._opt.add('vnf', vnf)
+        self._opt = dict()
+        self._opt['qemu_id'] = qemu_id
+        self._opt['bin_path'] = bin_path
+        self._opt['mem'] = int(mem)
+        self._opt['smp'] = int(smp)
+        self._opt['img'] = img
+        self._opt['vnf'] = vnf
         # Temporary files.
-        self._temp = QemuOptions()
-        self._temp.add('pid', '/var/run/qemu_{id}.pid'.format(id=qemu_id))
+        self._temp = dict()
+        self._temp['pidfile'] = '/var/run/qemu_{id}.pid'.format(id=qemu_id)
         # Computed parameters for QEMU command line.
         if '/var/lib/vm/' in img:
-            self._opt.add('vm_type', 'nestedvm')
-            self._temp.add('qmp', '/var/run/qmp_{id}.sock'.format(id=qemu_id))
-            self._temp.add('qga', '/var/run/qga_{id}.sock'.format(id=qemu_id))
+            self._opt['vm_type'] = 'nestedvm'
+            self._temp['qmp'] = '/var/run/qmp_{id}.sock'.format(id=qemu_id)
+            self._temp['qga'] = '/var/run/qga_{id}.sock'.format(id=qemu_id)
         else:
             raise RuntimeError('QEMU: Unknown VM image option!')
         self._params = QemuOptions()
@@ -136,41 +135,41 @@ class QemuUtils(object):
     def add_params(self):
         """Set QEMU command line parameters."""
         self.add_default_params()
-        if self._opt.get('vm_type') == 'nestedvm':
+        if self._opt.get('vm_type', '') == 'nestedvm':
             self.add_nestedvm_params()
         else:
             raise RuntimeError('QEMU: Unsupported VM type!')
 
     def add_default_params(self):
         """Set default QEMU command line parameters."""
-        self._params.add('daemonize', '')
-        self._params.add('nodefaults', '')
+        self._params.add('daemonize')
+        self._params.add('nodefaults')
         self._params.add('name', 'vnf{qemu},debug-threads=on'.
-                         format(qemu=self._opt.get('qemu_id')))
-        self._params.add('no-user-config', '')
+                         format(qemu=self._opt['qemu_id']))
+        self._params.add('no-user-config')
         self._params.add('monitor', 'none')
         self._params.add('display', 'none')
         self._params.add('vga', 'none')
-        self._params.add('enable-kvm', '')
-        self._params.add('pidfile', '{pid}'.
-                         format(pid=self._temp.get('pid')))
+        self._params.add('enable-kvm')
+        self._params.add('pidfile', '{pidfile}'.
+                         format(pidfile=self._temp['pid']))
         self._params.add('cpu', 'host')
         self._params.add('machine', 'pc,accel=kvm,usb=off,mem-merge=off')
         self._params.add('smp', '{smp},sockets=1,cores={smp},threads=1'.
-                         format(smp=self._opt.get('smp')))
+                         format(smp=self._opt['smp']))
         self._params.add('object',
                          'memory-backend-file,id=mem,size={mem}M,'
                          'mem-path=/mnt/huge,share=on'.
-                         format(mem=self._opt.get('mem')))
+                         format(mem=self._opt['mem']))
         self._params.add('m', '{mem}M'.
-                         format(mem=self._opt.get('mem')))
+                         format(mem=self._opt['mem']))
         self._params.add('numa', 'node,memdev=mem')
         self._params.add('balloon', 'none')
 
     def add_nestedvm_params(self):
         """Set NestedVM QEMU parameters."""
         self._params.add('net', 'nic,macaddr=52:54:00:00:{qemu:02x}:ff'.
-                         format(qemu=self._opt.get('qemu_id')))
+                         format(qemu=self._opt['qemu_id']))
         self._params.add('net', 'user,hostfwd=tcp::{info[port]}-:22'.
                          format(info=self._vm_info))
         # TODO: Remove try except after fully migrated to Bionic or
@@ -182,15 +181,15 @@ class QemuUtils(object):
             locking = ''
         self._params.add('drive',
                          'file={img},format=raw,cache=none,if=virtio{locking}'.
-                         format(img=self._opt.get('img'), locking=locking))
+                         format(img=self._opt['img'], locking=locking))
         self._params.add('qmp', 'unix:{qmp},server,nowait'.
-                         format(qmp=self._temp.get('qmp')))
+                         format(qmp=self._temp['qmp']))
         self._params.add('chardev', 'socket,host=127.0.0.1,port={info[serial]},'
                          'id=gnc0,server,nowait'.format(info=self._vm_info))
         self._params.add('device', 'isa-serial,chardev=gnc0')
         self._params.add('chardev',
                          'socket,path={qga},server,nowait,id=qga0'.
-                         format(qga=self._temp.get('qga')))
+                         format(qga=self._temp['qga']))
         self._params.add('device', 'isa-serial,chardev=qga0')
 
     def qemu_set_node(self, node):
@@ -212,8 +211,8 @@ class QemuUtils(object):
         :returns: List of QEMU CPU pids.
         :rtype: list of str
         """
-        command = ("grep -rwl 'CPU' /proc/$(sudo cat {pid})/task/*/comm ".
-                   format(pid=self._temp.get('pid')))
+        command = ("grep -rwl 'CPU' /proc/$(sudo cat {pidfile})/task/*/comm ".
+                   format(pid=self._temp['pidfile']))
         command += (r"| xargs dirname | sed -e 's/\/.*\///g'")
 
         stdout, _ = exec_cmd_no_error(self._node, command)
@@ -288,7 +287,7 @@ class QemuUtils(object):
                          'chardev=char{vhost},queues={queues}'.
                          format(vhost=self._vhost_id, queues=queues))
         mac = ('52:54:00:00:{qemu:02x}:{vhost:02x}'.
-               format(qemu=self._opt.get('qemu_id'), vhost=self._vhost_id))
+               format(qemu=self._opt['qemu_id'], vhost=self._vhost_id))
         queue_size = ('rx_queue_size={queue_size},tx_queue_size={queue_size}'.
                       format(queue_size=queue_size)) if queue_size else ''
         mbuf = 'on,host_mtu=9200'
@@ -307,7 +306,7 @@ class QemuUtils(object):
         if_name = 'vhost{vhost}'.format(vhost=self._vhost_id)
         self._vm_info['interfaces'][if_name] = if_data
         # Add socket to temporary file list.
-        self._temp.add(if_name, socket)
+        self._temp[if_name] = socket
 
     def _qemu_qmp_exec(self, cmd):
         """Execute QMP command.
@@ -324,7 +323,7 @@ class QemuUtils(object):
         command = ('echo "{{ \\"execute\\": \\"qmp_capabilities\\" }}'
                    '{{ \\"execute\\": \\"{cmd}\\" }}" | '
                    'sudo -S socat - UNIX-CONNECT:{qmp}'.
-                   format(cmd=cmd, qmp=self._temp.get('qmp')))
+                   format(cmd=cmd, qmp=self._temp['qmp']))
         message = ('QMP execute "{cmd}" failed on {host}'.
                    format(cmd=cmd, host=self._node['host']))
         stdout, _ = exec_cmd_no_error(self._node, command, sudo=False,
@@ -341,7 +340,7 @@ class QemuUtils(object):
         """Flush the QGA parser state."""
         command = ('(printf "\xFF"; sleep 1) | '
                    'sudo -S socat - UNIX-CONNECT:{qga}'.
-                   format(qga=self._temp.get('qga')))
+                   format(qga=self._temp['qga']))
         message = ('QGA flush failed on {host}'.format(host=self._node['host']))
         stdout, _ = exec_cmd_no_error(self._node, command, sudo=False,
                                       message=message)
@@ -358,7 +357,7 @@ class QemuUtils(object):
         """
         command = ('(echo "{{ \\"execute\\": \\"{cmd}\\" }}"; sleep 1) | '
                    'sudo -S socat - UNIX-CONNECT:{qga}'.
-                   format(cmd=cmd, qga=self._temp.get('qga')))
+                   format(cmd=cmd, qga=self._temp['qga']))
         message = ('QGA execute "{cmd}" failed on {host}'.
                    format(cmd=cmd, host=self._node['host']))
         stdout, _ = exec_cmd_no_error(self._node, command, sudo=False,
@@ -403,13 +402,13 @@ class QemuUtils(object):
                              format(out=out))
             # Empty output - VM not booted yet.
             if not out:
-                sleep(5)
+                sleep(1)
             # Non-error return - VM booted.
             elif out.get('return') is not None:
                 break
             # Skip error and wait.
             elif out.get('error') is not None:
-                sleep(5)
+                sleep(1)
             else:
                 # If there is an unexpected output from QGA guest-info, try
                 # again until timeout.
@@ -450,10 +449,10 @@ class QemuUtils(object):
         :returns: VM node info.
         :rtype: dict
         """
-        DUTSetup.check_huge_page(self._node, '/mnt/huge', self._opt.get('mem'))
+        DUTSetup.check_huge_page(self._node, '/mnt/huge', self._opt['mem'])
 
-        command = ('{bin_path}/qemu-system-{arch} {params}'.
-                   format(bin_path=self._opt.get('bin_path'),
+        command = ('{bin_path}/qemu-system-{arch} {params!s}'.
+                   format(bin_path=self._opt['bin_path'],
                           arch=Topology.get_node_arch(self._node),
                           params=self._params))
         message = ('QEMU: Start failed on {host}!'.
@@ -470,15 +469,19 @@ class QemuUtils(object):
             raise
         return self._vm_info
 
+    def _rm_tmp_files(self):
+        """Remove and forget temporary files. Called by qemu_kill_* methods."""
+        for value in self._temp.values():
+            exec_cmd(self._node, 'rm -f {value}'.format(value=value), sudo=True)
+        self._temp.clear()
+
     def qemu_kill(self):
         """Kill qemu process."""
-        exec_cmd(self._node, 'chmod +r {pid}'.
-                 format(pid=self._temp.get('pid')), sudo=True)
-        exec_cmd(self._node, 'kill -SIGKILL $(cat {pid})'.
-                 format(pid=self._temp.get('pid')), sudo=True)
-
-        for value in self._temp.get_values():
-            exec_cmd(self._node, 'rm -f {value}'.format(value=value), sudo=True)
+        exec_cmd(self._node, 'chmod +r {pidfile}'.
+                 format(pidfile=self._temp['pidfile']), sudo=True)
+        exec_cmd(self._node, 'kill -SIGKILL $(cat {pidfile})'.
+                 format(pidfile=self._temp['pidfile']), sudo=True)
+        self._rm_tmp_files()
 
     def qemu_kill_all(self, node=None):
         """Kill all qemu processes on DUT node if specified.
@@ -489,9 +492,7 @@ class QemuUtils(object):
         if node:
             self.qemu_set_node(node)
         exec_cmd(self._node, 'pkill -SIGKILL qemu', sudo=True)
-
-        for value in self._temp.get_values():
-            exec_cmd(self._node, 'rm -f {value}'.format(value=value), sudo=True)
+        self._rm_tmp_files()
 
     def qemu_version(self, version=None):
         """Return Qemu version or compare if version is higher than parameter.
@@ -502,7 +503,7 @@ class QemuUtils(object):
         :rtype: str or bool
         """
         command = ('{bin_path}/qemu-system-{arch} --version'.
-                   format(bin_path=self._opt.get('bin_path'),
+                   format(bin_path=self._opt['bin_path'],
                           arch=Topology.get_node_arch(self._node)))
         try:
             stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
