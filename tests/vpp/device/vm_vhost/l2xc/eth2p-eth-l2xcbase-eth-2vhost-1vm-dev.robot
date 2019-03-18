@@ -71,6 +71,7 @@
 | | ... | ${sock2}
 | | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | And Get Vhost dump | ${dut_node}
 
 | tc02-eth2p-ethip6-l2xcbase-eth-2vhost-1vm-device
 | | [Documentation]
