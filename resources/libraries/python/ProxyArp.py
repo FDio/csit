@@ -13,6 +13,8 @@
 
 """Proxy ARP library"""
 
+from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.VatExecutor import VatTerminal
 
 
@@ -34,3 +36,23 @@ class ProxyArp(object):
             vat.vat_terminal_exec_cmd_from_template("add_proxy_arp.vat",
                                                     lo_ip4_addr=lo_ip4_addr,
                                                     hi_ip4_addr=hi_ip4_addr)
+
+    @staticmethod
+    def vpp_proxy_arp_interface_enable(node, interface):
+        """Enable proxy ARP on interface.
+
+        :param node: VPP node to enable proxy ARP on interface.
+        :param interface: Interface to enable proxy ARP.
+        :type node: dict
+        :type interface: str or int
+        """
+
+        cmd = 'proxy_arp_intfc_enable_disable'
+        args = dict(
+            sw_if_index=InterfaceUtil.get_interface_sw_index(node, interface),
+            enable_disable=1)
+        err_msg = 'Failed to enable proxy ARP on interface {ifc}'.format(
+            ifc=interface)
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
