@@ -240,7 +240,7 @@ class InterfaceUtil(object):
     def vpp_get_interface_data(node, interface=None):
         """Get all interface data from a VPP node. If a name or
         sw_interface_index is provided, return only data for the matching
-        interface.
+        interface(s).
 
         :param node: VPP node to get interface data from.
         :param interface: Numeric index or name string of a specific interface.
@@ -252,23 +252,34 @@ class InterfaceUtil(object):
         :raises TypeError: if the data type of interface is neither basestring
             nor int.
         """
-        with VatTerminal(node) as vat:
-            response = vat.vat_terminal_exec_cmd_from_template(
-                "interface_dump.vat")
-
-        data = response[0]
 
         if interface is not None:
             if isinstance(interface, basestring):
-                param = "interface_name"
+                if_name = interface
             elif isinstance(interface, int):
-                param = "sw_if_index"
+                if_name = InterfaceUtil.vpp_get_interface_name(node, interface)
             else:
                 raise TypeError
-            for data_if in data:
-                if data_if[param] == interface:
-                    return data_if
-            return dict()
+        else:
+            if_name = ''
+
+        name_filter = 0 if interface is None else 1
+
+        cmd = 'sw_interface_dump'
+        cmd_reply = 'sw_interface_details'
+        args = dict(name_filter_valid=name_filter, name_filter=if_name)
+        err_msg = 'Failed to get interface dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
+
+        papi_if_dump = papi_resp.reply[0]['api_reply']
+
+        data = list()
+        for item in papi_if_dump:
+            # TODO: process string parameters interface_name, l2_address ?
+            data.append(item[cmd_reply])
+
         return data
 
     @staticmethod
