@@ -75,7 +75,7 @@
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
-    URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/1901/robot-plugin.zip"
+    URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/{release}/robot-plugin.zip"
     # URL[VIRL,DNV]: "http://download.it/from/nexus"
     URL[NEXUS]: "https://docs.fd.io/csit"
     DIR[NEXUS]: "report/_static/archive"
@@ -365,7 +365,6 @@
 
     # Denverton:
     intel-dnv-vpp:
-      # Not used
       intel-dnv-vpp-release-1901:
         - 1
 
@@ -545,6 +544,16 @@
     # Tables (more than one data set)
 
     # Performance changes
+
+    intel-dnv-vpp-changes-2n-dnv-ref:
+      intel-dnv-vpp-release-1810:
+        -1
+    intel-dnv-vpp-changes-2n-dnv-cmp:
+      intel-dnv-vpp-release-1901:
+        -1
+    intel-dnv-vpp-changes-2n-dnv:
+      - "intel-dnv-vpp-changes-2n-dnv-ref"
+      - "intel-dnv-vpp-changes-2n-dnv-cmp"
 
     vpp-performance-changes-3n-hsw-h1:
       csit-vpp-perf-verify-1807-3n-hsw:
@@ -1464,8 +1473,10 @@
 
   builds:
 
-    # Not used
     intel-dnv-vpp-release-1901:
+      - 1
+
+    intel-dnv-vpp-release-1810:
       - 1
 
     csit-vpp-perf-verify-1807-3n-hsw:
@@ -2255,6 +2266,147 @@
 
 ################################################################################
 # VPP
+
+# VPP Performance Changes 2n-dnv 1t1c pdr
+-
+  type: "table"
+  title: "VPP Performance Changes 2n-dnv 1t1c pdr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-pdr"
+  reference:
+    title: "rls1810"
+    data: "intel-dnv-vpp-changes-2n-dnv-ref"
+  compare:
+    title: "rls1901.1"
+    data: "intel-dnv-vpp-changes-2n-dnv-cmp"
+  data: "intel-dnv-vpp-changes-2n-dnv"
+  include-tests: "PDR"
+  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# VPP Performance Changes 2n-dnv 2t2c pdr
+-
+  type: "table"
+  title: "VPP Performance Changes 2n-dnv 2t2c pdr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-pdr"
+  reference:
+    title: "rls1810"
+    data: "intel-dnv-vpp-changes-2n-dnv-ref"
+  compare:
+    title: "rls1901.1"
+    data: "intel-dnv-vpp-changes-2n-dnv-cmp"
+  data: "intel-dnv-vpp-changes-2n-dnv"
+  include-tests: "PDR"
+  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# VPP Performance Changes 2n-dnv 1t1c ndr
+-
+  type: "table"
+  title: "VPP Performance Changes 2n-dnv 1t1c ndr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-ndr"
+  reference:
+    title: "rls1810"
+    data: "intel-dnv-vpp-changes-2n-dnv-ref"
+  compare:
+    title: "rls1901.1"
+    data: "intel-dnv-vpp-changes-2n-dnv-cmp"
+  data: "intel-dnv-vpp-changes-2n-dnv"
+  include-tests: "NDR"
+  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+
+# VPP Performance Changes 2n-dnv 2t2c ndr
+-
+  type: "table"
+  title: "VPP Performance Changes 2n-dnv 2t2c ndr"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-ndr"
+  reference:
+    title: "rls1810"
+    data: "intel-dnv-vpp-changes-2n-dnv-ref"
+  compare:
+    title: "rls1901.1"
+    data: "intel-dnv-vpp-changes-2n-dnv-cmp"
+  data: "intel-dnv-vpp-changes-2n-dnv"
+  include-tests: "NDR"
+  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  parameters:
+  - "name"
+  - "parent"
+  - "throughput"
+  
+
+# VPP Performance Changes 2n-dnv 1t1c MRR
+-
+  type: "table"
+  title: "VPP Performance Changes 2n-dnv 1t1c MRR"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-1t1c-mrr"
+  reference:
+    title: "rls1810"
+    data: "intel-dnv-vpp-changes-2n-dnv-ref"
+  compare:
+    title: "rls1901.1"
+    data: "intel-dnv-vpp-changes-2n-dnv-cmp"
+  data: "intel-dnv-vpp-changes-2n-dnv"
+  include-tests: "MRR"
+  filter: "'1T1C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 2n-dnv 2t2c MRR
+-
+  type: "table"
+  title: "VPP Performance Changes 2n-dnv 2t2c MRR"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-2t2c-mrr"
+  reference:
+    title: "rls1810"
+    data: "intel-dnv-vpp-changes-2n-dnv-ref"
+  compare:
+    title: "rls1901.1"
+    data: "intel-dnv-vpp-changes-2n-dnv-cmp"
+  data: "intel-dnv-vpp-changes-2n-dnv"
+  include-tests: "MRR"
+  filter: "'2T2C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+
+# VPP Performance Changes 2n-dnv 4t4c MRR
+-
+  type: "table"
+  title: "VPP Performance Changes 2n-dnv 4t4c MRR"
+  algorithm: "table_performance_comparison"
+  output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-dnv-4t4c-mrr"
+  reference:
+    title: "rls1810"
+    data: "intel-dnv-vpp-changes-2n-dnv-ref"
+  compare:
+    title: "rls1901.1"
+    data: "intel-dnv-vpp-changes-2n-dnv-cmp"
+  data: "intel-dnv-vpp-changes-2n-dnv"
+  include-tests: "MRR"
+  filter: "'4T4C' and 'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
 
 # VPP Performance Changes 3n-hsw 1t1c pdr
 -
