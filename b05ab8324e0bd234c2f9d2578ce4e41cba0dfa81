@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fea76ab8_79b159c3",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-19T12:14:52Z",
+      "side": 1,
+      "message": "... or pure PAPI decisions on how to represent certain C types in Python.",
+      "parentUuid": "d83ecd09_760b137c",
+      "range": {
+        "startLine": 7,
+        "startChar": 32,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99c4b9ad_a3f0973d",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
@@ -60,6 +84,30 @@
       "side": 1,
       "message": "Hope i do understand your statement in context, but you have to keep compatibility for other commits in the gerrit no?\n\nThat is why i proposed oper branch based API change, not the date.\n\nSo VPP commit will pickup the right one (based on hash)",
       "parentUuid": "99c4b9ad_a3f0973d",
+      "range": {
+        "startLine": 40,
+        "startChar": 29,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8d79380_48697fd1",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-19T12:14:52Z",
+      "side": 1,
+      "message": "\u003e oper branch based on API change, not the date\n\nWe probably want both. If no API change happens in a week, we still create a new oper branch.\n\n\u003e you have to keep compatibility for other commits in the gerrit\n\nYou mean VPP commits, after new API has been merged?\nNo, you do not want to keep CSIT compatible with that. On the contrary, any vpp-csit verify job should say \"Verified-1 please rebase to new API\", as described in lines 66-67.",
+      "parentUuid": "1a51e93a_e1d393d7",
       "range": {
         "startLine": 40,
         "startChar": 29,
@@ -130,6 +178,30 @@
       "side": 1,
       "message": "THis is why we have oper- and why we have STABLE_VER. To avoid open CSIT commit to be not verified. So this model will work with no change.",
       "parentUuid": "b2093d02_8b00223f",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f6f1b36_cf01c729",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-19T12:14:52Z",
+      "side": 1,
+      "message": "\u003e This is why we have oper- and why we have STABLE_VER.\n\nTrue for STABLE_VER, false for oper-.\n\nIf an open CSIT Change is based on an old CSIT commit, it does not matter what STABLE_VER is specified in CSIT master or oper-, csit verify jobs would use the STABLE_VER from the open Change (so probably inherited from the old commit).\n\nCSIT would have to change the way csit verify jobs are working (to always attempt a rebase onto oper-, or similar) to make CSIT rechecking safe.",
+      "parentUuid": "519198bc_6b3308b6",
       "range": {
         "startLine": 44,
         "startChar": 16,
@@ -365,6 +437,30 @@
       "writtenOn": "2019-03-19T09:53:39Z",
       "side": 1,
       "message": "As long as KV store will follow strict model not changing all the time I am +1 otherwise it will have the same problem. Ligato is example KV datastore. There was discussion long time ago if CSIT should switch to Ligato, but I think it is unrelated to the main API Flag discussion problem.",
+      "parentUuid": "ead02123_1588324a",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 73
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "69528a0d_1d67d413",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-19T12:14:52Z",
+      "side": 1,
+      "message": "\u003e the reason why VPP API is not backward compatible\n\u003e is because VPP developpers want VPP internal structures\n\u003e to change to keep a FAST data plane.\n\nIf VPP is improving an internal structure, it is still possible to create a separate new (fast) API method, while keeping the old method still supported (but changing its implementation to a slower wrapper around the new call).\n\nVPP would still be fast, but VPP development would be slower because of the need to support/test both old and new API methods.\n\nThe point of this document is to achieve continuous CSIT operation without the need for VPP to maintain multiple API methods at once. The VPP development will still be somewhat slowed by waiting for CSIT patches.",
       "parentUuid": "ead02123_1588324a",
       "range": {
         "startLine": 61,
