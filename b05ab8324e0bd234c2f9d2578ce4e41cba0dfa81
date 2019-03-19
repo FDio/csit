@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "1a51e93a_e1d393d7",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-19T06:33:48Z",
+      "side": 1,
+      "message": "Hope i do understand your statement in context, but you have to keep compatibility for other commits in the gerrit no?\n\nThat is why i proposed oper branch based API change, not the date.\n\nSo VPP commit will pickup the right one (based on hash)",
+      "parentUuid": "99c4b9ad_a3f0973d",
+      "range": {
+        "startLine": 40,
+        "startChar": 29,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d85b6568_56a5b72d",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
@@ -82,6 +106,30 @@
       "writtenOn": "2019-03-18T14:47:08Z",
       "side": 1,
       "message": "The code which really needs to be \"rechecked\" is actually open CSIT patches which start using parts of API. As that code might be using old API, it has to be updated. That means after API change is merged to VPP, each open CSIT Change has to be manually set to Verified-1, with a comment recommending a rebase to the CSIT code which has the old API support removed.\n\nNote that using the exact \"recheck\" trigger is not correct, as it would use the open code (with old API handling and with old VPP build marked as stable) so it would just repeat a previous +1 without any relation to the new API.",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "519198bc_6b3308b6",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-19T06:33:48Z",
+      "side": 1,
+      "message": "THis is why we have oper- and why we have STABLE_VER. To avoid open CSIT commit to be not verified. So this model will work with no change.",
+      "parentUuid": "b2093d02_8b00223f",
       "range": {
         "startLine": 44,
         "startChar": 16,
@@ -187,6 +235,30 @@
     },
     {
       "key": {
+        "uuid": "717116cb_557d7d67",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-19T06:33:48Z",
+      "side": 1,
+      "message": "I do not think it is impossible to have backward compatible API. Lots of software I am using every day has backwards API so why VPP not?\n\nIf there is is ongoing refactor fine. But long term there must be stable MODELED API otherwise VPP will fail on market! Nobody will deploy software that is changing frequently!",
+      "parentUuid": "81dee24c_466b42fd",
+      "range": {
+        "startLine": 62,
+        "startChar": 40,
+        "endLine": 62,
+        "endChar": 50
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b491b195_99b9c222",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
@@ -221,6 +293,30 @@
       "writtenOn": "2019-03-18T15:30:19Z",
       "side": 1,
       "message": "+1 about this. Ex: commit 4d5b917b1a7 would break compatibility for sweetcomb because field name changed, but sementic version was not incremented as a break in backward compatibility...\nIMHO, any change should trigger an alert to CSIT.",
+      "parentUuid": "b491b195_99b9c222",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 73
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef0759c3_6799bbb9",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-19T06:33:48Z",
+      "side": 1,
+      "message": "Backward compatible is a must i think for VPP being competitive on market. As per my note earlier, nobody will be deploying SW in production that has API refactor every release. Otherwise be prepared to support 1y old versions just because customers have no time for this API Tango dance every release",
       "parentUuid": "b491b195_99b9c222",
       "range": {
         "startLine": 61,
