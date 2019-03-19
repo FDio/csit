@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "109e53eb_daefd47f",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 331
+      },
+      "writtenOn": "2019-03-19T16:23:02Z",
+      "side": 1,
+      "message": "I know that this document mainly concerns CSIT, but maybe we can have a dedicated mailing list for detected api changes or other mechanism where we can subscribe to these changes (or some flag in the mail so we can filter it more easily). It would allow other projects(honeycomb, sweetcomb,govpp,individuals, ...) to subscribe for such changes so they are informed of these critical API updates before the patch is actually merged. At least they would have more time to prepare.",
+      "range": {
+        "startLine": 24,
+        "startChar": 44,
+        "endLine": 25,
+        "endChar": 37
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a8fcc90_ea11340d",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
