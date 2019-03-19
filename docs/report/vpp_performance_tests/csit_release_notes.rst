@@ -6,14 +6,6 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **Service density 2n-skx tests**: Network Function Virtualization (NFV)
-     service density tests focus on measuring total per server throughput at
-     varied NFV service *packing* densities with vswitch providing host
-     dataplane. The goal is to compare and contrast performance of a shared
-     vswitch for different network topologies and virtualization technologies,
-     and their impact on vswitch performance and efficiency in a range of NFV
-     service configurations.
-
    - **Experimental Soak Tests**: Added performamce soak tests framework
      code for extended time duration tests and throughput discovery
      at given PLR and at give total test time e.g. minutes, hours,
@@ -73,7 +65,7 @@ List of known issues in |csit-release| for VPP performance tests:
 | 4  | `CSIT-1431                              | AVF 4 cores tests are sporadically failing. Under investigation.                                                                |
 |    | <https://jira.fd.io/browse/CSIT-1431>`_ |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 5  | `CSIT-1465                              | 4c VPP VM vhost tests failing on 3n-skx. Under investigation.                                                                  |
+| 5  | `CSIT-1465                              | 4c VPP VM vhost tests failing on 3n-skx. Under investigation.                                                                   |
 |    | <https://jira.fd.io/browse/CSIT-1465>`_ |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
 | 6  | `CSIT-1466                              | IPSecHW scale tests failing due to VPP reset. Under investigation.                                                              |
