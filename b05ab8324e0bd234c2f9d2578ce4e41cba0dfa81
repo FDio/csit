@@ -354,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "af245593_638a20e4",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-19T09:53:39Z",
+      "side": 1,
+      "message": "As long as KV store will follow strict model not changing all the time I am +1 otherwise it will have the same problem. Ligato is example KV datastore. There was discussion long time ago if CSIT should switch to Ligato, but I think it is unrelated to the main API Flag discussion problem.",
+      "parentUuid": "ead02123_1588324a",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 73
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d2f8016_6449e6cc",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
