@@ -330,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "ead02123_1588324a",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1709
+      },
+      "writtenOn": "2019-03-19T09:38:41Z",
+      "side": 1,
+      "message": "Peter, I agree with you this is uncommon and does not work well for users. Now the reason why VPP API is not backward compatible is because VPP developpers want VPP internal structures to change to keep a FAST data plane. Plus, there are some ideas to have more compatibility for VPP API like using a common KV store and common RPCs to configure/fetch data from VPP, thus every changes would be absorbed by this KV store. It is probably a matter of time.",
+      "parentUuid": "ef0759c3_6799bbb9",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 73
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d2f8016_6449e6cc",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
