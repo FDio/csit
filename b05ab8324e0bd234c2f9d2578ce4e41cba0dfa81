@@ -49,6 +49,29 @@
     },
     {
       "key": {
+        "uuid": "1a8fcc90_ea11340d",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-19T14:55:51Z",
+      "side": 1,
+      "message": "The patch should be incremental in a sense that it should support both new and previous API version, based on VPP API version detection. Previous API support should be removed from CSIT code in a separate patch, once original VPP patch is merged.",
+      "range": {
+        "startLine": 30,
+        "startChar": 27,
+        "endLine": 31,
+        "endChar": 18
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "99c4b9ad_a3f0973d",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
