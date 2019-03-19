@@ -167,7 +167,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
     elif job.startswith("hc2vpp-"):
         url = spec.environment["urls"]["URL[JENKINS,HC]"]
     elif job.startswith("intel-dnv-"):
-        url = spec.environment["urls"]["URL[VIRL,DNV]"]
+        url = spec.environment["urls"]["URL[VIRL,DNV]"].format(release=job[-4:])
     else:
         raise PresentationError("No url defined for the job '{}'.".
                                 format(job))

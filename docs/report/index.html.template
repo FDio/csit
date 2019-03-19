@@ -21,7 +21,6 @@ CSIT-1901.1
     vpp_performance_tests/throughput_speedup_multi_core/index
     vpp_performance_tests/packet_latency_graphs/index
     vpp_performance_tests/soak_tests/index
-    vpp_performance_tests/nf_service_density/index
     vpp_performance_tests/comparisons/index
     vpp_performance_tests/throughput_trending
     vpp_performance_tests/test_environment
