@@ -143,6 +143,53 @@
     },
     {
       "key": {
+        "uuid": "0253ecfa_ec779a9a",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-19T16:15:23Z",
+      "side": 1,
+      "message": "Agree, per my earlier comment. Once new VPP API patch is merged, there is no reason for CSIT supporting the old API.",
+      "parentUuid": "f8d79380_48697fd1",
+      "range": {
+        "startLine": 40,
+        "startChar": 29,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b3fc4831_23e16db6",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-19T16:15:23Z",
+      "side": 1,
+      "message": "Note that new API support must be in CSIT oper branch upon merging new VPP API.",
+      "range": {
+        "startLine": 40,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d85b6568_56a5b72d",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
@@ -261,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "e8ca7e50_093cdfaf",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-19T16:15:23Z",
+      "side": 1,
+      "message": "Is there a way to automate this, as relying on manual scraping of open CSIT commits every time VPP API changes is going to be error prone..",
+      "parentUuid": "b2093d02_8b00223f",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17b5b60c_70a6ad46",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
@@ -295,6 +366,30 @@
       "writtenOn": "2019-03-18T07:56:16Z",
       "side": 1,
       "message": "Currently we are creating branches per weekly basis. Which i think forward is not optimal (it is resource optimal, but not code optimal).\n\nShall we switch oper branch creating to \"API flag triggered\" instead of \"Date triggered\"?\n\nExample:\nVPP propose API change raising the bell as you describe. Corresponding job will automatically creates list of API with their CRCs. Ideally we should have our code implemented in the way that it will be 1:1 so API name is also name of our CSIT python function same does parameters.\n\nNew commit on CSIT side is created and once tested patch-on-patch our code is merged and oper branch created.\n\nCaveats: We need to come with oper branch naming derived from CRC. So VPP patch will pick oper branch based on CRC not the date as it is today. This way we are able to create branch for commits that already are on \"new API\".\n\nThoughts?",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 66
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22f1215f_7842a98c",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-19T16:15:23Z",
+      "side": 1,
+      "message": "We still need periodic oper branch creation, to push new CSIT tests to run in vpp-csit-* jobs. Or?",
+      "parentUuid": "b483e3ea_08877fef",
       "range": {
         "startLine": 55,
         "startChar": 0,
@@ -371,6 +466,29 @@
         "startChar": 40,
         "endLine": 62,
         "endChar": 50
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea037967_ad254c49",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-03-19T16:15:23Z",
+      "side": 1,
+      "message": "Is the proposal here to just detect the API change and flag it, or also analyse the changes and sort them into listed buckets: backwards compatible, incompatible?",
+      "range": {
+        "startLine": 63,
+        "startChar": 2,
+        "endLine": 63,
+        "endChar": 48
       },
       "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
