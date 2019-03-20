@@ -37,21 +37,21 @@ class TGDropRateSearchImpl(DropRateSearch):
         super(TGDropRateSearchImpl, self).__init__()
 
     def measure_loss(self, rate, frame_size, loss_acceptance,
-                     loss_acceptance_type, traffic_type, skip_warmup=False):
+                     loss_acceptance_type, traffic_profile, skip_warmup=False):
         """Runs the traffic and evaluate the measured results.
 
         :param rate: Offered traffic load.
         :param frame_size: Size of frame.
         :param loss_acceptance: Permitted drop ratio or frames count.
         :param loss_acceptance_type: Type of permitted loss.
-        :param traffic_type: Module name as a traffic type identifier.
+        :param traffic_profile: Module name as a traffic profile identifier.
             See resources/traffic_profiles/trex for implemented modules.
         :param skip_warmup: Start TRex without warmup traffic if true.
         :type rate: float
         :type frame_size: str
         :type loss_acceptance: float
         :type loss_acceptance_type: LossAcceptanceType
-        :type traffic_type: str
+        :type traffic_profile: str
         :type skip_warmup: bool
         :returns: Drop threshold exceeded? (True/False)
         :rtype: bool
@@ -70,12 +70,12 @@ class TGDropRateSearchImpl(DropRateSearch):
             if skip_warmup:
                 tg_instance.trex_stl_start_remote_exec(self.get_duration(),
                                                        unit_rate, frame_size,
-                                                       traffic_type,
+                                                       traffic_profile,
                                                        warmup_time=0.0)
             else:
                 tg_instance.trex_stl_start_remote_exec(self.get_duration(),
                                                        unit_rate, frame_size,
-                                                       traffic_type)
+                                                       traffic_profile)
             loss = tg_instance.get_loss()
             sent = tg_instance.get_sent()
             if self.loss_acceptance_type_is_percentage():
@@ -124,7 +124,7 @@ class TrafficGenerator(AbstractMeasurer):
         self._ifaces_reordered = False
         # Parameters not given by measure().
         self.frame_size = None
-        self.traffic_type = None
+        self.traffic_profile = None
         self.warmup_time = None
 
     @property
@@ -388,15 +388,15 @@ class TrafficGenerator(AbstractMeasurer):
             raise RuntimeError('TRex stateless runtime error')
 
     def trex_stl_start_remote_exec(
-            self, duration, rate, framesize, traffic_type, async_call=False,
+            self, duration, rate, frame_size, traffic_profile, async_call=False,
             latency=True, warmup_time=5.0, unidirection=False, tx_port=0,
             rx_port=1):
         """Execute script on remote node over ssh to start traffic.
 
         :param duration: Time expresed in seconds for how long to send traffic.
         :param rate: Traffic rate expressed with units (pps, %)
-        :param framesize: L2 frame size to send (without padding and IPG).
-        :param traffic_type: Module name as a traffic type identifier.
+        :param frame_size: L2 frame size to send (without padding and IPG).
+        :param traffic_profile: Module name as a traffic profile identifier.
             See resources/traffic_profiles/trex for implemented modules.
         :param async_call: If enabled then don't wait for all incomming trafic.
         :param latency: With latency measurement.
@@ -408,8 +408,8 @@ class TrafficGenerator(AbstractMeasurer):
             Default: 1
         :type duration: float
         :type rate: str
-        :type framesize: str
-        :type traffic_type: str
+        :type frame_size: str
+        :type traffic_profile: str
         :type async_call: bool
         :type latency: bool
         :type warmup_time: float
@@ -425,10 +425,10 @@ class TrafficGenerator(AbstractMeasurer):
         command = (
             "sh -c '{tool}/resources/tools/trex/trex_stateless_profile.py"
             " --profile {prof}/resources/traffic_profiles/trex/{traffic}.py"
-            " --duration {duration} --frame_size {framesize} --rate {rate}"
+            " --duration {duration} --frame_size {frame_size} --rate {rate}"
             " --warmup_time {warmup} --port_0 {p_0} --port_1 {p_1}").format(
                 tool=Constants.REMOTE_FW_DIR, prof=Constants.REMOTE_FW_DIR,
-                traffic=traffic_type, duration=duration, framesize=framesize,
+                traffic=traffic_profile, duration=duration, frame_size=frame_size,
                 rate=rate, warmup=warmup_time, p_0=p_0, p_1=p_1)
         if async_call:
             command += " --async"
@@ -473,7 +473,7 @@ class TrafficGenerator(AbstractMeasurer):
             self.trex_stl_stop_remote_exec(self._node)
 
     def send_traffic_on_tg(
-            self, duration, rate, framesize, traffic_type, warmup_time=5,
+            self, duration, rate, frame_size, traffic_profile, warmup_time=5,
             async_call=False, latency=True, unidirection=False, tx_port=0,
             rx_port=1):
         """Send traffic from all configured interfaces on TG.
@@ -493,8 +493,8 @@ class TrafficGenerator(AbstractMeasurer):
 
         :param duration: Duration of test traffic generation in seconds.
         :param rate: Offered load per interface (e.g. 1%, 3gbps, 4mpps, ...).
-        :param framesize: Frame size (L2) in Bytes.
-        :param traffic_type: Module name as a traffic type identifier.
+        :param frame_size: Frame size (L2) in Bytes.
+        :param traffic_profile: Module name as a traffic profile identifier.
             See resources/traffic_profiles/trex for implemented modules.
         :param warmup_time: Warmup phase in seconds.
         :param async_call: Async mode.
@@ -506,8 +506,8 @@ class TrafficGenerator(AbstractMeasurer):
             Default: 1
         :type duration: str
         :type rate: str
-        :type framesize: str
-        :type traffic_type: str
+        :type frame_size: str
+        :type traffic_profile: str
         :type warmup_time: float
         :type async_call: bool
         :type latency: bool
@@ -532,7 +532,7 @@ class TrafficGenerator(AbstractMeasurer):
             raise RuntimeError('TG subtype not defined')
         elif node['subtype'] == NodeSubTypeTG.TREX:
             self.trex_stl_start_remote_exec(
-                duration, rate, framesize, traffic_type, async_call, latency,
+                duration, rate, frame_size, traffic_profile, async_call, latency,
                 warmup_time, unidirection, tx_port, rx_port)
         else:
             raise NotImplementedError("TG subtype not supported")
@@ -586,20 +586,20 @@ class TrafficGenerator(AbstractMeasurer):
             raise Exception("Traffic loss {} above loss acceptance: {}".format(
                 loss, loss_acceptance))
 
-    def set_rate_provider_defaults(self, frame_size, traffic_type,
+    def set_rate_provider_defaults(self, frame_size, traffic_profile,
                                    warmup_time=0.0):
         """Store values accessed by measure().
 
         :param frame_size: Frame size identifier or value [B].
-        :param traffic_type: Module name as a traffic type identifier.
+        :param traffic_profile: Module name as a traffic profile identifier.
             See resources/traffic_profiles/trex for implemented modules.
         :param warmup_time: Traffic duration before measurement starts [s].
         :type frame_size: str or int
-        :type traffic_type: str
+        :type traffic_profile: str
         :type warmup_time: float
         """
         self.frame_size = frame_size
-        self.traffic_type = str(traffic_type)
+        self.traffic_profile = str(traffic_profile)
         self.warmup_time = float(warmup_time)
 
     def measure(self, duration, transmit_rate):
@@ -620,7 +620,7 @@ class TrafficGenerator(AbstractMeasurer):
         # Trex needs target Tr per stream, but reports aggregate Tx and Dx.
         unit_rate = str(transmit_rate / 2.0) + "pps"
         self.send_traffic_on_tg(
-            duration, unit_rate, self.frame_size, self.traffic_type,
+            duration, unit_rate, self.frame_size, self.traffic_profile,
             warmup_time=self.warmup_time, latency=True)
         transmit_count = int(self.get_sent())
         loss_count = int(self.get_loss())
@@ -635,7 +635,7 @@ class OptimizedSearch(object):
 
     @staticmethod
     def perform_optimized_ndrpdr_search(
-            frame_size, traffic_type, minimum_transmit_rate,
+            frame_size, traffic_profile, minimum_transmit_rate,
             maximum_transmit_rate, packet_loss_ratio=0.005,
             final_relative_width=0.005, final_trial_duration=30.0,
             initial_trial_duration=1.0, number_of_intermediate_phases=2,
@@ -643,7 +643,7 @@ class OptimizedSearch(object):
         """Setup initialized TG, perform optimized search, return intervals.
 
         :param frame_size: Frame size identifier or value [B].
-        :param traffic_type: Module name as a traffic type identifier.
+        :param traffic_profile: Module name as a traffic profile identifier.
             See resources/traffic_profiles/trex for implemented modules.
         :param minimum_transmit_rate: Minimal bidirectional
             target transmit rate [pps].
@@ -663,7 +663,7 @@ class OptimizedSearch(object):
             Default 1 is suitable for fairly stable tests,
             less stable tests might get better overal duration with 2 or more.
         :type frame_size: str or int
-        :type traffic_type: str
+        :type traffic_profile: str
         :type minimum_transmit_rate: float
         :type maximum_transmit_rate: float
         :type packet_loss_ratio: float
@@ -682,7 +682,7 @@ class OptimizedSearch(object):
         # to be able to use trex_stl-*()
         tg_instance = BuiltIn().get_library_instance(
             'resources.libraries.python.TrafficGenerator')
-        tg_instance.set_rate_provider_defaults(frame_size, traffic_type)
+        tg_instance.set_rate_provider_defaults(frame_size, traffic_profile)
         algorithm = MultipleLossRatioSearch(
             measurer=tg_instance, final_trial_duration=final_trial_duration,
             final_relative_width=final_relative_width,
@@ -695,13 +695,13 @@ class OptimizedSearch(object):
 
     @staticmethod
     def perform_soak_search(
-            frame_size, traffic_type, minimum_transmit_rate,
+            frame_size, traffic_profile, minimum_transmit_rate,
             maximum_transmit_rate, plr_target=1e-7, tdpt=0.2,
             initial_count=50, timeout=1800.0):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
         :param frame_size: Frame size identifier or value [B].
-        :param traffic_type: Module name as a traffic type identifier.
+        :param traffic_profile: Module name as a traffic profile identifier.
             See resources/traffic_profiles/trex for implemented modules.
         :param minimum_transmit_rate: Minimal bidirectional
             target transmit rate [pps].
@@ -717,7 +717,7 @@ class OptimizedSearch(object):
             takes significant time even without any trial results.
         :param timeout: The search will stop after this overall time [s].
         :type frame_size: str or int
-        :type traffic_type: str
+        :type traffic_profile: str
         :type minimum_transmit_rate: float
         :type maximum_transmit_rate: float
         :type plr_target: float
@@ -728,7 +728,7 @@ class OptimizedSearch(object):
         """
         tg_instance = BuiltIn().get_library_instance(
             'resources.libraries.python.TrafficGenerator')
-        tg_instance.set_rate_provider_defaults(frame_size, traffic_type)
+        tg_instance.set_rate_provider_defaults(frame_size, traffic_profile)
         algorithm = PLRsearch(
             measurer=tg_instance, trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,
