@@ -75,3 +75,56 @@ class Constants(object):
 
     # Core dump directory
     CORE_DUMP_DIR = '/tmp'
+
+    # Mapping from NIC name to its bps limit.
+    # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.
+    NIC_NAME_TO_LIMIT = {
+        # VIC-1385 and XL710 could have ~40Gbps limit, not 24.5Gbps.
+        # Make sure we use 24.5Gbps just because the TG NIC is 25ge.
+        "Cisco-VIC-1227": 10000000000,
+        "Cisco-VIC-1385": 24500000000,
+        "Intel-X520-DA2": 10000000000,
+        "Intel-X553": 10000000000,
+        "Intel-X710": 10000000000,
+        "Intel-XL710": 24500000000,
+        "Intel-XXV710": 24500000000,
+    }
+
+    # Suite file names use somewhat more rich (less readable) codes for NICs.
+    NIC_NAME_TO_CODE = {
+        "Cisco-VIC-1227": "10ge2p1vic1227",
+        "Cisco-VIC-1385": "40ge2p1vic1385",
+        "Intel-X520-DA2": "10ge2p1x520",
+        "Intel-X553": "10ge2p1x553",
+        "Intel-X710": "10ge2p1x710",
+        "Intel-XL710": "40ge2p1xl710",
+        "Intel-XXV710": "25ge2p1xxv710",
+    }
+
+    PERF_TYPE_TO_KEYWORD = {
+        "mrr": "Traffic should pass with maximum rate",
+        "ndrpdr": "Find NDR and PDR intervals using optimized search",
+        "soak": "Find critical load using PLRsearch",
+    }
+
+    PERF_TYPE_TO_SUITE_DOC_VER = {
+        "mrr" : '''fication:* In MaxReceivedRate tests TG sends traffic\\
+| ... | at line rate and reports total received packets over trial period.\\''',
+        "ndrpdr": '''fication:* TG finds and reports throughput NDR (Non Drop\\
+| ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\\
+| ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\\
+| ... | of packets transmitted. NDR and PDR are discovered for different\\
+| ... | Ethernet L2 frame sizes using MLRsearch library.\\''',
+        "soak": '''fication:* TG sends traffic at dynamically computed\\
+| ... | rate as PLRsearch algorithm gathers data and improves its estimate\\
+| ... | of a rate at which a prescribed small fraction of packets\\
+| ... | would be lost. After set time, the serarch stops\\
+| ... | and the algorithm reports its current estimate.\\''',
+    }
+
+    PERF_TYPE_TO_TEMPLATE_DOC_VER = {
+        "mrr": '''Measure MaxReceivedRate for ${frame_size}B frames\\
+| | ... | using burst trials throughput test.\\''',
+        "ndrpdr": '''Measure NDR and PDR values using MLRsearch algorithm.\\''',
+        "soak": '''Estimate critical rate using PLRsearch algorithm.\\''',
+    }
