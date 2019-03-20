@@ -54,6 +54,23 @@ class PapiHistory(object):
         The argument name 'csit_papi_command' must be unique enough as it cannot
         be repeated in kwargs.
 
+        Examples of PAPI history items:
+
+        Request without parameters:
+            show_threads()
+
+        Request with parameters:
+            ipsec_select_backend(index=1,protocol=1)
+
+        Dump:
+            sw_interface_rx_placement_dump(sw_if_index=4)
+
+        VPP Stats:
+            vpp-stats(path=['^/if', '/err/ip4-input', '/sys/node/ip4-input'])
+
+        VAT:
+            sw_interface_set_flags sw_if_index 3 admin-up link-up
+
         :param node: DUT node to add command to PAPI command history for.
         :param csit_papi_command: Command to be added to PAPI command history.
         :param papi: Says if the command to store is PAPi or VAT. Remove when
