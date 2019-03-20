@@ -223,7 +223,8 @@
 | | ... | \| /tmp/sock1 \| /tmp/sock2 \| qemu_instance_2 \|
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${qemu_name}=vm_node
 | | Run Keyword Unless | "${qemu_name}" == "vm_node" | Import Library
-| | ... | resources.libraries.python.QemuUtils | WITH NAME | ${qemu_name}
+| | ... | resources.libraries.python.QemuUtils | node=${dut_node} |
+| | ... | WITH NAME | ${qemu_name}
 | | Set Test Variable | ${${qemu_name}} | ${None}
 | | ${qemu_set_node}= | Run Keyword If | "${qemu_name}" == "vm_node"
 | | | ...                              | Set Variable | Qemu Set Node
