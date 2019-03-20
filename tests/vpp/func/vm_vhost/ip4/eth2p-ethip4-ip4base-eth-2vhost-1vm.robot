@@ -59,7 +59,7 @@
 | | ... | Both have IP addresses from same network. On VM is set bridge to pass
 | | ... | packet from a one vhost user interface to another one.
 | | [Teardown] | Run Keywords
-| | ... | Stop and clear QEMU | ${dut_node} | AND
+| | ... | Tear down QEMU | AND
 | | ... | Tear down functional test
 | |
 | | Given Configure path in 2-node circular topology

@@ -51,7 +51,7 @@
 | | ... | i/fs to be switched by DUT to and from VM; verify all packets
 | | ... | are received. [Ref]
 | | ...
-| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node}
+| | [Teardown] | Run Keywords | Tear down QEMU
 | | ... | AND | Tear down functional test
 | | ...
 | | Given Configure path in 2-node circular topology
@@ -75,7 +75,7 @@
 | | ... | be switched by DUT to and from VM; verify all packets are
 | | ... | received. [Ref]
 | | ...
-| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node}
+| | [Teardown] | Run Keywords | Tear down QEMU
 | | ... | AND | Tear down functional test
 | | ...
 | | Given Configure path in 2-node circular topology
