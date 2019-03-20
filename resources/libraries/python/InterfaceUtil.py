@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -84,6 +84,14 @@ class InterfaceUtil(object):
         else:
             raise ValueError('Node {} has unknown NodeType: "{}"'
                              .format(node['host'], node['type']))
+
+        # TODO: Remove
+        path_1 = ['^/if', '/err/ip4-input', '/sys/node/ip4-input']
+        path_2 = ['^/if', ]
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add('vpp-stats', path=path_1).\
+                add('vpp-stats', path=path_2).get_stats()
+        logger.info('RX interface core 0, sw_if_index 0:\n{}'.format(data[0]['/if/rx'][0][0]))
 
     @staticmethod
     def set_interface_ethernet_mtu(node, iface_key, mtu):
@@ -1644,7 +1652,8 @@ class InterfaceUtil(object):
             cmd=cmd, host=node['host'])
         with PapiExecutor(node) as papi_exec:
             for ifc in node['interfaces'].values():
-                papi_exec.add(cmd, sw_if_index=ifc['vpp_sw_index'])
+                if ifc['vpp_sw_index'] is not None:
+                    papi_exec.add(cmd, sw_if_index=ifc['vpp_sw_index'])
             papi_resp = papi_exec.execute_should_pass(err_msg)
         thr_mapping = [s[cmd_reply] for r in papi_resp.reply
                        for s in r['api_reply']]

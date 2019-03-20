@@ -12,14 +12,6 @@
 # limitations under the License.
 
 """Python API executor library.
-
-This version supports only simple request / reply VPP API methods.
-
-TODO:
- - Implement:
-   - Dump functions
-   - vpp-stats
-
 """
 
 import binascii
@@ -51,7 +43,7 @@ class PapiResponse(object):
         :param requests: List of used PAPI requests. It is used while verifying
             replies. If None, expected replies must be provided for verify_reply
             and verify_replies methods.
-        :type papi_reply: list
+        :type papi_reply: list or None
         :type stdout: str
         :type stderr: str
         :type ret_code: int
@@ -266,6 +258,45 @@ class PapiExecutor(object):
                                            api_args=kwargs))
         return self
 
+    def get_stats(self, timeout=120):
+        """Get VPP Stats.
+
+        Use:
+
+        path = ['^/if', '/err/ip4-input', '/sys/node/ip4-input']
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add(api_name='vpp-stats', path=path).get_stats()
+        print('RX interface core 0, sw_if_index 0:\n{}'.\
+            format(data[0]['/if/rx'][0][0]))
+
+        or
+
+        path_1 = ['^/if', '/err/ip4-input', '/sys/node/ip4-input']
+        path_2 = ['^/if', ]
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add('vpp-stats', path=path_1).\
+                add('vpp-stats', path=path_2).get_stats()
+        print('RX interface core 0, sw_if_index 0:\n{}'.\
+            format(data[0]['/if/rx'][0][0]))
+
+        :param timeout: Timeout in seconds.
+        :type timeout: int
+        :return:
+        :rtype:
+        """
+
+        paths = [cmd['api_args']['path'] for cmd in self._api_command_list]
+        self.clear()
+
+        ret_code, stdout, _ = self._execute_papi(paths,
+                                                 method='stats',
+                                                 timeout=timeout)
+        if ret_code != 0:
+            raise AssertionError("Failed to get statistics.")
+
+        return json.loads(stdout)
+
     def execute(self, process_reply=True, ignore_errors=False, timeout=120):
         """Turn internal command list into proper data and execute; return
         PAPI response.
@@ -289,7 +320,9 @@ class PapiExecutor(object):
         # Clear first as execution may fail.
         self.clear()
 
-        ret_code, stdout, stderr = self._execute_papi(local_list, timeout)
+        ret_code, stdout, stderr = self._execute_papi(local_list,
+                                                      method='request',
+                                                      timeout=timeout)
 
         papi_reply = list()
         if process_reply:
@@ -434,7 +467,7 @@ class PapiExecutor(object):
             reverted_reply = self._revert_api_reply(api_reply)
         return reverted_reply
 
-    def _execute_papi(self, api_data, timeout=120):
+    def _execute_papi(self, api_data, method='request', timeout=120):
         """Execute PAPI command(s) on remote node and store the result.
 
         :param api_data: List of APIs with their arguments.
@@ -448,14 +481,16 @@ class PapiExecutor(object):
         if not api_data:
             RuntimeError("No API data provided.")
 
-        api_data_processed = self._process_api_data(api_data)
-        json_data = json.dumps(api_data_processed)
+        if method == "stats":
+            json_data = json.dumps(api_data)
+        else:
+            json_data = json.dumps(self._process_api_data(api_data))
 
-        cmd = "{fw_dir}/{papi_provider} --json_data '{json}'".format(
-            fw_dir=Constants.REMOTE_FW_DIR,
-            papi_provider=Constants.RESOURCES_PAPI_PROVIDER,
-            json=json_data)
-
+        cmd = "{fw_dir}/{papi_provider} --method {method} --data '{json}'".\
+            format(fw_dir=Constants.REMOTE_FW_DIR,
+                   papi_provider=Constants.RESOURCES_PAPI_PROVIDER,
+                   method=method,
+                   json=json_data)
         try:
             ret_code, stdout, stderr = self._ssh.exec_command_sudo(
                 cmd=cmd, timeout=timeout)
