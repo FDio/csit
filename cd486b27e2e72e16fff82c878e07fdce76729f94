@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "05cc5e53_0d349eb1",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-20T11:09:24Z",
+      "side": 1,
+      "message": "That sounds like v3.5 (as in less important than generating multiple scale suites from single template).",
+      "parentUuid": "026939bb_f7c194c7",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 34
+      },
+      "revId": "cd486b27e2e72e16fff82c878e07fdce76729f94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8afaf3b6_0d0b2470",
         "filename": "resources/libraries/python/Constants.py",
         "patchSetId": 50
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "367639c0_54bc25f1",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-20T11:09:24Z",
+      "side": 1,
+      "message": "Will fix manually.",
+      "parentUuid": "8afaf3b6_0d0b2470",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 79
+      },
+      "revId": "cd486b27e2e72e16fff82c878e07fdce76729f94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9f452dc5_d8aaae63",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 50
@@ -59,6 +107,30 @@
       "writtenOn": "2019-03-20T09:26:11Z",
       "side": 1,
       "message": "Traffic profile",
+      "range": {
+        "startLine": 1335,
+        "startChar": 31,
+        "endLine": 1335,
+        "endChar": 46
+      },
+      "revId": "cd486b27e2e72e16fff82c878e07fdce76729f94",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2e3926a_ccc2e0e7",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 1335,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-20T11:09:24Z",
+      "side": 1,
+      "message": "I have realized this is not the usual traffic profile as a python module name to initialize TG with. Will fix.",
+      "parentUuid": "9f452dc5_d8aaae63",
       "range": {
         "startLine": 1335,
         "startChar": 31,
