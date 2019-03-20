@@ -471,6 +471,8 @@ class QemuUtils(object):
         message = ('QEMU: Start failed on {host}!'.
                    format(host=self._node['host']))
 
+        logger.trace(self.qemu_version(version='2.10'))
+
         try:
             exec_cmd_no_error(self._node, command, timeout=300, sudo=True,
                               message=message)
