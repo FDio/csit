@@ -19,7 +19,7 @@
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | HW_ENV | VM_ENV | VPP_VM_ENV
 | Test Setup | Set up functional test
 | Test Teardown | Run Keywords  | Tear down functional test
-| ... | AND | Stop and clear QEMU | ${dut_node}
+| ... | AND | Tear down QEMU
 | Documentation | *L2 bridge-domain test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT=VM 3-node topology with VM

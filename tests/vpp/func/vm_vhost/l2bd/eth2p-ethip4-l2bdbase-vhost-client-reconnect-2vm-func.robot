@@ -20,7 +20,8 @@
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | Test Setup | Set up functional test
 | Test Teardown | Run Keywords
-| ... | resources.libraries.python.QemuUtils.Qemu Kill All | ${dut_node} | AND
+| ... | qemu-1.Qemu Kill | AND
+| ... | qemu-2.Qemu Kill | AND
 | ... | Tear down functional test
 | Documentation | *Vhost-User Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
@@ -200,15 +201,11 @@
 *** Keywords ***
 | Configure QEMU vhost and run it VM
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${qemu_id}
-| | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
-| | ... | WITH NAME | qemu-${qemu_id}
-| | ${q_add_vhost}= | Replace Variables | qemu-${qemu_id}.Qemu Add Vhost User If
-| | ${q_set_node}= | Replace Variables | qemu-${qemu_id}.Qemu Set Node
-| | ${q_start}= | Replace Variables | qemu-${qemu_id}.Qemu Start
-| | Run keyword | ${q_set_node} | ${dut_node}
-| | Run keyword | ${q_add_vhost} | ${sock1}
-| | Run keyword | ${q_add_vhost} | ${sock2}
-| | ${vm}= | Run keyword | ${q_start}
+| | Import Library | resources.libraries.python.QemuUtils | node=${dut_node} |
+| | ... | qemu_id=${qemu_id} | WITH NAME | qemu-${qemu_id}
+| | Run keyword | qemu-${qemu_id}.Qemu Add Vhost User If | ${sock1}
+| | Run keyword | qemu-${qemu_id}.Qemu Add Vhost User If | ${sock2}
+| | ${vm}= | Run keyword | qemu-${qemu_id}.Qemu Start
 | | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
 | | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
 | | Linux Add Bridge | ${vm} | br0 | ${vhost1} | ${vhost2}

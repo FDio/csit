@@ -222,22 +222,12 @@
 | | ... | \| Configure VM for vhost L2BD forwarding \| ${nodes['DUT2']} \
 | | ... | \| /tmp/sock1 \| /tmp/sock2 \| qemu_instance_2 \|
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${qemu_name}=vm_node
-| | Run Keyword Unless | "${qemu_name}" == "vm_node" | Import Library
-| | ... | resources.libraries.python.QemuUtils | WITH NAME | ${qemu_name}
+| | Import Library | resources.libraries.python.QemuUtils | node=${dut_node} |
+| | ... | WITH NAME | ${qemu_name}
 | | Set Test Variable | ${${qemu_name}} | ${None}
-| | ${qemu_set_node}= | Run Keyword If | "${qemu_name}" == "vm_node"
-| | | ...                              | Set Variable | Qemu Set Node
-| | ... | ELSE | Replace Variables | ${qemu_name}.Qemu Set Node
-| | Run keyword | ${qemu_set_node} | ${dut_node}
-| | ${qemu_add_vhost}= | Run Keyword If | "${qemu_name}" == "vm_node"
-| | | ...                               | Set Variable | Qemu Add Vhost User If
-| | ... | ELSE | Replace Variables | ${qemu_name}.Qemu Add Vhost User If
-| | Run keyword | ${qemu_add_vhost} | ${sock1}
-| | Run keyword | ${qemu_add_vhost} | ${sock2}
-| | ${qemu_start}= | Run Keyword If | "${qemu_name}" == "vm_node"
-| | | ...                           | Set Variable | Qemu Start
-| | ... | ELSE | Replace Variables | ${qemu_name}.Qemu Start
-| | ${vm}= | Run keyword | ${qemu_start}
+| | Run Keyword  | ${qemu_name}.Qemu Add Vhost User If | ${sock1}
+| | Run Keyword  | ${qemu_name}.Qemu Add Vhost User If | ${sock2}
+| | ${vm}= | Run keyword | ${qemu_name}.Qemu Start
 | | ${br}= | Set Variable | br0
 | | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
 | | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
