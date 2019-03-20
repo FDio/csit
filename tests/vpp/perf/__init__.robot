@@ -39,8 +39,6 @@
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - perf_pdr_loss_acceptance - Loss acceptance treshold
-| | ... | - perf_pdr_loss_acceptance_type - Loss acceptance treshold type
 | | ... | - perf_vm_image - Guest VM disk image
 | | ... | - perf_qemu_path - Path prefix to QEMU binary
 | | ... | - use_tuned_cfs - Switch to set scheduler policy
@@ -50,8 +48,6 @@
 | | ... | - uio_driver - Default UIO driver
 | | ... | - plugins_to_enable - List of plugins to be enabled for test
 | | ...
-| | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
-| | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.7.img
 | | Set Global Variable | ${perf_qemu_path} | /opt/qemu-2.11.2
 | | Set Global Variable | ${qemu_build} | ${True}
