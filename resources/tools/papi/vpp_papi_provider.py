@@ -13,7 +13,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Python API provider.
+r"""CSIT PAPI Provider
+
+TODO: Add description.
+
+Examples:
+---------
+
+Request/reply or dump:
+
+    vpp_papi_provider.py \
+        --method request \
+        --data '[{"api_name": "show_version", "api_args": {}}]'
+
+VPP-stats:
+
+    vpp_papi_provider.py \
+        --method stats \
+        --data '[["^/if", "/err/ip4-input", "/sys/node/ip4-input"], ["^/if"]]'
 """
 
 import argparse
@@ -22,21 +39,27 @@ import json
 import os
 import sys
 
+
+# Client name
+CLIENT_NAME = 'csit_papi'
+
+
 # Sphinx creates auto-generated documentation by importing the python source
 # files and collecting the docstrings from them. The NO_VPP_PAPI flag allows
 # the vpp_papi_provider.py file to be importable without having to build
 # the whole vpp api if the user only wishes to generate the test documentation.
-do_import = True
+
 try:
-    no_vpp_papi = os.getenv("NO_VPP_PAPI")
-    if no_vpp_papi == "1":
-        do_import = False
-except:
-    pass
+    do_import = False if os.getenv("NO_VPP_PAPI") == "1" else True
+except KeyError:
+    do_import = True
 
 if do_import:
-    # TODO: run os.walk once per whole suite and store the path in environmental
-    # variable
+
+    # Find the directory where the modules are installed. The directory depends
+    # on the OS used.
+    # TODO: Find a better way to import papi modules.
+
     modules_path = None
     for root, dirs, files in os.walk('/usr/lib'):
         for name in files:
@@ -46,81 +69,27 @@ if do_import:
     if modules_path:
         sys.path.append(modules_path)
         from vpp_papi import VPP
+        from vpp_papi.vpp_stats import VPPStats
     else:
         raise RuntimeError('vpp_papi module not found')
 
-# client name
-CLIENT_NAME = 'csit_papi'
 
-
-def papi_init():
-    """Construct a VPP instance from VPP JSON API files.
-
-    :param vpp_json_dir: Directory containing all the JSON API files. If VPP is
-        installed in the system it will be in /usr/share/vpp/api/.
-    :type vpp_json_dir: str
-    :returns: VPP instance.
-    :rtype: VPP object
-    :raises PapiJsonFileError: If no api.json file found.
-    :raises PapiInitError: If PAPI initialization failed.
-    """
-    try:
-        vpp = VPP()
-        return vpp
-    except Exception as err:
-        raise RuntimeError('PAPI init failed:\n{err}'.format(err=repr(err)))
-
-
-def papi_connect(vpp_client, name='vpp_api'):
-    """Attach to VPP client.
-
-    :param vpp_client: VPP instance to connect to.
-    :param name: VPP client name.
-    :type vpp_client: VPP object
-    :type name: str
-    :returns: Return code of VPP.connect() method.
-    :rtype: int
-    """
-    return vpp_client.connect(name)
-
-
-def papi_disconnect(vpp_client):
-    """Detach from VPP client.
-
-    :param vpp_client: VPP instance to detach from.
-    :type vpp_client: VPP object
-    """
-    vpp_client.disconnect()
-
-
-def papi_run(vpp_client, api_name, api_args):
-    """Run PAPI.
-
-    :param vpp_client: VPP instance.
-    :param api_name: VPP API name.
-    :param api_args: Input arguments of the API.
-    :type vpp_client: VPP object
-    :type api_name: str
-    :type api_args: dict
-    :returns: VPP API reply.
-    :rtype: Vpp_serializer reply object
-    """
-    papi_fn = getattr(vpp_client.api, api_name)
-    return papi_fn(**api_args)
-
-
-def convert_reply(api_r):
+def _convert_reply(api_r):
     """Process API reply / a part of API reply for smooth converting to
     JSON string.
 
+    It is used only with 'request' and 'dump' methods.
+
     Apply binascii.hexlify() method for string values.
+
+    TODO: Remove the disabled code when definitely not needed.
 
     :param api_r: API reply.
     :type api_r: Vpp_serializer reply object (named tuple)
     :returns: Processed API reply / a part of API reply.
     :rtype: dict
     """
-    unwanted_fields = ['count', 'index']
+    unwanted_fields = ['count', 'index', 'context']
 
     reply_dict = dict()
     reply_key = repr(api_r).split('(')[0]
@@ -136,50 +105,25 @@ def convert_reply(api_r):
     return reply_dict
 
 
-def process_reply(api_reply):
-    """Process API reply for smooth converting to JSON string.
+def process_json_request(args):
+    """Process the request/reply and dump classes of VPP API methods.
 
-    :param api_reply: API reply.
-    :type api_reply: Vpp_serializer reply object (named tuple) or list of
-        vpp_serializer reply objects
-    :returns: Processed API reply.
-    :rtype: list or dict
+    :param args: Command line arguments passed to VPP PAPI Provider.
+    :type args: ArgumentParser
+    :returns: JSON formatted string.
+    :rtype: str
+    :raises RuntimeError: If PAPI command error occurs.
     """
 
-    if isinstance(api_reply, list):
-        converted_reply = list()
-        for r in api_reply:
-            converted_reply.append(convert_reply(r))
-    else:
-        converted_reply = convert_reply(api_reply)
-    return converted_reply
-
-
-def main():
-    """Main function for the Python API provider.
-
-    :raises RuntimeError: If invalid attribute name or invalid value is
-        used in API call or if PAPI command(s) execution failed.
-    """
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-j", "--json_data",
-                        required=True,
-                        type=str,
-                        help="JSON string (list) containing API name(s) and "
-                             "its/their input argument(s).")
-    parser.add_argument("-d", "--json_dir",
-                        type=str,
-                        default='/usr/share/vpp/api/',
-                        help="Directory containing all vpp json api files.")
-    args = parser.parse_args()
-    json_string = args.json_data
-
-    vpp = papi_init()
+    try:
+        vpp = VPP()
+    except Exception as err:
+        raise RuntimeError('PAPI init failed:\n{err}'.format(err=repr(err)))
 
     reply = list()
-    json_data = json.loads(json_string)
-    papi_connect(vpp, CLIENT_NAME)
+
+    json_data = json.loads(args.data)
+    vpp.connect(CLIENT_NAME)
     for data in json_data:
         api_name = data['api_name']
         api_args_unicode = data['api_args']
@@ -187,26 +131,100 @@ def main():
         api_args = dict()
         for a_k, a_v in api_args_unicode.items():
             value = binascii.unhexlify(a_v) if isinstance(a_v, unicode) else a_v
-            api_args[str(a_k)] = value
+            api_args[str(a_k)] = value if isinstance(value, int) else str(value)
         try:
-            rep = papi_run(vpp, api_name, api_args)
-            api_reply['api_reply'] = process_reply(rep)
+            papi_fn = getattr(vpp.api, api_name)
+            rep = papi_fn(**api_args)
+
+            if isinstance(rep, list):
+                converted_reply = list()
+                for r in rep:
+                    converted_reply.append(_convert_reply(r))
+            else:
+                converted_reply = _convert_reply(rep)
+
+            api_reply['api_reply'] = converted_reply
             reply.append(api_reply)
         except (AttributeError, ValueError) as err:
-            papi_disconnect(vpp)
+            vpp.disconnect()
             raise RuntimeError('PAPI command {api}({args}) input error:\n{err}'.
                                format(api=api_name,
                                       args=api_args,
                                       err=repr(err)))
         except Exception as err:
-            papi_disconnect(vpp)
+            vpp.disconnect()
             raise RuntimeError('PAPI command {api}({args}) error:\n{exc}'.
                                format(api=api_name,
                                       args=api_args,
                                       exc=repr(err)))
-    papi_disconnect(vpp)
+    vpp.disconnect()
 
     return json.dumps(reply)
+
+
+def process_stats(args):
+    """Process the VPP Stats.
+
+    :param args: Command line arguments passed to VPP PAPI Provider.
+    :type args: ArgumentParser
+    :returns: JSON formatted string.
+    :rtype: str
+    :raises RuntimeError: If PAPI command error occurs.
+    """
+
+    try:
+        stats = VPPStats(args.socket)
+    except Exception as err:
+        raise RuntimeError('PAPI init failed:\n{err}'.format(err=repr(err)))
+
+    json_data = json.loads(args.data)
+
+    reply = list()
+
+    for path in json_data:
+        directory = stats.ls(path)
+        data = stats.dump(directory)
+        reply.append(data)
+
+    return json.dumps(reply)
+
+
+def main():
+    """Main function for the Python API provider.
+    """
+
+    # The functions which process different types of VPP Python API methods.
+    process_request = dict(
+        request=process_json_request,
+        dump=process_json_request,
+        stats=process_stats
+    )
+
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=__doc__)
+    parser.add_argument("-m", "--method",
+                        required=True,
+                        choices=[str(key) for key in process_request.keys()],
+                        help="Specifies the VPP API methods: 1. request - "
+                             "simple request / reply; 2. dump - dump function;"
+                             "3. stats - VPP statistics.")
+    parser.add_argument("-d", "--data",
+                        required=True,
+                        help="If the method is 'request' or 'dump', data is a "
+                             "JSON string (list) containing API name(s) and "
+                             "its/their input argument(s). "
+                             "If the method is 'stats', data is a JSON string "
+                             "containing the list of path(s) to the required "
+                             "data.")
+    parser.add_argument("-s", "--socket",
+                        default="/var/run/vpp/stats.sock",
+                        help="A file descriptor over the VPP stats Unix domain "
+                             "socket. It is used only if method=='stats'.")
+
+    args = parser.parse_args()
+
+    return process_request[args.method](args)
 
 
 if __name__ == '__main__':
