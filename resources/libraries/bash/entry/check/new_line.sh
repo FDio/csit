@@ -19,8 +19,10 @@ set -exuo pipefail
 # to dissuade non-tox callers.
 
 # This script runs a grep-based command and fails if it detects any lines
-# longer than 80 characters.
-# The grep output stored to lines.log (overwriting).
+# edited or added since HEAD~ and longer than 80 characters.
+# The grep output stored to new_lines.log (overwriting).
+
+# See lines.log to locate where the lines are.
 
 # "set -eu" handles failures from the following two lines.
 BASH_CHECKS_DIR="$(dirname $(readlink -e "${BASH_SOURCE[0]}"))"
@@ -30,21 +32,20 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 
-# Directory docs contains too many wide formatted tables.
-# .txt contains lines with wide URLs.
-piped_command='set -exuo pipefail && grep -rn ".\{81\}" "resources/" "tests/"'
-piped_command+=' | fgrep -v .svg | fgrep -v .txt | tee "lines.log" | wc -l'
-# TODO: The greps "fail" if no long line remains. Fix that if it ever happens.
+# Greps do "fail" on zero line output, we need to ignore that in the final grep.
+piped_command="set -exuo pipefail && git diff -U0 HEAD~ | grep '^\+' | "
+piped_command+="cut -c2- | grep -v '^\+\+ ' | { grep '.\{81\}' || true; } | "
+piped_command+="tee 'new_lines.log' | wc -l"
 lines="$(bash -c "${piped_command}")" || die
 if [ "${lines}" != "0" ]; then
     # TODO: Decide which text goes to stdout and which to stderr.
     warn "Long lines detected: ${lines}"
-    ## TODO: Enable when output size does more good than harm.
-    # cat "lines.log" >&2
+    # TODO: Disable when output size does more harm than good.
+    cat "new_lines.log" >&2
     warn
-    warn "Line length checker: FAIL"
+    warn "New line length checker: FAIL"
     exit 1
 fi
 
 warn
-warn "Line length checker: PASS"
+warn "New line length checker: PASS"
