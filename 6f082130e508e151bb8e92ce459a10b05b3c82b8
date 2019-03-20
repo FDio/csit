@@ -22,6 +22,30 @@
       "revId": "6f082130e508e151bb8e92ce459a10b05b3c82b8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a0822daa_8e755b87",
+        "filename": "tox.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-20T14:17:17Z",
+      "side": 1,
+      "message": "Created https://gerrit.fd.io/r/18427",
+      "parentUuid": "70d45907_3183c871",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 74
+      },
+      "revId": "6f082130e508e151bb8e92ce459a10b05b3c82b8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
