@@ -30,6 +30,6 @@ class DefaultTestcase(Testcase):
         template_string = r'''
 | ${tc_num}-${frame_str}-${cores_str}c-''' + suite_id + r'''
 | | [Tags] | ${frame_str} | ${cores_str}C
-| | framesize=${frame_num} | phy_cores=${cores_num}
+| | frame_size=${frame_num} | phy_cores=${cores_num}
 '''
         super(DefaultTestcase, self).__init__(template_string)
