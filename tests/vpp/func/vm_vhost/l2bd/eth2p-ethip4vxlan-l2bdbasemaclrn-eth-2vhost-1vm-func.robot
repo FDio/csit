@@ -20,8 +20,8 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV | VPP_VM_ENV
 | Test Setup | Set up functional test
 | Test Teardown | Run Keywords | Tear down functional test
-| ... | AND | Run keyword | Tear down QEMU | ${dut1_node} | ${qemu1}
-| ... | AND | Run keyword | Tear down QEMU | ${dut2_node} | ${qemu2}
+| ... | AND | Run keyword | Tear down QEMU | ${qemu1}
+| ... | AND | Run keyword | Tear down QEMU | ${qemu2}
 | Documentation | *L2BD with VM combined with VXLAN test cases - IPv4*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1-DUT2-TG 3-node circular topology
