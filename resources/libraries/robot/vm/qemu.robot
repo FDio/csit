@@ -12,7 +12,6 @@
 # limitations under the License.
 *** Settings ***
 | Library | resources.libraries.python.IPUtil
-| Library | resources.libraries.python.QemuUtils
 
 *** Keywords ***
 | Configure QEMU vhost and run it
@@ -44,7 +43,7 @@
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${sock3} | ${sock4}
 | | ... | ${ip1} | ${ip2} | ${ip3} | ${ip4} | ${prefix_length}
-| | ... | ${qemu_name} | ${mac_ID}=${None}
+| | ... | ${qemu_name}=vm_node | ${mac_ID}=${None}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils \
 | | ... | node=${dut_node} | WITH NAME | ${qemu_name}
@@ -73,33 +72,15 @@
 
 | Tear down QEMU
 | | [Documentation]
-| | ... | Stop specific qemu instance running on ${dut_node}.
+| | ... | Stop specific qemu instance running on DUT.
 | | ...
 | | ... | *Arguments:*
-| | ... | - dut_node - Node where to clean qemu. Type: dict
 | | ... | - qemu_name - Qemu instance by name. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tear down QEMU \| ${node['DUT1']} \| qemu_node_1 \|
+| | ... | \| Tear down QEMU \| qemu_node_1 \|
 | | ...
-| | [Arguments] | ${dut_node} | ${qemu_name}
+| | [Arguments] | ${qemu_name}=vm_node
 | | ...
-| | Run Keyword | ${qemu_name}.Qemu Set Node | ${dut_node}
 | | Run Keyword | ${qemu_name}.Qemu Kill
-
-| Stop and clear QEMU
-| | [Documentation]
-| | ... | Stop QEMU, clear used sockets running on ${dut}.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut_node - Node where to clean qemu. Type: dict
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down QEMU \| ${node['DUT1']} \|
-| | ...
-| | [Arguments] | ${dut}
-| | ...
-| | Qemu Set Node | ${dut}
-| | Qemu Kill

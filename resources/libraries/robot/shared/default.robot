@@ -523,7 +523,7 @@
 | | Show Vpp Settings | ${nodes['DUT1']}
 | | Show Vpp Settings | ${nodes['DUT2']}
 | | Vpp Show Errors On All DUTs | ${nodes}
-| | Stop and clear QEMU | ${nodes['DUT1']}
+| | Tear down QEMU
 | | Verify VPP PID in Teardown
 
 | Set up TAP functional test
@@ -608,8 +608,8 @@
 | | [Arguments] | ${dut1_node} | ${dut2_node}
 | | ...
 | | Tear down functional test
-| | Tear down QEMU | ${dut1_node} | qemu_node1
-| | Tear down QEMU | ${dut2_node} | qemu_node2
+| | Tear down QEMU | qemu_node1
+| | Tear down QEMU | qemu_node2
 
 | Tear down functional test with container
 | | [Documentation]
