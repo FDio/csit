@@ -776,7 +776,7 @@ function select_topology () {
         "3n_skx")
             TOPOLOGIES=(
                         "${TOPOLOGIES_DIR}/lf_3n_skx_testbed31.yaml"
-                        "${TOPOLOGIES_DIR}/lf_3n_skx_testbed32.yaml"
+                        #"${TOPOLOGIES_DIR}/lf_3n_skx_testbed32.yaml"
                        )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
