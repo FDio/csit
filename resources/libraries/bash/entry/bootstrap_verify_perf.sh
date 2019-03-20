@@ -43,6 +43,8 @@ reserve_testbed || die
 ansible_hosts "run-jitter-tool" || die
 select_tags || die
 compose_pybot_arguments || die
+generate_tests || die
+archive_tests || die
 run_pybot || die
 untrap_and_unreserve_testbed || die
 copy_archives || die
