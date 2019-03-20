@@ -27,7 +27,7 @@
 | Test Setup | Set up VPP device test
 | ...
 | Test Teardown | Run Keywords
-| ... | Stop and clear QEMU | ${dut_node}
+| ... | Tear down QEMU
 | ... | AND | Tear down VPP device test
 | ...
 | Documentation | *L2 cross-connect test cases with vhost user interface*
