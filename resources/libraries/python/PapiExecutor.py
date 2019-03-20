@@ -12,14 +12,6 @@
 # limitations under the License.
 
 """Python API executor library.
-
-This version supports only simple request / reply VPP API methods.
-
-TODO:
- - Implement:
-   - Dump functions
-   - vpp-stats
-
 """
 
 import binascii
@@ -51,7 +43,7 @@ class PapiResponse(object):
         :param requests: List of used PAPI requests. It is used while verifying
             replies. If None, expected replies must be provided for verify_reply
             and verify_replies methods.
-        :type papi_reply: list
+        :type papi_reply: list or None
         :type stdout: str
         :type stderr: str
         :type ret_code: int
@@ -110,6 +102,8 @@ class PapiResponse(object):
         Note: Use only with a simple request / reply command. In this case the
         PAPI reply includes 'retval' which is checked in this method.
 
+        Do not use with 'dump' and 'vpp-stats' methods.
+
         Use if PAPI response includes only one command reply.
 
         Use it this way (preferred):
@@ -155,6 +149,8 @@ class PapiResponse(object):
 
         Note: Use only with request / reply commands. In this case each
         PAPI reply includes 'retval' which is checked.
+
+        Do not use with 'dump' and 'vpp-stats' methods.
 
         Use if PAPI response includes more than one command reply.
 
@@ -254,8 +250,20 @@ class PapiExecutor(object):
         The argument name 'csit_papi_command' must be unique enough as it cannot
         be repeated in kwargs.
 
-        :param csit_papi_command: VPP API command.
-        :param kwargs: Optional key-value arguments.
+        See examples of use in methods:
+        - PapiExecutor.get_stats()
+        - PapiResponse.verify_reply()
+        - PapiResponse.verify_replies()
+
+        :param csit_papi_command: If the VPP PAPI method wil be 'request' or
+            'dump', this parameter includes VPP API command. If the VPP PAPI
+            method will be 'stats', this parameter is used only to keep
+            information that vpp-stats are requested. It is not further
+            processed but it is included in the PAPI history this way:
+            vpp-stats(path=['^/if', '/err/ip4-input', '/sys/node/ip4-input'])
+        :param kwargs: Optional key-value arguments. If the VPP PAPI
+            method will be 'stats', the second parameter must be 'path' as it is
+            used later by get_stats() method.
         :type csit_papi_command: str
         :type kwargs: dict
         :returns: self, so that method chaining is possible.
@@ -266,62 +274,115 @@ class PapiExecutor(object):
                                            api_args=kwargs))
         return self
 
-    def execute(self, process_reply=True, ignore_errors=False, timeout=120):
-        """Turn internal command list into proper data and execute; return
-        PAPI response.
+    def get_stats(self, timeout=120):
+        """Get VPP Stats.
 
-        This method also clears the internal command list.
+        Use:
 
+        path = ['^/if', '/err/ip4-input', '/sys/node/ip4-input']
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add(api_name='vpp-stats', path=path).get_stats()
+
+        print('RX interface core 0, sw_if_index 0:\n{0}'.\
+            format(data[0]['/if/rx'][0][0]))
+
+        or
+
+        path_1 = ['^/if', ]
+        path_2 = ['^/if', '/err/ip4-input', '/sys/node/ip4-input']
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add('vpp-stats', path=path_1).\
+                add('vpp-stats', path=path_2).get_stats()
+
+        print('RX interface core 0, sw_if_index 0:\n{0}'.\
+            format(data[1]['/if/rx'][0][0]))
+
+        Note: In this case, when method 'add' is used:
+        - its parameter 'csit_papi_command' is used only to keep information
+          that vpp-stats are requested. It is not further processed but it is
+          included in the PAPI history this way:
+          vpp-stats(path=['^/if', '/err/ip4-input', '/sys/node/ip4-input'])
+        - the second parameter must be 'path' as it is used by this method.
+
+        :param timeout: Timeout in seconds.
+        :type timeout: int
+        :returns: Requested VPP statistics.
+        :rtype: list
+        """
+
+        paths = [cmd['api_args']['path'] for cmd in self._api_command_list]
+        self.clear()
+
+        ret_code, stdout, _ = self._execute_papi(paths,
+                                                 method='stats',
+                                                 timeout=timeout)
+        if ret_code != 0:
+            raise AssertionError("Failed to get statistics.")
+
+        return json.loads(stdout)
+
+    def get_replies(self, err_msg="Failed to get dump.",
+                    process_reply=True, ignore_errors=False, timeout=120):
+        """Get reply/replies  form VPP Python API.
+
+        :param err_msg: The message used if the PAPI command(s) execution fails.
         :param process_reply: Process PAPI reply if True.
         :param ignore_errors: If true, the errors in the reply are ignored.
         :param timeout: Timeout in seconds.
+        :type err_msg: str
         :type process_reply: bool
         :type ignore_errors: bool
         :type timeout: int
         :returns: Papi response including: papi reply, stdout, stderr and
             return code.
         :rtype: PapiResponse
-        :raises KeyError: If the reply is not correct.
+        """
+        response = self._execute(method='request',
+                                 process_reply=process_reply,
+                                 ignore_errors=ignore_errors,
+                                 timeout=timeout)
+        if response.ret_code != 0:
+            raise AssertionError(err_msg)
+        return response
+
+    def get_dump(self, err_msg="Failed to get dump.",
+                 process_reply=True, ignore_errors=False, timeout=120):
+        """Get dump form VPP Python API.
+
+        :param err_msg: The message used if the PAPI command(s) execution fails.
+        :param process_reply: Process PAPI reply if True.
+        :param ignore_errors: If true, the errors in the reply are ignored.
+        :param timeout: Timeout in seconds.
+        :type err_msg: str
+        :type process_reply: bool
+        :type ignore_errors: bool
+        :type timeout: int
+        :returns: Papi response including: papi reply, stdout, stderr and
+            return code.
+        :rtype: PapiResponse
         """
 
-        local_list = self._api_command_list
-
-        # Clear first as execution may fail.
-        self.clear()
-
-        ret_code, stdout, stderr = self._execute_papi(local_list, timeout)
-
-        papi_reply = list()
-        if process_reply:
-            try:
-                json_data = json.loads(stdout)
-            except ValueError:
-                logger.error("An error occured while processing the PAPI "
-                             "request:\n{rqst}".format(rqst=local_list))
-                raise
-            for data in json_data:
-                try:
-                    api_reply_processed = dict(
-                        api_name=data["api_name"],
-                        api_reply=self._process_reply(data["api_reply"]))
-                except KeyError:
-                    if ignore_errors:
-                        continue
-                    else:
-                        raise
-                papi_reply.append(api_reply_processed)
-
-        return PapiResponse(papi_reply=papi_reply,
-                            stdout=stdout,
-                            stderr=stderr,
-                            ret_code=ret_code,
-                            requests=[rqst["api_name"] for rqst in local_list])
+        response = self._execute(method='dump',
+                                 process_reply=process_reply,
+                                 ignore_errors=ignore_errors,
+                                 timeout=timeout)
+        if response.ret_code != 0:
+            raise AssertionError(err_msg)
+        return response
 
     def execute_should_pass(self, err_msg="Failed to execute PAPI command.",
                             process_reply=True, ignore_errors=False,
                             timeout=120):
         """Execute the PAPI commands and check the return code.
         Raise exception if the PAPI command(s) failed.
+
+        IMPORTANT!
+        Do not use this method in L1 keywords. Use:
+        - get_replies()
+        - get_dump()
+        This method will be removed.
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :param process_reply: Indicate whether or not to process PAPI reply.
@@ -337,9 +398,9 @@ class PapiExecutor(object):
         :raises AssertionError: If PAPI command(s) execution failed.
         """
 
-        response = self.execute(process_reply=process_reply,
-                                ignore_errors=ignore_errors,
-                                timeout=timeout)
+        response = self.get_replies(process_reply=process_reply,
+                                    ignore_errors=ignore_errors,
+                                    timeout=timeout)
 
         if response.ret_code != 0:
             raise AssertionError(err_msg)
@@ -365,9 +426,9 @@ class PapiExecutor(object):
         :raises AssertionError: If PAPI command(s) execution passed.
         """
 
-        response = self.execute(process_reply=process_reply,
-                                ignore_errors=ignore_errors,
-                                timeout=timeout)
+        response = self.get_replies(process_reply=process_reply,
+                                    ignore_errors=ignore_errors,
+                                    timeout=timeout)
 
         if response.ret_code == 0:
             raise AssertionError(err_msg)
@@ -400,7 +461,7 @@ class PapiExecutor(object):
 
         Apply binascii.unhexlify() method for unicode values.
 
-        TODO: Remove the disabled code when definitely not needed.
+        TODO: Implement complex solution to process of replies.
 
         :param api_r: API reply.
         :type api_r: dict
@@ -412,9 +473,6 @@ class PapiExecutor(object):
         reply_value = dict()
         for reply_key, reply_v in api_r.iteritems():
             for a_k, a_v in reply_v.iteritems():
-                # value = binascii.unhexlify(a_v) if isinstance(a_v, unicode) \
-                #     else a_v
-                # reply_value[a_k] = value
                 reply_value[a_k] = a_v
             reply_dict[reply_key] = reply_value
         return reply_dict
@@ -434,12 +492,15 @@ class PapiExecutor(object):
             reverted_reply = self._revert_api_reply(api_reply)
         return reverted_reply
 
-    def _execute_papi(self, api_data, timeout=120):
+    def _execute_papi(self, api_data, method='request', timeout=120):
         """Execute PAPI command(s) on remote node and store the result.
 
         :param api_data: List of APIs with their arguments.
+        :param method: VPP Python API method. Supported methods are: 'request',
+            'dump' and 'stats'.
         :param timeout: Timeout in seconds.
         :type api_data: list
+        :type method: str
         :type timeout: int
         :raises SSHTimeout: If PAPI command(s) execution has timed out.
         :raises RuntimeError: If PAPI executor failed due to another reason.
@@ -448,14 +509,14 @@ class PapiExecutor(object):
         if not api_data:
             RuntimeError("No API data provided.")
 
-        api_data_processed = self._process_api_data(api_data)
-        json_data = json.dumps(api_data_processed)
+        json_data = json.dumps(api_data) if method == "stats" \
+            else json.dumps(self._process_api_data(api_data))
 
-        cmd = "{fw_dir}/{papi_provider} --json_data '{json}'".format(
-            fw_dir=Constants.REMOTE_FW_DIR,
-            papi_provider=Constants.RESOURCES_PAPI_PROVIDER,
-            json=json_data)
-
+        cmd = "{fw_dir}/{papi_provider} --method {method} --data '{json}'".\
+            format(fw_dir=Constants.REMOTE_FW_DIR,
+                   papi_provider=Constants.RESOURCES_PAPI_PROVIDER,
+                   method=method,
+                   json=json_data)
         try:
             ret_code, stdout, stderr = self._ssh.exec_command_sudo(
                 cmd=cmd, timeout=timeout)
@@ -469,3 +530,65 @@ class PapiExecutor(object):
                                "failed: {apis}".format(host=self._node["host"],
                                                        apis=api_data))
         return ret_code, stdout, stderr
+
+    def _execute(self, method='request', process_reply=True,
+                 ignore_errors=False, timeout=120):
+        """Turn internal command list into proper data and execute; return
+        PAPI response.
+
+        This method also clears the internal command list.
+
+        IMPORTANT!
+        Do not use this method in L1 keywords. Use:
+        - get_stats()
+        - get_replies()
+        - get_dump()
+
+        :param method: VPP Python API method. Supported methods are: 'request',
+            'dump' and 'stats'.
+        :param process_reply: Process PAPI reply if True.
+        :param ignore_errors: If true, the errors in the reply are ignored.
+        :param timeout: Timeout in seconds.
+        :type method: str
+        :type process_reply: bool
+        :type ignore_errors: bool
+        :type timeout: int
+        :returns: Papi response including: papi reply, stdout, stderr and
+            return code.
+        :rtype: PapiResponse
+        :raises KeyError: If the reply is not correct.
+        """
+
+        local_list = self._api_command_list
+
+        # Clear first as execution may fail.
+        self.clear()
+
+        ret_code, stdout, stderr = self._execute_papi(local_list,
+                                                      method=method,
+                                                      timeout=timeout)
+        papi_reply = list()
+        if process_reply:
+            try:
+                json_data = json.loads(stdout)
+            except ValueError:
+                logger.error("An error occured while processing the PAPI "
+                             "request:\n{rqst}".format(rqst=local_list))
+                raise
+            for data in json_data:
+                try:
+                    api_reply_processed = dict(
+                        api_name=data["api_name"],
+                        api_reply=self._process_reply(data["api_reply"]))
+                except KeyError:
+                    if ignore_errors:
+                        continue
+                    else:
+                        raise
+                papi_reply.append(api_reply_processed)
+
+        return PapiResponse(papi_reply=papi_reply,
+                            stdout=stdout,
+                            stderr=stderr,
+                            ret_code=ret_code,
+                            requests=[rqst["api_name"] for rqst in local_list])
