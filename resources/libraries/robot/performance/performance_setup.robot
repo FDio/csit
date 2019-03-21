@@ -447,25 +447,25 @@
 | | ... | *Arguments:*
 | | ... | - topology_type - Topology type. Type: string
 | | ... | - nic_model - Interface model. Type: string
-| | ... | - crypto_type - Crypto device type - HW_cryptodev or SW_cryptodev
-| | ... | (Optional). Type: string, default value: HW_cryptodev
+| | ... | - crypto_type - Crypto device type - HW_DH895xcc or HW_C3xxx or
+| | ... | SW_cryptodev. Type: string, default value: HW_DH895xcc
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Set up IPSec performance test suite \| L2 \
-| | ... | \| Intel-X520-DA2 \|
+| | ... | \| Intel-X520-DA2 \| HW_DH895xcc \|
 | | ...
-| | [Arguments] | ${topology_type} | ${nic_model} | ${crypto_type}=HW_cryptodev
+| | [Arguments] | ${topology_type} | ${nic_model} | ${crypto_type}=HW_DH895xcc
 | | ...
 | | Set up 3-node performance topology with DUT's NIC model
 | | ... | ${topology_type} | ${nic_model}
+| | Return From Keyword If | '${crypto_type}' == 'SW_cryptodev'
 | | ${numvfs}= | Set Variable If
-| | ... | '${crypto_type}' == 'HW_cryptodev' | ${32}
-| | Run Keyword If | '${crypto_type}' == 'HW_cryptodev'
-| | ... | Configure crypto device on all DUTs | force_init=${True}
-| | ... | numvfs=${numvfs}
-| | Run Keyword If | '${crypto_type}' == 'HW_cryptodev'
-| | ... | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
+| | ... | '${crypto_type}' == 'HW_DH895xcc' | ${32}
+| | ... | '${crypto_type}' == 'HW_C3xxx' | ${16}
+| | Configure crypto device on all DUTs | ${crypto_type} | numvfs=${numvfs}
+| | ... | force_init=${True}
+| | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
 
 | Set up performance test suite with MEMIF
 | | [Documentation]

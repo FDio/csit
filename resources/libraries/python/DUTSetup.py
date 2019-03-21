@@ -206,17 +206,19 @@ class DUTSetup(object):
         return pids
 
     @staticmethod
-    def crypto_device_verify(node, force_init=False, numvfs=32):
+    def crypto_device_verify(node, crypto_type, numvfs, force_init=False):
         """Verify if Crypto QAT device virtual functions are initialized on all
         DUTs. If parameter force initialization is set to True, then try to
         initialize or remove VFs on QAT.
 
         :param node: DUT node.
-        :param force_init: If True then try to initialize to specific value.
+        :crypto_type: Crypto device type - HW_DH895xcc or HW_C3xxx.
         :param numvfs: Number of VFs to initialize, 0 - disable the VFs.
+        :param force_init: If True then try to initialize to specific value.
         :type node: dict
-        :type force_init: bool
+        :type crypto_type: string
         :type numvfs: int
+        :type force_init: bool
         :returns: nothing
         :raises RuntimeError: If QAT VFs are not created and force init is set
                               to False.
@@ -227,26 +229,38 @@ class DUTSetup(object):
         if sriov_numvfs != numvfs:
             if force_init:
                 # QAT is not initialized and we want to initialize with numvfs
-                DUTSetup.crypto_device_init(node, numvfs)
+                DUTSetup.crypto_device_init(node, crypto_type, numvfs)
             else:
                 raise RuntimeError('QAT device failed to create VFs on {host}'.
                                    format(host=node['host']))
 
     @staticmethod
-    def crypto_device_init(node, numvfs):
+    def crypto_device_init(node, crypto_type, numvfs):
         """Init Crypto QAT device virtual functions on DUT.
 
         :param node: DUT node.
+        :crypto_type: Crypto device type - HW_DH895xcc or HW_C3xxx.
         :param numvfs: Number of VFs to initialize, 0 - disable the VFs.
         :type node: dict
+        :type crypto_type: string
         :type numvfs: int
         :returns: nothing
         :raises RuntimeError: If failed to stop VPP or QAT failed to initialize.
         """
+        if crypto_type == "HW_DH895xcc":
+            kernel_mod = "qat_dh895xcc"
+            kernel_drv = "dh895xcc"
+        elif crypto_type == "HW_C3xxx":
+            kernel_mod = "qat_c3xxx"
+            kernel_drv = "c3xxx"
+        else:
+            raise RuntimeError('unsupported hardware crypto device type on {host}'.
+                               format(host=node['host']))
+
         pci_addr = Topology.get_cryptodev(node)
 
         # QAT device must be re-bound to kernel driver before initialization.
-        DUTSetup.verify_kernel_module(node, 'qat_dh895xcc', force_load=True)
+        DUTSetup.verify_kernel_module(node, kernel_mod, force_load=True)
 
         # Stop VPP to prevent deadlock.
         DUTSetup.stop_service(node, Constants.VPP_UNIT)
@@ -257,7 +271,7 @@ class DUTSetup(object):
             DUTSetup.pci_driver_unbind(node, pci_addr)
 
         # Bind to kernel driver.
-        DUTSetup.pci_driver_bind(node, pci_addr, 'dh895xcc')
+        DUTSetup.pci_driver_bind(node, pci_addr, kernel_drv)
 
         # Initialize QAT VFs.
         if numvfs > 0:
