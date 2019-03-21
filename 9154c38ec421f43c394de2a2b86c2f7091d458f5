@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "73052944_18f4f5ea",
+        "filename": "resources/tools/papi/vpp_papi_provider.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-21T08:56:36Z",
+      "side": 1,
+      "message": "It will be implemented in the next patch.",
+      "parentUuid": "18d25579_f499c98e",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 62
+      },
+      "revId": "9154c38ec421f43c394de2a2b86c2f7091d458f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc4165ee_91e91d3f",
         "filename": "resources/tools/papi/vpp_papi_provider.py",
         "patchSetId": 6
@@ -59,6 +83,30 @@
       "writtenOn": "2019-03-21T08:26:14Z",
       "side": 1,
       "message": "Please, see response proccessing here (still in test): https://gerrit.fd.io/r/#/c/18110/25/resources/tools/papi/vpp_papi_provider.py\n\nWe need to find correct way to process different types of provided values.",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 102,
+        "endChar": 40
+      },
+      "revId": "9154c38ec421f43c394de2a2b86c2f7091d458f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c762517c_66e4da70",
+        "filename": "resources/tools/papi/vpp_papi_provider.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-21T08:56:36Z",
+      "side": 1,
+      "message": "Removed, it will be implemented in the next patch.",
+      "parentUuid": "cc4165ee_91e91d3f",
       "range": {
         "startLine": 99,
         "startChar": 12,
