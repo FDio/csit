@@ -82,20 +82,22 @@
 | | ... | try to initialize/disable.
 | | ...
 | | ... | *Arguments:*
-| | ... | - force_init - Force to initialize. Type: boolean
+| | ... | - crypto_type - Crypto device type - HW_DH895xcc or HW_C3xxx.
+| | ... | Type: string, default value: HW_DH895xcc
 | | ... | - numvfs - Number of VFs to initialize, 0 - disable the VFs
-| | ... | (Optional). Type: integer, default value: ${32}
+| | ... | Type: integer, default value: ${32}
+| | ... | - force_init - Force to initialize. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure crypto device on all DUTs \| ${True} \|
+| | ... | \| Configure crypto device on all DUTs \| HW_DH895xcc \| ${32} \|
 | | ...
-| | [Arguments] | ${force_init}=${False} | ${numvfs}=${32}
+| | [Arguments] | ${crypto_type} | ${numvfs} | ${force_init}=${False}
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Crypto Device Verify | ${nodes['${dut}']} | force_init=${force_init}
-| | | ... | numvfs=${numvfs}
+| | | Crypto Device Verify | ${nodes['${dut}']} | ${crypto_type}
+| | | ... | ${numvfs} | force_init=${force_init}
 
 | Configure AVF interfaces on all DUTs
 | | [Documentation] | Configure virtual functions for AVF interfaces on PCI

@@ -16,10 +16,10 @@
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-XL710 | BASE
+| ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-X553 | BASE
 | ...
-| Suite Setup | Set up IPSec performance test suite | L3 | Intel-XL710
-| ... | HW_DH895xcc
+| Suite Setup | Set up IPSec performance test suite | L3 | Intel-X553
+| ... | HW_C3xxx
 | ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
@@ -55,10 +55,10 @@
 | ... | *[Ref] Applicable standard specifications:* RFC4303 and RFC2544.
 
 *** Variables ***
-# XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
-| ${s_24.5G}= | ${24500000000}
-# XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
-| ${s_18.75Mpps}= | ${18750000}
+# X553 bandwidth limit 20Gbps/2=10Gbps
+| ${s_10G}= | ${10000000000}
+# X553 Mpps limit 29.76Mpps/2=14.88Mpps
+| ${s_14.88Mpps}= | ${14880952}
 | ${tg_if1_ip4}= | 192.168.10.2
 | ${dut1_if1_ip4}= | 192.168.10.1
 | ${dut1_if2_ip4}= | 172.168.1.1
@@ -97,8 +97,8 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo And Handle Multi Seg
-| | ... | ${s_24.5G} | ${framesize} | overhead=${overhead}
-| | ... | pps_limit=${s_18.75Mpps}
+| | ... | ${s_10G} | ${framesize} | overhead=${overhead}
+| | ... | pps_limit=${s_14.88Mpps}
 | | And Add cryptodev to all DUTs | ${phy_cores}
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
