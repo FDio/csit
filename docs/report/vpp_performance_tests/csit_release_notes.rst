@@ -39,6 +39,13 @@ Changes in |csit-release|
      for Packet Latency were published as there are no results for Packet
      Latency available.
 
+.. note::
+
+    The Report rls1901.1 was generated with only 1 run of performance tests,
+    ie. the data are not statistically significant.
+    The NFV tests were not run so this section has been removed from the
+    report.
+
 .. raw:: latex
 
     \clearpage
