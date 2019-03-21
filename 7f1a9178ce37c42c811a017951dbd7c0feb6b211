@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52f38d61_816db379",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1650,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-21T11:30:22Z",
+      "side": 1,
+      "message": "We could have \u0027dump\u0027 analogue of verify_replies that would concatenate the values, so that call sites do not have to do that themselves.",
+      "range": {
+        "startLine": 1650,
+        "startChar": 22,
+        "endLine": 1650,
+        "endChar": 23
+      },
+      "revId": "7f1a9178ce37c42c811a017951dbd7c0feb6b211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f0c15fd_7cdf4cbb",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-21T11:30:22Z",
+      "side": 1,
+      "message": "Update line 258 (and 248) to reflect that.",
+      "range": {
+        "startLine": 295,
+        "startChar": 41,
+        "endLine": 295,
+        "endChar": 44
+      },
+      "revId": "7f1a9178ce37c42c811a017951dbd7c0feb6b211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22da1349_a227c735",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-21T11:30:22Z",
+      "side": 1,
+      "message": "I am starting to think a separate .stat() instead of .add() would be useful.",
+      "range": {
+        "startLine": 300,
+        "startChar": 10,
+        "endLine": 300,
+        "endChar": 45
+      },
+      "revId": "7f1a9178ce37c42c811a017951dbd7c0feb6b211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "158d2a5c_47dcc562",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-21T11:30:22Z",
+      "side": 1,
+      "message": "Perhaps rename this to get_replies (to go with get_stats and get_dumps/get_details) or some other naming scheme for the three methods.",
+      "range": {
+        "startLine": 319,
+        "startChar": 8,
+        "endLine": 319,
+        "endChar": 15
+      },
+      "revId": "7f1a9178ce37c42c811a017951dbd7c0feb6b211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a0598a52_2281cd85",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-21T11:30:22Z",
+      "side": 1,
+      "message": "Mention that stats should use get_stats instead.",
+      "range": {
+        "startLine": 323,
+        "startChar": 57,
+        "endLine": 323,
+        "endChar": 58
+      },
+      "revId": "7f1a9178ce37c42c811a017951dbd7c0feb6b211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8db44335_f7b86c14",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-21T11:30:22Z",
+      "side": 1,
+      "message": "In this patch, vpp_sw_interface_rx_placement_dump is calling this (via .execute_should_pass). I would expect \u0027dump\u0027 method to be set somewhere.",
+      "range": {
+        "startLine": 343,
+        "startChar": 61,
+        "endLine": 343,
+        "endChar": 70
+      },
+      "revId": "7f1a9178ce37c42c811a017951dbd7c0feb6b211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
