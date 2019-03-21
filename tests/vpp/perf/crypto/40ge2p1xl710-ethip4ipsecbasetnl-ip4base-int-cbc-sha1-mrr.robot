@@ -19,7 +19,7 @@
 | ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-XL710 | BASE
 | ...
 | Suite Setup | Set up IPSec performance test suite | L3 | Intel-XL710
-| ... | HW_cryptodev
+| ... | HW_DH895xcc
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
