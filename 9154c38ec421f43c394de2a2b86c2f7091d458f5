@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "308a4c86_ee0c7a9a",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-03-21T08:26:14Z",
+      "side": 1,
+      "message": "What about:\njson_data \u003d json.dumps(api_data) if method \u003d\u003d \"stats\" \\\n    else json.dumps(self._process_api_data(api_data))",
+      "range": {
+        "startLine": 505,
+        "startChar": 8,
+        "endLine": 508,
+        "endChar": 68
+      },
+      "revId": "9154c38ec421f43c394de2a2b86c2f7091d458f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18d25579_f499c98e",
+        "filename": "resources/tools/papi/vpp_papi_provider.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-03-21T08:26:14Z",
+      "side": 1,
+      "message": "Definitly we need that code to process dump thata that returns values of different types.",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 62
+      },
+      "revId": "9154c38ec421f43c394de2a2b86c2f7091d458f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cc4165ee_91e91d3f",
+        "filename": "resources/tools/papi/vpp_papi_provider.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-03-21T08:26:14Z",
+      "side": 1,
+      "message": "Please, see response proccessing here (still in test): https://gerrit.fd.io/r/#/c/18110/25/resources/tools/papi/vpp_papi_provider.py\n\nWe need to find correct way to process different types of provided values.",
+      "range": {
+        "startLine": 99,
+        "startChar": 12,
+        "endLine": 102,
+        "endChar": 40
+      },
+      "revId": "9154c38ec421f43c394de2a2b86c2f7091d458f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
