@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ae4d9338_d17d49f8",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 63
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-03-21T19:00:51Z",
+      "side": 0,
+      "message": "Turns out this is important. Even if you require all (static) tags of a single testcase, you can still match another testcase which has superset of tags.",
+      "range": {
+        "startLine": 672,
+        "startChar": 28,
+        "endLine": 672,
+        "endChar": 41
+      },
+      "revId": "52960c7ed875f0fda48cd23a9a4d74274a0a2daf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
