@@ -22,6 +22,7 @@
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
 | ... | AND | Install Vpp On All Duts | ${nodes} | ${packages_dir}
+| ... | AND | Sleep | 10s
 | ... | AND | Verify Vpp On All Duts | ${nodes}
 | ... | AND | Get CPU Layout from all nodes | ${nodes}
 | ... | AND | Update All Interface Data On All Nodes | ${nodes}
