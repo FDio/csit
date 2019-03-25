@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0711dffa_7be42c29",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-25T10:49:26Z",
+      "side": 1,
+      "message": "It will be added.",
+      "parentUuid": "16b2f5c0_ed7b797d",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 9
+      },
+      "revId": "036d07a48a1eebe89d167ada02fa8fee4a070018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "625ae62a_ec0e14d8",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2019-03-21T18:10:24Z",
       "side": 1,
       "message": "Now that I think about it, this should be never needed by users. Either executor is new (line 220) or previous actions were _executed (line 565 could hold line 244).\n\nRemove to keep the interface simpler.",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 13
+      },
+      "revId": "036d07a48a1eebe89d167ada02fa8fee4a070018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "13a4769d_c303b7b4",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-25T10:49:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "625ae62a_ec0e14d8",
       "range": {
         "startLine": 236,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "cb3ec52b_b6f51208",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-25T10:49:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9aadc16b_d5151841",
+      "range": {
+        "startLine": 258,
+        "startChar": 57,
+        "endLine": 258,
+        "endChar": 60
+      },
+      "revId": "036d07a48a1eebe89d167ada02fa8fee4a070018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fb51809_9315fffe",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 9
@@ -82,6 +154,30 @@
       "writtenOn": "2019-03-21T18:10:24Z",
       "side": 1,
       "message": "Is it clear user need to put this value into csit_papi_command?\nPerhaps \"vpp-stats\" could be a default value for csit_papi_command?",
+      "range": {
+        "startLine": 263,
+        "startChar": 12,
+        "endLine": 263,
+        "endChar": 21
+      },
+      "revId": "036d07a48a1eebe89d167ada02fa8fee4a070018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5da75fc9_a68972ae",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-25T10:49:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fb51809_9315fffe",
       "range": {
         "startLine": 263,
         "startChar": 12,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "d30b30a8_366a37b2",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-25T10:49:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "750474a5_6cb2f617",
+      "range": {
+        "startLine": 326,
+        "startChar": 49,
+        "endLine": 326,
+        "endChar": 53
+      },
+      "revId": "036d07a48a1eebe89d167ada02fa8fee4a070018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "689c582d_0a322700",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 9
@@ -128,6 +248,30 @@
       "writtenOn": "2019-03-21T18:10:24Z",
       "side": 1,
       "message": "single space",
+      "range": {
+        "startLine": 328,
+        "startChar": 28,
+        "endLine": 328,
+        "endChar": 30
+      },
+      "revId": "036d07a48a1eebe89d167ada02fa8fee4a070018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d44822df_bbcfbd1a",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-25T10:49:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "689c582d_0a322700",
       "range": {
         "startLine": 328,
         "startChar": 28,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "cc266292_d3b7fc1f",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-25T10:49:26Z",
+      "side": 1,
+      "message": "Yes, it was: because of execute_should_fail(), but now it is not, it will be changed.",
+      "parentUuid": "a4b8df30_3e21e7eb",
+      "range": {
+        "startLine": 371,
+        "startChar": 8,
+        "endLine": 371,
+        "endChar": 10
+      },
+      "revId": "036d07a48a1eebe89d167ada02fa8fee4a070018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b12bb6df_d93468af",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 9
@@ -174,6 +342,30 @@
       "writtenOn": "2019-03-21T18:10:24Z",
       "side": 1,
       "message": "Will this also be removed with execute_should_pass?",
+      "range": {
+        "startLine": 416,
+        "startChar": 8,
+        "endLine": 416,
+        "endChar": 9
+      },
+      "revId": "036d07a48a1eebe89d167ada02fa8fee4a070018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7db3e7a_23abcdee",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-25T10:49:26Z",
+      "side": 1,
+      "message": "No, it will be removed before execute_should_pass is removed.",
+      "parentUuid": "b12bb6df_d93468af",
       "range": {
         "startLine": 416,
         "startChar": 8,
