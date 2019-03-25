@@ -411,7 +411,8 @@ class ExecutionChecker(ResultVisitor):
         """
 
         if msg.message.count("return STDOUT Version:") or \
-            msg.message.count("VPP Version:"):
+            msg.message.count("VPP Version:") or \
+            msg.message.count("VPP version:"):
             self._version = str(re.search(self.REGEX_VERSION_VPP, msg.message).
                                 group(2))
             self._data["metadata"]["version"] = self._version
