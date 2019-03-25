@@ -280,7 +280,7 @@ class ExecutionChecker(ResultVisitor):
                                  r'[\D\d]*')
 
     REGEX_VERSION_VPP = re.compile(r"(return STDOUT Version:\s*|"
-                                   r"VPP Version:\s*)(.*)")
+                                   r"VPP Version:\s*|VPP version:\s*)(.*)")
 
     REGEX_VERSION_DPDK = re.compile(r"(return STDOUT testpmd)([\d\D\n]*)"
                                     r"(RTE Version: 'DPDK )(.*)(')")
