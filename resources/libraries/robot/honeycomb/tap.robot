@@ -27,8 +27,8 @@
 | | ...
 | | ... | *Example:*
 | | ... | \| Honeycomb creates TAP interface \
-| | ... | \| ${nodes['DUT1']} \| tap_int1 \| ${{'tap-name':'tap1',\
-| | ... | 'mac':'08:00:27:60:26:ab', 'device-instance':3}} \|
+| | ... | \| ${nodes['DUT1']} \| tap_int1 \| ${{'host-interface-name':'tap1',\
+| | ... | 'mac':'08:00:27:60:26:ab', 'id':3}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | Create TAP interface | ${node} | ${interface}
@@ -44,8 +44,8 @@
 | | ...
 | | ... | *Example:*
 | | ... | \| Honeycomb configures TAP interface \
-| | ... | \| ${nodes['DUT1']} \| tap_int1 \| ${{'tap-name':'tap1',\
-| | ... | 'mac':'08:00:27:60:26:ab', 'device-instance':3}} \|
+| | ... | \| ${nodes['DUT1']} \| tap_int1 \| ${{'host-interface-name':'tap1',\
+| | ... | 'mac':'08:00:27:60:26:ab', 'id':3}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | Configure interface TAP | ${node} | ${interface}
@@ -77,13 +77,13 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| TAP Operational Data From Honeycomb Should Be \
-| | ... | \| ${nodes['DUT1']} \| tap_int1 \| ${{'tap-name':'tap1',\
-| | ... | 'mac':'08:00:27:60:26:ab', 'device-instance':3}} \|
+| | ... | \| ${nodes['DUT1']} \| tap_int1 \| ${{'host-interface-name':'tap1',\
+| | ... | 'mac':'08:00:27:60:26:ab', 'id':3}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | ${api_data}= | Get interface oper data | ${node} | ${interface}
-| | ${api_tap}= | Set Variable | ${api_data['v3po:tap']}
-| | Should be equal | ${api_tap['tap-name']} | ${settings['tap-name']}
+| | ${api_tap}= | Set Variable | ${api_data['v3po:tap-v2']}
+| | Should be equal | ${api_tap['device-name']} | ${settings['device-name']}
 | | ${api_mac}= | Set Variable | ${api_data['phys-address']}
 | | Should be equal | ${api_mac} | ${settings['mac']}
 
@@ -98,12 +98,14 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| TAP Operational Data From Honeycomb Should Be \
-| | ... | \| ${nodes['DUT1']} \| ${{'tap-name':'tap1',\
-| | ... | 'mac':'08:00:27:60:26:ab', 'device-instance':3}} \|
+| | ... | \| ${nodes['DUT1']} \| ${{'host-interface-name':'tap1',\
+| | ... | 'mac':'08:00:27:60:26:ab', 'id':3}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | ${vat_data}= | TAP Dump | ${node} | ${interface}
-| | Should be equal | ${vat_data['dev_name']} | ${settings['tap-name']}
+| | Should be equal | ${vat_data['dev_name']} | ${settings['dev_name']}
+| | Should be equal | ${vat_data['rx_ring_sz']} | ${settings['rx_ring_sz']}
+| | Should be equal | ${vat_data['tx_ring_sz']} | ${settings['tx_ring_sz']}
 # other settings not accessible through VAT commands
 
 | TAP Operational Data From Honeycomb Should Be empty
@@ -121,8 +123,8 @@
 | | ...
 | | [Arguments] | ${node} | ${interface}
 | | ${api_data}= | Get interface oper data | ${node} | ${interface}
-| | Run keyword and expect error | *KeyError: 'v3po:tap' | Set Variable
-| | ... | ${api_data['v3po:tap']}
+| | Run keyword and expect error | *KeyError: 'v3po:tap-v2' | Set Variable
+| | ... | ${api_data['v3po:tap-v2']}
 
 | TAP Operational Data From VAT Should Be empty
 | | [Documentation] | Attempts to retrieve interface TAP configuration\

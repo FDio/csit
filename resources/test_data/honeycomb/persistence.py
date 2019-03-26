@@ -44,10 +44,24 @@ def get_variables(interface):
                         },
         # tap interface settings
         'tap_interface': 'tap_test',
-        'tap_settings': {'tap-name': 'tap_test',
+        'tap_interface_vat': 'tap0',
+        'tap_settings': {'host-interface-name': 'tap_test',
                          'mac': '08:00:27:c0:5d:37',
-                         'device-instance': 1
+                         'id': 1
                          },
+        'tap_settings_oper': {'host-interface-name': 'tap_test',
+                              'device-name': 'tap0',
+                              'tx-ring-size': 256,
+                              'rx-ring-size': 256,
+                              'mac': '08:00:27:c0:5d:37',
+                              'id': 1
+                              },
+        'tap_settings_vat': {'dev_name': 'tap0',
+                             'tx_ring_sz': 256,
+                             'rx_ring_sz': 256,
+                             'mac': '08:00:27:c0:5d:37',
+                             'id': 1
+                             },
         # vhost-user interface settings
         'vhost_interface': 'test_vhost',
         'vhost_user_client': {'socket': 'soc1',
