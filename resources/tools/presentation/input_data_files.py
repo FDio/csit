@@ -17,6 +17,8 @@ Download all data.
 
 import re
 
+import logging
+
 from os import rename, mkdir
 from os.path import join
 from zipfile import ZipFile, is_zipfile, BadZipfile
@@ -52,17 +54,21 @@ def _download_file(url, file_name, log):
     success = False
     try:
         log.append(("INFO", "    Connecting to '{0}' ...".format(url)))
+        logging.info("    Connecting to '{0}' ...".format(url))
 
         response = get(url, stream=True)
         code = response.status_code
 
         log.append(("INFO", "    {0}: {1}".format(code, responses[code])))
+        logging.info("    {0}: {1}".format(code, responses[code]))
 
         if code != codes["OK"]:
             return False
 
         log.append(("INFO", "    Downloading the file '{0}' to '{1}' ...".
                     format(url, file_name)))
+        logging.info("    Downloading the file '{0}' to '{1}' ...".
+                     format(url, file_name))
 
         file_handle = open(file_name, "wb")
         for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
@@ -72,25 +78,39 @@ def _download_file(url, file_name, log):
         success = True
     except ConnectionError as err:
         log.append(("ERROR", "Not possible to connect to '{0}'.".format(url)))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
+        logging.info("Not possible to connect to '{0}'.".format(url))
+        logging.info(repr(err))
     except HTTPError as err:
         log.append(("ERROR", "Invalid HTTP response from '{0}'.".format(url)))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
+        logging.info("Invalid HTTP response from '{0}'.".format(url))
+        logging.info(repr(err))
     except TooManyRedirects as err:
         log.append(("ERROR", "Request exceeded the configured number "
                              "of maximum re-directions."))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
+        logging.info("Request exceeded the configured number "
+                     "of maximum re-directions.")
+        logging.info(repr(err))
     except Timeout as err:
         log.append(("ERROR", "Request timed out."))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
+        logging.info("Request timed out.")
+        logging.info(repr(err))
     except RequestException as err:
         log.append(("ERROR", "Unexpected HTTP request exception."))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
+        logging.info("Unexpected HTTP request exception.")
+        logging.info(repr(err))
     except (IOError, ValueError, KeyError) as err:
         log.append(("ERROR", "Download failed."))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
+        logging.info("Download failed.")
+        logging.info(repr(err))
 
     log.append(("INFO", "    Download finished."))
+    logging.info("    Download finished.")
     return success
 
 
@@ -191,6 +211,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
     # If not successful, download from docs.fd.io:
     if not success:
         log.append(("INFO", "    Trying to download from https://docs.fd.io:"))
+        logging.info("    Trying to download from https://docs.fd.io:")
         release = re.search(REGEX_RELEASE, job).group(2)
         for rls in (release, "master"):
             nexus_file_name = "{job}{sep}{build}{sep}{name}". \
@@ -229,6 +250,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
         else:
             log.append(("ERROR",
                         "Zip file '{0}' is corrupted.".format(new_name)))
+            logging.info("Zip file '{0}' is corrupted.".format(new_name))
             return False
     else:
         return True
