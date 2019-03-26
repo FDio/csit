@@ -62,9 +62,14 @@ echo "Storing data in ${OUTPUT_DIR}/."
 # APT packages wanted
 
 APT_WANTLIST_INFRA="nfs-common cloud-init"
-APT_WANTLIST_CSIT="python-dev python-pip python-virtualenv git strongswan socat python-cffi python3-cffi"
+APT_WANTLIST_CSIT="python python-minimal python-dev python-pip python-virtualenv
+ python2.7 python2.7-minimal git strongswan socat python-cffi python3-cffi
+ python3 python3-cffi python3-cffi-backend python3-ply python3-pycparser
+ python-cffi-backend"
 APT_WANTLIST_TLDK="libpcap0.8-dev libpcap-dev cmake tcpdump"
-APT_WANTLIST_VPP="dkms bridge-utils libmbedcrypto0 libmbedcrypto1 libmbedtls10 libmbedx509-0"
+APT_WANTLIST_VPP="dkms bridge-utils libmbedcrypto0 libmbedtls10 libmbedx509-0
+ libpython2.7-minimal libpython-stdlib libpython2.7-stdlib libc6
+ python-pycparser python-ply libssl1.0"
 APT_WANTLIST_TREX="zlib1g-dev unzip"
 APT_WANTLIST_NESTED="qemu-system-x86"
 APT_WANTLIST_JAVA="openjdk-8-jdk-headless"
