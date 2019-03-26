@@ -18,13 +18,13 @@ operational data.
 """
 from robot.api import logger
 
-from resources.libraries.python.topology import Topology
 from resources.libraries.python.HTTPRequest import HTTPCodes
 from resources.libraries.python.honeycomb.HoneycombSetup import HoneycombError
 from resources.libraries.python.honeycomb.HoneycombUtil \
     import DataRepresentation
 from resources.libraries.python.honeycomb.HoneycombUtil \
     import HoneycombUtil as HcUtil
+from resources.libraries.python.topology import Topology
 
 
 class InterfaceKeywords(object):
@@ -48,7 +48,9 @@ class InterfaceKeywords(object):
     VXLAN_PARAMS = ("src", "dst", "vni", "encap-vrf-id")
     L2_PARAMS = ("bridge-domain", "split-horizon-group",
                  "bridged-virtual-interface")
-    TAP_PARAMS = ("tap-name", "mac", "device-instance")
+    TAP_PARAMS = ("id", "tx-ring-size", "rx-ring-size", "host-mac", "host-interface-name", "host-namespace",
+                  "host-bridge", "host-ipv4-address", "host-ipv6-address", "tag", "host-ipv4-gateway",
+                  "host-ipv6-gateway", "mac")
     VHOST_USER_PARAMS = ("socket", "role")
     SUB_IF_PARAMS = ("identifier",
                      "vlan-type",
@@ -949,14 +951,13 @@ class InterfaceKeywords(object):
 
         new_tap = {
             "name": interface,
-            "type": "v3po:tap",
-            "v3po:tap": {}
+            "type": "v3po:tap-v2",
+            "v3po:tap-v2": {}
         }
         for param, value in kwargs.items():
             if param not in InterfaceKeywords.TAP_PARAMS:
-                raise HoneycombError("The parameter {0} is invalid.".
-                                     format(param))
-            new_tap["v3po:tap"][param] = value
+                raise HoneycombError("The parameter {0} is invalid.".format(param))
+            new_tap["v3po:tap-v2"][param] = value
 
         path = ("interfaces", "interface")
         new_tap_structure = [new_tap, ]
@@ -968,7 +969,7 @@ class InterfaceKeywords(object):
         """Configure TAP on the interface.
 
         The keyword configures TAP parameters on the given interface. The type
-        of interface must be set to "v3po:tap".
+        of interface must be set to "v3po:tap-v2".
         The new TAP parameters overwrite the current configuration. If a
         parameter in new configuration is missing, it is removed from TAP
         configuration.
@@ -993,7 +994,7 @@ class InterfaceKeywords(object):
                                      format(param))
             tap_structure[param] = value
 
-        path = ("interfaces", ("interface", "name", interface), "v3po:tap")
+        path = ("interfaces", ("interface", "name", interface), "v3po:tap-v2")
         return InterfaceKeywords._set_interface_properties(
             node, interface, path, tap_structure)
 
