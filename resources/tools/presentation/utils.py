@@ -326,11 +326,16 @@ class Worker(multiprocessing.Process):
         """Method representing the process's activity.
         """
 
+        items = 0
         while True:
             try:
                 self.process(self._work_queue.get())
+                items += 1
+            except Exception as err:
+                logging.error(repr(err))
             finally:
                 self._work_queue.task_done()
+                logging.info("### Items done: {0}".format(items))
 
     def process(self, item_to_process):
         """Method executed by the runner.
