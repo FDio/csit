@@ -329,6 +329,8 @@ class Worker(multiprocessing.Process):
         while True:
             try:
                 self.process(self._work_queue.get())
+            except Exception as err:
+                logging.error(repr(err))
             finally:
                 self._work_queue.task_done()
 
