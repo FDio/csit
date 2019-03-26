@@ -329,8 +329,13 @@ class Worker(multiprocessing.Process):
         while True:
             try:
                 self.process(self._work_queue.get())
+            except Exception as err:
+                logging.error(repr(err))
             finally:
-                self._work_queue.task_done()
+                try:
+                    self._work_queue.task_done()
+                except ValueError as err:
+                    logging.error(repr(err))
 
     def process(self, item_to_process):
         """Method executed by the runner.
