@@ -12,6 +12,7 @@
 # limitations under the License.
 *** Settings ***
 | Library | resources.libraries.python.IPUtil
+| Library | resources.libraries.python.ssh
 
 *** Keywords ***
 | Configure QEMU vhost and run it
@@ -84,3 +85,8 @@
 | | [Arguments] | ${qemu_name}=vm_node
 | | ...
 | | Run Keyword | ${qemu_name}.Qemu Kill
+
+| Copy nested qemu image
+| | [Arguments] | ${dut}
+| | Exec Cmd |  ${nodes['${dut}']}
+| | ... | sudo cp ~/csit-nested-1.7.img /var/lib/vm/csit-nested-1.7.img
