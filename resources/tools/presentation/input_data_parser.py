@@ -1231,14 +1231,23 @@ class InputData(object):
                                   "data file from the job '{job}', build "
                                   "'{build}', or it is damaged. Skipped.".
                          format(job=job, build=build["build"])))
+            logging.info("It is not possible to download the input "
+                                  "data file from the job '{job}', build "
+                                  "'{build}', or it is damaged. Skipped.".
+                         format(job=job, build=build["build"]))
         if success:
             logs.append(("INFO", "  Processing data from the build '{0}' ...".
                          format(build["build"])))
+            logging.info("  Processing data from the build '{0}' ...".
+                         format(build["build"]))
             data = self._parse_tests(job, build, logs)
             if data is None:
                 logs.append(("ERROR", "Input data file from the job '{job}', "
                                       "build '{build}' is damaged. Skipped.".
                              format(job=job, build=build["build"])))
+                logging.info("Input data file from the job '{job}', "
+                             "build '{build}' is damaged. Skipped.".
+                             format(job=job, build=build["build"]))
             else:
                 state = "processed"
 
@@ -1247,6 +1256,8 @@ class InputData(object):
             except OSError as err:
                 logs.append(("ERROR", "Cannot remove the file '{0}': {1}".
                              format(build["file-name"], repr(err))))
+                logging.info("Cannot remove the file '{0}': {1}".
+                             format(build["file-name"], repr(err)))
 
         # If the time-period is defined in the specification file, remove all
         # files which are outside the time period.
@@ -1267,6 +1278,8 @@ class InputData(object):
                             ("INFO",
                              "    The build {job}/{build} is outdated, will be "
                              "removed".format(job=job, build=build["build"])))
+                        logging.info("    The build {job}/{build} is outdated, will be "
+                                     "removed".format(job=job, build=build["build"]))
                         file_name = self._cfg.input["file-name"]
                         full_name = join(
                             self._cfg.environment["paths"]["DIR[WORKING,DATA]"],
@@ -1280,12 +1293,17 @@ class InputData(object):
                             logs.append(("INFO",
                                          "    The file {name} has been removed".
                                          format(name=full_name)))
+                            logging.info("    The file {name} has been removed".
+                                         format(name=full_name))
                         except OSError as err:
                             logs.append(("ERROR",
                                         "Cannot remove the file '{0}': {1}".
                                         format(full_name, repr(err))))
+                            logging.info("Cannot remove the file '{0}': {1}".
+                                        format(full_name, repr(err)))
 
         logs.append(("INFO", "  Done."))
+        logging.info("  Done.")
 
         result = {
             "data": data,
@@ -1306,6 +1324,8 @@ class InputData(object):
         """
 
         logging.info("Downloading and parsing input files ...")
+
+        multiprocessing.log_to_stderr(logging.DEBUG)
 
         work_queue = multiprocessing.JoinableQueue()
         manager = multiprocessing.Manager()
@@ -1330,6 +1350,10 @@ class InputData(object):
         work_queue.join()
 
         logging.info("Done.")
+
+        logging.info("#" * 80)
+        logging.info("###  SUMMARY")
+        logging.info("#" * 80)
 
         while not data_queue.empty():
             result = data_queue.get()
@@ -1368,7 +1392,7 @@ class InputData(object):
                 elif item[0] == "WARNING":
                     logging.warning(item[1])
 
-        del data_queue
+        # del data_queue
 
         # Terminate all workers
         for worker in workers:
