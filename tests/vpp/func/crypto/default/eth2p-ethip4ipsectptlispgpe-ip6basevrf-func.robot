@@ -68,6 +68,8 @@
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.
 | | ...
+| | [Tags] | EXPECTED_FAILING
+| | ...
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Configure path in 3-node circular topology
