@@ -141,9 +141,9 @@
 | | Bridge domain Operational Data From VAT Should Be
 | | ... | ${node} | ${0} | ${bd_settings}
 | | TAP Operational Data From Honeycomb Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings}
+| | ... | ${node} | ${tap_interface} | ${tap_settings_oper}
 | | TAP Operational Data From VAT Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings}
+| | ... | ${node} | ${tap_interface_vat} | ${tap_settings_vat}
 | | Vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
 | | Vhost-user Operational Data From VAT Should Be

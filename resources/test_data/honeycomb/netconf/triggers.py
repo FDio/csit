@@ -404,10 +404,10 @@ trigger_revert2 = u"""
 <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
 <interface>
 <name>tap</name>
-<type xmlns:v3po="http://fd.io/hc2vpp/yang/v3po">v3po:tap</type>
+<type xmlns:v3po="http://fd.io/hc2vpp/yang/v3po">v3po:tap-v2</type>
 <enabled>true</enabled>
 <tap xmlns="http://fd.io/hc2vpp/yang/v3po">
-<tap-name>tap</tap-name>
+<dev-name>tap</dev-name>
 </tap>
 </interface>
 </interfaces>
@@ -425,10 +425,10 @@ trigger_revert2 = u"""
 <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
 <interface>
 <name>tap2</name>
-<type xmlns:v3po="http://fd.io/hc2vpp/yang/v3po">v3po:tap</type>
+<type xmlns:v3po="http://fd.io/hc2vpp/yang/v3po">v3po:tap-v2</type>
 <enabled>true</enabled>
 <tap xmlns="http://fd.io/hc2vpp/yang/v3po">
-<tap-name>tap</tap-name>
+<dev-name>tap</dev-name>
 </tap>
 </interface>
 </interfaces>
