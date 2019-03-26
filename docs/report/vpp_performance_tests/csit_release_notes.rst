@@ -75,6 +75,6 @@ List of known issues in |csit-release| for VPP performance tests:
 | 5  | `CSIT-1465                              | 4c VPP VM vhost tests failing on 3n-skx. Under investigation.                                                                   |
 |    | <https://jira.fd.io/browse/CSIT-1465>`_ |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 6  | `CSIT-1466                              | IPSecHW scale tests failing due to VPP reset. Under investigation.                                                              |
-|    | <https://jira.fd.io/browse/CSIT-1466>`_ |                                                                                                                                 |
+| 6  | `CSIT-1466                              | IPSecHW scale tests failing due to VPP reset. Fixed in one of subsequent VPP patches. Confirmed by  running tests with VPP      |
+|    | <https://jira.fd.io/browse/CSIT-1466>`_ | build 19.01.1-8~g50a392f~b56.                                                                                                   |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
