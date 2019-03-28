@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d4fe2790_538bab24",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-03-28T13:47:59Z",
+      "side": 1,
+      "message": "I would keep L2 layer related staff in L2Util library, It\u0027s easy to import these methods when needed in other libraries.\n\nAlso we can expect that we will have some special IP conversions that I would expect to keep in IPUtil library.\n\nBut we can discuss it on slack channel / csit weekly call what is preferred solution for most of csit developers.",
+      "parentUuid": "66b5aef6_ecb7c238",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 37
+      },
+      "revId": "4d7b9a69af1db0555e756901015cc9f593c279ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b871e2c6_561985d8",
         "filename": "resources/libraries/python/L2Util.py",
         "patchSetId": 28
@@ -36,6 +60,30 @@
       "writtenOn": "2019-03-28T13:02:58Z",
       "side": 1,
       "message": "Prefer using \"get_replies()\"",
+      "range": {
+        "startLine": 132,
+        "startChar": 39,
+        "endLine": 132,
+        "endChar": 58
+      },
+      "revId": "4d7b9a69af1db0555e756901015cc9f593c279ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "416528c6_fcfa86c4",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-03-28T13:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b871e2c6_561985d8",
       "range": {
         "startLine": 132,
         "startChar": 39,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "dbf7ccdd_5f44d851",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-03-28T13:47:59Z",
+      "side": 1,
+      "message": "I guess you meant push_dot1q \u003d int(push_dot1q)",
+      "parentUuid": "7f466c73_8cdafb03",
+      "range": {
+        "startLine": 434,
+        "startChar": 8,
+        "endLine": 434,
+        "endChar": 43
+      },
+      "revId": "4d7b9a69af1db0555e756901015cc9f593c279ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "16780edf_efbb4fbb",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 28
@@ -82,6 +154,30 @@
       "writtenOn": "2019-03-28T13:02:58Z",
       "side": 1,
       "message": "reply_value[a_k] \u003d binascii.unhexlify(a_v) if isinstance(a_v, unicode) else a_v",
+      "range": {
+        "startLine": 460,
+        "startChar": 16,
+        "endLine": 462,
+        "endChar": 40
+      },
+      "revId": "4d7b9a69af1db0555e756901015cc9f593c279ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "823b6edb_33eb5869",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-03-28T13:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16780edf_efbb4fbb",
       "range": {
         "startLine": 460,
         "startChar": 16,
