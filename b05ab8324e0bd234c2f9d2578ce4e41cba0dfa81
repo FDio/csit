@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "c03ced6c_ce304491",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-03-28T12:29:36Z",
+      "side": 1,
+      "message": "The current proposal is meant to only address .api files.  However, the process for handling other downstream dependency breakage from VPP is likely to require the same or very similar process.\n\nMy preference is to get this working with .api files first, then expand coverage of other VPP-\u003eCSIT dependencies that you mention above.",
+      "parentUuid": "d83ecd09_760b137c",
+      "range": {
+        "startLine": 7,
+        "startChar": 32,
+        "endLine": 7,
+        "endChar": 35
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "109e53eb_daefd47f",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
@@ -213,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "19f31e77_a0a16a1f",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-03-28T12:29:36Z",
+      "side": 1,
+      "message": "I agree and assumed that removal of support of the old VPP-API would be included in the same commit as support for new VPP-API version rather than being done in a separate patch.\n\nI will update this section to clarify that support for the old VPP-API version shall be removed either in the same patch or a follow-up patch.\n\nAs Peter Mikus noted, this introduces another trigger for CSIT oper branch creation.",
+      "parentUuid": "99c4b9ad_a3f0973d",
+      "range": {
+        "startLine": 40,
+        "startChar": 29,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d85b6568_56a5b72d",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
@@ -224,6 +272,30 @@
       "writtenOn": "2019-03-18T14:47:08Z",
       "side": 1,
       "message": "Clarify whether such a recheck is accidental, or whether it should be forced for every open Change.\n\nMost VPP patches do not touch API, or they touch parts of API not used by CSIT yet, so should keep work even with +1 from old CSIT code. Patches which do touch API are ulikely to be directly mergeable (without the need to manually resolve conflicts, which triggers verify).\nBut rechecking has no downside (except machine time).",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 10
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f9e2a493_2531c93e",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-03-28T12:29:36Z",
+      "side": 1,
+      "message": "Sorry this is confusing, I used a poor choice of wording here.  My thinking was that a new Verify event (e.g. new patch version or manual \"recheck\") would cause the next verify job to be executed using the new CSIT code, which will fail.  This can be detected by checking for the presence of the new VPP-API commit in the VPP patch being tested and a notification to rebase the patch be sent out and voting -1 instead of wasting the cycles to run the complete set of verify jobs.\n\nI will expand this to clarify better.\n\nThe primary intent here is to prevent a cascade of failures due to an API change which generates the perception that CSIT is completely broken.  Early and clear notification of the requirement to rebase is currently lacking.  Avoiding the need to wade through test logs / console output to determine that a rebase is required is the real value in this requirement.\n\nThis will save both execution cycles AND save the VPP developer\u0027s time.",
+      "parentUuid": "d85b6568_56a5b72d",
       "range": {
         "startLine": 41,
         "startChar": 3,
@@ -355,6 +427,30 @@
     },
     {
       "key": {
+        "uuid": "c585ff0e_7640b5f1",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-03-28T12:29:36Z",
+      "side": 1,
+      "message": "What I missed here is a step prior to this one which creates a new CSIT oper branch with the CSIT patch that supports the new VPP-API version and no longer supports the previous version.\n\nDetection of the need to rebase CSIT patches is another step that is missing.  This would need to happen when the VPP_STABLE_VER_* files point to the VPP patch which introduced the VPP-API version change or later.\n\nPerhaps the stable VPP version files need to include the VPP-API version (or patch id) as well.",
+      "parentUuid": "b2093d02_8b00223f",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "17b5b60c_70a6ad46",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
@@ -366,6 +462,30 @@
       "writtenOn": "2019-03-18T07:56:16Z",
       "side": 1,
       "message": "PAPI",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 4
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f25c186_ba2f4070",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-03-28T12:29:36Z",
+      "side": 1,
+      "message": "Ack.",
+      "parentUuid": "17b5b60c_70a6ad46",
       "range": {
         "startLine": 50,
         "startChar": 0,
@@ -412,6 +532,30 @@
       "writtenOn": "2019-03-19T16:15:23Z",
       "side": 1,
       "message": "We still need periodic oper branch creation, to push new CSIT tests to run in vpp-csit-* jobs. Or?",
+      "parentUuid": "b483e3ea_08877fef",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 66
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a5970f1_20f1374b",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-03-28T12:29:36Z",
+      "side": 1,
+      "message": "I like the idea of going to an event driven trigger to create new oper branches.  In addition to VPE-API version, there also needs to be a \"CSIT patch has been merged\" event.  The latter happens almost daily which is why we instituted a periodic oper branch creation process.\n\nAddressing your Caveat -- originally the VPP repo contained \"STABLE_CSIT_VERSION\" files which contained git id\u0027s of the latest CSIT oper branch.  Unfortunately the VPP Committers did not like having CSIT meta-data files in the repo and removed them.",
       "parentUuid": "b483e3ea_08877fef",
       "range": {
         "startLine": 55,
@@ -483,6 +627,30 @@
       "writtenOn": "2019-03-19T06:33:48Z",
       "side": 1,
       "message": "I do not think it is impossible to have backward compatible API. Lots of software I am using every day has backwards API so why VPP not?\n\nIf there is is ongoing refactor fine. But long term there must be stable MODELED API otherwise VPP will fail on market! Nobody will deploy software that is changing frequently!",
+      "parentUuid": "81dee24c_466b42fd",
+      "range": {
+        "startLine": 62,
+        "startChar": 40,
+        "endLine": 62,
+        "endChar": 50
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8989330_12d748b5",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-03-28T12:29:36Z",
+      "side": 1,
+      "message": "Good point.  I will modify this to \"Changed\" and remove backwards compatibility checking from the requirements.",
       "parentUuid": "81dee24c_466b42fd",
       "range": {
         "startLine": 62,
@@ -662,6 +830,30 @@
     },
     {
       "key": {
+        "uuid": "5093abc7_8b89be19",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-03-28T12:29:36Z",
+      "side": 1,
+      "message": "Good point.  I will modify this to \"Changed\" and remove backwards compatibility checking from the requirements.",
+      "parentUuid": "c52690a5_7e43e1bd",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 73
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6d2f8016_6449e6cc",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 1
@@ -673,6 +865,30 @@
       "writtenOn": "2019-03-18T14:47:08Z",
       "side": 1,
       "message": "+1 on comparing PAPI_SIGNATURE, as opposed to just running tests. Even if the API change does not touch parts used by current CSIT, there may be open CSIT Changes which need to be updated.",
+      "range": {
+        "startLine": 68,
+        "startChar": 3,
+        "endLine": 68,
+        "endChar": 17
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0099f8a_ec5cf2d1",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-03-28T12:29:36Z",
+      "side": 1,
+      "message": "Exactly.  Concise communication should help improve the process immensely from a VPP development POV in addition to rebasing \u0026 reverifying with the updated CSIT test code.",
+      "parentUuid": "6d2f8016_6449e6cc",
       "range": {
         "startLine": 68,
         "startChar": 3,
@@ -720,6 +936,30 @@
       "side": 1,
       "message": "vppapigen only processes one API file at the time. Each JSON file, contains both a CRC per message, and a per-file CRC. If CSIT stores the CRC per-file (it uses) for the last run, and compare that with the CRC (vl_api_version in JSON)...\nWe could implement this with a helper PAPI. That would return you a dictionary of plugins / api files and corresponding version.",
       "parentUuid": "c991817f_517470a8",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 26
+      },
+      "revId": "b05ab8324e0bd234c2f9d2578ce4e41cba0dfa81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b0bd5b3_f202939a",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-03-28T12:29:36Z",
+      "side": 1,
+      "message": "Ole, that would be helpful.",
+      "parentUuid": "ae15ff46_eaae844b",
       "range": {
         "startLine": 73,
         "startChar": 0,
