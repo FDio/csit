@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "66b5aef6_ecb7c238",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-28T13:02:58Z",
+      "side": 1,
+      "message": "Consider moving to a general-purpose library.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 37
+      },
+      "revId": "4d7b9a69af1db0555e756901015cc9f593c279ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b871e2c6_561985d8",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-28T13:02:58Z",
+      "side": 1,
+      "message": "Prefer using \"get_replies()\"",
+      "range": {
+        "startLine": 132,
+        "startChar": 39,
+        "endLine": 132,
+        "endChar": 58
+      },
+      "revId": "4d7b9a69af1db0555e756901015cc9f593c279ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f466c73_8cdafb03",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-28T13:02:58Z",
+      "side": 1,
+      "message": "push_dot1q \u003d bool(push_dot1q)",
+      "range": {
+        "startLine": 434,
+        "startChar": 8,
+        "endLine": 434,
+        "endChar": 43
+      },
+      "revId": "4d7b9a69af1db0555e756901015cc9f593c279ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "16780edf_efbb4fbb",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-03-28T13:02:58Z",
+      "side": 1,
+      "message": "reply_value[a_k] \u003d binascii.unhexlify(a_v) if isinstance(a_v, unicode) else a_v",
+      "range": {
+        "startLine": 460,
+        "startChar": 16,
+        "endLine": 462,
+        "endChar": 40
+      },
+      "revId": "4d7b9a69af1db0555e756901015cc9f593c279ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
