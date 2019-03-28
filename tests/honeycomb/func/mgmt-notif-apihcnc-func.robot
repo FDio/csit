@@ -15,8 +15,13 @@
 # Interfaces to run tests on.
 | ${interface}= | ${node['interfaces']['port1']['name']}
 | ${tap_interface}= | tap_test
-| &{tap_settings}= | tap-name=tap_test | mac=08:00:27:c0:5d:37
-| ... | device-instance=${1}
+| ${tap_interface_vpp}= | tap0
+| &{tap_settings}= | host-interface-name=tap_test | mac=08:00:27:c0:5d:37
+| ... | id=${1}
+| &{tap_settings_oper}= | host-interface-name=tap_test | device-name=tap0
+| ... | mac=08:00:27:c0:5d:37 | rx_ring_sz=${256} | tx_ring_sz=${256} | id=${1}
+| &{tap_settings_vat}= | dev_name=tap0 | mac=08:00:27:c0:5d:37
+| ... | rx_ring_sz=${256} | tx_ring_sz=${256} | id=${1}
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
@@ -52,9 +57,9 @@
 | | ... | when an interface is deleted.
 | | ...
 | | Given TAP Operational Data From Honeycomb Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings}
+| | ... | ${node} | ${tap_interface} | ${tap_settings_oper}
 | | And TAP Operational Data From VAT Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings}
+| | ... | ${node} | ${tap_interface_vpp} | ${tap_settings_vat}
 | | And Notification listener should be established | ${node}
 | | When Honeycomb removes TAP interface | ${node} | ${tap_interface}
 | | Then Honeycomb should send interface deleted notification | ${tap_interface}

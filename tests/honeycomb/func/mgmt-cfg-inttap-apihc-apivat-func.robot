@@ -15,11 +15,22 @@
 # Interfaces to run tests on.
 | ${interface}= | ${node['interfaces']['port1']['name']}
 | ${tap_interface}= | tap_test
+| ${tap_device_name}= | tap0
 # Configuration which will be set and verified during tests.
-| &{tap_settings}= | tap-name=tap_test | mac=08:00:27:c0:5d:37
-| ... | device-instance=${1}
-| &{tap_settings2}= | tap-name=tap_test | mac=08:00:27:60:26:ab
-| ... | device-instance=${2}
+| &{tap_settings}= | host-interface-name=tap_test | mac=08:00:27:c0:5d:37
+| ... | id=${1}
+| &{tap_settings_oper}= | device-name=tap0 | tx-ring-size=${256}
+| ... | rx-ring-size=${256} | host-interface-name=tap_test
+| ... | mac=08:00:27:c0:5d:37 | id=${1}
+| &{tap_settings_vat}= | dev_name=tap0 | mac=08:00:27:c0:5d:37
+| ... | rx_ring_sz=${256} | tx_ring_sz=${256} | id=${1}
+| &{tap_settings2}= | host-interface-name=tap_test | mac=08:00:27:60:26:ab
+| ... | id=${2}
+| &{tap_settings2_oper}= | device-name=tap0 | tx-ring-size=${256}
+| ... | rx-ring-size=${256} | host-interface-name=tap_test
+| ... | mac=08:00:27:60:26:ab | id=${1}
+| &{tap_settings2_vat}= | dev_name=tap0 | mac=08:00:27:60:26:ab
+| ... | rx_ring_sz=${256} | tx_ring_sz=${256} | id=${1}
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
@@ -46,34 +57,34 @@
 | | When Honeycomb creates TAP interface
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 | | Then TAP Operational Data From Honeycomb Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings}
+| | ... | ${node} | ${tap_interface} | ${tap_settings_oper}
 | | And TAP Operational Data From VAT Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings}
+| | ... | ${node} | ${tap_device_name} | ${tap_settings_vat}
 
 | TC02: Honeycomb modifies existing TAP interface configuration
-| | [Documentation] | Check if Honeycomb API can re-configure and existing TAP\
+| | [Documentation] | Check if Honeycomb API can re-configure an existing TAP\
 | | ... | interface with new settings.
 | | ...
 | | Given TAP Operational Data From Honeycomb Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings}
+| | ... | ${node} | ${tap_interface} | ${tap_settings_oper}
 | | And TAP Operational Data From VAT Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings}
+| | ... | ${node} | ${tap_device_name} | ${tap_settings_vat}
 | | When Honeycomb configures TAP interface
 | | ... | ${node} | ${tap_interface} | ${tap_settings2}
 | | Then TAP Operational Data From Honeycomb Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings2}
+| | ... | ${node} | ${tap_interface} | ${tap_settings2_oper}
 | | And TAP Operational Data From VAT Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings2}
+| | ... | ${node} | ${tap_device_name} | ${tap_settings2_vat}
 
 | TC03: Honeycomb removes TAP interface
 | | [Documentation] | Check if Honeycomb API can remove TAP interface.
 | | ...
 | | Given TAP Operational Data From Honeycomb Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings2}
+| | ... | ${node} | ${tap_interface} | ${tap_settings2_oper}
 | | And TAP Operational Data From VAT Should Be
-| | ... | ${node} | ${tap_interface} | ${tap_settings2}
+| | ... | ${node} | ${tap_device_name} | ${tap_settings2_vat}
 | | When Honeycomb removes TAP interface | ${node} | ${tap_interface}
 | | Then TAP Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${tap_interface}
 | | And TAP Operational Data From VAT Should Be empty
-| | ... | ${node} | ${tap_interface}
+| | ... | ${node} | ${tap_device_name}
