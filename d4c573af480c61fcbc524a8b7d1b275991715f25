@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28df34ac_d09e9d48",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-29T18:16:35Z",
+      "side": 0,
+      "message": "Leave original code for skx untouched and make your own version of case_text version. Never touch skx code!",
+      "revId": "d4c573af480c61fcbc524a8b7d1b275991715f25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}

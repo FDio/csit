@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe011c95_96dbbd0a",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-29T18:16:35Z",
+      "side": 1,
+      "message": "Do not touch skx code, create your own mapiping this is breaking original desing and will not work!!",
+      "revId": "9d1850c456aefd92839952ffc6fea6dc1354be2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5870a363_ed15b50b",
+        "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/files/csit-initialize-vfs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-29T18:16:35Z",
+      "side": 1,
+      "message": "Insource",
+      "range": {
+        "startLine": 21,
+        "startChar": 49,
+        "endLine": 21,
+        "endChar": 50
+      },
+      "revId": "9d1850c456aefd92839952ffc6fea6dc1354be2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad7b987d_910b070b",
+        "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-29T18:16:35Z",
+      "side": 1,
+      "message": "Make it one rule, this is not readable",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 6
+      },
+      "revId": "9d1850c456aefd92839952ffc6fea6dc1354be2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2128ed78_9d855b14",
+        "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-03-29T18:16:35Z",
+      "side": 1,
+      "message": "Make it one rule, this is not readable",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 6
+      },
+      "revId": "9d1850c456aefd92839952ffc6fea6dc1354be2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
