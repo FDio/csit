@@ -858,6 +858,45 @@ def table_performance_trending_dashboard_html(table, input_data):
         return
 
 
+def table_last_failed_tests(table, input_data):
+    """Generate the table(s) with algorithm: table_last_failed_tests
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
+    data = input_data.filter_data(table, continue_on_error=True)
+
+    tbl_list = list()
+    for job, builds in table["data"].items():
+        for build in builds:
+            build = str(build)
+            tbl_list.append(input_data.metadata(job, build).get("version", ""))
+            for tst_name, tst_data in data[job][build].iteritems():
+                if tst_data["status"] != "FAIL":
+                    continue
+                groups = re.search(REGEX_NIC, tst_data["parent"])
+                if not groups:
+                    continue
+                nic = groups.group(0)
+                tbl_list.append("{0}-{1}".format(nic, tst_data["name"]))
+
+    file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
+    logging.info("    Writing file: '{0}'".format(file_name))
+    with open(file_name, "w") as file_handler:
+        for test in tbl_list:
+            file_handler.write(test + '\n')
+
+
 def table_failed_tests(table, input_data):
     """Generate the table(s) with algorithm: table_failed_tests
     specified in the specification file.
