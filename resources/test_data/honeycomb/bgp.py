@@ -105,7 +105,6 @@ route_data_ipv4 = {
         "path-id": route_id_ipv4,
         "prefix": route_address_ipv4,
         "attributes": {
-            "as-path": {},
             "origin": {
                 "value": "igp"
             },
@@ -126,7 +125,6 @@ route_data_ipv4_update = {
         "path-id": route_id_ipv4,
         "prefix": route_address_ipv4,
         "attributes": {
-            "as-path": {},
             "origin": {
                 "value": "egp"
             },
@@ -149,7 +147,6 @@ route_data_ipv4_2 = {
         "path-id": route_id_ipv4_2,
         "prefix": route_address_ipv4_2,
         "attributes": {
-            "as-path": {},
             "origin": {
                 "value": "igp"
             },
@@ -172,7 +169,6 @@ route_data_ipv6 = {
         "path-id": route_id_ipv6,
         "prefix": route_address_ipv6,
         "attributes": {
-            "as-path": {},
             "origin": {
                 "value": "igp"
             },
@@ -271,7 +267,6 @@ dut1_route = {
         "path-id": dut1_route_id,
         "prefix": dut1_route_address,
         "attributes": {
-            "as-path": {},
             "origin": {
                 "value": "igp"
             },
@@ -313,7 +308,6 @@ dut1_route_ip6 = {
         "path-id": dut1_route_ip6_id,
         "prefix": dut1_route_ip6_prefix,
         "attributes": {
-            "as-path": {},
             "origin": {
                 "value": "igp"
             },
