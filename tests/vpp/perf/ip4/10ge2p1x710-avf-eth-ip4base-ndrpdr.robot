@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,15 +19,12 @@
 | ...
 | Suite Setup | Run Keywords
 | ... | Set up SRIOV 3-node performance topology with DUT's NIC model
-| ... | L3 | Intel-X710 | AVF
+| ... | L3 | ${nic_name} | AVF
 | ... | AND | Set up performance test suite with AVF driver
-| ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| ...
-| Test Teardown | Tear down performance discovery test | ${min_rate}pps
-| ... | ${framesize} | ${traffic_profile}
+| Test Teardown | Tear down performance test
 | ...
 | Test Template | Local template
 | ...
@@ -38,9 +35,9 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv4\
 | ... | routing and two static IPv4 /24 route entries. DUT1 and DUT2 tested\
-| ... | with 2p10GE NIC X710 by Intel with VF enabled.
+| ... | with ${nic_name} with VF enabled.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
-| ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop\
+| ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
 | ... | of packets transmitted. NDR and PDR are discovered for different\
 | ... | Ethernet L2 frame sizes using MLRsearch library.\
@@ -52,8 +49,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-# X710-DA2 bandwidth limit
-| ${s_limit}= | ${10000000000}
+| ${nic_name}= | Intel-X710
+| ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
 
@@ -62,62 +59,59 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
-| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.
+| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
 | | ... | *Arguments:*
-| | ... | - framesize - Framesize in Bytes in integer or string (IMIX_v4_1).
+| | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
+| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | Set Test Variable | ${framesize}
-| | Set Test Variable | ${min_rate} | ${10000}
+| | Set Test Variable | \${frame_size}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add DPDK no PCI to all DUTs
-| | ${max_rate} | ${jumbo} = | Get Max Rate And Jumbo
-| | ... | ${s_limit} | ${framesize}
+| | Set Max Rate And Jumbo
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize AVF interfaces
 | | When Initialize IPv4 forwarding in circular topology
 | | Then Find NDR and PDR intervals using optimized search
-| | ... | ${framesize} | ${traffic_profile} | ${min_rate} | ${max_rate}
 
 *** Test Cases ***
 | tc01-64B-1c-avf-eth-ip4base-ndrpdr
 | | [Tags] | 64B | 1C
-| | framesize=${64} | phy_cores=${1}
+| | frame_size=${64} | phy_cores=${1}
 
 | tc02-64B-2c-avf-eth-ip4base-ndrpdr
 | | [Tags] | 64B | 2C
-| | framesize=${64} | phy_cores=${2}
+| | frame_size=${64} | phy_cores=${2}
 
 | tc03-64B-4c-avf-eth-ip4base-ndrpdr
 | | [Tags] | 64B | 4C
-| | framesize=${64} | phy_cores=${4}
+| | frame_size=${64} | phy_cores=${4}
 
 | tc04-1518B-1c-avf-eth-ip4base-ndrpdr
 | | [Tags] | 1518B | 1C
-| | framesize=${1518} | phy_cores=${1}
+| | frame_size=${1518} | phy_cores=${1}
 
 | tc05-1518B-2c-avf-eth-ip4base-ndrpdr
 | | [Tags] | 1518B | 2C
-| | framesize=${1518} | phy_cores=${2}
+| | frame_size=${1518} | phy_cores=${2}
 
 | tc06-1518B-4c-avf-eth-ip4base-ndrpdr
 | | [Tags] | 1518B | 4C
-| | framesize=${1518} | phy_cores=${4}
+| | frame_size=${1518} | phy_cores=${4}
 
 | tc10-IMIX-1c-avf-eth-ip4base-ndrpdr
 | | [Tags] | IMIX | 1C
-| | framesize=IMIX_v4_1 | phy_cores=${1}
+| | frame_size=IMIX_v4_1 | phy_cores=${1}
 
 | tc11-IMIX-2c-avf-eth-ip4base-ndrpdr
 | | [Tags] | IMIX | 2C
-| | framesize=IMIX_v4_1 | phy_cores=${2}
+| | frame_size=IMIX_v4_1 | phy_cores=${2}
 
 | tc12-IMIX-4c-avf-eth-ip4base-ndrpdr
 | | [Tags] | IMIX | 4C
-| | framesize=IMIX_v4_1 | phy_cores=${4}
+| | frame_size=IMIX_v4_1 | phy_cores=${4}
