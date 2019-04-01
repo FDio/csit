@@ -119,10 +119,16 @@
         type: "failed-tests"
         way: "jenkins"
         include:
-        - "failed-tests-3n-hsw"
-        - "failed-tests-3n-skx"
-        - "failed-tests-2n-skx"
-        url: "https://docs.fd.io/csit/master/trending/trending"
+        - "last-failed-tests-3n-hsw"
+        - "last-failed-tests-3n-skx"
+        - "last-failed-tests-2n-skx"
+        - "last-failed-tests-nf-2n-skx"
+        urls:
+          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master"
+          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-skx"
+          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-skx"
+          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-master-2n-skx"
+        url-details: "https://docs.fd.io/csit/master/trending/introduction/failures.html"
 
     configurations:
       # Configuration of the email notifications.
@@ -148,19 +154,49 @@
 
   data-sets:
 
+    # Compressed failed tests (last builds)
+    table-last-failed-tests-3n-hsw:
+      csit-vpp-perf-mrr-daily-master:
+        - "lastCompletedBuild"
+    table-last-failed-tests-3n-skx:
+      csit-vpp-perf-mrr-daily-master-3n-skx:
+        - "lastCompletedBuild"
+    table-last-failed-tests-2n-skx:
+      csit-vpp-perf-mrr-daily-master-2n-skx:
+        - "lastCompletedBuild"
+    table-last-failed-tests-nf-2n-skx:
+      csit-vpp-perf-mrr-weekly-master-2n-skx:
+        - "lastCompletedBuild"
+
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 482
+        start: 550 # 487
         end: "lastCompletedBuild"
+        skip:
+          - 593
+          - 595
+          - 608
+          - 613
+          - 614
+          - 616
+          - 617
       csit-dpdk-perf-mrr-weekly-master:
         start: 55
         end: "lastCompletedBuild"
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 482
+        start: 550 # 487
         end: "lastCompletedBuild"
+        skip:
+          - 593
+          - 595
+          - 608
+          - 613
+          - 614
+          - 616
+          - 617
 
     plot-performance-trending-dpdk-3n-hsw:
       csit-dpdk-perf-mrr-weekly-master:
@@ -170,7 +206,7 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 232
+        start: 350 #237
         end: "lastCompletedBuild"
         skip:
           - 356
@@ -203,7 +239,7 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 232
+        start: 350 #237
         end: "lastCompletedBuild"
         skip:
           - 356
@@ -228,6 +264,7 @@
           - 376
           - 377
           - 378
+
     plot-performance-trending-dpdk-3n-skx:
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 20
@@ -238,16 +275,48 @@
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 232
+        start: 350 #237
         end: "lastCompletedBuild"
+        skip:
+          - 347
+          - 358
+          - 359
+          - 360
+          - 361
+          - 362
+          - 363
+          - 364
+          - 365
+          - 366
+          - 367
+          - 368
+          - 375
+          - 380
+          - 381
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 20
         end: "lastCompletedBuild"
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 232
+        start: 350 #237
         end: "lastCompletedBuild"
+        skip:
+          - 347
+          - 358
+          - 359
+          - 360
+          - 361
+          - 362
+          - 363
+          - 364
+          - 365
+          - 366
+          - 367
+          - 368
+          - 375
+          - 380
+          - 381
 
     plot-performance-trending-dpdk-2n-skx:
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
@@ -352,15 +421,23 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 482
+      start: 550 # 487
       end: "lastCompletedBuild"
+      skip:
+        - 593
+        - 595
+        - 608
+        - 613
+        - 614
+        - 616
+        - 617
     csit-dpdk-perf-mrr-weekly-master:
       start: 55
       end: "lastCompletedBuild"
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 232
+      start: 350 #237
       end: "lastCompletedBuild"
       skip:
         - 356
@@ -393,8 +470,24 @@
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
-      start: 232
+      start: 350 #237
       end: "lastCompletedBuild"
+      skip:
+        - 347
+        - 358
+        - 359
+        - 360
+        - 361
+        - 362
+        - 363
+        - 364
+        - 365
+        - 366
+        - 367
+        - 368
+        - 375
+        - 380
+        - 381
     csit-vpp-perf-mrr-weekly-master-2n-skx:
       start: 1
       end: "lastCompletedBuild"
@@ -418,6 +511,60 @@
 ################################################################################
 
 ################################################################################
+
+# Compressed failed tests (last build)
+-
+  type: "table"
+  title: "Last failed tests (last builds) 3n-hsw"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-hsw"
+  data: "table-last-failed-tests-3n-hsw"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
+-
+  type: "table"
+  title: "Last failed tests (last builds) 3n-skx"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-skx"
+  data: "table-last-failed-tests-3n-skx"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
+-
+  type: "table"
+  title: "Last failed tests (last builds) 2n-skx"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-skx"
+  data: "table-last-failed-tests-2n-skx"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
+-
+  type: "table"
+  title: "Last failed tests (last builds) NF 2n-skx"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-nf-2n-skx"
+  data: "table-last-failed-tests-nf-2n-skx"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
 # 3n-hsw
 -
   type: "table"
