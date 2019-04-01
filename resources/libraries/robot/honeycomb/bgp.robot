@@ -48,7 +48,7 @@
 | | [Arguments] | ${node}
 | | ...
 | | ${oper_data}= | Get Full BGP Configuration | ${node}
-| | Should be Empty | ${oper_data['bgp-openconfig-extensions:bgp']['neighbors']}
+| | Should be Empty | ${oper_data['bgp-openconfig-extensions:bgp']}
 
 | Honeycomb adds BGP peer
 | | [Documentation] | Uses Honeycomb API to add a BGP peer.
