@@ -154,6 +154,10 @@ Scaling Tags
 
     IPSec in tunnel mode - 1000 tunnels.
 
+.. topic:: SRC_USER_1
+
+    Traffic flow with 1 unique IP (users) in one direction.
+
 .. topic:: SRC_USER_10
 
     Traffic flow with 10 unique IPs (users) in one direction.
@@ -456,6 +460,18 @@ Encapsulation Tags
 
     All test cases with Segment routing over IPv6 dataplane.
 
+.. topic:: SRv6_1SID
+
+    All SRv6 test cases with single SID.
+
+.. topic:: SRv6_2SID_DECAP
+
+    All SRv6 test cases with two SIDs and with decapsulation.
+
+.. topic:: SRv6_2SID_NODECAP
+
+    All SRv6 test cases with two SIDs and without decapsulation.
+
 Interface Tags
 --------------
 
@@ -626,6 +642,18 @@ Encryption Tags
 .. topic:: IPSECTUN
 
     IPSec in tunnel mode.
+
+.. topic:: IPSECINT
+
+    IPSec in interface mode.
+
+.. topic:: AES_GCM
+
+    IPSec using AES GCM algorithms.
+
+.. topic:: CBC_SHA1
+
+    IPSec using CBC SHA1 algorithms.
 
 Client-Workload Tags
 --------------------
