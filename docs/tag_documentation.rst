@@ -154,6 +154,10 @@ Scaling Tags
 
     IPSec in tunnel mode - 1000 tunnels.
 
+.. topic:: SRC_USER_1
+
+    Traffic flow with 1 unique IP (users) in one direction.
+
 .. topic:: SRC_USER_10
 
     Traffic flow with 10 unique IPs (users) in one direction.
@@ -626,6 +630,10 @@ Encryption Tags
 .. topic:: IPSECTUN
 
     IPSec in tunnel mode.
+
+.. topic:: IPSECINT
+
+    IPSec in interface mode.
 
 Client-Workload Tags
 --------------------
