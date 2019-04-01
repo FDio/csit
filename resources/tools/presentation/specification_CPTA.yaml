@@ -151,7 +151,7 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 482
+        start: 600  # 482
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master:
         start: 55
@@ -159,7 +159,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 482
+        start: 600  # 482
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-3n-hsw:
@@ -170,7 +170,7 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 232
+        start: 350  # 232
         end: "lastCompletedBuild"
         skip:
           - 356
@@ -203,7 +203,7 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 232
+        start: 350  # 232
         end: "lastCompletedBuild"
         skip:
           - 356
@@ -238,7 +238,7 @@
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 232
+        start: 350  # 232
         end: "lastCompletedBuild"
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 20
@@ -246,7 +246,7 @@
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 232
+        start: 350  # 232
         end: "lastCompletedBuild"
 
     plot-performance-trending-dpdk-2n-skx:
@@ -352,7 +352,7 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 482
+      start: 600  # 482
       end: "lastCompletedBuild"
     csit-dpdk-perf-mrr-weekly-master:
       start: 55
@@ -360,7 +360,7 @@
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 232
+      start: 350  # 232
       end: "lastCompletedBuild"
       skip:
         - 356
@@ -393,7 +393,7 @@
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
-      start: 232
+      start: 350  # 232
       end: "lastCompletedBuild"
     csit-vpp-perf-mrr-weekly-master-2n-skx:
       start: 1
