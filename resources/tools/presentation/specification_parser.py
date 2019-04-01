@@ -434,6 +434,13 @@ class Specification(object):
                         builds = [x for x in range(builds["start"], build_end+1)
                                   if x not in builds.get("skip", list())]
                         self.configuration["data-sets"][set_name][job] = builds
+                    elif isinstance(builds, list):
+                        for idx, item in enumerate(builds):
+                            try:
+                                builds[idx] = int(item)
+                            except ValueError:
+                                # defined as a range <build_type>
+                                builds[idx] = self._get_build_number(job, item)
 
         # Data sets: add sub-sets to sets (only one level):
         for set_name, data_set in self.configuration["data-sets"].items():
