@@ -13,10 +13,12 @@
 
 import smtplib
 import logging
+import csv
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from os.path import isdir
+from collections import OrderedDict
 
 from utils import execute_command
 from errors import PresentationError
@@ -151,7 +153,9 @@ class Alerting(object):
                                  text=text,
                                  html=html)
             elif alert_data["way"] == "jenkins":
-                self._generate_files_for_jenkins(alert_data)
+                # TODO: Remove when not needed
+                # self._generate_files_for_jenkins(alert_data)
+                self._generate_email_body(alert_data)
             else:
                 raise AlertingError("Alert with way '{0}' is not implemented.".
                                     format(alert_data["way"]))
@@ -242,8 +246,161 @@ class Alerting(object):
                                 format(alert["type"]))
         return text, html
 
+    def _get_compressed_failed_tests(self, alert, test_set, sort=True):
+        """Return the dictionary with compressed faild tests. The compression is
+        done by grouping the tests from the same area but with different NICs,
+        frame sizes and number of processor cores.
+
+        For example, the failed tests:
+          10ge2p1x520-64b-1c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+          10ge2p1x520-64b-2c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+          10ge2p1x520-64b-4c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+          10ge2p1x520-imix-1c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+          10ge2p1x520-imix-2c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+          10ge2p1x520-imix-4c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+
+        will be represented as:
+          ethip4udp-ip4scale4000-udpsrcscale15-nat44 \
+          (10ge2p1x520, 64b, imix, 1c, 2c, 4c)
+
+        Structure of returned data:
+
+        {
+            "trimmed_TC_name_1": {
+                "nics": [],
+                "framesizes": [],
+                "cores": []
+            }
+            ...
+            "trimmed_TC_name_N": {
+                "nics": [],
+                "framesizes": [],
+                "cores": []
+            }
+        }
+
+        :param alert: Files are created for this alert.
+        :param test_set: Specifies which set of tests will be included in the
+            result. Its name is the same as the name of file with failed tests.
+        :param sort: If True, the failed tests are sorted alphabetically.
+        :type alert: dict
+        :type test_set: str
+        :type sort: bool
+        :returns: Compressed failed tests.
+        :rtype: OrderedDict
+        """
+
+        directory = self.configs[alert["way"]]["output-dir"]
+        failed_tests = OrderedDict()
+        version = ""
+        with open("{0}/{1}.txt".format(directory, test_set), 'r') as txt_file:
+            for idx, line in enumerate(txt_file):
+                if idx == 0:
+                    build = line[:-1]
+                    continue
+                if idx == 1:
+                    version = line[:-1]
+                    continue
+                try:
+                    test = line[:-1].split('-')
+                    nic = test[0]
+                    framesize = test[1]
+                    cores = test[2]
+                    name = '-'.join(test[3:-1])
+                except IndexError:
+                    continue
+                if failed_tests.get(name, None) is None:
+                    failed_tests[name] = dict(nics=list(),
+                                              framesizes=list(),
+                                              cores=list())
+                if not nic in failed_tests[name]["nics"]:
+                    failed_tests[name]["nics"].append(nic)
+                if not framesize in failed_tests[name]["framesizes"]:
+                    failed_tests[name]["framesizes"].append(framesize)
+                if not cores in failed_tests[name]["cores"]:
+                    failed_tests[name]["cores"].append(cores)
+        if sort:
+            sorted_failed_tests = OrderedDict()
+            keys = [k for k in failed_tests.keys()]
+            keys.sort()
+            for key in keys:
+                sorted_failed_tests[key] = failed_tests[key]
+            return build, version, idx, sorted_failed_tests
+        else:
+            return build, version, idx, failed_tests
+
+    def _generate_email_body(self, alert):
+        """Create the file which is used in the generated alert.
+
+        :param alert: Files are created for this alert.
+        :type alert: dict
+        """
+
+        if alert["type"] != "failed-tests":
+            raise AlertingError("Alert of type '{0}' is not implemented.".
+                                format(alert["type"]))
+
+        config = self.configs[alert["way"]]
+
+        text = ""
+        for idx, test_set in enumerate(alert.get("include", [])):
+            build, version, nr, failed_tests = \
+                self._get_compressed_failed_tests(alert, test_set)
+            text += ("\n\n{topo}-{arch}, "
+                     "{nr} tests failed, "
+                     "CSIT build: {link}/{build}, "
+                     "VPP version: {version}\n\n".
+                     format(topo=test_set.split('-')[-2],
+                            arch=test_set.split('-')[-1],
+                            nr=nr,
+                            link=alert["urls"][idx],
+                            build=build,
+                            version=version))
+            max_len_name = 0
+            max_len_nics = 0
+            max_len_framesizes = 0
+            max_len_cores = 0
+            for name, params in failed_tests.items():
+                failed_tests[name]["nics"] = ",".join(params["nics"])
+                failed_tests[name]["framesizes"] = \
+                    ",".join(params["framesizes"])
+                failed_tests[name]["cores"] = ",".join(params["cores"])
+                if len(name) > max_len_name:
+                    max_len_name = len(name)
+                if len(failed_tests[name]["nics"]) > max_len_nics:
+                    max_len_nics = len(failed_tests[name]["nics"])
+                if len(failed_tests[name]["framesizes"]) > max_len_framesizes:
+                    max_len_framesizes = len(failed_tests[name]["framesizes"])
+                if len(failed_tests[name]["cores"]) > max_len_cores:
+                    max_len_cores = len(failed_tests[name]["cores"])
+
+            for name, params in failed_tests.items():
+                text += "{name}  {nics}  {frames}  {cores}\n".format(
+                    name=name + " " * (max_len_name - len(name)),
+                    nics=params["nics"] +
+                        " " * (max_len_nics - len(params["nics"])),
+                    frames=params["framesizes"] + " " *
+                        (max_len_framesizes - len(params["framesizes"])),
+                    cores=params["cores"] +
+                        " " * (max_len_cores - len(params["cores"])))
+
+        text += "\nFor detailed information visit: {url}\n".\
+            format(url=alert["url-details"])
+        file_name = "{0}/compressed-{1}".format(config["output-dir"],
+                                                config["output-file"])
+        logging.info("Writing the file '{0}.txt' ...".format(file_name))
+
+        try:
+            with open("{0}.txt".format(file_name), 'w') as txt_file:
+                txt_file.write(text)
+        except IOError:
+            logging.error("Not possible to write the file '{0}.txt'.".
+                          format(file_name))
+
     def _generate_files_for_jenkins(self, alert):
         """Create the file which is used in the generated alert.
+
+        # TODO: Remove when not needed.
 
         :param alert: Files are created for this alert.
         :type alert: dict
