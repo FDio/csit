@@ -17,6 +17,7 @@ import logging
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from os.path import isdir
+from collections import OrderedDict
 
 from utils import execute_command
 from errors import PresentationError
@@ -151,6 +152,8 @@ class Alerting(object):
                                  text=text,
                                  html=html)
             elif alert_data["way"] == "jenkins":
+                self._generate_email_body(alert_data)
+                # TODO: Remove when not needed
                 self._generate_files_for_jenkins(alert_data)
             else:
                 raise AlertingError("Alert with way '{0}' is not implemented.".
@@ -203,47 +206,168 @@ class Alerting(object):
             if smtp_server:
                 smtp_server.quit()
 
-    def _create_alert_message(self, alert):
-        """Create the message which is used in the generated alert.
+    def _get_compressed_failed_tests(self, alert, test_set, sort=True):
+        """Return the dictionary with compressed faild tests. The compression is
+        done by grouping the tests from the same area but with different NICs,
+        frame sizes and number of processor cores.
 
-        :param alert: Message is created for this alert.
+        For example, the failed tests:
+          10ge2p1x520-64b-1c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+          10ge2p1x520-64b-2c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+          10ge2p1x520-64b-4c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+          10ge2p1x520-imix-1c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+          10ge2p1x520-imix-2c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+          10ge2p1x520-imix-4c-ethip4udp-ip4scale4000-udpsrcscale15-nat44-mrr
+
+        will be represented as:
+          ethip4udp-ip4scale4000-udpsrcscale15-nat44 \
+          (10ge2p1x520, 64b, imix, 1c, 2c, 4c)
+
+        Structure of returned data:
+
+        {
+            "trimmed_TC_name_1": {
+                "nics": [],
+                "framesizes": [],
+                "cores": []
+            }
+            ...
+            "trimmed_TC_name_N": {
+                "nics": [],
+                "framesizes": [],
+                "cores": []
+            }
+        }
+
+        :param alert: Files are created for this alert.
+        :param test_set: Specifies which set of tests will be included in the
+            result. Its name is the same as the name of file with failed tests.
+        :param sort: If True, the failed tests are sorted alphabetically.
         :type alert: dict
-        :returns: Message in the ASCII text and HTML format.
-        :rtype: tuple(str, str)
+        :type test_set: str
+        :type sort: bool
+        :returns: CSIT build number, VPP version, Number of failed tests,
+            Compressed failed tests.
+        :rtype: tuple(str, str, int, OrderedDict)
         """
 
-        if alert["type"] == "failed-tests":
-            text = ""
-            html = "<html><body>"
-            for item in alert["include"]:
-                file_name = "{path}/{name}".format(
-                    path=self._path_failed_tests, name=item)
-                try:
-                    with open("{0}.txt".format(file_name), 'r') as txt_file:
-                        text += "{0}:\n\n".format(
-                            item.replace("failed-tests-", ""))
-                        text += txt_file.read() + "\n" * 2
-                except IOError:
-                    logging.error("Not possible to read the file '{0}.txt'.".
-                                  format(file_name))
-                try:
-                    with open("{0}.rst".format(file_name), 'r') as rst_file:
-                        html += "<h2>{0}:</h2>".format(
-                            item.replace("failed-tests-", ""))
-                        html += rst_file.readlines()[2].\
-                            replace("../trending", alert.get("url", ""))
-                        html += "<br>" * 3
-                except IOError:
-                    logging.error("Not possible to read the file '{0}.rst'.".
-                                  format(file_name))
-            html += "</body></html>"
+        directory = self.configs[alert["way"]]["output-dir"]
+        failed_tests = OrderedDict()
+        version = ""
+        try:
+            with open("{0}/{1}.txt".format(directory, test_set), 'r') as f_txt:
+                for idx, line in enumerate(f_txt):
+                    if idx == 0:
+                        build = line[:-1]
+                        continue
+                    if idx == 1:
+                        version = line[:-1]
+                        continue
+                    try:
+                        test = line[:-1].split('-')
+                        nic = test[0]
+                        framesize = test[1]
+                        cores = test[2]
+                        name = '-'.join(test[3:-1])
+                    except IndexError:
+                        continue
+                    if failed_tests.get(name, None) is None:
+                        failed_tests[name] = dict(nics=list(),
+                                                  framesizes=list(),
+                                                  cores=list())
+                    if nic not in failed_tests[name]["nics"]:
+                        failed_tests[name]["nics"].append(nic)
+                    if framesize not in failed_tests[name]["framesizes"]:
+                        failed_tests[name]["framesizes"].append(framesize)
+                    if cores not in failed_tests[name]["cores"]:
+                        failed_tests[name]["cores"].append(cores)
+        except IOError as err:
+            logging.error(repr(err))
+            return None, None, None, None
+        if sort:
+            sorted_failed_tests = OrderedDict()
+            keys = [k for k in failed_tests.keys()]
+            keys.sort()
+            for key in keys:
+                sorted_failed_tests[key] = failed_tests[key]
+            return build, version, idx-1, sorted_failed_tests
         else:
+            return build, version, idx-1, failed_tests
+
+    def _generate_email_body(self, alert):
+        """Create the file which is used in the generated alert.
+
+        :param alert: Files are created for this alert.
+        :type alert: dict
+        """
+
+        if alert["type"] != "failed-tests":
             raise AlertingError("Alert of type '{0}' is not implemented.".
                                 format(alert["type"]))
-        return text, html
+
+        config = self.configs[alert["way"]]
+
+        text = ""
+        for idx, test_set in enumerate(alert.get("include", [])):
+            build, version, nr, failed_tests = \
+                self._get_compressed_failed_tests(alert, test_set)
+            if build is None:
+                continue
+            text += ("\n\n{topo}-{arch}, "
+                     "{nr} tests failed, "
+                     "CSIT build: {link}/{build}, "
+                     "VPP version: {version}\n\n".
+                     format(topo=test_set.split('-')[-2],
+                            arch=test_set.split('-')[-1],
+                            nr=nr,
+                            link=alert["urls"][idx],
+                            build=build,
+                            version=version))
+            max_len_name = 0
+            max_len_nics = 0
+            max_len_framesizes = 0
+            max_len_cores = 0
+            for name, params in failed_tests.items():
+                failed_tests[name]["nics"] = ",".join(sorted(params["nics"]))
+                failed_tests[name]["framesizes"] = \
+                    ",".join(sorted(params["framesizes"]))
+                failed_tests[name]["cores"] = ",".join(sorted(params["cores"]))
+                if len(name) > max_len_name:
+                    max_len_name = len(name)
+                if len(failed_tests[name]["nics"]) > max_len_nics:
+                    max_len_nics = len(failed_tests[name]["nics"])
+                if len(failed_tests[name]["framesizes"]) > max_len_framesizes:
+                    max_len_framesizes = len(failed_tests[name]["framesizes"])
+                if len(failed_tests[name]["cores"]) > max_len_cores:
+                    max_len_cores = len(failed_tests[name]["cores"])
+
+            for name, params in failed_tests.items():
+                text += "{name}  {nics}  {frames}  {cores}\n".format(
+                    name=name + " " * (max_len_name - len(name)),
+                    nics=params["nics"] +
+                        " " * (max_len_nics - len(params["nics"])),
+                    frames=params["framesizes"] + " " *
+                        (max_len_framesizes - len(params["framesizes"])),
+                    cores=params["cores"] +
+                        " " * (max_len_cores - len(params["cores"])))
+
+        text += "\nFor detailed information visit: {url}\n".\
+            format(url=alert["url-details"])
+        file_name = "{0}/{1}".format(config["output-dir"],
+                                                config["output-file"])
+        logging.info("Writing the file '{0}.txt' ...".format(file_name))
+
+        try:
+            with open("{0}.txt".format(file_name), 'w') as txt_file:
+                txt_file.write(text)
+        except IOError:
+            logging.error("Not possible to write the file '{0}.txt'.".
+                          format(file_name))
 
     def _generate_files_for_jenkins(self, alert):
         """Create the file which is used in the generated alert.
+
+        # TODO: Remove when not needed.
 
         :param alert: Files are created for this alert.
         :type alert: dict
@@ -251,34 +375,12 @@ class Alerting(object):
 
         config = self.configs[alert["way"]]
 
-        if alert["type"] == "failed-tests":
-            text, html = self._create_alert_message(alert)
-            file_name = "{0}/{1}".format(config["output-dir"],
-                                         config["output-file"])
-            logging.info("Writing the file '{0}.txt' ...".format(file_name))
-            try:
-                with open("{0}.txt".format(file_name), 'w') as txt_file:
-                    txt_file.write(text)
-            except IOError:
-                logging.error("Not possible to write the file '{0}.txt'.".
-                              format(file_name))
-            logging.info("Writing the file '{0}.html' ...".format(file_name))
-            try:
-                with open("{0}.html".format(file_name), 'w') as html_file:
-                    html_file.write(html)
-            except IOError:
-                logging.error("Not possible to write the file '{0}.html'.".
-                              format(file_name))
-
-            zip_file = config.get("zip-output", None)
-            if zip_file:
-                logging.info("Writing the file '{0}/{1}' ...".
-                             format(config["output-dir"], zip_file))
-                execute_command("tar czvf {dir}/{zip} --directory={dir} "
-                                "{input}.txt {input}.html".
-                                format(dir=config["output-dir"],
-                                       zip=zip_file,
-                                       input=config["output-file"]))
-        else:
-            raise AlertingError("Alert of type '{0}' is not implemented.".
-                                format(alert["type"]))
+        zip_file = config.get("zip-output", None)
+        if zip_file:
+            logging.info("Writing the file '{0}/{1}' ...".
+                         format(config["output-dir"], zip_file))
+            execute_command("tar czvf {dir}/{zip} --directory={dir} "
+                            "{input}.txt".
+                            format(dir=config["output-dir"],
+                                   zip=zip_file,
+                                   input=config["output-file"]))
