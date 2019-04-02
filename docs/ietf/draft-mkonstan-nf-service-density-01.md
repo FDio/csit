@@ -2,7 +2,7 @@
 title: NFV Service Density Benchmarking
 # abbrev: nf-svc-density
 docname: draft-mkonstan-nf-service-density-00
-date: 2019-03-11
+date: 2019-xx-xx
 
 ipr: trust200902
 area: ops
