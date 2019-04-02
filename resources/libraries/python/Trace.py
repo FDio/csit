@@ -36,6 +36,8 @@ class Trace(object):
                 with VatTerminal(node, json_param=False) as vat:
                     vat.vat_terminal_exec_cmd_from_template(
                         'show_trace.vat', maximum=maximum)
+                    vat.vat_terminal_exec_cmd_from_template(
+                        'show_classify_tables.vat')
 
     @staticmethod
     def clear_packet_trace_on_all_duts(nodes):

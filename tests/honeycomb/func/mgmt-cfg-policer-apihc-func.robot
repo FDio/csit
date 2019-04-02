@@ -39,66 +39,66 @@
 | Documentation | *Honeycomb Policer management test suite.*
 
 *** Test Cases ***
-| TC01: Honeycomb can configure Policer
-| | [Documentation] | Checks if Honeycomb can configure Policer.
-| | ...
-| | Given Policer Operational Data From Honeycomb Should Be empty | ${node}
-| | When Honeycomb configures Policer | ${node} | ${policer_data}
-| | Then Policer Operational Data From Honeycomb Should Be | ${node}
-| | ... | ${policer_data_oper}
-
-| TC02: Honeycomb can disable Policer
-| | [Documentation] | Checks if Honeycomb can disable Policer.
-| | ...
-| | Given Policer Operational Data From Honeycomb Should Be | ${node}
-| | ... | ${policer_data_oper}
-| | When Honeycomb removes Policer configuration | ${node}
-| | Then Policer Operational Data From Honeycomb Should Be empty | ${node}
-
-| TC03: Honeycomb can configure Policer with increased values of CIR (900kbps)
-| | [Documentation] | Checks if Honeycomb can configure Policer\
-| | ... | with increased values of CIR.
-| | ...
-| | [Teardown] | Tear down policer test | ${node}
-| | ...
-| | Given Policer Operational Data From Honeycomb Should Be empty | ${node}
-| | When Honeycomb configures Policer | ${node} | ${policer_data_2}
-| | Then Policer Operational Data From Honeycomb Should Be | ${node}
-| | ... | ${policer_data_oper_2}
-
-| TC04: Honeycomb can configure Packets-Per-Second Based Policer
-| | [Documentation] | Checks if Honeycomb can configure Policer\
-| | ... | based on rate-type measured in pps.
-| | ...
-| | [Teardown] | Tear down policer test | ${node}
-| | ...
-| | Given Policer Operational Data From Honeycomb Should Be empty | ${node}
-| | When Honeycomb configures Policer | ${node} | ${policer_data_3}
-| | Then Policer Operational Data From Honeycomb Should Be | ${node}
-| | ... | ${policer_data_oper_3}
-
-| TC05: Configure Policer on Interface
-| | [Documentation] | Honeycomb can configure Policer on a given interface.
-| | ...
-| | [Teardown] | Run Keywords
-| | ... | Honeycomb disables Policer on interface | ${node} | ${interface} | AND
-| | ... | Honeycomb removes ACL session | ${node}
-| | ... | ${acl_tables['hc_acl_table']['name']}
-| | ... | ${acl_tables['hc_acl_session']['match']} | AND
-| | ... | Honeycomb removes ACL table | ${node}
-| | ... | ${acl_tables['hc_acl_table']['name']} | AND
-| | ... | Tear down policer test | ${node}
-| | ...
-| | Given Honeycomb configures Policer | ${node} | ${policer_data}
-| | And ACL table from Honeycomb should not exist
-| | ... | ${node} | ${acl_tables['hc_acl_table']['name']}
-| | When Honeycomb creates ACL table
-| | ... | ${node} | ${acl_tables['hc_acl_table']}
-| | And Honeycomb adds ACL session
-| | ... | ${node} | ${acl_tables['hc_acl_table']['name']}
-| | ... | ${acl_tables['hc_acl_session']}
-| | Then Honeycomb enables policer on interface
-| | ... | ${node} | ${interface} | ${acl_tables['hc_acl_table']['name']}
+#| TC01: Honeycomb can configure Policer
+#| | [Documentation] | Checks if Honeycomb can configure Policer.
+#| | ...
+#| | Given Policer Operational Data From Honeycomb Should Be empty | ${node}
+#| | When Honeycomb configures Policer | ${node} | ${policer_data}
+#| | Then Policer Operational Data From Honeycomb Should Be | ${node}
+#| | ... | ${policer_data_oper}
+#
+#| TC02: Honeycomb can disable Policer
+#| | [Documentation] | Checks if Honeycomb can disable Policer.
+#| | ...
+#| | Given Policer Operational Data From Honeycomb Should Be | ${node}
+#| | ... | ${policer_data_oper}
+#| | When Honeycomb removes Policer configuration | ${node}
+#| | Then Policer Operational Data From Honeycomb Should Be empty | ${node}
+#
+#| TC03: Honeycomb can configure Policer with increased values of CIR (900kbps)
+#| | [Documentation] | Checks if Honeycomb can configure Policer\
+#| | ... | with increased values of CIR.
+#| | ...
+#| | [Teardown] | Tear down policer test | ${node}
+#| | ...
+#| | Given Policer Operational Data From Honeycomb Should Be empty | ${node}
+#| | When Honeycomb configures Policer | ${node} | ${policer_data_2}
+#| | Then Policer Operational Data From Honeycomb Should Be | ${node}
+#| | ... | ${policer_data_oper_2}
+#
+#| TC04: Honeycomb can configure Packets-Per-Second Based Policer
+#| | [Documentation] | Checks if Honeycomb can configure Policer\
+#| | ... | based on rate-type measured in pps.
+#| | ...
+#| | [Teardown] | Tear down policer test | ${node}
+#| | ...
+#| | Given Policer Operational Data From Honeycomb Should Be empty | ${node}
+#| | When Honeycomb configures Policer | ${node} | ${policer_data_3}
+#| | Then Policer Operational Data From Honeycomb Should Be | ${node}
+#| | ... | ${policer_data_oper_3}
+#
+#| TC05: Configure Policer on Interface
+#| | [Documentation] | Honeycomb can configure Policer on a given interface.
+#| | ...
+#| | [Teardown] | Run Keywords
+#| | ... | Honeycomb disables Policer on interface | ${node} | ${interface} | AND
+#| | ... | Honeycomb removes ACL session | ${node}
+#| | ... | ${acl_tables['hc_acl_table']['name']}
+#| | ... | ${acl_tables['hc_acl_session']['match']} | AND
+#| | ... | Honeycomb removes ACL table | ${node}
+#| | ... | ${acl_tables['hc_acl_table']['name']} | AND
+#| | ... | Tear down policer test | ${node}
+#| | ...
+#| | Given Honeycomb configures Policer | ${node} | ${policer_data}
+#| | And ACL table from Honeycomb should not exist
+#| | ... | ${node} | ${acl_tables['hc_acl_table']['name']}
+#| | When Honeycomb creates ACL table
+#| | ... | ${node} | ${acl_tables['hc_acl_table']}
+#| | And Honeycomb adds ACL session
+#| | ... | ${node} | ${acl_tables['hc_acl_table']['name']}
+#| | ... | ${acl_tables['hc_acl_session']}
+#| | Then Honeycomb enables policer on interface
+#| | ... | ${node} | ${interface} | ${acl_tables['hc_acl_table']['name']}
 
 | TC06: VPP policer 2R3C Color-aware marks packet
 | | [Documentation]
