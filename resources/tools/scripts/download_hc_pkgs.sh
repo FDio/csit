@@ -76,9 +76,9 @@ else
     fi
 fi
 
-VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk"
-VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins"
-VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins"
+VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk vpp-api-python"
+VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-python"
+VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-python"
 # Check OS and stream to set correct packages
 if [[ "$ID" == "centos" ]]; then
     VPP_ARTIFACTS=${VPP_RPM_ARTIFACTS}
