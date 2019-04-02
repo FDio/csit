@@ -14,7 +14,7 @@
 *** Settings ***
 | Documentation | Set global variables common to all tests.
 | Resource | resources/libraries/robot/robot_enhancements.robot
-| Suite Setup | Set Common Variables
+| Suite Setup | Fail
 
 *** Keywords ***
 | Set Common Variables
