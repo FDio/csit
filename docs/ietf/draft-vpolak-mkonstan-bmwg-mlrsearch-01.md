@@ -1,8 +1,8 @@
 ---
 title: Multiple Loss Ratio Search for Packet Throughput (MLRsearch)
 # abbrev: MLRsearch
-docname: draft-vpolak-mkonstan-bmwg-mlrsearch-00
-date: 2018-11-13
+docname: draft-vpolak-mkonstan-bmwg-mlrsearch-01
+date: 2019-03-27
 
 ipr: trust200902
 area: ops
@@ -49,7 +49,7 @@ of relying on binary search with pre-set starting offered load, it
 proposes a novel approach discovering the starting point in the initial
 phase, and then searching for packet throughput based on defined packet
 loss ratio (PLR) input criteria and defined final trial duration time.
-One of the key design principles behind MLSsearch is minimizing the
+One of the key design principles behind MLRsearch is minimizing the
 total test duration and searching for multiple packet throughput rates
 (each with a corresponding PLR) concurrently, instead of doing it
 sequentially.
@@ -59,7 +59,7 @@ requirements posed by NFV (Network Function Virtualization),
 specifically software based implementations of NFV data planes. Using
 [RFC2544] in the experience of the authors yields often not repetitive
 and not replicable end results due to a large number of factors that are
-out of scope for this draft. MLRsearch aims to address this chalenge and
+out of scope for this draft. MLRsearch aims to address this challenge and
 define a common (standard?) way to evaluate NFV packet throughput
 performance that takes into account varying characteristics of NFV
 systems under test.
@@ -76,8 +76,8 @@ systems under test.
   * NDR packet rate for specific packet (frame) size, and
   * Packet (L2 frame size) size in bits plus any associated L1 overhead.
 * PLR - Packet Loss Ratio, a packet loss metric calculated as a ratio of
- (packets_transmitted - packets_received) to packets_transmitted, over
- the test trial duration.
+  (packets_transmitted - packets_received) to packets_transmitted, over
+  the test trial duration.
 * PDR - Partial-Drop Rate, a packet throughput metric with Packet Loss
   Ratio greater than zero (a non-zero packet loss), expressed in
   packets-per-second (pps). PDR packet throughput has an associated
@@ -122,10 +122,10 @@ The main properties of MLRsearch:
   * Intermediate phases progress towards defined final search criteria.
   * Final phase executes measurements according to the final search
     criteria.
-* **Initial phase**:
+* Initial phase:
   * Uses link rate as a starting transmit rate and discovers the Maximum
     Receive Rate (MRR) used as an input to the first intermediate phase.
-* **Intermediate phases**:
+* Intermediate phases:
   * Start with initial trial duration (in the first phase) and converge
     geometrically towards the final trial duration (in the final phase).
   * Track two values for NDR and two for PDR.
@@ -146,12 +146,14 @@ The main properties of MLRsearch:
     * External search - measures at transmit rates outside the (lower_bound,
       upper_bound) interval. Activated when a bound is invalid,
       to search for a new valid bound by doubling the interval width.
-      It is a variant of `exponential search`_.
-    * Internal search - `binary search`_, measures at transmit rates within the
+      It is a variant of "exponential search".
+    * Internal search - "binary search", measures at transmit rates within the
       (lower_bound, upper_bound) valid interval, halving the interval width.
-* **Final phase** is executed with the final test trial duration, and the final
-  width goal that determines resolution of the overall search.
-  Intermediate phases together with the final phase are called non-initial phases.
+* Final phase
+  * Executed with the final test trial duration, and the final width
+    goal that determines resolution of the overall search.
+* Intermediate phases together with the final phase are called
+  non-initial phases.
 
 The main benefits of MLRsearch vs. binary search include:
 
@@ -205,64 +207,64 @@ Continuous Integration / Continuous Development (CI/CD) framework.
 ## Initial phase
 
 1. First trial measures at maximum rate and discovers MRR.
-   a. *in*: trial_duration = initial_trial_duration.
-   b. *in*: offered_transmit_rate = maximum_transmit_rate.
-   c. *do*: single trial.
-   d. *out*: measured loss ratio.
-   e. *out*: mrr = measured receive rate.
+   * *in*: trial_duration = initial_trial_duration.
+   * *in*: offered_transmit_rate = maximum_transmit_rate.
+   * *do*: single trial.
+   * *out*: measured loss ratio.
+   * *out*: mrr = measured receive rate.
 2. Second trial measures at MRR and discovers MRR2.
-   a. *in*: trial_duration = initial_trial_duration.
-   b. *in*: offered_transmit_rate = MRR.
-   c. *do*: single trial.
-   d. *out*: measured loss ratio.
-   e. *out*: mrr2 = measured receive rate.
+   * *in*: trial_duration = initial_trial_duration.
+   * *in*: offered_transmit_rate = MRR.
+   * *do*: single trial.
+   * *out*: measured loss ratio.
+   * *out*: mrr2 = measured receive rate.
 3. Third trial measures at MRR2.
-   a. *in*: trial_duration = initial_trial_duration.
-   b. *in*: offered_transmit_rate = MRR2.
-   c. *do*: single trial.
-   d. *out*: measured loss ratio.
+   * *in*: trial_duration = initial_trial_duration.
+   * *in*: offered_transmit_rate = MRR2.
+   * *do*: single trial.
+   * *out*: measured loss ratio.
 
 ## Non-initial phases
 
 1. Main loop:
-   a. *in*: trial_duration for the current phase.
-      Set to initial_trial_duration for the first intermediate phase;
-      to final_trial_duration for the final phase;
-      or to the element of interpolating geometric sequence
-      for other intermediate phases.
-      For example with two intermediate phases, trial_duration
-      of the second intermediate phase is the geometric average
-      of initial_strial_duration and final_trial_duration.
-   b. *in*: relative_width_goal for the current phase.
-      Set to final_relative_width for the final phase;
-      doubled for each preceding phase.
-      For example with two intermediate phases,
-      the first intermediate phase uses quadruple of final_relative_width
-      and the second intermediate phase uses double of final_relative_width.
-   c. *in*: ndr_interval, pdr_interval from the previous main loop iteration
-      or the previous phase.
-      If the previous phase is the initial phase, both intervals have
-      lower_bound = MRR2, uper_bound = MRR.
-      Note that the initial phase is likely to create intervals with invalid bounds.
-   d. *do*: According to the procedure described in point 2,
-      either exit the phase (by jumping to 1.g.),
-      or prepare new transmit rate to measure with.
-   e. *do*: Perform the trial measurement at the new transmit rate
-      and trial_duration, compute its loss ratio.
-   f. *do*: Update the bounds of both intervals, based on the new measurement.
-      The actual update rules are numerous, as NDR external search
-      can affect PDR interval and vice versa, but the result
-      agrees with rules of both internal and external search.
-      For example, any new measurement below an invalid lower_bound
-      becomes the new lower_bound, while the old measurement
-      (previously acting as the invalid lower_bound)
-      becomes a new and valid upper_bound.
-      Go to next iteration (1.c.), taking the updated intervals as new input.
-   g. *out*: current ndr_interval and pdr_interval.
-      In the final phase this is also considered
-      to be the result of the whole search.
-      For other phases, the next phase loop is started
-      with the current results as an input.
+   * *in*: trial_duration for the current phase.
+     Set to initial_trial_duration for the first intermediate phase;
+     to final_trial_duration for the final phase;
+     or to the element of interpolating geometric sequence
+     for other intermediate phases.
+     For example with two intermediate phases, trial_duration
+     of the second intermediate phase is the geometric average
+     of initial_strial_duration and final_trial_duration.
+   * *in*: relative_width_goal for the current phase.
+     Set to final_relative_width for the final phase;
+     doubled for each preceding phase.
+     For example with two intermediate phases,
+     the first intermediate phase uses quadruple of final_relative_width
+     and the second intermediate phase uses double of final_relative_width.
+   * *in*: ndr_interval, pdr_interval from the previous main loop iteration
+     or the previous phase.
+     If the previous phase is the initial phase, both intervals have
+     lower_bound = MRR2, uper_bound = MRR.
+     Note that the initial phase is likely to create intervals with invalid bounds.
+   * *do*: According to the procedure described in point 2,
+     either exit the phase (by jumping to 1.g.),
+     or prepare new transmit rate to measure with.
+   * *do*: Perform the trial measurement at the new transmit rate
+     and trial_duration, compute its loss ratio.
+   * *do*: Update the bounds of both intervals, based on the new measurement.
+     The actual update rules are numerous, as NDR external search
+     can affect PDR interval and vice versa, but the result
+     agrees with rules of both internal and external search.
+     For example, any new measurement below an invalid lower_bound
+     becomes the new lower_bound, while the old measurement
+     (previously acting as the invalid lower_bound)
+     becomes a new and valid upper_bound.
+     Go to next iteration (1.c.), taking the updated intervals as new input.
+   * *out*: current ndr_interval and pdr_interval.
+     In the final phase this is also considered
+     to be the result of the whole search.
+     For other phases, the next phase loop is started
+     with the current results as an input.
 2. New transmit rate (or exit) calculation (for 1.d.):
    * If there is an invalid bound then prepare for external search:
      * *If* the most recent measurement at NDR lower_bound transmit rate
@@ -302,7 +304,7 @@ Continuous Integration / Continuous Development (CI/CD) framework.
 
 # Known Implementations
 
-The only known working implementatin of MLRsearch is in Linux Foundation
+The only known working implementation of MLRsearch is in Linux Foundation
 FD.io CSIT project. https://wiki.fd.io/view/CSIT. https://git.fd.io/csit/.
 
 ## FD.io CSIT Implementation Deviations
@@ -314,23 +316,23 @@ Here is a short description of the additional logic as a list of principles,
 explaining their main differences from (or additions to) the simplified description,
 but without detailing their mutual interaction.
 
-1. *Logarithmic transmit rate.*
+1. Logarithmic transmit rate.
    In order to better fit the relative width goal,
    the interval doubling and halving is done differently.
    For example, the middle of 2 and 8 is 4, not 5.
-2. *Optimistic maximum rate.*
+2. Optimistic maximum rate.
    The increased rate is never higher than the maximum rate.
    Upper bound at that rate is always considered valid.
-3. *Pessimistic minimum rate.*
+3. Pessimistic minimum rate.
    The decreased rate is never lower than the minimum rate.
    If a lower bound at that rate is invalid,
    a phase stops refining the interval further (until it gets re-measured).
-4. *Conservative interval updates.*
+4. Conservative interval updates.
    Measurements above current upper bound never update a valid upper bound,
    even if drop ratio is low.
    Measurements below current lower bound always update any lower bound
    if drop ratio is high.
-5. *Ensure sufficient interval width.*
+5. Ensure sufficient interval width.
    Narrow intervals make external search take more time to find a valid bound.
    If the new transmit increased or decreased rate would result in width
    less than the current goal, increase/decrease more.
@@ -338,7 +340,7 @@ but without detailing their mutual interaction.
    makes the current interval too narrow.
    Similarly, take care the measurements in the initial phase
    create wide enough interval.
-6. *Timeout for bad cases.*
+6. Timeout for bad cases.
    The worst case for MLRsearch is when each phase converges to intervals
    way different than the results of the previous phase.
    Rather than suffer total search time several times larger
