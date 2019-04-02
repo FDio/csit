@@ -37,13 +37,13 @@ JVPP_VERSION=`../jvpp-version`
 
 if [[ -n "${jvpp_commit_id}" ]]; then
     # Skipping download of JVPP because it was built from source
-    VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk vpp-dev libvppinfra-dev"
-    VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-dev"
-    VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-devel"
+    VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk vpp-dev libvppinfra-dev vpp-api-python"
+    VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-dev vpp-api-python"
+    VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-devel vpp-api-python"
 else
-    VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk vpp-api-java"
-    VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
-    VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java"
+    VPP_DEB_NEW_ARTIFACTS="vpp libvppinfra vpp-plugin-core vpp-plugin-dpdk vpp-api-java vpp-api-python"
+    VPP_DEB_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java vpp-api-python"
+    VPP_RPM_ARTIFACTS="vpp vpp-lib vpp-plugins vpp-api-java vpp-api-python"
 fi
 
 IGNORE_DEPS=""
