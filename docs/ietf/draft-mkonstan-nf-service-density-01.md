@@ -2,7 +2,7 @@
 title: NFV Service Density Benchmarking
 # abbrev: nf-svc-density
 docname: draft-mkonstan-nf-service-density-00
-date: 2019-03-11
+date: 2019-07-08
 
 ipr: trust200902
 area: ops
@@ -48,45 +48,49 @@ informative:
     title: "Benchmarking Software Data Planes Intel® Xeon® Skylake vs. Broadwell"
     date: 2019-03
   draft-vpolak-mkonstan-bmwg-mlrsearch:
-    target: https://tools.ietf.org/html/draft-vpolak-mkonstan-bmwg-mlrsearch-00
+    target: https://tools.ietf.org/html/draft-vpolak-mkonstan-bmwg-mlrsearch
     title: "Multiple Loss Ratio Search for Packet Throughput (MLRsearch)"
-    date: 2018-11
+    date: 2019-07
   draft-vpolak-bmwg-plrsearch:
-    target: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-00
+    target: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch
     title: "Probabilistic Loss Ratio Search for Packet Throughput (PLRsearch)"
-    date: 2018-11
+    date: 2019-07
   LFN-FDio-CSIT:
     target: https://wiki.fd.io/view/CSIT
     title: "Fast Data io, Continuous System Integration and Testing Project"
-    date: 2019-03
+    date: 2019-07
   CNCF-CNF-Testbed:
     target: https://github.com/cncf/cnf-testbed/
     title: "Cloud native Network Function (CNF) Testbed"
-    date: 2019-03
+    date: 2019-07
   TRex:
     target: https://github.com/cisco-system-traffic-generator/trex-core
     title: "TRex Low-Cost, High-Speed Stateful Traffic Generator"
-    date: 2019-03
-  CSIT-1901-testbed-2n-skx:
-    target: https://docs.fd.io/csit/rls1901/report/introduction/physical_testbeds.html#node-xeon-skylake-2n-skx
+    date: 2019-07
+  CSIT-1904-testbed-2n-skx:
+    target: https://docs.fd.io/csit/rls1904/report/introduction/physical_testbeds.html#node-xeon-skylake-2n-skx
     title: "FD.io CSIT Test Bed"
-    date: 2019-03
-  CSIT-1901-test-enviroment:
-    target: https://docs.fd.io/csit/rls1901/report/vpp_performance_tests/test_environment.html
+    date: 2019-07
+  CSIT-1904-test-enviroment:
+    target: https://docs.fd.io/csit/rls1904/report/vpp_performance_tests/test_environment.html
     title: "FD.io CSIT Test Environment"
-    date: 2019-03
-  CSIT-1901-nfv-density-methodology:
-    target: https://docs.fd.io/csit/rls1901/report/introduction/methodology_nfv_service_density.html
+    date: 2019-07
+  CSIT-1904-nfv-density-methodology:
+    target: https://docs.fd.io/csit/rls1904/report/introduction/methodology_nfv_service_density.html
     title: "FD.io CSIT Test Methodology: NFV Service Density"
-    date: 2019-03
-  CSIT-1901-nfv-density-results:
-    target: https://docs.fd.io/csit/rls1901/report/vpp_performance_tests/nf_service_density/index.html
+    date: 2019-07
+  CSIT-1904-nfv-density-results:
+    target: https://docs.fd.io/csit/rls1904/report/vpp_performance_tests/nf_service_density/index.html
     title: "FD.io CSIT Test Results: NFV Service Density"
-    date: 2019-03
+    date: 2019-07
   CNCF-CNF-Testbed-Results:
     target: https://github.com/cncf/cnf-testbed/blob/master/comparison/doc/cncf-cnfs-results-summary.md
     title: "CNCF CNF Testbed: NFV Service Density Benchmarking"
     date: 2018-12
+  NFVbench:
+    target: https://opnfv-nfvbench.readthedocs.io/en/latest/testing/user/userguide/readme.html
+    title: NFVbench Data Plane Performance Measurement Features
+    date: 2019-07
 
 --- abstract
 
@@ -120,6 +124,34 @@ different NFV virtualization technologies.
 * Data-plane optimized software - any software with dedicated threads
   handling data-plane packet processing e.g. FD.io VPP (Vector Packet
   Processor), OVS-DPDK.
+* Packet Loss Ratio (PLR): ratio of packets received to packets
+  transmitted relative to packets transmitted over the test trial
+  duration, calculated using formula: PLR = ( pkts_transmitted -
+  pkts_received ) / pkts_transmitted. For bi-directional throughput
+  tests separate PLR applies for each measured direction.
+* Non Drop Rate (NDR): packet/bandwith throughput rate sustained by
+  DUT/SUT at PLR equal zero (zero packet loss) specific to tested frame
+  size(s). MUST be quoted with specific packet size as received by
+  DUT/SUT during the measurement. For bi-directional tests, PLR criteria
+  applies per each packet flow(s) direction. Packet NDR measured in
+  packets-per-second (or fps), bandwidth NDR expressed in
+  bits-per-second (bps).
+* Partial Drop Rate (PDR): packet/bandwith throughput rate sustained by
+  DUT/SUT at PLR greater than zero (non-zero packet loss) specific to
+  tested frame size(s). MUST be quoted with specific packet size as
+  received by DUT/SUT during the measurement. For bi-directional tests,
+  PLR criteria applies per each packet flow(s) direction. Packet PDR
+  measured in packets-per-second (or fps), bandwidth PDR expressed in
+  bits-per-second (bps).
+* Maximum Receive Rate (MRR): packet/bandwidth throughput rate
+  regardless of PLR sustained by DUT/SUT under specified Maximum
+  Transmit Rate (MTR) packet load offered by traffic generator. MUST be
+  quoted with both specific packet size and MTR as received by DUT/SUT
+  during the measurement. For bi-directional tests, MTR can be specified
+  as aggregate for both directions (only if the load is symmetric)
+  and/or separately for each measured direction. Packet MRR measured in
+  packets-per-second (or fps), bandwidth MRR expressed in
+  bits-per-second (bps).
 
 # Motivation
 
@@ -146,12 +178,12 @@ that underpin NFV production deployments:
 4. How do the virtualisation technologies compare e.g. Virtual Machines,
    Containers?
 
-Getting answers to these points should allow designers to make a data
-based decision about the NFV technology and service design best suited
-to meet requirements of their use cases. Equally, obtaining the
-benchmarking data underpinning those answers should make it easier for
-operators to work out expected deterministic operating range of chosen
-design.
+Getting answers to these points should allow designers to make data
+based decisions about the NFV technology and service design best suited
+to meet requirements of their use cases. Thereby obtained benchmarking
+data would aid in selection of the most appropriate NFV infrastructure
+design and platform and enable more accurate capacity planning, an
+important element for commercial viability of the NFV service.
 
 ## Proposed Solution
 
@@ -188,8 +220,8 @@ industry efforts focusing on vSwitch benchmarking [RFC8204], [TST009]
 and extends the benchmarking scope to NFV services.
 
 This document does not describe a complete benchmarking methodology,
-instead it is focusing on system under test configuration part. Each of
-the compute node configurations identified by (RowIndex, ColumnIndex) is
+instead it is focusing on the system under test configuration. Each of
+the compute node configurations identified in this document is
 to be evaluated for NFV service data-plane performance using existing
 and/or emerging network benchmarking standards. This may include
 methodologies specified in [RFC2544], [TST009],
@@ -233,16 +265,20 @@ density benchmarking:
    fashion with edge NFs homed to host data-plane. Host data-plane
    provides connectivity with external network.
 
-Both topologies are shown in figures below.
+In both cases multiple NFV service topologies are running in parallel.
+Both topologies are shown in figures 2. and 3. below.
 
 NF chain topology:
 
     +-----------------------------------------------------------+
     |                     Host Compute Node                     |
     |                                                           |
+    |    SmNF1       SmNF2                   SmNFn   Service-m  |
+    |     ...         ...                     ...       ...     |
+    |    S2NF1       S2NF2                   S2NFn   Service-2  |
     | +--------+  +--------+              +--------+            |
     | |  S1NF1 |  |  S1NF2 |              |  S1NFn |            |
-    | |        |  |        |     ....     |        | Service1   |
+    | |        |  |        |     ....     |        | Service-1  |
     | |        |  |        |              |        |            |
     | +-+----+-+  +-+----+-+    +    +    +-+----+-+            |
     |   |    |      |    |      |    |      |    |   Virtual    |
@@ -269,6 +305,9 @@ NF pipeline topology:
     +-----------------------------------------------------------+
     |                     Host Compute Node                     |
     |                                                           |
+    |    SmNF1       SmNF2                   SmNFn   Service-m  |
+    |     ...         ...                     ...       ...     |
+    |    S2NF1       S2NF2                   S2NFn   Service-2  |
     | +--------+  +--------+              +--------+            |
     | |  S1NF1 |  |  S1NF2 |              |  S1NFn |            |
     | |        +--+        +--+  ....  +--+        | Service1   |
@@ -307,7 +346,9 @@ data-plane.
 NFV configuration determines logical network connectivity that is
 Layer-2 and/or IPv4/IPv6 switching/routing modes, as well as NFV service
 specific aspects. In the context of NFV density benchmarking methodology
-the initial focus is on the former.
+the initial focus is on logical network connectivity between the NFs,
+and no NFV service specific configurations. NF specific functionality is
+emulated using IPv4/IPv6 routing.
 
 Building on the two identified NFV topologies, two common NFV
 configurations are considered:
@@ -367,6 +408,9 @@ Snake packet path:
     +-----------------------------------------------------------+
     |                     Host Compute Node                     |
     |                                                           |
+    |    SmNF1       SmNF2                   SmNFn   Service-m  |
+    |     ...         ...                     ...       ...     |
+    |    S2NF1       S2NF2                   S2NFn   Service-2  |
     | +--------+  +--------+              +--------+            |
     | |  S1NF1 |  |  S1NF2 |              |  S1NFn |            |
     | |        |  |        |     ....     |        | Service1   |
@@ -397,6 +441,9 @@ Pipeline packet path:
     +-----------------------------------------------------------+
     |                     Host Compute Node                     |
     |                                                           |
+    |    SmNF1       SmNF2                   SmNFn   Service-m  |
+    |     ...         ...                     ...       ...     |
+    |    S2NF1       S2NF2                   S2NFn   Service-2  |
     | +--------+  +--------+              +--------+            |
     | |  S1NF1 |  |  S1NF2 |              |  S1NFn |            |
     | |        +--+        +--+  ....  +--+        | Service1   |
@@ -425,7 +472,7 @@ In all cases packets enter NFV system via shared physical NIC interfaces
 controlled by shared host data-plane, are then associated with specific
 NFV service (based on service discriminator) and subsequently are cross-
 connected/switched/routed by host data-plane to and through NF
-topologies per one of above listed schemes.
+topologies per one of the above listed schemes.
 
 # Virtualization Technology
 
@@ -519,10 +566,11 @@ external network and the internal NFV network topologies. Offered packet
 load is generated and received by an external traffic generator per
 usual benchmarking practice.
 
-It is proposed that initial benchmarks are done with the offered packet
-load distributed equally across all configured NFV service instances.
-This could be followed by various per NFV service instance load ratios
-mimicking expected production deployment scenario(s).
+It is proposed that benchmarks are done with the offered packet load
+distributed equally across all configured NFV service instances.
+This approach should provide representative benchmarking data for each
+tested topology and configuraiton, and a good guesstimate of maximum
+performance required for capacity planning.
 
 Following sections specify compute resource allocation, followed by
 examples of applying NFV service density methodology to VNF and CNF
@@ -644,29 +692,62 @@ A sample physical core usage view is shown in the matrix below.
     ColumnIndex:  Number of NFs per NFV Service Instance, 1..10.
     Value:        Total number of physical processor cores used for NFs.
 
-# NFV Service Density Benchmarks
+# NFV Service Data-Plane Benchmarking
+
+NF service density scenarios should have their data-plane performance
+benchmarked using existing and/or emerging network benchmarking
+standards as noted earlier.
+
+Following metrics should be measured (or calculated) and reported:
+
+* Packet throughput rate (packets-per-second)
+  * Specific to tested packet size or packet sequence (e.g. some type of
+    packet size mix sent in recurrent sequence).
+  * Applicable types of throughput rate: NDR, PDR, MRR.
+* (Calculated) Bandwidth throughput rate (bits-per-second) corresponding
+  to the measured packet throughput rate.
+* Packet one-way latency (seconds)
+  * Measured at different packet throughput rates load e.g. light,
+    medium, heavy.
+
+Listed metrics should be itemized per service instance and per direction
+(e.g. forward/reverse).
+
+# Sample NFV Service Density Benchmarks
 
 To illustrate defined NFV service density applicability, following
 sections describe three sets of NFV service topologies and
 configurations that have been benchmarked in open-source: i) in
 [LFN-FDio-CSIT], a continuous testing and data-plane benchmarking
-project, and ii) as part of CNCF CNF Testbed initiative
-[CNCF-CNF-Testbed].
+project, ii) as part of CNCF CNF Testbed initiative [CNCF-CNF-Testbed]
+and iii) in OPNFV NFVbench project.
 
-In both cases each NFV service instance definition is based on the same
-set of NF applications, and varies only by network addressing
+In the first two cases each NFV service instance definition is based on
+the same set of NF applications, and varies only by network addressing
 configuration to emulate multi-tenant operating environment.
 
-## Test Methodology - MRR Throughput
+OPNFV NFVbench project is focusing on benchmarking the actual production
+deployments that are aligned with OPNFV specifications.
+
+## Intrepreting the Sample Results
+
+TODO How to interpret and avoid misreading included results? And how to
+avoid falling into the trap of using these results to draw generilized
+conclusions about performance of different virtualization technologies,
+e.g. VM and Containers, irrespective of deployment scenarios and what
+VNFs and CNFs are in the actual use.
+
+## Benchmarking MRR Throughput
 
 Initial NFV density throughput benchmarks have been performed using
 Maximum Receive Rate (MRR) test methodology defined and used in FD.io
 CSIT.
 
-MRR tests measure the packet forwarding rate under the maximum load
-offered by traffic generator over a set trial duration, regardless of
-packet loss. Maximum load for specified Ethernet frame size is set to
-the bi-directional link rate (2x 10GbE in referred results).
+MRR tests measure the packet forwarding rate under specified Maximum
+Transmit Rate (MTR) packet load  offered by traffic generator over a set
+trial duration, regardless of packet loss ratio (PLR). MTR for specified
+Ethernet frame size was set to the bi-directional link rate, 2x 10GbE in
+referred results.
 
 Tests were conducted with two traffic profiles: i) continuous stream of
 64B frames, ii) continuous stream of IMIX sequence of (7x 64B, 4x 570B,
@@ -784,41 +865,41 @@ using [TRex] traffic generator, see figure.
 ## Sample Results: FD.io CSIT
 
 FD.io CSIT project introduced NFV density benchmarking in release
-CSIT-1901 and published results for the following NFV service topologies
+CSIT-1904 and published results for the following NFV service topologies
 and configurations:
 
 1. VNF Service Chains
-   * VNF: DPDK-L3FWD v18.10
+   * VNF: DPDK-L3FWD v19.02
      * IPv4 forwarding
      * NF-1c
-   * vSwitch: VPP v19.01-release
+   * vSwitch: VPP v19.04-release
      * L2 MAC switching
      * vSwitch-1c, vSwitch-2c
    * frame sizes: 64B, IMIX
 2. CNF Service Chains
-   * CNF: VPP v19.01-release
+   * CNF: VPP v19.04-release
      * IPv4 routing
      * NF-1c
-   * vSwitch: VPP v19.01-release
+   * vSwitch: VPP v19.04-release
      * L2 MAC switching
      * vSwitch-1c, vSwitch-2c
    * frame sizes: 64B, IMIX
 3. CNF Service Pipelines
-   * CNF: VPP v19.01-release
+   * CNF: VPP v19.04-release
      * IPv4 routing
      * NF-1c
-   * vSwitch: VPP v19.01-release
+   * vSwitch: VPP v19.04-release
      * L2 MAC switching
      * vSwitch-1c, vSwitch-2c
    * frame sizes: 64B, IMIX
 
-More information is available in FD.io CSIT-1901 report, with specific
+More information is available in FD.io CSIT-1904 report, with specific
 references listed below:
 
-* Testbed: [CSIT-1901-testbed-2n-skx]
-* Test environment: [CSIT-1901-test-enviroment]
-* Methodology: [CSIT-1901-nfv-density-methodology]
-* Results: [CSIT-1901-nfv-density-results]
+* Testbed: [CSIT-1904-testbed-2n-skx]
+* Test environment: [CSIT-1904-test-enviroment]
+* Methodology: [CSIT-1904-nfv-density-methodology]
+* Results: [CSIT-1904-nfv-density-results]
 
 ## Sample Results: CNCF/CNFs
 
@@ -858,17 +939,42 @@ below:
 
 * Results: [CNCF-CNF-Testbed-Results]
 
+## Sample Results: OPNFV NFVbench
+
+TODO Add short NFVbench based test description, and NFVbench sweep chart
+with single VM per service instance: Y-axis packet throughput rate or
+bandwidth throughput rate, X-axis number of concurrent service
+instances.
+
 # IANA Considerations
 
-No requests of IANA
+No requests of IANA.
 
 # Security Considerations
 
-..
+Benchmarking activities as described in this memo are limited to
+technology characterization of a DUT/SUT using controlled stimuli in a
+laboratory environment, with dedicated address space and the constraints
+specified in the sections above.
+
+The benchmarking network topology will be an independent test setup and
+MUST NOT be connected to devices that may forward the test traffic into
+a production network or misroute traffic to the test management network.
+
+Further, benchmarking is performed on a "black-box" basis, relying
+solely on measurements observable external to the DUT/SUT.
+
+Special capabilities SHOULD NOT exist in the DUT/SUT specifically for
+benchmarking purposes.  Any implications for network security arising
+from the DUT/SUT SHOULD be identical in the lab and in production
+networks.
 
 # Acknowledgements
 
 Thanks to Vratko Polak of FD.io CSIT project and Michael Pedersen of the
 CNCF Testbed initiative for their contributions and useful suggestions.
+Extended thanks to Alec Hothan of OPNFV NFVbench project for numerous
+comments, content suggestions and references to his/team work in the
+OPNFV/NVFbench project.
 
 --- back
