@@ -2,7 +2,7 @@
 title: Multiple Loss Ratio Search for Packet Throughput (MLRsearch)
 # abbrev: MLRsearch
 docname: draft-vpolak-mkonstan-bmwg-mlrsearch-01
-date: 2019-03-27
+date: 2019-xx-xx
 
 ipr: trust200902
 area: ops
@@ -38,7 +38,10 @@ normative:
   RFC8174:
 
 informative:
-
+  FDio-CSIT-MLRsearch:
+    target: https://docs.fd.io/csit/rls1901/report/introduction/methodology_mlrsearch_tests.html
+    title: "FD.io CSIT Test Methodology - MLRsearch"
+    date: 2019-01
 
 --- abstract
 
@@ -305,7 +308,7 @@ Continuous Integration / Continuous Development (CI/CD) framework.
 # Known Implementations
 
 The only known working implementation of MLRsearch is in Linux Foundation
-FD.io CSIT project. https://wiki.fd.io/view/CSIT. https://git.fd.io/csit/.
+FD.io CSIT project [FDio-CSIT-MLRsearch].
 
 ## FD.io CSIT Implementation Deviations
 
