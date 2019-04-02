@@ -2,7 +2,7 @@
 title: NFV Service Density Benchmarking
 # abbrev: nf-svc-density
 docname: draft-mkonstan-nf-service-density-00
-date: 2019-03-11
+date: 2019-06-xx
 
 ipr: trust200902
 area: ops
@@ -87,6 +87,10 @@ informative:
     target: https://github.com/cncf/cnf-testbed/blob/master/comparison/doc/cncf-cnfs-results-summary.md
     title: "CNCF CNF Testbed: NFV Service Density Benchmarking"
     date: 2018-12
+  NFVbench:
+    target: TODO
+    title: TODO
+    date: TODO
 
 --- abstract
 
@@ -146,12 +150,12 @@ that underpin NFV production deployments:
 4. How do the virtualisation technologies compare e.g. Virtual Machines,
    Containers?
 
-Getting answers to these points should allow designers to make a data
-based decision about the NFV technology and service design best suited
-to meet requirements of their use cases. Equally, obtaining the
-benchmarking data underpinning those answers should make it easier for
-operators to work out expected deterministic operating range of chosen
-design.
+Getting answers to these points should allow designers to make data
+based decisions about the NFV technology and service design best suited
+to meet requirements of their use cases. Thereby obtained benchmarking
+data would aid in selection of the most appropriate NFV infrastructure
+design and platform and enable more accurate capacity planning, an
+important element for commercial viability of the NFV service.
 
 ## Proposed Solution
 
@@ -233,16 +237,20 @@ density benchmarking:
    fashion with edge NFs homed to host data-plane. Host data-plane
    provides connectivity with external network.
 
-Both topologies are shown in figures below.
+In both cases multiple NFV service topologies are running in parallel.
+Both topologies are shown in figures 2. and 3. below.
 
 NF chain topology:
 
     +-----------------------------------------------------------+
     |                     Host Compute Node                     |
     |                                                           |
+    |    SmNF1       SmNF2                   SmNFn   Service-m  |
+    |     ...         ...                     ...       ...     |
+    |    S2NF1       S2NF2                   S2NFn   Service-2  |
     | +--------+  +--------+              +--------+            |
     | |  S1NF1 |  |  S1NF2 |              |  S1NFn |            |
-    | |        |  |        |     ....     |        | Service1   |
+    | |        |  |        |     ....     |        | Service-1  |
     | |        |  |        |              |        |            |
     | +-+----+-+  +-+----+-+    +    +    +-+----+-+            |
     |   |    |      |    |      |    |      |    |   Virtual    |
@@ -269,6 +277,9 @@ NF pipeline topology:
     +-----------------------------------------------------------+
     |                     Host Compute Node                     |
     |                                                           |
+    |    SmNF1       SmNF2                   SmNFn   Service-m  |
+    |     ...         ...                     ...       ...     |
+    |    S2NF1       S2NF2                   S2NFn   Service-2  |
     | +--------+  +--------+              +--------+            |
     | |  S1NF1 |  |  S1NF2 |              |  S1NFn |            |
     | |        +--+        +--+  ....  +--+        | Service1   |
@@ -307,7 +318,9 @@ data-plane.
 NFV configuration determines logical network connectivity that is
 Layer-2 and/or IPv4/IPv6 switching/routing modes, as well as NFV service
 specific aspects. In the context of NFV density benchmarking methodology
-the initial focus is on the former.
+the initial focus is on logical network connectivity between the NFs,
+and no NFV service specific configurations. NF specific functionality is
+emulated using IPv4/IPv6 routing.
 
 Building on the two identified NFV topologies, two common NFV
 configurations are considered:
@@ -367,6 +380,9 @@ Snake packet path:
     +-----------------------------------------------------------+
     |                     Host Compute Node                     |
     |                                                           |
+    |    SmNF1       SmNF2                   SmNFn   Service-m  |
+    |     ...         ...                     ...       ...     |
+    |    S2NF1       S2NF2                   S2NFn   Service-2  |
     | +--------+  +--------+              +--------+            |
     | |  S1NF1 |  |  S1NF2 |              |  S1NFn |            |
     | |        |  |        |     ....     |        | Service1   |
@@ -397,6 +413,9 @@ Pipeline packet path:
     +-----------------------------------------------------------+
     |                     Host Compute Node                     |
     |                                                           |
+    |    SmNF1       SmNF2                   SmNFn   Service-m  |
+    |     ...         ...                     ...       ...     |
+    |    S2NF1       S2NF2                   S2NFn   Service-2  |
     | +--------+  +--------+              +--------+            |
     | |  S1NF1 |  |  S1NF2 |              |  S1NFn |            |
     | |        +--+        +--+  ....  +--+        | Service1   |
@@ -425,7 +444,7 @@ In all cases packets enter NFV system via shared physical NIC interfaces
 controlled by shared host data-plane, are then associated with specific
 NFV service (based on service discriminator) and subsequently are cross-
 connected/switched/routed by host data-plane to and through NF
-topologies per one of above listed schemes.
+topologies per one of the above listed schemes.
 
 # Virtualization Technology
 
@@ -519,10 +538,11 @@ external network and the internal NFV network topologies. Offered packet
 load is generated and received by an external traffic generator per
 usual benchmarking practice.
 
-It is proposed that initial benchmarks are done with the offered packet
-load distributed equally across all configured NFV service instances.
-This could be followed by various per NFV service instance load ratios
-mimicking expected production deployment scenario(s).
+It is proposed that benchmarks are done with the offered packet load
+distributed equally across all configured NFV service instances.
+This approach should provide representative benchmarking data for each
+tested topology and configuraiton, and a good guesstimate of maximum
+performance required for capacity planning.
 
 Following sections specify compute resource allocation, followed by
 examples of applying NFV service density methodology to VNF and CNF
