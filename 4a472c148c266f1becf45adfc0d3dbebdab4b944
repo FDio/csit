@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2438ab2d_0b08a68f",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-02T14:34:46Z",
+      "side": 1,
+      "message": "single space",
+      "range": {
+        "startLine": 78,
+        "startChar": 147,
+        "endLine": 78,
+        "endChar": 149
+      },
+      "revId": "4a472c148c266f1becf45adfc0d3dbebdab4b944",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
