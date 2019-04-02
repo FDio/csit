@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a54f7d5_a14cd716",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-02T08:05:07Z",
+      "side": 1,
+      "message": "All caps?\nCapitalization seem to be inconsistent. Use .rst markup if you need to distinguish sections from subsections.",
+      "range": {
+        "startLine": 66,
+        "startChar": 28,
+        "endLine": 66,
+        "endChar": 39
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "12e7d6ff_cd98a9c3",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-02T08:05:07Z",
+      "side": 1,
+      "message": "I do not agree. With VPP API change detection test, a Gerrit Change with outdated PAPI signature will get -1 anyway, no reason for searching for equally outdated CSIT oper branch.",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 41
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d20affb5_782a60de",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-02T08:05:07Z",
+      "side": 1,
+      "message": "Closing quote is missing.",
+      "range": {
+        "startLine": 75,
+        "startChar": 6,
+        "endLine": 75,
+        "endChar": 7
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72f30bf0_d09f2aec",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-02T08:05:07Z",
+      "side": 1,
+      "message": "The file should be placed in the .deb/.rpm packages at a known place so that every downstream user can see it even without access to corresponding VPP source code.",
+      "range": {
+        "startLine": 79,
+        "startChar": 55,
+        "endLine": 79,
+        "endChar": 56
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d57545c9_0bdb7293",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-02T08:05:07Z",
+      "side": 1,
+      "message": "and what?",
+      "range": {
+        "startLine": 84,
+        "startChar": 22,
+        "endLine": 84,
+        "endChar": 29
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f4784e0_33e389d4",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-02T08:05:07Z",
+      "side": 1,
+      "message": "I think we do not have such a document yet. But the process is a standard practice within CSIT project, so it is okay to just leave a TODO here, and we add the reference when we create the document.",
+      "range": {
+        "startLine": 103,
+        "startChar": 44,
+        "endLine": 103,
+        "endChar": 49
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
