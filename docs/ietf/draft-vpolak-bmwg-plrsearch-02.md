@@ -2,7 +2,7 @@
 title: Probabilistic Loss Ratio Search for Packet Throughput (PLRsearch)
 # abbrev: PLRsearch
 docname: draft-vpolak-bmwg-plrsearch-01
-date: 2019-03-11
+date: 2019-xx-xx
 
 ipr: trust200902
 area: ops
