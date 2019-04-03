@@ -48,7 +48,7 @@
 | | [Arguments] | ${node}
 | | ...
 | | ${oper_data}= | Get Full BGP Configuration | ${node}
-| | Should be Empty | ${oper_data['bgp-openconfig-extensions:bgp']['neighbors']}
+| | Should be Empty | ${oper_data['bgp-openconfig-extensions:bgp']}
 
 | Honeycomb adds BGP peer
 | | [Documentation] | Uses Honeycomb API to add a BGP peer.
@@ -204,9 +204,10 @@
 | | ...
 | | [Arguments] | ${node} | ${peer_address} | ${ip_version}
 | | ...
-| | ${oper_data}= | Get All Peer Routes
+| | Run keyword and expect error | *Status code: 404*
+| | ... | Get All Peer Routes
 | | ... | ${node} | ${peer_address} | ${ip_version}
-| | Should be Empty | ${oper_data['bgp-inet:${ip_version}-routes']}
+#| | Should be Empty | ${oper_data['bgp-inet:${ip_version}-routes']}
 
 | BGP Loc-RIB table should include
 | | [Documentation] | Uses Honeycomb API to retrieve local BGP RIB table\
