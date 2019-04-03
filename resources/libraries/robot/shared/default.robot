@@ -596,23 +596,6 @@
 | | Linux Del Bridge | ${nodes['DUT1']} | ${bid_TAP}
 | | Clean Up Namespaces | ${nodes['DUT1']}
 
-| Tear down FDS functional test
-| | [Documentation] | Common test teardown for FDS functional tests.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut1_node - Node Nr.1 where to clean qemu. Type: dictionary
-| | ... | - dut2_node - Node Nr.2 where to clean qemu. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down FDS functional test \| ${dut1_node} \| ${dut2_node} \|
-| | ...
-| | [Arguments] | ${dut1_node} | ${dut2_node}
-| | ...
-| | Tear down functional test
-| | Tear down QEMU | qemu_node1
-| | Tear down QEMU | qemu_node2
-
 | Tear down functional test with container
 | | [Documentation]
 | | ... | Common test teardown for functional tests which uses containers.
