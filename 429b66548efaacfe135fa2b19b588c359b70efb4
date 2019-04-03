@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc35f762_76743fa2",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "This definition is not restrictive enough because there are many packet rates that would satisfy the definition for a given SUT.\nI would say it is the highest throughput with a ZPLR and it is a function of the frame size.\nE.g. when we say \"64B NDR\" it is unambiguous what we mean and 64B NDR is generally a different value than \"1518B NDR\" or \"IMIX NDR\".\nI would also say that a NDR can be expressed interchangeably in pps or fps or bps.\n\nThe packet size and method of calculating the bps is actually pretty loose because no standard describes how we deal with things like: dot1q encaps, VxLAN encaps, dot1q + VxLAN encaps or more generally any form of encapsulation.\n\nThis alone could be the topic of a dedicated section.",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be781441_5edaa256",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "missing the definition for MRR here",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e013ee3b_96ca64d5",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "I think it may be simpler to just introduce a generic multi-PLR search algorithm with arbitrary number of PLRs and then say that in practice using 2 PLR is typical to determine NDR and PDR.",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0cd4b4f2_9fbe012f",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "Note that traffic shaping can potentially influence greatly NDR and PDR: number of flows, sequencing, packet size mix and order...\n\n\"received and reported by an external traffic generator\" is ambiguous sentence... where do the packets come from?\nShould the document specify the hairpin packet path used for measuring NDR and PDR?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fade304d_4cea38a0",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "Maybe worth noting that these search algorithms assume that the SUT have a specific PLR curve which is a continuously increasing curve as the throughput increases.\nThey will not work well with systems that expose irregular or atypical PLR curves (such as curves decreasing locally or at the tail of the spectrum).",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fc59ce4_b72a0770",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "above statement is confusing.\n\"Start with initial trial duration (in the first phase)\"\nNo idea what the \"in the first phase\" relates to, is it the initial trial duration of the first phase?\nAlso would be good to use the same term - is \"Initial phase\" same as \"first phase\"?\nDo you mean that the intermediate phase starts after the first phase and is followed by the final phase? Well this looks ridiculously obvious so you must mean something else so maybe you mean that intermediate phase starts with a \"trial duration\" coming fro the first phase and finishes with a \"trial duration\" set for the final phase.\nI think confusion comes from the lack of definition for \"trial duration\".\nProbably a diagram would be worth a thousand words.",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "37392e05_f37b5804",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "need to define what \"trial measurement\" means\nI guess it is to inject traffic at given rate for a given duration and measure the PLR?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b63d0ff8_1c299089",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "in the example it is not the bound that is invalid, it is the measured PLR value that is invalid for a given DR.\nIe there are invariants such as\nPLR(lower_bound(NDR)) \u003d\u003d 0\n\nwhich can be violated if the SUT is dropping packets at any traffic rate.",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4841312_42b8769a",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "Not sure if we need to call them \"invalid bounds\".\nIs the algorithm treating such bounds differently?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "527b9902_88aceb6e",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "well if a SUT is lossy at any rate, you will end up with invalid bounds regardless.",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "22d4df9b_eb24c511",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "perhaps too detailed in this section but there can be cases where the PLR differential could also prematurely stop the algorithm.\neg there is ZPL at both ends of the range",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "83ea9624_10aa8eef",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "what is the \"final width goal\" is it a result of the intermediate phase?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b32f310a_0d66af21",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "what is a \"search trial\"? Is it same as \"search measurement\" used above?\nneed consistent terms and a definition.\nwhat is a \"set final duration\"?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95739537_3ad43fa4",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T22:29:08Z",
+      "side": 1,
+      "message": "how do you characterize a well behaving case.\nBy definition, it is logical that a single sweep to calculate n DRs it will take in average 1/n the time of doing n sweeps.",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
