@@ -237,6 +237,193 @@
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a350c47_1fe1dc3b",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T23:17:00Z",
+      "side": 1,
+      "message": "40G would be 4x the 10G or ~2x56Mpps\nalthough some NIC would limit the total throughput if the 2 ports are on the same NIC (e.g. XL710 would limit to ~50Gbps total for the 2 ports iirc)",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "423d4b55_3223cba6",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T23:17:00Z",
+      "side": 1,
+      "message": "0.5% of what? LR?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de5cd9b9_6e4de844",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T23:17:00Z",
+      "side": 1,
+      "message": "why not 0.1%?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "874c6344_d8a9c9f6",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T23:17:00Z",
+      "side": 1,
+      "message": "ok that was not obvious by reading the above MLR Overview section that there is an \"s\" and there are multiple intermediate phases!",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "054fa40d_aebecffd",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T23:17:00Z",
+      "side": 1,
+      "message": "I have to say MRR has many good points but assuming that PLR(LR) ~\u003d PLR(PDR) may sometime look to take a leap of faith. \nIf one SUTs exposes PLR(LR) \u003e\u003e PLR(PDR) (which is not completely unrealistic) that would throw off all algorithms that assume otherwise.",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b15a53e_f1dc5a65",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T23:17:00Z",
+      "side": 1,
+      "message": "are you expecting some form of settlement?\nDo you expect MRR2 \u003e\u003d MRR or the reverse and why?\nwhat if the PLR changes dramatically between 2 and 3?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18174b58_6ff916ec",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T23:17:00Z",
+      "side": 1,
+      "message": "that would be an \"out\" parameter for the next iteration?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff3dd7a8_17c3d9e0",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T23:17:00Z",
+      "side": 1,
+      "message": "what is \"geometric average\" and how different is it from the average?\npls provide an example with concrete duration values.\n\n\ninitial phase in\u003d.... out\u003d....\nintermediate phase1 in\u003d.... out\u003d....\nintermediate phase2 in\u003d... out\u003d...\nfinal phase in\u003d... out\u003d...\n\nwith real values would help I think,",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d96b801_ad043901",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T23:17:00Z",
+      "side": 1,
+      "message": "typo initial_trial_duration",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d34b237_82c73166",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T23:17:00Z",
+      "side": 1,
+      "message": "I see reference to 1.g, 1.d, 1.c\nwhat is the meaning of the letter?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d6cf99c_fa04456f",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-03T23:17:00Z",
+      "side": 1,
+      "message": "dont quite get why 4 is a better middle than 5",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
