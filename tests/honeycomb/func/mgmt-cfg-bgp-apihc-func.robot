@@ -118,7 +118,7 @@
 | | ... | ${node} | ${address_internal} | ${route_data_ipv4}
 | | ... | ${route_address_ipv4} | ${route_id_ipv4} | ipv4
 | | Then BGP Route from Honeycomb should be
-| | ... | ${node} | ${address_internal} | ${route_data_ipv4}
+| | ... | ${node} | ${address_internal} | ${route_data_ipv4_oper}
 | | ... | ${route_address_ipv4} | ${route_id_ipv4} | ipv4
 
 | TC07: Honeycomb removes IPv4 route configuration
@@ -127,11 +127,11 @@
 | | Given BGP peer from Honeycomb should be
 | | ... | ${node} | ${address_internal} | ${peer_internal}
 | | And BGP Route from Honeycomb should be
-| | ... | ${node} | ${address_internal} | ${route_data_ipv4}
+| | ... | ${node} | ${address_internal} | ${route_data_ipv4_oper}
 | | ... | ${route_address_ipv4} | ${route_id_ipv4} | ipv4
 | | When Honeycomb removes BGP route | ${node} | ${address_internal}
 | | ... | ${route_address_ipv4} | ${route_id_ipv4} | ipv4
-| | Then No BGP Routes Should be Configured
+| | Then No BGP Routes Should exist
 | | ... | ${node} | ${address_internal} | ipv4
 
 | TC08: Honeycomb updates existing IPv4 route using BGP
@@ -142,7 +142,7 @@
 | | ...
 | | Given BGP peer from Honeycomb should be
 | | ... | ${node} | ${address_internal} | ${peer_internal}
-| | And No BGP Routes Should be Configured
+| | And No BGP Routes Should exist
 | | ... | ${node} | ${address_internal} | ipv4
 | | When Honeycomb configures BGP route
 | | ... | ${node} | ${address_internal} | ${route_data_ipv4}
@@ -151,7 +151,7 @@
 | | ... | ${node} | ${address_internal} | ${route_data_ipv4_update}
 | | ... | ${route_address_ipv4} | ${route_id_ipv4} | ipv4
 | | Then BGP Route from Honeycomb should be
-| | ... | ${node} | ${address_internal} | ${route_data_ipv4_update}
+| | ... | ${node} | ${address_internal} | ${route_data_ipv4_update_oper}
 | | ... | ${route_address_ipv4} | ${route_id_ipv4} | ipv4
 
 | TC09: Honeycomb configures a second IPv4 route
@@ -173,10 +173,10 @@
 | | ... | ${node} | ${address_internal} | ${route_data_ipv4_2}
 | | ... | ${route_address_ipv4_2} | ${route_id_ipv4_2} | ipv4
 | | Then BGP Route from Honeycomb should be
-| | ... | ${node} | ${address_internal} | ${route_data_ipv4}
+| | ... | ${node} | ${address_internal} | ${route_data_ipv4_oper}
 | | ... | ${route_address_ipv4} | ${route_id_ipv4} | ipv4
 | | And BGP Route from Honeycomb should be
-| | ... | ${node} | ${address_internal} | ${route_data_ipv4_2}
+| | ... | ${node} | ${address_internal} | ${route_data_ipv4_2_oper}
 | | ... | ${route_address_ipv4_2} | ${route_id_ipv4_2} | ipv4
 
 | TC10: Honeycomb sends BGP OPEN messages to configured peer
