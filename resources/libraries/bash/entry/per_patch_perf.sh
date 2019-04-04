@@ -56,9 +56,12 @@ activate_virtualenv "${VPP_DIR}" || die
 reserve_testbed || die
 select_tags || die
 compose_pybot_arguments || die
+generate_tests || die
+archive_tests || die
 iterations=8
 for ((iter=0; iter<iterations; iter++)); do
     # TODO: Use less heavy way to avoid apt remove falilures.
+    # Also, reserve_testbed has already called cleanup once.
     cleanup_topo
     select_build "build_parent" || die
     check_download_dir || die
