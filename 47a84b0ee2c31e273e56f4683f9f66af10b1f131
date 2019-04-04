@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6652005_1e902555",
+        "filename": "resources/libraries/bash/function/mlr-weekly.txt",
+        "patchSetId": 79
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-04T11:56:37Z",
+      "side": 1,
+      "message": "This adds more tests (NICs not previously implemented), but weekly jobs can take it.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 2
+      },
+      "revId": "47a84b0ee2c31e273e56f4683f9f66af10b1f131",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10abe4e1_9d158ec6",
+        "filename": "resources/libraries/bash/function/mrr-daily.txt",
+        "patchSetId": 79
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-04T11:56:37Z",
+      "side": 1,
+      "message": "Previoulsy, multiple xxv710 tests were run on vpp-mrr-daily-2n-skx, but none on -3n-skx.\nNow, memif, vhost and acl xxv710 tests are run on neither, but baseline (including dot1q and nat44) are run on both.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 2
+      },
+      "revId": "47a84b0ee2c31e273e56f4683f9f66af10b1f131",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
