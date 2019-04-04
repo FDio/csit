@@ -122,12 +122,10 @@
         - "last-failed-tests-3n-hsw"
         - "last-failed-tests-3n-skx"
         - "last-failed-tests-2n-skx"
-        - "last-failed-tests-nf-2n-skx"
         urls:
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-skx"
-          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-master-2n-skx"
         url-details: "https://docs.fd.io/csit/master/trending/introduction/failures.html"
 
     configurations:
@@ -546,19 +544,6 @@
   output-file-ext: ".txt"
   output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-skx"
   data: "table-last-failed-tests-2n-skx"
-  filter: "'MRR'"
-  parameters:
-    - "name"
-    - "parent"
-    - "status"
-
--
-  type: "table"
-  title: "Last failed tests (last builds) NF 2n-skx"
-  algorithm: "table_last_failed_tests"
-  output-file-ext: ".txt"
-  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-nf-2n-skx"
-  data: "table-last-failed-tests-nf-2n-skx"
   filter: "'MRR'"
   parameters:
     - "name"
