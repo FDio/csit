@@ -48,7 +48,7 @@
 | | [Arguments] | ${node}
 | | ...
 | | ${oper_data}= | Get Full BGP Configuration | ${node}
-| | Should be Empty | ${oper_data['bgp-openconfig-extensions:bgp']['neighbors']}
+| | Should be Empty | ${oper_data['bgp-openconfig-extensions:bgp']}
 
 | Honeycomb adds BGP peer
 | | [Documentation] | Uses Honeycomb API to add a BGP peer.
@@ -207,6 +207,26 @@
 | | ${oper_data}= | Get All Peer Routes
 | | ... | ${node} | ${peer_address} | ${ip_version}
 | | Should be Empty | ${oper_data['bgp-inet:${ip_version}-routes']}
+
+| No BGP routes should exist
+| | [Documentation] | Uses Honeycomb API to verify that no BGP routes\
+| | ... | exist under the specified peer.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - peer_address - IP address of the peer. Type: string
+| | ... | - ip_version - IP protocol version, ipv4 or ipv6. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| No BGP routes should be configured \| ${nodes['DUT1']} \
+| | ... | \| 192.168.0.1 \| ipv4 \|
+| | ...
+| | [Arguments] | ${node} | ${peer_address} | ${ip_version}
+| | ...
+| | Run keyword and expect error | *Status code: 404*
+| | ... | Get All Peer Routes
+| | ... | ${node} | ${peer_address} | ${ip_version}
 
 | BGP Loc-RIB table should include
 | | [Documentation] | Uses Honeycomb API to retrieve local BGP RIB table\

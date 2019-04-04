@@ -119,6 +119,25 @@ route_data_ipv4 = {
     }]
 }
 
+route_data_ipv4_oper = {
+    "bgp-inet:ipv4-route": [{
+        "route-key": route_address_ipv4,
+        "path-id": route_id_ipv4,
+        "prefix": route_address_ipv4,
+        "attributes": {
+            "origin": {
+                "value": "igp"
+            },
+            "local-pref": {
+                "pref": 100
+            },
+            "ipv4-next-hop": {
+                "global": "192.168.1.1"
+            }
+        }
+    }]
+}
+
 # IPv4 route for testing Update operation
 route_data_ipv4_update = {
     "bgp-inet:ipv4-route": [{
@@ -127,6 +146,24 @@ route_data_ipv4_update = {
         "prefix": route_address_ipv4,
         "attributes": {
             "as-path": {},
+            "origin": {
+                "value": "egp"
+            },
+            "local-pref": {
+                "pref": 200
+            },
+            "ipv4-next-hop": {
+                "global": "192.168.1.2"
+            }
+        }
+    }]
+}
+route_data_ipv4_update_oper = {
+    "bgp-inet:ipv4-route": [{
+        "route-key": route_address_ipv4,
+        "path-id": route_id_ipv4,
+        "prefix": route_address_ipv4,
+        "attributes": {
             "origin": {
                 "value": "egp"
             },
@@ -150,6 +187,25 @@ route_data_ipv4_2 = {
         "prefix": route_address_ipv4_2,
         "attributes": {
             "as-path": {},
+            "origin": {
+                "value": "igp"
+            },
+            "local-pref": {
+                "pref": 100
+            },
+            "ipv4-next-hop": {
+                "global": "192.168.1.2"
+            }
+        }
+    }]
+}
+
+route_data_ipv4_2_oper = {
+    "bgp-inet:ipv4-route": [{
+        "route-key": route_address_ipv4_2,
+        "path-id": route_id_ipv4_2,
+        "prefix": route_address_ipv4_2,
+        "attributes": {
             "origin": {
                 "value": "igp"
             },
