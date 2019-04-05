@@ -91,6 +91,52 @@
       "revId": "47a84b0ee2c31e273e56f4683f9f66af10b1f131",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5823728_35acc886",
+        "filename": "resources/libraries/robot/performance/performance_limits.robot",
+        "patchSetId": 79
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-04-05T09:31:54Z",
+      "side": 1,
+      "message": "Please, add separating lines \u0027| ...\u0027 between different setting types.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 49
+      },
+      "revId": "47a84b0ee2c31e273e56f4683f9f66af10b1f131",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dd30b8f6_e9b6c58d",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.robot",
+        "patchSetId": 79
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-04-05T09:31:54Z",
+      "side": 1,
+      "message": "in case of X553 NIC there need to be different HW crypto dev type: HW_C3xxx\n- please, use there variable too.\n- one possibility is to use general HW_cryptodev and adapt Set up IPSec performance test suite KW to do settings based on nic type and corresponding HW crypto dev from NIC_NAME_TO_CRYPTO_HW dictionary in Constants.py",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "47a84b0ee2c31e273e56f4683f9f66af10b1f131",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
