@@ -230,7 +230,7 @@ fi
 # TODO(CSIT-994): reenable NSH
 PYTHONPATH=`pwd` pybot -L TRACE -W 136\
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
-    --suite "tests.honeycomb.func" \
+    --suite "tests.honeycomb.func.mgmt-cfg-bgp-apihc-func" \
     --include HC_FUNC \
     --exclude HC_NSH \
     --noncritical EXPECTED_FAILING \
