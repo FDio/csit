@@ -223,7 +223,7 @@
 | | ${min_rate} = | Set Variable | ${minimum_transmit_rate*2}
 | | ${average} | ${stdev} = | Perform soak search | ${frame_size}
 | | ... | ${topology_type} | ${min_rate} | ${maximum_transmit_rate*2}
-| | ... | ${packet_loss_ratio} | timeout=${timeout}
+| | ... | ${packet_loss_ratio} | timeout=${timeout} | trace_enabled=${True}
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev} | ${frame_size}
 | | Should Not Be True | ${lower} < ${min_rate}
