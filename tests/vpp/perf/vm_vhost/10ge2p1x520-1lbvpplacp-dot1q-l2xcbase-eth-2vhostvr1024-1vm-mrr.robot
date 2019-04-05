@@ -62,9 +62,6 @@
 # Link bonding config
 | ${bond_mode}= | lacp
 | ${lb_mode}= | l34
-# Socket names
-| ${sock1}= | /var/run/vpp/sock-1-1
-| ${sock2}= | /var/run/vpp/sock-1-2
 # X520-DA2 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
@@ -98,8 +95,7 @@
 | | ... | ${s_limit} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
-| | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite} | ${bond_mode}
-| | ... | ${lb_mode}
+| | ... | ${subid} | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
 | | And Configure guest VMs with dpdk-testpmd connected via vhost-user
 | | ... | vm_count=${1} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
 | | ... | use_tuned_cfs=${False}

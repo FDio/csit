@@ -1197,17 +1197,15 @@
 | | ... | Setup VLAN between DUTs. All interfaces are brought up.
 | | ...
 | | ... | *Arguments:*
-| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
 | | ... | - subid - ID of the sub-interface to be created. Type: string
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| L2 xconnect with Vhost-User and VLAN initialized in a 3-node\
-| | ... | circular topology \| /tmp/sock1 \| /tmp/sock2 \| 10 \| pop-1 \|
+| | ... | circular topology \| 10 \| pop-1 \|
 | | ...
-| | [Arguments] | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
+| | [Arguments] | ${subid} | ${tag_rewrite}
 | | ...
 | | Set interfaces in path up
 | | Initialize VLAN dot1q sub-interfaces in circular topology
@@ -1216,11 +1214,11 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
@@ -1232,18 +1230,15 @@
 | | ... | with VLAN sub-interface. All interfaces are brought up.
 | | ...
 | | ... | *Arguments:*
-| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
 | | ... | - subid - ID of the sub-interface to be created. Type: string
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 xconnect with Vhost-User and VLAN with DPDK link\
-| | ... | bonding in 3-node circular topology \| /tmp/sock1 \| /tmp/sock2 \
-| | ... | \| 10 \| pop-1 \|
+| | ... | bonding in 3-node circular topology \| 10 \| pop-1 \|
 | | ...
-| | [Arguments] | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
+| | [Arguments] | ${subid} | ${tag_rewrite}
 | | ...
 | | Set interfaces in path up
 | | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
@@ -1258,11 +1253,11 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
@@ -1276,8 +1271,6 @@
 | | ... | with VLAN sub-interface. All interfaces are brought up.
 | | ...
 | | ... | *Arguments:*
-| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
 | | ... | - subid - ID of the sub-interface to be created. Type: string
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
 | | ... | - bond_mode - Link bonding mode. Type: string
@@ -1286,11 +1279,9 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 xconnect with Vhost-User and VLAN with VPP link\
-| | ... | bonding in 3-node circular topology \| /tmp/sock1 \| /tmp/sock2 \
-| | ... | \| 10 \| pop-1 \| \| xor \| l34 \|
+| | ... | bonding in 3-node circular topology \| 10 \| pop-1 \| xor \| l34 \|
 | | ...
-| | [Arguments] | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite} | ${bond_mode}
-| | ... | ${lb_mode}
+| | [Arguments] | ${subid} | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
 | | ...
 | | Set interfaces in path up
 | | ${dut1_eth_bond_if1}= | VPP Create Bond Interface | ${dut1} | ${bond_mode}
@@ -1331,11 +1322,11 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
@@ -1852,15 +1843,13 @@
 | | ... | *Arguments:*
 | | ... | - bd_id1 - Bridge domain ID. Type: integer
 | | ... | - bd_id2 - Bridge domain ID. Type: integer
-| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| L2 bridge domains with Vhost-User and VXLANoIPv4 initialized in a\
-| | ... | 3-node circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \|
+| | ... | 3-node circular topology \| 1 \| 2 \|
 | | ...
-| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | [Arguments] | ${bd_id1} | ${bd_id2}
 | | ...
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1
 | | ... | 24
@@ -1872,13 +1861,13 @@
 | | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
 | | ... | 172.16.0.2 | 172.16.0.1
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${dut1s_vxlan} | ${bd_id2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${dut2s_vxlan} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
@@ -2016,18 +2005,15 @@
 | | ... | *Arguments:*
 | | ... | - bd_id1 - Bridge domain ID. Type: integer
 | | ... | - bd_id2 - Bridge domain ID. Type: integer
-| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
 | | ... | - subid - ID of the sub-interface to be created. Type: string
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| L2 bridge domains with Vhost-User and VLAN initialized in circular\
-| | ... | topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \| 10 \| pop-1 \|
+| | ... | topology \| 1 \| 2 \| 10 \| pop-1 \|
 | | ...
-| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
-| | ... | ${tag_rewrite}
+| | [Arguments] | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | ...
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
@@ -2046,14 +2032,14 @@
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
 | | ...
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Add interface to bridge domain | ${dut2} | ${subif_index_2}
 | | ... | ${bd_id1}
@@ -2076,8 +2062,6 @@
 | | ... | *Arguments:*
 | | ... | - bd_id1 - Bridge domain ID. Type: integer
 | | ... | - bd_id2 - Bridge domain ID. Type: integer
-| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
 | | ... | - subid - ID of the sub-interface to be created. Type: string
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
 | | ...
@@ -2087,8 +2071,7 @@
 | | ... | link bonding in a 3-node circular topology \| 1 \| 2 \| /tmp/sock1 \
 | | ... | \| /tmp/sock2 \| 10 \| pop-1 \|
 | | ...
-| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
-| | ... | ${tag_rewrite}
+| | [Arguments] | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | ...
 | | Set interfaces in path up
 | | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
@@ -2103,13 +2086,13 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
@@ -2129,8 +2112,6 @@
 | | ... | *Arguments:*
 | | ... | - bd_id1 - Bridge domain ID. Type: integer
 | | ... | - bd_id2 - Bridge domain ID. Type: integer
-| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
 | | ... | - subid - ID of the sub-interface to be created. Type: string
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
 | | ... | - bond_mode - Link bonding mode. Type: string
@@ -2139,11 +2120,11 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 bridge domains with Vhost-User and VLAN with VPP\
-| | ... | link bonding in a 3-node circular topology \| 1 \| 2 \| /tmp/sock1 \
-| | ... | \| /tmp/sock2 \| 10 \| pop-1 \| xor \| l34 \|
+| | ... | link bonding in a 3-node circular topology \| 1 \| 2 \
+| | ... | \| 10 \| pop-1 \| xor \| l34 \|
 | | ...
-| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
-| | ... | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
+| | [Arguments] | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
+| | ... | ${bond_mode} | ${lb_mode}
 | | ...
 | | Set interfaces in path up
 | | ${dut1_eth_bond_if1}= | VPP Create Bond Interface | ${dut1} | ${bond_mode}
@@ -2184,13 +2165,13 @@
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}

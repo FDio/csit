@@ -98,6 +98,7 @@
 - name: Install Kubernetes
   apt:
     name:
+      - 'kubernetes-cni=0.6.0-00'
       - 'kubeadm={{ kubernetes_apt_package_name }}'
       - 'kubectl={{ kubernetes_apt_package_name }}'
       - 'kubelet={{ kubernetes_apt_package_name }}'

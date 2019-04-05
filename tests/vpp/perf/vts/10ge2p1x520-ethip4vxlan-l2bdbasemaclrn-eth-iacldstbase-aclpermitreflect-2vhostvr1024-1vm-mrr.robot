@@ -62,8 +62,8 @@
 | ${dut1_bd_id1}= | 1
 | ${dut1_bd_id2}= | 2
 | ${dut2_bd_id1}= | 1
-| ${sock1}= | /tmp/sock-1-${dut1_bd_id1}
-| ${sock2}= | /tmp/sock-1-${dut1_bd_id2}
+| ${sock1}= | /var/run/vpp/sock-1-${dut1_bd_id1}
+| ${sock2}= | /var/run/vpp/sock-1-${dut1_bd_id2}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-ethip4-vxlansrc253
 | ${acl_type}= | permit+reflect
