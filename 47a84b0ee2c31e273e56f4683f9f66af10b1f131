@@ -94,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "e254d081_6d115f3f",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 79
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-04-05T10:59:45Z",
+      "side": 1,
+      "message": "HW_cryptodev if suggestion on https://gerrit.fd.io/r/#/c/17811/79/tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.robot@22 is accepted.",
+      "range": {
+        "startLine": 233,
+        "startChar": 45,
+        "endLine": 233,
+        "endChar": 56
+      },
+      "revId": "47a84b0ee2c31e273e56f4683f9f66af10b1f131",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5823728_35acc886",
         "filename": "resources/libraries/robot/performance/performance_limits.robot",
         "patchSetId": 79
@@ -176,6 +199,30 @@
       "side": 1,
       "message": "Regenerator is already doing the editing.\nPersonally, I do not see much reason to create a variable to be accessed only once.\n\nBoth improvements (variable, probably to simplify writing Documentation; and moving the selection logic from Regenerator to the setup keyword) can be implemented after merging this, as they would have no effect on tags or unrelated suites.",
       "parentUuid": "dd30b8f6_e9b6c58d",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "47a84b0ee2c31e273e56f4683f9f66af10b1f131",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c69c486_3ec8c31a",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.robot",
+        "patchSetId": 79
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-04-05T10:59:45Z",
+      "side": 1,
+      "message": "OK. Then I would suggest use there value HW_cryptodev to avoid any discrepances and let Regenarator to replace this value by the correct one based on NIC type.",
+      "parentUuid": "5d717832_36b9b0f3",
       "range": {
         "startLine": 22,
         "startChar": 8,
