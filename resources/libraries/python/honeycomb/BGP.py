@@ -392,4 +392,4 @@ class BGPKeywords(object):
         for item in ref:
             if item not in data:
                 raise HoneycombError(
-                    "RIB entry {0} not found in operational data.")
+                    "RIB entry {0} not found in operational data {1}.", item, data)
