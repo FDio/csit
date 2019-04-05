@@ -56,8 +56,6 @@
 # Socket names
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
-| ${sock1}= | /var/run/vpp/sock-1-${bd_id1}
-| ${sock2}= | /var/run/vpp/sock-1-${bd_id2}
 # X710 bandwidth limit
 | ${s_limit}= | ${10000000000}
 # Traffic profile:
@@ -90,8 +88,7 @@
 | | ... | ${s_limit} | ${framesize} | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 bridge domains with Vhost-User and VLAN in circular topology
-| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
-| | ... | ${tag_rewrite}
+| | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | And Configure guest VMs with dpdk-testpmd connected via vhost-user
 | | ... | vm_count=${1} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
 | | ... | use_tuned_cfs=${False}
