@@ -151,7 +151,7 @@ class VPPUtil(object):
         """
 
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_version').execute_should_pass().\
+            data = papi_exec.add('show_version').get_replies().\
                 verify_reply()
         version = ('VPP version:      {ver}\n'.
                    format(ver=data['version'].rstrip('\0x00')))
@@ -307,5 +307,5 @@ class VPPUtil(object):
         :rtype: list
         """
         with PapiExecutor(node) as papi_exec:
-            return papi_exec.add('show_threads').execute_should_pass().\
+            return papi_exec.add('show_threads').get_replies().\
                 verify_reply()["thread_data"]
