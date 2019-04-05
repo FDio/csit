@@ -60,8 +60,6 @@
 # Socket names
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
-| ${sock1}= | /var/run/vpp/sock-1-${bd_id1}
-| ${sock2}= | /var/run/vpp/sock-1-${bd_id2}
 # XXV710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
 | ${s_24.5G}= | ${24500000000}
 # XXV710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
@@ -96,8 +94,7 @@
 | | ... | overhead=${overhead}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 bridge domains with Vhost-User and VLAN in circular topology
-| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
-| | ... | ${tag_rewrite}
+| | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | And Configure guest VMs with dpdk-testpmd connected via vhost-user
 | | ... | jumbo=${jumbo} | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
 | | Then Find NDR and PDR intervals using optimized search

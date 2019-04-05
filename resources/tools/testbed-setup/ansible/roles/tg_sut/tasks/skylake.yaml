@@ -1,6 +1,14 @@
 ---
 # file: roles/tg_sut/tasks/skylake.yaml
 
+- name: Install msr-tools
+  apt:
+    name:
+      - 'msr-tools'
+    state: 'present'
+    install_recommends: False
+  tags: install-msr
+
 - name: Disable Skylake Turbo-Boost by service
   copy:
     src: 'files/disable-turbo-boost.service'
