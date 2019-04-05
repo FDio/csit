@@ -53,14 +53,6 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp Show Errors | ${nodes['${dut}']}
 
-| Show VPP trace dump on all DUTs
-| | [Documentation] | Save API trace and dump output on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp api trace save | ${nodes['${dut}']}
-| | | Vpp api trace dump | ${nodes['${dut}']}
-
 | Show Bridge Domain Data On All DUTs
 | | [Documentation] | Show Bridge Domain data on all DUTs.
 | | ...

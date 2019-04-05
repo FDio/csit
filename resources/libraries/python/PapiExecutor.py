@@ -583,7 +583,7 @@ class PapiExecutor(object):
                 papi_reply.append(api_reply_processed)
 
         # Log processed papi reply to be able to check API replies changes
-        logger.debug("Processed PAPI reply: {reply}".format(reply=papi_reply))
+        # logger.debug("Processed PAPI reply: {reply}".format(reply=papi_reply))
 
         return PapiResponse(papi_reply=papi_reply,
                             stdout=stdout,
