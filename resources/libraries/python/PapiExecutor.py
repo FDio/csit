@@ -33,20 +33,16 @@ class PapiResponse(object):
     """
 
     def __init__(self, papi_reply=None, stdout="", stderr="", ret_code=None,
-                 requests=None):
+                 expected_replies=None):
         """Construct the Papi response by setting the values needed.
-
-        TODO:
-            Implement 'dump' analogue of verify_replies that would concatenate
-            the values, so that call sites do not have to do that themselves.
 
         :param papi_reply: API reply from last executed PAPI command(s).
         :param stdout: stdout from last executed PAPI command(s).
         :param stderr: stderr from last executed PAPI command(s).
         :param ret_code: ret_code from last executed PAPI command(s).
-        :param requests: List of used PAPI requests. It is used while verifying
-            replies. If None, expected replies must be provided for verify_reply
-            and verify_replies methods.
+        :param expected_replies: List of expected PAPI replies. It is used while
+            verifying replies. If None, expected replies must be provided for
+            verify_reply and verify_replies methods.
         :type papi_reply: list or None
         :type stdout: str
         :type stderr: str
@@ -66,13 +62,8 @@ class PapiResponse(object):
         # return code from last executed PAPI command(s).
         self.ret_code = ret_code
 
-        # List of used PAPI requests.
-        self.requests = requests
-
         # List of expected PAPI replies. It is used while verifying replies.
-        if self.requests:
-            self.expected_replies = \
-                ["{rqst}_reply".format(rqst=rqst) for rqst in self.requests]
+        self.expected_replies = expected_replies
 
     def __str__(self):
         """Return string with human readable description of the PapiResponse.
@@ -84,12 +75,12 @@ class PapiResponse(object):
                 "stdout={stdout},"
                 "stderr={stderr},"
                 "ret_code={ret_code},"
-                "requests={requests}".
+                "expected_replies={expected_replies}".
                 format(papi_reply=self.reply,
                        stdout=self.stdout,
                        stderr=self.stderr,
                        ret_code=self.ret_code,
-                       requests=self.requests))
+                       expected_replies=self.expected_replies))
 
     def __repr__(self):
         """Return string executable as Python constructor call.
@@ -121,9 +112,9 @@ class PapiResponse(object):
             data = papi_exec.add('show_version').get_replies().\
                 verify_reply('show_version_reply')
 
-        :param cmd_reply: PAPI reply. If None, list of 'requests' should have
-            been provided to the __init__ method as pre-generated list of
-            replies is used in this method in this case.
+        :param cmd_reply: PAPI reply. If None, list of 'expected_replies' should
+            have been provided to the __init__ method as the list of
+            expected_replies is used in this method in this case.
             The PapiExecutor._execute() method provides the requests
             automatically.
         :param idx: Index to PapiResponse.reply list.
@@ -178,9 +169,9 @@ class PapiResponse(object):
                 verify_replies(cmd_replies=cmd_replies)
 
         :param cmd_replies: List of PAPI command replies. If None, list of
-            'requests' should have been provided to the __init__ method as
-            pre-generated list of replies is used in this method in this case.
-            The PapiExecutor._execute() method provides the requests
+            'expected_replies' should have been provided to the __init__ method
+            as the list of replies is used in this method in this case.
+            The PapiExecutor._execute() method provides the expected_replies
             automatically.
         :param err_msg: The message used if the verification fails.
         :type cmd_replies: list of str or None
@@ -199,6 +190,50 @@ class PapiResponse(object):
         for idx, cmd_reply in enumerate(cmd_rpls):
             data.append(self.verify_reply(cmd_reply, idx, err_msg))
 
+        return data
+
+    def verify_dump(self, cmd_replies=None,
+                    err_msg="Failed to verify PAPI dump.",
+                    func=None, **func_kwargs):
+        """Verify and return data from the PAPI response.
+
+        Notes:
+            Use only with dump commands.
+            Use only with single dump or with the same dump requested multiple
+            times with different arguments.
+
+        :param cmd_replies: List of PAPI command replies. If None, list of
+            'expected_replies' should have been provided to the __init__ method
+            as the list of replies is used in this method in this case.
+            The PapiExecutor._execute() method provides the expected_replies
+            automatically.
+        :param err_msg: The message used if the verification fails.
+        :param func: Function used to validate the reply. Its first argument
+            must be the PAPI reply followed by optional key-value arguments.
+        :param func_kwargs: Optional key-value arguments passed to the func.
+        :type cmd_replies: list of str or None
+        :type err_msg: str
+        :type func: Callable object.
+        :type func_kwargs: dict
+        :returns: List of verified data from PAPI dump.
+        :rtype list
+        :raises AssertionError: If the PAPI response does not include only a
+            single dump or the same dump requested multiple times with different
+            arguments.
+        """
+
+        data = list()
+        cmd_rpls = self.expected_replies if cmd_replies is None else cmd_replies
+
+        if len(set(cmd_rpls)) != 1:
+            raise AssertionError(err_msg)
+
+        for reply in self.reply:
+            for item in reply['api_reply']:
+                if func is None:
+                    data.append(item[cmd_rpls[0]])
+                else:
+                    data.append(func(item[cmd_rpls[0]], **func_kwargs))
         return data
 
 
@@ -331,11 +366,8 @@ class PapiExecutor(object):
         paths = [cmd['api_args']['path'] for cmd in self._api_command_list]
         self._api_command_list = list()
 
-        ret_code, stdout, _ = self._execute_papi(paths,
-                                                 method='stats',
-                                                 err_msg=err_msg,
-                                                 timeout=timeout)
-
+        _, stdout, _ = self._execute_papi(paths, method='stats',
+                                          err_msg=err_msg, timeout=timeout)
         return json.loads(stdout)
 
     def get_replies(self, err_msg="Failed to get replies.",
@@ -585,8 +617,17 @@ class PapiExecutor(object):
         # Log processed papi reply to be able to check API replies changes
         logger.debug("Processed PAPI reply: {reply}".format(reply=papi_reply))
 
+        if method == "request":
+            expected_replies = ["{rqst}_reply".format(rqst=rqst["api_name"])
+                                for rqst in local_list]
+        elif method == "dump":
+            expected_replies = [rqst["api_name"].replace("dump", "details")
+                                for rqst in local_list]
+        else:
+            expected_replies = None
+
         return PapiResponse(papi_reply=papi_reply,
                             stdout=stdout,
                             stderr=stderr,
                             ret_code=ret_code,
-                            requests=[rqst["api_name"] for rqst in local_list])
+                            expected_replies=expected_replies)

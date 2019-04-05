@@ -1639,17 +1639,15 @@ class InterfaceUtil(object):
         """
 
         cmd = 'sw_interface_rx_placement_dump'
-        cmd_reply = 'sw_interface_rx_placement_details'
         err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".format(
             cmd=cmd, host=node['host'])
         with PapiExecutor(node) as papi_exec:
             for ifc in node['interfaces'].values():
                 if ifc['vpp_sw_index'] is not None:
                     papi_exec.add(cmd, sw_if_index=ifc['vpp_sw_index'])
-            papi_resp = papi_exec.get_dump(err_msg)
-        thr_mapping = [s[cmd_reply] for r in papi_resp.reply
-                       for s in r['api_reply']]
-        return sorted(thr_mapping, key=lambda k: k['sw_if_index'])
+            data = papi_exec.get_dump(err_msg).verify_dump(err_msg=err_msg)
+
+        return sorted(data, key=lambda k: k['sw_if_index'])
 
     @staticmethod
     def vpp_sw_interface_set_rx_placement(node, sw_if_index, queue_id,
