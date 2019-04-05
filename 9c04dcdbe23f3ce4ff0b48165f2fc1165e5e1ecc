@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2843d453_c97c5f8b",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-05T12:12:40Z",
+      "side": 1,
+      "message": "There can be multiple details for a single dump.\nIt would be better to verify there has been only a single dump added (or at least different *_dump commands, if we want to support that). We do not want to concatenate details coming from multiple dumps.",
+      "range": {
+        "startLine": 218,
+        "startChar": 11,
+        "endLine": 218,
+        "endChar": 44
+      },
+      "revId": "9c04dcdbe23f3ce4ff0b48165f2fc1165e5e1ecc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
