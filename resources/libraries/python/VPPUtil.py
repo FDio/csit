@@ -151,7 +151,7 @@ class VPPUtil(object):
         """
 
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_version').execute_should_pass().\
+            data = papi_exec.add('show_version').get_replies().\
                 verify_reply()
         version = ('VPP version:      {ver}\n'.
                    format(ver=data['version'].rstrip('\0x00')))
@@ -191,14 +191,17 @@ class VPPUtil(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script("show_interface.vat", node, json_out=False)
+        # vat = VatExecutor()
+        # vat.execute_script("show_interface.vat", node, json_out=False)
+        #
+        # try:
+        #     vat.script_should_have_passed()
+        # except AssertionError:
+        #     raise RuntimeError('Failed to get VPP interfaces on host: {name}'.
+        #                        format(name=node['host']))
 
-        try:
-            vat.script_should_have_passed()
-        except AssertionError:
-            raise RuntimeError('Failed to get VPP interfaces on host: {name}'.
-                               format(name=node['host']))
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add("sw_interface_dump").get_dump()
 
     @staticmethod
     def vpp_show_crypto_device_mapping(node):
@@ -307,5 +310,5 @@ class VPPUtil(object):
         :rtype: list
         """
         with PapiExecutor(node) as papi_exec:
-            return papi_exec.add('show_threads').execute_should_pass().\
+            return papi_exec.add('show_threads').get_replies().\
                 verify_reply()["thread_data"]
