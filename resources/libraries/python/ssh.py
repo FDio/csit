@@ -18,6 +18,7 @@ import socket
 import StringIO
 
 from time import time, sleep
+from pprint import pformat
 
 from paramiko import RSAKey, SSHClient, AutoAddPolicy
 from paramiko.ssh_exception import SSHException, NoValidConnectionsError
@@ -198,7 +199,8 @@ class SSH(object):
                      format(peer=peer, total=end-start))
 
         logger.trace('return RC {rc}'.format(rc=return_code))
-        logger.trace('return STDOUT {stdout}'.format(stdout=stdout.getvalue()))
+        logger.trace('return STDOUT {stdout}'.
+                     format(stdout=pformat(stdout.getvalue())))
         logger.trace('return STDERR {stderr}'.format(stderr=stderr.getvalue()))
         return return_code, stdout.getvalue(), stderr.getvalue()
 

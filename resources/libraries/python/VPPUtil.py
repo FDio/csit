@@ -16,6 +16,7 @@
 import time
 
 from robot.api import logger
+from pprint import pformat
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
@@ -151,7 +152,7 @@ class VPPUtil(object):
         """
 
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_version').execute_should_pass().\
+            data = papi_exec.add('show_version').get_replies().\
                 verify_reply()
         version = ('VPP version:      {ver}\n'.
                    format(ver=data['version'].rstrip('\0x00')))
@@ -191,14 +192,15 @@ class VPPUtil(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script("show_interface.vat", node, json_out=False)
+        with PapiExecutor(node) as papi_exec:
+            papi_reply = papi_exec.add("sw_interface_dump").get_dump()
 
-        try:
-            vat.script_should_have_passed()
-        except AssertionError:
-            raise RuntimeError('Failed to get VPP interfaces on host: {name}'.
-                               format(name=node['host']))
+        logger.info(pformat(papi_reply.reply))
+
+        with PapiExecutor(node) as papi_exec:
+            papi_reply = papi_exec.add("ipsec_backend_dump").get_dump()
+
+        logger.info(pformat(papi_reply.reply))
 
     @staticmethod
     def vpp_show_crypto_device_mapping(node):
@@ -207,29 +209,34 @@ class VPPUtil(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script("show_crypto_device_mapping.vat", node,
-                           json_out=False)
+        # vat = VatExecutor()
+        # vat.execute_script("show_crypto_device_mapping.vat", node,
+        #                    json_out=False)
 
-    @staticmethod
-    def vpp_api_trace_dump(node):
-        """Run "api trace custom-dump" CLI command.
+        with PapiExecutor(node) as papi_exec:
+            papi_reply = papi_exec.add("ipsec_backend_dump").get_dump()
 
-        :param node: Node to run command on.
-        :type node: dict
-        """
-        vat = VatExecutor()
-        vat.execute_script("api_trace_dump.vat", node, json_out=False)
-
-    @staticmethod
-    def vpp_api_trace_save(node):
-        """Run "api trace save" CLI command.
-
-        :param node: Node to run command on.
-        :type node: dict
-        """
-        vat = VatExecutor()
-        vat.execute_script("api_trace_save.vat", node, json_out=False)
+        logger.info(pformat(papi_reply.reply))
+    #
+    # @staticmethod
+    # def vpp_api_trace_dump(node):
+    #     """Run "api trace custom-dump" CLI command.
+    #
+    #     :param node: Node to run command on.
+    #     :type node: dict
+    #     """
+    #     vat = VatExecutor()
+    #     vat.execute_script("api_trace_dump.vat", node, json_out=False)
+    #
+    # @staticmethod
+    # def vpp_api_trace_save(node):
+    #     """Run "api trace save" CLI command.
+    #
+    #     :param node: Node to run command on.
+    #     :type node: dict
+    #     """
+    #     vat = VatExecutor()
+    #     vat.execute_script("api_trace_save.vat", node, json_out=False)
 
     @staticmethod
     def vpp_enable_traces_on_dut(node):
@@ -307,5 +314,5 @@ class VPPUtil(object):
         :rtype: list
         """
         with PapiExecutor(node) as papi_exec:
-            return papi_exec.add('show_threads').execute_should_pass().\
+            return papi_exec.add('show_threads').get_replies().\
                 verify_reply()["thread_data"]
