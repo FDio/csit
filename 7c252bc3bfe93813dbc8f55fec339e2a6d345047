@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29b3a61a_6f072d83",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-07T12:50:01Z",
+      "side": 1,
+      "message": "operational",
+      "range": {
+        "startLine": 519,
+        "startChar": 20,
+        "endLine": 519,
+        "endChar": 29
+      },
+      "revId": "7c252bc3bfe93813dbc8f55fec339e2a6d345047",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
