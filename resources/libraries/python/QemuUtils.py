@@ -101,7 +101,9 @@ class QemuUtils(object):
         :type bin_path: str
         """
         self._vhost_id = 0
+        self._node = node
         self._vm_info = {
+            'host': node['host']
             'type': NodeType.VM,
             'port': 10021 + qemu_id,
             'serial': 4555 + qemu_id,
@@ -109,8 +111,10 @@ class QemuUtils(object):
             'password': 'cisco',
             'interfaces': {},
         }
-        if node:
-            self.qemu_set_node(node)
+        if node['port'] != 22:
+            self._vm_info['host_port'] = node['port']
+            self._vm_info['host_username'] = node['username']
+            self._vm_info['host_password'] = node['password']
         # Input Options.
         self._opt = dict()
         self._opt['qemu_id'] = qemu_id
@@ -290,19 +294,6 @@ class QemuUtils(object):
             raise RuntimeError('QEMU: Unsupported VNF!')
         self.create_kernelvm_init(vnf_bin=self._opt.get('vnf_bin'))
 
-    def qemu_set_node(self, node):
-        """Set node to run QEMU on.
-
-        :param node: Node to run QEMU on.
-        :type node: dict
-        """
-        self._node = node
-        self._vm_info['host'] = node['host']
-        if node['port'] != 22:
-            self._vm_info['host_port'] = node['port']
-            self._vm_info['host_username'] = node['username']
-            self._vm_info['host_password'] = node['password']
-
     def get_qemu_pids(self):
         """Get QEMU CPU pids.
 
@@ -318,27 +309,33 @@ class QemuUtils(object):
 
     def qemu_set_affinity(self, *host_cpus):
         """Set qemu affinity by getting thread PIDs via QMP and taskset to list
-        of CPU cores.
+        of CPU cores. Function tries to execute 3 times to avoid race condition
+        in getting thread PIDs.
 
         :param host_cpus: List of CPU cores.
         :type host_cpus: list
         """
-        try:
-            qemu_cpus = self.get_qemu_pids()
+        for _ in range(3):
+            try:
+                qemu_cpus = self.get_qemu_pids()
 
-            if len(qemu_cpus) != len(host_cpus):
-                raise ValueError('Host CPU count must match Qemu Thread count!')
-
-            for qemu_cpu, host_cpu in zip(qemu_cpus, host_cpus):
-                command = ('taskset -pc {host_cpu} {thread}'.
-                           format(host_cpu=host_cpu, thread=qemu_cpu))
-                message = ('QEMU: Set affinity failed on {host}!'.
-                           format(host=self._node['host']))
-                exec_cmd_no_error(self._node, command, sudo=True,
-                                  message=message)
-        except (RuntimeError, ValueError):
+                if len(qemu_cpus) != len(host_cpus):
+                    sleep(1)
+                    continue
+                for qemu_cpu, host_cpu in zip(qemu_cpus, host_cpus):
+                    command = ('taskset -pc {host_cpu} {thread}'.
+                               format(host_cpu=host_cpu, thread=qemu_cpu))
+                    message = ('QEMU: Set affinity failed on {host}!'.
+                               format(host=self._node['host']))
+                    exec_cmd_no_error(self._node, command, sudo=True,
+                                      message=message)
+                break
+            except (RuntimeError, ValueError):
+                self.qemu_kill_all()
+                raise
+        except:
             self.qemu_kill_all()
-            raise
+            raise RuntimeError('Failed to set Qemu threads affinity!')
 
     def qemu_set_scheduler_policy(self):
         """Set scheduler policy to SCHED_RR with priority 1 for all Qemu CPU
@@ -604,14 +601,8 @@ class QemuUtils(object):
         for value in self._temp.values():
             exec_cmd(self._node, 'rm -f {value}'.format(value=value), sudo=True)
 
-    def qemu_kill_all(self, node=None):
-        """Kill all qemu processes on DUT node if specified.
-
-        :param node: Node to kill all QEMU processes on.
-        :type node: dict
-        """
-        if node:
-            self.qemu_set_node(node)
+    def qemu_kill_all(self):
+        """Kill all qemu processes on DUT node if specified."""
         exec_cmd(self._node, 'pkill -SIGKILL qemu', sudo=True)
 
         for value in self._temp.values():
