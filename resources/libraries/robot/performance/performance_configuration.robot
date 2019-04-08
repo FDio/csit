@@ -2370,7 +2370,7 @@
 | | ${testpmd_cpus}= | Cpu list per node str | ${nodes['${dut}']} | ${0}
 | | ... | cpu_cnt=${nf_cpus_count}
 | | Dpdk Testpmd Start | ${vm} | eal_corelist=${testpmd_cpus}
-| | ... | eal_mem_channels=4 | pmd_fwd_mode=io | pmd_disable_hw_vlan=${TRUE}
+| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${TRUE}
 | | ... | pmd_rxd=${perf_qemu_qsz} | pmd_txd=${perf_qemu_qsz}
 | | ... | pmd_rxq=${rxq} | pmd_txq=${rxq} | pmd_max_pkt_len=${max_pkt_len}
 | | Return From Keyword | ${vm}
@@ -2509,7 +2509,7 @@
 | | ${testpmd_cpus}= | Cpu list per node str | ${nodes['${dut}']} | ${0}
 | | ... | cpu_cnt=${nf_cpus_count}
 | | Dpdk Testpmd Start | ${vm} | eal_corelist=${testpmd_cpus}
-| | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
+| | ... | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${TRUE}
 | | ... | pmd_rxd=${perf_qemu_qsz} | pmd_txd=${perf_qemu_qsz}
 | | ... | pmd_rxq=${rxq} | pmd_txq=${rxq} | pmd_max_pkt_len=${max_pkt_len}
