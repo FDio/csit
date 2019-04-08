@@ -184,7 +184,6 @@
 | | ...
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
-| | ${num_mbufs_int} | Convert to Integer | 16384
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
@@ -213,13 +212,12 @@
 | | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | ${num_mbufs_int}= | Evaluate | int(${num_mbufs_int}*${rxq_count_int})
 | | | Run keyword | ${dut}.Add CPU Main Core | ${cpu_main}
 | | | Run keyword | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
 | | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
-# Temporarily desabling due to API changes:
-# https://gerrit.fd.io/r/#/c/16638/
-#| | | Run keyword | ${dut}.Add DPDK Num Mbufs | ${num_mbufs_int}
+# For now there is no way to easily predict the number of buffers. Statically
+# doing maximum amount of buffers allowed by DPDK.
+| | | Run keyword | ${dut}.Add Buffers Per Numa | ${215040}
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
@@ -246,7 +244,6 @@
 | | ...
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
-| | ${num_mbufs_int} | Convert to Integer | 16384
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
@@ -263,11 +260,10 @@
 | | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | ${num_mbufs_int}= | Evaluate | int(${num_mbufs_int}*${rxq_count_int})
 | | | ${config}= | Run keyword | Create Kubernetes VSWITCH startup config
 | | | ... | node=${nodes['${dut}']} | phy_cores=${phy_cores}
 | | | ... | cpu_node=${numa} | jumbo=${jumbo} | rxq_count_int=${rxq_count_int}
-| | | ... | num_mbufs_int=${num_mbufs_int}
+| | | ... | buffers_per_numa=${215040}
 | | | ... | filename=/tmp/vswitch.conf | if1=${if1_pci} | if2=${if2_pci}
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
