@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baaa99c8_978f6ac4",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-08T13:39:14Z",
+      "side": 1,
+      "message": "I think it would be good to mention NFVbench here as it is the first solution that addresses this problem space with a working open source implementation.\nMLR search is orthogonal to this problem (can use any algorithm).",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a05ece20_7a84b794",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-08T13:39:14Z",
+      "side": 1,
+      "message": "It would be worth adding that capacity planning (as to how many VNF can run per compute) is an important element of decision for commercial viability of a NFVi platform and results from traditional dataplane benchmarks do a very bad job at it because they are single dimensional.",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4933edf6_cc6cc27b",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-08T13:39:14Z",
+      "side": 1,
+      "message": "Although it may look obvious, it is best to say explicitly that density chaining means we run multiple of these chains in parallel.\n\nAlso good to add that \n- almost all current deployments use the simpler NxPVP model.\n- the number of NFs in a single chain is not large in practice and are generally not as efficient as when these NFs are implemented in the same VM/container. de",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bd69494_9b62715a",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-08T13:39:14Z",
+      "side": 1,
+      "message": "former \u003d L2?\nplease make it more clear.",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df46bb2f_949bae00",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-08T13:39:14Z",
+      "side": 1,
+      "message": "L3 routing is generally done out of the compute node or inside the NF",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "510349dc_2fb34bc7",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-08T13:39:14Z",
+      "side": 1,
+      "message": "only the first kind is available today in production deployments. we should explain why.\nWe should also explain what makes the latter more difficult to operate.",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfdc0aac_67a1417b",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-04-08T13:39:14Z",
+      "side": 1,
+      "message": "Using different load per chain will open up a new dimension of benchmarking that will be a lot more complex.\nI think we need outline here the limitations of using an equal load approach and explain why it is still sufficient to satisfy the overall goal of this service chain density spec.",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
