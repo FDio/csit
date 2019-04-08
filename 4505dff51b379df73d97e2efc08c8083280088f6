@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7f67f87_ad639bf7",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 80
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-08T08:56:16Z",
+      "side": 1,
+      "message": "? I think the 24.5 is because the NIC not just TG NIC.",
+      "range": {
+        "startLine": 92,
+        "startChar": 36,
+        "endLine": 92,
+        "endChar": 68
+      },
+      "revId": "4505dff51b379df73d97e2efc08c8083280088f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4653b01f_1cb84a79",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 80
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-08T08:56:16Z",
+      "side": 1,
+      "message": "this is what?\nSince when the crypto depends on NIC? I do prefer to have information about crypto in Topology file.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 37
+      },
+      "revId": "4505dff51b379df73d97e2efc08c8083280088f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "76075f09_6aa67d7d",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 80
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-08T08:56:16Z",
+      "side": 1,
+      "message": "Specification?",
+      "range": {
+        "startLine": 126,
+        "startChar": 19,
+        "endLine": 126,
+        "endChar": 27
+      },
+      "revId": "4505dff51b379df73d97e2efc08c8083280088f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
