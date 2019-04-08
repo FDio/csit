@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "884e599c_6dd22ebf",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-08T08:55:30Z",
+      "side": 1,
+      "message": "This argument is required now (and None is not a valid value anymore).",
+      "range": {
+        "startLine": 84,
+        "startChar": 23,
+        "endLine": 84,
+        "endChar": 32
+      },
+      "revId": "3d05f7e03778709060b12bf629b23425ce6af98e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
