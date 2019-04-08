@@ -156,7 +156,7 @@
 | | Interface state from VAT should be | ${node} | ${interface} | up
 | | Sub-interface bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${sub_if_id} | ${sub_bd_settings}
-| | Sub-interface bridge domain Operational Data From VAT Should Be
+| | Sub-interface bridge domain Operational Data From PAPI Should Be
 | | ... | ${node} | ${sub_if_name} | ${sub_bd_settings}
 | | Rewrite tag from Honeycomb should be
 | | ... | ${node} | ${interface} | ${sub_if_id} | ${tag_rewrite_pop_1_oper}
@@ -184,7 +184,7 @@
 | | ... | ${node} | ${vx_interface}
 | | VxLAN Operational Data From VAT Should Be empty | ${node}
 | | Honeycomb should show no bridge domains | ${node}
-| | VAT should show no bridge domains | ${node}
+| | PAPI should show no bridge domains | ${node}
 | | TAP Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${tap_interface}
 | | TAP Operational Data From VAT Should Be empty
@@ -321,5 +321,5 @@
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | L2 FIB Entry from Honeycomb should be
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_oper}
-| | L2 FIB entry from VAT should be
+| | L2 FIB entry from PAPI should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_forward_vat}

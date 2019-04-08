@@ -149,7 +149,7 @@
 | | ... | Modify L2 FIB Entry
 | | ... | ${node} | ${bd_name} | ${mac} | ${param} | ${value}
 
-| L2 FIB entry from VAT should be
+| L2 FIB entry from PAPI should be
 | | [Documentation] | Retrieves the operational data about the specified L2 \
 | | ... | FIB entry using Python API and checks if it is as expected.
 | | ...
@@ -159,7 +159,7 @@
 | | ... | - l2_fib_ref_data - L2 FIB entry referential data. Type: dictionay
 | | ...
 | | ... | *Example:*
-| | ... | \| L2 FIB entry from VAT should be \
+| | ... | \| L2 FIB entry from PAPI should be \
 | | ... | \| ${nodes['DUT1']} \| test_bd \| ${l2_fib_forward_oper} \|
 | | ...
 | | [Arguments] | ${node} | ${bd_index} | ${l2_fib_ref_data}
@@ -168,7 +168,7 @@
 | | ... | ${l2_fib_ref_data['mac']}
 | | Compare Data Structures | ${l2_fib_data} | ${l2_fib_ref_data}
 
-| L2 FIB Table from VAT should be empty
+| L2 FIB Table from PAPI should be empty
 | | [Documentation] | Check if the L2 FIB table in the specified bridge domain \
 | | ... | is empty. Python API is used to get operational data.
 | | ...
@@ -177,7 +177,7 @@
 | | ... | - bd_index - Index of the bridge domain. Type: integer
 | | ...
 | | ... | *Example:*
-| | ... | \| L2 FIB Table from VAT should be empty \
+| | ... | \| L2 FIB Table from PAPI should be empty \
 | | ... | \| ${nodes['DUT1']} \| test_bd \|
 | | ...
 | | [Arguments] | ${node} | ${bd_index}
