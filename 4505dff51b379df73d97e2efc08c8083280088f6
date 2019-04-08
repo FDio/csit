@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "96cf0ff3_b9ad7277",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 80
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-08T11:02:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d369f817_7287401c",
+      "range": {
+        "startLine": 92,
+        "startChar": 36,
+        "endLine": 92,
+        "endChar": 68
+      },
+      "revId": "4505dff51b379df73d97e2efc08c8083280088f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4653b01f_1cb84a79",
         "filename": "resources/libraries/python/Constants.py",
         "patchSetId": 80
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "f0770b70_281569de",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 80
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-08T11:02:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39520f8b_1b15a8cc",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 37
+      },
+      "revId": "4505dff51b379df73d97e2efc08c8083280088f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76075f09_6aa67d7d",
         "filename": "resources/libraries/python/Constants.py",
         "patchSetId": 80
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "I had \"*[Ver] TG verification:*\" in earlier patches, but line 128 is close to length limit alread.",
       "parentUuid": "76075f09_6aa67d7d",
+      "range": {
+        "startLine": 126,
+        "startChar": 19,
+        "endLine": 126,
+        "endChar": 27
+      },
+      "revId": "4505dff51b379df73d97e2efc08c8083280088f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c0fd45c_17795273",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 80
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-08T11:02:30Z",
+      "side": 1,
+      "message": "Added a TODO in #82.",
+      "parentUuid": "f15d6ce3_730db43a",
       "range": {
         "startLine": 126,
         "startChar": 19,
