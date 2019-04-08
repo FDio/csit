@@ -23,8 +23,7 @@
 | Suite Teardown | Tear down 2-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance test with vhost and VM with dpdk-testpmd
-| ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
+| Test Teardown | Tear down performance test with vhost
 | ...
 | Test Template | Local Template
 | ...
@@ -74,17 +73,15 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | ${dut1_vm_refs}= | Create Dictionary
-| | Set Test Variable | ${dut1_vm_refs}
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 bridge domains for multiple chains with Vhost-User
 | | ... | nf_chains=${6} | nf_nodes=${2}
-| | And Configure chains of NFs with dpdk-testpmd-mac connected via vhost-user
+| | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${6} | nf_nodes=${2} | jumbo=${jumbo}
-| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
+| | ... | use_tuned_cfs=${False} | auto_scale=${False} | vnf=testpmd_mac
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

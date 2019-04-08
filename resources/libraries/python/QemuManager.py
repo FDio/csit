@@ -26,7 +26,7 @@ __all__ = ["QemuManager"]
 
 
 def get_affinity_vm(nodes, node, nf_chains=1, nf_nodes=1, nf_chain=1, nf_node=1,
-                    cpu_count_int=1):
+                    cpu_count_int=1, vnf_count_int=1):
     """Get affinity of VM. Result will be used to compute the amount of
     CPUs and also affinity.
 
@@ -37,6 +37,7 @@ def get_affinity_vm(nodes, node, nf_chains=1, nf_nodes=1, nf_chain=1, nf_node=1,
     :param nf_chain: Chain ID.
     :param nf_node: Node ID.
     :param cpu_count_int: Amount of Dataplane threads of vswitch.
+    :param vnf_count_int: Amount of Dataplane threads of vnf.
     :type nodes: dict
     :type node: dict
     :type nf_chains: int
@@ -44,6 +45,7 @@ def get_affinity_vm(nodes, node, nf_chains=1, nf_nodes=1, nf_chain=1, nf_node=1,
     :type nf_chain: int
     :type nf_node: int
     :type cpu_count_int: int
+    :type vnf_count_int: int
     :returns: List of CPUs allocated to VM.
     :rtype: list
     """
@@ -51,7 +53,7 @@ def get_affinity_vm(nodes, node, nf_chains=1, nf_nodes=1, nf_chain=1, nf_node=1,
     dut_mc = 1
     dut_dc = cpu_count_int
     skip_cnt = sut_sc + dut_mc + dut_dc
-    dtc = cpu_count_int
+    dtc = vnf_count_int
 
     interface_list = []
     interface_list.append(
@@ -95,7 +97,8 @@ class QemuManager(object):
         nf_chains = int(kwargs['nf_chains'])
         nf_nodes = int(kwargs['nf_nodes'])
         queues = kwargs['rxq_count_int'] if kwargs['auto_scale'] else 1
-        cpu_count_int = kwargs['cpu_count_int'] if kwargs['auto_scale'] else 1
+        cpu_count_int = kwargs['cpu_count_int']
+        vnf_count_int = kwargs['cpu_count_int'] if kwargs['auto_scale'] else 1
 
         img = Constants.QEMU_PERF_VM_KERNEL
 
@@ -113,7 +116,7 @@ class QemuManager(object):
                 self.machines_affinity[name] = get_affinity_vm(
                     nodes=self.nodes, node=node, nf_chains=nf_chains,
                     nf_nodes=nf_nodes, nf_chain=nf_chain, nf_node=nf_node,
-                    cpu_count_int=cpu_count_int)
+                    cpu_count_int=cpu_count_int, vnf_count_int=vnf_count_int)
 
                 self.machines[name] = QemuUtils(
                     node=self.nodes[node], qemu_id=qemu_id,
@@ -123,7 +126,9 @@ class QemuManager(object):
                     mac1='52:54:00:00:{id:02x}:01'.format(id=qemu_id),
                     mac2='52:54:00:00:{id:02x}:02'.format(id=qemu_id),
                     vif1_mac=vif1_mac,
-                    vif2_mac=vif2_mac)
+                    vif2_mac=vif2_mac,
+                    queues=queues,
+                    jumbo_frames=kwargs['jumbo'])
                 self.machines[name].qemu_add_vhost_user_if(
                     sock1, jumbo_frames=kwargs['jumbo'], queues=queues,
                     queue_size=1024)
