@@ -612,8 +612,8 @@ class PLRsearch(object):
             worker.daemon = True
             worker.start()
             return boss_pipe_end
-        erf_pipe = start_computing(
-            self.lfit_erf, erf_focus_tracker)
+#        erf_pipe = start_computing(
+#            self.lfit_erf, erf_focus_tracker)
         stretch_pipe = start_computing(
             self.lfit_stretch, stretch_focus_tracker)
         # Measurement phase.
@@ -657,13 +657,14 @@ class PLRsearch(object):
             return value_tracker, focus_tracker, sampls
         stretch_value_tracker, stretch_focus_tracker, stretch_samples = (
             stop_computing("stretch", stretch_pipe))
-        erf_value_tracker, erf_focus_tracker, erf_samples = (
-            stop_computing("erf", erf_pipe))
+#        erf_value_tracker, erf_focus_tracker, erf_samples = (
+#            stop_computing("erf", erf_pipe))
+        erf_samples = 0
         stretch_avg = stretch_value_tracker.average
-        erf_avg = erf_value_tracker.average
+        erf_avg = math.log(8000000.0) # erf_value_tracker.average
         # FIXME: Take into account secondary stats.
         stretch_stdev = math.exp(stretch_value_tracker.log_variance / 2)
-        erf_stdev = math.exp(erf_value_tracker.log_variance / 2)
+        erf_stdev = 0.0 # math.exp(erf_value_tracker.log_variance / 2)
         avg = math.exp((stretch_avg + erf_avg) / 2.0)
         var = (stretch_stdev * stretch_stdev + erf_stdev * erf_stdev) / 2.0
         var += (stretch_avg - erf_avg) * (stretch_avg - erf_avg) / 4.0
