@@ -184,7 +184,7 @@
 | | ... | ${node} | ${vx_interface}
 | | VxLAN Operational Data From VAT Should Be empty | ${node}
 | | Honeycomb should show no bridge domains | ${node}
-| | VAT should show no bridge domains | ${node}
+| | PAPI should show no bridge domains | ${node}
 | | TAP Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${tap_interface}
 | | TAP Operational Data From VAT Should Be empty
