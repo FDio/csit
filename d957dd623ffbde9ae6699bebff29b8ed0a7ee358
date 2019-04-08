@@ -22,6 +22,30 @@
       "revId": "d957dd623ffbde9ae6699bebff29b8ed0a7ee358",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45733074_0afd91dc",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-08T17:08:31Z",
+      "side": 1,
+      "message": "I agree we should simplify and hide the type manipulations, but I do not think this method is the correct place to do that.\n\nBasically, we have a design mismatch. When we were designing the communication \"protocol\" between Robot and SUT, we used JSON because it is human readable. But we did not anticipate PAPI to start switching from simple types (integer and string/bytes) to structured types (MAC, IP4, various enums).\n\nWith structured types, we now have SSOT violation. The SUT utility has direct access to PAPI types and instances. But it needs to convert them to ints and strs for json, and on Robot side we have stuff like L2VtrOp and bin_to_mac().\n\nSome conversion is inevitable. For example, Robot tests need \"de:ad:be:ef:13:37\" form of MAC addresses for readability, and PAPI is right for defining specific classes (for example for validation reasons). But I believe we should perform such conversions at most once.\n\nThat implies two decisions. First, do we want to use sophisticated types on Robot side? I vote for \"no\", but perhaps I am missing some consequence here.\nIf we vote for \"no\", I believe the SUT utility should do all the conversions needed, as it has the access to PAPI types, and we can keep the readable JSON communication.\n\nBut if we vote \"yes\", the second decision is how to transfer the typed instances. Here I vote for \"use a third party library to restore the same typed objects on Robot side\". That means either pickle, or something more powerful (dill).\nWe probably lose the human-readability of the transferred data, but this way we can be sure the objects on the Robot side are the same type as on the SUT side (so we do not care about PAPI changes that much, if duck typing still works).\n\nI just dislike the way in which CSIT would have to maintain its own type definitions in parallel to the PAPI ones.",
+      "parentUuid": "617a7711_e5febc5b",
+      "range": {
+        "startLine": 195,
+        "startChar": 20,
+        "endLine": 196,
+        "endChar": 57
+      },
+      "revId": "d957dd623ffbde9ae6699bebff29b8ed0a7ee358",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
