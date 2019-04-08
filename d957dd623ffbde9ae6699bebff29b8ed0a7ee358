@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "617a7711_e5febc5b",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-04-08T11:34:55Z",
+      "side": 1,
+      "message": "It would be usefull to allow import function for processing dump data, e.g. https://gerrit.fd.io/r/#/c/18360/26/resources/libraries/python/InterfaceUtil.py@289.",
+      "range": {
+        "startLine": 195,
+        "startChar": 20,
+        "endLine": 196,
+        "endChar": 57
+      },
+      "revId": "d957dd623ffbde9ae6699bebff29b8ed0a7ee358",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
