@@ -53,7 +53,7 @@ get_test_tag_string || die
 set_perpatch_dut || die
 select_topology || die
 activate_virtualenv "${VPP_DIR}" || die
-reserve_testbed || die
+reserve_and_cleanup_testbed || die
 select_tags || die
 compose_pybot_arguments || die
 iterations=8
