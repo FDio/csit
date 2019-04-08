@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c74c5c78_04600933",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-08T17:14:24Z",
+      "side": 1,
+      "message": "You can require this to be a closure with only one argument. That will simplify this method (by not requiring func_kwargs) and I believe also the call sites.\nBut I would have to see a current call site to be sure.",
+      "range": {
+        "startLine": 211,
+        "startChar": 21,
+        "endLine": 211,
+        "endChar": 29
+      },
+      "revId": "4cb2f3cdd5727326e06c5f6865ea11ead7bc2a34",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
