@@ -67,7 +67,6 @@
 # Link bonding config
 | ${bond_mode}= | lacp
 | ${lb_mode}= | l34
-# Socket names
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
 # Traffic profile:
