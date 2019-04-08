@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ea3b02d_8e77097b",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 81
+      },
+      "lineNbr": 755,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-08T08:56:16Z",
+      "side": 1,
+      "message": "not needed as from DPDK we are unable to get more sophisticated information then just packet passed.",
+      "range": {
+        "startLine": 755,
+        "startChar": 0,
+        "endLine": 755,
+        "endChar": 48
+      },
+      "revId": "a9d9e7a0d00f27ca74aac138163246a160a34911",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8dd52b3c_ccd16b39",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 81
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-08T08:56:16Z",
+      "side": 1,
+      "message": "TRex",
+      "range": {
+        "startLine": 323,
+        "startChar": 38,
+        "endLine": 323,
+        "endChar": 42
+      },
+      "revId": "a9d9e7a0d00f27ca74aac138163246a160a34911",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
