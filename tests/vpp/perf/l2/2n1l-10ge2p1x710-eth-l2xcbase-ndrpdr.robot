@@ -85,7 +85,7 @@
 | | frame_size=${64} | phy_cores=${2}
 
 | tc03-64B-4c-eth-l2xcbase-ndrpdr
-| | [Tags] | 64B | 4C
+| | [Tags] | 64B | 4C | THIS
 | | frame_size=${64} | phy_cores=${4}
 
 | tc04-1518B-1c-eth-l2xcbase-ndrpdr
