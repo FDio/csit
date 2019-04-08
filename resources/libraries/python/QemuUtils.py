@@ -24,6 +24,7 @@ from distutils.version import StrictVersion
 from robot.api import logger
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.DpdkUtil import DpdkUtil
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
@@ -81,7 +82,7 @@ class QemuUtils(object):
     # Use one instance of class per tests.
     ROBOT_LIBRARY_SCOPE = 'TEST CASE'
 
-    def __init__(self, node=None, qemu_id=1, smp=1, mem=512, vnf=None,
+    def __init__(self, node, qemu_id=1, smp=1, mem=512, vnf=None,
                  img='/var/lib/vm/vhost-nested.img', bin_path='/usr/bin'):
         """Initialize QemuUtil class.
 
@@ -263,6 +264,32 @@ class QemuUtils(object):
                               format(out=src.safe_substitute(**kwargs),
                                      running=running))
 
+    def create_kernelvm_config_testpmd_mac(self, **kwargs):
+        """Create QEMU testpmd-mac command line.
+
+        :param kwargs: Key-value pairs to construct command line parameters.
+        :type kwargs: dict
+        """
+        testpmd_path = ('/opt/dpdk-18.11/{arch}-native-linuxapp-gcc/app'.
+                        format(arch=Topology.get_node_arch(self._node)))
+        testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
+            eal_in_memory=True,
+            eal_corelist='0-{smp}'.format(smp=self._opt.get('smp') - 1),
+            eal_mem_channels=4,
+            eal_driver=False,
+            pmd_num_mbufs=16384,
+            pmd_fwd_mode='mac',
+            pmd_eth_peer_0='0,'+kwargs['vif1_mac'],
+            pmd_eth_peer_1='1,'+kwargs['vif2_mac'],
+            pmd_disable_hw_vlan=False,
+            pmd_tx_offloads=False,
+            pmd_rxq=1,
+            pmd_txq=1)
+
+        self._opt['vnf_bin'] = ('{testpmd_path}/{testpmd_cmd}'.
+                                format(testpmd_path=testpmd_path,
+                                       testpmd_cmd=testpmd_cmd))
+
     def create_kernelvm_init(self, **kwargs):
         """Create QEMU init script.
 
@@ -290,6 +317,8 @@ class QemuUtils(object):
         """
         if 'vpp' in self._opt.get('vnf'):
             self.create_kernelvm_config_vpp(**kwargs)
+        if 'testpmd_mac' in self._opt.get('vnf'):
+            self.create_kernelvm_config_testpmd_mac(**kwargs)
         else:
             raise RuntimeError('QEMU: Unsupported VNF!')
         self.create_kernelvm_init(vnf_bin=self._opt.get('vnf_bin'))
@@ -535,7 +564,8 @@ class QemuUtils(object):
                 sleep(1)
             except RuntimeError:
                 pass
-            if VPPUtil.vpp_show_version(self._node) in stdout:
+            if VPPUtil.vpp_show_version(self._node) in stdout or \
+                'Press enter to exit' in stdout:
                 break
         else:
             raise RuntimeError('QEMU: Timeout, VM not booted on {host}!'.
@@ -599,6 +629,7 @@ class QemuUtils(object):
                  format(pidfile=self._temp.get('pidfile')), sudo=True)
 
         for value in self._temp.values():
+            exec_cmd(self._node, 'cat {value}'.format(value=value), sudo=True)
             exec_cmd(self._node, 'rm -f {value}'.format(value=value), sudo=True)
 
     def qemu_kill_all(self):
@@ -606,6 +637,7 @@ class QemuUtils(object):
         exec_cmd(self._node, 'pkill -SIGKILL qemu', sudo=True)
 
         for value in self._temp.values():
+            exec_cmd(self._node, 'cat {value}'.format(value=value), sudo=True)
             exec_cmd(self._node, 'rm -f {value}'.format(value=value), sudo=True)
 
     def qemu_version(self, version=None):
