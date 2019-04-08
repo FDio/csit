@@ -52,6 +52,9 @@ class Constants(object):
     # QEMU performance test VM nested image path
     QEMU_PERF_VM_IMAGE = '/var/lib/vm/csit-nested-1.7.img'
 
+    # QEMU performance test VM DPDK path
+    QEMU_PERF_VM_DPDK = '/opt/dpdk-19.02'
+
     # TRex install version
     TREX_INSTALL_VERSION = '2.35'
 
