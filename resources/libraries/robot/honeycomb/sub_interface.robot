@@ -287,7 +287,7 @@
 | | Should be equal | ${if_data['bridge-domain']}
 | | ... | ${settings['bridge-domain']}
 
-| Sub-interface bridge domain Operational Data From VAT Should Be
+| Sub-interface bridge domain Operational Data From PAPI Should Be
 | | [Documentation] | Uses VAT to verify sub-interface assignment to a bridge\
 | | ... | domain.
 | | ...
@@ -298,19 +298,20 @@
 | | ... | - setings - Parameters to be checked. Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| Sub-interface bridge domain Operational Data From VAT Should Be\
+| | ... | \| Sub-interface bridge domain Operational Data From PAPI Should Be\
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \| ${sub_bd_setings} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | ...
 | | ${bd_data}= | VPP get bridge domain data | ${node}
 | | ${bd_intf}= | Set Variable | ${bd_data[0]}
-| | ${sw_if_data}= | Set Variable | ${bd_intf['sw_if'][0]}
+| | ${sw_if_data}= | Set Variable | ${bd_intf['sw_if_details'][0]}
 | | Should be equal as integers | ${bd_intf['flood']} | ${bd_settings['flood']}
 | | Should be equal as integers | ${bd_intf['forward']}
 | | ... | ${bd_settings['forward']}
 | | Should be equal as integers | ${bd_intf['learn']} | ${bd_settings['learn']}
-| | Should be equal as strings | ${sw_if_data['shg']}
+# interface[1] = sw_if_index, interface[2] = shg
+| | Should be equal as strings | ${sw_if_data[2]}
 | | ... | ${settings['split-horizon-group']}
 
 | Honeycomb fails to remove all sub-interfaces

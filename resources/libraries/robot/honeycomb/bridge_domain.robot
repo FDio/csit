@@ -144,7 +144,7 @@
 | | ... | ${if2_data['v3po:l2']['bridged-virtual-interface']}
 | | ... | ${settings['bvi']}
 
-| VAT should show interfaces assigned to bridge domain
+| PAPI should show interfaces assigned to bridge domain
 | | [Documentation] | Uses VAT to verify interface assignment to\
 | | ... | bridge domain.
 | | ...
@@ -159,7 +159,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VAT should show interfaces assigned to bridge domain \
+| | ... | \| PAPI should show interfaces assigned to bridge domain \
 | | ... | \| ${nodes['DUT1']} \| ${4} \| GigabitEthernet0/8/0 \
 | | ... | \| GigabitEthernet0/9/0 \| ${{split_horizon_group:2, bvi:False}} \|
 | | [Arguments] | ${node} | ${index} | ${interface1} | ${interface2}
@@ -170,11 +170,12 @@
 | | ... | ${node['interfaces']['${if1_link}']['vpp_sw_index']}
 | | ... | ${node['interfaces']['${if2_link}']['vpp_sw_index']}
 | | ${bd_data}= | VPP get bridge domain data | ${node}
-| | ${bd_interfaces}= | Set Variable | ${bd_data[${index}]['sw_if']}
+| | ${bd_interfaces}= | Set Variable | ${bd_data[${index}]['sw_if_details']}
 | | @{bd_interfaces}= | Create List | ${bd_interfaces[0]} | ${bd_interfaces[1]}
 | | :FOR | ${interface} | IN | @{bd_interfaces}
-| | | Should contain | ${if_indices} | ${interface['sw_if_index']}
-| | | Should be equal | ${interface['shg']} | ${settings['split_horizon_group']}
+# interface[1] = sw_if_index, interface[2] = shg
+| | | Should contain | ${if_indices} | ${interface[1]}
+| | | Should be equal | ${interface[2]} | ${settings['split_horizon_group']}
 
 | Honeycomb removes all bridge domains
 | | [Documentation] | Uses Honeycomb API to remove all bridge domains from the \
@@ -205,7 +206,7 @@
 | | Run keyword and expect error | *Not possible*Status code: 404*
 | | ... | Get all BDs oper data | ${node}
 
-| VAT should show no bridge domains
+| PAPI should show no bridge domains
 | | [Documentation] | Uses VAT to verify the removal of all bridge domains.
 | | ...
 | | ... | *Arguments:*
@@ -213,10 +214,10 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VAT should show no bridge domains \| ${nodes['DUT1']} \|
+| | ... | \| PAPI should show no bridge domains \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
-| | Run Keyword And Expect Error | ValueError: No JSON object could be decoded
-| | ... | VPP get bridge domain data | ${node}
+| | ${data}= | VPP get bridge domain data | ${node}
+| | Should be empty | ${data}
 
 | Honeycomb adds interface to bridge domain
 | | [Documentation] | Uses Honeycomb API to assign interface to a bridge\

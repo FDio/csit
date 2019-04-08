@@ -192,7 +192,7 @@
 | | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_bd_settings}
 | | Then sub-interface bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_bd_settings}
-| | And sub-interface bridge domain Operational Data From VAT Should Be
+| | And Sub-interface bridge domain Operational Data From PAPI Should Be
 | | ... | ${node} | ${sub_if_name} | ${sub_bd_settings}
 | | And sub-interface Operational Data From VAT Should Be
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}

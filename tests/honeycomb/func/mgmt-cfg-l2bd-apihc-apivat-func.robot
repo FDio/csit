@@ -73,7 +73,7 @@
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | When Honeycomb removes all bridge domains | ${node}
 | | Then Honeycomb should show no bridge domains | ${node}
-| | And VAT should show no bridge domains | ${node}
+| | And PAPI should show no bridge domains | ${node}
 
 | TC04: Honeycomb assigns interfaces to bridge domain
 | | [Documentation] | Check if Honeycomb can assign VPP interfaces to an\
@@ -89,7 +89,7 @@
 | | ... | ${node} | ${0} | ${bd_settings}
 | | And Honeycomb should show interfaces assigned to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
-| | And VAT should show interfaces assigned to bridge domain
+| | And PAPI should show interfaces assigned to bridge domain
 | | ... | ${node} | ${0} | @{interfaces} | ${if_settings}
 
 | TC05: Honeycomb cannot remove bridge domain with an interface assigned
@@ -102,7 +102,7 @@
 | | ... | ${node} | ${0} | ${bd_settings}
 | | And Honeycomb should show interfaces assigned to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
-| | And VAT should show interfaces assigned to bridge domain
+| | And PAPI should show interfaces assigned to bridge domain
 | | ... | ${node} | ${0} | @{interfaces} | ${if_settings}
 | | When Run keyword and expect error | HoneycombError* Status code: 500.
 | | ... | Honeycomb removes all bridge domains | ${node}
@@ -112,5 +112,5 @@
 | | ... | ${node} | ${0} | ${bd_settings}
 | | And Honeycomb should show interfaces assigned to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
-| | And VAT should show interfaces assigned to bridge domain
+| | And PAPI should show interfaces assigned to bridge domain
 | | ... | ${node} | ${0} | @{interfaces} | ${if_settings}

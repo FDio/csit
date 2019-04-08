@@ -60,13 +60,13 @@
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | Given L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
-| | And L2 FIB Table from VAT should be empty
+| | And L2 FIB Table from PAPI should be empty
 | | ... | ${node} | ${bd_index}
 | | When Honeycomb adds L2 FIB entry to bridge domain
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_cfg}
 | | Then L2 FIB Entry from Honeycomb should be
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_oper}
-| | And L2 FIB entry from VAT should be
+| | And L2 FIB entry from PAPI should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_forward_vat}
 
 | TC02: Honeycomb adds L2 FIB entry (static, forward)
@@ -80,13 +80,13 @@
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
-| | And L2 FIB Table from VAT should be empty
+| | And L2 FIB Table from PAPI should be empty
 | | ... | ${node} | ${bd_index}
 | | When Honeycomb adds L2 FIB entry to bridge domain
 | | ... | ${node} | ${bd_name} | ${l2_fib_static_forward_cfg}
 | | Then L2 FIB Entry from Honeycomb should be
 | | ... | ${node} | ${bd_name} | ${l2_fib_static_forward_oper}
-| | And L2 FIB entry from VAT should be
+| | And L2 FIB entry from PAPI should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_static_forward_vat}
 
 | TC03: Honeycomb adds L2 FIB entry (static, filter)
@@ -100,13 +100,13 @@
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
-| | And L2 FIB Table from VAT should be empty
+| | And L2 FIB Table from PAPI should be empty
 | | ... | ${node} | ${bd_index}
 | | When Honeycomb adds L2 FIB entry to bridge domain
 | | ... | ${node} | ${bd_name} | ${l2_fib_filter_cfg}
 | | Then L2 FIB Entry from Honeycomb should be
 | | ... | ${node} | ${bd_name} | ${l2_fib_filter_oper}
-| | And L2 FIB entry from VAT should be
+| | And L2 FIB entry from PAPI should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_filter_vat}
 
 | TC04: Honeycomb adds and removes L2 FIB entry (forward)
@@ -120,19 +120,19 @@
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
-| | And L2 FIB Table from VAT should be empty
+| | And L2 FIB Table from PAPI should be empty
 | | ... | ${node} | ${bd_index}
 | | When Honeycomb adds L2 FIB entry to bridge domain
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_cfg}
 | | Then L2 FIB Entry from Honeycomb should be
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_oper}
-| | And L2 FIB entry from VAT should be
+| | And L2 FIB entry from PAPI should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_forward_vat}
 | | When Honeycomb removes L2 FIB entry
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_oper['phys-address']}
 | | Then L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
-| | And L2 FIB Table from VAT should be empty
+| | And L2 FIB Table from PAPI should be empty
 | | ... | ${node} | ${bd_index}
 
 | TC05: Honeycomb adds more than one L2 FIB entry
@@ -145,7 +145,7 @@
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
-| | And L2 FIB Table from VAT should be empty
+| | And L2 FIB Table from PAPI should be empty
 | | ... | ${node} | ${bd_index}
 | | When Honeycomb adds L2 FIB entry to bridge domain
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_cfg}
@@ -159,11 +159,11 @@
 | | ... | ${node} | ${bd_name} | ${l2_fib_static_forward_oper}
 | | And L2 FIB Entry from Honeycomb should be
 | | ... | ${node} | ${bd_name} | ${l2_fib_filter_oper}
-| | And L2 FIB entry from VAT should be
+| | And L2 FIB entry from PAPI should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_forward_vat}
-| | And L2 FIB entry from VAT should be
+| | And L2 FIB entry from PAPI should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_static_forward_vat}
-| | And L2 FIB entry from VAT should be
+| | And L2 FIB entry from PAPI should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_filter_vat}
 
 | TC06: Honeycomb fails to set wrong L2 FIB entry
@@ -177,25 +177,25 @@
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
-| | And L2 FIB Table from VAT should be empty
+| | And L2 FIB Table from PAPI should be empty
 | | ... | ${node} | ${bd_index}
 | | When Honeycomb fails to add wrong L2 FIB entry
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_cfg_wrong_mac}
 | | Then L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
-| | And L2 FIB Table from VAT should be empty
+| | And L2 FIB Table from PAPI should be empty
 | | ... | ${node} | ${bd_index}
 | | When Honeycomb fails to add wrong L2 FIB entry
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_cfg_wrong_if}
 | | Then L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
-| | And L2 FIB Table from VAT should be empty
+| | And L2 FIB Table from PAPI should be empty
 | | ... | ${node} | ${bd_index}
 | | When Honeycomb fails to add wrong L2 FIB entry
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_cfg_wrong_action}
 | | Then L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
-| | And L2 FIB Table from VAT should be empty
+| | And L2 FIB Table from PAPI should be empty
 | | ... | ${node} | ${bd_index}
 
 | TC07: Honeycomb fails to modify existing L2 FIB entry
@@ -209,7 +209,7 @@
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
-| | And L2 FIB Table from VAT should be empty
+| | And L2 FIB Table from PAPI should be empty
 | | ... | ${node} | ${bd_index}
 | | When Honeycomb adds L2 FIB entry to bridge domain
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_cfg}
@@ -221,7 +221,7 @@
 | | ... | ${l2_fib_forward_modified_cfg['outgoing-interface']}
 | | Then L2 FIB Entry from Honeycomb should be
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_oper}
-| | And L2 FIB entry from VAT should be
+| | And L2 FIB entry from PAPI should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_forward_vat}
 
 *** Keywords ***
