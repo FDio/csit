@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d369f817_7287401c",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 80
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-08T10:52:29Z",
+      "side": 1,
+      "message": "Will change the comment.",
+      "parentUuid": "b7f67f87_ad639bf7",
+      "range": {
+        "startLine": 92,
+        "startChar": 36,
+        "endLine": 92,
+        "endChar": 68
+      },
+      "revId": "4505dff51b379df73d97e2efc08c8083280088f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4653b01f_1cb84a79",
         "filename": "resources/libraries/python/Constants.py",
         "patchSetId": 80
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "39520f8b_1b15a8cc",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 80
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-08T10:52:29Z",
+      "side": 1,
+      "message": "This Chnage is not suited for testing additional improvements.\nI have opened CSIT-1481 to track that.\nI will add some TODOs in the next patch.",
+      "parentUuid": "4653b01f_1cb84a79",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 37
+      },
+      "revId": "4505dff51b379df73d97e2efc08c8083280088f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "76075f09_6aa67d7d",
         "filename": "resources/libraries/python/Constants.py",
         "patchSetId": 80
@@ -59,6 +107,30 @@
       "writtenOn": "2019-04-08T08:56:16Z",
       "side": 1,
       "message": "Specification?",
+      "range": {
+        "startLine": 126,
+        "startChar": 19,
+        "endLine": 126,
+        "endChar": 27
+      },
+      "revId": "4505dff51b379df73d97e2efc08c8083280088f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f15d6ce3_730db43a",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 80
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-08T10:52:29Z",
+      "side": 1,
+      "message": "I had \"*[Ver] TG verification:*\" in earlier patches, but line 128 is close to length limit alread.",
+      "parentUuid": "76075f09_6aa67d7d",
       "range": {
         "startLine": 126,
         "startChar": 19,
