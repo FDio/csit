@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d9955e0_3153c7cf",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-08T16:33:38Z",
+      "side": 1,
+      "message": "The config item is called \"buffers-per-numa\". Also, did you just assume the NUMA count without looking into topology file? ;)\n\nIf you really want to double the buffer count, do it in line 187 and document why are we changing the previous value (assuming it is still the default recommended somewhere).",
+      "range": {
+        "startLine": 216,
+        "startChar": 74,
+        "endLine": 216,
+        "endChar": 76
+      },
+      "revId": "81ae7e2bf68fcc0ba03dffd296834577b98f0344",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
