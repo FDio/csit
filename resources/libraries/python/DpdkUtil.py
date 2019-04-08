@@ -40,13 +40,16 @@ class DpdkUtil(object):
         eal_socket_mem = '--socket-mem {} '.format(args['eal_socket_mem'])\
             if args.get('eal_socket_mem', '') else ''
         # Load an external driver. Multiple -d options are allowed.
-        eal_driver = '-d /usr/lib/librte_pmd_virtio.so '
+        eal_driver = '' #'-d /usr/lib/librte_pmd_virtio.so '
+        eal_in_memory = '--in-memory '\
+            if args.get('eal_in_memory', '') else ''
         eal_options = '-v '\
             + eal_corelist\
             + eal_master_core\
             + eal_mem_channels\
             + eal_socket_mem\
-            + eal_driver
+            + eal_driver\
+            + eal_in_memory
         return eal_options
 
     @staticmethod
@@ -65,19 +68,19 @@ class DpdkUtil(object):
         # Set the number of packets per burst to N.
         pmd_burst = '--burst=64 '
         # Set the number of descriptors in the TX rings to N.
-        pmd_txd = '--txd={} '.format(args.get('pmd_txd', '256')) \
-            if args.get('pmd_txd', '256') else ''
+        pmd_txd = '--txd={} '.format(args.get('pmd_txd', '1024')) \
+            if args.get('pmd_txd', '1024') else ''
         # Set the number of descriptors in the RX rings to N.
-        pmd_rxd = '--rxd={} '.format(args.get('pmd_rxd', '256')) \
-            if args.get('pmd_rxd', '256') else ''
+        pmd_rxd = '--rxd={} '.format(args.get('pmd_rxd', '1024')) \
+            if args.get('pmd_rxd', '1024') else ''
         # Set the number of queues in the TX to N.
         pmd_txq = '--txq={} '.format(args.get('pmd_txq', '1')) \
             if args.get('pmd_txq', '1') else ''
         # Set the number of queues in the RX to N.
         pmd_rxq = '--rxq={} '.format(args.get('pmd_rxq', '1')) \
             if args.get('pmd_rxq', '1') else ''
-        # Set the hexadecimal bitmask of TX queue flags.
-        pmd_txqflags = '--txqflags=0xf00 '
+        # Set the hexadecimal bitmask of TX offloads.
+        pmd_tx_offloads = '--tx-offloads=0xf00 '
         # Set the number of mbufs to be allocated in the mbuf pools.
         pmd_total_num_mbufs = '--total-num-mbufs={} '.format(
             args['pmd_num_mbufs']) if args.get('pmd_num_mbufs', '') else ''
@@ -88,8 +91,8 @@ class DpdkUtil(object):
         pmd_portmask = '--portmask={} '.format(args['pmd_portmask'])\
             if args.get('pmd_portmask', '') else ''
         # Disable hardware VLAN.
-        pmd_disable_hw_vlan = '--disable-hw-vlan '\
-            if args.get('pmd_disable_hw_vlan', '') else ''
+#        pmd_disable_hw_vlan = '--disable-hw-vlan '\
+#            if args.get('pmd_disable_hw_vlan', '') else ''
         # Disable RSS (Receive Side Scaling).
         pmd_disable_rss = '--disable-rss '\
             if args.get('pmd_disable_rss', '') else ''
@@ -109,16 +112,29 @@ class DpdkUtil(object):
             + pmd_rxd\
             + pmd_txq\
             + pmd_rxq\
-            + pmd_txqflags\
+            + pmd_tx_offloads\
             + pmd_total_num_mbufs\
             + pmd_portmask\
-            + pmd_disable_hw_vlan\
             + pmd_disable_rss\
             + pmd_eth_peer_0\
             + pmd_eth_peer_1\
             + pmd_nb_cores\
             + pmd_max_pkt_len
         return pmd_options
+
+    @staticmethod
+    def get_testpmd_cmdline(**kwargs):
+        """Get DPDK testpmd command line arguments.
+
+        :param args: Key-value testpmd parameters.
+        :type args: dict
+        :returns: Command line string.
+        :rtype: str
+        """
+        eal_options = DpdkUtil.get_eal_options(**kwargs)
+        pmd_options = DpdkUtil.get_pmd_options(**kwargs)
+
+        return 'testpmd {0} {1}'.format(eal_options, pmd_options)
 
     @staticmethod
     def dpdk_testpmd_start(node, **kwargs):
