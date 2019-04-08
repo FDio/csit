@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2XCFWD | BASE | L2XCBASE
+| ... | NIC_Intel-X710 | ETH | L2XCFWD | BASE | L2XCBASE | THIS
 | ...
 | Suite Setup | Set up 2-node performance topology with DUT's NIC model
 | ... | L2 | ${nic_name}

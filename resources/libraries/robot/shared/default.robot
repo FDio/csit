@@ -186,7 +186,8 @@
 | | ...
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
-| | ${num_mbufs_int} | Convert to Integer | 16384
+| | ${buf_data_size}= | Set Variable | ${290000}
+| | ${nr_interfaces}= | Set Variable | ${4}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
@@ -215,13 +216,14 @@
 | | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | ${num_mbufs_int}= | Evaluate | int(${num_mbufs_int}*${rxq_count_int})
+| | | ${buffers_per_numa}= | Evaluate
+| | | ... | ${buf_data_size}*${1}
+#| | | ${buffers_per_numa}= | Evaluate
+#| | | ... | ${buf_data_size}*${rxq_count_int}*${nr_interfaces}
 | | | Run keyword | ${dut}.Add CPU Main Core | ${cpu_main}
 | | | Run keyword | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
 | | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
-# Temporarily desabling due to API changes:
-# https://gerrit.fd.io/r/#/c/16638/
-#| | | Run keyword | ${dut}.Add DPDK Num Mbufs | ${num_mbufs_int}
+| | | Run keyword | ${dut}.Add Buffers Per Numa | ${buffers_per_numa}
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
