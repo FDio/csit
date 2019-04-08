@@ -123,7 +123,9 @@ class QemuManager(object):
                     mac1='52:54:00:00:{id:02x}:01'.format(id=qemu_id),
                     mac2='52:54:00:00:{id:02x}:02'.format(id=qemu_id),
                     vif1_mac=vif1_mac,
-                    vif2_mac=vif2_mac)
+                    vif2_mac=vif2_mac,
+                    queues=queues,
+                    jumbo_frames=kwargs['jumbo'])
                 self.machines[name].qemu_add_vhost_user_if(
                     sock1, jumbo_frames=kwargs['jumbo'], queues=queues,
                     queue_size=1024)
