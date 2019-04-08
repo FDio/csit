@@ -220,6 +220,15 @@ class VppConfigGenerator(object):
         path = ['api-segment', 'api-size']
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_buffers_per_numa(self, value):
+        """Increase number of buffers allocated.
+
+        :param value: Number of buffers allocated.
+        :type value: int
+        """
+        path = ['buffers', 'buffers-per-numa']
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_dpdk_dev(self, *devices):
         """Add DPDK PCI device configuration.
 
@@ -341,15 +350,6 @@ class VppConfigGenerator(object):
         :type value: str
         """
         path = ['dpdk', 'log-level']
-        self.add_config_item(self._nodeconfig, value, path)
-
-    def add_dpdk_num_mbufs(self, value):
-        """Add DPDK number of I/O buffers.
-
-        :param value: Number of I/O buffers.
-        :type value: int
-        """
-        path = ['dpdk', 'num-mbufs']
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_no_pci(self):

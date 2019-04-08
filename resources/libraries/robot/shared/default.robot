@@ -217,9 +217,7 @@
 | | | Run keyword | ${dut}.Add CPU Main Core | ${cpu_main}
 | | | Run keyword | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
 | | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
-# Temporarily desabling due to API changes:
-# https://gerrit.fd.io/r/#/c/16638/
-#| | | Run keyword | ${dut}.Add DPDK Num Mbufs | ${num_mbufs_int}
+| | | Run keyword | ${dut}.Add Buffers Per Numa | ${num_mbufs_int}
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
