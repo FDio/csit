@@ -493,7 +493,7 @@ class KubernetesUtils(object):
         vpp_config.add_dpdk_no_tx_checksum_offload()
         vpp_config.add_dpdk_dev_default_rxq(kwargs['rxq_count_int'])
         vpp_config.add_dpdk_dev(kwargs['if1'], kwargs['if2'])
-        vpp_config.add_dpdk_num_mbufs(kwargs['num_mbufs_int'])
+        vpp_config.add_buffers_per_numa(kwargs['buffers_per_numa'])
         # We will pop first core from list to be main core
         vpp_config.add_cpu_main_core(str(cpuset_main.pop(0)))
         # if this is not only core in list, the rest will be used as workers.
