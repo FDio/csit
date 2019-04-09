@@ -46,6 +46,30 @@
       "revId": "81ae7e2bf68fcc0ba03dffd296834577b98f0344",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72dc1894_dfcd53eb",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-09T08:12:25Z",
+      "side": 1,
+      "message": "By 4) do you mean the VPP should automatically increase the number when an interface is added, or just that VPP should allow us to change the number manually during runtime?\n\nIf neither option of 4) is available, I guess 2) is the recommended way for users to set the number.\nIt is not pretty, but adding a \"${interfaces_per_numa}\u003d\" line to Variables table of each suite is not that bad.",
+      "parentUuid": "ce93e724_3703cc6a",
+      "range": {
+        "startLine": 216,
+        "startChar": 74,
+        "endLine": 216,
+        "endChar": 76
+      },
+      "revId": "81ae7e2bf68fcc0ba03dffd296834577b98f0344",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
