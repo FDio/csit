@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f133c2f_129b0f51",
+        "filename": "docs/downstream_users.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-09T12:48:33Z",
+      "side": 1,
+      "message": "filename: testcase_generation.rst",
+      "revId": "edd34911c4565e8527e7198f37c1292fd7ccb20b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6930da8_a598ee20",
+        "filename": "docs/downstream_users.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-09T12:48:33Z",
+      "side": 1,
+      "message": "access",
+      "range": {
+        "startLine": 19,
+        "startChar": 52,
+        "endLine": 19,
+        "endChar": 57
+      },
+      "revId": "edd34911c4565e8527e7198f37c1292fd7ccb20b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df1be17f_5b7e75eb",
+        "filename": "docs/downstream_users.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-09T12:48:33Z",
+      "side": 1,
+      "message": "proper rst link to git (so it can be inhaled to report)",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 39
+      },
+      "revId": "edd34911c4565e8527e7198f37c1292fd7ccb20b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
