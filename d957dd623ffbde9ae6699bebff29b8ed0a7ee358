@@ -118,6 +118,30 @@
       "revId": "d957dd623ffbde9ae6699bebff29b8ed0a7ee358",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5cb353f7_02fa6c17",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-09T10:37:18Z",
+      "side": 1,
+      "message": "Long post, I wanted to just add a quick comment, but I slowly ended up writing a design.\n\nCurrently we have three ways how could VPP be placed on a SUT. Bare metal, container, or VM.\nDo we currently interact with a VM-placed VPP in runtime? I believe the standard way would be to have a SSH server running inside the VM and connect there from Robot machine (IP address of the host OS, different TCP port number so host OS knows which VM to redirect to).\n\nI agree that for containers, exposing the socket to host OS is the correct way. Here is where \"unix socket over SSH\" is simpler than Python script on SUT, as we can use TCP port number again to distinguish which socket do we want to connect to.\n\nThis is actually nice. SUT is defined by an IP address, DUT is defined by an IP address and a TCP port number. If we want to collect som \"external\" telemetry inside a VM/container, we can assign another TCP port number for Bash there.\nTG will have only this, no unix socket.\nAbstractly speaking, from Robot point of view, everything will be a SSH endpoint. Some endpoints lead to Bash, some lead to unix socket of VPP. Each \"node\" in topology has MetalBash enpoint by default, ant at runtime it will be possible to create VirtualBash, MetalSocket or VirtualSocket (most actions do not care whether a particular endpoint is Metal or Virtual).\n\nUnfortunately, when CSIT code mentions a Node, it usually means SUT (with physical links to other boxes defined in topology). But in some cases (like NodePath.py) it would be better if a Node was a DUT instead (with some virtual links created at runtime).\nI am not sure how would device jobs fit there.\n\nOh, but I just wanted to make a point that currently PapiExecutor executes each command in \"connect, execute, disconnect\" fashion, so we do not really need to examine whether multiple executors could work in parallel.\n\nAnd PapiHistory is already a single module with a single dict where node[\u0027host\u0027] (should be be DUT) is key.",
+      "parentUuid": "7463ebb2_c78a478d",
+      "range": {
+        "startLine": 195,
+        "startChar": 20,
+        "endLine": 196,
+        "endChar": 57
+      },
+      "revId": "d957dd623ffbde9ae6699bebff29b8ed0a7ee358",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
