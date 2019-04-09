@@ -519,9 +519,7 @@ class HoneycombSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        auth = "-u karaf"
-        if odl_name.lower() == "oxygen" or odl_name.lower() == "fluorine":
-            auth = "-u karaf -p karaf"
+        auth = "-u karaf -p karaf"
 
         cmd = "{path}/*karaf*/bin/client {auth} feature:install " \
               "odl-restconf-all " \
