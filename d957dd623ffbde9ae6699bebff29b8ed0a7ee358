@@ -94,6 +94,30 @@
       "revId": "d957dd623ffbde9ae6699bebff29b8ed0a7ee358",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7463ebb2_c78a478d",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-09T09:40:59Z",
+      "side": 1,
+      "message": "Well there is another problem where \"yes\" does make sense and it is not an easy way to avoid.\n\nCurrently if we want to papi to container, it is a problem for CSIT. And there is raised demand (requests) to implement PAPI to be able to control CNF or VSWITCH that runs in container. For that we have to be able to connect to multiple sockets.\n\nAs of today I did not check if we are able to run multiple PAPIExecutors each on different socket. We are able to share socket out of container to \"host OS\" but how to create multiple histories and multiple papi executors. Etc.\n\nSo i think we need to get back to design table to be able to address the issue we have with current design.",
+      "parentUuid": "c261b180_b20c9101",
+      "range": {
+        "startLine": 195,
+        "startChar": 20,
+        "endLine": 196,
+        "endChar": 57
+      },
+      "revId": "d957dd623ffbde9ae6699bebff29b8ed0a7ee358",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
