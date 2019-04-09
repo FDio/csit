@@ -70,6 +70,30 @@
       "revId": "d957dd623ffbde9ae6699bebff29b8ed0a7ee358",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c261b180_b20c9101",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-09T08:32:57Z",
+      "side": 1,
+      "message": "Yeah, unix socket over SSH tunnel is similar to pickle. Third party, should work, but the transferred data is not readable.\n\nIf we go this \"yes\" way, ideally all PAPI classes would implement a nice __repr__() so we can at least log the objects on the Robot side in a readable form.\n\nI still prefer the \"no\" way, but perhaps I will change mi mind when I see a more complicated object, such as ACL, policy, or something like that.",
+      "parentUuid": "f19d3e31_452c6bf6",
+      "range": {
+        "startLine": 195,
+        "startChar": 20,
+        "endLine": 196,
+        "endChar": 57
+      },
+      "revId": "d957dd623ffbde9ae6699bebff29b8ed0a7ee358",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
