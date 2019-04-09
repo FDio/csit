@@ -22,6 +22,30 @@
       "revId": "81ae7e2bf68fcc0ba03dffd296834577b98f0344",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce93e724_3703cc6a",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-09T06:30:36Z",
+      "side": 1,
+      "message": "*2 was just quick test with higher number as 16386*rxq is crashing VPP. But *2 is not better. So VPP is broken.\n\nAnyway the formula is more complicated and \"per numa\" means that you do not care how many numa you have, VPP will configure the amount on each numa (naming convention is from VPP).\nBut the exact number is magic because it is {nr_threads}*{nr_interfaces}*{default_buffer_size} + {any_components_that_needs_mbuf} \u003d\u003d Impossible to predict.\nWe sure know {nr_threads}, we do not know {nr_interfaces} in this stage of configuring unless we will hard code {nr_interfaces} into each test. And we do not know by any chance {any_component_that_needs_mbuf}. This means it is rule of thumb to watch 4c tests and adjust. \n\n1) We can increase mbuf to fixed value.\n2) We can introduce nr_interfaces into every test and add some additional buffer span. Doable but ugly.\n3) We can increase fixed value by amount of threads like i am doing now and add the \"span\" tht should fit in.\n4) Implement mbuf in VPP dynamically - Most logic solution and the only right solution to the problem.\n\nDamjan refuses to code 4) in VPP argument by some excuses how complicated it is to keep performance. Which brings us to 2)?",
+      "parentUuid": "4d9955e0_3153c7cf",
+      "range": {
+        "startLine": 216,
+        "startChar": 74,
+        "endLine": 216,
+        "endChar": 76
+      },
+      "revId": "81ae7e2bf68fcc0ba03dffd296834577b98f0344",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
