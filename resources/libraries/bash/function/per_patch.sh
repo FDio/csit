@@ -248,15 +248,16 @@ function set_aside_commit_build_artifacts () {
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "build_current" || die "Remove operation failed."
     mkdir -p "build_current" || die "Directory creation failed."
-    mv "build-root"/*".deb" "build_current"/ || die "Move operation failed."
-    # The previous build could have left some incompatible leftovers,
-    # e.g. DPDK artifacts of different version (in build/external).
-    # Also, there usually is a copy of dpdk artifact in build-root.
-    git clean -dffx "build"/ "build-root"/ || die "Git clean operation failed."
-    # Finally, check out the parent commit.
-    git checkout HEAD~ || die "Git checkout operation failed."
-    # Display any other leftovers.
-    git status || die "Git status operation failed."
+#    mv "build-root"/*".deb" "build_current"/ || die "Move operation failed."
+    cp "build-root"/*".deb" "build_current"/ || die "Move operation failed."
+#    # The previous build could have left some incompatible leftovers,
+#    # e.g. DPDK artifacts of different version (in build/external).
+#    # Also, there usually is a copy of dpdk artifact in build-root.
+#    git clean -dffx "build"/ "build-root"/ || die "Git clean operation failed."
+#    # Finally, check out the parent commit.
+#    git checkout HEAD~ || die "Git checkout operation failed."
+#    # Display any other leftovers.
+#    git status || die "Git status operation failed."
 }
 
 
