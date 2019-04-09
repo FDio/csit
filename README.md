@@ -1,3 +1,7 @@
+TODO: Include a copyright and a license.
+Paragraph 7.b.iv of https://fd.io/charter/ says documentation should have
+http://creativecommons.org/licenses/by/4.0/
+
 # CSIT - Continuous System Integration Testing
 
 1. [Architecture](#architecture)
@@ -199,3 +203,8 @@ requirements for running Performance Teste are part of Ansible playbooks.
 
 If you are interested in contributing, please see the
 [coding guidelines](docs/test_code_guidelines.rst).
+
+## Downstream Users
+
+If you are interested in running CSIT tests in your lab, please see the
+[downtream users document](docs/downstream_users.rst).
