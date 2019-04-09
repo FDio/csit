@@ -42,16 +42,11 @@ RPMS_TMP_DIR=`mktemp -d`
 RPMS_WANTED_FILE=$RPMS_TMP_DIR/rpms_wanted.txt
 REPO_MOD_FILE=$RPMS_TMP_DIR/Centos-Vault.repo
 
-if [ "$1" == "centos-7-1511" ]
+if [ "$1" == "centos-7.3-1611" ]
 then
-    OS="centos-7-1511"
-    VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7-1511.yaml"
-else
-    if [ "$1" == "centos-7.3-1611" ]
-    then
-        OS="centos-7.3-1611"
-        VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.3-1611.yaml"
-    echo '
+    OS="centos-7.3-1611"
+    VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.3-1611.yaml"
+echo '
 # C7.3.1611
 [C7.3.1611-base]
 name=CentOS-7.3.1611 - Base
@@ -89,12 +84,17 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 enabled=0
 
 ' >  $REPO_MOD_FILE
-    elif [ "$1" == "centos-7.4-1711" ]
-    then
-        OS="centos-7.4-1711"
-        VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.4-1711.yaml"
+else
+    if [ "$1" == "centos-7.4-1711" ]
+        then
+            OS="centos-7.4-1711"
+            VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.4-1711.yaml"
+    elif [ "$1" == "centos-7.6-1810" ]
+        then
+            OS="centos-7.6-1810"
+            VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-centos-7.6-1810.yaml"
     else
-        echo specify argument -- probably centos-7-1511 or centos-7.3-1611 or centos-7.4-1711
+        echo specify argument -- probably centos-7.3-1611 , centos-7.4-1711 or centos-7.6-1810
         exit 1
     fi
 fi
@@ -119,10 +119,18 @@ yum-utils
 python-devel
 python-virtualenv
 python-setuptools
-python2-pip-8.1.2-5.el7.noarch http://mirror.math.princeton.edu/pub/epel/7/x86_64/Packages/p/
+redhat-rpm-config
+epel-release
+python-srpm-macros
+python-rpm-macros
+python36-ply
+python36-devel
+python36-pip
+python2-pip-8.1.2-8.el7.noarch http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/p/
 openssl-devel
 git
-strongswan-5.6.1-2.el7.x86_64 http://mirror.math.princeton.edu/pub/epel/7/x86_64/Packages/s/
+trousers
+strongswan-5.7.2-1.el7.x86_64 http://mirror.math.princeton.edu/pub/epel/7/x86_64/Packages/s/
 python-cffi
 #RPM_WANTLIST_TLDK
 tcpdump
@@ -131,11 +139,11 @@ elfutils-libelf
 elfutils-libelf-devel
 kernel-debug-devel
 gcc
-dkms-2.4.0-1.20170926git959bd74.el7.noarch http://mirror.math.princeton.edu/pub/epel/7/x86_64/Packages/d/
+dkms-2.6.1-1.el7.noarch https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/d/
 bridge-utils
 selinux-policy
 selinux-policy-devel
-mbedtls-2.7.0-1.el7.x86_64 http://mirror.math.princeton.edu/pub/epel/7/x86_64/Packages/m/
+mbedtls-2.7.9-1.el7.x86_64 https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/m/
 #RPM_WANTLIST_TREX
 zlib-devel
 unzip
@@ -157,6 +165,7 @@ librbd1
 librdmacm
 libseccomp
 spice-server
+spice-server-devel
 libusb
 usbredir
 glusterfs-devel
@@ -173,10 +182,13 @@ gnutls
 libcacard
 libcacard-tools
 libcacard-devel
-qemu-img-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
-qemu-kvm-tools-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
-qemu-kvm-common-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
-qemu-kvm-ev-2.9.0-16.el7_4.13.1.x86_64 http://mirror.centos.org/centos-7/7/virt/x86_64/kvm-common/
+device-mapper-multipath-libs
+libepoxy
+libibumad
+qemu-img-ev-2.12.0-18.el7_6.3.1.x86_64 http://mirror.centos.org/centos/7/virt/x86_64/kvm-common/
+qemu-kvm-tools-ev-2.12.0-18.el7_6.3.1.x86_64 http://mirror.centos.org/centos/7/virt/x86_64/kvm-common/
+qemu-kvm-common-ev-2.12.0-18.el7_6.3.1.x86_64 http://mirror.centos.org/centos/7/virt/x86_64/kvm-common/
+qemu-kvm-ev-2.12.0-18.el7_6.3.1.x86_64 http://mirror.centos.org/centos/7/virt/x86_64/kvm-common/
 #RPM_WANTLIST_JAVA
 java-1.8.0-openjdk-headless
 java-1.8.0-openjdk-devel
