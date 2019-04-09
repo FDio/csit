@@ -119,6 +119,25 @@ route_data_ipv4 = {
     }]
 }
 
+route_data_ipv4_oper = {
+    "bgp-inet:ipv4-route": [{
+        "route-key": route_address_ipv4,
+        "path-id": route_id_ipv4,
+        "prefix": route_address_ipv4,
+        "attributes": {
+            "origin": {
+                "value": "igp"
+            },
+            "local-pref": {
+                "pref": 100
+            },
+            "ipv4-next-hop": {
+                "global": "192.168.1.1"
+            }
+        }
+    }]
+}
+
 # IPv4 route for testing Update operation
 route_data_ipv4_update = {
     "bgp-inet:ipv4-route": [{
@@ -127,6 +146,24 @@ route_data_ipv4_update = {
         "prefix": route_address_ipv4,
         "attributes": {
             "as-path": {},
+            "origin": {
+                "value": "egp"
+            },
+            "local-pref": {
+                "pref": 200
+            },
+            "ipv4-next-hop": {
+                "global": "192.168.1.2"
+            }
+        }
+    }]
+}
+route_data_ipv4_update_oper = {
+    "bgp-inet:ipv4-route": [{
+        "route-key": route_address_ipv4,
+        "path-id": route_id_ipv4,
+        "prefix": route_address_ipv4,
+        "attributes": {
             "origin": {
                 "value": "egp"
             },
@@ -150,6 +187,25 @@ route_data_ipv4_2 = {
         "prefix": route_address_ipv4_2,
         "attributes": {
             "as-path": {},
+            "origin": {
+                "value": "igp"
+            },
+            "local-pref": {
+                "pref": 100
+            },
+            "ipv4-next-hop": {
+                "global": "192.168.1.2"
+            }
+        }
+    }]
+}
+
+route_data_ipv4_2_oper = {
+    "bgp-inet:ipv4-route": [{
+        "route-key": route_address_ipv4_2,
+        "path-id": route_id_ipv4_2,
+        "prefix": route_address_ipv4_2,
+        "attributes": {
             "origin": {
                 "value": "igp"
             },
@@ -285,6 +341,25 @@ dut1_route = {
     }]
 }
 
+dut1_route_oper = {
+    "bgp-inet:ipv4-route": [{
+        "route-key": dut1_route_address,
+        "path-id": dut1_route_id,
+        "prefix": dut1_route_address,
+        "attributes": {
+            "origin": {
+                "value": "igp"
+            },
+            "local-pref": {
+                "pref": 100
+            },
+            "ipv4-next-hop": {
+                "global": "192.168.1.3"
+            }
+        }
+    }]
+}
+
 # IPv4 route in peer operational data
 rib_operational = {
     "loc-rib": {"tables": [
@@ -292,7 +367,7 @@ rib_operational = {
             "afi": "bgp-types:ipv4-address-family",
             "safi": "bgp-types:unicast-subsequent-address-family",
             "bgp-inet:ipv4-routes": {
-                "ipv4-route": dut1_route["bgp-inet:ipv4-route"]
+                "ipv4-route": dut1_route_oper["bgp-inet:ipv4-route"]
             }
         }
     ]}
@@ -300,7 +375,6 @@ rib_operational = {
 
 route_operational = {
     "next-hop": {"next-hop-address": "192.168.1.3"},
-    "vpp-ipv4-unicast-routing:vpp-ipv4-route": {},
     "destination-prefix": dut1_route_address
 }
 
@@ -326,6 +400,24 @@ dut1_route_ip6 = {
         }
     }]
 }
+dut1_route_ip6_oper = {
+    "bgp-inet:ipv6-route": [{
+        "route-key": dut1_route_ip6_prefix,
+        "path-id": dut1_route_ip6_id,
+        "prefix": dut1_route_ip6_prefix,
+        "attributes": {
+            "origin": {
+                "value": "igp"
+            },
+            "local-pref": {
+                "pref": 100
+            },
+            "ipv6-next-hop": {
+                "global": "3ffe:63::1"
+            }
+        }
+    }]
+}
 
 # IPv6 route in peer operational data
 rib_ip6_operational = {
@@ -334,7 +426,7 @@ rib_ip6_operational = {
             "afi": "bgp-types:ipv6-address-family",
             "safi": "bgp-types:unicast-subsequent-address-family",
             "bgp-inet:ipv6-routes": {
-                "ipv6-route": dut1_route_ip6["bgp-inet:ipv6-route"]
+                "ipv6-route": dut1_route_ip6_oper["bgp-inet:ipv6-route"]
             }
         }
     ]}
@@ -342,6 +434,5 @@ rib_ip6_operational = {
 
 route_ip6_operational = {
     "next-hop": {"next-hop-address": "3ffe:63::1"},
-    "vpp-ipv6-unicast-routing:vpp-ipv6-route": {},
     "destination-prefix": dut1_route_ip6_prefix
 }
