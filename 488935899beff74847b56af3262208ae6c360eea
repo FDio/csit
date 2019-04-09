@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ade0f1cf_14577492",
+        "filename": "resources/libraries/python/honeycomb/BGP.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-09T06:02:41Z",
+      "side": 1,
+      "message": "Line too long",
+      "range": {
+        "startLine": 395,
+        "startChar": 20,
+        "endLine": 395,
+        "endChar": 83
+      },
+      "revId": "488935899beff74847b56af3262208ae6c360eea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
