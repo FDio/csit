@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34991e92_adf777c4",
+        "filename": "resources/tools/testbed-setup/pxe/dhcpd.conf",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-09T06:58:30Z",
+      "side": 1,
+      "message": "Per Maciek\u0027s naming convention i think 3nodes have 3x\n\nso\ns30-t35-sut1\ns31-t35-sut2",
+      "range": {
+        "startLine": 213,
+        "startChar": 12,
+        "endLine": 213,
+        "endChar": 14
+      },
+      "revId": "9ff552f06a3144a280e065aefb0b1dbde405b9e4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
