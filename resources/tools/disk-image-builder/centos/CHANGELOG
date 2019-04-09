@@ -1,3 +1,7 @@
+## [2.2] - 2019-04-12
+
+Add python36, update image to Centos 7.6 and qemu to 2.12.
+
 ## [2.1] - 2019-01-04
 
 Add pexpect, dill, numpy and scipy to pip requirements.
