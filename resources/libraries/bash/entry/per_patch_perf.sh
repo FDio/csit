@@ -43,7 +43,7 @@ common_dirs || die
 set_perpatch_vpp_dir || die
 build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die
-build_vpp_ubuntu_amd64 "PARENT" || die
+#build_vpp_ubuntu_amd64 "PARENT" || die
 set_aside_parent_build_artifacts || die
 ## Replace previous 4 lines with this to speed up testing.
 #download_builds "REPLACE_WITH_URL" || die
