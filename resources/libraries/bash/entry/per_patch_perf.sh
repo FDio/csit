@@ -58,11 +58,12 @@ select_tags || die
 compose_pybot_arguments || die
 generate_tests || die
 archive_tests || die
-iterations=8
+# Support for interleaved measurements is kept for future
+iterations=1 # 8
 for ((iter=0; iter<iterations; iter++)); do
     # TODO: Use less heavy way to avoid apt remove falilures.
     # Also, reserve_testbed has already called cleanup once.
-    cleanup_topo
+    #cleanup_topo
     select_build "build_parent" || die
     check_download_dir || die
     run_pybot || die
