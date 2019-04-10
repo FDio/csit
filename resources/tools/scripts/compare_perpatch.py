@@ -32,6 +32,8 @@ from jumpavg.BitCountingClassifier import BitCountingClassifier
 def hack(value_list):
     """Return middle two quartiles, hoping to reduce influence of outliers.
 
+    Currently "middle" is "all", but that can change in future.
+
     :param value_list: List to pick subset from.
     :type value_list: list of float
     :returns: New list containing middle values.
@@ -40,7 +42,7 @@ def hack(value_list):
     tmp = sorted(value_list)
     eight = len(tmp) / 8
     ret = tmp[3*eight:-eight]
-    return ret
+    return tmp # ret
 
 iteration = -1
 parent_iterations = list()
