@@ -169,7 +169,7 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 487
+        start: 501
         end: "lastCompletedBuild"
         skip:
           - 593
@@ -185,7 +185,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 487
+        start: 501
         end: "lastCompletedBuild"
         skip:
           - 593
@@ -204,7 +204,7 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 237
+        start: 250
         end: "lastCompletedBuild"
         skip:
           - 356
@@ -237,7 +237,7 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 237
+        start: 250
         end: "lastCompletedBuild"
         skip:
           - 356
@@ -273,7 +273,7 @@
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 237
+        start: 250
         end: "lastCompletedBuild"
         skip:
           - 347
@@ -291,13 +291,14 @@
           - 375
           - 380
           - 381
+          - 396
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 20
         end: "lastCompletedBuild"
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 237
+        start: 250
         end: "lastCompletedBuild"
         skip:
           - 347
@@ -315,6 +316,7 @@
           - 375
           - 380
           - 381
+          - 396
 
     plot-performance-trending-dpdk-2n-skx:
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
@@ -419,7 +421,7 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 487
+      start: 501
       end: "lastCompletedBuild"
       skip:
         - 593
@@ -435,7 +437,7 @@
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 237
+      start: 250
       end: "lastCompletedBuild"
       skip:
         - 356
@@ -468,7 +470,7 @@
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
-      start: 237
+      start: 250
       end: "lastCompletedBuild"
       skip:
         - 347
@@ -486,6 +488,7 @@
         - 375
         - 380
         - 381
+        - 396
     csit-vpp-perf-mrr-weekly-master-2n-skx:
       start: 1
       end: "lastCompletedBuild"
