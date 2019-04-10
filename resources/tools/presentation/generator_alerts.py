@@ -312,6 +312,8 @@ class Alerting(object):
             build, version, nr, failed_tests = \
                 self._get_compressed_failed_tests(alert, test_set)
             if build is None:
+                text += "\n\nNo data for the test set {set}.\n".\
+                    format(set=test_set)
                 continue
             text += ("\n\n{topo}-{arch}, "
                      "{nr} tests failed, "
