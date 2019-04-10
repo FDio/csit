@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cd2a5ab_eb806799",
+        "filename": "resources/tools/scripts/vpp-plugin-core_19.04-rc0~387-g48ae19e90~b2268_amd64.deb",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-10T11:07:51Z",
+      "side": 1,
+      "message": "Do not put binary files into git.",
+      "revId": "3b039d3d614c795ea5045229d9a8f5ff618467ec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
