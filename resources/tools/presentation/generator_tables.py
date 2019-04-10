@@ -885,8 +885,14 @@ def table_last_failed_tests(table, input_data):
     for job, builds in table["data"].items():
         for build in builds:
             build = str(build)
+            try:
+                version = input_data.metadata(job, build).get("version", "")
+            except KeyError:
+                logging.error("Data for {job}: {build} is not present.".
+                              format(job=job, build=build))
+                return
             tbl_list.append(build)
-            tbl_list.append(input_data.metadata(job, build).get("version", ""))
+            tbl_list.append(version)
             for tst_name, tst_data in data[job][build].iteritems():
                 if tst_data["status"] != "FAIL":
                     continue

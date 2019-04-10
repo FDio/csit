@@ -142,19 +142,8 @@ class Alerting(object):
         """
 
         for alert, alert_data in self.alerts.iteritems():
-            if alert_data["way"] == "email":
-                text, html = self._create_alert_message(alert_data)
-                conf = self.configs["email"]
-                self._send_email(server=conf["server"],
-                                 addr_from=conf["address-from"],
-                                 addr_to=conf["address-to"],
-                                 subject=alert_data["title"],
-                                 text=text,
-                                 html=html)
-            elif alert_data["way"] == "jenkins":
+            if alert_data["way"] == "jenkins":
                 self._generate_email_body(alert_data)
-                # TODO: Remove when not needed
-                self._generate_files_for_jenkins(alert_data)
             else:
                 raise AlertingError("Alert with way '{0}' is not implemented.".
                                     format(alert_data["way"]))
@@ -253,9 +242,10 @@ class Alerting(object):
 
         directory = self.configs[alert["way"]]["output-dir"]
         failed_tests = OrderedDict()
+        file_path = "{0}/{1}.txt".format(directory, test_set)
         version = ""
         try:
-            with open("{0}/{1}.txt".format(directory, test_set), 'r') as f_txt:
+            with open(file_path, 'r') as f_txt:
                 for idx, line in enumerate(f_txt):
                     if idx == 0:
                         build = line[:-1]
@@ -281,8 +271,9 @@ class Alerting(object):
                         failed_tests[name]["framesizes"].append(framesize)
                     if cores not in failed_tests[name]["cores"]:
                         failed_tests[name]["cores"].append(cores)
-        except IOError as err:
-            logging.error(repr(err))
+        except IOError:
+            logging.error("No such file or directory: {file}".
+                          format(file=file_path))
             return None, None, None, None
         if sort:
             sorted_failed_tests = OrderedDict()
@@ -312,6 +303,8 @@ class Alerting(object):
             build, version, nr, failed_tests = \
                 self._get_compressed_failed_tests(alert, test_set)
             if build is None:
+                text += "\n\nNo data for the test set '{set}'.\n".\
+                    format(set=test_set)
                 continue
             text += ("\n\n{topo}-{arch}, "
                      "{nr} tests failed, "
@@ -363,24 +356,3 @@ class Alerting(object):
         except IOError:
             logging.error("Not possible to write the file '{0}.txt'.".
                           format(file_name))
-
-    def _generate_files_for_jenkins(self, alert):
-        """Create the file which is used in the generated alert.
-
-        # TODO: Remove when not needed.
-
-        :param alert: Files are created for this alert.
-        :type alert: dict
-        """
-
-        config = self.configs[alert["way"]]
-
-        zip_file = config.get("zip-output", None)
-        if zip_file:
-            logging.info("Writing the file '{0}/{1}' ...".
-                         format(config["output-dir"], zip_file))
-            execute_command("tar czvf {dir}/{zip} --directory={dir} "
-                            "{input}.txt".
-                            format(dir=config["output-dir"],
-                                   zip=zip_file,
-                                   input=config["output-file"]))
