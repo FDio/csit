@@ -40,7 +40,7 @@ def hack(value_list):
     tmp = sorted(value_list)
     eight = len(tmp) / 8
     ret = tmp[3*eight:-eight]
-    return ret
+    return tmp # ret
 
 iteration = -1
 parent_iterations = list()
