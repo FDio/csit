@@ -12,6 +12,7 @@ L2 Ethernet Switching
     l2-3n-hsw-xl710-64b-base-scale
     l2-3n-skx-x710-64b-base-scale
     l2-3n-skx-x710-64b-features
+    l2-3n-skx-xxv710-64b-base-scale
     l2-2n-skx-x710-64b-base-scale
     l2-2n-skx-xxv710-64b-base-scale
     l2-3n-hsw-vic1227-64b-base-scale
