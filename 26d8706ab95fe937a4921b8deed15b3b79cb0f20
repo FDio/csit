@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "866bf123_9e785c29",
+        "filename": "resources/libraries/python/DpdkUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-11T14:42:59Z",
+      "side": 1,
+      "message": "# TODO: Avoid trailing space in the return value.",
+      "range": {
+        "startLine": 41,
+        "startChar": 36,
+        "endLine": 41,
+        "endChar": 37
+      },
+      "revId": "26d8706ab95fe937a4921b8deed15b3b79cb0f20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
