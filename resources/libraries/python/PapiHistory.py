@@ -104,7 +104,7 @@ class PapiHistory(object):
         history_list = DICT__DUTS_PAPI_HISTORY[node['host']]
         if not history_list:
             history_list = ("No PAPI command executed", )
-        logger.trace(
+        logger.info(
             "{0} PAPI command history:\n{1}\n".format(
                 node['host'], "\n".join(history_list)))
 
