@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "3dc5ee9b_c75e4bb8",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-11T12:33:28Z",
+      "side": 1,
+      "message": "No, it would not be sufficient.\n\nThat command just lists (relative paths to) edited .api files (since some \"other commit\").\n\nThere could be two different VPP Changes which touch the same set of .api files, the command does not let CSIT know whether it supports one or both Changes (or neither).\n\nNot to mention, CSIT would have to know which one was the \"other commit\" when the command was run.",
+      "parentUuid": "c914a184_d3faf5e7",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 56
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d57545c9_0bdb7293",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 2
