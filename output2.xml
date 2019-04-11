@@ -1,0 +1,3018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20190411 08:26:46.967" generator="Rebot 2.9.2 (Python 2.7.15rc1 on linux2)">
+<suite source="/home/pmikus/fdio/csit/tests" id="s1" name="Tests">
+<kw type="setup" name="Set Common Variables">
+<doc>Set the following global variables.</doc>
+<kw name="Ensure Global Variable" library="robot_enhancements">
+<doc>Give default value (from environment or code) to variable.</doc>
+<arguments>
+<arg>perf_trial_multiplicity</arg>
+<arg>10</arg>
+</arguments>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${env_var_name}</arg>
+</arguments>
+<assign>
+<var>${env_var_length}</var>
+</assign>
+<msg timestamp="20190410 18:56:05.495" level="INFO">Length is 0</msg>
+<msg timestamp="20190410 18:56:05.495" level="INFO">${env_var_length} = 0</msg>
+<status status="PASS" endtime="20190410 18:56:05.496" starttime="20190410 18:56:05.494"></status>
+</kw>
+<kw name="Convert To Uppercase" library="String">
+<doc>Converts string to uppercase.</doc>
+<arguments>
+<arg>${variable_name}</arg>
+</arguments>
+<assign>
+<var>${default_env_var}</var>
+</assign>
+<msg timestamp="20190410 18:56:05.498" level="INFO">${default_env_var} = PERF_TRIAL_MULTIPLICITY</msg>
+<status status="PASS" endtime="20190410 18:56:05.498" starttime="20190410 18:56:05.496"></status>
+</kw>
+<kw name="Set Variable If" library="BuiltIn">
+<doc>Sets variable based on the given condition.</doc>
+<arguments>
+<arg>${env_var_length}</arg>
+<arg>${env_var_name}</arg>
+<arg>${application}_${default_env_var}</arg>
+</arguments>
+<assign>
+<var>${env_var}</var>
+</assign>
+<msg timestamp="20190410 18:56:05.501" level="INFO">${env_var} = CSIT_PERF_TRIAL_MULTIPLICITY</msg>
+<status status="PASS" endtime="20190410 18:56:05.501" starttime="20190410 18:56:05.499"></status>
+</kw>
+<kw name="Get Environment Variable" library="OperatingSystem">
+<doc>Returns the value of an environment variable with the given name.</doc>
+<arguments>
+<arg>${env_var}</arg>
+<arg>${default_value}</arg>
+</arguments>
+<assign>
+<var>${updated_default}</var>
+</assign>
+<msg timestamp="20190410 18:56:05.503" level="INFO">${updated_default} = 10</msg>
+<status status="PASS" endtime="20190410 18:56:05.503" starttime="20190410 18:56:05.501"></status>
+</kw>
+<kw name="Get Variable Value" library="BuiltIn">
+<doc>Returns variable value or ``default`` if the variable does not exist.</doc>
+<arguments>
+<arg>\${${variable_name}}</arg>
+<arg>${updated_default}</arg>
+</arguments>
+<assign>
+<var>${final_value}</var>
+</assign>
+<msg timestamp="20190410 18:56:05.507" level="INFO">${final_value} = 10</msg>
+<status status="PASS" endtime="20190410 18:56:05.507" starttime="20190410 18:56:05.503"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>\${${variable_name}}</arg>
+<arg>${final_value}</arg>
+</arguments>
+<msg timestamp="20190410 18:56:05.510" level="INFO">${perf_trial_multiplicity} = 10</msg>
+<status status="PASS" endtime="20190410 18:56:05.510" starttime="20190410 18:56:05.508"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:56:05.511" starttime="20190410 18:56:05.492"></status>
+</kw>
+<kw name="Ensure Global Variable" library="robot_enhancements">
+<doc>Give default value (from environment or code) to variable.</doc>
+<arguments>
+<arg>perf_trial_duration</arg>
+<arg>1</arg>
+</arguments>
+<kw name="Get Length" library="BuiltIn">
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<arguments>
+<arg>${env_var_name}</arg>
+</arguments>
+<assign>
+<var>${env_var_length}</var>
+</assign>
+<msg timestamp="20190410 18:56:05.516" level="INFO">Length is 0</msg>
+<msg timestamp="20190410 18:56:05.517" level="INFO">${env_var_length} = 0</msg>
+<status status="PASS" endtime="20190410 18:56:05.517" starttime="20190410 18:56:05.514"></status>
+</kw>
+<kw name="Convert To Uppercase" library="String">
+<doc>Converts string to uppercase.</doc>
+<arguments>
+<arg>${variable_name}</arg>
+</arguments>
+<assign>
+<var>${default_env_var}</var>
+</assign>
+<msg timestamp="20190410 18:56:05.520" level="INFO">${default_env_var} = PERF_TRIAL_DURATION</msg>
+<status status="PASS" endtime="20190410 18:56:05.520" starttime="20190410 18:56:05.518"></status>
+</kw>
+<kw name="Set Variable If" library="BuiltIn">
+<doc>Sets variable based on the given condition.</doc>
+<arguments>
+<arg>${env_var_length}</arg>
+<arg>${env_var_name}</arg>
+<arg>${application}_${default_env_var}</arg>
+</arguments>
+<assign>
+<var>${env_var}</var>
+</assign>
+<msg timestamp="20190410 18:56:05.524" level="INFO">${env_var} = CSIT_PERF_TRIAL_DURATION</msg>
+<status status="PASS" endtime="20190410 18:56:05.524" starttime="20190410 18:56:05.521"></status>
+</kw>
+<kw name="Get Environment Variable" library="OperatingSystem">
+<doc>Returns the value of an environment variable with the given name.</doc>
+<arguments>
+<arg>${env_var}</arg>
+<arg>${default_value}</arg>
+</arguments>
+<assign>
+<var>${updated_default}</var>
+</assign>
+<msg timestamp="20190410 18:56:05.527" level="INFO">${updated_default} = 1</msg>
+<status status="PASS" endtime="20190410 18:56:05.527" starttime="20190410 18:56:05.525"></status>
+</kw>
+<kw name="Get Variable Value" library="BuiltIn">
+<doc>Returns variable value or ``default`` if the variable does not exist.</doc>
+<arguments>
+<arg>\${${variable_name}}</arg>
+<arg>${updated_default}</arg>
+</arguments>
+<assign>
+<var>${final_value}</var>
+</assign>
+<msg timestamp="20190410 18:56:05.535" level="INFO">${final_value} = 1</msg>
+<status status="PASS" endtime="20190410 18:56:05.535" starttime="20190410 18:56:05.528"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>\${${variable_name}}</arg>
+<arg>${final_value}</arg>
+</arguments>
+<msg timestamp="20190410 18:56:05.538" level="INFO">${perf_trial_duration} = 1</msg>
+<status status="PASS" endtime="20190410 18:56:05.539" starttime="20190410 18:56:05.536"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:56:05.540" starttime="20190410 18:56:05.512"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:56:05.541" starttime="20190410 18:56:05.490"></status>
+</kw>
+<suite source="/home/pmikus/fdio/csit/tests/vpp" id="s1-s1" name="Vpp">
+<suite source="/home/pmikus/fdio/csit/tests/vpp/perf" id="s1-s1-s1" name="Perf">
+<kw type="setup" name="Run Keywords" library="BuiltIn">
+<doc>Executes all the given keywords in a sequence.</doc>
+<arguments>
+<arg>Setup performance global Variables</arg>
+<arg>AND</arg>
+<arg>Setup Framework</arg>
+<arg>${nodes}</arg>
+<arg>AND</arg>
+<arg>Setup Corekeeper on All Nodes</arg>
+<arg>${nodes}</arg>
+<arg>AND</arg>
+<arg>Sleep</arg>
+<arg>10s</arg>
+<arg>AND</arg>
+<arg>Verify Vpp on All Duts</arg>
+<arg>${nodes}</arg>
+<arg>AND</arg>
+<arg>Verify UIO Driver on all DUTs</arg>
+<arg>${nodes}</arg>
+<arg>AND</arg>
+<arg>Setup All DUTs</arg>
+<arg>${nodes}</arg>
+<arg>AND</arg>
+<arg>Show Vpp Version on All Duts</arg>
+<arg>${nodes}</arg>
+<arg>AND</arg>
+<arg>Get CPU Layout from All nodes</arg>
+<arg>${nodes}</arg>
+<arg>AND</arg>
+<arg>Update All Interface Data on All Nodes</arg>
+<arg>${nodes}</arg>
+<arg>skip_tg=${True}</arg>
+<arg>numa_node=${True}</arg>
+</arguments>
+<kw name="Setup performance global Variables">
+<doc>Setup suite Variables. Variables are used across performance testing.</doc>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${perf_vm_image}</arg>
+<arg>/var/lib/vm/csit-nested-1.7.img</arg>
+</arguments>
+<msg timestamp="20190410 18:56:06.369" level="INFO">${perf_vm_image} = /var/lib/vm/csit-nested-1.7.img</msg>
+<status status="PASS" endtime="20190410 18:56:06.370" starttime="20190410 18:56:06.366"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${perf_qemu_path}</arg>
+<arg>/opt/qemu-2.11.2</arg>
+</arguments>
+<msg timestamp="20190410 18:56:06.374" level="INFO">${perf_qemu_path} = /opt/qemu-2.11.2</msg>
+<status status="PASS" endtime="20190410 18:56:06.375" starttime="20190410 18:56:06.371"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${qemu_build}</arg>
+<arg>${True}</arg>
+</arguments>
+<msg timestamp="20190410 18:56:06.380" level="INFO">${qemu_build} = True</msg>
+<status status="PASS" endtime="20190410 18:56:06.380" starttime="20190410 18:56:06.376"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${pkt_trace}</arg>
+<arg>${False}</arg>
+</arguments>
+<msg timestamp="20190410 18:56:06.385" level="INFO">${pkt_trace} = False</msg>
+<status status="PASS" endtime="20190410 18:56:06.385" starttime="20190410 18:56:06.381"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${dut_stats}</arg>
+<arg>${True}</arg>
+</arguments>
+<msg timestamp="20190410 18:56:06.390" level="INFO">${dut_stats} = True</msg>
+<status status="PASS" endtime="20190410 18:56:06.390" starttime="20190410 18:56:06.386"></status>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>dpdk_plugin.so</arg>
+</arguments>
+<assign>
+<var>@{plugins_to_enable}</var>
+</assign>
+<msg timestamp="20190410 18:56:06.392" level="INFO">@{plugins_to_enable} = [ dpdk_plugin.so ]</msg>
+<status status="PASS" endtime="20190410 18:56:06.392" starttime="20190410 18:56:06.391"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>@{plugins_to_enable}</arg>
+</arguments>
+<msg timestamp="20190410 18:56:06.395" level="INFO">@{plugins_to_enable} = [ dpdk_plugin.so ]</msg>
+<status status="PASS" endtime="20190410 18:56:06.395" starttime="20190410 18:56:06.394"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${packages_dir}</arg>
+<arg>/tmp/openvpp-testing/download_dir/</arg>
+</arguments>
+<msg timestamp="20190410 18:56:06.400" level="INFO">${packages_dir} = /tmp/openvpp-testing/download_dir/</msg>
+<status status="PASS" endtime="20190410 18:56:06.400" starttime="20190410 18:56:06.396"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:56:06.401" starttime="20190410 18:56:06.364"></status>
+</kw>
+<kw name="Setup Framework" library="resources.libraries.python.SetupFramework">
+<doc>Pack the whole directory and extract in temp on each node.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<msg timestamp="20190410 18:56:26.141" level="INFO">Log level changed from NONE to TRACE</msg>
+<msg timestamp="20190410 18:56:26.151" level="INFO">Executing node setups in parallel, waiting for processes to end</msg>
+<msg timestamp="20190410 18:56:26.151" level="INFO">Results: [True, True]</msg>
+<status status="PASS" endtime="20190410 18:56:26.174" starttime="20190410 18:56:06.402"></status>
+</kw>
+<kw name="Setup Corekeeper On All Nodes" library="resources.libraries.python.CoreDumpUtil">
+<doc>Setup core dumps system wide on all nodes.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:56:33.993" starttime="20190410 18:56:26.178"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>10s</arg>
+</arguments>
+<msg timestamp="20190410 18:56:44.004" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" endtime="20190410 18:56:44.005" starttime="20190410 18:56:34.001"></status>
+</kw>
+<kw name="Verify Vpp On All Duts" library="resources.libraries.python.VPPUtil">
+<doc>Verify that VPP is installed on all DUT nodes.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<msg timestamp="20190410 18:56:59.563" level="INFO">VPP version:      19.04-rc0~640-g05f7ca110~b2523
+Compile date:     Fri Apr  5 23:35:08 UTC 2019
+Compile location: /w/workspace/vpp-beta-merge-master-ubuntu1804
+ </msg>
+<status status="PASS" endtime="20190410 18:57:02.343" starttime="20190410 18:56:44.006"></status>
+</kw>
+<kw name="Verify Uio Driver On All Duts" library="resources.libraries.python.DUTSetup">
+<doc>Verify if uio driver kernel module is loaded on all DUTs. If module</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:04.119" starttime="20190410 18:57:02.346"></status>
+</kw>
+<kw name="Setup All Duts" library="resources.libraries.python.DUTSetup">
+<doc>Run script over SSH to setup all DUT nodes.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:15.244" starttime="20190410 18:57:04.122"></status>
+</kw>
+<kw name="Show Vpp Version On All Duts" library="resources.libraries.python.VPPUtil">
+<doc>Show VPP version on all DUTs.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:17.029" level="INFO">VPP version:      19.04-rc0~640-g05f7ca110~b2523
+Compile date:     Fri Apr  5 23:35:08 UTC 2019
+Compile location: /w/workspace/vpp-beta-merge-master-ubuntu1804
+ </msg>
+<status status="PASS" endtime="20190410 18:57:17.030" starttime="20190410 18:57:15.246"></status>
+</kw>
+<kw name="Get Cpu Layout From All Nodes" library="resources.libraries.python.CpuUtils">
+<doc>Retrieve cpu layout from all nodes, assuming all nodes</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:20.724" starttime="20190410 18:57:17.033"></status>
+</kw>
+<kw name="Update All Interface Data On All Nodes" library="resources.libraries.python.InterfaceUtil">
+<doc>Update interface names on all nodes in DICT__nodes.</doc>
+<arguments>
+<arg>${nodes}</arg>
+<arg>skip_tg=${True}</arg>
+<arg>numa_node=${True}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:27.681" starttime="20190410 18:57:20.727"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:27.682" starttime="20190410 18:56:06.361"></status>
+</kw>
+<kw type="teardown" name="Cleanup Framework" library="resources.libraries.python.SetupFramework.CleanupFramework">
+<doc>Perform cleaning on each node.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<msg timestamp="20190410 19:01:25.756" level="INFO">Log level changed from NONE to TRACE</msg>
+<msg timestamp="20190410 19:01:25.758" level="INFO">Executing node cleanups in parallel, waiting for processes to end</msg>
+<msg timestamp="20190410 19:01:25.759" level="INFO">Results: [True, True]</msg>
+<status status="PASS" endtime="20190410 19:01:25.763" starttime="20190410 19:01:17.230"></status>
+</kw>
+<suite source="/home/pmikus/fdio/csit/tests/vpp/perf/vm_vhost" id="s1-s1-s1-s1" name="Vm Vhost">
+<suite source="/home/pmikus/fdio/csit/tests/vpp/perf/vm_vhost/2n-10ge2p1x710-eth-l2bd-2vhost-1chain-1vm-vppip4-ndrpdr.robot" id="s1-s1-s1-s1-s1" name="2N-10Ge2P1X710-Eth-L2Bd-2Vhost-1Chain-1Vm-Vppip4-Ndrpdr">
+<kw type="setup" name="Set up 2-node performance topology with DUT's NIC model" library="performance_setup">
+<doc>Suite preparation phase that sets the default startup configuration of</doc>
+<arguments>
+<arg>L3</arg>
+<arg>${nic_name}</arg>
+</arguments>
+<kw name="Set variables in 2-node circular topology with DUT interface model" library="performance_setup">
+<doc>Compute path for testing on two given nodes in circular topology</doc>
+<arguments>
+<arg>${nic_name}</arg>
+</arguments>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${iface_model}</arg>
+</arguments>
+<assign>
+<var>${iface_model_list}</var>
+</assign>
+<msg timestamp="20190410 18:57:30.626" level="INFO">${iface_model_list} = [u'Intel-X710']</msg>
+<status status="PASS" endtime="20190410 18:57:30.626" starttime="20190410 18:57:30.625"></status>
+</kw>
+<kw name="Append Node" library="resources.libraries.python.NodePath">
+<doc>Append node to the path.</doc>
+<arguments>
+<arg>${nodes['TG']}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:30.690" starttime="20190410 18:57:30.628"></status>
+</kw>
+<kw name="Append Node" library="resources.libraries.python.NodePath">
+<doc>Append node to the path.</doc>
+<arguments>
+<arg>${nodes['DUT1']}</arg>
+<arg>filter_list=${iface_model_list}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:30.751" starttime="20190410 18:57:30.691"></status>
+</kw>
+<kw name="Append Node" library="resources.libraries.python.NodePath">
+<doc>Append node to the path.</doc>
+<arguments>
+<arg>${nodes['TG']}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:30.812" starttime="20190410 18:57:30.753"></status>
+</kw>
+<kw name="Compute Path" library="resources.libraries.python.NodePath">
+<doc>Compute path for added nodes.</doc>
+<arguments>
+<arg>always_same_link=${FALSE}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:30.821" starttime="20190410 18:57:30.813"></status>
+</kw>
+<kw name="First Interface" library="resources.libraries.python.NodePath">
+<doc>Return first interface on the path.</doc>
+<assign>
+<var>${tg_if1}</var>
+<var>${tg}</var>
+</assign>
+<msg timestamp="20190410 18:57:30.893" level="INFO">${tg_if1} = port4</msg>
+<msg timestamp="20190410 18:57:30.894" level="INFO">${tg} = {'username': 'testuser', 'cpuinfo': [[0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 0, 0, 0, 1, 1, 1, 0], [2, 2, 0, 0, 0, 2, 2, 2, 0], [3, 3, 0, 0, 0, 3, 3, 3, 0], [4, 4, 0, 0, 0, 4, 4, 4, 0], [5, 5, 0, 0, 0, 5,...</msg>
+<status status="PASS" endtime="20190410 18:57:30.894" starttime="20190410 18:57:30.823"></status>
+</kw>
+<kw name="First Ingress Interface" library="resources.libraries.python.NodePath">
+<doc>Return first ingress interface on the path.</doc>
+<assign>
+<var>${dut1_if1}</var>
+<var>${dut1}</var>
+</assign>
+<msg timestamp="20190410 18:57:30.966" level="INFO">${dut1_if1} = port4</msg>
+<msg timestamp="20190410 18:57:30.967" level="INFO">${dut1} = {'username': 'testuser', 'cpuinfo': [[0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 0, 0, 0, 1, 1, 1, 0], [2, 2, 0, 0, 0, 2, 2, 2, 0], [3, 3, 0, 0, 0, 3, 3, 3, 0], [4, 4, 0, 0, 0, 4, 4, 4, 0], [5, 5, 0, 0, 0, 5,...</msg>
+<status status="PASS" endtime="20190410 18:57:30.967" starttime="20190410 18:57:30.896"></status>
+</kw>
+<kw name="Last Egress Interface" library="resources.libraries.python.NodePath">
+<doc>Return last egress interface on the path.</doc>
+<assign>
+<var>${dut1_if2}</var>
+<var>${dut1}</var>
+</assign>
+<msg timestamp="20190410 18:57:31.038" level="INFO">${dut1_if2} = port1</msg>
+<msg timestamp="20190410 18:57:31.039" level="INFO">${dut1} = {'username': 'testuser', 'cpuinfo': [[0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 0, 0, 0, 1, 1, 1, 0], [2, 2, 0, 0, 0, 2, 2, 2, 0], [3, 3, 0, 0, 0, 3, 3, 3, 0], [4, 4, 0, 0, 0, 4, 4, 4, 0], [5, 5, 0, 0, 0, 5,...</msg>
+<status status="PASS" endtime="20190410 18:57:31.039" starttime="20190410 18:57:30.970"></status>
+</kw>
+<kw name="Last Interface" library="resources.libraries.python.NodePath">
+<doc>Return last interface on the path.</doc>
+<assign>
+<var>${tg_if2}</var>
+<var>${tg}</var>
+</assign>
+<msg timestamp="20190410 18:57:31.110" level="INFO">${tg_if2} = port1</msg>
+<msg timestamp="20190410 18:57:31.111" level="INFO">${tg} = {'username': 'testuser', 'cpuinfo': [[0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 0, 0, 0, 1, 1, 1, 0], [2, 2, 0, 0, 0, 2, 2, 2, 0], [3, 3, 0, 0, 0, 3, 3, 3, 0], [4, 4, 0, 0, 0, 4, 4, 4, 0], [5, 5, 0, 0, 0, 5,...</msg>
+<status status="PASS" endtime="20190410 18:57:31.111" starttime="20190410 18:57:31.041"></status>
+</kw>
+<kw name="Get Interface Mac" library="resources.libraries.python.topology.Topology">
+<doc>Get MAC address for the interface.</doc>
+<arguments>
+<arg>${tg}</arg>
+<arg>${tg_if1}</arg>
+</arguments>
+<assign>
+<var>${tg_if1_mac}</var>
+</assign>
+<msg timestamp="20190410 18:57:31.174" level="INFO">${tg_if1_mac} = 3c:fd:fe:a8:ab:9b</msg>
+<status status="PASS" endtime="20190410 18:57:31.174" starttime="20190410 18:57:31.113"></status>
+</kw>
+<kw name="Get Interface Mac" library="resources.libraries.python.topology.Topology">
+<doc>Get MAC address for the interface.</doc>
+<arguments>
+<arg>${tg}</arg>
+<arg>${tg_if2}</arg>
+</arguments>
+<assign>
+<var>${tg_if2_mac}</var>
+</assign>
+<msg timestamp="20190410 18:57:31.235" level="INFO">${tg_if2_mac} = 3c:fd:fe:a8:ab:98</msg>
+<status status="PASS" endtime="20190410 18:57:31.235" starttime="20190410 18:57:31.176"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${tg}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:31.239" level="INFO">${tg} = {'username': 'testuser', 'cpuinfo': [[0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 0, 0, 0, 1, 1, 1, 0], [2, 2, 0, 0, 0, 2, 2, 2, 0], [3, 3, 0, 0, 0, 3, 3, 3, 0], [4, 4, 0, 0, 0, 4, 4, 4, 0], [5, 5, 0, 0, 0, 5,...</msg>
+<status status="PASS" endtime="20190410 18:57:31.240" starttime="20190410 18:57:31.237"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${tg_if1}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:31.243" level="INFO">${tg_if1} = port4</msg>
+<status status="PASS" endtime="20190410 18:57:31.243" starttime="20190410 18:57:31.242"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${tg_if1_mac}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:31.246" level="INFO">${tg_if1_mac} = 3c:fd:fe:a8:ab:9b</msg>
+<status status="PASS" endtime="20190410 18:57:31.246" starttime="20190410 18:57:31.245"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${tg_if2}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:31.250" level="INFO">${tg_if2} = port1</msg>
+<status status="PASS" endtime="20190410 18:57:31.250" starttime="20190410 18:57:31.248"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${tg_if2_mac}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:31.253" level="INFO">${tg_if2_mac} = 3c:fd:fe:a8:ab:98</msg>
+<status status="PASS" endtime="20190410 18:57:31.254" starttime="20190410 18:57:31.252"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${dut1}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:31.258" level="INFO">${dut1} = {'username': 'testuser', 'cpuinfo': [[0, 0, 0, 0, 0, 0, 0, 0, 0], [1, 1, 0, 0, 0, 1, 1, 1, 0], [2, 2, 0, 0, 0, 2, 2, 2, 0], [3, 3, 0, 0, 0, 3, 3, 3, 0], [4, 4, 0, 0, 0, 4, 4, 4, 0], [5, 5, 0, 0, 0, 5,...</msg>
+<status status="PASS" endtime="20190410 18:57:31.259" starttime="20190410 18:57:31.255"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${dut1_if1}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:31.262" level="INFO">${dut1_if1} = port4</msg>
+<status status="PASS" endtime="20190410 18:57:31.262" starttime="20190410 18:57:31.260"></status>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<arguments>
+<arg>${dut1_if2}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:31.265" level="INFO">${dut1_if2} = port1</msg>
+<status status="PASS" endtime="20190410 18:57:31.265" starttime="20190410 18:57:31.264"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:31.266" starttime="20190410 18:57:30.622"></status>
+</kw>
+<kw name="Initialize Traffic Generator" library="resources.libraries.python.TrafficGenerator">
+<doc>TG initialization.</doc>
+<arguments>
+<arg>${tg}</arg>
+<arg>${tg_if1}</arg>
+<arg>${tg_if2}</arg>
+<arg>${dut1}</arg>
+<arg>${dut1_if1}</arg>
+<arg>${dut1}</arg>
+<arg>${dut1_if2}</arg>
+<arg>${traffic_profile}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:41.991" starttime="20190410 18:57:31.268"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:41.993" starttime="20190410 18:57:30.619"></status>
+</kw>
+<kw type="teardown" name="Tear down 2-node performance topology" library="performance_setup">
+<doc>Suite teardown phase with traffic generator teardown.</doc>
+<kw name="Teardown Traffic Generator" library="resources.libraries.python.TrafficGenerator">
+<doc>TG teardown.</doc>
+<arguments>
+<arg>${tg}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:01:17.207" starttime="20190410 19:01:13.402"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:01:17.208" starttime="20190410 19:01:13.396"></status>
+</kw>
+<test id="s1-s1-s1-s1-s1-t1" name="tc07-9000B-1c-eth-l2bd-2vhost-1chain-1vm-vppip4-ndrpdr">
+<kw type="setup" name="Set up performance test" library="performance_setup">
+<doc>Common test setup for performance tests.</doc>
+<kw name="Reset Papi History On All Duts" library="resources.libraries.python.PapiHistory">
+<doc>Reset PAPI command history for all DUT nodes.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.168" starttime="20190410 18:57:42.004"></status>
+</kw>
+<kw name="Create base startup configuration of VPP on all DUTs" library="default">
+<doc>Create base startup configuration of VPP to all DUTs.</doc>
+<kw name="Get Matches" library="Collections">
+<doc>Returns a list of matches to ``pattern`` in ``list``.</doc>
+<arguments>
+<arg>${nodes}</arg>
+<arg>DUT*</arg>
+</arguments>
+<assign>
+<var>${duts}</var>
+</assign>
+<msg timestamp="20190410 18:57:42.307" level="INFO">${duts} = ['DUT1']</msg>
+<status status="PASS" endtime="20190410 18:57:42.307" starttime="20190410 18:57:42.172"></status>
+</kw>
+<kw type="for" name="${dut} IN [ @{duts} ]">
+<kw type="foritem" name="${dut} = DUT1">
+<kw name="Import Library" library="BuiltIn">
+<doc>Imports a library with the given name and optional arguments.</doc>
+<arguments>
+<arg>resources.libraries.python.VppConfigGenerator</arg>
+<arg>WITH NAME</arg>
+<arg>${dut}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.336" starttime="20190410 18:57:42.310"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Set Node</arg>
+<arg>${nodes['${dut}']}</arg>
+</arguments>
+<kw name="Set Node" library="DUT1">
+<doc>Set DUT node.</doc>
+<arguments>
+<arg>${nodes['${dut}']}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.398" starttime="20190410 18:57:42.340"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.399" starttime="20190410 18:57:42.338"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add Unix Log</arg>
+</arguments>
+<kw name="Add Unix Log" library="DUT1">
+<doc>Add UNIX log configuration.</doc>
+<status status="PASS" endtime="20190410 18:57:42.403" starttime="20190410 18:57:42.402"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.403" starttime="20190410 18:57:42.400"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add Unix CLI Listen</arg>
+</arguments>
+<kw name="Add Unix Cli Listen" library="DUT1">
+<doc>Add UNIX cli-listen configuration.</doc>
+<status status="PASS" endtime="20190410 18:57:42.408" starttime="20190410 18:57:42.407"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.408" starttime="20190410 18:57:42.405"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add Unix Nodaemon</arg>
+</arguments>
+<kw name="Add Unix Nodaemon" library="DUT1">
+<doc>Add UNIX nodaemon configuration.</doc>
+<status status="PASS" endtime="20190410 18:57:42.413" starttime="20190410 18:57:42.412"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.413" starttime="20190410 18:57:42.410"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add Unix Coredump</arg>
+</arguments>
+<kw name="Add Unix Coredump" library="DUT1">
+<doc>Add UNIX full-coredump configuration.</doc>
+<status status="PASS" endtime="20190410 18:57:42.418" starttime="20190410 18:57:42.417"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.418" starttime="20190410 18:57:42.415"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add DPDK No Tx Checksum Offload</arg>
+</arguments>
+<kw name="Add Dpdk No Tx Checksum Offload" library="DUT1">
+<doc>Add DPDK no-tx-checksum-offload configuration.</doc>
+<status status="PASS" endtime="20190410 18:57:42.423" starttime="20190410 18:57:42.422"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.423" starttime="20190410 18:57:42.420"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add DPDK Log Level</arg>
+<arg>debug</arg>
+</arguments>
+<kw name="Add Dpdk Log Level" library="DUT1">
+<doc>Add DPDK log-level configuration.</doc>
+<arguments>
+<arg>debug</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.428" starttime="20190410 18:57:42.427"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.428" starttime="20190410 18:57:42.425"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add DPDK Uio Driver</arg>
+</arguments>
+<kw name="Add Dpdk Uio Driver" library="DUT1">
+<doc>Add DPDK uio-driver configuration.</doc>
+<status status="PASS" endtime="20190410 18:57:42.433" starttime="20190410 18:57:42.432"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.433" starttime="20190410 18:57:42.430"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add Heapsize</arg>
+<arg>4G</arg>
+</arguments>
+<kw name="Add Heapsize" library="DUT1">
+<doc>Add Heapsize configuration.</doc>
+<arguments>
+<arg>4G</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.438" starttime="20190410 18:57:42.437"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.439" starttime="20190410 18:57:42.435"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add Statseg size</arg>
+<arg>4G</arg>
+</arguments>
+<kw name="Add Statseg Size" library="DUT1">
+<doc>Add stats segment heap size configuration.</doc>
+<arguments>
+<arg>4G</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.444" starttime="20190410 18:57:42.442"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.444" starttime="20190410 18:57:42.440"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add Plugin</arg>
+<arg>disable</arg>
+<arg>default</arg>
+</arguments>
+<kw name="Add Plugin" library="DUT1">
+<doc>Add plugin section for specific plugin(s).</doc>
+<arguments>
+<arg>disable</arg>
+<arg>default</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.449" starttime="20190410 18:57:42.448"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.449" starttime="20190410 18:57:42.446"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add Plugin</arg>
+<arg>enable</arg>
+<arg>@{plugins_to_enable}</arg>
+</arguments>
+<kw name="Add Plugin" library="DUT1">
+<doc>Add plugin section for specific plugin(s).</doc>
+<arguments>
+<arg>enable</arg>
+<arg>@{plugins_to_enable}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.454" starttime="20190410 18:57:42.453"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.455" starttime="20190410 18:57:42.451"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add IP6 Hash Buckets</arg>
+<arg>2000000</arg>
+</arguments>
+<kw name="Add Ip6 Hash Buckets" library="DUT1">
+<doc>Add IP6 hash buckets configuration.</doc>
+<arguments>
+<arg>2000000</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.459" starttime="20190410 18:57:42.458"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.460" starttime="20190410 18:57:42.456"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add IP6 Heap Size</arg>
+<arg>4G</arg>
+</arguments>
+<kw name="Add Ip6 Heap Size" library="DUT1">
+<doc>Add IP6 heap-size configuration.</doc>
+<arguments>
+<arg>4G</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.465" starttime="20190410 18:57:42.464"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.465" starttime="20190410 18:57:42.462"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add IP Heap Size</arg>
+<arg>4G</arg>
+</arguments>
+<kw name="Add Ip Heap Size" library="DUT1">
+<doc>Add IP heap-size configuration.</doc>
+<arguments>
+<arg>4G</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.470" starttime="20190410 18:57:42.469"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.470" starttime="20190410 18:57:42.467"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.470" starttime="20190410 18:57:42.308"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.470" starttime="20190410 18:57:42.307"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.471" starttime="20190410 18:57:42.170"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.471" starttime="20190410 18:57:41.999"></status>
+</kw>
+<kw name="Local Template">
+<doc>[Cfg] DUT runs L2BD switching config.</doc>
+<arguments>
+<arg>frame_size=${9000}</arg>
+<arg>phy_cores=${1}</arg>
+</arguments>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>\${frame_size}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:42.483" level="INFO">${frame_size} = 9000</msg>
+<status status="PASS" endtime="20190410 18:57:42.483" starttime="20190410 18:57:42.482"></status>
+</kw>
+<kw name="Given Add worker threads and rxqueues to all DUTs" library="default">
+<doc>Setup worker threads and rxqueues in vpp startup</doc>
+<arguments>
+<arg>${phy_cores}</arg>
+<arg>${rxq}</arg>
+</arguments>
+<kw name="Convert To Integer" library="BuiltIn">
+<doc>Converts the given item to an integer number.</doc>
+<arguments>
+<arg>${phy_cores}</arg>
+</arguments>
+<assign>
+<var>${cpu_count_int}</var>
+</assign>
+<msg timestamp="20190410 18:57:42.492" level="INFO">${cpu_count_int} = 1</msg>
+<status status="PASS" endtime="20190410 18:57:42.492" starttime="20190410 18:57:42.491"></status>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<doc>Converts the given item to an integer number.</doc>
+<arguments>
+<arg>${phy_cores}</arg>
+</arguments>
+<assign>
+<var>${thr_count_int}</var>
+</assign>
+<msg timestamp="20190410 18:57:42.496" level="INFO">${thr_count_int} = 1</msg>
+<status status="PASS" endtime="20190410 18:57:42.496" starttime="20190410 18:57:42.494"></status>
+</kw>
+<kw name="Convert To Integer" library="BuiltIn">
+<doc>Converts the given item to an integer number.</doc>
+<arguments>
+<arg>16384</arg>
+</arguments>
+<assign>
+<var>${num_mbufs_int}</var>
+</assign>
+<msg timestamp="20190410 18:57:42.499" level="INFO">${num_mbufs_int} = 16384</msg>
+<status status="PASS" endtime="20190410 18:57:42.500" starttime="20190410 18:57:42.498"></status>
+</kw>
+<kw name="Get Matches" library="Collections">
+<doc>Returns a list of matches to ``pattern`` in ``list``.</doc>
+<arguments>
+<arg>${nodes}</arg>
+<arg>DUT*</arg>
+</arguments>
+<assign>
+<var>${duts}</var>
+</assign>
+<msg timestamp="20190410 18:57:42.637" level="INFO">${duts} = ['DUT1']</msg>
+<status status="PASS" endtime="20190410 18:57:42.638" starttime="20190410 18:57:42.501"></status>
+</kw>
+<kw type="for" name="${dut} IN [ @{duts} ]">
+<kw type="foritem" name="${dut} = DUT1">
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Variable Should Exist</arg>
+<arg>${${dut}_if1}</arg>
+</arguments>
+<assign>
+<var>${if1_status}</var>
+<var>${value}</var>
+</assign>
+<kw name="Variable Should Exist" library="BuiltIn">
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<arguments>
+<arg>${${dut}_if1}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.645" starttime="20190410 18:57:42.643"></status>
+</kw>
+<msg timestamp="20190410 18:57:42.646" level="INFO">${if1_status} = PASS</msg>
+<msg timestamp="20190410 18:57:42.646" level="INFO">${value} = None</msg>
+<status status="PASS" endtime="20190410 18:57:42.646" starttime="20190410 18:57:42.641"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${if1_status}' == 'PASS'</arg>
+<arg>Create List</arg>
+<arg>${${dut}_if1}</arg>
+<arg>ELSE</arg>
+<arg>Create List</arg>
+<arg>${${dut}_if1_1}</arg>
+<arg>${${dut}_if1_2}</arg>
+</arguments>
+<assign>
+<var>@{if_list}</var>
+</assign>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${${dut}_if1}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.658" starttime="20190410 18:57:42.657"></status>
+</kw>
+<msg timestamp="20190410 18:57:42.659" level="INFO">@{if_list} = [ port4 ]</msg>
+<status status="PASS" endtime="20190410 18:57:42.659" starttime="20190410 18:57:42.648"></status>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Variable Should Exist</arg>
+<arg>${${dut}_if2}</arg>
+</arguments>
+<assign>
+<var>${if2_status}</var>
+<var>${value}</var>
+</assign>
+<kw name="Variable Should Exist" library="BuiltIn">
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<arguments>
+<arg>${${dut}_if2}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.665" starttime="20190410 18:57:42.663"></status>
+</kw>
+<msg timestamp="20190410 18:57:42.665" level="INFO">${if2_status} = PASS</msg>
+<msg timestamp="20190410 18:57:42.666" level="INFO">${value} = None</msg>
+<status status="PASS" endtime="20190410 18:57:42.666" starttime="20190410 18:57:42.661"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${if2_status}' == 'PASS'</arg>
+<arg>Append To List</arg>
+<arg>${if_list}</arg>
+<arg>${${dut}_if2}</arg>
+<arg>ELSE</arg>
+<arg>Append To List</arg>
+<arg>${if_list}</arg>
+<arg>${${dut}_if2_1}</arg>
+<arg>${${dut}_if2_2}</arg>
+</arguments>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${if_list}</arg>
+<arg>${${dut}_if2}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.678" starttime="20190410 18:57:42.677"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.679" starttime="20190410 18:57:42.668"></status>
+</kw>
+<kw name="Get Interfaces Numa Node" library="resources.libraries.python.topology.Topology">
+<doc>Get numa node on which are located most of the interfaces.</doc>
+<arguments>
+<arg>${nodes['${dut}']}</arg>
+<arg>@{if_list}</arg>
+</arguments>
+<assign>
+<var>${numa}</var>
+</assign>
+<msg timestamp="20190410 18:57:42.739" level="INFO">${numa} = 0</msg>
+<status status="PASS" endtime="20190410 18:57:42.739" starttime="20190410 18:57:42.681"></status>
+</kw>
+<kw name="Is Smt Enabled" library="resources.libraries.python.CpuUtils">
+<doc>Uses CPU mapping to find out if SMT is enabled or not. If SMT is</doc>
+<arguments>
+<arg>${nodes['${dut}']['cpuinfo']}</arg>
+</arguments>
+<assign>
+<var>${smt_used}</var>
+</assign>
+<msg timestamp="20190410 18:57:42.782" level="INFO">${smt_used} = True</msg>
+<status status="PASS" endtime="20190410 18:57:42.782" starttime="20190410 18:57:42.741"></status>
+</kw>
+<kw name="Cpu List Per Node Str" library="resources.libraries.python.CpuUtils">
+<doc>Return string of node related list of CPU numbers.</doc>
+<arguments>
+<arg>${nodes['${dut}']}</arg>
+<arg>${numa}</arg>
+<arg>skip_cnt=${1}</arg>
+<arg>cpu_cnt=${1}</arg>
+</arguments>
+<assign>
+<var>${cpu_main}</var>
+</assign>
+<msg timestamp="20190410 18:57:42.843" level="INFO">${cpu_main} = 1</msg>
+<status status="PASS" endtime="20190410 18:57:42.843" starttime="20190410 18:57:42.784"></status>
+</kw>
+<kw name="Cpu List Per Node Str" library="resources.libraries.python.CpuUtils">
+<doc>Return string of node related list of CPU numbers.</doc>
+<arguments>
+<arg>${nodes['${dut}']}</arg>
+<arg>${numa}</arg>
+<arg>skip_cnt=${2}</arg>
+<arg>cpu_cnt=${cpu_count_int}</arg>
+<arg>smt_used=${smt_used}</arg>
+</arguments>
+<assign>
+<var>${cpu_wt}</var>
+</assign>
+<msg timestamp="20190410 18:57:42.904" level="INFO">${cpu_wt} = 2,58</msg>
+<status status="PASS" endtime="20190410 18:57:42.904" starttime="20190410 18:57:42.845"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${smt_used}</arg>
+<arg>Evaluate</arg>
+<arg>int(${cpu_count_int}*2)</arg>
+<arg>ELSE</arg>
+<arg>Set variable</arg>
+<arg>${thr_count_int}</arg>
+</arguments>
+<assign>
+<var>${thr_count_int}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>int(${cpu_count_int}*2)</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.916" starttime="20190410 18:57:42.909"></status>
+</kw>
+<msg timestamp="20190410 18:57:42.916" level="INFO">${thr_count_int} = 2</msg>
+<status status="PASS" endtime="20190410 18:57:42.917" starttime="20190410 18:57:42.906"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${rx_queues}</arg>
+<arg>Set variable</arg>
+<arg>${rx_queues}</arg>
+<arg>ELSE</arg>
+<arg>Evaluate</arg>
+<arg>int(${thr_count_int}/2)</arg>
+</arguments>
+<assign>
+<var>${rxq_count_int}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>int(${thr_count_int}/2)</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.929" starttime="20190410 18:57:42.921"></status>
+</kw>
+<msg timestamp="20190410 18:57:42.929" level="INFO">${rxq_count_int} = 1</msg>
+<status status="PASS" endtime="20190410 18:57:42.929" starttime="20190410 18:57:42.919"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${rxq_count_int} == 0</arg>
+<arg>Set variable</arg>
+<arg>${1}</arg>
+<arg>ELSE</arg>
+<arg>Set variable</arg>
+<arg>${rxq_count_int}</arg>
+</arguments>
+<assign>
+<var>${rxq_count_int}</var>
+</assign>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${rxq_count_int}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.942" starttime="20190410 18:57:42.940"></status>
+</kw>
+<msg timestamp="20190410 18:57:42.942" level="INFO">${rxq_count_int} = 1</msg>
+<status status="PASS" endtime="20190410 18:57:42.942" starttime="20190410 18:57:42.931"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>int(${num_mbufs_int}*${rxq_count_int})</arg>
+</arguments>
+<assign>
+<var>${num_mbufs_int}</var>
+</assign>
+<msg timestamp="20190410 18:57:42.952" level="INFO">${num_mbufs_int} = 16384</msg>
+<status status="PASS" endtime="20190410 18:57:42.952" starttime="20190410 18:57:42.944"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add CPU Main Core</arg>
+<arg>${cpu_main}</arg>
+</arguments>
+<kw name="Add Cpu Main Core" library="DUT1">
+<doc>Add CPU main core configuration.</doc>
+<arguments>
+<arg>${cpu_main}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.957" starttime="20190410 18:57:42.956"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.958" starttime="20190410 18:57:42.954"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add CPU Corelist Workers</arg>
+<arg>${cpu_wt}</arg>
+</arguments>
+<kw name="Add Cpu Corelist Workers" library="DUT1">
+<doc>Add CPU corelist-workers configuration.</doc>
+<arguments>
+<arg>${cpu_wt}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.963" starttime="20190410 18:57:42.962"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.963" starttime="20190410 18:57:42.959"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add DPDK Dev Default RXQ</arg>
+<arg>${rxq_count_int}</arg>
+</arguments>
+<kw name="Add Dpdk Dev Default Rxq" library="DUT1">
+<doc>Add DPDK dev default rxq configuration.</doc>
+<arguments>
+<arg>${rxq_count_int}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:42.968" starttime="20190410 18:57:42.967"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.969" starttime="20190410 18:57:42.965"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${thr_count_int} &gt; 1</arg>
+<arg>Set Tags</arg>
+<arg>MTHREAD</arg>
+<arg>ELSE</arg>
+<arg>Set Tags</arg>
+<arg>STHREAD</arg>
+</arguments>
+<kw name="Set Tags" library="BuiltIn">
+<doc>Adds given ``tags`` for the current test or all tests in a suite.</doc>
+<arguments>
+<arg>MTHREAD</arg>
+</arguments>
+<msg timestamp="20190410 18:57:42.981" level="INFO">Set tag 'MTHREAD'.</msg>
+<status status="PASS" endtime="20190410 18:57:42.982" starttime="20190410 18:57:42.980"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.982" starttime="20190410 18:57:42.971"></status>
+</kw>
+<kw name="Set Tags" library="BuiltIn">
+<doc>Adds given ``tags`` for the current test or all tests in a suite.</doc>
+<arguments>
+<arg>${thr_count_int}T${cpu_count_int}C</arg>
+</arguments>
+<msg timestamp="20190410 18:57:42.988" level="INFO">Set tag '2T1C'.</msg>
+<status status="PASS" endtime="20190410 18:57:42.988" starttime="20190410 18:57:42.986"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.988" starttime="20190410 18:57:42.638"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:42.988" starttime="20190410 18:57:42.638"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${smt_used}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:42.991" level="INFO">${smt_used} = True</msg>
+<status status="PASS" endtime="20190410 18:57:42.991" starttime="20190410 18:57:42.990"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${thr_count_int}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:42.993" level="INFO">${thr_count_int} = 2</msg>
+<status status="PASS" endtime="20190410 18:57:42.994" starttime="20190410 18:57:42.992"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${cpu_count_int}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:42.997" level="INFO">${cpu_count_int} = 1</msg>
+<status status="PASS" endtime="20190410 18:57:42.997" starttime="20190410 18:57:42.996"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${rxq_count_int}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:43.000" level="INFO">${rxq_count_int} = 1</msg>
+<status status="PASS" endtime="20190410 18:57:43.001" starttime="20190410 18:57:42.999"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:43.001" starttime="20190410 18:57:42.487"></status>
+</kw>
+<kw name="And Add PCI devices to all DUTs" library="performance_configuration">
+<doc>Add PCI devices to VPP configuration file.</doc>
+<kw name="Get Matches" library="Collections">
+<doc>Returns a list of matches to ``pattern`` in ``list``.</doc>
+<arguments>
+<arg>${nodes}</arg>
+<arg>DUT*</arg>
+</arguments>
+<assign>
+<var>${duts}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.151" level="INFO">${duts} = ['DUT1']</msg>
+<status status="PASS" endtime="20190410 18:57:43.152" starttime="20190410 18:57:43.007"></status>
+</kw>
+<kw type="for" name="${dut} IN [ @{duts} ]">
+<kw type="foritem" name="${dut} = DUT1">
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Variable Should Exist</arg>
+<arg>${${dut}_if1}</arg>
+</arguments>
+<assign>
+<var>${if1_status}</var>
+<var>${value}</var>
+</assign>
+<kw name="Variable Should Exist" library="BuiltIn">
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<arguments>
+<arg>${${dut}_if1}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.159" starttime="20190410 18:57:43.158"></status>
+</kw>
+<msg timestamp="20190410 18:57:43.160" level="INFO">${if1_status} = PASS</msg>
+<msg timestamp="20190410 18:57:43.160" level="INFO">${value} = None</msg>
+<status status="PASS" endtime="20190410 18:57:43.160" starttime="20190410 18:57:43.155"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${if1_status}' == 'PASS'</arg>
+<arg>Get Interface PCI Addr</arg>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}_if1}</arg>
+</arguments>
+<assign>
+<var>${if1_pci}</var>
+</assign>
+<kw name="Get Interface Pci Addr" library="resources.libraries.python.topology.Topology">
+<doc>Get interface PCI address.</doc>
+<arguments>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}_if1}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.228" starttime="20190410 18:57:43.171"></status>
+</kw>
+<msg timestamp="20190410 18:57:43.229" level="INFO">${if1_pci} = 0000:18:00.3</msg>
+<status status="PASS" endtime="20190410 18:57:43.229" starttime="20190410 18:57:43.162"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>'${if1_status}' == 'PASS'</arg>
+<arg>Get Interface PCI Addr</arg>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}_if1_1}</arg>
+</arguments>
+<assign>
+<var>${if1_1_pci}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.238" level="INFO">${if1_1_pci} = None</msg>
+<status status="PASS" endtime="20190410 18:57:43.238" starttime="20190410 18:57:43.231"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>'${if1_status}' == 'PASS'</arg>
+<arg>Get Interface PCI Addr</arg>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}_if1_2}</arg>
+</arguments>
+<assign>
+<var>${if1_2_pci}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.247" level="INFO">${if1_2_pci} = None</msg>
+<status status="PASS" endtime="20190410 18:57:43.247" starttime="20190410 18:57:43.240"></status>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<arguments>
+<arg>Variable Should Exist</arg>
+<arg>${${dut}_if2}</arg>
+</arguments>
+<assign>
+<var>${if2_status}</var>
+<var>${value}</var>
+</assign>
+<kw name="Variable Should Exist" library="BuiltIn">
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<arguments>
+<arg>${${dut}_if2}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.254" starttime="20190410 18:57:43.252"></status>
+</kw>
+<msg timestamp="20190410 18:57:43.254" level="INFO">${if2_status} = PASS</msg>
+<msg timestamp="20190410 18:57:43.254" level="INFO">${value} = None</msg>
+<status status="PASS" endtime="20190410 18:57:43.255" starttime="20190410 18:57:43.249"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${if2_status}' == 'PASS'</arg>
+<arg>Get Interface PCI Addr</arg>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}_if2}</arg>
+</arguments>
+<assign>
+<var>${if2_pci}</var>
+</assign>
+<kw name="Get Interface Pci Addr" library="resources.libraries.python.topology.Topology">
+<doc>Get interface PCI address.</doc>
+<arguments>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}_if2}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.322" starttime="20190410 18:57:43.265"></status>
+</kw>
+<msg timestamp="20190410 18:57:43.323" level="INFO">${if2_pci} = 0000:18:00.0</msg>
+<status status="PASS" endtime="20190410 18:57:43.323" starttime="20190410 18:57:43.256"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>'${if2_status}' == 'PASS'</arg>
+<arg>Get Interface PCI Addr</arg>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}_if2_1}</arg>
+</arguments>
+<assign>
+<var>${if2_1_pci}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.332" level="INFO">${if2_1_pci} = None</msg>
+<status status="PASS" endtime="20190410 18:57:43.333" starttime="20190410 18:57:43.325"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>'${if2_status}' == 'PASS'</arg>
+<arg>Get Interface PCI Addr</arg>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}_if2_2}</arg>
+</arguments>
+<assign>
+<var>${if2_2_pci}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.342" level="INFO">${if2_2_pci} = None</msg>
+<status status="PASS" endtime="20190410 18:57:43.343" starttime="20190410 18:57:43.335"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${if1_status}' == 'PASS'</arg>
+<arg>Create List</arg>
+<arg>${if1_pci}</arg>
+<arg>ELSE</arg>
+<arg>Create List</arg>
+<arg>${if1_1_pci}</arg>
+<arg>${if1_2_pci}</arg>
+</arguments>
+<assign>
+<var>@{pci_devs}</var>
+</assign>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>${if1_pci}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.355" starttime="20190410 18:57:43.353"></status>
+</kw>
+<msg timestamp="20190410 18:57:43.355" level="INFO">@{pci_devs} = [ 0000:18:00.3 ]</msg>
+<status status="PASS" endtime="20190410 18:57:43.356" starttime="20190410 18:57:43.345"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${if2_status}' == 'PASS'</arg>
+<arg>Append To List</arg>
+<arg>${pci_devs}</arg>
+<arg>${if2_pci}</arg>
+<arg>ELSE</arg>
+<arg>Append To List</arg>
+<arg>${pci_devs}</arg>
+<arg>${if2_1_pci}</arg>
+<arg>${if2_2_pci}</arg>
+</arguments>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${pci_devs}</arg>
+<arg>${if2_pci}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.369" starttime="20190410 18:57:43.367"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:43.370" starttime="20190410 18:57:43.357"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Add DPDK Dev</arg>
+<arg>@{pci_devs}</arg>
+</arguments>
+<kw name="Add Dpdk Dev" library="DUT1">
+<doc>Add DPDK PCI device configuration.</doc>
+<arguments>
+<arg>@{pci_devs}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.378" starttime="20190410 18:57:43.375"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:43.378" starttime="20190410 18:57:43.372"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${if1_status}' == 'PASS'</arg>
+<arg>Set Test Variable</arg>
+<arg>${${dut}_if1_pci}</arg>
+<arg>${if1_pci}</arg>
+</arguments>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${${dut}_if1_pci}</arg>
+<arg>${if1_pci}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:43.396" level="INFO">${DUT1_if1_pci} = 0000:18:00.3</msg>
+<status status="PASS" endtime="20190410 18:57:43.397" starttime="20190410 18:57:43.388"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:43.397" starttime="20190410 18:57:43.380"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>'${if1_status}' == 'PASS'</arg>
+<arg>Set Test Variable</arg>
+<arg>${${dut}_if1_1_pci}</arg>
+<arg>${if1_1_pci}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.406" starttime="20190410 18:57:43.399"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>'${if1_status}' == 'PASS'</arg>
+<arg>Set Test Variable</arg>
+<arg>${${dut}_if1_2_pci}</arg>
+<arg>${if1_2_pci}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.416" starttime="20190410 18:57:43.408"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>'${if2_status}' == 'PASS'</arg>
+<arg>Set Test Variable</arg>
+<arg>${${dut}_if2_pci}</arg>
+<arg>${if2_pci}</arg>
+</arguments>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${${dut}_if2_pci}</arg>
+<arg>${if2_pci}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:43.436" level="INFO">${DUT1_if2_pci} = 0000:18:00.0</msg>
+<status status="PASS" endtime="20190410 18:57:43.437" starttime="20190410 18:57:43.426"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:43.437" starttime="20190410 18:57:43.418"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>'${if2_status}' == 'PASS'</arg>
+<arg>Set Test Variable</arg>
+<arg>${${dut}_if2_1_pci}</arg>
+<arg>${if2_1_pci}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.446" starttime="20190410 18:57:43.439"></status>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is false.</doc>
+<arguments>
+<arg>'${if2_status}' == 'PASS'</arg>
+<arg>Set Test Variable</arg>
+<arg>${${dut}_if2_2_pci}</arg>
+<arg>${if2_2_pci}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.456" starttime="20190410 18:57:43.448"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:43.457" starttime="20190410 18:57:43.153"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:43.457" starttime="20190410 18:57:43.152"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:43.457" starttime="20190410 18:57:43.005"></status>
+</kw>
+<kw name="Set Max Rate And Jumbo And Handle Multi Seg" library="performance_limits">
+<doc>This keyword starts with Get Max Rate And Jumbo keyword,</doc>
+<kw name="Set Max Rate And Jumbo" library="performance_limits">
+<doc>Input framesize can be either integer in case of a single packet</doc>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${18750000.0}</arg>
+</arguments>
+<assign>
+<var>${pps_limit}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.466" level="INFO">${pps_limit} = 18750000.0</msg>
+<status status="PASS" endtime="20190410 18:57:43.466" starttime="20190410 18:57:43.465"></status>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<arguments>
+<arg>${NIC_NAME_TO_LIMIT}</arg>
+<arg>${nic_name}</arg>
+</arguments>
+<assign>
+<var>${bps_limit}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.470" level="INFO">${bps_limit} = 10000000000</msg>
+<status status="PASS" endtime="20190410 18:57:43.470" starttime="20190410 18:57:43.468"></status>
+</kw>
+<kw name="Get Average Frame Size" library="performance_limits">
+<doc>Framesize can be either integer in case of a single packet</doc>
+<arguments>
+<arg>${frame_size}</arg>
+</arguments>
+<assign>
+<var>${avg_size}</var>
+</assign>
+<kw name="Return From Keyword If" library="BuiltIn">
+<doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
+<arguments>
+<arg>'${frame_size}' == 'IMIX_v4_1'</arg>
+<arg>${353.83333}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.482" starttime="20190410 18:57:43.475"></status>
+</kw>
+<kw name="Convert To Number" library="BuiltIn">
+<doc>Converts the given item to a floating point number.</doc>
+<arguments>
+<arg>${frame_size}</arg>
+</arguments>
+<assign>
+<var>${frame_size}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.485" level="INFO">${frame_size} = 9000.0</msg>
+<status status="PASS" endtime="20190410 18:57:43.485" starttime="20190410 18:57:43.484"></status>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${frame_size}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:43.488" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" endtime="20190410 18:57:43.488" starttime="20190410 18:57:43.487"></status>
+</kw>
+<msg timestamp="20190410 18:57:43.489" level="INFO">${avg_size} = 9000.0</msg>
+<status status="PASS" endtime="20190410 18:57:43.489" starttime="20190410 18:57:43.472"></status>
+</kw>
+<kw name="Set Variable If" library="BuiltIn">
+<doc>Sets variable based on the given condition.</doc>
+<arguments>
+<arg>'${frame_size}' == 'IMIX_v4_1'</arg>
+<arg>${1518}</arg>
+<arg>${frame_size}</arg>
+</arguments>
+<assign>
+<var>${max_size}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.498" level="INFO">${max_size} = 9000</msg>
+<status status="PASS" endtime="20190410 18:57:43.499" starttime="20190410 18:57:43.491"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${avg_size} + ${overhead}</arg>
+</arguments>
+<assign>
+<var>${avg_swo}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.507" level="INFO">${avg_swo} = 9000.0</msg>
+<status status="PASS" endtime="20190410 18:57:43.508" starttime="20190410 18:57:43.500"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${max_size} + ${overhead}</arg>
+</arguments>
+<assign>
+<var>${max_swo}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.516" level="INFO">${max_swo} = 9000</msg>
+<status status="PASS" endtime="20190410 18:57:43.516" starttime="20190410 18:57:43.509"></status>
+</kw>
+<kw name="Set Variable If" library="BuiltIn">
+<doc>Sets variable based on the given condition.</doc>
+<arguments>
+<arg>${max_swo} &lt; 1522</arg>
+<arg>${False}</arg>
+<arg>${True}</arg>
+</arguments>
+<assign>
+<var>${jumbo}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.525" level="INFO">${jumbo} = True</msg>
+<status status="PASS" endtime="20190410 18:57:43.526" starttime="20190410 18:57:43.518"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${bps_limit} / ((${avg_swo} + 20.0) * 8)</arg>
+</arguments>
+<assign>
+<var>${rate}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.535" level="INFO">${rate} = 138580.931264</msg>
+<status status="PASS" endtime="20190410 18:57:43.535" starttime="20190410 18:57:43.527"></status>
+</kw>
+<kw name="Set Variable If" library="BuiltIn">
+<doc>Sets variable based on the given condition.</doc>
+<arguments>
+<arg>${rate} &gt; ${pps_limit}</arg>
+<arg>${pps_limit}</arg>
+<arg>${rate}</arg>
+</arguments>
+<assign>
+<var>${max_rate}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.544" level="INFO">${max_rate} = 138580.931264</msg>
+<status status="PASS" endtime="20190410 18:57:43.544" starttime="20190410 18:57:43.537"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>\${jumbo}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:43.547" level="INFO">${jumbo} = True</msg>
+<status status="PASS" endtime="20190410 18:57:43.548" starttime="20190410 18:57:43.546"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>\${max_rate}</arg>
+</arguments>
+<msg timestamp="20190410 18:57:43.551" level="INFO">${max_rate} = 138580.931264</msg>
+<status status="PASS" endtime="20190410 18:57:43.551" starttime="20190410 18:57:43.550"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:43.551" starttime="20190410 18:57:43.462"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>not ${jumbo}</arg>
+<arg>Add no multi seg to all DUTs</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:43.560" starttime="20190410 18:57:43.553"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:43.561" starttime="20190410 18:57:43.459"></status>
+</kw>
+<kw name="And Apply startup configuration on all VPP DUTs" library="default">
+<doc>Write startup configuration and restart VPP on all DUTs.</doc>
+<kw name="Get Matches" library="Collections">
+<doc>Returns a list of matches to ``pattern`` in ``list``.</doc>
+<arguments>
+<arg>${nodes}</arg>
+<arg>DUT*</arg>
+</arguments>
+<assign>
+<var>${duts}</var>
+</assign>
+<msg timestamp="20190410 18:57:43.703" level="INFO">${duts} = ['DUT1']</msg>
+<status status="PASS" endtime="20190410 18:57:43.703" starttime="20190410 18:57:43.567"></status>
+</kw>
+<kw type="for" name="${dut} IN [ @{duts} ]">
+<kw type="foritem" name="${dut} = DUT1">
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${dut}.Apply Config</arg>
+<arg>restart_vpp=${restart_vpp}</arg>
+</arguments>
+<kw name="Apply Config" library="DUT1">
+<doc>Generate and apply VPP configuration for node.</doc>
+<arguments>
+<arg>restart_vpp=${restart_vpp}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:55.445" starttime="20190410 18:57:43.708"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:55.446" starttime="20190410 18:57:43.706"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:55.446" starttime="20190410 18:57:43.704"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:55.446" starttime="20190410 18:57:43.703"></status>
+</kw>
+<kw name="Enable Coredump Limit Vpp On All Duts" library="resources.libraries.python.CoreDumpUtil">
+<doc>Enable coredump for all VPP PIDs by setting no core limits on all</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:58.419" starttime="20190410 18:57:55.450"></status>
+</kw>
+<kw name="Update All Interface Data On All Nodes" library="resources.libraries.python.InterfaceUtil">
+<doc>Update interface names on all nodes in DICT__nodes.</doc>
+<arguments>
+<arg>${nodes}</arg>
+<arg>skip_tg=${True}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:57:59.548" starttime="20190410 18:57:58.423"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:57:59.549" starttime="20190410 18:57:43.564"></status>
+</kw>
+<kw name="When Initialize L2 bridge domains for multiple chains with Vhost-User" library="performance_configuration">
+<doc>Create pairs of Vhost-User interfaces for defined number of NF chains</doc>
+<arguments>
+<arg>nf_chains=${1}</arg>
+<arg>nf_nodes=${1}</arg>
+</arguments>
+<kw type="for" name="${nf_chain} IN RANGE [ 1 | ${nf_chains}+1 ]">
+<kw type="foritem" name="${nf_chain} = 1">
+<kw name="Initialize L2 bridge domains with Vhost-User" library="performance_configuration">
+<doc>Create pairs of Vhost-User interfaces for defined number of VNF nodes</doc>
+<arguments>
+<arg>nf_chain=${nf_chain}</arg>
+<arg>nf_nodes=${nf_nodes}</arg>
+</arguments>
+<kw name="Get Matches" library="Collections">
+<doc>Returns a list of matches to ``pattern`` in ``list``.</doc>
+<arguments>
+<arg>${nodes}</arg>
+<arg>DUT*</arg>
+</arguments>
+<assign>
+<var>${duts}</var>
+</assign>
+<msg timestamp="20190410 18:57:59.750" level="INFO">${duts} = ['DUT1']</msg>
+<status status="PASS" endtime="20190410 18:57:59.750" starttime="20190410 18:57:59.575"></status>
+</kw>
+<kw type="for" name="${dut} IN [ @{duts} ]">
+<kw type="foritem" name="${dut} = DUT1">
+<kw name="Initialize L2 bridge domains with Vhost-User on node" library="performance_configuration">
+<doc>Create pairs of Vhost-User interfaces for defined number of VMs on</doc>
+<arguments>
+<arg>${dut}</arg>
+<arg>nf_chain=${nf_chain}</arg>
+<arg>nf_nodes=${nf_nodes}</arg>
+</arguments>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${nf_nodes}+1</arg>
+</arguments>
+<assign>
+<var>${bd_id2}</var>
+</assign>
+<msg timestamp="20190410 18:57:59.763" level="INFO">${bd_id2} = 2</msg>
+<status status="PASS" endtime="20190410 18:57:59.763" starttime="20190410 18:57:59.756"></status>
+</kw>
+<kw name="Add interface to bridge domain" library="l2_bridge_domain">
+<doc>Set given interface admin state to up and add this</doc>
+<arguments>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}_if1}</arg>
+<arg>${1}</arg>
+</arguments>
+<kw name="Set Interface State" library="resources.libraries.python.InterfaceUtil">
+<doc>Set interface state on a node.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${dut_if}</arg>
+<arg>up</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:02.016" starttime="20190410 18:57:59.881"></status>
+</kw>
+<kw name="Add Interface To L2 Bd" library="resources.libraries.python.L2Util">
+<doc>Add an interface to the L2 bridge domain.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${dut_if}</arg>
+<arg>${bd_id}</arg>
+<arg>${shg}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:03.857" starttime="20190410 18:58:02.027"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:03.859" starttime="20190410 18:57:59.817"></status>
+</kw>
+<kw name="Add interface to bridge domain" library="l2_bridge_domain">
+<doc>Set given interface admin state to up and add this</doc>
+<arguments>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}_if2}</arg>
+<arg>${bd_id2}</arg>
+</arguments>
+<kw name="Set Interface State" library="resources.libraries.python.InterfaceUtil">
+<doc>Set interface state on a node.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${dut_if}</arg>
+<arg>up</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:07.990" starttime="20190410 18:58:04.008"></status>
+</kw>
+<kw name="Add Interface To L2 Bd" library="resources.libraries.python.L2Util">
+<doc>Add an interface to the L2 bridge domain.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${dut_if}</arg>
+<arg>${bd_id}</arg>
+<arg>${shg}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:09.871" starttime="20190410 18:58:07.995"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:09.872" starttime="20190410 18:58:03.911"></status>
+</kw>
+<kw type="for" name="${nf_node} IN RANGE [ 1 | ${nf_nodes}+1 ]">
+<kw type="foritem" name="${nf_node} = 1">
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>(${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}</arg>
+</arguments>
+<assign>
+<var>${qemu_id}</var>
+</assign>
+<msg timestamp="20190410 18:58:09.893" level="INFO">${qemu_id} = 1</msg>
+<status status="PASS" endtime="20190410 18:58:09.893" starttime="20190410 18:58:09.877"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>/var/run/vpp/sock-${qemu_id}-1</arg>
+</arguments>
+<assign>
+<var>${sock1}</var>
+</assign>
+<msg timestamp="20190410 18:58:09.899" level="INFO">${sock1} = /var/run/vpp/sock-1-1</msg>
+<status status="PASS" endtime="20190410 18:58:09.899" starttime="20190410 18:58:09.896"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>/var/run/vpp/sock-${qemu_id}-2</arg>
+</arguments>
+<assign>
+<var>${sock2}</var>
+</assign>
+<msg timestamp="20190410 18:58:09.905" level="INFO">${sock2} = /var/run/vpp/sock-1-2</msg>
+<status status="PASS" endtime="20190410 18:58:09.905" starttime="20190410 18:58:09.902"></status>
+</kw>
+<kw name="Configure vhost interfaces for L2BD forwarding" library="l2_bridge_domain">
+<doc>Create two Vhost-User interfaces on defined VPP node.</doc>
+<arguments>
+<arg>${nodes['${dut}']}</arg>
+<arg>${sock1}</arg>
+<arg>${sock2}</arg>
+<arg>${dut}-vhost-${qemu_id}-if1</arg>
+<arg>${dut}-vhost-${qemu_id}-if2</arg>
+</arguments>
+<kw name="Vpp Create Vhost User Interface" library="resources.libraries.python.VhostUser">
+<doc>Create Vhost-user interface on VPP node.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${sock1}</arg>
+</arguments>
+<assign>
+<var>${vhost_1}</var>
+</assign>
+<msg timestamp="20190410 18:58:19.035" level="INFO">${vhost_1} = 3</msg>
+<status status="PASS" endtime="20190410 18:58:19.035" starttime="20190410 18:58:10.069"></status>
+</kw>
+<kw name="Vpp Create Vhost User Interface" library="resources.libraries.python.VhostUser">
+<doc>Create Vhost-user interface on VPP node.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${sock2}</arg>
+</arguments>
+<assign>
+<var>${vhost_2}</var>
+</assign>
+<msg timestamp="20190410 18:58:27.833" level="INFO">${vhost_2} = 4</msg>
+<status status="PASS" endtime="20190410 18:58:27.833" starttime="20190410 18:58:19.040"></status>
+</kw>
+<kw name="Set Interface State" library="resources.libraries.python.InterfaceUtil">
+<doc>Set interface state on a node.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${vhost_1}</arg>
+<arg>up</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:29.649" starttime="20190410 18:58:27.835"></status>
+</kw>
+<kw name="Set Interface State" library="resources.libraries.python.InterfaceUtil">
+<doc>Set interface state on a node.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${vhost_2}</arg>
+<arg>up</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:32.030" starttime="20190410 18:58:29.654"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${${vhost_if1}}</arg>
+<arg>${vhost_1}</arg>
+</arguments>
+<msg timestamp="20190410 18:58:32.048" level="INFO">${DUT1-vhost-1-if1} = 3</msg>
+<status status="PASS" endtime="20190410 18:58:32.049" starttime="20190410 18:58:32.035"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${${vhost_if2}}</arg>
+<arg>${vhost_2}</arg>
+</arguments>
+<msg timestamp="20190410 18:58:32.057" level="INFO">${DUT1-vhost-1-if2} = 4</msg>
+<status status="PASS" endtime="20190410 18:58:32.058" starttime="20190410 18:58:32.052"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:32.059" starttime="20190410 18:58:09.985"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${nf_node}+1</arg>
+</arguments>
+<assign>
+<var>${bd_id2}</var>
+</assign>
+<msg timestamp="20190410 18:58:32.085" level="INFO">${bd_id2} = 2</msg>
+<status status="PASS" endtime="20190410 18:58:32.086" starttime="20190410 18:58:32.070"></status>
+</kw>
+<kw name="Add interface to bridge domain" library="l2_bridge_domain">
+<doc>Set given interface admin state to up and add this</doc>
+<arguments>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}-vhost-${qemu_id}-if1}</arg>
+<arg>${nf_node}</arg>
+</arguments>
+<kw name="Set Interface State" library="resources.libraries.python.InterfaceUtil">
+<doc>Set interface state on a node.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${dut_if}</arg>
+<arg>up</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:34.283" starttime="20190410 18:58:32.208"></status>
+</kw>
+<kw name="Add Interface To L2 Bd" library="resources.libraries.python.L2Util">
+<doc>Add an interface to the L2 bridge domain.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${dut_if}</arg>
+<arg>${bd_id}</arg>
+<arg>${shg}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:36.128" starttime="20190410 18:58:34.290"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:36.130" starttime="20190410 18:58:32.139"></status>
+</kw>
+<kw name="Add interface to bridge domain" library="l2_bridge_domain">
+<doc>Set given interface admin state to up and add this</doc>
+<arguments>
+<arg>${nodes['${dut}']}</arg>
+<arg>${${dut}-vhost-${qemu_id}-if2}</arg>
+<arg>${bd_id2}</arg>
+</arguments>
+<kw name="Set Interface State" library="resources.libraries.python.InterfaceUtil">
+<doc>Set interface state on a node.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${dut_if}</arg>
+<arg>up</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:40.090" starttime="20190410 18:58:36.244"></status>
+</kw>
+<kw name="Add Interface To L2 Bd" library="resources.libraries.python.L2Util">
+<doc>Add an interface to the L2 bridge domain.</doc>
+<arguments>
+<arg>${dut_node}</arg>
+<arg>${dut_if}</arg>
+<arg>${bd_id}</arg>
+<arg>${shg}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:41.973" starttime="20190410 18:58:40.093"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:41.974" starttime="20190410 18:58:36.175"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:41.975" starttime="20190410 18:58:09.874"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:41.975" starttime="20190410 18:58:09.872"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:41.976" starttime="20190410 18:57:59.752"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:41.976" starttime="20190410 18:57:59.750"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:41.976" starttime="20190410 18:57:59.750"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:41.978" starttime="20190410 18:57:59.566"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:41.978" starttime="20190410 18:57:59.564"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:41.978" starttime="20190410 18:57:59.563"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:41.979" starttime="20190410 18:57:59.557"></status>
+</kw>
+<kw name="And Configure chains of NFs connected via vhost-user" library="performance_configuration">
+<doc>Start 1..N chains of 1..N QEMU guests (VNFs) with two vhost-user interfaces and interconnecting NF.</doc>
+<arguments>
+<arg>nf_chains=${1}</arg>
+<arg>nf_nodes=${1}</arg>
+<arg>jumbo=${jumbo}</arg>
+<arg>use_tuned_cfs=${False}</arg>
+<arg>auto_scale=${False}</arg>
+<arg>vnf=vpp_chain_ip4</arg>
+</arguments>
+<kw name="Import Library" library="BuiltIn">
+<doc>Imports a library with the given name and optional arguments.</doc>
+<arguments>
+<arg>resources.libraries.python.QemuManager</arg>
+<arg>${nodes}</arg>
+<arg>WITH NAME</arg>
+<arg>vnf_manager</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:42.068" starttime="20190410 18:58:41.999"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>vnf_manager.Construct VMs on all nodes</arg>
+<arg>nf_chains=${nf_chains}</arg>
+<arg>nf_nodes=${nf_nodes}</arg>
+<arg>jumbo=${jumbo}</arg>
+<arg>perf_qemu_qsz=${perf_qemu_qsz}</arg>
+<arg>use_tuned_cfs=${use_tuned_cfs}</arg>
+<arg>auto_scale=${auto_scale}</arg>
+<arg>vnf=${vnf}</arg>
+<arg>tg_if1_mac=${tg_if1_mac}</arg>
+<arg>tg_if2_mac=${tg_if2_mac}</arg>
+<arg>cpu_count_int=${cpu_count_int}</arg>
+<arg>rxq_count_int=${rxq_count_int}</arg>
+</arguments>
+<kw name="Construct Vms On All Nodes" library="vnf_manager">
+<doc>Construct 1..Mx1..N VMs(s) with specified name on all nodes.</doc>
+<arguments>
+<arg>nf_chains=${nf_chains}</arg>
+<arg>nf_nodes=${nf_nodes}</arg>
+<arg>jumbo=${jumbo}</arg>
+<arg>perf_qemu_qsz=${perf_qemu_qsz}</arg>
+<arg>use_tuned_cfs=${use_tuned_cfs}</arg>
+<arg>auto_scale=${auto_scale}</arg>
+<arg>vnf=${vnf}</arg>
+<arg>tg_if1_mac=${tg_if1_mac}</arg>
+<arg>tg_if2_mac=${tg_if2_mac}</arg>
+<arg>cpu_count_int=${cpu_count_int}</arg>
+<arg>rxq_count_int=${rxq_count_int}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:58:49.846" starttime="20190410 18:58:42.077"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:58:49.847" starttime="20190410 18:58:42.072"></status>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>vnf_manager.Start All VMs</arg>
+<arg>pinning=${True}</arg>
+</arguments>
+<kw name="Start All Vms" library="vnf_manager">
+<doc>Start all added VMs in manager.</doc>
+<arguments>
+<arg>pinning=${True}</arg>
+</arguments>
+<msg timestamp="20190410 18:59:02.044" level="INFO">VPP version:      19.04-rc0~640-g05f7ca110~b2523
+</msg>
+<status status="PASS" endtime="20190410 18:59:09.420" starttime="20190410 18:58:49.855"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:59:09.420" starttime="20190410 18:58:49.851"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${use_tuned_cfs}</arg>
+<arg>vnf_manager.Set Scheduler All VMs</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:59:09.424" starttime="20190410 18:59:09.423"></status>
+</kw>
+<kw name="All Vpp Interfaces Ready Wait" library="resources.libraries.python.InterfaceUtil">
+<doc>Wait until all interfaces with admin-up are in link-up state for all</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:59:11.830" starttime="20190410 18:59:09.427"></status>
+</kw>
+<kw name="Vpp Round Robin Rx Placement On All Duts" library="resources.libraries.python.InterfaceUtil">
+<doc>Set Round Robin interface RX placement on all worker threads</doc>
+<arguments>
+<arg>${nodes}</arg>
+<arg>prefix=Virtual</arg>
+</arguments>
+<status status="PASS" endtime="20190410 18:59:25.006" starttime="20190410 18:59:11.836"></status>
+</kw>
+<status status="PASS" endtime="20190410 18:59:25.007" starttime="20190410 18:58:41.986"></status>
+</kw>
+<kw name="Then Find NDR and PDR intervals using optimized search" library="performance_utils">
+<doc>Find boundaries for RFC2544 compatible NDR and PDR values</doc>
+<kw name="Perform Optimized Ndrpdr Search" library="resources.libraries.python.TrafficGenerator.OptimizedSearch">
+<doc>Setup initialized TG, perform optimized search, return intervals.</doc>
+<arguments>
+<arg>${frame_size}</arg>
+<arg>${traffic_profile}</arg>
+<arg>${20000}</arg>
+<arg>${max_rate*2}</arg>
+<arg>${packet_loss_ratio}</arg>
+<arg>${final_relative_width}</arg>
+<arg>${final_trial_duration}</arg>
+<arg>${initial_trial_duration}</arg>
+<arg>${number_of_intermediate_phases}</arg>
+<arg>timeout=${timeout}</arg>
+<arg>doublings=${doublings}</arg>
+</arguments>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20190410 18:59:27.085" level="INFO">TrafficGen result: rate=138580.931264pps, totalReceived=0, totalSent=277162, frameLoss=277162, latencyStream0(usec)=-1/0/0, latencyStream1(usec)=-1/0/0</msg>
+<msg timestamp="20190410 18:59:29.151" level="INFO">TrafficGen result: rate=10000.0pps, totalReceived=0, totalSent=20001, frameLoss=20001, latencyStream0(usec)=-1/0/0, latencyStream1(usec)=-1/0/0</msg>
+<msg timestamp="20190410 18:59:29.152" level="INFO">starting iterations with duration 1.0 and relative width goal 0.0198306291</msg>
+<msg timestamp="20190410 18:59:29.153" level="INFO">phase done</msg>
+<msg timestamp="20190410 18:59:29.154" level="INFO">starting iterations with duration 5.47722557505 and relative width goal 0.00997</msg>
+<msg timestamp="20190410 18:59:29.154" level="INFO">ndr lo minimal re-measure</msg>
+<msg timestamp="20190410 18:59:29.155" level="INFO">result before update: NDR=[d=1.0,Tr=20000.0,Df=1.0;d=1.0,Tr=277161.862528,Df=1.0);PDR=[d=1.0,Tr=20000.0,Df=1.0;d=1.0,Tr=277161.862528,Df=1.0)</msg>
+<msg timestamp="20190410 18:59:35.811" level="INFO">TrafficGen result: rate=10000.0pps, totalReceived=0, totalSent=109547, frameLoss=109547, latencyStream0(usec)=-1/0/0, latencyStream1(usec)=-1/0/0</msg>
+<msg timestamp="20190410 18:59:35.812" level="INFO">phase done</msg>
+<msg timestamp="20190410 18:59:35.813" level="INFO">starting iterations with duration 30.0 and relative width goal 0.005</msg>
+<msg timestamp="20190410 18:59:35.814" level="INFO">ndr lo minimal re-measure</msg>
+<msg timestamp="20190410 18:59:35.814" level="INFO">result before update: NDR=[d=5.47722557505,Tr=20000.0,Df=1.0;d=1.0,Tr=277161.862528,Df=1.0);PDR=[d=5.47722557505,Tr=20000.0,Df=1.0;d=1.0,Tr=277161.862528,Df=1.0)</msg>
+<msg timestamp="20190410 19:00:07.061" level="INFO">TrafficGen result: rate=10000.0pps, totalReceived=0, totalSent=600000, frameLoss=600000, latencyStream0(usec)=-1/0/0, latencyStream1(usec)=-1/0/0</msg>
+<msg timestamp="20190410 19:00:07.062" level="INFO">phase done</msg>
+<msg timestamp="20190410 19:00:07.064" level="INFO">${result} = NDR=[d=30.0,Tr=20000.0,Df=1.0;d=1.0,Tr=277161.862528,Df=1.0);PDR=[d=30.0,Tr=20000.0,Df=1.0;d=1.0,Tr=277161.862528,Df=1.0)</msg>
+<status status="PASS" endtime="20190410 19:00:07.064" starttime="20190410 18:59:25.025"></status>
+</kw>
+<kw name="Display result of NDRPDR search" library="performance_utils">
+<doc>Display result of NDR+PDR search, both quantities, both bounds,</doc>
+<arguments>
+<arg>${result}</arg>
+<arg>${frame_size}</arg>
+</arguments>
+<kw name="Get Average Frame Size" library="performance_limits">
+<doc>Framesize can be either integer in case of a single packet</doc>
+<arguments>
+<arg>${frame_size}</arg>
+</arguments>
+<assign>
+<var>${frame_size}</var>
+</assign>
+<kw name="Return From Keyword If" library="BuiltIn">
+<doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
+<arguments>
+<arg>'${frame_size}' == 'IMIX_v4_1'</arg>
+<arg>${353.83333}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:07.091" starttime="20190410 19:00:07.080"></status>
+</kw>
+<kw name="Convert To Number" library="BuiltIn">
+<doc>Converts the given item to a floating point number.</doc>
+<arguments>
+<arg>${frame_size}</arg>
+</arguments>
+<assign>
+<var>${frame_size}</var>
+</assign>
+<msg timestamp="20190410 19:00:07.097" level="INFO">${frame_size} = 9000.0</msg>
+<status status="PASS" endtime="20190410 19:00:07.097" starttime="20190410 19:00:07.094"></status>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${frame_size}</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.102" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" endtime="20190410 19:00:07.103" starttime="20190410 19:00:07.101"></status>
+</kw>
+<msg timestamp="20190410 19:00:07.104" level="INFO">${frame_size} = 9000.0</msg>
+<status status="PASS" endtime="20190410 19:00:07.104" starttime="20190410 19:00:07.073"></status>
+</kw>
+<kw name="Display single bound" library="performance_utils">
+<doc>Display one bound of NDR+PDR search,</doc>
+<arguments>
+<arg>NDR_LOWER</arg>
+<arg>${result.ndr_interval.measured_low.transmit_rate}</arg>
+<arg>${frame_size}</arg>
+<arg>${result.ndr_interval.measured_low.latency}</arg>
+</arguments>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${rate_total} * (${frame_size}+20)*8 / 1e9</arg>
+</arguments>
+<assign>
+<var>${bandwidth_total}</var>
+</assign>
+<msg timestamp="20190410 19:00:07.128" level="INFO">${bandwidth_total} = 1.4432</msg>
+<status status="PASS" endtime="20190410 19:00:07.129" starttime="20190410 19:00:07.115"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${\n}${text}: ${rate_total} pps,</arg>
+<arg>append=yes</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.135" level="INFO">Set test message to:
+
+NDR_LOWER: 20000.0 pps,</msg>
+<status status="PASS" endtime="20190410 19:00:07.135" starttime="20190410 19:00:07.132"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${bandwidth_total} Gbps (untagged)</arg>
+<arg>append=yes</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.141" level="INFO">Set test message to:
+
+NDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged)</msg>
+<status status="PASS" endtime="20190410 19:00:07.142" starttime="20190410 19:00:07.139"></status>
+</kw>
+<kw name="Return From Keyword If" library="BuiltIn">
+<doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
+<arguments>
+<arg>not """${latency}"""</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:07.154" starttime="20190410 19:00:07.146"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${\n}LATENCY usec [min/avg/max] per stream: ${latency}</arg>
+<arg>append=yes</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.158" level="INFO">Set test message to:
+
+NDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged) 
+LATENCY usec [min/avg/max] per stream: ['-1/0/0', '-1/0/0']</msg>
+<status status="PASS" endtime="20190410 19:00:07.158" starttime="20190410 19:00:07.156"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:07.159" starttime="20190410 19:00:07.107"></status>
+</kw>
+<kw name="Display single bound" library="performance_utils">
+<doc>Display one bound of NDR+PDR search,</doc>
+<arguments>
+<arg>NDR_UPPER</arg>
+<arg>${result.ndr_interval.measured_high.transmit_rate}</arg>
+<arg>${frame_size}</arg>
+</arguments>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${rate_total} * (${frame_size}+20)*8 / 1e9</arg>
+</arguments>
+<assign>
+<var>${bandwidth_total}</var>
+</assign>
+<msg timestamp="20190410 19:00:07.174" level="INFO">${bandwidth_total} = 20.00000992</msg>
+<status status="PASS" endtime="20190410 19:00:07.174" starttime="20190410 19:00:07.165"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${\n}${text}: ${rate_total} pps,</arg>
+<arg>append=yes</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.177" level="INFO">Set test message to:
+
+NDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged) 
+LATENCY usec [min/avg/max] per stream: ['-1/0/0', '-1/0/0'] 
+NDR_UPPER: 277162.0 pps,</msg>
+<status status="PASS" endtime="20190410 19:00:07.178" starttime="20190410 19:00:07.176"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${bandwidth_total} Gbps (untagged)</arg>
+<arg>append=yes</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.181" level="INFO">Set test message to:
+
+NDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged) 
+LATENCY usec [min/avg/max] per stream: ['-1/0/0', '-1/0/0'] 
+NDR_UPPER: 277162.0 pps, 20.00000992 Gbps (untagged)</msg>
+<status status="PASS" endtime="20190410 19:00:07.181" starttime="20190410 19:00:07.180"></status>
+</kw>
+<kw name="Return From Keyword If" library="BuiltIn">
+<doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
+<arguments>
+<arg>not """${latency}"""</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.190" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" endtime="20190410 19:00:07.190" starttime="20190410 19:00:07.183"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:07.191" starttime="20190410 19:00:07.160"></status>
+</kw>
+<kw name="Display single bound" library="performance_utils">
+<doc>Display one bound of NDR+PDR search,</doc>
+<arguments>
+<arg>PDR_LOWER</arg>
+<arg>${result.pdr_interval.measured_low.transmit_rate}</arg>
+<arg>${frame_size}</arg>
+<arg>${result.pdr_interval.measured_low.latency}</arg>
+</arguments>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${rate_total} * (${frame_size}+20)*8 / 1e9</arg>
+</arguments>
+<assign>
+<var>${bandwidth_total}</var>
+</assign>
+<msg timestamp="20190410 19:00:07.206" level="INFO">${bandwidth_total} = 1.4432</msg>
+<status status="PASS" endtime="20190410 19:00:07.206" starttime="20190410 19:00:07.197"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${\n}${text}: ${rate_total} pps,</arg>
+<arg>append=yes</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.209" level="INFO">Set test message to:
+
+NDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged) 
+LATENCY usec [min/avg/max] per stream: ['-1/0/0', '-1/0/0'] 
+NDR_UPPER: 277162.0 pps, 20.00000992 Gbps (untagged) 
+PDR_LOWER: 20000.0 pps,</msg>
+<status status="PASS" endtime="20190410 19:00:07.210" starttime="20190410 19:00:07.208"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${bandwidth_total} Gbps (untagged)</arg>
+<arg>append=yes</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.213" level="INFO">Set test message to:
+
+NDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged) 
+LATENCY usec [min/avg/max] per stream: ['-1/0/0', '-1/0/0'] 
+NDR_UPPER: 277162.0 pps, 20.00000992 Gbps (untagged) 
+PDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged)</msg>
+<status status="PASS" endtime="20190410 19:00:07.214" starttime="20190410 19:00:07.212"></status>
+</kw>
+<kw name="Return From Keyword If" library="BuiltIn">
+<doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
+<arguments>
+<arg>not """${latency}"""</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:07.223" starttime="20190410 19:00:07.216"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${\n}LATENCY usec [min/avg/max] per stream: ${latency}</arg>
+<arg>append=yes</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.226" level="INFO">Set test message to:
+
+NDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged) 
+LATENCY usec [min/avg/max] per stream: ['-1/0/0', '-1/0/0'] 
+NDR_UPPER: 277162.0 pps, 20.00000992 Gbps (untagged) 
+PDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged) 
+LATENCY usec [min/avg/max] per stream: ['-1/0/0', '-1/0/0']</msg>
+<status status="PASS" endtime="20190410 19:00:07.226" starttime="20190410 19:00:07.225"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:07.227" starttime="20190410 19:00:07.192"></status>
+</kw>
+<kw name="Display single bound" library="performance_utils">
+<doc>Display one bound of NDR+PDR search,</doc>
+<arguments>
+<arg>PDR_UPPER</arg>
+<arg>${result.pdr_interval.measured_high.transmit_rate}</arg>
+<arg>${frame_size}</arg>
+</arguments>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${rate_total} * (${frame_size}+20)*8 / 1e9</arg>
+</arguments>
+<assign>
+<var>${bandwidth_total}</var>
+</assign>
+<msg timestamp="20190410 19:00:07.241" level="INFO">${bandwidth_total} = 20.00000992</msg>
+<status status="PASS" endtime="20190410 19:00:07.241" starttime="20190410 19:00:07.233"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${\n}${text}: ${rate_total} pps,</arg>
+<arg>append=yes</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.245" level="INFO">Set test message to:
+
+NDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged) 
+LATENCY usec [min/avg/max] per stream: ['-1/0/0', '-1/0/0'] 
+NDR_UPPER: 277162.0 pps, 20.00000992 Gbps (untagged) 
+PDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged) 
+LATENCY usec [min/avg/max] per stream: ['-1/0/0', '-1/0/0'] 
+PDR_UPPER: 277162.0 pps,</msg>
+<status status="PASS" endtime="20190410 19:00:07.245" starttime="20190410 19:00:07.243"></status>
+</kw>
+<kw name="Set Test Message" library="BuiltIn">
+<doc>Sets message for the current test case.</doc>
+<arguments>
+<arg>${bandwidth_total} Gbps (untagged)</arg>
+<arg>append=yes</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.248" level="INFO">Set test message to:
+
+NDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged) 
+LATENCY usec [min/avg/max] per stream: ['-1/0/0', '-1/0/0'] 
+NDR_UPPER: 277162.0 pps, 20.00000992 Gbps (untagged) 
+PDR_LOWER: 20000.0 pps, 1.4432 Gbps (untagged) 
+LATENCY usec [min/avg/max] per stream: ['-1/0/0', '-1/0/0'] 
+PDR_UPPER: 277162.0 pps, 20.00000992 Gbps (untagged)</msg>
+<status status="PASS" endtime="20190410 19:00:07.249" starttime="20190410 19:00:07.247"></status>
+</kw>
+<kw name="Return From Keyword If" library="BuiltIn">
+<doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
+<arguments>
+<arg>not """${latency}"""</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.259" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" endtime="20190410 19:00:07.259" starttime="20190410 19:00:07.251"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:07.260" starttime="20190410 19:00:07.228"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:07.260" starttime="20190410 19:00:07.067"></status>
+</kw>
+<kw name="Check NDRPDR interval validity" library="performance_utils">
+<doc>Extract loss ratio of lower bound of the interval.</doc>
+<arguments>
+<arg>${result.pdr_interval}</arg>
+<arg>${packet_loss_ratio}</arg>
+</arguments>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${interval.measured_low}</arg>
+</arguments>
+<assign>
+<var>${lower_bound}</var>
+</assign>
+<msg timestamp="20190410 19:00:07.268" level="INFO">${lower_bound} = d=30.0,Tr=20000.0,Df=1.0</msg>
+<status status="PASS" endtime="20190410 19:00:07.268" starttime="20190410 19:00:07.266"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${lower_bound.loss_fraction}</arg>
+</arguments>
+<assign>
+<var>${lower_bound_lf}</var>
+</assign>
+<msg timestamp="20190410 19:00:07.273" level="INFO">${lower_bound_lf} = 1.0</msg>
+<status status="PASS" endtime="20190410 19:00:07.273" starttime="20190410 19:00:07.271"></status>
+</kw>
+<kw name="Return From Keyword If" library="BuiltIn">
+<doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
+<arguments>
+<arg>${lower_bound_lf} &lt;= ${packet_loss_ratio}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:07.283" starttime="20190410 19:00:07.276"></status>
+</kw>
+<kw name="Catenate" library="BuiltIn">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=${SPACE}</arg>
+<arg>Minimal rate loss fraction ${lower_bound_lf}</arg>
+<arg>does not reach target ${packet_loss_ratio}.</arg>
+</arguments>
+<assign>
+<var>${message}</var>
+</assign>
+<msg timestamp="20190410 19:00:07.289" level="INFO">${message} = Minimal rate loss fraction 1.0 does not reach target 0.005.</msg>
+<status status="PASS" endtime="20190410 19:00:07.289" starttime="20190410 19:00:07.286"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>Zero packets forwarded!</arg>
+</arguments>
+<assign>
+<var>${message_zero}</var>
+</assign>
+<msg timestamp="20190410 19:00:07.292" level="INFO">${message_zero} = Zero packets forwarded!</msg>
+<status status="PASS" endtime="20190410 19:00:07.292" starttime="20190410 19:00:07.291"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${lower_bound.loss_count} packets lost.</arg>
+</arguments>
+<assign>
+<var>${message_other}</var>
+</assign>
+<msg timestamp="20190410 19:00:07.296" level="INFO">${message_other} = 600000 packets lost.</msg>
+<status status="PASS" endtime="20190410 19:00:07.296" starttime="20190410 19:00:07.294"></status>
+</kw>
+<kw name="Set Variable If" library="BuiltIn">
+<doc>Sets variable based on the given condition.</doc>
+<arguments>
+<arg>${lower_bound_lf} &gt;= 1.0</arg>
+<arg>${message}${\n}${message_zero}</arg>
+<arg>${message}${\n}${message_other}</arg>
+</arguments>
+<assign>
+<var>${message}</var>
+</assign>
+<msg timestamp="20190410 19:00:07.308" level="INFO">${message} = Minimal rate loss fraction 1.0 does not reach target 0.005.
+Zero packets forwarded!</msg>
+<status status="PASS" endtime="20190410 19:00:07.308" starttime="20190410 19:00:07.298"></status>
+</kw>
+<kw name="Fail" library="BuiltIn">
+<doc>Fails the test with the given message and optionally alters its tags.</doc>
+<arguments>
+<arg>${message}</arg>
+</arguments>
+<msg timestamp="20190410 19:00:07.311" level="FAIL">Minimal rate loss fraction 1.0 does not reach target 0.005.
+Zero packets forwarded!</msg>
+<status status="FAIL" endtime="20190410 19:00:07.312" starttime="20190410 19:00:07.310"></status>
+</kw>
+<status status="FAIL" endtime="20190410 19:00:07.312" starttime="20190410 19:00:07.262"></status>
+</kw>
+<status status="FAIL" endtime="20190410 19:00:07.313" starttime="20190410 18:59:25.017"></status>
+</kw>
+<status status="FAIL" endtime="20190410 19:00:07.313" starttime="20190410 18:57:42.478"></status>
+</kw>
+<kw type="teardown" name="Tear down performance test with vhost" library="performance_setup">
+<doc>Common test teardown for performance tests which use</doc>
+<kw name="Tear down performance test" library="performance_setup">
+<doc>Common test teardown for performance tests.</doc>
+<kw name="Remove All Added Ports On All Duts From Topology" library="resources.libraries.python.topology.Topology">
+<doc>Remove all added ports on all DUT nodes in the topology.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:07.476" starttime="20190410 19:00:07.325"></status>
+</kw>
+<kw name="Show Papi History On All Duts" library="resources.libraries.python.PapiHistory">
+<doc>Show PAPI command history for all DUT nodes.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:07.616" starttime="20190410 19:00:07.479"></status>
+</kw>
+<kw name="Get Core Files On All Nodes" library="resources.libraries.python.CoreDumpUtil">
+<doc>Compress all core files into single file and remove the original</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:11.197" starttime="20190410 19:00:07.618"></status>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<arguments>
+<arg>${pkt_trace}</arg>
+<arg>${True}</arg>
+</arguments>
+<msg timestamp="20190410 19:00:11.204" level="INFO">${pkt_trace} = True</msg>
+<status status="PASS" endtime="20190410 19:00:11.205" starttime="20190410 19:00:11.201"></status>
+</kw>
+<kw name="Show Statistics On All Duts" library="resources.libraries.python.VppCounters">
+<doc>Show VPP statistics on all DUTs.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:20.224" starttime="20190410 19:00:11.211"></status>
+</kw>
+<kw name="Run Keyword If Test Failed" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if the test failed.</doc>
+<arguments>
+<arg>Traffic should pass with no loss</arg>
+<arg>${perf_trial_duration}</arg>
+<arg>10000pps</arg>
+<arg>${frame_size}</arg>
+<arg>${traffic_profile}</arg>
+<arg>fail_on_loss=${False}</arg>
+</arguments>
+<kw name="Traffic should pass with no loss" library="performance_utils">
+<doc>Send traffic at specified rate. No packet loss is accepted at loss</doc>
+<arguments>
+<arg>${perf_trial_duration}</arg>
+<arg>10000pps</arg>
+<arg>${frame_size}</arg>
+<arg>${traffic_profile}</arg>
+<arg>fail_on_loss=${False}</arg>
+</arguments>
+<kw name="Send traffic at specified rate" library="performance_utils">
+<doc>Send traffic at specified rate.</doc>
+<arguments>
+<arg>${duration}</arg>
+<arg>${rate}</arg>
+<arg>${frame_size}</arg>
+<arg>${traffic_profile}</arg>
+</arguments>
+<kw name="Clear and show runtime counters with running traffic" library="performance_utils">
+<doc>Start traffic at specified rate then clear runtime counters on all</doc>
+<arguments>
+<arg>${trial_duration}</arg>
+<arg>${rate}</arg>
+<arg>${frame_size}</arg>
+<arg>${traffic_profile}</arg>
+<arg>${unidirection}</arg>
+<arg>${tx_port}</arg>
+<arg>${rx_port}</arg>
+</arguments>
+<kw name="Send Traffic On Tg" library="resources.libraries.python.TrafficGenerator">
+<doc>Send traffic from all configured interfaces on TG.</doc>
+<arguments>
+<arg>${-1}</arg>
+<arg>${rate}</arg>
+<arg>${frame_size}</arg>
+<arg>${traffic_profile}</arg>
+<arg>warmup_time=${0}</arg>
+<arg>async_call=${True}</arg>
+<arg>latency=${False}</arg>
+<arg>unidirection=${unidirection}</arg>
+<arg>tx_port=${tx_port}</arg>
+<arg>rx_port=${rx_port}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:21.228" starttime="20190410 19:00:20.294"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${dut_stats}==${True}</arg>
+<arg>Clear runtime counters on all DUTs</arg>
+<arg>${nodes}</arg>
+</arguments>
+<kw name="Clear Runtime Counters On All Duts" library="resources.libraries.python.VppCounters">
+<doc>Run "clear runtime" CLI command on all DUTs.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:22.772" starttime="20190410 19:00:21.237"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:22.772" starttime="20190410 19:00:21.230"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>${duration}</arg>
+</arguments>
+<msg timestamp="20190410 19:00:23.777" level="INFO">Slept 1 second</msg>
+<status status="PASS" endtime="20190410 19:00:23.779" starttime="20190410 19:00:22.774"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${dut_stats}==${True}</arg>
+<arg>Show runtime counters on all DUTs</arg>
+<arg>${nodes}</arg>
+</arguments>
+<kw name="Show Runtime Counters On All Duts" library="resources.libraries.python.VppCounters">
+<doc>Clear VPP runtime counters on all DUTs.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:26.886" starttime="20190410 19:00:23.800"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:26.887" starttime="20190410 19:00:23.782"></status>
+</kw>
+<kw name="Stop Traffic On Tg" library="resources.libraries.python.TrafficGenerator">
+<doc>Stop all traffic on TG.</doc>
+<status status="PASS" endtime="20190410 19:00:28.063" starttime="20190410 19:00:26.891"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:28.064" starttime="20190410 19:00:20.275"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${dut_stats}==${True}</arg>
+<arg>Clear all counters on all DUTs</arg>
+</arguments>
+<kw name="Clear all counters on all DUTs" library="counters">
+<doc>Clear runtime, interface, hardware and error counters</doc>
+<kw name="Clear Runtime Counters On All Duts" library="resources.libraries.python.VppCounters">
+<doc>Run "clear runtime" CLI command on all DUTs.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:29.847" starttime="20190410 19:00:28.093"></status>
+</kw>
+<kw name="Clear Interface Counters On All Duts" library="resources.libraries.python.VppCounters">
+<doc>Clear interface counters on all DUTs.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:33.741" starttime="20190410 19:00:29.852"></status>
+</kw>
+<kw name="Clear Hardware Counters On All Duts" library="resources.libraries.python.VppCounters">
+<doc>Clear hardware counters on all DUTs.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:36.911" starttime="20190410 19:00:33.746"></status>
+</kw>
+<kw name="Clear Error Counters On All Duts" library="resources.libraries.python.VppCounters">
+<doc>Clear VPP errors counters on all DUTs.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:38.161" starttime="20190410 19:00:36.915"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:38.162" starttime="20190410 19:00:28.086"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:38.162" starttime="20190410 19:00:28.068"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${dut_stats}==${True} and ${pkt_trace}==${True}</arg>
+<arg>VPP Enable Traces On All DUTs</arg>
+<arg>${nodes}</arg>
+</arguments>
+<kw name="Vpp Enable Traces On All Duts" library="resources.libraries.python.VPPUtil">
+<doc>Enable vpp packet traces on all DUTs in the given topology.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:41.442" starttime="20190410 19:00:38.192"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:41.443" starttime="20190410 19:00:38.169"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${dut_stats}==${True}</arg>
+<arg>VPP enable elog traces on all DUTs</arg>
+<arg>${nodes}</arg>
+</arguments>
+<kw name="Vpp Enable Elog Traces On All Duts" library="resources.libraries.python.VPPUtil">
+<doc>Enable API/CLI/Barrier traces on all DUTs in the given topology.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:42.546" starttime="20190410 19:00:41.470"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:42.548" starttime="20190410 19:00:41.447"></status>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<doc>Returns a list containing given items.</doc>
+<assign>
+<var>${results}</var>
+</assign>
+<msg timestamp="20190410 19:00:42.555" level="INFO">${results} = []</msg>
+<status status="PASS" endtime="20190410 19:00:42.555" starttime="20190410 19:00:42.553"></status>
+</kw>
+<kw type="for" name="${i} IN RANGE [ ${subsamples} ]">
+<kw type="foritem" name="${i} = 0">
+<kw name="Send Traffic On Tg" library="resources.libraries.python.TrafficGenerator">
+<doc>Send traffic from all configured interfaces on TG.</doc>
+<arguments>
+<arg>${trial_duration}</arg>
+<arg>${rate}</arg>
+<arg>${frame_size}</arg>
+<arg>${traffic_profile}</arg>
+<arg>warmup_time=${0}</arg>
+<arg>unidirection=${unidirection}</arg>
+<arg>tx_port=${tx_port}</arg>
+<arg>rx_port=${rx_port}</arg>
+</arguments>
+<msg timestamp="20190410 19:00:44.569" level="INFO">TrafficGen result: rate=10000pps, totalReceived=0, totalSent=20000, frameLoss=20000, latencyStream0(usec)=-1/0/0, latencyStream1(usec)=-1/0/0</msg>
+<status status="PASS" endtime="20190410 19:00:44.570" starttime="20190410 19:00:42.562"></status>
+</kw>
+<kw name="Get Received" library="resources.libraries.python.TrafficGenerator">
+<doc>Return number of received packets.</doc>
+<assign>
+<var>${rx}</var>
+</assign>
+<msg timestamp="20190410 19:00:44.577" level="INFO">${rx} = 0</msg>
+<status status="PASS" endtime="20190410 19:00:44.577" starttime="20190410 19:00:44.574"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${rx} / ${trial_duration}</arg>
+</arguments>
+<assign>
+<var>${rr}</var>
+</assign>
+<msg timestamp="20190410 19:00:44.598" level="INFO">${rr} = 0</msg>
+<status status="PASS" endtime="20190410 19:00:44.598" starttime="20190410 19:00:44.581"></status>
+</kw>
+<kw name="Append To List" library="Collections">
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<arguments>
+<arg>${results}</arg>
+<arg>${rr}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:44.604" starttime="20190410 19:00:44.602"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:44.605" starttime="20190410 19:00:42.557"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:44.605" starttime="20190410 19:00:42.556"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${dut_stats}==${True}</arg>
+<arg>Show event logger on all DUTs</arg>
+<arg>${nodes}</arg>
+</arguments>
+<kw name="Show Event Logger On All Duts" library="resources.libraries.python.VPPUtil">
+<doc>Show event logger on all DUTs in the given topology.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:45.492" starttime="20190410 19:00:44.624"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:45.493" starttime="20190410 19:00:44.608"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${dut_stats}==${True}</arg>
+<arg>Show statistics on all DUTs</arg>
+<arg>${nodes}</arg>
+</arguments>
+<kw name="Show Statistics On All Duts" library="resources.libraries.python.VppCounters">
+<doc>Show VPP statistics on all DUTs.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:54.631" starttime="20190410 19:00:45.518"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:54.632" starttime="20190410 19:00:45.497"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${dut_stats}==${True} and ${pkt_trace}==${True}</arg>
+<arg>Show Packet Trace On All Duts</arg>
+<arg>${nodes}</arg>
+<arg>maximum=${100}</arg>
+</arguments>
+<kw name="Show Packet Trace On All Duts" library="resources.libraries.python.Trace">
+<doc>Show VPP packet trace.</doc>
+<arguments>
+<arg>${nodes}</arg>
+<arg>maximum=${100}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:57.107" starttime="20190410 19:00:54.660"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:57.107" starttime="20190410 19:00:54.636"></status>
+</kw>
+<kw name="Return From Keyword" library="BuiltIn">
+<doc>Returns from the enclosing user keyword.</doc>
+<arguments>
+<arg>${results}</arg>
+</arguments>
+<msg timestamp="20190410 19:00:57.113" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" endtime="20190410 19:00:57.114" starttime="20190410 19:00:57.112"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:57.116" starttime="20190410 19:00:20.254"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${fail_on_loss}</arg>
+<arg>No traffic loss occurred</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:57.122" starttime="20190410 19:00:57.120"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:57.123" starttime="20190410 19:00:20.235"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:57.123" starttime="20190410 19:00:20.229"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:00:57.124" starttime="20190410 19:00:07.319"></status>
+</kw>
+<kw name="Show Vpp Vhost On All Duts" library="resources.libraries.python.VhostUser">
+<doc>Show Vhost User on all DUTs.</doc>
+<arguments>
+<arg>${nodes}</arg>
+</arguments>
+<status status="PASS" endtime="20190410 19:00:58.221" starttime="20190410 19:00:57.129"></status>
+</kw>
+<kw name="Tear down guest VM" library="performance_setup">
+<doc>Stop all qemu processes running on nodes.</doc>
+<kw name="Run Keyword" library="BuiltIn">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>vnf_manager.Kill All VMs</arg>
+</arguments>
+<kw name="Kill All Vms" library="vnf_manager">
+<doc>Kill all added VMs in manager.</doc>
+<status status="PASS" endtime="20190410 19:01:13.387" starttime="20190410 19:00:58.231"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:01:13.387" starttime="20190410 19:00:58.228"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:01:13.388" starttime="20190410 19:00:58.223"></status>
+</kw>
+<status status="PASS" endtime="20190410 19:01:13.389" starttime="20190410 19:00:07.315"></status>
+</kw>
+<tags>
+<tag>1C</tag>
+<tag>1R1C</tag>
+<tag>2_NODE_SINGLE_LINK_TOPO</tag>
+<tag>2T1C</tag>
+<tag>9000B</tag>
+<tag>BASE</tag>
+<tag>CHAIN</tag>
+<tag>ETH</tag>
+<tag>HW_ENV</tag>
+<tag>L2BDMACLRN</tag>
+<tag>MTHREAD</tag>
+<tag>NDRPDR</tag>
+<tag>NF_DENSITY</tag>
+<tag>NF_VPPIP4</tag>
+<tag>NIC_Intel-X710</tag>
+<tag>PERFTEST</tag>
+<tag>THIS</tag>
+<tag>VHOST</tag>
+<tag>VHOST_1024</tag>
+<tag>VM</tag>
+</tags>
+<status status="FAIL" endtime="20190410 19:01:13.390" critical="yes" starttime="20190410 18:57:41.993">Minimal rate loss fraction 1.0 does not reach target 0.005.
+Zero packets forwarded!</status>
+</test>
+<doc>*RFC2544: Pkt throughput L2BD test cases with 2 vhost 1 chain
+1 VM*
+
+*[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
+with single links between nodes.
+*[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
+*[Cfg] DUT configuration:* DUT1 is configured with L2 bridge-
+domain and MAC learning enabled. Qemu VNFs are connected to VPP via
+vhost-user interfaces. Guest is running VPP IPv4
+interconnecting vhost-user interfaces, forwarding mode is
+set to io, rxd/txd=1024. DUT1 is tested with Intel-X710. *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop Rate) with zero packet loss tolerance and throughput PDR (Partial Drop Rate) with non-zero packet loss tolerance (LT) expressed in percentage of packets transmitted. NDR and PDR are discovered for different Ethernet L2 frame sizes using MLRsearch library. Test packets are generated by TG on
+links to DUTs. TG traffic profile contains two L3 flow-groups
+(flow-group per direction, 254 flows per flow-group) with all packets
+containing Ethernet header, IPv4 header with IP protocol=61 and static
+payload. MAC addresses are matching MAC addresses of NFs nodes
+interfaces.
+*[Ref] Applicable standard specifications:* RFC2544.</doc>
+<status status="FAIL" endtime="20190410 19:01:17.208" starttime="20190410 18:57:27.695"></status>
+</suite>
+<status status="FAIL" endtime="20190410 19:01:17.220" starttime="20190410 18:57:27.682"></status>
+</suite>
+<status status="FAIL" endtime="20190410 19:01:25.763" starttime="20190410 18:56:05.550"></status>
+</suite>
+<status status="FAIL" endtime="20190410 19:01:25.776" starttime="20190410 18:56:05.541"></status>
+</suite>
+<doc>Set global variables common to all tests.</doc>
+<status status="FAIL" endtime="20190410 19:01:25.785" starttime="20190410 18:56:05.325"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="1" pass="0">Critical Tests</stat>
+<stat fail="1" pass="0">All Tests</stat>
+</total>
+<tag>
+<stat fail="1" pass="0">1C</stat>
+<stat fail="1" pass="0">1R1C</stat>
+<stat fail="1" pass="0">2_NODE_SINGLE_LINK_TOPO</stat>
+<stat fail="1" pass="0">2T1C</stat>
+<stat fail="1" pass="0">9000B</stat>
+<stat fail="1" pass="0">BASE</stat>
+<stat fail="1" pass="0">CHAIN</stat>
+<stat fail="1" pass="0">ETH</stat>
+<stat fail="1" pass="0">HW_ENV</stat>
+<stat fail="1" pass="0">L2BDMACLRN</stat>
+<stat fail="1" pass="0">MTHREAD</stat>
+<stat fail="1" pass="0">NDRPDR</stat>
+<stat fail="1" pass="0">NF_DENSITY</stat>
+<stat fail="1" pass="0">NF_VPPIP4</stat>
+<stat fail="1" pass="0">NIC_Intel-X710</stat>
+<stat fail="1" pass="0">PERFTEST</stat>
+<stat fail="1" pass="0">THIS</stat>
+<stat fail="1" pass="0">VHOST</stat>
+<stat fail="1" pass="0">VHOST_1024</stat>
+<stat fail="1" pass="0">VM</stat>
+</tag>
+<suite>
+<stat fail="1" id="s1" name="Tests" pass="0">Tests</stat>
+<stat fail="1" id="s1-s1" name="Vpp" pass="0">Tests.Vpp</stat>
+<stat fail="1" id="s1-s1-s1" name="Perf" pass="0">Tests.Vpp.Perf</stat>
+<stat fail="1" id="s1-s1-s1-s1" name="Vm Vhost" pass="0">Tests.Vpp.Perf.Vm Vhost</stat>
+<stat fail="1" id="s1-s1-s1-s1-s1" name="2N-10Ge2P1X710-Eth-L2Bd-2Vhost-1Chain-1Vm-Vppip4-Ndrpdr" pass="0">Tests.Vpp.Perf.Vm Vhost.2N-10Ge2P1X710-Eth-L2Bd-2Vhost-1Chain-1Vm-Vppip4-Ndrpdr</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
