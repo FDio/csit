@@ -108,6 +108,8 @@
 | | ... | (Optional). Type: integer, default value: ${1}
 | | ... | - traffic_type - A value affecting behavior, such as spoofing.
 | | ... | (Optional). Type: string, default value: L2
+| | ... | Note: This is NOT the usual traffic profile
+| | ... | (which is python module name to initialize TG with).
 | | ...
 | | ... | *Example:*
 | | ...

@@ -1335,6 +1335,8 @@ class InterfaceUtil(object):
         :param traffic_type: Expected type of traffic, affects spoofing.
             Default value "L2" sets linux interface spoof off.
             Other values do not do that.
+            Note: This is NOT the usual traffic profile
+            (which is python module name to initialize TG with).
         :type node: dict
         :type ifc_key: str
         :type numvfs: int
