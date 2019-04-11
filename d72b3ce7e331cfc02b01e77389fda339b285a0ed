@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe9c7e1f_40483be4",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 33
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-11T12:47:19Z",
+      "side": 1,
+      "message": "See https://gerrit.fd.io/r/18815",
+      "range": {
+        "startLine": 116,
+        "startChar": 37,
+        "endLine": 116,
+        "endChar": 52
+      },
+      "revId": "d72b3ce7e331cfc02b01e77389fda339b285a0ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
