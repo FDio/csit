@@ -19,7 +19,7 @@ from email.mime.multipart import MIMEMultipart
 from os.path import isdir
 from collections import OrderedDict
 
-from utils import execute_command
+from utils import get_last_completed_build_number
 from errors import PresentationError
 
 
@@ -71,8 +71,10 @@ class Alerting(object):
         # Implemented alerts:
         self._ALERTS = ("failed-tests", )
 
+        self._spec = spec
+
         try:
-            self._spec = spec.alerting
+            self._spec_alert = spec.alerting
         except KeyError as err:
             raise  AlertingError("Alerting is not configured, skipped.",
                                  repr(err),
@@ -81,7 +83,7 @@ class Alerting(object):
         self._path_failed_tests = spec.environment["paths"]["DIR[STATIC,VPP]"]
 
         # Verify and validate input specification:
-        self.configs = self._spec.get("configurations", None)
+        self.configs = self._spec_alert.get("configurations", None)
         if not self.configs:
             raise AlertingError("No alert configuration is specified.")
         for config_type, config_data in self.configs.iteritems():
@@ -104,7 +106,7 @@ class Alerting(object):
                 raise AlertingError("Alert of type '{0}' is not implemented.".
                                     format(config_type))
 
-        self.alerts = self._spec.get("alerts", None)
+        self.alerts = self._spec_alert.get("alerts", None)
         if not self.alerts:
             raise AlertingError("No alert is specified.")
         for alert, alert_data in self.alerts.iteritems():
@@ -303,8 +305,16 @@ class Alerting(object):
             build, version, nr, failed_tests = \
                 self._get_compressed_failed_tests(alert, test_set)
             if build is None:
-                text += "\n\nNo data for the test set '{set}'.\n".\
-                    format(set=test_set)
+                ret_code, build_nr, _ = get_last_completed_build_number(
+                    self._spec.environment["urls"]["URL[JENKINS,CSIT]"],
+                    alert["urls"][idx].split('/')[-1])
+                if ret_code != 0:
+                    build_nr = ''
+                text += "\n\nNo input data available for '{set}'. See CSIT " \
+                        "build {link}/{build} for more information.\n".\
+                    format(set='-'.join(test_set.split('-')[-2:]),
+                           link=alert["urls"][idx],
+                           build=build_nr)
                 continue
             text += ("\n\n{topo}-{arch}, "
                      "{nr} tests failed, "
