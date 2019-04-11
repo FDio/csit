@@ -46,6 +46,30 @@
       "revId": "62700f7fdebfc74a5de0f4eb380044f28b9c599a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ac799c3_bc73ed33",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-11T17:09:54Z",
+      "side": 1,
+      "message": "But trending is not?\nAdd a TODO to choose debug level for trending jobs.",
+      "parentUuid": "afea6ee3_569e6bcd",
+      "range": {
+        "startLine": 78,
+        "startChar": 15,
+        "endLine": 78,
+        "endChar": 19
+      },
+      "revId": "62700f7fdebfc74a5de0f4eb380044f28b9c599a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
