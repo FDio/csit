@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43b6c388_ff4ded4b",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-11T12:53:28Z",
+      "side": 0,
+      "message": "Restore this.",
+      "range": {
+        "startLine": 582,
+        "startChar": 4,
+        "endLine": 582,
+        "endChar": 10
+      },
+      "revId": "d0dd5b06400631a5c8e8327923f9fe37e3e37f62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
