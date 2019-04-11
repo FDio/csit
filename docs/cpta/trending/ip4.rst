@@ -12,7 +12,10 @@ IPv4 Routing
     ip4-3n-hsw-xl710-64b-base-scale-features
     ip4-3n-skx-x710-64b-base-scale
     ip4-3n-skx-x710-64b-features
+    ip4-3n-skx-xxv710-64b-base-scale
     ip4-2n-skx-x710-64b-base-scale
     ip4-2n-skx-x710-64b-features
     ip4-2n-skx-xxv710-64b-base-scale
+
+..
     ip4-2n-skx-xxv710-64b-features
