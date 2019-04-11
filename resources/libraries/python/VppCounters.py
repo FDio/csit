@@ -75,6 +75,7 @@ class VppCounters(object):
         """
         vat = VatExecutor()
         vat.execute_script("show_runtime.vat", node, json_out=False)
+        logger.info(vat.get_script_stdout())
         vat.script_should_have_passed()
 
     @staticmethod
@@ -97,6 +98,7 @@ class VppCounters(object):
         """
         vat = VatExecutor()
         vat.execute_script("show_runtime_verbose.vat", node, json_out=False)
+        logger.info(vat.get_script_stdout())
         vat.script_should_have_passed()
 
     @staticmethod
