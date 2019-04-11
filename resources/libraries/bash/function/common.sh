@@ -579,7 +579,14 @@ function run_pybot () {
     # TODO: Make robot tests not require "$(pwd)" == "${CSIT_DIR}".
     pybot "${all_options[@]}" "${GENERATED_DIR}/tests/"
     PYBOT_EXIT_STATUS="$?"
-    set -e
+
+    # Generate INFO level output_info.xml for post-processing.
+    all_options=("--loglevel" "INFO")
+    all_options+=("--log" "none")
+    all_options+=("--report" "none")
+    all_options+=("--output" "${ARCHIVE_DIR}/output_info.xml")
+    all_options+=("${ARCHIVE_DIR}/output.xml")
+    rebot "${all_options[@]}"
     popd || die "Change directory operation failed."
 }
 
