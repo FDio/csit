@@ -94,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "c914a184_d3faf5e7",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 8
+      },
+      "writtenOn": "2019-04-11T06:53:48Z",
+      "side": 1,
+      "message": "Would it be sufficient to just do something like:\ngit diff-tree --no-commit-id --name-status -r HEAD *.api\nWhere s/HEAD/\u003cpatch-id\u003e/",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 56
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d57545c9_0bdb7293",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 2
