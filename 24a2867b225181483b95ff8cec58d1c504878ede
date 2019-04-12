@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53aeef17_51b0a466",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-12T16:54:57Z",
+      "side": 1,
+      "message": "I could create .add_two_with_format to save some space.",
+      "range": {
+        "startLine": 116,
+        "startChar": 21,
+        "endLine": 116,
+        "endChar": 36
+      },
+      "revId": "24a2867b225181483b95ff8cec58d1c504878ede",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
