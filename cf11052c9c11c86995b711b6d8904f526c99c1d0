@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8dbf3b3_540f0862",
+        "filename": "resources/libraries/python/DpdkUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-12T11:06:46Z",
+      "side": 1,
+      "message": "This would still lead to trailing space in line 49, but I have an idea how to rework this (and QuemuUtils and similar) in a separate Change.",
+      "range": {
+        "startLine": 43,
+        "startChar": 53,
+        "endLine": 43,
+        "endChar": 55
+      },
+      "revId": "cf11052c9c11c86995b711b6d8904f526c99c1d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d03c6a53_ec4606ea",
+        "filename": "resources/libraries/python/QemuManager.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-12T11:06:46Z",
+      "side": 1,
+      "message": "# TODO: Write and document the expected named arguments.",
+      "range": {
+        "startLine": 90,
+        "startChar": 36,
+        "endLine": 90,
+        "endChar": 44
+      },
+      "revId": "cf11052c9c11c86995b711b6d8904f526c99c1d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
