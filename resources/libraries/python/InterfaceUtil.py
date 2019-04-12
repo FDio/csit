@@ -1325,14 +1325,14 @@ class InterfaceUtil(object):
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def init_avf_interface(node, ifc_key, numvfs=1, traffic_type='L2'):
+    def init_avf_interface(node, ifc_key, numvfs=1, traffic_profile='L2'):
         """Init PCI device by creating VFs and bind them to vfio-pci for AVF
         driver testing on DUT.
 
         :param node: DUT node.
         :param ifc_key: Interface key from topology file.
         :param numvfs: Number of VFs to initialize, 0 - disable the VFs.
-        :param traffic_type: Expected type of traffic, affects spoofing.
+        :param traffic_profile: Expected type of traffic, affects spoofing.
             Default value "L2" sets linux interface spoof off.
             Other values do not do that.
             Note: This is NOT the usual traffic profile
@@ -1340,7 +1340,7 @@ class InterfaceUtil(object):
         :type node: dict
         :type ifc_key: str
         :type numvfs: int
-        :type traffic_type: str
+        :type traffic_profile: str
         :returns: Virtual Function topology interface keys.
         :rtype: list
         """
@@ -1379,7 +1379,7 @@ class InterfaceUtil(object):
                 format(pci=pf_pci_addr)
             InterfaceUtil.set_linux_interface_trust_on(node, pf_dev,
                                                        vf_id=vf_id)
-            if traffic_type == 'L2':
+            if traffic_profile == 'L2':
                 InterfaceUtil.set_linux_interface_spoof_off(node, pf_dev,
                                                             vf_id=vf_id)
             InterfaceUtil.set_linux_interface_mac(node, pf_dev, vf_mac_addr,
