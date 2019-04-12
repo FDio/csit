@@ -22,6 +22,30 @@
       "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bead5b9_7165bf06",
+        "filename": "resources/libraries/python/OptionString.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-12T17:15:51Z",
+      "side": 1,
+      "message": "For sure this naming convention is very weird. Maybe we can use some standard https://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html\n\nOr why we do not use ArgumentParser style?\n\nhttps://docs.python.org/2/library/argparse.html",
+      "parentUuid": "8e636611_b670df59",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 22
+      },
+      "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
