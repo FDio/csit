@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "db6c2e54_0d1b48b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-12T11:28:02Z",
+      "side": 1,
+      "message": "https://jenkins.fd.io/job/csit-verify-tox-master/324/violations/file/resources/libraries/python/PapiExecutor.py/",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 16
+      },
+      "revId": "bf5dc2fba9c2ccadf816ded05c17c1594fd4618a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34b1af9e_ba4990bb",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-12T11:28:02Z",
+      "side": 1,
+      "message": "Here is why ret_code can be deleted elsewhere.",
+      "range": {
+        "startLine": 499,
+        "startChar": 11,
+        "endLine": 499,
+        "endChar": 24
+      },
+      "revId": "bf5dc2fba9c2ccadf816ded05c17c1594fd4618a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
