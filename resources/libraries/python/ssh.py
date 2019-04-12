@@ -111,12 +111,16 @@ class SSH(object):
                 raise IOError('Unable to connect to port {port} on {host}'.
                               format(port=node['port'], host=node['host']))
 
-    def disconnect(self, node):
+    def disconnect(self, node=None):
         """Close SSH connection to the node.
 
-        :param node: The node to disconnect from.
-        :type node: dict
+        :param node: The node to disconnect from. None means last connected.
+        :type node: dict or None
         """
+        if node is None:
+            node = self._node
+        if node is None:
+            return
         node_hash = self._node_hash(node)
         if node_hash in SSH.__existing_connections:
             logger.debug('Disconnecting peer: {host}, {port}'.
@@ -142,12 +146,13 @@ class SSH(object):
         :param cmd: Command to run on the Node.
         :param timeout: Maximal time in seconds to wait until the command is
         done. If set to None then wait forever.
-        :type cmd: str
+        :type cmd: str or OptionString
         :type timeout: int
         :return return_code, stdout, stderr
         :rtype: tuple(int, str, str)
         :raise SSHTimeout: If command is not finished in timeout time.
         """
+        cmd = str(cmd)
         stdout = StringIO.StringIO()
         stderr = StringIO.StringIO()
         try:
@@ -373,7 +378,7 @@ class SSH(object):
         logger.trace('SCP took {0} seconds'.format(end-start))
 
 
-def exec_cmd(node, cmd, timeout=600, sudo=False):
+def exec_cmd(node, cmd, timeout=600, sudo=False, disconnect=False):
     """Convenience function to ssh/exec/return rc, out & err.
 
     Returns (rc, stdout, stderr).
@@ -382,10 +387,12 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
     :param cmd: Command to execute.
     :param timeout: Timeout value in seconds. Default: 600.
     :param sudo: Sudo privilege execution flag. Default: False.
+    :param disconnect: Close the opened SSH connection if True.
     :type node: dict
-    :type cmd: str
+    :type cmd: str or OptionString
     :type timeout: int
     :type sudo: bool
+    :type disconnect: bool
     :returns: RC, Stdout, Stderr.
     :rtype: tuple(int, str, str)
     """
@@ -437,11 +444,15 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
     except SSHException as err:
         logger.error(repr(err))
         return None, None, None
+    finally:
+        if disconnect:
+            ssh.disconnect()
 
     return ret_code, stdout, stderr
 
 
-def exec_cmd_no_error(node, cmd, timeout=600, sudo=False, message=None):
+def exec_cmd_no_error(
+        node, cmd, timeout=600, sudo=False, message=None, disconnect=False):
     """Convenience function to ssh/exec/return out & err.
 
     Verifies that return code is zero.
@@ -451,16 +462,19 @@ def exec_cmd_no_error(node, cmd, timeout=600, sudo=False, message=None):
     :param timeout: Timeout value in seconds. Default: 600.
     :param sudo: Sudo privilege execution flag. Default: False.
     :param message: Error message in case of failure. Default: None.
+    :param disconnect: Close the opened SSH connection if True.
     :type node: dict
-    :type cmd: str
+    :type cmd: str or OptionString
     :type timeout: int
     :type sudo: bool
     :type message: str
+    :type disconnect: bool
     :returns: Stdout, Stderr.
     :rtype: tuple(str, str)
     :raises RuntimeError: If bash return code is not 0.
     """
-    ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
+    ret_code, stdout, stderr = exec_cmd(
+        node, cmd, timeout=timeout, sudo=sudo, disconnect=disconnect)
     msg = ('Command execution failed: "{cmd}"\n{stderr}'.
            format(cmd=cmd, stderr=stderr) if message is None else message)
     if ret_code != 0:
@@ -468,7 +482,8 @@ def exec_cmd_no_error(node, cmd, timeout=600, sudo=False, message=None):
 
     return stdout, stderr
 
-def scp_node(node, local_path, remote_path, get=False, timeout=30):
+def scp_node(
+        node, local_path, remote_path, get=False, timeout=30, disconnect=False):
     """Copy files from local_path to remote_path or vice versa.
 
     :param node: SUT node.
@@ -478,11 +493,13 @@ def scp_node(node, local_path, remote_path, get=False, timeout=30):
         path to remote file which should be downloaded.
     :param get: scp operation to perform. Default is put.
     :param timeout: Timeout value in seconds.
+    :param disconnect: Close the opened SSH connection if True.
     :type node: dict
     :type local_path: str
     :type remote_path: str
     :type get: bool
     :type timeout: int
+    :type disconnect: bool
     :raises RuntimeError: If SSH connection failed or SCP transfer failed.
     """
     ssh = SSH()
@@ -497,3 +514,6 @@ def scp_node(node, local_path, remote_path, get=False, timeout=30):
     except SCPException:
         raise RuntimeError('SCP execution failed on {host}!'
                            .format(host=node['host']))
+    finally:
+        if disconnect:
+            ssh.disconnect()
