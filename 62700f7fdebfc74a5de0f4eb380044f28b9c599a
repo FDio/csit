@@ -70,6 +70,30 @@
       "revId": "62700f7fdebfc74a5de0f4eb380044f28b9c599a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9fba24e_c8698989",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-12T05:57:27Z",
+      "side": 1,
+      "message": "(no trending is not) My opinion is following:\n\nshow runtime is debug output and should stay as debug. Show version is info output and should be info. \n\nIn report we should instead of printing debug, point links to original logs.fd.io/log.html#path to where people could find it.\n\nCode wise it is pointless to produce N versions as they would just be complicated and processing wise we will not save time. But it makes sense for such low level debug prints to put the links to log.fd.io/...#path as we usually do in chats or so.\n\nThe last part of this idea is to convince Maciek :)",
+      "parentUuid": "5ac799c3_bc73ed33",
+      "range": {
+        "startLine": 78,
+        "startChar": 15,
+        "endLine": 78,
+        "endChar": 19
+      },
+      "revId": "62700f7fdebfc74a5de0f4eb380044f28b9c599a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
