@@ -32,8 +32,7 @@ class PapiResponse(object):
     code.
     """
 
-    def __init__(self, papi_reply=None, stdout="", stderr="", ret_code=None,
-                 requests=None):
+    def __init__(self, papi_reply=None, stdout="", stderr="", requests=None):
         """Construct the Papi response by setting the values needed.
 
         TODO:
@@ -43,14 +42,12 @@ class PapiResponse(object):
         :param papi_reply: API reply from last executed PAPI command(s).
         :param stdout: stdout from last executed PAPI command(s).
         :param stderr: stderr from last executed PAPI command(s).
-        :param ret_code: ret_code from last executed PAPI command(s).
         :param requests: List of used PAPI requests. It is used while verifying
             replies. If None, expected replies must be provided for verify_reply
             and verify_replies methods.
         :type papi_reply: list or None
         :type stdout: str
         :type stderr: str
-        :type ret_code: int
         :type requests: list
         """
 
@@ -62,9 +59,6 @@ class PapiResponse(object):
 
         # stderr from last executed PAPI command(s).
         self.stderr = stderr
-
-        # return code from last executed PAPI command(s).
-        self.ret_code = ret_code
 
         # List of used PAPI requests.
         self.requests = requests
@@ -80,16 +74,11 @@ class PapiResponse(object):
         :returns: Readable description.
         :rtype: str
         """
-        return ("papi_reply={papi_reply},"
-                "stdout={stdout},"
-                "stderr={stderr},"
-                "ret_code={ret_code},"
-                "requests={requests}".
-                format(papi_reply=self.reply,
-                       stdout=self.stdout,
-                       stderr=self.stderr,
-                       ret_code=self.ret_code,
-                       requests=self.requests))
+        return (
+            "papi_reply={papi_reply},stdout={stdout},stderr={stderr},"
+            "requests={requests}").format(
+                papi_reply=self.reply, stdout=self.stdout, stderr=self.stderr,
+                requests=self.requests)
 
     def __repr__(self):
         """Return string executable as Python constructor call.
@@ -331,10 +320,8 @@ class PapiExecutor(object):
         paths = [cmd['api_args']['path'] for cmd in self._api_command_list]
         self._api_command_list = list()
 
-        ret_code, stdout, _ = self._execute_papi(paths,
-                                                 method='stats',
-                                                 err_msg=err_msg,
-                                                 timeout=timeout)
+        stdout, _ = self._execute_papi(
+            paths, method='stats', err_msg=err_msg, timeout=timeout)
 
         return json.loads(stdout)
 
@@ -354,12 +341,9 @@ class PapiExecutor(object):
             return code.
         :rtype: PapiResponse
         """
-        response = self._execute(method='request',
-                                 process_reply=process_reply,
-                                 ignore_errors=ignore_errors,
-                                 err_msg=err_msg,
-                                 timeout=timeout)
-        return response
+        return self._execute(
+            method='request', process_reply=process_reply,
+            ignore_errors=ignore_errors, err_msg=err_msg, timeout=timeout)
 
     def get_dump(self, err_msg="Failed to get dump.",
                  process_reply=True, ignore_errors=False, timeout=120):
@@ -377,13 +361,9 @@ class PapiExecutor(object):
             return code.
         :rtype: PapiResponse
         """
-
-        response = self._execute(method='dump',
-                                 process_reply=process_reply,
-                                 ignore_errors=ignore_errors,
-                                 err_msg=err_msg,
-                                 timeout=timeout)
-        return response
+        return self._execute(
+            method='dump', process_reply=process_reply,
+            ignore_errors=ignore_errors, err_msg=err_msg, timeout=timeout)
 
     def execute_should_pass(self, err_msg="Failed to execute PAPI command.",
                             process_reply=True, ignore_errors=False,
@@ -410,12 +390,10 @@ class PapiExecutor(object):
         :rtype: PapiResponse
         :raises AssertionError: If PAPI command(s) execution failed.
         """
-
-        response = self.get_replies(process_reply=process_reply,
-                                    ignore_errors=ignore_errors,
-                                    err_msg=err_msg,
-                                    timeout=timeout)
-        return response
+        # TODO: Migrate callers to get_replies and delete this method.
+        return self.get_replies(
+            process_reply=process_reply, ignore_errors=ignore_errors,
+            err_msg=err_msg, timeout=timeout)
 
     @staticmethod
     def _process_api_data(api_d):
@@ -452,7 +430,6 @@ class PapiExecutor(object):
         :returns: Processed API reply / a part of API reply.
         :rtype: dict
         """
-
         reply_dict = dict()
         reply_value = dict()
         for reply_key, reply_v in api_r.iteritems():
@@ -470,7 +447,6 @@ class PapiExecutor(object):
         :returns: Processed API reply.
         :rtype: list or dict
         """
-
         if isinstance(api_reply, list):
             reverted_reply = [self._revert_api_reply(a_r) for a_r in api_reply]
         else:
@@ -490,6 +466,8 @@ class PapiExecutor(object):
         :type method: str
         :type err_msg: str
         :type timeout: int
+        :returns: Stdout and stderr.
+        :rtype: 2-tuple of str
         :raises SSHTimeout: If PAPI command(s) execution has timed out.
         :raises RuntimeError: If PAPI executor failed due to another reason.
         :raises AssertionError: If PAPI command(s) execution has failed.
@@ -521,7 +499,7 @@ class PapiExecutor(object):
         if ret_code != 0:
             raise AssertionError(err_msg)
 
-        return ret_code, stdout, stderr
+        return stdout, stderr
 
     def _execute(self, method='request', process_reply=True,
                  ignore_errors=False, err_msg="", timeout=120):
@@ -558,10 +536,8 @@ class PapiExecutor(object):
         # Clear first as execution may fail.
         self._api_command_list = list()
 
-        ret_code, stdout, stderr = self._execute_papi(local_list,
-                                                      method=method,
-                                                      err_msg=err_msg,
-                                                      timeout=timeout)
+        stdout, stderr = self._execute_papi(
+            local_list, method=method, err_msg=err_msg, timeout=timeout)
         papi_reply = list()
         if process_reply:
             try:
@@ -585,8 +561,6 @@ class PapiExecutor(object):
         # Log processed papi reply to be able to check API replies changes
         logger.debug("Processed PAPI reply: {reply}".format(reply=papi_reply))
 
-        return PapiResponse(papi_reply=papi_reply,
-                            stdout=stdout,
-                            stderr=stderr,
-                            ret_code=ret_code,
-                            requests=[rqst["api_name"] for rqst in local_list])
+        return PapiResponse(
+            papi_reply=papi_reply, stdout=stdout, stderr=stderr,
+            requests=[rqst["api_name"] for rqst in local_list])
