@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8e636611_b670df59",
+        "filename": "resources/libraries/python/OptionString.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-12T16:07:23Z",
+      "side": 1,
+      "message": "It may be worth to rename just to \"add_two\", but it is safer to keep the method names explicit.",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 22
+      },
+      "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
