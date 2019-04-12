@@ -22,6 +22,30 @@
       "revId": "24a2867b225181483b95ff8cec58d1c504878ede",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65d8c5d5_08c65613",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-12T17:15:51Z",
+      "side": 1,
+      "message": "lets keep API to OptionString fixed so to avoid problem with overreaching params. Function like these knows best what string should go in.",
+      "parentUuid": "53aeef17_51b0a466",
+      "range": {
+        "startLine": 116,
+        "startChar": 21,
+        "endLine": 116,
+        "endChar": 36
+      },
+      "revId": "24a2867b225181483b95ff8cec58d1c504878ede",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
