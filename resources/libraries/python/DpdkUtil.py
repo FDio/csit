@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,6 +13,7 @@
 
 """Dpdk Utilities Library."""
 
+from resources.libraries.python.OptionString import OptionString
 from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 
 
@@ -20,105 +21,82 @@ class DpdkUtil(object):
     """Utilities for DPDK."""
 
     @staticmethod
-    def get_eal_options(**args):
-        """Create EAL parameters string.
+    def get_eal_options(**kwargs):
+        """Create EAL parameters options (including -v).
 
-        :param args: List of testpmd parameters.
-        :type args: dict
-        :returns: EAL parameters string.
-        :rtype: str
+        :param kwargs: Dict of testpmd parameters.
+        :type kwargs: dict
+        :returns: EAL parameters.
+        :rtype: OptionString
         """
+        options = OptionString()
+        option.add_one('-v')
         # Set the hexadecimal bitmask of the cores to run on.
-        eal_corelist = '-l {} '.format(args['eal_corelist'])\
-            if args.get('eal_corelist', '') else ''
+        options.add_two_or_zero_from_dict('-l', 'eal_corelist', kwargs)
         # Set master core.
-        eal_master_core = '--master-lcore 0 '
+        options.add_two_or_zero('--master-lcore', '0')
         # Set the number of memory channels to use.
-        eal_mem_channels = '-n {} '.format(args['eal_mem_channels'])\
-            if args.get('eal_mem_channels', '') else ''
+        options.add_two_or_zero_from_dict('-n', 'eal_mem_channels', kwargs)
         # Set the memory to allocate on specific sockets (comma separated).
-        eal_socket_mem = '--socket-mem {} '.format(args['eal_socket_mem'])\
-            if args.get('eal_socket_mem', '') else ''
+        options.add_two_or_zero_from_dict(
+            '--socket-mem', 'eal_socket_mem', kwargs)
         # Load an external driver. Multiple -d options are allowed.
-        eal_driver = '-d /usr/lib/librte_pmd_virtio.so '
-        eal_options = '-v '\
-            + eal_corelist\
-            + eal_master_core\
-            + eal_mem_channels\
-            + eal_socket_mem\
-            + eal_driver
-        return eal_options
+        options.add_two_or_zero('-d', '/usr/lib/librte_pmd_virtio.so')
+        return options
 
     @staticmethod
-    def get_pmd_options(**args):
-        """Create PMD parameters string.
+    def get_pmd_options(**kwargs):
+        """Create PMD parameters options (including --).
 
-        :param args: List of testpmd parameters.
-        :type args: dict
-        :returns: PMD parameters string.
-        :rtype: str
+        :param kwargs: List of testpmd parameters.
+        :type kwargs: dict
+        :returns: PMD parameters.
+        :rtype: OptionString
         """
+        options = OptionString()
+        options.add_one('--')
         # Set the forwarding mode: io, mac, mac_retry, mac_swap, flowgen,
         # rxonly, txonly, csum, icmpecho, ieee1588
-        pmd_fwd_mode = '--forward-mode={} '.format(args['pmd_fwd_mode'])\
-            if args.get('pmd_fwd_mode', '') else ''
+        options.add_equals_from_dict(
+            '--forward-mode', 'pmd_fwd_mode', kwargs)
         # Set the number of packets per burst to N.
-        pmd_burst = '--burst=64 '
+        options.add_equals('--burst', 64)
         # Set the number of descriptors in the TX rings to N.
-        pmd_txd = '--txd={} '.format(args.get('pmd_txd', '256')) \
-            if args.get('pmd_txd', '256') else ''
+        options.add_equals_from_dict('--txd', 'pmd_txd', kwargs, 256)
         # Set the number of descriptors in the RX rings to N.
-        pmd_rxd = '--rxd={} '.format(args.get('pmd_rxd', '256')) \
-            if args.get('pmd_rxd', '256') else ''
+        options.add_equals_from_dict('--rxd', 'pmd_rxd', kwargs, 256)
         # Set the number of queues in the TX to N.
-        pmd_txq = '--txq={} '.format(args.get('pmd_txq', '1')) \
-            if args.get('pmd_txq', '1') else ''
+        options.add_equals_from_dict('--txq', 'pmd_txq', kwargs, 1)
         # Set the number of queues in the RX to N.
-        pmd_rxq = '--rxq={} '.format(args.get('pmd_rxq', '1')) \
-            if args.get('pmd_rxq', '1') else ''
+        options.add_equals_from_dict('--rxq', 'pmd_rxq', kwargs, 1)
         # Set the hexadecimal bitmask of TX queue flags.
-        pmd_txqflags = '--txqflags=0xf00 '
+        options.add_equals('--txqflags', '0xf00')
         # Set the number of mbufs to be allocated in the mbuf pools.
-        pmd_total_num_mbufs = '--total-num-mbufs={} '.format(
-            args['pmd_num_mbufs']) if args.get('pmd_num_mbufs', '') else ''
+        options.add_equals_from_dict(
+            '--total-num-mbufs', 'pmd_num_mbufs', kwargs)
         # Set the max packet length.
-        pmd_max_pkt_len = "--max-pkt-len={0}".format(args["pmd_max_pkt_len"]) \
-            if args.get("pmd_max_pkt_len", "") else ""
+        options.add_equals_from_dict(
+            '--max-pkt-len', 'pmd_max_pkt_len', kwargs)
         # Set the hexadecimal bitmask of the ports for forwarding.
-        pmd_portmask = '--portmask={} '.format(args['pmd_portmask'])\
-            if args.get('pmd_portmask', '') else ''
+        options.add_equals_from_dict(
+            '--portmask', 'pmd_portmask', kwargs)
         # Disable hardware VLAN.
-        pmd_disable_hw_vlan = '--disable-hw-vlan '\
-            if args.get('pmd_disable_hw_vlan', '') else ''
+        options.add_two_or_zero_from_dict(
+            '--disable-hw-vlan', 'pmd_disable-hw-vlan', kwargs)
         # Disable RSS (Receive Side Scaling).
-        pmd_disable_rss = '--disable-rss '\
-            if args.get('pmd_disable_rss', '') else ''
+        options.add_two_or_zero_from_dict(
+            '--disable-rss', 'pmd_disable-rss', kwargs)
         # Set the MAC address XX:XX:XX:XX:XX:XX of the peer port N
-        pmd_eth_peer_0 = '--eth-peer={} '.format(args['pmd_eth_peer_0'])\
-            if args.get('pmd_eth_peer_0', '') else ''
-        pmd_eth_peer_1 = '--eth-peer={} '.format(args['pmd_eth_peer_1'])\
-            if args.get('pmd_eth_peer_1', '') else ''
+        options.add_equals_from_dict(
+            '--eth-peer', 'pmd_eth-peer_0', kwargs)
+        options.add_equals_from_dict(
+            '--eth-peer', 'pmd_eth-peer_1', kwargs)
         # Set the number of forwarding cores based on coremask.
-        pmd_nb_cores = '--nb-cores={} '.format(
-            bin(int(args['eal_coremask'], 0)).count('1')-1)\
-            if args.get('eal_coremask', '') else ''
-        pmd_options = '-- '\
-            + pmd_fwd_mode\
-            + pmd_burst\
-            + pmd_txd\
-            + pmd_rxd\
-            + pmd_txq\
-            + pmd_rxq\
-            + pmd_txqflags\
-            + pmd_total_num_mbufs\
-            + pmd_portmask\
-            + pmd_disable_hw_vlan\
-            + pmd_disable_rss\
-            + pmd_eth_peer_0\
-            + pmd_eth_peer_1\
-            + pmd_nb_cores\
-            + pmd_max_pkt_len
-        return pmd_options
+        coremask = kwargs.get('eal_coremask', '')
+        if coremask:
+            options.add_equals(
+                '--nb-cores', bin(int(coremask, 0)).count('1') - 1)
+        return options
 
     @staticmethod
     def dpdk_testpmd_start(node, **kwargs):
@@ -127,17 +105,13 @@ class DpdkUtil(object):
         :param node: VM Node to start testpmd on.
         :param args: Key-value testpmd parameters.
         :type node: dict
-        :type args: dict
-        :returns: nothing
+        :type kwargs: dict
         """
-        eal_options = DpdkUtil.get_eal_options(**kwargs)
-        pmd_options = DpdkUtil.get_pmd_options(**kwargs)
-
-        ssh = SSH()
-        ssh.connect(node)
-        cmd = "/start-testpmd.sh {0} {1}".format(eal_options, pmd_options)
-        exec_cmd_no_error(node, cmd, sudo=True)
-        ssh.disconnect(node)
+        cmd_options = OptionString()
+        cmd_options.add_one("/start-testpmd.sh")
+        cmd_options.extend(DpdkUtil.get_eal_options(**kwargs))
+        cmd_options.extend(DpdkUtil.get_pmd_options(**kwargs))
+        exec_cmd_no_error(node, str(cmd_options), sudo=True, disconnect=True)
 
     @staticmethod
     def dpdk_testpmd_stop(node):
@@ -147,8 +121,5 @@ class DpdkUtil(object):
         :type node: dict
         :returns: nothing
         """
-        ssh = SSH()
-        ssh.connect(node)
         cmd = "/stop-testpmd.sh"
-        exec_cmd_no_error(node, cmd, sudo=True)
-        ssh.disconnect(node)
+        exec_cmd_no_error(node, cmd, sudo=True, disconnect=True)
