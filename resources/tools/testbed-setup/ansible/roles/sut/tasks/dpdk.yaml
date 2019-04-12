@@ -1,0 +1,23 @@
+---
+# file: roles/sut/tasks/dpdk.yaml
+
+- name: Download DPDK release archive
+  get_url:
+    url: '{{ dpdk.url }}/{{ dpdk.version }}.tar.xz'
+    dest: '{{ dpdk.target_dir }}/{{ dpdk.version }}.tar.xz'
+    mode: 0644
+  register: 'linux__dpdk_downloaded'
+  tags: install-dpdk
+
+- name: Extract DPDK release archive
+  become: yes
+  shell: 'cd {{ dpdk.target_dir }}; tar xf {{ dpdk.target_dir }}/{{ dpdk.version }}.tar.xz'
+  when: 'linux__dpdk_downloaded'
+  register: 'linux__dpdk_extracted'
+  tags: install-dpdk
+
+- name: Compile DPDK release
+  become: yes
+  command: 'make install T={{ ansible_machine }}-native-linuxapp-gcc DESTDIR={{ dpdk.target_dir }}/{{ dpdk.version }} chdir={{ dpdk.target_dir }}/{{ dpdk.version }}'
+  when: 'linux__dpdk_extracted'
+  tags: install-dpdk
