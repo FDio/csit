@@ -48,9 +48,6 @@
 | | ... | - uio_driver - Default UIO driver
 | | ... | - plugins_to_enable - List of plugins to be enabled for test
 | | ...
-| | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.7.img
-| | Set Global Variable | ${perf_qemu_path} | /opt/qemu-2.11.2
-| | Set Global Variable | ${qemu_build} | ${True}
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
 | | @{plugins_to_enable}= | Create List | dpdk_plugin.so
