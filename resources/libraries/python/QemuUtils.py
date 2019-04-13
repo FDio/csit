@@ -83,7 +83,7 @@ class QemuUtils(object):
     ROBOT_LIBRARY_SCOPE = 'TEST CASE'
 
     def __init__(self, node, qemu_id=1, smp=1, mem=512, vnf=None,
-                 img='/var/lib/vm/vhost-nested.img', bin_path='/usr/bin'):
+                 img=Constants.QEMU_VM_IMAGE):
         """Initialize QemuUtil class.
 
         :param node: Node to run QEMU on.
@@ -92,14 +92,12 @@ class QemuUtils(object):
         :param mem: Amount of memory.
         :param vnf: Network function workload.
         :param img: QEMU disk image or kernel image path.
-        :param bin_path: QEMU binary path.
         :type node: dict
         :type qemu_id: int
         :type smp: int
         :type mem: int
         :type vnf: str
         :type img: str
-        :type bin_path: str
         """
         self._vhost_id = 0
         self._node = node
@@ -119,7 +117,6 @@ class QemuUtils(object):
         # Input Options.
         self._opt = dict()
         self._opt['qemu_id'] = qemu_id
-        self._opt['bin_path'] = bin_path
         self._opt['mem'] = int(mem)
         self._opt['smp'] = int(smp)
         self._opt['img'] = img
@@ -638,7 +635,7 @@ class QemuUtils(object):
         :rtype: dict
         """
         command = ('{bin_path}/qemu-system-{arch} {params}'.
-                   format(bin_path=self._opt.get('bin_path'),
+                   format(bin_path=Constants.QEMU_BIN_PATH,
                           arch=Topology.get_node_arch(self._node),
                           params=self._params))
         message = ('QEMU: Start failed on {host}!'.
@@ -683,7 +680,7 @@ class QemuUtils(object):
         :rtype: str or bool
         """
         command = ('{bin_path}/qemu-system-{arch} --version'.
-                   format(bin_path=self._opt.get('bin_path'),
+                   format(bin_path=Constants.QEMU_BIN_PATH,
                           arch=Topology.get_node_arch(self._node)))
         try:
             stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
@@ -693,36 +690,3 @@ class QemuUtils(object):
         except RuntimeError:
             self.qemu_kill_all()
             raise
-
-    @staticmethod
-    def build_qemu(node, force_install=False, apply_patch=False):
-        """Build QEMU from sources.
-
-        :param node: Node to build QEMU on.
-        :param force_install: If True, then remove previous build.
-        :param apply_patch: If True, then apply patches from qemu_patches dir.
-        :type node: dict
-        :type force_install: bool
-        :type apply_patch: bool
-        :raises RuntimeError: If building QEMU failed.
-        """
-        directory = (' --directory={install_dir}{patch}'.
-                     format(install_dir=Constants.QEMU_INSTALL_DIR,
-                            patch='-patch' if apply_patch else '-base'))
-        version = (' --version={install_version}'.
-                   format(install_version=Constants.QEMU_INSTALL_VERSION))
-        force = ' --force' if force_install else ''
-        patch = ' --patch' if apply_patch else ''
-        target_list = (' --target-list={arch}-softmmu'.
-                       format(arch=Topology.get_node_arch(node)))
-
-        command = ("sudo -E sh -c "
-                   "'{fw_dir}/{lib_sh}/qemu_build.sh{version}{directory}"
-                   "{force}{patch}{target_list}'".
-                   format(fw_dir=Constants.REMOTE_FW_DIR,
-                          lib_sh=Constants.RESOURCES_LIB_SH,
-                          version=version, directory=directory, force=force,
-                          patch=patch, target_list=target_list))
-        message = ('QEMU: Build failed on {host}!'.format(host=node['host']))
-        exec_cmd_no_error(node, command, sudo=False, message=message,
-                          timeout=1000)

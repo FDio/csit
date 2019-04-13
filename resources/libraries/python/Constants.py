@@ -40,20 +40,17 @@ class Constants(object):
     # VPP service unit name
     VPP_UNIT = 'vpp'
 
-    # QEMU version to install
-    QEMU_INSTALL_VERSION = 'qemu-2.11.2'
+    # QEMU binary path
+    QEMU_BIN_PATH = '/usr/bin'
 
-    # QEMU install directory
-    QEMU_INSTALL_DIR = '/opt/qemu-2.11.2'
+    # QEMU VM kernel image path
+    QEMU_VM_KERNEL = '/opt/boot/vmlinuz'
 
-    # QEMU performance test VM kernel image path
-    QEMU_PERF_VM_KERNEL = '/opt/boot/vmlinuz'
+    # QEMU VM nested image path
+    QEMU_VM_IMAGE = '/var/lib/vm/vhost-nested.img'
 
-    # QEMU performance test VM nested image path
-    QEMU_PERF_VM_IMAGE = '/var/lib/vm/csit-nested-1.7.img'
-
-    # QEMU performance test VM DPDK path
-    QEMU_PERF_VM_DPDK = '/opt/dpdk-19.02'
+    # QEMU VM DPDK path
+    QEMU_VM_DPDK = '/opt/dpdk-19.02'
 
     # TRex install version
     TREX_INSTALL_VERSION = '2.35'
