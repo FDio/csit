@@ -100,7 +100,7 @@ class QemuManager(object):
         cpu_count_int = kwargs['cpu_count_int']
         vnf_count_int = kwargs['cpu_count_int'] if kwargs['auto_scale'] else 1
 
-        img = Constants.QEMU_PERF_VM_KERNEL
+        img = Constants.QEMU_VM_KERNEL
 
         for nf_chain in range(1, nf_chains + 1):
             for nf_node in range(1, nf_nodes + 1):
