@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -19,16 +19,6 @@ cat /etc/hosts
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 
-export DEBIAN_FRONTEND=noninteractive
-sudo apt-get -y update
-sudo apt-get -y install libpython2.7-dev python-virtualenv
-
-if [ -f "/etc/redhat-release" ]; then
-    OS="centos7"
-else
-    OS="ubuntu1604"
-fi
-
 VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
 VIRL_SERVER=""
 
@@ -37,15 +27,20 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
-STREAM="master"
+STREAM=$1
+OS=$2
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
 
 if [ "${OS}" == "ubuntu1604" ]; then
+    export DEBIAN_FRONTEND=noninteractive
+    sudo apt-get -y update
+    sudo apt-get -y install libpython2.7-dev python-virtualenv
     VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_UBUNTU)
     VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_UBUNTU)
 elif [ "${OS}" == "centos7" ]; then
+    sudo yum install -y python-devel python-virtualenv
     VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
     VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
 else
