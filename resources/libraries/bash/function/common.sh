@@ -644,11 +644,16 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrAND${DEFAULT_NIC}AND1cAND64bANDip4base"
-                                "mrrAND${DEFAULT_NIC}AND1cAND78bANDip6base"
-                                "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2bdbase"
-                                "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2xcbase"
-                                "!dot1q" "!drv_avf")
+                readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/ndrpdr-daily.txt"
+                test_tag_array+=("!4c")
+                test_tag_array+=("!tnl_1000")
+                test_tag_array+=("!vxlan_10")
+                test_tag_array+=("!vlan_10")
+                test_tag_array+=("!vxlan_100")
+                test_tag_array+=("!vlan_100")
+                test_tag_array+=("!vxlan_1k")
+                test_tag_array+=("!vlan_1k")
+                test_tag_array+=("!2vm")
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
