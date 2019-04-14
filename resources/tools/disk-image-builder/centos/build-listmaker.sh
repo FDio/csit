@@ -31,9 +31,14 @@ else
         RELEASE_NAME="csit-centos-7.4-1711-listmaker"
         PACKER_TEMPLATE="listmaker/centos-7.4-1711.json"
     else
-        echo "Please provide OS as parameter:"
-        echo "Options: ${0} [centos-7-1511|centos-7.3-1611|centos-7.4-1711]"
-        exit 1
+        if [ "$1" = "centos-7.6-1810" ]; then
+            RELEASE_NAME="csit-centos-7.6-1810-listmaker"
+            PACKER_TEMPLATE="listmaker/centos-7.6-1810.json"
+        else
+            echo "Please provide OS as parameter:"
+            echo "Options: ${0} [centos-7.3-1611|centos-7.4-1711|centos-7.6-1810]"
+            exit 1
+        fi
     fi
 fi
 
