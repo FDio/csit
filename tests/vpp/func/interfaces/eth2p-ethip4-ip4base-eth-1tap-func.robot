@@ -48,7 +48,7 @@
 | ${tap1_VPP_ip}= | 16.0.10.1
 | ${tap1_NM_ip}= | 16.0.10.2
 | ${tap1_NM_mac}= | 02:00:00:00:00:02
-| ${tap_int1}= | tap_int1
+| ${tap_int1}= | tap0
 
 | ${namespace1}= | nmspace1
 
