@@ -49,8 +49,8 @@
 | ${bid_to_TG}= | 20
 | ${bid_TAP}= | tapBr
 
-| ${tap_int1}= | tap_int1
-| ${tap_int2}= | tap_int2
+| ${tap_int1}= | tap0
+| ${tap_int2}= | tap1
 
 *** Test Cases ***
 | TC01: Tap Interface Simple BD
