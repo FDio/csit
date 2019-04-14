@@ -55,8 +55,8 @@
 | ${tap1_NM_mac}= | 02:00:00:00:00:02
 | ${tap2_NM_mac}= | 02:00:00:00:00:04
 
-| ${tap_int1}= | tap_int1
-| ${tap_int2}= | tap_int2
+| ${tap_int1}= | tap0
+| ${tap_int2}= | tap1
 
 | ${namespace1}= | nmspace1
 | ${namespace2}= | nmspace2
