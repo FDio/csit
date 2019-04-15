@@ -500,7 +500,7 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
-        if msg.message.count("return STDOUT Thread "):
+        if msg.message.count("Thread 0 vpp_main"):
             self._show_run_lookup_nr += 1
             if self._lookup_kw_nr == 1 and self._show_run_lookup_nr == 1:
                 self._data["tests"][self._test_ID]["show-run"] = str()
@@ -987,8 +987,7 @@ class ExecutionChecker(ResultVisitor):
         if setup_kw.name.count("Show Vpp Version On All Duts") \
                 and not self._version:
             self._msg_type = "vpp-version"
-
-        elif setup_kw.name.count("Setup performance global Variables") \
+        elif setup_kw.name.count("Set Global Variable") \
                 and not self._timestamp:
             self._msg_type = "timestamp"
         elif setup_kw.name.count("Setup Framework") and not self._testbed:
@@ -1284,15 +1283,25 @@ class InputData(object):
                             logs.append(("ERROR",
                                         "Cannot remove the file '{0}': {1}".
                                         format(full_name, repr(err))))
-
         logs.append(("INFO", "  Done."))
+
+        for level, line in logs:
+            if level == "INFO":
+                logging.info(line)
+            elif level == "ERROR":
+                logging.error(line)
+            elif level == "DEBUG":
+                logging.debug(line)
+            elif level == "CRITICAL":
+                logging.critical(line)
+            elif level == "WARNING":
+                logging.warning(line)
 
         result = {
             "data": data,
             "state": state,
             "job": job,
-            "build": build,
-            "logs": logs
+            "build": build
         }
         data_queue.put(result)
 
@@ -1353,20 +1362,8 @@ class InputData(object):
 
                 self._cfg.set_input_file_name(job, build_nr,
                                               result["build"]["file-name"])
-
+                
             self._cfg.set_input_state(job, build_nr, result["state"])
-
-            for item in result["logs"]:
-                if item[0] == "INFO":
-                    logging.info(item[1])
-                elif item[0] == "ERROR":
-                    logging.error(item[1])
-                elif item[0] == "DEBUG":
-                    logging.debug(item[1])
-                elif item[0] == "CRITICAL":
-                    logging.critical(item[1])
-                elif item[0] == "WARNING":
-                    logging.warning(item[1])
 
         del data_queue
 
