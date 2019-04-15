@@ -52,14 +52,19 @@ def _download_file(url, file_name, log):
     success = False
     try:
         log.append(("INFO", "    Connecting to '{0}' ...".format(url)))
-
         response = get(url, stream=True)
         code = response.status_code
-
         log.append(("INFO", "    {0}: {1}".format(code, responses[code])))
 
         if code != codes["OK"]:
-            return False
+            url = url.replace("_info", "")
+            log.append(("INFO", "    Connecting to '{0}' ...".format(url)))
+            response = get(url, stream=True)
+            code = response.status_code
+            log.append(("INFO", "    {0}: {1}".format(code, responses[code])))
+            file_name = file_name.replace("_info", "")
+            if code != codes["OK"]:
+                return False
 
         log.append(("INFO", "    Downloading the file '{0}' to '{1}' ...".
                     format(url, file_name)))
@@ -91,7 +96,7 @@ def _download_file(url, file_name, log):
         log.append(("DEBUG", str(err)))
 
     log.append(("INFO", "    Download finished."))
-    return success
+    return success, file_name
 
 
 def _unzip_file(spec, build, pid, log):
@@ -169,8 +174,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
     elif job.startswith("intel-dnv-"):
         url = spec.environment["urls"]["URL[VIRL,DNV]"].format(release=job[-4:])
     else:
-        raise PresentationError("No url defined for the job '{}'.".
-                                format(job))
+        raise PresentationError("No url defined for the job '{}'.".format(job))
     file_name = spec.input["file-name"]
     full_name = spec.input["download-path"]. \
         format(job=job, build=build["build"], filename=file_name)
@@ -182,7 +186,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
                            name=file_name))
 
     # Download the file from the defined source (Jenkins, logs.fd.io):
-    success = _download_file(url, new_name, log)
+    success, new_name = _download_file(url, new_name, log)
 
     if success and new_name.endswith(".zip"):
         if not is_zipfile(new_name):
@@ -205,7 +209,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
                        release=rls,
                        dir=spec.environment["urls"]["DIR[NEXUS]"],
                        file=nexus_file_name)
-            success = _download_file(url, new_name, log)
+            success, new_name = _download_file(url, new_name, log)
             if success:
                 break
 
