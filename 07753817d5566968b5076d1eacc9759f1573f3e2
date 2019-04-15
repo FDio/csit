@@ -46,6 +46,30 @@
       "revId": "07753817d5566968b5076d1eacc9759f1573f3e2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "869addb2_d23e02fe",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-15T14:33:08Z",
+      "side": 1,
+      "message": "Oh, \"equals\" and \"with_value\" versions were creating temporary OptionString without proper prefix. Fixed now hopefully.",
+      "parentUuid": "133282ec_a975fea4",
+      "range": {
+        "startLine": 113,
+        "startChar": 37,
+        "endLine": 113,
+        "endChar": 41
+      },
+      "revId": "07753817d5566968b5076d1eacc9759f1573f3e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
