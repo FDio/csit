@@ -118,6 +118,30 @@
       "revId": "62700f7fdebfc74a5de0f4eb380044f28b9c599a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "434b1976_520179c2",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-04-15T06:05:28Z",
+      "side": 1,
+      "message": "The information in log file (accessible via link) is not very user-friendly, see eg. https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-mrr-daily-master-2n-skx/406/archives/log.html.gz#s1-s1-s1-s2-s1-t1-k3-k1-k2\n\nThere\u0027s lots of lines and the information is hidden.",
+      "parentUuid": "49df6d19_0d942d45",
+      "range": {
+        "startLine": 78,
+        "startChar": 15,
+        "endLine": 78,
+        "endChar": 19
+      },
+      "revId": "62700f7fdebfc74a5de0f4eb380044f28b9c599a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
