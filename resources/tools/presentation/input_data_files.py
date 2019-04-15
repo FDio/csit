@@ -52,46 +52,50 @@ def _download_file(url, file_name, log):
     success = False
     try:
         log.append(("INFO", "    Connecting to '{0}' ...".format(url)))
-
         response = get(url, stream=True)
         code = response.status_code
-
         log.append(("INFO", "    {0}: {1}".format(code, responses[code])))
 
         if code != codes["OK"]:
-            return False
+            url = url.replace("_info", "")
+            log.append(("INFO", "    Connecting to '{0}' ...".format(url)))
+            response = get(url, stream=True)
+            code = response.status_code
+            log.append(("INFO", "    {0}: {1}".format(code, responses[code])))
+            if code != codes["OK"]:
+                return False, file_name
+            file_name = file_name.replace("_info", "")
 
         log.append(("INFO", "    Downloading the file '{0}' to '{1}' ...".
                     format(url, file_name)))
 
-        file_handle = open(file_name, "wb")
-        for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
-            if chunk:
-                file_handle.write(chunk)
-        file_handle.close()
+        with open(file_name, "wb") as file_handle:
+            for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
+                if chunk:
+                    file_handle.write(chunk)
         success = True
     except ConnectionError as err:
         log.append(("ERROR", "Not possible to connect to '{0}'.".format(url)))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
     except HTTPError as err:
         log.append(("ERROR", "Invalid HTTP response from '{0}'.".format(url)))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
     except TooManyRedirects as err:
         log.append(("ERROR", "Request exceeded the configured number "
                              "of maximum re-directions."))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
     except Timeout as err:
         log.append(("ERROR", "Request timed out."))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
     except RequestException as err:
         log.append(("ERROR", "Unexpected HTTP request exception."))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
     except (IOError, ValueError, KeyError) as err:
         log.append(("ERROR", "Download failed."))
-        log.append(("DEBUG", str(err)))
+        log.append(("DEBUG", repr(err)))
 
     log.append(("INFO", "    Download finished."))
-    return success
+    return success, file_name
 
 
 def _unzip_file(spec, build, pid, log):
@@ -169,8 +173,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
     elif job.startswith("intel-dnv-"):
         url = spec.environment["urls"]["URL[VIRL,DNV]"].format(release=job[-4:])
     else:
-        raise PresentationError("No url defined for the job '{}'.".
-                                format(job))
+        raise PresentationError("No url defined for the job '{}'.".format(job))
     file_name = spec.input["file-name"]
     full_name = spec.input["download-path"]. \
         format(job=job, build=build["build"], filename=file_name)
@@ -182,7 +185,9 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
                            name=file_name))
 
     # Download the file from the defined source (Jenkins, logs.fd.io):
-    success = _download_file(url, new_name, log)
+    success, downloaded_name = _download_file(url, new_name, log)
+    if success:
+        new_name = downloaded_name
 
     if success and new_name.endswith(".zip"):
         if not is_zipfile(new_name):
@@ -205,7 +210,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
                        release=rls,
                        dir=spec.environment["urls"]["DIR[NEXUS]"],
                        file=nexus_file_name)
-            success = _download_file(url, new_name, log)
+            success, new_name = _download_file(url, new_name, log)
             if success:
                 break
 
