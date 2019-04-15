@@ -118,6 +118,30 @@
       "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9783e96c_4fc6ef1b",
+        "filename": "resources/libraries/python/OptionString.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-15T11:22:12Z",
+      "side": 1,
+      "message": "option.add_param\noption.add_param_with_value\n\nor\n\noption.add\noption.add_with_value\n\nadditional function paramter can be single_hyphen\u003dTrue wheter it is \"--\"/\"-\" and or delimiter \"\u003d\" can be also added.\n\nI do not understand difference between one or two and I cannot read from DOC.",
+      "parentUuid": "b688dd8b_07753b27",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 22
+      },
+      "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
