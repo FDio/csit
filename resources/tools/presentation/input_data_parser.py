@@ -987,9 +987,10 @@ class ExecutionChecker(ResultVisitor):
         if setup_kw.name.count("Show Vpp Version On All Duts") \
                 and not self._version:
             self._msg_type = "vpp-version"
-
-        elif setup_kw.name.count("Setup performance global Variables") \
+        elif setup_kw.name.count("Ensure Global Variable") \
                 and not self._timestamp:
+        # elif setup_kw.name.count("Setup performance global Variables") \
+        #         and not self._timestamp:
             self._msg_type = "timestamp"
         elif setup_kw.name.count("Setup Framework") and not self._testbed:
             self._msg_type = "testbed"
