@@ -70,6 +70,30 @@
       "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a20bb1d4_957eea6c",
+        "filename": "resources/libraries/python/OptionString.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-15T08:57:16Z",
+      "side": 1,
+      "message": "Code must be readable, i really do not know what \"add_two_or_one\" means and DOC string won\u0027t fix it.\n\nThe proposal was to unify the naming convention with some available best practice.\n\nwhy not: add_one_or_two or add_three_to_thousands? And what is actually one or two in name. This does not work from naming point of view.",
+      "parentUuid": "a12b8152_96c5ce8b",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 22
+      },
+      "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
