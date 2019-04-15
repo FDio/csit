@@ -292,6 +292,10 @@
           - 380
           - 381
           - 396
+          - 398
+          - 403
+          - 404
+          - 405
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
         start: 20
         end: "lastCompletedBuild"
@@ -317,6 +321,10 @@
           - 380
           - 381
           - 396
+          - 398
+          - 403
+          - 404
+          - 405
 
     plot-performance-trending-dpdk-2n-skx:
       csit-dpdk-perf-mrr-weekly-master-2n-skx:
@@ -409,7 +417,7 @@
 -
   type: "input"
   general:
-    file-name: "output.xml.gz"
+    file-name: "output_info.xml.gz"
     file-format: ".gz"
     download-path: "{job}/{build}/archives/{filename}"
     extract: "output.xml"
@@ -489,6 +497,10 @@
         - 380
         - 381
         - 396
+        - 398
+        - 403
+        - 404
+        - 405
     csit-vpp-perf-mrr-weekly-master-2n-skx:
       start: 1
       end: "lastCompletedBuild"
