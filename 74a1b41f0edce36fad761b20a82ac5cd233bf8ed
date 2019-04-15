@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "0440f460_4031ee10",
+        "filename": "resources/libraries/python/DpdkUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-15T12:47:29Z",
+      "side": 1,
+      "message": "hard to check 1:1 functionality, so i guess we need to start tests  to see.",
+      "revId": "74a1b41f0edce36fad761b20a82ac5cd233bf8ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f86be4ac_b1d3f369",
+        "filename": "resources/libraries/python/DpdkUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-15T12:47:29Z",
+      "side": 1,
+      "message": "here \"/start-testpmd.sh\" is a option (although it is actually binary), but in L120 is is not and option.",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 72
+      },
+      "revId": "74a1b41f0edce36fad761b20a82ac5cd233bf8ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ac31ea1b_c579f23b",
         "filename": "resources/libraries/python/OptionString.py",
         "patchSetId": 11
