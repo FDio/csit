@@ -22,6 +22,30 @@
       "revId": "74a1b41f0edce36fad761b20a82ac5cd233bf8ed",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "01f331d4_d8666dd5",
+        "filename": "resources/libraries/python/OptionString.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-15T12:35:14Z",
+      "side": 1,
+      "message": "Unless it cannot be added to normal .add() then i think it is sort of ok. At least reading not is quite consistent and clear",
+      "parentUuid": "ac31ea1b_c579f23b",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 18
+      },
+      "revId": "74a1b41f0edce36fad761b20a82ac5cd233bf8ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
