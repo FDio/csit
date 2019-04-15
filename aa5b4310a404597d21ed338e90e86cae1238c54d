@@ -46,6 +46,30 @@
       "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a12b8152_96c5ce8b",
+        "filename": "resources/libraries/python/OptionString.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-15T08:52:54Z",
+      "side": 1,
+      "message": "Not sure how CLI API from caller to command utility should correspond to API from Python call site to this string building instance, but I have expanded (in next patch) class docstring to comment on how the class is inspired by options, but should work for any strings.",
+      "parentUuid": "4bead5b9_7165bf06",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 22
+      },
+      "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
