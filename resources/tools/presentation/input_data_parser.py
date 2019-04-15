@@ -445,6 +445,7 @@ class ExecutionChecker(ResultVisitor):
         """
 
         self._timestamp = msg.timestamp[:14]
+        logging.info("Timestamp: {}".format(self._timestamp))
         self._data["metadata"]["generated"] = self._timestamp
         self._msg_type = None
 
@@ -500,7 +501,7 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
-        if msg.message.count("return STDOUT Thread "):
+        if msg.message.count("Thread 0 vpp_main"):
             self._show_run_lookup_nr += 1
             if self._lookup_kw_nr == 1 and self._show_run_lookup_nr == 1:
                 self._data["tests"][self._test_ID]["show-run"] = str()
@@ -987,9 +988,10 @@ class ExecutionChecker(ResultVisitor):
         if setup_kw.name.count("Show Vpp Version On All Duts") \
                 and not self._version:
             self._msg_type = "vpp-version"
-
-        elif setup_kw.name.count("Setup performance global Variables") \
+        elif setup_kw.name.count("Set Global Variable") \
                 and not self._timestamp:
+        # elif setup_kw.name.count("Setup performance global Variables") \
+        #         and not self._timestamp:
             self._msg_type = "timestamp"
         elif setup_kw.name.count("Setup Framework") and not self._testbed:
             self._msg_type = "testbed"
