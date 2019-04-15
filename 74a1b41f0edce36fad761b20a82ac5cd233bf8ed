@@ -46,6 +46,30 @@
       "revId": "74a1b41f0edce36fad761b20a82ac5cd233bf8ed",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5eb975cd_9a8db07b",
+        "filename": "resources/libraries/python/OptionString.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-15T12:43:57Z",
+      "side": 1,
+      "message": "Will keep this short name then.",
+      "parentUuid": "01f331d4_d8666dd5",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 18
+      },
+      "revId": "74a1b41f0edce36fad761b20a82ac5cd233bf8ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
