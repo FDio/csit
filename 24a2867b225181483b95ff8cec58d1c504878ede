@@ -46,6 +46,30 @@
       "revId": "24a2867b225181483b95ff8cec58d1c504878ede",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ef13e0e_f206849b",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-15T08:52:54Z",
+      "side": 1,
+      "message": "Yeah, I think .add_two_with_format would be less readable.",
+      "parentUuid": "65d8c5d5_08c65613",
+      "range": {
+        "startLine": 116,
+        "startChar": 21,
+        "endLine": 116,
+        "endChar": 36
+      },
+      "revId": "24a2867b225181483b95ff8cec58d1c504878ede",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
