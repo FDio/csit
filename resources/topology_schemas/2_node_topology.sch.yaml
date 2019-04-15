@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2016 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -11,16 +11,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This file defines required nodes for 2-node topology.
+# This file defines required nodes for 3-node topology.
 
 name: 2_node_topology
 
+#        +------+                 +-----+ port1
+#        |      | port1     port3 |     +------+
+#        | DUT1 +-----------------+ TG  |      |
+#        |      +-----------------+     +------+
+#        |      | port2     port4 |     | port2
 #        +------+                 +-----+
-#        |      | port1     port3 |     +
-#        | DUT1 +-----------------+ TG  |
-#        |      +-----------------+     +
-#        |      | port2     port4 |     |
-#        +-+-+--+                 +-+-+-+
+
+
 
 type: map
 mapping:
