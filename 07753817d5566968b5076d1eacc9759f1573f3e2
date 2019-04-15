@@ -22,6 +22,30 @@
       "revId": "07753817d5566968b5076d1eacc9759f1573f3e2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "133282ec_a975fea4",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-15T14:17:26Z",
+      "side": 1,
+      "message": "You mean patch #12? Now there is line 96 with the prefix.",
+      "parentUuid": "3cda5a3a_c2057f8e",
+      "range": {
+        "startLine": 113,
+        "startChar": 37,
+        "endLine": 113,
+        "endChar": 41
+      },
+      "revId": "07753817d5566968b5076d1eacc9759f1573f3e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
