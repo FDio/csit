@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bcc8efd8_8e666cd2",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1328,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-15T12:20:20Z",
+      "side": 1,
+      "message": "-1. See line 1338.",
+      "range": {
+        "startLine": 1328,
+        "startChar": 52,
+        "endLine": 1328,
+        "endChar": 67
+      },
+      "revId": "7a795e2a5ba72bb1a6666c13c86c0eac078b6e55",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
