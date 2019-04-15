@@ -142,6 +142,30 @@
       "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "605d1620_411ca3bf",
+        "filename": "resources/libraries/python/OptionString.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-15T11:39:54Z",
+      "side": 1,
+      "message": "\u003e option.add\n\u003e option.add_with_value\n\nI will try in next patch to see how does it look like.\n\n\u003e single_hyphen\u003dTrue\n\nNot reasonable for a method parameter, but I can put comething like that to constructor.",
+      "parentUuid": "9783e96c_4fc6ef1b",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 22
+      },
+      "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
