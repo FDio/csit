@@ -94,6 +94,30 @@
       "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b688dd8b_07753b27",
+        "filename": "resources/libraries/python/OptionString.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-15T11:09:25Z",
+      "side": 1,
+      "message": "\"add_two_or_one\" has been deleted, \"add_to_or_zero\" has been renamed to \"add_two\". Both in patch set #9.\n\nIn the context of options, the two base names would be \"add_parameter\" and \"add_parameter_with_value\". But those are longer than just \"add_one\" and \"add_two\".\n\nI think DpdkUtil and QuemuUtils look readable to me, because the OptionString instance has a suggestive name, such as \"options\".\nThen \"options.add_one(\u0027-o\u0027)\" and \"options.add_two(\u0027-o\u0027, 0)\" are readable.\nBut if the instance was named \"command\", it would be confusing.\n\nPerhaps neutral enough would be to use word \"part\" for the substring being added.\nThen both \"options.add_two_parts\" and \"command.add_one_part\" would be readable.",
+      "parentUuid": "a20bb1d4_957eea6c",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 22
+      },
+      "revId": "aa5b4310a404597d21ed338e90e86cae1238c54d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
