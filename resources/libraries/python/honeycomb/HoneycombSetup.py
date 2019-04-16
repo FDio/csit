@@ -503,15 +503,13 @@ class HoneycombSetup(object):
                         "in progress ...".format(node['host']))
 
     @staticmethod
-    def install_odl_features(node, odl_name, path, *features):
+    def install_odl_features(node, path, *features):
         """Install required features on a running ODL client.
 
         :param node: Honeycomb node.
-        :param odl_name: Name of ODL client version to use.
         :param path: Path to ODL client on node.
         :param features: Optional, list of additional features to install.
         :type node: dict
-        :type odl_name: str
         :type path: str
         :type features: list
         """

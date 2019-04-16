@@ -167,7 +167,7 @@
 | | Copy ODL Client | ${node} | ${odl_name} | /mnt/common | /tmp
 | | Setup ODL Client | ${node} | /tmp
 | | Wait until keyword succeeds | 3min | 30sec
-| | ... | Install ODL Features | ${node} | ${odl_name} | /tmp
+| | ... | Install ODL Features | ${node} | /tmp
 | | Wait until keyword succeeds | 4min | 15sec
 | | ... | Mount Honeycomb on ODL | ${node}
 | | Wait until keyword succeeds | 2min | 15sec
