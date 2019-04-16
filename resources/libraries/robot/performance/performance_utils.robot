@@ -53,10 +53,11 @@
 | | ... | Some inputs are read from variables to streamline suites.
 | | ...
 | | ... | *Test (or broader scope) variables read:*
-| | ... |   - traffic_profile - Topology type. Type: string
-| | ... |   - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
-| | ... |   - max_rate - Calculated unidirectional maximal transmit rate [pps].
-| | ... |     Type: float
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
+| | ... | Type: float
 | | ...
 | | ... | *Arguments:*
 | | ... | - packet_loss_ratio - Accepted loss during search. Type: float
@@ -101,10 +102,11 @@
 | | ... | Some inputs are read from variables to streamline suites.
 | | ...
 | | ... | *Test (or broader scope) variables read:*
-| | ... |   - traffic_profile - Topology type. Type: string
-| | ... |   - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
-| | ... |   - max_rate - Calculated unidirectional maximal transmit rate [pps].
-| | ... |     Type: float
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
+| | ... | Type: float
 | | ...
 | | ... | *Arguments:*
 | | ... | - packet_loss_ratio - Accepted loss during search. Type: float
@@ -261,7 +263,8 @@
 | | ... | - duration - Duration of traffic run [s]. Type: integer
 | | ... | - rate - Rate for sending packets. Type: string
 | | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer/string
-| | ... | - traffic_profile - Topology type. Type: string
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
 | | ... | - fail_on_loss - If True, the keyword fails if loss occurred.
 | | ... | Type: boolean
 | | ...
@@ -284,10 +287,11 @@
 | | ... | Some inputs are read from variables to streamline suites.
 | | ...
 | | ... | *Test (or broader scope) variables read:*
-| | ... |   - traffic_profile - Topology type. Type: string
-| | ... |   - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
-| | ... |   - max_rate - Calculated unidirectional maximal transmit rate [pps].
-| | ... |     Type: float
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
+| | ... | Type: float
 | | ...
 | | ... | *Arguments:*
 | | ... | - subsamples - How many trials in this measurement. Type: int
@@ -326,7 +330,8 @@
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
 | | ... | - rate - Rate for sending packets. Type: string
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer/string
-| | ... | - traffic_profile - Topology type. Type: string
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
 | | ... | - subsamples - How many trials in this measurement. Type: int
 | | ... | - unidirection - False if traffic is bidirectional. Type: boolean
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
@@ -377,7 +382,8 @@
 | | ... | - duration - Duration of traffic run [s]. Type: integer
 | | ... | - rate - Rate for sending packets. Type: string
 | | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer/string
-| | ... | - traffic_profile - Topology type. Type: string
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
 | | ... | - unidirection - False if traffic is bidirectional. Type: boolean
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
 | | ... | - rx_port - RX port of TG, default 1. Type: integer
