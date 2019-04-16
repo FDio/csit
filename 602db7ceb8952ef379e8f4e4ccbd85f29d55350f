@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a9be5f93_e941497f",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T17:03:31Z",
+      "side": 1,
+      "message": "Will need to update again when https://gerrit.fd.io/r/18788 is merged.",
+      "range": {
+        "startLine": 276,
+        "startChar": 32,
+        "endLine": 276,
+        "endChar": 72
+      },
+      "revId": "602db7ceb8952ef379e8f4e4ccbd85f29d55350f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
