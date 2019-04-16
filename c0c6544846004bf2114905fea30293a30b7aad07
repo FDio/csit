@@ -46,6 +46,30 @@
       "revId": "c0c6544846004bf2114905fea30293a30b7aad07",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "664107e2_3bdc329e",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T14:34:58Z",
+      "side": 1,
+      "message": "Fix: https://gerrit.fd.io/r/18937",
+      "parentUuid": "065d30a5_a08c5435",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 27
+      },
+      "revId": "c0c6544846004bf2114905fea30293a30b7aad07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
