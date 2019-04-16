@@ -22,6 +22,30 @@
       "revId": "c0c6544846004bf2114905fea30293a30b7aad07",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "065d30a5_a08c5435",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T13:28:10Z",
+      "side": 1,
+      "message": "Nevermind, this is just an ugly workaround for an error introduced in https://gerrit.fd.io/r/#/c/17811/84/resources/libraries/robot/performance/performance_setup.robot@255",
+      "parentUuid": "5306e878_00548129",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 27
+      },
+      "revId": "c0c6544846004bf2114905fea30293a30b7aad07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
