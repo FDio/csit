@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1e86303_d514bc27",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 84
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T13:26:50Z",
+      "side": 1,
+      "message": "The rename (here and in similar lines below) is an error.\nThis is not a traffic profile, byt a layer type.\nSee TrafficGenerator.initialize_traffic_generator, \"test_type\" argument.",
+      "range": {
+        "startLine": 255,
+        "startChar": 58,
+        "endLine": 255,
+        "endChar": 76
+      },
+      "revId": "5e6145a4260ffce1c302e94b9b241851f90838e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
