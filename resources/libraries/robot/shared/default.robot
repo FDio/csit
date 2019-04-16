@@ -106,23 +106,21 @@
 | | ... | *Arguments:*
 | | ... | - numvfs - Number of VFs to initialize, 0 - disable the VFs
 | | ... | (Optional). Type: integer, default value: ${1}
-| | ... | - traffic_profile - A value affecting behavior, such as spoofing.
+| | ... | - osi_layer - OSI Layer type to initialize TG with.
 | | ... | (Optional). Type: string, default value: L2
-| | ... | Note: This is NOT the usual traffic profile
-| | ... | (which is python module name to initialize TG with).
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Configure AVF device on all DUTs \| ${1} \| L2 \|
 | | ...
-| | [Arguments] | ${numvfs}=${1} | ${traffic_profile}=L2
+| | [Arguments] | ${numvfs}=${1} | ${osi_layer}=L2
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | numvfs=${numvfs} | traffic_type=${traffic_profile}
+| | | ... | numvfs=${numvfs} | osi_layer=${osi_layer}
 | | | ${if2_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if2}
-| | | ... | numvfs=${numvfs} | traffic_type=${traffic_profile}
+| | | ... | numvfs=${numvfs} | osi_layer=${osi_layer}
 # Currently only one AVF is supported.
 | | | Set Suite Variable | ${${dut}_if1_vf0} | ${if1_avf_arr[0]}
 | | | Set Suite Variable | ${${dut}_if2_vf0} | ${if2_avf_arr[0]}

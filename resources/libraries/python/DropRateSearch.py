@@ -109,21 +109,21 @@ class DropRateSearch(object):
 
     @abstractmethod
     def measure_loss(self, rate, frame_size, loss_acceptance,
-                     loss_acceptance_type, traffic_type, skip_warmup=False):
+                     loss_acceptance_type, traffic_profile, skip_warmup=False):
         """Send traffic from TG and measure count of dropped frames.
 
         :param rate: Offered traffic load.
         :param frame_size: Size of frame.
         :param loss_acceptance: Permitted drop ratio or frames count.
         :param loss_acceptance_type: Type of permitted loss.
-        :param traffic_type: Traffic profile ([2,3]-node-L[2,3], ...).
+        :param traffic_profile: Module name to use for traffic generation.
         :param skip_warmup: Start TRex without warmup traffic if true.
         :type rate: int
         :type frame_size: str
         :type loss_acceptance: float
         :type loss_acceptance_type: LossAcceptanceType
-        :type traffic_type: str
-        :type traffic_type: bool
+        :type traffic_profile: str
+        :type skip_warmup: bool
         :returns: Drop threshold exceeded? (True/False)
         :rtype: bool
         """
@@ -381,13 +381,13 @@ class DropRateSearch(object):
         else:
             raise ValueError("Unknown search result type")
 
-    def linear_search(self, start_rate, traffic_type):
+    def linear_search(self, start_rate, traffic_profile):
         """Linear search of rate with loss below acceptance criteria.
 
         :param start_rate: Initial rate.
-        :param traffic_type: Traffic profile.
+        :param traffic_profile: Module name to use for traffic generation.
         :type start_rate: float
-        :type traffic_type: str
+        :type traffic_profile: str
         :returns: nothing
         :raises ValueError: If start rate is not in range.
         """
@@ -405,7 +405,7 @@ class DropRateSearch(object):
             for dummy in range(self._max_attempts):
                 res.append(self.measure_loss(
                     rate, self._frame_size, self._loss_acceptance,
-                    self._loss_acceptance_type, traffic_type))
+                    self._loss_acceptance_type, traffic_profile))
 
             res = self._get_res_based_on_search_type(res)
 
@@ -447,18 +447,18 @@ class DropRateSearch(object):
             return self._search_result_rate, self.get_latency()
         raise Exception('Search FAILED')
 
-    def binary_search(self, b_min, b_max, traffic_type, skip_max_rate=False,
+    def binary_search(self, b_min, b_max, traffic_profile, skip_max_rate=False,
                       skip_warmup=False):
         """Binary search of rate with loss below acceptance criteria.
 
         :param b_min: Min range rate.
         :param b_max: Max range rate.
-        :param traffic_type: Traffic profile.
+        :param traffic_profile: Module name to use for traffic generation.
         :param skip_max_rate: Start with max rate first
         :param skip_warmup: Start TRex without warmup traffic if true.
         :type b_min: float
         :type b_max: float
-        :type traffic_type: str
+        :type traffic_profile: str
         :type skip_max_rate: bool
         :type skip_warmup: bool
         :returns: nothing
@@ -489,33 +489,33 @@ class DropRateSearch(object):
 
         res = []
         for dummy in range(self._max_attempts):
-            res.append(self.measure_loss(rate, self._frame_size,
-                                         self._loss_acceptance,
-                                         self._loss_acceptance_type,
-                                         traffic_type, skip_warmup=skip_warmup))
+            res.append(self.measure_loss(
+                rate, self._frame_size, self._loss_acceptance,
+                self._loss_acceptance_type, traffic_profile,
+                skip_warmup=skip_warmup))
 
         res = self._get_res_based_on_search_type(res)
 
         # loss occurred and it was above acceptance criteria
         if not res:
-            self.binary_search(b_min, rate, traffic_type, True, True)
+            self.binary_search(b_min, rate, traffic_profile, True, True)
         # there was no loss / loss below acceptance criteria
         else:
             self._search_result_rate = rate
-            self.binary_search(rate, b_max, traffic_type, True, True)
+            self.binary_search(rate, b_max, traffic_profile, True, True)
 
-    def combined_search(self, start_rate, traffic_type):
+    def combined_search(self, start_rate, traffic_profile):
         """Combined search of rate with loss below acceptance criteria.
 
         :param start_rate: Initial rate.
-        :param traffic_type: Traffic profile.
+        :param traffic_profile: Module name to use for traffic generation.
         :type start_rate: float
-        :type traffic_type: str
+        :type traffic_profile: str
         :returns: nothing
         :raises RuntimeError: If linear search failed.
         """
 
-        self.linear_search(start_rate, traffic_type)
+        self.linear_search(start_rate, traffic_profile)
 
         if self._search_result in [SearchResults.SUCCESS,
                                    SearchResults.SUSPICIOUS]:
@@ -535,7 +535,7 @@ class DropRateSearch(object):
             self._search_result_rate = None
 
             # we will use binary search to refine search in one linear step
-            self.binary_search(b_min, b_max, traffic_type, True)
+            self.binary_search(b_min, b_max, traffic_profile, True)
 
             # linear and binary search succeed
             if self._search_result == SearchResults.SUCCESS:

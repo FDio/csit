@@ -170,7 +170,7 @@ class TrafficGenerator(AbstractMeasurer):
 
     def initialize_traffic_generator(
             self, tg_node, tg_if1, tg_if2, tg_if1_adj_node, tg_if1_adj_if,
-            tg_if2_adj_node, tg_if2_adj_if, test_type, tg_if1_dst_mac=None,
+            tg_if2_adj_node, tg_if2_adj_if, osi_layer, tg_if1_dst_mac=None,
             tg_if2_dst_mac=None):
         """TG initialization.
 
@@ -183,7 +183,7 @@ class TrafficGenerator(AbstractMeasurer):
         :param tg_if1_adj_if: TG if1 adjecent interface.
         :param tg_if2_adj_node: TG if2 adjecent node.
         :param tg_if2_adj_if: TG if2 adjecent interface.
-        :param test_type: 'L2', 'L3' or 'L7' - OSI Layer testing type.
+        :param osi_layer: 'L2', 'L3' or 'L7' - OSI Layer testing type.
         :param tg_if1_dst_mac: Interface 1 destination MAC address.
         :param tg_if2_dst_mac: Interface 2 destination MAC address.
         :type tg_node: dict
@@ -193,7 +193,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type tg_if1_adj_if: str
         :type tg_if2_adj_node: dict
         :type tg_if2_adj_if: str
-        :type test_type: str
+        :type osi_layer: str
         :type tg_if1_dst_mac: str
         :type tg_if2_dst_mac: str
         :returns: nothing
@@ -220,15 +220,15 @@ class TrafficGenerator(AbstractMeasurer):
             if1_addr = Topology().get_interface_mac(tg_node, tg_if1)
             if2_addr = Topology().get_interface_mac(tg_node, tg_if2)
 
-            if test_type == 'L2':
+            if osi_layer == 'L2':
                 if1_adj_addr = if2_addr
                 if2_adj_addr = if1_addr
-            elif test_type == 'L3':
+            elif osi_layer == 'L3':
                 if1_adj_addr = Topology().get_interface_mac(tg_if1_adj_node,
                                                             tg_if1_adj_if)
                 if2_adj_addr = Topology().get_interface_mac(tg_if2_adj_node,
                                                             tg_if2_adj_if)
-            elif test_type == 'L7':
+            elif osi_layer == 'L7':
                 if1_addr = Topology().get_interface_ip4(tg_node, tg_if1)
                 if2_addr = Topology().get_interface_ip4(tg_node, tg_if2)
                 if1_adj_addr = Topology().get_interface_ip4(tg_if1_adj_node,
@@ -249,7 +249,7 @@ class TrafficGenerator(AbstractMeasurer):
                 if1_adj_addr, if2_adj_addr = if2_adj_addr, if1_adj_addr
                 self._ifaces_reordered = True
 
-            if test_type == 'L2' or test_type == 'L3':
+            if osi_layer == 'L2' or osi_layer == 'L3':
                 (ret, _, _) = ssh.exec_command(
                     "sudo sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
                     "- port_limit: 2\n"
@@ -266,7 +266,7 @@ class TrafficGenerator(AbstractMeasurer):
                             "0x"+if1_addr.replace(":", ",0x"),
                             "0x"+if2_adj_addr.replace(":", ",0x"),
                             "0x"+if2_addr.replace(":", ",0x")))
-            elif test_type == 'L7':
+            elif osi_layer == 'L7':
                 (ret, _, _) = ssh.exec_command(
                     "sudo sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
                     "- port_limit: 2\n"
@@ -299,13 +299,13 @@ class TrafficGenerator(AbstractMeasurer):
                     raise RuntimeError('trex-cfg failed')
 
                 # start TRex
-                if test_type == 'L2' or test_type == 'L3':
+                if osi_layer == 'L2' or osi_layer == 'L3':
                     (ret, _, _) = ssh.exec_command(
                         "sh -c 'cd {0}/scripts/ && "
                         "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /tmp/trex.log "
                         "2>&1 &' > /dev/null"\
                         .format(Constants.TREX_INSTALL_DIR))
-                elif test_type == 'L7':
+                elif osi_layer == 'L7':
                     (ret, _, _) = ssh.exec_command(
                         "sh -c 'cd {0}/scripts/ && "
                         "sudo nohup ./t-rex-64 --astf -i -c 7 --iom 0 > "

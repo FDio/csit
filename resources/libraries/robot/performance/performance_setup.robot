@@ -240,19 +240,19 @@
 | | ... | argument. Initializes traffic generator.
 | | ...
 | | ... | *Arguments:*
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
 | | ... | - nic_name - Interface model. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| 2-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${traffic_profile} | ${nic_name}
+| | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
 | | Set variables in 2-node circular topology with DUT interface model
 | | ... | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${traffic_profile}
+| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
 
 | Set up 2-node-switched performance topology with DUT's NIC model
 | | [Documentation]
@@ -262,7 +262,7 @@
 | | ... | argument. Initializes traffic generator.
 | | ...
 | | ... | *Arguments:*
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
 | | ... | - nic_name - Interface model. Type: string
 | | ... | - tg_if1_dest_mac - Interface 1 destination MAC address. Type: string
 | | ... | - tg_if2_dest_mac - Interface 2 destination MAC address. Type: string
@@ -272,13 +272,13 @@
 | | ... | \| 2-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \
 | | ... | \| 22:22:33:44:55:66 \| 22:22:33:44:55:55 \|
 | | ...
-| | [Arguments] | ${traffic_profile} | ${nic_name} | ${tg_if1_dest_mac}
+| | [Arguments] | ${osi_layer} | ${nic_name} | ${tg_if1_dest_mac}
 | | ... | ${tg_if2_dest_mac}
 | | ...
 | | Set variables in 2-node circular topology with DUT interface model
 | | ... | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${traffic_profile}
+| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
 | | ... | ${tg_if1_dest_mac} | ${tg_if2_dest_mac}
 
 | Set up 3-node performance topology with DUT's NIC model
@@ -289,7 +289,7 @@
 | | ... | argument. Initializes traffic generator.
 | | ...
 | | ... | *Arguments:*
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
 | | ... | - nic_name - Interface model. Type: string
 | | ...
 | | ... | *Example:*
@@ -297,12 +297,12 @@
 | | ... | \| Set up 3-node performance topology with DUT's NIC model \| L2 \
 | | ... | \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${traffic_profile} | ${nic_name}
+| | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
 | | Set variables in 3-node circular topology with DUT interface model
 | | ... | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${traffic_profile}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
 
 | Set up 3-node performance topology with DUT's NIC model with double link between DUTs
 | | [Documentation]
@@ -312,7 +312,7 @@
 | | ... | argument. Initializes traffic generator.
 | | ...
 | | ... | *Arguments:*
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
 | | ... | - nic_name - Interface model. Type: string
 | | ...
 | | ... | *Example:*
@@ -320,12 +320,12 @@
 | | ... | \| Set up 3-node performance topology with DUT's NIC model with \
 | | ... | double link between DUTs \| L2 \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${traffic_profile} | ${nic_name}
+| | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
 | | Set variables in 3-node circular topology with DUT interface model with double link between DUTs
 | | ... | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${traffic_profile}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
 
 | Set up DPDK 2-node performance topology with DUT's NIC model
 | | [Documentation]
@@ -335,7 +335,7 @@
 | | ... | environment.
 | | ...
 | | ... | *Arguments:*
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
 | | ... | - nic_name - Interface model. Type: string
 | | ...
 | | ... | *Example:*
@@ -343,12 +343,12 @@
 | | ... | \| Set up DPDK 2-node performance topology with DUT's NIC model \
 | | ... | \| L2 \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${traffic_profile} | ${nic_name}
+| | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
 | | Set variables in 2-node circular topology with DUT interface model
 | | ... | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${traffic_profile}
+| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Set up DPDK 3-node performance topology with DUT's NIC model
@@ -359,19 +359,19 @@
 | | ... | environment.
 | | ...
 | | ... | *Arguments:*
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
 | | ... | - nic_name - Interface model. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| 3-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
 | | ...
-| | [Arguments] | ${traffic_profile} | ${nic_name}
+| | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
 | | Set variables in 3-node circular topology with DUT interface model
 | | ... | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${traffic_profile}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Initialize DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
 
@@ -384,7 +384,7 @@
 | | ... | It configures PCI device with VFs on all DUTs.
 | | ...
 | | ... | *Arguments:*
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
 | | ... | - nic_name - Interface model. Type: string
 | | ... | - vf_driver - Virtual function driver. Type: string
 | | ... | - numvfs - Number of VFs. Type: integer
@@ -394,17 +394,17 @@
 | | ... | \| Set up SRIOV 2-node performance topology with DUT's NIC model \
 | | ... | \| L2 \| Intel-X520-DA2 \| AVF \|
 | | ...
-| | [Arguments] | ${traffic_profile} | ${nic_name} | ${vf_driver}
+| | [Arguments] | ${osi_layer} | ${nic_name} | ${vf_driver}
 | | ... | ${numvfs}=${1}
 | | ...
 | | Set variables in 2-node circular topology with DUT interface model
 | | ... | ${nic_name}
 | | Run Keyword If | '${vf_driver}' == 'AVF'
 | | ... | Configure AVF interfaces on all DUTs | numvfs=${numvfs}
-| | ... | traffic_profile=${traffic_profile}
+| | ... | osi_layer=${osi_layer}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1_vf0} | ${dut1} | ${dut1_if2_vf0}
-| | ... | ${traffic_profile}
+| | ... | ${osi_layer}
 
 | Set up SRIOV 3-node performance topology with DUT's NIC model
 | | [Documentation]
@@ -415,7 +415,7 @@
 | | ... | It configures PCI device with VFs on all DUTs.
 | | ...
 | | ... | *Arguments:*
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
 | | ... | - nic_name - Interface model. Type: string
 | | ... | - vf_driver - Virtual function driver. Type: string
 | | ... | - numvfs - Number of VFs. Type: integer
@@ -425,17 +425,17 @@
 | | ... | \| Set up SRIOV 3-node performance topology with DUT's NIC model \
 | | ... | \| L2 \| Intel-X520-DA2 \| AVF \|
 | | ...
-| | [Arguments] | ${traffic_profile} | ${nic_name} | ${vf_driver}
+| | [Arguments] | ${osi_layer} | ${nic_name} | ${vf_driver}
 | | ... | ${numvfs}=${1}
 | | ...
 | | Set variables in 3-node circular topology with DUT interface model
 | | ... | ${nic_name}
 | | Run Keyword If | '${vf_driver}' == 'AVF'
 | | ... | Configure AVF interfaces on all DUTs | numvfs=${numvfs}
-| | ... | traffic_profile=${traffic_profile}
+| | ... | osi_layer=${osi_layer}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1_vf0} | ${dut2} | ${dut2_if2_vf0}
-| | ... | ${traffic_profile}
+| | ... | ${osi_layer}
 
 | Set up IPSec performance test suite
 | | [Documentation]
@@ -448,7 +448,7 @@
 | | ... | TODO CSIT-1481: Crypto HW should be read from topology file instead.
 | | ...
 | | ... | *Arguments:*
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
 | | ... | - nic_name - Interface model. Type: string
 | | ... | - crypto_type - Crypto device type - HW_DH895xcc or HW_C3xxx or
 | | ... |   SW_cryptodev. Type: string, default value: HW_DH895xcc
@@ -458,10 +458,10 @@
 | | ... | \| Set up IPSec performance test suite \| L2 \
 | | ... | \| Intel-X520-DA2 \| HW_DH895xcc \|
 | | ...
-| | [Arguments] | ${traffic_profile} | ${nic_name} | ${crypto_type}=HW_DH895xcc
+| | [Arguments] | ${osi_layer} | ${nic_name} | ${crypto_type}=HW_DH895xcc
 | | ...
 | | Set up 3-node performance topology with DUT's NIC model
-| | ... | ${traffic_profile} | ${nic_name}
+| | ... | ${osi_layer} | ${nic_name}
 | | Return From Keyword If | '${crypto_type}' == 'SW_cryptodev'
 | | ${numvfs}= | Set Variable If
 | | ... | '${crypto_type}' == 'HW_DH895xcc' | ${32}
@@ -663,7 +663,7 @@
 | | ...
 | | ... | *Test Variables needed:*
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - traffic_profile - Profile name to run debug trial with. Type: string
 | | ... | - nodes - Parsed information object. Type: dict
 | | ...
 | | ... | *Example:*
@@ -703,7 +703,7 @@
 | | ...
 | | ... | *Test Variables needed:*
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - traffic_profile - Profile name to run debug trial with. Type: string
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut1_node - Node where to clean qemu. Type: dictionary
@@ -733,7 +733,7 @@
 | | ...
 | | ... | *Test Variables needed:*
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - traffic_profile - Profile name to run debug trial with. Type: string
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut1_node - Node where to clean qemu. Type: dictionary
@@ -780,7 +780,7 @@
 | | ...
 | | ... | *Test Variables needed:*
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - traffic_profile - Profile name to run debug trial with. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -796,7 +796,7 @@
 | | ...
 | | ... | *Test Variables needed:*
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - traffic_profile - Profile name to run debug trial with. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -813,7 +813,7 @@
 | | ...
 | | ... | *Test Variables needed:*
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - traffic_profile - Profile name to run debug trial with. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -843,7 +843,7 @@
 | | ...
 | | ... | *Test Variables needed:*
 | | ... | - frame_size - L2 Frame Size [B]. Type: integer
-| | ... | - traffic_profile - Profile name to initialize TG with. Type: string
+| | ... | - traffic_profile - Profile name to run debug trial with. Type: string
 | | ...
 | | ... | *Example:*
 | | ...

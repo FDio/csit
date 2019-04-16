@@ -72,30 +72,27 @@ RobotFramework test case files and resource files
         *** Keywords ***
         | Local Template
         | | [Documentation]
-        | | ... | [Cfg] DUT runs L2 patch config with ${phy_cores} phy
-        | | ... | core(s).
-        | | ... | [Ver] Measure MaxReceivedRate for ${framesize}B frames\
-        | | ... | using single trial throughput test.
+        | | ... | [Cfg] DUT runs L2 patch config with ${phy_cores} phy core(s).
+        | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
         | | ...
         | | ... | *Arguments:*
-        | | ... | - framesize - Framesize in Bytes in integer\
-        | | ... |   or string (IMIX_v4_1). Type: integer, string
+        | | ... | - frame_size - Framesize in Bytes in integer
+        | | ... | or string (IMIX_v4_1). Type: integer, string
         | | ... | - phy_cores - Number of physical cores. Type: integer
-        | | ... | - rxq - Number of RX queues, default value: ${None}.\
-        | | ... |   Type: integer
+        | | ... | - rxq - Number of RX queues, default value: ${None}.
+        | | ... | Type: integer
         | | ...
-        | | [Arguments] | ${framesize} | ${phy_cores} | ${rxq}=${None}
+        | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
+        | | ...
+        | | Set Test Variable | \${frame_size}
         | | ...
         | | Given Add worker threads and rxqueues to all DUTs
         | | ... | ${phy_cores} | ${rxq}
         | | And Add PCI devices to all DUTs
-        | | ${max_rate} | ${jumbo} = | Run Keyword
-        | | ... | Get Max Rate And Jumbo And Handle Multi Seg
-        | | ... | ${s_24.5G} | ${framesize} | pps_limit=${s_18.75Mpps}
+        | | Set Max Rate And Jumbo And Handle Multi Seg
         | | And Apply startup configuration on all VPP DUTs
         | | When Initialize L2 patch
-        | | Then Traffic should pass with maximum rate
-        | | ... | ${max_rate}pps | ${framesize} | ${traffic_profile}
+        | | Then Find NDR and PDR intervals using optimized search
 
   + Every suite and test case template (or testcase)
     SHALL contain short documentation.
