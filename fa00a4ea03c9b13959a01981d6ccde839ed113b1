@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a7780ef0_c6467b63",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T17:05:50Z",
+      "side": 1,
+      "message": "Will do later.",
+      "parentUuid": "794bb21a_cacdedd0",
+      "range": {
+        "startLine": 3,
+        "startChar": 9,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "fa00a4ea03c9b13959a01981d6ccde839ed113b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9dfee540_29d73f14",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 1
@@ -60,6 +84,30 @@
       "writtenOn": "2019-03-15T17:43:42Z",
       "side": 1,
       "message": "git commit-id:",
+      "range": {
+        "startLine": 276,
+        "startChar": 17,
+        "endLine": 276,
+        "endChar": 23
+      },
+      "revId": "fa00a4ea03c9b13959a01981d6ccde839ed113b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "454e6f91_db3a8290",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T17:05:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9dfee540_29d73f14",
       "range": {
         "startLine": 276,
         "startChar": 17,
@@ -118,6 +166,54 @@
     },
     {
       "key": {
+        "uuid": "1274f923_fb7b8518",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T17:05:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b1e7e19_4ab5dd06",
+      "range": {
+        "startLine": 280,
+        "startChar": 49,
+        "endLine": 280,
+        "endChar": 53
+      },
+      "revId": "fa00a4ea03c9b13959a01981d6ccde839ed113b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e97f1d9c_3007b12c",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T17:05:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d89d81fa_d6fb4ae3",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 13
+      },
+      "revId": "fa00a4ea03c9b13959a01981d6ccde839ed113b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "758bb604_8abb24d8",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 1
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "bd8a3730_bd2d1905",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T17:05:50Z",
+      "side": 1,
+      "message": "Done (as an explicit TODO for now).",
+      "parentUuid": "758bb604_8abb24d8",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 74
+      },
+      "revId": "fa00a4ea03c9b13959a01981d6ccde839ed113b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3aa1685_61ed46f4",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 1
@@ -152,6 +272,30 @@
       "writtenOn": "2019-03-15T17:43:42Z",
       "side": 1,
       "message": "\"Measured values:\"",
+      "range": {
+        "startLine": 331,
+        "startChar": 54,
+        "endLine": 331,
+        "endChar": 71
+      },
+      "revId": "fa00a4ea03c9b13959a01981d6ccde839ed113b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58e157d0_3d5c15f0",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T17:05:50Z",
+      "side": 1,
+      "message": "Changed output of voting script.",
+      "parentUuid": "a3aa1685_61ed46f4",
       "range": {
         "startLine": 331,
         "startChar": 54,
@@ -210,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "5645a70f_947e3cc2",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T17:05:50Z",
+      "side": 1,
+      "message": "Not applicable with new logic.",
+      "parentUuid": "3544f4a2_c6d78f0c",
+      "range": {
+        "startLine": 335,
+        "startChar": 20,
+        "endLine": 335,
+        "endChar": 29
+      },
+      "revId": "fa00a4ea03c9b13959a01981d6ccde839ed113b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "963ba2bc_1a7294f4",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 1
@@ -221,6 +389,30 @@
       "writtenOn": "2019-03-15T17:43:42Z",
       "side": 1,
       "message": "output",
+      "range": {
+        "startLine": 344,
+        "startChar": 15,
+        "endLine": 344,
+        "endChar": 21
+      },
+      "revId": "fa00a4ea03c9b13959a01981d6ccde839ed113b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe7cfb59_cd765515",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T17:05:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "963ba2bc_1a7294f4",
       "range": {
         "startLine": 344,
         "startChar": 15,
@@ -256,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "a4e4aec0_54194330",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T17:05:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7223ced2_4b99f5ba",
+      "range": {
+        "startLine": 349,
+        "startChar": 23,
+        "endLine": 349,
+        "endChar": 28
+      },
+      "revId": "fa00a4ea03c9b13959a01981d6ccde839ed113b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8bcfcfe1_def37829",
         "filename": "docs/cpta/methodology/index.rst",
         "patchSetId": 1
@@ -267,6 +483,30 @@
       "writtenOn": "2019-03-15T17:43:42Z",
       "side": 1,
       "message": "test",
+      "range": {
+        "startLine": 350,
+        "startChar": 3,
+        "endLine": 350,
+        "endChar": 7
+      },
+      "revId": "fa00a4ea03c9b13959a01981d6ccde839ed113b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f415e190_7c45e577",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-16T17:05:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bcfcfe1_def37829",
       "range": {
         "startLine": 350,
         "startChar": 3,
