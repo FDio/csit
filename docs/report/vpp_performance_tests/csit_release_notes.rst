@@ -6,6 +6,14 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
+   - **Service density 2n-skx tests**: Network Function Virtualization (NFV)
+     service density tests focus on measuring total per server throughput at
+     varied NFV service *packing* densities with vswitch providing host
+     dataplane. The goal is to compare and contrast performance of a shared
+     vswitch for different network topologies and virtualization technologies,
+     and their impact on vswitch performance and efficiency in a range of NFV
+     service configurations.
+
    - **Experimental Soak Tests**: Added performamce soak tests framework
      code for extended time duration tests and throughput discovery
      at given PLR and at give total test time e.g. minutes, hours,
@@ -38,13 +46,6 @@ Changes in |csit-release|
      Only graphs for Packet Throughput and Speedup Multi-core and not
      for Packet Latency were published as there are no results for Packet
      Latency available.
-
-.. note::
-
-    The Report rls1901.1 was generated with only 1 run of performance tests,
-    ie. the data are not statistically significant.
-    The NFV tests were not run so this section has been removed from the
-    report.
 
 .. raw:: latex
 
