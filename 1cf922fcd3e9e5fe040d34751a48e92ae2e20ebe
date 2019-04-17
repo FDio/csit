@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "3b835b16_3b204373",
+        "filename": "resources/libraries/bash/entry/per_patch_perf.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-17T10:35:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ec839ba_7669db83",
+      "range": {
+        "startLine": 64,
+        "startChar": 51,
+        "endLine": 64,
+        "endChar": 60
+      },
+      "revId": "1cf922fcd3e9e5fe040d34751a48e92ae2e20ebe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aaffd01b_58f5d024",
         "filename": "resources/libraries/bash/entry/per_patch_perf.sh",
         "patchSetId": 5
@@ -59,6 +83,30 @@
       "writtenOn": "2019-04-17T08:16:43Z",
       "side": 1,
       "message": "i would remove as long as reserve_testbed is doing it",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 17
+      },
+      "revId": "1cf922fcd3e9e5fe040d34751a48e92ae2e20ebe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6563270_5ac35c78",
+        "filename": "resources/libraries/bash/entry/per_patch_perf.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-17T10:35:57Z",
+      "side": 1,
+      "message": "I have put an if there, have to re-test now.",
+      "parentUuid": "aaffd01b_58f5d024",
       "range": {
         "startLine": 64,
         "startChar": 0,
