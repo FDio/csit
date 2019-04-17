@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "24a6472c_da687841",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-17T17:18:07Z",
+      "side": 1,
+      "message": "\u003e .deb files already contain\n\nAlthough I do not see .api.json for this [5] .api file anywhere, so I am not sure how reliable it is in general.\nBut I believe such \"hidden\" APIs are invisible to PAPI, so CSIT does not need to care about them.\n\n[5] https://gerrit.fd.io/r/#/c/18825/15/src/plugins/http_static/http_static.api",
+      "parentUuid": "56bb70ff_8a3e1cb9",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 24
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d20affb5_782a60de",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 2
