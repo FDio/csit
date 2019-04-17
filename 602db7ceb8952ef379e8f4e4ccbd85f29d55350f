@@ -22,6 +22,144 @@
       "revId": "602db7ceb8952ef379e8f4e4ccbd85f29d55350f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31b3c24a_304c0986",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-17T08:24:53Z",
+      "side": 1,
+      "message": "so add it :)",
+      "range": {
+        "startLine": 292,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 47
+      },
+      "revId": "602db7ceb8952ef379e8f4e4ccbd85f29d55350f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c50cb587_a7bb0bda",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-17T08:24:53Z",
+      "side": 1,
+      "message": "measured",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 7
+      },
+      "revId": "602db7ceb8952ef379e8f4e4ccbd85f29d55350f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1dac272_123045bc",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-17T08:24:53Z",
+      "side": 1,
+      "message": "also",
+      "range": {
+        "startLine": 328,
+        "startChar": 47,
+        "endLine": 328,
+        "endChar": 50
+      },
+      "revId": "602db7ceb8952ef379e8f4e4ccbd85f29d55350f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c6d845b_bdc1176a",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-17T08:24:53Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 329,
+        "startChar": 0,
+        "endLine": 329,
+        "endChar": 12
+      },
+      "revId": "602db7ceb8952ef379e8f4e4ccbd85f29d55350f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0c5a225_39aa58ec",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-17T08:24:53Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 334,
+        "startChar": 26,
+        "endLine": 334,
+        "endChar": 28
+      },
+      "revId": "602db7ceb8952ef379e8f4e4ccbd85f29d55350f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79eae434_131d7634",
+        "filename": "docs/cpta/methodology/index.rst",
+        "patchSetId": 11
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-17T08:24:53Z",
+      "side": 1,
+      "message": "typo?",
+      "range": {
+        "startLine": 335,
+        "startChar": 18,
+        "endLine": 335,
+        "endChar": 26
+      },
+      "revId": "602db7ceb8952ef379e8f4e4ccbd85f29d55350f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
