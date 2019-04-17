@@ -1,15 +1,12 @@
 Report History
 ==============
 
-FD.io CSIT-1901.1 Report history and per .[ww] revision changes are listed below.
+FD.io CSIT-1904 Report history and per .[ww] revision changes are listed below.
 
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
-| .13            | Updated VPP :ref:`vpp_known_issues`                        |
-|                |                                                            |
-+----------------+------------------------------------------------------------+
-| .12            | Initial version                                            |
+| .16            | Initial version                                            |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 
