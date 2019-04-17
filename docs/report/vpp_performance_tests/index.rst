@@ -9,11 +9,11 @@ VPP Performance
     throughput_speedup_multi_core/index
     packet_latency_graphs/index
     soak_tests/index
+    nf_service_density/index
     comparisons/index
     throughput_trending
     test_environment
     documentation/index
 
 ..
-    nf_service_density/index
     http_server_performance/index
