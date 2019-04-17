@@ -22,6 +22,52 @@
       "revId": "1cf922fcd3e9e5fe040d34751a48e92ae2e20ebe",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ec839ba_7669db83",
+        "filename": "resources/libraries/bash/entry/per_patch_perf.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-17T08:16:43Z",
+      "side": 1,
+      "message": "failures",
+      "range": {
+        "startLine": 64,
+        "startChar": 51,
+        "endLine": 64,
+        "endChar": 60
+      },
+      "revId": "1cf922fcd3e9e5fe040d34751a48e92ae2e20ebe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aaffd01b_58f5d024",
+        "filename": "resources/libraries/bash/entry/per_patch_perf.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-17T08:16:43Z",
+      "side": 1,
+      "message": "i would remove as long as reserve_testbed is doing it",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 17
+      },
+      "revId": "1cf922fcd3e9e5fe040d34751a48e92ae2e20ebe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
