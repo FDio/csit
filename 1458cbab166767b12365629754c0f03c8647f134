@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "56bb70ff_8a3e1cb9",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-17T16:38:27Z",
+      "side": 1,
+      "message": "I have realized that .deb files already contain CONTENTS/usr/share/vpp/api/ tree with .api.json files, which give the correct sensitivity (doc-only changes in .api files have no effect on CSIT, and if they do api version should have changed). So CSIT can already look at .api.json files, and compare them to the supported tree. If the comparison is done by a \"diff -r\" variant, any vpp-csit-verify job can print helpful output to show what the difference is.\n\nThat would mean no new signature file is needed, CSIT just has to implement the check (and have at least one vpp-csit job voting).",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 24
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d20affb5_782a60de",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 2
