@@ -503,29 +503,35 @@ function get_test_tag_string () {
 }
 
 
-function reserve_testbed () {
+function reserve_and_cleanup_testbed () {
 
     set -exuo pipefail
 
     # Reserve physical testbed, perform cleanup, register trap to unreserve.
+    # When cleanup fails, remove from topologies and keep retrying
+    # until all topologies are removed.
     #
     # Variables read:
     # - TOPOLOGIES - Array of paths to topology yaml to attempt reservation on.
     # - PYTHON_SCRIPTS_DIR - Path to directory holding the reservation script.
     # Variables set:
+    # - TOPOLOGIES - Array of paths to topologies, with failed cleanups removed.
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # Functions called:
     # - die - Print to stderr and exit.
     # Traps registered:
     # - EXIT - Calls cancel_all for ${WORKING_TOPOLOGY}.
 
-    while true; do
+    while [[ ${TOPOLOGIES[@]} ]]; do
         for topo in "${TOPOLOGIES[@]}"; do
             set +e
             python "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -t "${topo}"
             result="$?"
             set -e
             if [[ "${result}" == "0" ]]; then
+                # Trap unreservation before cleanup check,
+                # so multiple jobs showing failed cleanup improve chances
+                # of humans to notice and fix.
                 WORKING_TOPOLOGY="${topo}"
                 echo "Reserved: ${WORKING_TOPOLOGY}"
                 trap "untrap_and_unreserve_testbed" EXIT || {
@@ -535,9 +541,25 @@ function reserve_testbed () {
                     }
                     die "Trap attempt failed, unreserve succeeded. Aborting."
                 }
-                cleanup_topo || {
-                    die "Testbed cleanup failed."
-                }
+                # Cleanup check.
+                set +e
+                cleanup_topo
+                result="$?"
+                set -e
+                if [[ "${result}" == "0" ]]; then
+                    break
+                fi
+                warn "Testbed cleanup failed: ${topo}"
+                untrap_and_unreserve_testbed "Fail of unreserve after cleanup."
+                # WORKING_TOPOLOGY is now empty again.
+                # Build new topology array.
+                new_topologies=()
+                for item in "${TOPOLOGIES[@]}"; do
+                    if [[ "${item}" != "${topo}" ]]; then
+                        new_topologies+=("${item}")
+                    fi
+                done
+                TOPOLOGIES=("${new_topologies}")
                 break
             fi
         done
@@ -554,6 +576,7 @@ function reserve_testbed () {
         echo "Sleeping ${sleep_time}"
         sleep "${sleep_time}" || die "Sleep failed."
     done
+    die "Run out of operational testbeds!"
 }
 
 

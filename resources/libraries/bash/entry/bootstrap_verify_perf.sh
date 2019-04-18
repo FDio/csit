@@ -39,7 +39,7 @@ select_topology || die
 gather_build || die
 check_download_dir || die
 activate_virtualenv || die
-reserve_testbed || die
+reserve_and_cleanup_testbed || die
 ansible_hosts "run-jitter-tool" || die
 select_tags || die
 compose_pybot_arguments || die
