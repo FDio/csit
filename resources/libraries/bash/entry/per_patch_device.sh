@@ -37,6 +37,9 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 common_dirs || die
+ls -l "${CSIT_DIR}/resources/api/vpp/origin"
+ls -l "${CSIT_DIR}/resources/api/vpp/origin/core"
+ls -l "${CSIT_DIR}/resources/api/vpp/origin/plugins"
 set_perpatch_vpp_dir || die
 build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die
@@ -46,7 +49,7 @@ get_test_tag_string || die
 set_perpatch_dut || die
 select_topology || die
 select_build "build_current" || die
-check_download_dir || die
+check_vpp_api_signature || die
 activate_virtualenv "${VPP_DIR}" || die
 activate_docker_topology || die
 select_vpp_device_tags || die
