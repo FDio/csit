@@ -1752,8 +1752,8 @@
     csit-hc2vpp-verify-func-1901-ubuntu1604:
       - 3
     # TODO: Add 1904 data
-    csit-hc2vpp-verify-func-1904-ubuntu1604:
-      -
+#    csit-hc2vpp-verify-func-1904-ubuntu1604:
+#      -
 
 - type: "output"
   output: "report"
