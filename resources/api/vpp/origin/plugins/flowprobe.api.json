@@ -1,0 +1,124 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "active_timer",
+    "u32"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "passive_timer",
+    "u32"
+   ],
+   [
+    "record_l2",
+    "u8"
+   ],
+   [
+    "record_l3",
+    "u8"
+   ],
+   [
+    "record_l4",
+    "u8"
+   ],
+   "flowprobe_params",
+   {
+    "crc": "0x574adc1c"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_add",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   [
+    "u8",
+    "which"
+   ],
+   "flowprobe_tx_interface_add_del",
+   {
+    "crc": "0x10c2fbab"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "flowprobe_params_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "flowprobe_tx_interface_add_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "flowprobe_params": {
+   "reply": "flowprobe_params_reply"
+  },
+  "flowprobe_tx_interface_add_del": {
+   "reply": "flowprobe_tx_interface_add_del_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x8c36cb50"
+}

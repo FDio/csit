@@ -1,0 +1,140 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    4,
+    "dst_address",
+    "u8"
+   ],
+   [
+    4,
+    "src_address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_add",
+    "u8"
+   ],
+   [
+    "u32",
+    "vrf_id"
+   ],
+   "oam_add_del",
+   {
+    "crc": "0x3d7fcf96"
+   }
+  ],
+  [
+   [
+    4,
+    "dst_address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "state",
+    "u8"
+   ],
+   "oam_event",
+   {
+    "crc": "0xa450141f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable_disable",
+    "u32"
+   ],
+   [
+    "pid",
+    "u32"
+   ],
+   "want_oam_events",
+   {
+    "crc": "0x476f5a08"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "oam_add_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "want_oam_events_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "oam_add_del": {
+   "reply": "oam_add_del_reply"
+  },
+  "want_oam_events": {
+   "events": [
+    "oam_event"
+   ],
+   "reply": "want_oam_events_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x6aac8f57"
+}
