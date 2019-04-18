@@ -155,7 +155,9 @@ function check_download_dir () {
     set -exuo pipefail
 
     # Fail if there are no files visible in ${DOWNLOAD_DIR}.
+    #
     # TODO: Do we need this as a function, if it is (almost) a one-liner?
+    # TODO: Reduce usage, as check_vpp_api_signature is stronger.
     #
     # Variables read:
     # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
@@ -167,6 +169,53 @@ function check_download_dir () {
     if [[ ! "$(ls -A "${DOWNLOAD_DIR}")" ]]; then
         die "No artifacts downloaded!"
     fi
+}
+
+
+function check_vpp_api_signature () {
+
+    set -exuo pipefail
+
+    # Extract .api.json files, and compare them to locally stored ones.
+    #
+    # Diffs are visible in console output.
+    # In case of failure, the "current" API tree is archived.
+    #
+    # Variables read:
+    # - VPP_API_SIGN_DIR - Directory where trees with known .api.json files are.
+    # - DOWNLOAD_DIR - Directory with packages to check api within.
+    # Files read:
+    # - Some package files under DOWNLOAD_DIR.
+    # - Anything under VPP_API_SIGN_DIR.
+    # Directories replaced:
+    # - Tree under VPP_API_SIGN_DIR/current with extracted .api.json files.
+    # - Tree under VPP_API_SIGN_DIR/tmp with extracted files and deleted.
+
+    tmp_dir="${VPP_API_SIGN_DIR}/tmp"
+    curr_dir="${VPP_API_SIGN_DIR}/current"
+    origin_dir="${VPP_API_SIGN_DIR}/origin"
+    gerrit_dir="${VPP_API_SIGN_DIR}/gerrit"
+    rm -rf "${tmp_dir}" "${curr_dir}" || die
+    mkdir -p "${tmp_dir}" "${curr_dir}" || die
+    dpkg -x "${DOWNLOAD_DIR}/vpp_"*".deb" "${tmp_dir}" || die
+    mv "${tmp_dir}/usr/share/vpp/api"/* "${curr_dir}" || die
+    rm -rf "${tmp_dir}"/* || die
+    dpkg -x "${DOWNLOAD_DIR}/vpp-plugin-core_"*".deb" "${tmp_dir}" || die
+    mv "${tmp_dir}/usr/share/vpp/api"/* "${curr_dir}" || die
+    rm -rf "${tmp_dir}" || die
+    if diff -dur "${curr_dir}" "${origin_dir}"; then
+        echo "Current build is matching API signature at VPP origin."
+        return
+    elif [[ -d "${gerrit_dir}" ]]; then
+        if diff -dur "${curr_dir}" "${gerrit_dir}"; then
+            echo "Current build is matching API signature at VPP Gerrit."
+            return
+        fi
+    fi
+    pushd "${curr_dir}"
+    tar c * | xz -9e > "${ARCHIVE_DIR}/apis.tar.xz" || true
+    popd
+    die "Current build does not match any known VPP API signature."
 }
 
 
@@ -200,6 +249,7 @@ function common_dirs () {
     # - ARCHIVE_DIR - Path to created CSIT subdirectory "archive".
     # - DOWNLOAD_DIR - Path to created CSIT subdirectory "download_dir".
     # - GENERATED_DIR - Path to created CSIT subdirectory "generated".
+    # - VPP_API_SIGN_DIR - Path to existing trees with known .api.json files.
     # Directories created if not present:
     # ARCHIVE_DIR, DOWNLOAD_DIR, GENERATED_DIR.
     # Functions called:
@@ -224,6 +274,9 @@ function common_dirs () {
         die "Readlink failed."
     }
     PYTHON_SCRIPTS_DIR="$(readlink -e "${TOOLS_DIR}/scripts")" || {
+        die "Readlink failed."
+    }
+    VPP_API_SIGN_DIR="$(readlink -e "${CSIT_DIR}/resources/api/vpp")" || {
         die "Readlink failed."
     }
 
