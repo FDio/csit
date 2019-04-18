@@ -1,0 +1,186 @@
+{
+    "enums": [],
+    "vl_api_version": "0x394fa590",
+    "services": {
+        "virtio_pci_create": {
+            "reply": "virtio_pci_create_reply"
+        },
+        "virtio_pci_delete": {
+            "reply": "virtio_pci_delete_reply"
+        },
+        "sw_interface_virtio_pci_dump": {
+            "stream": true,
+            "reply": "sw_interface_virtio_pci_details"
+        }
+    },
+    "unions": [],
+    "options": {
+        "version": "1.0.0"
+    },
+    "types": [],
+    "messages": [
+        [
+            "virtio_pci_create",
+            [
+                "u16",
+                "_vl_msg_id"
+            ],
+            [
+                "u32",
+                "client_index"
+            ],
+            [
+                "u32",
+                "context"
+            ],
+            [
+                "u32",
+                "pci_addr"
+            ],
+            [
+                "u8",
+                "use_random_mac"
+            ],
+            [
+                "u8",
+                "mac_address",
+                6
+            ],
+            [
+                "u16",
+                "tx_ring_sz"
+            ],
+            [
+                "u16",
+                "rx_ring_sz"
+            ],
+            [
+                "u64",
+                "features"
+            ],
+            {
+                "crc": "0x78e17a09"
+            }
+        ],
+        [
+            "virtio_pci_create_reply",
+            [
+                "u16",
+                "_vl_msg_id"
+            ],
+            [
+                "u32",
+                "context"
+            ],
+            [
+                "i32",
+                "retval"
+            ],
+            [
+                "u32",
+                "sw_if_index"
+            ],
+            {
+                "crc": "0xfda5941f"
+            }
+        ],
+        [
+            "virtio_pci_delete",
+            [
+                "u16",
+                "_vl_msg_id"
+            ],
+            [
+                "u32",
+                "client_index"
+            ],
+            [
+                "u32",
+                "context"
+            ],
+            [
+                "u32",
+                "sw_if_index"
+            ],
+            {
+                "crc": "0x529cb13f"
+            }
+        ],
+        [
+            "virtio_pci_delete_reply",
+            [
+                "u16",
+                "_vl_msg_id"
+            ],
+            [
+                "u32",
+                "context"
+            ],
+            [
+                "i32",
+                "retval"
+            ],
+            {
+                "crc": "0xe8d4e804"
+            }
+        ],
+        [
+            "sw_interface_virtio_pci_dump",
+            [
+                "u16",
+                "_vl_msg_id"
+            ],
+            [
+                "u32",
+                "client_index"
+            ],
+            [
+                "u32",
+                "context"
+            ],
+            {
+                "crc": "0x51077d14"
+            }
+        ],
+        [
+            "sw_interface_virtio_pci_details",
+            [
+                "u16",
+                "_vl_msg_id"
+            ],
+            [
+                "u32",
+                "context"
+            ],
+            [
+                "u32",
+                "sw_if_index"
+            ],
+            [
+                "u32",
+                "pci_addr"
+            ],
+            [
+                "u8",
+                "mac_addr",
+                6
+            ],
+            [
+                "u16",
+                "tx_ring_sz"
+            ],
+            [
+                "u16",
+                "rx_ring_sz"
+            ],
+            [
+                "u64",
+                "features"
+            ],
+            {
+                "crc": "0xd3a3ade3"
+            }
+        ]
+    ],
+    "aliases": {}
+}
