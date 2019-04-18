@@ -1,0 +1,57 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable_disable",
+    "u8"
+   ],
+   "cdp_enable_disable",
+   {
+    "crc": "0x4eec6097"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "cdp_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "cdp_enable_disable": {
+   "reply": "cdp_enable_disable_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x1b8d20f5"
+}

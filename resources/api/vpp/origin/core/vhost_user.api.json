@@ -1,0 +1,269 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    256,
+    "sock_filename",
+    "u8"
+   ],
+   [
+    6,
+    "mac_address",
+    "u8"
+   ],
+   [
+    64,
+    "tag",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "custom_dev_instance",
+    "u32"
+   ],
+   [
+    "disable_indirect_desc",
+    "u8"
+   ],
+   [
+    "disable_mrg_rxbuf",
+    "u8"
+   ],
+   [
+    "is_server",
+    "u8"
+   ],
+   [
+    "renumber",
+    "u8"
+   ],
+   [
+    "u8",
+    "use_custom_mac"
+   ],
+   "create_vhost_user_if",
+   {
+    "crc": "0xbd230b87"
+   }
+  ],
+  [
+   [
+    256,
+    "sock_filename",
+    "u8"
+   ],
+   [
+    64,
+    "interface_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "features",
+    "u64"
+   ],
+   [
+    "i32",
+    "sock_errno"
+   ],
+   [
+    "is_server",
+    "u8"
+   ],
+   [
+    "num_regions",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   [
+    "u32",
+    "virtio_net_hdr_sz"
+   ],
+   "sw_interface_vhost_user_details",
+   {
+    "crc": "0x91ff3307"
+   }
+  ],
+  [
+   [
+    256,
+    "sock_filename",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "custom_dev_instance",
+    "u32"
+   ],
+   [
+    "is_server",
+    "u8"
+   ],
+   [
+    "renumber",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "modify_vhost_user_if",
+   {
+    "crc": "0x80a9eaaa"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "delete_vhost_user_if",
+   {
+    "crc": "0x529cb13f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "sw_interface_vhost_user_dump",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "create_vhost_user_if_reply",
+   {
+    "crc": "0xfda5941f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "delete_vhost_user_if_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "modify_vhost_user_if_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "2.0.0"
+ },
+ "services": {
+  "create_vhost_user_if": {
+   "reply": "create_vhost_user_if_reply"
+  },
+  "delete_vhost_user_if": {
+   "reply": "delete_vhost_user_if_reply"
+  },
+  "modify_vhost_user_if": {
+   "reply": "modify_vhost_user_if_reply"
+  },
+  "sw_interface_vhost_user_dump": {
+   "reply": "sw_interface_vhost_user_details",
+   "stream": true
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x584ddcc0"
+}

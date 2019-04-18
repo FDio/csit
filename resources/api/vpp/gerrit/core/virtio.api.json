@@ -1,0 +1,186 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    6,
+    "mac_addr",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "features",
+    "u64"
+   ],
+   [
+    "pci_addr",
+    "u32"
+   ],
+   [
+    "rx_ring_sz",
+    "u16"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   [
+    "tx_ring_sz",
+    "u16"
+   ],
+   "sw_interface_virtio_pci_details",
+   {
+    "crc": "0xd3a3ade3"
+   }
+  ],
+  [
+   [
+    6,
+    "mac_address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "features",
+    "u64"
+   ],
+   [
+    "pci_addr",
+    "u32"
+   ],
+   [
+    "rx_ring_sz",
+    "u16"
+   ],
+   [
+    "tx_ring_sz",
+    "u16"
+   ],
+   [
+    "u8",
+    "use_random_mac"
+   ],
+   "virtio_pci_create",
+   {
+    "crc": "0x78e17a09"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "virtio_pci_delete",
+   {
+    "crc": "0x529cb13f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "sw_interface_virtio_pci_dump",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "virtio_pci_create_reply",
+   {
+    "crc": "0xfda5941f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "virtio_pci_delete_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "sw_interface_virtio_pci_dump": {
+   "reply": "sw_interface_virtio_pci_details",
+   "stream": true
+  },
+  "virtio_pci_create": {
+   "reply": "virtio_pci_create_reply"
+  },
+  "virtio_pci_delete": {
+   "reply": "virtio_pci_delete_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x394fa590"
+}

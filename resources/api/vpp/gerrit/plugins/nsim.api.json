@@ -1,0 +1,167 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "average_packet_size",
+    "u32"
+   ],
+   [
+    "bandwidth_in_bits_per_second",
+    "u64"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "delay_in_usec",
+    "u32"
+   ],
+   [
+    "packets_per_drop",
+    "u32"
+   ],
+   "nsim_configure",
+   {
+    "crc": "0x16ed400f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable_disable",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "nsim_output_feature_enable_disable",
+   {
+    "crc": "0x57298519"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable_disable",
+    "u8"
+   ],
+   [
+    "sw_if_index0",
+    "u32"
+   ],
+   [
+    "sw_if_index1",
+    "u32"
+   ],
+   "nsim_cross_connect_enable_disable",
+   {
+    "crc": "0xdf4e7ba9"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "nsim_configure_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "nsim_cross_connect_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "nsim_output_feature_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "2.1.0"
+ },
+ "services": {
+  "nsim_configure": {
+   "reply": "nsim_configure_reply"
+  },
+  "nsim_cross_connect_enable_disable": {
+   "reply": "nsim_cross_connect_enable_disable_reply"
+  },
+  "nsim_output_feature_enable_disable": {
+   "reply": "nsim_output_feature_enable_disable_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x76a91d2e"
+}

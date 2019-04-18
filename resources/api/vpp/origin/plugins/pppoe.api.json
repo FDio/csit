@@ -1,0 +1,158 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    16,
+    "client_ip",
+    "u8"
+   ],
+   [
+    6,
+    "client_mac",
+    "u8"
+   ],
+   [
+    6,
+    "local_mac",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "decap_vrf_id",
+    "u32"
+   ],
+   [
+    "encap_if_index",
+    "u32"
+   ],
+   [
+    "is_ipv6",
+    "u8"
+   ],
+   [
+    "session_id",
+    "u16"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "pppoe_session_details",
+   {
+    "crc": "0x358fc7a8"
+   }
+  ],
+  [
+   [
+    16,
+    "client_ip",
+    "u8"
+   ],
+   [
+    6,
+    "client_mac",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "decap_vrf_id",
+    "u32"
+   ],
+   [
+    "is_add",
+    "u8"
+   ],
+   [
+    "is_ipv6",
+    "u8"
+   ],
+   [
+    "session_id",
+    "u16"
+   ],
+   "pppoe_add_del_session",
+   {
+    "crc": "0x766cbfeb"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "pppoe_session_dump",
+   {
+    "crc": "0x529cb13f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "pppoe_add_del_session_reply",
+   {
+    "crc": "0xfda5941f"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "pppoe_add_del_session": {
+   "reply": "pppoe_add_del_session_reply"
+  },
+  "pppoe_session_dump": {
+   "reply": "pppoe_session_details",
+   "stream": true
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x4def67c4"
+}
