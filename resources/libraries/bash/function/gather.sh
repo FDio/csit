@@ -22,6 +22,47 @@ set -exuo pipefail
 # TODO: Add a link to bash style guide.
 
 
+function check_vpp_api_signature () {
+
+    set -exuo pipefail
+
+    # Extract .api.json files, and compare them to locally stored ones.
+    #
+    # Variables read:
+    # - VPP_API_SIGN_DIR - Directory where trees with known .api.json files are.
+    # - DOWNLOAD_DIR - Directory with packages to check api within.
+    # Files read:
+    # - Some package files under DOWNLOAD_DIR.
+    # - Anything under VPP_API_SIGN_DIR.
+    # Directories replaced:
+    # - Tree under VPP_API_SIGN_DIR/current with extracted .api.json files.
+    # - Tree under VPP_API_SIGN_DIR/tmp with extracted files and deleted.
+
+    tmp_dir="${VPP_API_SIGN_DIR}/tmp"
+    curr_dir="${VPP_API_SIGN_DIR}/current"
+    origin_dir="${VPP_API_SIGN_DIR}/origin"
+    gerrit_dir="${VPP_API_SIGN_DIR}/gerrit"
+    rm -rf "${tmp_dir}" "${curr_dir}" || die
+    mkdir -p "${tmp_dir}" "${curr_dir}" || die
+    dpkg -x "${DOWNLOAD_DIR}/vpp_*.deb" "${tmp_dir}" || die
+    mv "${tmp_dir}/usr/share/vpp/api"/* "${curr_dir}" || die
+    rm -rf "${tmp_dir}"/* || die
+    dpkg -x "${DOWNLOAD_DIR}/vpp-plugin-*.deb" "${tmp_dir}" || die
+    mv "${tmp_dir}/usr/share/vpp/api"/* "${curr_dir}" || die
+    rm -rf "${tmp_dir}" || die
+    if diff -dur "${curr_dir}" "${origin_dir}"; then
+        echo "Current build is matching API signature at VPP origin."
+    elif [[ -d "${gerrit_dir}" ]]; then
+        if diff -dur "${curr_dir}" "${gerrit_dir}"; then
+            echo "Current build is matching API signature at VPP Gerrit."
+        else
+            die "Current build does not match neither known API signature."
+        fi
+    else
+        die "Current build does not match VPP origin API signature."
+    fi
+}
+
 function gather_build () {
 
     set -exuo pipefail
@@ -245,6 +286,11 @@ function gather_vpp () {
 
     set -exuo pipefail
 
+    # Put packages to a place tests expect them.
+    #
+    # Packages are either downloaded, or moved from local build directory.
+    # For locally built packages, API signature check is performed.
+    #
     # Variables read:
     # - BASH_FUNCTION_DIR - Bash directory with functions.
     # - TEST_CODE - The test selection string from environment or argument.
@@ -286,9 +332,10 @@ function gather_vpp () {
             ;;
         "vpp-csit-"*)
             # Use locally built packages.
-            mv "${DOWNLOAD_DIR}"/../"vpp"*".deb" "${DOWNLOAD_DIR}"/ || {
+            mv "${DOWNLOAD_DIR}"/../*"vpp"*".deb" "${DOWNLOAD_DIR}"/ || {
                 die "Move command failed."
             }
+            check_vpp_api_signature || die
             ;;
         *)
             die "Unable to identify job type from: ${TEST_CODE}"
