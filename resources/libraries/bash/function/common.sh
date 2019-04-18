@@ -200,6 +200,7 @@ function common_dirs () {
     # - ARCHIVE_DIR - Path to created CSIT subdirectory "archive".
     # - DOWNLOAD_DIR - Path to created CSIT subdirectory "download_dir".
     # - GENERATED_DIR - Path to created CSIT subdirectory "generated".
+    # - API_SIGN_DIR - Path to existing trees with known .api.json files.
     # Directories created if not present:
     # ARCHIVE_DIR, DOWNLOAD_DIR, GENERATED_DIR.
     # Functions called:
@@ -224,6 +225,9 @@ function common_dirs () {
         die "Readlink failed."
     }
     PYTHON_SCRIPTS_DIR="$(readlink -e "${TOOLS_DIR}/scripts")" || {
+        die "Readlink failed."
+    }
+    API_SIGN_DIR="$(readlink -e "${CSIT_DIR}/resources/supported_apis")" || {
         die "Readlink failed."
     }
 
