@@ -1,0 +1,119 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    6,
+    "hw_addr",
+    "u8"
+   ],
+   [
+    64,
+    "netmap_if_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_master",
+    "u8"
+   ],
+   [
+    "is_pipe",
+    "u8"
+   ],
+   [
+    "u8",
+    "use_random_hw_addr"
+   ],
+   "netmap_create",
+   {
+    "crc": "0x5299044e"
+   }
+  ],
+  [
+   [
+    64,
+    "netmap_if_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "netmap_delete",
+   {
+    "crc": "0xa8b6c201"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "netmap_create_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "netmap_delete_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "netmap_create": {
+   "reply": "netmap_create_reply"
+  },
+  "netmap_delete": {
+   "reply": "netmap_delete_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0xc0ea44af"
+}

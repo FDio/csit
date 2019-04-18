@@ -1,0 +1,67 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    4,
+    "collector_address",
+    "u8"
+   ],
+   [
+    4,
+    "src_address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_disable",
+    "u8"
+   ],
+   "vxlan_gpe_ioam_export_enable_disable",
+   {
+    "crc": "0x148b82a4"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "vxlan_gpe_ioam_export_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "vxlan_gpe_ioam_export_enable_disable": {
+   "reply": "vxlan_gpe_ioam_export_enable_disable_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x22132a2c"
+}

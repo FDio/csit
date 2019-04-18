@@ -1,0 +1,601 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    0,
+    "api_versions",
+    "count",
+    "vl_api_module_version_t"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "count",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "api_versions_reply",
+   {
+    "crc": "0x90a39195"
+   }
+  ],
+  [
+   [
+    0,
+    "configs",
+    "nitems",
+    "u64"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "nitems",
+    "u8"
+   ],
+   [
+    "requested_size",
+    "u32"
+   ],
+   "sock_init_shm",
+   {
+    "crc": "0x51646d92"
+   }
+  ],
+  [
+   [
+    0,
+    "count",
+    "message_table",
+    "vl_api_message_table_entry_t"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "count",
+    "u16"
+   ],
+   [
+    "i32",
+    "response"
+   ],
+   [
+    "index",
+    "u32"
+   ],
+   "sockclnt_create_reply",
+   {
+    "crc": "0xa134a8a8"
+   }
+  ],
+  [
+   [
+    0,
+    "data",
+    "data_len",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "data_len",
+    "u32"
+   ],
+   [
+    "function",
+    "u64"
+   ],
+   [
+    "multicast",
+    "u8"
+   ],
+   [
+    "need_barrier_sync",
+    "u8"
+   ],
+   [
+    "send_reply",
+    "u8"
+   ],
+   "rpc_call",
+   {
+    "crc": "0x7e8a2c95"
+   }
+  ],
+  [
+   [
+    128,
+    "plugin_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "first_msg_id",
+    "u16"
+   ],
+   [
+    "last_msg_id",
+    "u16"
+   ],
+   "trace_plugin_msg_ids",
+   {
+    "crc": "0x64af79f9"
+   }
+  ],
+  [
+   [
+    64,
+    "name",
+    "u8"
+   ],
+   [
+    8,
+    "api_versions",
+    "u32"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "ctx_quota",
+    "i32"
+   ],
+   [
+    "input_queue",
+    "u64"
+   ],
+   "memclnt_create",
+   {
+    "crc": "0x6d33c5ea"
+   }
+  ],
+  [
+   [
+    64,
+    "name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "get_first_msg_id",
+   {
+    "crc": "0x0cb71b0e"
+   }
+  ],
+  [
+   [
+    64,
+    "name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "sockclnt_create",
+   {
+    "crc": "0xdf2cf94d"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "index",
+    "u32"
+   ],
+   "sockclnt_delete",
+   {
+    "crc": "0x8ac76db6"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "api_versions",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "memclnt_keepalive",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "first_msg_id",
+    "u16"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "get_first_msg_id_reply",
+   {
+    "crc": "0x7d337472"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "handle",
+    "u64"
+   ],
+   [
+    "i32",
+    "response"
+   ],
+   [
+    "index",
+    "u32"
+   ],
+   [
+    "message_table",
+    "u64"
+   ],
+   "memclnt_create_reply",
+   {
+    "crc": "0x42ec4560"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "response"
+   ],
+   "sockclnt_delete_reply",
+   {
+    "crc": "0x8f38b1ee"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "memclnt_keepalive_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "rpc_call_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "sock_init_shm_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "do_cleanup",
+    "u8"
+   ],
+   [
+    "handle",
+    "u64"
+   ],
+   [
+    "index",
+    "u32"
+   ],
+   "memclnt_delete",
+   {
+    "crc": "0x4dd351e9"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "dummy",
+    "u8"
+   ],
+   "memclnt_read_timeout",
+   {
+    "crc": "0xc3a3a452"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "dummy",
+    "u8"
+   ],
+   "memclnt_rx_thread_suspend",
+   {
+    "crc": "0xc3a3a452"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "dummy",
+    "u8"
+   ],
+   "rx_thread_exit",
+   {
+    "crc": "0xc3a3a452"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "handle",
+    "u64"
+   ],
+   [
+    "i32",
+    "response"
+   ],
+   "memclnt_delete_reply",
+   {
+    "crc": "0x3d3b6312"
+   }
+  ]
+ ],
+ "options": {
+  "version": "2.1.0"
+ },
+ "services": {
+  "api_versions": {
+   "reply": "api_versions_reply"
+  },
+  "get_first_msg_id": {
+   "reply": "get_first_msg_id_reply"
+  },
+  "memclnt_create": {
+   "reply": "memclnt_create_reply"
+  },
+  "memclnt_delete": {
+   "reply": "memclnt_delete_reply"
+  },
+  "memclnt_keepalive": {
+   "reply": "memclnt_keepalive_reply"
+  },
+  "memclnt_read_timeout": {
+   "reply": "null"
+  },
+  "memclnt_rx_thread_suspend": {
+   "reply": "null"
+  },
+  "rpc_call": {
+   "reply": "rpc_call_reply"
+  },
+  "rx_thread_exit": {
+   "reply": "null"
+  },
+  "sock_init_shm": {
+   "reply": "sock_init_shm_reply"
+  },
+  "sockclnt_create": {
+   "reply": "sockclnt_create_reply"
+  },
+  "sockclnt_delete": {
+   "reply": "sockclnt_delete_reply"
+  },
+  "trace_plugin_msg_ids": {
+   "reply": "null"
+  }
+ },
+ "types": [
+  [
+   [
+    64,
+    "name",
+    "u8"
+   ],
+   [
+    "index",
+    "u16"
+   ],
+   "message_table_entry",
+   {
+    "crc": "0x913bf1c6"
+   }
+  ],
+  [
+   [
+    64,
+    "name",
+    "u8"
+   ],
+   [
+    "major",
+    "u32"
+   ],
+   [
+    "minor",
+    "u32"
+   ],
+   [
+    "patch",
+    "u32"
+   ],
+   "module_version",
+   {
+    "crc": "0x4b6da11a"
+   }
+  ]
+ ],
+ "unions": [],
+ "vl_api_version": "0xb619530"
+}
