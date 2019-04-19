@@ -34,11 +34,23 @@ class Constants(object):
     # vat templates location
     RESOURCES_TPL_VAT = 'resources/templates/vat'
 
+    # Kubernetes templates location
+    RESOURCES_TPL_K8S = 'resources/templates/kubernetes'
+
+    # KernelVM templates location
+    RESOURCES_TPL_VM = 'resources/templates/vm'
+
     # OpenVPP VAT binary name
     VAT_BIN_NAME = 'vpp_api_test'
 
     # VPP service unit name
     VPP_UNIT = 'vpp'
+
+    # Number of system CPU cores.
+    CPU_CNT_SYSTEM = 1
+
+    # Number of vswitch main thread CPU cores.
+    CPU_CNT_MAIN = 1
 
     # QEMU binary path
     QEMU_BIN_PATH = '/usr/bin'
@@ -57,12 +69,6 @@ class Constants(object):
 
     # TRex install directory
     TREX_INSTALL_DIR = '/opt/trex-core-2.35'
-
-    # Kubernetes templates location
-    RESOURCES_TPL_K8S = 'resources/templates/kubernetes'
-
-    # KernelVM templates location
-    RESOURCES_TPL_VM = 'resources/templates/vm'
 
     # Honeycomb directory location at topology nodes:
     REMOTE_HC_DIR = '/opt/honeycomb'
