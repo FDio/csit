@@ -119,7 +119,7 @@ class Regenerator(object):
                     # Not supported by AVF driver.
                     # https://git.fd.io/vpp/tree/src/plugins/avf/README.md
                     emit = False
-            if "-16vm-" in suite_id or "-16dcr-" in suite_id:
+            if "-16vm2t-" in suite_id or "-16dcr2t-" in suite_id:
                 if kwargs["phy_cores"] > 3:
                     # CSIT lab only has 28 (physical) core processors,
                     # so these test would fail when attempting to assign cores.
