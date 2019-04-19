@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | VM
-| ... | VHOST_1024 | NF_DENSITY | NF_VPPIP4 | CHAIN | 1R6C
+| ... | VHOST_1024 | NF_DENSITY | NF_VPPIP4 | CHAIN | 2R1C
 | ...
 | Suite Setup | Set up 2-node performance topology with DUT's NIC model
 | ... | L3 | ${nic_name}
@@ -27,8 +27,8 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *RFC2544: Pkt throughput L2BD test cases with 12 vhost 1 chain
-| ... | 6 VMs*
+| Documentation | *RFC2544: Pkt throughput L2BD test cases with 4 vhost 2 chains
+| ... | 2 VM*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
 | ... | with single links between nodes.
@@ -54,10 +54,10 @@
 *** Variables ***
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
-| ${nf_dtcr}= | ${1}
-| ${nf_dtc}= | ${1}
+| ${nf_dtcr}= | ${2}
+| ${nf_dtc}= | ${0.5}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-1c6n
+| ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-2c1n
 
 *** Keywords ***
 | Local Template
@@ -81,57 +81,57 @@
 | | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 bridge domains for multiple chains with Vhost-User
-| | ... | nf_chains=${1} | nf_nodes=${6}
+| | ... | nf_chains=${2} | nf_nodes=${1}
 | | And Configure chains of NFs connected via vhost-user
-| | ... | nf_chains=${1} | nf_nodes=${6} | jumbo=${jumbo}
+| | ... | nf_chains=${2} | nf_nodes=${1} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${False} | vnf=vpp_chain_ip4
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc01-64B-1c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc02-64B-2c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc03-64B-4c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc04-1518B-1c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc05-1518B-2c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc06-1518B-4c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc07-9000B-1c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc08-9000B-2c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc09-9000B-4c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc10-IMIX-1c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc11-IMIX-2c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-eth-l2bd-12vhost-1chain-6vm-vppip4-ndrpdr
+| tc12-IMIX-4c-eth-l2bd-4vhost-2chain-2vm-vppip4-dtc-half-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
