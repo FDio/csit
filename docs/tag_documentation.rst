@@ -357,6 +357,16 @@ NF Service Density Tags
    service instances, {c}Column denoting number of NFs per service
    instance. {r}=(1,2,4,6,8,10), {c}=(1,2,4,6,8,10).
 
+.. topic:: {n}VM{t}T
+
+   Service density {n}VM{t}T, {n}Number of NF Qemu VMs, {t}Number of threads
+   per NF.
+
+.. topic:: {n}DCRt}T
+
+   Service density {n}DCR{t}T, {n}Number of NF Docker containers, {t}Number of
+   threads per NF.
+
 Forwarding Mode Tags
 --------------------
 

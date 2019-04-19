@@ -64,7 +64,7 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes}
+| | All VPP Interfaces Ready Wait | ${nodes} | timeout=${600}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
@@ -83,7 +83,7 @@
 | | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
-| | All VPP Interfaces Ready Wait | ${nodes}
+| | All VPP Interfaces Ready Wait | ${nodes} | timeout=${600}
 
 | Set single interfaces in path up
 | | [Documentation]
@@ -104,7 +104,7 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
 | | | Run Keyword Unless | '${if1_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes}
+| | All VPP Interfaces Ready Wait | ${nodes} | timeout=${600}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
@@ -2301,10 +2301,11 @@
 | | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
 | | ... | auto_scale=${auto_scale} | vnf=${vnf}
 | | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
-| | ... | cpu_count_int=${cpu_count_int} | rxq_count_int=${rxq_count_int}
+| | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
+| | ... | rxq_count_int=${rxq_count_int}
 | | Run Keyword | vnf_manager.Start All VMs | pinning=${True}
 | | Run Keyword If | ${use_tuned_cfs} | vnf_manager.Set Scheduler All VMs
-| | All VPP Interfaces Ready Wait | ${nodes}
+| | All VPP Interfaces Ready Wait | ${nodes} | timeout=${600}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
 | Configure guest VM with dpdk-testpmd connected via vhost-user
@@ -2392,9 +2393,10 @@
 | | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
-| | | ${nf_cpus}= | Create network function CPU list | ${dut}
-| | | ... | chains=${1} | nodeness=${vm_count} | chain_id=${1}
-| | | ... | node_id=${number} | auto_scale=${True}
+| | | ${nf_cpus}= | Get Affinity NF | ${nodes} | ${dut}
+| | | ... | nf_chains=${1} | nf_nodes=${vm_count}
+| | | ... | nf_chain=${1} | nf_node=${number}
+| | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${cpu_count_int}
 | | | ${sock1}= | Set Variable | /var/run/vpp/sock-${number}-1
 | | | ${sock2}= | Set Variable | /var/run/vpp/sock-${number}-2
 | | | ${vm}=
@@ -2528,9 +2530,10 @@
 | | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${vm_count}+1
-| | | ${nf_cpus}= | Create network function CPU list | ${dut}
-| | | ... | chains=${1} | nodeness=${vm_count} | chain_id=${1}
-| | | ... | node_id=${number} | auto_scale=${True}
+| | | ${nf_cpus}= | Get Affinity NF | ${nodes} | ${dut}
+| | | ... | nf_chains=${1} | nf_nodes=${vm_count}
+| | | ... | nf_chain=${1} | nf_node=${number}
+| | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${cpu_count_int}
 | | | ${sock1}= | Set Variable | /var/run/vpp/sock-${number}-1
 | | | ${sock2}= | Set Variable | /var/run/vpp/sock-${number}-2
 | | | ${vm}=

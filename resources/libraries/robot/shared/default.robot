@@ -14,6 +14,7 @@
 *** Settings ***
 | Variables | resources/libraries/python/topology.py
 | Variables | resources/libraries/python/PapiHistory.py
+| Variables | resources/libraries/python/Constants.py
 | ...
 | Library | Collections
 | Library | OperatingSystem
@@ -199,10 +200,13 @@
 | | | ... | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
 | | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']} | @{if_list}
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | | ${skip_cnt}= | Set variable | ${CPU_CNT_SYSTEM}
 | | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
-| | | ... | skip_cnt=${1} | cpu_cnt=${1}
+| | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${CPU_CNT_MAIN}
+| | | ${skip_cnt}= | Evaluate | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN}
 | | | ${cpu_wt}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
-| | | ... | skip_cnt=${2} | cpu_cnt=${cpu_count_int} | smt_used=${smt_used}
+| | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${cpu_count_int}
+| | | ... | smt_used=${smt_used}
 | | | ${thr_count_int}= | Run keyword if | ${smt_used}
 | | | ... | Evaluate | int(${cpu_count_int}*2)
 | | | ... | ELSE | Set variable | ${thr_count_int}
