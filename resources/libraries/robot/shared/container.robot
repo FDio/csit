@@ -41,6 +41,12 @@
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${nf_chain}=${1}
 | | ... | ${nf_node}=${1} | ${auto_scale}=${True} | ${nested}=${False}
 | | ...
+| | ${nf_dtcr_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${nf_dtcr}
+| | ${nf_dtcr}= | Run Keyword If | '${nf_dtcr_status}' == 'PASS'
+| | ... | Set Variable | ${nf_dtcr} | ELSE | Set Variable | ${1}
+| | ${nf_dtc}= | Set Variable If | ${auto_scale} | ${cpu_count_int}
+| | ... | ${nf_dtc}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
@@ -56,9 +62,10 @@
 | | | ... | ${root}/usr/share/vpp/:/usr/share/vpp/
 | | | ${nf_cpus}= | Set Variable | ${None}
 | | | ${nf_cpus}= | Run Keyword Unless | ${nested}
-| | | ... | Create network function CPU list | ${dut}
-| | | ... | chains=${nf_chains} | nodeness=${nf_nodes} | chain_id=${nf_chain}
-| | | ... | node_id=${nf_node} | auto_scale=${auto_scale}
+| | | ... | Get Affinity NF | ${nodes} | ${dut}
+| | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
+| | | ... | nf_chain=${nf_chain} | nf_node=${nf_node}
+| | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | | &{cont_args}= | Create Dictionary
 | | | ... | name=${dut}_${container_group}${nf_id}${uuid}
 | | | ... | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
