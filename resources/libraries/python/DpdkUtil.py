@@ -75,8 +75,8 @@ class DpdkUtil(object):
         options.add_if_from_dict(
             'disable-hw-vlan', 'pmd_disable_hw_vlan', kwargs, True)
         # Set the MAC address XX:XX:XX:XX:XX:XX of the peer port N
-        options.add_equals_from_dict('eth-peer', 'pmd_eth-peer_0', kwargs)
-        options.add_equals_from_dict('eth-peer', 'pmd_eth-peer_1', kwargs)
+        options.add_equals_from_dict('eth-peer', 'pmd_eth_peer_0', kwargs)
+        options.add_equals_from_dict('eth-peer', 'pmd_eth_peer_1', kwargs)
         # Set the max packet length.
         options.add_equals_from_dict('max-pkt-len', 'pmd_max_pkt_len', kwargs)
         # Set the number of forwarding cores based on coremask.
