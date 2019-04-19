@@ -53,6 +53,8 @@
 *** Variables ***
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
+| ${nf_dtcr}= | ${2}
+| ${nf_dtc}= | ${0.5}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-2c2n
 
@@ -86,7 +88,7 @@
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2bd-8vhost-2chain-4vm-l3fwdip4-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | tc02-64B-2c-eth-l2bd-8vhost-2chain-4vm-l3fwdip4-ndrpdr

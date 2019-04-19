@@ -93,8 +93,9 @@ class OptionString(object):
         return self
 
     def _check_and_add(self, part, prefixed):
-        """Convert to string, strip, add conditionally prefixed if non-empty.
+        """Convert to string, strip, conditionally add prefixed if non-empty.
 
+        Value of None is converted to empty string.
         Emptiness is tested before adding prefix.
 
         :param part: Unchecked part to add to list of parts.
@@ -104,7 +105,7 @@ class OptionString(object):
         :returns: The converted part without prefix, empty means not added.
         :rtype: str
         """
-        part = str(part).strip()
+        part = "" if part is None else str(part).strip()
         if part:
             prefixed_part = self.prefix + part if prefixed else part
             self.parts.append(prefixed_part)
