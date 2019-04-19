@@ -53,6 +53,8 @@
 *** Variables ***
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
+| ${nf_dtcr}= | ${1}
+| ${nf_dtc}= | ${1}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-4c1n
 
