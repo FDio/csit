@@ -13,7 +13,11 @@
 
 """CPU utilities library."""
 
-from resources.libraries.python.ssh import SSH
+from robot.libraries.BuiltIn import BuiltIn
+
+from resources.libraries.python.Constants import Constants
+from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.topology import Topology
 
 __all__ = ["CpuUtils"]
 
@@ -66,19 +70,8 @@ class CpuUtils(object):
         :type nodes: dict
         :raises RuntimeError: If the ssh command "lscpu -p" fails.
         """
-        ssh = SSH()
         for node in nodes.values():
-            ssh.connect(node)
-            cmd = "lscpu -p"
-            ret, stdout, stderr = ssh.exec_command(cmd)
-#           parsing of "lscpu -p" output:
-#           # CPU,Core,Socket,Node,,L1d,L1i,L2,L3
-#           0,0,0,0,,0,0,0,0
-#           1,1,0,0,,1,1,1,0
-            if ret != 0:
-                raise RuntimeError(
-                    "Failed to execute ssh command, ret: {} err: {}".format(
-                        ret, stderr))
+            stdout, stderr = exec_cmd_no_error(node, 'lscpu -p')
             node['cpuinfo'] = list()
             for line in stdout.split("\n"):
                 if line and line[0] != "#":
@@ -243,58 +236,137 @@ class CpuUtils(object):
         return cpu_range
 
     @staticmethod
-    def cpu_slice_of_list_for_nf(**kwargs):
-        """Return list of node related list of CPU numbers.
+    def cpu_slice_of_list_for_nf(node, cpu_node, nf_chains=1, nf_nodes=1,
+                                 nf_chain=1, nf_node=1, nf_dtc=1, nf_mtcr=2,
+                                 nf_dtcr=1, skip_cnt=0):
+        """Return list of DUT node related list of CPU numbers. The main
+        computing unit is physical core count.
 
-        :param kwargs: Key-value pairs used to compute placement.
-        :type kwargs: dict
-        :returns: Cpu numbers related to numa from argument.
+        :param node: DUT node.
+        :param cpu_node: Numa node number.
+        :param nf_chains: Number of NF chains.
+        :param nf_nodes: Number of NF nodes in chain.
+        :param nf_chain: Chain number indexed from 1.
+        :param nf_node: Node number indexed from 1.
+        :param vs_dtc: Amount of physical cores for vswitch dataplane.
+        :param nf_dtc: Amount of physical cores for NF dataplane.
+        :param nf_mtcr: NF main thread per core ratio.
+        :param nf_dtcr: NF dataplane thread per core ratio.
+        :param skip_cnt: Skip first "skip_cnt" CPUs.
+        :type node: dict
+        :param cpu_node: int.
+        :type nf_chains: int
+        :type nf_nodes: int
+        :type nf_chain: int
+        :type nf_node: int
+        :type vs_dtc: int
+        :type nf_dtc: int or float
+        :type nf_mtcr: int
+        :type nf_dtcr: int
+        :type skip_cnt: int
+        :returns: List of CPUs allocated to NF.
         :rtype: list
         :raises RuntimeError: If we require more cpus than available or if
         placement is not possible due to wrong parameters.
         """
-        if kwargs['chain_id'] - 1 >= kwargs['chains']:
+        if nf_chain - 1 >= nf_chains:
             raise RuntimeError("ChainID is higher than total number of chains!")
-        if kwargs['node_id'] - 1 >= kwargs['nodeness']:
-            raise RuntimeError("NodeID is higher than chain nodeness!")
+        if nf_node - 1 >= nf_nodes:
+            raise RuntimeError("NodeID is higher than chain nodes!")
 
-        smt_used = CpuUtils.is_smt_enabled(kwargs['node']['cpuinfo'])
-        cpu_list = CpuUtils.cpu_list_per_node(kwargs['node'],
-                                              kwargs['cpu_node'], smt_used)
+        smt_used = CpuUtils.is_smt_enabled(node['cpuinfo'])
+        cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
         cpu_list_len = len(cpu_list)
+        # CPU thread sibling offset.
+        sib = cpu_list_len / CpuUtils.NR_OF_THREADS
 
-        mt_req = ((kwargs['chains'] * kwargs['nodeness']) + kwargs['mtcr'] - 1)\
-            / kwargs['mtcr']
-        dt_req = ((kwargs['chains'] * kwargs['nodeness']) + kwargs['dtcr'] - 1)\
-            / kwargs['dtcr']
+        if not smt_used and not isinstance(nf_dtc, int):
+            raise RuntimeError("Cannot allocate if SMT is not enabled!")
+        # TOOD: Workaround as we are using physical core as main unit, we must
+        # adjust number of physical dataplane cores in case of float for further
+        # array referencing. As rounding method in Py2.7 and Py3.x differs, we
+        # are using static mapping. This can be rewritten using flat arrays and
+        # different logic (from Physical core unit to Logical core unit).
+        dtc = 1 if not isinstance(nf_dtc, int) else nf_dtc
 
-        cpu_req = kwargs['skip_cnt'] + mt_req + dt_req
+        mt_req = ((nf_chains * nf_nodes) + nf_mtcr - 1) / nf_mtcr
+        dt_req = ((nf_chains * nf_nodes) + nf_dtcr - 1) / nf_dtcr
+        cpu_req = skip_cnt + mt_req + dt_req
+
         if smt_used and cpu_req > cpu_list_len / CpuUtils.NR_OF_THREADS:
             raise RuntimeError("Not enough CPU cores available for placement!")
         elif not smt_used and cpu_req > cpu_list_len:
             raise RuntimeError("Not enough CPU cores available for placement!")
 
-        offset = (kwargs['node_id'] - 1) + (kwargs['chain_id'] - 1)\
-            * kwargs['nodeness']
-        dtc = kwargs['dtc']
+        offset = (nf_node - 1) + (nf_chain - 1) * nf_nodes
         try:
             mt_odd = (offset / mt_req) & 1
-            mt_skip = kwargs['skip_cnt'] + (offset % mt_req)
-            dt_skip = kwargs['skip_cnt'] + mt_req + (offset % dt_req) * dtc
+            mt_skip = skip_cnt + (offset % mt_req)
+            dt_odd = (offset / dt_req) & 1
+            dt_skip = skip_cnt + mt_req + (offset % dt_req) * dtc
         except ZeroDivisionError:
             raise RuntimeError("Invalid placement combination!")
-
         if smt_used:
-            cpu_list_0 = cpu_list[:cpu_list_len / CpuUtils.NR_OF_THREADS]
-            cpu_list_1 = cpu_list[cpu_list_len / CpuUtils.NR_OF_THREADS:]
-
-            mt_cpu_list = [cpu for cpu in cpu_list_1[mt_skip:mt_skip + 1]] \
-                if mt_odd else [cpu for cpu in cpu_list_0[mt_skip:mt_skip + 1]]
-
-            dt_cpu_list = [cpu for cpu in cpu_list_0[dt_skip:dt_skip + dtc]]
-            dt_cpu_list += [cpu for cpu in cpu_list_1[dt_skip:dt_skip + dtc]]
+            mt_list = [cpu for cpu in cpu_list[mt_skip+sib:mt_skip+sib + 1]] \
+                if mt_odd else [cpu for cpu in cpu_list[mt_skip:mt_skip + 1]]
+            dt_list = [cpu for cpu in cpu_list[dt_skip+sib:dt_skip+sib + dtc]] \
+                if dt_odd else [cpu for cpu in cpu_list[dt_skip:dt_skip + dtc]]
+            if nf_dtc == 0.5:
+                dt_list = \
+                    [cpu for cpu in cpu_list[dt_skip:dt_skip + dtc]]
+                dt_list += \
+                    [cpu for cpu in cpu_list[dt_skip+sib:dt_skip+sib + dtc]]
+            else:
+                raise RuntimeError("Unsupported number of dataplane cores!")
         else:
-            mt_cpu_list = [cpu for cpu in cpu_list[mt_skip:mt_skip + 1]]
-            dt_cpu_list = [cpu for cpu in cpu_list[dt_skip:dt_skip + dtc]]
+            mt_list = [cpu for cpu in cpu_list[mt_skip:mt_skip + 1]]
+            dt_list = [cpu for cpu in cpu_list[dt_skip:dt_skip + dtc]]
 
-        return mt_cpu_list + dt_cpu_list
+        return mt_list + dt_list
+
+    @staticmethod
+    def get_affinity_nf(nodes, node, nf_chains=1, nf_nodes=1, nf_chain=1,
+                        nf_node=1, vs_dtc=1, nf_dtc=1, nf_mtcr=2, nf_dtcr=1):
+
+        """Get affinity of NF (network function). Result will be used to compute
+        the amount of CPUs and also affinity.
+
+        :param nodes: Physical topology nodes.
+        :param node: SUT node.
+        :param nf_chains: Number of NF chains.
+        :param nf_nodes: Number of NF nodes in chain.
+        :param nf_chain: Chain number indexed from 1.
+        :param nf_node: Node number indexed from 1.
+        :param vs_dtc: Amount of physical cores for vswitch dataplane.
+        :param nf_dtc: Amount of physical cores for NF dataplane.
+        :param nf_mtcr: NF main thread per core ratio.
+        :param nf_dtcr: NF dataplane thread per core ratio.
+        :type nodes: dict
+        :type node: dict
+        :type nf_chains: int
+        :type nf_nodes: int
+        :type nf_chain: int
+        :type nf_node: int
+        :type vs_dtc: int
+        :type nf_dtc: int or float
+        :type nf_mtcr: int
+        :type nf_dtcr: int
+        :returns: List of CPUs allocated to NF.
+        :rtype: list
+        """
+        skip_cnt = Constants.CPU_CNT_SYSTEM + Constants.CPU_CNT_MAIN + vs_dtc
+
+        interface_list = []
+        interface_list.append(
+            BuiltIn().get_variable_value('${{{node}_if1}}'.format(node=node)))
+        interface_list.append(
+            BuiltIn().get_variable_value('${{{node}_if2}}'.format(node=node)))
+
+        cpu_node = Topology.get_interfaces_numa_node(
+            nodes[node], *interface_list)
+
+        return CpuUtils.cpu_slice_of_list_for_nf(
+            node=nodes[node], cpu_node=cpu_node, nf_chains=nf_chains,
+            nf_nodes=nf_nodes, nf_chain=nf_chain, nf_node=nf_node,
+            nf_mtcr=nf_mtcr, nf_dtcr=nf_dtcr, nf_dtc=nf_dtc, skip_cnt=skip_cnt)
+
