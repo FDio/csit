@@ -114,7 +114,7 @@
 | | ${vm1} = | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | DUT1 | ${sock1} | ${sock2} | DUT1_VM1 | ${nf_cpus}
 | | ... | jumbo=${jumbo} | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
-| | Set Test Variable | &{dut1_vm_refs} | DUT1_VM1=${vm1}
+| | Set Test Variable | &{dut1_vm_refs} | ${TEST NAME}DUT1_VM1=${vm1}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
