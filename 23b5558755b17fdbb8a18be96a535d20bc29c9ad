@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "b5e8ae18_91f2f783",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T13:02:24Z",
+      "side": 1,
+      "message": "Done in latest patch.",
+      "parentUuid": "cd847155_bf563952",
+      "range": {
+        "startLine": 249,
+        "startChar": 18,
+        "endLine": 249,
+        "endChar": 28
+      },
+      "revId": "23b5558755b17fdbb8a18be96a535d20bc29c9ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1af65054_148acae0",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 3
