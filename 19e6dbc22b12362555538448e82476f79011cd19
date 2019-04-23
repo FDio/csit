@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35184424_49218fd1",
+        "filename": "resources/libraries/python/PLRsearch/PLRsearch.py",
+        "patchSetId": 50
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T09:03:35Z",
+      "side": 1,
+      "message": "there are only 3 return vals",
+      "range": {
+        "startLine": 613,
+        "startChar": 28,
+        "endLine": 614,
+        "endChar": 20
+      },
+      "revId": "19e6dbc22b12362555538448e82476f79011cd19",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
