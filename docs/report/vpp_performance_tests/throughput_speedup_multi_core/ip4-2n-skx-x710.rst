@@ -69,3 +69,50 @@
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-skx-x710-64b-base_and_scale-pdr-tsa}
             \label{fig:ip4-2n-skx-x710-64b-base_and_scale-pdr-tsa}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-features-iacl
+-----------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="ifrm29" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-2n-skx-x710-64b-features-iacl-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-skx-x710-64b-features-iacl-ndr-tsa}
+            \label{fig:ip4-2n-skx-x710-64b-features-iacl-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="ifrm30" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-2n-skx-x710-64b-features-iacl-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-2n-skx-x710-64b-features-iacl-pdr-tsa}
+            \label{fig:ip4-2n-skx-x710-64b-features-iacl-pdr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage

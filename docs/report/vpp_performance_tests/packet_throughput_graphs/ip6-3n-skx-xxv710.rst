@@ -31,13 +31,13 @@
 3n-skx-xxv710
 ~~~~~~~~~~~~~
 
-64b-2t1c-base_and_scale
+78b-2t1c-base_and_scale
 -----------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm29" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr.html"></iframe>
+    <iframe id="ifrm21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +46,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr}
-            \label{fig:l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr}
+            \label{fig:ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +57,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm30" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr.html"></iframe>
+    <iframe id="ifrm22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,21 +66,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr}
-            \label{fig:l2sw-3n-skx-xxv710-64b-2t1c-base_and_scale-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-pdr}
+            \label{fig:ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-pdr}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-4t2c-base_and_scale
+78b-4t2c-base_and_scale
 -----------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr.html"></iframe>
+    <iframe id="ifrm23" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -89,8 +89,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr}
-            \label{fig:l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr}
+            \label{fig:ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -100,7 +100,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr.html"></iframe>
+    <iframe id="ifrm24" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -109,6 +109,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr}
-            \label{fig:l2sw-3n-skx-xxv710-64b-4t2c-base_and_scale-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-pdr}
+            \label{fig:ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-pdr}
     \end{figure}

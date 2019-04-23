@@ -118,3 +118,95 @@
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-hsw-x710-64b-2t2c-features-ndr-lat}
             \label{fig:l2sw-3n-hsw-x710-64b-2t2c-features-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-1t1c-features-iacl
+----------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="ifrm09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-hsw-x710-64b-1t1c-features-iacl-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-hsw-x710-64b-1t1c-features-iacl-ndr-lat}
+            \label{fig:l2sw-3n-hsw-x710-64b-1t1c-features-iacl-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-2t2c-features-iacl
+----------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="ifrm10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-hsw-x710-64b-2t2c-features-iacl-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-hsw-x710-64b-2t2c-features-iacl-ndr-lat}
+            \label{fig:l2sw-3n-hsw-x710-64b-2t2c-features-iacl-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-1t1c-features-macip
+-----------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="ifrm11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-hsw-x710-64b-1t1c-features-macip-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-hsw-x710-64b-1t1c-features-macip-ndr-lat}
+            \label{fig:l2sw-3n-hsw-x710-64b-1t1c-features-macip-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-2t2c-features-macip
+-----------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="ifrm12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-hsw-x710-64b-2t2c-features-macip-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-hsw-x710-64b-2t2c-features-macip-ndr-lat}
+            \label{fig:l2sw-3n-hsw-x710-64b-2t2c-features-macip-ndr-lat}
+    \end{figure}
