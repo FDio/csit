@@ -407,7 +407,7 @@
         - 71  # NDRPDR LB
     vpp-performance-changes-3n-hsw-cmp:
       # TODO: Add 1904 data
-      csit-vpp-perf-verify-1904-3n-hsw
+      csit-vpp-perf-verify-1904-3n-hsw:
         - 2   # NDRPDR sel
     vpp-performance-changes-3n-hsw:
       - "vpp-performance-changes-3n-hsw-h1"
