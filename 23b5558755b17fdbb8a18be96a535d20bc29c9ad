@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1c594d0d_94d32fb6",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-23T12:05:33Z",
+      "side": 1,
+      "message": "We still need to put such fields into a class, so the fields can be listed and described in docstring.",
+      "range": {
+        "startLine": 249,
+        "startChar": 18,
+        "endLine": 249,
+        "endChar": 28
+      },
+      "revId": "23b5558755b17fdbb8a18be96a535d20bc29c9ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1af65054_148acae0",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-23T12:05:33Z",
+      "side": 1,
+      "message": "Would not be the following code easier if this was dtlc (data threads per logical core)?",
+      "range": {
+        "startLine": 263,
+        "startChar": 8,
+        "endLine": 263,
+        "endChar": 11
+      },
+      "revId": "23b5558755b17fdbb8a18be96a535d20bc29c9ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1e49911_87ea4883",
+        "filename": "tests/vpp/perf/vm_vhost/2n-10ge2p1x710-eth-l2bd-2vhost-1chain-1vm-vppip4-dtc-half.ndrpdr.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-23T12:05:33Z",
+      "side": 1,
+      "message": "We need more tags, to distinguish from 2n-10ge2p1x710-eth-l2bd-2vhost-1chain-1vm-vppip4-ndrpdr.robot",
+      "range": {
+        "startLine": 19,
+        "startChar": 54,
+        "endLine": 19,
+        "endChar": 58
+      },
+      "revId": "23b5558755b17fdbb8a18be96a535d20bc29c9ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
