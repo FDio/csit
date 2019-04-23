@@ -31,13 +31,13 @@
 3n-skx-xxv710
 ~~~~~~~~~~~~~
 
-64b-base_and_scale
-------------------
+78b-2t1c-base_and_scale
+-----------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-xxv710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <iframe id="ifrm07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,18 +46,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-xxv710-64b-base_and_scale-ndr-tsa}
-            \label{fig:l2sw-3n-skx-xxv710-64b-base_and_scale-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat}
+            \label{fig:ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
+78b-4t2c-base_and_scale
+-----------------------
+
 .. raw:: html
 
     <center>
-    <iframe id="ifrm16" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-xxv710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <iframe id="ifrm08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,6 +69,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-xxv710-64b-base_and_scale-pdr-tsa}
-            \label{fig:l2sw-3n-skx-xxv710-64b-base_and_scale-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat}
+            \label{fig:ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat}
     \end{figure}

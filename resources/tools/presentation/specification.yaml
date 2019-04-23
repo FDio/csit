@@ -1391,8 +1391,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -5540,6 +5540,365 @@
     title: "l2sw-3n-hsw-x520-64b-2t2c-features-pdr"
     layout: "plot-throughput"
 
+# Packet Throughput - VPP L2 3n-hsw-x520 features-iacl
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-1t1c-features-iacl-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-iacl-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-iacl-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-1t1c-features-iacl-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-iacl-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-iacl-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-2t2c-features-iacl-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-iacl-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-iacl-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-2t2c-features-iacl-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-iacl-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-iacl-pdr"
+    layout: "plot-throughput"
+
+# Packet Throughput - VPP L2 3n-hsw-x520 features-oacl
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-1t1c-features-oacl-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-oacl-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'OACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-oacl-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-1t1c-features-oacl-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-oacl-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'OACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-oacl-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-2t2c-features-oacl-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-oacl-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'OACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-oacl-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-2t2c-features-oacl-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-oacl-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'OACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-oacl-pdr"
+    layout: "plot-throughput"
+
+# Packet Throughput - VPP L2 3n-hsw-x520 features-macip
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-1t1c-features-macip-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-macip-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'MACIP' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-macip-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-1t1c-features-macip-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-macip-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'MACIP' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-macip-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-2t2c-features-macip-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-macip-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'MACIP' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-macip-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x520-64b-2t2c-features-macip-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-macip-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'MACIP' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-macip-pdr"
+    layout: "plot-throughput"
+
 # Packet Throughput - VPP L2 3n-hsw-x710 base and scale
 - type: "plot"
   title: "VPP Throughput: l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr"
@@ -5804,6 +6163,127 @@
     whiskerwidth: 0
   layout:
     title: "l2sw-3n-hsw-x710-64b-2t2c-features-pdr"
+    layout: "plot-throughput"
+
+# Packet Throughput - VPP L2 3n-hsw-x710 features-iacl
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-1t1c-features-iacl-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-features-iacl-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x710-64b-1t1c-features-iacl-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-1t1c-features-iacl-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-features-iacl-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x710-64b-1t1c-features-iacl-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-2t2c-features-iacl-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-features-iacl-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x710-64b-2t2c-features-iacl-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-hsw-x710-64b-2t2c-features-iacl-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-features-iacl-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-hsw-x710-64b-2t2c-features-iacl-pdr"
     layout: "plot-throughput"
 
 # Packet Throughput - VPP L2 3n-hsw-xl710 base and scale
@@ -6205,7 +6685,128 @@
     title: "l2sw-3n-skx-x710-64b-4t2c-features-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP L2 3n-skx-xxv710 base and scale
+# Packet Throughput - VPP L2 3n-skx-x710 features-iacl
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-skx-x710-64b-2t1c-features-iacl-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-2t1c-features-iacl-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '2T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-skx-x710-64b-2t1c-features-iacl-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-skx-x710-64b-2t1c-features-iacl-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-2t1c-features-iacl-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '2T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-skx-x710-64b-2t1c-features-iacl-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-skx-x710-64b-4t2c-features-iacl-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-4t2c-features-iacl-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '4T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-skx-x710-64b-4t2c-features-iacl-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: l2sw-3n-skx-x710-64b-4t2c-features-iacl-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-4t2c-features-iacl-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '4T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "l2sw-3n-skx-x710-64b-4t2c-features-iacl-pdr"
+    layout: "plot-throughput"
+
+# Packet Throughput - VPP L2 3n-skx-xxv710 base
 - type: "plot"
   title: "VPP Throughput: l2sw-3n-skx-xxv710-64b-2t1c-base-ndr"
   algorithm: "plot_performance_box"
@@ -7424,142 +8025,142 @@
     title: "memif-2n-skx-x710-64b-4t2c-base_and_features-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP Container Memif 2n-skx-xxv710
-- type: "plot"
-  title: "VPP Throughput: memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "IP4FWD"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: memif-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "IP4FWD"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "memif-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "IP4FWD"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: memif-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "IP4FWD"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "memif-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP Container Memif 2n-skx-xxv710
+#- type: "plot"
+#  title: "VPP Throughput: memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T1C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
+#           not 'VHOST' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "IP4FWD"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: memif-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T1C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
+#           not 'VHOST' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "IP4FWD"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "memif-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '4T2C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
+#           not 'VHOST' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "IP4FWD"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: memif-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '4T2C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
+#           not 'VHOST' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "IP4FWD"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "memif-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
+#    layout: "plot-throughput"
 
 ################################################################################
 
@@ -8106,7 +8707,7 @@
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -8119,8 +8720,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -8138,7 +8739,7 @@
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -8151,8 +8752,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -8170,7 +8771,7 @@
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -8183,8 +8784,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -8202,7 +8803,7 @@
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -8215,8 +8816,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -8239,7 +8840,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -8277,7 +8878,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -8315,7 +8916,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -8353,7 +8954,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -8528,7 +9129,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -8561,7 +9162,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -8594,7 +9195,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -8627,7 +9228,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -8661,7 +9262,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('OACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -8694,7 +9295,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('OACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -8727,7 +9328,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('OACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -8760,7 +9361,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('OACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -8924,7 +9525,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -8962,7 +9563,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -9000,7 +9601,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -9038,7 +9639,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -9209,7 +9810,7 @@
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9241,7 +9842,7 @@
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9273,7 +9874,7 @@
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9305,7 +9906,7 @@
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9593,7 +10194,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -9631,7 +10232,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -9669,7 +10270,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -9707,7 +10308,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -9878,7 +10479,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9910,7 +10511,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9942,7 +10543,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -9974,7 +10575,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -10004,7 +10605,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -10017,8 +10618,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -10036,7 +10637,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -10049,8 +10650,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -10068,7 +10669,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -10081,8 +10682,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -10100,7 +10701,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -10113,8 +10714,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -10124,16 +10725,16 @@
     title: "ip4-2n-skx-x710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP IPv4 2n-skx-xxv710 base and scale
+# Packet Throughput - VPP IPv4 2n-skx-x710 features iacl
 - type: "plot"
-  title: "VPP Throughput: ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
+  title: "VPP Throughput: ip4-2n-skx-x710-64b-2t1c-features-iacl-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-2t1c-features-iacl-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
+  filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -10146,8 +10747,141 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip4-2n-skx-x710-64b-2t1c-features-iacl-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: ip4-2n-skx-x710-64b-2t1c-features-iacl-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-2t1c-features-iacl-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
+           'NDRPDR' and
+           '2T1C' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'DOT1Q' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip4-2n-skx-x710-64b-2t1c-features-iacl-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: ip4-2n-skx-x710-64b-4t2c-features-iacl-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-4t2c-features-iacl-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
+           'NDRPDR' and
+           '4T2C' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'DOT1Q' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip4-2n-skx-x710-64b-4t2c-features-iacl-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: ip4-2n-skx-x710-64b-4t2c-features-iacl-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-4t2c-features-iacl-pdr"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
+           'NDRPDR' and
+           '4T2C' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'DOT1Q' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip4-2n-skx-x710-64b-4t2c-features-iacl-pdr"
+    layout: "plot-throughput"
+
+# Packet Throughput - VPP IPv4 2n-skx-xxv710 base and scale
+- type: "plot"
+  title: "VPP Throughput: ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  filter: "'NIC_Intel-XXV710' and
+           '64B' and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           'NDRPDR' and
+           '2T1C' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'DOT1Q' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -10165,7 +10899,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -10178,8 +10912,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -10197,7 +10931,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -10210,8 +10944,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -10229,7 +10963,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -10242,8 +10976,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11573,8 +12307,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11605,8 +12339,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11637,8 +12371,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11669,8 +12403,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11821,16 +12555,16 @@
     title: "ip6-3n-skx-x710-78b-4t2c-base_and_features-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP IPv6 2n-skx-x710
+# Packet Throughput - VPP IPv6 3n-skx-xxv710
 - type: "plot"
-  title: "VPP Throughput: ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr"
+  title: "VPP Throughput: ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-X710' and
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -11843,8 +12577,137 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
+  - "FIB_2M"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-XXV710' and
+           '78B' and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           'NDRPDR' and
+           '2T1C' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  - "FIB_20K"
+  - "FIB_200K"
+  - "FIB_2M"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-XXV710' and
+           '78B' and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           'NDRPDR' and
+           '4T2C' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  - "FIB_20K"
+  - "FIB_200K"
+  - "FIB_2M"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "VPP Throughput: ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-pdr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-XXV710' and
+           '78B' and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           'NDRPDR' and
+           '4T2C' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  - "FIB_20K"
+  - "FIB_200K"
+  - "FIB_2M"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
+  layout:
+    title: "ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-pdr"
+    layout: "plot-throughput"
+
+# Packet Throughput - VPP IPv6 2n-skx-x710
+- type: "plot"
+  title: "VPP Throughput: ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           '78B' and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           'NDRPDR' and
+           '2T1C' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11862,7 +12725,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -11875,8 +12738,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11894,7 +12757,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
@@ -11907,8 +12770,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11926,7 +12789,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
@@ -11939,8 +12802,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11959,7 +12822,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -11972,8 +12835,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -11991,7 +12854,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -12004,8 +12867,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -12023,7 +12886,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
@@ -12036,8 +12899,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -12055,7 +12918,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
@@ -12068,8 +12931,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   traces:
     hoverinfo: "x+y"
@@ -14514,279 +15377,279 @@
     title: "vhost-ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr"
     layout: "plot-throughput"
 
-# Packet Throughput - VPP vhost l2sw 2n-skx-xxv710 - base
-- type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '2T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '2T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '4T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '4T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
-    layout: "plot-throughput"
-
-# Packet Throughput - VPP vhost l2sw 2n-skx-xxv710 - base vm
-- type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'DOT1Q' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-pdr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'DOT1Q' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-pdr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'DOT1Q' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-pdr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'DOT1Q' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP vhost l2sw 2n-skx-xxv710 - base
+#- type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '2T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '2T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-pdr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '4T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '4T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-pdr"
+#    layout: "plot-throughput"
+#
+## Packet Throughput - VPP vhost l2sw 2n-skx-xxv710 - base vm
+#- type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'DOT1Q' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-pdr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'DOT1Q' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-pdr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'DOT1Q' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-pdr"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'DOT1Q' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-pdr"
+#    layout: "plot-throughput"
 
 ################################################################################
 
@@ -16363,6 +17226,163 @@
     title: "l2sw-3n-hsw-x520-64b-2t2c-features-ndr"
     layout: "plot-latency"
 
+# Packet Latency - VPP L2 3n-hsw-x520 features-iacl
+- type: "plot"
+  title: "VPP Latency: l2sw-3n-hsw-x520-64b-1t1c-features-iacl-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-iacl-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-iacl-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "VPP Latency: l2sw-3n-hsw-x520-64b-2t2c-features-iacl-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-iacl-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-iacl-ndr"
+    layout: "plot-latency"
+
+# Packet Latency - VPP L2 3n-hsw-x520 features-oacl
+- type: "plot"
+  title: "VPP Latency: l2sw-3n-hsw-x520-64b-1t1c-features-oacl-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-oacl-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'OACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-oacl-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "VPP Latency: l2sw-3n-hsw-x520-64b-2t2c-features-oacl-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-oacl-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'OACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-oacl-ndr"
+    layout: "plot-latency"
+
+# Packet Latency - VPP L2 3n-hsw-x520 features-macip
+- type: "plot"
+  title: "VPP Latency: l2sw-3n-hsw-x520-64b-1t1c-features-macip-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-1t1c-features-macip-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'MACIP' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-1t1c-features-macip-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "VPP Latency: l2sw-3n-hsw-x520-64b-2t2c-features-macip-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-2t2c-features-macip-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'MACIP' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-2t2c-features-macip-ndr"
+    layout: "plot-latency"
+
 # Packet Latency - VPP L2 3n-hsw-x710 base and scale
 - type: "plot"
   title: "VPP Latency: l2sw-3n-hsw-x710-64b-1t1c-base_and_scale-ndr-lat"
@@ -16479,6 +17499,59 @@
   - "L2BDMACLRN"  # dot1q-l2bdbase
   layout:
     title: "l2sw-3n-hsw-x710-64b-2t2c-features-ndr"
+    layout: "plot-latency"
+
+# Packet Latency - VPP L2 3n-hsw-x710 features-iacl
+- type: "plot"
+  title: "VPP Latency: l2sw-3n-hsw-x710-64b-1t1c-features-iacl-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-1t1c-features-iacl-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '1T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x710-64b-1t1c-features-iacl-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "VPP Latency: l2sw-3n-hsw-x710-64b-2t2c-features-iacl-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-2t2c-features-iacl-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '2T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x710-64b-2t2c-features-iacl-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP L2 3n-hsw-xl710 base and scale
@@ -16658,7 +17731,60 @@
     title: "l2sw-3n-skx-x710-64b-4t2c-features-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP L2 3n-skx-xxv710 base and scale
+# Packet Latency - VPP L2 3n-skx-x710 features-iacl
+- type: "plot"
+  title: "VPP Latency: l2sw-3n-skx-x710-64b-2t1c-features-iacl-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-2t1c-features-iacl-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '2T1C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-skx-x710-64b-2t1c-features-iacl-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "VPP Latency: l2sw-3n-skx-x710-64b-4t2c-features-iacl-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-4t2c-features-iacl-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           '4T2C' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-skx-x710-64b-4t2c-features-iacl-ndr"
+    layout: "plot-latency"
+
+# Packet Latency - VPP L2 3n-skx-xxv710 base
 - type: "plot"
   title: "VPP Latency: l2sw-3n-skx-xxv710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_error_bars"
@@ -16717,10 +17843,10 @@
 
 # Packet Latency - VPP L2 2n-skx-x710 base and scale
 - type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+  title: "VPP Latency: l2sw-2n-skx-x710-64b-2t1c-base-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base-ndr-lat"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -16743,14 +17869,14 @@
   - "FIB_100K"
   - "FIB_1M"
   layout:
-    title: "l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
+    title: "l2sw-2n-skx-x710-64b-2t1c-base-ndr"
     layout: "plot-latency"
 
 - type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
+  title: "VPP Latency: l2sw-2n-skx-x710-64b-4t2c-base-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-4t2c-base-ndr-lat"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -16773,7 +17899,7 @@
   - "FIB_100K"
   - "FIB_1M"
   layout:
-    title: "l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
+    title: "l2sw-2n-skx-x710-64b-4t2c-base-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP L2 2n-skx-xxv710 base and scale
@@ -17146,66 +18272,66 @@
     title: "memif-2n-skx-x710-64b-4t2c-base_and_features-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP Container Memif 2n-skx-xxv710
-- type: "plot"
-  title: "VPP Latency: memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "IP4FWD"
-  layout:
-    title: "memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
-    layout: "plot-latency"
-
-- type: "plot"
-  title: "VPP Latency: memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '4T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "IP4FWD"
-  layout:
-    title: "memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP Container Memif 2n-skx-xxv710
+#- type: "plot"
+#  title: "VPP Latency: memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T1C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
+#           not 'VHOST' and
+#           'MEMIF'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "IP4FWD"
+#  layout:
+#    title: "memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
+#    layout: "plot-latency"
+#
+#- type: "plot"
+#  title: "VPP Latency: memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '4T2C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
+#           not 'VHOST' and
+#           'MEMIF'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "IP4FWD"
+#  layout:
+#    title: "memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
+#    layout: "plot-latency"
 
 ################################################################################
 
@@ -17456,7 +18582,7 @@
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -17470,8 +18596,8 @@
   sort:
   - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-3n-hsw-x520-64b-1t1c-base_and_scale-ndr"
@@ -17485,7 +18611,7 @@
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -17499,8 +18625,8 @@
   sort:
   - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-3n-hsw-x520-64b-2t2c-base_and_scale-ndr"
@@ -17519,7 +18645,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -17553,7 +18679,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -17648,7 +18774,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -17677,7 +18803,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -17707,7 +18833,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('OACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -17736,7 +18862,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('OACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -17824,7 +18950,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
@@ -17858,7 +18984,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
@@ -17951,7 +19077,7 @@
            'NDRPDR' and
            '1T1C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -17979,7 +19105,7 @@
            'NDRPDR' and
            '2T2C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -18121,7 +19247,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -18155,7 +19281,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -18248,7 +19374,7 @@
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -18277,7 +19403,7 @@
            '4T2C' and
            'IP4FWD' and
            'IACL' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           ('IACL' and ('ACL10' or 'ACL50') and '10K_FLOWS' or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -18303,7 +19429,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -18316,8 +19442,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
@@ -18331,7 +19457,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -18344,23 +19470,23 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP IPv4 2n-skx-xxv710 base and scale
+# Packet Latency - VPP IPv4 2n-skx-x710 base and scale
 - type: "plot"
-  title: "VPP Latency: ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
+  title: "VPP Latency: ip4-2n-skx-x710-64b-2t1c-features-iacl-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-2t1c-features-iacl-ndr-lat"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
+  filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            'NDRPDR' and
            '2T1C' and
            'IP4FWD' and
@@ -18373,8 +19499,67 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  layout:
+    title: "ip4-2n-skx-x710-64b-2t1c-features-iacl-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "VPP Latency: ip4-2n-skx-x710-64b-4t2c-features-iacl-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-4t2c-features-iacl-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
+           'NDRPDR' and
+           '4T2C' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'DOT1Q' and
+           not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  layout:
+    title: "ip4-2n-skx-x710-64b-4t2c-features-iacl-ndr"
+    layout: "plot-latency"
+
+# Packet Latency - VPP IPv4 2n-skx-xxv710 base and scale
+- type: "plot"
+  title: "VPP Latency: ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  filter: "'NIC_Intel-XXV710' and
+           '64B' and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           'NDRPDR' and
+           '2T1C' and
+           'IP4FWD' and
+           not 'IPSEC' and
+           not 'DOT1Q' and
+           not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr"
@@ -18388,7 +19573,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP4FWD' and
@@ -18401,8 +19586,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
@@ -18929,16 +20114,16 @@
     title: "ip6-3n-skx-x710-78b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP IPv6 2n-skx-x710
+# Packet Latency - VPP IPv6 3n-skx-xxv710
 - type: "plot"
-  title: "VPP Latency: ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
+  title: "VPP Latency: ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-X710' and
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -18951,8 +20136,65 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
+  - "FIB_2M"
+  layout:
+    title: "ip6-3n-skx-xxv710-78b-2t1c-base_and_scale-ndr"
+    layout: "plot-latency"
+
+- type: "plot"
+  title: "VPP Latency: ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-XXV710' and
+           '78B' and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           'NDRPDR' and
+           '4T2C' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  - "FIB_20K"
+  - "FIB_200K"
+  - "FIB_2M"
+  layout:
+    title: "ip6-3n-skx-xxv710-78b-4t2c-base_and_scale-ndr"
+    layout: "plot-latency"
+
+# Packet Latency - VPP IPv6 2n-skx-x710
+- type: "plot"
+  title: "VPP Latency: ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
+  algorithm: "plot_latency_error_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           '78B' and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           'NDRPDR' and
+           '2T1C' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "latency"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr"
@@ -18966,7 +20208,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '4T2C' and
            'IP6FWD' and
@@ -18979,8 +20221,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr"
@@ -18995,7 +20237,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            '2T1C' and
            'IP6FWD' and
@@ -19008,8 +20250,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-xxv710-78b-2t1c-base_and_scale-ndr"
@@ -19036,8 +20278,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-xxv710-78b-4t2c-base_and_scale-ndr"
@@ -20073,127 +21315,127 @@
     title: "vhost-ip4-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
-# Packet Latency - VPP vhost l2sw 2n-skx-xxv710 - base
-- type: "plot"
-  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '2T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
-    layout: "plot-latency"
-
-- type: "plot"
-  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           '4T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
-    layout: "plot-latency"
-
-# Packet Latency - VPP vhost l2sw 2n-skx-xxv710 - base vm
-- type: "plot"
-  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '2T1C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'DOT1Q' and
-           not 'IP4FWD'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr"
-    layout: "plot-latency"
-
-- type: "plot"
-  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           '4T2C' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'DOT1Q' and
-           not 'IP4FWD'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP vhost l2sw 2n-skx-xxv710 - base
+#- type: "plot"
+#  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '2T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base_and_features-ndr"
+#    layout: "plot-latency"
+#
+#- type: "plot"
+#  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           '4T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base_and_features-ndr"
+#    layout: "plot-latency"
+#
+## Packet Latency - VPP vhost l2sw 2n-skx-xxv710 - base vm
+#- type: "plot"
+#  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr-lat"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '2T1C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'DOT1Q' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-2t1c-base-vm-ndr"
+#    layout: "plot-latency"
+#
+#- type: "plot"
+#  title: "VPP Latency: vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr-lat"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           '4T2C' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'DOT1Q' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-4t2c-base-vm-ndr"
+#    layout: "plot-latency"
 
 ################################################################################
 
@@ -21113,64 +22355,64 @@
     title: "memif-2n-skx-x710-64b-base_and_features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Speedup - VPP Container Memif 2n-skx-xxv710
-- type: "plot"
-  title: "Speedup: memif-2n-skx-xxv710-64b-base_and_features-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-base_and_features-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "IP4FWD"
-  layout:
-    title: "memif-2n-skx-xxv710-64b-base_and_features-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: memif-2n-skx-xxv710-64b-base_and_features-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-base_and_features-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
-           not 'VHOST' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2XCFWD"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "L2BDMACLRN"
-  - "IP4FWD"
-  layout:
-    title: "memif-2n-skx-xxv710-64b-base_and_features-pdr"
-    layout: "plot-throughput-speedup-analysis"
+## Speedup - VPP Container Memif 2n-skx-xxv710
+#- type: "plot"
+#  title: "Speedup: memif-2n-skx-xxv710-64b-base_and_features-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-base_and_features-ndr-tsa"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
+#           not 'VHOST' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "IP4FWD"
+#  layout:
+#    title: "memif-2n-skx-xxv710-64b-base_and_features-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#- type: "plot"
+#  title: "Speedup: memif-2n-skx-xxv710-64b-base_and_features-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/memif-2n-skx-xxv710-64b-base_and_features-pdr-tsa"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH' or 'IP4FWD') and
+#           not 'VHOST' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2XCFWD"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "L2BDMACLRN"
+#  - "IP4FWD"
+#  layout:
+#    title: "memif-2n-skx-xxv710-64b-base_and_features-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
 
@@ -21413,7 +22655,7 @@
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -21426,8 +22668,8 @@
   sort:
   - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-3n-hsw-x520-64b-base_and_scale-ndr"
@@ -21441,7 +22683,7 @@
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   filter: "'NIC_Intel-X520-DA2' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -21454,8 +22696,8 @@
   sort:
   - "DOT1Q"
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-3n-hsw-x520-64b-base_and_scale-pdr"
@@ -21474,7 +22716,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -21507,7 +22749,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -21598,7 +22840,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -21626,7 +22868,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -21655,7 +22897,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('OACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -21683,7 +22925,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           ('OACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('OACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'DOT1Q' and
            not 'VHOST'"
@@ -21769,7 +23011,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -21802,7 +23044,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -21891,7 +23133,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -21918,7 +23160,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -22056,7 +23298,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -22089,7 +23331,7 @@
             'POLICE_MARK' or
             'COPWHLIST' or
             ('NAT44' and 'BASE') or
-            ('ACL_STATELESS' and 'ACL10' and '10k_FLOWS')) and
+            ('ACL_STATELESS' and 'ACL10' and '10K_FLOWS')) and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -22178,7 +23420,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -22205,7 +23447,7 @@
            '64B' and
            'NDRPDR' and
            'IP4FWD' and
-           ('IACL' and ('ACL10' or 'ACL50') and '10k_FLOWS' or 'IP4BASE') and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
            not 'IPSEC' and
            not 'VHOST'"
   parameters:
@@ -22222,60 +23464,60 @@
     title: "ip4-3n-skx-x710-64b-features-iacl-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Speedup - VPP IPv4 3n-skx-x710 features oacl
-- type: "plot"
-  title: "Speedup: ip4-3n-skx-x710-64b-features-oacl-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-features-oacl-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  layout:
-    title: "ip4-3n-skx-x710-64b-features-oacl-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: ip4-3n-skx-x710-64b-features-oacl-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-features-oacl-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           'NDRPDR' and
-           'IP4FWD' and
-           'OACL' and
-           ('ACL10' or 'ACL50') and '10k_FLOWS' and
-           not 'IPSEC' and
-           not 'VHOST'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  - "ACL_STATELESS"
-  - "ACL_STATEFUL"
-  layout:
-    title: "ip4-3n-skx-x710-64b-features-oacl-pdr"
-    layout: "plot-throughput-speedup-analysis"
+## Speedup - VPP IPv4 3n-skx-x710 features oacl
+#- type: "plot"
+#  title: "Speedup: ip4-3n-skx-x710-64b-features-oacl-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-features-oacl-ndr-tsa"
+#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10K_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  layout:
+#    title: "ip4-3n-skx-x710-64b-features-oacl-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#- type: "plot"
+#  title: "Speedup: ip4-3n-skx-x710-64b-features-oacl-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/ip4-3n-skx-x710-64b-features-oacl-pdr-tsa"
+#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           'NDRPDR' and
+#           'IP4FWD' and
+#           'OACL' and
+#           ('ACL10' or 'ACL50') and '10K_FLOWS' and
+#           not 'IPSEC' and
+#           not 'VHOST'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  - "ACL_STATELESS"
+#  - "ACL_STATEFUL"
+#  layout:
+#    title: "ip4-3n-skx-x710-64b-features-oacl-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv4 2n-skx-x710 base and scale
 - type: "plot"
@@ -22286,7 +23528,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -22298,8 +23540,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-x710-64b-base_and_scale-ndr"
@@ -22313,7 +23555,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -22325,11 +23567,66 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-x710-64b-base_and_scale-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP IPv4 2n-skx-x710 features iacl
+- type: "plot"
+  title: "Speedup: ip4-2n-skx-x710-64b-features-iacl-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-features-iacl-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           'IP4FWD' and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  layout:
+    title: "ip4-2n-skx-x710-64b-features-iacl-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: ip4-2n-skx-x710-64b-features-iacl-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip4-2n-skx-x710-64b-features-iacl-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           '64B' and
+           'NDRPDR' and
+           'IP4FWD' and
+           (('IACL' and ('ACL1' or 'ACL50') and ('10K_FLOWS' or '10k_FLOWS')) or 'IP4BASE') and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP4BASE"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  - "ACL_STATELESS"
+  - "ACL_STATEFUL"
+  layout:
+    title: "ip4-2n-skx-x710-64b-features-iacl-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP IPv4 2n-skx-xxv710 base and scale
@@ -22341,7 +23638,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -22353,8 +23650,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-xxv710-64b-base_and_scale-ndr"
@@ -22368,7 +23665,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
-           ('IP4BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP4BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            'IP4FWD' and
            not 'IPSEC' and
@@ -22380,8 +23677,8 @@
   - "tags"
   sort:
   - "IP4BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip4-2n-skx-xxv710-64b-base_and_scale-pdr"
@@ -23059,16 +24356,16 @@
     title: "ip6-3n-skx-x710-78b-base_and_features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Speedup - VPP IPv6 2n-skx-x710
+# Speedup - VPP IPv6 3n-skx-xxv710
 - type: "plot"
-  title: "Speedup: ip6-2n-skx-x710-78b-base_and_scale-ndr-tsa"
+  title: "Speedup: ip6-3n-skx-xxv710-78b-base_and_scale-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-base_and_scale-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-X710' and
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-base_and_scale-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
@@ -23080,8 +24377,63 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
+  - "FIB_2M"
+  layout:
+    title: "ip6-3n-skx-xxv710-78b-base_and_scale-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: ip6-3n-skx-xxv710-78b-base_and_scale-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-3n-skx-xxv710-78b-base_and_scale-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-XXV710' and
+           '78B' and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           'NDRPDR' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  - "FIB_20K"
+  - "FIB_200K"
+  - "FIB_2M"
+  layout:
+    title: "ip6-3n-skx-xxv710-78b-base_and_scale-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP IPv6 2n-skx-x710
+- type: "plot"
+  title: "Speedup: ip6-2n-skx-x710-78b-base_and_scale-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/ip6-2n-skx-x710-78b-base_and_scale-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  filter: "'NIC_Intel-X710' and
+           '78B' and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
+           'NDRPDR' and
+           'IP6FWD' and
+           not 'SRv6' and
+           not 'IPSEC' and
+           not 'VHOST'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  sort:
+  - "IP6BASE"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-x710-78b-base_and_scale-ndr"
@@ -23095,7 +24447,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
@@ -23107,8 +24459,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-x710-78b-base_and_scale-pdr"
@@ -23123,7 +24475,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
@@ -23135,8 +24487,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-xxv710-78b-base_and_scale-ndr"
@@ -23150,7 +24502,7 @@
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-XXV710' and
            '78B' and
-           ('IP6BASE' or 'FIB_20k' or 'FIB_200k' or 'FIB_2M') and
+           ('IP6BASE' or 'FIB_20K' or 'FIB_200K' or 'FIB_2M') and
            'NDRPDR' and
            'IP6FWD' and
            not 'SRv6' and
@@ -23162,8 +24514,8 @@
   - "tags"
   sort:
   - "IP6BASE"
-  - "FIB_20k"
-  - "FIB_200k"
+  - "FIB_20K"
+  - "FIB_200K"
   - "FIB_2M"
   layout:
     title: "ip6-2n-skx-xxv710-78b-base_and_scale-pdr"
@@ -23559,6 +24911,208 @@
     title: "l2sw-3n-hsw-x520-64b-features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
+# Speedup - VPP L2 3n-hsw-x520 features-iacl
+- type: "plot"
+  title: "Speedup: l2sw-3n-hsw-x520-64b-features-iacl-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-features-iacl-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           'NDRPDR' and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-features-iacl-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: l2sw-3n-hsw-x520-64b-features-iacl-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-features-iacl-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           'NDRPDR' and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-features-iacl-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP L2 3n-hsw-x520 features-oacl
+- type: "plot"
+  title: "Speedup: l2sw-3n-hsw-x520-64b-features-oacl-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-features-oacl-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           'NDRPDR' and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'OACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-features-oacl-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: l2sw-3n-hsw-x520-64b-features-oacl-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-features-oacl-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           'NDRPDR' and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'OACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-features-oacl-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP L2 3n-hsw-x520 features-oacl
+- type: "plot"
+  title: "Speedup: l2sw-3n-hsw-x520-64b-features-oacl-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-features-oacl-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           'NDRPDR' and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'OACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-features-oacl-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: l2sw-3n-hsw-x520-64b-features-oacl-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-features-oacl-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           'NDRPDR' and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'OACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-features-oacl-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP L2 3n-hsw-x520 features-macip
+- type: "plot"
+  title: "Speedup: l2sw-3n-hsw-x520-64b-features-macip-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-features-macip-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           'NDRPDR' and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'MACIP' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-features-macip-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: l2sw-3n-hsw-x520-64b-features-macip-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x520-64b-features-macip-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X520-DA2' and
+           'NDRPDR' and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'MACIP' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x520-64b-features-macip-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
 # Speedup - VPP L2 3n-hsw-x710 base and scale
 - type: "plot"
   title: "Speedup: l2sw-3n-hsw-x710-64b-base_and_scale-ndr-tsa"
@@ -23673,6 +25227,57 @@
   - "L2BDMACLRN"  # dot1q-l2bdbase
   layout:
     title: "l2sw-3n-hsw-x710-64b-features-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP L2 3n-hsw-x710 features-iacl
+- type: "plot"
+  title: "Speedup: l2sw-3n-hsw-x710-64b-features-iacl-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-features-iacl-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           'NDRPDR' and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x710-64b-features-iacl-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: l2sw-3n-hsw-x710-64b-features-iacl-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-hsw-x710-64b-features-iacl-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  filter: "'NIC_Intel-X710' and
+           'NDRPDR' and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-hsw-x710-64b-features-iacl-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP L2 3n-hsw-xl710 base and scale
@@ -23846,39 +25451,63 @@
     title: "l2sw-3n-skx-x710-64b-features-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Speedup - VPP L2 3n-skx-xxv710 base and scale
+# Speedup - VPP L2 3n-skx-x710 features-iacl
 - type: "plot"
-  title: "Speedup: l2sw-3n-skx-xxv710-64b-base-ndr-tsa"
+  title: "Speedup: l2sw-3n-skx-x710-64b-features-iacl-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-base-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-features-iacl-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
+  filter: "'NIC_Intel-X710' and
            'NDRPDR' and
-           'ETH' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "L2PATCH"
-  - "L2PATCH"
-  - "L2XCBASE"
-  - "L2BDMACLRN"
   layout:
-    title: "l2sw-3n-skx-xxv710-64b-base-ndr"
+    title: "l2sw-3n-skx-x710-64b-features-iacl-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: l2sw-3n-skx-xxv710-64b-base-pdr-tsa"
+  title: "Speedup: l2sw-3n-skx-x710-64b-features-iacl-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-base-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-features-iacl-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-X710' and
+           'NDRPDR' and
+           '64B' and
+           'FEATURE' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and
+           'IACL' and
+           ('ACL1' or 'ACL50') and
+           ('10K_FLOWS' or '10k_FLOWS') and
+           not 'MACIP' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+  layout:
+    title: "l2sw-3n-skx-x710-64b-features-iacl-pdr"
+    layout: "plot-throughput-speedup-analysis"
+
+# Speedup - VPP L2 3n-skx-xxv710 base and scale
+- type: "plot"
+  title: "Speedup: l2sw-3n-skx-xxv710-64b-base_and_scale-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-base_and_scale-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   filter: "'NIC_Intel-XXV710' and
            '64B' and
@@ -23886,19 +25515,48 @@
            'NDRPDR' and
            'ETH' and
            ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           not 'DRV_AVF' and
            not 'VHOST' and
            not 'MEMIF'"
   parameters:
   - "throughput"
   - "parent"
   - "tags"
-  sort:
-  - "L2PATCH"
-  - "L2PATCH"
-  - "L2XCBASE"
-  - "L2BDMACLRN"
+#  sort:
+#  - "L2PATCH"
+#  - "L2PATCH"
+#  - "L2XCBASE"
+#  - "L2BDMACLRN"
   layout:
-    title: "l2sw-3n-skx-xxv710-64b-base-pdr"
+    title: "l2sw-3n-skx-xxv710-64b-base_and_scale-ndr"
+    layout: "plot-throughput-speedup-analysis"
+
+- type: "plot"
+  title: "Speedup: l2sw-3n-skx-xxv710-64b-base_and_scale-pdr-tsa"
+  algorithm: "plot_throughput_speedup_analysis"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-xxv710-64b-base_and_scale-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  filter: "'NIC_Intel-XXV710' and
+           '64B' and
+           ('BASE' or 'SCALE') and
+           'NDRPDR' and
+           'ETH' and
+           ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD' or 'L2PATCH') and
+           not 'DRV_AVF' and
+           not 'VHOST' and
+           not 'MEMIF'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
+#  sort:
+#  - "L2PATCH"
+#  - "L2PATCH"
+#  - "L2XCBASE"
+#  - "L2BDMACLRN"
+  layout:
+    title: "l2sw-3n-skx-xxv710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 # Speedup - VPP L2 2n-skx-x710 base and scale
@@ -24713,123 +26371,123 @@
     title: "vhost-ip4-2n-skx-xxv710-64b-base_and_scale-pdr"
     layout: "plot-throughput-speedup-analysis"
 
-# Packet Speedup - VPP vhost l2sw 2n-skx-xxv710 - base
-- type: "plot"
-  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base_and_features-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base_and_features-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-base_and_features-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base_and_features-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base_and_features-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           'BASE' and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'VXLAN' and
-           not 'IP4FWD' and
-           not '2VM'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "not CFS_OPT"
-#  - "L2XCFWD"
-#  - "not CFS_OPT"
-#  - "CFS_OPT"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-base_and_features-pdr"
-    layout: "plot-throughput-speedup-analysis"
-
-# Packet Speedup - VPP vhost l2sw 2n-skx-xxv710 - base vm
-- type: "plot"
-  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base-vm-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base-vm-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'DOT1Q' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-base-vm-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base-vm-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base-vm-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
-  filter: "'NIC_Intel-XXV710' and
-           '64B' and
-           'NDRPDR' and
-           ('ETH' or 'DOT1Q') and
-           ('L2BDMACLRN' or 'L2XCFWD') and
-           'VHOST_1024' and
-           not 'CFS_OPT' and
-           not 'VXLAN' and
-           not 'DOT1Q' and
-           not 'IP4FWD'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "1VM"
-#  - "L2XCFWD"
-#  - "1VM"
-#  - "L2BDMACLRN"
-  layout:
-    title: "vhost-l2sw-2n-skx-xxv710-64b-base-vm-pdr"
-    layout: "plot-throughput-speedup-analysis"
+## Packet Speedup - VPP vhost l2sw 2n-skx-xxv710 - base
+#- type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base_and_features-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base_and_features-ndr-tsa"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-base_and_features-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#- type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base_and_features-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base_and_features-pdr-tsa"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           'BASE' and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'VXLAN' and
+#           not 'IP4FWD' and
+#           not '2VM'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "not CFS_OPT"
+##  - "L2XCFWD"
+##  - "not CFS_OPT"
+##  - "CFS_OPT"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-base_and_features-pdr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+## Packet Speedup - VPP vhost l2sw 2n-skx-xxv710 - base vm
+#- type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base-vm-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base-vm-ndr-tsa"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'DOT1Q' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-base-vm-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#- type: "plot"
+#  title: "VPP Speedup: vhost-l2sw-2n-skx-xxv710-64b-base-vm-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vhost-l2sw-2n-skx-xxv710-64b-base-vm-pdr-tsa"
+#  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+#  filter: "'NIC_Intel-XXV710' and
+#           '64B' and
+#           'NDRPDR' and
+#           ('ETH' or 'DOT1Q') and
+#           ('L2BDMACLRN' or 'L2XCFWD') and
+#           'VHOST_1024' and
+#           not 'CFS_OPT' and
+#           not 'VXLAN' and
+#           not 'DOT1Q' and
+#           not 'IP4FWD'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+##  sort:
+##  - "1VM"
+##  - "L2XCFWD"
+##  - "1VM"
+##  - "L2BDMACLRN"
+#  layout:
+#    title: "vhost-l2sw-2n-skx-xxv710-64b-base-vm-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
 
