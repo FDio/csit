@@ -1,0 +1,312 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    16,
+    "client_address",
+    "u8"
+   ],
+   [
+    16,
+    "our_address",
+    "u8"
+   ],
+   [
+    2,
+    "local_cookie",
+    "u64"
+   ],
+   [
+    64,
+    "interface_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "l2_sublayer_present",
+    "u8"
+   ],
+   [
+    "local_session_id",
+    "u32"
+   ],
+   [
+    "remote_cookie",
+    "u64"
+   ],
+   [
+    "remote_session_id",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "sw_if_l2tpv3_tunnel_details",
+   {
+    "crc": "0x7b22bb34"
+   }
+  ],
+  [
+   [
+    16,
+    "client_address",
+    "u8"
+   ],
+   [
+    16,
+    "our_address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "encap_vrf_id",
+    "u32"
+   ],
+   [
+    "is_ipv6",
+    "u8"
+   ],
+   [
+    "l2_sublayer_present",
+    "u8"
+   ],
+   [
+    "local_cookie",
+    "u64"
+   ],
+   [
+    "local_session_id",
+    "u32"
+   ],
+   [
+    "remote_cookie",
+    "u64"
+   ],
+   [
+    "remote_session_id",
+    "u32"
+   ],
+   "l2tpv3_create_tunnel",
+   {
+    "crc": "0x11bafa9f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable_disable",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "l2tpv3_interface_enable_disable",
+   {
+    "crc": "0x57298519"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "key",
+    "u8"
+   ],
+   "l2tpv3_set_lookup_key",
+   {
+    "crc": "0xd7736d45"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "new_local_cookie",
+    "u64"
+   ],
+   [
+    "new_remote_cookie",
+    "u64"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "l2tpv3_set_tunnel_cookies",
+   {
+    "crc": "0xb0ce1366"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "sw_if_l2tpv3_tunnel_dump",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "l2tpv3_create_tunnel_reply",
+   {
+    "crc": "0xfda5941f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "l2tpv3_interface_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "l2tpv3_set_lookup_key_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "l2tpv3_set_tunnel_cookies_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "l2tpv3_create_tunnel": {
+   "reply": "l2tpv3_create_tunnel_reply"
+  },
+  "l2tpv3_interface_enable_disable": {
+   "reply": "l2tpv3_interface_enable_disable_reply"
+  },
+  "l2tpv3_set_lookup_key": {
+   "reply": "l2tpv3_set_lookup_key_reply"
+  },
+  "l2tpv3_set_tunnel_cookies": {
+   "reply": "l2tpv3_set_tunnel_cookies_reply"
+  },
+  "sw_if_l2tpv3_tunnel_dump": {
+   "reply": "sw_if_l2tpv3_tunnel_details",
+   "stream": true
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0xc9f2ad26"
+}

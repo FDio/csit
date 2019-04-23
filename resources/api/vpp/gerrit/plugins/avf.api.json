@@ -1,0 +1,120 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable_elog",
+    "i32"
+   ],
+   [
+    "pci_addr",
+    "u32"
+   ],
+   [
+    "rxq_num",
+    "u16"
+   ],
+   [
+    "rxq_size",
+    "u16"
+   ],
+   [
+    "txq_size",
+    "u16"
+   ],
+   "avf_create",
+   {
+    "crc": "0xdaab8ae2"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "avf_delete",
+   {
+    "crc": "0x529cb13f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "avf_create_reply",
+   {
+    "crc": "0xfda5941f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "avf_delete_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "avf_create": {
+   "reply": "avf_create_reply"
+  },
+  "avf_delete": {
+   "reply": "avf_delete_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x71cc3938"
+}

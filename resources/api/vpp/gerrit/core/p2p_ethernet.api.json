@@ -1,0 +1,118 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    6,
+    "remote_mac",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "parent_if_index",
+    "u32"
+   ],
+   [
+    "subif_id",
+    "u32"
+   ],
+   "p2p_ethernet_add",
+   {
+    "crc": "0x7f4abf1a"
+   }
+  ],
+  [
+   [
+    6,
+    "remote_mac",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "parent_if_index",
+    "u32"
+   ],
+   "p2p_ethernet_del",
+   {
+    "crc": "0x1efa374a"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "p2p_ethernet_add_reply",
+   {
+    "crc": "0xfda5941f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "p2p_ethernet_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "p2p_ethernet_add": {
+   "reply": "p2p_ethernet_add_reply"
+  },
+  "p2p_ethernet_del": {
+   "reply": "p2p_ethernet_del_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x65c834be"
+}

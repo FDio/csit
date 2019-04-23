@@ -1,0 +1,63 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable_disable",
+    "u8"
+   ],
+   [
+    "is_inside",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "ct6_enable_disable",
+   {
+    "crc": "0x8c8159a0"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "ct6_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {},
+ "services": {
+  "ct6_enable_disable": {
+   "reply": "ct6_enable_disable_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0xf5b1e79f"
+}

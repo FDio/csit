@@ -1,0 +1,384 @@
+{
+ "aliases": {
+  "ip4_address": {
+   "length": 4,
+   "type": "u8"
+  },
+  "ip6_address": {
+   "length": 16,
+   "type": "u8"
+  }
+ },
+ "enums": [
+  [
+   [
+    0,
+    "ADDRESS_IP4"
+   ],
+   [
+    1,
+    "ADDRESS_IP6"
+   ],
+   "address_family",
+   {
+    "enumtype": "u32"
+   }
+  ]
+ ],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "af",
+    "vl_api_address_family_t"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_add",
+    "u8"
+   ],
+   [
+    "table_id",
+    "u32"
+   ],
+   "svs_table_add_del",
+   {
+    "crc": "0x3b28c790"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "af",
+    "vl_api_address_family_t"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_enable",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   [
+    "table_id",
+    "u32"
+   ],
+   "svs_enable_disable",
+   {
+    "crc": "0xbfd387a2"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "af",
+    "vl_api_address_family_t"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   [
+    "table_id",
+    "u32"
+   ],
+   "svs_details",
+   {
+    "crc": "0x2a7c7411"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_add",
+    "u8"
+   ],
+   [
+    "prefix",
+    "vl_api_prefix_t"
+   ],
+   [
+    "source_table_id",
+    "u32"
+   ],
+   [
+    "table_id",
+    "u32"
+   ],
+   "svs_route_add_del",
+   {
+    "crc": "0xdc122202"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "svs_dump",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "svs_plugin_get_version",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "svs_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "svs_route_add_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "svs_table_add_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "major",
+    "u32"
+   ],
+   [
+    "minor",
+    "u32"
+   ],
+   "svs_plugin_get_version_reply",
+   {
+    "crc": "0x9b32cf86"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "svs_dump": {
+   "reply": "svs_details",
+   "stream": true
+  },
+  "svs_enable_disable": {
+   "reply": "svs_enable_disable_reply"
+  },
+  "svs_plugin_get_version": {
+   "reply": "svs_plugin_get_version_reply"
+  },
+  "svs_route_add_del": {
+   "reply": "svs_route_add_del_reply"
+  },
+  "svs_table_add_del": {
+   "reply": "svs_table_add_del_reply"
+  }
+ },
+ "types": [
+  [
+   [
+    "address",
+    "vl_api_address_t"
+   ],
+   [
+    "address_length",
+    "u8"
+   ],
+   "prefix",
+   {
+    "crc": "0x0403aebc"
+   }
+  ],
+  [
+   [
+    "af",
+    "vl_api_address_family_t"
+   ],
+   [
+    "grp_address",
+    "vl_api_address_union_t"
+   ],
+   [
+    "grp_address_length",
+    "u16"
+   ],
+   [
+    "src_address",
+    "vl_api_address_union_t"
+   ],
+   "mprefix",
+   {
+    "crc": "0x1c4cba05"
+   }
+  ],
+  [
+   [
+    "af",
+    "vl_api_address_family_t"
+   ],
+   [
+    "un",
+    "vl_api_address_union_t"
+   ],
+   "address",
+   {
+    "crc": "0x09f11671"
+   }
+  ],
+  [
+   [
+    "len",
+    "u8"
+   ],
+   [
+    "prefix",
+    "vl_api_ip4_address_t"
+   ],
+   "ip4_prefix",
+   {
+    "crc": "0xea8dc11d"
+   }
+  ],
+  [
+   [
+    "len",
+    "u8"
+   ],
+   [
+    "prefix",
+    "vl_api_ip6_address_t"
+   ],
+   "ip6_prefix",
+   {
+    "crc": "0x779fd64f"
+   }
+  ]
+ ],
+ "unions": [
+  [
+   [
+    "ip4",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "ip6",
+    "vl_api_ip6_address_t"
+   ],
+   "address_union",
+   {
+    "crc": "0xd68a2fb4"
+   }
+  ]
+ ],
+ "vl_api_version": "0x190106df"
+}

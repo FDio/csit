@@ -1,0 +1,143 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    16,
+    "dst_ip_address",
+    "u8"
+   ],
+   [
+    16,
+    "src_ip_address",
+    "u8"
+   ],
+   [
+    3,
+    "reserve",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "dis",
+    "u8"
+   ],
+   [
+    "end_dst_port",
+    "u16"
+   ],
+   [
+    "end_src_port",
+    "u16"
+   ],
+   [
+    "fault_det",
+    "u8"
+   ],
+   [
+    "interval",
+    "u16"
+   ],
+   [
+    "is_ipv4",
+    "u8"
+   ],
+   [
+    "start_dst_port",
+    "u16"
+   ],
+   [
+    "start_src_port",
+    "u16"
+   ],
+   "udp_ping_add_del",
+   {
+    "crc": "0x559fcc01"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable",
+    "u32"
+   ],
+   "udp_ping_export",
+   {
+    "crc": "0xb142b369"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "udp_ping_add_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "udp_ping_export_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "2.0.0"
+ },
+ "services": {
+  "udp_ping_add_del": {
+   "reply": "udp_ping_add_del_reply"
+  },
+  "udp_ping_export": {
+   "reply": "udp_ping_export_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x64460ef2"
+}

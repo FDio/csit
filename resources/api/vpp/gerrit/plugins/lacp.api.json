@@ -1,0 +1,130 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    6,
+    "actor_system",
+    "u8"
+   ],
+   [
+    6,
+    "partner_system",
+    "u8"
+   ],
+   [
+    64,
+    "bond_interface_name",
+    "u8"
+   ],
+   [
+    64,
+    "interface_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "actor_key",
+    "u16"
+   ],
+   [
+    "actor_port_number",
+    "u16"
+   ],
+   [
+    "actor_port_priority",
+    "u16"
+   ],
+   [
+    "actor_state",
+    "u8"
+   ],
+   [
+    "actor_system_priority",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "mux_state",
+    "u32"
+   ],
+   [
+    "partner_key",
+    "u16"
+   ],
+   [
+    "partner_port_number",
+    "u16"
+   ],
+   [
+    "partner_port_priority",
+    "u16"
+   ],
+   [
+    "partner_state",
+    "u8"
+   ],
+   [
+    "partner_system_priority",
+    "u16"
+   ],
+   [
+    "ptx_state",
+    "u32"
+   ],
+   [
+    "rx_state",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   [
+    "tx_state",
+    "u32"
+   ],
+   "sw_interface_lacp_details",
+   {
+    "crc": "0x8a14b95e"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "sw_interface_lacp_dump",
+   {
+    "crc": "0x51077d14"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "sw_interface_lacp_dump": {
+   "reply": "sw_interface_lacp_details",
+   "stream": true
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0xec776e02"
+}

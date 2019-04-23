@@ -1,0 +1,224 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    16,
+    "address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_ip6",
+    "u8"
+   ],
+   "dns_resolve_ip",
+   {
+    "crc": "0xae96a1a3"
+   }
+  ],
+  [
+   [
+    16,
+    "ip6_address",
+    "u8"
+   ],
+   [
+    4,
+    "ip4_address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "ip4_set",
+    "u8"
+   ],
+   [
+    "ip6_set",
+    "u8"
+   ],
+   "dns_resolve_name_reply",
+   {
+    "crc": "0xc2d758c3"
+   }
+  ],
+  [
+   [
+    16,
+    "server_address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_add",
+    "u8"
+   ],
+   [
+    "is_ip6",
+    "u8"
+   ],
+   "dns_name_server_add_del",
+   {
+    "crc": "0x3bb05d8c"
+   }
+  ],
+  [
+   [
+    256,
+    "name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "dns_resolve_name",
+   {
+    "crc": "0xc6566676"
+   }
+  ],
+  [
+   [
+    256,
+    "name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "dns_resolve_ip_reply",
+   {
+    "crc": "0x49ed78d6"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable",
+    "u8"
+   ],
+   "dns_enable_disable",
+   {
+    "crc": "0x8050327d"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "dns_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "dns_name_server_add_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "dns_enable_disable": {
+   "reply": "dns_enable_disable_reply"
+  },
+  "dns_name_server_add_del": {
+   "reply": "dns_name_server_add_del_reply"
+  },
+  "dns_resolve_ip": {
+   "reply": "dns_resolve_ip_reply"
+  },
+  "dns_resolve_name": {
+   "reply": "dns_resolve_name_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x55f2dff8"
+}

@@ -1,0 +1,207 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    6,
+    "hw_addr",
+    "u8"
+   ],
+   [
+    64,
+    "host_if_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "u8",
+    "use_random_hw_addr"
+   ],
+   "af_packet_create",
+   {
+    "crc": "0x6d5d30d6"
+   }
+  ],
+  [
+   [
+    64,
+    "host_if_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "af_packet_delete",
+   {
+    "crc": "0x3efceda3"
+   }
+  ],
+  [
+   [
+    64,
+    "host_if_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "af_packet_details",
+   {
+    "crc": "0x057205fa"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "set",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u8"
+   ],
+   "af_packet_set_l4_cksum_offload",
+   {
+    "crc": "0x86538585"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "af_packet_dump",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "af_packet_create_reply",
+   {
+    "crc": "0xfda5941f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "af_packet_delete_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "af_packet_set_l4_cksum_offload_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "af_packet_create": {
+   "reply": "af_packet_create_reply"
+  },
+  "af_packet_delete": {
+   "reply": "af_packet_delete_reply"
+  },
+  "af_packet_dump": {
+   "reply": "af_packet_details",
+   "stream": true
+  },
+  "af_packet_set_l4_cksum_offload": {
+   "reply": "af_packet_set_l4_cksum_offload_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x206563c"
+}
