@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5dc13f3a_9322b70b",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "It is ratio. How many main threads on one physical core. I am using nomenclature from IETF draft",
+      "parentUuid": "7be427a5_2a8fb45c",
+      "range": {
+        "startLine": 240,
+        "startChar": 74,
+        "endLine": 240,
+        "endChar": 75
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b3e7d604_8d91c993",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2019-04-23T15:33:29Z",
       "side": 1,
       "message": "Is this node as documented in line 244, or line 248, or even the undocumented cpu_node?\nI recommend to pick distinct phrases and use them consistently. For example \"SUT\", \"NF node\" and \"NUMA node\".",
+      "range": {
+        "startLine": 242,
+        "startChar": 26,
+        "endLine": 242,
+        "endChar": 30
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e2c713d_f0477cce",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "True, although naming is across CSIT and indeed node we usually refer to DUT/TG, then cpu_node is NUMA node number per the rest of file (which i indeed forget here), then nf_nodes is how many NFs are there. and then NF_node is ID in chain od nodes. \n\nSounds crazy but I prefer to fix by refactor to make it consistent.",
+      "parentUuid": "b3e7d604_8d91c993",
       "range": {
         "startLine": 242,
         "startChar": 26,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1e2dfa92_1cc6e9b2",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "ack i will fix",
+      "parentUuid": "f9097e7e_545084e1",
+      "range": {
+        "startLine": 247,
+        "startChar": 31,
+        "endLine": 247,
+        "endChar": 33
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "905f57d5_e9fe991e",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2019-04-23T15:33:29Z",
       "side": 1,
       "message": "per NF node?",
+      "range": {
+        "startLine": 250,
+        "startChar": 51,
+        "endLine": 250,
+        "endChar": 56
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e66466fb_4932dc24",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "ack i will fix",
+      "parentUuid": "905f57d5_e9fe991e",
       "range": {
         "startLine": 250,
         "startChar": 51,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "9f3e45f0_a1c6f310",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "ack i will fix",
+      "parentUuid": "d5800630_e7fdaff2",
+      "range": {
+        "startLine": 251,
+        "startChar": 32,
+        "endLine": 251,
+        "endChar": 43
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d003f78_4d018bc4",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 4
@@ -128,6 +248,30 @@
       "writtenOn": "2019-04-23T15:33:29Z",
       "side": 1,
       "message": "Unless it is float?",
+      "range": {
+        "startLine": 262,
+        "startChar": 23,
+        "endLine": 262,
+        "endChar": 26
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5ab2a20_ec60ac44",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "ack i will fix",
+      "parentUuid": "9d003f78_4d018bc4",
       "range": {
         "startLine": 262,
         "startChar": 23,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "e8fa3f2f_6b74f68d",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "Comment as then the lines will be too long :)",
+      "parentUuid": "ec2e3c72_d38b7175",
+      "range": {
+        "startLine": 277,
+        "startChar": 8,
+        "endLine": 277,
+        "endChar": 11
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0f0bdb57_4c9c1bbd",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 4
@@ -174,6 +342,30 @@
       "writtenOn": "2019-04-23T15:33:29Z",
       "side": 1,
       "message": "nf_dtcr?\nI do not see how could one NF node (line 250) have half a thread.",
+      "range": {
+        "startLine": 279,
+        "startChar": 43,
+        "endLine": 279,
+        "endChar": 49
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc23e6fe_5b704ac0",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "that is because it is half of physical core. \ndtc \u003d number of dataplane cores of NF. So can be half or quarter (in case of there 4 TH per core)\n\nMy bad, wrong documentation. i will fix.",
+      "parentUuid": "0f0bdb57_4c9c1bbd",
       "range": {
         "startLine": 279,
         "startChar": 43,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "34fcce05_4665f186",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "data thread cores (should be then rather dtpc) but we would need to fix in IETF draft as well ;)",
+      "parentUuid": "e7f6b039_6ab45ed2",
+      "range": {
+        "startLine": 281,
+        "startChar": 8,
+        "endLine": 281,
+        "endChar": 11
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9b1652fb_1e2a7679",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 4
@@ -220,6 +436,30 @@
       "writtenOn": "2019-04-23T15:33:29Z",
       "side": 1,
       "message": "Move this two-liner to else branch (of the if at line 305) and hardcode 1 here.",
+      "range": {
+        "startLine": 303,
+        "startChar": 73,
+        "endLine": 303,
+        "endChar": 76
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6be207da_bee74013",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "I need to simulate that, but i will try.",
+      "parentUuid": "9b1652fb_1e2a7679",
       "range": {
         "startLine": 303,
         "startChar": 73,
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "e73dbe23_574503de",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "ack",
+      "parentUuid": "59d74786_be30f039",
+      "range": {
+        "startLine": 305,
+        "startChar": 15,
+        "endLine": 305,
+        "endChar": 38
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4fcf190_790be45e",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 4
@@ -278,6 +542,30 @@
     },
     {
       "key": {
+        "uuid": "fb373c0d_9414b258",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "technically yes",
+      "parentUuid": "c4fcf190_790be45e",
+      "range": {
+        "startLine": 323,
+        "startChar": 22,
+        "endLine": 323,
+        "endChar": 25
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24446cdb_9aebcd53",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 4
@@ -289,6 +577,30 @@
       "writtenOn": "2019-04-23T15:33:29Z",
       "side": 1,
       "message": "SUT?",
+      "range": {
+        "startLine": 324,
+        "startChar": 21,
+        "endLine": 324,
+        "endChar": 24
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c67aec51_71a42a2e",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T16:27:47Z",
+      "side": 1,
+      "message": "technically yes",
+      "parentUuid": "24446cdb_9aebcd53",
       "range": {
         "startLine": 324,
         "startChar": 21,
