@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cd847155_bf563952",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T12:44:30Z",
+      "side": 1,
+      "message": "Maybe yes, although having this state-full is overkill but maybe yes.",
+      "parentUuid": "1c594d0d_94d32fb6",
+      "range": {
+        "startLine": 249,
+        "startChar": 18,
+        "endLine": 249,
+        "endChar": 28
+      },
+      "revId": "23b5558755b17fdbb8a18be96a535d20bc29c9ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1af65054_148acae0",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-04-23T12:05:33Z",
       "side": 1,
       "message": "Would not be the following code easier if this was dtlc (data threads per logical core)?",
+      "range": {
+        "startLine": 263,
+        "startChar": 8,
+        "endLine": 263,
+        "endChar": 11
+      },
+      "revId": "23b5558755b17fdbb8a18be96a535d20bc29c9ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "153c12bf_8851fda5",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-23T12:44:30Z",
+      "side": 1,
+      "message": "No because then we need to move the logic \"which one to use\" to L2KW/tests. The problem is we are using Hyper threading auto detection. So it then needs to be moved to RF on top of the KW what is not really what I want and just complicates the RF KWs. \n\nMaybe in 19.08 I can rework alg to work with \"flat array\" where core map is interleaved so we will save some cycles of processing. And +1 in field means the next core will be either physical or logical. So logic will unify the things. Such rework however requires more time that i currently have.",
+      "parentUuid": "1af65054_148acae0",
       "range": {
         "startLine": 263,
         "startChar": 8,
