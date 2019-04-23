@@ -112,3 +112,42 @@
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-x710-64b-features-pdr-tsa}
             \label{fig:l2sw-3n-skx-x710-64b-features-pdr-tsa}
     \end{figure}
+
+64b-features-iacl
+-----------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-x710-64b-features-iacl-ndr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-x710-64b-features-iacl-ndr-tsa}
+            \label{fig:l2sw-3n-skx-x710-64b-features-iacl-ndr-tsa}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="ifrm16" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-x710-64b-features-iacl-pdr-tsa.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-x710-64b-features-iacl-pdr-tsa}
+            \label{fig:l2sw-3n-skx-x710-64b-features-iacl-pdr-tsa}
+    \end{figure}
