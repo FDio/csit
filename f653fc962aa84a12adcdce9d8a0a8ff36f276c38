@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e8d8679b_82f5fcdf",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-24T14:01:36Z",
+      "side": 1,
+      "message": "this one has different exit condition because stupid vppctl does not return proper exit code when vpp is not running. this is why we have \"if not ret and \u0027Connection refused\u0027 not in stdout:\" so you proposal would not work.",
+      "parentUuid": "0b14da76_824dfa56",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 11
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1495c1a2_14f4b684",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 2
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "e7754ac1_c8dfc537",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-24T14:01:36Z",
+      "side": 1,
+      "message": "in NF_density and memif we are doing different detection. And again caller function just need to now vpp is started?",
+      "parentUuid": "7b0b4733_c709968c",
+      "range": {
+        "startLine": 604,
+        "startChar": 8,
+        "endLine": 604,
+        "endChar": 10
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a54c20f3_ff14a40a",
         "filename": "resources/libraries/robot/performance/performance_setup.robot",
         "patchSetId": 2
@@ -82,6 +130,30 @@
       "writtenOn": "2019-04-24T13:23:35Z",
       "side": 1,
       "message": "I still prefer to rename all such keywords to Restart*. But that can be done in a different Change, just put a TODO somewhere.",
+      "range": {
+        "startLine": 647,
+        "startChar": 4,
+        "endLine": 647,
+        "endChar": 9
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa8efc73_b45c7fda",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-24T14:01:36Z",
+      "side": 1,
+      "message": "What do user want? They do not care if VPP was started or not they just want start VPP and safely detect if it is UP and running.",
+      "parentUuid": "a54c20f3_ff14a40a",
       "range": {
         "startLine": 647,
         "startChar": 4,
