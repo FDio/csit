@@ -212,7 +212,7 @@ class QemuUtils(object):
             vpp_config.add_dpdk_no_tx_checksum_offload()
         vpp_config.add_plugin('disable', 'default')
         vpp_config.add_plugin('enable', 'dpdk_plugin.so')
-        vpp_config.apply_config(startup, restart_vpp=False)
+        vpp_config.write_config(startup)
 
         # Create VPP running configuration.
         template = '{res}/{tpl}.exec'.format(res=Constants.RESOURCES_TPL_VM,

@@ -54,14 +54,6 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp Show Errors | ${nodes['${dut}']}
 
-| Show VPP trace dump on all DUTs
-| | [Documentation] | Save API trace and dump output on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp api trace save | ${nodes['${dut}']}
-| | | Vpp api trace dump | ${nodes['${dut}']}
-
 | Show Bridge Domain Data On All DUTs
 | | [Documentation] | Show Bridge Domain data on all DUTs.
 | | ...
@@ -419,21 +411,20 @@
 | | Run keyword | DUT2.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
 | | ... | ${thr_count_int}
 
-| Apply startup configuration on all VPP DUTs
-| | [Documentation] | Write startup configuration and restart VPP on all DUTs.
-| | ...
-| | ... | *Arguments:*
-| | ... | - restart_vpp - Whether to restart VPP (Optional). Type: boolean
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Apply startup configuration on all VPP DUTs \| ${False} \|
-| | ...
-| | [Arguments] | ${restart_vpp}=${True}
+| Write startup configuration on all VPP DUTs
+| | [Documentation] | Write VPP startup configuration on all DUTs.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Apply Config | restart_vpp=${restart_vpp}
+| | | Run keyword | ${dut}.Write Config
+
+| Apply startup configuration on all VPP DUTs
+| | [Documentation] | Write VPP startup configuration and restart VPP on all
+| | ... | DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Apply Config
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
 
@@ -617,16 +608,3 @@
 | | ...
 | | [Arguments] | ${node}
 | | Stop VPP Service | ${node}
-
-| Start VPP Service on DUT
-| | [Documentation] | Start the VPP service on the specified node.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Start VPP Service on DUT \| ${nodes['DUT1']} \|
-| | ...
-| | [Arguments] | ${node}
-| | Start VPP Service | ${node}

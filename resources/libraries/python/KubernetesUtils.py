@@ -483,7 +483,6 @@ class KubernetesUtils(object):
         vpp_config.set_node(kwargs['node'])
         vpp_config.add_unix_cli_listen(value='0.0.0.0:5002')
         vpp_config.add_unix_nodaemon()
-        vpp_config.add_dpdk_socketmem('1024,1024')
         vpp_config.add_heapsize('4G')
         vpp_config.add_ip_heap_size('4G')
         vpp_config.add_ip6_heap_size('4G')
@@ -500,7 +499,7 @@ class KubernetesUtils(object):
         if cpuset_cpus:
             corelist_workers = ','.join(str(cpu) for cpu in cpuset_cpus)
             vpp_config.add_cpu_corelist_workers(corelist_workers)
-        vpp_config.apply_config(filename=kwargs['filename'], restart_vpp=False)
+        vpp_config.write_config(filename=kwargs['filename'])
 
     @staticmethod
     def create_kubernetes_vnf_startup_config(**kwargs):
@@ -536,4 +535,4 @@ class KubernetesUtils(object):
             corelist_workers = ','.join(str(cpu) for cpu in cpuset_cpus)
             vpp_config.add_cpu_corelist_workers(corelist_workers)
         vpp_config.add_plugin('disable', 'dpdk_plugin.so')
-        vpp_config.apply_config(filename=kwargs['filename'], restart_vpp=False)
+        vpp_config.write_config(filename=kwargs['filename'])
