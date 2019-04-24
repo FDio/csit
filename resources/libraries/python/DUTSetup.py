@@ -73,10 +73,11 @@ class DUTSetup(object):
             command = 'supervisorctl restart {name}'.format(name=service)
         else:
             command = 'service {name} restart'.format(name=service)
-        message = 'Node {host} failed to start service {name}'.\
-            format(host=node['host'], name=service)
+        message = 'Node {host} failed to restart service {name}'.format(
+            host=node['host'], name=service)
 
-        exec_cmd_no_error(node, command, timeout=30, sudo=True, message=message)
+        exec_cmd_no_error(
+            node, command, timeout=10, sudo=True, message=message, retries=2)
 
         DUTSetup.get_service_logs(node, service)
 

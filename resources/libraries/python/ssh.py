@@ -452,10 +452,16 @@ def exec_cmd(node, cmd, timeout=600, sudo=False, disconnect=False):
 
 
 def exec_cmd_no_error(
-        node, cmd, timeout=600, sudo=False, message=None, disconnect=False):
+        node, cmd, timeout=600, sudo=False, message=None, disconnect=False,
+        retries=0):
     """Convenience function to ssh/exec/return out & err.
 
     Verifies that return code is zero.
+    Supports retries, timeout is related to each try separately then.
+    Disconnect (if enabled) is applied after each try.
+
+    TODO: Should we distinguish disconnect behavior on intermediate tries
+    versus on last (successful) try?
 
     :param node: DUT node.
     :param cmd: Command to be executed.
@@ -463,21 +469,26 @@ def exec_cmd_no_error(
     :param sudo: Sudo privilege execution flag. Default: False.
     :param message: Error message in case of failure. Default: None.
     :param disconnect: Close the opened SSH connection if True.
+    :param retries: How many times to retry on failure.
     :type node: dict
     :type cmd: str or OptionString
     :type timeout: int
     :type sudo: bool
     :type message: str
     :type disconnect: bool
+    :type retries: int
     :returns: Stdout, Stderr.
     :rtype: tuple(str, str)
     :raises RuntimeError: If bash return code is not 0.
     """
-    ret_code, stdout, stderr = exec_cmd(
-        node, cmd, timeout=timeout, sudo=sudo, disconnect=disconnect)
-    msg = ('Command execution failed: "{cmd}"\n{stderr}'.
-           format(cmd=cmd, stderr=stderr) if message is None else message)
-    if ret_code != 0:
+    for _ in range(retries + 1):
+        ret_code, stdout, stderr = exec_cmd(
+            node, cmd, timeout=timeout, sudo=sudo, disconnect=disconnect)
+        if ret_code == 0:
+            break
+    else:
+        msg = ('Command execution failed: "{cmd}"\n{stderr}'.
+               format(cmd=cmd, stderr=stderr) if message is None else message)
         raise RuntimeError(msg)
 
     return stdout, stderr
