@@ -634,6 +634,8 @@ class DUTSetup(object):
                                       format(dir=vpp_pkg_dir), timeout=120,
                                       sudo=True, message=message)
                     exec_cmd_no_error(node, 'dpkg -l | grep vpp', sudo=True)
+                    if running_in_container(node):
+                        DUTSetup.start_service(node, Constants.VPP_UNIT)
                 else:
                     exec_cmd_no_error(node, 'yum -y remove "*vpp*" || true',
                                       timeout=120, sudo=True)
@@ -641,6 +643,7 @@ class DUTSetup(object):
                                       format(dir=vpp_pkg_dir), timeout=120,
                                       sudo=True, message=message)
                     exec_cmd_no_error(node, 'rpm -qai *vpp*', sudo=True)
+                    DUTSetup.start_service(node, Constants.VPP_UNIT)
 
     @staticmethod
     def running_in_container(node):
