@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3276e0c0_5949177e",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T11:38:12Z",
+      "side": 1,
+      "message": "Rename to restart? VPP starts on install, and unless it crashes it is still running.",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 13
+      },
+      "revId": "13d89766eb08264546b9e1f57539b0f12a89df8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "250cf366_7db0ccf4",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T11:38:12Z",
+      "side": 1,
+      "message": "Do not verify immediately. If VPP takes time to start replying after restart, we can be starting VPP on other DUTs in the meantime.\n\nKeywords which do both restart and verify, should be named restart_and_verify_*.",
+      "range": {
+        "startLine": 69,
+        "startChar": 16,
+        "endLine": 69,
+        "endChar": 22
+      },
+      "revId": "13d89766eb08264546b9e1f57539b0f12a89df8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "442cdaa3_7102899a",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T11:38:12Z",
+      "side": 1,
+      "message": "Use \"retries\" parameter as in https://gerrit.fd.io/r/#/c/19138/2/resources/libraries/python/ssh.py",
+      "range": {
+        "startLine": 123,
+        "startChar": 8,
+        "endLine": 123,
+        "endChar": 11
+      },
+      "revId": "13d89766eb08264546b9e1f57539b0f12a89df8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
