@@ -61,6 +61,39 @@ class DUTSetup(object):
                 DUTSetup.get_service_logs(node, service)
 
     @staticmethod
+    def restart_service(node, service):
+        """Restart up the named service on node.
+
+        :param node: Node in the topology.
+        :param service: Service unit name.
+        :type node: dict
+        :type service: str
+        """
+        if DUTSetup.running_in_container(node):
+            command = 'supervisorctl restart {name}'.format(name=service)
+        else:
+            command = 'service {name} restart'.format(name=service)
+        message = 'Node {host} failed to start service {name}'.\
+            format(host=node['host'], name=service)
+
+        exec_cmd_no_error(node, command, timeout=30, sudo=True, message=message)
+
+        DUTSetup.get_service_logs(node, service)
+
+    @staticmethod
+    def restart_service_on_all_duts(nodes, service):
+        """Retart up the named service on all DUTs.
+
+        :param node: Nodes in the topology.
+        :param service: Service unit name.
+        :type node: dict
+        :type service: str
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.restart_service(node, service)
+
+    @staticmethod
     def start_service(node, service):
         """Start up the named service on node.
 
@@ -69,6 +102,7 @@ class DUTSetup(object):
         :type node: dict
         :type service: str
         """
+        # TODO: change command to start once all parent function updated.
         if DUTSetup.running_in_container(node):
             command = 'supervisorctl restart {name}'.format(name=service)
         else:
@@ -634,6 +668,8 @@ class DUTSetup(object):
                                       format(dir=vpp_pkg_dir), timeout=120,
                                       sudo=True, message=message)
                     exec_cmd_no_error(node, 'dpkg -l | grep vpp', sudo=True)
+                    if DUTSetup.running_in_container(node):
+                        DUTSetup.restart_service(node, Constants.VPP_UNIT)
                 else:
                     exec_cmd_no_error(node, 'yum -y remove "*vpp*" || true',
                                       timeout=120, sudo=True)
@@ -641,6 +677,7 @@ class DUTSetup(object):
                                       format(dir=vpp_pkg_dir), timeout=120,
                                       sudo=True, message=message)
                     exec_cmd_no_error(node, 'rpm -qai *vpp*', sudo=True)
+                    DUTSetup.restart_service(node, Constants.VPP_UNIT)
 
     @staticmethod
     def running_in_container(node):
