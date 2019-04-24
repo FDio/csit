@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b14da76_824dfa56",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T13:23:35Z",
+      "side": 1,
+      "message": "I still recommend to cherry-pick https://gerrit.fd.io/r/#/c/19138/2/resources/libraries/python/ssh.py\nas in putting retry mechanism into ssh.exec_cmd_no_error ...",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 11
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1495c1a2_14f4b684",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T13:23:35Z",
+      "side": 1,
+      "message": "... and add sleep parameter to exec_cmd_no_error if this is still needed.",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 22
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b0b4733_c709968c",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T13:23:35Z",
+      "side": 1,
+      "message": "I recommend to move this out. Imagine NF density scenario with edited config; we want to start them all, and only after that verify them all.",
+      "range": {
+        "startLine": 604,
+        "startChar": 8,
+        "endLine": 604,
+        "endChar": 10
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a54c20f3_ff14a40a",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T13:23:35Z",
+      "side": 1,
+      "message": "I still prefer to rename all such keywords to Restart*. But that can be done in a different Change, just put a TODO somewhere.",
+      "range": {
+        "startLine": 647,
+        "startChar": 4,
+        "endLine": 647,
+        "endChar": 9
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
