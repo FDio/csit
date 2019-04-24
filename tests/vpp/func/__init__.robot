@@ -19,7 +19,6 @@
 | Suite Setup | Run Keywords | Setup Functional Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Install Vpp On All Duts | ${nodes} | ${VPP_PKG_DIR}
-| ... | AND | Sleep | 10s
 | ... | AND | Verify Vpp On All Duts | ${nodes}
 | ... | AND | Setup All DUTs | ${nodes}
 | ... | AND | Update All Interface Data On All Nodes | ${nodes}
