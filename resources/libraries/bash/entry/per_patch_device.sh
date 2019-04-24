@@ -48,11 +48,11 @@ select_topology || die
 select_build "build_current" || die
 check_download_dir || die
 activate_virtualenv "${VPP_DIR}" || die
+generate_tests || die
+archive_tests || die
 activate_docker_topology || die
 select_vpp_device_tags || die
 compose_pybot_arguments || die
-generate_tests || die
-archive_tests || die
 run_pybot || die
 copy_archives || die
 archive_test_results "csit_current" || die

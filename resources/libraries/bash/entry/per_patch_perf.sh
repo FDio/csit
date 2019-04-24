@@ -53,11 +53,11 @@ get_test_tag_string || die
 set_perpatch_dut || die
 select_topology || die
 activate_virtualenv "${VPP_DIR}" || die
+generate_tests || die
+archive_tests || die
 reserve_testbed || die
 select_tags || die
 compose_pybot_arguments || die
-generate_tests || die
-archive_tests || die
 # Support for interleaved measurements is kept for future.
 iterations=1 # 8
 for ((iter=0; iter<iterations; iter++)); do
