@@ -129,12 +129,14 @@ class VPPUtil(object):
     def verify_vpp_on_all_duts(nodes):
         """Verify that VPP is installed on all DUT nodes.
 
+        TODO: Rename to restart_and_verify_vpp_on_all_duts.
+
         :param nodes: Nodes in the topology.
         :type nodes: dict
         """
+        VPPUtil.start_vpp_service_on_all_duts(nodes)
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                VPPUtil.start_vpp_service(node)
                 VPPUtil.verify_vpp_on_dut(node)
 
     @staticmethod
