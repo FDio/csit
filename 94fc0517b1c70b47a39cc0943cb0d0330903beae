@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43e134ca_098041b0",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T14:34:54Z",
+      "side": 1,
+      "message": "Do we (CSIT or VPP) have some document explaining why the additional plugins are needed for -int- tests, but not for -tnl- tests?",
+      "range": {
+        "startLine": 23,
+        "startChar": 56,
+        "endLine": 23,
+        "endChar": 63
+      },
+      "revId": "94fc0517b1c70b47a39cc0943cb0d0330903beae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
