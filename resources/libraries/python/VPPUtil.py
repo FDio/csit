@@ -13,14 +13,12 @@
 
 """VPP util library."""
 
-import time
-
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiExecutor
-from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
 
@@ -58,55 +56,39 @@ class VPPUtil(object):
             exec_cmd_no_error(node, command, timeout=30, sudo=True)
 
     @staticmethod
-    def start_vpp_service(node, retries=120):
-        """Start VPP service on the specified node.
+    def restart_vpp_service(node):
+        """Restart VPP service on the specified topology node.
 
-        :param node: VPP node.
-        :param retries: Number of times (default 60) to re-try waiting.
+        :param node: Topology node.
         :type node: dict
-        :type retries: int
-        :raises RuntimeError: If VPP service fails to start.
         """
         DUTSetup.start_service(node, Constants.VPP_UNIT)
-        # Sleep 1 second, up to <retry> times,
-        # and verify if VPP is running.
-        for _ in range(retries):
-            time.sleep(1)
-            command = 'vppctl show pci'
-            ret, stdout, _ = exec_cmd(node, command, timeout=30, sudo=True)
-            if not ret and 'Connection refused' not in stdout:
-                break
-        else:
-            raise RuntimeError('VPP failed to start on host {name}'.
-                               format(name=node['host']))
-        DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
     @staticmethod
-    def start_vpp_service_on_all_duts(nodes):
-        """Start up the VPP service on all nodes.
+    def restart_vpp_service_on_all_duts(nodes):
+        """Restart VPP service on all DUT nodes.
 
-        :param nodes: Nodes in the topology.
+        :param nodes: Topology nodes.
         :type nodes: dict
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                VPPUtil.start_vpp_service(node)
+                VPPUtil.restart_vpp_service(node)
 
     @staticmethod
     def stop_vpp_service(node):
-        """Stop VPP service on the specified node.
+        """Stop VPP service on the specified topology node.
 
-        :param node: VPP node.
+        :param node: Topology node.
         :type node: dict
-        :raises RuntimeError: If VPP service fails to stop.
         """
         DUTSetup.stop_service(node, Constants.VPP_UNIT)
 
     @staticmethod
     def stop_vpp_service_on_all_duts(nodes):
-        """Stop VPP service on all nodes.
+        """Stop VPP service on all DUT nodes.
 
-        :param nodes: Nodes in the topology.
+        :param nodes: Topology nodes.
         :type nodes: dict
         """
         for node in nodes.values():
@@ -114,31 +96,60 @@ class VPPUtil(object):
                 VPPUtil.stop_vpp_service(node)
 
     @staticmethod
-    def verify_vpp_on_dut(node):
-        """Verify that VPP is installed on DUT node.
+    def verify_vpp_installed(node):
+        """Verify that VPP is installed on the specified topology node.
 
-        :param node: DUT node.
+        :param node: Topology node.
         :type node: dict
-        :raises RuntimeError: If failed to restart VPP, get VPP version
-            or get VPP interfaces.
         """
-        VPPUtil.vpp_show_version_verbose(node)
-        VPPUtil.vpp_show_interfaces(node)
+        cmd = 'command -v vpp'
+        exec_cmd_no_error(
+            node, cmd, message='VPP is not installed!')
+
+    @staticmethod
+    def verify_vpp_started(node):
+        """Verify that VPP is started on the specified topology node.
+
+        :param node: Topology node.
+        :type node: dict
+        """
+        cmd = ('vppctl show pci 2>&1 | '
+               'fgrep -v "Connection refused" | '
+               'fgrep -v "No such file or directory"')
+        exec_cmd_no_error(
+            node, cmd, sudo=True, message='VPP failed to start!', retries=120)
+
+    @staticmethod
+    def verify_vpp(node):
+        """Verify that VPP is installed and started on the specified topology
+        node.
+
+        :param node: Topology node.
+        :type node: dict
+        :raises RuntimeError: If VPP service fails to start.
+        """
+        VPPUtil.verify_vpp_installed(node)
+        try:
+            # Verify responsivness of vppctl.
+            VPPUtil.verify_vpp_started(node)
+            # Verify responsivness of PAPI.
+            VPPUtil.show_log(node)
+        finally:
+            DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
     @staticmethod
     def verify_vpp_on_all_duts(nodes):
-        """Verify that VPP is installed on all DUT nodes.
+        """Verify that VPP is installed and started on all DUT nodes.
 
         :param nodes: Nodes in the topology.
         :type nodes: dict
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                VPPUtil.start_vpp_service(node)
-                VPPUtil.verify_vpp_on_dut(node)
+                VPPUtil.verify_vpp(node)
 
     @staticmethod
-    def vpp_show_version(node, verbose=False):
+    def vpp_show_version(node, verbose=True):
         """Run "show_version" PAPI command.
 
         :param node: Node to run command on.
@@ -149,7 +160,6 @@ class VPPUtil(object):
         :returns: VPP version.
         :rtype: str
         """
-
         with PapiExecutor(node) as papi_exec:
             data = papi_exec.add('show_version').execute_should_pass().\
                 verify_reply()
@@ -164,25 +174,15 @@ class VPPUtil(object):
         return data['version'].rstrip('\0x00')
 
     @staticmethod
-    def vpp_show_version_verbose(node):
-        """Run "show_version" API command and return verbose string of version
-        data.
-
-        :param node: Node to run command on.
-        :type node: dict
-        """
-        VPPUtil.vpp_show_version(node, verbose=True)
-
-    @staticmethod
     def show_vpp_version_on_all_duts(nodes):
-        """Show VPP version on all DUTs.
+        """Show VPP version verbose on all DUTs.
 
-        :param nodes: VPP nodes.
+        :param nodes: Nodes in the topology.
         :type nodes: dict
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                VPPUtil.vpp_show_version_verbose(node)
+                VPPUtil.vpp_show_version(node)
 
     @staticmethod
     def vpp_show_interfaces(node):
@@ -210,26 +210,6 @@ class VPPUtil(object):
         vat = VatExecutor()
         vat.execute_script("show_crypto_device_mapping.vat", node,
                            json_out=False)
-
-    @staticmethod
-    def vpp_api_trace_dump(node):
-        """Run "api trace custom-dump" CLI command.
-
-        :param node: Node to run command on.
-        :type node: dict
-        """
-        vat = VatExecutor()
-        vat.execute_script("api_trace_dump.vat", node, json_out=False)
-
-    @staticmethod
-    def vpp_api_trace_save(node):
-        """Run "api trace save" CLI command.
-
-        :param node: Node to run command on.
-        :type node: dict
-        """
-        vat = VatExecutor()
-        vat.execute_script("api_trace_save.vat", node, json_out=False)
 
     @staticmethod
     def vpp_enable_traces_on_dut(node):
@@ -296,6 +276,17 @@ class VPPUtil(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 VPPUtil.show_event_logger_on_dut(node)
+
+    @staticmethod
+    def show_log(node):
+        """Show log on the specified topology node.
+
+        :param node: Topology node.
+        :type node: dict
+        """
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add('cli_inband', cmd='show log').get_replies().\
+                verify_reply()["reply"]
 
     @staticmethod
     def vpp_show_threads(node):

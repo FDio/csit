@@ -14,13 +14,11 @@
 """VPP Configuration File Generator library."""
 
 import re
-import time
 
-from resources.libraries.python.ssh import SSH
-from resources.libraries.python.Constants import Constants
-from resources.libraries.python.DUTSetup import DUTSetup
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import Topology
+from resources.libraries.python.VPPUtil import VPPUtil
 
 __all__ = ['VppConfigGenerator']
 
@@ -559,74 +557,51 @@ class VppConfigGenerator(object):
         path = ['session', 'local-endpoints-table-memory']
         self.add_config_item(self._nodeconfig, value, path)
 
-    def apply_config(self, filename=None, retries=60, restart_vpp=True):
-        """Generate and apply VPP configuration for node.
+    def write_config(self, filename=None):
+        """Generate and write VPP startup configuration to file.
 
         Use data from calls to this class to form a startup.conf file and
-        replace /etc/vpp/startup.conf with it on node.
+        replace /etc/vpp/startup.conf with it on topology node.
 
         :param filename: Startup configuration file name.
-        :param retries: Number of times (default 60) to re-try waiting.
-        :param restart_vpp: Whether to restart VPP.
         :type filename: str
-        :type retries: int
-        :type restart_vpp: bool.
-        :raises RuntimeError: If writing config file failed or restart of VPP
-            failed or backup of VPP startup.conf failed.
         """
         self.dump_config(self._nodeconfig)
-
-        ssh = SSH()
-        ssh.connect(self._node)
 
         if filename is None:
             filename = self._vpp_startup_conf
 
         if self._vpp_startup_conf_backup is not None:
-            ret, _, _ = \
-                ssh.exec_command('sudo cp {src} {dest}'.
-                                 format(src=self._vpp_startup_conf,
-                                        dest=self._vpp_startup_conf_backup))
-            if ret != 0:
-                raise RuntimeError('Backup of config file failed on node '
-                                   '{name}'.format(name=self._hostname))
+            cmd = ('cp {src} {dest}'.format(src=self._vpp_startup_conf,
+                   dest=self._vpp_startup_conf_backup))
+            exec_cmd_no_error(
+                self._node, cmd, sudo=True, message='Copy config file failed!')
 
-        ret, _, _ = \
-            ssh.exec_command('echo "{config}" | sudo tee {filename}'.
-                             format(config=self._vpp_config,
-                                    filename=filename))
+        cmd = ('echo "{config}" | sudo tee {filename}'.format(
+               config=self._vpp_config, filename=filename))
+        exec_cmd_no_error(
+            self._node, cmd, message='Writing config file failed!')
 
-        if ret != 0:
-            raise RuntimeError('Writing config file failed to node {name}'.
-                               format(name=self._hostname))
+    def apply_config(self, filename=None, verify_vpp=True):
+        """Generate and write VPP startup configuration to file and restart VPP.
 
-        if restart_vpp:
-            DUTSetup.start_service(self._node, Constants.VPP_UNIT)
+        Use data from calls to this class to form a startup.conf file and
+        replace /etc/vpp/startup.conf with it on topology node.
 
-            # Sleep <waittime> seconds, up to <retry> times,
-            # and verify if VPP is running.
-            for _ in range(retries):
-                time.sleep(1)
-                ret, stdout, _ = \
-                    ssh.exec_command_sudo('vppctl show pci')
-                if ret == 0 and 'Connection refused' not in stdout:
-                    break
-            else:
-                raise RuntimeError('VPP failed to restart on node {name}'.
-                                   format(name=self._hostname))
+        :param filename: Startup configuration file name.
+        :param verify_vpp: Verify VPP is running after restart.
+        :type filename: str
+        :type verify_vpp: bool
+        """
+        self.write_config(filename=filename)
+
+        VPPUtil.restart_vpp_service(self._node)
+        if verify_vpp:
+            VPPUtil.verify_vpp(self._node)
 
     def restore_config(self):
-        """Restore VPP startup.conf from backup.
-
-        :raises RuntimeError: When restoration of startup.conf file failed.
-        """
-
-        ssh = SSH()
-        ssh.connect(self._node)
-
-        ret, _, _ = ssh.exec_command('sudo cp {src} {dest}'.
-                                     format(src=self._vpp_startup_conf_backup,
-                                            dest=self._vpp_startup_conf))
-        if ret != 0:
-            raise RuntimeError('Restoration of config file failed on node '
-                               '{name}'.format(name=self._hostname))
+        """Restore VPP startup.conf from backup."""
+        cmd = ('cp {src} {dest}'.format(src=self._vpp_startup_conf_backup,
+               dest=self._vpp_startup_conf))
+        exec_cmd_no_error(
+            self._node, cmd, sudo=True, message='Copy config file failed!')
