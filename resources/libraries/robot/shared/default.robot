@@ -54,14 +54,6 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp Show Errors | ${nodes['${dut}']}
 
-| Show VPP trace dump on all DUTs
-| | [Documentation] | Save API trace and dump output on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp api trace save | ${nodes['${dut}']}
-| | | Vpp api trace dump | ${nodes['${dut}']}
-
 | Show Bridge Domain Data On All DUTs
 | | [Documentation] | Show Bridge Domain data on all DUTs.
 | | ...
@@ -617,16 +609,3 @@
 | | ...
 | | [Arguments] | ${node}
 | | Stop VPP Service | ${node}
-
-| Start VPP Service on DUT
-| | [Documentation] | Start the VPP service on the specified node.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Start VPP Service on DUT \| ${nodes['DUT1']} \|
-| | ...
-| | [Arguments] | ${node}
-| | Start VPP Service | ${node}

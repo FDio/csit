@@ -14,13 +14,11 @@
 """VPP Configuration File Generator library."""
 
 import re
-import time
 
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.Constants import Constants
-from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import Topology
+from resources.libraries.python.VPPUtil import VPPUtil
 
 __all__ = ['VppConfigGenerator']
 
@@ -559,20 +557,18 @@ class VppConfigGenerator(object):
         path = ['session', 'local-endpoints-table-memory']
         self.add_config_item(self._nodeconfig, value, path)
 
-    def apply_config(self, filename=None, retries=60, restart_vpp=True):
+    def apply_config(self, filename=None, restart_vpp=True):
         """Generate and apply VPP configuration for node.
 
         Use data from calls to this class to form a startup.conf file and
         replace /etc/vpp/startup.conf with it on node.
 
         :param filename: Startup configuration file name.
-        :param retries: Number of times (default 60) to re-try waiting.
         :param restart_vpp: Whether to restart VPP.
         :type filename: str
-        :type retries: int
         :type restart_vpp: bool.
-        :raises RuntimeError: If writing config file failed or restart of VPP
-            failed or backup of VPP startup.conf failed.
+        :raises RuntimeError: If writing config file failed or backup of VPP
+            startup.conf failed.
         """
         self.dump_config(self._nodeconfig)
 
@@ -601,19 +597,8 @@ class VppConfigGenerator(object):
                                format(name=self._hostname))
 
         if restart_vpp:
-            DUTSetup.start_service(self._node, Constants.VPP_UNIT)
-
-            # Sleep <waittime> seconds, up to <retry> times,
-            # and verify if VPP is running.
-            for _ in range(retries):
-                time.sleep(1)
-                ret, stdout, _ = \
-                    ssh.exec_command_sudo('vppctl show pci')
-                if ret == 0 and 'Connection refused' not in stdout:
-                    break
-            else:
-                raise RuntimeError('VPP failed to restart on node {name}'.
-                                   format(name=self._hostname))
+            VPPUtil.restart_vpp_service(self._node)
+            VPPUtil.verify_vpp(self._node)
 
     def restore_config(self):
         """Restore VPP startup.conf from backup.
