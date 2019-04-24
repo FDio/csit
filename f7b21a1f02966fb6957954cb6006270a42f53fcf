@@ -664,6 +664,30 @@
     },
     {
       "key": {
+        "uuid": "6547e0f3_e4eaa7ff",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T14:16:31Z",
+      "side": 1,
+      "message": "I do not get it. Lines 306-307, if executed, will overwrite dt_list computed here. Using else branch would make the code more readable.",
+      "parentUuid": "bbf2040e_3f828a16",
+      "range": {
+        "startLine": 303,
+        "startChar": 73,
+        "endLine": 303,
+        "endChar": 76
+      },
+      "revId": "f7b21a1f02966fb6957954cb6006270a42f53fcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "59d74786_be30f039",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 4
