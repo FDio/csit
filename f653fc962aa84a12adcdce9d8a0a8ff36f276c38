@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0e753f47_16a04a36",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T15:34:29Z",
+      "side": 1,
+      "message": "Would the following work as a command to give ret\u003d\u003d1 when VPP is not ready?\n  vppctl show pci 2\u003e\u00261 | fgrep -v \u0027Connection refused\u0027\n\nSeems to work for me locally, but SSH may treat pipe differently.\n\n$ ( echo \"a\" | fgrep -v a ); echo $?\n1\n\n$ ( echo \"b\" | fgrep -v a ); echo $? \nb\n0\n\n$ ( true | fgrep -v a ); echo $?\n1\n\n$ ( echo \"b\" \u0026\u0026 false | fgrep -v a ); echo $?\nb\n1",
+      "parentUuid": "e8d8679b_82f5fcdf",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 11
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1495c1a2_14f4b684",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 2
@@ -119,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "d891507f_6fbc8c98",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T15:34:29Z",
+      "side": 1,
+      "message": "Alright my new favourite is, fifth verb, or more precisely verb pair. \"restart VPP if not running\" and delayed \"keep checking this set of VPPs until they are all up, else fail when time runs out\".",
+      "parentUuid": "e7754ac1_c8dfc537",
+      "range": {
+        "startLine": 604,
+        "startChar": 8,
+        "endLine": 604,
+        "endChar": 10
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a54c20f3_ff14a40a",
         "filename": "resources/libraries/robot/performance/performance_setup.robot",
         "patchSetId": 2
@@ -154,6 +202,30 @@
       "side": 1,
       "message": "What do user want? They do not care if VPP was started or not they just want start VPP and safely detect if it is UP and running.",
       "parentUuid": "a54c20f3_ff14a40a",
+      "range": {
+        "startLine": 647,
+        "startChar": 4,
+        "endLine": 647,
+        "endChar": 9
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a2ceea99_25b47cd4",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T15:34:29Z",
+      "side": 1,
+      "message": "Alright, if we mention (after line 22) that \"start\" means either the fourth verb or fifth.",
+      "parentUuid": "fa8efc73_b45c7fda",
       "range": {
         "startLine": 647,
         "startChar": 4,
