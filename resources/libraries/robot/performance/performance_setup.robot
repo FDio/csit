@@ -526,6 +526,15 @@
 | | Set Suite Variable | @{plugins_to_enable}
 | | Append To List | ${plugins_to_enable} | lacp_plugin.so
 
+| Set up performance test suite with crypto ipsecmb
+| | [Documentation]
+| | ... | Append crypto_ipsecmb_plugin.so to the list of enabled plugins.
+| | ...
+| | Set Suite Variable | @{plugins_to_enable}
+| | Append To List | ${plugins_to_enable} | crypto_ia32_plugin.so
+| | Append To List | ${plugins_to_enable} | crypto_ipsecmb_plugin.so
+| | Append To List | ${plugins_to_enable} | crypto_openssl_plugin.so
+
 | Set up 3-node performance topology with wrk and DUT's NIC model
 | | [Documentation]
 | | ... | Suite preparation phase that sets the default startup configuration of
