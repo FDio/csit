@@ -18,8 +18,9 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | BASE | CBC_SHA1
 | ...
-| Suite Setup | Set up IPSec performance test suite | L3 | ${nic_name}
-| ... | SW_cryptodev
+| Suite Setup | Run Keywords
+| ... | Set up IPSec performance test suite | L3 | ${nic_name} | SW_cryptodev
+| ... | AND | Set up performance test suite with crypto ipsecmb
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
