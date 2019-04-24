@@ -58,28 +58,15 @@ class VPPUtil(object):
             exec_cmd_no_error(node, command, timeout=30, sudo=True)
 
     @staticmethod
-    def start_vpp_service(node, retries=120):
+    def start_vpp_service(node):
         """Start VPP service on the specified node.
 
         :param node: VPP node.
-        :param retries: Number of times (default 60) to re-try waiting.
         :type node: dict
-        :type retries: int
         :raises RuntimeError: If VPP service fails to start.
         """
         DUTSetup.start_service(node, Constants.VPP_UNIT)
-        # Sleep 1 second, up to <retry> times,
-        # and verify if VPP is running.
-        for _ in range(retries):
-            time.sleep(1)
-            command = 'vppctl show pci'
-            ret, stdout, _ = exec_cmd(node, command, timeout=30, sudo=True)
-            if not ret and 'Connection refused' not in stdout:
-                break
-        else:
-            raise RuntimeError('VPP failed to start on host {name}'.
-                               format(name=node['host']))
-        DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
+        VPPUtil.verify_vpp_started_on_dut(node)
 
     @staticmethod
     def start_vpp_service_on_all_duts(nodes):
@@ -114,28 +101,49 @@ class VPPUtil(object):
                 VPPUtil.stop_vpp_service(node)
 
     @staticmethod
-    def verify_vpp_on_dut(node):
+    def verify_vpp_installed_on_dut(node):
         """Verify that VPP is installed on DUT node.
 
         :param node: DUT node.
         :type node: dict
-        :raises RuntimeError: If failed to restart VPP, get VPP version
-            or get VPP interfaces.
         """
+        command = 'command -v vpp'
+        exec_cmd_no_error(node, command)
+
+    @staticmethod
+    def verify_vpp_started_on_dut(node, retries=120):
+        """Verify that VPP is started on DUT node.
+
+        :param node: VPP node.
+        :param retries: Number of times (default 120) to re-try waiting.
+        :type node: dict
+        :type retries: int
+        :raises RuntimeError: If VPP is not started.
+        """
+        for _ in range(retries):
+            time.sleep(1)
+            command = 'vppctl show pci'
+            ret, stdout, _ = exec_cmd(node, command, timeout=30, sudo=True)
+            if not ret and 'Connection refused' not in stdout:
+                break
+        else:
+            raise RuntimeError('VPP failed to start on host {name}'.
+                               format(name=node['host']))
+        DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
         VPPUtil.vpp_show_version_verbose(node)
         VPPUtil.vpp_show_interfaces(node)
 
     @staticmethod
     def verify_vpp_on_all_duts(nodes):
-        """Verify that VPP is installed on all DUT nodes.
+        """Verify that VPP on all DUT nodes.
 
         :param nodes: Nodes in the topology.
         :type nodes: dict
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                VPPUtil.start_vpp_service(node)
-                VPPUtil.verify_vpp_on_dut(node)
+                VPPUtil.verify_vpp_installed_on_dut(node)
+                VPPUtil.verify_vpp_started_on_dut(node)
 
     @staticmethod
     def vpp_show_version(node, verbose=False):

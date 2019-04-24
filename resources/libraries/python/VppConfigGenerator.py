@@ -21,6 +21,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import Topology
+from resources.libraries.python.VPPUtil import VPPUtil
 
 __all__ = ['VppConfigGenerator']
 
@@ -601,19 +602,7 @@ class VppConfigGenerator(object):
                                format(name=self._hostname))
 
         if restart_vpp:
-            DUTSetup.start_service(self._node, Constants.VPP_UNIT)
-
-            # Sleep <waittime> seconds, up to <retry> times,
-            # and verify if VPP is running.
-            for _ in range(retries):
-                time.sleep(1)
-                ret, stdout, _ = \
-                    ssh.exec_command_sudo('vppctl show pci')
-                if ret == 0 and 'Connection refused' not in stdout:
-                    break
-            else:
-                raise RuntimeError('VPP failed to restart on node {name}'.
-                                   format(name=self._hostname))
+            VPPUtil.start_vpp_service(self._node)
 
     def restore_config(self):
         """Restore VPP startup.conf from backup.
