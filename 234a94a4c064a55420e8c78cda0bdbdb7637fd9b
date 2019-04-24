@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3920d96d_1ed43b13",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T14:16:31Z",
+      "side": 1,
+      "message": "Oh, I did not notice this before, but I believe the \"list\" 5 words earlier should suffice.",
+      "range": {
+        "startLine": 242,
+        "startChar": 43,
+        "endLine": 242,
+        "endChar": 50
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dd2fb581_176b66a0",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T14:16:31Z",
+      "side": 1,
+      "message": "core? Count is not a unit.",
+      "range": {
+        "startLine": 243,
+        "startChar": 35,
+        "endLine": 243,
+        "endChar": 45
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d19d8026_d69e9287",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T14:16:31Z",
+      "side": 1,
+      "message": "I still prefer mentioning that these numbers go from 1, not from 0.",
+      "range": {
+        "startLine": 249,
+        "startChar": 37,
+        "endLine": 249,
+        "endChar": 38
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e32cf908_f5ce74ae",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T14:16:31Z",
+      "side": 1,
+      "message": "You have confused me with line 280. Are those CPU threads, or VPP (as an application) threads?\nEither way, I do not see how amount of threads could be non-integer.\nThe IETF draft probably explains it, but people reading code would not know about it, unless you add a link.",
+      "range": {
+        "startLine": 252,
+        "startChar": 43,
+        "endLine": 252,
+        "endChar": 50
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0d669a1_8dd61850",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T14:16:31Z",
+      "side": 1,
+      "message": "Is this the official Linux name for the number identifying a logical core?",
+      "range": {
+        "startLine": 280,
+        "startChar": 10,
+        "endLine": 280,
+        "endChar": 20
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c8afdde0_1a22cbdb",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T14:16:31Z",
+      "side": 1,
+      "message": "Fix in this Change, or rename to TODO.\nOtherwise pylint complains.",
+      "range": {
+        "startLine": 285,
+        "startChar": 10,
+        "endLine": 285,
+        "endChar": 15
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
