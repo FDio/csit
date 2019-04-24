@@ -19,8 +19,9 @@
 | ... | IP4FWD | IPSEC | IPSECHW | IPSECINT | NIC_Intel-X710 | TNL_1000
 | ... | AES_GCM
 | ...
-| Suite Setup | Set up IPSec performance test suite | L3 | ${nic_name}
-| ... | HW_DH895xcc
+| Suite Setup | Run Keywords
+| ... | Set up IPSec performance test suite | L3 | ${nic_name} | HW_DH895xcc
+| ... | AND | Set up performance test suite with crypto ipsecmb
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
