@@ -654,7 +654,8 @@
 | | Configure VPP in all '${container_group}' containers
 | | Stop VPP service on all DUTs | ${nodes}
 | | Start VPP in all '${container_group}' containers
-| | Start VPP service on all DUTs | ${nodes}
+| | Restart VPP service on all DUTs | ${nodes}
+| | Verify VPP on all DUTs | ${nodes}
 | | Append To List | ${container_groups} | ${container_group}
 
 # Tests teardowns
