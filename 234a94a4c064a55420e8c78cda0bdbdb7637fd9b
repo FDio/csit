@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "ba2b970f_f82332cb",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-24T14:39:25Z",
+      "side": 1,
+      "message": "i will fix",
+      "parentUuid": "d19d8026_d69e9287",
+      "range": {
+        "startLine": 249,
+        "startChar": 37,
+        "endLine": 249,
+        "endChar": 38
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e32cf908_f5ce74ae",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 5
@@ -82,6 +106,30 @@
       "writtenOn": "2019-04-24T14:16:31Z",
       "side": 1,
       "message": "You have confused me with line 280. Are those CPU threads, or VPP (as an application) threads?\nEither way, I do not see how amount of threads could be non-integer.\nThe IETF draft probably explains it, but people reading code would not know about it, unless you add a link.",
+      "range": {
+        "startLine": 252,
+        "startChar": 43,
+        "endLine": 252,
+        "endChar": 50
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "274f1ba8_51013097",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-24T14:39:25Z",
+      "side": 1,
+      "message": "We are taking single physical core as main unit for further reference. Example:\n\nCPU has 28 physical cores. It has 2 siblings (a.k.a threads) (more on https://www.kernel.org/doc/Documentation/cputopology.txt), if and only if HTT is enabled. Now, we want to allocate 1 physical core to each NF, so it does 2 VPP threads and 2 CPU threads in case HTT is enabled if not it is 1 thread.\nBut we do support also something like 1 thread allocation, not full physical core, but without HTT it is error and with HTT it is actually broken logic so it is 0.5 of physical core.\n\nIf we revert logic, IOW if we do run only 1 logical core than e.g. on non HTT machines you will not be able to run it as there is problem of 1logical \u003d\u003d 1physical, the only solution is to then compute HTT cores as *2 (2 logical for 1 physical).\nHowever then the whole logic is off from basic VPP on system which also does one physical core as unit (see tagging 8T4C and then parameter is 4 cores). \n\nI know it is confusing but we need to find some more unified way to express it on code level.",
+      "parentUuid": "e32cf908_f5ce74ae",
       "range": {
         "startLine": 252,
         "startChar": 43,
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "ecaa1f94_ff9761d9",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-24T14:39:25Z",
+      "side": 1,
+      "message": "yes, http://linuxhunt.blogspot.com/2010/03/understanding-proccpuinfo.html",
+      "parentUuid": "f0d669a1_8dd61850",
+      "range": {
+        "startLine": 280,
+        "startChar": 10,
+        "endLine": 280,
+        "endChar": 20
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c8afdde0_1a22cbdb",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 5
@@ -128,6 +200,30 @@
       "writtenOn": "2019-04-24T14:16:31Z",
       "side": 1,
       "message": "Fix in this Change, or rename to TODO.\nOtherwise pylint complains.",
+      "range": {
+        "startLine": 285,
+        "startChar": 10,
+        "endLine": 285,
+        "endChar": 15
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f94a583_a55b4058",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-24T14:39:25Z",
+      "side": 1,
+      "message": "you are correct. i get myself confused",
+      "parentUuid": "c8afdde0_1a22cbdb",
       "range": {
         "startLine": 285,
         "startChar": 10,
