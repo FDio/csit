@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b57947b_38257a48",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T16:24:46Z",
+      "side": 1,
+      "message": "Amount of physical cores for vswitch dataplane.\n\n\"Allocation unit\" may be defined as \"physical core\", but that does not mean you can use just \"core\" without ambiguity.\nIf you want to use just \"core\", specify it explicitly in line 243.",
+      "range": {
+        "startLine": 251,
+        "startChar": 23,
+        "endLine": 251,
+        "endChar": 60
+      },
+      "revId": "cfb462f1a83e755d8d70f3c0c5ca21129e53ae79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "548847b4_7ccbc39e",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T16:24:46Z",
+      "side": 1,
+      "message": "Amount of physical cores per NF dataplane.\n\nAlso, you can mention that \"0.5\" value means the physical core is shared between two applications, which is strongly discouraged for dataplane without hyperthreading on.",
+      "range": {
+        "startLine": 252,
+        "startChar": 23,
+        "endLine": 252,
+        "endChar": 56
+      },
+      "revId": "cfb462f1a83e755d8d70f3c0c5ca21129e53ae79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "54147b24_c566a227",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T16:24:46Z",
+      "side": 1,
+      "message": "Still not getting what this is. Just an inverse to nf_dtc or something else?\nOr 1 or 2 (depending on HT), kept configurable just that someone could test HT\u003don with each hardware thread on a separate CPU?",
+      "range": {
+        "startLine": 254,
+        "startChar": 24,
+        "endLine": 254,
+        "endChar": 59
+      },
+      "revId": "cfb462f1a83e755d8d70f3c0c5ca21129e53ae79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
