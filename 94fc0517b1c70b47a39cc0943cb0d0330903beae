@@ -22,6 +22,30 @@
       "revId": "94fc0517b1c70b47a39cc0943cb0d0330903beae",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab36adb0_c05db8d2",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-24T14:52:12Z",
+      "side": 1,
+      "message": "If you select the dpdk backend then you should not have to load another crypto_* plugin. But this bug:\n  https://gerrit.fd.io/r/#/c/19131/\nmeans you need to load the crypto_ipsecmb.so for the \u0027interface mode\u0027 tests.\n\nIf you don\u0027t select the dpdk backend then you need to load one or more of the crypto_* plugins. Some of those plugins or \u0027crypto engines\u0027 do not provide implementations for all the crypto algorithms (see \u0027show crypto handler\u0027). The openssl plugin has all algos, ipsecmb has most, ia32 has only a few. You can load them all, they are prioritised; ia32 \u003e ipsecmb \u003e openssl.\n\n\n--- end of quote\n\nSo answer is officially we do not have as per usual. But contacting developer is the only way.",
+      "parentUuid": "43e134ca_098041b0",
+      "range": {
+        "startLine": 23,
+        "startChar": 56,
+        "endLine": 23,
+        "endChar": 63
+      },
+      "revId": "94fc0517b1c70b47a39cc0943cb0d0330903beae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
