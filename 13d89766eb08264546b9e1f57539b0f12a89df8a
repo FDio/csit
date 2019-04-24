@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "245be60c_5c3cdf70",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-24T14:01:36Z",
+      "side": 1,
+      "message": "with restart you do not care if it was running or not otherwise you will have to implement detection if it was stopped properly.",
+      "parentUuid": "3276e0c0_5949177e",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 13
+      },
+      "revId": "13d89766eb08264546b9e1f57539b0f12a89df8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "250cf366_7db0ccf4",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 1
