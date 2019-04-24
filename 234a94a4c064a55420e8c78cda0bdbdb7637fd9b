@@ -142,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "77799a07_6e907d3d",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T16:24:46Z",
+      "side": 1,
+      "message": "\u003e It has 2 siblings (a.k.a threads)\n\u003e https://www.kernel.org/doc/Documentation/cputopology.txt\n\n\u003e \"internal kernel map of cpuX\u0027s hardware threads within the same\"\n\nSo siblings are groups of \"hardware threads\", and we are free to keep \"main thread\" and \"dataplane thread\" for software threads. Even if we are using physical cores as main unit of reference, the actual resource assignment is pairing software threads with hardware threads (aka logical CPUs).\n\n\u003e 8T4C\n\nSide note: When comparing performance of the same harware between HT on and off, 2 physical cores (filled with dataplane threads) are expected to give similar performances.\n0.5 physical cores is possible only for HT on (as pinning two dataplane threads to the same hardware thread would kill perfomance), but in future we could compare 0.5 on a machine supporting higher number of hardware threads per cpu, and again we would expect similar performance.\nThat is why C value is more important for us than T value.",
+      "parentUuid": "274f1ba8_51013097",
+      "range": {
+        "startLine": 252,
+        "startChar": 43,
+        "endLine": 252,
+        "endChar": 50
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f0d669a1_8dd61850",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 5
@@ -177,6 +201,30 @@
       "side": 1,
       "message": "yes, http://linuxhunt.blogspot.com/2010/03/understanding-proccpuinfo.html",
       "parentUuid": "f0d669a1_8dd61850",
+      "range": {
+        "startLine": 280,
+        "startChar": 10,
+        "endLine": 280,
+        "endChar": 20
+      },
+      "revId": "234a94a4c064a55420e8c78cda0bdbdb7637fd9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c850147c_da50477e",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T16:24:46Z",
+      "side": 1,
+      "message": "Currently I prefer \"hardware thread\".\nFor the whole line 280:\n  # Index offset for sibling hardware threads.\n\n\u003e http://linuxhunt.blogspot.com/2010/03/understanding-proccpuinfo.html\n\nZero matches of \"cpu thread\". Which part should I be looking at? I see sentences supporting \"logical core\" instead, such as:\n\nThe kernel data Linux exposes in /proc/cpuinfo will show each logical cpu with a unique processor number. A logical cpu can be a hyperthreading sibling, a shared core in a dual or quad core, or a separate physical cpu.",
+      "parentUuid": "ecaa1f94_ff9761d9",
       "range": {
         "startLine": 280,
         "startChar": 10,
