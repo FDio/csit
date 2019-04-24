@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "42452665_4548701b",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-24T15:34:29Z",
+      "side": 1,
+      "message": "Ah. So there are basically three verbs: \"start\", \"restart\" and \"do whatever it takes just be sure it runs after that\".\nThis keyword does the third thing, which explains why it also verifies.\nPerhaps we should be doing fourth verb: \"if vpp is not alive, restart it and verify now it is alive\".\nNot sure about the correct keyword name. Perhaps \"ensure\"?",
+      "parentUuid": "245be60c_5c3cdf70",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 13
+      },
+      "revId": "13d89766eb08264546b9e1f57539b0f12a89df8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "250cf366_7db0ccf4",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 1
