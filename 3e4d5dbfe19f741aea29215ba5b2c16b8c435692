@@ -222,6 +222,41 @@
       "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f0bb85d_011040a7",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/pipeline/2n-10ge2p1x710-eth-l2bd-1pl-2mif-10dcr1t-vppip4-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-25T16:24:34Z",
+      "side": 1,
+      "message": "Ok. But do we really need \"type and number of interfaces in vswitch\" to be in suite name, when it is determined by VNF/CNF, pipe/chain, number of service instances and number of NFs per service instance, which are all visible in suite name?",
+      "parentUuid": "9ab1aaf1_00ed872f",
+      "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "65ade19b_f336c805",
+        "filename": "tests/vpp/perf/nfv_density/vm_vhost/chains/2n-10ge2p1x710-eth-l2bd-10ch-20vh-10vm1t-vppip4-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-25T16:24:34Z",
+      "side": 1,
+      "message": "When dcr_memif/chain/ is not plural, this directory name also should be singular: vm_vhost/chain/.",
+      "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
