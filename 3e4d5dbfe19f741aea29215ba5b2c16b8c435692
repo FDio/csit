@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "62075b19_46ef8296",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/2n-10ge2p1x710-eth-l2bd-10ch-20mif-10dcr1t-vppip4-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-25T13:33:04Z",
+      "side": 1,
+      "message": "need to figure out",
+      "parentUuid": "0d2ba1f7_3158d905",
+      "range": {
+        "startLine": 19,
+        "startChar": 41,
+        "endLine": 19,
+        "endChar": 48
+      },
+      "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "298dcd79_2f143815",
         "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/2n-10ge2p1x710-eth-l2bd-10ch-20mif-10dcr2t-vppip4-ndrpdr.robot",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2019-04-25T12:49:41Z",
       "side": 1,
       "message": "I still do not get it, why is this not ${2}?\nWe are pinning two dataplane software threads into two sibling hardware threads within single physical CPU core (and we ignore what would happen on HT\u003doff machine).\nDo you also count \"dataplane threads\" in units that correspond to two hardware threads on HT\u003don machine?",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 20
+      },
+      "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "607f3386_57aebbb5",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/2n-10ge2p1x710-eth-l2bd-10ch-20mif-10dcr2t-vppip4-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-25T13:33:04Z",
+      "side": 1,
+      "message": "only 1nf is occupying 1physical core",
+      "parentUuid": "298dcd79_2f143815",
       "range": {
         "startLine": 60,
         "startChar": 16,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "a6928343_6a7af83b",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/2n-10ge2p1x710-eth-l2bd-1ch-12mif-6dcr1t-vppip4-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-25T13:33:04Z",
+      "side": 1,
+      "message": "if i will have spare time yes,\n\nshould we write autogen for this?",
+      "parentUuid": "7b682955_d180f76c",
+      "range": {
+        "startLine": 90,
+        "startChar": 10,
+        "endLine": 90,
+        "endChar": 40
+      },
+      "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e5e521cd_2815aa45",
         "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/2n-10ge2p1x710-eth-l2bd-1ch-12mif-6dcr2t-vppip4-ndrpdr.robot",
         "patchSetId": 8
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "337b6c51_bb068658",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/2n-10ge2p1x710-eth-l2bd-1ch-12mif-6dcr2t-vppip4-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-25T13:33:04Z",
+      "side": 1,
+      "message": "right",
+      "parentUuid": "e5e521cd_2815aa45",
+      "range": {
+        "startLine": 72,
+        "startChar": 10,
+        "endLine": 72,
+        "endChar": 36
+      },
+      "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "608fa851_036e35f9",
         "filename": "tests/vpp/perf/nfv_density/dcr_memif/pipeline/2n-10ge2p1x710-eth-l2bd-1pl-2mif-10dcr1t-vppip4-ndrpdr.robot",
         "patchSetId": 8
@@ -105,6 +201,24 @@
       "writtenOn": "2019-04-25T12:58:08Z",
       "side": 1,
       "message": "\u003e -2mif-\n\nThis (and others) file was apparently named wrong before.\nSingle pipeline with 10 NFs has 11 memifs (if I count correctly).",
+      "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ab1aaf1_00ed872f",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/pipeline/2n-10ge2p1x710-eth-l2bd-1pl-2mif-10dcr1t-vppip4-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-25T13:33:04Z",
+      "side": 1,
+      "message": "nope. this is number of memifs of vswitch\n\n- pipeline (see report for graphics), is only 2 memifs in vswitch and the rest is interconnection between NFs so first NF in from vswitch then last NF out back to vswitch",
+      "parentUuid": "608fa851_036e35f9",
       "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
