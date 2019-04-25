@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0d2ba1f7_3158d905",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/2n-10ge2p1x710-eth-l2bd-10ch-20mif-10dcr1t-vppip4-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-25T12:49:41Z",
+      "side": 1,
+      "message": "How to put these into docs/tag_documentation.rst?",
+      "range": {
+        "startLine": 19,
+        "startChar": 41,
+        "endLine": 19,
+        "endChar": 48
+      },
+      "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "298dcd79_2f143815",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/2n-10ge2p1x710-eth-l2bd-10ch-20mif-10dcr2t-vppip4-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-25T12:49:41Z",
+      "side": 1,
+      "message": "I still do not get it, why is this not ${2}?\nWe are pinning two dataplane software threads into two sibling hardware threads within single physical CPU core (and we ignore what would happen on HT\u003doff machine).\nDo you also count \"dataplane threads\" in units that correspond to two hardware threads on HT\u003don machine?",
+      "range": {
+        "startLine": 60,
+        "startChar": 16,
+        "endLine": 60,
+        "endChar": 20
+      },
+      "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
