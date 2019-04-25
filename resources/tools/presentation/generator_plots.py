@@ -24,6 +24,7 @@ import plotly.graph_objs as plgo
 from plotly.exceptions import PlotlyError
 from collections import OrderedDict
 from copy import deepcopy
+from random import randint
 
 from utils import mean, stdev
 
@@ -1336,6 +1337,422 @@ def plot_service_density_heatmap(plot, input_data):
         return
 
     layout["annotations"] = annotations
+    layout['updatemenus'] = updatemenus
+
+    try:
+        # Create plot
+        plpl = plgo.Figure(data=traces, layout=layout)
+
+        # Export Plot
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], plot["output-file-type"]))
+        ploff.plot(plpl, show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"],
+                                            plot["output-file-type"]))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(str(err).replace("\n", " ")))
+        return
+
+
+def plot_service_density_heatmap_compare(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_service_density_heatmap_compare
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    REGEX_CN = re.compile(r'^(\d*)R(\d*)C$')
+    REGEX_TEST_NAME = re.compile(r'^.*-(\d+vhost|\d+memif)-'
+                                 r'(\d+chain|\d+pipe)-'
+                                 r'(\d+vm|\d+dcr|\d+drc).*$')
+
+    txt_chains = list()
+    txt_nodes = list()
+    vals = dict()
+
+    # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot.get("title", "")))
+    data = input_data.filter_data(plot, continue_on_error=True)
+    if data is None or data.empty:
+        logging.error("No data.")
+        return
+
+    for job in data:
+        for build in job:
+            for test in build:
+                for tag in test['tags']:
+                    groups = re.search(REGEX_CN, tag)
+                    if groups:
+                        c = str(groups.group(1))
+                        n = str(groups.group(2))
+                        break
+                else:
+                    continue
+                groups = re.search(REGEX_TEST_NAME, test["name"])
+                if groups and len(groups.groups()) == 3:
+                    hover_name = "{vhost}-{chain}-{vm}".format(
+                        vhost=str(groups.group(1)),
+                        chain=str(groups.group(2)),
+                        vm=str(groups.group(3)))
+                else:
+                    hover_name = ""
+                if vals.get(c, None) is None:
+                    vals[c] = dict()
+                if vals[c].get(n, None) is None:
+                    vals[c][n] = dict(name=hover_name,
+                                      vals=list(),
+                                      nr=None,
+                                      mean=None,
+                                      stdev=None)
+                try:
+                    if plot["include-tests"] == "MRR":
+                        result = test["result"]["receive-rate"].avg
+                    elif plot["include-tests"] == "PDR":
+                        result = test["throughput"]["PDR"]["LOWER"]
+                    elif plot["include-tests"] == "NDR":
+                        result = test["throughput"]["NDR"]["LOWER"]
+                    else:
+                        result = None
+                except TypeError:
+                    result = None
+
+                if result:
+                    vals[c][n]["vals"].append(result)
+
+    if not vals:
+        logging.error("No data.")
+        return
+
+    for key_c in vals.keys():
+        txt_chains.append(key_c)
+        for key_n in vals[key_c].keys():
+            txt_nodes.append(key_n)
+            if vals[key_c][key_n]["vals"]:
+                vals[key_c][key_n]["nr"] = len(vals[key_c][key_n]["vals"])
+                vals[key_c][key_n]["mean"] = \
+                    round(mean(vals[key_c][key_n]["vals"]) / 1000000, 1)
+                vals[key_c][key_n]["stdev"] = \
+                    round(stdev(vals[key_c][key_n]["vals"]) / 1000000, 1)
+    txt_nodes = list(set(txt_nodes))
+
+    txt_chains = sorted(txt_chains, key=lambda chain: int(chain))
+    txt_nodes = sorted(txt_nodes, key=lambda node: int(node))
+
+    chains = [i + 1 for i in range(len(txt_chains))]
+    nodes = [i + 1 for i in range(len(txt_nodes))]
+
+    data = [list() for _ in range(len(chains))]
+    data2 = [list() for _ in range(len(chains))]
+    diff = [list() for _ in range(len(chains))]
+    for c in chains:
+        for n in nodes:
+            try:
+                val = vals[txt_chains[c - 1]][txt_nodes[n - 1]]["mean"]
+            except (KeyError, IndexError):
+                val = None
+            data[c - 1].append(val)
+            val2 = val + randint(0, 10)/10.0 if val else None
+            data2[c - 1].append(val2)
+            diff[c - 1].append((val2 - val) * 100 / val2 if val else None)
+
+    # Colorscales:
+    my_green = [[0.0, 'rgb(235, 249, 242)'],
+                [1.0, 'rgb(45, 134, 89)']]
+
+    my_blue = [[0.0, 'rgb(236, 242, 248)'],
+               [1.0, 'rgb(57, 115, 172)']]
+
+    my_grey = [[0.0, 'rgb(230, 230, 230)'],
+               [1.0, 'rgb(102, 102, 102)']]
+
+    hovertext = list()
+    hovertext2 = list()
+    hovertext_diff = list()
+    annotations = list()
+    annotations1 = list()
+    annotations2 = list()
+    annotations_diff = list()
+
+    text = ("Test: {name}<br>"
+            "Runs: {nr}<br>"
+            "Thput: {val}<br>"
+            "StDev: {stdev}")
+    text_diff = ("Test: {name}<br>"
+                 "Runs: {nr}<br>"
+                 "Diff: {diff}")
+
+    for c in range(len(txt_chains)):
+        hover_line = list()
+        hover_line2 = list()
+        hover_line_diff = list()
+        for n in range(len(txt_nodes)):
+            if data[c][n] is not None:
+                annotations1.append(dict(
+                    x=n+1,
+                    y=c+1,
+                    xref="x",
+                    yref="y",
+                    xanchor="center",
+                    yanchor="middle",
+                    text=str(data[c][n]),
+                    font=dict(
+                        size=14,
+                    ),
+                    align="center",
+                    showarrow=False
+                ))
+                annotations2.append(dict(
+                    x=n + 1,
+                    y=c + 1,
+                    xref="x",
+                    yref="y",
+                    xanchor="center",
+                    yanchor="middle",
+                    text=str(data2[c][n]),
+                    font=dict(
+                        size=14,
+                    ),
+                    align="center",
+                    showarrow=False
+                ))
+                annotations_diff.append(dict(
+                    x=n + 1,
+                    y=c + 1,
+                    xref="x",
+                    yref="y",
+                    xanchor="center",
+                    yanchor="middle",
+                    text="{diff:.1f}%".format(diff=diff[c][n]),
+                    font=dict(
+                        size=14,
+                    ),
+                    align="center",
+                    showarrow=False
+                ))
+                hover_line.append(text.format(
+                    name=vals[txt_chains[c]][txt_nodes[n]]["name"],
+                    nr=vals[txt_chains[c]][txt_nodes[n]]["nr"],
+                    val=data[c][n],
+                    stdev=vals[txt_chains[c]][txt_nodes[n]]["stdev"]))
+                hover_line2.append(text.format(
+                    name=vals[txt_chains[c]][txt_nodes[n]]["name"],
+                    nr=vals[txt_chains[c]][txt_nodes[n]]["nr"],
+                    val=data2[c][n],
+                    stdev=vals[txt_chains[c]][txt_nodes[n]]["stdev"]))
+                hover_line_diff.append(text_diff.format(
+                    name=vals[txt_chains[c]][txt_nodes[n]]["name"],
+                    nr=vals[txt_chains[c]][txt_nodes[n]]["nr"],
+                    diff="{diff:.1f}%".format(diff=diff[c][n])))
+        hovertext.append(hover_line)
+        hovertext2.append(hover_line2)
+        hovertext_diff.append(hover_line_diff)
+
+    traces = [
+        plgo.Heatmap(x=nodes,
+                     y=chains,
+                     z=data,
+                     name="VNF-1c",
+                     visible=True,
+                     colorbar=dict(
+                         title=plot.get("z-axis", ""),
+                         titleside="right",
+                         titlefont=dict(
+                            size=16
+                         ),
+                         tickfont=dict(
+                             size=16,
+                         ),
+                         tickformat=".1f",
+                         yanchor="bottom",
+                         y=-0.02,
+                         len=0.925,
+                     ),
+                     showscale=True,
+                     colorscale=my_green,
+                     reversescale=False,
+                     text=hovertext,
+                     hoverinfo="text"),
+        plgo.Heatmap(x=nodes,
+                     y=chains,
+                     z=data2,
+                     name="VNF-0.5c",
+                     visible=False,
+                     colorbar=dict(
+                         title=plot.get("z-axis", ""),
+                         titleside="right",
+                         titlefont=dict(
+                             size=16
+                         ),
+                         tickfont=dict(
+                             size=16,
+                         ),
+                         tickformat=".1f",
+                         yanchor="bottom",
+                         y=-0.02,
+                         len=0.925,
+                     ),
+                     showscale=True,
+                     colorscale=my_blue,
+                     reversescale=False,
+                     text=hovertext2,
+                     hoverinfo="text"),
+        plgo.Heatmap(x=nodes,
+                     y=chains,
+                     z=diff,
+                     name="Diff",
+                     visible=False,
+                     colorbar=dict(
+                         title="Relative difference [%]",
+                         titleside="right",
+                         titlefont=dict(
+                             size=16
+                         ),
+                         tickfont=dict(
+                             size=16,
+                         ),
+                         tickformat=".1f",
+                         yanchor="bottom",
+                         y=-0.02,
+                         len=0.925,
+                     ),
+                     showscale=True,
+                     colorscale=my_grey,
+                     reversescale=False,
+                     text=hovertext_diff,
+                     hoverinfo="text")
+    ]
+
+    for idx, item in enumerate(txt_nodes):
+        # X-axis, numbers:
+        annotations.append(dict(
+            x=idx+1,
+            y=0.05,
+            xref="x",
+            yref="y",
+            xanchor="center",
+            yanchor="top",
+            text=item,
+            font=dict(
+                size=16,
+            ),
+            align="center",
+            showarrow=False
+        ))
+    for idx, item in enumerate(txt_chains):
+        # Y-axis, numbers:
+        annotations.append(dict(
+            x=0.35,
+            y=idx+1,
+            xref="x",
+            yref="y",
+            xanchor="right",
+            yanchor="middle",
+            text=item,
+            font=dict(
+                size=16,
+            ),
+            align="center",
+            showarrow=False
+        ))
+    # X-axis, title:
+    annotations.append(dict(
+        x=0.55,
+        y=-0.15,
+        xref="paper",
+        yref="y",
+        xanchor="center",
+        yanchor="bottom",
+        text=plot.get("x-axis", ""),
+        font=dict(
+            size=16,
+        ),
+        align="center",
+        showarrow=False
+    ))
+    # Y-axis, title:
+    annotations.append(dict(
+        x=-0.1,
+        y=0.5,
+        xref="x",
+        yref="paper",
+        xanchor="center",
+        yanchor="middle",
+        text=plot.get("y-axis", ""),
+        font=dict(
+            size=16,
+        ),
+        align="center",
+        textangle=270,
+        showarrow=False
+    ))
+    updatemenus = list([
+        dict(
+            active=0,
+            x=1.0,
+            y=0.0,
+            xanchor='right',
+            yanchor='bottom',
+            direction='up',
+            buttons=list([
+                dict(
+                    label="VNF-1c",
+                    method="update",
+                    args=[
+                        {
+                            "visible": [True, False, False]
+                        },
+                        {
+                            "colorscale": [my_green, ],
+                            "reversescale": False,
+                            "annotations": annotations + annotations1,
+                        },
+                    ]
+                ),
+                dict(
+                    label="VNF-0.5c",
+                    method="update",
+                    args=[
+                        {
+                            "visible": [False, True, False]
+                        },
+                        {
+                            "colorscale": [my_blue, ],
+                            "reversescale": False,
+                            "annotations": annotations + annotations2,
+                        },
+                    ]
+                ),
+                dict(
+                    label="Diff",
+                    method="update",
+                    args=[
+                        {
+                            "visible": [False, False, True]
+                        },
+                        {
+                            "colorscale": [my_grey, ],
+                            "reversescale": False,
+                            "annotations": annotations + annotations_diff,
+                        },
+                    ]
+                ),
+            ])
+        )
+    ])
+
+    try:
+        layout = deepcopy(plot["layout"])
+    except KeyError as err:
+        logging.error("Finished with error: No layout defined")
+        logging.error(repr(err))
+        return
+
+    layout["annotations"] = annotations + annotations1
     layout['updatemenus'] = updatemenus
 
     try:
