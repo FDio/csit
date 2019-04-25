@@ -140,6 +140,30 @@
       "revId": "cfb462f1a83e755d8d70f3c0c5ca21129e53ae79",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e95f153_486fc400",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-25T08:55:39Z",
+      "side": 1,
+      "message": "Ah. So it is \"Amount of dataplane threads to fill single physical core\".\nAlso, \"Multiple NFs share the same physical core when nf_dtcr is larger than nf_dtc.\" and \"Setting nf_dtcr larger than amount of hardware threads per physical core is strongly discouraged.\".\nNot sure how to say that we try to put dataplane threads of the same NF onto the same physical core (so on thread_siblings as defined in https://www.kernel.org/doc/Documentation/cputopology.txt).\n\nWill we ever have tests wehre nf_dtcr !\u003d 2 if smt_used else 1?",
+      "parentUuid": "45fa6852_fe115e5a",
+      "range": {
+        "startLine": 254,
+        "startChar": 24,
+        "endLine": 254,
+        "endChar": 59
+      },
+      "revId": "cfb462f1a83e755d8d70f3c0c5ca21129e53ae79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
