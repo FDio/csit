@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0c9bf351_ea1f1485",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-25T05:54:32Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "8b57947b_38257a48",
+      "range": {
+        "startLine": 251,
+        "startChar": 23,
+        "endLine": 251,
+        "endChar": 60
+      },
+      "revId": "cfb462f1a83e755d8d70f3c0c5ca21129e53ae79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "548847b4_7ccbc39e",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 7
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "488b0514_d8dfebaa",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-25T05:54:32Z",
+      "side": 1,
+      "message": "ack",
+      "parentUuid": "548847b4_7ccbc39e",
+      "range": {
+        "startLine": 252,
+        "startChar": 23,
+        "endLine": 252,
+        "endChar": 56
+      },
+      "revId": "cfb462f1a83e755d8d70f3c0c5ca21129e53ae79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "54147b24_c566a227",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 7
@@ -59,6 +107,30 @@
       "writtenOn": "2019-04-24T16:24:46Z",
       "side": 1,
       "message": "Still not getting what this is. Just an inverse to nf_dtc or something else?\nOr 1 or 2 (depending on HT), kept configurable just that someone could test HT\u003don with each hardware thread on a separate CPU?",
+      "range": {
+        "startLine": 254,
+        "startChar": 24,
+        "endLine": 254,
+        "endChar": 59
+      },
+      "revId": "cfb462f1a83e755d8d70f3c0c5ca21129e53ae79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45fa6852_fe115e5a",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-25T05:54:32Z",
+      "side": 1,
+      "message": "How many times you want to over subscribe single CPU. So e.g. if 2,4,8,16 NF are running on same physical core.",
+      "parentUuid": "54147b24_c566a227",
       "range": {
         "startLine": 254,
         "startChar": 24,
