@@ -195,24 +195,14 @@
         - 45  # SOAK sel
 
     plot-vpp-nfv-2n-skx:
-      # TODO: Replace with 1904 data
-      # csit-vpp-perf-verify-1904-2n-skx:
-      csit-vpp-perf-verify-1901-2n-skx:
-        - 28  # NFV NDRPDR
-        - 29  # NFV NDRPDR
-        - 32  # NFV NDRPDR
-        - 39  # NFV NDRPDR
-        - 46  # NFV NDRPDR
+      # TODO: Add 1904 data
+      csit-vpp-perf-verify-1904-2n-skx:
+        - 9   # NFV NDRPDR
 
     plot-vpp-nfv-2n-skx-mrr:
-      # TODO: Replace with 1904 data
-      # csit-vpp-perf-verify-1904-2n-skx:
-      csit-vpp-perf-verify-1901-2n-skx:
-        - 24  # NFV MRR
-        - 26  # NFV MRR
-        - 27  # NFV MRR
-        - 35  # NFV MRR
-        - 37  # NFV MRR
+      # TODO: Add 1904 data
+      csit-vpp-perf-verify-1904-2n-skx:
+        - 10  # NFV MRR
 
     plot-dpdk-throughput-latency-2n-skx:
       # TODO: Add 1904 data
@@ -303,11 +293,11 @@
 
     vpp-func-results-ubuntu:
       csit-vpp-functional-1904-ubuntu1604-virl:
-        - 20
+        - 29
 
     vpp-func-results-centos:
       csit-vpp-functional-1904-centos7-virl:
-        - 19
+        - 28
 
     vpp-device-results-ubuntu:
       csit-vpp-device-1904-ubuntu1804-1n-skx:
@@ -334,10 +324,8 @@
 
     # HoneyComb Functional
     hc-func-results:
-      # TODO: Replace with 1904 data
-      # csit-hc2vpp-verify-func-1904-ubuntu1604:
-      csit-hc2vpp-verify-func-1901-ubuntu1604:
-        - 3
+      csit-hc2vpp-verify-func-1904-ubuntu1604:
+        - 1
 
 #    # NSH SFC Functional
 #    nsh-func-results:
@@ -1273,6 +1261,8 @@
     csit-vpp-perf-verify-1904-2n-skx:
       - 4   # MRR sel
       - 5   # NDRPDR sel
+      - 10  # NFV MRR
+      - 9   # NFV NDRPDR
 
     # TODO: Remove
     csit-ligato-perf-verify-1901-3n-hsw:
@@ -1370,9 +1360,9 @@
       - 1   # NDRPDR sel
 
     csit-vpp-functional-1904-ubuntu1604-virl:
-      - 20
+      - 29
     csit-vpp-functional-1904-centos7-virl:
-      - 19
+      - 28
     csit-vpp-device-1904-ubuntu1804-1n-skx:
       - 18
 #    # Not used
@@ -1380,11 +1370,8 @@
 #      - 1
     csit-dmm-functional-1904-ubuntu1604-virl:
       - 1
-    csit-hc2vpp-verify-func-1901-ubuntu1604:
-      - 3
-    # TODO: Add 1904 data
-#    csit-hc2vpp-verify-func-1904-ubuntu1604:
-#      -
+    csit-hc2vpp-verify-func-1904-ubuntu1604:
+      - 1
 
 - type: "output"
   output: "report"
