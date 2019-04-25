@@ -1163,6 +1163,7 @@ def plot_service_density_heatmap(plot, input_data):
     nodes = [i + 1 for i in range(len(txt_nodes))]
 
     data = [list() for _ in range(len(chains))]
+    data2 = [list() for _ in range(len(chains))]
     for c in chains:
         for n in nodes:
             try:
@@ -1170,6 +1171,7 @@ def plot_service_density_heatmap(plot, input_data):
             except (KeyError, IndexError):
                 val = None
             data[c - 1].append(val)
+            data2[c - 1].append(val * 1.2) if val else data[c - 1].append(None)
 
     # Colorscales:
     my_green = [[0.0, 'rgb(235, 249, 242)'],
@@ -1183,6 +1185,7 @@ def plot_service_density_heatmap(plot, input_data):
 
     hovertext = list()
     annotations = list()
+    annotations2 = list()
 
     text = ("Test: {name}<br>"
             "Runs: {nr}<br>"
@@ -1201,6 +1204,20 @@ def plot_service_density_heatmap(plot, input_data):
                     xanchor="center",
                     yanchor="middle",
                     text=str(data[c][n]),
+                    font=dict(
+                        size=14,
+                    ),
+                    align="center",
+                    showarrow=False
+                ))
+                annotations2.append(dict(
+                    x=n + 1,
+                    y=c + 1,
+                    xref="x",
+                    yref="y",
+                    xanchor="center",
+                    yanchor="middle",
+                    text=str(data2[c][n]),
                     font=dict(
                         size=14,
                     ),
@@ -1235,6 +1252,27 @@ def plot_service_density_heatmap(plot, input_data):
                      showscale=True,
                      colorscale=my_green,
                      text=hovertext,
+                     hoverinfo="text"),
+        plgo.Heatmap(x=nodes,
+                     y=chains,
+                     z=data2,
+                     colorbar=dict(
+                         title=plot.get("z-axis", ""),
+                         titleside="right",
+                         titlefont=dict(
+                             size=16
+                         ),
+                         tickfont=dict(
+                             size=16,
+                         ),
+                         tickformat=".1f",
+                         yanchor="bottom",
+                         y=-0.02,
+                         len=0.925,
+                     ),
+                     showscale=True,
+                     colorscale=my_green,
+                     text=hovertext,
                      hoverinfo="text")
     ]
 
@@ -1242,6 +1280,20 @@ def plot_service_density_heatmap(plot, input_data):
         # X-axis, numbers:
         annotations.append(dict(
             x=idx+1,
+            y=0.05,
+            xref="x",
+            yref="y",
+            xanchor="center",
+            yanchor="top",
+            text=item,
+            font=dict(
+                size=16,
+            ),
+            align="center",
+            showarrow=False
+        ))
+        annotations2.append(dict(
+            x=idx + 1,
             y=0.05,
             xref="x",
             yref="y",
@@ -1270,6 +1322,20 @@ def plot_service_density_heatmap(plot, input_data):
             align="center",
             showarrow=False
         ))
+        annotations2.append(dict(
+            x=0.35,
+            y=idx + 1,
+            xref="x",
+            yref="y",
+            xanchor="right",
+            yanchor="middle",
+            text=item,
+            font=dict(
+                size=16,
+            ),
+            align="center",
+            showarrow=False
+        ))
     # X-axis, title:
     annotations.append(dict(
         x=0.55,
@@ -1285,8 +1351,37 @@ def plot_service_density_heatmap(plot, input_data):
         align="center",
         showarrow=False
     ))
+    annotations2.append(dict(
+        x=0.55,
+        y=-0.15,
+        xref="paper",
+        yref="y",
+        xanchor="center",
+        yanchor="bottom",
+        text=plot.get("x-axis", ""),
+        font=dict(
+            size=16,
+        ),
+        align="center",
+        showarrow=False
+    ))
     # Y-axis, title:
     annotations.append(dict(
+        x=-0.1,
+        y=0.5,
+        xref="x",
+        yref="paper",
+        xanchor="center",
+        yanchor="middle",
+        text=plot.get("y-axis", ""),
+        font=dict(
+            size=16,
+        ),
+        align="center",
+        textangle=270,
+        showarrow=False
+    ))
+    annotations2.append(dict(
         x=-0.1,
         y=0.5,
         xref="x",
@@ -1324,6 +1419,31 @@ def plot_service_density_heatmap(plot, input_data):
                     label="Grey",
                     method="update"
                 )
+            ])
+        ),
+        dict(
+            x=0.5,
+            y=0.0,
+            xanchor='right',
+            yanchor='bottom',
+            direction='up',
+            buttons=list([
+                dict(
+                    label="VNF-1c",
+                    method="update",
+                    args=[
+                        {"visible": [True, False]},
+                        {"annotations": annotations}
+                    ]
+                ),
+                dict(
+                    label="VNF-0.5c",
+                    method="update",
+                    args=[
+                        {"visible": [False, True]},
+                        {"annotations": annotations2}
+                    ]
+                ),
             ])
         )
     ])
