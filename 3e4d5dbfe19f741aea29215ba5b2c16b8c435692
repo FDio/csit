@@ -45,6 +45,23 @@
       "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "608fa851_036e35f9",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/pipeline/2n-10ge2p1x710-eth-l2bd-1pl-2mif-10dcr1t-vppip4-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-25T12:58:08Z",
+      "side": 1,
+      "message": "\u003e -2mif-\n\nThis (and others) file was apparently named wrong before.\nSingle pipeline with 10 NFs has 11 memifs (if I count correctly).",
+      "revId": "3e4d5dbfe19f741aea29215ba5b2c16b8c435692",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
