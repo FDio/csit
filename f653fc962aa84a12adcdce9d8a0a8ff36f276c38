@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "6a8f48b7_e563cd0d",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-25T05:54:43Z",
+      "side": 1,
+      "message": "i need to test and verify, when i was implementing this last time (actual code) this was solution, but maybe they fixed in mean time.",
+      "parentUuid": "0e753f47_16a04a36",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 11
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1495c1a2_14f4b684",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 2
@@ -167,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "c25ca914_0a7b8de5",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-25T05:54:43Z",
+      "side": 1,
+      "message": "i think i will prepare new set of functions in next patch.",
+      "parentUuid": "d891507f_6fbc8c98",
+      "range": {
+        "startLine": 604,
+        "startChar": 8,
+        "endLine": 604,
+        "endChar": 10
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a54c20f3_ff14a40a",
         "filename": "resources/libraries/robot/performance/performance_setup.robot",
         "patchSetId": 2
@@ -226,6 +274,30 @@
       "side": 1,
       "message": "Alright, if we mention (after line 22) that \"start\" means either the fourth verb or fifth.",
       "parentUuid": "fa8efc73_b45c7fda",
+      "range": {
+        "startLine": 647,
+        "startChar": 4,
+        "endLine": 647,
+        "endChar": 9
+      },
+      "revId": "f653fc962aa84a12adcdce9d8a0a8ff36f276c38",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4361c12c_7be9f197",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 647,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-25T05:54:43Z",
+      "side": 1,
+      "message": "I think it is time to unify the naming, the question is what we want to name it.",
+      "parentUuid": "a2ceea99_25b47cd4",
       "range": {
         "startLine": 647,
         "startChar": 4,
