@@ -164,6 +164,30 @@
       "revId": "cfb462f1a83e755d8d70f3c0c5ca21129e53ae79",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5ceffcc0_334a2c1c",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-25T13:05:40Z",
+      "side": 1,
+      "message": "I got it wrong, again. Now I believe (after looking at the values used in suites) nf_dtcr is \"Amount of NFs whose dataplane threads are restricted to single physical core\". So it is just an inverse value to nf_dtc after all.\n\nAnd the \"t\" letter of \"nf_dtcr\" apparently comes from \"daTaplane\", because number of threads (neither sofrware not hardware) directly affect this ratio.",
+      "parentUuid": "0e95f153_486fc400",
+      "range": {
+        "startLine": 254,
+        "startChar": 24,
+        "endLine": 254,
+        "endChar": 59
+      },
+      "revId": "cfb462f1a83e755d8d70f3c0c5ca21129e53ae79",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
