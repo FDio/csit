@@ -24,6 +24,7 @@ import plotly.graph_objs as plgo
 from plotly.exceptions import PlotlyError
 from collections import OrderedDict
 from copy import deepcopy
+from random import randint
 
 from utils import mean, stdev
 
@@ -1336,6 +1337,426 @@ def plot_service_density_heatmap(plot, input_data):
         return
 
     layout["annotations"] = annotations
+    layout['updatemenus'] = updatemenus
+
+    try:
+        # Create plot
+        plpl = plgo.Figure(data=traces, layout=layout)
+
+        # Export Plot
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], plot["output-file-type"]))
+        ploff.plot(plpl, show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"],
+                                            plot["output-file-type"]))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(str(err).replace("\n", " ")))
+        return
+
+
+def plot_service_density_heatmap_compare(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_service_density_heatmap_compare
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    REGEX_CN = re.compile(r'^(\d*)R(\d*)C$')
+    REGEX_TEST_NAME = re.compile(r'^.*-(\d+ch|\d+pl)-'
+                                 r'(\d+vh|\d+mif)-'
+                                 r'(\d+vm|\d+dcr).*$')
+    REGEX_THREADS = re.compile(r'^(\d+)(VM|DCR)(\d+)T$')
+
+    txt_chains = list()
+    txt_nodes = list()
+    vals = dict()
+
+    # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot.get("title", "")))
+    data = input_data.filter_data(plot, continue_on_error=True)
+    if data is None or data.empty:
+        logging.error("No data.")
+        return
+
+    for job in data:
+        for build in job:
+            for test in build:
+                for tag in test['tags']:
+                    groups = re.search(REGEX_CN, tag)
+                    if groups:
+                        c = str(groups.group(1))
+                        n = str(groups.group(2))
+                        break
+                else:
+                    continue
+                groups = re.search(REGEX_TEST_NAME, test["name"])
+                if groups and len(groups.groups()) == 3:
+                    hover_name = "{chain}-{vhost}-{vm}".format(
+                        chain=str(groups.group(1)),
+                        vhost=str(groups.group(2)),
+                        vm=str(groups.group(3)))
+                else:
+                    hover_name = ""
+                if vals.get(c, None) is None:
+                    vals[c] = dict()
+                if vals[c].get(n, None) is None:
+                    vals[c][n] = dict(name=hover_name,
+                                      vals_r=list(),
+                                      vals_c=list(),
+                                      nr_r=None,
+                                      nr_c=None,
+                                      mean_r=None,
+                                      mean_c=None,
+                                      stdev_r=None,
+                                      stdev_c=None)
+                try:
+                    if plot["include-tests"] == "MRR":
+                        result = test["result"]["receive-rate"].avg
+                    elif plot["include-tests"] == "PDR":
+                        result = test["throughput"]["PDR"]["LOWER"]
+                    elif plot["include-tests"] == "NDR":
+                        result = test["throughput"]["NDR"]["LOWER"]
+                    else:
+                        result = None
+                except TypeError:
+                    result = None
+
+                if result:
+                    for tag in test['tags']:
+                        groups = re.search(REGEX_THREADS, tag)
+                        if groups and len(groups.groups()) == 3:
+                            if str(groups.group(3)) == \
+                                    plot["reference"]["include"]:
+                                vals[c][n]["vals_c"].append(result)
+                            elif str(groups.group(3)) == \
+                                    plot["compare"]["include"]:
+                                vals[c][n]["vals_r"].append(result)
+                            break
+    if not vals:
+        logging.error("No data.")
+        return
+
+    for key_c in vals.keys():
+        txt_chains.append(key_c)
+        for key_n in vals[key_c].keys():
+            txt_nodes.append(key_n)
+            if vals[key_c][key_n]["vals_r"]:
+                vals[key_c][key_n]["nr_r"] = len(vals[key_c][key_n]["vals_r"])
+                vals[key_c][key_n]["mean_r"] = \
+                    round(mean(vals[key_c][key_n]["vals_r"]) / 1000000, 1)
+                vals[key_c][key_n]["stdev_r"] = \
+                    round(stdev(vals[key_c][key_n]["vals_r"]) / 1000000, 1)
+            if vals[key_c][key_n]["vals_c"]:
+                vals[key_c][key_n]["nr_c"] = len(vals[key_c][key_n]["vals_c"])
+                vals[key_c][key_n]["mean_c"] = \
+                    round(mean(vals[key_c][key_n]["vals_c"]) / 1000000, 1)
+                vals[key_c][key_n]["stdev_c"] = \
+                    round(stdev(vals[key_c][key_n]["vals_c"]) / 1000000, 1)
+
+    txt_nodes = list(set(txt_nodes))
+
+    txt_chains = sorted(txt_chains, key=lambda chain: int(chain))
+    txt_nodes = sorted(txt_nodes, key=lambda node: int(node))
+
+    chains = [i + 1 for i in range(len(txt_chains))]
+    nodes = [i + 1 for i in range(len(txt_nodes))]
+
+    data_r = [list() for _ in range(len(chains))]
+    data_c = [list() for _ in range(len(chains))]
+    diff = [list() for _ in range(len(chains))]
+    for c in chains:
+        for n in nodes:
+            try:
+                val_r = vals[txt_chains[c - 1]][txt_nodes[n - 1]]["mean_r"]
+            except (KeyError, IndexError):
+                val_r = None
+            data_r[c - 1].append(val_r)
+            try:
+                val_c = vals[txt_chains[c - 1]][txt_nodes[n - 1]]["mean_c"]
+            except (KeyError, IndexError):
+                val_c = None
+            data_c[c - 1].append(val_c)
+
+            if val_c is not None and val_r:
+                diff[c - 1].append(round((val_c - val_r) * 100 / val_r, 1))
+            else:
+                diff[c - 1].append(None)
+
+    # Colorscales:
+    my_green = [[0.0, 'rgb(235, 249, 242)'],
+                [1.0, 'rgb(45, 134, 89)']]
+
+    my_blue = [[0.0, 'rgb(236, 242, 248)'],
+               [1.0, 'rgb(57, 115, 172)']]
+
+    my_grey = [[0.0, 'rgb(230, 230, 230)'],
+               [1.0, 'rgb(102, 102, 102)']]
+
+    hovertext = list()
+
+    annotations = list()
+    annotations_r = list()
+    annotations_c = list()
+    annotations_diff = list()
+
+    text = ("Test: {name}"
+            "<br>{title_r}: {text_r}"
+            "<br>{title_c}: {text_c}{text_diff}")
+    text_r = "Thput: {val_r}; StDev: {stdev_r}; Runs: {nr_r}"
+    text_c = "Thput: {val_c}; StDev: {stdev_c}; Runs: {nr_c}"
+    text_diff = "<br>Relative Difference: {diff}%"
+
+    for c in range(len(txt_chains)):
+        hover_line = list()
+        for n in range(len(txt_nodes)):
+            if data_r[c][n] is not None:
+                data_point = dict(
+                    x=n+1,
+                    y=c+1,
+                    xref="x",
+                    yref="y",
+                    xanchor="center",
+                    yanchor="middle",
+                    text=str(data_r[c][n]) if data_r[c][n] is not None else "",
+                    font=dict(
+                        size=14,
+                    ),
+                    align="center",
+                    showarrow=False
+                )
+                annotations_r.append(deepcopy(data_point))
+                data_point["text"] = str(data_c[c][n]) \
+                    if data_c[c][n] is not None else ""
+                annotations_c.append(deepcopy(data_point))
+                data_point["text"] = str(diff[c][n]) \
+                    if diff[c][n] is not None else ""
+                annotations_diff.append(deepcopy(data_point))
+
+                hover_line.append(text.format(
+                    name=vals[txt_chains[c]][txt_nodes[n]]["name"],
+                    title_r=plot["reference"]["name"],
+                    text_r=text_r.format(
+                        val_r=data_r[c][n],
+                        stdev_r=vals[txt_chains[c]][txt_nodes[n]]["stdev_r"],
+                        nr_r=vals[txt_chains[c]][txt_nodes[n]]["nr_r"]
+                    ) if data_r[c][n] is not None else "Test Failed",
+                    title_c=plot["compare"]["name"],
+                    text_c=text_c.format(
+                        val_c=data_c[c][n],
+                        stdev_c = vals[txt_chains[c]][txt_nodes[n]]["stdev_c"],
+                        nr_c=vals[txt_chains[c]][txt_nodes[n]]["nr_c"]
+                    ) if data_c[c][n] is not None else "Test Failed",
+                    text_diff=text_diff.format(
+                        diff=diff[c][n]
+                    ) if diff[c][n] is not None else ""
+                ))
+
+        hovertext.append(hover_line)
+
+    traces = [
+        plgo.Heatmap(x=nodes,
+                     y=chains,
+                     z=data_r,
+                     visible=True,
+                     colorbar=dict(
+                         title=plot.get("z-axis", ""),
+                         titleside="right",
+                         titlefont=dict(
+                            size=16
+                         ),
+                         tickfont=dict(
+                             size=16,
+                         ),
+                         tickformat=".1f",
+                         yanchor="bottom",
+                         y=-0.02,
+                         len=0.925,
+                     ),
+                     showscale=True,
+                     colorscale=my_green,
+                     reversescale=False,
+                     text=hovertext,
+                     hoverinfo="text"),
+        plgo.Heatmap(x=nodes,
+                     y=chains,
+                     z=data_c,
+                     visible=False,
+                     colorbar=dict(
+                         title=plot.get("z-axis", ""),
+                         titleside="right",
+                         titlefont=dict(
+                             size=16
+                         ),
+                         tickfont=dict(
+                             size=16,
+                         ),
+                         tickformat=".1f",
+                         yanchor="bottom",
+                         y=-0.02,
+                         len=0.925,
+                     ),
+                     showscale=True,
+                     colorscale=my_blue,
+                     reversescale=False,
+                     text=hovertext,
+                     hoverinfo="text"),
+        plgo.Heatmap(x=nodes,
+                     y=chains,
+                     z=diff,
+                     name="Diff",
+                     visible=False,
+                     colorbar=dict(
+                         title="Relative difference [%]",
+                         titleside="right",
+                         titlefont=dict(
+                             size=16
+                         ),
+                         tickfont=dict(
+                             size=16,
+                         ),
+                         tickformat=".1f",
+                         yanchor="bottom",
+                         y=-0.02,
+                         len=0.925,
+                     ),
+                     showscale=True,
+                     colorscale=my_grey,
+                     reversescale=False,
+                     text=hovertext,
+                     hoverinfo="text")
+    ]
+
+    for idx, item in enumerate(txt_nodes):
+        # X-axis, numbers:
+        annotations.append(dict(
+            x=idx+1,
+            y=0.05,
+            xref="x",
+            yref="y",
+            xanchor="center",
+            yanchor="top",
+            text=item,
+            font=dict(
+                size=16,
+            ),
+            align="center",
+            showarrow=False
+        ))
+    for idx, item in enumerate(txt_chains):
+        # Y-axis, numbers:
+        annotations.append(dict(
+            x=0.35,
+            y=idx+1,
+            xref="x",
+            yref="y",
+            xanchor="right",
+            yanchor="middle",
+            text=item,
+            font=dict(
+                size=16,
+            ),
+            align="center",
+            showarrow=False
+        ))
+    # X-axis, title:
+    annotations.append(dict(
+        x=0.55,
+        y=-0.15,
+        xref="paper",
+        yref="y",
+        xanchor="center",
+        yanchor="bottom",
+        text=plot.get("x-axis", ""),
+        font=dict(
+            size=16,
+        ),
+        align="center",
+        showarrow=False
+    ))
+    # Y-axis, title:
+    annotations.append(dict(
+        x=-0.1,
+        y=0.5,
+        xref="x",
+        yref="paper",
+        xanchor="center",
+        yanchor="middle",
+        text=plot.get("y-axis", ""),
+        font=dict(
+            size=16,
+        ),
+        align="center",
+        textangle=270,
+        showarrow=False
+    ))
+    updatemenus = list([
+        dict(
+            active=0,
+            x=1.0,
+            y=0.0,
+            xanchor='right',
+            yanchor='bottom',
+            direction='up',
+            buttons=list([
+                dict(
+                    label=plot["reference"]["name"],
+                    method="update",
+                    args=[
+                        {
+                            "visible": [True, False, False]
+                        },
+                        {
+                            "colorscale": [my_green, ],
+                            "reversescale": False,
+                            "annotations": annotations + annotations_r,
+                        },
+                    ]
+                ),
+                dict(
+                    label=plot["compare"]["name"],
+                    method="update",
+                    args=[
+                        {
+                            "visible": [False, True, False]
+                        },
+                        {
+                            "colorscale": [my_blue, ],
+                            "reversescale": False,
+                            "annotations": annotations + annotations_c,
+                        },
+                    ]
+                ),
+                dict(
+                    label="Diff",
+                    method="update",
+                    args=[
+                        {
+                            "visible": [False, False, True]
+                        },
+                        {
+                            "colorscale": [my_grey, ],
+                            "reversescale": False,
+                            "annotations": annotations + annotations_diff,
+                        },
+                    ]
+                ),
+            ])
+        )
+    ])
+
+    try:
+        layout = deepcopy(plot["layout"])
+    except KeyError as err:
+        logging.error("Finished with error: No layout defined")
+        logging.error(repr(err))
+        return
+
+    layout["annotations"] = annotations + annotations_r
     layout['updatemenus'] = updatemenus
 
     try:
