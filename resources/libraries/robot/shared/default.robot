@@ -219,9 +219,11 @@
 | | | Run keyword | ${dut}.Add CPU Main Core | ${cpu_main}
 | | | Run keyword | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
 | | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
-# Temporarily desabling due to API changes:
-# https://gerrit.fd.io/r/#/c/16638/
-#| | | Run keyword | ${dut}.Add DPDK Num Mbufs | ${num_mbufs_int}
+# For now there is no way to easily predict the number of buffers. Statically
+# doing maximum amount of buffers allowed by DPDK.
+| | | Run keyword if | ${smt_used}
+| | | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${215040} | ELSE
+| | | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${107520}
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
