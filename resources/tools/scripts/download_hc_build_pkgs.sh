@@ -138,7 +138,7 @@ if [[ -n "${jvpp_commit_id}" ]]; then
     if [[ "$ID" == "centos" ]]; then
         sudo yum remove "*vpp*"
     else
-        sudo apt remove "*vpp*"
+        sudo apt -y remove "*vpp*"
     fi
     rm -rf jvpp_src
 fi
@@ -169,7 +169,7 @@ done
 if [[ "${OS}" == "centos7" ]]; then
     sudo yum remove "*vpp-api-java*"
 else
-    sudo apt remove "*vpp-api-java*"
+    sudo apt -y remove "*vpp-api-java*"
 fi
 
 cd ${current_dir}
