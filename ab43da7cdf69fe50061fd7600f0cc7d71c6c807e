@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc40be86_c187f789",
+        "filename": "README.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-26T16:46:20Z",
+      "side": 1,
+      "message": "https://grammarist.com/spelling/customise-customize/",
+      "range": {
+        "startLine": 211,
+        "startChar": 46,
+        "endLine": 211,
+        "endChar": 47
+      },
+      "revId": "ab43da7cdf69fe50061fd7600f0cc7d71c6c807e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
