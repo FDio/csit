@@ -217,7 +217,9 @@
 | | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
 # For now there is no way to easily predict the number of buffers. Statically
 # doing maximum amount of buffers allowed by DPDK.
-| | | Run keyword | ${dut}.Add Buffers Per Numa | ${215040}
+| | | Run keyword if | ${smt_used}
+| | | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${215040} | ELSE
+| | | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${107520}
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
