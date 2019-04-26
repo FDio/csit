@@ -190,15 +190,19 @@ class Regenerator(object):
                 raise ValueError(in_filename + ": " + msg)
             return whole.replace(to_replace, replace_with)
 
-        def write_files(in_filename, in_prolog, kwargs_list):
+        def write_files(in_filename, in_prolog, out_filenames, kwargs_list):
             """Using given filename and prolog, write all generated suites.
 
             :param in_filename: Template filename to derive real filenames from.
             :param in_prolog: Template content to derive real content from.
+            :param out_filenames: Set of file names written to so far.
+                An attempt to write to the same file name twice leads to error.
             :param kwargs_list: List of kwargs for add_testcase.
             :type in_filename: str
             :type in_prolog: str
+            :type out_filenames: set of str
             :type kwargs_list: list of dict
+            :raise ValueError: If any of multiple assumptions is violated.
             """
             for suite_type in Constants.PERF_TYPE_TO_KEYWORD.keys():
                 tmp_filename = replace_defensively(
@@ -244,6 +248,10 @@ class Regenerator(object):
                                 Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
                                 "HW crypto name should appear.", in_filename)
                     iface, suite_id = get_iface_and_suite_id(out_filename)
+                    if out_filename in out_filenames:
+                        raise ValueError("Filename {ofn} already used!".format(
+                            ofn=out_filename))
+                    out_filenames.add(out_filename)
                     with open(out_filename, "w") as file_out:
                         file_out.write(out_prolog)
                         add_testcases(
@@ -266,6 +274,7 @@ class Regenerator(object):
             {"frame_size": "IMIX_v4_1", "phy_cores": 2},
             {"frame_size": "IMIX_v4_1", "phy_cores": 4}
         ]
+        out_filenames = set()
         for in_filename in glob(pattern):
             if not self.quiet:
                 eprint("Regenerating in_filename:", in_filename)
@@ -281,7 +290,7 @@ class Regenerator(object):
             with open(in_filename, "r") as file_in:
                 in_prolog = "".join(
                     file_in.read().partition("*** Test Cases ***")[:-1])
-            write_files(in_filename, in_prolog, kwargs_list)
+            write_files(in_filename, in_prolog, out_filenames, kwargs_list)
         if not self.quiet:
             eprint("Regenerator ends.")
         eprint()  # To make autogen check output more readable.
