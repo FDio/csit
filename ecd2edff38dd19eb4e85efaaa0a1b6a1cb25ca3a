@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9fe5fce8_4c314631",
+        "filename": "resources/libraries/python/constants.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-29T12:04:34Z",
+      "side": 1,
+      "message": "Squash into Constants.py",
+      "revId": "ecd2edff38dd19eb4e85efaaa0a1b6a1cb25ca3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99485b53_9705f98d",
+        "filename": "resources/tools/trex/trex_server_info.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-29T12:04:34Z",
+      "side": 1,
+      "message": "Is this the Python 3 print function, or is this something imported in line 33?\nThis is why star imports are evil.",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 14
+      },
+      "revId": "ecd2edff38dd19eb4e85efaaa0a1b6a1cb25ca3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
