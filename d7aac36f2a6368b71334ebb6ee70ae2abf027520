@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "28e3047d_3fa53ccf",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-29T11:12:23Z",
+      "side": 1,
+      "message": "Fixed for CNF.",
+      "parentUuid": "46ea9d3e_8f30729b",
+      "range": {
+        "startLine": 25,
+        "startChar": 77,
+        "endLine": 25,
+        "endChar": 79
+      },
+      "revId": "d7aac36f2a6368b71334ebb6ee70ae2abf027520",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "60f9f13a_f6c53729",
         "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "writtenOn": "2019-04-29T11:07:30Z",
       "side": 1,
       "message": "Is this still relevant when we are using VPP as VNF?",
+      "range": {
+        "startLine": 29,
+        "startChar": 54,
+        "endLine": 29,
+        "endChar": 59
+      },
+      "revId": "d7aac36f2a6368b71334ebb6ee70ae2abf027520",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff93f4d5_ba5d5255",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-29T11:12:23Z",
+      "side": 1,
+      "message": "Why not, L3fwd cannot be used as it does not support memif.",
+      "parentUuid": "60f9f13a_f6c53729",
       "range": {
         "startLine": 29,
         "startChar": 54,
