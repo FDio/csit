@@ -3,10 +3,7 @@ KVM VMs vhost-user
 
 QEMU is used for VPP-VM testing enviroment. By default, standard QEMU version
 preinstalled from OS repositories is used on VIRL/vpp_device functional testing
-(qemu-2.11.x for Ubuntu 18.04, qemu-2.5.0 for Ubuntu 16.04). For perfomance
-testing QEMU is downloaded from `project homepage <qemu.org>`_ and compiled
-during testing. This allows framework to easily inject QEMU patches in case of
-need. In QEMU version <2.8 we used it for increasing QEMU virtion queue size.
+(qemu-2.11.x for Ubuntu 18.04, qemu-2.5.0 for Ubuntu 16.04).
 In CSIT setup DUTs have small VM image `/var/lib/vm/vhost-nested.img`. QEMU
 binary can be adjusted in global settings. VM image must have installed at least
 qemu-guest-agent, sshd, bridge-utils, VirtIO support and Testpmd/L3fwd
