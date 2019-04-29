@@ -18,8 +18,12 @@ List of vpp startup.conf settings applied to all tests:
 #. no-tx-checksum-offload - disables UDP / TCP TX checksum offload in DPDK.
    Typically needed for use faster vector PMDs (together with
    no-multi-seg).
-#. socket-mem <value>,<value> - memory per numa. (Not required anymore
-   due to VPP code changes, will be removed in CSIT-19.04.)
+#. buffers-per-numa <value> - increases number of buffers allocated, needed
+   in scenarios with large number of interfaces and worker threads.
+   Value is per CPU socket. Default is 16384. CSIT is setting statically
+   107520 buffers per CPU thread (215040 if HTT is enabled). This value is also
+   maximum possible amount limited by number of memory mappings in DPDK
+   libraries for 2MB Hugepages used in CSIT.
 
 Per Test Settings
 ~~~~~~~~~~~~~~~~~
@@ -31,11 +35,6 @@ List of vpp startup.conf settings applied dynamically per test:
    test configuration.
 #. num-rx-queues <value> - depends on a number of VPP threads and NIC
    interfaces.
-#. num-rx-desc/num-tx-desc - number of rx/tx descriptors for specific
-   NICs, incl. xl710, x710, xxv710.
-#. num-mbufs <value> - increases number of buffers allocated, needed
-   only in scenarios with large number of interfaces and worker threads.
-   Value is per CPU socket. Default is 16384.
 #. no-multi-seg - disables multi-segment buffers in DPDK, improves
    packet throughput, but disables Jumbo MTU support. Disabled for all
    tests apart from the ones that require Jumbo 9000B frame support.
