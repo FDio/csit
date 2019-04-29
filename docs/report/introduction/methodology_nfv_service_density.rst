@@ -22,14 +22,12 @@ different service density setups by varying two parameters:
 The initial implementation of NFV service density tests in
 |csit-release| is using two NF applications:
 
-- VNF: DPDK L3fwd running in KVM VM, configured with /8 IPv4 prefix
-  routing. L3fwd got chosen as a lightweight fast IPv4 VNF application,
-  and follows CSIT approach of using DPDK sample applications in VMs for
-  performance testing.
-- CNF: VPP running in Docker Container, configured with /24 IPv4 prefix
-  routing. VPP got chosen as a fast IPv4 NF application that supports
-  required memif interface (L3fwd does not). This is similar to all
-  other Container tests in CSIT that use VPP.
+- VNF: VPP of the same version as vswitch running in KVM VM, configured with /8
+  IPv4 prefix routing.
+- CNF: VPP of the same version as vswitch running in Docker Container,
+  configured with /8 IPv4 prefix routing. VPP got chosen as a fast IPv4 NF
+  application that supports required memif interface (L3fwd does not). This is
+  similar to all other Container tests in CSIT that use VPP.
 
 Tests are designed such that in all tested cases VPP vswitch is the most
 stressed application, as for each flow vswitch is processing each packet
@@ -84,22 +82,30 @@ physical core mapping ratios:
 
   - Data-plane on single core
 
+    - (main:core) = (1:1) => 1mt1c - 1 main thread on 1 core.
     - (data:core) = (1:1) => 2dt1c - 2 Data-plane Threads on 1 Core.
-    - (main:core) = (1:1) => 1mt1c - 1 Main Thread on 1 Core.
 
   - Data-plane on two cores
 
-    - (data:core) = (1:2) => 4dt2c - 4 Data-plane Threads on 2 Cores.
     - (main:core) = (1:1) => 1mt1c - 1 Main Thread on 1 Core.
+    - (data:core) = (1:2) => 4dt2c - 4 Data-plane Threads on 2 Cores.
 
 - VNF and CNF
 
   - Data-plane on single core
 
-    - (data:core) = (1:1) => 2dt1c - 2 Data-plane Threads on 1 Core per
-      NF.
     - (main:core) = (2:1) => 2mt1c - 2 Main Threads on 1 Core, 1 Thread
       per NF, core shared between two NFs.
+    - (data:core) = (1:1) => 2dt1c - 2 Data-plane Threads on 1 Core per
+      NF.
+
+  - Data-plane on single logical core (Two NFs per physical core)
+
+    - (main:core) = (2:1) => 2mt1c - 2 Main Threads on 1 Core, 1 Thread
+      per NF, core shared between two NFs.
+    - (data:core) = (2:1) => 1dt1c - 1 Data-plane Threads on 1 Core per
+      NF.
+
 
 Maximum tested service densities are limited by a number of physical
 cores per NUMA. |csit-release| allocates cores within NUMA0. Support for
