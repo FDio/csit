@@ -141,6 +141,30 @@
       "revId": "d7aac36f2a6368b71334ebb6ee70ae2abf027520",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "88812d3f_d938513b",
+        "filename": "docs/report/introduction/methodology_nfv_service_density.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-29T11:21:59Z",
+      "side": 1,
+      "message": "Well, it can be used in VNF, but there is no comment about it in lines 25-26.\nI believe when we use VPP for VNF, it is not surprising we use it also for CNF.\n\nI expected line 26 to talk about how we want to use the same application for both VNF and CNF, so we have to use VPP.",
+      "parentUuid": "ff93f4d5_ba5d5255",
+      "range": {
+        "startLine": 29,
+        "startChar": 54,
+        "endLine": 29,
+        "endChar": 59
+      },
+      "revId": "d7aac36f2a6368b71334ebb6ee70ae2abf027520",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
