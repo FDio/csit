@@ -6,13 +6,8 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **Service density 2n-skx tests**: Network Function Virtualization (NFV)
-     service density tests focus on measuring total per server throughput at
-     varied NFV service *packing* densities with vswitch providing host
-     dataplane. The goal is to compare and contrast performance of a shared
-     vswitch for different network topologies and virtualization technologies,
-     and their impact on vswitch performance and efficiency in a range of NFV
-     service configurations.
+   - **Service density 2n-skx tests**: Added higher density tests with dtc=0.5
+     (2 NF each with 1 DT per physical core) with VPP as a VNF payload.
 
    - **Experimental Soak Tests**: Added performamce soak tests framework
      code for extended time duration tests and throughput discovery
@@ -22,15 +17,23 @@ Changes in |csit-release|
 
 #. TEST FRAMEWORK
 
-   - **Container code optimizations**: Optimized container library allows to
-     run containre_memif tests faster.
+   - **Qemu code refactor**: Complete code refactor of the key components
+     QemuUtil.py and QemuManager.py (L1 and L2 KW counterparts). Added
+     implementation of kernel-image-kvm based VM alongisde the previously used
+     NestedVM images. Added ability to run VPP as a payload in VNF.
 
    - **CSIT PAPI Support**: Continue converting existing VAT L1 keywords to
      PAPI L1 KWs in CSIT using VPP Python bindings. Required for migrating away
-     from VAT.
+     from VAT. Redesign of key components of PAPI Executor and PAPI history.
 
    - **General Code Housekeeping**: Ongoing RF keywords optimizations,
      removal of redundant RF keywords.
+
+   - **Test suite generator**: Extend the test suite generator for ability to
+     generate NIC permutation and search algorithm permutations from base
+     suites.
+
+   - **TOX verification**: Added verifications for test suite generator.
 
 #. PRESENTATION AND ANALYTICS LAYER
 
@@ -64,18 +67,6 @@ List of known issues in |csit-release| for VPP performance tests:
 | 1  | `CSIT-570                               | Sporadic (1 in 200) NDR discovery test failures on x520. DPDK reporting rx-errors, indicating L1 issue.                         |
 |    | <https://jira.fd.io/browse/CSIT-570>`_  | Suspected issue with HW combination of X710-X520 in LF testbeds. Not observed outside of LF testbeds.                           |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 2  | `VPP-1563                               | AVF L2patch tests are failing for all packet size and core combination. Reason: null-node blackholed packets in show error.     |
-|    | <https://jira.fd.io/browse/VPP-1563>`_  |                                                                                                                                 |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 3  | `CSIT-1234                              | VPP IPSecHW/IPSecsW scale interface mode, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-19.01 vs. CSIT-18.10.      |
-|    | <https://jira.fd.io/browse/CSIT-1234>`_ |                                                                                                                                 |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 4  | `CSIT-1431                              | AVF 4 cores tests are sporadically failing. Under investigation.                                                                |
-|    | <https://jira.fd.io/browse/CSIT-1431>`_ |                                                                                                                                 |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 5  | `CSIT-1465                              | 4c VPP VM vhost tests failing on 3n-skx. Under investigation.                                                                   |
-|    | <https://jira.fd.io/browse/CSIT-1465>`_ |                                                                                                                                 |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 6  | `CSIT-1466                              | IPSecHW scale tests failing due to VPP reset. Fixed in one of subsequent VPP patches. Confirmed by  running tests with VPP      |
-|    | <https://jira.fd.io/browse/CSIT-1466>`_ | build 19.01.1-8~g50a392f~b56.                                                                                                   |
+| 2  | `CSIT-????                              | IPSecHW interface AES-GBC tests failing due to traffic not passing.                                                             |
+|    | <https://jira.fd.io/browse/CSIT-????>`_ |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
