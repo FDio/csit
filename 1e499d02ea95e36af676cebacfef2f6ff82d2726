@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75f2aa2f_8054bc33",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-29T10:44:38Z",
+      "side": 1,
+      "message": "finally:\n  DUTSetup.get_service_logs(node, Constants.VPP_UNIT)",
+      "range": {
+        "startLine": 133,
+        "startChar": 8,
+        "endLine": 136,
+        "endChar": 59
+      },
+      "revId": "1e499d02ea95e36af676cebacfef2f6ff82d2726",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
