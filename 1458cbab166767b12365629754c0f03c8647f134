@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3105c3b4_d9d1487b",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-29T11:14:08Z",
+      "side": 1,
+      "message": "Also, I think the implementation has to support multiple unmerged VPP Gerrit Changes, otherwise the \"serialization cost\" would be too high.",
+      "parentUuid": "421d6c59_d3ed6635",
+      "range": {
+        "startLine": 71,
+        "startChar": 2,
+        "endLine": 71,
+        "endChar": 24
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d20affb5_782a60de",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 2
@@ -228,6 +252,29 @@
         "startChar": 22,
         "endLine": 84,
         "endChar": 29
+      },
+      "revId": "1458cbab166767b12365629754c0f03c8647f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "504beaf3_daa09bf7",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-29T11:14:08Z",
+      "side": 1,
+      "message": "I have realized, that although VPP binary API does not support optional arguments nor default values, PAPI does effectively support \"false\" values as default.\nHere, false value is zero, empty string, list of zero length, byte array (if size is fixed) initialized to each byte being zero, and so on. I believe it also extends to structured types, \"false\" means each field has the false value of its type. And I guess something reasonable also works for unions.\n\nThis can give PAPI a limited form of forward compatibility. A client application using PAPI is forward compatible (conversely, VPP API change is backward compatible with respect to such client) iff the added fields, when called with the \"false\" value, do not change the behavior (compared to the previous VPP behavior where the fields were not defined).\n\nLeveraging this form of compatibility would allow VPP to rapidly change API for fields CSIT is not using yet. But to implement that, the \"API signature\" check would have to be weakened. Not sure how easy would it be to create a script that would list only the api.json fields CSIT depends on, but I think it would be worth for me to try.",
+      "range": {
+        "startLine": 94,
+        "startChar": 2,
+        "endLine": 94,
+        "endChar": 9
       },
       "revId": "1458cbab166767b12365629754c0f03c8647f134",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
