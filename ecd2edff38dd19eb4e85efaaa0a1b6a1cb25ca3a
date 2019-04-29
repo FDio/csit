@@ -63,6 +63,30 @@
       "revId": "ecd2edff38dd19eb4e85efaaa0a1b6a1cb25ca3a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bbbaaccb_91e19ebd",
+        "filename": "resources/tools/trex/trex_server_info.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-29T12:51:22Z",
+      "side": 1,
+      "message": "Then every executable script related to trex (or at least those no longer compatible with python2) should have the following in line 1:\n\n#!/usr/bin/env python3",
+      "parentUuid": "0cc09029_7609f7c7",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 14
+      },
+      "revId": "ecd2edff38dd19eb4e85efaaa0a1b6a1cb25ca3a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
