@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bbf28f3e_35f46eee",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-04-29T11:13:55Z",
+      "side": 1,
+      "message": "The changes don\u0027t break anything as far as I can tell. My local testing went fine and the job also passed.\n\nCan you pinpoint where the actual problem lies?",
+      "parentUuid": "fe011c95_96dbbd0a",
+      "revId": "9d1850c456aefd92839952ffc6fea6dc1354be2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5870a363_ed15b50b",
         "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/files/csit-initialize-vfs.sh",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2019-03-29T18:16:35Z",
       "side": 1,
       "message": "Insource",
+      "range": {
+        "startLine": 21,
+        "startChar": 49,
+        "endLine": 21,
+        "endChar": 50
+      },
+      "revId": "9d1850c456aefd92839952ffc6fea6dc1354be2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac32b32e_99b08b1d",
+        "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/files/csit-initialize-vfs.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-04-29T11:13:55Z",
+      "side": 1,
+      "message": "I don\u0027t understand - can you please explain?",
+      "parentUuid": "5870a363_ed15b50b",
       "range": {
         "startLine": 21,
         "startChar": 49,
@@ -76,6 +118,30 @@
       "writtenOn": "2019-03-29T18:16:35Z",
       "side": 1,
       "message": "Make it one rule, this is not readable",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 6
+      },
+      "revId": "9d1850c456aefd92839952ffc6fea6dc1354be2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c9e04aa9_9e877e58",
+        "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-04-29T11:13:55Z",
+      "side": 1,
+      "message": "These are two different rules (one using {{ vfs_data_file }} and the other not using it) - how can I create one rule from them?",
+      "parentUuid": "2128ed78_9d855b14",
       "range": {
         "startLine": 13,
         "startChar": 2,

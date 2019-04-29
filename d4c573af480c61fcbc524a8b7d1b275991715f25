@@ -16,6 +16,24 @@
       "revId": "d4c573af480c61fcbc524a8b7d1b275991715f25",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9cf81634_819de781",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-04-29T11:13:55Z",
+      "side": 0,
+      "message": "The code does the same thing, except it honors the order of devices in tg_netdev and dut1_netdev.\n\nThe code was not skx specific (as it was also used for vbox) and I wanted to improve the code so that we can actually specify the order of devices (so that we can be sure that we\u0027re actually linking proper vfs).\n\nThe right way to do this is to create code which works on all platforms, if possible. I believe this to be the case, but I can split the code if you insist, although it won\u0027t look pretty.",
+      "parentUuid": "28df34ac_d09e9d48",
+      "revId": "d4c573af480c61fcbc524a8b7d1b275991715f25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
