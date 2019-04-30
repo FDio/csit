@@ -287,6 +287,30 @@
     },
     {
       "key": {
+        "uuid": "2d562e3e_78f7ae28",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-30T14:15:57Z",
+      "side": 1,
+      "message": "so? you are just wasting time here. VPP have to start somehow and it takes a time. I do not have time to find the proper Oxford English term for that. You do not have better either and doing 30+ chars variable is no go.",
+      "parentUuid": "58754d88_6247f118",
+      "range": {
+        "startLine": 560,
+        "startChar": 42,
+        "endLine": 560,
+        "endChar": 49
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bbabe55_c7d6ffd6",
         "filename": "resources/libraries/python/ssh.py",
         "patchSetId": 15
