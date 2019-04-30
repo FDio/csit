@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "d85b7532_78a29ff6",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T12:53:30Z",
+      "side": 1,
+      "message": "Perhaps my opinions are influenced by OpenDaylight too much. ODL is consisting of multiple \"subservices\" and it is normal for ODL to be \"partially started\", as in some subservices are responsive, but others not yet. VPP is simpler in that regard, but it is always useful for test to wait until VPP is actually seen to respond. That is why I always think about the worst case, when VPP is unresponsive for tens of seconds.\n\nSo when testing ODL, we had check_* keywords, that can fail just because they were run too early after start, and wait_* keyword which if fail it means we need to open a Bug.\n\nIn this case, the keyword which can take 2 minutes to finally fail should be named differently than keywords which fail under one second.\n\nIf it was start_vpp_service that can take 2 minutes to fail, I would be asking you to rename that one.",
+      "parentUuid": "6bdb59c8_537f8595",
+      "range": {
+        "startLine": 110,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 14
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d86bce3a_8c41a781",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 15
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "wait_for does not make sense as it is doing start/restart",
       "parentUuid": "0f227f55_a43865f2",
+      "range": {
+        "startLine": 560,
+        "startChar": 42,
+        "endLine": 560,
+        "endChar": 49
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58754d88_6247f118",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T12:53:30Z",
+      "side": 1,
+      "message": "Later patch sets contain verify_vpp (after line 600), which can take 2 minutes.",
+      "parentUuid": "c1e4a5b8_2ee199a0",
       "range": {
         "startLine": 560,
         "startChar": 42,
