@@ -311,6 +311,30 @@
     },
     {
       "key": {
+        "uuid": "82b32846_4da1fc21",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T14:33:42Z",
+      "side": 1,
+      "message": "Hmm. Alright, I can accept that \"verify\" in csit can mean both a quick check and a longer wait.\n\nAs for restart, I will comment on more recent code.",
+      "parentUuid": "2d562e3e_78f7ae28",
+      "range": {
+        "startLine": 560,
+        "startChar": 42,
+        "endLine": 560,
+        "endChar": 49
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bbabe55_c7d6ffd6",
         "filename": "resources/libraries/python/ssh.py",
         "patchSetId": 15
