@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4166bb54_f850b6f0",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T14:33:42Z",
+      "side": 1,
+      "message": "Document other steps, after https://gerrit.fd.io/r/#/c/19141/21/resources/libraries/python/VppConfigGenerator.py@599",
+      "range": {
+        "startLine": 564,
+        "startChar": 53,
+        "endLine": 564,
+        "endChar": 54
+      },
+      "revId": "977af9ac9d6076e116ad207b084eec65f5069311",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b03738a3_3602bd8a",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T14:33:42Z",
+      "side": 1,
+      "message": "Will we ever support restart_vpp\u003dFalse case?\nThe startup.conf just got (over)written, we need to restart VPP for the new config to be considered applied.\n\nI think it would be better if we hardcode the restart, and only leave the option whether or not to wait for VPP to get back online before returning.",
+      "range": {
+        "startLine": 599,
+        "startChar": 11,
+        "endLine": 599,
+        "endChar": 22
+      },
+      "revId": "977af9ac9d6076e116ad207b084eec65f5069311",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
