@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "6bdb59c8_537f8595",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-30T12:18:27Z",
+      "side": 1,
+      "message": "No, sharing code we had in past and it is not good.\nThis is atomic operation. vpp already started in separate call and we have to verify if VPP is started, internally it has different implementation which is normal because they screw up servicing.\n\nIn fact VPP break the systemd so we need special care to make sure we can later encapsulate. Simply, VPP should report to systemd state so ideally systemd will report return code once the status changed and ready for operation.\nSo \"service vpp restart\" will report return code once VPP is really ready. But it is not so we have to do the job.\n\nThis makes verify implementation complicated but it is a must to ensure vpp is ready for handling further requests.\n\nUpwards in encapsulation nobody cares how to do it, it is encapsulated.",
+      "parentUuid": "7c4db40e_61c7fc33",
+      "range": {
+        "startLine": 110,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 14
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d86bce3a_8c41a781",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 15
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "restart_and_wait_for\n\nThat is too long, the \"wait for\" part can be in docstring.",
       "parentUuid": "1f82f029_3a436b07",
+      "range": {
+        "startLine": 560,
+        "startChar": 42,
+        "endLine": 560,
+        "endChar": 49
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1e4a5b8_2ee199a0",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-30T12:18:27Z",
+      "side": 1,
+      "message": "wait_for does not make sense as it is doing start/restart",
+      "parentUuid": "0f227f55_a43865f2",
       "range": {
         "startLine": 560,
         "startChar": 42,
