@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6661a8be_37aa2d93",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T10:00:10Z",
+      "side": 1,
+      "message": "Create a Jira ticket to offer this functionality via API (or stats).\nThe add a TODO to convert to that.",
+      "range": {
+        "startLine": 291,
+        "startChar": 45,
+        "endLine": 291,
+        "endChar": 53
+      },
+      "revId": "ff8e3a151b743b7de437228e157208aff8c56eea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
