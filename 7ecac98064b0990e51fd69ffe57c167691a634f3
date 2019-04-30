@@ -94,6 +94,30 @@
       "revId": "7ecac98064b0990e51fd69ffe57c167691a634f3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6e65d9f_1ea5c54b",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T12:53:30Z",
+      "side": 1,
+      "message": "So we want to unify on \"restart\" behavior, but name it \"start\" for reasons of it being simpler? Then why is the argument name in line 560 not \"start_vpp\"?\n\nI still believe it would be simpler to only use the verb \"restart\" while using the adjective \"started\".",
+      "parentUuid": "bd02ae43_2b6a01e1",
+      "range": {
+        "startLine": 600,
+        "startChar": 20,
+        "endLine": 600,
+        "endChar": 25
+      },
+      "revId": "7ecac98064b0990e51fd69ffe57c167691a634f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
