@@ -93,6 +93,30 @@
       "revId": "977af9ac9d6076e116ad207b084eec65f5069311",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ac176145_d66b218d",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T16:16:45Z",
+      "side": 1,
+      "message": "\u003e only produce configaration\n\nI am getting mixed signal on what does \"apply config\" mean. \n\nPerhaps split into two functions, inner (generate_config) to just write config file, and outer (apply config) to also add all the restarts and verifications.\nThat way call sites should be more readable.",
+      "parentUuid": "8823a7b5_7099f03b",
+      "range": {
+        "startLine": 599,
+        "startChar": 11,
+        "endLine": 599,
+        "endChar": 22
+      },
+      "revId": "977af9ac9d6076e116ad207b084eec65f5069311",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
