@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7e73558e_435ec0bc",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-30T10:55:55Z",
+      "side": 1,
+      "message": "we are verifying if vpp is started so I do not see valid point to force rename to human language. Want to keep it simple.",
+      "parentUuid": "8ec1fa05_178b7709",
+      "range": {
+        "startLine": 110,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 14
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d86bce3a_8c41a781",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 15
@@ -36,6 +60,30 @@
       "writtenOn": "2019-04-30T10:00:10Z",
       "side": 1,
       "message": "Not needed.\nLogs are handled in line 138, so the exception does not need any handling.",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 14
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0e22d5b6_b305837e",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-30T10:55:55Z",
+      "side": 1,
+      "message": "fixed",
+      "parentUuid": "d86bce3a_8c41a781",
       "range": {
         "startLine": 134,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1f82f029_3a436b07",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-30T10:55:55Z",
+      "side": 1,
+      "message": "fixed",
+      "parentUuid": "51b2e8ba_d0006d56",
+      "range": {
+        "startLine": 560,
+        "startChar": 42,
+        "endLine": 560,
+        "endChar": 49
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4bbabe55_c7d6ffd6",
         "filename": "resources/libraries/python/ssh.py",
         "patchSetId": 15
@@ -82,6 +154,30 @@
       "writtenOn": "2019-04-30T10:00:10Z",
       "side": 1,
       "message": "Mention the hardcoded sleep.",
+      "range": {
+        "startLine": 460,
+        "startChar": 13,
+        "endLine": 460,
+        "endChar": 20
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c250ecf6_764493fb",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-30T10:55:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bbabe55_c7d6ffd6",
       "range": {
         "startLine": 460,
         "startChar": 13,
