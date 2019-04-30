@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7c4db40e_61c7fc33",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T11:33:15Z",
+      "side": 1,
+      "message": "\u003e verifying if vpp is started\n\nNo, retries\u003d0 would be doing that.\nHere we are waiting few minutes for VPP to start responding.\n\nThe less simple human language is useful if we want to make our setup quick. We can do start\u0026verify for each VPP app separately, but we should be doing start_all\u0026wait_for_all if your \"verify\" is slow.\n\nAnd for wait_for_all impementation, it would be better to have time_end (or timeout) specified (instead or retries), so the wait period is shared between all VPP apps.",
+      "parentUuid": "7e73558e_435ec0bc",
+      "range": {
+        "startLine": 110,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 14
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d86bce3a_8c41a781",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 15
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "fixed",
       "parentUuid": "51b2e8ba_d0006d56",
+      "range": {
+        "startLine": 560,
+        "startChar": 42,
+        "endLine": 560,
+        "endChar": 49
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f227f55_a43865f2",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T11:33:15Z",
+      "side": 1,
+      "message": "restart_and_wait_for\n\nThat is too long, the \"wait for\" part can be in docstring.",
+      "parentUuid": "1f82f029_3a436b07",
       "range": {
         "startLine": 560,
         "startChar": 42,
