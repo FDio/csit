@@ -46,6 +46,30 @@
       "revId": "7ecac98064b0990e51fd69ffe57c167691a634f3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "74e6b96b_d6c96fc8",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T11:33:15Z",
+      "side": 1,
+      "message": "\u003e sysctl restart\n\nIf this \"restart\" has the semantics of \"I do not care whether it was running before, just make sure it is started with the new config\", why cannot we use the same semantics in CSIT?\n\nAnd keep \"start\" for \"if it is not started already, start it\"?\n\nIn this line, we want the \"restart\", because the \"start\" does not ensure the new config is always applied.",
+      "parentUuid": "d0965fc3_5f007233",
+      "range": {
+        "startLine": 600,
+        "startChar": 20,
+        "endLine": 600,
+        "endChar": 25
+      },
+      "revId": "7ecac98064b0990e51fd69ffe57c167691a634f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
