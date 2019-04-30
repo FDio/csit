@@ -70,6 +70,30 @@
       "revId": "7ecac98064b0990e51fd69ffe57c167691a634f3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd02ae43_2b6a01e1",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-30T12:18:27Z",
+      "side": 1,
+      "message": "we want unification, we do not care if it is up or not, we want single function able to handle it",
+      "parentUuid": "74e6b96b_d6c96fc8",
+      "range": {
+        "startLine": 600,
+        "startChar": 20,
+        "endLine": 600,
+        "endChar": 25
+      },
+      "revId": "7ecac98064b0990e51fd69ffe57c167691a634f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
