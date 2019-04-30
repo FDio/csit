@@ -69,6 +69,30 @@
       "revId": "977af9ac9d6076e116ad207b084eec65f5069311",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8823a7b5_7099f03b",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-04-30T16:12:12Z",
+      "side": 1,
+      "message": "To be verbose: Restart is not used every time we want only produce configaration but not touch VPP like CNT/VM/ipsec_func/kubernetes",
+      "parentUuid": "d43d82d9_7656aceb",
+      "range": {
+        "startLine": 599,
+        "startChar": 11,
+        "endLine": 599,
+        "endChar": 22
+      },
+      "revId": "977af9ac9d6076e116ad207b084eec65f5069311",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
