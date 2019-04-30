@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec1fa05_178b7709",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T10:00:10Z",
+      "side": 1,
+      "message": "wait_for\n\nOr similar verb, because other verify_ keywords are one-shot without any waiting (as far as I see).\nOr keep the name, but add an optional paramter wait\u003dTrue or wait\u003d120.",
+      "range": {
+        "startLine": 110,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 14
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d86bce3a_8c41a781",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T10:00:10Z",
+      "side": 1,
+      "message": "Not needed.\nLogs are handled in line 138, so the exception does not need any handling.",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 14
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51b2e8ba_d0006d56",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T10:00:10Z",
+      "side": 1,
+      "message": "\"verify\", or \"wait_for\", or \"ensure\", ...",
+      "range": {
+        "startLine": 560,
+        "startChar": 42,
+        "endLine": 560,
+        "endChar": 49
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4bbabe55_c7d6ffd6",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T10:00:10Z",
+      "side": 1,
+      "message": "Mention the hardcoded sleep.",
+      "range": {
+        "startLine": 460,
+        "startChar": 13,
+        "endLine": 460,
+        "endChar": 20
+      },
+      "revId": "67e2c94650197d345e66ae1ef3b961ee26d9a9ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
