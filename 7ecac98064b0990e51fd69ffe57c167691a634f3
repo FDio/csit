@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7591018b_9fcc6c75",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-04-30T11:17:23Z",
+      "side": 1,
+      "message": "So in this case we want an explicit restart, right? Not just making sure it is already started.\nIf yes, we should rename (or split) the static method.",
+      "range": {
+        "startLine": 600,
+        "startChar": 20,
+        "endLine": 600,
+        "endChar": 25
+      },
+      "revId": "7ecac98064b0990e51fd69ffe57c167691a634f3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
