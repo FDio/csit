@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5bff8542_212c22bb",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-02T11:38:46Z",
+      "side": 1,
+      "message": "so removing 571-572? and moving into 581?\nIt is defaulting. If none then default /etc/vpp/startup.conf is used. Which indeed can be written\n\ncmd \u003d (\u0027echo \"{config}\" | sudo tee {filename}\u0027.format(config\u003dself._vpp_config, filename\u003dfilename if filename else self._vpp_startup_conf))\n\nor much simpler\n\ndef write_config(self, filename\u003dself._vpp_startup_conf):\n\ncmd \u003d (\u0027echo \"{config}\" | sudo tee {filename}\u0027.format(config\u003dself._vpp_config, filename\u003dfilename))",
+      "parentUuid": "494a48b6_472da9e2",
+      "range": {
+        "startLine": 564,
+        "startChar": 16,
+        "endLine": 564,
+        "endChar": 37
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82312eaa_523aaef7",
         "filename": "tests/vpp/perf/__init__.robot",
         "patchSetId": 23
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-02T08:46:54Z",
       "side": 1,
       "message": "I think we need to restart first.",
+      "range": {
+        "startLine": 25,
+        "startChar": 14,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6bcd0149_2a1394ba",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-02T11:38:46Z",
+      "side": 1,
+      "message": "The thing is following:\n- In Ubuntu nothing needs to be restarted as systemd will autostart the service. Having restart is waste of time.\n\n- In vpp_device it is running in container where there is no systemd so we need to do restart (code will do the needful) as there is no automation. (Permament fix will be https://gerrit.fd.io/r/#/c/17650/ but untill this will be finished, ...)\n\n- In VIRL Ubuntu we do not need to restart same as perf.\n\n- In VIRL Centos it seems autostart is not working. So for now FUNC tests have restart after install.\n\nOne of the solution is to move restart_after_install logic to function install_vpp() and remove it from __init__.robot entirely. To make it more unified?\n\nThoughts?",
+      "parentUuid": "82312eaa_523aaef7",
       "range": {
         "startLine": 25,
         "startChar": 14,
