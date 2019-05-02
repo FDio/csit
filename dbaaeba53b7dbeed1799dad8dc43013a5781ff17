@@ -169,6 +169,30 @@
     },
     {
       "key": {
+        "uuid": "ef638c16_a999db3a",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-02T13:50:20Z",
+      "side": 1,
+      "message": "most probably yes",
+      "parentUuid": "bad21a56_49880c42",
+      "range": {
+        "startLine": 564,
+        "startChar": 16,
+        "endLine": 564,
+        "endChar": 37
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82312eaa_523aaef7",
         "filename": "tests/vpp/perf/__init__.robot",
         "patchSetId": 23
