@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "e1a79f1f_6d35baf5",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-02T12:03:33Z",
+      "side": 1,
+      "message": "Oh, for some reason I did not see 571-572. So None value works fine.\n\nThe question is whether filename (if not None) should overwrite self._vpp_startup_conf or not. I think it should.\n\nThat way the backup (and restore) will target the correct file.\n\nSo I would change lines 571-572 to:\n  if filename is not None:\n      self._vpp_startup_conf \u003d str(filename)\n\nand then only use self._vpp_startup_conf in the rest of the code.",
+      "parentUuid": "5bff8542_212c22bb",
+      "range": {
+        "startLine": 564,
+        "startChar": 16,
+        "endLine": 564,
+        "endChar": 37
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82312eaa_523aaef7",
         "filename": "tests/vpp/perf/__init__.robot",
         "patchSetId": 23
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "The thing is following:\n- In Ubuntu nothing needs to be restarted as systemd will autostart the service. Having restart is waste of time.\n\n- In vpp_device it is running in container where there is no systemd so we need to do restart (code will do the needful) as there is no automation. (Permament fix will be https://gerrit.fd.io/r/#/c/17650/ but untill this will be finished, ...)\n\n- In VIRL Ubuntu we do not need to restart same as perf.\n\n- In VIRL Centos it seems autostart is not working. So for now FUNC tests have restart after install.\n\nOne of the solution is to move restart_after_install logic to function install_vpp() and remove it from __init__.robot entirely. To make it more unified?\n\nThoughts?",
       "parentUuid": "82312eaa_523aaef7",
+      "range": {
+        "startLine": 25,
+        "startChar": 14,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2fd02def_316e3fef",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-02T12:03:33Z",
+      "side": 1,
+      "message": "Put these points into code comments before Verify line in each __init__.robot file. That way people will understand why we sometimes can, but sometimes cannot skip the restart.\n\n\u003e move restart_after_install logic to function install_vpp()\n\nThat depends on how would the code look like.\nIf readable, move.\nIf heavy detection logic, comments in __init__.robot are better.",
+      "parentUuid": "6bcd0149_2a1394ba",
       "range": {
         "startLine": 25,
         "startChar": 14,
