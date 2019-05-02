@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7fd9a776_7fb504ab",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-02T13:53:45Z",
+      "side": 1,
+      "message": "https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/1256/archives/log.html.gz#s1-s1-s1-k1-k6\n\nImportError: cannot import name vpp_class\n\nTraceback (most recent call last):\n  File \"/w/workspace/csit-vpp-device-master-ubuntu1804-1n-skx/resources/libraries/python/VPPUtil.py\", line 139, in verify_vpp_on_all_duts\n    VPPUtil.verify_vpp_on_dut(node)\n  File \"/w/workspace/csit-vpp-device-master-ubuntu1804-1n-skx/resources/libraries/python/VPPUtil.py\", line 126, in verify_vpp_on_dut\n    VPPUtil.vpp_show_version_verbose(node)\n  File \"/w/workspace/csit-vpp-device-master-ubuntu1804-1n-skx/resources/libraries/python/VPPUtil.py\", line 175, in vpp_show_version_verbose\n    VPPUtil.vpp_show_version(node, verbose\u003dTrue)\n  File \"/w/workspace/csit-vpp-device-master-ubuntu1804-1n-skx/resources/libraries/python/VPPUtil.py\", line 155, in vpp_show_version\n    data \u003d papi_exec.add(\u0027show_version\u0027).get_replies()\n  File \"/w/workspace/csit-vpp-device-master-ubuntu1804-1n-skx/resources/libraries/python/PapiExecutor.py\", line 723, in get_replies\n    return self._execute()\n  File \"/w/workspace/csit-vpp-device-master-ubuntu1804-1n-skx/resources/libraries/python/PapiExecutor.py\", line 754, in _execute\n    vpp_class \u003d get_vpp_class()\n  File \"/w/workspace/csit-vpp-device-master-ubuntu1804-1n-skx/resources/libraries/python/PapiExecutor.py\", line 74, in get_vpp_class\n    from vpp_papi import vpp_class\n\n\nI wonder whether this happens due to CSIT having set a specific PYTHONPATH?\nOr is line 68 wrong and just happens to work on DUT for some reason?\n\nI probably need to add some debug logging to see what is happening.",
+      "range": {
+        "startLine": 74,
+        "startChar": 26,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "5af8699875610315d40dab9d5dd50862a304eaba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
