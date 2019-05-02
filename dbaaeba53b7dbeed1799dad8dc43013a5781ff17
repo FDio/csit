@@ -213,6 +213,30 @@
       "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72b96cdd_385170be",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-02T12:36:14Z",
+      "side": 1,
+      "message": "Nice and light. Just do not forget to update docstrings.\n\nAlso, DUTSetup.start_service should be renamed to DUTSetup.restart_service.",
+      "parentUuid": "392aaddb_a68b92d7",
+      "range": {
+        "startLine": 25,
+        "startChar": 14,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
