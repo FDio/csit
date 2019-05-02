@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "75b39dc1_7d268277",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-02T12:32:32Z",
+      "side": 1,
+      "message": "\u003e RF keeps instances on suite level\n\nIt should be configurable [1].\n\n\u003e def write_config(self, filename\u003dself._vpp_startup_conf):\n\nDoes not [2] work.\n\n[1] http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#test-library-scope\n[2] https://stackoverflow.com/questions/1802971/nameerror-name-self-is-not-defined",
+      "parentUuid": "c415932d_84edced8",
+      "range": {
+        "startLine": 564,
+        "startChar": 16,
+        "endLine": 564,
+        "endChar": 37
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82312eaa_523aaef7",
         "filename": "tests/vpp/perf/__init__.robot",
         "patchSetId": 23
