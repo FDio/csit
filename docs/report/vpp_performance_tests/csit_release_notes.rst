@@ -6,32 +6,33 @@ Changes in |csit-release|
 
 #. VPP PERFORMANCE TESTS
 
-   - **Service density 2n-skx tests**: Added higher density tests with dtc=0.5
-     (2 NF each with 1 DT per physical core) with VPP as a VNF payload.
+   - **Service density 2n-skx tests**: Added higher NF density tests with two
+     NFs' data-plane threads sharing a physical core. VPP IPv4 routing is now 
+     used as a VNF payload similar to CNF tests.
 
-   - **Experimental Soak Tests**: Added performamce soak tests framework
+   - **Soak Tests**: Optimized performamce soak tests framework
      code for extended time duration tests and throughput discovery
      at given PLR and at give total test time e.g. minutes, hours,
-     days, weeks, months, years. See updated
+     days, weeks. See updated
      :ref:`test_methodology` section for more details.
 
 #. TEST FRAMEWORK
 
-   - **Qemu code refactor**: Complete code refactor of the key components
+   - **Qemu code refactor**: Complete code refactor of the key components of
      QemuUtil.py and QemuManager.py (L1 and L2 KW counterparts). Added
-     implementation of kernel-image-kvm based VM alongisde the previously used
+     implementation of kernel-image-kvm based VM replacing the previously used
      NestedVM images. Added ability to run VPP as a payload in VNF.
 
-   - **CSIT PAPI Support**: Continue converting existing VAT L1 keywords to
-     PAPI L1 KWs in CSIT using VPP Python bindings. Required for migrating away
-     from VAT. Redesign of key components of PAPI Executor and PAPI history.
+   - **CSIT PAPI Support**: Continued conversion of CSIT VAT L1 keywords to 
+     PAPI L1 KWs in CSIT using VPP Python bindings. Redesign of key components
+     of PAPI Executor and PAPI history.
 
    - **General Code Housekeeping**: Ongoing RF keywords optimizations,
      removal of redundant RF keywords.
 
-   - **Test suite generator**: Extend the test suite generator for ability to
-     generate NIC permutation and search algorithm permutations from base
-     suites.
+   - **Test suite generator**: Added capability to generate suites for
+     different NIC models as well as throughput search algorithm types. Uses
+     base tests suites as source.
 
    - **TOX verification**: Added verifications for test suite generator.
 
@@ -67,6 +68,6 @@ List of known issues in |csit-release| for VPP performance tests:
 | 1  | `CSIT-570                               | Sporadic (1 in 200) NDR discovery test failures on x520. DPDK reporting rx-errors, indicating L1 issue.                         |
 |    | <https://jira.fd.io/browse/CSIT-570>`_  | Suspected issue with HW combination of X710-X520 in LF testbeds. Not observed outside of LF testbeds.                           |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 2  | `CSIT-????                              | IPSecHW interface AES-GBC tests failing due to traffic not passing.                                                             |
+| 2  | `CSIT-????                              | IPSecHW interface AES-128-CBC tests failing due to traffic not passing.                                                             |
 |    | <https://jira.fd.io/browse/CSIT-????>`_ |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
