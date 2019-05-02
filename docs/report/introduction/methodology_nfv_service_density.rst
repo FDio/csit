@@ -19,15 +19,13 @@ different service density setups by varying two parameters:
 - Number of service instances (e.g. 1,2,4..10).
 - Number of NFs per service instance (e.g. 1,2,4..10).
 
-The initial implementation of NFV service density tests in
-|csit-release| is using two NF applications:
+Implementation of NFV service density tests in |csit-release| is using two NF
+applications:
 
 - VNF: VPP of the same version as vswitch running in KVM VM, configured with /8
   IPv4 prefix routing.
 - CNF: VPP of the same version as vswitch running in Docker Container,
-  configured with /8 IPv4 prefix routing. VPP got chosen as a fast IPv4 NF
-  application that supports required memif interface (L3fwd does not). This is
-  similar to all other Container tests in CSIT that use VPP.
+  configured with /8 IPv4 prefix routing.
 
 Tests are designed such that in all tested cases VPP vswitch is the most
 stressed application, as for each flow vswitch is processing each packet
@@ -103,9 +101,8 @@ physical core mapping ratios:
 
     - (main:core) = (2:1) => 2mt1c - 2 Main Threads on 1 Core, 1 Thread
       per NF, core shared between two NFs.
-    - (data:core) = (2:1) => 1dt1c - 1 Data-plane Threads on 1 Core per
-      NF.
-
+    - (data:core) = (2:1) => 2dt1c - 2 Data-plane Threads on 1 Core, 1
+      Thread per NF, core shared between two NFs.
 
 Maximum tested service densities are limited by a number of physical
 cores per NUMA. |csit-release| allocates cores within NUMA0. Support for
