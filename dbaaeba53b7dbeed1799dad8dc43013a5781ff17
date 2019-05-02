@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "c415932d_84edced8",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-02T12:17:59Z",
+      "side": 1,
+      "message": "The problem is that from some reason (bug!) RF keeps instances on suite level. So unfortunately statefull classes are problem. This results into state where this object will not be reinitialized per test.\n\ni vote for this:\ndef write_config(self, filename\u003dself._vpp_startup_conf):",
+      "parentUuid": "e1a79f1f_6d35baf5",
+      "range": {
+        "startLine": 564,
+        "startChar": 16,
+        "endLine": 564,
+        "endChar": 37
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82312eaa_523aaef7",
         "filename": "tests/vpp/perf/__init__.robot",
         "patchSetId": 23
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Put these points into code comments before Verify line in each __init__.robot file. That way people will understand why we sometimes can, but sometimes cannot skip the restart.\n\n\u003e move restart_after_install logic to function install_vpp()\n\nThat depends on how would the code look like.\nIf readable, move.\nIf heavy detection logic, comments in __init__.robot are better.",
       "parentUuid": "6bcd0149_2a1394ba",
+      "range": {
+        "startLine": 25,
+        "startChar": 14,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "392aaddb_a68b92d7",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-02T12:17:59Z",
+      "side": 1,
+      "message": "Is it heavy?\n\ndiff --git a/resources/libraries/python/DUTSetup.py b/resources/libraries/python/DUTSetup.py\nindex 67edefb9..b4b3baed 100644\n--- a/resources/libraries/python/DUTSetup.py\n+++ b/resources/libraries/python/DUTSetup.py\n@@ -634,6 +634,8 @@ class DUTSetup(object):\n                                       format(dir\u003dvpp_pkg_dir), timeout\u003d120,\n                                       sudo\u003dTrue, message\u003dmessage)\n                     exec_cmd_no_error(node, \u0027dpkg -l | grep vpp\u0027, sudo\u003dTrue)\n+                    if running_in_container(node):\n+                        DUTSetup.start_service(node, Constants.VPP_UNIT)\n                 else:\n                     exec_cmd_no_error(node, \u0027yum -y remove \"*vpp*\" || true\u0027,\n                                       timeout\u003d120, sudo\u003dTrue)\n@@ -641,6 +643,7 @@ class DUTSetup(object):\n                                       format(dir\u003dvpp_pkg_dir), timeout\u003d120,\n                                       sudo\u003dTrue, message\u003dmessage)\n                     exec_cmd_no_error(node, \u0027rpm -qai *vpp*\u0027, sudo\u003dTrue)\n+                    DUTSetup.start_service(node, Constants.VPP_UNIT)\n\n     @staticmethod\n     def running_in_container(node):",
+      "parentUuid": "2fd02def_316e3fef",
       "range": {
         "startLine": 25,
         "startChar": 14,
