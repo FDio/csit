@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "f7ca2255_89ad4a93",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-02T13:32:00Z",
+      "side": 1,
+      "message": "Unfortunately it is configurable but it is not working. I already tested with QemuManager or QemuUtils. That is why i have to name the object instance as test-name so it is unique across suite. Bug in RF",
+      "parentUuid": "75b39dc1_7d268277",
+      "range": {
+        "startLine": 564,
+        "startChar": 16,
+        "endLine": 564,
+        "endChar": 37
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82312eaa_523aaef7",
         "filename": "tests/vpp/perf/__init__.robot",
         "patchSetId": 23
