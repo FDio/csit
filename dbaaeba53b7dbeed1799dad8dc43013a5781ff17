@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "bad21a56_49880c42",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-02T13:48:21Z",
+      "side": 1,
+      "message": "\u003e\u003e   if filename is not None:\n\u003e\u003e     self._vpp_startup_conf \u003d str(filename)\n\u003e\u003e and then only use self._vpp_startup_conf in the rest of the code.\n\n\u003e Bug in RF\n\nSo would it be better to have filename\u003d\u0027/etc/vpp/startup.conf\u0027 in line 560? And still put the filename value to self._vpp_startup_conf around line 570?",
+      "parentUuid": "f7ca2255_89ad4a93",
+      "range": {
+        "startLine": 564,
+        "startChar": 16,
+        "endLine": 564,
+        "endChar": 37
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82312eaa_523aaef7",
         "filename": "tests/vpp/perf/__init__.robot",
         "patchSetId": 23
