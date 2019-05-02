@@ -22,6 +22,30 @@
       "revId": "5af8699875610315d40dab9d5dd50862a304eaba",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b84cdb23_c0625cc0",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-02T13:56:21Z",
+      "side": 1,
+      "message": "\u003e vpp_class\n\nNevermind, I was just too eager when renaming.\nThe class in the module is still named VPP, it just needs to be imported as a different name to make pylint happy.",
+      "parentUuid": "7fd9a776_7fb504ab",
+      "range": {
+        "startLine": 74,
+        "startChar": 26,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "5af8699875610315d40dab9d5dd50862a304eaba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
