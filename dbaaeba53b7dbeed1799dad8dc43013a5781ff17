@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "494a48b6_472da9e2",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-02T08:46:54Z",
+      "side": 1,
+      "message": "Or filename if given.\n\nBut looking at lines 580-581, filename\u003dNone simply understood as filename\u003d\"None\". And lines 576-577 copy from self._vpp_startup_conf regardless of filename value.\n\nSo it is a mess, but can be fixed outside this Change.",
+      "range": {
+        "startLine": 564,
+        "startChar": 16,
+        "endLine": 564,
+        "endChar": 37
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82312eaa_523aaef7",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-02T08:46:54Z",
+      "side": 1,
+      "message": "I think we need to restart first.",
+      "range": {
+        "startLine": 25,
+        "startChar": 14,
+        "endLine": 25,
+        "endChar": 20
+      },
+      "revId": "dbaaeba53b7dbeed1799dad8dc43013a5781ff17",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
