@@ -46,6 +46,92 @@
       "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a3f44db_497128e2",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-03T08:20:29Z",
+      "side": 1,
+      "message": "We can\u0027t really lock the version. These packages won\u0027t be available forever, but there might be other problems.\n\nFrom what I understand, vpp-agent doesn\u0027t (officially) support master and in general it\u0027s not clear that we can assume that all API clients will support all versions (or the version we\u0027d ideally want to test with).\n\nThe best course of action would probably be doing what\u0027s already being done with other CSIT performance tests - identify a stable VPP version (that would work with all clients), periodically update that version (if it\u0027s a version that\u0027ll eventually disappear from packagecloud) and test with that.\n\nIf we can\u0027t find a version that would work with all clients, we\u0027ll need to think of something else. One possibility would be to have multiple stable versions and testing with as many stable versions as possible to get data comparable between at least some clients.",
+      "range": {
+        "startLine": 58,
+        "startChar": 15,
+        "endLine": 58,
+        "endChar": 45
+      },
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cc594ade_a1a62065",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-03T08:20:29Z",
+      "side": 1,
+      "message": "Let\u0027s also add all protocols the various clients expose, as I image we\u0027d want to test all of them. For example, Honeycomb support Netconf and Restconf. I\u0027m unsure about the others.",
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70b6e200_94cfe4bd",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-03T08:20:29Z",
+      "side": 1,
+      "message": "We should be testing both synchronous and asynchronous calls (and others, if there are any, such as periodic notifications).\n\nSynchronous calls are straightforward, we\u0027ll just measure the API call execution time.\n\nAsynchronous calls are more interesting. We can measure the API call (that shouldn\u0027t take long) and also how long it takes for the call to actually take effect in VPP (such as configuration actually appearing in VPP). The question is how to validate the call - is VAT fast enough to give reasonable measurements or do we need to use something else?\n\nI don\u0027t know whether there are any other types of calls that make sense to measure (or anyone would be interested in seeing being measured) - thoughts?",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 11
+      },
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1448ea60_74659b38",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-03T08:20:29Z",
+      "side": 1,
+      "message": "As Vratko mentioned, there might be other variables that could affect performance. A few come to mind:\n- interprocess communication method (socket vs shared memory, possibly others)\n- cores for API client\n- cores for VPP (these two are already mentioned, but I wanted to decouple them)\n- other VPP configuration, such as memory\n- other API client configuration, such as memory\n- client/VPP running in container/on the host. This might be overkill, since we might be interested in testing just the cases that are actually in use (vpp agent with vpp in container, honeycomb with vpp on host) that will dictate the topology\n- and possibly others",
+      "range": {
+        "startLine": 197,
+        "startChar": 9,
+        "endLine": 197,
+        "endChar": 16
+      },
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
