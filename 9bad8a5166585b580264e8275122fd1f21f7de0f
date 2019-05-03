@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85f9fcd7_75622ee6",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-03T10:36:45Z",
+      "side": 1,
+      "message": "Restart",
+      "range": {
+        "startLine": 65,
+        "startChar": 11,
+        "endLine": 65,
+        "endChar": 21
+      },
+      "revId": "9bad8a5166585b580264e8275122fd1f21f7de0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fca93232_af2b714d",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-03T10:36:45Z",
+      "side": 1,
+      "message": "Should we mention get_service_logs is also executed?",
+      "revId": "9bad8a5166585b580264e8275122fd1f21f7de0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c703e9a_ec6d21e3",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-03T10:36:45Z",
+      "side": 1,
+      "message": "restart",
+      "range": {
+        "startLine": 76,
+        "startChar": 41,
+        "endLine": 76,
+        "endChar": 46
+      },
+      "revId": "9bad8a5166585b580264e8275122fd1f21f7de0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de2a363a_a58649e4",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-03T10:36:45Z",
+      "side": 1,
+      "message": "Restart",
+      "range": {
+        "startLine": 85,
+        "startChar": 11,
+        "endLine": 85,
+        "endChar": 20
+      },
+      "revId": "9bad8a5166585b580264e8275122fd1f21f7de0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "837245e5_80be9174",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-03T10:36:45Z",
+      "side": 1,
+      "message": "Should we extract a single node method, similar to what we do for starting/stopping?",
+      "range": {
+        "startLine": 645,
+        "startChar": 8,
+        "endLine": 645,
+        "endChar": 19
+      },
+      "revId": "9bad8a5166585b580264e8275122fd1f21f7de0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cdab2e33_97ab6eaf",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-03T10:36:45Z",
+      "side": 1,
+      "message": "Mention we make sure the service is also starting up, but maybe not fully ready yet.",
+      "range": {
+        "startLine": 646,
+        "startChar": 39,
+        "endLine": 646,
+        "endChar": 40
+      },
+      "revId": "9bad8a5166585b580264e8275122fd1f21f7de0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
