@@ -178,6 +178,30 @@
     },
     {
       "key": {
+        "uuid": "9830828f_fde8bcfa",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-03T09:10:48Z",
+      "side": 1,
+      "message": "I was thinking that we might need to do some additional validation (as in when the call finishes we\u0027d check that the call actually did what it was supposed to), but now that I think about it, there\u0027s no difference between async and sync calls - the async call will eventually tell us when it\u0027s done.\n\nAnd by VAT I meant vpp_api_test.",
+      "parentUuid": "0c54a372_57f60ee6",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 11
+      },
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1448ea60_74659b38",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 4
