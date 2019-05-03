@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b9538ee_5d696ac9",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T05:22:48Z",
+      "side": 1,
+      "message": "put on new line",
+      "range": {
+        "startLine": 10,
+        "startChar": 78,
+        "endLine": 10,
+        "endChar": 85
+      },
+      "revId": "7d93c5be769b758ba35498dc53eae67923dc96c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ba320d4_932a4b1c",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T05:22:48Z",
+      "side": 1,
+      "message": "conversion",
+      "range": {
+        "startLine": 26,
+        "startChar": 38,
+        "endLine": 26,
+        "endChar": 48
+      },
+      "revId": "7d93c5be769b758ba35498dc53eae67923dc96c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f45ca0c0_ddffdf36",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T05:22:48Z",
+      "side": 1,
+      "message": "put on new line",
+      "range": {
+        "startLine": 34,
+        "startChar": 78,
+        "endLine": 34,
+        "endChar": 84
+      },
+      "revId": "7d93c5be769b758ba35498dc53eae67923dc96c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
