@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "a0021a72_f707b490",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T10:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85f9fcd7_75622ee6",
+      "range": {
+        "startLine": 65,
+        "startChar": 11,
+        "endLine": 65,
+        "endChar": 21
+      },
+      "revId": "9bad8a5166585b580264e8275122fd1f21f7de0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fca93232_af2b714d",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 26
@@ -88,6 +112,30 @@
     },
     {
       "key": {
+        "uuid": "17c68e2b_e106c5d3",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T10:52:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de2a363a_a58649e4",
+      "range": {
+        "startLine": 85,
+        "startChar": 11,
+        "endLine": 85,
+        "endChar": 20
+      },
+      "revId": "9bad8a5166585b580264e8275122fd1f21f7de0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "837245e5_80be9174",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 26
@@ -99,6 +147,30 @@
       "writtenOn": "2019-05-03T10:36:45Z",
       "side": 1,
       "message": "Should we extract a single node method, similar to what we do for starting/stopping?",
+      "range": {
+        "startLine": 645,
+        "startChar": 8,
+        "endLine": 645,
+        "endChar": 19
+      },
+      "revId": "9bad8a5166585b580264e8275122fd1f21f7de0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "41bbb36d_3b9eaa6b",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T10:52:42Z",
+      "side": 1,
+      "message": "When someone will need it in future he can do.",
+      "parentUuid": "837245e5_80be9174",
       "range": {
         "startLine": 645,
         "startChar": 8,
