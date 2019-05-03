@@ -202,6 +202,30 @@
     },
     {
       "key": {
+        "uuid": "c1ccd887_f6c5ceaf",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T09:17:49Z",
+      "side": 1,
+      "message": "We cannot additionally stress Control Plane during ASYNC being executed.\n\nvpp_api_test is just C application wrapper on top of binary API. VAT being deprecated so unless we will use direct binary bindings (required to write custom app) ro we will use existing PAPI or GO wrappers.",
+      "parentUuid": "9830828f_fde8bcfa",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 11
+      },
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1448ea60_74659b38",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 4
