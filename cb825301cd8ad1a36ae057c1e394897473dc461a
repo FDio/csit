@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "0db5028a_9adf5a64",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T08:35:09Z",
+      "side": 1,
+      "message": "Agree, vpp-agent only supports release version of VPP. This means the difficulties with integration into CSIT regular testing. Maybe as a start point and PoC we can use 19.04 and build the back-end part of testing while the front-end and choosing version will have to be later done.\n\nFor the purpose of this document we should assume same model as CSIT is following and describe it here. Later for implementation purposes we might wnat to user only stable branches for PoC and then talk to vpp-agent-dev for making sure everyone is following master.",
+      "parentUuid": "8a3f44db_497128e2",
+      "range": {
+        "startLine": 58,
+        "startChar": 15,
+        "endLine": 58,
+        "endChar": 45
+      },
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc594ade_a1a62065",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 4
@@ -83,6 +107,24 @@
       "writtenOn": "2019-05-03T08:20:29Z",
       "side": 1,
       "message": "Let\u0027s also add all protocols the various clients expose, as I image we\u0027d want to test all of them. For example, Honeycomb support Netconf and Restconf. I\u0027m unsure about the others.",
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d12cf355_348b6a11",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T08:35:09Z",
+      "side": 1,
+      "message": "Makes sense.",
+      "parentUuid": "cc594ade_a1a62065",
       "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -112,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "0c54a372_57f60ee6",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T08:35:09Z",
+      "side": 1,
+      "message": "Async API should return an event of operation being done so this if fine to measure and i agree.\n\nValidate of call? What do you mean by VAT?",
+      "parentUuid": "70b6e200_94cfe4bd",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 11
+      },
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1448ea60_74659b38",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 4
@@ -123,6 +189,30 @@
       "writtenOn": "2019-05-03T08:20:29Z",
       "side": 1,
       "message": "As Vratko mentioned, there might be other variables that could affect performance. A few come to mind:\n- interprocess communication method (socket vs shared memory, possibly others)\n- cores for API client\n- cores for VPP (these two are already mentioned, but I wanted to decouple them)\n- other VPP configuration, such as memory\n- other API client configuration, such as memory\n- client/VPP running in container/on the host. This might be overkill, since we might be interested in testing just the cases that are actually in use (vpp agent with vpp in container, honeycomb with vpp on host) that will dictate the topology\n- and possibly others",
+      "range": {
+        "startLine": 197,
+        "startChar": 9,
+        "endLine": 197,
+        "endChar": 16
+      },
+      "revId": "cb825301cd8ad1a36ae057c1e394897473dc461a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f50e6d0_c3880e91",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T08:35:09Z",
+      "side": 1,
+      "message": "Yes this sectioned need to be extended and reworked to cover the resource allocation.",
+      "parentUuid": "1448ea60_74659b38",
       "range": {
         "startLine": 197,
         "startChar": 9,
