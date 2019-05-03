@@ -1,13 +1,16 @@
 Running CSIT locally in Vagrant
 -------------------------------
 
-1. Download and install latest virtualbox from `official page <https://www.virtualbox.org/wiki/Downloads>`_
+1. Download and install latest virtualbox from `official page
+   <https://www.virtualbox.org/wiki/Downloads>`_
    To verify the installation, run VBoxManage:
-      - on windows: "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" --version
+      - on windows:
+        "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" --version
       - on nix: VBoxManage --version
    You should see virtualbox manager version printed, eg: 6.0.0r127566
 
-2. Download and install latest vagrant `from official page <https://www.vagrantup.com/downloads.html>`_
+2. Download and install latest vagrant `from official page
+   <https://www.vagrantup.com/downloads.html>`_
    To verify the installtion, run:
       vagrant -v
    You should see vagrant version printed, eg: Vagrant 2.2.2
