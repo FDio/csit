@@ -89,6 +89,30 @@
     },
     {
       "key": {
+        "uuid": "51e59ea3_a09fb569",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T10:53:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c703e9a_ec6d21e3",
+      "range": {
+        "startLine": 76,
+        "startChar": 41,
+        "endLine": 76,
+        "endChar": 46
+      },
+      "revId": "9bad8a5166585b580264e8275122fd1f21f7de0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de2a363a_a58649e4",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 26
@@ -194,6 +218,30 @@
       "writtenOn": "2019-05-03T10:36:45Z",
       "side": 1,
       "message": "Mention we make sure the service is also starting up, but maybe not fully ready yet.",
+      "range": {
+        "startLine": 646,
+        "startChar": 39,
+        "endLine": 646,
+        "endChar": 40
+      },
+      "revId": "9bad8a5166585b580264e8275122fd1f21f7de0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "19f72cf7_b8c82f82",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-03T10:53:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdab2e33_97ab6eaf",
       "range": {
         "startLine": 646,
         "startChar": 39,
