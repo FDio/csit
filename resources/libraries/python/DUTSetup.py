@@ -76,7 +76,8 @@ class DUTSetup(object):
         message = 'Node {host} failed to restart service {name}'.\
             format(host=node['host'], name=service)
 
-        exec_cmd_no_error(node, command, timeout=30, sudo=True, message=message)
+        exec_cmd_no_error(
+            node, command, timeout=120, sudo=True, message=message)
 
         DUTSetup.get_service_logs(node, service)
 
@@ -110,7 +111,8 @@ class DUTSetup(object):
         message = 'Node {host} failed to start service {name}'.\
             format(host=node['host'], name=service)
 
-        exec_cmd_no_error(node, command, timeout=30, sudo=True, message=message)
+        exec_cmd_no_error(
+            node, command, timeout=120, sudo=True, message=message)
 
         DUTSetup.get_service_logs(node, service)
 
@@ -159,34 +161,6 @@ class DUTSetup(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 DUTSetup.stop_service(node, service)
-
-    @staticmethod
-    def setup_dut(node):
-        """Run script over SSH to setup the DUT node.
-
-        :param node: DUT node to set up.
-        :type node: dict
-
-        :raises Exception: If the DUT setup fails.
-        """
-        command = 'bash {0}/{1}/dut_setup.sh'.\
-            format(Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH)
-        message = 'DUT test setup script failed at node {name}'.\
-            format(name=node['host'])
-
-        exec_cmd_no_error(node, command, timeout=120, sudo=True,
-                          message=message)
-
-    @staticmethod
-    def setup_all_duts(nodes):
-        """Run script over SSH to setup all DUT nodes.
-
-        :param nodes: Topology nodes.
-        :type nodes: dict
-        """
-        for node in nodes.values():
-            if node['type'] == NodeType.DUT:
-                DUTSetup.setup_dut(node)
 
     @staticmethod
     def get_vpp_pid(node):
