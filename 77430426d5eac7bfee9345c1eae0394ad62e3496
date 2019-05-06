@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a0acb67_e7c3bdd3",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-06T12:20:40Z",
+      "side": 1,
+      "message": "I prefer Constants.DOWNLOAD_DIR not this. Not everyone is using bootstrap.sh",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 28
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d52fbe57_82087cb1",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-06T12:20:40Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2918c299_b56edfeb",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-06T12:20:40Z",
+      "side": 1,
+      "message": "I do not like this... This seems to be more complicated that current solution. Why we need artifacts on 3rd party server where VPP is not running. I do see it long term complicated as current JSON solution we have.\n\nI think we need to get back to drawing table. THis will not work.\n\nAnd btw: it is better install python-api package directly on executor rather then doing this acrobatics.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 72
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ada98c6_35cc4b96",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-06T12:20:40Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 57
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "631bfc37_e088c139",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 43
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-06T12:20:40Z",
+      "side": 1,
+      "message": "this is generally very bad idea for vpp_device and i do not recommend it.\n\nCreate own \"base startup\" with same content as VPP original default config [0] and rename the existing \"Create base startup configuration of VPP on all DUTs\" to some perf variant\n\n[0] https://github.com/FDio/vpp/blob/master/src/vpp/conf/startup.conf",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 57
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e52924d5_27eaf018",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 43
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-06T12:20:40Z",
+      "side": 1,
+      "message": "remove entirely or test will fail.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 46
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
