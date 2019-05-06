@@ -147,6 +147,7 @@
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
 | | | Run keyword | ${dut}.Add Unix Coredump
+| | | Run keyword | ${dut}.Add Socketsvr Default
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run keyword | ${dut}.Add DPDK Uio Driver
@@ -412,7 +413,7 @@
 | | ... | ${thr_count_int}
 
 | Write startup configuration on all VPP DUTs
-| | [Documentation] | Write VPP startup configuration on all DUTs.
+| | [Documentation] | Write VPP startup configuration without restarting VPP.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
