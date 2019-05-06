@@ -147,6 +147,7 @@
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
 | | | Run keyword | ${dut}.Add Unix Coredump
+| | | Run keyword | ${dut}.Add Socketsvr Default
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run keyword | ${dut}.Add DPDK Uio Driver
@@ -157,6 +158,17 @@
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
 | | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
 | | | Run keyword | ${dut}.Add IP Heap Size | 4G
+
+| Create device startup configuration of VPP on all DUTs
+| | [Documentation] | Create a startup configuration of VPP to all DUTs
+| | ... | suitable for device tests.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Import Library | resources.libraries.python.VppConfigGenerator
+| | | ... | WITH NAME | ${dut}
+| | | Run keyword | ${dut}.Set Node |  ${nodes['${dut}']}
+| | | Run keyword | ${dut}.Add Socketsvr Default
 
 | Add worker threads and rxqueues to all DUTs
 | | [Documentation] | Setup worker threads and rxqueues in vpp startup
@@ -412,7 +424,7 @@
 | | ... | ${thr_count_int}
 
 | Write startup configuration on all VPP DUTs
-| | [Documentation] | Write VPP startup configuration on all DUTs.
+| | [Documentation] | Write VPP startup configuration without restarting VPP.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
