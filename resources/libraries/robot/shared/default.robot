@@ -37,11 +37,6 @@
 | Resource | resources/libraries/robot/vm/qemu.robot
 
 *** Keywords ***
-| Configure all DUTs before test
-| | [Documentation] | Setup all DUTs in topology before test execution.
-| | ...
-| | Setup All DUTs | ${nodes}
-
 | Configure all TGs for traffic script
 | | [Documentation] | Prepare all TGs before traffic scripts execution.
 | | ...
@@ -460,7 +455,9 @@
 | Set up functional test
 | | [Documentation] | Common test setup for functional tests.
 | | ...
-| | Configure all DUTs before test
+| | Restart Vpp Service On All Duts | ${nodes}
+| | Verify Vpp On All Duts | ${nodes}
+| | VPP Enable Traces On All Duts | ${nodes}
 | | Save VPP PIDs
 | | Configure all TGs for traffic script
 | | Update All Interface Data On All Nodes | ${nodes}
@@ -480,7 +477,9 @@
 # much
 | | [Documentation] | Common test setup for vpp-device tests.
 | | ...
-| | Configure all DUTs before test
+| | Restart Vpp Service On All Duts | ${nodes}
+| | Verify Vpp On All Duts | ${nodes}
+| | VPP Enable Traces On All Duts | ${nodes}
 | | Save VPP PIDs
 | | Configure all TGs for traffic script
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg_udev=${True}
