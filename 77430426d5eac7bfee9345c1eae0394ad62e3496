@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9d275163_73380df5",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-06T12:47:07Z",
+      "side": 1,
+      "message": "Will add some TODOs.",
+      "parentUuid": "0a0acb67_e7c3bdd3",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 28
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d52fbe57_82087cb1",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 43
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-06T12:20:40Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b1bd0c87_ea4f877f",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-06T12:47:07Z",
+      "side": 1,
+      "message": "Then comment on [1]. :)\n\n[1] https://gerrit.fd.io/r/#/c/9481/2/src/vpp-api/python/vpp_papi.py@211",
+      "parentUuid": "d52fbe57_82087cb1",
       "range": {
         "startLine": 65,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "6c751d91_e70399eb",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-06T12:47:07Z",
+      "side": 1,
+      "message": "\u003e Why we need artifacts on 3rd party server where VPP is not running.\n\nAs line 68 implies, we only need .api.json files.\nI am not aware of any method to query a running VPP app to see its .api.json data.\n\nWhen we have a strict API checks for VPP API flag day, we can use the locally stored data. But in that case, we want to support two sligtly different APIs at once, so the logic will be more complicated.\n\n\u003e it is better install python-api package directly on executor\n\nBy executor you mean the system that is running VPP (and not Robot)?\n\nThe point of this PoC is to enable very lightweight containers, without any python-based services for API interaction.\n\nWe can try to use VPP-side utility, and rely on libraries such as \"dill\" to transport correct types from and to Robot machine, but I will examine that after the current \"remote socket\" approach.",
+      "parentUuid": "2918c299_b56edfeb",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 72
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ada98c6_35cc4b96",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 43
@@ -82,6 +154,30 @@
       "writtenOn": "2019-05-06T12:20:40Z",
       "side": 1,
       "message": "not needed",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 57
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba4e9bfc_fd7ba8c4",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-06T12:47:07Z",
+      "side": 1,
+      "message": "Will not be needed in final form (as most of new logger.debug calls), but is needed during debugging.\nI expect line 168 to fail, as I am skipping verify_reply step.",
+      "parentUuid": "9ada98c6_35cc4b96",
       "range": {
         "startLine": 166,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "2463443a_1e0e91da",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 43
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-06T12:47:07Z",
+      "side": 1,
+      "message": "Yes. I will want to discuss the proper way to prepare startup.conf before installation, but currently I am doing just quick edits to see what works.",
+      "parentUuid": "631bfc37_e088c139",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 57
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e52924d5_27eaf018",
         "filename": "tests/vpp/device/__init__.robot",
         "patchSetId": 43
@@ -128,6 +248,30 @@
       "writtenOn": "2019-05-06T12:20:40Z",
       "side": 1,
       "message": "remove entirely or test will fail.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 46
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "17124aef_1d035d58",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 43
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-06T12:47:07Z",
+      "side": 1,
+      "message": "@{plugins_to_enable} is needed later, but I can make it empty here.",
+      "parentUuid": "e52924d5_27eaf018",
       "range": {
         "startLine": 49,
         "startChar": 0,
