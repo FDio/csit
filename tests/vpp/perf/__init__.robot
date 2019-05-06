@@ -24,7 +24,6 @@
 | ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
 | ... | AND | Verify Vpp on All Duts | ${nodes}
 | ... | AND | Verify UIO Driver on all DUTs | ${nodes}
-| ... | AND | Setup All DUTs | ${nodes}
 | ... | AND | Show Vpp Version on All Duts | ${nodes}
 | ... | AND | Get CPU Layout from All nodes | ${nodes}
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
