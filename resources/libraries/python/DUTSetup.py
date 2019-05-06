@@ -62,7 +62,7 @@ class DUTSetup(object):
 
     @staticmethod
     def restart_service(node, service):
-        """Restarts the named service on node.
+        """Restart the named service on node.
 
         :param node: Node in the topology.
         :param service: Service unit name.
@@ -82,7 +82,7 @@ class DUTSetup(object):
 
     @staticmethod
     def restart_service_on_all_duts(nodes, service):
-        """Retarts the named service on all DUTs.
+        """Restart the named service on all DUTs.
 
         :param node: Nodes in the topology.
         :param service: Service unit name.
