@@ -1551,6 +1551,8 @@ def plot_service_density_heatmap_compare(plot, input_data):
                         nr_c=vals[txt_chains[c]][txt_nodes[n]]["nr_c"]
                     ) if data_c[c][n] is not None else "Test Failed",
                     text_diff=text_diff.format(
+                        title_r=plot["reference"]["name"],
+                        title_c=plot["compare"]["name"],
                         diff=diff[c][n]
                     ) if diff[c][n] is not None else ""
                 ))
