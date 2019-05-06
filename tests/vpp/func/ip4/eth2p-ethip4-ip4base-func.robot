@@ -19,7 +19,9 @@
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | SKIP_VPP_PATCH
 | Suite Setup | Run Keywords
-| ... | Configure all DUTs before test | AND
+| ... | Restart Vpp Service On All Duts | ${nodes} | AND
+| ... | Verify Vpp On All Duts | ${nodes} | AND
+| ... | VPP Enable Traces On All Duts | ${nodes} | AND
 | ... | Configure all TGs for traffic script | AND
 | ... | Update All Interface Data On All Nodes | ${nodes} | AND
 | ... | Configure DUT nodes for IPv4 testing

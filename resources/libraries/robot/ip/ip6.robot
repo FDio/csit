@@ -172,7 +172,9 @@
 | Configure IPv6 on all DUTs in topology
 | | [Documentation] | Setup IPv6 address on all DUTs
 | | [Arguments] | ${nodes} | ${nodes_addr}
-| | Configure all DUTs before test
+| | Restart Vpp Service On All Duts | ${nodes}
+| | Verify Vpp On All Duts | ${nodes}
+| | VPP Enable Traces On All Duts | ${nodes}
 | | ${interfaces}= | Nodes Set Ipv6 Addresses | ${nodes} | ${nodes_addr}
 | | :FOR | ${interface} | IN | @{interfaces}
 | | | Set Interface State | @{interface} | up | if_type=name

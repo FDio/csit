@@ -25,7 +25,9 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | ...
 | Suite Setup | Run Keywords | Setup Framework | ${nodes} | AND
-| ... | Setup All DUTs | ${nodes} | AND
+| ... | Restart Vpp Service On All Duts | ${nodes} | AND
+| ... | Verify Vpp On All Duts | ${nodes} | AND
+| ... | VPP Enable Traces On All Duts | ${nodes} | AND
 | ... | Update All Interface Data On All Nodes | ${nodes} | AND
 | ... | Configure all DUTs before test | AND
 | ... | Set Global Variable | ${node} | AND
