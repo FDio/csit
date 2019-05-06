@@ -15,6 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Library | resources.libraries.python.SFC.SetupSFCTest
-| Suite Setup | Run Keywords | Setup NSH SFC test | ${nodes}
-| ...         | AND          | Setup All DUTs | ${nodes}
-| ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
+| Suite Setup | Run Keywords | Setup NSH SFC test | ${nodes} | AND
+| ... | Restart Vpp Service On All Duts | ${nodes} | AND
+| ... | Verify Vpp On All Duts | ${nodes} | AND
+| ... | VPP Enable Traces On All Duts | ${nodes} | AND
+| ... | Update All Interface Data On All Nodes | ${nodes}
