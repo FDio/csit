@@ -193,6 +193,11 @@ class VppConfigGenerator(object):
         path = ['unix', 'exec']
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_socketsvr_default(self):
+        """Add default socketsvr configuration."""
+        path = ['socketsvr', 'default']
+        self.add_config_item(self._nodeconfig, '', path)
+
     def add_api_segment_gid(self, value='vpp'):
         """Add API-SEGMENT gid configuration.
 
