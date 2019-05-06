@@ -21,6 +21,8 @@
 | Suite Setup | Run Keywords | Setup Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
+| ... | AND | Create base startup configuration of VPP on all DUTs
+| ... | AND | Apply startup configuration on all VPP DUTs | restart_vpp=${False}
 | ... | AND | Install Vpp On All Duts | ${nodes} | ${packages_dir}
 | ... | AND | Verify Vpp On All Duts | ${nodes}
 | ... | AND | Get CPU Layout from all nodes | ${nodes}
@@ -44,5 +46,7 @@
 | | ...
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
+| | @{plugins_to_enable}= | Create List | dpdk_plugin.so
+| | Set Global Variable | @{plugins_to_enable}
 | | Set Global Variable | ${vm_image} | /var/lib/vm/csit-nested-1.7.img
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
