@@ -21,6 +21,8 @@
 | Suite Setup | Run Keywords | Setup Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
+| ... | AND | Create base startup configuration of VPP on all DUTs
+| ... | AND | Apply startup configuration on all VPP DUTs | restart_vpp=${False}
 | ... | AND | Install Vpp On All Duts | ${nodes} | ${packages_dir}
 | ... | AND | Verify Vpp On All Duts | ${nodes}
 | ... | AND | Get CPU Layout from all nodes | ${nodes}
