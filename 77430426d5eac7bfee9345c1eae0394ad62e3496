@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "cd8a9620_08392cae",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-06T13:16:17Z",
+      "side": 1,
+      "message": "| As line 68 implies, we only need .api.json files.\n| I am not aware of any method to query a running VPP app to see its .api.json data.\n\nI know what is the problem you are trying to solve.\n\n| When we have a strict API checks for VPP API flag day, we can use the locally stored data. But in that case, we want to support two sligtly different APIs at once, so the logic will be more complicated.\n\nI need to think on the pros\u0026cons of each solution long term.\n\n| By executor you mean the system that is running VPP (and not Robot)?\n\nyes\n\n| We can try to use VPP-side utility, and rely on libraries such as \"dill\" to transport correct types from and to Robot machine, but I will examine that after the current \"remote socket\" approach.\n\nyes lets do side-by-side table after PoC and lets pickup by matrix the best solution for this.",
+      "parentUuid": "6c751d91_e70399eb",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 72
+      },
+      "revId": "77430426d5eac7bfee9345c1eae0394ad62e3496",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9ada98c6_35cc4b96",
         "filename": "resources/libraries/python/VPPUtil.py",
         "patchSetId": 43
