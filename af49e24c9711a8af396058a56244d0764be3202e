@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd66a9bd_29599b25",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-06T10:30:08Z",
+      "side": 1,
+      "message": "I do not care anymore.",
+      "range": {
+        "startLine": 85,
+        "startChar": 11,
+        "endLine": 85,
+        "endChar": 18
+      },
+      "revId": "af49e24c9711a8af396058a56244d0764be3202e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
