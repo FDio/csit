@@ -4735,7 +4735,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4767,7 +4767,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4799,7 +4799,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4832,7 +4832,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4864,7 +4864,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4896,7 +4896,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -4929,7 +4929,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -4961,7 +4961,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -4993,7 +4993,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5026,7 +5026,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5058,7 +5058,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5090,7 +5090,7 @@
     include: "1"
     name: "VNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5318,7 +5318,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5350,7 +5350,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5382,7 +5382,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5415,7 +5415,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5447,7 +5447,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5479,7 +5479,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5512,7 +5512,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5544,7 +5544,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5576,7 +5576,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5609,7 +5609,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5641,7 +5641,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5673,7 +5673,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -5901,7 +5901,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5933,7 +5933,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5965,7 +5965,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -5998,7 +5998,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -6030,7 +6030,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -6062,7 +6062,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -6095,7 +6095,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -6127,7 +6127,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -6159,7 +6159,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -6192,7 +6192,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -6224,7 +6224,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -6256,7 +6256,7 @@
     include: "1"
     name: "CNF-0.5c"
   parameters:
-  - "result"
+  - "throughput"
   - "name"
   - "tags"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
