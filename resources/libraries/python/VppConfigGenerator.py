@@ -191,6 +191,11 @@ class VppConfigGenerator(object):
         path = ['unix', 'exec']
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_socketsvr_default(self):
+        """Add default socketsvr configuration."""
+        path = ['socketsvr', 'default']
+        self.add_config_item(self._nodeconfig, '', path)
+
     def add_api_segment_gid(self, value='vpp'):
         """Add API-SEGMENT gid configuration.
 
@@ -577,6 +582,8 @@ class VppConfigGenerator(object):
             exec_cmd_no_error(
                 self._node, cmd, sudo=True, message='Copy config file failed!')
 
+        cmd = ('mkdir -p {dir}"'.format(dir=filename.rsplit('/', 1)[0])
+        exec_cmd_no_error(self._node, cmd, message='Mkdir failed!')
         cmd = ('echo "{config}" | sudo tee {filename}'.format(
             config=self._vpp_config, filename=filename))
         exec_cmd_no_error(
