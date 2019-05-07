@@ -347,7 +347,6 @@
         - 26  # NDRPDR full
 
     vpp-perf-results-2n-skx:
-      # TODO: Add FULL 1904 data
       csit-vpp-perf-verify-1904-2n-skx:
         - 33  # NDRPDR full
         - 39  # NDRPDR full
