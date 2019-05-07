@@ -18,6 +18,7 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
@@ -134,6 +135,7 @@ class VPPUtil(object):
             VPPUtil.verify_vpp_started(node)
             # Verify responsivness of PAPI.
             VPPUtil.show_log(node)
+            VPPUtil.vpp_show_version(node)
         finally:
             DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
@@ -160,18 +162,25 @@ class VPPUtil(object):
         :returns: VPP version.
         :rtype: str
         """
-        with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_version').execute_should_pass().\
-                verify_reply()
+        with PapiSocketExecutor(node) as papi_exec:
+            data = papi_exec.add('show_version').get_replies()
+        # logger != logging, does not support %(data)r formatting.
+        logger.debug("Show version data: {data!r}".format(data=data))
+        reply_obj = data.replies[0]['api_reply']
+        logger.debug(repr(reply_obj))
+        logger.debug(dir(reply_obj))
+        reply_dict = reply_obj._asdict()
+        logger.debug(repr(reply_dict))
+        logger.debug(dir(reply_dict))
         version = ('VPP version:      {ver}\n'.
-                   format(ver=data['version'].rstrip('\0x00')))
+                   format(ver=reply_dict['version'].rstrip('\0x00')))
         if verbose:
             version += ('Compile date:     {date}\n'
                         'Compile location: {cl}\n '.
-                        format(date=data['build_date'].rstrip('\0x00'),
-                               cl=data['build_directory'].rstrip('\0x00')))
+                        format(date=reply_dict['build_date'].rstrip('\0x00'),
+                               cl=reply_dict['build_directory'].rstrip('\0x00')))
         logger.info(version)
-        return data['version'].rstrip('\0x00')
+        return reply_dict['version'].rstrip('\0x00')
 
     @staticmethod
     def show_vpp_version_on_all_duts(nodes):
