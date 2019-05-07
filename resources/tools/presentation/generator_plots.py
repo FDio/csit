@@ -1528,39 +1528,42 @@ def plot_service_density_heatmap_compare(plot, input_data):
                 showarrow=False
             )
 
+            point_text_r = "Not present"
+            point_text_c = "Not present"
+            point_text_diff = ""
             try:
-                point_r = str(data_r[c][n])
-                point_text_r = text_r.format(
-                    val_r=point_r,
-                    stdev_r=vals[txt_chains[c]][txt_nodes[n]]["stdev_r"],
-                    nr_r=vals[txt_chains[c]][txt_nodes[n]]["nr_r"])
+                point_r = data_r[c][n]
+                if point_r is not None:
+                    point_text_r = text_r.format(
+                        val_r=point_r,
+                        stdev_r=vals[txt_chains[c]][txt_nodes[n]]["stdev_r"],
+                        nr_r=vals[txt_chains[c]][txt_nodes[n]]["nr_r"])
             except KeyError:
                 point_r = None
-                point_text_r = "Not present"
             point["text"] = "" if point_r is None else point_r
             annotations_r.append(deepcopy(point))
 
             try:
-                point_c = str(data_c[c][n])
-                point_text_c = text_c.format(
-                    val_c=point_c,
-                    stdev_c=vals[txt_chains[c]][txt_nodes[n]]["stdev_c"],
-                    nr_c=vals[txt_chains[c]][txt_nodes[n]]["nr_c"])
+                point_c = data_c[c][n]
+                if point_c is not None:
+                    point_text_c = text_c.format(
+                        val_c=point_c,
+                        stdev_c=vals[txt_chains[c]][txt_nodes[n]]["stdev_c"],
+                        nr_c=vals[txt_chains[c]][txt_nodes[n]]["nr_c"])
             except KeyError:
                 point_c = None
-                point_text_c = "Not present"
             point["text"] = "" if point_c is None else point_c
             annotations_c.append(deepcopy(point))
 
             try:
-                point_d = str(diff[c][n])
-                point_text_diff = text_diff.format(
-                    title_r=plot["reference"]["name"],
-                    title_c=plot["compare"]["name"],
-                    diff=point_d)
+                point_d = diff[c][n]
+                if point_d is not None:
+                    point_text_diff = text_diff.format(
+                        title_r=plot["reference"]["name"],
+                        title_c=plot["compare"]["name"],
+                        diff=point_d)
             except KeyError:
                 point_d = None
-                point_text_diff = ""
             point["text"] = "" if point_d is None else point_d
             annotations_diff.append(deepcopy(point))
 
