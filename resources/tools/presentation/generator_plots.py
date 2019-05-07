@@ -1612,7 +1612,9 @@ def plot_service_density_heatmap_compare(plot, input_data):
                      name="Diff",
                      visible=False,
                      colorbar=dict(
-                         title="Relative difference [%]",
+                         title="Relative Difference {name_c} vs. {name_r} [%]".
+                             format(name_c=plot["compare"]["name"],
+                                    name_r=plot["reference"]["name"]),
                          titleside="right",
                          titlefont=dict(
                              size=16
