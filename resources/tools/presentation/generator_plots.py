@@ -1529,45 +1529,53 @@ def plot_service_density_heatmap_compare(plot, input_data):
             )
 
             try:
-                data_point = str(data_r[c][n])
+                point_r = str(data_r[c][n])
+                point_text_r = text_r.format(
+                    val_r=point_r,
+                    stdev_r=vals[txt_chains[c]][txt_nodes[n]]["stdev_r"],
+                    nr_r=vals[txt_chains[c]][txt_nodes[n]]["nr_r"])
             except KeyError:
-                data_point = None
-            point["text"] = "" if data_point is None else data_point
+                point_r = None
+                point_text_r = "Not present"
+            point["text"] = "" if point_r is None else point_r
             annotations_r.append(deepcopy(point))
 
             try:
-                data_point = str(data_c[c][n])
+                point_c = str(data_c[c][n])
+                point_text_c = text_c.format(
+                    val_c=point_c,
+                    stdev_c=vals[txt_chains[c]][txt_nodes[n]]["stdev_c"],
+                    nr_c=vals[txt_chains[c]][txt_nodes[n]]["nr_c"])
             except KeyError:
-                data_point = None
-            point["text"] = "" if data_point is None else data_point
+                point_c = None
+                point_text_c = "Not present"
+            point["text"] = "" if point_c is None else point_c
             annotations_c.append(deepcopy(point))
 
             try:
-                data_point = str(diff[c][n])
-            except KeyError:
-                data_point = None
-            point["text"] = "" if data_point is None else data_point
-            annotations_diff.append(deepcopy(point))
-
-            hover_line.append(text.format(
-                name=vals[txt_chains[c]][txt_nodes[n]]["name"],
-                title_r=plot["reference"]["name"],
-                text_r=text_r.format(
-                    val_r=data_r[c][n],
-                    stdev_r=vals[txt_chains[c]][txt_nodes[n]]["stdev_r"],
-                    nr_r=vals[txt_chains[c]][txt_nodes[n]]["nr_r"]
-                ) if data_r[c][n] is not None else "Test Failed",
-                title_c=plot["compare"]["name"],
-                text_c=text_c.format(
-                    val_c=data_c[c][n],
-                    stdev_c=vals[txt_chains[c]][txt_nodes[n]]["stdev_c"],
-                    nr_c=vals[txt_chains[c]][txt_nodes[n]]["nr_c"]
-                ) if data_c[c][n] is not None else "Test Failed",
-                text_diff=text_diff.format(
+                point_d = str(diff[c][n])
+                point_text_diff = text_diff.format(
                     title_r=plot["reference"]["name"],
                     title_c=plot["compare"]["name"],
-                    diff=diff[c][n]
-                ) if diff[c][n] is not None else ""
+                    diff=point_d)
+            except KeyError:
+                point_d = None
+                point_text_diff = ""
+            point["text"] = "" if point_d is None else point_d
+            annotations_diff.append(deepcopy(point))
+
+            try:
+                name = vals[txt_chains[c]][txt_nodes[n]]["name"]
+            except KeyError:
+                continue
+
+            hover_line.append(text.format(
+                name=name,
+                title_r=plot["reference"]["name"],
+                text_r=point_text_r,
+                title_c=plot["compare"]["name"],
+                text_c=point_text_c,
+                text_diff=point_text_diff
             ))
 
         hovertext.append(hover_line)
