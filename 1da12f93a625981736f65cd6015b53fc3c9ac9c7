@@ -22,6 +22,30 @@
       "revId": "1da12f93a625981736f65cd6015b53fc3c9ac9c7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1658f384_26c4e8cd",
+        "filename": "README.md",
+        "patchSetId": 10
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-07T15:05:51Z",
+      "side": 1,
+      "message": "Moved to comment in next patch.",
+      "parentUuid": "0e733c5f_3df985d4",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 43
+      },
+      "revId": "1da12f93a625981736f65cd6015b53fc3c9ac9c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
