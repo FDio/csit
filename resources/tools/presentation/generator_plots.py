@@ -1528,13 +1528,25 @@ def plot_service_density_heatmap_compare(plot, input_data):
                 showarrow=False
             )
 
-            point["text"] = "" if data_r[c][n] is None else str(data_r[c][n])
+            try:
+                data_point = str(data_r[c][n])
+            except KeyError:
+                data_point = None
+            point["text"] = "" if data_point is None else data_point
             annotations_r.append(deepcopy(point))
 
-            point["text"] = "" if data_c[c][n] is None else str(data_c[c][n])
+            try:
+                data_point = str(data_c[c][n])
+            except KeyError:
+                data_point = None
+            point["text"] = "" if data_point is None else data_point
             annotations_c.append(deepcopy(point))
 
-            point["text"] = "" if diff[c][n] is None else str(diff[c][n])
+            try:
+                data_point = str(diff[c][n])
+            except KeyError:
+                data_point = None
+            point["text"] = "" if data_point is None else data_point
             annotations_diff.append(deepcopy(point))
 
             hover_line.append(text.format(
