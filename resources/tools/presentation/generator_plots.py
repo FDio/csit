@@ -1431,10 +1431,10 @@ def plot_service_density_heatmap_compare(plot, input_data):
                         if groups and len(groups.groups()) == 3:
                             if str(groups.group(3)) == \
                                     plot["reference"]["include"]:
-                                vals[c][n]["vals_c"].append(result)
+                                vals[c][n]["vals_r"].append(result)
                             elif str(groups.group(3)) == \
                                     plot["compare"]["include"]:
-                                vals[c][n]["vals_r"].append(result)
+                                vals[c][n]["vals_c"].append(result)
                             break
     if not vals:
         logging.error("No data.")

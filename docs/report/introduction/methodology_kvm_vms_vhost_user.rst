@@ -60,6 +60,7 @@ filesystem as read only guest OS filesystem.
 Example of custom init script for the kernel VM:
 
 ::
+
   #!/bin/bash
   mount -t sysfs -o "nodev,noexec,nosuid" sysfs /sys
   mount -t proc -o "nodev,noexec,nosuid" proc /proc
