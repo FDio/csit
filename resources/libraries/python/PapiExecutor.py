@@ -15,44 +15,147 @@
 """
 
 import binascii
+import glob
 import json
+import os
+import shutil
+import socket
+#import StringIO
+import subprocess
+import sys
+import tempfile
+import time
 
+#import paramiko
 from robot.api import logger
+#import sshtunnel
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH, SSHTimeout
+from resources.libraries.python.ssh import SSH, SSHTimeout, exec_cmd_no_error
 from resources.libraries.python.PapiHistory import PapiHistory
 
 
-__all__ = ["PapiExecutor", "PapiResponse"]
+__all__ = ["PapiExecutor", "PapiSocketExecutor", "PapiResponse"]
+
+
+# VPP instance is inserted here if needed.
+INSTANCES = dict()
+
+
+def get_vpp_instance(path):
+    """Return VPP instance with bindings to all API calls.
+
+    The returned instance is initialized for unix domain socket access,
+    it has initialized all the bindings, but it is not connected yet.
+
+    After first invocation, the result is cached, so other calls are quick.
+    First invocation needs to extract .deb files to find .api.json files,
+    using a temporary directory.
+
+    :param path: Absolute path to local socket to use.
+    :type path: str
+    :returns: Initialized but not connected VPP instance.
+    :rtype: vpp_papi.VPP
+    """
+    cached = INSTANCES.get("vpp_instance", None)
+    if cached is not None:
+        return cached
+    # TODO: Do we want to use Constants.DOWNLOAD_DIR as a fallback?
+    # The dir from Constants has no reason to contain .deb packages.
+    download_dir = os.getenv("DOWNLOAD_DIR", None)
+    if download_dir is None:
+        raise RuntimeError("DOWNLOAD_DIR is needed to extract *.api.json from")
+    tmp_dir = tempfile.mkdtemp(dir=download_dir)
+    vad_backup = os.getenv("VPP_API_DIR", None)
+    try:
+        # TODO: We need to support .rpm and test also on aarch64 boxes.
+        # TODO: The correct way is to scp the .api.json from testbeds probably.
+        for deb_filename in glob.glob(download_dir + "/*vpp*.deb"):
+            # TODO: Redirect stdout and stderr? To dev/null?
+            subprocess.check_call(["dpkg", "-x", deb_filename, tmp_dir])
+        package_path = None
+        for root, _, files in os.walk(tmp_dir):
+            for name in files:
+                if name == "vpp_papi.py" and not "python3" in root:
+                    # Package path is one dir above where the file was found.
+                    package_path = os.path.split(root)[0]
+                    break
+            else:
+                continue
+            break
+        if package_path:
+            # TODO: Contribute a programmatic way to locate .api.json files.
+            os.environ["VPP_API_DIR"] = tmp_dir
+            sys.path.append(package_path)
+            from vpp_papi.vpp_papi import VPP as vpp_class
+            # We need to create instance before removing from sys.path.
+            vpp_instance = vpp_class(use_socket=True, server_address=path)
+        else:
+            raise RuntimeError("vpp_papi module not found")
+    finally:
+        shutil.rmtree(tmp_dir)
+        if "VPP_API_DIR" in os.environ:
+            if vad_backup is None:
+                del os.environ["VPP_API_DIR"]
+            else:
+                os.environ["VPP_API_DIR"] = vad_backup
+        if sys.path[-1] == package_path:
+            sys.path.pop()
+    INSTANCES["vpp_instance"] = vpp_instance
+    return vpp_instance
+
+
+def dictize(obj):
+    """A helper method, to make namedtuple-like object accessible as dict.
+
+    If the object is not namedtuple-like, the dict-like access will still fail.
+    The change is performed in-place, but the mutated object keeps its type
+    and is backward compatible (aside having one more attribute).
+    The access to dict-like items this function enables is read-only,
+    but the accessed items are dictized as well.
+    Integer keys still access the object as tuple.
+
+    :param obj: Arbitrary object to dictize.
+    :type obj: object
+    :returns: Dictized object.
+    :rtype: same as obj type
+    """
+    if not hasattr(obj, "__getitem__"):
+        obj.__getitem__ = lambda self, key: dictize(getattr(self, key))
+    else
+        old_get = obj.__getitem__
+        obj.__getitem__ = lambda self, key: (
+            old_get(self, key) if isinstance(key, int)
+            else dictize(getattr(self, key)))
+    return obj
 
 
 class PapiResponse(object):
-    """Class for metadata specifying the Papi reply, stdout, stderr and return
+    """Class for metadata specifying the Papi replies, stdout, stderr and return
     code.
     """
 
-    def __init__(self, papi_reply=None, stdout="", stderr="", requests=None):
+    def __init__(self, replies=None, stdout="", stderr="", requests=None):
         """Construct the Papi response by setting the values needed.
 
         TODO:
             Implement 'dump' analogue of verify_replies that would concatenate
             the values, so that call sites do not have to do that themselves.
 
-        :param papi_reply: API reply from last executed PAPI command(s).
+        :param replies: API replies from last executed PAPI command(s).
         :param stdout: stdout from last executed PAPI command(s).
         :param stderr: stderr from last executed PAPI command(s).
         :param requests: List of used PAPI requests. It is used while verifying
             replies. If None, expected replies must be provided for verify_reply
             and verify_replies methods.
-        :type papi_reply: list or None
+        :type replies: list or None
         :type stdout: str
         :type stderr: str
         :type requests: list
         """
 
-        # API reply from last executed PAPI command(s).
-        self.reply = papi_reply
+        # API replies from last executed PAPI command(s).
+        self.replies = replies
 
         # stdout from last executed PAPI command(s).
         self.stdout = stdout
@@ -75,9 +178,9 @@ class PapiResponse(object):
         :rtype: str
         """
         return (
-            "papi_reply={papi_reply},stdout={stdout},stderr={stderr},"
+            "replies={replies},stdout={stdout},stderr={stderr},"
             "requests={requests}").format(
-                papi_reply=self.reply, stdout=self.stdout, stderr=self.stderr,
+                replies=self.replies, stdout=self.stdout, stderr=self.stderr,
                 requests=self.requests)
 
     def __repr__(self):
@@ -115,7 +218,7 @@ class PapiResponse(object):
             replies is used in this method in this case.
             The PapiExecutor._execute() method provides the requests
             automatically.
-        :param idx: Index to PapiResponse.reply list.
+        :param idx: Index to PapiResponse.replies list.
         :param err_msg: The message used if the verification fails.
         :type cmd_reply: str
         :type idx: int
@@ -129,7 +232,7 @@ class PapiResponse(object):
         """
         cmd_rpl = self.expected_replies[idx] if cmd_reply is None else cmd_reply
 
-        data = self.reply[idx]['api_reply'][cmd_rpl]
+        data = self.replies[idx]['api_reply'][cmd_rpl]
         if data['retval'] != 0:
             raise AssertionError("{msg}\nidx={idx}, cmd_reply={reply}".
                                  format(msg=err_msg, idx=idx, reply=cmd_rpl))
@@ -137,15 +240,15 @@ class PapiResponse(object):
         return data
 
     def verify_replies(self, cmd_replies=None,
-                       err_msg="Failed to verify PAPI reply."):
+                       err_msg="Failed to verify PAPI replies."):
         """Verify and return data from the PAPI response.
 
-        Note: Use only with request / reply commands. In this case each
-        PAPI reply includes 'retval' which is checked.
+        Note: Use only with request / replies commands. In this case each
+        PAPI replies includes 'retval' which is checked.
 
         Do not use with 'dump' and 'vpp-stats' methods.
 
-        Use if PAPI response includes more than one command reply.
+        Use if PAPI response includes more than one command replies.
 
         Use it this way:
 
@@ -183,7 +286,7 @@ class PapiResponse(object):
 
         cmd_rpls = self.expected_replies if cmd_replies is None else cmd_replies
 
-        if len(self.reply) != len(cmd_rpls):
+        if len(self.replies) != len(cmd_rpls):
             raise AssertionError(err_msg)
         for idx, cmd_reply in enumerate(cmd_rpls):
             data.append(self.verify_reply(cmd_reply, idx, err_msg))
@@ -330,14 +433,14 @@ class PapiExecutor(object):
         """Get reply/replies from VPP Python API.
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
-        :param process_reply: Process PAPI reply if True.
-        :param ignore_errors: If true, the errors in the reply are ignored.
+        :param process_reply: Process PAPI replies if True.
+        :param ignore_errors: If true, the errors in the replies are ignored.
         :param timeout: Timeout in seconds.
         :type err_msg: str
         :type process_reply: bool
         :type ignore_errors: bool
         :type timeout: int
-        :returns: Papi response including: papi reply, stdout, stderr and
+        :returns: Papi response including: replies, stdout, stderr and
             return code.
         :rtype: PapiResponse
         """
@@ -350,14 +453,14 @@ class PapiExecutor(object):
         """Get dump from VPP Python API.
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
-        :param process_reply: Process PAPI reply if True.
-        :param ignore_errors: If true, the errors in the reply are ignored.
+        :param process_reply: Process PAPI replies if True.
+        :param ignore_errors: If true, the errors in the replies are ignored.
         :param timeout: Timeout in seconds.
         :type err_msg: str
         :type process_reply: bool
         :type ignore_errors: bool
         :type timeout: int
-        :returns: Papi response including: papi reply, stdout, stderr and
+        :returns: Papi response including: replies, stdout, stderr and
             return code.
         :rtype: PapiResponse
         """
@@ -378,14 +481,14 @@ class PapiExecutor(object):
         This method will be removed soon.
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
-        :param process_reply: Indicate whether or not to process PAPI reply.
-        :param ignore_errors: If true, the errors in the reply are ignored.
+        :param process_reply: Indicate whether or not to process PAPI replies.
+        :param ignore_errors: If true, the errors in the replies are ignored.
         :param timeout: Timeout in seconds.
         :type err_msg: str
         :type process_reply: bool
         :type ignore_errors: bool
         :type timeout: int
-        :returns: Papi response including: papi reply, stdout, stderr and
+        :returns: Papi response including: replies, stdout, stderr and
             return code.
         :rtype: PapiResponse
         :raises AssertionError: If PAPI command(s) execution failed.
@@ -516,8 +619,8 @@ class PapiExecutor(object):
 
         :param method: VPP Python API method. Supported methods are: 'request',
             'dump' and 'stats'.
-        :param process_reply: Process PAPI reply if True.
-        :param ignore_errors: If true, the errors in the reply are ignored.
+        :param process_reply: Process PAPI replies if True.
+        :param ignore_errors: If true, the errors in the replies are ignored.
         :param err_msg: The message used if the PAPI command(s) execution fails.
         :param timeout: Timeout in seconds.
         :type method: str
@@ -525,10 +628,10 @@ class PapiExecutor(object):
         :type ignore_errors: bool
         :type err_msg: str
         :type timeout: int
-        :returns: Papi response including: papi reply, stdout, stderr and
+        :returns: Papi response including: replies, stdout, stderr and
             return code.
         :rtype: PapiResponse
-        :raises KeyError: If the reply is not correct.
+        :raises KeyError: If the replies is not correct.
         """
 
         local_list = self._api_command_list
@@ -538,7 +641,7 @@ class PapiExecutor(object):
 
         stdout, stderr = self._execute_papi(
             local_list, method=method, err_msg=err_msg, timeout=timeout)
-        papi_reply = list()
+        replies = list()
         if process_reply:
             try:
                 json_data = json.loads(stdout)
@@ -556,11 +659,207 @@ class PapiExecutor(object):
                         continue
                     else:
                         raise
-                papi_reply.append(api_reply_processed)
+                replies.append(api_reply_processed)
 
-        # Log processed papi reply to be able to check API replies changes
-        logger.debug("Processed PAPI reply: {reply}".format(reply=papi_reply))
+        # Log processed replies to be able to check API replies changes
+        logger.debug("Processed PAPI replies: {replies}".format(replies=replies))
 
         return PapiResponse(
-            papi_reply=papi_reply, stdout=stdout, stderr=stderr,
+            replies=replies, stdout=stdout, stderr=stderr,
+            requests=[rqst["api_name"] for rqst in local_list])
+
+
+class PapiSocketExecutor(object):
+    """Methods for executing VPP Python API commands on forwarded socket.
+
+    The current implementation connects only just before execution starts.
+
+    TODO: Implement connection caching or pooling, to improve speed.
+
+    TODO: Support sockets in NFs somehow.
+
+    Note: Use only with "with" statement, e.g.:
+
+        with PapiExecutor(node, remote_socket_path) as papi_exec:
+            papi_resp = papi_exec.add('show_version').get_replies(err_msg)
+
+    This class processes two classes of VPP PAPI methods:
+    1. Simple request / reply: method='request'.
+    2. Dump functions: method='dump'.
+
+    Note that access to VPP stats over socket is not supported yet.
+
+    The recommended ways of use are (examples):
+
+    1. Simple request / reply
+
+    a. One request with no arguments:
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add('show_version').get_replies().\
+                verify_reply()
+
+    b. Three requests with arguments, the second and the third ones are the same
+       but with different arguments.
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd1, **args1).add(cmd2, **args2).\
+                add(cmd2, **args3).get_replies(err_msg).verify_replies()
+
+    2. Dump functions
+
+        cmd = 'sw_interface_rx_placement_dump'
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, sw_if_index=ifc['vpp_sw_index']).\
+                get_dump(err_msg)
+    """
+
+    def __init__(self, node, local_socket_path="/run/vpp-api.sock",
+                 remote_socket_path="/run/vpp-api.sock"):
+        """Initialization.
+
+        :param node: Node to connect to and forward unix domain socket from.
+        :param local_socket_path: Path to local end of socket tunnel to create.
+        :param remote_socket_path: Path to remote socket to tunnel to.
+        :type node: dict
+        :type local_socket_path: str
+        :type remote_socket_path: str
+        """
+        self._node = node
+        self._local_socket_path = local_socket_path
+        self._remote_socket_path = remote_socket_path
+        # The list of PAPI commands to be executed on the node.
+        self._api_command_list = list()
+
+    def __enter__(self):
+        """Currently a no-op, but reserved for future improvements."""
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """Currently a no-op, but reserved for future improvements."""
+        return
+
+    def add(self, csit_papi_command, **kwargs):
+        """Add next command to internal command list; return self.
+
+        The argument name 'csit_papi_command' must be unique enough as it cannot
+        be repeated in kwargs.
+
+        :param csit_papi_command: VPP API command.
+        :param kwargs: Optional key-value arguments.
+        :type csit_papi_command: str
+        :type kwargs: dict
+        :returns: self, so that method chaining is possible.
+        :rtype: PapiExecutor
+        """
+        PapiHistory.add_to_papi_history(self._node, csit_papi_command, **kwargs)
+        self._api_command_list.append(
+            dict(api_name=csit_papi_command, api_args=kwargs))
+        return self
+
+    def get_replies(self):
+        """Get reply/replies from VPP Python API.
+
+        :returns: Papi response with only reply being non-trivial.
+        :rtype: PapiResponse
+        """
+        return self._execute()
+
+    def get_dump(self):
+        """Get dump from VPP Python API.
+
+        :returns: Papi response with only reply being non-trivial.
+        :rtype: PapiResponse
+        """
+        return self._execute()
+
+    def _execute(self):
+        """Execute commands from internal list, return PAPI response.
+
+        This method also clears the internal command list.
+
+        IMPORTANT!
+        Do not use this method in L1 keywords. Use:
+        - get_replies()
+        - get_dump()
+
+        :param method: VPP Python API method. Supported methods are: 'request',
+            and 'dump'.
+        :type method: str
+        :returns: Papi response with only replies being non-trivial.
+        :rtype: PapiResponse
+        :raises KeyError: If the replies is not correct.
+        """
+        local_list = self._api_command_list
+        # Clear first as execution may fail.
+        self._api_command_list = list()
+        node = self._node
+        vpp_instance = get_vpp_instance(self._local_socket_path)
+        # TODO: Support private keys.
+        #pkey = paramiko.RSAKey.from_private_key(StringIO.StringIO(
+        #    node['priv_key'])) if 'priv_key' in node else None
+
+        try:
+            vpp_instance.connect("csit_socket")
+        except socket.error as err:
+            # For debugging only.
+            logger.debug(repr(err))
+            logger.debug(repr(type(err)))
+            # Connection refused. Either first call, or previous connection
+            # timed out. In either way, retry once by creating a tunnel.
+            # TODO: Move package installation into appropriately early place.
+            subprocess.check_call(["sudo", "apt-get", "install", "-y", "sshpass"])
+            # Check socket presence on remote side.
+            exec_cmd_no_error(self._node, "ls -l " + self._remote_socket_path)
+            # We use sleep command. The ssh command wil exit in 1 second,
+            # unless a local socket connection is established,
+            # in which case the ssh command will exit only when
+            # the socket connection is closed again.
+            # TODO: Should we clear nohup.out?
+            ssh_cmd_arg = [
+                "sshpass", "-p", node.get('password'), "ssh",
+                "-L", self._local_socket_path + ':' + self._remote_socket_path,
+                "-p", str(node['port']), node['username'] + "@" + node['host'],
+                "sleep", "10"]
+            logger.debug("call arg repr: " + repr(ssh_cmd_arg))
+            logger.debug("call arg types: " + str(map(type, ssh_cmd_arg)))
+            time_stop = time.time() + 10.0
+            # subprocess.Popen seems to be the best way to run commands
+            # on background. Other ways (shell=True wit "&" and ssh with -f)
+            # seem to be too dependent on shell behavior.
+            subprocess.Popen(ssh_cmd_arg)
+            # TODO: Except and log something?
+            # Check socket presence on local side.
+            while time.time() < time_stop:
+                # It takes a while for ssh to create the socket file.
+                try:
+                    output = subprocess.check_output(
+                        ["ls", "-l", self._local_socket_path],
+                        stderr=subprocess.STDOUT)
+                    logger.debug(output)
+                except subprocess.CalledProcessError as err:
+                    logger.debug(err.output)
+                    time.sleep(0.2)
+                else:
+                    break
+            else:
+                raise RuntimeError("Local side socket has not appeared.")
+            subprocess.check_output(["chmod", "a+rwx", self._local_socket_path])
+            output = subprocess.check_output(
+                ["ls", "-l", self._local_socket_path], stderr=subprocess.STDOUT)
+            logger.debug(output)
+            vpp_instance.connect("csit_socket")
+        try:
+            replies = list()
+            for item in local_list:
+                api_name = item["api_name"]
+                papi_fn = getattr(vpp_instance.api, api_name)
+                api_reply = dictize(papi_fn(**item["api_args"]))
+                replies.append(dict(
+                    api_name=api_name, api_reply=api_reply))
+        # TODO: Except common errors and add support for err_msg.
+        finally:
+            vpp_instance.disconnect()
+        return PapiResponse(
+            replies=replies, stdout=None, stderr=None,
             requests=[rqst["api_name"] for rqst in local_list])
