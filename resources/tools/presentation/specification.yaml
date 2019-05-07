@@ -235,12 +235,12 @@
     plot-vpp-nfv-2n-skx-ndrpdr-64b:
       # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-2n-skx:
-        - 9   # NFV NDRPDR - replace
+        - 56  # NFV NDRPDR 64b
 
     plot-vpp-nfv-2n-skx-ndrpdr-imix:
       # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-2n-skx:
-        - 9   # NFV NDRPDR - replace
+        - 56  # NFV NDRPDR 64b - replace with IMIX
 
     plot-vpp-nfv-2n-skx-mrr-64b:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -251,12 +251,12 @@
         - 48  # NFV MRR 64b
 
     plot-vpp-nfv-2n-skx-mrr-imix:
-      # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-2n-skx:
         - 49  # NFV MRR IMIX
         - 50  # NFV MRR IMIX
         - 51  # NFV MRR IMIX
         - 54  # NFV MRR IMIX
+        - 55  # NFV MRR IMIX
 
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-verify-1904-2n-skx:
@@ -342,15 +342,16 @@
         - 12  # NDRPDR sel
 
     vpp-perf-results-3n-skx:
-      # TODO: Replace with FULL 1904 data
+      # TODO: Add FULL 1904 data
       csit-vpp-perf-verify-1904-3n-skx:
-        - 10  # NDRPDR sel
+        - 26  # NDRPDR full
 
     vpp-perf-results-2n-skx:
       # TODO: Add FULL 1904 data
       csit-vpp-perf-verify-1904-2n-skx:
         - 33  # NDRPDR full
         - 39  # NDRPDR full
+        - 58  # NDRPDR full
 
     vpp-mrr-results-3n-hsw:
       csit-vpp-perf-verify-1904-3n-hsw:
@@ -1383,6 +1384,7 @@
       - 67  # NDRPDR LB
     csit-vpp-perf-verify-1904-3n-skx:
       - 7   # MRR sel
+      - 26  # NDRPDR full
       - 8   # NDRPDR sel
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
@@ -1427,6 +1429,7 @@
       - 11  # MRR sel
       - 33  # NDRPDR full
       - 39  # NDRPDR full
+      - 58  # NDRPDR full
       - 12  # NDRPDR sel
       - 14  # NDRPDR sel
       - 16  # NDRPDR sel
@@ -1446,7 +1449,8 @@
       - 50  # NFV MRR IMIX
       - 51  # NFV MRR IMIX
       - 54  # NFV MRR IMIX
-      - 9   # NFV NDRPDR - replace
+      - 55  # NFV MRR IMIX
+      - 56  # NFV NDRPDR 64b
 
     # TODO: Remove
     csit-ligato-perf-verify-1901-3n-hsw:
