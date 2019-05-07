@@ -1513,49 +1513,50 @@ def plot_service_density_heatmap_compare(plot, input_data):
     for c in range(len(txt_chains)):
         hover_line = list()
         for n in range(len(txt_nodes)):
-            if data_r[c][n] is not None:
-                data_point = dict(
-                    x=n+1,
-                    y=c+1,
-                    xref="x",
-                    yref="y",
-                    xanchor="center",
-                    yanchor="middle",
-                    text=str(data_r[c][n]) if data_r[c][n] is not None else "",
-                    font=dict(
-                        size=14,
-                    ),
-                    align="center",
-                    showarrow=False
-                )
-                annotations_r.append(deepcopy(data_point))
-                data_point["text"] = str(data_c[c][n]) \
-                    if data_c[c][n] is not None else ""
-                annotations_c.append(deepcopy(data_point))
-                data_point["text"] = str(diff[c][n]) \
-                    if diff[c][n] is not None else ""
-                annotations_diff.append(deepcopy(data_point))
+            point = dict(
+                x=n + 1,
+                y=c + 1,
+                xref="x",
+                yref="y",
+                xanchor="center",
+                yanchor="middle",
+                text="",
+                font=dict(
+                    size=14,
+                ),
+                align="center",
+                showarrow=False
+            )
 
-                hover_line.append(text.format(
-                    name=vals[txt_chains[c]][txt_nodes[n]]["name"],
+            point["text"] = "" if data_r[c][n] is None else str(data_r[c][n])
+            annotations_r.append(deepcopy(point))
+
+            point["text"] = "" if data_c[c][n] is None else str(data_c[c][n])
+            annotations_c.append(deepcopy(point))
+
+            point["text"] = "" if diff[c][n] is None else str(diff[c][n])
+            annotations_diff.append(deepcopy(point))
+
+            hover_line.append(text.format(
+                name=vals[txt_chains[c]][txt_nodes[n]]["name"],
+                title_r=plot["reference"]["name"],
+                text_r=text_r.format(
+                    val_r=data_r[c][n],
+                    stdev_r=vals[txt_chains[c]][txt_nodes[n]]["stdev_r"],
+                    nr_r=vals[txt_chains[c]][txt_nodes[n]]["nr_r"]
+                ) if data_r[c][n] is not None else "Test Failed",
+                title_c=plot["compare"]["name"],
+                text_c=text_c.format(
+                    val_c=data_c[c][n],
+                    stdev_c=vals[txt_chains[c]][txt_nodes[n]]["stdev_c"],
+                    nr_c=vals[txt_chains[c]][txt_nodes[n]]["nr_c"]
+                ) if data_c[c][n] is not None else "Test Failed",
+                text_diff=text_diff.format(
                     title_r=plot["reference"]["name"],
-                    text_r=text_r.format(
-                        val_r=data_r[c][n],
-                        stdev_r=vals[txt_chains[c]][txt_nodes[n]]["stdev_r"],
-                        nr_r=vals[txt_chains[c]][txt_nodes[n]]["nr_r"]
-                    ) if data_r[c][n] is not None else "Test Failed",
                     title_c=plot["compare"]["name"],
-                    text_c=text_c.format(
-                        val_c=data_c[c][n],
-                        stdev_c = vals[txt_chains[c]][txt_nodes[n]]["stdev_c"],
-                        nr_c=vals[txt_chains[c]][txt_nodes[n]]["nr_c"]
-                    ) if data_c[c][n] is not None else "Test Failed",
-                    text_diff=text_diff.format(
-                        title_r=plot["reference"]["name"],
-                        title_c=plot["compare"]["name"],
-                        diff=diff[c][n]
-                    ) if diff[c][n] is not None else ""
-                ))
+                    diff=diff[c][n]
+                ) if diff[c][n] is not None else ""
+            ))
 
         hovertext.append(hover_line)
 
