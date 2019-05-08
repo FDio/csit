@@ -1,5 +1,7 @@
-(B)MRR Throughput
------------------
+.. _mrr_throughput:
+
+MRR Throughput
+--------------
 
 Maximum Receive Rate (MRR) tests are complementary to MLRsearch tests,
 as they provide a maximum "raw" throughput benchmark for development and
@@ -10,10 +12,9 @@ size is set to the bi-directional link rate.
 
 In |csit-release| MRR test code has been updated with a configurable
 burst MRR parameters: trial duration and number of trials in a single
-burst. This enabled a new Burst MRR (BMRR) methodology for more precise
-performance trending.
+burst. This enabled more precise performance trending.
 
-Current parameters for BMRR tests:
+Current parameters for MRR trending tests:
 
 - Ethernet frame sizes: 64B (78B for IPv6), IMIX, 1518B, 9000B; all
   quoted sizes include frame CRC, but exclude per frame transmission
