@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "72602e80_5d486c74",
+        "filename": "docs/report/introduction/methodology_kvm_vms_vhost_user.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-08T14:03:12Z",
+      "side": 1,
+      "message": "to be executed",
+      "range": {
+        "startLine": 45,
+        "startChar": 9,
+        "endLine": 45,
+        "endChar": 20
+      },
+      "revId": "4b8c3779ff57d155aea4ee9ba94fd86563eb0005",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
