@@ -1,4 +1,3 @@
-
 .. _mlrsearch_algorithm:
 
 MLRsearch Tests
