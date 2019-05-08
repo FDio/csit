@@ -124,6 +124,11 @@ class Regenerator(object):
                     # CSIT lab only has 28 (physical) core processors,
                     # so these test would fail when attempting to assign cores.
                     emit = False
+            if "-24vm1t-" in suite_id or "-24dcr1t-" in suite_id:
+                if kwargs["phy_cores"] > 3:
+                    # CSIT lab only has 28 (physical) core processors,
+                    # so these test would fail when attempting to assign cores.
+                    emit = False
             if "soak" in suite_id:
                 # Soak test take too long, do not risk other than tc01.
                 if kwargs["phy_cores"] != 1:
