@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "03f5145b_5245a051",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 23
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-08T12:47:47Z",
+      "side": 1,
+      "message": "Most of the content from this doc is in the ietf draft. Wouldn\u0027t it make more sense to remove content that is in the latest draft and make a reference to it. Then cover only CSIT specifics here, the last few sections.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 9
+      },
+      "revId": "3866983fa2b9374666ed8d481048476b96267227",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
