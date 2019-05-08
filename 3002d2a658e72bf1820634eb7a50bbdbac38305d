@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1b61772_3ed86b60",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-08T12:51:57Z",
+      "side": 1,
+      "message": "I would rephrase. TG can offer only the load of NIC. So it is NIC that is determining the rates.",
+      "range": {
+        "startLine": 38,
+        "startChar": 30,
+        "endLine": 39,
+        "endChar": 14
+      },
+      "revId": "3002d2a658e72bf1820634eb7a50bbdbac38305d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8481ef60_df799a47",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-08T12:51:57Z",
+      "side": 1,
+      "message": "put on new line",
+      "range": {
+        "startLine": 77,
+        "startChar": 75,
+        "endLine": 77,
+        "endChar": 85
+      },
+      "revId": "3002d2a658e72bf1820634eb7a50bbdbac38305d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
