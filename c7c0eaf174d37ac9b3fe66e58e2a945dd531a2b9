@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f326549a_a8988238",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-08T12:47:47Z",
+      "side": 1,
+      "message": "Relation to RFC 2544",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 8
+      },
+      "revId": "c7c0eaf174d37ac9b3fe66e58e2a945dd531a2b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "399e6d7d_54f58ebd",
+        "filename": "docs/report/introduction/methodology_plrsearch.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-08T12:47:47Z",
+      "side": 1,
+      "message": "hardware and software packet processing.",
+      "range": {
+        "startLine": 29,
+        "startChar": 38,
+        "endLine": 29,
+        "endChar": 70
+      },
+      "revId": "c7c0eaf174d37ac9b3fe66e58e2a945dd531a2b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
