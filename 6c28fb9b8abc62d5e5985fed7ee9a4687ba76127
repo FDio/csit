@@ -117,6 +117,30 @@
       "revId": "6c28fb9b8abc62d5e5985fed7ee9a4687ba76127",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6d32eb_f8f30ddc",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_mrr_throughput.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-09T19:18:36Z",
+      "side": 1,
+      "message": "MRR tests used for report are using the same test case definition as trending tests i.e. 10 trials of 1sec duration. Added that now. I have also added MRR use for initial phase of PLRsearch.",
+      "parentUuid": "e201327b_b7ebf999",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "6c28fb9b8abc62d5e5985fed7ee9a4687ba76127",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
