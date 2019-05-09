@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3b73fc39_55c6dfe2",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_mrr_throughput.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T11:57:55Z",
+      "side": 1,
+      "message": "Remove (and re-formulate the rest), applies to and older CSIT release.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 48
+      },
+      "revId": "6c28fb9b8abc62d5e5985fed7ee9a4687ba76127",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fea4258c_1c32cfa2",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_mrr_throughput.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T11:57:55Z",
+      "side": 1,
+      "message": "Mention the third usage, in per-patch performance jobs (currently with 5 trials of 10 seconds).",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "6c28fb9b8abc62d5e5985fed7ee9a4687ba76127",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
