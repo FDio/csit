@@ -246,103 +246,35 @@ VPP Installed Packages - Ubuntu
 
 ::
 
-    Desired=Unknown/Install/Remove/Purge/Hold
-    | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
-    |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
-    ||/ Name           Version       Architecture Description
-    +++-==============-=============-============-=============================================
-    ii  vpp            19.01-release amd64        Vector Packet Processing--executables
-    ii  vpp-api-python 19.01-release amd64        VPP Python API bindings
-    ii  vpp-dbg        19.01-release amd64        Vector Packet Processing--debug symbols
-    ii  vpp-dev        19.01-release amd64        Vector Packet Processing--development support
-    ii  vpp-lib        19.01-release amd64        Vector Packet Processing--runtime libraries
-    ii  vpp-plugins    19.01-release amd64        Vector Packet Processing--runtime plugins
+    $ dpkg -l | grep vpp
+    ii  libvppinfra        19.04-release    amd64        Vector Packet Processing--runtime libraries
+    ii  libvppinfra-dev    19.04-release    amd64        Vector Packet Processing--runtime libraries
+    ii  python3-vpp-api    19.04-release    amd64        VPP Python3 API bindings
+    ii  vpp                19.04-release    amd64        Vector Packet Processing--executables
+    ii  vpp-api-python     19.04-release    amd64        VPP Python API bindings
+    ii  vpp-dbg            19.04-release    amd64        Vector Packet Processing--debug symbols
+    ii  vpp-dev            19.04-release    amd64        Vector Packet Processing--development support
+    ii  vpp-plugin-core    19.04-release    amd64        Vector Packet Processing--runtime core plugins
+    ii  vpp-plugin-dpdk    19.04-release    amd64        Vector Packet Processing--runtime dpdk plugin
 
 VPP Installed Packages - Centos
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-    $ rpm -qai vpp*
-    Name        : vpp-selinux-policy
-    Version     : 19.01
-    Release     : release
-    Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
-    Group       : System Environment/Base
-    Size        : 102213
-    License     : ASL 2.0
-    Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
-    Relocations : (not relocatable)
-    Summary     : VPP Security-Enhanced Linux (SELinux) policy
-    Description :
-    This package contains a tailored VPP SELinux policy
-    Name        : vpp-plugins
-    Version     : 19.01
-    Release     : release
-    Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:37 AM EST
-    Group       : System Environment/Libraries
-    Size        : 84873573
-    License     : ASL 2.0
-    Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
-    Relocations : (not relocatable)
-    Summary     : Vector Packet Processing--runtime plugins
-    Description :
-    This package contains VPP plugins
-    Name        : vpp-api-python
-    Version     : 19.01
-    Release     : release
-    Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
-    Group       : Development/Libraries
-    Size        : 163624
-    License     : ASL 2.0
-    Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
-    Relocations : (not relocatable)
-    Summary     : VPP api python bindings
-    Description :
-    This package contains the python bindings for the vpp api
-    Name        : vpp
-    Version     : 19.01
-    Release     : release
-    Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
-    Group       : Unspecified
-    Size        : 2522340
-    License     : ASL 2.0
-    Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
-    Relocations : (not relocatable)
-    Summary     : Vector Packet Processing
-    Description :
-    This package provides VPP executables: vpp, vpp_api_test, vpp_json_test
-    vpp - the vector packet engine
-    vpp_api_test - vector packet engine API test tool
-    vpp_json_test - vector packet engine JSON test tool
+    $ rpm -qai *vpp*
     Name        : vpp-lib
-    Version     : 19.01
+    Version     : 19.04
     Release     : release
     Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
+    Install Date: Thu 25 Apr 2019 04:14:51 AM EDT
     Group       : System Environment/Libraries
-    Size        : 12203613
+    Size        : 39543181
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
+    Source RPM  : vpp-19.04-release.src.rpm
+    Build Date  : Tue 23 Apr 2019 08:46:26 PM EDT
+    Build Host  : 940fc1a9327e
     Relocations : (not relocatable)
     Summary     : VPP libraries
     Description :
@@ -353,17 +285,17 @@ VPP Installed Packages - Centos
     vlib-api - binary API library
     vnet -  network stack library
     Name        : vpp-devel
-    Version     : 19.01
+    Version     : 19.04
     Release     : release
     Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:38 AM EST
+    Install Date: Thu 25 Apr 2019 04:14:52 AM EDT
     Group       : Development/Libraries
-    Size        : 12835399
+    Size        : 12701413
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
+    Source RPM  : vpp-19.04-release.src.rpm
+    Build Date  : Tue 23 Apr 2019 08:46:26 PM EDT
+    Build Host  : 940fc1a9327e
     Relocations : (not relocatable)
     Summary     : VPP header files, static libraries
     Description :
@@ -375,6 +307,73 @@ VPP Installed Packages - Centos
     vnet - devices, classify, dhcp, ethernet flow, gre, ip, etc.
     vpp-api
     vppinfra
+    Name        : vpp-selinux-policy
+    Version     : 19.04
+    Release     : release
+    Architecture: x86_64
+    Install Date: Thu 25 Apr 2019 04:14:49 AM EDT
+    Group       : System Environment/Base
+    Size        : 102155
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-19.04-release.src.rpm
+    Build Date  : Tue 23 Apr 2019 08:46:26 PM EDT
+    Build Host  : 940fc1a9327e
+    Relocations : (not relocatable)
+    Summary     : VPP Security-Enhanced Linux (SELinux) policy
+    Description :
+    This package contains a tailored VPP SELinux policy
+    Name        : vpp-plugins
+    Version     : 19.04
+    Release     : release
+    Architecture: x86_64
+    Install Date: Thu 25 Apr 2019 04:14:51 AM EDT
+    Group       : System Environment/Libraries
+    Size        : 22696981
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-19.04-release.src.rpm
+    Build Date  : Tue 23 Apr 2019 08:46:26 PM EDT
+    Build Host  : 940fc1a9327e
+    Relocations : (not relocatable)
+    Summary     : Vector Packet Processing--runtime plugins
+    Description :
+    This package contains VPP plugins
+    Name        : vpp-api-python
+    Version     : 19.04
+    Release     : release
+    Architecture: x86_64
+    Install Date: Thu 25 Apr 2019 04:14:51 AM EDT
+    Group       : Development/Libraries
+    Size        : 164979
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-19.04-release.src.rpm
+    Build Date  : Tue 23 Apr 2019 08:46:26 PM EDT
+    Build Host  : 940fc1a9327e
+    Relocations : (not relocatable)
+    Summary     : VPP api python bindings
+    Description :
+    This package contains the python bindings for the vpp api
+    Name        : vpp
+    Version     : 19.04
+    Release     : release
+    Architecture: x86_64
+    Install Date: Thu 25 Apr 2019 04:14:51 AM EDT
+    Group       : Unspecified
+    Size        : 2496078
+    License     : ASL 2.0
+    Signature   : (none)
+    Source RPM  : vpp-19.04-release.src.rpm
+    Build Date  : Tue 23 Apr 2019 08:46:26 PM EDT
+    Build Host  : 940fc1a9327e
+    Relocations : (not relocatable)
+    Summary     : Vector Packet Processing
+    Description :
+    This package provides VPP executables: vpp, vpp_api_test, vpp_json_test
+    vpp - the vector packet engine
+    vpp_api_test - vector packet engine API test tool
+    vpp_json_test - vector packet engine JSON test tool
 
 VPP Startup Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -384,165 +383,8 @@ to SW Crypto device.
 
 **Common Configuration**
 
-::
-
-    $ cat /etc/vpp/startup.conf
-    unix {
-      nodaemon
-      log /var/log/vpp/vpp.log
-      full-coredump
-      cli-listen /run/vpp/cli.sock
-      gid vpp
-    }
-
-    api-trace {
-    ## This stanza controls binary API tracing. Unless there is a very strong reason,
-    ## please leave this feature enabled.
-      on
-    ## Additional parameters:
-    ##
-    ## To set the number of binary API trace records in the circular buffer, configure nitems
-    ##
-    ## nitems <nnn>
-    ##
-    ## To save the api message table decode tables, configure a filename. Results in /tmp/<filename>
-    ## Very handy for understanding api message changes between versions, identifying missing
-    ## plugins, and so forth.
-    ##
-    ## save-api-table <filename>
-    }
-
-    api-segment {
-      gid vpp
-    }
-
-    socksvr {
-      default
-    }
-
-    cpu {
-        ## In the VPP there is one main thread and optionally the user can create worker(s)
-        ## The main thread and worker thread(s) can be pinned to CPU core(s) manually or automatically
-
-        ## Manual pinning of thread(s) to CPU core(s)
-
-        ## Set logical CPU core where main thread runs, if main core is not set
-        ## VPP will use core 1 if available
-        # main-core 1
-
-        ## Set logical CPU core(s) where worker threads are running
-        # corelist-workers 2-3,18-19
-
-        ## Automatic pinning of thread(s) to CPU core(s)
-
-        ## Sets number of CPU core(s) to be skipped (1 ... N-1)
-        ## Skipped CPU core(s) are not used for pinning main thread and working thread(s).
-        ## The main thread is automatically pinned to the first available CPU core and worker(s)
-        ## are pinned to next free CPU core(s) after core assigned to main thread
-        # skip-cores 4
-
-        ## Specify a number of workers to be created
-        ## Workers are pinned to N consecutive CPU cores while skipping "skip-cores" CPU core(s)
-        ## and main thread's CPU core
-        # workers 2
-
-        ## Set scheduling policy and priority of main and worker threads
-
-        ## Scheduling policy options are: other (SCHED_OTHER), batch (SCHED_BATCH)
-        ## idle (SCHED_IDLE), fifo (SCHED_FIFO), rr (SCHED_RR)
-        # scheduler-policy fifo
-
-        ## Scheduling priority is used only for "real-time policies (fifo and rr),
-        ## and has to be in the range of priorities supported for a particular policy
-        # scheduler-priority 50
-    }
-
-    # dpdk {
-        ## Change default settings for all interfaces
-        # dev default {
-            ## Number of receive queues, enables RSS
-            ## Default is 1
-            # num-rx-queues 3
-
-            ## Number of transmit queues, Default is equal
-            ## to number of worker threads or 1 if no workers treads
-            # num-tx-queues 3
-
-            ## Number of descriptors in transmit and receive rings
-            ## increasing or reducing number can impact performance
-            ## Default is 1024 for both rx and tx
-            # num-rx-desc 512
-            # num-tx-desc 512
-
-            ## VLAN strip offload mode for interface
-            ## Default is off
-            # vlan-strip-offload on
-        # }
-
-        ## Whitelist specific interface by specifying PCI address
-        # dev 0000:02:00.0
-
-        ## Blacklist specific device type by specifying PCI vendor:device
-            ## Whitelist entries take precedence
-        # blacklist 8086:10fb
-
-        ## Set interface name
-        # dev 0000:02:00.1 {
-        #	name eth0
-        # }
-
-        ## Whitelist specific interface by specifying PCI address and in
-        ## addition specify custom parameters for this interface
-        # dev 0000:02:00.1 {
-        #	num-rx-queues 2
-        # }
-
-        ## Specify bonded interface and its slaves via PCI addresses
-        ##
-        ## Bonded interface in XOR load balance mode (mode 2) with L3 and L4 headers
-        # vdev eth_bond0,mode=2,slave=0000:02:00.0,slave=0000:03:00.0,xmit_policy=l34
-        # vdev eth_bond1,mode=2,slave=0000:02:00.1,slave=0000:03:00.1,xmit_policy=l34
-        ##
-        ## Bonded interface in Active-Back up mode (mode 1)
-        # vdev eth_bond0,mode=1,slave=0000:02:00.0,slave=0000:03:00.0
-        # vdev eth_bond1,mode=1,slave=0000:02:00.1,slave=0000:03:00.1
-
-        ## Change UIO driver used by VPP, Options are: igb_uio, vfio-pci,
-        ## uio_pci_generic or auto (default)
-        # uio-driver vfio-pci
-
-        ## Disable multi-segment buffers, improves performance but
-        ## disables Jumbo MTU support
-        # no-multi-seg
-
-        ## Increase number of buffers allocated, needed only in scenarios with
-        ## large number of interfaces and worker threads. Value is per CPU socket.
-        ## Default is 16384
-        # num-mbufs 128000
-
-        ## Change hugepages allocation per-socket, needed only if there is need for
-        ## larger number of mbufs. Default is 256M on each detected CPU socket
-        # socket-mem 2048,2048
-
-        ## Disables UDP / TCP TX checksum offload. Typically needed for use
-        ## faster vector PMDs (together with no-multi-seg)
-        # no-tx-checksum-offload
-    # }
-
-
-    # plugins {
-        ## Adjusting the plugin path depending on where the VPP plugins are
-        #	path /ws/vpp/build-root/install-vpp-native/vpp/lib/vpp_plugins
-
-        ## Disable all plugins by default and then selectively enable specific plugins
-        # plugin default { disable }
-        # plugin dpdk_plugin.so { enable }
-        # plugin acl_plugin.so { enable }
-
-        ## Enable all plugins by default and then selectively disable specific plugins
-        # plugin dpdk_plugin.so { disable }
-        # plugin acl_plugin.so { disable }
-    # }
+There is used the default startup configuration as defined in VPP project
+`startup.conf <https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/1904&id=3d18a191aaf31ef8b1524ab80fed22a304adf75d>`_
 
 **SW Crypto Device Configuration**
 
