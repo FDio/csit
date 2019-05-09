@@ -4625,7 +4625,7 @@
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
   algorithm: "plot_service_density_heatmap_compare"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-64b-imix-base-vsc-mrr"
+  output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-x710-imix-2t1c-base-vsc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr-imix"
   filter: "'NIC_Intel-X710' and
            'NF_DENSITY' and
