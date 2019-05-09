@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7ded1777_2764db06",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T16:41:35Z",
+      "side": 1,
+      "message": "In this scenario users usually just use synchronous calls. Async tests are sometimes done with at most a number (e.g. 2 or 10) calls open simultaneously, simulating the same number of users, each issuing commands sequentially only with respect to self, not other users. Number\u003d1 is still tested, just to compare with sync calls.",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 61
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ef397d3_fc97cdd8",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 5
@@ -25,6 +48,53 @@
     },
     {
       "key": {
+        "uuid": "64d4d0c7_95589ad6",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T16:41:35Z",
+      "side": 1,
+      "message": "The simplest solution is to just compute the average without removing anything.\nIt also directly corresponds to aggregate duration, which is kind of \"configuration throughput\", and most users are mostly concerned with that.\n(Unless they are concerned with \"configuration latency\", which is harder to quantify.)",
+      "parentUuid": "8ef397d3_fc97cdd8",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 78
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "618ec821_1564d981",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T16:41:35Z",
+      "side": 1,
+      "message": "number",
+      "range": {
+        "startLine": 51,
+        "startChar": 33,
+        "endLine": 51,
+        "endChar": 34
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "939ece53_140cea46",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 5
@@ -41,6 +111,145 @@
         "startChar": 0,
         "endLine": 65,
         "endChar": 7
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d209ab6c_533696da",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T16:41:35Z",
+      "side": 1,
+      "message": "There may be bugs which only appear with increased scale of configuration items. Functional tests are not going to find those.\n\nI have seen many such bugs on OpenDaylight, one it even looked like an improvement in performance (most of times they looked like a decrease of performance, sometimes it lead to crash).\n\nValidation is usualy cheap and useful, so we shuld do it.",
+      "parentUuid": "939ece53_140cea46",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 7
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5246d4da_f96697e9",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T16:41:35Z",
+      "side": 1,
+      "message": "No. Most people just assume the results come from latest build.",
+      "range": {
+        "startLine": 87,
+        "startChar": 31,
+        "endLine": 87,
+        "endChar": 54
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3225362f_9070cc45",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T16:41:35Z",
+      "side": 1,
+      "message": "Yes.",
+      "range": {
+        "startLine": 88,
+        "startChar": 52,
+        "endLine": 88,
+        "endChar": 69
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a821a0a_2379f118",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T16:41:35Z",
+      "side": 1,
+      "message": "We should test every deployment a client supports, if there is enough machine time for that.",
+      "range": {
+        "startLine": 97,
+        "startChar": 14,
+        "endLine": 97,
+        "endChar": 27
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "be0c41cc_607b3e18",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T16:41:35Z",
+      "side": 1,
+      "message": "Actually, there are two protocols. \"binary calls\" is the protocol between client under test and VPP, types are listed in line 124.\n\nBut there is also protocol beween user and client under test. For PAPI, \"user\" will probably be a small script preparing data and performing Python function calls on the PAPI library.\nPython calls are not binary calls, as Python is (mostly) interpreted language.\n\nIn some cases, performance of user logic, or of user-client interface may be the overall bottleneck.",
+      "range": {
+        "startLine": 122,
+        "startChar": 45,
+        "endLine": 122,
+        "endChar": 64
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c2da864_49f44c2f",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T16:41:35Z",
+      "side": 1,
+      "message": "CSIT is planning to use socket tunneled over SSH (to a remote machine), so \"socket over ssh\" may be an interesting option, both on the same machine and between two remote machines.",
+      "range": {
+        "startLine": 124,
+        "startChar": 43,
+        "endLine": 124,
+        "endChar": 44
       },
       "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
