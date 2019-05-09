@@ -35,12 +35,6 @@ Brief overview of test scenarios covered in this report:
    run across a range of configurations. TRex is used as a traffic
    generator.
 
-#. **K8s Container/Pod Topologies Performance**: VPP container
-   performance tests using memif for interconnecting VPP-in-
-   Container/Pod instances orchestrated by K8s integrated with `Ligato
-   <https://github.com/ligato>`_ for container networking. TRex is
-   used as a traffic generator.
-
 #. **DPDK Performance**: VPP uses DPDK to drive the NICs and physical
    interfaces. DPDK performance tests are used as a baseline to
    profile performance of the DPDK sub-system. Two DPDK applications
@@ -66,6 +60,11 @@ Brief overview of test scenarios covered in this report:
    stack.
 
 ..
+    #. **K8s Container/Pod Topologies Performance**: VPP container
+       performance tests using memif for interconnecting VPP-in-
+       Container/Pod instances orchestrated by K8s integrated with `Ligato
+       <https://github.com/ligato>`_ for container networking. TRex is
+       used as a traffic generator.
     #. **NSH_SFC Functional**: NSH_SFC functional tests are executed in
        virtual FD.io testbeds focusing on VPP nsh-plugin data plane
        functionality. Scapy is used as a traffic generator.

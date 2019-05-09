@@ -40,8 +40,7 @@ available for download.
    - **Throughput Trending**: References to continuous VPP performance
      trending.
    - **Test Environment**: Performance test environment configuration.
-   - **Documentation**: Documentation of K8s Pod/Container orchestration
-     in CSIT and pointers to CSIT source code documentation for VPP
+   - **Documentation**: Pointers to CSIT source code documentation for VPP
      performance tests.
 
 #. DPDK PERFORMANCE: DPDK performance tests executed in physical
@@ -110,8 +109,6 @@ available for download.
 
    - **VPP Performance NDR/PDR**: VPP NDR/PDR throughput and latency.
    - **VPP Performance MRR**: VPP MRR throughput.
-   - **VPP K8s Container Memif**: VPP K8s Container/Pod topologies
-     NDR/PDR throughput.
    - **DPDK Performance**: DPDK Testpmd and L3fwd NDR/PDR throughput
      and latency.
    - **VPP Functional**: Detailed VPP functional results.
@@ -124,7 +121,6 @@ available for download.
 
    - **VPP Performance NDR/PDR**: Configuration data.
    - **VPP Performance MRR**: Configuration data.
-   - **VPP K8s Container Memif**: Configuration data.
    - **VPP Functional**: Configuration data.
 
 #. TEST OPERATIONAL DATA: VPP DUT operational data auto-generated
