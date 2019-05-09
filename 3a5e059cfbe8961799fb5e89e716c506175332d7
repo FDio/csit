@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75159143_ed862bd3",
+        "filename": "docs/report/introduction/methodology_kvm_vms_vhost_user.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-09T14:22:08Z",
+      "side": 1,
+      "message": "Please do not introduce trailing whitespace.",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 32
+      },
+      "revId": "3a5e059cfbe8961799fb5e89e716c506175332d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
