@@ -157,20 +157,20 @@
         - 36  # WRK
         - 37  # WRK
 
-    plot-ligato-throughput-lat-tsa-3n-hsw:
-      # TODO: Replace with 1904 data
-      # csit-ligato-perf-verify-1904-3n-hsw:
-      csit-ligato-perf-verify-1901-3n-hsw:
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 15  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
+#    plot-ligato-throughput-lat-tsa-3n-hsw:
+#      # TODO: Replace with 1904 data
+#      # csit-ligato-perf-verify-1904-3n-hsw:
+#      csit-ligato-perf-verify-1901-3n-hsw:
+#        - 8   # NDRPDR sel
+#        - 9   # NDRPDR sel
+#        - 11  # NDRPDR sel
+#        - 12  # NDRPDR sel
+#        - 13  # NDRPDR sel
+#        - 14  # NDRPDR sel
+#        - 15  # NDRPDR sel
+#        - 16  # NDRPDR sel
+#        - 17  # NDRPDR sel
+#        - 18  # NDRPDR sel
 
     plot-dpdk-throughput-latency-3n-hsw:
       csit-dpdk-perf-verify-1904-3n-hsw:
@@ -385,12 +385,12 @@
       csit-vpp-device-1904-ubuntu1804-1n-skx:
         - 33
 
-    # VPP Ligato
-    ligato-perf-results-3n-hsw:
-      # TODO: Replace with 1904 data
-      # csit-ligato-perf-verify-1904-3n-hsw:
-      csit-ligato-perf-verify-1901-3n-hsw:
-        - 10  # NDRPDR full
+#    # VPP Ligato
+#    ligato-perf-results-3n-hsw:
+#      # TODO: Replace with 1904 data
+#      # csit-ligato-perf-verify-1904-3n-hsw:
+#      csit-ligato-perf-verify-1901-3n-hsw:
+#        - 10  # NDRPDR full
 
     dpdk-perf-results-3n-hsw:
       csit-dpdk-perf-verify-1904-3n-hsw:
@@ -1472,22 +1472,21 @@
       - 61  # NFV NDRPDR IMIX
       - 63  # NFV NDRPDR IMIX
 
-    # TODO: Remove
-    csit-ligato-perf-verify-1901-3n-hsw:
-      - 10  # NDRPDR full
-      - 8   # NDRPDR sel
-      - 9   # NDRPDR sel
-      - 11  # NDRPDR sel
-      - 12  # NDRPDR sel
-      - 13  # NDRPDR sel
-      - 14  # NDRPDR sel
-      - 15  # NDRPDR sel
-      - 16  # NDRPDR sel
-      - 17  # NDRPDR sel
-      - 18  # NDRPDR sel
-    # TODO: Add 1904 data
-#    csit-ligato-perf-verify-1904-3n-hsw:
-#      -
+#    csit-ligato-perf-verify-1901-3n-hsw:
+#      - 10  # NDRPDR full
+#      - 8   # NDRPDR sel
+#      - 9   # NDRPDR sel
+#      - 11  # NDRPDR sel
+#      - 12  # NDRPDR sel
+#      - 13  # NDRPDR sel
+#      - 14  # NDRPDR sel
+#      - 15  # NDRPDR sel
+#      - 16  # NDRPDR sel
+#      - 17  # NDRPDR sel
+#      - 18  # NDRPDR sel
+#    # TODO: Add 1904 data
+##    csit-ligato-perf-verify-1904-3n-hsw:
+##      -
 
     csit-dpdk-perf-verify-1810-3n-hsw:
       - 1   # NDRPDR sel
@@ -3386,24 +3385,24 @@
   - "name"
   - "conf-history"
 
-# Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw
-- type: "table"
-  title: "Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw"
-  algorithm: "table_details"
-  output-file-ext: ".csv"
-  output-file: "{DIR[DTR,PERF,COT,3N,HSW]}/cot_performance_results_3n_hsw"
-  columns:
-  - title: "Name"
-    data: "data name"
-  - title: "Status"
-    data: "data msg"
-  rows: "generated"
-  data: "ligato-perf-results-3n-hsw"
-  filter: "all"
-  parameters:
-  - "name"
-  - "parent"
-  - "msg"
+## Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw
+#- type: "table"
+#  title: "Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw"
+#  algorithm: "table_details"
+#  output-file-ext: ".csv"
+#  output-file: "{DIR[DTR,PERF,COT,3N,HSW]}/cot_performance_results_3n_hsw"
+#  columns:
+#  - title: "Name"
+#    data: "data name"
+#  - title: "Status"
+#    data: "data msg"
+#  rows: "generated"
+#  data: "ligato-perf-results-3n-hsw"
+#  filter: "all"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "msg"
 
 # Detailed Test Results - VPP Device Results - Ubuntu
 - type: "table"
@@ -4369,22 +4368,22 @@
   - "parent"
   data-start-level: 2
 
-# Container Orchestrated Performance Results 3n-hsw
-- type: "file"
-  title: "Container Orchestrated Performance Results 3n-hsw"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
-  output-file: "{DIR[DTR,PERF,COT,3N,HSW]}/cot_performance_results_3n_hsw"
-  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,PERF,COT,3N,HSW]}"
-  data: "ligato-perf-results-3n-hsw"
-  filter: "all"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
-  data-start-level: 3
+## Container Orchestrated Performance Results 3n-hsw
+#- type: "file"
+#  title: "Container Orchestrated Performance Results 3n-hsw"
+#  algorithm: "file_test_results"
+#  output-file-ext: ".rst"
+#  output-file: "{DIR[DTR,PERF,COT,3N,HSW]}/cot_performance_results_3n_hsw"
+#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+#  dir-tables: "{DIR[DTR,PERF,COT,3N,HSW]}"
+#  data: "ligato-perf-results-3n-hsw"
+#  filter: "all"
+#  parameters:
+#  - "name"
+#  - "doc"
+#  - "level"
+#  - "parent"
+#  data-start-level: 3
 
 # DPDK Performance Results 3n-hsw
 - type: "file"
@@ -9223,537 +9222,537 @@
 
 ################################################################################
 
-# Packet Throughput - VPP Container Orchestrated Memif 3n-hsw-x520 l2xc
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-pdr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-pdr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-pdr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-pdr"
-    layout: "plot-throughput"
-
-# Packet Throughput - VPP Container Orchestrated Memif 3n-hsw-x520 l2bd
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-pdr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-pdr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-pdr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-pdr"
-    layout: "plot-throughput"
-
-# Packet Throughput - VPP Container Orchestrated Memif 3n-hsw-x710 l2xc
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-pdr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-pdr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-pdr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-pdr"
-    layout: "plot-throughput"
-
-# Packet Throughput - VPP Container Orchestrated Memif 3n-hsw-x710 l2bd
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-pdr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-pdr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr"
-    layout: "plot-throughput"
-
-- type: "plot"
-  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-pdr"
-  algorithm: "plot_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-pdr"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-pdr"
-    layout: "plot-throughput"
+## Packet Throughput - VPP Container Orchestrated Memif 3n-hsw-x520 l2xc
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-pdr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-pdr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-pdr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-pdr"
+#    layout: "plot-throughput"
+#
+## Packet Throughput - VPP Container Orchestrated Memif 3n-hsw-x520 l2bd
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-pdr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-pdr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-pdr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-pdr"
+#    layout: "plot-throughput"
+#
+## Packet Throughput - VPP Container Orchestrated Memif 3n-hsw-x710 l2xc
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-pdr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-pdr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-pdr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-pdr"
+#    layout: "plot-throughput"
+#
+## Packet Throughput - VPP Container Orchestrated Memif 3n-hsw-x710 l2bd
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-pdr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-pdr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr"
+#    layout: "plot-throughput"
+#
+#- type: "plot"
+#  title: "VPP Throughput: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-pdr"
+#  algorithm: "plot_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-pdr"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-pdr"
+#    layout: "plot-throughput"
 
 ################################################################################
 
@@ -19394,241 +19393,241 @@
 
 ################################################################################
 
-# Packet Latency - VPP Container Memif 3n-hsw-x520 - l2xc
-- type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr-lat"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr"
-    layout: "plot-latency"
-
-- type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr-lat"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr"
-    layout: "plot-latency"
-
-# Packet Latency - VPP Container Memif 3n-hsw-x520 - l2bd
-- type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr-lat"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr"
-    layout: "plot-latency"
-
-- type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr-lat"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr"
-    layout: "plot-latency"
-
-# Packet Latency - VPP Container Memif 3n-hsw-x710 - l2xc
-- type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr-lat"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr"
-    layout: "plot-latency"
-
-- type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr-lat"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr"
-    layout: "plot-latency"
-
-# Packet Latency - VPP Container Memif 3n-hsw-x710 - l2bd
-- type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr-lat"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '1T1C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr"
-    layout: "plot-latency"
-
-- type: "plot"
-  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr-lat"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           '2T2C' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP Container Memif 3n-hsw-x520 - l2xc
+#- type: "plot"
+#  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr-lat"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2xc-ndr"
+#    layout: "plot-latency"
+#
+#- type: "plot"
+#  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr-lat"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2xc-ndr"
+#    layout: "plot-latency"
+#
+## Packet Latency - VPP Container Memif 3n-hsw-x520 - l2bd
+#- type: "plot"
+#  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr-lat"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-1t1c-base_and_scale-l2bd-ndr"
+#    layout: "plot-latency"
+#
+#- type: "plot"
+#  title: "VPP Latency: k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr-lat"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-2t2c-base_and_scale-l2bd-ndr"
+#    layout: "plot-latency"
+#
+## Packet Latency - VPP Container Memif 3n-hsw-x710 - l2xc
+#- type: "plot"
+#  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr-lat"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2xc-ndr"
+#    layout: "plot-latency"
+#
+#- type: "plot"
+#  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr-lat"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2xc-ndr"
+#    layout: "plot-latency"
+#
+## Packet Latency - VPP Container Memif 3n-hsw-x710 - l2bd
+#- type: "plot"
+#  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr-lat"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '1T1C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-1t1c-base_and_scale-l2bd-ndr"
+#    layout: "plot-latency"
+#
+#- type: "plot"
+#  title: "VPP Latency: k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr-lat"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           '2T2C' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-2t2c-base_and_scale-l2bd-ndr"
+#    layout: "plot-latency"
 
 ################################################################################
 
@@ -23475,233 +23474,233 @@
 
 ################################################################################
 
-# Speedup - VPP Container k8s memif 3n-hsw-x520 - l2xc
-- type: "plot"
-  title: "Speedup: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-ndr-tsa"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-base_and_scale-ndr-l2xc"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-pdr-tsa"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-pdr"
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP Container k8s memif 3n-hsw-x520 - l2bd
-- type: "plot"
-  title: "Speedup: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-ndr-tsa"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-base_and_scale-ndr-l2bd"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-pdr-tsa"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-pdr"
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP Container Memif 3n-hsw-x710 - l2xc
-- type: "plot"
-  title: "Speedup: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr-tsa"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr-tsa"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           'L2XCFWD' and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr"
-    layout: "plot-throughput-speedup-analysis"
-
-# Speedup - VPP Container Memif 3n-hsw-x710 - l2bd
-- type: "plot"
-  title: "Speedup: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr-tsa"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr"
-    layout: "plot-throughput-speedup-analysis"
-
-- type: "plot"
-  title: "Speedup: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr-tsa"
-  algorithm: "plot_throughput_speedup_analysis"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr-tsa"
-  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
-  filter: "'NIC_Intel-X710' and
-           '64B' and
-           ('BASE' or 'SCALE') and
-           'NDRPDR' and
-           ('L2BDMACSTAT' or 'L2BDMACLRN') and
-           not 'VHOST' and
-           not 'NF_DENSITY' and
-           'MEMIF'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "1VNF"
-  - "2VNF"
-  - "4VNF"
-  - "2VNF"
-  - "4VNF"
-  layout:
-    title: "k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr"
-    layout: "plot-throughput-speedup-analysis"
+## Speedup - VPP Container k8s memif 3n-hsw-x520 - l2xc
+#- type: "plot"
+#  title: "Speedup: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-ndr-tsa"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-base_and_scale-ndr-l2xc"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#- type: "plot"
+#  title: "Speedup: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-pdr-tsa"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-base_and_scale-l2xc-pdr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+## Speedup - VPP Container k8s memif 3n-hsw-x520 - l2bd
+#- type: "plot"
+#  title: "Speedup: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-ndr-tsa"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-base_and_scale-ndr-l2bd"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#- type: "plot"
+#  title: "Speedup: k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-pdr-tsa"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x520-64b-base_and_scale-l2bd-pdr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+## Speedup - VPP Container Memif 3n-hsw-x710 - l2xc
+#- type: "plot"
+#  title: "Speedup: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr-tsa"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#- type: "plot"
+#  title: "Speedup: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr-tsa"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           'L2XCFWD' and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-base_and_scale-l2xc-pdr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+## Speedup - VPP Container Memif 3n-hsw-x710 - l2bd
+#- type: "plot"
+#  title: "Speedup: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr-tsa"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-ndr"
+#    layout: "plot-throughput-speedup-analysis"
+#
+#- type: "plot"
+#  title: "Speedup: k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr-tsa"
+#  algorithm: "plot_throughput_speedup_analysis"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr-tsa"
+#  data: "plot-ligato-throughput-lat-tsa-3n-hsw"
+#  filter: "'NIC_Intel-X710' and
+#           '64B' and
+#           ('BASE' or 'SCALE') and
+#           'NDRPDR' and
+#           ('L2BDMACSTAT' or 'L2BDMACLRN') and
+#           not 'VHOST' and
+#           not 'NF_DENSITY' and
+#           'MEMIF'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "1VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  - "2VNF"
+#  - "4VNF"
+#  layout:
+#    title: "k8s-memif-3n-hsw-x710-64b-base_and_scale-l2bd-pdr"
+#    layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
 
