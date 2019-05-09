@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ef397d3_fc97cdd8",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-09T12:24:26Z",
+      "side": 1,
+      "message": "Do we necessarily need to remove the lowest and highest value? Removing outliers seems better, for example using the three sigma rule.\n\nVratko, thoughts?",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 78
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "939ece53_140cea46",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-09T12:24:26Z",
+      "side": 1,
+      "message": "Do we need to do validation (I assume this is the validation that the data were actually properly configured)? That seems like something functional tests should be doing and thus would be superfluous here.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 7
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
