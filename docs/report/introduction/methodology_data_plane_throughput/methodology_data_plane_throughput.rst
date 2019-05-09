@@ -1,12 +1,12 @@
-Data Plane Throughput
----------------------
+Data Plane Throughput Tests
+---------------------------
 
-Network data plane packet and bandwidth throughput are measured using
-multiple methods in order to obtain representative and repeatable
-results across the large set of performance test cases implemented and
-executed within CSIT. Following throughput test methods are used:
+Network data plane throughput is measured using multiple test methods in
+order to obtain representative and repeatable results across the large
+set of performance test cases implemented and executed within CSIT.
+Following throughput test methods are used:
 
-#. MLRsearch: Multiple Loss Ratio search
+#. MLRsearch Tests: Multiple Loss Ratio search
 
    - **Description**: MLRsearch discovers multiple packet throughput
      rates in a single search, reducing the overall test execution
@@ -25,12 +25,12 @@ executed within CSIT. Following throughput test methods are used:
      environments. NDR and PDR packet and bandwidth throughput results
      for all frame sizes and for all tests are presented in detailed
      results tables.
-   - **References**: See :ref:`mlrsearch_algorithm` for more detailed
-     description of MLRsearch tests. MLRsearch is being standardized
-     in IETF with `draft-vpolak-mkonstan-mlrsearch
+   - **References**: See :ref:`mlrsearch_algorithm` section for more
+     detail. MLRsearch is being standardized in IETF with
+     `draft-vpolak-mkonstan-mlrsearch
      <https://tools.ietf.org/html/draft-vpolak-mkonstan-bmwg-mlrsearch>`_.
 
-#. MRR Measurements: Maximum Receive Rate
+#. MRR Tests: Maximum Receive Rate
 
    - **Description**: MRR tests are complementary to MLRsearch tests,
      as they provide a maximum “raw” throughput benchmark for
@@ -49,13 +49,13 @@ executed within CSIT. Following throughput test methods are used:
      vs. parent. CSIT reports include MRR throughput comparisons
      between releases and test environments. Small frame sizes only
      (64b/78B, IMIX).
-   - **References**: See :ref:`mrr_throughput` for more detailed
-     description of MRR tests configuration used for daily performance
-     trending jobs. VPP per patch test methodology is available on
+   - **References**: See :ref:`mrr_throughput` section for more detail
+     about MRR tests configuration for daily performance trending jobs.
+     VPP per patch test methodology is available in
      `FD.io CSIT trending pages
      <https://docs.fd.io/csit/master/trending/methodology/perpatch_performance_tests.html>`_.
 
-#. PLRsearch: Probabilistic Loss Ratio search
+#. PLRsearch Tests: Probabilistic Loss Ratio search
 
    - **Description**: PLRsearch discovers a packet throughput rate
      associated with configured Packet Loss Ratio (PLR) criteria for
@@ -69,8 +69,8 @@ executed within CSIT. Following throughput test methods are used:
      baseline tests. Each soak test lasts 2hrs and is executed at
      least twice. Results are compared against NDR and PDR rates
      discovered with MLRsearch.
-   - **References**: See :ref:`plrsearch_algorithm` for more detailed
-     description of PLRsearch tests. PLRsearch is being standardized
+   - **References**: See :ref:`plrsearch_algorithm` section for more
+     detail. PLRsearch is being standardized
      in IETF with `draft-vpolak-bmwg-plrsearch
      <https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch>`_.
 
