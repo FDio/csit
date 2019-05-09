@@ -42,14 +42,15 @@ Changes in |csit-release|
      for better readibility and maintenance: test grouping, axis
      labels, descriptions, other informative decoration.
 
-#. MISCELLANEOUS
+..
+    #. MISCELLANEOUS
 
-   - **2n-dnv Tests (3rd Party)**: Published performance tests for 2n-
-     dnv (2-Node Atom Denverton) from 3rd party testbeds running FD.io
-     |csit-release| automated testing code.
-     Only graphs for Packet Throughput and Speedup Multi-core and not
-     for Packet Latency were published as there are no results for Packet
-     Latency available.
+       - **2n-dnv Tests (3rd Party)**: Published performance tests for 2n-
+         dnv (2-Node Atom Denverton) from 3rd party testbeds running FD.io
+         |csit-release| automated testing code.
+         Only graphs for Packet Throughput and Speedup Multi-core and not
+         for Packet Latency were published as there are no results for Packet
+         Latency available.
 
 .. raw:: latex
 
