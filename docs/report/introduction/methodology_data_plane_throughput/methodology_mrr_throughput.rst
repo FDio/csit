@@ -10,11 +10,12 @@ the maximum load offered by traffic generator over a set trial duration,
 regardless of packet loss. Maximum load for specified Ethernet frame
 size is set to the bi-directional link rate.
 
-In |csit-release| MRR test code has been updated with a configurable
-burst MRR parameters: trial duration and number of trials in a single
-burst. This enabled more precise performance trending.
+MRR test code implements multiple bursts of offered packet load and has
+two configurable burst parameters: individual trial duration and number
+of trials in a single burst. This enables more precise performance
+trending by providing more results data for analysis.
 
-Current parameters for MRR trending tests:
+Current parameters for MRR tests:
 
 - Ethernet frame sizes: 64B (78B for IPv6), IMIX, 1518B, 9000B; all
   quoted sizes include frame CRC, but exclude per frame transmission
@@ -34,9 +35,15 @@ Current parameters for MRR trending tests:
     XL710. Packet rate for other tested frame sizes is limited by PCIe
     Gen3 x8 bandwidth limitation of ~50Gbps.
 
-- Trial duration: 1 sec.
+- Trial duration: 
 
-- Number of trials per burst: 10.
+  - Performance trending tests: 1 sec.
+  - Per-patch performance tests: 10sec.
+
+- Number of trials per burst: 
+
+  - Performance trending tests: 10.
+  - Per-patch performance tests: 5.
 
 Similarly to NDR/PDR throughput tests, MRR test should be reporting
 bi-directional link rate (or NIC rate, if lower) if tested VPP
