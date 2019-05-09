@@ -1447,13 +1447,13 @@ def plot_service_density_heatmap_compare(plot, input_data):
             if vals[key_c][key_n]["vals_r"]:
                 vals[key_c][key_n]["nr_r"] = len(vals[key_c][key_n]["vals_r"])
                 vals[key_c][key_n]["mean_r"] = \
-                    round(mean(vals[key_c][key_n]["vals_r"]) / 1000000, 1)
+                    mean(vals[key_c][key_n]["vals_r"])
                 vals[key_c][key_n]["stdev_r"] = \
                     round(stdev(vals[key_c][key_n]["vals_r"]) / 1000000, 1)
             if vals[key_c][key_n]["vals_c"]:
                 vals[key_c][key_n]["nr_c"] = len(vals[key_c][key_n]["vals_c"])
                 vals[key_c][key_n]["mean_c"] = \
-                    round(mean(vals[key_c][key_n]["vals_c"]) / 1000000, 1)
+                    mean(vals[key_c][key_n]["vals_c"])
                 vals[key_c][key_n]["stdev_c"] = \
                     round(stdev(vals[key_c][key_n]["vals_c"]) / 1000000, 1)
 
@@ -1474,17 +1474,24 @@ def plot_service_density_heatmap_compare(plot, input_data):
                 val_r = vals[txt_chains[c - 1]][txt_nodes[n - 1]]["mean_r"]
             except (KeyError, IndexError):
                 val_r = None
-            data_r[c - 1].append(val_r)
             try:
                 val_c = vals[txt_chains[c - 1]][txt_nodes[n - 1]]["mean_c"]
             except (KeyError, IndexError):
                 val_c = None
-            data_c[c - 1].append(val_c)
-
             if val_c is not None and val_r:
-                diff[c - 1].append(round((val_c - val_r) * 100 / val_r, 1))
+                val_d = (val_c - val_r) / val_r
             else:
-                diff[c - 1].append(None)
+                val_d = None
+
+            if val_r is not None:
+                val_r = round(val_r / 1000000, 1)
+            data_r[c - 1].append(val_r)
+            if val_c is not None:
+                val_c = round(val_c / 1000000, 1)
+            data_c[c - 1].append(val_c)
+            if val_d is not None:
+                val_d = round(val_d / 10000, 1)
+            diff[c - 1].append(val_d)
 
     # Colorscales:
     my_green = [[0.0, 'rgb(235, 249, 242)'],
