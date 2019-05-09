@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fbe4450_e64cd6fd",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 19
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-09T22:53:32Z",
+      "side": 1,
+      "message": "What is the purpose of sorting the json objects?\n\nLeaving them in the same order as the original \u003cfeature\u003e.api file is much more human friendly when referring back to the source.\n\nIMHO, changing the order makes the diff output harder to understand for the author of the API.",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 70
+      },
+      "revId": "e131fc3c73dc7284417b09cfeb0b13c9136c12ca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
