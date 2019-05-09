@@ -9,7 +9,7 @@ Test Methodology
     methodology_vpp_forwarding_modes
     methodology_tunnel_encapsulations
     methodology_vpp_features
-    methodology_data_plane_throughput
+    methodology_data_plane_throughput/index
     methodology_mlrsearch_tests
     methodology_mrr_throughput
     methodology_plrsearch
