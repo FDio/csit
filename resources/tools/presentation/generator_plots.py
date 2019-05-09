@@ -1479,7 +1479,7 @@ def plot_service_density_heatmap_compare(plot, input_data):
             except (KeyError, IndexError):
                 val_c = None
             if val_c is not None and val_r:
-                val_d = (val_c - val_r) / val_r
+                val_d = (val_c - val_r) * 100 / val_r
             else:
                 val_d = None
 
@@ -1490,7 +1490,7 @@ def plot_service_density_heatmap_compare(plot, input_data):
                 val_c = round(val_c / 1000000, 1)
             data_c[c - 1].append(val_c)
             if val_d is not None:
-                val_d = round(val_d / 10000, 1)
+                val_d = round(val_d, 1)
             diff[c - 1].append(val_d)
 
     # Colorscales:
