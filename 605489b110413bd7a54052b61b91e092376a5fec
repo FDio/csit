@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1cd0e2dd_bacdbf63",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_mrr_throughput.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-10T08:52:03Z",
+      "side": 1,
+      "message": "5.2 sec.",
+      "range": {
+        "startLine": 45,
+        "startChar": 29,
+        "endLine": 45,
+        "endChar": 37
+      },
+      "revId": "605489b110413bd7a54052b61b91e092376a5fec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7ec3842_df8a0d5d",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_mrr_throughput.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-10T08:52:03Z",
+      "side": 1,
+      "message": "1.",
+      "range": {
+        "startLine": 52,
+        "startChar": 29,
+        "endLine": 52,
+        "endChar": 37
+      },
+      "revId": "605489b110413bd7a54052b61b91e092376a5fec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
