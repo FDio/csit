@@ -22,10 +22,10 @@ Description
 
 Multiple Loss Ratio search (MLRsearch) tests discover multiple packet
 throughput rates in a single search, reducing the overall test execution
-time compared to a binary search. Each rate associated with a distinct
-Packet Loss Ratio (PLR) criteria. In FD.io CSIT two throughput rates are
-discovered: Non-Drop Rate (NDR, with zero packet loss, PLR=0) and
-Partial Drop Rate (PDR, with PLR<0.5%). MLRsearch is compliant with
+time compared to a binary search. Each rate is associated with a
+distinct Packet Loss Ratio (PLR) criteria. In FD.io CSIT two throughput
+rates are discovered: Non-Drop Rate (NDR, with zero packet loss, PLR=0)
+and Partial Drop Rate (PDR, with PLR<0.5%). MLRsearch is compliant with
 :rfc:`2544`.
 
 Usage
