@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e25e27a4_4474c286",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 26
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-10T11:33:41Z",
+      "side": 1,
+      "message": "Better how? The newer versions may rename some terms (for lines 33-54), or move some detail in and out of scope. (Perhaps erf and stretch fitting functions will be considered implementation details, not to be defined in newer draft versions. Perhaps prior distributions in lines 123, 138 will make it to the draft. Perhaps newer drafts will use different fitting functions or prior distibutions.)\n\nPLRsearch draft is not as mature as MLRsearch draft, where such big changes are improbable.",
+      "parentUuid": "4fd10bb2_180f87f3",
+      "range": {
+        "startLine": 24,
+        "startChar": 6,
+        "endLine": 24,
+        "endChar": 39
+      },
+      "revId": "1d7f5509b2965bf9b5738d531390acb225ae16e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07938ee4_ff2662bf",
         "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
         "patchSetId": 26
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "7a69da52_614e70a8",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 26
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-10T11:33:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07938ee4_ff2662bf",
+      "range": {
+        "startLine": 151,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 7
+      },
+      "revId": "1d7f5509b2965bf9b5738d531390acb225ae16e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5cf9652e_ff4ac3aa",
         "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
         "patchSetId": 26
@@ -59,6 +107,30 @@
       "writtenOn": "2019-05-10T11:22:59Z",
       "side": 1,
       "message": "FIXME and TODO instructions should be commented out. Replace with a note pointing to 1901 results to be replaced with 1904 results.",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 41
+      },
+      "revId": "1d7f5509b2965bf9b5738d531390acb225ae16e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe5ccd9d_30598162",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 26
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-10T11:33:41Z",
+      "side": 1,
+      "message": "Removed the whole section for now.",
+      "parentUuid": "5cf9652e_ff4ac3aa",
       "range": {
         "startLine": 226,
         "startChar": 0,
