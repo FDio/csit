@@ -93,16 +93,6 @@ available for download.
    - **Documentation**: Pointers to CSIT source code documentation for
      Honeycomb functional tests.
 
-#. DMM FUNCTIONAL: DMM functional tests executed in
-   virtual FD.io testbeds.
-
-   - **Overview**: Tested virtual topologies, test coverage and naming
-     specifics;
-   - **Release Notes**: Changes in |csit-release|, known issues.
-   - **Test Environment**: Functional test environment configuration.
-   - **Documentation**: Pointers to CSIT source code documentation for
-     DMM functional tests.
-
 #. DETAILED RESULTS: Detailed result tables auto-generated from CSIT
    test job executions using RF (Robot Framework) output files as
    sources.
@@ -113,7 +103,6 @@ available for download.
      and latency.
    - **VPP Functional**: Detailed VPP functional results.
    - **Honeycomb Functional**: Detailed HoneyComb functional results.
-   - **DMM Functional**: Detailed DMM functional results.
 
 #. TEST CONFIGURATION: VPP DUT configuration data based on VPP API
    Test (VAT) Commands History auto-generated from CSIT test job
@@ -140,6 +129,16 @@ available for download.
      test case grouping and selection.
 
 ..
+    #. DMM FUNCTIONAL: DMM functional tests executed in
+       virtual FD.io testbeds.
+
+       - **Overview**: Tested virtual topologies, test coverage and naming
+         specifics;
+       - **Release Notes**: Changes in |csit-release|, known issues.
+       - **Test Environment**: Functional test environment configuration.
+       - **Documentation**: Pointers to CSIT source code documentation for
+         DMM functional tests.
+
     #. NSH_SFC FUNCTIONAL: NSH_SFC functional tests executed in
        virtual FD.io testbeds.
 

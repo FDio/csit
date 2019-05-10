@@ -79,14 +79,15 @@ CSIT-1904
         nsh_sfc_functional_tests/test_environment
         nsh_sfc_functional_tests/documentation
 
-.. toctree::
-    :maxdepth: 2
-    :caption: DMM Functional
+..
+    .. toctree::
+        :maxdepth: 2
+        :caption: DMM Functional
 
-    dmm_functional_tests/overview
-    dmm_functional_tests/csit_release_notes
-    dmm_functional_tests/test_environment
-    dmm_functional_tests/documentation
+        dmm_functional_tests/overview
+        dmm_functional_tests/csit_release_notes
+        dmm_functional_tests/test_environment
+        dmm_functional_tests/documentation
 
 .. toctree::
     :maxdepth: 2
@@ -98,8 +99,9 @@ CSIT-1904
     detailed_test_results/vpp_functional_results/index
     detailed_test_results/vpp_device_results_ubuntu/index
     detailed_test_results/honeycomb_functional_results/index
-    detailed_test_results/dmm_functional_results/index
+
 ..
+    detailed_test_results/dmm_functional_results/index
     detailed_test_results/cot_performance_results/index
     detailed_test_results/nshsfc_functional_results/index
 
