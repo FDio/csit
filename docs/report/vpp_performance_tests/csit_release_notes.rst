@@ -69,15 +69,18 @@ List of known issues in |csit-release| for VPP performance tests:
 | 1  | `CSIT-570                               | Sporadic (1 in 200) NDR discovery test failures on x520. DPDK reporting rx-errors, indicating L1 issue.  |
 |    | <https://jira.fd.io/browse/CSIT-570>`_  | Suspected issue with HW combination of X710-X520 in LF testbeds. Not observed outside of LF testbeds.    |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 2  | `CSIT-1501                              | Sporadic crypto backend fails loading `VPP-1670 <https://jira.fd.io/browse/VPP-1670>`_                   |
+| 2  | `CSIT-1503                              | [`TRex-519 <https://trex-tgn.cisco.com/youtrack/issue/trex-519>`_] XL710/XXV710 with FW 6.0.1 will have  |
+|    | <https://jira.fd.io/browse/CSIT-1503>`_ | Rx drop rate of 27MPPS.                                                                                  |
++----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
+| 3  | `CSIT-1501                              | Sporadic crypto backend fails loading `VPP-1670 <https://jira.fd.io/browse/VPP-1670>`_                   |
 |    | <https://jira.fd.io/browse/CSIT-1501>`_ |                                                                                                          |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 3  | `CSIT-1427                              | Sporadic HW aes-128-cbc-sha1 tunnel-interface tests are failing.                                         |
+| 4  | `CSIT-1427                              | Sporadic HW aes-128-cbc-sha1 tunnel-interface tests are failing.                                         |
 |    | <https://jira.fd.io/browse/CSIT-1427>`_ | `VPP-1671 <https://jira.fd.io/browse/VPP-1671>`_                                                         |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 4  | `CSIT-1498                              | Memif tests are sporadically failing on initialization of memif connection.                              |
+| 5  | `CSIT-1498                              | Memif tests are sporadically failing on initialization of memif connection.                              |
 |    | <https://jira.fd.io/browse/CSIT-1498>`_ |                                                                                                          |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 5  | `CSIT-1499                              | AVF tests are sporadically failing on initialization of AVF interface.                                   |
+| 6  | `CSIT-1499                              | AVF tests are sporadically failing on initialization of AVF interface.                                   |
 |    | <https://jira.fd.io/browse/CSIT-1499>`_ |                                                                                                          |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
