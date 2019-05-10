@@ -383,8 +383,7 @@ to SW Crypto device.
 
 **Common Configuration**
 
-There is used the default startup configuration as defined in VPP project
-`startup.conf <https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/1904&id=3d18a191aaf31ef8b1524ab80fed22a304adf75d>`_
+There is used the default startup configuration as defined in `VPP startup.conf`_
 
 **SW Crypto Device Configuration**
 
