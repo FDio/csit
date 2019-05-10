@@ -22,6 +22,30 @@
       "revId": "e131fc3c73dc7284417b09cfeb0b13c9136c12ca",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70a66b42_1cb6aa65",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 19
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-10T11:24:30Z",
+      "side": 1,
+      "message": "\u003e What is the purpose of sorting the json objects?\n\nWhen .api.json files are generated, they are produced from Python dicts, which do not remember order of keys, resulting in (deterministic but) unpredictable ordering.\nThat means adding one more call usually also changes order of existing calls, so the diff-like output will have many lines with no real change.\n\nAlso, PAPI does not care about order of arguments, but binary API does care about the order. That means when json file contents are sorted on CSIT side, API changes which only change order of fields are almost invisible (probably with the exception of crc, if yes the CSIT logic could filter out crc when comparing).",
+      "parentUuid": "5fbe4450_e64cd6fd",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 70
+      },
+      "revId": "e131fc3c73dc7284417b09cfeb0b13c9136c12ca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
