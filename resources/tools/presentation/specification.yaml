@@ -142,20 +142,20 @@
         - 26  # NDRPDR sel
         - 29  # NDRPDR sel
 
-    plot-vpp-http-server-performance:
-      # TODO: Replace with 1904 data
-      # csit-vpp-perf-verify-1904-3n-hsw:
-      csit-vpp-perf-verify-1810-3n-hsw:
-        - 28  # WRK
-        - 29  # WRK
-        - 30  # WRK
-        - 31  # WRK
-        - 32  # WRK
-        - 33  # WRK
-        - 34  # WRK
-        - 35  # WRK
-        - 36  # WRK
-        - 37  # WRK
+#    plot-vpp-http-server-performance:
+#      # TODO: Replace with 1904 data
+#      # csit-vpp-perf-verify-1904-3n-hsw:
+#      csit-vpp-perf-verify-1810-3n-hsw:
+#        - 28  # WRK
+#        - 29  # WRK
+#        - 30  # WRK
+#        - 31  # WRK
+#        - 32  # WRK
+#        - 33  # WRK
+#        - 34  # WRK
+#        - 35  # WRK
+#        - 36  # WRK
+#        - 37  # WRK
 
 #    plot-ligato-throughput-lat-tsa-3n-hsw:
 #      # TODO: Replace with 1904 data
@@ -228,11 +228,11 @@
         - 31  # NDRPDR sel
         - 32  # NDRPDR sel
 
-    plot-vpp-soak-2n-skx:
-      # TODO: Replace with 1904 data
-      # csit-vpp-perf-verify-1904-2n-skx:
-      csit-vpp-perf-verify-1901-2n-skx:
-        - 45  # SOAK sel
+#    plot-vpp-soak-2n-skx:
+#      # TODO: Replace with 1904 data
+#      # csit-vpp-perf-verify-1904-2n-skx:
+#      csit-vpp-perf-verify-1901-2n-skx:
+#        - 45  # SOAK sel
 
     plot-vpp-nfv-2n-skx-ndrpdr-64b:
       # TODO: Add 1904 data
@@ -1314,16 +1314,16 @@
       - 39  # NDRPDR sel
       - 41  # NDRPDR sel
       - 42  # NDRPDR sel
-      - 28  # WRK
-      - 29  # WRK
-      - 30  # WRK
-      - 31  # WRK
-      - 32  # WRK
-      - 33  # WRK
-      - 34  # WRK
-      - 35  # WRK
-      - 36  # WRK
-      - 37  # WRK
+#      - 28  # WRK
+#      - 29  # WRK
+#      - 30  # WRK
+#      - 31  # WRK
+#      - 32  # WRK
+#      - 33  # WRK
+#      - 34  # WRK
+#      - 35  # WRK
+#      - 36  # WRK
+#      - 37  # WRK
     csit-vpp-perf-verify-1901-3n-hsw:
       - 35  # MRR sel
       - 10  # NDRPDR sel
@@ -1438,7 +1438,7 @@
       - 40  # NDRPDR sel
       - 42  # NDRPDR sel
       - 43  # NDRPDR sel
-      - 45  # SOAK
+#      - 45  # SOAK
     # TODO: Add 1904 data
     csit-vpp-perf-verify-1904-2n-skx:
       - 11  # MRR sel
@@ -4495,51 +4495,51 @@
 ###                                P L O T S                                 ###
 ################################################################################
 
-# Soak test - 30min Soak Test (PLRsearch), boxes
-- type: "plot"
-  title: "VPP Throughput: 30min Soak Test (PLRsearch) boxes"
-  algorithm: "plot_soak_boxes"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/example-soak-boxes"
-  data: "plot-vpp-soak-2n-skx"
-  filter: "'SOAK'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2PATCH"
-#  - "L2XCBASE"
-#  - "L2BDMACLRN"
-#  - "IP4FWD"
-#  - "IP6FWD"
-  - "VHOST"
-  layout:
-    title: "30min Soak Test (PLRsearch)"
-    layout: "plot-soak-throughput"
-
-# Soak test - example, not used
-- type: "plot"
-  title: "VPP Throughput: 30min Soak Test (PLRsearch) bars"
-  algorithm: "plot_soak_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/example-soak-bars"
-  data: "plot-vpp-soak-2n-skx"
-  filter: "'SOAK'"
-  parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-  sort:
-  - "L2PATCH"
-#  - "L2XCBASE"
-#  - "L2BDMACLRN"
-#  - "IP4FWD"
-#  - "IP6FWD"
-  - "VHOST"
-  layout:
-    title: "30min Soak Test (PLRsearch)"
-    layout: "plot-soak-throughput"
+## Soak test - 30min Soak Test (PLRsearch), boxes
+#- type: "plot"
+#  title: "VPP Throughput: 30min Soak Test (PLRsearch) boxes"
+#  algorithm: "plot_soak_boxes"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/example-soak-boxes"
+#  data: "plot-vpp-soak-2n-skx"
+#  filter: "'SOAK'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2PATCH"
+##  - "L2XCBASE"
+##  - "L2BDMACLRN"
+##  - "IP4FWD"
+##  - "IP6FWD"
+#  - "VHOST"
+#  layout:
+#    title: "30min Soak Test (PLRsearch)"
+#    layout: "plot-soak-throughput"
+#
+## Soak test - example, not used
+#- type: "plot"
+#  title: "VPP Throughput: 30min Soak Test (PLRsearch) bars"
+#  algorithm: "plot_soak_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/example-soak-bars"
+#  data: "plot-vpp-soak-2n-skx"
+#  filter: "'SOAK'"
+#  parameters:
+#  - "throughput"
+#  - "parent"
+#  - "tags"
+#  sort:
+#  - "L2PATCH"
+##  - "L2XCBASE"
+##  - "L2BDMACLRN"
+##  - "IP4FWD"
+##  - "IP6FWD"
+#  - "VHOST"
+#  layout:
+#    title: "30min Soak Test (PLRsearch)"
+#    layout: "plot-soak-throughput"
 
 ################################################################################
 # Plots - NF Density - VSC - MRR 64b
@@ -6291,48 +6291,48 @@
     layout: "plot-service-density"
 
 ################################################################################
-# Plots VPP HTTP Server Performance
-- type: "plot"
-  title: "VPP HTTP Server Performance"
-  algorithm: "plot_http_server_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
-  data:
-    "plot-vpp-http-server-performance"
-  # Keep this formatting, the filter is enclosed with " (quotation mark) and
-  # each tag is enclosed with ' (apostrophe).
-  filter: "'HTTP' and 'TCP_CPS'"
-  parameters:
-  - "result"
-  - "name"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "VPP HTTP Server Performance"
-    layout:
-      "plot-cps"
-
-- type: "plot"
-  title: "VPP HTTP Server Performance"
-  algorithm: "plot_http_server_performance_box"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
-  data:
-    "plot-vpp-http-server-performance"
-  filter: "'HTTP' and 'TCP_RPS'"
-  parameters:
-  - "result"
-  - "name"
-  traces:
-    hoverinfo: "x+y"
-    boxpoints: "outliers"
-    whiskerwidth: 0
-  layout:
-    title: "VPP HTTP Server Performance"
-    layout:
-      "plot-rps"
+## Plots VPP HTTP Server Performance
+#- type: "plot"
+#  title: "VPP HTTP Server Performance"
+#  algorithm: "plot_http_server_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-cps"
+#  data:
+#    "plot-vpp-http-server-performance"
+#  # Keep this formatting, the filter is enclosed with " (quotation mark) and
+#  # each tag is enclosed with ' (apostrophe).
+#  filter: "'HTTP' and 'TCP_CPS'"
+#  parameters:
+#  - "result"
+#  - "name"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "VPP HTTP Server Performance"
+#    layout:
+#      "plot-cps"
+#
+#- type: "plot"
+#  title: "VPP HTTP Server Performance"
+#  algorithm: "plot_http_server_performance_box"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/http-server-performance-rps"
+#  data:
+#    "plot-vpp-http-server-performance"
+#  filter: "'HTTP' and 'TCP_RPS'"
+#  parameters:
+#  - "result"
+#  - "name"
+#  traces:
+#    hoverinfo: "x+y"
+#    boxpoints: "outliers"
+#    whiskerwidth: 0
+#  layout:
+#    title: "VPP HTTP Server Performance"
+#    layout:
+#      "plot-rps"
 
 ################################################################################
 
