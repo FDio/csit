@@ -27,5 +27,6 @@
 | | ... | perf_trial_multiplicity - Number of trials to execute in MRR test.
 | | ... | perf_trial_duration - Duration of one trial in MRR test.
 | | ...
+| | Fail
 | | Ensure Global Variable | perf_trial_multiplicity | 10
 | | Ensure Global Variable | perf_trial_duration | 1
