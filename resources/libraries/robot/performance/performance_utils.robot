@@ -88,6 +88,8 @@
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result.ndr_interval}
+| | Perform additional measurements based on NDRPDR result
+| | ... | ${result} | ${frame_size} | ${traffic_profile}
 
 | Find critical load using PLRsearch
 | | [Documentation]
@@ -251,6 +253,31 @@
 | | ${message} = | Set Variable If | ${lower_bound_lf} >= 1.0
 | | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
 | | Fail | ${message}
+
+| Perform additional measurements based on NDRPDR result
+| | [Documentation]
+| | ... | Perform any additional measurements which are not directly needed
+| | ... | for determining NDR nor PDR, but which are needed for gathering
+| | ... | additional data for debug purposes.
+| | ... | Currently, just "Traffic should pass with no loss" is called.
+| | ... | TODO: Move latency measurements from optimized search here.
+| | ...
+| | ... | *Arguments:*
+| | ... | - result - Measured result data per stream [pps]. Type: NdrPdrResult
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - traffic_profile - Topology profile. Type: string
+| | ...
+| | ... | *Example:*
+| | ... | \| Perform additional measurements based on NDRPDR result \
+| | ... | \| \${result} \| ${64} \| 3-node-IPv4 \|
+| | ...
+| | [Arguments] | ${result} | ${framesize} | ${traffic_profile}
+| | ...
+| | ${duration}= | Set Variable | 2.0
+| | ${rate_per_stream}= | Evaluate
+| | ... | ${result.ndr_interval.measured_low.target_tr} / 2.0
+| | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
+| | ... | ${framesize} | ${traffic_profile} | fail_on_loss=${False}
 
 | Traffic should pass with no loss
 | | [Documentation]
