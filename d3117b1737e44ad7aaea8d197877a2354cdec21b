@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "91b7b055_d0df081b",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-10T13:15:12Z",
+      "side": 1,
+      "message": "Ah, okay.\n\nWe\u0027ll have chunks of different sizes, so this will tested (at least somewhat).",
+      "parentUuid": "c83081fb_ae7016ee",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 78
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "618ec821_1564d981",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 5
@@ -461,6 +485,30 @@
       "side": 1,
       "message": "Noone would use client on the same host as VPP, when socket is lighter than any of them (and \"user\" is some kind of orchestrator residing on remote machine anyway).\nWe should be testing socket over ssh for both local and remote case.\n\nThe local socket over ssh test is just a middle groud to measure how big a bottleneck ssh itself is (by comparing to direct socket), without additional delay of remote networking).",
       "parentUuid": "ce50fe26_19624352",
+      "range": {
+        "startLine": 124,
+        "startChar": 43,
+        "endLine": 124,
+        "endChar": 44
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "595fe16a_6661bd24",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-10T13:15:12Z",
+      "side": 1,
+      "message": "Okay, so we\u0027ll measure what delay ssh introduces. It all comes down to physical resources, but no harm in documenting it.",
+      "parentUuid": "36880dbb_1b879275",
       "range": {
         "startLine": 124,
         "startChar": 43,
