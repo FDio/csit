@@ -169,7 +169,7 @@ def table_merged_details(table, input_data):
                                 format(col_data[:-5])
                         row_lst.append('"{0}"'.format(col_data))
                     except KeyError:
-                        row_lst.append("No data")
+                        row_lst.append('"Not captured"')
                 table_lst.append(row_lst)
 
         # Write the data to file
