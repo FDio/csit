@@ -17,6 +17,7 @@
    As destinations are used all DUT nodes from the topology file."""
 
 import sys
+sys.exit(0)
 import argparse
 from yaml import load
 
