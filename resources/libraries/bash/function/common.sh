@@ -200,6 +200,9 @@ function common_dirs () {
     # - ARCHIVE_DIR - Path to created CSIT subdirectory "archive".
     # - DOWNLOAD_DIR - Path to created CSIT subdirectory "download_dir".
     # - GENERATED_DIR - Path to created CSIT subdirectory "generated".
+    # Variables exported:
+    # - DOWNLOAD_DIR - Some Robot tests should fail, instead of trying
+    #   to access files here if the variable is not exported.
     # Directories created if not present:
     # ARCHIVE_DIR, DOWNLOAD_DIR, GENERATED_DIR.
     # Functions called:
@@ -239,6 +242,7 @@ function common_dirs () {
         die "Readlink failed."
     }
     mkdir -p "${GENERATED_DIR}" || die "Mkdir failed."
+    export DOWNLOAD_DIR || die "Export command failed."
 }
 
 
