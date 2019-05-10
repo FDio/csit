@@ -486,8 +486,10 @@ def exec_cmd_no_error(
             break
         sleep(1)
     else:
-        msg = ('Command execution failed: "{cmd}"\n{stderr}'.
-               format(cmd=cmd, stderr=stderr) if message is None else message)
+        msg = 'Command execution failed: "{cmd}"\nRC: {rc}\n{stderr}'.format(
+            cmd=cmd, rc=ret_code, stderr=stderr)
+        logger.info(msg)
+        msg = msg if message is None else message)
         raise RuntimeError(msg)
 
     return stdout, stderr
