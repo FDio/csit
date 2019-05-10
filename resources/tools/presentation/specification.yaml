@@ -240,6 +240,7 @@
         - 56  # NFV NDRPDR 64b
         - 59  # NFV NDRPDR 64b
         - 60  # NFV NDRPDR 64b
+        - 65  # NFV NDRPDR 64b
 
     plot-vpp-nfv-2n-skx-ndrpdr-imix:
       # TODO: Add 1904 data
@@ -1469,6 +1470,7 @@
       - 56  # NFV NDRPDR 64b
       - 59  # NFV NDRPDR 64b
       - 60  # NFV NDRPDR 64b
+      - 65  # NFV NDRPDR 64b
       - 61  # NFV NDRPDR IMIX
       - 63  # NFV NDRPDR IMIX
 
@@ -18901,10 +18903,10 @@
 
 # Packet Latency - VPP L2 2n-skx-x710 base and scale
 - type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-x710-64b-2t1c-base-ndr-lat"
+  title: "VPP Latency: l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -18927,14 +18929,14 @@
   - "FIB_100K"
   - "FIB_1M"
   layout:
-    title: "l2sw-2n-skx-x710-64b-2t1c-base-ndr"
+    title: "l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr"
     layout: "plot-latency"
 
 - type: "plot"
-  title: "VPP Latency: l2sw-2n-skx-x710-64b-4t2c-base-ndr-lat"
+  title: "VPP Latency: l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   algorithm: "plot_latency_error_bars"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-4t2c-base-ndr-lat"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   filter: "'NIC_Intel-X710' and
            '64B' and
@@ -18957,7 +18959,7 @@
   - "FIB_100K"
   - "FIB_1M"
   layout:
-    title: "l2sw-2n-skx-x710-64b-4t2c-base-ndr"
+    title: "l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr"
     layout: "plot-latency"
 
 # Packet Latency - VPP L2 2n-skx-xxv710 base and scale
