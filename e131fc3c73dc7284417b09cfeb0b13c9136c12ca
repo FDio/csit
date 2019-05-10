@@ -46,6 +46,30 @@
       "revId": "e131fc3c73dc7284417b09cfeb0b13c9136c12ca",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0df60ce4_f453fa7e",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 19
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-10T18:19:51Z",
+      "side": 1,
+      "message": "Reading the Python3 docs, the list(d) function returns keys in insertion order which should produce the results in the same order as the source \u003cfeature\u003e.api file.\n\nvppapigen.py is now using Python3 and inspection of the original \u003cfeature\u003e.api.json files confirms that the results are as expected -- in the same order as the source file.\n\nThus while I agree that Python2.7 may have required this, I don\u0027t see any value in normalizing the current JSON files.",
+      "parentUuid": "70a66b42_1cb6aa65",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 70
+      },
+      "revId": "e131fc3c73dc7284417b09cfeb0b13c9136c12ca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
