@@ -65,6 +65,9 @@ offered by traffic generator (dependent on link type and NIC model) over
 a set trial duration, regardless of packet loss. Maximum load for
 specified Ethernet frame size is set to the bi-directional link rate.
 
+Usage
+~~~~~
+
 MRR tests are much faster than MLRsearch as they rely on a single trial
 or a small set of trials with very short duration. It is this property
 that makes them suitable for continuous execution in daily performance
