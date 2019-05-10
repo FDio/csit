@@ -1490,7 +1490,7 @@ def plot_service_density_heatmap_compare(plot, input_data):
                 val_c = round(val_c / 1000000, 1)
             data_c[c - 1].append(val_c)
             if val_d is not None:
-                val_d = round(val_d, 1)
+                val_d = int(round(val_d, 0))
             diff[c - 1].append(val_d)
 
     # Colorscales:
