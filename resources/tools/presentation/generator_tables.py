@@ -161,6 +161,8 @@ def table_merged_details(table, input_data):
                     try:
                         col_data = str(data[test][column["data"].
                                        split(" ")[1]]).replace('"', '""')
+                        col_data = replace(col_data, "No Data",
+                                           "Not Captured     ")
                         if column["data"].split(" ")[1] in ("conf-history",
                                                             "show-run"):
                             col_data = replace(col_data, " |br| ", "",
