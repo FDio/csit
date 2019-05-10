@@ -21,9 +21,11 @@ As source of truth, TG node from the topology file is used.
 """
 
 import sys
+sys.exit(0)
 import argparse
 from resources.libraries.python.ssh import SSH
 from yaml import load
+
 
 RESERVATION_DIR = "/tmp/reservation_dir"
 
