@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fb048fce_4e801dc1",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-10T08:32:47Z",
+      "side": 1,
+      "message": "Good point",
+      "parentUuid": "7ded1777_2764db06",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 61
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ef397d3_fc97cdd8",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 5
@@ -60,6 +84,30 @@
       "side": 1,
       "message": "The simplest solution is to just compute the average without removing anything.\nIt also directly corresponds to aggregate duration, which is kind of \"configuration throughput\", and most users are mostly concerned with that.\n(Unless they are concerned with \"configuration latency\", which is harder to quantify.)",
       "parentUuid": "8ef397d3_fc97cdd8",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 78
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b85fc91d_98de063e",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-10T08:32:47Z",
+      "side": 1,
+      "message": "Ok, let\u0027s not worry about outliers. There won\u0027t be any the vast majority of time anyway.\n\nConfiguration throughput is straightforward (how much we configure in some amount of time). What would configuration latency be? Some delay introduced by the API client?",
+      "parentUuid": "64d4d0c7_95589ad6",
       "range": {
         "startLine": 43,
         "startChar": 0,
@@ -142,6 +190,30 @@
     },
     {
       "key": {
+        "uuid": "654f0162_a8dd52fb",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-10T08:32:47Z",
+      "side": 1,
+      "message": "Makes sense.",
+      "parentUuid": "d209ab6c_533696da",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 7
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5246d4da_f96697e9",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 5
@@ -165,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "a1ea751a_d2b8fcfb",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-10T08:32:47Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be a problem if we label the results clearly.\n\nTo be more precise -  we want to test the latest versions of API clients, so there the assumption would hold.\n\nThe problem is with VPP. If we don\u0027t lock its version, we\u0027ll have two variables that change and we won\u0027t necessarily know which one of those is responsible for regressions/progressions. We\u0027d probably be able to figure it out by looking at commit history, but anyone else looking at the results might be confused.\n\nAnother thing with using just latest VPP is that the different jobs would be using different VPP versions and again we won\u0027t have a clean comparison.\n\nI\u0027m not sure about the best solution, but using the CSIT approach of locking VPP version seems good to me. Falling back to latest VPP in case of an API mismatch is just a cherry on top.",
+      "parentUuid": "5246d4da_f96697e9",
+      "range": {
+        "startLine": 87,
+        "startChar": 31,
+        "endLine": 87,
+        "endChar": 54
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3225362f_9070cc45",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 5
@@ -176,6 +272,30 @@
       "writtenOn": "2019-05-09T16:41:35Z",
       "side": 1,
       "message": "Yes.",
+      "range": {
+        "startLine": 88,
+        "startChar": 52,
+        "endLine": 88,
+        "endChar": 69
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a3a1bf91_77af13e8",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-10T08:32:47Z",
+      "side": 1,
+      "message": "Ok, no cherries on top. Definitely not needed in the early stages - we can always revisit this later.",
+      "parentUuid": "3225362f_9070cc45",
       "range": {
         "startLine": 88,
         "startChar": 52,
@@ -234,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "687df238_300e85dc",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-10T08:32:47Z",
+      "side": 1,
+      "message": "I\u0027ll put PAPI python calls here, since that\u0027s what we\u0027ll be calling and PAPI will take care of binary calls over shm or a socket.",
+      "parentUuid": "be0c41cc_607b3e18",
+      "range": {
+        "startLine": 122,
+        "startChar": 45,
+        "endLine": 122,
+        "endChar": 64
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8c2da864_49f44c2f",
         "filename": "docs/cppt/index.rst",
         "patchSetId": 5
@@ -245,6 +389,30 @@
       "writtenOn": "2019-05-09T16:41:35Z",
       "side": 1,
       "message": "CSIT is planning to use socket tunneled over SSH (to a remote machine), so \"socket over ssh\" may be an interesting option, both on the same machine and between two remote machines.",
+      "range": {
+        "startLine": 124,
+        "startChar": 43,
+        "endLine": 124,
+        "endChar": 44
+      },
+      "revId": "d3117b1737e44ad7aaea8d197877a2354cdec21b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ce50fe26_19624352",
+        "filename": "docs/cppt/index.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-10T08:32:47Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll add socket over ssh.\n\nWhat\u0027s the point of testing socket over ssh when both PAPI and VPP are on the same host? Noone would use this in real world, since the tunnel is superfluous.",
+      "parentUuid": "8c2da864_49f44c2f",
       "range": {
         "startLine": 124,
         "startChar": 43,
