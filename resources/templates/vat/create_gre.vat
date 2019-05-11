@@ -1,1 +1,1 @@
-gre_add_del_tunnel src {src} dst {dst}
+exec create gre tunnel src {src} dst {dst}
