@@ -13,15 +13,19 @@
 
 """Interface util library."""
 
+from socket import AF_INET, AF_INET6, inet_ntop, inet_pton
+from socket import error as inet_error
 from time import time, sleep
 
 from robot.api import logger
 
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
 from resources.libraries.python.IPUtil import IPUtil
+from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
@@ -878,28 +882,38 @@ class InterfaceUtil(object):
         :rtype: tuple
         :raises RuntimeError: If unable to create GRE tunnel interface.
         """
-        output = VatExecutor.cmd_from_template(node, "create_gre.vat",
-                                               src=source_ip,
-                                               dst=destination_ip)
-        output = output[0]
 
-        if output["retval"] == 0:
-            sw_if_idx = output["sw_if_index"]
+        try:
+            src_address = inet_pton(AF_INET6, source_ip)
+            dst_address = inet_pton(AF_INET6, destination_ip)
+            is_ipv6 = 1
+        except inet_error:
+            src_address = inet_pton(AF_INET, source_ip)
+            dst_address = inet_pton(AF_INET, destination_ip)
+            is_ipv6 = 0
 
-            vat_executor = VatExecutor()
-            vat_executor.execute_script_json_out("dump_interfaces.vat", node)
-            interface_dump_json = vat_executor.get_script_stdout()
-            name = VatJsonUtil.get_interface_name_from_json(
-                interface_dump_json, sw_if_idx)
+        cmd = 'gre_tunnel_add_del'
+        tunnel = dict(type=0,
+                      instance=Constants.BITWISE_NON_ZERO,
+                      src=src_address,
+                      dst=dst_address,
+                      outer_fib_id=0,
+                      session_id=0)
+        args = dict(is_add=1,
+                    tunnel=tunnel)
+        err_msg = 'Failed to create GRE tunnel interface on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
-            if_key = Topology.add_new_port(node, "gre_tunnel")
-            Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
-            Topology.update_interface_name(node, if_key, name)
+        sw_if_idx = papi_resp['sw_if_index']
+        if_key = Topology.add_new_port(node, 'gre_tunnel')
+        Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+        ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
+        Topology.update_interface_name(node, if_key, ifc_name)
 
-            return name, sw_if_idx
-        else:
-            raise RuntimeError('Unable to create GRE tunnel on node {}.'
-                               .format(node))
+        return ifc_name, sw_if_idx
 
     @staticmethod
     def vpp_create_loopback(node):
