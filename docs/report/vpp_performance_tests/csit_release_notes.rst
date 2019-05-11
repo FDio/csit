@@ -84,3 +84,9 @@ List of known issues in |csit-release| for VPP performance tests:
 | 6  | `CSIT-1499                              | AVF tests are sporadically failing on initialization of AVF interface.                                   |
 |    | <https://jira.fd.io/browse/CSIT-1499>`_ |                                                                                                          |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
+| 7  | `VPP-1676                               | 9000B ip4 memif errors - ip4-input: ip4 length > l2 length.                                              |
+|    | <https://jira.fd.io/browse/VPP-1676>`_  | IP4 jumbo frames (9000B) are dropped in case of tests with memif.                                        |
++----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
+| 8  | `VPP-1677                               | 9000B ip4 nat44: VPP crash + coredump.                                                                   |
+|    | <https://jira.fd.io/browse/VPP-1677>`_  | VPP crashes very often in case that NAT44 is configured and it has to process IP4 jumbo frames (9000B).  |
++----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
