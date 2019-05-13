@@ -566,8 +566,12 @@ def table_soak_vs_ndr(table, input_data):
                 if tst_data["type"] == "SOAK":
                     tst_name_mod = tst_name.replace("-soak", "")
                     if tbl_dict.get(tst_name_mod, None) is None:
+                        groups = re.search(REGEX_NIC, tst_data["parent"])
+                        nic = groups.group(0) if groups else ""
+                        name = "{0}-{1}".format(nic, "-".join(tst_data["name"].
+                                                              split("-")[:-1]))
                         tbl_dict[tst_name_mod] = {
-                            "name": tst_name_mod,
+                            "name": name,
                             "ref-data": list(),
                             "cmp-data": list()
                         }
