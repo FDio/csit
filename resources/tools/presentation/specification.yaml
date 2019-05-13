@@ -130,7 +130,6 @@
     # 3n-hsw
 
     plot-vpp-throughput-lat-tsa-3n-hsw:
-      # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-3n-hsw:
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
@@ -141,6 +140,7 @@
         - 25  # NDRPDR sel
         - 26  # NDRPDR sel
         - 29  # NDRPDR sel
+        - 30  # NDRPDR sel
 
 #    plot-vpp-http-server-performance:
 #      # TODO: Replace with 1904 data
@@ -235,18 +235,19 @@
 #        - 45  # SOAK sel
 
     plot-vpp-nfv-2n-skx-ndrpdr-64b:
-      # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-2n-skx:
         - 56  # NFV NDRPDR 64b
         - 59  # NFV NDRPDR 64b
         - 60  # NFV NDRPDR 64b
         - 65  # NFV NDRPDR 64b
+        - 68  # NFV NDRPDR 64b
 
     plot-vpp-nfv-2n-skx-ndrpdr-imix:
       # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-2n-skx:
-        - 61  # NFV NDRPDR IMIX
-        - 63  # NFV NDRPDR IMIX
+        - 66  # NFV NDRPDR IMIX
+        - 67  # NFV NDRPDR IMIX
+        - 69  # NFV NDRPDR IMIX
 
     plot-vpp-nfv-2n-skx-mrr-64b:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -292,7 +293,6 @@
     # NIC Comparisons
 
     vpp-nic-comparison-3n-hsw:
-      # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-3n-hsw:
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
@@ -303,6 +303,7 @@
         - 25  # NDRPDR sel
         - 26  # NDRPDR sel
         - 29  # NDRPDR sel
+        - 30  # NDRPDR sel
 
     vpp-nic-comparison-3n-skx:
       csit-vpp-perf-verify-1904-3n-skx:
@@ -350,10 +351,11 @@
         - 12  # NDRPDR sel
 
     vpp-perf-results-3n-skx:
-      # TODO: Add FULL 1904 data
       csit-vpp-perf-verify-1904-3n-skx:
         - 26  # NDRPDR full
         - 27  # NDRPDR full
+        - 30  # NDRPDR full
+        - 31  # NDRPDR full
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -477,7 +479,6 @@
         - 70  # NDRPDR LB
         - 71  # NDRPDR LB
     vpp-performance-changes-3n-hsw-cmp:
-      # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-3n-hsw:
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
@@ -488,6 +489,7 @@
         - 25  # NDRPDR sel
         - 26  # NDRPDR sel
         - 29  # NDRPDR sel
+        - 30  # NDRPDR sel
     vpp-performance-changes-3n-hsw:
       - "vpp-performance-changes-3n-hsw-h1"
       - "vpp-performance-changes-3n-hsw-ref"
@@ -759,7 +761,6 @@
     # Compare testbeds
 
     vpp-compare-testbeds-ref:
-      # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-3n-hsw:
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
@@ -770,6 +771,7 @@
         - 25  # NDRPDR sel
         - 26  # NDRPDR sel
         - 29  # NDRPDR sel
+        - 30  # NDRPDR sel
     vpp-compare-testbeds-cmp:
       csit-vpp-perf-verify-1904-3n-skx:
         - 8   # NDRPDR sel
@@ -1359,6 +1361,7 @@
       - 25  # NDRPDR sel
       - 26  # NDRPDR sel
       - 29  # NDRPDR sel
+      - 30  # NDRPDR sel
 
     csit-vpp-perf-verify-1810-3n-skx:
       - 9   # MRR sel
@@ -1401,6 +1404,8 @@
       - 7   # MRR sel
       - 26  # NDRPDR full
       - 27  # NDRPDR full
+      - 30  # NDRPDR full
+      - 31  # NDRPDR full
       - 8   # NDRPDR sel
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
@@ -1471,8 +1476,10 @@
       - 59  # NFV NDRPDR 64b
       - 60  # NFV NDRPDR 64b
       - 65  # NFV NDRPDR 64b
-      - 61  # NFV NDRPDR IMIX
-      - 63  # NFV NDRPDR IMIX
+      - 68  # NFV NDRPDR 64b
+      - 66  # NFV NDRPDR IMIX
+      - 67  # NFV NDRPDR IMIX
+      - 69  # NFV NDRPDR IMIX
 
 #    csit-ligato-perf-verify-1901-3n-hsw:
 #      - 10  # NDRPDR full
