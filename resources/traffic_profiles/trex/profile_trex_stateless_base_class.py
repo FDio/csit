@@ -130,20 +130,18 @@ class TrafficStreamsBaseClass(object):
 
             # Direction 0 --> 1
             pkt_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len),
-                vm=vm1)
+                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1)
             # Direction 1 --> 0
             pkt_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len),
-                vm=vm2)
+                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2)
 
             # Packets for latency measurement:
             # Direction 0 --> 1
             pkt_lat_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len))
+                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1)
             # Direction 1 --> 0
             pkt_lat_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len))
+                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2)
 
             # Create the streams:
             # Direction 0 --> 1
