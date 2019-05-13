@@ -525,6 +525,115 @@ def table_nics_comparison(table, input_data):
     convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
 
 
+def table_soak_vs_ndr(table, input_data):
+    """Generate the table(s) with algorithm: table_soak_vs_ndr
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
+    data = input_data.filter_data(table, continue_on_error=True)
+
+    # Prepare the header of the table
+    try:
+        header = [
+            "Test case",
+            "{0} Throughput [Mpps]".format(table["reference"]["title"]),
+            "{0} Stdev [Mpps]".format(table["reference"]["title"]),
+            "{0} Throughput [Mpps]".format(table["compare"]["title"]),
+            "{0} Stdev [Mpps]".format(table["compare"]["title"]),
+            "Delta [%]"]
+        header_str = ",".join(header) + "\n"
+    except (AttributeError, KeyError) as err:
+        logging.error("The model is invalid, missing parameter: {0}".
+                      format(err))
+        return
+
+    # Create a list of available SOAK test results:
+    tbl_dict = dict()
+    for job, builds in table["compare"]["data"].items():
+        for build in builds:
+            for tst_name, tst_data in data[job][str(build)].iteritems():
+                if tst_data["type"] == "SOAK":
+                    tst_name_mod = tst_name.replace("-soak", "")
+                    if tbl_dict.get(tst_name_mod, None) is None:
+                        tbl_dict[tst_name_mod] = {
+                            "name": tst_name_mod,
+                            "ref-data": list(),
+                            "cmp-data": list()
+                        }
+                    try:
+                        tbl_dict[tst_name_mod]["cmp-data"].append(
+                            tst_data["throughput"]["LOWER"])
+                    except (KeyError, TypeError):
+                        pass
+    tests_lst = tbl_dict.keys()
+
+    # Add corresponding NDR test results:
+    for job, builds in table["reference"]["data"].items():
+        for build in builds:
+            for tst_name, tst_data in data[job][str(build)].iteritems():
+                tst_name_mod = tst_name.replace("-ndrpdr", "").\
+                    replace("-mrr", "")
+                if tst_name_mod in tests_lst:
+                    try:
+                        if tst_data["type"] in ("NDRPDR", "MRR", "BMRR"):
+                            if table["include-tests"] == "MRR":
+                                result = tst_data["result"]["receive-rate"].avg
+                            elif table["include-tests"] == "PDR":
+                                result = tst_data["throughput"]["PDR"]["LOWER"]
+                            elif table["include-tests"] == "NDR":
+                                result = tst_data["throughput"]["NDR"]["LOWER"]
+                            else:
+                                result = None
+                            if result is not None:
+                                tbl_dict[tst_name_mod]["ref-data"].append(
+                                    result)
+                    except (KeyError, TypeError):
+                        continue
+
+    tbl_lst = list()
+    for tst_name in tbl_dict.keys():
+        item = [tbl_dict[tst_name]["name"], ]
+        data_t = tbl_dict[tst_name]["ref-data"]
+        if data_t:
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
+        else:
+            item.extend([None, None])
+        data_t = tbl_dict[tst_name]["cmp-data"]
+        if data_t:
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
+        else:
+            item.extend([None, None])
+        if item[-4] is not None and item[-2] is not None and item[-4] != 0:
+            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
+        if len(item) == len(header):
+            tbl_lst.append(item)
+
+    # Sort the table according to the relative change
+    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+
+    # Generate csv tables:
+    csv_file = "{0}.csv".format(table["output-file"])
+    with open(csv_file, "w") as file_handler:
+        file_handler.write(header_str)
+        for test in tbl_lst:
+            file_handler.write(",".join([str(item) for item in test]) + "\n")
+
+    convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
+
+
 def table_performance_trending_dashboard(table, input_data):
     """Generate the table(s) with algorithm:
     table_performance_trending_dashboard
