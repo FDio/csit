@@ -604,8 +604,19 @@
         - 70  # SOAK
         - 71  # SOAK
     vpp-soak-vs-ndr-2n-skx:
-      - "vpp-soak-vs-ndr-2n-skx-ref"
-      - "vpp-soak-vs-ndr-2n-skx-cmp"
+      csit-vpp-perf-verify-1904-2n-skx:
+        - 12  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 16  # NDRPDR sel
+        - 17  # NDRPDR sel
+        - 18  # NDRPDR sel
+        - 21  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 30  # NDRPDR sel
+        - 31  # NDRPDR sel
+        - 32  # NDRPDR sel
+        - 70  # SOAK
+        - 71  # SOAK
 
     vpp-performance-changes-3n-hsw-mrr-h1:
       csit-vpp-perf-verify-1810-3n-hsw:
