@@ -228,11 +228,11 @@
         - 31  # NDRPDR sel
         - 32  # NDRPDR sel
 
-#    plot-vpp-soak-2n-skx:
-#      # TODO: Replace with 1904 data
-#      # csit-vpp-perf-verify-1904-2n-skx:
-#      csit-vpp-perf-verify-1901-2n-skx:
-#        - 45  # SOAK sel
+    plot-vpp-soak-2n-skx:
+      # TODO: Add 1904 data
+      csit-vpp-perf-verify-1904-2n-skx:
+        - 70  # SOAK
+        - 71  # SOAK
 
     plot-vpp-nfv-2n-skx-ndrpdr-64b:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -1444,7 +1444,6 @@
       - 40  # NDRPDR sel
       - 42  # NDRPDR sel
       - 43  # NDRPDR sel
-#      - 45  # SOAK
     # TODO: Add 1904 data
     csit-vpp-perf-verify-1904-2n-skx:
       - 11  # MRR sel
@@ -1480,6 +1479,8 @@
       - 66  # NFV NDRPDR IMIX
       - 67  # NFV NDRPDR IMIX
       - 69  # NFV NDRPDR IMIX
+      - 70  # SOAK
+      - 71  # SOAK
 
 #    csit-ligato-perf-verify-1901-3n-hsw:
 #      - 10  # NDRPDR full
@@ -1618,8 +1619,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -4504,51 +4505,51 @@
 ###                                P L O T S                                 ###
 ################################################################################
 
-## Soak test - 30min Soak Test (PLRsearch), boxes
-#- type: "plot"
-#  title: "VPP Throughput: 30min Soak Test (PLRsearch) boxes"
-#  algorithm: "plot_soak_boxes"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/example-soak-boxes"
-#  data: "plot-vpp-soak-2n-skx"
-#  filter: "'SOAK'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  - "tags"
+# Soak test - 30min Soak Test (PLRsearch), boxes
+- type: "plot"
+  title: "VPP Throughput: 30min Soak Test (PLRsearch) boxes"
+  algorithm: "plot_soak_boxes"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/example-soak-boxes"
+  data: "plot-vpp-soak-2n-skx"
+  filter: "'SOAK'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
 #  sort:
 #  - "L2PATCH"
-##  - "L2XCBASE"
-##  - "L2BDMACLRN"
-##  - "IP4FWD"
-##  - "IP6FWD"
-#  - "VHOST"
-#  layout:
-#    title: "30min Soak Test (PLRsearch)"
-#    layout: "plot-soak-throughput"
-#
-## Soak test - example, not used
-#- type: "plot"
-#  title: "VPP Throughput: 30min Soak Test (PLRsearch) bars"
-#  algorithm: "plot_soak_bars"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/example-soak-bars"
-#  data: "plot-vpp-soak-2n-skx"
-#  filter: "'SOAK'"
-#  parameters:
-#  - "throughput"
-#  - "parent"
-#  - "tags"
+#  - "L2XCBASE"
+#  - "L2BDMACLRN"
+#  - "IP4FWD"
+#  - "IP6FWD"
+  - "VHOST"
+  layout:
+    title: "30min Soak Test (PLRsearch)"
+    layout: "plot-soak-throughput"
+
+# Soak test - example, not used
+- type: "plot"
+  title: "VPP Throughput: 30min Soak Test (PLRsearch) bars"
+  algorithm: "plot_soak_bars"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/example-soak-bars"
+  data: "plot-vpp-soak-2n-skx"
+  filter: "'SOAK'"
+  parameters:
+  - "throughput"
+  - "parent"
+  - "tags"
 #  sort:
 #  - "L2PATCH"
-##  - "L2XCBASE"
-##  - "L2BDMACLRN"
-##  - "IP4FWD"
-##  - "IP6FWD"
-#  - "VHOST"
-#  layout:
-#    title: "30min Soak Test (PLRsearch)"
-#    layout: "plot-soak-throughput"
+#  - "L2XCBASE"
+#  - "L2BDMACLRN"
+#  - "IP4FWD"
+#  - "IP6FWD"
+  - "VHOST"
+  layout:
+    title: "30min Soak Test (PLRsearch)"
+    layout: "plot-soak-throughput"
 
 ################################################################################
 # Plots - NF Density - VSC - MRR 64b
