@@ -245,6 +245,10 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
         else:
             if client:
                 client.disconnect()
+            if isinstance(rate, unicode):
+                rate = rate.encode("utf-8")
+            if isinstance(duration, unicode):
+                duration = duration.encode("utf-8")
             print("rate={0!r}, totalReceived={1}, totalSent={2}, "
                   "frameLoss={3}, latencyStream0(usec)={4}, "
                   "latencyStream1(usec)={5}, targetDuration={d!r}".
