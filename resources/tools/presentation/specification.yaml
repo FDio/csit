@@ -1669,43 +1669,14 @@
     title: "SOAK"
     data: "vpp-soak-vs-ndr-2n-skx-cmp"
   data: "vpp-soak-vs-ndr-2n-skx"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+  include-tests: "NDR"
   filter: "('NDRPDR' or 'SOAK')"
   parameters:
     - "throughput"
     - "name"
     - "parent"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+################################################################################
 
 # VPP Compare NICs 3n-hsw 1t1c ndr
 - type: "table"
