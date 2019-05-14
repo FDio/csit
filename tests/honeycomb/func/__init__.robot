@@ -29,7 +29,6 @@
 | ... | Verify Vpp On All Duts | ${nodes} | AND
 | ... | VPP Enable Traces On All Duts | ${nodes} | AND
 | ... | Update All Interface Data On All Nodes | ${nodes} | AND
-| ... | Configure all DUTs before test | AND
 | ... | Set Global Variable | ${node} | AND
 | ... | Stop Honeycomb service on DUTs | ${node} | AND
 | ... | Clear Honeycomb Log | ${node}
