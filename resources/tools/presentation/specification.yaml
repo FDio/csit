@@ -3015,7 +3015,7 @@
     data: "data msg"
   rows: "generated"
   data: "vpp-perf-results-3n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "parent"
@@ -3034,7 +3034,7 @@
     data: "data msg"
   rows: "generated"
   data: "vpp-perf-results-2n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "parent"
@@ -3091,7 +3091,7 @@
     data: "data conf-history"
   rows: "generated"
   data: "vpp-perf-results-3n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "parent"
   - "name"
@@ -3110,7 +3110,7 @@
     data: "data conf-history"
   rows: "generated"
   data: "vpp-perf-results-2n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "parent"
   - "name"
@@ -3167,7 +3167,7 @@
     data: "data show-run"
   rows: "generated"
   data: "vpp-perf-results-3n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "parent"
   - "name"
@@ -3186,7 +3186,7 @@
     data: "data show-run"
   rows: "generated"
   data: "vpp-perf-results-2n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "parent"
   - "name"
@@ -4012,7 +4012,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTR,PERF,VPP,3N,SKX]}"
   data: "vpp-perf-results-3n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "doc"
@@ -4029,7 +4029,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTR,PERF,VPP,2N,SKX]}"
   data: "vpp-perf-results-2n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "doc"
@@ -4080,7 +4080,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,PERF,VPP,3N,SKX]}"
   data: "vpp-perf-results-3n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "doc"
@@ -4097,7 +4097,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,PERF,VPP,2N,SKX]}"
   data: "vpp-perf-results-2n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "doc"
@@ -4148,7 +4148,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP,3N,SKX]}"
   data: "vpp-perf-results-3n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "doc"
@@ -4165,7 +4165,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP,2N,SKX]}"
   data: "vpp-perf-results-2n-skx"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "doc"
