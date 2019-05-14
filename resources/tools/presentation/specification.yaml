@@ -1659,14 +1659,14 @@
 
 # VPP SOAK vs NDR
 - type: "table"
-  title: "VPP SOAK vs NDR 2n-skx"
+  title: "VPP Soak vs NDR 2n-skx"
   algorithm: "table_soak_vs_ndr"
   output-file: "{DIR[STATIC,VPP]}/soak-vs-ndr-2n-skx"
   reference:
     title: "NDR"
     data: "vpp-soak-vs-ndr-2n-skx-ref"
   compare:
-    title: "SOAK"
+    title: "Soak"
     data: "vpp-soak-vs-ndr-2n-skx-cmp"
   data: "vpp-soak-vs-ndr-2n-skx"
   include-tests: "NDR"
@@ -4562,43 +4562,41 @@
   title: "VPP Throughput: 30min Soak Test (PLRsearch) boxes"
   algorithm: "plot_soak_boxes"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/example-soak-boxes"
+  output-file: "{DIR[STATIC,VPP]}/soak-test-1"
   data: "plot-vpp-soak-2n-skx"
-  filter: "'SOAK'"
+  filter: "('L2BDMACLRN' or 'L2PATCH' or 'L2XCBASE') and not 'VHOST' and not 'MEMIF'"
   parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "L2PATCH"
-#  - "L2XCBASE"
-#  - "L2BDMACLRN"
-#  - "IP4FWD"
-#  - "IP6FWD"
-  - "VHOST"
+    - "throughput"
+    - "parent"
+    - "tags"
+  sort:
+    - "DRV_AVF"
+    - "DRV_AVF"
+    - "DRV_AVF"
+    - "L2PATCH"
+    - "L2BDMACLRN"
+    - "L2XCBASE"
   layout:
     title: "30min Soak Test (PLRsearch)"
     layout: "plot-soak-throughput"
 
-# Soak test - example, not used
+# Soak test - 30min Soak Test (PLRsearch), boxes
 - type: "plot"
-  title: "VPP Throughput: 30min Soak Test (PLRsearch) bars"
-  algorithm: "plot_soak_bars"
+  title: "VPP Throughput: 30min Soak Test (PLRsearch) boxes"
+  algorithm: "plot_soak_boxes"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/example-soak-bars"
+  output-file: "{DIR[STATIC,VPP]}/soak-test-2"
   data: "plot-vpp-soak-2n-skx"
-  filter: "'SOAK'"
+  filter: "'L2BDMACLRN' and ('VHOST' or 'MEMIF') or 'IP4BASE' or 'IP6BASE'"
   parameters:
-  - "throughput"
-  - "parent"
-  - "tags"
-#  sort:
-#  - "L2PATCH"
-#  - "L2XCBASE"
-#  - "L2BDMACLRN"
-#  - "IP4FWD"
-#  - "IP6FWD"
-  - "VHOST"
+    - "throughput"
+    - "parent"
+    - "tags"
+  sort:
+    - "VHOST"
+    - "MEMIF"
+    - "IP4FWD"
+    - "IP6FWD"
   layout:
     title: "30min Soak Test (PLRsearch)"
     layout: "plot-soak-throughput"

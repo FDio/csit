@@ -12,7 +12,7 @@ FD.io CSIT-1904 Report history and per .[ww] revision changes are listed below.
 |                | - VPP 3n-skx NDRPDR full                                   |
 |                | - VPP 2n-skx NFV NDRPDR 64b and IMIX                       |
 |                |                                                            |
-|                | 2. Added SOAK tests                                        |
+|                | 2. Added Soak tests                                        |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .19            | Initial version                                            |
