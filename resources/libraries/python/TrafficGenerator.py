@@ -422,6 +422,14 @@ class TrafficGenerator(AbstractMeasurer):
         ssh.connect(self._node)
         reorder = self._ifaces_reordered  # Just to make the next line fit.
         p_0, p_1 = (rx_port, tx_port) if reorder else (tx_port, rx_port)
+        # Values from Robot can introduce type unicode,
+        # we need to encode them, so that repr() does not lead with 'u'.
+        if isinstance(rate, unicode):
+            rate = rate.encode("utf-8")
+        if isinstance(duration, unicode):
+            duration = duration.encode("utf-8")
+        if isinstance(warmup_time, unicode):
+            warmup_time = warmup_time.encode("utf-8")
         command = (
             "sh -c '{tool}/resources/tools/trex/trex_stateless_profile.py"
             " --profile {prof}/resources/traffic_profiles/trex/{traffic}.py"
