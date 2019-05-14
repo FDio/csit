@@ -51,7 +51,9 @@
 | | ... | \| Restart VPP \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
-| | Setup DUT | ${node}
+| | Restart Vpp Service | ${node}
+| | Verify Vpp | ${node}
+| | VPP Enable Traces On DUT | ${node}
 | | Check VPP connection | ${node}
 
 | Check VPP connection
@@ -83,7 +85,9 @@
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Log Persisted Configuration | ${node}
-| | Setup DUT | ${node}
+| | Restart Vpp Service | ${node}
+| | Verify Vpp | ${node}
+| | VPP Enable Traces On DUT | ${node}
 | | Configure Honeycomb service on DUTs | ${node}
 
 | Multi-Feature Persistence Test Configuration
