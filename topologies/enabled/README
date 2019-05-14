@@ -1,2 +1,0 @@
-To enable topology in testing, simlink available topology.
-  ln -s ../available/topology.yaml
