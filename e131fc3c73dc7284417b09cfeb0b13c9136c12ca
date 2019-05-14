@@ -70,6 +70,30 @@
       "revId": "e131fc3c73dc7284417b09cfeb0b13c9136c12ca",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3aa1366a_8009a5c7",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 19
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-14T10:37:21Z",
+      "side": 1,
+      "message": "\u003e the same order as the source file\n\nAre you talking about the order of fields within a message, or the order of messages defined in .api file (or both)?\n\nI needed to apply sorting to avoid seeing block movement. I can probably replicate that if needed.\n\nLooking at vppapigen, I believe this [0] line (dict instead of OrderedDict, being iterated over at line 676) has caused the behavior.\n\n\u003e I don\u0027t see any value in normalizing the current JSON files.\n\nThe source .api files are changed when the order of definitions, or order of fields within a definition changes. But PAPI behavior does not change, so sorting makes sure the generated diff stays empty.\nSome clients are sensitive to the ordering of fields within a definition, so this sorting cannot be done entirely on vppapigen side.\n\n[0] https://github.com/vpp-dev/vpp/blob/f4647ed885c47a72d94dd63e0903b6c1ae649813/src/tools/vppapigen/vppapigen.py#L650",
+      "parentUuid": "0df60ce4_f453fa7e",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 70
+      },
+      "revId": "e131fc3c73dc7284417b09cfeb0b13c9136c12ca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
