@@ -94,8 +94,9 @@
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Clear persisted Honeycomb configuration | ${node}
-| | Setup DUT | ${node}
-| | Sleep | 10s | Wait 10sec so VPP is up for sure.
+| | Restart Vpp Service | ${node}
+| | Verify Vpp | ${node}
+| | VPP Enable Traces On DUT | ${node}
 | | Configure Honeycomb service on DUTs | ${node}
 
 | Restart Honeycomb and VPP
@@ -111,8 +112,9 @@
 | | ...
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
-| | Setup DUT | ${node}
-| | Sleep | 10s | Wait 10sec so VPP is up for sure.
+| | Restart Vpp Service | ${node}
+| | Verify Vpp | ${node}
+| | VPP Enable Traces On DUT | ${node}
 | | Configure Honeycomb service on DUTs | ${node}
 
 | Restart Honeycomb and VPP in performance test
@@ -128,9 +130,9 @@
 | | ...
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
-| | Stop VPP service on DUT | ${node}
-| | Setup DUT | ${node}
-| | Sleep | 10s | Wait 10sec so VPP is up for sure.
+| | Restart Vpp Service | ${node}
+| | Verify Vpp | ${node}
+| | VPP Enable Traces On DUT | ${node}
 | | Configure Honeycomb service on DUTs | ${node}
 | | Check honeycomb startup state | ${node} | timeout=120
 
@@ -228,7 +230,9 @@
 | | ... | \| Set Up Honeycomb Functional Test Suite \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
-| | Setup DUT | ${node}
+| | Restart Vpp Service | ${node}
+| | Verify Vpp | ${node}
+| | VPP Enable Traces On DUT | ${node}
 | | Configure all TGs for traffic script
 | | Configure Honeycomb for functional testing | ${node}
 | | Configure ODL Client for functional testing | ${node}

@@ -77,7 +77,7 @@ class DUTSetup(object):
             format(host=node['host'], name=service)
 
         exec_cmd_no_error(
-            node, command, timeout=120, sudo=True, message=message)
+            node, command, timeout=180, sudo=True, message=message)
 
         DUTSetup.get_service_logs(node, service)
 
@@ -112,7 +112,7 @@ class DUTSetup(object):
             format(host=node['host'], name=service)
 
         exec_cmd_no_error(
-            node, command, timeout=120, sudo=True, message=message)
+            node, command, timeout=180, sudo=True, message=message)
 
         DUTSetup.get_service_logs(node, service)
 
@@ -145,7 +145,8 @@ class DUTSetup(object):
         message = 'Node {host} failed to stop service {name}'.\
             format(host=node['host'], name=service)
 
-        exec_cmd_no_error(node, command, timeout=30, sudo=True, message=message)
+        exec_cmd_no_error(
+            node, command, timeout=180, sudo=True, message=message)
 
         DUTSetup.get_service_logs(node, service)
 

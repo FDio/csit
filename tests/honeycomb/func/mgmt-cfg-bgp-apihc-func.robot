@@ -337,8 +337,8 @@
 | | ... | ${bgp_port} | ${bgp_as_number}
 | | Configure BGP Module | ${dut2_node} | ${dut2_to_dut1_ip}
 | | ... | ${bgp_port} | ${bgp_as_number}
-| | Start VPP service on DUT | ${dut1_node}
-| | Start VPP service on DUT | ${dut2_node}
+| | Restart VPP service | ${dut1_node}
+| | Restart VPP service | ${dut2_node}
 | | Configure Honeycomb service on DUTs | ${dut1_node}
 | | Set Up Honeycomb Functional Test Suite | ${dut2_node}
 
