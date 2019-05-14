@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cfd8b076_5a16a822",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-14T11:04:06Z",
+      "side": 1,
+      "message": "I do not think it is feasible for CSIT code to support that many slightly different APIs.\n\n$ git log v18.10-rc0..v19.01-rc0 --oneline \u0027*.api\u0027 | wc -l\n55\n$ git log v19.01-rc0..v19.04-rc0 --oneline \u0027*.api\u0027 | wc -l\n44\n$ git log v19.04-rc0..v19.08-rc0 --oneline \u0027*.api\u0027 | wc -l\n39\n\nCSIT can support few APIs under review, and few APIs recently merged.",
+      "range": {
+        "startLine": 56,
+        "startChar": 3,
+        "endLine": 56,
+        "endChar": 40
+      },
+      "revId": "86f324d57c208e9aec5606f32710f436d4069cf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07f9c238_d4cf0124",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-14T11:04:06Z",
+      "side": 1,
+      "message": "Not sure the list of .api files changed since parent commit is really needed, see comment at line 101.",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 33
+      },
+      "revId": "86f324d57c208e9aec5606f32710f436d4069cf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a406276c_e26b9b7e",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-14T11:04:06Z",
+      "side": 1,
+      "message": "This can have two causes. Either the signature is too old (so rebase is needed indeed), or the signature is new but not merged yet (when this patch is chained behind another patch that has no CSIT support yet).\nBut for the \"too new\" case, rebase is not what is needed. \"Merge the parent first\" is.",
+      "range": {
+        "startLine": 101,
+        "startChar": 53,
+        "endLine": 101,
+        "endChar": 81
+      },
+      "revId": "86f324d57c208e9aec5606f32710f436d4069cf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
