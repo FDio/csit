@@ -170,7 +170,7 @@
 | | Configure Control Interface Tunnel
 | | ... | ${tg_node} | ${dut_node['honeycomb']['netconf_port']}
 | | ... | ${dut_to_tg_if2_ip} | ${dut_node['honeycomb']['netconf_port']}
-| | Start VPP service on DUT | ${dut_node}
+| | Restart VPP service | ${dut_node}
 | | Configure Honeycomb service on DUTs | ${dut_node}
 
 | Unconfigure IPv6 Management Interface
