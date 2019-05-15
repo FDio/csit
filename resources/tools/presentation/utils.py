@@ -16,6 +16,7 @@
 
 import multiprocessing
 import subprocess
+import math
 import numpy as np
 import logging
 import csv
@@ -66,6 +67,32 @@ def relative_change(nr1, nr2):
     """
 
     return float(((nr2 - nr1) / nr1) * 100)
+
+
+def relative_change_stdev(mean1, mean2, std1, std2):
+    """Compute relative standard deviation of change of two values.
+
+    The "1" values are the base for comparison.
+    Results are returned as percentage (and percentual points for stdev).
+    Linearized theory is used, so results are wrong for relatively large stdev.
+
+    :param mean1: Mean of the first number.
+    :param mean2: Mean of the second number.
+    :param std1: Standard deviation estimate of the first number.
+    :param std2: Standard deviation estimate of the second number.
+    :type mean1: float
+    :type mean2: float
+    :type std1: float
+    :type std2: float
+    :returns: Relative change and its stdev.
+    :rtype: float
+    """
+    mean1, mean2 = float(mean1), float(mean2)
+    quotient = mean2 / mean1
+    first = std1 / mean1
+    second = std2 / mean2
+    std = quotient * math.sqrt(first * first + second * second)
+    return (quotient - 1) * 100, std * 100
 
 
 def get_files(path, extension=None, full_path=True):
