@@ -241,6 +241,7 @@
         - 60  # NFV NDRPDR 64b
         - 65  # NFV NDRPDR 64b
         - 68  # NFV NDRPDR 64b
+        - 80  # NFV MRR NDRPDR 64b IMIX
 
     plot-vpp-nfv-2n-skx-ndrpdr-imix:
       # TODO: Add 1904 data
@@ -248,6 +249,7 @@
         - 66  # NFV NDRPDR IMIX
         - 67  # NFV NDRPDR IMIX
         - 69  # NFV NDRPDR IMIX
+        - 80  # NFV MRR NDRPDR 64b IMIX
 
     plot-vpp-nfv-2n-skx-mrr-64b:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -256,6 +258,7 @@
         - 42  # NFV MRR 64b
         - 47  # NFV MRR 64b
         - 48  # NFV MRR 64b
+        - 80  # NFV MRR NDRPDR 64b IMIX
 
     plot-vpp-nfv-2n-skx-mrr-imix:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -264,6 +267,7 @@
         - 51  # NFV MRR IMIX
         - 54  # NFV MRR IMIX
         - 55  # NFV MRR IMIX
+        - 80  # NFV MRR NDRPDR 64b IMIX
 
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-verify-1904-2n-skx:
@@ -1510,6 +1514,7 @@
       - 66  # NFV NDRPDR IMIX
       - 67  # NFV NDRPDR IMIX
       - 69  # NFV NDRPDR IMIX
+      - 80  # NFV MRR NDRPDR 64b IMIX
       - 70  # SOAK
       - 71  # SOAK
 
@@ -4578,7 +4583,7 @@
     - "L2XCBASE"
   traces:
     hoverinfo: "x+y"
-    boxpoints: "outliers"
+    boxpoints: "all"
     whiskerwidth: 0
   layout:
     title: "30min Soak Test (PLRsearch)"
@@ -4603,7 +4608,7 @@
     - "IP6FWD"
   traces:
     hoverinfo: "x+y"
-    boxpoints: "outliers"
+    boxpoints: "all"
     whiskerwidth: 0
   layout:
     title: "30min Soak Test (PLRsearch)"
