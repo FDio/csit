@@ -1,4 +1,4 @@
-3n-hsw-xl710-64b-base-scale-hw
+3n-hsw-xl710-64b-base-scale-sw
 ------------------------------
 
 1t1c
@@ -11,7 +11,7 @@
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-1t1c-xl710-3n-hsw.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsecsw-1t1c-xl710-3n-hsw.html"></iframe>
     <p><br></p>
     </center>
 
@@ -25,7 +25,7 @@
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-2t2c-xl710-3n-hsw.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsecsw-2t2c-xl710-3n-hsw.html"></iframe>
     <p><br></p>
     </center>
 
@@ -39,6 +39,6 @@
     Links to builds:
     <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsec-4t4c-xl710-3n-hsw.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ipsecsw-4t4c-xl710-3n-hsw.html"></iframe>
     <p><br></p>
     </center>

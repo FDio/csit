@@ -2161,7 +2161,7 @@
     - title: "3n-hsw-xl710-ip4-ipsechw-64b-base-scale-1t1c"
       output-file-name: "ipsec-1t1c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECHW' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2169,7 +2169,7 @@
     - title: "3n-hsw-xl710-ip4-ipsechw-64b-base-scale-2t2c"
       output-file-name: "ipsec-2t2c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECHW' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2177,7 +2177,31 @@
     - title: "3n-hsw-xl710-ip4-ipsechw-64b-base-scale-4t4c"
       output-file-name: "ipsec-4t4c-xl710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECHW' and ('IPSECTRAN' or 'IPSECTUN') and not 'VHOST'"
+      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECHW' and not 'VHOST'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-hsw-xl710-ip4-ipsecsw-64b-base-scale-1t1c"
+      output-file-name: "ipsecsw-1t1c-xl710-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECSW' and not 'VHOST'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-hsw-xl710-ip4-ipsecsw-64b-base-scale-2t2c"
+      output-file-name: "ipsecsw-2t2c-xl710-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECSW' and not 'VHOST'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-hsw-xl710-ip4-ipsecsw-64b-base-scale-4t4c"
+      output-file-name: "ipsecsw-4t4c-xl710-3n-hsw"
+      data: "plot-performance-trending-vpp-3n-hsw"
+      filter: "'NIC_Intel-XL710' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECSW' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"

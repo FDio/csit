@@ -693,6 +693,10 @@ def _generate_url(base, testbed, test_name):
             file_name = "vm_vhost_ip4"
             feature = "-base"
 
+    elif "ipsecbasetnlsw" in test_name:
+        file_name = "ipsecsw"
+        feature = "-base-scale"
+
     elif "ipsec" in test_name:
         file_name = "ipsec"
         feature = "-base-scale"
