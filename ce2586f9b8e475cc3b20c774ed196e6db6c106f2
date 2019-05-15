@@ -46,6 +46,30 @@
       "revId": "ce2586f9b8e475cc3b20c774ed196e6db6c106f2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd196ca0_eb69dd5a",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-15T14:53:16Z",
+      "side": 1,
+      "message": "yes....+1 for workaround but keep in mind to not overblown the workaround of workarounds ;)",
+      "parentUuid": "ddad7d06_b11d375b",
+      "range": {
+        "startLine": 669,
+        "startChar": 0,
+        "endLine": 670,
+        "endChar": 75
+      },
+      "revId": "ce2586f9b8e475cc3b20c774ed196e6db6c106f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
