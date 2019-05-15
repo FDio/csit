@@ -24,8 +24,8 @@ import prettytable
 from os import walk, makedirs, environ
 from os.path import join, isdir
 from shutil import move, Error
-from math import sqrt
 from datetime import datetime
+from pandas import Series
 
 from errors import PresentationError
 from jumpavg.BitCountingClassifier import BitCountingClassifier
@@ -51,11 +51,7 @@ def stdev(items):
     :returns: Stdev.
     :rtype: float
     """
-
-    avg = mean(items)
-    variance = [(x - avg) ** 2 for x in items]
-    stddev = sqrt(mean(variance))
-    return stddev
+    return Series.std(Series(items))
 
 
 def relative_change(nr1, nr2):

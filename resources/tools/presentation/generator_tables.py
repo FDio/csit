@@ -608,21 +608,24 @@ def table_soak_vs_ndr(table, input_data):
     tbl_lst = list()
     for tst_name in tbl_dict.keys():
         item = [tbl_dict[tst_name]["name"], ]
-        data_t = tbl_dict[tst_name]["ref-data"]
-        if data_t:
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+        data_r = tbl_dict[tst_name]["ref-data"]
+        if data_r:
+            data_r_mean = mean(data_r)
+            item.append(round(data_r_mean / 1000000, 2))
+            item.append(round(stdev(data_r) / 1000000, 2))
         else:
+            data_r_mean = None
             item.extend([None, None])
-        data_t = tbl_dict[tst_name]["cmp-data"]
-        if data_t:
-            item.append(round(mean(data_t) / 1000000, 2))
-            item.append(round(stdev(data_t) / 1000000, 2))
+        data_c = tbl_dict[tst_name]["cmp-data"]
+        if data_c:
+            data_c_mean = mean(data_c)
+            item.append(round(data_c_mean / 1000000, 2))
+            item.append(round(stdev(data_c) / 1000000, 2))
         else:
+            data_c_mean = None
             item.extend([None, None])
-        if item[-4] is not None and item[-2] is not None and item[-4] != 0:
-            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
-        if len(item) == len(header):
+        if data_r_mean and data_c_mean is not None:
+            item.append(round(relative_change(data_r_mean, data_c_mean), 2))
             tbl_lst.append(item)
 
     # Sort the table according to the relative change

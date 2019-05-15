@@ -4560,7 +4560,7 @@
 # Soak test - 30min Soak Test (PLRsearch), boxes
 - type: "plot"
   title: "VPP Throughput: 30min Soak Test (PLRsearch) boxes"
-  algorithm: "plot_soak_boxes"
+  algorithm: "plot_performance_box"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/soak-test-1"
   data: "plot-vpp-soak-2n-skx"
@@ -4583,7 +4583,7 @@
 # Soak test - 30min Soak Test (PLRsearch), boxes
 - type: "plot"
   title: "VPP Throughput: 30min Soak Test (PLRsearch) boxes"
-  algorithm: "plot_soak_boxes"
+  algorithm: "plot_performance_box"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/soak-test-2"
   data: "plot-vpp-soak-2n-skx"
