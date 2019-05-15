@@ -666,6 +666,8 @@ function select_tags () {
             ;;
         *"3n-skx"*)
             test_tag_array+=("!ipsechw")
+            # Not enough nic_intel-xxv710 to support double link tests.
+            test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
             ;;
         *"3n-tsh"*)
             test_tag_array+=("!ipsechw")
