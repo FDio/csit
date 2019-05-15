@@ -220,8 +220,77 @@ as the observed trends have varied characteristics.
 Probably, using a more realistic fitting functions
 will give better estimates than trend analysis.
 
-..
-    TODO: Add graphical examples created from 1904 data.
+Graphical examples
+``````````````````
+
+The following pictures show the upper (red) and lower (blue) bound,
+as well as average of stretch (pink) and erf (light green) estimate,
+and offered load chosen (grey), as computed by PLRsearch,
+after each trial measurement within the 2 hour duration of a test run.
+
+Both graphs are focusing on later estimates. Estimates computed from
+few initial measurements are wildly off the y-axis range shown.
+
+L2 patch
+--------
+
+This test case shows quite narrow critical region. Both fitting functions
+give similar estimates, the graph shows the randomness of measurements,
+and a trend. Both fitting functions seem to be fairly precise in estimating
+the critical rate, but the performance of the system decreases slightly
+over time. The final estimated interval is fairly narrow,
+but corresponds to the measured results.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/introduction/methodology_data_plane_throughput/}}
+                \includegraphics[width=0.90\textwidth]{PLR_patch}
+                \label{fig:PLR_patch}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: PLR_patch.svg
+        :alt: PLR_patch
+        :align: center
+
+Vhost
+-----
+
+This test case shows quite broad critical region. Fitting functions give
+fairly differing estimates. Erf function overestimates, stretch function
+is fairly precise (based on its estimate not moving much with time).
+The graph mostly shows later measurements slowly bringing the estimates
+towards each other. The final estimated interval is too broad,
+a longer run would return a smaller interval within the current one.
+
+The broadness is caused by result composition, which consists of
+mostly zero loss measurements, partialy of medium loss measurements,
+and lack of small loss measurements the loss ratio target would imply.
+
+With this result composition, it is expected that the convergence
+of the two bounds is slow.
+
+.. only:: latex
+
+    .. raw:: latex
+
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_tmp/src/introduction/methodology_data_plane_throughput/}}
+                \includegraphics[width=0.90\textwidth]{PLR_vhost}
+                \label{fig:PLR_vhost}
+        \end{figure}
+
+.. only:: html
+
+    .. figure:: PLR_vhost.svg
+        :alt: PLR_vhost
+        :align: center
 
 .. _draft-vpolak-bmwg-plrsearch-01: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-01
 .. _plrsearch draft: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-00
