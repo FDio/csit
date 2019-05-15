@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bbd9e11a_0f180ba4",
+        "filename": "resources/libraries/bash/function/gather.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T10:45:28Z",
+      "side": 1,
+      "message": "This should contain artifacts to test (downloaded or locally built, in your case VPP and HC2VPP ones). It is correct to fail early if there is no artifact to test.",
+      "range": {
+        "startLine": 46,
+        "startChar": 36,
+        "endLine": 46,
+        "endChar": 51
+      },
+      "revId": "fba4ed98f6ea9076994a202283aac063a566288f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c38bc58_b3bfb34d",
+        "filename": "resources/libraries/robot/honeycomb/honeycomb.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T10:45:28Z",
+      "side": 1,
+      "message": "+1",
+      "range": {
+        "startLine": 44,
+        "startChar": 38,
+        "endLine": 44,
+        "endChar": 44
+      },
+      "revId": "fba4ed98f6ea9076994a202283aac063a566288f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfd4e5ab_e151fa43",
+        "filename": "resources/libraries/robot/honeycomb/honeycomb.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T10:45:28Z",
+      "side": 1,
+      "message": "Move out of the loop?",
+      "range": {
+        "startLine": 45,
+        "startChar": 6,
+        "endLine": 45,
+        "endChar": 11
+      },
+      "revId": "fba4ed98f6ea9076994a202283aac063a566288f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "227417af_66b7509e",
+        "filename": "resources/tools/scripts/topo_cleanup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T10:45:28Z",
+      "side": 1,
+      "message": "This can leave system in a state with unsatisfied dependecies, which is bad for debugging and replication. Is there something wrong with \"apt-get purge\" in Base?\n\nThe dpkg command can be used if apt-get fails for some reason.",
+      "range": {
+        "startLine": 67,
+        "startChar": 33,
+        "endLine": 67,
+        "endChar": 61
+      },
+      "revId": "fba4ed98f6ea9076994a202283aac063a566288f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b2437670_ea8fc03d",
+        "filename": "tests/honeycomb/perf/localhostp1-tcp-netconf16t-crud-read.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T10:45:28Z",
+      "side": 1,
+      "message": "It would be good to have some HC related tag, so make life easier for people running pybot manually.",
+      "range": {
+        "startLine": 23,
+        "startChar": 24,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "fba4ed98f6ea9076994a202283aac063a566288f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "edb05367_da4e7902",
+        "filename": "tests/honeycomb/perf/localhostp1-tcp-netconf1t-crud-read.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T10:45:28Z",
+      "side": 1,
+      "message": "And even better is to introduce tags which distinguish suites.",
+      "range": {
+        "startLine": 23,
+        "startChar": 24,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "fba4ed98f6ea9076994a202283aac063a566288f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ac9e702_0b8e677f",
+        "filename": "topologies/available/lf_1n_cpp_testbed1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T10:45:28Z",
+      "side": 1,
+      "message": "Not present in CSIT master. Did you forget to add it to this patch?",
+      "range": {
+        "startLine": 5,
+        "startChar": 33,
+        "endLine": 5,
+        "endChar": 57
+      },
+      "revId": "fba4ed98f6ea9076994a202283aac063a566288f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
