@@ -216,7 +216,9 @@
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Modify persistence files | ${node} | { | abc
-| | Setup DUT | ${node}
+| | Restart Vpp Service | ${node}
+| | Verify Vpp | ${node}
+| | VPP Enable Traces On DUT | ${node}
 | | Configure Honeycomb service on DUTs | ${node}
 
 | Log persisted configuration on node
