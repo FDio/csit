@@ -33,11 +33,7 @@
 Soak Tests
 ==========
 
-Long duration soak tests are executed using `PLRsearch algorithm`_.
-
-As soak tests are new, and take long time to run,
-only 6 tests were executed. From those, 4 tests encountered some caveat,
-making their results unreliable.
+Long duration soak tests are executed using `plrsearch_algorithm`_.
 
 Additional information about graph data:
 
@@ -49,8 +45,14 @@ Additional information about graph data:
 
 #. **Graph Legend**: list of X-axis indices with CSIT test suites.
 
-#. **Hover Information**: lists the lower and upper bounds for the estimated
-   throughput value.
+#. **Hover Information**: lists minimum, first quartile, median,
+   third quartile, and maximum. If either type of outlier is present the
+   whisker on the appropriate side is taken to 1.5×IQR from the quartile
+   (the "inner fence") rather than the max or min, and individual outlying
+   data points are displayed as unfilled circles (for suspected outliers)
+   or filled circles (for outliers). (The "outer fence" is 3×IQR from the
+   quartile.)
+   It also lists the lower bounds for the estimated throughput value.
 
 .. note::
 
