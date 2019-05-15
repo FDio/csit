@@ -551,7 +551,7 @@ def table_soak_vs_ndr(table, input_data):
             "{0} Stdev [Mpps]".format(table["reference"]["title"]),
             "{0} Throughput [Mpps]".format(table["compare"]["title"]),
             "{0} Stdev [Mpps]".format(table["compare"]["title"]),
-            "Delta [%]"]
+            "Delta [%]", "Stdev of delta [%]"]
         header_str = ",".join(header) + "\n"
     except (AttributeError, KeyError) as err:
         logging.error("The model is invalid, missing parameter: {0}".
@@ -612,7 +612,8 @@ def table_soak_vs_ndr(table, input_data):
         if data_r:
             data_r_mean = mean(data_r)
             item.append(round(data_r_mean / 1000000, 2))
-            item.append(round(stdev(data_r) / 1000000, 2))
+            data_r_stdev = stdev(data_r)
+            item.append(round(data_r_stdev / 1000000, 2))
         else:
             data_r_mean = None
             item.extend([None, None])
@@ -620,12 +621,17 @@ def table_soak_vs_ndr(table, input_data):
         if data_c:
             data_c_mean = mean(data_c)
             item.append(round(data_c_mean / 1000000, 2))
-            item.append(round(stdev(data_c) / 1000000, 2))
+            data_c_stdev = stdev(data_c)
+            item.append(round(data_c_stdev / 1000000, 2))
         else:
             data_c_mean = None
             item.extend([None, None])
         if data_r_mean and data_c_mean is not None:
             item.append(round(relative_change(data_r_mean, data_c_mean), 2))
+            delta, d_stdev = relative_change_stdev(
+                data_r_mean, data_c_mean, data_r_stdev, data_c_stdev)
+            item.append(round(delta, 2))
+            item.append(round(d_stdev, 2))
             tbl_lst.append(item)
 
     # Sort the table according to the relative change
