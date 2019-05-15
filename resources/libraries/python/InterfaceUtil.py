@@ -22,7 +22,7 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DUTSetup import DUTSetup
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.PapiExecutor import PapiExecutor
@@ -1657,14 +1657,13 @@ class InterfaceUtil(object):
         cmd_reply = 'sw_interface_rx_placement_details'
         err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".format(
             cmd=cmd, host=node['host'])
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             for ifc in node['interfaces'].values():
                 if ifc['vpp_sw_index'] is not None:
                     papi_exec.add(cmd, sw_if_index=ifc['vpp_sw_index'])
-            papi_resp = papi_exec.get_dump(err_msg)
-        thr_mapping = [s[cmd_reply] for r in papi_resp.reply
-                       for s in r['api_reply']]
-        return sorted(thr_mapping, key=lambda k: k['sw_if_index'])
+            data = papi_exec.get_details().verify_details(err_msg)
+        logger.debug(repr(data))
+        return sorted(data, key=lambda k: k['sw_if_index'])
 
     @staticmethod
     def vpp_sw_interface_set_rx_placement(node, sw_if_index, queue_id,
@@ -1684,18 +1683,12 @@ class InterfaceUtil(object):
         """
 
         cmd = 'sw_interface_set_rx_placement'
-        cmd_reply = 'sw_interface_set_rx_placement_reply'
         err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".format(
             host=node['host'], cmd=cmd)
         args = dict(sw_if_index=sw_if_index, queue_id=queue_id,
                     worker_id=worker_id)
-        with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
-        data = papi_resp.reply[0]['api_reply'][cmd_reply]
-        if data['retval'] != 0:
-            raise RuntimeError("Failed to set interface RX placement "
-                               "to worker on host {host}".
-                               format(host=node['host']))
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies().verify_reply(err_msg)
 
     @staticmethod
     def vpp_round_robin_rx_placement(node, prefix):
