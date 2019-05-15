@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "47b14d45_f3366459",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T15:08:33Z",
+      "side": 1,
+      "message": "\u003e cisco_vpp_device.yaml\n\nYou mean cisco_vpp_device.template in this case?\nAlright, maybe add a code comment explaining we are using quite permissive globs just so downstream users do not need to edit them.",
+      "parentUuid": "41ae330d_7dcab37c",
+      "range": {
+        "startLine": 773,
+        "startChar": 45,
+        "endLine": 773,
+        "endChar": 57
+      },
+      "revId": "40f08a156ec6e1e3d2999e2f40185148147ff585",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21af1a62_c222d092",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 1
