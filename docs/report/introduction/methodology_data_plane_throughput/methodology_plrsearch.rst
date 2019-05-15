@@ -234,12 +234,23 @@ few initial measurements are wildly off the y-axis range shown.
 L2 patch
 --------
 
-This test case shows quite narrow critical region. Both fitting functions
-give similar estimates, the graph shows the randomness of measurements,
-and a trend. Both fitting functions seem to be fairly precise in estimating
-the critical rate, but the performance of the system decreases slightly
-over time. The final estimated interval is fairly narrow,
-but corresponds to the measured results.
+This test case shows quite narrow critical region, compared to the area
+the estimates have travelled during the search. Sometimes
+it is an example of high probability of the real critical load being outside
+the reported estimates, but not in this case.
+
+Both fitting functions give similar estimates,
+the graph shows the randomness of measurements, and a trend.
+Both fitting functions seem to be fairly precise in estimating
+the current critical rate, but the performance of the system
+decreases slightly over time.
+
+In this case, the "real critical load" changes over time,
+as evidenced by zero loss measurements (visible as grey box
+appearing above the estimation lines).
+
+The final estimated interval is fairly narrow, but corresponds
+to the overall results measured so far.
 
 .. only:: latex
 
@@ -262,11 +273,17 @@ Vhost
 -----
 
 This test case shows quite broad critical region. Fitting functions give
-fairly differing estimates. Erf function overestimates, stretch function
-is fairly precise (based on its estimate not moving much with time).
+fairly differing estimates. Usually that signifies poor eastimation quality,
+which is also true for this case.
+
+Erf function overestimates (based on the estimates going steadily down),
+stretch function is fairly precise (based on its estimate
+not moving much with time).
+
 The graph mostly shows later measurements slowly bringing the estimates
 towards each other. The final estimated interval is too broad,
-a longer run would return a smaller interval within the current one.
+compared to precisions achieved in other test cases.
+A longer run would return a smaller interval within the current one.
 
 The broadness is caused by result composition, which consists of
 mostly zero loss measurements, partialy of medium loss measurements,
@@ -291,6 +308,19 @@ of the two bounds is slow.
     .. figure:: PLR_vhost.svg
         :alt: PLR_vhost
         :align: center
+
+Summary
+-------
+
+The two graphs show the behavior of PLRsearch algorithm when some of assumptions
+used to derive the PLRsearch logic do not hold.
+
+L2 patch violates assumption of performance not changing over time,
+and Vhost violates assumption of Poisson distribution matching the loss counts.
+
+The reported upper and lower bounds can have distance larger or smaller
+than human intuition would suggest, but it can be argued
+the quality of the estimate is still better than other methods would give.
 
 .. _draft-vpolak-bmwg-plrsearch-01: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-01
 .. _plrsearch draft: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-00
