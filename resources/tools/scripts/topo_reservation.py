@@ -27,6 +27,7 @@ from yaml import load
 
 RESERVATION_DIR = "/tmp/reservation_dir"
 
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", "--topo", required=True,
@@ -37,20 +38,28 @@ def main():
     topology_file = args.topo
     cancel_reservation = args.cancel
 
-    work_file = open(topology_file)
-    topology = load(work_file.read())['nodes']
+    with open(topology_file) as work_file:
+        topology = load(work_file.read())['nodes']
 
+    # Look for first node dedicated to reservation, otherwise use TG.
     # Even if TG is not guaranteed to be a Linux host,
-    # we are using it, because testing shows SSH access to DUT
+    # we are using it by default, because testing shows SSH access to DUT
     # during test affects its performance (bursts of lost packets).
-    try:
-        tg_node = topology["TG"]
-    except KeyError:
-        print "Topology file does not contain 'TG' node"
-        return 1
+
+    for node in topology.values():
+        if 'reservation' in node and node['reservation']:
+            reservation_node = node
+            break
+    else:
+        try:
+            reservation_node = topology["TG"]
+        except KeyError:
+            print "Topology file does not contain the default" \
+                  "reservation node - 'TG'"
+            return 1
 
     ssh = SSH()
-    ssh.connect(tg_node)
+    ssh.connect(reservation_node)
 
     # For system reservation we use mkdir it is an atomic operation and we can
     # store additional data (time, client_ID, ..) within reservation directory.

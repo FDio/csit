@@ -436,6 +436,10 @@ function get_test_code () {
             NODENESS="1n"
             FLAVOR="skx"
             ;;
+        *"1n-cpp"*)
+            NODENESS="1n"
+            FLAVOR="cpp"
+            ;;
         *"2n-skx"*)
             NODENESS="2n"
             FLAVOR="skx"
@@ -486,6 +490,7 @@ function get_test_tag_string () {
                 # On parsing error, ${trigger} stays empty.
                 comment="${GERRIT_EVENT_COMMENT_TEXT}"
                 # As "perftest" can be followed by something, we substitute it.
+                comment="${comment/perftest-1n/perftest}"
                 comment="${comment/perftest-2n/perftest}"
                 comment="${comment/perftest-3n/perftest}"
                 comment="${comment/perftest-hsw/perftest}"
@@ -597,6 +602,7 @@ function select_tags () {
     set -exuo pipefail
 
     # Variables read:
+    # - DUT - Type of tests that will be run.
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # - TEST_CODE - String affecting test selection, usually jenkins job name.
     # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
@@ -605,83 +611,97 @@ function select_tags () {
     # Variables set:
     # - TAGS - Array of processed tag boolean expressions.
 
-    # NIC SELECTION
-    start_pattern='^  TG:'
-    end_pattern='^ \? \?[A-Za-z0-9]\+:'
-    # Remove the TG section from topology file
-    sed_command="/${start_pattern}/,/${end_pattern}/d"
-    # All topologies DUT NICs
-    available=$(sed "${sed_command}" "${TOPOLOGIES_DIR}"/* \
-                | grep -hoP "model: \K.*" | sort -u)
-    # Selected topology DUT NICs
-    reserved=$(sed "${sed_command}" "${WORKING_TOPOLOGY}" \
-               | grep -hoP "model: \K.*" | sort -u)
-    # All topologies DUT NICs - Selected topology DUT NICs
-    exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}")))
-
-    # Select default NIC
-    case "${TEST_CODE}" in
-        *"3n-tsh"*)
-            DEFAULT_NIC='nic_intel-x520-da2'
-            ;;
-        *)
-            DEFAULT_NIC='nic_intel-x710'
-            ;;
-    esac
-
-    case "${TEST_CODE}" in
-        # Select specific performance tests based on jenkins job type variable.
-        *"ndrpdr-weekly"* )
-            readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mlr-weekly.txt"
-            ;;
-        *"mrr-daily"* )
-            readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mrr-daily.txt"
-            ;;
-        *"mrr-weekly"* )
-            readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mrr-weekly.txt"
-            ;;
-        * )
+    case "${DUT}" in
+        *"honeycomb"* )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrAND${DEFAULT_NIC}AND1cAND64bANDip4base"
-                                "mrrAND${DEFAULT_NIC}AND1cAND78bANDip6base"
-                                "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2bdbase"
-                                "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2xcbase"
-                                "!dot1q" "!drv_avf")
+                test_tag_array=()
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
             fi
-            ;;
-    esac
+        ;;
+        * )
+            # NIC SELECTION
+            start_pattern='^  TG:'
+            end_pattern='^ \? \?[A-Za-z0-9]\+:'
+            # Remove the TG section from topology file
+            sed_command="/${start_pattern}/,/${end_pattern}/d"
+            # All topologies DUT NICs
+            available=$(sed "${sed_command}" "${TOPOLOGIES_DIR}"/* \
+                        | grep -hoP "model: \K.*" | sort -u)
+            # Selected topology DUT NICs
+            reserved=$(sed "${sed_command}" "${WORKING_TOPOLOGY}" \
+                       | grep -hoP "model: \K.*" | sort -u)
+            # All topologies DUT NICs - Selected topology DUT NICs
+            exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}")))
 
-    # Blacklisting certain tags per topology.
-    case "${TEST_CODE}" in
-        *"3n-hsw"*)
-            test_tag_array+=("!drv_avf")
-            ;;
-        *"2n-skx"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-skx"*)
-            test_tag_array+=("!ipsechw")
-            ;;
-        *"3n-tsh"*)
-            test_tag_array+=("!ipsechw")
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
-            ;;
-        *)
-            # Default to 3n-hsw due to compatibility.
-            test_tag_array+=("!drv_avf")
-            ;;
-    esac
+            # Select default NIC
+            case "${TEST_CODE}" in
+                *"3n-tsh"*)
+                    DEFAULT_NIC='nic_intel-x520-da2'
+                    ;;
+                *)
+                    DEFAULT_NIC='nic_intel-x710'
+                    ;;
+            esac
 
-    # We will add excluded NICs.
-    test_tag_array+=("${exclude_nics[@]/#/!NIC_}")
+            case "${TEST_CODE}" in
+                # Select specific performance tests based on jenkins job type variable.
+                *"ndrpdr-weekly"* )
+                    readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mlr-weekly.txt"
+                    ;;
+                *"mrr-daily"* )
+                    readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mrr-daily.txt"
+                    ;;
+                *"mrr-weekly"* )
+                    readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mrr-weekly.txt"
+                    ;;
+                * )
+                    if [[ -z "${TEST_TAG_STRING-}" ]]; then
+                        # If nothing is specified, we will run pre-selected tests by
+                        # following tags.
+                        test_tag_array=("mrrAND${DEFAULT_NIC}AND1cAND64bANDip4base"
+                                        "mrrAND${DEFAULT_NIC}AND1cAND78bANDip6base"
+                                        "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2bdbase"
+                                        "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2xcbase"
+                                        "!dot1q" "!drv_avf")
+                    else
+                        # If trigger contains tags, split them into array.
+                        test_tag_array=(${TEST_TAG_STRING//:/ })
+                    fi
+                    ;;
+            esac
+
+            # Blacklisting certain tags per topology.
+            case "${TEST_CODE}" in
+                *"3n-hsw"*)
+                    test_tag_array+=("!drv_avf")
+                    ;;
+                *"2n-skx"*)
+                    test_tag_array+=("!ipsechw")
+                    ;;
+                *"3n-skx"*)
+                    test_tag_array+=("!ipsechw")
+                    ;;
+                *"3n-tsh"*)
+                    test_tag_array+=("!ipsechw")
+                    test_tag_array+=("!memif")
+                    test_tag_array+=("!srv6_proxy")
+                    test_tag_array+=("!vhost")
+                    test_tag_array+=("!vts")
+                    ;;
+                *)
+                    # Default to 3n-hsw due to compatibility.
+                    test_tag_array+=("!drv_avf")
+                    ;;
+            esac
+
+            # We will add excluded NICs.
+            test_tag_array+=("${exclude_nics[@]/#/!NIC_}")
+        ;;
+    esac
 
     TAGS=()
 
@@ -780,6 +800,12 @@ function select_topology () {
                         "${TOPOLOGIES_DIR}/vpp_device.template"
                        )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "1n_cpp")
+            TOPOLOGIES=(
+                        "${TOPOLOGIES_DIR}/lf_1n_cpp_testbed1.yaml"
+                       )
+            TOPOLOGIES_TAGS="1_node_topo"
             ;;
         "2n_skx")
             TOPOLOGIES=(

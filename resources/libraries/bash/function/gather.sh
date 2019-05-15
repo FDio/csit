@@ -43,10 +43,11 @@ function gather_build () {
     #   when the first one becomes relevant for per_patch.
 
     pushd "${DOWNLOAD_DIR}" || die "Pushd failed."
+    # FIXME: Avoid failing on empty ${DOWNLOAD_DIR}.
     case "${TEST_CODE}" in
         *"hc2vpp"*)
-            DUT="hc2vpp"
-            # FIXME: Avoid failing on empty ${DOWNLOAD_DIR}.
+            DUT="honeycomb"
+            gather_hc2vpp || die "The function should have died on error."
             ;;
         *"vpp"*)
             DUT="vpp"
@@ -113,6 +114,37 @@ function gather_dpdk () {
     fi
 }
 
+function gather_hc2vpp () {
+
+    set -exuo pipefail
+
+    # Variables read:
+    # - BASH_FUNCTION_DIR - Bash directory with functions.
+    # - CSIT_DIR - Path to existing root of local CSIT git repository.
+    # Files read:
+    # - ${CSIT_DIR}/VPP_STABLE_VER_UBUNTU - VPP version to use.
+    # - ../*.deb - Relative to ${DOWNLOAD_DIR}.
+    # Directories updated:
+    # - ${DOWNLOAD_DIR}, vpp-*.deb files are copied here.
+    # - ./ - Assumed ${DOWNLOAD_DIR}, vpp-*.deb files are downloaded here.
+    # Functions called:
+    # - die - Print to stderr and exit, defined in common_functions.sh
+    # - download_artifacts - Download VPP packages
+    # - download_hc_artifacts - Download Hc2vpp packages
+    # Bash scripts sourced:
+    # - ${CSIT_DIR}/resources/libraries/bash/function/artifacts.sh
+    # - ${CSIT_DIR}/resources/libraries/bash/function/artifacts_hc.sh
+    #   - Should download and extract requested files to ./.
+
+    warn "Downloading stable VPP packages from Packagecloud."
+    VPP_VERSION="$(<"${CSIT_DIR}/VPP_STABLE_VER_UBUNTU_BIONIC")" || {
+        die "Read VPP stable version failed."
+    }
+    source "${BASH_FUNCTION_DIR}/artifacts.sh" || die "Source failed."
+    download_artifacts || die "The function should have died on error."
+    source "${BASH_FUNCTION_DIR}/artifacts_hc.sh" || die "Source failed."
+    download_artifacts_hc || die "The function should have died on error."
+}
 
 function gather_ligato () {
 

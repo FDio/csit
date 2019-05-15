@@ -41,7 +41,7 @@
 | | [Arguments] | @{duts}
 | | Start honeycomb on DUTs | @{duts}
 | | :FOR | ${dut} | IN | @{duts}
-| | | Check honeycomb startup state | @{duts}
+| | | Check honeycomb startup state | ${dut}
 | | | Sleep | 5s | Make sure all modules are loaded and ready.
 
 | Stop Honeycomb service on DUTs
@@ -65,7 +65,7 @@
 | | Stop honeycomb on DUTs | @{duts}
 | | :FOR | ${dut} | IN | @{duts}
 | | | Wait until keyword succeeds | 60sec | 15sec
-| | | ... | Check honeycomb shutdown state | @{duts}
+| | | ... | Check honeycomb shutdown state | ${dut}
 
 | Clear persisted Honeycomb configuration
 | | [Documentation] | *Delete saved configuration.*

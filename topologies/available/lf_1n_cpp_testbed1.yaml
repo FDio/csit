@@ -1,0 +1,22 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/1_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 1-node]
+
+nodes:
+  DUT1:
+    type: DUT
+    host: "10.0.2.15"
+    arch: x86_64
+    port: 22
+    reservation: True
+    username: jlinkes
+    password: a
+    honeycomb:
+      user: admin
+      passwd: admin
+      port: 8183
+      netconf_port: 2831

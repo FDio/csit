@@ -46,6 +46,7 @@ def execute_command_ssh(ssh, cmd, sudo=False):
 
     return ret, stdout, stdout
 
+
 def uninstall_package(ssh, package):
     """If there are packages installed, clean them up.
 
@@ -55,14 +56,17 @@ def uninstall_package(ssh, package):
     :type package: str
     """
     if dist()[0] == 'Ubuntu':
-        ret, _, _ = ssh.exec_command("dpkg -l | grep {package}".format(
-            package=package))
-        if ret == 0:
+        _, stdout, _ = ssh.exec_command("dpkg -l | grep {package} "
+                                        "| cut -d " " -f 3"
+                                        .format(package=package))
+        if len(stdout) > 1:
             # Try to fix interrupted installations first.
             execute_command_ssh(ssh, 'dpkg --configure -a', sudo=True)
             # Try to remove installed packages
-            execute_command_ssh(ssh, 'apt-get purge -y "{package}.*"'.format(
-                package=package), sudo=True)
+            execute_command_ssh(ssh,
+                                'dpkg --force-depends-version -P "{package}"'
+                                .format(package=stdout), sudo=True)
+
 
 def kill_process(ssh, process):
     """If there are running processes, kill them.

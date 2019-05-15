@@ -324,7 +324,7 @@ def create_arguments_parser():
         "--host", default="127.0.0.1",
         help="Host where odl controller is running (default is 127.0.0.1).")
     my_parser.add_argument(
-        "--port", default=7777,
+        "--port", type=int, default=7777,
         help="Port on which Honeycomb's Netconf is listening"
              " (default is 7777 for TCP)")
     my_parser.add_argument(

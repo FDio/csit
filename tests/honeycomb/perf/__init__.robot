@@ -24,7 +24,9 @@
 | Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.honeycomb.Performance
-| Suite Setup | Setup suite for Honeycomb performance tests
+# TODO add VPP and HC installation
+| Suite Setup | Run Keywords | Setup suite for Honeycomb performance tests
+| ... | AND | Setup Framework | ${node}
 | Suite Teardown | Run Keywords
 | ... | Stop VPP Service on DUT | ${node}
 | ... | AND | Archive Honeycomb Logs | ${node} | perf=${True}

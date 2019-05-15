@@ -29,7 +29,7 @@ function download_artifacts_hc () {
         die "Get OS release failed."
     }
 
-    repo_url_path="${CSIT_DIR}/VPP_REPO_URL"
+    repo_url_path="${CSIT_DIR}/FDIO_REPO_URL"
     if [ -e "${repo_url_path}" ]; then
         REPO_URL="$(<${repo_url_path})" || {
             die "Read repo URL from ${repo_url_path} failed."
@@ -68,6 +68,12 @@ function download_ubuntu_artifacts_hc () {
     else
         artifacts+=(${hc[@]/%/=${HC_VERSION-}})
     fi
+
+    artifacts+=($(apt-cache --no-all-versions show ${artifacts[@]} |
+                  grep Depends |
+                  sed 's/.*\(vpp-api-java\) (= \([^)]*\)).*/\1=\2/')) || {
+                      die "Retrieval of JVPP version failed"
+                  }
 
     if [ "${INSTALL:-false}" = true ]; then
         sudo apt-get -y install "${artifacts[@]}" || {

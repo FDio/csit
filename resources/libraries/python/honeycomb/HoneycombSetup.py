@@ -168,6 +168,11 @@ class HoneycombSetup(object):
         while time() - start < timeout and count < retries:
             count += 1
 
+            cmd = "service honeycomb status"
+            (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+            if int(ret_code) != 0:
+                raise HoneycombError('Node {0} failed to start Honeycomb.'.
+                                     format(node['host']))
             try:
                 status_code_version, _ = HcUtil.get_honeycomb_data(
                     node, "oper_vpp_version")
