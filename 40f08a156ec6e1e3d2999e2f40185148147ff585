@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "c098c851_5be06bc2",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T15:30:01Z",
+      "side": 1,
+      "message": "\u003e *${NODENESS}_${FLAVOR}*\n\nvpp_device.template is already more general than that.",
+      "parentUuid": "9ba5ee1e_d6c62476",
+      "range": {
+        "startLine": 773,
+        "startChar": 45,
+        "endLine": 773,
+        "endChar": 57
+      },
+      "revId": "40f08a156ec6e1e3d2999e2f40185148147ff585",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21af1a62_c222d092",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 1
