@@ -170,7 +170,7 @@ def plot_performance_box(plot, input_data):
             logging.error(repr(err))
             continue
         if val_max:
-            y_max.append(int(val_max / 1000000) + 1)
+            y_max.append(int(val_max / 1000000) + 2)
 
     try:
         # Create plot

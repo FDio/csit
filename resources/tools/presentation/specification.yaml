@@ -4578,9 +4578,9 @@
     - "DRV_AVF"
     - "DRV_AVF"
     - "DRV_AVF"
-    - "L2PATCH"
     - "L2BDMACLRN"
     - "L2XCBASE"
+    - "L2PATCH"
   traces:
     hoverinfo: "x+y"
     boxpoints: "all"
