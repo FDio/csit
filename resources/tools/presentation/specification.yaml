@@ -4576,6 +4576,10 @@
     - "L2PATCH"
     - "L2BDMACLRN"
     - "L2XCBASE"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
   layout:
     title: "30min Soak Test (PLRsearch)"
     layout: "plot-soak-throughput"
@@ -4597,6 +4601,10 @@
     - "MEMIF"
     - "IP4FWD"
     - "IP6FWD"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "outliers"
+    whiskerwidth: 0
   layout:
     title: "30min Soak Test (PLRsearch)"
     layout: "plot-soak-throughput"
