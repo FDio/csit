@@ -22,6 +22,30 @@
       "revId": "ce2586f9b8e475cc3b20c774ed196e6db6c106f2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ddad7d06_b11d375b",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T14:50:37Z",
+      "side": 1,
+      "message": "Yes, the whole block 659-686 (and 608-620) is a workaround. The next suite generator version should fix that.",
+      "parentUuid": "af206567_638b3339",
+      "range": {
+        "startLine": 669,
+        "startChar": 0,
+        "endLine": 670,
+        "endChar": 75
+      },
+      "revId": "ce2586f9b8e475cc3b20c774ed196e6db6c106f2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
