@@ -952,8 +952,8 @@
         titlefont:
           size: 16
         gridcolor: "rgb(230, 230, 230)"
-        hoverformat: ".4s"
-        tickformat: ".3s"
+        hoverformat: ".4r"
+        tickformat: ".3r"
         linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
@@ -1137,8 +1137,8 @@
         titlefont:
           size: 16
         gridcolor: "rgb(230, 230, 230)"
-        hoverformat: ".4s"
-        tickformat: ".3s"
+        hoverformat: ".4r"
+        tickformat: ".3r"
         linecolor: "rgb(220, 220, 220)"
         linewidth: 1
         showgrid: True
@@ -14308,7 +14308,6 @@
            'BASE' and
            '1T1C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -14335,7 +14334,6 @@
            'BASE' and
            '1T1C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -14362,7 +14360,6 @@
            'BASE' and
            '2T2C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -14389,7 +14386,6 @@
            'BASE' and
            '2T2C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -14417,7 +14413,6 @@
            'SCALE' and
            '1T1C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -14444,7 +14439,6 @@
            'SCALE' and
            '1T1C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -14471,7 +14465,6 @@
            'SCALE' and
            '2T2C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -14498,7 +14491,6 @@
            'SCALE' and
            '2T2C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -14525,7 +14517,6 @@
            'NDRPDR' and
            '1T1C' and
            'IPSECSW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -14551,7 +14542,6 @@
            'NDRPDR' and
            '1T1C' and
            'IPSECSW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -14577,7 +14567,6 @@
            'NDRPDR' and
            '2T2C' and
            'IPSECSW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -14603,7 +14592,6 @@
            'NDRPDR' and
            '2T2C' and
            'IPSECSW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -21470,7 +21458,6 @@
            'BASE' and
            '1T1C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -21493,7 +21480,6 @@
            'BASE' and
            '2T2C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -21517,7 +21503,6 @@
            'SCALE' and
            '1T1C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -21540,7 +21525,6 @@
            'SCALE' and
            '2T2C' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -21563,7 +21547,6 @@
            'NDRPDR' and
            '1T1C' and
            'IPSECSW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -21585,7 +21568,6 @@
            'NDRPDR' and
            '2T2C' and
            'IPSECSW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "latency"
@@ -25752,7 +25734,6 @@
            'NDRPDR' and
            'BASE' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -25774,7 +25755,6 @@
            'NDRPDR' and
            'BASE' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -25797,7 +25777,6 @@
            'NDRPDR' and
            'SCALE' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -25819,7 +25798,6 @@
            'NDRPDR' and
            'SCALE' and
            'IPSECHW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -25841,7 +25819,6 @@
            'IP4FWD' and
            'NDRPDR' and
            'IPSECSW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
@@ -25862,7 +25839,6 @@
            'IP4FWD' and
            'NDRPDR' and
            'IPSECSW' and
-           ('IPSECTRAN' or 'IPSECTUN') and
            not 'VHOST'"
   parameters:
   - "throughput"
