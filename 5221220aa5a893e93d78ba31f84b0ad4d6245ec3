@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1bca751c_618a7b7f",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 84
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T08:57:49Z",
+      "side": 0,
+      "message": "I forgot to update the suite, fix at https://gerrit.fd.io/r/19595",
+      "range": {
+        "startLine": 679,
+        "startChar": 2,
+        "endLine": 679,
+        "endChar": 32
+      },
+      "revId": "5221220aa5a893e93d78ba31f84b0ad4d6245ec3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
