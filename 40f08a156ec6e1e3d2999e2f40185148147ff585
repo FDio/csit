@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "41ae330d_7dcab37c",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-15T15:02:18Z",
+      "side": 1,
+      "message": "i would keep it dynamic for now as there might be more of them...but specializing .yaml should be ok\n\nThe problem is if people will have lf_vpp_device.yaml cisco_vpp_device.yaml",
+      "parentUuid": "23ecedb4_39b45f18",
+      "range": {
+        "startLine": 773,
+        "startChar": 45,
+        "endLine": 773,
+        "endChar": 57
+      },
+      "revId": "40f08a156ec6e1e3d2999e2f40185148147ff585",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "21af1a62_c222d092",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-15T10:55:58Z",
       "side": 1,
       "message": "Thinking about it some more, I would prefer *3n_hsw*.yaml (or something even more specific) to be extra sure we are not matching files like *.yaml.example and similar.",
+      "range": {
+        "startLine": 789,
+        "startChar": 45,
+        "endLine": 789,
+        "endChar": 53
+      },
+      "revId": "40f08a156ec6e1e3d2999e2f40185148147ff585",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fc62a0b1_ba5c6d3f",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-15T15:02:18Z",
+      "side": 1,
+      "message": "makes sense",
+      "parentUuid": "21af1a62_c222d092",
       "range": {
         "startLine": 789,
         "startChar": 45,
