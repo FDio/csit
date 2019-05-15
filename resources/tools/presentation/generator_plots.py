@@ -99,6 +99,9 @@ def plot_performance_box(plot, input_data):
                                 append(test["throughput"]["NDR"]["LOWER"])
                         else:
                             continue
+                    elif test["type"] in ("SOAK", ):
+                        y_vals[test["parent"]].\
+                            append(test["throughput"]["LOWER"])
                     else:
                         continue
                 except (KeyError, TypeError):
