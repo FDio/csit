@@ -49,6 +49,53 @@
     },
     {
       "key": {
+        "uuid": "bce7d687_055728c5",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T08:47:33Z",
+      "side": 1,
+      "message": "Oh, I misunderstood. For some reason I translated it to \"all signatures corresponding to the VPP branch history\".\n\nAlso, my current plan is to run the signature check together with other tests, so \"until the verification passes\" (from the previous point) includes the new signature being prepared for merge into CSIT (in the next point).",
+      "parentUuid": "ef1f67cb_471b4702",
+      "range": {
+        "startLine": 56,
+        "startChar": 3,
+        "endLine": 56,
+        "endChar": 40
+      },
+      "revId": "86f324d57c208e9aec5606f32710f436d4069cf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b97905cf_27059792",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T08:47:33Z",
+      "side": 1,
+      "message": "Not exactly. Adding new signature to CSIT should not cause any new failures.\n\nBut signatures will also be removed from CSIT (this list of points still misses that step). And such removal on CSIT side may cause failures for VPP verify jobs indeed.\n\nIdeally, we would have a database of which VPP patch uses which signature, so that we know which patches should get -1 on the signature removal.",
+      "range": {
+        "startLine": 62,
+        "startChar": 45,
+        "endLine": 62,
+        "endChar": 54
+      },
+      "revId": "86f324d57c208e9aec5606f32710f436d4069cf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07f9c238_d4cf0124",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 4
@@ -131,6 +178,30 @@
       "side": 1,
       "message": "Good point.  Since there isn\u0027t an easy way to differentiate the two cases in the script, changing this to \"Rebase or Merge Parent\" should suffice to get the committer\u0027s attention to investigate and resolve the issue.\n\nI\u0027m not sure how common the \"Merge Parent\" case.  I would think that in practice, the same VPP developer would be the author of the parent as well which means they\u0027re already going to be in the flag day loop.",
       "parentUuid": "a406276c_e26b9b7e",
+      "range": {
+        "startLine": 101,
+        "startChar": 53,
+        "endLine": 101,
+        "endChar": 81
+      },
+      "revId": "86f324d57c208e9aec5606f32710f436d4069cf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87f08788_574cc1fa",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-15T08:47:33Z",
+      "side": 1,
+      "message": "\u003e \"Rebase or Merge Parent\"\n\nI like that, because that covers everything except \"API signature is known on CSIT side\". So +1 or -1 is enough, and we do not need any additional logic (lines 78-84).",
+      "parentUuid": "85a265e1_3a108571",
       "range": {
         "startLine": 101,
         "startChar": 53,
