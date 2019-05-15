@@ -33,7 +33,7 @@
 Soak Tests
 ==========
 
-Long duration soak tests are executed using `PLRsearch algorithm`_.
+Long duration soak tests are executed using `plrsearch_algorithm`_.
 
 As soak tests are new, and take long time to run,
 only 6 tests were executed. From those, 4 tests encountered some caveat,
