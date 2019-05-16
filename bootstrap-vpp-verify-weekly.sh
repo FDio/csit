@@ -215,7 +215,7 @@ RC=0
 MORE_FAILS=0
 
 partial_logs=""
-for test_set in 1 2 3
+for test_set in 1 2
 do
     echo
     echo ${test_set}. test loop
