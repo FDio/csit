@@ -231,8 +231,8 @@
     plot-vpp-soak-2n-skx:
       # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-2n-skx:
-        - 70  # SOAK
-        - 71  # SOAK
+        - 70  # soak
+        - 71  # soak
 
     plot-vpp-nfv-2n-skx-ndrpdr-64b:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -610,8 +610,8 @@
         - 32  # NDRPDR sel
     vpp-soak-vs-ndr-2n-skx-cmp:
       csit-vpp-perf-verify-1904-2n-skx:
-        - 70  # SOAK
-        - 71  # SOAK
+        - 70  # soak
+        - 71  # soak
     vpp-soak-vs-ndr-2n-skx:
       csit-vpp-perf-verify-1904-2n-skx:
         - 12  # NDRPDR sel
@@ -624,8 +624,8 @@
         - 30  # NDRPDR sel
         - 31  # NDRPDR sel
         - 32  # NDRPDR sel
-        - 70  # SOAK
-        - 71  # SOAK
+        - 70  # soak
+        - 71  # soak
 
     vpp-performance-changes-3n-hsw-mrr-h1:
       csit-vpp-perf-verify-1810-3n-hsw:
@@ -957,7 +957,7 @@
           size: 16
         zeroline: False
       yaxis:
-        title: "<b>Packet Throughput [Mpps]</b>"
+        title: "<b>Critical Rate Lower Bound [Mpps]</b>"
         titlefont:
           size: 16
         gridcolor: "rgb(230, 230, 230)"
@@ -1523,8 +1523,8 @@
       - 69  # NFV NDRPDR IMIX
       - 80  # NFV MRR NDRPDR 64b IMIX
       - 81  # NFV MRR NDRPDR 64b IMIX
-      - 70  # SOAK
-      - 71  # SOAK
+      - 70  # soak
+      - 71  # soak
 
 #    csit-ligato-perf-verify-1901-3n-hsw:
 #      - 10  # NDRPDR full
@@ -1670,7 +1670,7 @@
 ###                               T A B L E S                                ###
 ################################################################################
 
-# VPP SOAK vs NDR
+# VPP Soak vs NDR
 - type: "table"
   title: "VPP Soak vs NDR 2n-skx"
   algorithm: "table_soak_vs_ndr"
@@ -4570,9 +4570,9 @@
 ###                                P L O T S                                 ###
 ################################################################################
 
-# Soak test - 30min Soak Test (PLRsearch), boxes
+# Soak Test (PLRsearch), boxes
 - type: "plot"
-  title: "VPP Throughput: 30min Soak Test (PLRsearch) boxes"
+  title: "VPP Critical rate: 2 Hours Soak Test (PLRsearch)"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/soak-test-1"
@@ -4594,12 +4594,12 @@
     boxpoints: "all"
     whiskerwidth: 0
   layout:
-    title: "30min Soak Test (PLRsearch)"
+    title: "2 Hours Soak Test (PLRsearch)"
     layout: "plot-soak-throughput"
 
-# Soak test - 30min Soak Test (PLRsearch), boxes
+# Soak Test (PLRsearch), boxes
 - type: "plot"
-  title: "VPP Throughput: 30min Soak Test (PLRsearch) boxes"
+  title: "VPP Critical rate: 2 Hours Soak Test (PLRsearch)"
   algorithm: "plot_performance_box"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/soak-test-2"
@@ -4619,7 +4619,7 @@
     boxpoints: "all"
     whiskerwidth: 0
   layout:
-    title: "30min Soak Test (PLRsearch)"
+    title: "2 Hours Soak Test (PLRsearch)"
     layout: "plot-soak-throughput"
 
 ################################################################################
