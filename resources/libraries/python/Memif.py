@@ -13,7 +13,8 @@
 
 """Memif interface library."""
 
-from resources.libraries.python.ssh import SSH
+# TODO: Not used, remove?
+# from resources.libraries.python.ssh import SSH
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -81,15 +82,16 @@ class Memif(object):
                 raise ValueError('Create Memif interface failed on node '
                                  '{}'.format(node['host']))
 
-    @staticmethod
-    def dump_memif(node):
-        """Dump Memif data for the given node.
-
-        :param node: Given node to show Memif data on.
-        :type node: dict
-        """
-        vat = VatExecutor()
-        vat.execute_script("memif_dump.vat", node, json_out=False)
+    # # TODO: Not used, remove?
+    # @staticmethod
+    # def dump_memif(node):
+    #     """Dump Memif data for the given node.
+    #
+    #     :param node: Given node to show Memif data on.
+    #     :type node: dict
+    #     """
+    #     vat = VatExecutor()
+    #     vat.execute_script("memif_dump.vat", node, json_out=False)
 
     @staticmethod
     def show_memif(node):
@@ -112,20 +114,21 @@ class Memif(object):
             if node['type'] == NodeType.DUT:
                 Memif.show_memif(node)
 
-    @staticmethod
-    def clear_memif_socks(node, *socks):
-        """Clear Memif sockets for the given node.
-
-        :param node: Given node to clear Memif sockets on.
-        :param socks: Memif sockets.
-        :type node: dict
-        :type socks: list
-        """
-        ssh = SSH()
-        ssh.connect(node)
-
-        for sock in socks:
-            ssh.exec_command_sudo('rm -f {}'.format(sock))
+    # # TODO: Not used, remove?
+    # @staticmethod
+    # def clear_memif_socks(node, *socks):
+    #     """Clear Memif sockets for the given node.
+    #
+    #     :param node: Given node to clear Memif sockets on.
+    #     :param socks: Memif sockets.
+    #     :type node: dict
+    #     :type socks: list
+    #     """
+    #     ssh = SSH()
+    #     ssh.connect(node)
+    #
+    #     for sock in socks:
+    #         ssh.exec_command_sudo('rm -f {}'.format(sock))
 
     @staticmethod
     def parse_memif_dump_data(memif_data):
@@ -210,59 +213,62 @@ class Memif(object):
                     return memif_data[item].get('mac', None)
         return None
 
-    @staticmethod
-    def vpp_get_memif_interface_socket(node, sw_if_idx):
-        """Get Memif interface socket path from Memif interfaces dump.
+    # # TODO: Not used, remove?
+    # @staticmethod
+    # def vpp_get_memif_interface_socket(node, sw_if_idx):
+    #     """Get Memif interface socket path from Memif interfaces dump.
+    #
+    #     :param node: DUT node.
+    #     :param sw_if_idx: DUT node.
+    #     :type node: dict
+    #     :type sw_if_idx: int
+    #     :returns: Memif interface socket path, or None if not found.
+    #     :rtype: str
+    #     """
+    #     with VatTerminal(node, json_param=False) as vat:
+    #         vat.vat_terminal_exec_cmd_from_template('memif_dump.vat')
+    #         memif_data = Memif.parse_memif_dump_data(vat.vat_stdout)
+    #         for item in memif_data:
+    #             if memif_data[item]['sw_if_index'] == str(sw_if_idx):
+    #                 return memif_data[item].get('socket', None)
+    #     return None
 
-        :param node: DUT node.
-        :param sw_if_idx: DUT node.
-        :type node: dict
-        :type sw_if_idx: int
-        :returns: Memif interface socket path, or None if not found.
-        :rtype: str
-        """
-        with VatTerminal(node, json_param=False) as vat:
-            vat.vat_terminal_exec_cmd_from_template('memif_dump.vat')
-            memif_data = Memif.parse_memif_dump_data(vat.vat_stdout)
-            for item in memif_data:
-                if memif_data[item]['sw_if_index'] == str(sw_if_idx):
-                    return memif_data[item].get('socket', None)
-        return None
+    # # TODO: Not used, remove?
+    # @staticmethod
+    # def vpp_get_memif_interface_id(node, sw_if_idx):
+    #     """Get Memif interface ID from Memif interfaces dump.
+    #
+    #     :param node: DUT node.
+    #     :param sw_if_idx: DUT node.
+    #     :type node: dict
+    #     :type sw_if_idx: int
+    #     :returns: Memif interface ID, or None if not found.
+    #     :rtype: int
+    #     """
+    #     with VatTerminal(node, json_param=False) as vat:
+    #         vat.vat_terminal_exec_cmd_from_template('memif_dump.vat')
+    #         memif_data = Memif.parse_memif_dump_data(vat.vat_stdout)
+    #         for item in memif_data:
+    #             if memif_data[item]['sw_if_index'] == str(sw_if_idx):
+    #                 return int(memif_data[item].get('id', None))
+    #     return None
 
-    @staticmethod
-    def vpp_get_memif_interface_id(node, sw_if_idx):
-        """Get Memif interface ID from Memif interfaces dump.
-
-        :param node: DUT node.
-        :param sw_if_idx: DUT node.
-        :type node: dict
-        :type sw_if_idx: int
-        :returns: Memif interface ID, or None if not found.
-        :rtype: int
-        """
-        with VatTerminal(node, json_param=False) as vat:
-            vat.vat_terminal_exec_cmd_from_template('memif_dump.vat')
-            memif_data = Memif.parse_memif_dump_data(vat.vat_stdout)
-            for item in memif_data:
-                if memif_data[item]['sw_if_index'] == str(sw_if_idx):
-                    return int(memif_data[item].get('id', None))
-        return None
-
-    @staticmethod
-    def vpp_get_memif_interface_role(node, sw_if_idx):
-        """Get Memif interface role from Memif interfaces dump.
-
-        :param node: DUT node.
-        :param sw_if_idx: DUT node.
-        :type node: dict
-        :type sw_if_idx: int
-        :returns: Memif interface role, or None if not found.
-        :rtype: int
-        """
-        with VatTerminal(node, json_param=False) as vat:
-            vat.vat_terminal_exec_cmd_from_template('memif_dump.vat')
-            memif_data = Memif.parse_memif_dump_data(vat.vat_stdout)
-            for item in memif_data:
-                if memif_data[item]['sw_if_index'] == str(sw_if_idx):
-                    return memif_data[item].get('role', None)
-        return None
+    # # TODO: Not used, remove?
+    # @staticmethod
+    # def vpp_get_memif_interface_role(node, sw_if_idx):
+    #     """Get Memif interface role from Memif interfaces dump.
+    #
+    #     :param node: DUT node.
+    #     :param sw_if_idx: DUT node.
+    #     :type node: dict
+    #     :type sw_if_idx: int
+    #     :returns: Memif interface role, or None if not found.
+    #     :rtype: int
+    #     """
+    #     with VatTerminal(node, json_param=False) as vat:
+    #         vat.vat_terminal_exec_cmd_from_template('memif_dump.vat')
+    #         memif_data = Memif.parse_memif_dump_data(vat.vat_stdout)
+    #         for item in memif_data:
+    #             if memif_data[item]['sw_if_index'] == str(sw_if_idx):
+    #                 return memif_data[item].get('role', None)
+    #     return None
