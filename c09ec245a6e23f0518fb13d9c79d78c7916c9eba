@@ -1,0 +1,504 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dfb1ab75_5efdbe27",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "What is the criteria for \"narrow\" in absolute or relative terms?",
+      "range": {
+        "startLine": 237,
+        "startChar": 21,
+        "endLine": 237,
+        "endChar": 49
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "acb2377b_7e08f91c",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "It\u0027s counterintuitive to compare a 1D value vs. 2D value (area), unless I misunderstood what you mean by \"the area the estimates have travelled\".",
+      "range": {
+        "startLine": 237,
+        "startChar": 51,
+        "endLine": 238,
+        "endChar": 46
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "392f2c4e_32fd74f4",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "Unclear what this means. Bit hand-wavy, without any references. And it\u0027s important, as first part of this sentence implies the result might be invalid.",
+      "range": {
+        "startLine": 238,
+        "startChar": 48,
+        "endLine": 240,
+        "endChar": 45
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a7b3d6f_510dc99b",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "What trend, do you mean the pattern of steady increases with periodic corrections, resulting in downward trend of critical region?",
+      "range": {
+        "startLine": 243,
+        "startChar": 54,
+        "endLine": 243,
+        "endChar": 59
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2913d10f_d3d9f18c",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "I don\u0027t see randomness of measurements, I see a pattern of steady increases with periodic corrections.",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 243,
+        "endChar": 46
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d28168d_2db74d90",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "Does every grey square marker above any estimation line indicate zero loss measurements? How so? The legend says it\u0027s offered load...",
+      "range": {
+        "startLine": 249,
+        "startChar": 39,
+        "endLine": 250,
+        "endChar": 37
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d921d9d_7debb5a6",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "All of this algorithmic analysis is cool. But for most people it\u0027s a background info, and many of them will not be interested in the algo mechanics. Most people are interested in the result, and minimal data to allow them to interpret the result, and validate it in the context of their use case. Such a summary should be covered upfront IMV. It should also point out the resolution of the graphs and the precision achieved.",
+      "range": {
+        "startLine": 252,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 39
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "55e946be_62b94de1",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "What is the criteria for \"broad\" in absolute or relative terms?",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 49
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7266b0f1_fd163066",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "estimation",
+      "range": {
+        "startLine": 276,
+        "startChar": 56,
+        "endLine": 276,
+        "endChar": 67
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7df9e807_1b9f58d9",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "This makes sense. But why can\u0027t you say: \"This signifies poor estimation quality.\"",
+      "range": {
+        "startLine": 276,
+        "startChar": 28,
+        "endLine": 277,
+        "endChar": 33
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7d52b65_8382c2c5",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "\"Stretch\" as it\u0027s a name.",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 7
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "625083cd_f0fa7ba8",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "Does it make sense to add why the resulting behaviour of these two functions is different in this case?",
+      "range": {
+        "startLine": 279,
+        "startChar": 0,
+        "endLine": 281,
+        "endChar": 27
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "58856ca3_412cc71a",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "What is the criteria for \"narrow\" implying Good, vs. \"too broad\" implying Bad? 20kpps sounds like a Good precision to me, especially at 5.8Mpps level.",
+      "range": {
+        "startLine": 284,
+        "startChar": 52,
+        "endLine": 284,
+        "endChar": 61
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b82899da_4a08e66c",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "Here it makes sense to refer to the L2 patch case, and quote those precision numbers in absolute and relative terms.",
+      "range": {
+        "startLine": 285,
+        "startChar": 0,
+        "endLine": 285,
+        "endChar": 52
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d8a5c501_4684b99f",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "How can you tell this from this graph?",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 70
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e6d803cf_5e0c1d35",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "Further explanation of why convergence is slow (vhost case) vs. faster (l2 patch case) based on the distribution (composition) of results, will help people better understand the results, interpret them and apply to their use case(s).",
+      "range": {
+        "startLine": 292,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 26
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c7f68d9_74ddb41c",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "Per my last L2 patch comment, an upfront summary allow for easy interpretation of results will help.",
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1583ed0b_cafd4799",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "insert: \"applied to soaking test\"",
+      "range": {
+        "startLine": 315,
+        "startChar": 36,
+        "endLine": 315,
+        "endChar": 55
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50dbd260_477773ae",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "replace with \"when following assumptions do not hold:\"",
+      "range": {
+        "startLine": 315,
+        "startChar": 56,
+        "endLine": 316,
+        "endChar": 47
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7419ec4_f04e85f4",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "- L2 patch tested behavior violates ...\n- Vhost tested behavior violates ...",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 319,
+        "endChar": 79
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "868ed716_0e93688d",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "Not sure what value this comment brings. Both listed cases result in good precision. If you want to leave it in, make it more concrete, IOW what does human intuition suggests? :)",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 34
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7fe18b43_a376412e",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-16T11:12:24Z",
+      "side": 1,
+      "message": "list examples of other methods: binary search? Else? Consider adding \"given constraint of soaking test duration time\".",
+      "range": {
+        "startLine": 323,
+        "startChar": 49,
+        "endLine": 323,
+        "endChar": 74
+      },
+      "revId": "c09ec245a6e23f0518fb13d9c79d78c7916c9eba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
