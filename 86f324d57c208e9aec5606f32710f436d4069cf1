@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "c943d162_3d130a58",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-16T12:55:58Z",
+      "side": 1,
+      "message": "I think there needs some clarity added to the document about the use of the signature directories and removal of signatures which are no longer supported by CSIT.\n\nI will add examples to the section \"CSIT VPP API CHANGE DETECTION TEST\" below to provide more details on how it will work.",
+      "parentUuid": "b97905cf_27059792",
+      "range": {
+        "startLine": 62,
+        "startChar": 45,
+        "endLine": 62,
+        "endChar": 54
+      },
+      "revId": "86f324d57c208e9aec5606f32710f436d4069cf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07f9c238_d4cf0124",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 4
