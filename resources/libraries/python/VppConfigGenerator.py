@@ -264,7 +264,7 @@ class VppConfigGenerator(object):
                 re.sub(r'\d.\d$', '1.'+str(i), cryptodev))
             path = ['dpdk', cryptodev_config]
             self.add_config_item(self._nodeconfig, '', path)
-        self.add_dpdk_uio_driver('igb_uio')
+        self.add_dpdk_uio_driver('vfio-pci')
 
     def add_dpdk_sw_cryptodev(self, sw_pmd_type, socket_id, count):
         """Add DPDK SW Crypto device configuration.
