@@ -33,7 +33,7 @@
 | | ... | default value: ${1}
 | | ... | - txq - TX queues; 0 means do not set (Optional). Type: integer,
 | | ... | default value: ${1}
-| | ... | - role - Memif role (Optional). Type: string, default value: slave
+| | ... | - role - Memif role (Optional). Type: string, default value: SLAVE
 | | ... | - dcr_uuid - UUID string (including prefix - underscore character) of
 | | ... | DUT1 /tmp volume created outside of the DUT1 docker in case of
 | | ... | vpp-device test. ${EMPTY} value means that /tmp directory is inside
@@ -49,13 +49,13 @@
 | | ... | \| ${nodes['DUT1']} \| sock1 \| sock2 \| 1 \|
 | | ... | \| Set up memif interfaces on DUT node \
 | | ... | \| ${nodes['DUT2']} \| sock1 \| sock2 \| 1 \
-| | ... | \| dut2_memif_if1 \| dut2_memif_if2 \| 1 \| 1 \| slave \|
+| | ... | \| dut2_memif_if1 \| dut2_memif_if2 \| 1 \| 1 \| SLAVE \|
 | | ... | \| ${nodes['DUT2']} \| sock1 \| sock2 \| 1 \| rxq=0 \| txq=0 \
 | | ... | \| dcr_uuid=_a5730a0a-2ba1-4fe9-91bd-79b9828e968e \|
 | | ...
 | | [Arguments] | ${dut_node} | ${filename1} | ${filename2} | ${mid}=${1}
 | | ... | ${memif_if1}=memif_if1 | ${memif_if2}=memif_if2 | ${rxq}=${1}
-| | ... | ${txq}=${1} | ${role}=slave | ${dcr_uuid}=${EMPTY}
+| | ... | ${txq}=${1} | ${role}=SLAVE | ${dcr_uuid}=${EMPTY}
 | | ...
 | | ${sid_1}= | Evaluate | (${mid}*2)-1
 | | ${sid_2}= | Evaluate | (${mid}*2)
@@ -82,7 +82,7 @@
 | | ... | Type: string
 | | ... | - rxq - RX queues (Optional). Type: integer
 | | ... | - txq - TX queues (Optional). Type: integer
-| | ... | - role - Memif role (Optional). Type: string
+| | ... | - role - Memif role (Optional). Type: integer
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - ${${memif_if}} - Memif interface.
@@ -94,7 +94,7 @@
 | | ... | \| slave \|
 | | ...
 | | [Arguments] | ${dut_node} | ${filename} | ${mid}=${1} | ${sid}=${1}
-| | ... | ${memif_if}=memif_if1 | ${rxq}=${1} | ${txq}=${1} | ${role}=slave
+| | ... | ${memif_if}=memif_if1 | ${rxq}=${1} | ${txq}=${1} | ${role}=${1}
 | | ...
 | | ${memif}= | Create memif interface | ${dut_node} | ${filename}${mid}-${sid}
 | | ... | ${mid} | ${sid} | rxq=${rxq} | txq=${txq} | role=${role}
