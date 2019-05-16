@@ -242,6 +242,7 @@
         - 65  # NFV NDRPDR 64b
         - 68  # NFV NDRPDR 64b
         - 80  # NFV MRR NDRPDR 64b IMIX
+        - 81  # NFV MRR NDRPDR 64b IMIX
 
     plot-vpp-nfv-2n-skx-ndrpdr-imix:
       # TODO: Add 1904 data
@@ -250,6 +251,7 @@
         - 67  # NFV NDRPDR IMIX
         - 69  # NFV NDRPDR IMIX
         - 80  # NFV MRR NDRPDR 64b IMIX
+        - 81  # NFV MRR NDRPDR 64b IMIX
 
     plot-vpp-nfv-2n-skx-mrr-64b:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -259,6 +261,7 @@
         - 47  # NFV MRR 64b
         - 48  # NFV MRR 64b
         - 80  # NFV MRR NDRPDR 64b IMIX
+        - 81  # NFV MRR NDRPDR 64b IMIX
 
     plot-vpp-nfv-2n-skx-mrr-imix:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -268,6 +271,7 @@
         - 54  # NFV MRR IMIX
         - 55  # NFV MRR IMIX
         - 80  # NFV MRR NDRPDR 64b IMIX
+        - 81  # NFV MRR NDRPDR 64b IMIX
 
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-verify-1904-2n-skx:
@@ -350,9 +354,10 @@
     # Results
 
     vpp-perf-results-3n-hsw:
-      # TODO: Replace with FULL 1904 data
+      # TODO: Add FULL 1904 data
       csit-vpp-perf-verify-1904-3n-hsw:
-        - 12  # NDRPDR sel
+        - 32  # NDRPDR full
+        - 33  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1904-3n-skx:
@@ -1387,6 +1392,8 @@
     # TODO: Add 1904 Data
     csit-vpp-perf-verify-1904-3n-hsw:
       - 9   # MRR sel
+      - 32  # NDRPDR full
+      - 33  # NDRPDR full
       - 11  # NDRPDR sel
       - 12  # NDRPDR sel
       - 20  # NDRPDR sel
@@ -1515,6 +1522,7 @@
       - 67  # NFV NDRPDR IMIX
       - 69  # NFV NDRPDR IMIX
       - 80  # NFV MRR NDRPDR 64b IMIX
+      - 81  # NFV MRR NDRPDR 64b IMIX
       - 70  # SOAK
       - 71  # SOAK
 
