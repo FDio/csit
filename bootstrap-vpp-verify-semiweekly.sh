@@ -261,7 +261,7 @@ echo Running functional tests on the VIRL system...
 # There are used three iterations of functional tests there
 # to check the stability and reliability of the results.
 partial_logs=""
-for test_set in 1 2 3
+for test_set in 1 2
 do
     echo
     echo Functional test loop: ${test_set}
