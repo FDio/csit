@@ -308,3 +308,1271 @@ Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc08-I
 
 Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc12-IMIX-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
   "Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc12-IMIX-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+
+# tests.vpp.perf.crypto base
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-mrr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-mrr"
+
+
+# tests.vpp.perf.crypto scale
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr. tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-mrr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc01-64B-1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc01-64B-1c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc02-64B-2c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc02-64B-2c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc03-64B-4c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc03-64B-4c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc04-1518B-1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc04-1518B-1c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc05-1518B-2c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc05-1518B-2c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc06-1518B-4c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc06-1518B-4c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc07-9000B-1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc07-9000B-1c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc08-9000B-2c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc08-9000B-2c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc09-9000B-4c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc09-9000B-4c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc10-IMIX-1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc10-IMIX-1c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc11-IMIX-2c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc11-IMIX-2c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr.tc12-IMIX-4c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-mrr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr.tc12-IMIX-4c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-mrr"
+
+
+# NDRPDR Tests
+
+# tests.vpp.perf.crypto base
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-int-aes128gcm-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes-gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-int-aes128gcm-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+
+# tests.vpp.perf.crypto scale
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr. tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128cbc-hmac256sha-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-tnl-aes128gcm-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-int-aes256gcm-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-cbc-sha1-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc01-64B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc02-64B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc03-64B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc04-1518B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc05-1518B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc06-1518B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc07-9000B-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc08-9000B-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc09-9000B-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc10-IMIX-1c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc11-IMIX-2c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes-gcm-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr.tc12-IMIX-4c-ethip4ipsecscale1000tnlsw-ip4base-tnl-aes128gcm-ndrpdr"
+
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc01-64B-1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc01-64B-1c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc02-64B-2c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc02-64B-2c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc03-64B-4c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc03-64B-4c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc04-1518B-1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc04-1518B-1c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc05-1518B-2c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc05-1518B-2c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc06-1518B-4c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc06-1518B-4c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc07-9000B-1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc07-9000B-1c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc08-9000B-2c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc08-9000B-2c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc09-9000B-4c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc09-9000B-4c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc10-IMIX-1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc10-IMIX-1c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc11-IMIX-2c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc11-IMIX-2c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr.tc12-IMIX-4c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.tc12-IMIX-4c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr"
