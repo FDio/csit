@@ -1,4 +1,4 @@
-.. _PLRsearch:
+.. _plrsearch:
 
 PLRsearch
 ^^^^^^^^^
