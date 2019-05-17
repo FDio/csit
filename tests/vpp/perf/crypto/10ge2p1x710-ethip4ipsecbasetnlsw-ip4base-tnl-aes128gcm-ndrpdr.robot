@@ -16,7 +16,8 @@
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | IP4FWD | IPSEC | IPSECSW | IPSECTUN | NIC_Intel-X710 | BASE | CBC_SHA1
+| ... | IP4FWD | IPSEC | IPSECSW | IPSECTUN | NIC_Intel-X710 | BASE
+| ... | AES_128_GCM | AES
 | ...
 | Suite Setup | Set up IPSec performance test suite | L3 | ${nic_name}
 | ... | SW_cryptodev
@@ -54,7 +55,7 @@
 
 *** Variables ***
 | ${nic_name}= | Intel-X710
-| ${overhead}= | ${58}
+| ${overhead}= | ${54}
 | ${tg_if1_ip4}= | 192.168.10.2
 | ${dut1_if1_ip4}= | 192.168.10.1
 | ${dut1_if2_ip4}= | 172.168.1.1
@@ -71,7 +72,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPSec tunneling CBC-SHA1 config.
+| | ... | [Cfg] DUT runs IPSec tunneling AES_256_GCM config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
@@ -89,18 +90,19 @@
 | | Set Test Variable | \${frame_size}
 | | ...
 | | # These are enums (not strings) so they cannot be in Variables table.
-| | ${encr_alg}= | Crypto Alg AES CBC 128
-| | ${auth_alg}= | Integ Alg SHA1 96
+| | ${encr_alg}= | Crypto Alg AES GCM 128
+| | ${auth_alg}= | Integ Alg AES GCM 128
+| | ${ipsec_proto}= | IPsec Proto ESP
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add DPDK SW cryptodev on DUTs in 3-node single-link circular topology
-| | ... | aesni_mb | ${phy_cores}
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
+| | ... | aesni_gcm | ${phy_cores}
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
+| | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
 | | And Initialize IPSec in 3-node circular topology
 | | And Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | gateway=${dut2_if1_ip4}
 | | ... | interface=${dut1_if2}
@@ -114,50 +116,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc01-64B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc02-64B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc03-64B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc04-1518B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc05-1518B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc06-1518B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc07-9000B-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc08-9000B-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc09-9000B-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc10-IMIX-1c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc11-IMIX-2c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-tnl-cbc-sha1-ndrpdr
+| tc12-IMIX-4c-ethip4ipsecbasetnlsw-ip4base-tnl-aes128gcm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
