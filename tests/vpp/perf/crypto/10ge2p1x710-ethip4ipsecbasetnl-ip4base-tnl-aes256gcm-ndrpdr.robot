@@ -16,11 +16,11 @@
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | IP4FWD | IPSEC | IPSECHW | IPSECINT | NIC_Intel-X710 | BASE | AES_GCM
+| ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-X710 | BASE
+| ... | AES_256_GCM | AES
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up IPSec performance test suite | L3 | ${nic_name} | HW_DH895xcc
-| ... | AND | Set up performance test suite with crypto ipsecmb
+| Suite Setup | Set up IPSec performance test suite | L3 | ${nic_name}
+| ... | HW_DH895xcc
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
@@ -28,7 +28,7 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *RFC2544: Pkt throughput IPv4 IPsec tunnel mode.*
+| Documentation | *IPv4 IPsec tunnel mode performance test suite.*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
@@ -71,9 +71,9 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPSec tunneling AES GCM config.
+| | ... | [Cfg] DUTs run 1 IPsec tunnel AES_256_GCM in each direction.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
-| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
+| | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.
 | | ...
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
@@ -86,74 +86,75 @@
 | | Set Test Variable | \${frame_size}
 | | ...
 | | # These are enums (not strings) so they cannot be in Variables table.
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Integ Alg AES GCM 128
+| | ${encr_alg}= | Crypto Alg AES GCM 256
+| | ${auth_alg}= | Integ Alg AES GCM 256
 | | ${ipsec_proto}= | IPsec Proto ESP
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add cryptodev to all DUTs | ${phy_cores}
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
 | | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
-| | And VPP IPsec Backend Dump | ${dut1}
-| | And VPP IPsec Backend Dump | ${dut2}
 | | And Initialize IPSec in 3-node circular topology
-| | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
-| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
-| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+| | And Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | gateway=${dut2_if1_ip4}
+| | ... | interface=${dut1_if2}
+| | And Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | gateway=${dut1_if2_ip4}
+| | ... | interface=${dut2_if1}
+| | And VPP IPsec Add Multiple Tunnels
+| | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
+| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
+| | ... | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${laddr_ip4} | ${raddr_ip4}
+| | ... | ${addr_range}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdr
+| tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
