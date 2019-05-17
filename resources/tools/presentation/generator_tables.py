@@ -27,7 +27,7 @@ from datetime import datetime as dt
 from datetime import timedelta
 
 from utils import mean, stdev, relative_change, classify_anomalies, \
-    convert_csv_to_pretty_txt
+    convert_csv_to_pretty_txt, relative_change_stdev
 
 
 REGEX_NIC = re.compile(r'\d*ge\dp\d\D*\d*')
@@ -616,6 +616,7 @@ def table_soak_vs_ndr(table, input_data):
             item.append(round(data_r_stdev / 1000000, 2))
         else:
             data_r_mean = None
+            data_r_stdev = None
             item.extend([None, None])
         data_c = tbl_dict[tst_name]["cmp-data"]
         if data_c:
@@ -625,9 +626,9 @@ def table_soak_vs_ndr(table, input_data):
             item.append(round(data_c_stdev / 1000000, 2))
         else:
             data_c_mean = None
+            data_c_stdev = None
             item.extend([None, None])
         if data_r_mean and data_c_mean is not None:
-            item.append(round(relative_change(data_r_mean, data_c_mean), 2))
             delta, d_stdev = relative_change_stdev(
                 data_r_mean, data_c_mean, data_r_stdev, data_c_stdev)
             item.append(round(delta, 2))
