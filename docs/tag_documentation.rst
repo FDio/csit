@@ -653,13 +653,33 @@ Encryption Tags
 
     IPSec in interface mode.
 
-.. topic:: AES_GCM
+.. topic:: AES
 
-    IPSec using AES GCM algorithms.
+    IPSec using AES algorithms.
 
-.. topic:: CBC_SHA1
+.. topic:: AES_128_CBC
 
-    IPSec using CBC SHA1 algorithms.
+    IPSec using AES 128 CBC algorithms.
+
+.. topic:: AES_128_GCM
+
+    IPSec using AES 128 GCM algorithms.
+
+.. topic:: AES_256_GCM
+
+    IPSec using AES 256 GCM algorithms.
+
+.. topic:: HMAC
+
+    IPSec using HMAC integrity algorithms.
+
+.. topic:: HMAC_SHA_256
+
+    IPSec using HMAC SHA 256 integrity algorithms.
+
+.. topic:: HMAC_SHA_512
+
+    IPSec using HMAC SHA 512 integrity algorithms.
 
 Client-Workload Tags
 --------------------
