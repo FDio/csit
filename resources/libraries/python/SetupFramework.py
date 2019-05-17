@@ -151,10 +151,11 @@ def setup_node(args):
     """
     tarball, remote_tarball, node = args
     try:
-        copy_tarball_to_node(tarball, node)
-        extract_tarball_at_node(remote_tarball, node)
-        if node['type'] == NodeType.TG:
-            create_env_directory_at_node(node)
+        if node['type'] != NodeType.BUT:
+            copy_tarball_to_node(tarball, node)
+            extract_tarball_at_node(remote_tarball, node)
+            if node['type'] == NodeType.TG:
+                create_env_directory_at_node(node)
     except RuntimeError as exc:
         logger.error("Node {0} setup failed, error:'{1}'"
                      .format(node['host'], exc.message))
@@ -204,7 +205,8 @@ def cleanup_node(node):
     :rtype: bool
     """
     try:
-        delete_framework_dir(node)
+        if node['type'] != NodeType.BUT:
+            delete_framework_dir(node)
     except RuntimeError:
         logger.error("Cleanup of node {0} failed".format(node['host']))
         return False

@@ -48,7 +48,8 @@ class NodeType(object):
     TG = 'TG'
     # Virtual Machine (this node running on DUT node)
     VM = 'VM'
-
+    # BlackBox Under Test (this is a test-node that is externally orchestrated)
+    BUT = 'BUT'
 
 class NodeSubTypeTG(object):
     """Defines node sub-type TG - traffic generator."""

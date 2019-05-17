@@ -245,6 +245,23 @@ class Dut(IPv4Node):
         pass
 
 
+
+class But(IPv4Node):
+    """BlackBox under test"""
+
+    # Implicit contructor is inherited.
+
+    def get_sw_if_index(self, interface):
+        """Get sw_if_index of specified interface from current node.
+
+        :param interface: Interface name.
+        :type interface: str
+        :returns: sw_if_index of the interface or None.
+        :rtype: int
+        """
+        return Topology().get_interface_sw_index(self.node_info, interface)
+
+
 def get_node(node_info):
     """Creates a class instance derived from Node based on type.
 
@@ -256,6 +273,8 @@ def get_node(node_info):
         return Tg(node_info)
     elif node_info['type'] == NodeType.DUT:
         return Dut(node_info)
+    elif node_info['type'] == NodeType.BUT:
+        return But(node_info)
     else:
         raise NotImplementedError('Node type "{}" unsupported!'.
                                   format(node_info['type']))

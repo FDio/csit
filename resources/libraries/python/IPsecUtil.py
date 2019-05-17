@@ -14,10 +14,12 @@
 """IPsec utilities library."""
 
 import os
+import etcd3
 from ipaddress import ip_network, ip_address
 
 from enum import Enum, IntEnum
 from robot.api import logger
+from time import sleep
 
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.topology import Topology
@@ -699,6 +701,164 @@ class IPsecUtil(object):
                            copy_on_execute=True)
         os.remove(tmp_fn1)
         os.remove(tmp_fn2)
+
+    @staticmethod
+    def vpp_ipsec_create_kiknos_interfaces(node1, node2, if1_ip_addr,
+                                           if2_ip_addr, if1_key, if2_key,
+                                           n_tunnels, crypto_alg, crypto_key,
+                                           integ_alg, integ_key, raddr_ip1,
+                                           raddr_ip2, raddr_range):
+        """Create multiple IPsec tunnel interfaces on VPP to connect to Kiknos.
+
+        :param node1: VPP node 1 to create tunnel interfaces.
+        :param if1_ip_addr: VPP node 1 interface IP4 address.
+        :param if2_ip_addr: VPP node 2 interface IP4 address.
+        :param if1_key: VPP node 1 interface key from topology file.
+        :param n_tunnels: Number of tunnell interfaces to create.
+        :param crypto_alg: The encryption algorithm name.
+        :param crypto_key: The encryption key string.
+        :param integ_alg: The integrity algorithm name.
+        :param integ_key: The integrity key string.
+        :param raddr_ip2: Policy selector remote IPv4 start address for the
+            first tunnel in direction node2->node1.
+        :param raddr_range: Mask specifying range of Policy selector Remote IPv4
+            addresses. Valid values are from 1 to 32.
+        :type node1: dict
+        :type if1_ip_addr: str
+        :type if2_ip_addr: str
+        :type if1_key: str
+        :type n_tunnels: int
+        :type crypto_alg: CryptoAlg
+        :type crypto_key: str
+        :type integ_alg: IntegAlg
+        :type integ_key: str
+        :type raddr_ip2: string
+        :type raddr_range: int
+        """
+        spi_1 = 10000
+        spi_2 = 20000
+        kiknos_num = 1
+
+        raddr_ip2_i = int(ip_address(unicode(raddr_ip2)))
+        addr_incr = 1 << (32 - raddr_range)
+        remote_ip_i = int(ip_address(unicode(if2_ip_addr)))
+
+        tmp_fn1 = '/tmp/ipsec_create_tunnel_dut1.config'
+
+        ckey = crypto_key.encode('hex')
+        ikey = integ_key.encode('hex')
+
+        vat = VatExecutor()
+        with open(tmp_fn1, 'w') as tmp_f1:
+            for i in range(0, n_tunnels):
+                integ = ''
+                integ_but = ''
+                if not crypto_alg.alg_name.startswith('aes-gcm-'):
+                    integ = 'integ_alg {integ_alg} '\
+                            'local_integ_key {local_integ_key} '\
+                            'remote_integ_key {remote_integ_key} '\
+                            .format(integ_alg=integ_alg.alg_name,
+                                    local_integ_key=ikey,
+                                    remote_integ_key=ikey)
+                    integ_but = '"integ_alg":"{integ_alg}",'\
+                                '"local_integ_key":"{local_integ_key}",'\
+                                '"remote_integ_key":"{remote_integ_key}",'\
+                                .format(integ_alg=integ_alg.alg_name.replace("-","_").upper(),
+                                        local_integ_key=ikey,
+                                        remote_integ_key=ikey)
+                if2_ip_addr_inc = ip_address(remote_ip_i + i)
+                dut1_tunnel = 'ipsec_tunnel_if_add_del '\
+                              'local_spi {local_spi} '\
+                              'remote_spi {remote_spi} '\
+                              'crypto_alg {crypto_alg} '\
+                              'local_crypto_key {local_crypto_key} '\
+                              'remote_crypto_key {remote_crypto_key} '\
+                              '{integ} '\
+                              'local_ip {local_ip} '\
+                              'remote_ip {remote_ip}\n'\
+                              .format(local_spi=spi_1+i,
+                                      remote_spi=spi_2+i,
+                                      crypto_alg=crypto_alg.alg_name,
+                                      local_crypto_key=ckey,
+                                      remote_crypto_key=ckey,
+                                      integ=integ,
+                                      local_ip=if1_ip_addr,
+                                      remote_ip=if2_ip_addr_inc)
+                but1_tunnel_key = '/vnf-agent/kiknos{kiknos_id}/config/vpp/v2/interfaces/ipsec0'\
+                                  .format(kiknos_id=kiknos_num+i)
+                but1_tunnel_value = '{{"name":"ipsec0",'\
+                                     '"type":"IPSEC_TUNNEL",'\
+                                     '"enabled":true,'\
+                                     '"unnumbered":{{"interface_with_ip":"red"}},'\
+                                     '"ipsec":{{"local_ip":"{local_ip}",'\
+                                              '"remote_ip":"{remote_ip}",'\
+                                              '"local_spi":{local_spi},'\
+                                              '"remote_spi":{remote_spi},'\
+                                              '"crypto_alg":"{crypto_alg}",'\
+                                              '"local_crypto_key":"{local_crypto_key}",'\
+                                              '"remote_crypto_key":"{remote_crypto_key}",'\
+                                              '{integ} '\
+                                              '"enable_udp_encap":false}}}}'\
+                                     .format(local_spi=spi_2+i,
+                                      remote_spi=spi_1+i,
+                                      crypto_alg=crypto_alg.alg_name.replace("-","_").upper(),
+                                      local_crypto_key=ckey,
+                                      remote_crypto_key=ckey,
+                                      integ=integ_but,
+                                      local_ip=if2_ip_addr_inc,
+                                      remote_ip=if1_ip_addr)
+
+                tmp_f1.write(dut1_tunnel)
+                for i in range(0, 10):
+                  try:
+                    etcd = etcd3.client(host=node2['host'], port=12379)
+                    etcd.put(but1_tunnel_key, but1_tunnel_value)
+                  except:
+                    print("Try #{} failed with ConnectionFailedError: Sleeping for 1 secs before next try:".format(i))
+                    sleep(1)
+                  continue
+                  break
+
+        vat.execute_script(tmp_fn1, node1, timeout=300, json_out=False,
+                           copy_on_execute=True)
+#        os.remove(tmp_fn1)
+
+        with open(tmp_fn1, 'a') as tmp_f1:
+            for i in range(0, n_tunnels):
+                raddr_ip2 = ip_address(raddr_ip2_i + addr_incr*i)
+                dut1_if = Topology.get_interface_name(node1, if1_key)
+                if2_ip_addr_inc = ip_address(remote_ip_i + i)
+                dut1 = 'exec ip route add {raddr}/{mask} via {addr} ipsec{i}\n'\
+                       'exec set interface unnumbered ipsec{i} use {uifc}\n'\
+                       'exec set interface state ipsec{i} up\n'\
+                       .format(raddr=raddr_ip2, mask=raddr_range,
+                               addr=if2_ip_addr_inc, i=i, uifc=dut1_if)
+                route_key = '/vnf-agent/kiknos{kiknos_id}/config/vpp/v2/route/vrf/0/'\
+                            'dst/{raddr}/8/gw/{addr}'\
+                            .format(raddr=raddr_ip1,
+                                    addr=if1_ip_addr, kiknos_id=kiknos_num+i)
+                route_value = '{{"type": "INTRA_VRF",'\
+                              '"dst_network":"{raddr}/8",'\
+                              '"next_hop_addr":"{addr}",'\
+                              '"outgoing_interface":"ipsec0",'\
+                              '"weight":1}}'\
+                              .format(raddr=raddr_ip1,
+                                      addr=if1_ip_addr)
+
+                tmp_f1.write(dut1)
+                for i in range(0, 10):
+                  try:
+                    etcd = etcd3.client(host=node2['host'], port=12379)
+                    etcd.put(route_key, route_value)
+                  except:
+                    print("Try #{} failed with ConnectionFailedError: Sleeping for 1 secs before next try:".format(i))
+                    sleep(1)
+                  continue
+                  break
+
+        vat.execute_script(tmp_fn1, node1, timeout=300, json_out=False,
+                           copy_on_execute=True)
+#        os.remove(tmp_fn1)
 
     @staticmethod
     def vpp_ipsec_add_multiple_tunnels(node1, node2, interface1, interface2,

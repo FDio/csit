@@ -425,8 +425,8 @@ class TrafficGenerator(AbstractMeasurer):
         command = (
             "sh -c '{tool}/resources/tools/trex/trex_stateless_profile.py"
             " --profile {prof}/resources/traffic_profiles/trex/{traffic}.py"
-            " --duration {duration!r} --frame_size {frame_size} --rate {rate!r}"
-            " --warmup_time {warmup!r} --port_0 {p_0} --port_1 {p_1}").format(
+            " --duration {duration} --frame_size {frame_size} --rate {rate}"
+            " --warmup_time {warmup} --port_0 {p_0} --port_1 {p_1}").format(
                 tool=Constants.REMOTE_FW_DIR, prof=Constants.REMOTE_FW_DIR,
                 traffic=traffic_profile, duration=duration,
                 frame_size=frame_size, rate=rate, warmup=warmup_time, p_0=p_0,

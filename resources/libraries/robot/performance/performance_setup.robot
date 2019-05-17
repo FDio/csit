@@ -126,6 +126,61 @@
 | | Set Suite Variable | ${dut2_if1}
 | | Set Suite Variable | ${dut2_if2}
 
+| Set variables in k-node circular topology with DUT interface model
+| | [Documentation]
+| | ... | Compute path for testing on three given nodes in circular topology
+| | ... | based on interface model provided as an argument and set
+| | ... | corresponding suite variables.
+| | ...
+| | ... | *Arguments:*
+| | ... | - iface_model - Interface model. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - tg - TG node
+| | ... | - tg_if1 - 1st TG interface towards DUT.
+| | ... | - tg_if1 - 1st TG interface MAC address.
+| | ... | - tg_if2 - 2nd TG interface towards BUT.
+| | ... | - tg_if2 - 2nd TG interface MAC address.
+| | ... | - dut1 - DUT node
+| | ... | - dut1_if1 - DUT interface towards TG.
+| | ... | - dut1_if2 - DUT interface towards BUT.
+| | ... | - but1 - BUT node
+| | ... | - but1_if1 - BUT interface towards DUT.
+| | ... | - but1_if2 - BUT interface towards TG.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set variables in k-node circular topology with DUT interface model\
+| | ... | \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${iface_model}
+| | ...
+| | ${iface_model_list}= | Create list | ${iface_model}
+| | Append Node | ${nodes['TG']}
+| | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['BUT1']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if1} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | ${dut1_if2} | ${dut1}= | Next Interface
+| | ${but1_if1} | ${but1}= | Next Interface
+| | ${but1_if2} | ${but1}= | Next Interface
+| | ${tg_if2} | ${tg}= | Next Interface
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | Set Suite Variable | ${tg}
+| | Set Suite Variable | ${tg_if1}
+| | Set Suite Variable | ${tg_if1_mac}
+| | Set Suite Variable | ${tg_if2}
+| | Set Suite Variable | ${tg_if2_mac}
+| | Set Suite Variable | ${dut1}
+| | Set Suite Variable | ${dut1_if1}
+| | Set Suite Variable | ${dut1_if2}
+| | Set Suite Variable | ${but1}
+| | Set Suite Variable | ${but1_if1}
+| | Set Suite Variable | ${but1_if2}
+
 | Set variables in 3-node circular topology with DUT interface model with double link between DUTs
 | | [Documentation]
 | | ... | Compute path for testing on three given nodes in circular topology
@@ -304,6 +359,29 @@
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
 
+| Set up k-node performance topology with DUT's NIC model
+| | [Documentation]
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up k-node performance topology with DUT's NIC model \| L2 \
+| | ... | \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${osi_layer} | ${nic_model}
+| | ...
+| | Set variables in k-node circular topology with DUT interface model
+| | ... | ${nic_model}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${dut1} | ${dut1_if1} | ${but1} | ${but1_if2} | ${osi_layer}
+
 | Set up 3-node performance topology with DUT's NIC model with double link between DUTs
 | | [Documentation]
 | | ... | Suite preparation phase that sets the default startup configuration of
@@ -374,6 +452,29 @@
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Initialize DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
+
+| Set up DPDK k-node performance topology with DUT's NIC model
+| | [Documentation]
+| | ... | Updates interfaces on all nodes and sets the global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator. Initializes DPDK test
+| | ... | environment.
+| | ...
+| | ... | *Arguments:*
+| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| k-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${osi_layer} | ${nic_model}
+| | ...
+| | Set variables in k-node circular topology with DUT interface model
+| | ... | ${nic_model}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${dut1} | ${dut1_if1} | ${but1} | ${but1_if2} | ${osi_layer}
+| | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Set up SRIOV 2-node performance topology with DUT's NIC model
 | | [Documentation]
@@ -462,6 +563,37 @@
 | | ...
 | | Set up 3-node performance topology with DUT's NIC model
 | | ... | ${osi_layer} | ${nic_name}
+| | Return From Keyword If | '${crypto_type}' == 'SW_cryptodev'
+| | ${numvfs}= | Set Variable If
+| | ... | '${crypto_type}' == 'HW_DH895xcc' | ${32}
+| | ... | '${crypto_type}' == 'HW_C3xxx' | ${16}
+| | Configure crypto device on all DUTs | ${crypto_type} | numvfs=${numvfs}
+| | ... | force_init=${True}
+| | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
+
+| Set up IPSeck performance test suite
+| | [Documentation]
+| | ... | Suite preparation phase that sets default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ... | Then it configures crypto device and kernel module on all DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ... | - crypto_type - Crypto device type - HW_cryptodev or SW_cryptodev
+| | ... | (Optional). Type: string, default value: HW_cryptodev
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up IPSec performance test suite \| L2 \
+| | ... | \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${osi_layer} | ${nic_model} | ${crypto_type}=HW_cryptodev
+| | ...
+| | Set up k-node performance topology with DUT's NIC model
+| | ... | ${osi_layer} | ${nic_model}
 | | Return From Keyword If | '${crypto_type}' == 'SW_cryptodev'
 | | ${numvfs}= | Set Variable If
 | | ... | '${crypto_type}' == 'HW_DH895xcc' | ${32}
@@ -581,6 +713,52 @@
 | | Set Linux interface up | ${tg} | ${intf_name}
 | | Install wrk | ${tg}
 
+| Set up k-node performance topology with wrk and DUT's NIC model
+| | [Documentation]
+| | ... | Suite preparation phase that sets the default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Installs the traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - iface_model - Interface model. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up k-node performance topology with wrk and DUT's NIC model\
+| | ... | \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${iface_model}
+| | ...
+| | Set variables in k-node circular topology with DUT interface model
+| | ... | ${iface_model}
+| | Iface update numa node | ${tg}
+# Make sure TRex is stopped
+| | ${running}= | Is TRex running | ${tg}
+| | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
+| | ${curr_driver}= | Get PCI dev driver | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | Run keyword if | '${curr_driver}'!='${None}'
+| | ... | PCI Driver Unbind | ${tg} |
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+# Bind tg_if1 to driver specified in the topology
+| | ${driver}= | Get Variable Value | ${tg['interfaces']['${tg_if1}']['driver']}
+| | PCI Driver Bind | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']} | ${driver}
+# Set IP on tg_if1
+| | ${intf_name}= | Get Linux interface name | ${tg}
+| | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
+| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.10.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.20.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.30.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.40.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.50.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.60.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.70.1 | 24
+| | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.80.1 | 24
+| | Set Linux interface up | ${tg} | ${intf_name}
+| | Install wrk | ${tg}
+
 # Suite teardowns
 
 | Tear down 2-node performance topology
@@ -590,6 +768,12 @@
 | | Teardown traffic generator | ${tg}
 
 | Tear down 3-node performance topology
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown.
+| | ...
+| | Teardown traffic generator | ${tg}
+
+| Tear down k-node performance topology
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown.
 | | ...
@@ -783,6 +967,14 @@
 | | Teardown traffic generator | ${tg}
 | | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Cleanup DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
+
+| Tear down DPDK k-node performance topology
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown.
+| | ... | Cleanup DPDK test environment.
+| | ...
+| | Teardown traffic generator | ${tg}
+| | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Tear down performance test with NAT
 | | [Documentation] | Common test teardown for performance \

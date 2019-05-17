@@ -139,4 +139,16 @@ schema;type_dut:
       mapping:
         <<: *type_honeycomb_mapping
 
+schema;type_but:
+  type: map
+  mapping:
+    <<: *type_node_mapping
+    type:
+      <<: *type_node_mapping_type
+      enum: [BUT]
+    honeycomb:
+      type: map
+      mapping:
+        <<: *type_honeycomb_mapping
+
 # vim: sw=2:sts=2

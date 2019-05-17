@@ -406,6 +406,29 @@
 | | Run keyword | DUT2.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
 | | ... | ${thr_count_int}
 
+| Add DPDK SW cryptodev on DUTs in k-node single-link circular topology
+| | [Documentation] | Add required number of SW crypto devices of given type
+| | ... | to VPP startup configuration on all DUTs in k-node single-link
+| | ... | circular topology.
+| | ...
+| | ... | *Arguments:*
+| | ... | - sw_pmd_type - PMD type of SW crypto device. Type: string
+| | ... | - count - Number of SW crypto devices. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add DPDK SW cryptodev on DUTs in k-node single-link circular\
+| | ... | topology \| aesni-mb \| ${2} \|
+| | ...
+| | [Arguments] | ${sw_pmd_type} | ${count}
+| | ${smt_used}= | Is SMT enabled | ${nodes['DUT1']['cpuinfo']}
+| | ${thr_count_int}= | Run keyword if | ${smt_used}
+| | ... | Evaluate | int(${count}*2)
+| | ... | ELSE | Set variable | ${count}
+| | ${socket_id}= | Get Interface Numa Node | ${nodes['DUT1']} | ${dut1_if2}
+| | Run keyword | DUT1.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
+| | ... | ${thr_count_int}
+
 | Write startup configuration on all VPP DUTs
 | | [Documentation] | Write VPP startup configuration on all DUTs.
 | | ...

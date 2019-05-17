@@ -85,6 +85,8 @@ class InterfaceUtil(object):
         elif node['type'] == NodeType.TG or node['type'] == NodeType.VM:
             cmd = 'ip link set {} {}'.format(iface_name, state)
             exec_cmd_no_error(node, cmd, sudo=True)
+        elif node['type'] == NodeType.BUT:
+            print 'foo'
         else:
             raise ValueError('Node {} has unknown NodeType: "{}"'
                              .format(node['host'], node['type']))
@@ -105,7 +107,7 @@ class InterfaceUtil(object):
         :raises ValueError: If the node type is "DUT".
         :raises ValueError: If the node has an unknown node type.
         """
-        if node['type'] == NodeType.DUT:
+        if node['type'] == NodeType.DUT or node['type'] == NodeType.BUT:
             raise ValueError('Node {}: Setting Ethernet MTU for interface '
                              'on DUT nodes not supported', node['host'])
         elif node['type'] == NodeType.TG:

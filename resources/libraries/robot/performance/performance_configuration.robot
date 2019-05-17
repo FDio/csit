@@ -24,6 +24,7 @@
 | Library | resources.libraries.python.Classify
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.L2Util
+| Library | resources.libraries.python.Etcd
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/counters.robot
@@ -175,6 +176,50 @@
 | | ... | interface=${dut1_if1}
 | | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | gateway=${tg_if2_ip4}
 | | ... | interface=${dut2_if2}
+
+| Initialize IPSec in k-node circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in k-node circular
+| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG and
+| | ... | DUT1-DUT2 links. Set routing for encrypted traffic on both DUT nodes
+| | ... | with prefix /8 and next hop of neighbour DUT or TG interface IPv4
+| | ... | address.
+| | ...
+| | Set interfaces in path up
+| | VPP Show Crypto Device Mapping | ${dut1}
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${but1_if1_mac}= | Get Interface MAC | ${but1} | ${but1_if1}
+| | ${but1_if2_mac}= | Get Interface MAC | ${but1} | ${but1_if2}
+| | Set Test Variable | ${tg_if1_mac}
+| | Set Test Variable | ${tg_if2_mac}
+| | Set Test Variable | ${dut1_if1_mac}
+| | Set Test Variable | ${dut1_if2_mac}
+| | Set Test Variable | ${but1_if1_mac}
+| | Set Test Variable | ${but1_if2_mac}
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
+| | ... | ${dut1_if1_ip4} | 24
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
+| | ... | ${dut1_if2_ip4} | 24
+| | Add arp on dut | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
+| | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
+| | ... | interface=${dut1_if1}
+| | ${but1_if1_start}= | Get Substring | ${but1_if1_ip4} | | -1
+| | ${but1_if2_start}= | Get Substring | ${but1_if2_ip4} | | -1
+| | :FOR | ${number} | IN RANGE | 1 | ${n_tunnels}+1
+| | | Configure Memif interface via etcd | ${etcd_host} | kiknos${number} | black
+| | | ... | ${but1_if2_start}${number} | 24 | 02:02:00:00:00:0${number} | 9200 | 2
+| | | ... | /var/run/contiv/memif_kiknos${number}.sock | etcd_port=${etcd_port}
+| | | Configure Memif interface via etcd | ${etcd_host} | kiknos${number} | red
+| | | ... | ${but1_if1_start}${number} | 24 | 02:01:00:00:00:0${number} | 9200 | 1
+| | | ... | /var/run/contiv/memif_kiknos${number}.sock | etcd_port=${etcd_port}
+| | | Add arp via etcd | ${etcd_host} | kiknos${number} | black | ${tg_if2_ip4} | ${tg_if2_mac}
+| | | ... | etcd_port=${etcd_port}
+| | | Add route via etcd | ${etcd_host} | kiknos${number} | ${raddr_ip4} | 8 | ${tg_if2_ip4}
+| | | ... | black | etcd_port=${etcd_port}
 
 | Initialize IPv4 forwarding in circular topology
 | | [Documentation]

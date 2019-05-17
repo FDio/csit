@@ -22,6 +22,7 @@
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
 | ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
+| ... | AND | Sleep | 10s
 | ... | AND | Verify Vpp on All Duts | ${nodes}
 | ... | AND | Verify UIO Driver on all DUTs | ${nodes}
 | ... | AND | Show Vpp Version on All Duts | ${nodes}
