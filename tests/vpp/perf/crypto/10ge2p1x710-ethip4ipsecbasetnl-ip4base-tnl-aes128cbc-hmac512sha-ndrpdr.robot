@@ -16,7 +16,8 @@
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-X710 | BASE | CBC_SHA1
+| ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-X710 | BASE |
+| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES
 | ...
 | Suite Setup | Set up IPSec performance test suite | L3 | ${nic_name}
 | ... | HW_DH895xcc
@@ -69,7 +70,8 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUTs run 1 IPsec tunnel CBC-SHA1 in each direction.
+| | ... | [Cfg] DUTs run 1 IPsec tunnel AES_CBC_128 / HMAC_512_SHA in each
+| | ... | direction.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
@@ -85,14 +87,12 @@
 | | ...
 | | # These are enums (not strings) so they cannot be in Variables table.
 | | ${encr_alg}= | Crypto Alg AES CBC 128
-| | ${auth_alg}= | Integ Alg SHA1 96
+| | ${auth_alg}= | Integ Alg SHA 512 256
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add cryptodev to all DUTs | ${phy_cores}
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Initialize IPSec in 3-node circular topology
@@ -108,50 +108,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc01-64B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc02-64B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc03-64B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdr
+| tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-tnl-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
