@@ -183,6 +183,75 @@
       "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c13d3aaf_ba49f1aa",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-17T14:15:28Z",
+      "side": 1,
+      "message": "VPP",
+      "range": {
+        "startLine": 192,
+        "startChar": 23,
+        "endLine": 192,
+        "endChar": 26
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51baad53_841eaa02",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-17T14:15:28Z",
+      "side": 1,
+      "message": "Does this code contain only the updated signature, or also the new suite?",
+      "range": {
+        "startLine": 199,
+        "startChar": 16,
+        "endLine": 199,
+        "endChar": 25
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f1b2bac_7c41f4af",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-17T14:15:28Z",
+      "side": 1,
+      "message": "No, they start to fail, the same way as in lines 159-161 and 214-215. Especially if the new suite has been merged.",
+      "range": {
+        "startLine": 202,
+        "startChar": 17,
+        "endLine": 202,
+        "endChar": 33
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
