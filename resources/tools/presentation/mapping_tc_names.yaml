@@ -308,3 +308,44 @@ Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc08-I
 
 Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc12-IMIX-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-ndrdisc-mrr:
   "Tests.Vpp.Perf.Vm Vhost.10ge2p1x710-Eth-L2Xcbase-Eth-4Vhostvr1024-2Vm-Mrr.tc12-IMIX-4t4c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr"
+
+
+# NDRPDR Tests
+
+# tests.vpp.perf.crypto
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc01-64B-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc02-64B-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc03-64B-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc04-1518B-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc05-1518B-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc06-1518B-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc07-9000B-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc08-9000B-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc09-9000B-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc10-IMIX-1c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc11-IMIX-2c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
+
+tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdr:
+  "tests.vpp.perf.crypto.10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.tc12-IMIX-4c-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr"
