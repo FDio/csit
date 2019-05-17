@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d39761fc_0c33dbac",
+        "filename": "resources/tools/presentation/generator_tables.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-17T11:00:47Z",
+      "side": 1,
+      "message": "Should not be needed, but does not hurt.",
+      "range": {
+        "startLine": 619,
+        "startChar": 12,
+        "endLine": 619,
+        "endChar": 31
+      },
+      "revId": "7960d8258471725aa9eee40101abf4030b3bb5e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
