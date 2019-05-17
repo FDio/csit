@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4921f746_19aea16c",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsecbasetnl-ip4base-int-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-17T12:38:56Z",
+      "side": 0,
+      "message": "Removing tags means you need to update the big .txt files in resources/libraries/bash/function/.\n\nWe should hurry up and switch the trending definitions from tags to (suite and) testcase names.",
+      "range": {
+        "startLine": 19,
+        "startChar": 70,
+        "endLine": 19,
+        "endChar": 78
+      },
+      "revId": "5a6c1a5a75c76e8e63f799f5c758567c1dd75b4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
