@@ -17,7 +17,6 @@ import os
 from ipaddress import ip_network, ip_address
 
 from enum import Enum, IntEnum
-from robot.api import logger
 
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.topology import Topology
@@ -41,6 +40,7 @@ class CryptoAlg(Enum):
     AES_CBC_192 = ('aes-cbc-192', 'AES-CBC', 24)
     AES_CBC_256 = ('aes-cbc-256', 'AES-CBC', 32)
     AES_GCM_128 = ('aes-gcm-128', 'AES-GCM', 20)
+    AES_GCM_256 = ('aes-gcm-256', 'AES-GCM', 40)
 
     def __init__(self, alg_name, scapy_name, key_len):
         self.alg_name = alg_name
@@ -55,6 +55,7 @@ class IntegAlg(Enum):
     SHA_384_192 = ('sha-384-192', 'SHA2-384-192', 48)
     SHA_512_256 = ('sha-512-256', 'SHA2-512-256', 64)
     AES_GCM_128 = ('aes-gcm-128', 'AES-GCM', 20)
+    AES_GCM_256 = ('aes-gcm-256', 'AES-GCM', 40)
 
     def __init__(self, alg_name, scapy_name, key_len):
         self.alg_name = alg_name
@@ -135,6 +136,15 @@ class IPsecUtil(object):
         return CryptoAlg.AES_GCM_128
 
     @staticmethod
+    def crypto_alg_aes_gcm_256():
+        """Return encryption algorithm aes-gcm-256.
+
+        :returns: CryptoAlg enum AES_GCM_128 object.
+        :rtype: CryptoAlg
+        """
+        return CryptoAlg.AES_GCM_256
+
+    @staticmethod
     def get_crypto_alg_key_len(crypto_alg):
         """Return encryption algorithm key length.
 
@@ -200,6 +210,15 @@ class IPsecUtil(object):
         :rtype: IntegAlg
         """
         return IntegAlg.AES_GCM_128
+
+    @staticmethod
+    def integ_alg_aes_gcm_256():
+        """Return integrity algorithm AES-GCM-256.
+
+        :returns: IntegAlg enum AES_GCM_256 object.
+        :rtype: IntegAlg
+        """
+        return IntegAlg.AES_GCM_256
 
     @staticmethod
     def get_integ_alg_key_len(integ_alg):
@@ -278,16 +297,8 @@ class IPsecUtil(object):
         err_msg = 'Failed to dump IPsec backends on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add('ipsec_backend_dump').execute_should_pass(
+            papi_exec.add('ipsec_backend_dump').execute_should_pass(
                 err_msg, process_reply=False)
-        # After API change there is returned VPP internal enum object
-        # representing VPP IPSEC protocol instead of integer representation
-        # so JSON fails to decode it - we need to check if it is Python API
-        # bug or we need to adapt vpp_papi_provider to correctly encode
-        # such object into JSON
-        # logger.trace('IPsec backend dump\n{dump}'.
-        # format(dump=papi_resp.reply))
-        logger.trace('IPsec backend dump\n{dump}'.format(dump=papi_resp.stdout))
 
     @staticmethod
     def vpp_ipsec_add_sad_entry(node, sad_id, spi, crypto_alg, crypto_key,
@@ -369,7 +380,8 @@ class IPsecUtil(object):
             if tunnel_src is not None and tunnel_dst is not None else ''
 
         integ = 'integ-alg {0} integ-key {1}'.format(integ_alg.alg_name, ikey)\
-            if crypto_alg.alg_name != 'aes-gcm-128' else ''
+            if crypto_alg.alg_name != 'aes-gcm-128' and \
+               crypto_alg.alg_name != 'aes-gcm-256' else ''
 
         with open(tmp_filename, 'w') as tmp_file:
             for i in range(0, n_entries):
