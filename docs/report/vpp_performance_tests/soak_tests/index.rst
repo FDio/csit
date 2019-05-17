@@ -34,7 +34,7 @@ Soak Tests
 ==========
 
 Long duration (2 hours per test) soak tests are executed
-using `PLRsearch`_ algorithm. As the test take long time, only 10 test
+using :ref:`plrsearch` algorithm. As the test take long time, only 10 test
 were executed, two runs each.
 
 Additional information about graph data:

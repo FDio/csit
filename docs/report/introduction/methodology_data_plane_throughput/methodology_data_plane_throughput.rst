@@ -117,7 +117,7 @@ compared against NDR and PDR rates discovered with MLRsearch.
 Details
 ~~~~~~~
 
-See :ref:`plrsearch_algorithm` section for more detail. PLRsearch is
+See :ref:`plrsearch` methodology section for more detail. PLRsearch is
 being standardized in IETF in `draft-vpolak-bmwg-plrsearch
 <https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch>`_.
 
