@@ -1,0 +1,656 @@
+{
+ "aliases": {
+  "ip4_address": {
+   "length": 4,
+   "type": "u8"
+  },
+  "ip6_address": {
+   "length": 16,
+   "type": "u8"
+  }
+ },
+ "enums": [
+  [
+   [
+    0,
+    "ADDRESS_IP4"
+   ],
+   [
+    1,
+    "ADDRESS_IP6"
+   ],
+   "address_family",
+   {
+    "enumtype": "u32"
+   }
+  ],
+  [
+   [
+    0,
+    "ASM"
+   ],
+   [
+    1,
+    "SSM"
+   ],
+   "group_prefix_type",
+   {
+    "enumtype": "u32"
+   }
+  ],
+  [
+   [
+    0,
+    "EXCLUDE"
+   ],
+   [
+    1,
+    "INCLUDE"
+   ],
+   "filter_mode",
+   {
+    "enumtype": "u32"
+   }
+  ]
+ ],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "add",
+    "u8"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   [
+    "u32",
+    "vrf_id"
+   ],
+   "igmp_proxy_device_add_del",
+   {
+    "crc": "0xf753aab3"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "add",
+    "u8"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   [
+    "u32",
+    "vrf_id"
+   ],
+   "igmp_proxy_device_add_del_interface",
+   {
+    "crc": "0xf753aab3"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable",
+    "u32"
+   ],
+   [
+    "pid",
+    "u32"
+   ],
+   "want_igmp_events",
+   {
+    "crc": "0xcfaccc1f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable",
+    "u8"
+   ],
+   [
+    "mode",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "igmp_enable_disable",
+   {
+    "crc": "0x5bd2a570"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "gp",
+    "vl_api_group_prefix_t"
+   ],
+   "igmp_group_prefix_set",
+   {
+    "crc": "0x7ae82c26"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "group",
+    "vl_api_igmp_group_t"
+   ],
+   "igmp_listen",
+   {
+    "crc": "0xa4973479"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "igmp_clear_interface",
+   {
+    "crc": "0x529cb13f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "igmp_dump",
+   {
+    "crc": "0x529cb13f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "igmp_group_prefix_dump",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "filter",
+    "vl_api_filter_mode_t"
+   ],
+   [
+    "gaddr",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "saddr",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "igmp_event",
+   {
+    "crc": "0xb1122e50"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "gaddr",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "saddr",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "igmp_details",
+   {
+    "crc": "0x238a59f3"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "gp",
+    "vl_api_group_prefix_t"
+   ],
+   "igmp_group_prefix_details",
+   {
+    "crc": "0xc6b0f93d"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "igmp_clear_interface_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "igmp_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "igmp_group_prefix_set_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "igmp_listen_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "igmp_proxy_device_add_del_interface_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "igmp_proxy_device_add_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "want_igmp_events_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "igmp_clear_interface": {
+   "reply": "igmp_clear_interface_reply"
+  },
+  "igmp_dump": {
+   "reply": "igmp_details",
+   "stream": true
+  },
+  "igmp_enable_disable": {
+   "reply": "igmp_enable_disable_reply"
+  },
+  "igmp_group_prefix_dump": {
+   "reply": "igmp_group_prefix_details",
+   "stream": true
+  },
+  "igmp_group_prefix_set": {
+   "reply": "igmp_group_prefix_set_reply"
+  },
+  "igmp_listen": {
+   "reply": "igmp_listen_reply"
+  },
+  "igmp_proxy_device_add_del": {
+   "reply": "igmp_proxy_device_add_del_reply"
+  },
+  "igmp_proxy_device_add_del_interface": {
+   "reply": "igmp_proxy_device_add_del_interface_reply"
+  },
+  "want_igmp_events": {
+   "events": [
+    "igmp_event"
+   ],
+   "reply": "want_igmp_events_reply"
+  }
+ },
+ "types": [
+  [
+   [
+    0,
+    "n_srcs",
+    "saddrs",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "filter",
+    "vl_api_filter_mode_t"
+   ],
+   [
+    "gaddr",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "n_srcs",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "igmp_group",
+   {
+    "crc": "0xc0f42621"
+   }
+  ],
+  [
+   [
+    "address",
+    "vl_api_address_t"
+   ],
+   [
+    "address_length",
+    "u8"
+   ],
+   "prefix",
+   {
+    "crc": "0x0403aebc"
+   }
+  ],
+  [
+   [
+    "af",
+    "vl_api_address_family_t"
+   ],
+   [
+    "grp_address",
+    "vl_api_address_union_t"
+   ],
+   [
+    "grp_address_length",
+    "u16"
+   ],
+   [
+    "src_address",
+    "vl_api_address_union_t"
+   ],
+   "mprefix",
+   {
+    "crc": "0x1c4cba05"
+   }
+  ],
+  [
+   [
+    "af",
+    "vl_api_address_family_t"
+   ],
+   [
+    "un",
+    "vl_api_address_union_t"
+   ],
+   "address",
+   {
+    "crc": "0x09f11671"
+   }
+  ],
+  [
+   [
+    "len",
+    "u8"
+   ],
+   [
+    "prefix",
+    "vl_api_ip4_address_t"
+   ],
+   "ip4_prefix",
+   {
+    "crc": "0xea8dc11d"
+   }
+  ],
+  [
+   [
+    "len",
+    "u8"
+   ],
+   [
+    "prefix",
+    "vl_api_ip6_address_t"
+   ],
+   "ip6_prefix",
+   {
+    "crc": "0x779fd64f"
+   }
+  ],
+  [
+   [
+    "prefix",
+    "vl_api_prefix_t"
+   ],
+   [
+    "type",
+    "vl_api_group_prefix_type_t"
+   ],
+   "group_prefix",
+   {
+    "crc": "0x5398e813"
+   }
+  ]
+ ],
+ "unions": [
+  [
+   [
+    "ip4",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "ip6",
+    "vl_api_ip6_address_t"
+   ],
+   "address_union",
+   {
+    "crc": "0xd68a2fb4"
+   }
+  ]
+ ],
+ "vl_api_version": "0x5c65be9a"
+}

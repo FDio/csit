@@ -1,0 +1,133 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    128,
+    "mgmt_oid",
+    "u8"
+   ],
+   [
+    16,
+    "mgmt_ip6",
+    "u8"
+   ],
+   [
+    256,
+    "port_desc",
+    "u8"
+   ],
+   [
+    4,
+    "mgmt_ip4",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "sw_interface_set_lldp",
+   {
+    "crc": "0x2d85d156"
+   }
+  ],
+  [
+   [
+    256,
+    "system_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "tx_hold",
+    "u32"
+   ],
+   [
+    "tx_interval",
+    "u32"
+   ],
+   "lldp_config",
+   {
+    "crc": "0x2410286f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "lldp_config_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "sw_interface_set_lldp_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "lldp_config": {
+   "reply": "lldp_config_reply"
+  },
+  "sw_interface_set_lldp": {
+   "reply": "sw_interface_set_lldp_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x904772fa"
+}

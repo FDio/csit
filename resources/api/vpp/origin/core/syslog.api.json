@@ -1,0 +1,374 @@
+{
+ "aliases": {
+  "ip4_address": {
+   "length": 4,
+   "type": "u8"
+  },
+  "ip6_address": {
+   "length": 16,
+   "type": "u8"
+  }
+ },
+ "enums": [
+  [
+   [
+    0,
+    "ADDRESS_IP4"
+   ],
+   [
+    1,
+    "ADDRESS_IP6"
+   ],
+   "address_family",
+   {
+    "enumtype": "u32"
+   }
+  ],
+  [
+   [
+    0,
+    "SYSLOG_API_SEVERITY_EMERG"
+   ],
+   [
+    1,
+    "SYSLOG_API_SEVERITY_ALERT"
+   ],
+   [
+    2,
+    "SYSLOG_API_SEVERITY_CRIT"
+   ],
+   [
+    3,
+    "SYSLOG_API_SEVERITY_ERR"
+   ],
+   [
+    4,
+    "SYSLOG_API_SEVERITY_WARN"
+   ],
+   [
+    5,
+    "SYSLOG_API_SEVERITY_NOTICE"
+   ],
+   [
+    6,
+    "SYSLOG_API_SEVERITY_INFO"
+   ],
+   [
+    7,
+    "SYSLOG_API_SEVERITY_DBG"
+   ],
+   "syslog_severity",
+   {
+    "enumtype": "u32"
+   }
+  ]
+ ],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "collector_address",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "collector_port",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "max_msg_size",
+    "u32"
+   ],
+   [
+    "src_address",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "u32",
+    "vrf_id"
+   ],
+   "syslog_set_sender",
+   {
+    "crc": "0x80126be2"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "severity",
+    "vl_api_syslog_severity_t"
+   ],
+   "syslog_set_filter",
+   {
+    "crc": "0x6b786eff"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "syslog_get_filter",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "syslog_get_sender",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "collector_address",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "collector_port",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "max_msg_size",
+    "u32"
+   ],
+   [
+    "src_address",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "u32",
+    "vrf_id"
+   ],
+   "syslog_get_sender_reply",
+   {
+    "crc": "0x47af60ff"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "severity",
+    "vl_api_syslog_severity_t"
+   ],
+   "syslog_get_filter_reply",
+   {
+    "crc": "0x529a4e3c"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "syslog_set_filter_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "syslog_set_sender_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "syslog_get_filter": {
+   "reply": "syslog_get_filter_reply"
+  },
+  "syslog_get_sender": {
+   "reply": "syslog_get_sender_reply"
+  },
+  "syslog_set_filter": {
+   "reply": "syslog_set_filter_reply"
+  },
+  "syslog_set_sender": {
+   "reply": "syslog_set_sender_reply"
+  }
+ },
+ "types": [
+  [
+   [
+    "address",
+    "vl_api_address_t"
+   ],
+   [
+    "address_length",
+    "u8"
+   ],
+   "prefix",
+   {
+    "crc": "0x0403aebc"
+   }
+  ],
+  [
+   [
+    "af",
+    "vl_api_address_family_t"
+   ],
+   [
+    "grp_address",
+    "vl_api_address_union_t"
+   ],
+   [
+    "grp_address_length",
+    "u16"
+   ],
+   [
+    "src_address",
+    "vl_api_address_union_t"
+   ],
+   "mprefix",
+   {
+    "crc": "0x1c4cba05"
+   }
+  ],
+  [
+   [
+    "af",
+    "vl_api_address_family_t"
+   ],
+   [
+    "un",
+    "vl_api_address_union_t"
+   ],
+   "address",
+   {
+    "crc": "0x09f11671"
+   }
+  ],
+  [
+   [
+    "len",
+    "u8"
+   ],
+   [
+    "prefix",
+    "vl_api_ip4_address_t"
+   ],
+   "ip4_prefix",
+   {
+    "crc": "0xea8dc11d"
+   }
+  ],
+  [
+   [
+    "len",
+    "u8"
+   ],
+   [
+    "prefix",
+    "vl_api_ip6_address_t"
+   ],
+   "ip6_prefix",
+   {
+    "crc": "0x779fd64f"
+   }
+  ]
+ ],
+ "unions": [
+  [
+   [
+    "ip4",
+    "vl_api_ip4_address_t"
+   ],
+   [
+    "ip6",
+    "vl_api_ip6_address_t"
+   ],
+   "address_union",
+   {
+    "crc": "0xd68a2fb4"
+   }
+  ]
+ ],
+ "vl_api_version": "0x279f38d5"
+}

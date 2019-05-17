@@ -1,0 +1,162 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    2,
+    "pipe_sw_if_index",
+    "u32"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "pipe_create_reply",
+   {
+    "crc": "0x9f0eef14"
+   }
+  ],
+  [
+   [
+    2,
+    "pipe_sw_if_index",
+    "u32"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "instance",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "pipe_details",
+   {
+    "crc": "0x91286b09"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_specified",
+    "u8"
+   ],
+   [
+    "u32",
+    "user_instance"
+   ],
+   "pipe_create",
+   {
+    "crc": "0xdb413409"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "pipe_delete",
+   {
+    "crc": "0x529cb13f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "pipe_dump",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "pipe_delete_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "pipe_create": {
+   "reply": "pipe_create_reply"
+  },
+  "pipe_delete": {
+   "reply": "pipe_delete_reply"
+  },
+  "pipe_dump": {
+   "reply": "pipe_details",
+   "stream": true
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x8f4286ea"
+}

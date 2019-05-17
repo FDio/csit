@@ -1,0 +1,79 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    256,
+    "u8",
+    "uri"
+   ],
+   [
+    256,
+    "u8",
+    "www_root"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "cache_size_limit",
+    "u32"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "fifo_size",
+    "u32"
+   ],
+   [
+    "prealloc_fifos",
+    "u32"
+   ],
+   [
+    "private_segment_size",
+    "u32"
+   ],
+   "http_static_enable",
+   {
+    "crc": "0xed4257a2"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "http_static_enable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "http_static_enable": {
+   "reply": "http_static_enable_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x4651560b"
+}

@@ -1,0 +1,321 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    128,
+    "socket_filename",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_add",
+    "u8"
+   ],
+   [
+    "socket_id",
+    "u32"
+   ],
+   "memif_socket_filename_add_del",
+   {
+    "crc": "0x30e3929d"
+   }
+  ],
+  [
+   [
+    128,
+    "socket_filename",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "socket_id",
+    "u32"
+   ],
+   "memif_socket_filename_details",
+   {
+    "crc": "0xe347e32f"
+   }
+  ],
+  [
+   [
+    24,
+    "secret",
+    "u8"
+   ],
+   [
+    6,
+    "hw_addr",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "buffer_size",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "id",
+    "u32"
+   ],
+   [
+    "mode",
+    "u8"
+   ],
+   [
+    "ring_size",
+    "u32"
+   ],
+   [
+    "role",
+    "u8"
+   ],
+   [
+    "rx_queues",
+    "u8"
+   ],
+   [
+    "socket_id",
+    "u32"
+   ],
+   [
+    "tx_queues",
+    "u8"
+   ],
+   "memif_create",
+   {
+    "crc": "0x6597cdb2"
+   }
+  ],
+  [
+   [
+    6,
+    "hw_addr",
+    "u8"
+   ],
+   [
+    64,
+    "if_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "admin_up_down",
+    "u8"
+   ],
+   [
+    "buffer_size",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "id",
+    "u32"
+   ],
+   [
+    "link_up_down",
+    "u8"
+   ],
+   [
+    "mode",
+    "u8"
+   ],
+   [
+    "ring_size",
+    "u32"
+   ],
+   [
+    "role",
+    "u8"
+   ],
+   [
+    "socket_id",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "memif_details",
+   {
+    "crc": "0x4f5a3397"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "memif_delete",
+   {
+    "crc": "0x529cb13f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "memif_dump",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "memif_socket_filename_dump",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "memif_create_reply",
+   {
+    "crc": "0xfda5941f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "memif_delete_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "memif_socket_filename_add_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "2.0.0"
+ },
+ "services": {
+  "memif_create": {
+   "reply": "memif_create_reply"
+  },
+  "memif_delete": {
+   "reply": "memif_delete_reply"
+  },
+  "memif_dump": {
+   "reply": "memif_details",
+   "stream": true
+  },
+  "memif_socket_filename_add_del": {
+   "reply": "memif_socket_filename_add_del_reply"
+  },
+  "memif_socket_filename_dump": {
+   "reply": "memif_socket_filename_details",
+   "stream": true
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x31b42e17"
+}

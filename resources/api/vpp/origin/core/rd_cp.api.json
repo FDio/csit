@@ -1,0 +1,65 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable",
+    "u8"
+   ],
+   [
+    "install_default_routes",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "ip6_nd_address_autoconfig",
+   {
+    "crc": "0x7598dda9"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "ip6_nd_address_autoconfig_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "ip6_nd_address_autoconfig": {
+   "reply": "ip6_nd_address_autoconfig_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x31749547"
+}

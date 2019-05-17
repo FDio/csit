@@ -1,0 +1,175 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    0,
+    "pcap_file_name",
+    "pcap_name_length",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "count",
+    "u32"
+   ],
+   [
+    "interface_id",
+    "u32"
+   ],
+   [
+    "is_enabled",
+    "u8"
+   ],
+   [
+    "pcap_name_length",
+    "u32"
+   ],
+   "pg_capture",
+   {
+    "crc": "0x453da78d"
+   }
+  ],
+  [
+   [
+    0,
+    "stream_name",
+    "stream_name_length",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_enabled",
+    "u8"
+   ],
+   [
+    "stream_name_length",
+    "u32"
+   ],
+   "pg_enable_disable",
+   {
+    "crc": "0x0cb71d10"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "interface_id",
+    "u32"
+   ],
+   "pg_create_interface",
+   {
+    "crc": "0xef1dc980"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "pg_create_interface_reply",
+   {
+    "crc": "0xfda5941f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "pg_capture_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "pg_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "pg_capture": {
+   "reply": "pg_capture_reply"
+  },
+  "pg_create_interface": {
+   "reply": "pg_create_interface_reply"
+  },
+  "pg_enable_disable": {
+   "reply": "pg_enable_disable_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0xf189eee1"
+}

@@ -1,0 +1,57 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_disable",
+    "u8"
+   ],
+   "ioam_cache_ip6_enable_disable",
+   {
+    "crc": "0x22324d89"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "ioam_cache_ip6_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "ioam_cache_ip6_enable_disable": {
+   "reply": "ioam_cache_ip6_enable_disable_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0xb7452f41"
+}

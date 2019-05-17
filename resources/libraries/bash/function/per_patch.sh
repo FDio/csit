@@ -73,12 +73,18 @@ function build_vpp_ubuntu_amd64 () {
     # that is ARCH/OS aware. VPP repo is SSOT for building mechanics and CSIT
     # is consuming artifacts. This way if VPP will introduce change in building
     # mechanics they will not be blocked by CSIT repo.
+    #
+    # CSIT repo is re-checked out, as apparently some step of the build process
+    # deletes all .api.json files it finds.
+    #
     # Arguments:
     # - ${1} - String identifier for echo, can be unset.
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
+    # - CSIT_DIR - Path to existing directory, where CSIT repo is directories.
     # Directories updated:
     # - ${VPP_DIR} - Whole subtree, many files (re)created by the build process.
+    # - ${CSIT_DIR} - Re-checked out to undo any deletions by the build process.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
@@ -90,6 +96,8 @@ function build_vpp_ubuntu_amd64 () {
         die "Argument not found."
     }
     echo "*******************************************************************"
+    ( cd "${CSIT_DIR}"; git status ) || die "Git status failed."
+    ( cd "${CSIT_DIR}"; git checkout HEAD . ) || die "Git checkout failed."
 }
 
 

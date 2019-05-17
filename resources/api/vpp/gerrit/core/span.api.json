@@ -1,0 +1,125 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_l2",
+    "u8"
+   ],
+   [
+    "state",
+    "u8"
+   ],
+   [
+    "sw_if_index_from",
+    "u32"
+   ],
+   [
+    "sw_if_index_to",
+    "u32"
+   ],
+   "sw_interface_span_enable_disable",
+   {
+    "crc": "0x7216258d"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_l2",
+    "u8"
+   ],
+   "sw_interface_span_dump",
+   {
+    "crc": "0x67c54650"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "sw_interface_span_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_l2",
+    "u8"
+   ],
+   [
+    "state",
+    "u8"
+   ],
+   [
+    "sw_if_index_from",
+    "u32"
+   ],
+   [
+    "sw_if_index_to",
+    "u32"
+   ],
+   "sw_interface_span_details",
+   {
+    "crc": "0x23966371"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "sw_interface_span_dump": {
+   "reply": "sw_interface_span_details",
+   "stream": true
+  },
+  "sw_interface_span_enable_disable": {
+   "reply": "sw_interface_span_enable_disable_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x3bf64515"
+}

@@ -1,0 +1,171 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "app_data",
+    "u32"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "node_id",
+    "u32"
+   ],
+   [
+    "num_elts",
+    "u8"
+   ],
+   [
+    "trace_tsp",
+    "u8"
+   ],
+   [
+    "trace_type",
+    "u8"
+   ],
+   "trace_profile_add",
+   {
+    "crc": "0xde08aa6d"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "app_data",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "node_id",
+    "u32"
+   ],
+   [
+    "num_elts",
+    "u8"
+   ],
+   [
+    "trace_tsp",
+    "u8"
+   ],
+   [
+    "trace_type",
+    "u8"
+   ],
+   "trace_profile_show_config_reply",
+   {
+    "crc": "0x0f1d374c"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "trace_profile_del",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "trace_profile_show_config",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "trace_profile_add_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "trace_profile_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "trace_profile_add": {
+   "reply": "trace_profile_add_reply"
+  },
+  "trace_profile_del": {
+   "reply": "trace_profile_del_reply"
+  },
+  "trace_profile_show_config": {
+   "reply": "trace_profile_show_config_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0x987796e2"
+}

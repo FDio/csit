@@ -1,0 +1,147 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    0,
+    "count",
+    "ranges",
+    "vl_api_time_range_t"
+   ],
+   [
+    6,
+    "mac_address",
+    "u8"
+   ],
+   [
+    64,
+    "device_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "allow",
+    "u8"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "count",
+    "u32"
+   ],
+   [
+    "drop",
+    "u8"
+   ],
+   [
+    "is_add",
+    "u8"
+   ],
+   "mactime_add_del_range",
+   {
+    "crc": "0x2b1821d5"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable_disable",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "mactime_enable_disable",
+   {
+    "crc": "0x57298519"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "mactime_add_del_range_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "mactime_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "mactime_add_del_range": {
+   "reply": "mactime_add_del_range_reply"
+  },
+  "mactime_enable_disable": {
+   "reply": "mactime_enable_disable_reply"
+  }
+ },
+ "types": [
+  [
+   [
+    "end",
+    "f64"
+   ],
+   [
+    "f64",
+    "start"
+   ],
+   "time_range",
+   {
+    "crc": "0x941c191b"
+   }
+  ]
+ ],
+ "unions": [],
+ "vl_api_version": "0xbfee791"
+}

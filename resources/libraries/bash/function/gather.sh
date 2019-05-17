@@ -245,6 +245,11 @@ function gather_vpp () {
 
     set -exuo pipefail
 
+    # Put packages to a place tests expect them.
+    #
+    # Packages are either downloaded, or moved from local build directory.
+    # For locally built packages, API signature check is performed.
+    #
     # Variables read:
     # - BASH_FUNCTION_DIR - Bash directory with functions.
     # - TEST_CODE - The test selection string from environment or argument.
@@ -286,9 +291,10 @@ function gather_vpp () {
             ;;
         "vpp-csit-"*)
             # Use locally built packages.
-            mv "${DOWNLOAD_DIR}"/../"vpp"*".deb" "${DOWNLOAD_DIR}"/ || {
+            mv "${DOWNLOAD_DIR}"/../*"vpp"*".deb" "${DOWNLOAD_DIR}"/ || {
                 die "Move command failed."
             }
+            check_vpp_api_signature || die
             ;;
         *)
             die "Unable to identify job type from: ${TEST_CODE}"

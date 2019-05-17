@@ -1,0 +1,175 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    16,
+    "dst_address",
+    "u8"
+   ],
+   [
+    16,
+    "src_address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_ipv6",
+    "u8"
+   ],
+   [
+    "u32",
+    "vrf_id"
+   ],
+   "sctp_add_src_dst_connection",
+   {
+    "crc": "0x45c59b2f"
+   }
+  ],
+  [
+   [
+    16,
+    "dst_address",
+    "u8"
+   ],
+   [
+    16,
+    "src_address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_ipv6",
+    "u8"
+   ],
+   [
+    "u32",
+    "vrf_id"
+   ],
+   "sctp_del_src_dst_connection",
+   {
+    "crc": "0x45c59b2f"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "never_bundle",
+    "u8"
+   ],
+   [
+    "never_delay_sack",
+    "u8"
+   ],
+   "sctp_config",
+   {
+    "crc": "0x7617eced"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "sctp_add_src_dst_connection_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "sctp_config_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "sctp_del_src_dst_connection_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "sctp_add_src_dst_connection": {
+   "reply": "sctp_add_src_dst_connection_reply"
+  },
+  "sctp_config": {
+   "reply": "sctp_config_reply"
+  },
+  "sctp_del_src_dst_connection": {
+   "reply": "sctp_del_src_dst_connection_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0xf125ed0b"
+}

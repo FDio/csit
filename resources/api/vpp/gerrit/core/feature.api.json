@@ -1,0 +1,71 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    64,
+    "arc_name",
+    "u8"
+   ],
+   [
+    64,
+    "feature_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "feature_enable_disable",
+   {
+    "crc": "0xf525e210"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "feature_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.1"
+ },
+ "services": {
+  "feature_enable_disable": {
+   "reply": "feature_enable_disable_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0xf82f7a4"
+}

@@ -1,0 +1,127 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    16,
+    "address",
+    "u8"
+   ],
+   [
+    64,
+    "prefix_group",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_add",
+    "u8"
+   ],
+   [
+    "prefix_length",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "ip6_add_del_address_using_prefix",
+   {
+    "crc": "0x3216fd48"
+   }
+  ],
+  [
+   [
+    64,
+    "prefix_group",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "enable",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "u32"
+   ],
+   "dhcp6_pd_client_enable_disable",
+   {
+    "crc": "0xd2caf7ee"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "dhcp6_pd_client_enable_disable_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "ip6_add_del_address_using_prefix_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "dhcp6_pd_client_enable_disable": {
+   "reply": "dhcp6_pd_client_enable_disable_reply"
+  },
+  "ip6_add_del_address_using_prefix": {
+   "reply": "ip6_add_del_address_using_prefix_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0xe7d7ed38"
+}

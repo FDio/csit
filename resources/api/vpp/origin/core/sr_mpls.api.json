@@ -1,0 +1,324 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    0,
+    "n_segments",
+    "segments",
+    "u32"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "bsid",
+    "u32"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "n_segments",
+    "u8"
+   ],
+   [
+    "operation",
+    "u8"
+   ],
+   [
+    "sl_index",
+    "u32"
+   ],
+   [
+    "u32",
+    "weight"
+   ],
+   "sr_mpls_policy_mod",
+   {
+    "crc": "0x09d338ac"
+   }
+  ],
+  [
+   [
+    0,
+    "n_segments",
+    "segments",
+    "u32"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "bsid",
+    "u32"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "n_segments",
+    "u8"
+   ],
+   [
+    "type",
+    "u8"
+   ],
+   [
+    "u32",
+    "weight"
+   ],
+   "sr_mpls_policy_add",
+   {
+    "crc": "0x6f5b21cc"
+   }
+  ],
+  [
+   [
+    16,
+    "endpoint",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "bsid",
+    "u32"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "color",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "endpoint_type",
+    "u8"
+   ],
+   "sr_mpls_policy_assign_endpoint_color",
+   {
+    "crc": "0x6c82a6da"
+   }
+  ],
+  [
+   [
+    16,
+    "next_hop",
+    "u8"
+   ],
+   [
+    16,
+    "prefix_addr",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "bsid",
+    "u32"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "co_bits",
+    "u8"
+   ],
+   [
+    "color",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "is_del",
+    "u8"
+   ],
+   [
+    "mask_width",
+    "u32"
+   ],
+   [
+    "nh_type",
+    "u8"
+   ],
+   [
+    "table_id",
+    "u32"
+   ],
+   [
+    "traffic_type",
+    "u8"
+   ],
+   [
+    "u32",
+    "vpn_label"
+   ],
+   "sr_mpls_steering_add_del",
+   {
+    "crc": "0x1591f94a"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "bsid",
+    "u32"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "sr_mpls_policy_del",
+   {
+    "crc": "0xe29d34fa"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "sr_mpls_policy_add_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "sr_mpls_policy_assign_endpoint_color_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "sr_mpls_policy_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "sr_mpls_policy_mod_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "sr_mpls_steering_add_del_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.0.0"
+ },
+ "services": {
+  "sr_mpls_policy_add": {
+   "reply": "sr_mpls_policy_add_reply"
+  },
+  "sr_mpls_policy_assign_endpoint_color": {
+   "reply": "sr_mpls_policy_assign_endpoint_color_reply"
+  },
+  "sr_mpls_policy_del": {
+   "reply": "sr_mpls_policy_del_reply"
+  },
+  "sr_mpls_policy_mod": {
+   "reply": "sr_mpls_policy_mod_reply"
+  },
+  "sr_mpls_steering_add_del": {
+   "reply": "sr_mpls_steering_add_del_reply"
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0xeee34faa"
+}

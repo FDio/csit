@@ -1,0 +1,493 @@
+{
+ "aliases": {},
+ "enums": [],
+ "messages": [
+  [
+   [
+    0,
+    "count",
+    "thread_data",
+    "vl_api_thread_data_t"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "count",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "show_threads_reply",
+   {
+    "crc": "0x6942fb35"
+   }
+  ],
+  [
+   [
+    64,
+    "next_name",
+    "u8"
+   ],
+   [
+    64,
+    "node_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "add_node_next",
+   {
+    "crc": "0x9ab92f7a"
+   }
+  ],
+  [
+   [
+    64,
+    "next_name",
+    "u8"
+   ],
+   [
+    64,
+    "node_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "get_next_index",
+   {
+    "crc": "0x9ab92f7a"
+   }
+  ],
+  [
+   [
+    64,
+    "node_name",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "get_node_index",
+   {
+    "crc": "0x6c9a495d"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "build_date",
+    "string"
+   ],
+   [
+    "build_directory",
+    "string"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "program",
+    "string"
+   ],
+   [
+    "string",
+    "version"
+   ],
+   "show_version_reply",
+   {
+    "crc": "0xb9bcf6df"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "cmd",
+    "string"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "cli_inband",
+   {
+    "crc": "0xb1ad59b3"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "cmd_in_shmem",
+    "u64"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "cli",
+   {
+    "crc": "0x23bfbfff"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "u32",
+    "vpe_pid"
+   ],
+   "control_ping_reply",
+   {
+    "crc": "0xf6b0b8ca"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "control_ping",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "get_node_graph",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "show_threads",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   "show_version",
+   {
+    "crc": "0x51077d14"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "next_index",
+    "u32"
+   ],
+   "add_node_next_reply",
+   {
+    "crc": "0x2ed75f32"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "next_index",
+    "u32"
+   ],
+   "get_next_index_reply",
+   {
+    "crc": "0x2ed75f32"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "node_index",
+    "u32"
+   ],
+   "get_node_index_reply",
+   {
+    "crc": "0xa8600b89"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "reply",
+    "string"
+   ],
+   "cli_inband_reply",
+   {
+    "crc": "0x6d3c80a4"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "reply_in_shmem",
+    "u64"
+   ],
+   "cli_reply",
+   {
+    "crc": "0x06d68297"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "reply_in_shmem",
+    "u64"
+   ],
+   "get_node_graph_reply",
+   {
+    "crc": "0x06d68297"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.1.0"
+ },
+ "services": {
+  "add_node_next": {
+   "reply": "add_node_next_reply"
+  },
+  "cli": {
+   "reply": "cli_reply"
+  },
+  "cli_inband": {
+   "reply": "cli_inband_reply"
+  },
+  "control_ping": {
+   "reply": "control_ping_reply"
+  },
+  "get_next_index": {
+   "reply": "get_next_index_reply"
+  },
+  "get_node_graph": {
+   "reply": "get_node_graph_reply"
+  },
+  "get_node_index": {
+   "reply": "get_node_index_reply"
+  },
+  "show_threads": {
+   "reply": "show_threads_reply"
+  },
+  "show_version": {
+   "reply": "show_version_reply"
+  }
+ },
+ "types": [
+  [
+   [
+    64,
+    "name",
+    "u8"
+   ],
+   [
+    64,
+    "type",
+    "u8"
+   ],
+   [
+    "core",
+    "u32"
+   ],
+   [
+    "cpu_id",
+    "u32"
+   ],
+   [
+    "cpu_socket",
+    "u32"
+   ],
+   [
+    "id",
+    "u32"
+   ],
+   [
+    "pid",
+    "u32"
+   ],
+   "thread_data",
+   {
+    "crc": "0x0f57094e"
+   }
+  ]
+ ],
+ "unions": [],
+ "vl_api_version": "0x2cc8d629"
+}

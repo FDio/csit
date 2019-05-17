@@ -1,0 +1,325 @@
+{
+ "aliases": {
+  "interface_index": {
+   "type": "u32"
+  }
+ },
+ "enums": [],
+ "messages": [
+  [
+   [
+    16,
+    "dst_address",
+    "u8"
+   ],
+   [
+    16,
+    "src_address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "instance",
+    "u32"
+   ],
+   [
+    "is_ipv6",
+    "u8"
+   ],
+   [
+    "table_id",
+    "u32"
+   ],
+   [
+    "tc_tos",
+    "u8"
+   ],
+   "ipip_add_tunnel",
+   {
+    "crc": "0x5c80fd36"
+   }
+  ],
+  [
+   [
+    16,
+    "dst_address",
+    "u8"
+   ],
+   [
+    16,
+    "src_address",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "fib_index",
+    "u32"
+   ],
+   [
+    "instance",
+    "u32"
+   ],
+   [
+    "is_ipv6",
+    "u8"
+   ],
+   [
+    "sw_if_index",
+    "vl_api_interface_index_t"
+   ],
+   [
+    "tc_tos",
+    "u8"
+   ],
+   "ipip_tunnel_details",
+   {
+    "crc": "0x20202342"
+   }
+  ],
+  [
+   [
+    16,
+    "ip6_prefix",
+    "u8"
+   ],
+   [
+    4,
+    "ip4_prefix",
+    "u8"
+   ],
+   [
+    4,
+    "ip4_src",
+    "u8"
+   ],
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "ip4_prefix_len",
+    "u8"
+   ],
+   [
+    "ip4_table_id",
+    "u32"
+   ],
+   [
+    "ip6_prefix_len",
+    "u8"
+   ],
+   [
+    "ip6_table_id",
+    "u32"
+   ],
+   [
+    "security_check",
+    "u8"
+   ],
+   [
+    "tc_tos",
+    "u8"
+   ],
+   "ipip_6rd_add_tunnel",
+   {
+    "crc": "0xc5005266"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "vl_api_interface_index_t"
+   ],
+   "ipip_6rd_del_tunnel",
+   {
+    "crc": "0xd85aab0d"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "vl_api_interface_index_t"
+   ],
+   "ipip_del_tunnel",
+   {
+    "crc": "0xd85aab0d"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "client_index",
+    "u32"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "sw_if_index",
+    "vl_api_interface_index_t"
+   ],
+   "ipip_tunnel_dump",
+   {
+    "crc": "0xd85aab0d"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "vl_api_interface_index_t"
+   ],
+   "ipip_6rd_add_tunnel_reply",
+   {
+    "crc": "0x903324db"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   [
+    "sw_if_index",
+    "vl_api_interface_index_t"
+   ],
+   "ipip_add_tunnel_reply",
+   {
+    "crc": "0x903324db"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "ipip_6rd_del_tunnel_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ],
+  [
+   [
+    "_vl_msg_id",
+    "u16"
+   ],
+   [
+    "context",
+    "u32"
+   ],
+   [
+    "i32",
+    "retval"
+   ],
+   "ipip_del_tunnel_reply",
+   {
+    "crc": "0xe8d4e804"
+   }
+  ]
+ ],
+ "options": {
+  "version": "1.1.0"
+ },
+ "services": {
+  "ipip_6rd_add_tunnel": {
+   "reply": "ipip_6rd_add_tunnel_reply"
+  },
+  "ipip_6rd_del_tunnel": {
+   "reply": "ipip_6rd_del_tunnel_reply"
+  },
+  "ipip_add_tunnel": {
+   "reply": "ipip_add_tunnel_reply"
+  },
+  "ipip_del_tunnel": {
+   "reply": "ipip_del_tunnel_reply"
+  },
+  "ipip_tunnel_dump": {
+   "reply": "ipip_tunnel_details",
+   "stream": true
+  }
+ },
+ "types": [],
+ "unions": [],
+ "vl_api_version": "0xc6f9c052"
+}

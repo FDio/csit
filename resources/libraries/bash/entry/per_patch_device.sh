@@ -46,7 +46,7 @@ get_test_tag_string || die
 set_perpatch_dut || die
 select_topology || die
 select_build "build_current" || die
-check_download_dir || die
+check_vpp_api_signature || die
 activate_virtualenv "${VPP_DIR}" || die
 generate_tests || die
 archive_tests || die
