@@ -243,15 +243,22 @@
         - 68  # NFV NDRPDR 64b
         - 80  # NFV MRR NDRPDR 64b IMIX
         - 81  # NFV MRR NDRPDR 64b IMIX
+        - 84  # NFV MRR NDRPDR 64b IMIX
+        - 85  # NFV MRR NDRPDR 64b IMIX
+        - 86  # NFV MRR NDRPDR 64b IMIX
 
     plot-vpp-nfv-2n-skx-ndrpdr-imix:
-      # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-2n-skx:
         - 66  # NFV NDRPDR IMIX
         - 67  # NFV NDRPDR IMIX
         - 69  # NFV NDRPDR IMIX
+        - 82  # NFV NDRPDR IMIX
+        - 83  # NFV NDRPDR IMIX
         - 80  # NFV MRR NDRPDR 64b IMIX
         - 81  # NFV MRR NDRPDR 64b IMIX
+        - 84  # NFV MRR NDRPDR 64b IMIX
+        - 85  # NFV MRR NDRPDR 64b IMIX
+        - 86  # NFV MRR NDRPDR 64b IMIX
 
     plot-vpp-nfv-2n-skx-mrr-64b:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -262,6 +269,9 @@
         - 48  # NFV MRR 64b
         - 80  # NFV MRR NDRPDR 64b IMIX
         - 81  # NFV MRR NDRPDR 64b IMIX
+        - 84  # NFV MRR NDRPDR 64b IMIX
+        - 85  # NFV MRR NDRPDR 64b IMIX
+        - 86  # NFV MRR NDRPDR 64b IMIX
 
     plot-vpp-nfv-2n-skx-mrr-imix:
       csit-vpp-perf-verify-1904-2n-skx:
@@ -272,6 +282,9 @@
         - 55  # NFV MRR IMIX
         - 80  # NFV MRR NDRPDR 64b IMIX
         - 81  # NFV MRR NDRPDR 64b IMIX
+        - 84  # NFV MRR NDRPDR 64b IMIX
+        - 85  # NFV MRR NDRPDR 64b IMIX
+        - 86  # NFV MRR NDRPDR 64b IMIX
 
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-verify-1904-2n-skx:
@@ -358,6 +371,7 @@
       csit-vpp-perf-verify-1904-3n-hsw:
         - 32  # NDRPDR full
         - 33  # NDRPDR full
+        - 35  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1904-3n-skx:
@@ -1394,6 +1408,7 @@
       - 9   # MRR sel
       - 32  # NDRPDR full
       - 33  # NDRPDR full
+      - 35  # NDRPDR full
       - 11  # NDRPDR sel
       - 12  # NDRPDR sel
       - 20  # NDRPDR sel
@@ -1486,7 +1501,6 @@
       - 40  # NDRPDR sel
       - 42  # NDRPDR sel
       - 43  # NDRPDR sel
-    # TODO: Add 1904 data
     csit-vpp-perf-verify-1904-2n-skx:
       - 11  # MRR sel
       - 33  # NDRPDR full
@@ -1521,8 +1535,13 @@
       - 66  # NFV NDRPDR IMIX
       - 67  # NFV NDRPDR IMIX
       - 69  # NFV NDRPDR IMIX
+      - 82  # NFV NDRPDR IMIX
+      - 83  # NFV NDRPDR IMIX
       - 80  # NFV MRR NDRPDR 64b IMIX
       - 81  # NFV MRR NDRPDR 64b IMIX
+      - 84  # NFV MRR NDRPDR 64b IMIX
+      - 85  # NFV MRR NDRPDR 64b IMIX
+      - 86  # NFV MRR NDRPDR 64b IMIX
       - 70  # soak
       - 71  # soak
 
@@ -3009,7 +3028,7 @@
     data: "data msg"
   rows: "generated"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "parent"
@@ -3085,7 +3104,7 @@
     data: "data conf-history"
   rows: "generated"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "parent"
   - "name"
@@ -3161,7 +3180,7 @@
     data: "data show-run"
   rows: "generated"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "parent"
   - "name"
@@ -4008,7 +4027,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTR,PERF,VPP,3N,HSW]}"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "doc"
@@ -4076,7 +4095,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,PERF,VPP,3N,HSW]}"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "doc"
@@ -4144,7 +4163,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP,3N,HSW]}"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not 'NDRCHK' and not 'PDRCHK'"
+  filter: "not 'CFS_OPT'"
   parameters:
   - "name"
   - "doc"
