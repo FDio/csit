@@ -35,6 +35,7 @@ function gather_build () {
     # - ${DOWNLOAD_DIR} - Files needed by tests are gathered here.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
+    # - gather_os - Parse os parameter for OS/distro name.
     # - gather_dpdk, gather_vpp, gather_ligato - See their definitions.
     # Multiple other side effects are possible,
     # see functions called from here for their current description.
@@ -250,14 +251,16 @@ function gather_vpp () {
     # - TEST_CODE - The test selection string from environment or argument.
     # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
+    # Variables set:
+    # - VPP_VERSION - VPP stable version under test.
     # Files read:
     # - ${CSIT_DIR}/DPDK_STABLE_VER - DPDK version to use
     #   by csit-vpp not-timed jobs.
-    # - ${CSIT_DIR}/VPP_STABLE_VER_UBUNTU - VPP version to use by those.
-    # - ../vpp*.deb - Relative to ${DOWNLOAD_DIR}, copied for vpp-csit jobs.
+    # - ${CSIT_DIR}/VPP_STABLE_VER_UBUNTU - Ubuntu VPP version to usee.
+    # - ../vpp*.deb|rpm - Relative to ${DOWNLOAD_DIR}, copied for vpp-csit jobs.
     # Directories updated:
     # - ${DOWNLOAD_DIR}, vpp-*.deb files are copied here for vpp-csit jobs.
-    # - ./ - Assumed ${DOWNLOAD_DIR}, vpp-*.deb files
+    # - ./ - Assumed ${DOWNLOAD_DIR}, vpp-*.deb|rpm files
     #   are downloaded here for csit-vpp.
     # Functions called:
     # - die - Print to stderr and exit, defined in common_functions.sh
@@ -277,7 +280,7 @@ function gather_vpp () {
                 warn "Downloading latest VPP packages from Packagecloud."
             else
                 warn "Downloading stable VPP packages from Packagecloud."
-                VPP_VERSION="$(<"${CSIT_DIR}/VPP_STABLE_VER_UBUNTU_BIONIC")" || {
+                VPP_VERSION="$(<"${CSIT_DIR}/${VPP_VER_FILE}")" || {
                     die "Read VPP stable version failed."
                 }
             fi
@@ -286,7 +289,7 @@ function gather_vpp () {
             ;;
         "vpp-csit-"*)
             # Use locally built packages.
-            mv "${DOWNLOAD_DIR}"/../"vpp"*".deb" "${DOWNLOAD_DIR}"/ || {
+            mv "${DOWNLOAD_DIR}"/../"vpp"*".${PKG_SUFFIX}" "${DOWNLOAD_DIR}"/ || {
                 die "Move command failed."
             }
             ;;

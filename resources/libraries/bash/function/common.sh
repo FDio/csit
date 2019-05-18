@@ -33,6 +33,7 @@ function activate_docker_topology () {
     # - TOPOLOGIES - Available topologies.
     # - NODENESS - Node multiplicity of desired testbed.
     # - FLAVOR - Node flavor string, usually describing the processor.
+    # - IMAGE_VER_FILE - Name of file that contains the image version.
     # Variables set:
     # - WORKING_TOPOLOGY - Path to topology file.
 
@@ -40,7 +41,7 @@ function activate_docker_topology () {
         die "Source failed!"
     }
 
-    device_image="$(< ${CSIT_DIR}/VPP_DEVICE_IMAGE)"
+    device_image="$(< ${CSIT_DIR}/${IMAGE_VER_FILE})"
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
         "1n_skx")
@@ -752,6 +753,34 @@ function select_vpp_device_tags () {
             TAGS+=("${prefix}${tag}")
         fi
     done
+}
+
+function select_os () {
+
+    set -exuo pipefail
+
+    # Variables read:
+    # - OS - os or distro for selecting container image.
+    # Variables set:
+    # - VPP_VER_FILE - Name of File in CSIT dir containing vpp stable version
+    # - IMAGE_VER_FILE - Name of File in CSIT dir containing the device image name
+    # - PKG_SUFFIX - Suffix of OS package file name, "rpm" or "deb"
+
+    case "${OS}" in
+    "ubuntu"*)
+        IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
+        VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_BIONIC"
+        PKG_SUFFIX="deb"
+        ;;
+    "centos"*)
+        IMAGE_VER_FILE="VPP_DEVICE_IMAGE_CENTOS"
+        VPP_VER_FILE="VPP_STABLE_VER_CENTOS"
+        PKG_SUFFIX="rpm"
+        ;;
+    *)
+        die "Unable to identify distro or os from ${OS}"
+        ;;
+    esac
 }
 
 
