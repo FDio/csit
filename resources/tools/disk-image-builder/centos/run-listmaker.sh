@@ -123,6 +123,7 @@ redhat-rpm-config
 epel-release
 python-srpm-macros
 python-rpm-macros
+python34
 python36-ply
 python36-devel
 python36-pip
