@@ -108,9 +108,9 @@
 | | Run Keyword If | '${acl_type}' != '${EMPTY}'
 | | ... | Configure ACLs on a single interface | ${dut1} | ${dut1_if2} | input
 | | ... | ${acl_type} | @{permit_list}
-| | ${nf_cpus}= | Create network function CPU list | DUT1
-| | ... | chains=${1} | nodeness=${1} | chain_id=${1}
-| | ... | node_id=${1} | auto_scale=${True}
+| | ${nf_cpus}= | Get Affinity NF | ${nodes} | ${dut} | nf_chains=${1}
+| | | ... | nf_nodes=${1} | nf_chain=${1} | nf_node=${1}
+| | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${cpu_count_int}
 | | ${vm1} = | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | DUT1 | ${sock1} | ${sock2} | ${TEST NAME}DUT1_VM1 | ${nf_cpus}
 | | ... | jumbo=${jumbo} | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
