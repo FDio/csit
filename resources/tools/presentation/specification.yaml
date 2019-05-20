@@ -143,7 +143,6 @@
         - 30  # NDRPDR sel
 
 #    plot-vpp-http-server-performance:
-#      # TODO: Replace with 1904 data
 #      # csit-vpp-perf-verify-1904-3n-hsw:
 #      csit-vpp-perf-verify-1810-3n-hsw:
 #        - 28  # WRK
@@ -158,7 +157,6 @@
 #        - 37  # WRK
 
 #    plot-ligato-throughput-lat-tsa-3n-hsw:
-#      # TODO: Replace with 1904 data
 #      # csit-ligato-perf-verify-1904-3n-hsw:
 #      csit-ligato-perf-verify-1901-3n-hsw:
 #        - 8   # NDRPDR sel
@@ -229,7 +227,6 @@
         - 32  # NDRPDR sel
 
     plot-vpp-soak-2n-skx:
-      # TODO: Add 1904 data
       csit-vpp-perf-verify-1904-2n-skx:
         - 70  # soak
         - 71  # soak
@@ -303,7 +300,6 @@
 
 #    # Denverton:
 #    intel-dnv-vpp:
-#      # TODO: Replace with 1904 data
 #      # intel-dnv-vpp-release-1904:
 #      intel-dnv-vpp-release-1901:
 #        - 1
@@ -372,6 +368,8 @@
         - 32  # NDRPDR full
         - 33  # NDRPDR full
         - 35  # NDRPDR full
+        - 36  # NDRPDR full
+        - 38  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1904-3n-skx:
@@ -413,7 +411,6 @@
 
 #    # VPP Ligato
 #    ligato-perf-results-3n-hsw:
-#      # TODO: Replace with 1904 data
 #      # csit-ligato-perf-verify-1904-3n-hsw:
 #      csit-ligato-perf-verify-1901-3n-hsw:
 #        - 10  # NDRPDR full
@@ -458,7 +455,6 @@
 #      intel-dnv-vpp-release-1901:
 #        - 1
 #    intel-dnv-vpp-changes-2n-dnv-cmp:
-#      # TODO: Replace with 1904 data
 #      # intel-dnv-vpp-release-1904:
 #      intel-dnv-vpp-release-1901:
 #        - 1
@@ -1349,7 +1345,6 @@
     extract: "robot-plugin/output.xml"
 
   builds:
-#    # TODO: Add 1904 data
 ##    intel-dnv-vpp-release-1904:
 ##      - 1
 #
@@ -1409,6 +1404,8 @@
       - 32  # NDRPDR full
       - 33  # NDRPDR full
       - 35  # NDRPDR full
+      - 36  # NDRPDR full
+      - 38  # NDRPDR full
       - 11  # NDRPDR sel
       - 12  # NDRPDR sel
       - 20  # NDRPDR sel
@@ -1557,7 +1554,6 @@
 #      - 16  # NDRPDR sel
 #      - 17  # NDRPDR sel
 #      - 18  # NDRPDR sel
-#    # TODO: Add 1904 data
 ##    csit-ligato-perf-verify-1904-3n-hsw:
 ##      -
 
