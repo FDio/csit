@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ac5a2c73_046165f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-20T06:29:37Z",
+      "side": 1,
+      "message": "changes",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "479236fa55e67f9aab065be2fc3067341ed99d3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f7a02dca_8ec31901",
         "filename": "resources/libraries/python/SetupFramework.py",
         "patchSetId": 1
