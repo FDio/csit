@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "61dbb8fb_d74abad0",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 320
+      },
+      "writtenOn": "2019-05-20T18:52:49Z",
+      "side": 1,
+      "message": "“Automation” is not the right word imho - this proposals \nadds 7 new manual steps and a process blocking the commit to VPP and special-case treatment of CSIT as a consumer of API. How about another approach: any change containing the breaking changes receives an automated -2 for a fixed period of X days since the last breaking change.\n\nThis is completely automatic and gives everyone involved a simple algorithm to deal with this in a decentralized manner. Bonus point is it scales to all the API consumers and not just CSIT. Thoughts ?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 10
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55796874_c180bd66",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 5
