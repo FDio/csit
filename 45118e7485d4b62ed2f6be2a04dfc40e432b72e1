@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0af7fdbb_d69507c6",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 8
+      },
+      "writtenOn": "2019-05-20T19:07:42Z",
+      "side": 1,
+      "message": "I also think a hold timer is a much safer option.\nThe block can lead to complete standstill.\nRef https://gerrit.fd.io/r/#/c/18361/\nthat has been blocked since beginning of April.",
+      "parentUuid": "61dbb8fb_d74abad0",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 10
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55796874_c180bd66",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 5
