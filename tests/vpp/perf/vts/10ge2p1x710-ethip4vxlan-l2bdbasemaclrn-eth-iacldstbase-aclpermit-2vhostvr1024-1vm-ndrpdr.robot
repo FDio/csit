@@ -108,7 +108,7 @@
 | | Run Keyword If | '${acl_type}' != '${EMPTY}'
 | | ... | Configure ACLs on a single interface | ${dut1} | ${dut1_if2} | input
 | | ... | ${acl_type} | @{permit_list}
-| | ${nf_cpus}= | Get Affinity NF | ${nodes} | ${dut1} | nf_chains=${1}
+| | ${nf_cpus}= | Get Affinity NF | ${nodes} | DUT1 | nf_chains=${1}
 | | | ... | nf_nodes=${1} | nf_chain=${1} | nf_node=${1}
 | | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${cpu_count_int}
 | | ${vm1} = | And Configure guest VM with dpdk-testpmd connected via vhost-user
