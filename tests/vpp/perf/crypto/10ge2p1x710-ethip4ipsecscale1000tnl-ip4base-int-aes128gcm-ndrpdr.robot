@@ -17,7 +17,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDR
 | ... | IP4FWD | IPSEC | IPSECHW | IPSECINT | NIC_Intel-X710 | TNL_1000
-| ... | AES_GCM
+| ... | AES_128_GCM | AES
 | ...
 | Suite Setup | Run Keywords
 | ... | Set up IPSec performance test suite | L3 | ${nic_name} | HW_DH895xcc
@@ -72,7 +72,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPSec tunneling AES GCM config.
+| | ... | [Cfg] DUT runs IPSec tunneling AES_128_GCM config.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
@@ -95,16 +95,10 @@
 | | And Add PCI devices to all DUTs
 | | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add cryptodev to all DUTs | ${phy_cores}
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | And VPP IPsec Backend Dump | ${dut1}
-| | And VPP IPsec Backend Dump | ${dut2}
 | | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
 | | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
-| | And VPP IPsec Backend Dump | ${dut1}
-| | And VPP IPsec Backend Dump | ${dut2}
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
@@ -113,50 +107,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc01-64B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc02-64B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc03-64B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc04-1518B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc05-1518B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc06-1518B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc07-9000B-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc08-9000B-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc09-9000B-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc10-IMIX-1c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc11-IMIX-2c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdr
+| tc12-IMIX-4c-ethip4ipsecscale1000tnl-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
