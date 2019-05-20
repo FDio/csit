@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f7a02dca_8ec31901",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-20T06:28:49Z",
+      "side": 1,
+      "message": "why not to copy it there?",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 50
+      },
+      "revId": "479236fa55e67f9aab065be2fc3067341ed99d3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "043f85e7_b76e889a",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-20T06:28:49Z",
+      "side": 1,
+      "message": "why we cannot have framework there?",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 208,
+        "endChar": 40
+      },
+      "revId": "479236fa55e67f9aab065be2fc3067341ed99d3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dce5f1bb_c884222a",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-20T06:28:49Z",
+      "side": 1,
+      "message": "rebase should be fixed",
+      "range": {
+        "startLine": 428,
+        "startChar": 0,
+        "endLine": 429,
+        "endChar": 76
+      },
+      "revId": "479236fa55e67f9aab065be2fc3067341ed99d3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd052bfd_126eb12b",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-20T06:28:49Z",
+      "side": 1,
+      "message": "the problem with BUT node is that it will not run in CSIT testbed as topology files does not contain BUT",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 15
+      },
+      "revId": "479236fa55e67f9aab065be2fc3067341ed99d3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05c1e14c_aba5a5d1",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-20T06:28:49Z",
+      "side": 1,
+      "message": "rebase, this is not needed anymore",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 25
+      },
+      "revId": "479236fa55e67f9aab065be2fc3067341ed99d3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
