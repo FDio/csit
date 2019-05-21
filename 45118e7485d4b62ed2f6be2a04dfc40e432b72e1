@@ -49,6 +49,54 @@
     },
     {
       "key": {
+        "uuid": "19955827_652b6221",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "\u003e “Automation” is not the right word imho - this proposals\n\nWhat is being automated is the communication of the API changes and protection of the VPP+CSIT Continuous Integration System as a whole.\n\n \u003e adds 7 new manual steps and a process blocking the commit to VPP\n\nThese steps are not new and are simply being documented here. I\u0027ve dealt with the \"API Flag Dance\" in many different products and have yet to encounter a magic process that eliminates this process.\n\n \u003e and special-case treatment of CSIT as a consumer of API.\n \nI respectfully disagree with this statement and highly encourage folks to view the VPP+CSIT Continuous Integration System as a single entity even though they are independent FD.io projects.\n\nVPP will fail to maintain its\u0027 high performance without the CSIT testing. Arbitrarily breaking CSIT in the name of progress is a false economy.  You can pay the piper now to get rid of the rats, or pay a whole lot more to return the children to their homes.\n\n \u003e How about\n \u003e another approach: any change containing the breaking changes\n \u003e receives an automated -2 for a fixed period of X days since the\n \u003e last breaking change.\n\nGood luck implementing this in Gerrit+Jenkins.  \nPlease submit a working patch and then I\u0027ll be glad to discuss it ;)\n\n \u003e \n \u003e This is completely automatic and gives everyone involved a simple\n \u003e algorithm to deal with this in a decentralized manner. Bonus point\n \u003e is it scales to all the API consumers and not just CSIT. Thoughts ?",
+      "parentUuid": "61dbb8fb_d74abad0",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 10
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5dd016d_3056e418",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "A hold timer only kicks the can down the road with respect to the submission of a patch like this which is likely to break the CI verification of *all* VPP patches in the gerrit queue.\n\nA hold time does not address the resource allocation required to unblock the functioning of the CSIT testing.  If CSIT is non-functional, then we cannot release VPP because verification of VPP feature performance is a core requirement.",
+      "parentUuid": "0af7fdbb_d69507c6",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 10
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "55796874_c180bd66",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 5
@@ -72,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "b9db8a21_d885f0ae",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55796874_c180bd66",
+      "range": {
+        "startLine": 48,
+        "startChar": 18,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "82736190_1c34fffb",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 5
@@ -83,6 +155,30 @@
       "writtenOn": "2019-05-17T11:48:55Z",
       "side": 1,
       "message": "in CSIT (appropriate branch)",
+      "range": {
+        "startLine": 56,
+        "startChar": 27,
+        "endLine": 56,
+        "endChar": 40
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5b88b70_a7fedae6",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82736190_1c34fffb",
       "range": {
         "startLine": 56,
         "startChar": 27,
@@ -142,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "5c611595_85aef169",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "Ok, thanks.",
+      "parentUuid": "0632c879_2965e082",
+      "range": {
+        "startLine": 88,
+        "startChar": 23,
+        "endLine": 88,
+        "endChar": 44
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b2d55bfe_f4052b6a",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 5
@@ -153,6 +273,30 @@
       "writtenOn": "2019-05-17T11:48:55Z",
       "side": 1,
       "message": "Remove.",
+      "range": {
+        "startLine": 95,
+        "startChar": 14,
+        "endLine": 95,
+        "endChar": 21
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ab7bd5c0_d42a8c06",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2d55bfe_f4052b6a",
       "range": {
         "startLine": 95,
         "startChar": 14,
@@ -188,6 +332,30 @@
     },
     {
       "key": {
+        "uuid": "dd6906d5_cbb5b0b4",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d895e7c_ef7e2813",
+      "range": {
+        "startLine": 111,
+        "startChar": 27,
+        "endLine": 111,
+        "endChar": 32
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7273d0e6_dfc79427",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 5
@@ -199,6 +367,30 @@
       "writtenOn": "2019-05-17T11:48:55Z",
       "side": 1,
       "message": "Not a dictionary word.",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 18
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e331a6b5_e3d4b0ca",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "Removed all non-dictionary uses of the adjective \"SuperDuper\"",
+      "parentUuid": "7273d0e6_dfc79427",
       "range": {
         "startLine": 150,
         "startChar": 8,
@@ -234,6 +426,30 @@
     },
     {
       "key": {
+        "uuid": "8958dba8_f984594d",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "Reworded to reflect verification on recheck or initial submission to gerrit",
+      "parentUuid": "4ccf86ee_7dfdf1d8",
+      "range": {
+        "startLine": 159,
+        "startChar": 51,
+        "endLine": 159,
+        "endChar": 60
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1e1134ed_f7e854f6",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 5
@@ -245,6 +461,30 @@
       "writtenOn": "2019-05-17T11:48:55Z",
       "side": 1,
       "message": "deletes vpp-api-client.sig.1 and renames vpp-api-client.sig.2 to vpp-api-client.sig.1\n\nWe do not want to acumulate obsolete .api.json files in vpp-api-client.sig.1\nCSIT developers may even chose a different suffix naming scheme (for example related to datetime) to avoid renaming, while still keeping the signatures sorted.",
+      "range": {
+        "startLine": 182,
+        "startChar": 15,
+        "endLine": 183,
+        "endChar": 32
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0792ec3f_2f1ad34a",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "\u003e deletes vpp-api-client.sig.1 and renames vpp-api-client.sig.2 to\n \u003e vpp-api-client.sig.1\n\nFixed.\n\n \u003e \n \u003e We do not want to acumulate obsolete .api.json files in\n \u003e vpp-api-client.sig.1\n \u003e CSIT developers may even chose a different suffix naming scheme\n \u003e (for example related to datetime) to avoid renaming, while still\n \u003e keeping the signatures sorted.\n\nAgreed.  Will updated document to reflect the implementation.",
+      "parentUuid": "1e1134ed_f7e854f6",
       "range": {
         "startLine": 182,
         "startChar": 15,
@@ -280,6 +520,30 @@
     },
     {
       "key": {
+        "uuid": "4453fdd5_29b5bff9",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c13d3aaf_ba49f1aa",
+      "range": {
+        "startLine": 192,
+        "startChar": 23,
+        "endLine": 192,
+        "endChar": 26
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51baad53_841eaa02",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 5
@@ -303,6 +567,30 @@
     },
     {
       "key": {
+        "uuid": "91099111_ef0f36e9",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "Both.  Updated to clarify this.",
+      "parentUuid": "51baad53_841eaa02",
+      "range": {
+        "startLine": 199,
+        "startChar": 16,
+        "endLine": 199,
+        "endChar": 25
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6f1b2bac_7c41f4af",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 5
@@ -314,6 +602,30 @@
       "writtenOn": "2019-05-17T14:15:28Z",
       "side": 1,
       "message": "No, they start to fail, the same way as in lines 159-161 and 214-215. Especially if the new suite has been merged.",
+      "range": {
+        "startLine": 202,
+        "startChar": 17,
+        "endLine": 202,
+        "endChar": 33
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f314018_f94230c7",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-21T18:47:29Z",
+      "side": 1,
+      "message": "If super_duper.api does not exist in the VPP package, then there should never be any attempt to verify the signature against the new CSIT super_duper.api.json file.  Thus all VPP patches should pass the CSIT VPP API CHANGE DETECTION TEST.\n\nThis means that there needs to be a check in the script which ensures that \u003cfeature\u003e.api.json exists in both the CSIT signature tree and the current patch tree (/usr/share/api/vpp/)",
+      "parentUuid": "6f1b2bac_7c41f4af",
       "range": {
         "startLine": 202,
         "startChar": 17,
