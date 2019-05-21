@@ -660,6 +660,7 @@ function select_tags () {
     case "${TEST_CODE}" in
         *"3n-hsw"*)
             test_tag_array+=("!drv_avf")
+            test_tag_array+=("!ipsechwNOTnic_intel-xl710")
             ;;
         *"2n-skx"*)
             test_tag_array+=("!ipsechw")
