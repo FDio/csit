@@ -287,8 +287,12 @@ class VPPUtil(object):
         :rtype: list
         """
         with PapiExecutor(node) as papi_exec:
-            return papi_exec.add('cli_inband', cmd='show log').get_replies().\
-                verify_reply()["reply"]
+
+            return papi_exec.add(
+                'cli_inband',
+                cmd=''.join('\\x{:02x}'.format(x)
+                            for x in bytearray('show log'))). \
+                get_replies().verify_reply()["reply"]
 
     @staticmethod
     def vpp_show_threads(node):
