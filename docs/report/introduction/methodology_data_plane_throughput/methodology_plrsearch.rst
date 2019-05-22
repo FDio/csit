@@ -17,7 +17,7 @@ thus making it harder to tell what "the throughput" actually is.
 
 We need another algorithm, which takes this indeterminism into account.
 
-Generic algorithm
+Generic Algorithm
 ~~~~~~~~~~~~~~~~~
 
 Detailed description of the PLRsearch algorithm is included in the IETF
@@ -65,7 +65,7 @@ the algorithm is agnostic to flows and directions,
 it only cares about overall counts of packets sent and packets lost),
 but debug output from traffic generator lists unidirectional values.
 
-Measurement delay
+Measurement Delay
 `````````````````
 
 In a sample implemenation in FD.io CSIT project, there is roughly 0.5
@@ -87,7 +87,7 @@ trial durations with configurable coefficients
 (currently 5.1 seconds for the first trial,
 each subsequent trial being 0.1 second longer).
 
-Rounding errors and underflows
+Rounding Errors and Underflows
 ``````````````````````````````
 
 In order to avoid them, the current implementation tracks natural logarithm
@@ -97,7 +97,7 @@ so special value "None" is used instead.
 Specific functions for frequent operations (such as "logarithm
 of sum of exponentials") are defined to handle None correctly.
 
-Fitting functions
+Fitting Functions
 `````````````````
 
 Current implementation uses two fitting functions.
@@ -120,7 +120,7 @@ At the end, both fitting function implementations
 contain multiple "if" branches, discontinuities are a possibility
 at range boundaries.
 
-Prior distributions
+Prior Distributions
 ```````````````````
 
 The numeric integrator expects all the parameters to be distributed
@@ -172,7 +172,7 @@ for locating the new area the posterior distribution is concentrated at.
 The second phase (dominated by whole sample population)
 is actually relevant for the critical rate estimation.
 
-Offered load selection
+Offered Load Selection
 ``````````````````````
 
 First two measurements are hardcoded to happen at the middle of rate interval
@@ -213,33 +213,125 @@ The workaround in offered load selection helps,
 but more intelligent workarounds could get faster convergence still.
 
 Some systems evidently do not follow the assumption of repeated measurements
-having the same average loss rate (when offered load is the same).
+having the same average loss rate (when the offered load is the same).
 The idea of estimating the trend is not implemented at all,
 as the observed trends have varied characteristics.
 
 Probably, using a more realistic fitting functions
 will give better estimates than trend analysis.
 
-Graphical examples
+Bottom Line
+~~~~~~~~~~~
+
+The notion of Throughput is easy to grasp, but it is harder to measure
+with any accuracy for non-deterministic systems.
+
+Even though the notion of critical rate is harder to grasp than the notion
+of throughput, it is easier to measure using probabilistic methods.
+
+In testing, the difference between througput measurements and critical
+rate measurements is usually small, see :ref:`soak vs ndr comparison`.
+
+In pactice, rules of thumb such as "send at max 95% of purported throughput"
+are common. The correct benchmarking analysis should ask "Which notion is
+95% of throughput an approximation to?" before attempting to answer
+"Is 95% of critical rate safe enough?".
+
+Algorithmic Analysis
+~~~~~~~~~~~~~~~~~~~~
+
+Motivation
+``````````
+
+While the estimation computation is based on hard probability science;
+the offered load selection part of PLRsearch logic is pure heuristics,
+motivated by what would a human do based on measurement and computation results.
+
+The quality of any heuristic is not affected by soundness of its motivation,
+just by its ability to achieve the intended goals.
+In case of offered load selection, the goal is to help the search to converge
+to the long duration estimates sooner.
+
+But even those long duration estimates could still be of poor quality.
+Even though the estimate computation is Bayesian (so it iss the best it could be
+within the applied assumptions), it can still of poor quality when compared
+to what a human would estimate.
+
+One possible source of poor quality is the randomnes inherently present
+in Monte Carlo numeric integration, but that can be supressed
+by tweaking the time related input parameters.
+
+The most likely source of poor quality then are the assumptions.
+Most importantly, the number and the shape of fitting functions;
+but also others, such as time the assumption of independence of loss ratio.
+
+The result can have poor quality in basically two ways.
+One way is related to location. Both upper and lower bounds
+can be overestimates or underestimates, meaning the entire estimated interval
+between lower bound and upper bound lays above or below (respectively)
+of human-estimated interval.
+The other way is related to the estimation interval width.
+The interval can be too wide or too narrow, compared to human estimation.
+
+An estimate from a particular fitting function can be classified
+as an overestimate (or underestimate) just by looking at time evolution
+(without human examining measurement results). Overestimates
+decrease by time, underestimates increase by time (assuming
+the sustem performance stays constant).
+
+Quality of the width of the estimation interval needs human evaluation,
+and is unrelated to both rate of narrowing (both good and bad estimate intervals
+get narrower at approximately the same relative rate) and relatative width
+(depends heavily on the system being tested).
+
+Graphical Examples
 ``````````````````
 
 The following pictures show the upper (red) and lower (blue) bound,
-as well as average of stretch (pink) and erf (light green) estimate,
+as well as average of Stretch (pink) and Erf (light green) estimate,
 and offered load chosen (grey), as computed by PLRsearch,
 after each trial measurement within the 2 hour duration of a test run.
 
 Both graphs are focusing on later estimates. Estimates computed from
 few initial measurements are wildly off the y-axis range shown.
 
+The following analysis will rely on frequency of zero loss measurements
+and magnitude of loss ratio if nonzero.
+
+The offered load selection strategy used implies zero loss measurements
+can me gleamed from the graph by looking at offered load points.
+When the points leave their corresponding estimate, it means
+the previous measurement had zero loss. After non-zero loss,
+the offered load starts again at the estimate curve.
+
+The very big loss ratio results are visible as noticeable jumps
+of both estimates downwards. Medium and small loss ratios are much harder
+to distinguish just by looking at the estimate curves,
+the analysis is based on raw loss ratio measurement results.
+
+The following descriptions should explain why the graphs seem to signal
+low quality estimate at first sight, but a more detailed look
+reveals the quality is good (considering the measurement results).
+
 L2 patch
 --------
 
-This test case shows quite narrow critical region. Both fitting functions
-give similar estimates, the graph shows the randomness of measurements,
-and a trend. Both fitting functions seem to be fairly precise in estimating
-the critical rate, but the performance of the system decreases slightly
-over time. The final estimated interval is fairly narrow,
-but corresponds to the measured results.
+Both fitting functions give similar estimates, the graph shows
+"stochasticity" of measurements (estimates increase and decrease
+within small time regions), and an overall trend of decreasing estimates.
+
+On the first look, the final interval looks fairly narrow,
+especially compared to the region the estimates have travelled
+during the search. But the look at the frequency of zero loss results shows
+this is not a case of overestimation. Measurements at around the same
+offered load have higher probability of zero loss earlier
+(when performed at lower bound), but smaller probability later
+(when performed neat upper bound). That means it is the performance
+of the system under test that decreases (slightly) over time.
+
+With that in mind, the apparent narrowness of the interval
+is not a sign of low quality, just a consequence of PLRsearch assuming
+the performance stays constant.
 
 .. only:: latex
 
@@ -261,19 +353,22 @@ but corresponds to the measured results.
 Vhost
 -----
 
-This test case shows quite broad critical region. Fitting functions give
-fairly differing estimates. Erf function overestimates, stretch function
-is fairly precise (based on its estimate not moving much with time).
-The graph mostly shows later measurements slowly bringing the estimates
-towards each other. The final estimated interval is too broad,
-a longer run would return a smaller interval within the current one.
+This test case shows what looks like a quite broad estimation interval,
+compared to other test cases with similarly looking zero loss frequencies.
 
-The broadness is caused by result composition, which consists of
-mostly zero loss measurements, partialy of medium loss measurements,
-and lack of small loss measurements the loss ratio target would imply.
+Fitting functions give fairly differing estimates.
+Erf function overestimates. Stretch function estimates look fairly precise.
 
+Closer look at the loss distribution reveals a difference from other tests.
+The distribution consists of mostly zero loss measurements,
+partialy of medium loss measurements, and lacks small loss measurements
+the loss ratio target would imply.
 With this result composition, it is expected that the convergence
 of the two bounds is slow.
+
+In other words, human only seeing the graph would expect narrower interval,
+but human seeing the measured loss ratios agrees that the interval should be
+wider than that.
 
 .. only:: latex
 
@@ -291,6 +386,35 @@ of the two bounds is slow.
     .. figure:: PLR_vhost.svg
         :alt: PLR_vhost
         :align: center
+
+Summary
+-------
+
+The two graphs show the behavior of PLRsearch algorithm applied to soaking test
+when some of PLRsearch assumptions do not hold:
+
++ L2 patch measurement results violate the assumption
+  of performance not changing over time.
++ Vhost measurement results violate the assumption
+  of Poisson distribution matching the loss counts.
+
+The reported upper and lower bounds can have distance larger or smaller
+than a first look by a human would expect, but a more closer look reveals
+the quality is good, considering the circumstances.
+
+The usefullness of the critical load estimate is of questionable value
+when the assumptions are violated.
+
+Some improvements can be made via more specific workarounds,
+for example long term limit of L2 patch performance could be estmated
+by some heuristic.
+
+Other improvements can be achieved only by asking users
+whether loss patterns matter. Is it better to have single digit losses
+distributed fairly evenly over time (as Poisson distribution would suggest),
+or is it better to have short periods of medium losses
+mixed with long periods of zero losses (as happens in Vhost test)
+with the same overall loss ratio?
 
 .. _draft-vpolak-bmwg-plrsearch-01: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-01
 .. _plrsearch draft: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-00

@@ -28,7 +28,7 @@
 
     </script>
 
-.. _soak_tests:
+.. _`soak tests`:
 
 Soak Tests
 ==========
