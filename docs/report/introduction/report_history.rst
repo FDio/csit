@@ -11,6 +11,11 @@ FD.io CSIT-1904 Report history and per .[ww] revision changes are listed below.
 |                | - VPP 3n-hsw NDRPDR full                                   |
 |                | - VPP 2n-skx NFV NDRPDR 64b and IMIX                       |
 |                |                                                            |
+|                | 2. Added missing results                                   |
+|                |                                                            |
+|                | - VPP functional tests Ubuntu                              |
+|                | - VPP device tests                                         |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .20            | 1. Added new data                                          |
 |                |                                                            |
