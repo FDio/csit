@@ -19,7 +19,7 @@ from ipaddress import ip_network, ip_address
 from enum import Enum, IntEnum
 from robot.api import logger
 
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
@@ -256,16 +256,12 @@ class IPsecUtil(object):
         """
 
         cmd = 'ipsec_select_backend'
-        cmd_reply = 'ipsec_select_backend_reply'
         err_msg = 'Failed to select IPsec backend on host {host}'.format(
             host=node['host'])
         args = dict(protocol=protocol, index=index)
-        with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
-        data = papi_resp.reply[0]['api_reply'][cmd_reply]
-        if data['retval'] != 0:
-            raise RuntimeError('Failed to select IPsec backend on host {host}'.
-                               format(host=node['host']))
+        with PapiSocketExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd, **args).get_replies().verify_reply(
+                err_msg)
 
     @staticmethod
     def vpp_ipsec_backend_dump(node):
@@ -277,17 +273,10 @@ class IPsecUtil(object):
 
         err_msg = 'Failed to dump IPsec backends on host {host}'.format(
             host=node['host'])
-        with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add('ipsec_backend_dump').execute_should_pass(
-                err_msg, process_reply=False)
-        # After API change there is returned VPP internal enum object
-        # representing VPP IPSEC protocol instead of integer representation
-        # so JSON fails to decode it - we need to check if it is Python API
-        # bug or we need to adapt vpp_papi_provider to correctly encode
-        # such object into JSON
-        # logger.trace('IPsec backend dump\n{dump}'.
-        # format(dump=papi_resp.reply))
-        logger.trace('IPsec backend dump\n{dump}'.format(dump=papi_resp.stdout))
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add('ipsec_backend_dump').get_replies(
+                ).verify_reply()
+        logger.trace('IPsec backend dump\n{dump!r}'.format(dump=papi_resp))
 
     @staticmethod
     def vpp_ipsec_add_sad_entry(node, sad_id, spi, crypto_alg, crypto_key,
