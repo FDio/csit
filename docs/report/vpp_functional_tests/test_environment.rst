@@ -250,13 +250,13 @@ VPP Installed Packages - Ubuntu
     | Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
     |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
     ||/ Name           Version       Architecture Description
-    +++-==============-=============-============-=============================================
-    ii  vpp            19.01-release amd64        Vector Packet Processing--executables
-    ii  vpp-api-python 19.01-release amd64        VPP Python API bindings
-    ii  vpp-dbg        19.01-release amd64        Vector Packet Processing--debug symbols
-    ii  vpp-dev        19.01-release amd64        Vector Packet Processing--development support
-    ii  vpp-lib        19.01-release amd64        Vector Packet Processing--runtime libraries
-    ii  vpp-plugins    19.01-release amd64        Vector Packet Processing--runtime plugins
+    +++-==============-=================-============-=============================================
+    ii  vpp            19.01.2-release   amd64        Vector Packet Processing--executables
+    ii  vpp-api-python 19.01.2-release   amd64        VPP Python API bindings
+    ii  vpp-dbg        19.01.2-release   amd64        Vector Packet Processing--debug symbols
+    ii  vpp-dev        19.01.2-release   amd64        Vector Packet Processing--development support
+    ii  vpp-lib        19.01.2-release   amd64        Vector Packet Processing--runtime libraries
+    ii  vpp-plugins    19.01.2-release   amd64        Vector Packet Processing--runtime plugins
 
 VPP Installed Packages - Centos
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -265,65 +265,65 @@ VPP Installed Packages - Centos
 
     $ rpm -qai vpp*
     Name        : vpp-selinux-policy
-    Version     : 19.01
+    Version     : 19.01.2
     Release     : release
     Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
+    Install Date: Thu 23 May 2019 04:18:40 AM EDT
     Group       : System Environment/Base
     Size        : 102213
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
+    Source RPM  : vpp-19.01.2-release.src.rpm
+    Build Date  : Fri 17 May 2019 01:23:14 PM EDT
+    Build Host  : 5ccacaae6a4a
     Relocations : (not relocatable)
     Summary     : VPP Security-Enhanced Linux (SELinux) policy
     Description :
     This package contains a tailored VPP SELinux policy
     Name        : vpp-plugins
-    Version     : 19.01
+    Version     : 19.01.2
     Release     : release
     Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:37 AM EST
+    Install Date: Thu 23 May 2019 04:18:43 AM EDT
     Group       : System Environment/Libraries
-    Size        : 84873573
+    Size        : 84930373
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
+    Source RPM  : vpp-19.01.2-release.src.rpm
+    Build Date  : Fri 17 May 2019 01:23:14 PM EDT
+    Build Host  : 5ccacaae6a4a
     Relocations : (not relocatable)
     Summary     : Vector Packet Processing--runtime plugins
     Description :
     This package contains VPP plugins
     Name        : vpp-api-python
-    Version     : 19.01
+    Version     : 19.01.2
     Release     : release
     Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
+    Install Date: Thu 23 May 2019 04:18:41 AM EDT
     Group       : Development/Libraries
     Size        : 163624
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
+    Source RPM  : vpp-19.01.2-release.src.rpm
+    Build Date  : Fri 17 May 2019 01:23:14 PM EDT
+    Build Host  : 5ccacaae6a4a
     Relocations : (not relocatable)
     Summary     : VPP api python bindings
     Description :
     This package contains the python bindings for the vpp api
     Name        : vpp
-    Version     : 19.01
+    Version     : 19.01.2
     Release     : release
     Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
+    Install Date: Thu 23 May 2019 04:18:41 AM EDT
     Group       : Unspecified
     Size        : 2522340
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
+    Source RPM  : vpp-19.01.2-release.src.rpm
+    Build Date  : Fri 17 May 2019 01:23:14 PM EDT
+    Build Host  : 5ccacaae6a4a
     Relocations : (not relocatable)
     Summary     : Vector Packet Processing
     Description :
@@ -332,17 +332,17 @@ VPP Installed Packages - Centos
     vpp_api_test - vector packet engine API test tool
     vpp_json_test - vector packet engine JSON test tool
     Name        : vpp-lib
-    Version     : 19.01
+    Version     : 19.01.2
     Release     : release
     Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:34 AM EST
+    Install Date: Thu 23 May 2019 04:18:41 AM EDT
     Group       : System Environment/Libraries
-    Size        : 12203613
+    Size        : 12212461
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
+    Source RPM  : vpp-19.01.2-release.src.rpm
+    Build Date  : Fri 17 May 2019 01:23:14 PM EDT
+    Build Host  : 5ccacaae6a4a
     Relocations : (not relocatable)
     Summary     : VPP libraries
     Description :
@@ -353,17 +353,17 @@ VPP Installed Packages - Centos
     vlib-api - binary API library
     vnet -  network stack library
     Name        : vpp-devel
-    Version     : 19.01
+    Version     : 19.01.2
     Release     : release
     Architecture: x86_64
-    Install Date: Thu 31 Jan 2019 07:16:38 AM EST
+    Install Date: Thu 23 May 2019 04:18:43 AM EDT
     Group       : Development/Libraries
-    Size        : 12835399
+    Size        : 12836101
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.01-release.src.rpm
-    Build Date  : Wed 30 Jan 2019 06:04:06 PM EST
-    Build Host  : ed28282db47e
+    Source RPM  : vpp-19.01.2-release.src.rpm
+    Build Date  : Fri 17 May 2019 01:23:14 PM EDT
+    Build Host  : 5ccacaae6a4a
     Relocations : (not relocatable)
     Summary     : VPP header files, static libraries
     Description :
