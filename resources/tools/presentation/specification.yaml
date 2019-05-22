@@ -401,7 +401,7 @@
 
     vpp-func-results-ubuntu:
       csit-vpp-functional-1904-ubuntu1604-virl:
-        - 29
+        - 33
 
     vpp-func-results-centos:
       csit-vpp-functional-1904-centos7-virl:
@@ -409,7 +409,7 @@
 
     vpp-device-results-ubuntu:
       csit-vpp-device-1904-ubuntu1804-1n-skx:
-        - 33
+        - 32
 
 #    # VPP Ligato
 #    ligato-perf-results-3n-hsw:
