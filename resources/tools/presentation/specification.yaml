@@ -369,6 +369,7 @@
         - 33  # NDRPDR full
         - 35  # NDRPDR full
         - 36  # NDRPDR full
+        - 37  # NDRPDR full
         - 38  # NDRPDR full
         - 40  # NDRPDR full
 
@@ -1406,6 +1407,7 @@
       - 33  # NDRPDR full
       - 35  # NDRPDR full
       - 36  # NDRPDR full
+      - 37  # NDRPDR full
       - 38  # NDRPDR full
       - 40  # NDRPDR full
       - 11  # NDRPDR sel
