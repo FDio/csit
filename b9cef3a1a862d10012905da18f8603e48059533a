@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "29de55b7_384b19a7",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-22T11:03:45Z",
+      "side": 1,
+      "message": "Does this apply also to those existing unmerged VPP Changes that received no recheck (nor new patch set), so they are sitting with Verified+1 even when CSIT has dropped suport for them?",
+      "range": {
+        "startLine": 164,
+        "startChar": 40,
+        "endLine": 164,
+        "endChar": 48
+      },
+      "revId": "b9cef3a1a862d10012905da18f8603e48059533a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0505534_90f30943",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-22T11:03:45Z",
+      "side": 1,
+      "message": "In Gerrit vocabulary, a Change consists of both initial patch set and of subsequent patch sets.\nIt is not clear whether you \"patch\" means a Change or a patch set, but your \"initial submission\" seems to fit both a submission of the initial patch set and a submission of a subsequent patch set.",
+      "range": {
+        "startLine": 179,
+        "startChar": 69,
+        "endLine": 179,
+        "endChar": 76
+      },
+      "revId": "b9cef3a1a862d10012905da18f8603e48059533a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
