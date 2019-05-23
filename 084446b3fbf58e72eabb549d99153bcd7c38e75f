@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b80b1df9_749b98c5",
+        "filename": "resources/tools/trex/trex_server_info.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-23T11:20:46Z",
+      "side": 1,
+      "message": "Not the proper way to ensure both Python2 and Python3 compatibility, but I do not really mind as long as it happens to work (because we will revisit everything when converting CSIT to Python3).",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 46
+      },
+      "revId": "084446b3fbf58e72eabb549d99153bcd7c38e75f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
