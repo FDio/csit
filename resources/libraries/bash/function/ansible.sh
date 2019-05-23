@@ -26,15 +26,7 @@ function ansible_hosts () {
 
     set -exuo pipefail
 
-    if ! installed sshpass; then
-        sudo apt-get update -y || die "apt-get update failed!"
-        sudo apt-get install -y sshpass || die "Install sshpass failed!"
-    fi
-
-    if ! installed ansible-playbook; then
-        # TODO: Consider moving to requirements.txt?
-        pip install ansible==2.7.8 || die "Install ansible via PIP failed!"
-    fi
+    ansible_prepare || die "Preparing Ansible failed!"
 
     hosts=($(fgrep host "${WORKING_TOPOLOGY}" | cut -d ":" -f 2)) || {
         die "Failed to read hosts from working topology!"
@@ -48,6 +40,50 @@ function ansible_hosts () {
         --tags "$(echo $@)" || die "Failed to run ansible on host!"
     popd || die "Popd failed!"
 }
+
+
+function ansible_host () {
+    # Run ansible playbook on host. Ansible scope is determined by tags passed
+    # as parameters to this function.
+    #
+    # Variable read:
+    # - ${HOST} - Host to run Ansible on.
+    # - ${TOOLS_DIR} - CSIT tools directory, where testbed-setup is located.
+
+    set -exuo pipefail
+
+    ansible_prepare || die "Preparing Ansible failed!"
+
+    pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
+    ansible-playbook \
+        --vault-password-file=vault_pass \
+        --extra-vars '@vault.yml' \
+        --inventory inventories/lf_inventory/hosts site.yaml \
+        --limit "${HOST}" \
+        --tags "$(echo $@)" || die "Failed to run ansible on host!"
+    popd || die "Popd failed!"
+}
+
+
+function ansible_prepare () {
+    # Install prerequisites to run Ansible.
+
+    set -exuo pipefail
+
+    if ! installed sshpass; then
+        sudo apt-get update -y || die "apt-get update failed!"
+        sudo apt-get install -y sshpass || die "Install sshpass failed!"
+    fi
+
+    if ! installed ansible-playbook; then
+        pip install ansible==2.7.8 || die "Install ansible via PIP failed!"
+    fi
+
+    if ! installed python2-pyghmiutil; then
+        pip install pyghmi=1.3.0 || die "Install pyghmi via PIP failed!"
+    fi
+}
+
 
 function installed () {
 
