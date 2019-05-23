@@ -88,7 +88,7 @@
 | | ...
 | | # These are enums (not strings) so they cannot be in Variables table.
 | | ${encr_alg}= | Crypto Alg AES CBC 128
-| | ${auth_alg}= | Integ Alg SHA 512 128
+| | ${auth_alg}= | Integ Alg SHA 512 256
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
