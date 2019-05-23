@@ -124,10 +124,7 @@ def process_json_request(args):
     :raises RuntimeError: If PAPI command error occurs.
     """
 
-    try:
-        vpp = VPP()
-    except Exception as err:
-        raise RuntimeError('PAPI init failed:\n{err}'.format(err=repr(err)))
+    vpp = VPP()
 
     reply = list()
 
