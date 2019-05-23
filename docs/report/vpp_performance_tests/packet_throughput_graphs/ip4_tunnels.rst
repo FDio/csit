@@ -17,6 +17,8 @@ CSIT source code for the test cases used for plots can be found in
 
 .. toctree::
 
+    ip4_tunnels-3n-skx-x710
+
+..
     ip4_tunnels-3n-hsw-x520
     ip4_tunnels-3n-hsw-x710
-    ip4_tunnels-3n-skx-x710
