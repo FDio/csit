@@ -370,7 +370,7 @@ class Specification(object):
 
         try:
             self._specification["environment"]["urls"] = \
-                self._replace_tags(self._cfg_yaml[idx]["urls"])
+                self._cfg_yaml[idx]["urls"]
         except KeyError:
             self._specification["environment"]["urls"] = None
 
