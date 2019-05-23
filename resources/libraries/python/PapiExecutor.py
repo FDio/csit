@@ -497,6 +497,10 @@ class PapiExecutor(object):
                                "failed: {apis}".format(host=self._node["host"],
                                                        apis=api_data))
         if ret_code != 0:
+            logger.error("ret_code: " + str(ret_code))
+            logger.error("stdout: " + str(stdout))
+            logger.error("stderr: " + str(stderr))
+            logger.error("apis: " + str(api_data))
             raise AssertionError(err_msg)
 
         return stdout, stderr
