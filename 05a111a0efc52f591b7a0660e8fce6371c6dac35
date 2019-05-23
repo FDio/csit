@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a867157a_1ef08e38",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-23T13:02:42Z",
+      "side": 1,
+      "message": "isn\u0027t it captured in exec_command_sudo ?",
+      "range": {
+        "startLine": 500,
+        "startChar": 0,
+        "endLine": 503,
+        "endChar": 50
+      },
+      "revId": "05a111a0efc52f591b7a0660e8fce6371c6dac35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
