@@ -20,8 +20,10 @@ CSIT source code for the test cases used for plots can be found in
 
 .. toctree::
 
+    vm_vhost-3n-skx-x710
+
+..
     vm_vhost-3n-hsw-x520
     vm_vhost-3n-hsw-x710
-    vm_vhost-3n-skx-x710
     vm_vhost-2n-skx-x710
     vm_vhost-2n-skx-xxv710

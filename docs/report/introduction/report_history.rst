@@ -1,54 +1,12 @@
 Report History
 ==============
 
-FD.io CSIT-1901 Report history and per .[ww] revision changes are listed below.
+FD.io CSIT-1901.2 Report history and per .[ww] revision changes are listed below.
 
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
-| .10            | 1. Added more Link bonding test results.                   |
-|                |                                                            |
-|                |    - Tested VPP version: 19.01-10                          |
-|                |                                                            |
-+----------------+------------------------------------------------------------+
-| .09            | 1. Added more test runs:                                   |
-|                |                                                            |
-|                |    a. VPP K8s Container Memif on 3n-hsw testbed.           |
-|                |                                                            |
-|                | 2. Added Link bonding test results.                        |
-|                |                                                            |
-|                |    - Tested VPP version: 19.01-10                          |
-|                |                                                            |
-|                | 3. Removed TCP/IP tests.                                   |
-|                |                                                            |
-|                | 4. Reorganized graphs:                                     |
-|                |                                                            |
-|                |    a. :ref:`VPP_Packet_Throughput`                         |
-|                |    b. :ref:`throughput_speedup_multi_core`                 |
-|                |    c. :ref:`VPP_Packet_Latency`                            |
-|                |                                                            |
-+----------------+------------------------------------------------------------+
-| .08            | 1. Added more test runs:                                   |
-|                |                                                            |
-|                |    a. VPP on 3n-hsw testbed,                               |
-|                |    b. VPP on 3n-skx testbed,                               |
-|                |    c. VPP on 2n-skx testbed,                               |
-|                |    d. VPP functional,                                      |
-|                |    e. DPDK on 3n-hsw testbed,                              |
-|                |    f. DPDK on 3n-skx testbed,                              |
-|                |    g. DPDK on 2n-skx testbed,                              |
-|                |    h. VPP K8s Container Memif on 3n-hsw testbed,           |
-|                |    i. NFV VPP tests on 2n-skx testbed.                     |
-|                |                                                            |
-|                | 2. Methodology updated:                                    |
-|                |                                                            |
-|                |    a. :ref:`PLRsearch algorithm`                           |
-|                |                                                            |
-|                | 3. Removed Denverton.                                      |
-|                | 4. Removed NSH_SFC.                                        |
-|                |                                                            |
-+----------------+------------------------------------------------------------+
-| .07            | Initial version                                            |
+| .22            | Initial version                                            |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 
