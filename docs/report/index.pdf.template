@@ -1,5 +1,5 @@
-CSIT-1901
-=========
+CSIT-1901.2
+===========
 
 .. toctree::
     :numbered:
@@ -9,9 +9,9 @@ CSIT-1901
     dpdk_performance_tests/index
     vpp_device_tests/index
     vpp_functional_tests/index
-    honeycomb_functional_tests/index
-    dmm_functional_tests/index
     csit_framework_documentation/index
 
 ..
+    honeycomb_functional_tests/index
+    dmm_functional_tests/index
     nsh_sfc_functional_tests/index
