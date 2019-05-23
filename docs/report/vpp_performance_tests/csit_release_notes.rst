@@ -1,44 +1,44 @@
 Release Notes
 =============
 
-Changes in |csit-release|
--------------------------
-
-#. VPP PERFORMANCE TESTS
-
-   - **Service density 2n-skx tests**: Network Function Virtualization (NFV)
-     service density tests focus on measuring total per server throughput at
-     varied NFV service *packing* densities with vswitch providing host
-     dataplane. The goal is to compare and contrast performance of a shared
-     vswitch for different network topologies and virtualization technologies,
-     and their impact on vswitch performance and efficiency in a range of NFV
-     service configurations.
-
-   - **Experimental Soak Tests**: Added performamce soak tests framework
-     code for extended time duration tests and throughput discovery
-     at given PLR and at give total test time e.g. minutes, hours,
-     days, weeks, months, years. See updated
-     :ref:`test_methodology` section for more details.
-
-#. TEST FRAMEWORK
-
-   - **Container code optimizations**: Optimized container library allows to
-     run containre_memif tests faster.
-
-   - **CSIT PAPI Support**: Continue converting existing VAT L1 keywords to
-     PAPI L1 KWs in CSIT using VPP Python bindings. Required for migrating away
-     from VAT.
-
-   - **General Code Housekeeping**: Ongoing RF keywords optimizations,
-     removal of redundant RF keywords.
-
-#. PRESENTATION AND ANALYTICS LAYER
-
-   - **Graphs Layout Improvements**: Improved performance graphs layout
-     for better readibility and maintenance: test grouping, axis
-     labels, descriptions, other informative decoration.
-
 ..
+    Changes in |csit-release|
+    -------------------------
+
+    #. VPP PERFORMANCE TESTS
+
+       - **Service density 2n-skx tests**: Network Function Virtualization (NFV)
+         service density tests focus on measuring total per server throughput at
+         varied NFV service *packing* densities with vswitch providing host
+         dataplane. The goal is to compare and contrast performance of a shared
+         vswitch for different network topologies and virtualization technologies,
+         and their impact on vswitch performance and efficiency in a range of NFV
+         service configurations.
+
+       - **Experimental Soak Tests**: Added performamce soak tests framework
+         code for extended time duration tests and throughput discovery
+         at given PLR and at give total test time e.g. minutes, hours,
+         days, weeks, months, years. See updated
+         :ref:`test_methodology` section for more details.
+
+    #. TEST FRAMEWORK
+
+       - **Container code optimizations**: Optimized container library allows to
+         run containre_memif tests faster.
+
+       - **CSIT PAPI Support**: Continue converting existing VAT L1 keywords to
+         PAPI L1 KWs in CSIT using VPP Python bindings. Required for migrating away
+         from VAT.
+
+       - **General Code Housekeeping**: Ongoing RF keywords optimizations,
+         removal of redundant RF keywords.
+
+    #. PRESENTATION AND ANALYTICS LAYER
+
+       - **Graphs Layout Improvements**: Improved performance graphs layout
+         for better readibility and maintenance: test grouping, axis
+         labels, descriptions, other informative decoration.
+
     #. MISCELLANEOUS
 
        - **3n-dnv Tests (3rd Party)**: Published performance tests for 3n-
