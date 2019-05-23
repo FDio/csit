@@ -50,11 +50,13 @@ Additional information about graph data:
     l2
     ip4
     ip6
-    srv6
     ip4_tunnels
-    ip6_tunnels
     vm_vhost
     container_memif
     container_orchestrated
+
+..
+    ip6_tunnels
     ipsec
+    srv6
     vts

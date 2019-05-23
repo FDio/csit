@@ -32,11 +32,12 @@ Changes in |csit-release|
    - **General Code Housekeeping**: Ongoing RF keywords optimizations,
      removal of redundant RF keywords.
 
-#. PRESENTATION AND ANALYTICS LAYER
+..
+    #. PRESENTATION AND ANALYTICS LAYER
 
-   - **Graphs Layout Improvements**: Improved performance graphs layout
-     for better readibility and maintenance: test grouping, axis
-     labels, descriptions, other informative decoration.
+       - **Graphs Layout Improvements**: Improved performance graphs layout
+         for better readibility and maintenance: test grouping, axis
+         labels, descriptions, other informative decoration.
 
 ..
     #. MISCELLANEOUS
