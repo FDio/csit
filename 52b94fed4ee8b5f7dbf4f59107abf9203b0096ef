@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a0a0a902_af19d580",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-23T13:04:24Z",
+      "side": 1,
+      "message": "why the empty line?",
+      "revId": "52b94fed4ee8b5f7dbf4f59107abf9203b0096ef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
