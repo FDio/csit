@@ -115,6 +115,9 @@ class Regenerator(object):
                 if "vic1227" in iface:
                     # Not supported in HW.
                     emit = False
+                if "vic1385" in iface:
+                    # Not supported in HW.
+                    emit = False
                 if "avf" in suite_id:
                     # Not supported by AVF driver.
                     # https://git.fd.io/vpp/tree/src/plugins/avf/README.md
