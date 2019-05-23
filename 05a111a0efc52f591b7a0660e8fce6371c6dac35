@@ -22,6 +22,30 @@
       "revId": "05a111a0efc52f591b7a0660e8fce6371c6dac35",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1f23d2f_0a777a20",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-23T13:10:34Z",
+      "side": 1,
+      "message": "Yes. I found it later, there is a bunch of unrelated output between it and the error.",
+      "parentUuid": "a867157a_1ef08e38",
+      "range": {
+        "startLine": 500,
+        "startChar": 0,
+        "endLine": 503,
+        "endChar": 50
+      },
+      "revId": "05a111a0efc52f591b7a0660e8fce6371c6dac35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
