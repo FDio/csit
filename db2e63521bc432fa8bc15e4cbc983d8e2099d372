@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "ad3d78ff_9cc7a462",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-24T14:09:31Z",
+      "side": 1,
+      "message": "\u003e Have you compared the times\n\nFrom what I see, framework setup takes almost the same time, but framework teardown is much faster with multithreading.\nSo the idea is good.",
+      "parentUuid": "1ef4bbb0_ca2e2666",
+      "range": {
+        "startLine": 10,
+        "startChar": 23,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "db2e63521bc432fa8bc15e4cbc983d8e2099d372",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de3282d4_791bd070",
         "filename": "resources/libraries/python/SetupFramework.py",
         "patchSetId": 2
