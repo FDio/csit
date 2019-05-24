@@ -643,6 +643,7 @@ class IPsecUtil(object):
                             .format(integ_alg=integ_alg.alg_name,
                                     local_integ_key=ikey,
                                     remote_integ_key=ikey)
+                if1_ip_addr_inc = ip_address(int(ip_address(if1_ip_addr)) + i)
                 dut1_tunnel = 'ipsec_tunnel_if_add_del '\
                               'local_spi {local_spi} '\
                               'remote_spi {remote_spi} '\
@@ -658,8 +659,9 @@ class IPsecUtil(object):
                                       local_crypto_key=ckey,
                                       remote_crypto_key=ckey,
                                       integ=integ,
-                                      local_ip=if1_ip_addr,
+                                      local_ip=if1_ip_addr_inc,
                                       remote_ip=if2_ip_addr)
+                if2_ip_addr_inc = ip_address(int(ip_address(if2_ip_addr)) + i)
                 dut2_tunnel = 'ipsec_tunnel_if_add_del '\
                               'local_spi {local_spi} '\
                               'remote_spi {remote_spi} '\
@@ -675,7 +677,7 @@ class IPsecUtil(object):
                                       local_crypto_key=ckey,
                                       remote_crypto_key=ckey,
                                       integ=integ,
-                                      local_ip=if2_ip_addr,
+                                      local_ip=if2_ip_addr_inc,
                                       remote_ip=if1_ip_addr)
                 tmp_f1.write(dut1_tunnel)
                 tmp_f2.write(dut2_tunnel)
