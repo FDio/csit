@@ -59,13 +59,13 @@
 | ${overhead}= | ${58}
 | ${tg_if1_ip4}= | 192.168.10.2
 | ${dut1_if1_ip4}= | 192.168.10.1
-| ${dut1_if2_ip4}= | 172.168.1.1
-| ${dut2_if1_ip4}= | 172.168.1.2
+| ${dut1_if2_ip4}= | 100.0.0.1
+| ${dut2_if1_ip4}= | 100.0.0.2
 | ${dut2_if2_ip4}= | 192.168.20.1
 | ${tg_if2_ip4}= | 192.168.20.2
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
-| ${addr_range}= | ${32}
+| ${addr_range}= | ${24}
 | ${n_tunnels}= | ${1000}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
@@ -97,12 +97,11 @@
 | | And Add DPDK SW cryptodev on DUTs in 3-node single-link circular topology
 | | ... | aesni_mb | ${phy_cores}
 | | And Apply startup configuration on all VPP DUTs
-| | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
-| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
-| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${auth_alg}
+| | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
