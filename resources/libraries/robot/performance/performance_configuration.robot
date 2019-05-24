@@ -161,16 +161,16 @@
 | | Set Test Variable | ${dut2_if2_mac}
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
 | | ... | ${dut1_if1_ip4} | 24
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
-| | ... | ${dut1_if2_ip4} | 24
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1}
-| | ... | ${dut2_if1_ip4} | 24
+#| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
+#| | ... | ${dut1_if2_ip4} | 24
+#| | Configure IP addresses on4 interfaces | ${dut2} | ${dut2_if1}
+#| | ... | ${dut2_if1_ip4} | 24
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2}
 | | ... | ${dut2_if2_ip4} | 24
 | | Add arp on dut | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | ${dut2_if1_ip4} | ${dut2_if1_mac}
+#| | Add arp on dut | ${dut1} | ${dut1_if2} | ${dut2_if1_ip4} | ${dut2_if1_mac}
 | | Add arp on dut | ${dut2} | ${dut2_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_if2_ip4} | ${dut1_if2_mac}
+#| | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_if2_ip4} | ${dut1_if2_mac}
 | | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
 | | ... | interface=${dut1_if1}
 | | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | gateway=${tg_if2_ip4}
