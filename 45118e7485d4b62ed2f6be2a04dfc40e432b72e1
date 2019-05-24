@@ -659,6 +659,30 @@
       "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2626aef3_73dc9454",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-24T16:26:05Z",
+      "side": 1,
+      "message": "\u003e \u003e If super_duper.api does not exist in the VPP package,\n \u003e \u003e then there should never be any attempt to verify\n \u003e \u003e the signature against the new CSIT super_duper.api.json file.\n \u003e \n \u003e I disagree.\n \u003e When CSIT \"supports\" some .api.json file, it does not merely mean\n \u003e it can tolerate its presence in VPP package. It means CSIT actually\n \u003e relies on some messages to work as before, otherwise some tests\n \u003e start misbehaving.\n \u003e \n \u003e When an .api.json file is present in CSIT, it means a VPP package\n \u003e without it is viewed as lacking an essential functionality, so it\n \u003e gets -1.\n \u003e \n \u003e In other words, https://gerrit.fd.io/r/#/c/19027/20\n \u003e does tolerate .api.json files present in VPP and not in CSIT, but\n \u003e does not tolerate files present in CSIT and not in VPP.\n\nOk, I understand now and agree with you.  Therefore this use case is not supported.  \n\nAny CSIT tests which utilize a new VPP api must be added after the VPP patch has been merged.\n\nI will update the document accordingly.",
+      "parentUuid": "1365c2cc_183f68cf",
+      "range": {
+        "startLine": 202,
+        "startChar": 17,
+        "endLine": 202,
+        "endChar": 33
+      },
+      "revId": "45118e7485d4b62ed2f6be2a04dfc40e432b72e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
