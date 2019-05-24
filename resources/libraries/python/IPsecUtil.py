@@ -14,6 +14,8 @@
 """IPsec utilities library."""
 
 import os
+from random import choice
+from string import letters
 from ipaddress import ip_network, ip_address
 
 from enum import Enum, IntEnum
@@ -23,6 +25,16 @@ from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
 
+
+def gen_key(length):
+    """Generate random string as a key.
+
+    :param length: Length of generated payload.
+    :type length: int
+    :returns: The generated payload.
+    :rtype: str
+    """
+    return ''.join(choice(letters) for _ in range(length))
 
 class PolicyAction(Enum):
     """Policy actions."""
@@ -582,9 +594,8 @@ class IPsecUtil(object):
     @staticmethod
     def vpp_ipsec_create_tunnel_interfaces(node1, node2, if1_ip_addr,
                                            if2_ip_addr, if1_key, if2_key,
-                                           n_tunnels, crypto_alg, crypto_key,
-                                           integ_alg, integ_key, raddr_ip1,
-                                           raddr_ip2, raddr_range):
+                                           n_tunnels, crypto_alg, integ_alg,
+                                           raddr_ip1, raddr_ip2, raddr_range):
         """Create multiple IPsec tunnel interfaces between two VPP nodes.
 
         :param node1: VPP node 1 to create tunnel interfaces.
@@ -595,9 +606,7 @@ class IPsecUtil(object):
         :param if2_key: VPP node 2 interface key from topology file.
         :param n_tunnels: Number of tunnell interfaces to create.
         :param crypto_alg: The encryption algorithm name.
-        :param crypto_key: The encryption key string.
         :param integ_alg: The integrity algorithm name.
-        :param integ_key: The integrity key string.
         :param raddr_ip1: Policy selector remote IPv4 start address for the
             first tunnel in direction node1->node2.
         :param raddr_ip2: Policy selector remote IPv4 start address for the
@@ -612,71 +621,78 @@ class IPsecUtil(object):
         :type if2_key: str
         :type n_tunnels: int
         :type crypto_alg: CryptoAlg
-        :type crypto_key: str
         :type integ_alg: IntegAlg
-        :type integ_key: str
         :type raddr_ip1: string
         :type raddr_ip2: string
         :type raddr_range: int
         """
-        spi_1 = 10000
-        spi_2 = 20000
-
-        raddr_ip1_i = int(ip_address(unicode(raddr_ip1)))
-        raddr_ip2_i = int(ip_address(unicode(raddr_ip2)))
+        spi_1 = 100000
+        spi_2 = 200000
         addr_incr = 1 << (32 - raddr_range)
 
         tmp_fn1 = '/tmp/ipsec_create_tunnel_dut1.config'
         tmp_fn2 = '/tmp/ipsec_create_tunnel_dut2.config'
 
-        ckey = crypto_key.encode('hex')
-        ikey = integ_key.encode('hex')
-
         vat = VatExecutor()
+
         with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
             for i in range(0, n_tunnels):
+                ckey = gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg)).\
+                    encode('hex')
+                ikey = gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)).\
+                    encode('hex')
                 integ = ''
                 if not crypto_alg.alg_name.startswith('aes-gcm-'):
-                    integ = 'integ_alg {integ_alg} '\
-                            'local_integ_key {local_integ_key} '\
-                            'remote_integ_key {remote_integ_key} '\
-                            .format(integ_alg=integ_alg.alg_name,
-                                    local_integ_key=ikey,
-                                    remote_integ_key=ikey)
-                dut1_tunnel = 'ipsec_tunnel_if_add_del '\
-                              'local_spi {local_spi} '\
-                              'remote_spi {remote_spi} '\
-                              'crypto_alg {crypto_alg} '\
-                              'local_crypto_key {local_crypto_key} '\
-                              'remote_crypto_key {remote_crypto_key} '\
-                              '{integ} '\
-                              'local_ip {local_ip} '\
-                              'remote_ip {remote_ip}\n'\
-                              .format(local_spi=spi_1+i,
-                                      remote_spi=spi_2+i,
-                                      crypto_alg=crypto_alg.alg_name,
-                                      local_crypto_key=ckey,
-                                      remote_crypto_key=ckey,
-                                      integ=integ,
-                                      local_ip=if1_ip_addr,
-                                      remote_ip=if2_ip_addr)
-                dut2_tunnel = 'ipsec_tunnel_if_add_del '\
-                              'local_spi {local_spi} '\
-                              'remote_spi {remote_spi} '\
-                              'crypto_alg {crypto_alg} '\
-                              'local_crypto_key {local_crypto_key} '\
-                              'remote_crypto_key {remote_crypto_key} '\
-                              '{integ} '\
-                              'local_ip {local_ip} '\
-                              'remote_ip {remote_ip}\n'\
-                              .format(local_spi=spi_2+i,
-                                      remote_spi=spi_1+i,
-                                      crypto_alg=crypto_alg.alg_name,
-                                      local_crypto_key=ckey,
-                                      remote_crypto_key=ckey,
-                                      integ=integ,
-                                      local_ip=if2_ip_addr,
-                                      remote_ip=if1_ip_addr)
+                    integ = (
+                        'integ_alg {integ_alg} '
+                        'local_integ_key {local_integ_key} '
+                        'remote_integ_key {remote_integ_key} '
+                        .format(
+                            integ_alg=integ_alg.alg_name,
+                            local_integ_key=ikey,
+                            remote_integ_key=ikey))
+                dut1_tunnel = (
+                    'exec set interface ip address {uifc} {laddr}/24\n'
+                    'ipsec_tunnel_if_add_del '
+                    'local_spi {local_spi} '
+                    'remote_spi {remote_spi} '
+                    'crypto_alg {crypto_alg} '
+                    'local_crypto_key {local_crypto_key} '
+                    'remote_crypto_key {remote_crypto_key} '
+                    '{integ} '
+                    'local_ip {laddr} '
+                    'remote_ip {raddr}\n'
+                    .format(
+                        local_spi=spi_1 + i,
+                        remote_spi=spi_2 + i,
+                        crypto_alg=crypto_alg.alg_name,
+                        local_crypto_key=ckey,
+                        remote_crypto_key=ckey,
+                        integ=integ,
+                        laddr=ip_address(unicode(if1_ip_addr)) + i * addr_incr,
+                        raddr=ip_address(unicode(if2_ip_addr)) + i * addr_incr,
+                        uifc=Topology.get_interface_name(node1, if1_key)))
+                dut2_tunnel = (
+                    'exec set interface ip address {uifc} {laddr}/24\n'
+                    'ipsec_tunnel_if_add_del '
+                    'local_spi {local_spi} '
+                    'remote_spi {remote_spi} '
+                    'crypto_alg {crypto_alg} '
+                    'local_crypto_key {local_crypto_key} '
+                    'remote_crypto_key {remote_crypto_key} '
+                    '{integ} '
+                    'local_ip {laddr} '
+                    'remote_ip {raddr}\n'
+                    .format(
+                        local_spi=spi_2 + i,
+                        remote_spi=spi_1 + i,
+                        crypto_alg=crypto_alg.alg_name,
+                        local_crypto_key=ckey,
+                        remote_crypto_key=ckey,
+                        integ=integ,
+                        laddr=ip_address(unicode(if2_ip_addr)) + i * addr_incr,
+                        raddr=ip_address(unicode(if1_ip_addr)) + i * addr_incr,
+                        uifc=Topology.get_interface_name(node1, if2_key)))
                 tmp_f1.write(dut1_tunnel)
                 tmp_f2.write(dut2_tunnel)
         vat.execute_script(tmp_fn1, node1, timeout=300, json_out=False,
@@ -688,23 +704,26 @@ class IPsecUtil(object):
 
         with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
             for i in range(0, n_tunnels):
-                raddr_ip1 = ip_address(raddr_ip1_i + addr_incr*i)
-                raddr_ip2 = ip_address(raddr_ip2_i + addr_incr*i)
-                dut1_if = Topology.get_interface_name(node1, if1_key)
-                dut1 = 'exec ip route add {raddr}/{mask} via {addr} ipsec{i}\n'\
-                       'exec set interface unnumbered ipsec{i} use {uifc}\n'\
-                       'exec set interface state ipsec{i} up\n'\
-                       .format(raddr=raddr_ip2, mask=raddr_range,
-                               addr=if2_ip_addr, i=i, uifc=dut1_if)
-                dut2_if = Topology.get_interface_name(node2, if2_key)
-                dut2 = 'exec ip route add {raddr}/{mask} via {addr} ipsec{i}\n'\
-                       'exec set interface unnumbered ipsec{i} use {uifc}\n'\
-                       'exec set interface state ipsec{i} up\n'\
-                       .format(raddr=raddr_ip1, mask=raddr_range,
-                               addr=if1_ip_addr, i=i, uifc=dut2_if)
+                dut1 = (
+                    'exec set interface unnumbered ipsec{i} use {uifc}\n'
+                    'exec set interface state ipsec{i} up\n'
+                    'exec ip route add {taddr}/32 via {raddr} ipsec{i}\n'
+                    .format(
+                        taddr=ip_address(unicode(raddr_ip2)) + i,
+                        raddr=ip_address(unicode(if2_ip_addr)) + i * addr_incr,
+                        i=i,
+                        uifc=Topology.get_interface_name(node1, if1_key)))
+                dut2 = (
+                    'exec set interface unnumbered ipsec{i} use {uifc}\n'
+                    'exec set interface state ipsec{i} up\n'
+                    'exec ip route add {taddr}/32 via {raddr} ipsec{i}\n'
+                    .format(
+                        taddr=ip_address(unicode(raddr_ip1)) + i,
+                        raddr=ip_address(unicode(if1_ip_addr)) + i * addr_incr,
+                        i=i,
+                        uifc=Topology.get_interface_name(node2, if2_key)))
                 tmp_f1.write(dut1)
                 tmp_f2.write(dut2)
-
         vat.execute_script(tmp_fn1, node1, timeout=300, json_out=False,
                            copy_on_execute=True)
         vat.execute_script(tmp_fn2, node2, timeout=300, json_out=False,
@@ -714,10 +733,9 @@ class IPsecUtil(object):
 
     @staticmethod
     def vpp_ipsec_add_multiple_tunnels(node1, node2, interface1, interface2,
-                                       n_tunnels, crypto_alg, crypto_key,
-                                       integ_alg, integ_key, tunnel_ip1,
-                                       tunnel_ip2, raddr_ip1, raddr_ip2,
-                                       raddr_range):
+                                       n_tunnels, crypto_alg, integ_alg,
+                                       tunnel_ip1, tunnel_ip2, raddr_ip1,
+                                       raddr_ip2, raddr_range):
         """Create multiple IPsec tunnels between two VPP nodes.
 
         :param node1: VPP node 1 to create tunnels.
@@ -726,9 +744,7 @@ class IPsecUtil(object):
         :param interface2: Interface name or sw_if_index on node 2.
         :param n_tunnels: Number of tunnels to create.
         :param crypto_alg: The encryption algorithm name.
-        :param crypto_key: The encryption key string.
         :param integ_alg: The integrity algorithm name.
-        :param integ_key: The integrity key string.
         :param tunnel_ip1: Tunnel node1 IPv4 address.
         :param tunnel_ip2: Tunnel node2 IPv4 address.
         :param raddr_ip1: Policy selector remote IPv4 start address for the
@@ -743,9 +759,7 @@ class IPsecUtil(object):
         :type interface2: str or int
         :type n_tunnels: int
         :type crypto_alg: CryptoAlg
-        :type crypto_key: str
         :type integ_alg: str
-        :type integ_key: str
         :type tunnel_ip1: str
         :type tunnel_ip2: str
         :type raddr_ip1: string
@@ -755,11 +769,14 @@ class IPsecUtil(object):
         spd_id = 1
         p_hi = 100
         p_lo = 10
-        sa_id_1 = 10000
-        sa_id_2 = 20000
-        spi_1 = 30000
-        spi_2 = 40000
+        sa_id_1 = 100000
+        sa_id_2 = 200000
+        spi_1 = 300000
+        spi_2 = 400000
         proto = 50
+
+        crypto_key = gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
+        integ_key = gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
 
         IPsecUtil.vpp_ipsec_add_spd(node1, spd_id)
         IPsecUtil.vpp_ipsec_spd_add_if(node1, spd_id, interface1)
