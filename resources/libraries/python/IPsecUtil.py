@@ -15,6 +15,8 @@
 
 import os
 from ipaddress import ip_network, ip_address
+from random import choice
+from string import letters
 
 from enum import Enum, IntEnum
 
@@ -23,6 +25,20 @@ from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
 
+
+def gen_key(length):
+    """Generate random string as a key.
+
+    :param length: Length of generated payload.
+    :type length: int
+    :returns: The generated payload.
+    :rtype: str
+    """
+    key = ""
+    for _ in range(length):
+        key += choice(letters)
+
+    return key
 
 class PolicyAction(Enum):
     """Policy actions."""
@@ -629,12 +645,14 @@ class IPsecUtil(object):
         tmp_fn1 = '/tmp/ipsec_create_tunnel_dut1.config'
         tmp_fn2 = '/tmp/ipsec_create_tunnel_dut2.config'
 
-        ckey = crypto_key.encode('hex')
-        ikey = integ_key.encode('hex')
+        ckey_len = IPsecUtil.get_crypto_alg_key_len(crypto_alg)
+        ikey_len = IPsecUtil.get_integ_alg_key_len(integ_alg)
 
         vat = VatExecutor()
         with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
             for i in range(0, n_tunnels):
+                ckey = gen_key(ckey_len).encode('hex')
+                ikey = gen_key(ikey_len).encode('hex')
                 integ = ''
                 if not crypto_alg.alg_name.startswith('aes-gcm-'):
                     integ = 'integ_alg {integ_alg} '\
