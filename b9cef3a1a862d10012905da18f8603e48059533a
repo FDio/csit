@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8c610ecd_a99ac879",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-24T16:26:05Z",
+      "side": 1,
+      "message": "\u003e Does this apply also to those existing unmerged VPP Changes that\n \u003e received no recheck (nor new patch set), so they are sitting with\n \u003e Verified+1 even when CSIT has dropped suport for them?\n\nYes.\n\nAs far as I know, there isn\u0027t an easy way automate process of going through the gerrit backlog and voting Verified+0 for any unmerged patch which is currently in the Verified+1 state.",
+      "parentUuid": "29de55b7_384b19a7",
+      "range": {
+        "startLine": 164,
+        "startChar": 40,
+        "endLine": 164,
+        "endChar": 48
+      },
+      "revId": "b9cef3a1a862d10012905da18f8603e48059533a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b0505534_90f30943",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-22T11:03:45Z",
       "side": 1,
       "message": "In Gerrit vocabulary, a Change consists of both initial patch set and of subsequent patch sets.\nIt is not clear whether you \"patch\" means a Change or a patch set, but your \"initial submission\" seems to fit both a submission of the initial patch set and a submission of a subsequent patch set.",
+      "range": {
+        "startLine": 179,
+        "startChar": 69,
+        "endLine": 179,
+        "endChar": 76
+      },
+      "revId": "b9cef3a1a862d10012905da18f8603e48059533a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c6975aeb_c871eb3a",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-05-24T16:26:05Z",
+      "side": 1,
+      "message": "\u003e In Gerrit vocabulary, a Change consists of both initial patch set\n \u003e and of subsequent patch sets.\n \u003e It is not clear whether you \"patch\" means a Change or a patch set,\n \u003e but your \"initial submission\" seems to fit both a submission of the\n \u003e initial patch set and a submission of a subsequent patch set.\n\nYou are correct, so my attempt to clarify this was not so good.  Is this any better?\n\nChange:\n\"... will continue to pass verification upon recheck or initial patch submission to gerrit ...\"\n\nTo:\n\"... will pass the VPP API CSIT SIGNATURE TEST upon re-verification ...\"",
+      "parentUuid": "b0505534_90f30943",
       "range": {
         "startLine": 179,
         "startChar": 69,
