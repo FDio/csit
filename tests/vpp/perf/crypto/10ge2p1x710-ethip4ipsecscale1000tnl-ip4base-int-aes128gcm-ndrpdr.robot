@@ -58,8 +58,8 @@
 | ${overhead}= | ${54}
 | ${tg_if1_ip4}= | 192.168.10.2
 | ${dut1_if1_ip4}= | 192.168.10.1
-| ${dut1_if2_ip4}= | 172.168.1.1
-| ${dut2_if1_ip4}= | 172.168.1.2
+| ${dut1_if2_ip4}= | 100.0.0.1
+| ${dut2_if1_ip4}= | 100.100.0.1
 | ${dut2_if2_ip4}= | 192.168.20.1
 | ${tg_if2_ip4}= | 192.168.20.2
 | ${raddr_ip4}= | 20.0.0.0
@@ -96,14 +96,13 @@
 | | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add cryptodev to all DUTs | ${phy_cores}
 | | And Apply startup configuration on all VPP DUTs
-| | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
 | | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
-| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${encr_key} | ${auth_alg}
-| | ... | ${auth_key} | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${auth_alg}
+| | ... | ${laddr_ip4} | ${raddr_ip4}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

@@ -162,9 +162,9 @@
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
 | | ... | ${dut1_if1_ip4} | 24
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
-| | ... | ${dut1_if2_ip4} | 24
+| | ... | ${dut1_if2_ip4} | 8
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1}
-| | ... | ${dut2_if1_ip4} | 24
+| | ... | ${dut2_if1_ip4} | 8
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2}
 | | ... | ${dut2_if2_ip4} | 24
 | | Add arp on dut | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
