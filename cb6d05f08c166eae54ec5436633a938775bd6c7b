@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9822fe92_1888d85b",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 60
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-27T11:18:29Z",
+      "side": 1,
+      "message": "If you turn this into interface_dict (with ifc[\u0027l2_address\u0027] as the key for each ifc), you do not need the for cycle at line 590.\nUnless you want to support the case where multiple ifcs have the same l2_address.",
+      "range": {
+        "startLine": 587,
+        "startChar": 8,
+        "endLine": 587,
+        "endChar": 22
+      },
+      "revId": "cb6d05f08c166eae54ec5436633a938775bd6c7b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
