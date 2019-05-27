@@ -140,6 +140,30 @@
       "revId": "db2e63521bc432fa8bc15e4cbc983d8e2099d372",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "278e898c_3e5b3f7c",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-27T08:00:43Z",
+      "side": 1,
+      "message": "There needs to be some delay before joining the threads to actually let them start (I was getting errors saying the thread hasn\u0027t started yet and join() couldn\u0027t be called).\n\nThis is what I came up with. I didn\u0027t want to use just time.sleep(1), but we could combine these - wait for active_count, stop waiting if active_count - 1 (I forgot about the main thread) is less than thread_count after a second.",
+      "parentUuid": "de3282d4_791bd070",
+      "range": {
+        "startLine": 261,
+        "startChar": 24,
+        "endLine": 261,
+        "endChar": 36
+      },
+      "revId": "db2e63521bc432fa8bc15e4cbc983d8e2099d372",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
