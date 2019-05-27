@@ -327,7 +327,7 @@ xmlns:a="urn:ietf:params:xml:ns:netconf:base:1.0" a:operation="replace">
 <rpc message-id="m-27" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <get>
 <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:type="subtree">
-<interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"/>
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"/>
 </filter>
 </get>
 </rpc>
