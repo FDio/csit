@@ -718,15 +718,15 @@
 
     # Compare testbeds
 
-    vpp-compare-testbeds-ref:
-      csit-vpp-perf-verify-1901-3n-hsw:
-        - 84  # 1901.2 NDRPDR sel
-    vpp-compare-testbeds-cmp:
-      csit-vpp-perf-verify-1901-3n-skx:
-        - 70  # 1901.2 NDRPDR sel
-    vpp-compare-testbeds:
-      - "vpp-compare-testbeds-ref"
-      - "vpp-compare-testbeds-cmp"
+#    vpp-compare-testbeds-ref:
+#      csit-vpp-perf-verify-1901-3n-hsw:
+#        - 84  # 1901.2 NDRPDR sel
+#    vpp-compare-testbeds-cmp:
+#      csit-vpp-perf-verify-1901-3n-skx:
+#        - 70  # 1901.2 NDRPDR sel
+#    vpp-compare-testbeds:
+#      - "vpp-compare-testbeds-ref"
+#      - "vpp-compare-testbeds-cmp"
 
 #    vpp-compare-testbeds-mrr-ref:
 #      csit-vpp-perf-verify-1901-3n-hsw:
@@ -2403,85 +2403,85 @@
 #  - "parent"
 #  - "throughput"
 
-# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr
--
-  type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr"
-  algorithm: "table_performance_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr"
-  reference:
-    title: "3-Node Hsw"
-    data: "vpp-compare-testbeds-ref"
-  compare:
-    title: "3-Node Skx"
-    data: "vpp-compare-testbeds-cmp"
-  data: "vpp-compare-testbeds"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'NIC_Intel-X710' and 'NDRPDR' and '1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-
-# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c ndr
--
-  type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c ndr"
-  algorithm: "table_performance_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr"
-  reference:
-    title: "3-Node Hsw"
-    data: "vpp-compare-testbeds-ref"
-  compare:
-    title: "3-Node Skx"
-    data: "vpp-compare-testbeds-cmp"
-  data: "vpp-compare-testbeds"
-  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'NIC_Intel-X710' and 'NDRPDR' and '2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-
-# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c pdr
--
-  type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c pdr"
-  algorithm: "table_performance_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-pdr"
-  reference:
-    title: "3-Node Hsw"
-    data: "vpp-compare-testbeds-ref"
-  compare:
-    title: "3-Node Skx"
-    data: "vpp-compare-testbeds-cmp"
-  data: "vpp-compare-testbeds"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'NIC_Intel-X710' and 'NDRPDR' and '1C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
-
-# VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c pdr
--
-  type: "table"
-  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c pdr"
-  algorithm: "table_performance_comparison"
-  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-pdr"
-  reference:
-    title: "3-Node Hsw"
-    data: "vpp-compare-testbeds-ref"
-  compare:
-    title: "3-Node Skx"
-    data: "vpp-compare-testbeds-cmp"
-  data: "vpp-compare-testbeds"
-  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'NIC_Intel-X710' and 'NDRPDR' and '2C'"
-  parameters:
-  - "name"
-  - "parent"
-  - "throughput"
+## VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr
+#-
+#  type: "table"
+#  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr"
+#  algorithm: "table_performance_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr"
+#  reference:
+#    title: "3-Node Hsw"
+#    data: "vpp-compare-testbeds-ref"
+#  compare:
+#    title: "3-Node Skx"
+#    data: "vpp-compare-testbeds-cmp"
+#  data: "vpp-compare-testbeds"
+#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'NIC_Intel-X710' and 'NDRPDR' and '1C'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "throughput"
+#
+## VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c ndr
+#-
+#  type: "table"
+#  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c ndr"
+#  algorithm: "table_performance_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr"
+#  reference:
+#    title: "3-Node Hsw"
+#    data: "vpp-compare-testbeds-ref"
+#  compare:
+#    title: "3-Node Skx"
+#    data: "vpp-compare-testbeds-cmp"
+#  data: "vpp-compare-testbeds"
+#  include-tests: "NDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'NIC_Intel-X710' and 'NDRPDR' and '2C'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "throughput"
+#
+## VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c pdr
+#-
+#  type: "table"
+#  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c pdr"
+#  algorithm: "table_performance_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-pdr"
+#  reference:
+#    title: "3-Node Hsw"
+#    data: "vpp-compare-testbeds-ref"
+#  compare:
+#    title: "3-Node Skx"
+#    data: "vpp-compare-testbeds-cmp"
+#  data: "vpp-compare-testbeds"
+#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'NIC_Intel-X710' and 'NDRPDR' and '1C'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "throughput"
+#
+## VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c pdr
+#-
+#  type: "table"
+#  title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c pdr"
+#  algorithm: "table_performance_comparison"
+#  output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-pdr"
+#  reference:
+#    title: "3-Node Hsw"
+#    data: "vpp-compare-testbeds-ref"
+#  compare:
+#    title: "3-Node Skx"
+#    data: "vpp-compare-testbeds-cmp"
+#  data: "vpp-compare-testbeds"
+#  include-tests: "PDR" # "PDR" | "NDR" | "MRR"
+#  filter: "'NIC_Intel-X710' and 'NDRPDR' and '2C'"
+#  parameters:
+#  - "name"
+#  - "parent"
+#  - "throughput"
 
 ## VPP Comparison Across Topologies 3n-skx to 2n-skx 1c ndr
 #-
@@ -21401,46 +21401,46 @@
 
 ################################################################################
 
-# Packet Latency - VPP VTS 3n-hsw-x520
--
-  type: "plot"
-  title: "VPP Latency: vts-3n-hsw-x520-114b-1t1c-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-114b-1t1c-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '114B' and
-           'NDRPDR' and
-           '1T1C' and
-           'VTS'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  layout:
-    title: "vts-3n-hsw-x520-114b-1t1c-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vts-3n-hsw-x520-114b-2t2c-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-114b-2t2c-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '114B' and
-           'NDRPDR' and
-           '2T2C' and
-           'VTS'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  layout:
-    title: "vts-3n-hsw-x520-114b-2t2c-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP VTS 3n-hsw-x520
+#-
+#  type: "plot"
+#  title: "VPP Latency: vts-3n-hsw-x520-114b-1t1c-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-114b-1t1c-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '114B' and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'VTS'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "vts-3n-hsw-x520-114b-1t1c-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: vts-3n-hsw-x520-114b-2t2c-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-114b-2t2c-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '114B' and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'VTS'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "vts-3n-hsw-x520-114b-2t2c-ndr"
+#    layout: "plot-latency"
 
 ################################################################################
 
