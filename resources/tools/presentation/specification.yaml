@@ -21401,46 +21401,46 @@
 
 ################################################################################
 
-# Packet Latency - VPP VTS 3n-hsw-x520
--
-  type: "plot"
-  title: "VPP Latency: vts-3n-hsw-x520-114b-1t1c-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-114b-1t1c-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '114B' and
-           'NDRPDR' and
-           '1T1C' and
-           'VTS'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  layout:
-    title: "vts-3n-hsw-x520-114b-1t1c-ndr"
-    layout: "plot-latency"
-
--
-  type: "plot"
-  title: "VPP Latency: vts-3n-hsw-x520-114b-2t2c-ndr-lat"
-  algorithm: "plot_latency_error_bars"
-  output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-114b-2t2c-ndr-lat"
-  data: "plot-vpp-throughput-latency-3n-hsw"
-  filter: "'NIC_Intel-X520-DA2' and
-           '114B' and
-           'NDRPDR' and
-           '2T2C' and
-           'VTS'"
-  parameters:
-  - "latency"
-  - "parent"
-  - "tags"
-  layout:
-    title: "vts-3n-hsw-x520-114b-2t2c-ndr"
-    layout: "plot-latency"
+## Packet Latency - VPP VTS 3n-hsw-x520
+#-
+#  type: "plot"
+#  title: "VPP Latency: vts-3n-hsw-x520-114b-1t1c-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-114b-1t1c-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '114B' and
+#           'NDRPDR' and
+#           '1T1C' and
+#           'VTS'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "vts-3n-hsw-x520-114b-1t1c-ndr"
+#    layout: "plot-latency"
+#
+#-
+#  type: "plot"
+#  title: "VPP Latency: vts-3n-hsw-x520-114b-2t2c-ndr-lat"
+#  algorithm: "plot_latency_error_bars"
+#  output-file-type: ".html"
+#  output-file: "{DIR[STATIC,VPP]}/vts-3n-hsw-x520-114b-2t2c-ndr-lat"
+#  data: "plot-vpp-throughput-latency-3n-hsw"
+#  filter: "'NIC_Intel-X520-DA2' and
+#           '114B' and
+#           'NDRPDR' and
+#           '2T2C' and
+#           'VTS'"
+#  parameters:
+#  - "latency"
+#  - "parent"
+#  - "tags"
+#  layout:
+#    title: "vts-3n-hsw-x520-114b-2t2c-ndr"
+#    layout: "plot-latency"
 
 ################################################################################
 
