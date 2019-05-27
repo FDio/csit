@@ -45,7 +45,7 @@
 | | ... | \| GigabitEthernet0/8/0 \| up \|
 | | [Arguments] | ${interface} | ${state}
 | | ${reply}= | Get notification
-| | Should contain | ${reply} | <interface-state-change
+| | Should contain | ${reply} | <interface-change
 | | Should contain | ${reply} | <name>${interface}</name>
 | | Should contain | ${reply} | <admin-status>${state}</admin-status>
 

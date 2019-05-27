@@ -160,7 +160,7 @@ class InterfaceKeywords(object):
                 "Not possible to get operational information about the "
                 "interfaces. Status code: {0}.".format(status_code))
         try:
-            return resp["interfaces-state"]["interface"]
+            return resp["interfaces"]["interface"]
 
         except (KeyError, TypeError):
             return []
