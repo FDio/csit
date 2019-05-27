@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "09f8041f_660b690e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-27T07:30:38Z",
+      "side": 1,
+      "message": "From what I\u0027ve googled there\u0027s some interaction between scp and multiprocessing that causes the hanging, so I wanted to try threading and see what happens.\n\nI don\u0027t actually know the low level details, but threading seems to have solved the hanging issue.",
+      "parentUuid": "2fbb461f_a309856e",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 21
+      },
+      "revId": "db2e63521bc432fa8bc15e4cbc983d8e2099d372",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ef4bbb0_ca2e2666",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -60,6 +84,30 @@
       "side": 1,
       "message": "\u003e Have you compared the times\n\nFrom what I see, framework setup takes almost the same time, but framework teardown is much faster with multithreading.\nSo the idea is good.",
       "parentUuid": "1ef4bbb0_ca2e2666",
+      "range": {
+        "startLine": 10,
+        "startChar": 23,
+        "endLine": 10,
+        "endChar": 34
+      },
+      "revId": "db2e63521bc432fa8bc15e4cbc983d8e2099d372",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cf1d2e0b_8c353101",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-27T07:30:38Z",
+      "side": 1,
+      "message": "Good to hear that GIL is not a problem.",
+      "parentUuid": "ad3d78ff_9cc7a462",
       "range": {
         "startLine": 10,
         "startChar": 23,
