@@ -192,7 +192,7 @@
 | | ${data}= | Get sub interface oper data
 | | ... | ${node} | ${dst_interface} | ${index}
 | | ${data}= | Set Variable
-| | ... | ${data['subinterface-span:span-state']['mirrored-interfaces']['mirrored-interface']}
+| | ... | ${data['subinterface-span:span']['mirrored-interfaces']['mirrored-interface']}
 | | Sort list | ${data}
 | | Sort list | ${src_interfaces}
 | | Lists should be equal | ${data} | ${src_interfaces}
@@ -214,7 +214,7 @@
 | | ${data}= | Get sub interface oper data
 | | ... | ${node} | ${dst_interface} | ${index}
 | | Variable should not exist
-| | ... | ${data['subinterface-span:span-state']['mirrored-interfaces']['mirrored-interface']}
+| | ... | ${data['subinterface-span:span']['mirrored-interfaces']['mirrored-interface']}
 
 | Honeycomb removes sub-interface SPAN configuration
 | | [Documentation] | Uses Honeycomb API to remove SPAN Operational Data\
@@ -252,4 +252,4 @@
 | | ${data}= | Get sub interface oper data
 | | ... | ${node} | ${dst_interface} | ${index}
 | | Run keyword and expect error | *KeyError* | Set Variable
-| | ... | ${data['subinterface-span:span-state']['mirrored-interfaces']['mirrored-interface']}
+| | ... | ${data['subinterface-span:span']['mirrored-interfaces']['mirrored-interface']}
