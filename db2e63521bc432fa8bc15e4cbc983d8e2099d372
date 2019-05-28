@@ -212,6 +212,30 @@
       "revId": "db2e63521bc432fa8bc15e4cbc983d8e2099d372",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "06da597a_9b6f42f0",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-05-28T12:08:09Z",
+      "side": 1,
+      "message": "I also don\u0027t like the busy-wait.\n\nLooking at the code, it didn\u0027t make sense that the Exception is raised, so I tried it without the loop and it works without it (i.e. just calling start() and then join()). I must\u0027ve forgotten to call start() in some version of my code (or something similar).\n\nWill submit a new PS shortly.",
+      "parentUuid": "cfc5f3e0_fe8fc749",
+      "range": {
+        "startLine": 261,
+        "startChar": 24,
+        "endLine": 261,
+        "endChar": 36
+      },
+      "revId": "db2e63521bc432fa8bc15e4cbc983d8e2099d372",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
