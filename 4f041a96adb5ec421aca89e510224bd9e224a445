@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2d9c7f2_c60daaca",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 62
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-28T12:42:11Z",
+      "side": 1,
+      "message": "Do not introduce trailing whitespace please.",
+      "range": {
+        "startLine": 70,
+        "startChar": 57,
+        "endLine": 70,
+        "endChar": 58
+      },
+      "revId": "4f041a96adb5ec421aca89e510224bd9e224a445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02ca51f6_3dc7c1d9",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 62
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-28T12:42:11Z",
+      "side": 1,
+      "message": "Document the argument and return type.\nOr just add a TODO at the top of the file to improve docstrings later.",
+      "range": {
+        "startLine": 344,
+        "startChar": 28,
+        "endLine": 344,
+        "endChar": 35
+      },
+      "revId": "4f041a96adb5ec421aca89e510224bd9e224a445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af2f53b6_6f13de7b",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 62
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-28T12:42:11Z",
+      "side": 1,
+      "message": "Also here, document.",
+      "range": {
+        "startLine": 410,
+        "startChar": 26,
+        "endLine": 410,
+        "endChar": 29
+      },
+      "revId": "4f041a96adb5ec421aca89e510224bd9e224a445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
