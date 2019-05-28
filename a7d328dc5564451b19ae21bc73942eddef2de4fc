@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ecbdf6f_d9cceda9",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 61
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-28T08:21:21Z",
+      "side": 1,
+      "message": "Implement, or delete from docstring.",
+      "range": {
+        "startLine": 580,
+        "startChar": 70,
+        "endLine": 581,
+        "endChar": 15
+      },
+      "revId": "a7d328dc5564451b19ae21bc73942eddef2de4fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10754759_7615ed6e",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 61
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-28T08:21:21Z",
+      "side": 1,
+      "message": "Why not just ifc (without lines 590-592)?",
+      "range": {
+        "startLine": 593,
+        "startChar": 48,
+        "endLine": 593,
+        "endChar": 55
+      },
+      "revId": "a7d328dc5564451b19ae21bc73942eddef2de4fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
