@@ -3034,7 +3034,7 @@
     data: "data msg"
   rows: "generated"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW'))"
+  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW') or ('NIC_Cisco-VIC-1385' and '9000B'))"
   parameters:
   - "name"
   - "parent"
@@ -3110,7 +3110,7 @@
     data: "data conf-history"
   rows: "generated"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW'))"
+  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW') or ('NIC_Cisco-VIC-1385' and '9000B'))"
   parameters:
   - "parent"
   - "name"
@@ -3186,7 +3186,7 @@
     data: "data show-run"
   rows: "generated"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW'))"
+  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW') or ('NIC_Cisco-VIC-1385' and '9000B'))"
   parameters:
   - "parent"
   - "name"
@@ -4033,7 +4033,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTR,PERF,VPP,3N,HSW]}"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW'))"
+  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW') or ('NIC_Cisco-VIC-1385' and '9000B'))"
   parameters:
   - "name"
   - "doc"
@@ -4101,7 +4101,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,PERF,VPP,3N,HSW]}"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW'))"
+  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW') or ('NIC_Cisco-VIC-1385' and '9000B'))"
   parameters:
   - "name"
   - "doc"
@@ -4169,7 +4169,7 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTO,PERF,VPP,3N,HSW]}"
   data: "vpp-perf-results-3n-hsw"
-  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW'))"
+  filter: "not ('CFS_OPT' or ('NIC_Intel-X520-DA2' and 'IPSECHW') or ('NIC_Cisco-VIC-1385' and '9000B'))"
   parameters:
   - "name"
   - "doc"
