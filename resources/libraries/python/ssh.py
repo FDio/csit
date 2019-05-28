@@ -16,7 +16,6 @@
 
 import socket
 import StringIO
-
 from time import time, sleep
 
 from paramiko import RSAKey, SSHClient, AutoAddPolicy
@@ -24,6 +23,7 @@ from paramiko.ssh_exception import SSHException, NoValidConnectionsError
 from robot.api import logger
 from scp import SCPClient, SCPException
 
+from resources.libraries.python.OptionString import OptionString
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
@@ -152,6 +152,8 @@ class SSH(object):
         :rtype: tuple(int, str, str)
         :raise SSHTimeout: If command is not finished in timeout time.
         """
+        if isinstance(cmd, (list, tuple)):
+            cmd = OptionString(cmd)
         cmd = str(cmd)
         stdout = StringIO.StringIO()
         stderr = StringIO.StringIO()
@@ -225,6 +227,8 @@ class SSH(object):
         >>> # Execute command with input (sudo -S cmd <<< "input")
         >>> ssh.exec_command_sudo("vpp_api_test", "dump_interface_table")
         """
+        if isinstance(cmd, (list, tuple)):
+            cmd = OptionString(cmd)
         if cmd_input is None:
             command = 'sudo -S {c}'.format(c=cmd)
         else:
@@ -486,8 +490,10 @@ def exec_cmd_no_error(
             break
         sleep(1)
     else:
-        msg = ('Command execution failed: "{cmd}"\n{stderr}'.
-               format(cmd=cmd, stderr=stderr) if message is None else message)
+        msg = 'Command execution failed: "{cmd}"\nRC: {rc}\n{stderr}'.format(
+            cmd=cmd, rc=ret_code, stderr=stderr)
+        logger.info(msg)
+        msg = msg if message is None else message
         raise RuntimeError(msg)
 
     return stdout, stderr
