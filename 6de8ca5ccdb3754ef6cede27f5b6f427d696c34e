@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "582c3519_2f4aa236",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-28T13:06:43Z",
+      "side": 1,
+      "message": "I am surprised node is not the first argument. Apparently these functions are very old.",
+      "range": {
+        "startLine": 141,
+        "startChar": 40,
+        "endLine": 141,
+        "endChar": 44
+      },
+      "revId": "6de8ca5ccdb3754ef6cede27f5b6f427d696c34e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5823fc99_091a3061",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-28T13:06:43Z",
+      "side": 1,
+      "message": "Historically in CSIT, we list all params first, then all types.",
+      "range": {
+        "startLine": 145,
+        "startChar": 5,
+        "endLine": 145,
+        "endChar": 9
+      },
+      "revId": "6de8ca5ccdb3754ef6cede27f5b6f427d696c34e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b228e92_8088a4c9",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-28T13:06:43Z",
+      "side": 1,
+      "message": "Another busy wait to remove.",
+      "range": {
+        "startLine": 297,
+        "startChar": 8,
+        "endLine": 297,
+        "endChar": 13
+      },
+      "revId": "6de8ca5ccdb3754ef6cede27f5b6f427d696c34e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
