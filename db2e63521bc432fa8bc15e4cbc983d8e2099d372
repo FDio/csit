@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7d869574_ad590ece",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-28T10:55:44Z",
+      "side": 1,
+      "message": "\u003e threading seems to have solved the hanging issue.\n\nAlright.",
+      "parentUuid": "09f8041f_660b690e",
+      "range": {
+        "startLine": 9,
+        "startChar": 6,
+        "endLine": 9,
+        "endChar": 21
+      },
+      "revId": "db2e63521bc432fa8bc15e4cbc983d8e2099d372",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1ef4bbb0_ca2e2666",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -155,6 +179,30 @@
       "side": 1,
       "message": "There needs to be some delay before joining the threads to actually let them start (I was getting errors saying the thread hasn\u0027t started yet and join() couldn\u0027t be called).\n\nThis is what I came up with. I didn\u0027t want to use just time.sleep(1), but we could combine these - wait for active_count, stop waiting if active_count - 1 (I forgot about the main thread) is less than thread_count after a second.",
       "parentUuid": "de3282d4_791bd070",
+      "range": {
+        "startLine": 261,
+        "startChar": 24,
+        "endLine": 261,
+        "endChar": 36
+      },
+      "revId": "db2e63521bc432fa8bc15e4cbc983d8e2099d372",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cfc5f3e0_fe8fc749",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-28T10:55:44Z",
+      "side": 1,
+      "message": "\u003e the thread hasn\u0027t started yet and join() couldn\u0027t be called\n\nI have not seen that one before, I am not even able to google for it.\nLooking at the actual implementation, it seems your error is thrown here [0], but the event should be set [1] already when start() returns.\n\nOn the other hand, I still fear the deadlock if a thread (miraculously) manages to finish before main thread progresses to line 263.\n(And neither do I like the busy-wait for one second in patch set 3.)\n\n[0] https://github.com/python/cpython/blob/2.7/Lib/threading.py#L928-L929\n[1] https://github.com/python/cpython/blob/2.7/Lib/threading.py#L741",
+      "parentUuid": "278e898c_3e5b3f7c",
       "range": {
         "startLine": 261,
         "startChar": 24,
