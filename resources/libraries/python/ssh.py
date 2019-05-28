@@ -16,7 +16,6 @@
 
 import socket
 import StringIO
-
 from time import time, sleep
 
 from paramiko import RSAKey, SSHClient, AutoAddPolicy
@@ -24,10 +23,30 @@ from paramiko.ssh_exception import SSHException, NoValidConnectionsError
 from robot.api import logger
 from scp import SCPClient, SCPException
 
+from resources.libraries.python.OptionString import OptionString
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
 # TODO: load priv key
+
+
+def raise_from(raising, excepted):
+    """Function to be replaced by "raise from" in Python 3.
+
+    Neither "six" nor "future" offer good enough implementation right now.
+    https://chezsoi.org/lucas/blog/displaying-chained-exceptions-stacktraces-in-python-2.html
+
+    Current implementation just logs excepted error, and raises the new one.
+
+    :param raising: The exception to raise.
+    :param excepted: The exception we excepted and want to log.
+    :type raising: BaseException
+    :type excepted: BaseException
+    :raises: raising
+    """
+    logger.error("Excepted: {exc!r}\nRaising: {rai!r}".format(
+        exc=excepted, rai=raising))
+    raise raising
 
 
 class SSHTimeout(Exception):
@@ -103,13 +122,13 @@ class SSH(object):
                                  peer=self._ssh.get_transport().getpeername(),
                                  total=(time() - start),
                                  ssh=self._ssh))
-            except SSHException:
-                raise IOError('Cannot connect to {host}'.
-                              format(host=node['host']))
+            except SSHException as exc:
+                raise_from(IOError('Cannot connect to {host}'.format(
+                    host=node['host'])), exc)
             except NoValidConnectionsError as err:
-                logger.error(repr(err))
-                raise IOError('Unable to connect to port {port} on {host}'.
-                              format(port=node['port'], host=node['host']))
+                raise_from(IOError(
+                    'Unable to connect to port {port} on {host}'.format(
+                        port=node['port'], host=node['host'])), err)
 
     def disconnect(self, node=None):
         """Close SSH connection to the node.
@@ -152,7 +171,12 @@ class SSH(object):
         :rtype: tuple(int, str, str)
         :raise SSHTimeout: If command is not finished in timeout time.
         """
+        if isinstance(cmd, (list, tuple)):
+            logger.debug("Converting {cmd!r}".format(cmd=cmd))
+            cmd = OptionString(cmd)
+            logger.debug("Converted {cmd!r}".format(cmd=cmd))
         cmd = str(cmd)
+        logger.debug("Stringified {cmd!r}".format(cmd=cmd))
         stdout = StringIO.StringIO()
         stderr = StringIO.StringIO()
         try:
@@ -225,6 +249,8 @@ class SSH(object):
         >>> # Execute command with input (sudo -S cmd <<< "input")
         >>> ssh.exec_command_sudo("vpp_api_test", "dump_interface_table")
         """
+        if isinstance(cmd, (list, tuple)):
+            cmd = OptionString(cmd)
         if cmd_input is None:
             command = 'sudo -S {c}'.format(c=cmd)
         else:
@@ -283,9 +309,8 @@ class SSH(object):
                 if chan.exit_status_ready():
                     logger.error('Channel exit status ready')
                     break
-            except socket.timeout:
-                logger.error('Socket timeout: {0}'.format(buf))
-                raise Exception('Socket timeout: {0}'.format(buf))
+            except socket.timeout as exc:
+                raise_from(Exception('Socket timeout: {0}'.format(buf)), exc)
         return chan
 
     def interactive_terminal_exec_command(self, chan, cmd, prompt):
@@ -317,11 +342,10 @@ class SSH(object):
                 if chan.exit_status_ready():
                     logger.error('Channel exit status ready')
                     break
-            except socket.timeout:
-                logger.error('Socket timeout during execution of command: '
-                             '{0}\nBuffer content:\n{1}'.format(cmd, buf))
-                raise Exception('Socket timeout during execution of command: '
-                                '{0}\nBuffer content:\n{1}'.format(cmd, buf))
+            except socket.timeout as exc:
+                raise_from(Exception(
+                    'Socket timeout during execution of command: '
+                    '{0}\nBuffer content:\n{1}'.format(cmd, buf)), exc)
         tmp = buf.replace(cmd.replace('\n', ''), '')
         for item in prompt:
             tmp.replace(item, '')
@@ -486,8 +510,10 @@ def exec_cmd_no_error(
             break
         sleep(1)
     else:
-        msg = ('Command execution failed: "{cmd}"\n{stderr}'.
-               format(cmd=cmd, stderr=stderr) if message is None else message)
+        msg = 'Command execution failed: "{cmd}"\nRC: {rc}\n{stderr}'.format(
+            cmd=cmd, rc=ret_code, stderr=stderr)
+        logger.info(msg)
+        msg = msg if message is None else message
         raise RuntimeError(msg)
 
     return stdout, stderr
@@ -516,14 +542,14 @@ def scp_node(
 
     try:
         ssh.connect(node)
-    except SSHException:
-        raise RuntimeError('Failed to connect to {host}!'
-                           .format(host=node['host']))
+    except SSHException as exc:
+        raise_from(RuntimeError(
+            'Failed to connect to {host}!'.format(host=node['host'])), exc)
     try:
         ssh.scp(local_path, remote_path, get, timeout)
-    except SCPException:
-        raise RuntimeError('SCP execution failed on {host}!'
-                           .format(host=node['host']))
+    except SCPException as exc:
+        raise_from(RuntimeError(
+            'SCP execution failed on {host}!'.format(host=node['host'])), exc)
     finally:
         if disconnect:
             ssh.disconnect()
