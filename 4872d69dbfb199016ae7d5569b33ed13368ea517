@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "583712bf_a1bbaa3f",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-29T12:00:16Z",
+      "side": 1,
+      "message": "\u003e And that is wrong.\n\u003e last read happen in t\u003d20\n\nIt is not wrong. At second read, line 261 sets now (to ~20s), so even when the condition on line 268 is evaluated at time~30, is will still allow the third read.\n\n\u003e So it is dormant for how long the reply takes\n\nIf we have busy process, or other issue deaying the test execution, I say we still fail because we need to fix something. The timeout should correspond to what are we willing to tolerate (but not more). Also, the fact that read is slow might mean something is wrong on CSIT side, and VPP had plenty time to become ready.\n\nIdeal logic would set both maximal timeout and maximal number of reads and fail whichever is reached first.",
+      "parentUuid": "65f4ee9a_b34fb386",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51b28fd2_6a3e39de",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 64
