@@ -158,8 +158,8 @@ def setup_node(node, tarball, remote_tarball, results=None):
         if node['type'] == NodeType.TG:
             create_env_directory_at_node(node)
     except RuntimeError as exc:
-        logger.error("Node {0} setup failed, error:'{1}'"
-                     .format(node['host'], exc.message))
+        logger.console("Node {node} setup failed, error: {err!r}".format(
+            node=node['host'], err=exc))
         result = False
     else:
         logger.console('Setup of node {0} done'.format(node['host']))
