@@ -24,7 +24,7 @@
 | Library  | resources.libraries.python.Namespaces
 | Library  | resources.libraries.python.IPUtil
 | ...
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_TEST
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
 | ...
 | Test Setup | Set up TAP functional test
 | ...
@@ -66,5 +66,5 @@
 | | And Check Tap Present | ${dut_node} | ${tap_int2}
 | | When Delete Tap Interface | ${dut_node} | ${int2}
 | | Then Run Keyword And Expect Error
-| | ... | ValueError: No JSON object could be decoded
+| | ... | Tap interface :${tap_int2} does not exist
 | | ... | Check Tap Present | ${dut_node} | ${tap_int2}
