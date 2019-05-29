@@ -13,10 +13,13 @@
 
 """VPP util library."""
 
+import binascii
+
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
+from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
@@ -198,14 +201,29 @@ class VPPUtil(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script("show_interface.vat", node, json_out=False)
 
-        try:
-            vat.script_should_have_passed()
-        except AssertionError:
-            raise RuntimeError('Failed to get VPP interfaces on host: {name}'.
-                               format(name=node['host']))
+        cmd = 'sw_interface_dump'
+        cmd_reply = 'sw_interface_details'
+        args = dict(name_filter_valid=0, name_filter='')
+        err_msg = 'Failed to get interface dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
+
+        papi_if_dump = papi_resp.replies[0]['api_reply']
+
+        if_data = list()
+        for item in papi_if_dump:
+            data = item[cmd_reply]
+            data['interface_name'] = data['interface_name'].rstrip('\x00')
+            data['tag'] = data['tag'].rstrip('\x00')
+            data['l2_address'] = str(':'.join(binascii.hexlify(
+                data['l2_address'])[i:i + 2] for i in range(0, 12, 2)).
+                                     decode('ascii'))
+            if_data.append(data)
+        # TODO: return only base data
+        logger.trace('Interface data of host {host}:\n{if_data}'.format(
+            host=node['host'], if_data=if_data))
 
     @staticmethod
     def vpp_show_crypto_device_mapping(node):
