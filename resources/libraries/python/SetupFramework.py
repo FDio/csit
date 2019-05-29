@@ -56,9 +56,8 @@ def pack_framework_dir():
     file_name = tmpfile.name
     tmpfile.close()
 
-    run("tar --sparse --exclude-vcs --exclude=output*.xml "
-#        "--exclude=./tmp -zcf '{0}' .".format(file_name).split(" "),
-        "--exclude=./tmp -zcf '{0}' .".format(file_name),
+    run(["tar", "--sparse", "--exclude-vcs", "--exclude=output*.xml",
+         "--exclude=./tmp", "-zcf", file_name, "."],
         check=True, msg="Could not pack testing framework")
 
     return file_name
