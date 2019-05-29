@@ -205,37 +205,41 @@ function common_dirs () {
     # Functions called:
     # - die - Print to stderr and exit.
 
-    BASH_FUNCTION_DIR="$(dirname "$(readlink -e "${BASH_SOURCE[0]}")")" || {
-        die "Some error during localizing this source directory."
+    this_file=$(readlink -e "${BASH_SOURCE[0]}") || {
+        die "Some error during locating of this source file."
+    }
+    BASH_FUNCTION_DIR=$(dirname "${this_file}") || {
+        die "Some error during dirname call."
     }
     # Current working directory could be in a different repo, e.g. VPP.
     pushd "${BASH_FUNCTION_DIR}" || die "Pushd failed"
-    CSIT_DIR="$(readlink -e "$(git rev-parse --show-toplevel)")" || {
-        die "Readlink or git rev-parse failed."
+    relative_csit_dir=$(git rev-parse --show-toplevel) || {
+        die "Git rev-parse failed."
     }
+    CSIT_DIR=$(readlink -e "${relative_csit_dir}") || die "Readlink failed."
     popd || die "Popd failed."
-    TOPOLOGIES_DIR="$(readlink -e "${CSIT_DIR}/topologies/available")" || {
+    TOPOLOGIES_DIR=$(readlink -e "${CSIT_DIR}/topologies/available") || {
         die "Readlink failed."
     }
-    RESOURCES_DIR="$(readlink -e "${CSIT_DIR}/resources")" || {
+    RESOURCES_DIR=$(readlink -e "${CSIT_DIR}/resources") || {
         die "Readlink failed."
     }
-    TOOLS_DIR="$(readlink -e "${RESOURCES_DIR}/tools")" || {
+    TOOLS_DIR=$(readlink -e "${RESOURCES_DIR}/tools") || {
         die "Readlink failed."
     }
-    PYTHON_SCRIPTS_DIR="$(readlink -e "${TOOLS_DIR}/scripts")" || {
+    PYTHON_SCRIPTS_DIR=$(readlink -e "${TOOLS_DIR}/scripts") || {
         die "Readlink failed."
     }
 
-    ARCHIVE_DIR="$(readlink -f "${CSIT_DIR}/archive")" || {
+    ARCHIVE_DIR=$(readlink -f "${CSIT_DIR}/archive") || {
         die "Readlink failed."
     }
     mkdir -p "${ARCHIVE_DIR}" || die "Mkdir failed."
-    DOWNLOAD_DIR="$(readlink -f "${CSIT_DIR}/download_dir")" || {
+    DOWNLOAD_DIR=$(readlink -f "${CSIT_DIR}/download_dir") || {
         die "Readlink failed."
     }
     mkdir -p "${DOWNLOAD_DIR}" || die "Mkdir failed."
-    GENERATED_DIR="$(readlink -f "${CSIT_DIR}/generated")" || {
+    GENERATED_DIR=$(readlink -f "${CSIT_DIR}/generated") || {
         die "Readlink failed."
     }
     mkdir -p "${GENERATED_DIR}" || die "Mkdir failed."
