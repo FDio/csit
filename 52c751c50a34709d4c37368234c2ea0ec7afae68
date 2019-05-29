@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a344cb29_6f579a38",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T14:39:38Z",
+      "side": 1,
+      "message": "exec_cmd_no_error() is handling it more elegant way.",
+      "range": {
+        "startLine": 128,
+        "startChar": 37,
+        "endLine": 128,
+        "endChar": 49
+      },
+      "revId": "52c751c50a34709d4c37368234c2ea0ec7afae68",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
