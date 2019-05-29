@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a05d7a2_583c5bef",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T06:15:01Z",
+      "side": 1,
+      "message": "any reason not to use FOR loop? which is much simpler",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f1440644_9ce16a8a",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T06:15:01Z",
+      "side": 1,
+      "message": "remove one of those. i do not see a reason to have it twice",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 75
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef1a4c78_5923a7bc",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 1794,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T06:15:01Z",
+      "side": 1,
+      "message": "is this new line breaking gerrit review syntax analysis? (the rest of code is not parsed)",
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec1f2a92_ba5ea582",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 1879,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T06:15:01Z",
+      "side": 1,
+      "message": "Memif, vhost, vxlan, vlan, ... should we have dedicated single function for adding them to topology representation?",
+      "range": {
+        "startLine": 1878,
+        "startChar": 0,
+        "endLine": 1879,
+        "endChar": 30
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "86d0ab01_f98611b4",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 1982,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T06:15:01Z",
+      "side": 1,
+      "message": "same as below",
+      "range": {
+        "startLine": 1979,
+        "startChar": 0,
+        "endLine": 1982,
+        "endChar": 38
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0870ee8a_ff0006ce",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 1993,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T06:15:01Z",
+      "side": 1,
+      "message": "Any reason not to use function for ip_add_del_route here? If we would have ip_add_del_route function here is copy so if API changes someone needs to look on this as well. \nI know this is nice shortcut function but i think we should split. \n\n(once the ipv4 module will be ready)",
+      "range": {
+        "startLine": 1983,
+        "startChar": 0,
+        "endLine": 1993,
+        "endChar": 69
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b6bbf270_4ee9c445",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 64
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T06:15:01Z",
+      "side": 1,
+      "message": "Be more verbose about arguments :)",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 75
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "af47b14a_6a11d788",
+        "filename": "resources/libraries/robot/overlay/vxlan.robot",
+        "patchSetId": 64
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T06:15:01Z",
+      "side": 1,
+      "message": "missing params",
+      "range": {
+        "startLine": 139,
+        "startChar": 37,
+        "endLine": 139,
+        "endChar": 37
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
