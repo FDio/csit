@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "24206012_5452a3ca",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-29T08:58:12Z",
+      "side": 1,
+      "message": "The order should be as defined in the function: node, tarball, remote_tarball, results",
+      "range": {
+        "startLine": 252,
+        "startChar": 63,
+        "endLine": 255,
+        "endChar": 70
+      },
+      "revId": "cf64b95272442e47a2d0fe7eed89b4e99c1f6bb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
