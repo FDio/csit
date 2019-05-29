@@ -18,7 +18,7 @@ import logging
 from enum import IntEnum
 
 from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.L2Util import L2Util
 
 
@@ -43,15 +43,13 @@ class Memif(object):
         :returns: List of memif interfaces extracted from Papi response.
         :rtype: list
         """
-        with PapiExecutor(node) as papi_exec:
-            dump = papi_exec.add("memif_dump").get_dump()
+        with PapiSocketExecutor(node) as papi_exec:
+            dump = papi_exec.add("memif_dump").get_details().verify_details()
 
         data = list()
-        for item in dump.reply[0]["api_reply"]:
-            item["memif_details"]["if_name"] = \
-                item["memif_details"]["if_name"].rstrip('\x00')
-            item["memif_details"]["hw_addr"] = \
-                L2Util.bin_to_mac(item["memif_details"]["hw_addr"])
+        for item in dump:
+            item["if_name"] = item["if_name"].rstrip('\x00')
+            item["hw_addr"] = L2Util.bin_to_mac(item["hw_addr"])
             data.append(item)
 
         logging.debug("MEMIF data:\n{data}".format(data=data))
@@ -82,9 +80,9 @@ class Memif(object):
             socket_id=int(sid),
             socket_filename=str('/tmp/' + filename)
         )
-        with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd, **args).get_replies().verify_reply(
+                err_msg)
         return data
 
     @staticmethod
@@ -116,9 +114,9 @@ class Memif(object):
             socket_id=int(sid),
             id=int(mid)
         )
-        with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd, **args).get_replies().verify_reply(
+                err_msg)
         return data
 
     @staticmethod
@@ -205,8 +203,8 @@ class Memif(object):
         dump = Memif._memif_dump(node)
 
         for item in dump:
-            if item["memif_details"]["sw_if_index"] == sw_if_idx:
-                return item["memif_details"]["if_name"]
+            if item["sw_if_index"] == sw_if_idx:
+                return item["if_name"]
         return None
 
     @staticmethod
@@ -224,6 +222,6 @@ class Memif(object):
         dump = Memif._memif_dump(node)
 
         for item in dump:
-            if item["memif_details"]["sw_if_index"] == sw_if_idx:
-                return item["memif_details"]["hw_addr"]
+            if item["sw_if_index"] == sw_if_idx:
+                return item["hw_addr"]
         return None
