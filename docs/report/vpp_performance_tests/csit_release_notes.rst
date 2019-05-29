@@ -65,21 +65,9 @@ List of known issues in |csit-release| for VPP performance tests:
 | 1  | `CSIT-570                               | Sporadic (1 in 200) NDR discovery test failures on x520. DPDK reporting rx-errors, indicating L1 issue.                         |
 |    | <https://jira.fd.io/browse/CSIT-570>`_  | Suspected issue with HW combination of X710-X520 in LF testbeds. Not observed outside of LF testbeds.                           |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 2  | `VPP-1562                               | Link bonding (mode LACP, transmit policy l34) test are failing due to VPP crashing producing core dump.                         |
-|    | <https://jira.fd.io/browse/VPP-1562>`_  |                                                                                                                                 |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 3  | `CSIT-1427                              | Scale HW IPsec are failing due to issue with selecting ipsec backend in VPP.                                                    |
-|    | <https://jira.fd.io/browse/CSIT-1427>`_ |                                                                                                                                 |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 4  | `VPP-1563                               | AVF L2patch tests are failing for all packet size and core combination. Reason: null-node blackholed packets in show error.     |
+| 2  | `VPP-1563                               | AVF L2patch tests are failing for all packet size and core combination. Reason: null-node blackholed packets in show error.     |
 |    | <https://jira.fd.io/browse/VPP-1563>`_  |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 5  | `CSIT-1234                              | VPP IPSecHW/IPSecsW scale interface mode, low NDR and PDR 64B throughput in 3n-hsw testbeds, in CSIT-19.01 vs. CSIT-18.10.      |
-|    | <https://jira.fd.io/browse/CSIT-1234>`_ |                                                                                                                                 |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 6  | `CSIT-1428                              | VM vhost tests with RXQ 2 and more are failing and reporting incorrect measurements due to RXQ configuration issue.             |
-|    | <https://jira.fd.io/browse/CSIT-1428>`_ |                                                                                                                                 |
-+----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
-| 7  | `CSIT-1431                              | AVF 4 cores tests are sporadically failing.                                                                                     |
-|    | <https://jira.fd.io/browse/CSIT-1431>`_ |                                                                                                                                 |
+| 3  | `CSIT-1465                              | 4c VPP VM vhost tests failiing on 3n-skx                                                                                        |
+|    | <https://jira.fd.io/browse/CSIT-1465>`_ |                                                                                                                                 |
 +----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
