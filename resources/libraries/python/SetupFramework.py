@@ -125,15 +125,17 @@ def create_env_directory_at_node(node):
                    .format(node['host']))
     ssh = SSH()
     ssh.connect(node)
-    (ret_code, _, _) = ssh.exec_command(
+    (ret_code, stdout, stderr) = ssh.exec_command(
         'cd {0} && rm -rf env && '
         'virtualenv --system-site-packages --never-download env && '
         '. env/bin/activate && '
         'pip install -r requirements.txt'
         .format(con.REMOTE_FW_DIR), timeout=100)
     if ret_code != 0:
-        raise RuntimeError('Virtualenv setup including requirements.txt on {0}'
-                           .format(node['host']))
+        raise RuntimeError(
+            'Virtualenv setup including requirements.txt on {host} rc={rc}'
+            '\nstdout: {out}\nstderr: {err}'.format(
+                host=node['host'], rc=ret_code, out=stdout, err=stderr))
 
     logger.console('Virtualenv on {0} created'.format(node['host']))
 
@@ -158,8 +160,8 @@ def setup_node(node, tarball, remote_tarball, results=None):
         if node['type'] == NodeType.TG:
             create_env_directory_at_node(node)
     except RuntimeError as exc:
-        logger.error("Node {0} setup failed, error:'{1}'"
-                     .format(node['host'], exc.message))
+        logger.console("Node {node} setup failed, error: {err!r}".format(
+            node=node['host'], err=exc))
         result = False
     else:
         logger.console('Setup of node {0} done'.format(node['host']))
