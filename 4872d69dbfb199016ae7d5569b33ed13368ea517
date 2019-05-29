@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "65f4ee9a_b34fb386",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T08:56:13Z",
+      "side": 1,
+      "message": "And that is wrong. Example: API call takes 10s\n\nIF timeout is 30 I can (roughly) check VPP 2 times for VPP it it means it must be ready under 20s! because last read happen in t\u003d20 (so only 2 API call to check)\n\nIF nr retries is 30 I can poll vpp 30 times (here we can tune how many times to find balance time vs retries. But i have greater chance to catch VPP is ready after 30s.\n\nThe problem FOR loop is solving is longevity of API call. So it is dormant for how long the reply takes (because of NW fluctuation, process busy or so).",
+      "parentUuid": "8c8a6733_aa39f30a",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51b28fd2_6a3e39de",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 64
