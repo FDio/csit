@@ -249,6 +249,7 @@ for index in "${!VIRL_SERVER[@]}"; do
         "start-testcase -vv \
             --quota ${IP_QUOTA} \
             --copy ${VIRL_TOPOLOGY} \
+            --expiry 180 \
             --release ${VIRL_RELEASE} \
             ${VPP_PKGS_FULL[@]}")
         # TODO: remove param ${VPP_PKGS_FULL[@]} when start-testcase script is
