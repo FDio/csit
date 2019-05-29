@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "f0868dac_c165e186",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-29T12:44:09Z",
+      "side": 1,
+      "message": "\u003e So the total timeout is not guaranteed anyway as it might take 40s in fact.\n\nStill far better than with setting number of retries.\n\n\u003e but doing retry can be more safe in way that it will try more times before quit.\n\nOnce again, preventing horrible runtimes is more important to me than allowing overloaded VPP enough time to react.\n\n\u003e Ideal logic would set both maximal timeout and maximal number of reads and fail whichever is reached first.\n\nStill appears to be ideal for both of us (except having more complicated code).",
+      "parentUuid": "8be08d96_83c9d9d7",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51b28fd2_6a3e39de",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 64
