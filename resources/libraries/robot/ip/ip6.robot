@@ -26,6 +26,17 @@
 | Documentation | IPv6 keywords
 
 *** Keywords ***
+| Get interface Ipv6 addresses
+| | [Documentation] | Get IPv6 address for the given interface of the node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - DUT node data. Type: dictionary
+| | ... | - interface - Name of the interface on the VPP node. Type: string
+| | [Arguments] | ${node} | ${interface}
+| | [Return] | ${ip_data}
+| | ${ip_data}= | VPP get interface ip addresses
+| | ... | ${node} | ${interface} | ipv6
+
 | Send IPv6 icmp echo request to DUT1 ingress inteface and verify answer
 | | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
 | | [Arguments] | ${tg_node} | ${dut_node} | ${nodes_addr}
