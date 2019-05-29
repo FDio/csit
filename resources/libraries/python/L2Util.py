@@ -396,12 +396,12 @@ class L2Util(object):
         err_msg = 'Failed to get L2FIB dump on host {host}'.format(
             host=node['host'])
         with PapiSocketExecutor(node) as papi_exec:
-            data = papi_exec.add(cmd, **args).get_details().verify_details(
+            papi_dump = papi_exec.add(cmd, **args).get_details().verify_details(
                 err_msg)
 
         if bd_id == Constants.BITWISE_NON_ZERO:
-            return data
-        for bridge_domain in data:
+            return papi_dump
+        for bridge_domain in papi_dump:
             if bridge_domain['bd_id'] == bd_id:
                 return bridge_domain
 
