@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "8be08d96_83c9d9d7",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T12:17:03Z",
+      "side": 1,
+      "message": "\u003e It is not wrong. At second read, line 261 sets now (to ~20s), so even when the condition on line 268 is evaluated at \u003e time~30, is will still allow the third read.\n\nSo the total timeout is not guaranteed anyway as it might take 40s in fact.\n\n\u003e The timeout should correspond to what are we willing to tolerate (but not more). \n\nI think the base problem is just if we need fixed amount of retries (with intergap) or we want total time (non of them are safe in terms of how long it will execute), but doing retry can be more safe in way that it will try more times before quit. In this case we would see how interfaces are becoming UP with increased retry. With total time and API duration 30s we are lost anyway. If API takes 1s it is pointless to distinguish, but if API takes longer we must made decision.\nIn fact most of the KW i think are now doing something like 600s just because VPP is becoming slower. So which one is better for slow APIs. \n\nIn Linux libraries we use nr_of_retry as main criteria.",
+      "parentUuid": "583712bf_a1bbaa3f",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51b28fd2_6a3e39de",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 64
