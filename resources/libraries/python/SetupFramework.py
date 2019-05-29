@@ -249,9 +249,9 @@ class SetupFramework(object):
         threads = []
 
         for node in nodes.values():
-            thread = threading.Thread(target=setup_node, args=(tarball,
+            thread = threading.Thread(target=setup_node, args=(node,
+                                                               tarball,
                                                                remote_tarball,
-                                                               node,
                                                                results))
             thread.start()
             threads.append(thread)
