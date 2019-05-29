@@ -63,6 +63,7 @@
 | | ... | ${tg_to_dut_if1} | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${tg_to_dut_if1_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if1_mac}
 | | ... | ${hops}
+| | Get interface Ipv4 addresses | ${nodes['DUT1']} | ${dut_to_tg_if1}
 
 | tc02-eth2p-ethicmpv4-ip4base-device_echo-req-to-dut-egress-interface
 | | [Documentation]
