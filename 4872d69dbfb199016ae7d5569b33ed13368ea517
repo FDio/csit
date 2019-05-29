@@ -25,6 +25,53 @@
     },
     {
       "key": {
+        "uuid": "8c8a6733_aa39f30a",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-29T08:25:46Z",
+      "side": 1,
+      "message": "Is it because with FOR loop you can only easily define number of retries, which can take longer than timeout if the checks themselves take some (unpredictable) time.\n\nSo I agree with while and time checking. The rest of the code is complicated, because of the need to report all not_ready interfaces.",
+      "parentUuid": "5a05d7a2_583c5bef",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "51b28fd2_6a3e39de",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-29T08:25:46Z",
+      "side": 1,
+      "message": "break\n\nThat way you do not need line 256.",
+      "range": {
+        "startLine": 267,
+        "startChar": 16,
+        "endLine": 267,
+        "endChar": 31
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f1440644_9ce16a8a",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 64
@@ -48,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "d80038c2_e244edb8",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-29T08:25:46Z",
+      "side": 1,
+      "message": "The first one, as I do not see the point of checking TG interfaces. Actually, InterfaceUtil.vpp_get_interface_data(node) should probably fail with TG node.",
+      "parentUuid": "f1440644_9ce16a8a",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 75
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef1a4c78_5923a7bc",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 64
@@ -59,6 +130,24 @@
       "writtenOn": "2019-05-29T06:15:01Z",
       "side": 1,
       "message": "is this new line breaking gerrit review syntax analysis? (the rest of code is not parsed)",
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d523ced3_423ff44d",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 1794,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-29T08:25:46Z",
+      "side": 1,
+      "message": "\u003e the rest of code is not parsed\n\nIt shows parsed for me.",
+      "parentUuid": "ef1a4c78_5923a7bc",
       "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -122,6 +211,30 @@
       "writtenOn": "2019-05-29T06:15:01Z",
       "side": 1,
       "message": "Any reason not to use function for ip_add_del_route here? If we would have ip_add_del_route function here is copy so if API changes someone needs to look on this as well. \nI know this is nice shortcut function but i think we should split. \n\n(once the ipv4 module will be ready)",
+      "range": {
+        "startLine": 1983,
+        "startChar": 0,
+        "endLine": 1993,
+        "endChar": 69
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7edafe5e_39a3c577",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 1993,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-29T08:25:46Z",
+      "side": 1,
+      "message": "Add a TODO?",
+      "parentUuid": "0870ee8a_ff0006ce",
       "range": {
         "startLine": 1983,
         "startChar": 0,
