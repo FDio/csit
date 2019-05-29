@@ -720,12 +720,27 @@ class PapiExecutor(object):
         :rtype: list
         """
 
+        def process_value(val):
+            """Process value.
+
+            :param val: Value to be processed.
+            :type val: object
+            :returns: Processed value.
+            :rtype: dict or str or int
+            """
+            if isinstance(val, dict):
+                val_dict = dict()
+                for val_k, val_v in val.iteritems():
+                    val_dict[str(val_k)] = process_value(val_v)
+                return val_dict
+            else:
+                return binascii.hexlify(val) if isinstance(val, str) else val
+
         api_data_processed = list()
         for api in api_d:
             api_args_processed = dict()
             for a_k, a_v in api["api_args"].iteritems():
-                value = binascii.hexlify(a_v) if isinstance(a_v, str) else a_v
-                api_args_processed[str(a_k)] = value
+                api_args_processed[str(a_k)] = process_value(a_v)
             api_data_processed.append(dict(api_name=api["api_name"],
                                            api_args=api_args_processed))
         return api_data_processed

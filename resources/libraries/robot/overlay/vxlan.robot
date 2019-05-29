@@ -17,11 +17,12 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/l2/l2_xconnect.robot
-| Library  | resources.libraries.python.L2Util
+| Library  | resources.libraries.python.InterfaceUtil
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.IPv4Util
 | Library  | resources.libraries.python.IPv6Util
 | Library  | resources.libraries.python.IPv4Setup
+| Library  | resources.libraries.python.L2Util
 | Library  | resources.libraries.python.NodePath
 
 *** Keywords ***
@@ -133,3 +134,12 @@
 | | ... | --rx_dst_ip ${rx_dst_ip}
 | | ... | --rx_vni ${rx_vni}
 | | Run Traffic Script On Node | send_vxlan_check_vxlan.py | ${tg_node} | ${args}
+
+| Get VXLAN dump
+| | [Documentation] | Get VXLAN dump.
+| | ...
+| | [Arguments] | ${dut_node} | ${interface}=${None}
+| | ...
+| | [Return] | ${vxlan_dump}
+| | ...
+| | ${vxlan_dump}= | VXLAN Dump | ${dut_node} | ${interface}
