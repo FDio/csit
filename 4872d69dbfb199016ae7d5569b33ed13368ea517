@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "6e18afa1_b71af807",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-29T12:12:36Z",
+      "side": 1,
+      "message": "OK, will convert it to number of tries fir for loop.",
+      "parentUuid": "65f4ee9a_b34fb386",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51b28fd2_6a3e39de",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 64
@@ -167,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "f79fad1a_146ee1fc",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-29T12:12:36Z",
+      "side": 1,
+      "message": "Agree, we will keep all_vpp_interfaces_ready_wait method.",
+      "parentUuid": "d80038c2_e244edb8",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 75
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef1a4c78_5923a7bc",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 64
@@ -213,6 +261,30 @@
       "writtenOn": "2019-05-29T06:15:01Z",
       "side": 1,
       "message": "Memif, vhost, vxlan, vlan, ... should we have dedicated single function for adding them to topology representation?",
+      "range": {
+        "startLine": 1878,
+        "startChar": 0,
+        "endLine": 1879,
+        "endChar": 30
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f95f4ede_4b4ffd30",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 1879,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-29T12:12:36Z",
+      "side": 1,
+      "message": "These three methods (vpp_create_vxlan_and_vlan_interfaces, vpp_put_vxlan_and_vlan_interfaces_up, vpp_put_vxlan_and_vlan_interfaces_to_bridge_domain) where creted to fix pylinth complaints about too many local variables in method vpp_create_multiple_vxlan_ipv4_tunnels. They follows also required sequence of initialization multiple (e.g. 1000) vxlan tunnels for performance tests:\n\n1. configure ip addresses, create vxlan and vlan interfaces\n2. put interfaces up + add them to topo\n3. configure bridge domains and ip routes\n\nThey are used only in vxlan scale performance tests where we need to configure all required tunnels in one PAPI call as it was done in case of VAT call (you remember, in standard way of VAT call per every command it took hours to do this configuration so it was switched to write vat commands to file and read and execute these vat commands in one VAT call).",
+      "parentUuid": "ec1f2a92_ba5ea582",
       "range": {
         "startLine": 1878,
         "startChar": 0,
@@ -283,6 +355,30 @@
       "side": 1,
       "message": "Add a TODO?",
       "parentUuid": "0870ee8a_ff0006ce",
+      "range": {
+        "startLine": 1983,
+        "startChar": 0,
+        "endLine": 1993,
+        "endChar": 69
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "951d8b07_13a62f84",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 1993,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-29T12:12:36Z",
+      "side": 1,
+      "message": "See comment on line 1879 - we need to use bulk of PAPI commands in one PAPI call otherwise the whole configuration can take an hours. Maybe it can be changed when PAPI will use remote socket and we well be able to run thousands of PAPI commands separately without need to do an ssh connection per PAPI call.",
+      "parentUuid": "7edafe5e_39a3c577",
       "range": {
         "startLine": 1983,
         "startChar": 0,
