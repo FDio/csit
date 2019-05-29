@@ -17,7 +17,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
@@ -133,7 +133,13 @@ class VPPUtil(object):
             # Verify responsivness of vppctl.
             VPPUtil.verify_vpp_started(node)
             # Verify responsivness of PAPI.
+#            # Not importing at top due to https://stackoverflow.com/a/746067
+#            from resources.libraries.python.InterfaceUtil import InterfaceUtil
+#            # Just for debugging the following call.
+#            node['interfaces'] = {1: {"vpp_sw_index": 1}, 2: {"vpp_sw_index": 2}}
+#            InterfaceUtil.vpp_sw_interface_rx_placement_dump(node)
             VPPUtil.show_log(node)
+            VPPUtil.vpp_show_version(node)
         finally:
             DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
@@ -160,9 +166,10 @@ class VPPUtil(object):
         :returns: VPP version.
         :rtype: str
         """
-        with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_version').execute_should_pass().\
-                verify_reply()
+        with PapiSocketExecutor(node) as papi_exec:
+            data = papi_exec.add('show_version').get_replies().verify_reply()
+        logger.debug(repr(data))
+        logger.debug(dir(data))
         version = ('VPP version:      {ver}\n'.
                    format(ver=data['version'].rstrip('\0x00')))
         if verbose:
@@ -286,7 +293,7 @@ class VPPUtil(object):
         :returns: VPP log data.
         :rtype: list
         """
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             return papi_exec.add('cli_inband', cmd='show log').get_replies().\
                 verify_reply()["reply"]
 
@@ -299,6 +306,6 @@ class VPPUtil(object):
         :returns: VPP thread data.
         :rtype: list
         """
-        with PapiExecutor(node) as papi_exec:
-            return papi_exec.add('show_threads').execute_should_pass().\
+        with PapiSocketExecutor(node) as papi_exec:
+            return papi_exec.add('show_threads').get_replies().\
                 verify_reply()["thread_data"]
