@@ -415,6 +415,30 @@
     },
     {
       "key": {
+        "uuid": "f8c235bc_647fddd2",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 1993,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-29T12:26:27Z",
+      "side": 1,
+      "message": "\u003e use function for ip_add_del_route here?\n\u003e without need to do an ssh connection per PAPI call\n\nCurrent implementation of socket executor cannot sustain two connections at once.\n\nBetter solution would be to introduce internal function add_cmd_add_del_route, so that both ip_add_del_route and bulk additions in other keywords would call that (and call get_replies later when everything is prepared).\nThat assumes that calling the new add_cmd_add_del_route function would take less space than the current dict, otherwise any API change would make that as brittle as this.",
+      "parentUuid": "951d8b07_13a62f84",
+      "range": {
+        "startLine": 1983,
+        "startChar": 0,
+        "endLine": 1993,
+        "endChar": 69
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6bbf270_4ee9c445",
         "filename": "resources/libraries/robot/ip/ip4.robot",
         "patchSetId": 64
