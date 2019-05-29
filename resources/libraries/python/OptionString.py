@@ -36,19 +36,21 @@ class OptionString(object):
     the best fitting one, without much logic near the call site.
     """
 
-    def __init__(self, prefix="", *args):
+    def __init__(self, parts=tuple(), prefix=""):
         """Create instance with listed strings as parts to use.
 
         Prefix will be converted to string and stripped.
         The typical (nonempty) prefix values are "-" and "--".
 
+        TODO: Support users calling with parts being a string?
+
+        :param parts: List of of stringifiable objects to become parts.
         :param prefix: Subtring to prepend to every parameter (not value).
-        :param args: List of positional arguments to become parts.
+        :type parts: Iterable of object
         :type prefix: object
-        :type args: list of object
         """
+        self.parts = [str(part) for part in parts]
         self.prefix = str(prefix).strip()  # Not worth to call change_prefix.
-        self.parts = list(args)
 
     def __repr__(self):
         """Return string executable as Python constructor call.
@@ -56,12 +58,11 @@ class OptionString(object):
         :returns: Executable constructor call as string.
         :rtype: str
         """
-        return "".join([
-            "OptionString(prefix=", repr(self.prefix), ",",
-            repr(self.parts)[1:-1], ")"])
+        return "OptionString(parts={parts!r},prefix={prefix!r})".format(
+            parts=self.parts, prefix=self.prefix)
 
     # TODO: Would we ever need a copy() method?
-    # Currently, supersting "master" is mutable but unique,
+    # Currently, superstring "master" is mutable but unique,
     # substring "slave" can be used to extend, but does not need to be mutated.
 
     def change_prefix(self, prefix):
