@@ -19,6 +19,8 @@ from textwrap import wrap
 
 from enum import IntEnum
 
+from resources.libraries.python.Constants import Constants
+from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.ssh import exec_cmd_no_error
@@ -86,9 +88,9 @@ class L2Util(object):
         :returns: String representation of MAC address.
         :rtype: str
         """
-        x = ':'.join(binascii.hexlify(mac_bin)[i:i + 2]
+        mac_str = ':'.join(binascii.hexlify(mac_bin)[i:i + 2]
                      for i in range(0, 12, 2))
-        return str(x.decode('ascii'))
+        return str(mac_str.decode('ascii'))
 
     @staticmethod
     def vpp_add_l2fib_entry(node, mac, interface, bd_id, static_mac=1,
@@ -389,22 +391,25 @@ class L2Util(object):
         :rtype: list or dict
         """
 
-        # TODO: set following variable per whole suite when planned FIB API
-        # changes are merged in VPP
-        bitwise_non_zero = 0xffffffff   # equals to ~0 used in vpp code
         cmd = 'bridge_domain_dump'
+        cmd_reply = 'bridge_domain_details'
         args = dict(bd_id=int(bd_id))
         err_msg = 'Failed to get L2FIB dump on host {host}'.format(
             host=node['host'])
-        with PapiSocketExecutor(node) as papi_exec:
-            data = papi_exec.add(cmd, **args).get_details().verify_details(
-                err_msg)
-        logger.debug("Verified details: " + repr(data))
-        if bd_id == bitwise_non_zero:
-            return data
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
+
+        data = papi_resp.reply[0]['api_reply']
+
+        bd_data = list() if bd_id == Constants.BITWISE_NON_ZERO else dict()
         for bridge_domain in data:
-            if bridge_domain['bd_id'] == bd_id:
-                return bridge_domain
+            if bd_id == Constants.BITWISE_NON_ZERO:
+                bd_data.append(bridge_domain[cmd_reply])
+            else:
+                if bridge_domain[cmd_reply]['bd_id'] == bd_id:
+                    return bridge_domain[cmd_reply]
+
+        return bd_data
 
     @staticmethod
     def l2_vlan_tag_rewrite(node, interface, tag_rewrite_method,
