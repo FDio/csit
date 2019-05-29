@@ -14,7 +14,7 @@
 """Proxy ARP library"""
 
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.VatExecutor import VatTerminal
 
 
@@ -53,6 +53,5 @@ class ProxyArp(object):
             enable_disable=1)
         err_msg = 'Failed to enable proxy ARP on interface {ifc}'.format(
             ifc=interface)
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies().verify_reply(err_msg)
