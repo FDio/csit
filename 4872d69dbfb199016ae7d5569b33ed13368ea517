@@ -169,6 +169,30 @@
     },
     {
       "key": {
+        "uuid": "706bd1d9_b16dcac0",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-29T14:08:34Z",
+      "side": 1,
+      "message": "\u003e Once again, preventing horrible runtimes is more important to me than allowing overloaded VPP enough time to react.\n\nHow many times you troubleshoot VPP interfaces issues? You can start with actual issue in memif, with your approach.\n\n\u003e Combining makes sense to me, but depends how complex it would be (as it will be part of many functions).",
+      "parentUuid": "f0868dac_c165e186",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51b28fd2_6a3e39de",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 64
