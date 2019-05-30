@@ -47,7 +47,7 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Vpp Set If Ipv6 Addr | ${dut1_node}
+| | And VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | When Vpp RA Send After Interval | ${dut1_node} | ${dut1_to_tg}
 | | Then Receive and verify router advertisement packet
@@ -63,8 +63,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Vpp Set If Ipv6 Addr | ${dut1_node}
-| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And VPP Interface Set IP Address
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | When Vpp RA Send After Interval | ${dut1_node} | ${dut1_to_tg}
 | | ... | interval=${interval}
 | | :FOR | ${n} | IN RANGE | ${2}
@@ -82,8 +82,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Vpp Set If Ipv6 Addr | ${dut1_node}
-| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And VPP Interface Set IP Address
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | When VPP RA Suppress Link Layer | ${dut1_node} | ${dut1_to_tg}
 | | Then Send router solicitation and verify response
 | | ... | ${tg_node} | ${dut1_node} | ${tg_to_dut1} | ${dut1_to_tg}
@@ -100,8 +100,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Vpp Set If Ipv6 Addr | ${dut1_node}
-| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And VPP Interface Set IP Address
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | When VPP RA Suppress Link Layer | ${dut1_node} | ${dut1_to_tg}
 | | Then Send router solicitation and verify response
 | | ... | ${tg_node} | ${dut1_node} | ${tg_to_dut1} | ${dut1_to_tg}

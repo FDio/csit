@@ -110,11 +110,11 @@
 | | [Documentation]
 | | ... | Add IP neighbors to physical interfaces on DUTs.
 | | ...
-| | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6o4}
-| | ... | ${tg_to_dut1_mac}
-| | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6o4}
-| | ... | ${tg_to_dut2_mac}
-| | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip6o4}
-| | ... | ${dut2_to_dut1_mac}
-| | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6o4}
-| | ... | ${dut1_to_dut2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6o4} | ${tg_to_dut1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6o4} | ${tg_to_dut2_mac}
+| | VPP Add IP Neighbor | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut2_to_dut1_ip6o4} | ${dut2_to_dut1_mac}
+| | VPP Add IP Neighbor | ${dut2_node}
+| | ... | ${dut2_to_dut1} | ${dut1_to_dut2_ip6o4} | ${dut1_to_dut2_mac}

@@ -66,19 +66,19 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Add Fib Table | ${dut1_node} | ${fib_table_1} | ip6=${TRUE}
-| | And Add Fib Table | ${dut2_node} | ${fib_table_1} | ip6=${TRUE}
+| | And Add Fib Table | ${dut1_node} | ${fib_table_1} | ipv6=${TRUE}
+| | And Add Fib Table | ${dut2_node} | ${fib_table_1} | ipv6=${TRUE}
 | | And Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${fib_table_1} | ipv6=${TRUE}
 | | And Assign Interface To Fib Table | ${dut2_node}
 | | ... | ${dut2_to_tg} | ${fib_table_1} | ipv6=${TRUE}
-| | And Vpp Set If IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip6} | ${prefix6}
-| | And Vpp Set If IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip6} | ${prefix6}
-| | And Vpp Set If IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip6} | ${prefix6}
-| | And Vpp Set If IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip6} | ${prefix6}
 | | And Add IP Neighbors
 | | And Vpp All RA Suppress Link Layer | ${nodes}

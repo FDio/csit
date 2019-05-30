@@ -66,8 +66,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Add Fib Table | ${dut1_node} | ${fib_table_1} | ip6=${TRUE}
-| | And Add Fib Table | ${dut2_node} | ${fib_table_1} | ip6=${TRUE}
+| | And Add Fib Table | ${dut1_node} | ${fib_table_1} | ipv6=${TRUE}
+| | And Add Fib Table | ${dut2_node} | ${fib_table_1} | ipv6=${TRUE}
 | | And Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${fib_table_1} | ip6=${TRUE}
 | | And Assign Interface To Fib Table | ${dut2_node}
@@ -102,11 +102,11 @@
 | | [Documentation]
 | | ... | Add IP neighbors to physical interfaces on DUTs.
 | | ...
-| | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6o4}
-| | ... | ${tg_to_dut1_mac}
-| | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6o4}
-| | ... | ${tg_to_dut2_mac}
-| | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip6o4}
-| | ... | ${dut2_to_dut1_mac}
-| | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6o4}
-| | ... | ${dut1_to_dut2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6o4} | ${tg_to_dut1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6o4} | ${tg_to_dut2_mac}
+| | VPP Add IP Neighbor | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut2_to_dut1_ip6o4} | ${dut2_to_dut1_mac}
+| | VPP Add IP Neighbor | ${dut2_node}
+| | ... | ${dut2_to_dut1} | ${dut1_to_dut2_ip6o4} | ${dut1_to_dut2_mac}
