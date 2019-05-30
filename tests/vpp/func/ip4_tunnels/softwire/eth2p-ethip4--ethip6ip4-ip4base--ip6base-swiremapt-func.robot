@@ -85,11 +85,11 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | Vpp Route Add | ${dut_node} | :: | 0 | gateway=${dut_ip6_gw}
-| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | ... | interface=${dut_to_tg_if2}
 | | Add IP neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
 | | Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
-| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | ... | interface=${dut_to_tg_if1}
 | | Add IP neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
 | | ... | ${tg_to_dut_if1_mac}
 

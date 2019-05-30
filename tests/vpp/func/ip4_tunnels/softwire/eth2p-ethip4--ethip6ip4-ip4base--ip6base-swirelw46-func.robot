@@ -17,6 +17,7 @@
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/ip/map.robot
+| Library | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SOFTWIRE
 | Test Setup | Set up functional test
@@ -81,7 +82,7 @@
 | |       ... | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add
 | |       ... | ${dut_node} | ${lw_rule_ipv6_dst} | 128
-| |       ... | gateway=${tg_ip6} | interface=${dut_to_tg_if2} | resolve_attempts=${NONE}
+| |       ... | gateway=${tg_ip6} | interface=${dut_to_tg_if2}
 | | ${domain_index}=
 | | ... | When Map Add Domain
 | |            ... | ${dut_node} | ${lw_ipv4_pfx} | ${lw_ipv6_pfx}
@@ -118,7 +119,7 @@ TC02: Encapsulate IPv4 ICMP into IPv6. IPv6 dst depends on IPv4 addr and ICMP ID
 | |       ... | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add
 | |       ... | ${dut_node} | ${lw_rule_ipv6_dst} | 128
-| |       ... | gateway=${tg_ip6} | interface=${dut_to_tg_if2} | resolve_attempts=${NONE}
+| |       ... | gateway=${tg_ip6} | interface=${dut_to_tg_if2}
 | | ${domain_index}=
 | | ... | When Map Add Domain
 | |            ... | ${dut_node} | ${lw_ipv4_pfx} | ${lw_ipv6_pfx}
@@ -148,7 +149,7 @@ TC03: Decapsulate IPv4 UDP from IPv6.
 | | And   Configure IP addresses on interfaces
 | |       ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | |       ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
-| | And   Add Arp on DUT
+| | And   VPP Add IP Neighbor
 | |       ... | ${dut_node} | ${dut_to_tg_if1}
 | |       ... | ${test_ipv4_outside}
 | |       ... | ${tg_to_dut_if1_mac}
@@ -187,7 +188,7 @@ TC04: Hairpinning of traffic between two lwB4
 | |       ... | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add
 | |       ... | ${dut_node} | ${lw_rule_2_ipv6_dst} | 128
-| |       ... | gateway=${tg_ip6} | interface=${dut_to_tg_if2} | resolve_attempts=${NONE}
+| |       ... | gateway=${tg_ip6} | interface=${dut_to_tg_if2}
 | | ${domain_index}=
 | | ... | When Map Add Domain
 | |            ... | ${dut_node} | ${lw_ipv4_pfx} | ${lw_ipv6_pfx}
