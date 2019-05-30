@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,16 +12,21 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
+| Library | resources.libraries.python.Trace
+| ...
+| Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/shared/counters.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
-| Library | resources.libraries.python.Trace
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | SKIP_VPP_PATCH
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *IPv6 Router Advertisement test cases*
 | ...
 | ... | RFC4861 Neighbor Discovery. Encapsulations: Eth-IPv6-RA on links
@@ -47,7 +52,7 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Vpp Set If Ipv6 Addr | ${dut1_node}
+| | And VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | When Vpp RA Send After Interval | ${dut1_node} | ${dut1_to_tg}
 | | Then Receive and verify router advertisement packet
@@ -63,8 +68,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Vpp Set If Ipv6 Addr | ${dut1_node}
-| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And VPP Interface Set IP Address
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | When Vpp RA Send After Interval | ${dut1_node} | ${dut1_to_tg}
 | | ... | interval=${interval}
 | | :FOR | ${n} | IN RANGE | ${2}
@@ -82,8 +87,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Vpp Set If Ipv6 Addr | ${dut1_node}
-| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And VPP Interface Set IP Address
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | When VPP RA Suppress Link Layer | ${dut1_node} | ${dut1_to_tg}
 | | Then Send router solicitation and verify response
 | | ... | ${tg_node} | ${dut1_node} | ${tg_to_dut1} | ${dut1_to_tg}
@@ -100,8 +105,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Vpp Set If Ipv6 Addr | ${dut1_node}
-| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And VPP Interface Set IP Address
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | When VPP RA Suppress Link Layer | ${dut1_node} | ${dut1_to_tg}
 | | Then Send router solicitation and verify response
 | | ... | ${tg_node} | ${dut1_node} | ${tg_to_dut1} | ${dut1_to_tg}

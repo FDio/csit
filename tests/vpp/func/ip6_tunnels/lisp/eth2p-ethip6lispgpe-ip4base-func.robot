@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,14 +12,16 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/shared/traffic.robot
-| Resource | resources/libraries/robot/overlay/lisp_static_adjacency.robot
-| Resource | resources/libraries/robot/l2/l2_traffic.robot
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
+| ...
+| Resource | resources/libraries/robot/ip/ip4.robot.
+| Resource | resources/libraries/robot/l2/l2_traffic.robot
+| Resource | resources/libraries/robot/overlay/lisp_static_adjacency.robot
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/testing_path.robot
+| Resource | resources/libraries/robot/shared/traffic.robot
+| ...
 # import additional Lisp settings from resource file
 | Variables | resources/test_data/lisp/static_adjacency/lisp_static_adjacency.py
 | ...
@@ -74,10 +76,10 @@
 | | ... | ${dut2_to_tg_ip4o6} | ${tg_prefix4o6}
 | | And VPP IP Probe | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip4o6}
 | | And VPP IP Probe | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4o6}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4o6}
-| | ... | ${tg_to_dut2_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4o6}
-| | ... | ${tg_to_dut1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4o6} | ${tg_to_dut2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4o6} | ${tg_to_dut1_mac}
 | | And Vpp All RA Suppress Link Layer | ${nodes}
 | | When Configure LISP topology in 3-node circular topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}

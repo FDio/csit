@@ -24,6 +24,7 @@ ipv4_settings = {"mtu": 9000}
 ipv6_address = "10::10"
 ipv6_address2 = "11::10"
 ipv6_prefix = 64
+ipv6_mask = "ffff:ffff:ffff:ffff::"
 ipv6_neighbor = "10::11"
 ipv6_neighbor2 = "11::11"
 neighbor_mac = "08:00:27:c0:5d:37"

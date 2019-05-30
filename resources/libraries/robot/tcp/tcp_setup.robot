@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,9 +12,10 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.IPv4Util.IPv4Util
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.tcp.TCPUtils
+| ...
 | Resource | resources/libraries/robot/ip/ip4.robot
 | ...
 | Documentation | L2 keywords to set up VPP to test tcp.
@@ -62,14 +63,14 @@
 | | [Arguments] | ${prealloc_fifos} | ${fifo_size} | ${private_segment_size}
 | | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.10.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.20.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.30.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.40.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.50.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.60.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.70.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.80.2 | 24
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.10.2 | 24
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.20.2 | 24
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.30.2 | 24
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.40.2 | 24
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.50.2 | 24
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.60.2 | 24
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.70.2 | 24
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.80.2 | 24
 | | Vpp Node Interfaces Ready Wait | ${dut1}
 | | Start HTTP server params | ${dut1} | ${prealloc_fifos} | ${fifo_size}
 | | ... | ${private_segment_size}

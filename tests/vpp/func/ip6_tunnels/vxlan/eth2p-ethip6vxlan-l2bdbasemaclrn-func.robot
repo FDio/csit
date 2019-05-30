@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,16 +12,21 @@
 # limitations under the License.
 
 *** Settings ***
+| Library  | resources.libraries.python.IPUtil
+| Library  | resources.libraries.python.Trace
+| ...
+| Resource | resources/libraries/robot/l2/l2_traffic.robot
+| Resource | resources/libraries/robot/overlay/vxlan.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/overlay/vxlan.robot
-| Resource | resources/libraries/robot/l2/l2_traffic.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
-| Library  | resources.libraries.python.Trace
-| Library | resources.libraries.python.IPv6Setup
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *Bridge-domain with VXLAN test cases - IPv6*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -60,21 +65,21 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${ip6_addr1}
-| | ...                       | ${ip6_prefix}
-| | And Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${ip6_addr2}
-| | ...                       | ${ip6_prefix}
+| | And VPP Interface Set IP Address
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${ip6_addr1} | ${ip6_prefix}
+| | And VPP Interface Set IP Address
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${ip6_addr2} | ${ip6_prefix}
 | | And VPP IP Probe | ${dut1_node} | ${dut1_to_dut2} | ${ip6_addr2}
 | | And VPP IP Probe | ${dut2_node} | ${dut2_to_dut1} | ${ip6_addr1}
 | | And Vpp All RA Suppress Link Layer | ${nodes}
-| | ${dut1s_vxlan}= | When Create VXLAN interface | ${dut1_node} | ${vni_1}
-| | | ...                                         | ${ip6_addr1} | ${ip6_addr2}
-| | And Add interfaces to L2BD | ${dut1_node} | ${bd_id1}
-| | ...                            | ${dut1_to_tg} | ${dut1s_vxlan}
-| | ${dut2s_vxlan}= | And Create VXLAN interface | ${dut2_node} | ${vni_1}
-| | | ...                                        | ${ip6_addr2} | ${ip6_addr1}
-| | And Add interfaces to L2BD | ${dut2_node} | ${bd_id1}
-| | ...                            | ${dut2_to_tg} | ${dut2s_vxlan}
+| | ${dut1s_vxlan}= | When Create VXLAN interface
+| | ... | ${dut1_node} | ${vni_1} | ${ip6_addr1} | ${ip6_addr2}
+| | And Add interfaces to L2BD
+| | ... | ${dut1_node} | ${bd_id1} | ${dut1_to_tg} | ${dut1s_vxlan}
+| | ${dut2s_vxlan}= | And Create VXLAN interface
+| | ... | ${dut2_node} | ${vni_1} | ${ip6_addr2} | ${ip6_addr1}
+| | And Add interfaces to L2BD
+| | ... | ${dut2_node} | ${bd_id1} | ${dut2_to_tg} | ${dut2s_vxlan}
 | | Then Send ICMPv6 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 | | And Get VXLAN dump | ${dut1_node}

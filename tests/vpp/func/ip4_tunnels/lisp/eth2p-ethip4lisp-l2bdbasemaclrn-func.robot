@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,18 +12,20 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.topology.Topology
-| Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.IPUtil
-| Library | resources.libraries.python.LispUtil
 | Library | resources.libraries.python.L2Util
-| Resource | resources/libraries/robot/shared/traffic.robot
+| Library | resources.libraries.python.LispUtil
+| Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.Trace
+| ...
+| Resource | resources/libraries/robot/ip/ip4.robot
+| Resource | resources/libraries/robot/overlay/l2lisp.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/overlay/l2lisp.robot
+| Resource | resources/libraries/robot/shared/traffic.robot
+| ...
 # Import configuration and test data:
 | Variables | resources/test_data/lisp/l2/l2_ipv4.py
 | ...
@@ -67,14 +69,14 @@
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip4} | ${prefix4}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip4} | ${prefix4}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
-| | ... | ${tg_to_dut2_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
-| | ... | ${tg_to_dut1_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip4}
-| | ... | ${dut2_to_dut1_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4}
-| | ... | ${dut1_to_dut2_mac}
+| | And VPP Add IP Neighbor
+| | ... | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4} | ${tg_to_dut2_mac}
+| | And VPP Add IP Neighbor
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4} | ${tg_to_dut1_mac}
+| | And VPP Add IP Neighbor | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut2_to_dut1_ip4} | ${dut2_to_dut1_mac}
+| | And VPP Add IP Neighbor | ${dut2_node}
+| | ... | ${dut2_to_dut1} | ${dut1_to_dut2_ip4} | ${dut1_to_dut2_mac}
 | | When Create L2 BD | ${dut1_node} | ${vpp_bd_id}
 | | And Add Interface To L2 BD | ${dut1_node} | ${dut1_to_tg} | ${vpp_bd_id}
 | | And Create L2 BD | ${dut2_node} | ${vpp_bd_id}
