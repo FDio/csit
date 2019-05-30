@@ -16,7 +16,6 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.IPUtil
-| Library | resources.libraries.python.IPv6Setup
 | Library | resources.libraries.python.VPPUtil
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Resource | resources/libraries/robot/shared/default.robot
@@ -66,13 +65,13 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Vpp Set If IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip6} | ${prefix6}
-| | And Vpp Set If IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip6} | ${prefix6}
-| | And Vpp Set If IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip6} | ${prefix6}
-| | And Vpp Set If IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip6} | ${prefix6}
 | | And Add IP Neighbors
 | | And Vpp All RA Suppress Link Layer | ${nodes}
@@ -96,11 +95,11 @@
 | | [Documentation]
 | | ... | Add IP neighbors to physical interfaces on DUTs.
 | | ...
-| | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6}
-| | ... | ${tg_to_dut1_mac}
-| | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6}
-| | ... | ${tg_to_dut2_mac}
-| | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip6}
-| | ... | ${dut2_to_dut1_mac}
-| | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6}
-| | ... | ${dut1_to_dut2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6} | ${tg_to_dut1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6} | ${tg_to_dut2_mac}
+| | VPP Add IP Neighbor | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut2_to_dut1_ip6} | ${dut2_to_dut1_mac}
+| | VPP Add IP Neighbor | ${dut2_node}
+| | ... | ${dut2_to_dut1} | ${dut1_to_dut2_ip6} | ${dut1_to_dut2_mac}

@@ -1,1 +1,0 @@
-sw_interface_ip6nd_ra_config sw_if_index {sw_if_id} {param}

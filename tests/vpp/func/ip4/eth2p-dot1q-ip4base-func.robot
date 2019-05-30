@@ -89,16 +89,16 @@
 | | ${vlan2_name} | ${vlan2_index}= | Create vlan sub-interface
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${tag_2}
 | |
-| | Set Interface Address | ${dut_node}
+| | VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${ip4_net0_1} | ${ip4_prefix}
-| | Set Interface Address | ${dut_node}
+| | VPP Interface Set IP Address | ${dut_node}
 | | ... | ${vlan1_index} | ${ip4_net1_1} | ${ip4_prefix}
-| | Set Interface Address | ${dut_node}
+| | VPP Interface Set IP Address | ${dut_node}
 | | ... | ${vlan2_index} | ${ip4_net2_1} | ${ip4_prefix}
 | |
-| | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${ip4_net0_2}
-| | ... | ${tg_to_dut_if1_mac}
-| | Add IP Neighbor | ${dut_node} | ${vlan1_index} | ${ip4_net1_2}
-| | ... | ${tg_to_dut_if2_mac}
-| | Add IP Neighbor | ${dut_node} | ${vlan2_index} | ${ip4_net2_2}
-| | ... | ${tg_to_dut_if2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${ip4_net0_2} | ${tg_to_dut_if1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut_node} | ${vlan1_index} | ${ip4_net1_2} | ${tg_to_dut_if2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut_node} | ${vlan2_index} | ${ip4_net2_2} | ${tg_to_dut_if2_mac}
