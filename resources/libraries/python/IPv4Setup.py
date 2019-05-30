@@ -141,33 +141,33 @@ class Tg(IPv4Node):
         """
         return exec_cmd_no_error(self.node_info, cmd, sudo=True)
 
-    def set_ip(self, interface, address, prefix_length):
-        cmd = 'ip -4 addr flush dev {}'.format(interface)
-        self._sudo_execute(cmd)
-        cmd = 'ip addr add {}/{} dev {}'.format(address, prefix_length,
-                                                interface)
-        self._sudo_execute(cmd)
+    # def set_ip(self, interface, address, prefix_length):
+    #     cmd = 'ip -4 addr flush dev {}'.format(interface)
+    #     self._sudo_execute(cmd)
+    #     cmd = 'ip addr add {}/{} dev {}'.format(address, prefix_length,
+    #                                             interface)
+    #     self._sudo_execute(cmd)
 
-    def set_route(self, network, prefix_length, gateway, interface, count=1):
-        netmask = self._get_netmask(prefix_length)
-        cmd = 'route add -net {} netmask {} gw {}'.\
-            format(network, netmask, gateway)
-        self._sudo_execute(cmd)
+    # def set_route(self, network, prefix_length, gateway, interface, count=1):
+    #     netmask = self._get_netmask(prefix_length)
+    #     cmd = 'route add -net {} netmask {} gw {}'.\
+    #         format(network, netmask, gateway)
+    #     self._sudo_execute(cmd)
 
-    def unset_route(self, network, prefix_length, gateway, interface):
-        self._sudo_execute('ip route delete {}/{}'.
-                           format(network, prefix_length))
+    # def unset_route(self, network, prefix_length, gateway, interface):
+    #     self._sudo_execute('ip route delete {}/{}'.
+    #                        format(network, prefix_length))
 
-    def arp_ping(self, destination_address, source_interface):
-        """Execute 'arping' command to send one ARP packet from the TG node.
-
-        :param destination_address: Destination IP address for the ARP packet.
-        :param source_interface: Name of an interface to send ARP packet from.
-        :type destination_address: str
-        :type source_interface: str
-        """
-        self._sudo_execute('arping -c 1 -I {} {}'.format(source_interface,
-                                                         destination_address))
+    # def arp_ping(self, destination_address, source_interface):
+    #     """Execute 'arping' command to send one ARP packet from the TG node.
+    #
+    #     :param destination_address: Destination IP address for the ARP packet.
+    #     :param source_interface: Name of an interface to send ARP packet from.
+    #     :type destination_address: str
+    #     :type source_interface: str
+    #     """
+    #     self._sudo_execute('arping -c 1 -I {} {}'.format(source_interface,
+    #                                                      destination_address))
 
     def ping(self, destination_address, source_interface):
         self._execute('ping -c 1 -w 5 -I {} {}'.format(source_interface,
