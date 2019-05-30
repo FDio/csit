@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "10d19bda_7adc55c3",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-30T14:39:49Z",
+      "side": 1,
+      "message": "Does anybory remember why this was a good idea?",
+      "range": {
+        "startLine": 303,
+        "startChar": 20,
+        "endLine": 304,
+        "endChar": 48
+      },
+      "revId": "5120b1082aa70f6e75511e9d95a2a7c303e25f9a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6b3b7326_7671dfe2",
         "filename": "docs/perf-triggers-design.rst",
         "patchSetId": 12
