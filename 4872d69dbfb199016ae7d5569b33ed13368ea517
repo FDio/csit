@@ -193,6 +193,30 @@
     },
     {
       "key": {
+        "uuid": "01369d02_cc9fb022",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-30T10:33:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "706bd1d9_b16dcac0",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "51b28fd2_6a3e39de",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 64
@@ -204,6 +228,30 @@
       "writtenOn": "2019-05-29T08:25:46Z",
       "side": 1,
       "message": "break\n\nThat way you do not need line 256.",
+      "range": {
+        "startLine": 267,
+        "startChar": 16,
+        "endLine": 267,
+        "endChar": 31
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4d99d950_72897586",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-30T10:33:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51b28fd2_6a3e39de",
       "range": {
         "startLine": 267,
         "startChar": 16,
@@ -275,6 +323,30 @@
       "side": 1,
       "message": "Agree, we will keep all_vpp_interfaces_ready_wait method.",
       "parentUuid": "d80038c2_e244edb8",
+      "range": {
+        "startLine": 276,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 75
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e78378fe_58f4c729",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-30T10:33:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f79fad1a_146ee1fc",
       "range": {
         "startLine": 276,
         "startChar": 0,
@@ -487,6 +559,30 @@
     },
     {
       "key": {
+        "uuid": "5441dbf7_f6f14d96",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 1993,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-30T10:33:07Z",
+      "side": 1,
+      "message": "\u003e Better solution would be to introduce internal function\n \u003e add_cmd_add_del_route\n\nWhat would be the benefit of it? This internal function would be needed to call with list of nearly all parameters anyway...",
+      "parentUuid": "f8c235bc_647fddd2",
+      "range": {
+        "startLine": 1983,
+        "startChar": 0,
+        "endLine": 1993,
+        "endChar": 69
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b6bbf270_4ee9c445",
         "filename": "resources/libraries/robot/ip/ip4.robot",
         "patchSetId": 64
@@ -510,6 +606,30 @@
     },
     {
       "key": {
+        "uuid": "84e6b7c6_3acffa21",
+        "filename": "resources/libraries/robot/ip/ip4.robot",
+        "patchSetId": 64
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-30T10:33:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6bbf270_4ee9c445",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 75
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "af47b14a_6a11d788",
         "filename": "resources/libraries/robot/overlay/vxlan.robot",
         "patchSetId": 64
@@ -521,6 +641,30 @@
       "writtenOn": "2019-05-29T06:15:01Z",
       "side": 1,
       "message": "missing params",
+      "range": {
+        "startLine": 139,
+        "startChar": 37,
+        "endLine": 139,
+        "endChar": 37
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44cab093_6f0ed0b2",
+        "filename": "resources/libraries/robot/overlay/vxlan.robot",
+        "patchSetId": 64
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-30T10:33:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af47b14a_6a11d788",
       "range": {
         "startLine": 139,
         "startChar": 37,
