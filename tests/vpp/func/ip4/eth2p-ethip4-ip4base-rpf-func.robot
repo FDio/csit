@@ -12,6 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
+| Library | resources.libraries.python.Trace
+| Library | resources.libraries.python.IPUtil.IPUtil
+| ...
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
@@ -19,10 +22,13 @@
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/l2/l2_xconnect.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
-| Library | resources.libraries.python.Trace
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *Source RPF check on IPv4 test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG - DUT1 - DUT2 - TG

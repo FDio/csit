@@ -14,6 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
+| Library | resources.libraries.python.IPUtil.IPUtil
 | Library | resources.libraries.python.IPv4Util
 | Library | resources.libraries.python.TrafficScriptExecutor
 

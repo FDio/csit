@@ -13,12 +13,14 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPUtil.IPUtil
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.IPv6Setup
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Routing
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
+| ...
 | Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
