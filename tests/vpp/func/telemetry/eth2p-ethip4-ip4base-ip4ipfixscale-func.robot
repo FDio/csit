@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,19 +12,23 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/telemetry/ipfix.robot
 | Library | resources.libraries.python.Classify.Classify
 | Library | resources.libraries.python.telemetry.IPFIXSetup
 | Library | resources.libraries.python.Trace
-
+| ...
+| Resource | resources/libraries/robot/ip/ip4.robot
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/interfaces.robot
+| Resource | resources/libraries/robot/shared/testing_path.robot
+| Resource | resources/libraries/robot/telemetry/ipfix.robot
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | SKIP_VPP_PATCH
-| ...        | EXPECTED_FAILING
+| ... | EXPECTED_FAILING
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *IPFIX ipv4 test cases*
 | ...
 | ... | IPFIX tests use 3-node topology TG - DUT1 - DUT2 - TG with
@@ -52,9 +56,9 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Set Interface Address | ${dut1_node}
+| | And VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version} | src
@@ -84,9 +88,9 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Set Interface Address | ${dut1_node}
+| | And VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version}

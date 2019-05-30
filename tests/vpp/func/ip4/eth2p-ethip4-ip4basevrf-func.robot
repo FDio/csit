@@ -12,18 +12,23 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
+| Library  | resources.libraries.python.IPUtil
+| Library  | resources.libraries.python.Trace
+| ...
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
+| Resource | resources/libraries/robot/l2/l2_traffic.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
-| Resource | resources/libraries/robot/l2/l2_traffic.robot
-| Library  | resources.libraries.python.Trace
-| Library  | resources.libraries.python.IPUtil
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *Vpn routed forwarding - baseline IPv4*
 | ... | *[Top] Network Topologies:* TG=DUT1=DUT2=TG 3-node topology with two
 | ... | links in between nodes.
@@ -301,30 +306,22 @@
 | | ... | addresses are subsequently set on interfaces, and ARP is set for
 | | ... | neighbors. The last setting is route for each fib table.
 | | ...
-| | ${dut1_if1_idx}= | Get Interface SW Index
-| | ... | ${dut1_node} | ${dut1_to_dut2_if1}
-| | ${dut1_if2_idx}= | Get Interface SW Index
-| | ... | ${dut1_node} | ${dut1_to_dut2_if2}
-| | ${dut2_if1_idx}= | Get Interface SW Index
-| | ... | ${dut2_node} | ${dut2_to_dut1_if1}
-| | ${dut2_if2_idx}= | Get Interface SW Index
-| | ... | ${dut2_node} | ${dut2_to_dut1_if2}
 | | And Add fib table | ${dut1_node} | ${fib_table_1}
 | | And Add fib table | ${dut1_node} | ${fib_table_2}
 | | And Add fib table | ${dut2_node} | ${fib_table_1}
 | | And Add fib table | ${dut2_node} | ${fib_table_2}
-| | And Vpp Route Add | ${dut1_node}
-| | ... | ${tg_dut2_ip1} | ${ip_prefix} | gateway=${fib_table_1}
-| | ... | interface=via ${dut2_to_dut1_ip1} sw_if_index ${dut1_if1_idx} multipath
-| | And Vpp Route Add | ${dut1_node}
-| | ... | ${tg_dut2_ip2} | ${ip_prefix} | gateway=${fib_table_2}
-| | ... | interface=via ${dut1_to_dut2_ip2} sw_if_index ${dut1_if2_idx} multipath
-| | And Vpp Route Add | ${dut2_node}
-| | ... | ${tg_dut1_ip1} | ${ip_prefix} | gateway=${fib_table_1}
-| | ... | interface=via ${dut2_to_dut1_ip1} sw_if_index ${dut2_if1_idx} multipath
-| | And Vpp Route Add | ${dut2_node}
-| | ... | ${tg_dut1_ip2} | ${ip_prefix} | gateway=${fib_table_2}
-| | ... | interface=via ${dut2_to_dut1_ip2} sw_if_index ${dut2_if2_idx} multipath
+| | And Vpp Route Add | ${dut1_node} | ${tg_dut2_ip1} | ${ip_prefix}
+| | ... | vrf=${fib_table_1} | interface=${dut1_to_dut2_if1}
+| | ... | gateway=${dut1_to_dut2_ip2} | multipath=${True}
+| | And Vpp Route Add | ${dut1_node} | ${tg_dut2_ip2} | ${ip_prefix}
+| | ... | vrf=${fib_table_2} | interface=${dut1_to_dut2_if2}
+| | ... | gateway=${dut1_to_dut2_ip2} | multipath=${True}
+| | And Vpp Route Add | ${dut2_node} | ${tg_dut1_ip1} | ${ip_prefix}
+| | ... | vrf=${fib_table_1} | interface=${dut2_to_dut1_if1}
+| | ... | gateway=${dut2_to_dut1_ip1} | multipath=${True}
+| | And Vpp Route Add | ${dut2_node} | ${tg_dut1_ip2} | ${ip_prefix}
+| | ... | vrf=${fib_table_2} | interface=${dut2_to_dut1_if2}
+| | ... | gateway=${dut2_to_dut1_ip2} | multipath=${True}
 
 | | Assign Interface To Fib Table
 | | ... | ${dut1_node} | ${dut1_to_dut2_if1} | ${fib_table_1}
@@ -344,44 +341,44 @@
 | | Assign Interface To Fib Table
 | | ... | ${dut2_node} | ${dut2_to_tg_if2} | ${fib_table_2}
 
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_tg_if1} | ${dut1_to_tg_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_tg_if2} | ${dut1_to_tg_ip2} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_dut2_if1}
 | | ... | ${dut1_to_dut2_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_dut2_if2}
 | | ... | ${dut1_to_dut2_ip2} | ${ip_prefix}
 
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_tg_if1} | ${dut2_to_tg_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_tg_if2} | ${dut2_to_tg_ip2} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_dut1_if1}
 | | ... | ${dut2_to_dut1_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_dut1_if2}
 | | ... | ${dut2_to_dut1_ip2} | ${ip_prefix}
 
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg_if1}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg_if1}
 | | ... | ${tg_dut1_ip1} | ${tg_to_dut1_if1_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2_if1}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2_if1}
 | | ... | ${dut2_to_dut1_ip1} | ${dut2_to_dut1_if1_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg_if1}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_tg_if1}
 | | ... | ${tg_dut2_ip1} | ${tg_to_dut2_if1_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1_if1}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1_if1}
 | | ... | ${dut1_to_dut2_ip1} | ${dut1_to_dut2_if1_mac}
 
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg_if2}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg_if2}
 | | ... | ${tg_dut1_ip2} | ${tg_to_dut1_if2_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2_if2}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2_if2}
 | | ... | ${dut2_to_dut1_ip2} | ${dut2_to_dut1_if2_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg_if2}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_tg_if2}
 | | ... | ${tg_dut2_ip2} | ${tg_to_dut2_if2_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1_if2}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1_if2}
 | | ... | ${dut1_to_dut2_ip2} | ${dut1_to_dut2_if2_mac}
 
 | | And Vpp Route Add | ${dut1_node} | ${tg_dut2_ip1} | ${ip_prefix}

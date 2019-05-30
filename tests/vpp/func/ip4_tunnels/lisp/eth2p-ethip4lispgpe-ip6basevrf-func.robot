@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,19 +12,21 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
+| Library  | resources.libraries.python.IPUtil
+| Library  | resources.libraries.python.Trace
+| Library | resources.libraries.python.VhostUser
+| Library  | resources.libraries.python.VPPUtil
+| ...
 | Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/shared/traffic.robot
-| Resource | resources/libraries/robot/overlay/lisp_static_adjacency.robot
+| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/l2/l2_traffic.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
-| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
+| Resource | resources/libraries/robot/overlay/lisp_static_adjacency.robot
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/testing_path.robot
+| Resource | resources/libraries/robot/shared/traffic.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
-| Library  | resources.libraries.python.IPUtil
-| Library | resources.libraries.python.VhostUser
-| Library  | resources.libraries.python.Trace
-| Library  | resources.libraries.python.VPPUtil
+| ...
 # import additional Lisp settings from resource file
 | Variables | resources/test_data/lisp/static_adjacency/lisp_static_adjacency.py
 | ...
@@ -66,8 +68,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Add Fib Table | ${dut1_node} | ${fib_table_1} | ip6=${TRUE}
-| | And Add Fib Table | ${dut2_node} | ${fib_table_1} | ip6=${TRUE}
+| | And Add Fib Table | ${dut1_node} | ${fib_table_1} | ipv6=${TRUE}
+| | And Add Fib Table | ${dut2_node} | ${fib_table_1} | ipv6=${TRUE}
 | | And Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${fib_table_1} | ip6=${TRUE}
 | | And Assign Interface To Fib Table | ${dut2_node}
@@ -102,11 +104,11 @@
 | | [Documentation]
 | | ... | Add IP neighbors to physical interfaces on DUTs.
 | | ...
-| | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6o4}
-| | ... | ${tg_to_dut1_mac}
-| | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6o4}
-| | ... | ${tg_to_dut2_mac}
-| | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip6o4}
-| | ... | ${dut2_to_dut1_mac}
-| | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6o4}
-| | ... | ${dut1_to_dut2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6o4} | ${tg_to_dut1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6o4} | ${tg_to_dut2_mac}
+| | VPP Add IP Neighbor | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut2_to_dut1_ip6o4} | ${dut2_to_dut1_mac}
+| | VPP Add IP Neighbor | ${dut2_node}
+| | ... | ${dut2_to_dut1} | ${dut1_to_dut2_ip6o4} | ${dut1_to_dut2_mac}

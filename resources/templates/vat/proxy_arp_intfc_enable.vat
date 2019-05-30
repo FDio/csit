@@ -1,1 +1,0 @@
-proxy_arp_intfc_enable_disable sw_if_index {sw_if_index} enable
