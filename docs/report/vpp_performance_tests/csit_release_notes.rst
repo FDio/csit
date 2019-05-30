@@ -48,9 +48,13 @@ Release Notes
          for Packet Latency were published as there are no results for Packet
          Latency available.
 
-.. raw:: latex
+.. note::
 
-    \clearpage
+    The Report rls1901.2 was generated with only 1 run of reduced selection of
+    performance tests on 3n-hsw and 3n-skx test beds,
+    ie. the data are not statistically significant.
+    The NFV and Soak tests were not run so this section has been removed from
+    the report.
 
 .. _vpp_known_issues:
 
