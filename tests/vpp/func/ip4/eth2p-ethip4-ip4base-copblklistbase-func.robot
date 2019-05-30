@@ -12,18 +12,22 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.Cop
+| Library | resources.libraries.python.Trace
+| ...
+| Resource | resources/libraries/robot/ip/ip4.robot
+| Resource | resources/libraries/robot/l2/l2_xconnect.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
-| Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/l2/l2_xconnect.robot
-| Variables  | resources/libraries/python/IPv4NodeAddress.py | ${nodes}
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *COP Security IPv4 Blacklist Tests*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -53,7 +57,6 @@
 | ${cop_dut_ip}= | 16.0.0.0
 
 | ${ip_prefix}= | 24
-| ${nodes_ipv4_addresses}= | ${nodes_ipv4_addr}
 
 | ${fib_table_number}= | 1
 
@@ -71,17 +74,16 @@
 | | And Set interfaces in 3-node circular topology up
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip} | ${ip_prefix}
-| | And Add Arp On Dut
+| | And VPP Add IP Neighbor
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip_GW} | ${tg_to_dut1_mac}
-| | And Add Arp On Dut
+| | And VPP Add IP Neighbor
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip_GW} | ${tg_to_dut2_mac}
-| | And Vpp Route Add | ${dut1_node}
-| | ... | ${test_dst_ip} | ${ip_prefix} | gateway=${dut1_if2_ip_GW}
-| | ... | interface=${dut1_to_dut2}
+| | And Vpp Route Add | ${dut1_node} | ${test_dst_ip} | ${ip_prefix}
+| | ... | gateway=${dut1_if2_ip_GW} | interface=${dut1_to_dut2}
 | | And Add fib table | ${dut1_node} | ${fib_table_number}
 | | When COP Add whitelist Entry
 | | ... | ${dut1_node} | ${dut1_to_tg} | ip4 | ${fib_table_number}

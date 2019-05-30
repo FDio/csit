@@ -1,1 +1,0 @@
-ip_address_dump {ip_version} sw_if_index {sw_if_index}

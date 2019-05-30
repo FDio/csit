@@ -123,7 +123,8 @@
 | | Then IPv6 address from Honeycomb should contain
 | | ... | ${node} | ${interface} | ${ipv6_address} | ${ipv6_prefix}
 | | And IPv6 address from VAT should contain
-| | ... | ${node} | ${interface} | ${ipv6_address} | ${ipv6_prefix}
+| | ... | ${node} | ${interface} | ${ipv6_address}
+| | ... | ${ipv6_prefix} | ${ipv6_mask}
 
 | TC07: Honeycomb modifies IPv6 neighbor table
 | | [Documentation] | Check if Honeycomb API can add and remove ARP entries.
@@ -193,7 +194,8 @@
 | | And IPv6 address from Honeycomb should contain
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${ipv6_address} | ${ipv6_prefix}
 | | And IPv6 address from VAT should contain
-| | ... | ${dut_node} | ${interface2} | ${ipv6_address} | ${ipv6_prefix}
+| | ... | ${dut_node} | ${interface2} | ${ipv6_address}
+| | ... | ${ipv6_prefix} | ${ipv6_mask}
 | | And Honeycomb configures interface state
 | | ... | ${dut_node} | ${dut_to_tg_if1} | up
 | | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if1}

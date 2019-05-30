@@ -1,1 +1,0 @@
-bridge_domain_add_del bd_id {bd_id} delete

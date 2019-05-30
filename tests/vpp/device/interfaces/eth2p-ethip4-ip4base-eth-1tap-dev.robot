@@ -12,17 +12,18 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
+| Library  | resources.libraries.python.IPUtil
+| Library  | resources.libraries.python.Namespaces
+| Library  | resources.libraries.python.Tap
+| Library  | resources.libraries.python.Trace
+| ...
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
-| Library  | resources.libraries.python.Trace
-| Library  | resources.libraries.python.Tap
-| Library  | resources.libraries.python.Namespaces
-| Library  | resources.libraries.python.IPUtil
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP4FWD | BASE | ETH | IP4BASE | TAP
@@ -72,19 +73,19 @@
 | | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut_node} | ${int1} | ${tap1_VPP_ip} | ${prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip_address} | ${prefix}
 | | And Set Interface State | ${dut_node} | ${int1} | up
 | | And Set Linux Interface MAC | ${dut_node} | ${tap_int1} | ${tap1_NM_mac}
 | | And Set Linux Interface IP | ${dut_node}
 | | ... | ${tap_int1} | ${tap1_NM_ip} | ${prefix}
-| | And Add Route | ${dut_node}
+| | And Add Linux Route | ${dut_node}
 | | ... | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${tg_ip_address} | ${tg_to_dut_if1_mac}
-| | And Add Arp On Dut | ${dut_node} | ${int1}
+| | And VPP Add IP Neighbor | ${dut_node} | ${int1}
 | | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
 | | Then Send ICMP echo request and verify answer | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
@@ -102,9 +103,9 @@
 | | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut_node} | ${int1} | ${tap1_VPP_ip} | ${prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip_address} | ${prefix}
 | | And Set Interface State | ${dut_node} | ${int1} | up
 | | When Create Namespace | ${dut_node} | ${namespace1}
@@ -114,11 +115,11 @@
 | | ... | ${tap_int1} | ${tap1_NM_mac} | ${namespace1}
 | | And Set Linux Interface IP | ${dut_node}
 | | ... | ${tap_int1} | ${tap1_NM_ip} | ${prefix} | ${namespace1}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${tg_ip_address} | ${tg_to_dut_if1_mac}
-| | And Add Arp On Dut | ${dut_node} | ${int1}
+| | And VPP Add IP Neighbor | ${dut_node} | ${int1}
 | | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
-| | And Add Route | ${dut_node}
+| | And Add Linux Route | ${dut_node}
 | | ... | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip} | ${namespace1}
 | | Then Send ICMP echo request and verify answer | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
