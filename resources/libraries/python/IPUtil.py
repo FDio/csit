@@ -15,10 +15,15 @@
 
 import re
 
-from ipaddress import IPv4Network, ip_address
+from socket import AF_INET, AF_INET6, inet_ntop, inet_pton
+
+from ipaddress import IPv4Network, IPv6Address, ip_address
+from ipaddress import AddressValueError, NetmaskValueError
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
 
@@ -51,37 +56,128 @@ class IPUtil(object):
         return str(ip_address(ip_int))
 
     @staticmethod
-    def vpp_ip_probe(node, interface, addr, if_type="key"):
+    def vpp_get_interface_ip_addresses(node, interface, ip_version):
+        """Get list of IP addresses from an interface on a VPP node.
+
+        :param node: VPP node to get data from.
+        :param interface: Name of an interface on the VPP node.
+        :param ip_version: IP protocol version (ipv4 or ipv6).
+        :type node: dict
+        :type interface: str
+        :type ip_version: str
+        :returns: List of dictionaries, each containing IP address, subnet
+            prefix length and also the subnet mask for ipv4 addresses.
+            Note: A single interface may have multiple IP addresses assigned.
+        :rtype: list
+        """
+
+        try:
+            sw_if_index = Topology.convert_interface_reference(
+                node, interface, 'sw_if_index')
+        except RuntimeError:
+            if isinstance(interface, basestring):
+                sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
+            else:
+                raise
+
+        is_ipv6 = 1 if ip_version == 'ipv6' else 0
+
+        cmd = 'ip_address_dump'
+        cmd_reply = 'ip_address_details'
+        args = dict(sw_if_index=sw_if_index,
+                    is_ipv6=is_ipv6)
+        err_msg = 'Failed to get L2FIB dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
+
+        data = list()
+        for item in papi_resp.reply[0]['api_reply']:
+            item[cmd_reply]['ip'] = inet_ntop(AF_INET6, item[cmd_reply]['ip']) \
+                if is_ipv6 else inet_ntop(AF_INET, item[cmd_reply]['ip'][0:4])
+            data.append(item[cmd_reply])
+
+        if ip_version == 'ipv4':
+            for item in data:
+                item['netmask'] = convert_ipv4_netmask_prefix(
+                    item['prefix_length'])
+        return data
+
+    @staticmethod
+    def get_interface_vrf_table(node, interface, ip_version='ipv4'):
+        """Get vrf ID for the given interface.
+
+        :param node: VPP node.
+        :param interface: Name or sw_if_index of a specific interface.
+        :type node: dict
+        :param ip_version: IP protocol version (ipv4 or ipv6).
+        :type interface: str or int
+        :type ip_version: str
+        :returns: vrf ID of the specified interface.
+        :rtype: int
+        """
+        if isinstance(interface, basestring):
+            sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        is_ipv6 = 1 if ip_version == 'ipv6' else 0
+
+        cmd = 'sw_interface_get_table'
+        args = dict(sw_if_index=sw_if_index,
+                    is_ipv6=is_ipv6)
+        err_msg = 'Failed to get VRF id assigned to interface {ifc}'.format(
+            ifc=interface)
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+
+        return papi_resp['vrf_id']
+
+    @staticmethod
+    def vpp_ip_source_check_setup(node, if_name):
+        """Setup Reverse Path Forwarding source check on interface.
+
+        :param node: Node to setup RPF source check.
+        :param if_name: Interface name to setup RPF source check.
+        :type node: dict
+        :type if_name: str
+        """
+
+        cmd = 'ip_source_check_interface_add_del'
+        args = dict(
+            sw_if_index=InterfaceUtil.get_interface_index(node, if_name),
+            is_add=1,
+            loose=0)
+        err_msg = 'Failed to enable source check on interface {ifc}'.format(
+            ifc=if_name)
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+
+    @staticmethod
+    def vpp_ip_probe(node, interface, addr):
         """Run ip probe on VPP node.
 
         :param node: VPP node.
         :param interface: Interface key or name.
         :param addr: IPv4/IPv6 address.
-        :param if_type: Interface type
         :type node: dict
         :type interface: str
         :type addr: str
-        :type if_type: str
-        :raises ValueError: If the if_type is unknown.
-        :raises Exception: If vpp probe fails.
         """
-        ssh = SSH()
-        ssh.connect(node)
 
-        if if_type == "key":
-            iface_name = Topology.get_interface_name(node, interface)
-        elif if_type == "name":
-            iface_name = interface
-        else:
-            raise ValueError("if_type unknown: {0}".format(if_type))
+        cmd = 'ip_probe_neighbor'
+        args = dict(
+            sw_if_index=InterfaceUtil.get_interface_index(node, interface),
+            dst=str(addr))
+        err_msg = 'VPP ip probe {dev} {ip} failed on {h}'.format(
+            dev=interface, ip=addr, h=node['host'])
 
-        cmd = "{c}".format(c=Constants.VAT_BIN_NAME)
-        cmd_input = 'exec ip probe {dev} {ip}'.format(dev=iface_name, ip=addr)
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd, cmd_input)
-        if int(ret_code) != 0:
-            raise Exception('VPP ip probe {dev} {ip} failed on {h}'.format(
-                dev=iface_name, ip=addr, h=node['host']))
-
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+            
     @staticmethod
     def ip_addresses_should_be_equal(ip1, ip2):
         """Fails if the given IP addresses are unequal.
