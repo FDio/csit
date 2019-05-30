@@ -13,17 +13,22 @@
 
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
+| Library  | resources.libraries.python.IPUtil
+| Library  | resources.libraries.python.Trace
+| ...
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/ip/map.robot
-| Library  | resources.libraries.python.IPUtil
-| Library  | resources.libraries.python.Trace
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/testing_path.robot
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SOFTWIRE
+| ...
 | Test Setup | Run Keywords | Set up functional test
 | ... | AND | Set interfaces IP addresses and routes
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *Test for Basic mapping rule for MAP-T*\
 | ... | *[Top] Network Topologies:* TG - DUT1 - TG with two links between the
 | ... | nodes.
@@ -85,13 +90,13 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | Vpp Route Add | ${dut_node} | :: | 0 | gateway=${dut_ip6_gw}
-| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
-| | Add IP neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
-| | ... | ${tg_to_dut_if2_mac}
+| | ... | interface=${dut_to_tg_if2}
+| | VPP Add IP neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw} | ${tg_to_dut_if2_mac}
 | | Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
-| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
-| | Add IP neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
-| | ... | ${tg_to_dut_if1_mac}
+| | ... | interface=${dut_to_tg_if1}
+| | VPP Add IP neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw} | ${tg_to_dut_if1_mac}
 
 | Check MAP-T configuration with traffic script
 | | [Documentation] |

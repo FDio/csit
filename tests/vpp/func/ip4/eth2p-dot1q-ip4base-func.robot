@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,13 +12,15 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
+| Library | resources.libraries.python.IPv6Util
+| Library | resources.libraries.python.Trace
+| ...
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/l2/tagging.robot
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
-| Library  | resources.libraries.python.Trace
-| Library | resources.libraries.python.IPv6Util
+| ...
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | VM_ENV | HW_ENV | VPP_VM_ENV
 | ... | SKIP_VPP_PATCH
 | Test Setup | Set up functional test
@@ -89,16 +91,16 @@
 | | ${vlan2_name} | ${vlan2_index}= | Create vlan sub-interface
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${tag_2}
 | |
-| | Set Interface Address | ${dut_node}
+| | VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${ip4_net0_1} | ${ip4_prefix}
-| | Set Interface Address | ${dut_node}
+| | VPP Interface Set IP Address | ${dut_node}
 | | ... | ${vlan1_index} | ${ip4_net1_1} | ${ip4_prefix}
-| | Set Interface Address | ${dut_node}
+| | VPP Interface Set IP Address | ${dut_node}
 | | ... | ${vlan2_index} | ${ip4_net2_1} | ${ip4_prefix}
 | |
-| | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${ip4_net0_2}
-| | ... | ${tg_to_dut_if1_mac}
-| | Add IP Neighbor | ${dut_node} | ${vlan1_index} | ${ip4_net1_2}
-| | ... | ${tg_to_dut_if2_mac}
-| | Add IP Neighbor | ${dut_node} | ${vlan2_index} | ${ip4_net2_2}
-| | ... | ${tg_to_dut_if2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${ip4_net0_2} | ${tg_to_dut_if1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut_node} | ${vlan1_index} | ${ip4_net1_2} | ${tg_to_dut_if2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut_node} | ${vlan2_index} | ${ip4_net2_2} | ${tg_to_dut_if2_mac}

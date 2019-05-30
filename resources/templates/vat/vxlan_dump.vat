@@ -1,1 +1,0 @@
-vxlan_tunnel_dump {param} {sw_if_index}

@@ -1,3 +1,0 @@
-bridge_domain_add_del bd_id {bd_id} flood 1 uu-flood 1 forward 1 learn {learn} arp-term 0
-sw_interface_set_l2_bridge sw_if_index {sw_if_id1} bd_id {bd_id} shg 0  enable
-sw_interface_set_l2_bridge sw_if_index {sw_if_id2} bd_id {bd_id} shg 0  enable
