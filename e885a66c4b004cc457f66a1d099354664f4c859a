@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a67f1f85_10141cab",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-30T14:40:13Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/c/13025/12/bootstrap-verify-perf.sh#304",
+      "range": {
+        "startLine": 695,
+        "startChar": 46,
+        "endLine": 695,
+        "endChar": 59
+      },
+      "revId": "e885a66c4b004cc457f66a1d099354664f4c859a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
