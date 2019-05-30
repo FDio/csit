@@ -70,14 +70,14 @@
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip4} | ${prefix4}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip4} | ${prefix4}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
 | | ... | ${tg_to_dut1_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
 | | ... | ${tg_to_dut2_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip4}
-| | ... | ${dut2_to_dut1_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4}
-| | ... | ${dut1_to_dut2_mac}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2}
+| | ... | ${dut2_to_dut1_ip4} | ${dut2_to_dut1_mac}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_dut2_mac}
 | | When Configure LISP GPE topology in 3-node circular topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
@@ -107,7 +107,8 @@
 | | And Add Fib Table | ${dut1_node} | ${fib_table}
 | | Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${vhost2} | ${fib_table}
-| | Set Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip} | ${prefix4}
+| | VPP Interface Set IP Address | ${dut1_node} | ${vhost2} | ${vhost_ip}
+| | ... | ${prefix4}
 | | Set Interface State | ${dut1_node} | ${vhost1} | up
 | | Set Interface State | ${dut1_node} | ${vhost2} | up
 | | Create bridge domain | ${dut1_node} | ${bid} | learn=${TRUE}

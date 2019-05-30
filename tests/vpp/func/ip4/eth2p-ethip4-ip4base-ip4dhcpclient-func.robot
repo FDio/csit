@@ -63,8 +63,7 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | gateway=${NONE}
-| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
+| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | local=${TRUE}
 | | When Set DHCP client on Interface | ${dut_node} | ${dut_to_tg_if1}
 | | Then Verify DHCP REQUEST after OFFER | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if1_mac} | ${server_ip}
@@ -79,8 +78,7 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | gateway=${NONE}
-| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
+| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | local=${TRUE}
 | | When Set DHCP client on Interface | ${dut_node} | ${dut_to_tg_if1}
 | | Then Run Keyword And Expect Error | DHCP REQUEST Rx timeout
 | | ... | Verify DHCP REQUEST after OFFER | ${tg_node} | ${tg_to_dut_if1}
@@ -96,15 +94,14 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | gateway=${NONE}
-| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
+| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | local=${TRUE}
 | | When Set DHCP client on Interface | ${dut_node} | ${dut_to_tg_if1}
 | | And Configure IP on client via DHCP
 | | ... | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if1_mac} | ${server_ip}
 | | ... | ${client_ip} | ${client_mask}
 | | ... | ${lease_time}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1} | ${server_ip}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${server_ip}
 | | ... | ${tg_to_dut_if1_mac}
 | | Then Send ICMP echo request and verify answer
 | | ... | ${tg_node} | ${tg_to_dut_if1}

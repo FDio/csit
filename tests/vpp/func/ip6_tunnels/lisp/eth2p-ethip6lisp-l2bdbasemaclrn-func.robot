@@ -67,13 +67,13 @@
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip6} | ${prefix6}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip6} | ${prefix6}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip6} | ${prefix6}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6}
+| | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6}
 | | ... | ${tg_to_dut2_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6}
+| | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6}
 | | ... | ${tg_to_dut1_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip6}
+| | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip6}
 | | ... | ${dut2_to_dut1_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6}
+| | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6}
 | | ... | ${dut1_to_dut2_mac}
 | | And Vpp All RA Suppress Link Layer | ${nodes}
 | | When Create L2 BD | ${dut1_node} | ${vpp_bd_id}

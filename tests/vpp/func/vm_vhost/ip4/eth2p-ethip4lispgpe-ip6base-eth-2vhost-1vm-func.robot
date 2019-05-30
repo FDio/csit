@@ -71,13 +71,13 @@
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip6o4}
 | | ... | ${dut_prefix6o4}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip6o4} | ${tg_prefix6o4}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6o4}
+| | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6o4}
 | | ... | ${tg_to_dut1_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6o4}
+| | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6o4}
 | | ... | ${tg_to_dut2_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip6o4}
+| | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip6o4}
 | | ... | ${dut2_to_dut1_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6o4}
+| | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6o4}
 | | ... | ${dut1_to_dut2_mac}
 | | And Vpp All RA Suppress Link Layer | ${nodes}
 | | When Configure LISP GPE topology in 3-node circular topology
@@ -103,7 +103,8 @@
 | | ...
 | | ${vhost1}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock1}
 | | ${vhost2}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock2}
-| | Set Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip} | ${prefix6}
+| | VPP Interface Set IP Address | ${dut1_node} | ${vhost2} | ${vhost_ip}
+| | ... | ${prefix6}
 | | Set Interface State | ${dut1_node} | ${vhost1} | up
 | | Set Interface State | ${dut1_node} | ${vhost2} | up
 | | Create bridge domain | ${dut1_node} | ${bid} | learn=${TRUE}
