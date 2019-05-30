@@ -15,10 +15,8 @@
 
 *** Settings ***
 | Library | resources.libraries.python.IPv6Util
-| Library | resources.libraries.python.IPv6Setup
 | Library | resources.libraries.python.TrafficScriptExecutor
 | Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.Routing
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.topology.Topology
 | Resource | resources/libraries/robot/shared/default.robot

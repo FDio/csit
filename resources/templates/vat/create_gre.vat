@@ -1,1 +1,0 @@
-exec create gre tunnel src {src} dst {dst}
