@@ -17,11 +17,45 @@ Create dictionary variable nodes_ipv6_addr with IPv6 addresses from available
 networks.
 """
 
-from resources.libraries.python.IPv6Setup import IPv6Networks
+from ipaddress import IPv6Network
+
 from resources.libraries.python.topology import Topology
 
 # Default list of available IPv6 networks
 IPV6_NETWORKS = ['3ffe:{0:04x}::/64'.format(i) for i in range(1, 100)]
+
+
+class IPv6Networks(object):
+    """IPv6 network iterator.
+
+    TODO: Conform to https://docs.python.org/2/library/stdtypes.html#typeiter
+    """
+
+    def __init__(self, networks):
+        """Initialize internal list of valid networks.
+
+        :param networks: List of the available IPv6 networks.
+        :type networks: list
+        :raise RuntimeError: If no networks were added.
+        """
+        self._networks = []
+        for network in networks:
+            net = IPv6Network(unicode(network))
+            self._networks.append(net)
+        if not self._networks:
+            raise RuntimeError('No IPv6 networks')
+
+    def next_network(self):
+        """Get the next element of the iterator.
+
+        :returns: IPv6 network.
+        :rtype: IPv6Network object
+        :raises StopIteration: If there is no more elements.
+        """
+        if self._networks:
+            return self._networks.pop()
+        else:
+            raise StopIteration()
 
 
 def get_variables(nodes, networks=IPV6_NETWORKS):
