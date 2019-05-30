@@ -492,6 +492,7 @@ def exec_cmd_no_error(
 
     return stdout, stderr
 
+
 def scp_node(
         node, local_path, remote_path, get=False, timeout=30, disconnect=False):
     """Copy files from local_path to remote_path or vice versa.

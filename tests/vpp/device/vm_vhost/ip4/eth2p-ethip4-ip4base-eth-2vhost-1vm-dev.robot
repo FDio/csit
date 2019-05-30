@@ -92,14 +92,13 @@
 | | ${vhost2_mac}= | And Get Vhost User Mac By SW Index
 | | ... | ${dut_node} | ${vhost2}
 | | And Vpp Route Add | ${dut_node} | ${net3} | ${prefix_length}
-| | ... | gateway=${net2_ip2} | interface=${vhost1} | resolve_attempts=${NONE}
-| | ... | count=${NONE}
+| | ... | gateway=${net2_ip2} | interface=${vhost1}
 | | And Vpp Route Add | ${dut_node} | ${net1} | ${prefix_length}
-| | ... | gateway=${net2_ip1} | interface=${vhost2} | resolve_attempts=${NONE}
-| | ... | count=${NONE} | vrf=${fib_table_2}
-| | Add IP Neighbor | ${dut_node} | ${vhost1} | ${net2_ip2} | ${vhost2_mac}
-| | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2}
-| | ... | ${tg_to_dut_if2_mac}
+| | ... | gateway=${net2_ip1} | interface=${vhost2}
+| | ... | vrf=${fib_table_2}
+| | VPP Add IP Neighbor | ${dut_node} | ${vhost1} | ${net2_ip2} | ${vhost2_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2} | ${tg_to_dut_if2_mac}
 | | When Configure VM for vhost L2BD forwarding
 | | ... | ${dut_node} | ${sock1} | ${sock2}
 | | Then Send packet and verify headers
