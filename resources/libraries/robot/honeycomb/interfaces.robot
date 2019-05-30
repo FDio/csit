@@ -14,7 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| Library | resources.libraries.python.IPv4Util
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.TrafficScriptExecutor
 
 *** Keywords ***
@@ -401,13 +401,13 @@
 | | ...
 | | ... | \| IPv6 address from VAT should contain \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64 \|
-| | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
+| | [Arguments] | ${node} | ${interface} | ${address} | ${prefix} | ${netmask}
 | | ${sw_if_index}= | Vpp Get Interface Sw Index | ${node} | ${interface}
 | | ${vpp_data}= | VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv6
 | | ${settings}= | Create Dictionary
-| | ... | ip=${address} | sw_if_index=${sw_if_index} | prefix_length=${prefix}
-| | ... | is_ipv6=${1}
+| | ... | ip=${address} | netmask=${netmask} | sw_if_index=${sw_if_index}
+| | ... | prefix_length=${prefix} | is_ipv6=${1}
 | | Should contain | ${vpp_data} | ${settings}
 
 | Honeycomb removes interface IPv6 addresses
