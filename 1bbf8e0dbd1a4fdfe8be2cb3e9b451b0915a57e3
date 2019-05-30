@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02760589_164ce5f0",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-30T10:05:50Z",
+      "side": 1,
+      "message": "a single run of selected",
+      "range": {
+        "startLine": 53,
+        "startChar": 44,
+        "endLine": 53,
+        "endChar": 78
+      },
+      "revId": "1bbf8e0dbd1a4fdfe8be2cb3e9b451b0915a57e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "67cf91d2_4f3df95e",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-30T10:05:50Z",
+      "side": 1,
+      "message": "|csit-release| report",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 24
+      },
+      "revId": "1bbf8e0dbd1a4fdfe8be2cb3e9b451b0915a57e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e479f88c_1e66c026",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-30T10:05:50Z",
+      "side": 1,
+      "message": "in order to spot-check the main data plane paths.",
+      "range": {
+        "startLine": 54,
+        "startChar": 52,
+        "endLine": 55,
+        "endChar": 50
+      },
+      "revId": "1bbf8e0dbd1a4fdfe8be2cb3e9b451b0915a57e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afc71415_dca45c95",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-30T10:05:50Z",
+      "side": 1,
+      "message": "NFV service density and soak",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 20
+      },
+      "revId": "1bbf8e0dbd1a4fdfe8be2cb3e9b451b0915a57e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "640a9b9e_ec079803",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-30T10:05:50Z",
+      "side": 1,
+      "message": "and do not feature in this report",
+      "range": {
+        "startLine": 56,
+        "startChar": 40,
+        "endLine": 57,
+        "endChar": 14
+      },
+      "revId": "1bbf8e0dbd1a4fdfe8be2cb3e9b451b0915a57e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
