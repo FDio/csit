@@ -13,14 +13,17 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv4Util.IPv4Util
 | Library | resources.libraries.python.IPv4Setup.IPv4Setup
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Routing
 | Library | resources.libraries.python.TrafficScriptExecutor
+| ...
 | Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
+| ...
 | Variables | resources/libraries/python/IPv4NodeAddress.py | ${nodes}
 | ...
 | Documentation | IPv4 keywords
@@ -32,13 +35,6 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | VPP Show IP Table | ${nodes['${dut}']}
-
-| Configure IPv4 addresses on all DUTs
-| | [Documentation] | Setup IPv4 address on all DUTs in topology
-| | [Arguments] | ${nodes} | ${nodes_addr}
-| | ${interfaces}= | VPP nodes set ipv4 addresses | ${nodes} | ${nodes_addr}
-| | :FOR | ${interface} | IN | @{interfaces}
-| | | Set Interface State | @{interface} | up | if_type=name
 
 | Get interface Ipv4 addresses
 | | [Documentation] | Get IPv4 address for the given interface of the node.
@@ -54,88 +50,8 @@
 | | ${ip_data}= | VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv4
 
-| Configure routes for IPv4 test
-| | [Documentation] | Setup routing on all VPP nodes required for IPv4 tests
-| | [Arguments] | ${nodes} | ${nodes_addr}
-| | Append Nodes | ${nodes['DUT1']} | ${nodes['DUT2']}
-| | Compute Path
-| | ${tg}= | Set Variable | ${nodes['TG']}
-| | ${dut1_if} | ${dut1}= | First Interface
-| | ${dut2_if} | ${dut2}= | Last Interface
-| | ${dut1_if_addr}= | Get IPv4 address of node "${dut1}" interface "${dut1_if}" from "${nodes_addr}"
-| | ${dut2_if_addr}= | Get IPv4 address of node "${dut2}" interface "${dut2_if}" from "${nodes_addr}"
-| | @{tg_dut1_links}= | Get active links connecting "${tg}" and "${dut1}"
-| | @{tg_dut2_links}= | Get active links connecting "${tg}" and "${dut2}"
-| | :FOR | ${link} | IN | @{tg_dut1_links}
-| | | ${net}= | Get Link Address | ${link} | ${nodes_addr}
-| | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
-| | | Vpp Route Add | ${dut2} | ${net} | ${prefix}
-| | | ... | gateway=${dut1_if_addr} | interface=${dut2_if}
-| | :FOR | ${link} | IN | @{tg_dut2_links}
-| | | ${net}= | Get Link Address | ${link} | ${nodes_addr}
-| | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
-| | | Vpp Route Add | ${dut1} | ${net} | ${prefix}
-| | | ... | gateway=${dut2_if_addr} | interface=${dut1_if}
-
-| Configure DUT nodes for IPv4 testing
-| | Configure IPv4 addresses on all DUTs | ${nodes} | ${nodes_ipv4_addr}
-| | Setup ARP on all DUTs | ${nodes} | ${nodes_ipv4_addr}
-| | Configure routes for IPv4 test | ${nodes} | ${nodes_ipv4_addr}
-| | All Vpp Interfaces Ready Wait | ${nodes}
-
-| Route traffic from interface '${from_port}' on node '${from_node}' to interface '${to_port}' on node '${to_node}' '${hops}' hops away using IPv4
-| | ${src_ip}= | Get IPv4 address of node "${from_node}" interface "${from_port}" from "${nodes_ipv4_addr}"
-| | ${dst_ip}= | Get IPv4 address of node "${to_node}" interface "${to_port}" from "${nodes_ipv4_addr}"
-| | ${src_mac}= | Get interface mac | ${from_node} | ${from_port}
-| | ${dst_mac}= | Get interface mac | ${to_node} | ${to_port}
-| | ${is_dst_tg}= | Is TG node | ${to_node}
-| | ${adj_node} | ${adj_int}= | Get adjacent node and interface | ${nodes}
-| | ... | ${from_node} | ${from_port}
-| | ${from_port_name}= | Get interface name | ${from_node} | ${from_port}
-| | ${to_port_name}= | Get interface name | ${to_node} | ${to_port}
-| | ${adj_int_mac}= | Get interface MAC | ${adj_node} | ${adj_int}
-| | ${args}= | Traffic Script Gen Arg | ${to_port_name} | ${from_port_name}
-| | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
-| | ${args}= | Catenate | ${args} | --hops ${hops}
-| | ... | --first_hop_mac ${adj_int_mac} | --is_dst_tg ${is_dst_tg}
-| | Run Traffic Script On Node | ipv4_ping_ttl_check.py | ${from_node} | ${args}
-
-| Execute IPv4 ICMP echo sweep
-| | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
-| | [Arguments] | ${src_node} | ${dst_node} | ${start_size} | ${end_size}
-| | ... | ${step}
-| | Append Nodes | ${src_node} | ${dst_node}
-| | Compute Path
-| | ${src_port} | ${src_node}= | First Interface
-| | ${dst_port} | ${dst_node}= | Last Interface
-| | ${src_ip}= | Get IPv4 address of node "${src_node}" interface "${src_port}" from "${nodes_ipv4_addr}"
-| | ${dst_ip}= | Get IPv4 address of node "${dst_node}" interface "${dst_port}" from "${nodes_ipv4_addr}"
-| | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
-| | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
-| | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
-| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name}
-| | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
-| | ${args}= | Catenate | ${args} | --start_size ${start_size}
-| | ... | --end_size ${end_size} | --step ${step}
-| | Run Traffic Script On Node | ipv4_sweep_ping.py | ${src_node} | ${args}
-| | ... | timeout=${180}
-
-| Send ARP request and verify response
-| | [Arguments] | ${tg_node} | ${vpp_node}
-| | ${link_name}= | Get first active connecting link between node "${tg_node}" and "${vpp_node}"
-| | ${src_if}= | Get interface by link name | ${tg_node} | ${link_name}
-| | ${dst_if}= | Get interface by link name | ${vpp_node} | ${link_name}
-| | ${src_ip}= | Get IPv4 address of node "${tg_node}" interface "${src_if}" from "${nodes_ipv4_addr}"
-| | ${dst_ip}= | Get IPv4 address of node "${vpp_node}" interface "${dst_if}" from "${nodes_ipv4_addr}"
-| | ${src_mac}= | Get node link mac | ${tg_node} | ${link_name}
-| | ${dst_mac}= | Get node link mac | ${vpp_node} | ${link_name}
-| | ${src_if_name}= | Get interface name | ${tg_node} | ${src_if}
-| | ${args}= | Traffic Script Gen Arg | ${src_if_name} | ${src_if_name}
-| | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
-| | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
-
 | Configure IP addresses on interfaces
-| | [Documentation] | Iterates through @{args} list and Set Interface Address
+| | [Documentation] | Iterates through @{args} list and set IP interface address
 | | ... | for every (${dut_node}, ${interface}, ${address},
 | | ... | ${prefix}) tuple.
 | | ...
@@ -154,7 +70,7 @@
 | | ...
 | | [Arguments] | @{args}
 | | :FOR | ${dut_node} | ${interface} | ${address} | ${prefix} | IN | @{args}
-| | | Set Interface Address | ${dut_node} | ${interface} | ${address}
+| | | VPP Interface Set IP Address | ${dut_node} | ${interface} | ${address}
 | | | ... | ${prefix}
 
 | Send ICMP echo request and verify answer
@@ -287,9 +203,9 @@
 | | ...
 | | ${dut_tg_ip4_prefix}= | Set Variable | 24
 | | ...
-| | Add arp on dut | ${dut_node} | ${dut_to_tg_if1} | ${tg_if1_ip4}
+| | VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_if1_ip4}
 | | ... | ${tg_to_dut_if1_mac}
-| | Add arp on dut | ${dut_node} | ${dut_to_tg_if2} | ${tg_if2_ip4}
+| | VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${tg_if2_ip4}
 | | ... | ${tg_to_dut_if2_mac}
 | | ...
 | | Configure IP addresses on interfaces | ${dut_node} | ${dut_to_tg_if1}
@@ -347,13 +263,13 @@
 | | ${dut_tg_ip4_prefix}= | Set Variable | 24
 | | ${dut_link_ip4_prefix}= | Set Variable | 30
 | | ...
-| | Add arp on dut | ${dut1_node} | ${dut1_to_tg} | ${tg_if1_ip4}
+| | VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg_if1_ip4}
 | | ... | ${tg_to_dut1_mac}
-| | Add arp on dut | ${dut1_node} | ${dut1_to_dut2} | ${dut2_if1_ip4}
+| | VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_if1_ip4}
 | | ... | ${dut2_to_dut1_mac}
-| | Add arp on dut | ${dut2_node} | ${dut2_to_dut1} | ${dut1_if2_ip4}
+| | VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_if2_ip4}
 | | ... | ${dut1_to_dut2_mac}
-| | Add arp on dut | ${dut2_node} | ${dut2_to_tg} | ${tg_if2_ip4}
+| | VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg_if2_ip4}
 | | ... | ${tg_to_dut2_mac}
 | | ...
 | | Configure IP addresses on interfaces | ${dut1_node} | ${dut1_to_tg}

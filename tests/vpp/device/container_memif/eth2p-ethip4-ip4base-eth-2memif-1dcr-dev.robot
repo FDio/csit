@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.Routing
 | ...
@@ -80,14 +81,14 @@
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set up functional test with containers
 | | And Configure interfaces in path up
-| | When Set up memif interfaces on DUT node | ${dut_node} | ${sock_base}
-| | ... | ${sock_base} | dcr_uuid=${dcr_uuid}
+| | When Set up memif interfaces on DUT node
+| | ... | ${dut_node} | ${sock_base} | ${sock_base} | dcr_uuid=${dcr_uuid}
 | | ... | memif_if1=memif_if1 | memif_if2=memif_if2 | rxq=${0} | txq=${0}
 | | And Add Fib Table | ${dut_node} | ${fib_table_2}
-| | And Assign Interface To Fib Table | ${dut_node}
-| | ... | ${memif_if2} | ${fib_table_2}
-| | And Assign Interface To Fib Table | ${dut_node}
-| | ... | ${dut_to_tg_if2} | ${fib_table_2}
+| | And Assign Interface To Fib Table
+| | ... | ${dut_node} | ${memif_if2} | ${fib_table_2}
+| | And Assign Interface To Fib Table
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${fib_table_2}
 | | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_ip1} | ${prefix_length}
 | | ... | ${dut_node} | ${memif_if1} | ${net2_ip1} | ${prefix_length}
@@ -96,16 +97,16 @@
 | | ${memif_if2_key}= | Get interface by sw index | ${nodes['DUT1']}
 | | ... | ${memif_if2}
 | | ${memif_if2_mac}= | Get interface MAC | ${nodes['DUT1']} | ${memif_if2_key}
-| | And Vpp Route Add | ${dut_node} | ${net3} | ${prefix_length}
+| | And Vpp Route Add
+| | ... | ${dut_node} | ${net3} | ${prefix_length}
 | | ... | gateway=${net2_ip2} | interface=${memif_if1}
-| | ... | resolve_attempts=${NONE} | count=${NONE}
-| | And Vpp Route Add | ${dut_node} | ${net1} | ${prefix_length}
-| | ... | gateway=${net2_ip1} | interface=${memif_if2}
-| | ... | resolve_attempts=${NONE} | count=${NONE} | vrf=${fib_table_2}
-| | Add IP Neighbor | ${dut_node} | ${memif_if1} | ${net2_ip2}
-| | ... | ${memif_if2_mac}
-| | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2}
-| | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add
+| | ... | ${dut_node} | ${net1} | ${prefix_length}
+| | ... | gateway=${net2_ip1} | interface=${memif_if2} | vrf=${fib_table_2}
+| | Add IP Neighbor
+| | ... | ${dut_node} | ${memif_if1} | ${net2_ip2} | ${memif_if2_mac}
+| | Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2} | ${tg_to_dut_if2_mac}
 | | Then Send packet and verify headers
 | | ... | ${tg_node} | ${net1_ip2} | ${net3_ip2}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}

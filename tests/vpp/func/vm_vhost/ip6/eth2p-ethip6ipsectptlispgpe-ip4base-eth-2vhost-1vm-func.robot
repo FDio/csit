@@ -168,7 +168,8 @@
 | | ... | Qemu and bridge the vhosts.
 | | ${vhost1}= | And Vpp Create Vhost User Interface | ${dut1_node} | ${sock1}
 | | ${vhost2}= | And Vpp Create Vhost User Interface | ${dut1_node} | ${sock2}
-| | Set Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip} | ${prefix4}
+| | VPP Interface Set IP Address | ${dut1_node} | ${vhost2} | ${vhost_ip}
+| | ... | ${prefix4}
 | | Set Interface State | ${dut1_node} | ${vhost1} | up
 | | Set Interface State | ${dut1_node} | ${vhost2} | up
 | | Create bridge domain | ${dut1_node} | ${bid} | learn=${TRUE}

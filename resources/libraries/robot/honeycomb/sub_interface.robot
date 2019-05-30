@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot

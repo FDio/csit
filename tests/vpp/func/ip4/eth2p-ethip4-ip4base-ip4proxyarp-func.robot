@@ -59,13 +59,12 @@
 | | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_tg_name}= | Get interface name | ${dut1_node} | ${dut1_to_tg}
 | | ${tg_to_dut1_name}= | Get interface name | ${tg_node} | ${tg_to_dut1}
-| | When Set Interface Address | ${dut1_node}
+| | When VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Vpp Add Proxy ARP | ${dut1_node} | ${lo_ip4_addr} | ${hi_ip4_addr}
 | | And Vpp Proxy ARP Interface Enable | ${dut1_node} | ${dut1_to_tg_name}
-| | Then Send ARP Request | ${tg_node} | ${tg_to_dut1_name}
-| | ...                   | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
-| | ...                   | ${tg_to_dut1_ip} | ${pass_test_ip}
+| | Then Send ARP Request | ${tg_node} | ${tg_to_dut1_name} | ${tg_to_dut1_mac}
+| | ... | ${dut1_to_tg_mac} | ${tg_to_dut1_ip} | ${pass_test_ip}
 
 | TC02: DUT sends ARP reply on behalf of another machine from beginning of the IP range
 | | [Documentation]
@@ -81,13 +80,12 @@
 | | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_tg_name}= | Get interface name | ${dut1_node} | ${dut1_to_tg}
 | | ${tg_to_dut1_name}= | Get interface name | ${tg_node} | ${tg_to_dut1}
-| | When Set Interface Address | ${dut1_node}
+| | When VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Vpp Add Proxy ARP | ${dut1_node} | ${lo_ip4_addr} | ${hi_ip4_addr}
 | | And Vpp Proxy ARP Interface Enable | ${dut1_node} | ${dut1_to_tg_name}
-| | Then Send ARP Request | ${tg_node} | ${tg_to_dut1_name}
-| | ...                   | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
-| | ...                   | ${tg_to_dut1_ip} | ${pass_test_lo_ip}
+| | Then Send ARP Request | ${tg_node} | ${tg_to_dut1_name} | ${tg_to_dut1_mac}
+| | ... | ${dut1_to_tg_mac} | ${tg_to_dut1_ip} | ${pass_test_lo_ip}
 
 | TC03: DUT sends ARP reply on behalf of another machine from end of the IP range
 | | [Documentation]
@@ -103,13 +101,12 @@
 | | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_tg_name}= | Get interface name | ${dut1_node} | ${dut1_to_tg}
 | | ${tg_to_dut1_name}= | Get interface name | ${tg_node} | ${tg_to_dut1}
-| | When Set Interface Address | ${dut1_node}
+| | When VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Vpp Add Proxy ARP | ${dut1_node} | ${lo_ip4_addr} | ${hi_ip4_addr}
 | | And Vpp Proxy ARP Interface Enable | ${dut1_node} | ${dut1_to_tg_name}
-| | Then Send ARP Request | ${tg_node} | ${tg_to_dut1_name}
-| | ...                   | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
-| | ...                   | ${tg_to_dut1_ip} | ${pass_test_hi_ip}
+| | Then Send ARP Request | ${tg_node} | ${tg_to_dut1_name} | ${tg_to_dut1_mac}
+| | ... | ${dut1_to_tg_mac} | ${tg_to_dut1_ip} | ${pass_test_hi_ip}
 
 | TC04: DUT does not send ARP reply on behalf of another machine from below of the IP range
 | | [Documentation]
@@ -125,13 +122,13 @@
 | | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_tg_name}= | Get interface name | ${dut1_node} | ${dut1_to_tg}
 | | ${tg_to_dut1_name}= | Get interface name | ${tg_node} | ${tg_to_dut1}
-| | When Set Interface Address | ${dut1_node}
+| | When VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Vpp Add Proxy ARP | ${dut1_node} | ${lo_ip4_addr} | ${hi_ip4_addr}
 | | And Vpp Proxy ARP Interface Enable | ${dut1_node} | ${dut1_to_tg_name}
 | | Then ARP request should fail | ${tg_node} | ${tg_to_dut1_name}
-| | ...                                 | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
-| | ...                                 | ${tg_to_dut1_ip} | ${fail_test_lo_ip}
+| | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut1_ip}
+| | ... | ${fail_test_lo_ip}
 
 | TC05: DUT does not send ARP reply on behalf of another machine from above of the IP range
 | | [Documentation]
@@ -147,10 +144,10 @@
 | | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_tg_name}= | Get interface name | ${dut1_node} | ${dut1_to_tg}
 | | ${tg_to_dut1_name}= | Get interface name | ${tg_node} | ${tg_to_dut1}
-| | When Set Interface Address | ${dut1_node}
+| | When VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Vpp Add Proxy ARP | ${dut1_node} | ${lo_ip4_addr} | ${hi_ip4_addr}
 | | And Vpp Proxy ARP Interface Enable | ${dut1_node} | ${dut1_to_tg_name}
 | | Then ARP request should fail | ${tg_node} | ${tg_to_dut1_name}
-| | ...                                 | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
-| | ...                                 | ${tg_to_dut1_ip} | ${fail_test_hi_ip}
+| | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut1_ip}
+| | ... | ${fail_test_hi_ip}
