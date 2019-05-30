@@ -1,1 +1,0 @@
-input_acl_set_interface sw_if_index {sw_if_index} {ip_version}-table {table_index}

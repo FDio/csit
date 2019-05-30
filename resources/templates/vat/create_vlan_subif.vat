@@ -1,1 +1,0 @@
-create_vlan_subif sw_if_index {sw_if_index} vlan {vlan}

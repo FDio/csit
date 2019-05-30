@@ -15,8 +15,7 @@
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
 | Library | resources.libraries.python.telemetry.SPAN
 | Library  | resources.libraries.python.InterfaceUtil
-| Library  | resources.libraries.python.IPv4Util
-| Library  | resources.libraries.python.IPv4Setup
+| Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
 
 *** Keywords ***
