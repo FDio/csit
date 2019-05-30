@@ -12,18 +12,23 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
+| Library  | resources.libraries.python.IPUtil
+| Library  | resources.libraries.python.Trace
+| ...
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
+| Resource | resources/libraries/robot/l2/l2_traffic.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
-| Resource | resources/libraries/robot/l2/l2_traffic.robot
-| Library  | resources.libraries.python.Trace
-| Library  | resources.libraries.python.IPUtil
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *Vpn routed forwarding - baseline IPv6*
 | ... | *[Top] Network Topologies:* TG=DUT1=DUT2=TG 3-node topology with two
 | ... | links in between nodes.
@@ -101,11 +106,11 @@
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
-| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if1}
-| | ... | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
+| | Then Send ICMP echo request and verify answer | ${tg_node}
+| | ... | ${tg_to_dut1_if1} | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
 | | ... | ${dut1_to_dut2_ip1} | ${tg_dut1_ip1} | ${timeout}
-| | And Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if2}
-| | ... | ${dut1_to_tg_if2_mac} | ${tg_to_dut1_if2_mac}
+| | And Send ICMP echo request and verify answer | ${tg_node}
+| | ... | ${tg_to_dut1_if2} | ${dut1_to_tg_if2_mac} | ${tg_to_dut1_if2_mac}
 | | ... | ${dut1_to_dut2_ip2} | ${tg_dut1_ip2} | ${timeout}
 
 | TC03: TG packets routed to DUT2 ingress interface through DUT1, VPP configured with two VRFs
@@ -124,11 +129,11 @@
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
-| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if1}
-| | ... | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
+| | Then Send ICMP echo request and verify answer | ${tg_node}
+| | ... | ${tg_to_dut1_if1} | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
 | | ... | ${dut2_to_dut1_ip1} | ${tg_dut1_ip1} | ${timeout}
-| | And Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if2}
-| | ... | ${dut1_to_tg_if2_mac} | ${tg_to_dut1_if2_mac}
+| | And Send ICMP echo request and verify answer | ${tg_node}
+| | ... | ${tg_to_dut1_if2} | ${dut1_to_tg_if2_mac} | ${tg_to_dut1_if2_mac}
 | | ... | ${dut2_to_dut1_ip2} | ${tg_dut1_ip2} | ${timeout}
 
 | TC04: TG packets routed to DUT2 egress interface through DUT1, VPP configured with two VRFs
@@ -147,11 +152,11 @@
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
-| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if1}
-| | ... | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
+| | Then Send ICMP echo request and verify answer | ${tg_node}
+| | ... | ${tg_to_dut1_if1} | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
 | | ... | ${dut2_to_tg_ip1} | ${tg_dut1_ip1} | ${timeout}
-| | And Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if2}
-| | ... | ${dut1_to_tg_if2_mac} | ${tg_to_dut1_if2_mac}
+| | And Send ICMP echo request and verify answer | ${tg_node}
+| | ... | ${tg_to_dut1_if2} | ${dut1_to_tg_if2_mac} | ${tg_to_dut1_if2_mac}
 | | ... | ${dut2_to_tg_ip2} | ${tg_dut1_ip2} | ${timeout}
 
 | TC05: TG packets routed to TG through DUT1 and DUT2, VPP configured with two VRFs
@@ -360,44 +365,44 @@
 | | Assign Interface To Fib Table
 | | ... | ${dut2_node} | ${dut2_to_tg_if2} | ${fib_table_2} | ipv6=${TRUE}
 
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_tg_if1} | ${dut1_to_tg_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_tg_if2} | ${dut1_to_tg_ip2} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_dut2_if1}
 | | ... | ${dut1_to_dut2_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_dut2_if2}
 | | ... | ${dut1_to_dut2_ip2} | ${ip_prefix}
 
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_tg_if1} | ${dut2_to_tg_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_tg_if2} | ${dut2_to_tg_ip2} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_dut1_if1}
 | | ... | ${dut2_to_dut1_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_dut1_if2}
 | | ... | ${dut2_to_dut1_ip2} | ${ip_prefix}
 
-| | And Add IP Neighbor | ${dut1_node} | ${dut1_to_tg_if1}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg_if1}
 | | ... | ${tg_dut1_ip1} | ${tg_to_dut1_if1_mac}
-| | And Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2_if1}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2_if1}
 | | ... | ${dut2_to_dut1_ip1} | ${dut2_to_dut1_if1_mac}
-| | And Add IP Neighbor | ${dut2_node} | ${dut2_to_tg_if1}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_tg_if1}
 | | ... | ${tg_dut2_ip1} | ${tg_to_dut2_if1_mac}
-| | And Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1_if1}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1_if1}
 | | ... | ${dut1_to_dut2_ip1} | ${dut1_to_dut2_if1_mac}
 
-| | And Add IP Neighbor | ${dut1_node} | ${dut1_to_tg_if2}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg_if2}
 | | ... | ${tg_dut1_ip2} | ${tg_to_dut1_if2_mac}
-| | And Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2_if2}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2_if2}
 | | ... | ${dut2_to_dut1_ip2} | ${dut2_to_dut1_if2_mac}
-| | And Add IP Neighbor | ${dut2_node} | ${dut2_to_tg_if2}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_tg_if2}
 | | ... | ${tg_dut2_ip2} | ${tg_to_dut2_if2_mac}
-| | And Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1_if2}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1_if2}
 | | ... | ${dut1_to_dut2_ip2} | ${dut1_to_dut2_if2_mac}
 
 | | And Vpp Route Add | ${dut1_node} | ${tg_dut2_ip1} | ${ip_prefix}

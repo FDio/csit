@@ -1,1 +1,0 @@
-sw_interface_set_l2_bridge sw_if_index {sw_if_index} bd_id {bd_id} shg {shg} enable

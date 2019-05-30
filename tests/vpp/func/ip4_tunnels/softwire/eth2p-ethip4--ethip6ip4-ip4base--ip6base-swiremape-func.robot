@@ -13,18 +13,24 @@
 
 
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
+| Library  | resources.libraries.python.IPUtil
+| Library  | resources.libraries.python.Trace
+| ...
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/ip/map.robot
-| Library  | resources.libraries.python.IPUtil
-| Library  | resources.libraries.python.Trace
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/testing_path.robot
+| ...
 | Variables | resources/test_data/softwire/map_e_domains.py | ${5}
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
 | ... | SOFTWIRE
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *Test for Basic mapping rule for MAP-E*\
 | ... | *[Top] Network Topologies:* TG - DUT1 - TG with two links between the
 | ... | nodes.
@@ -252,13 +258,13 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | :: | 0 | gateway=${dut_ip6_gw}
-| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
-| | ... | ${tg_to_dut_if2_mac}
+| | ... | interface=${dut_to_tg_if2}
+| | And VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw} | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
-| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
-| | ... | ${tg_to_dut_if1_mac}
+| | ... | interface=${dut_to_tg_if1}
+| | And VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw} | ${tg_to_dut_if1_mac}
 | | :FOR | ${domain_set} | IN | @{domain_sets}
 | | | When Map Add Domain | ${dut_node} | @{domain_set}
 | | :FOR | ${ip_set} | IN | @{ip_sets}
@@ -292,13 +298,13 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | :: | 0 | gateway=${dut_ip6_gw}
-| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
-| | ... | ${tg_to_dut_if2_mac}
+| | ... | interface=${dut_to_tg_if2}
+| | And VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw} | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
-| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
-| | ... | ${tg_to_dut_if1_mac}
+| | ... | interface=${dut_to_tg_if1}
+| | And VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw} | ${tg_to_dut_if1_mac}
 | | :FOR | ${domain_set} | IN | @{domain_sets}
 | | | When Map Add Domain | ${dut_node} | @{domain_set}
 | | ${ip_set_A}= | Get From List | ${ip_sets} | 0
@@ -338,13 +344,13 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | :: | 0 | gateway=${dut_ip6_gw}
-| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
-| | ... | ${tg_to_dut_if2_mac}
+| | ... | interface=${dut_to_tg_if2}
+| | And VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw} | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
-| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
-| | ... | ${tg_to_dut_if1_mac}
+| | ... | interface=${dut_to_tg_if1}
+| | And VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw} | ${tg_to_dut_if1_mac}
 | | :FOR | ${domain_set} | IN | @{domain_sets}
 | | | When Map Add Domain | ${dut_node} | @{domain_set}
 | | ${ip_set_A}= | Get From List | ${ip_sets} | 0
@@ -374,13 +380,13 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | 2001:: | 16 | gateway=${dut_ip6_gw}
-| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
-| | ... | ${tg_to_dut_if2_mac}
+| | ... | interface=${dut_to_tg_if2}
+| | And VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw} | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
-| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
-| | ... | ${tg_to_dut_if1_mac}
+| | ... | interface=${dut_to_tg_if1}
+| | And VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw} | ${tg_to_dut_if1_mac}
 | | Then Check MAP Configuration With Traffic Script
 | | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
 | | ... | 20.169.201.219 | ${1232} | 2001:a9c9:db34::14a9:c9db:34
@@ -388,13 +394,13 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | 2001:: | 16 | gateway=${dut_ip6_gw}
-| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
-| | ... | ${tg_to_dut_if2_mac}
+| | ... | interface=${dut_to_tg_if2}
+| | And VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw} | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | gateway=${dut_ip4_gw}
-| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
-| | ... | ${tg_to_dut_if1_mac}
+| | ... | interface=${dut_to_tg_if1}
+| | And VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw} | ${tg_to_dut_if1_mac}
 | | Then Check MAP Configuration With Traffic Script
 | | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
 | | ... | 20.169.201.219 | ${1232} | 2001:a9c9:db34::14a9:c9db:34
@@ -423,13 +429,13 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | Vpp Route Add | ${dut_node} | :: | 0 | gateway=${dut_ip6_gw}
-| | ... | interface=${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
-| | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
-| | ... | ${tg_to_dut_if2_mac}
+| | ... | interface=${dut_to_tg_if2}
+| | VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw} | ${tg_to_dut_if2_mac}
 | | Vpp Route Add | ${dut_node} | ${ipv4_outside} | 32 | gateway=${dut_ip4_gw}
-| | ... | interface=${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
-| | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
-| | ... | ${tg_to_dut_if1_mac}
+| | ... | interface=${dut_to_tg_if1}
+| | VPP Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw} | ${tg_to_dut_if1_mac}
 
 | Check MAP Configuration With Traffic Script
 | | [Documentation]

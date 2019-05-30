@@ -11,18 +11,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 *** Settings ***
-| Resource | resources/libraries/robot/shared/default.robot
+| Library | resources.libraries.python.IPUtil
+| Library | resources.libraries.python.Trace
+| ...
+| Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/shared/counters.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
-| Library | resources.libraries.python.Trace
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *Ipv6 Multipath routing test cases*
 | ...
 | ... | *[Top] Network topologies:* TG=DUT 2-node topology with two links\
@@ -53,24 +58,24 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And Vpp Set If Ipv6 Addr | ${dut_node}
-| | ... | ${dut_to_tg_if2} | ${ip_1} | ${prefix_length}
-| | And Vpp Set If Ipv6 Addr | ${dut_node}
-| | ... | ${dut_to_tg_if1} | ${ip_2} | ${prefix_length}
-| | And Add Ip Neighbor
+| | And VPP Interface Set IP Address
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${ip_1} | ${prefix_length}
+| | And VPP Interface Set IP Address
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${ip_2} | ${prefix_length}
+| | And VPP Add IP Neighbor
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${neighbor_1_ip} | ${neighbor_1_mac}
-| | And Add Ip Neighbor
+| | And VPP Add IP Neighbor
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${neighbor_2_ip} | ${neighbor_2_mac}
 | | And Suppress ICMPv6 router advertisement message | ${nodes}
 | | When Vpp Route Add
 | | ... | ${dut_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | gateway=${neighbor_1_ip} | interface=${dut_to_tg_if1}
-| | ... | resolve_attempts=${NONE} | multipath=${TRUE}
+| | ... | multipath=${TRUE}
 | | And Vpp Route Add
 | | ... | ${dut_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | gateway=${neighbor_2_ip} | interface=${dut_to_tg_if1}
-| | ... | resolve_attempts=${NONE} | multipath=${TRUE}
-| | Then Send packets and verify multipath routing | ${tg_node}
-| | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1} | ${test_src_ip} | ${test_dst_ip}
-| | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${dut_to_tg_if1_mac}
-| | ... | ${neighbor_1_mac} | ${neighbor_2_mac}
+| | ... | multipath=${TRUE}
+| | Then Send packets and verify multipath routing
+| | ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1} | ${test_src_ip}
+| | ... | ${test_dst_ip} | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac}
+| | ... | ${dut_to_tg_if1_mac} | ${neighbor_1_mac} | ${neighbor_2_mac}

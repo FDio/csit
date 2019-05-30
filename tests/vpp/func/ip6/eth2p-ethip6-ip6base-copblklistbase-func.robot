@@ -12,18 +12,23 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.Cop
+| Library | resources.libraries.python.IPUtil
+| Library | resources.libraries.python.Trace
+| ...
+| Resource | resources/libraries/robot/ip/ip6.robot
+| Resource | resources/libraries/robot/l2/l2_xconnect.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
-| Resource | resources/libraries/robot/ip/ip6.robot
-| Resource | resources/libraries/robot/shared/traffic.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/l2/l2_xconnect.robot
-| Variables  | resources/libraries/python/IPv6NodesAddr.py | ${nodes}
+| Resource | resources/libraries/robot/shared/traffic.robot
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *COP Security IPv6 Blacklist Tests*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -57,8 +62,6 @@
 
 | ${ip_prefix}= | 64
 
-| ${nodes_ipv6_addresses}= | ${nodes_ipv6_addr}
-
 | ${fib_table_number}= | 1
 
 *** Test Cases ***
@@ -75,21 +78,20 @@
 | | And Set interfaces in 3-node circular topology up
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | And VPP Set IF IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip} | ${ip_prefix}
-| | And VPP Set IF IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip} | ${ip_prefix}
-| | And VPP Set IF IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_if1_ip} | ${ip_prefix}
-| | And VPP Set IF IPv6 Addr
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_if2_ip} | ${ip_prefix}
-| | And Add IP Neighbor
+| | And VPP Add IP Neighbor
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip_GW} | ${tg_to_dut1_mac}
-| | And Add IP Neighbor
+| | And VPP Add IP Neighbor
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip_GW} | ${tg_to_dut2_mac}
-| | And Vpp Route Add | ${dut1_node}
-| | ... | ${test_dst_ip} | ${ip_prefix} | gateway=${dut1_if2_ip_GW}
-| | ... | interface=${dut1_to_dut2}
+| | And Vpp Route Add | ${dut1_node} | ${test_dst_ip} | ${ip_prefix}
+| | ... | gateway=${dut1_if2_ip_GW} | interface=${dut1_to_dut2}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
 | | And Add fib table | ${dut1_node} | ${fib_table_number} | ipv6=${TRUE}
 | | When COP Add whitelist Entry

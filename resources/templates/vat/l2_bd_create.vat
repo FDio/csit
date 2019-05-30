@@ -1,1 +1,0 @@
-bridge_domain_add_del bd_id {bd_id} flood {flood} uu-flood {uu_flood} forward {forward} learn {learn} arp-term {arp_term}
