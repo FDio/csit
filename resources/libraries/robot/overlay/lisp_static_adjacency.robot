@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,14 +12,16 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | Lisp static adjacency suite keywords
-| Resource | resources/libraries/robot/overlay/lisp_api.robot
-| Library  | resources.libraries.python.LispSetup.LispLocatorSet
+| Library  | resources.libraries.python.IPUtil
+| Library  | resources.libraries.python.LispSetup.LispAdjacency
 | Library  | resources.libraries.python.LispSetup.LispLocator
 | Library  | resources.libraries.python.LispSetup.LispLocalEid
-| Library  | resources.libraries.python.LispSetup.LispAdjacency
+| Library  | resources.libraries.python.LispSetup.LispLocatorSet
 | Library  | resources.libraries.python.LispSetup.LispRemoteMapping
-| Library  | resources.libraries.python.IPv4Util.IPv4Util
+| ...
+| Resource | resources/libraries/robot/overlay/lisp_api.robot
+| ...
+| Documentation | Lisp static adjacency suite keywords
 
 *** Keywords ***
 | Configure LISP topology in 3-node circular topology
@@ -49,55 +51,51 @@
 | | ... | \| ${dut1_static_adjacency} \| ${dut2_static_adjacency} \|
 | | ...
 | | [Arguments] | ${dut1_node} | ${dut1_int_name} | ${dut1_int_index}
-| | ...         | ${dut2_node} | ${dut2_int_name} | ${dut2_int_index}
-| | ...         | ${locator_set} | ${dut1_eid} | ${dut2_eid}
-| | ...         | ${dut1_static_adjacency} | ${dut2_static_adjacency}
+| | ... | ${dut2_node} | ${dut2_int_name} | ${dut2_int_index}
+| | ... | ${locator_set} | ${dut1_eid} | ${dut2_eid}
+| | ... | ${dut1_static_adjacency} | ${dut2_static_adjacency}
 | | ${dut1_int_index}= | Run Keyword If | ${dut1_int_index} is None
-| |                    | ... | Get Interface Sw Index | ${dut1_node}
-| |                    | ...                          | ${dut1_int_name}
-| |                    | ... | ELSE | Set Variable | ${dut1_int_index}
+| | ... | Get Interface Sw Index | ${dut1_node} | ${dut1_int_name}
+| | ... | ELSE | Set Variable | ${dut1_int_index}
 | | ${dut2_int_index}= | Run Keyword If | ${dut2_int_index} is None
-| |                    | ... | Get Interface Sw Index | ${dut2_node}
-| |                    | ...                          | ${dut2_int_name}
-| |                    | ... | ELSE | Set Variable | ${dut2_int_index}
+| | ... | Get Interface Sw Index | ${dut2_node} | ${dut2_int_name}
+| | ... | ELSE | Set Variable | ${dut2_int_index}
 | | Enable Lisp | ${dut1_node}
 | | Vpp Add Lisp Locator Set | ${dut1_node} | ${locator_set['locator_name']}
 | | Vpp Add Lisp Locator | ${dut1_node} | ${locator_set['locator_name']}
-| | ...                  | ${dut1_int_index} | ${locator_set['priority']}
-| | ...                  | ${locator_set['weight']}
+| | ... | ${dut1_int_index} | ${locator_set['priority']}
+| | ... | ${locator_set['weight']}
 | | Vpp Add Lisp Local Eid | ${dut1_node} | ${dut1_eid['locator_name']}
-| | ...                    | ${dut1_eid['vni']} | ${dut1_eid['eid']}
-| | ...                    | ${dut1_eid['prefix']}
+| | ... | ${dut1_eid['vni']} | ${dut1_eid['eid']} | ${dut1_eid['prefix']}
 | | Vpp Add Lisp Remote Mapping | ${dut1_node} | ${dut1_static_adjacency['vni']}
-| | ...                         | ${dut1_static_adjacency['deid']}
-| | ...                         | ${dut1_static_adjacency['prefix']}
-| | ...                         | ${dut1_static_adjacency['seid']}
-| | ...                         | ${dut1_static_adjacency['prefix']}
-| | ...                         | ${dut1_static_adjacency['rloc']}
+| | ... | ${dut1_static_adjacency['deid']}
+| | ... | ${dut1_static_adjacency['prefix']}
+| | ... | ${dut1_static_adjacency['seid']}
+| | ... | ${dut1_static_adjacency['prefix']}
+| | ... | ${dut1_static_adjacency['rloc']}
 | | Vpp Add Lisp Adjacency | ${dut1_node} | ${dut1_static_adjacency['vni']}
-| | ...                    | ${dut1_static_adjacency['deid']}
-| | ...                    | ${dut1_static_adjacency['prefix']}
-| | ...                    | ${dut1_static_adjacency['seid']}
-| | ...                    | ${dut1_static_adjacency['prefix']}
+| | ... | ${dut1_static_adjacency['deid']}
+| | ... | ${dut1_static_adjacency['prefix']}
+| | ... | ${dut1_static_adjacency['seid']}
+| | ... | ${dut1_static_adjacency['prefix']}
 | | Enable Lisp | ${dut2_node}
 | | Vpp Add Lisp Locator Set | ${dut2_node} | ${locator_set['locator_name']}
 | | Vpp Add Lisp Locator | ${dut2_node} | ${locator_set['locator_name']}
-| | ...                  | ${dut2_int_index} | ${locator_set['priority']}
-| | ...                  | ${locator_set['weight']}
+| | ... | ${dut2_int_index} | ${locator_set['priority']}
+| | ... | ${locator_set['weight']}
 | | Vpp Add Lisp Local Eid | ${dut2_node} | ${dut2_eid['locator_name']}
-| | ...                    | ${dut2_eid['vni']} | ${dut2_eid['eid']}
-| | ...                    | ${dut2_eid['prefix']}
+| | ... | ${dut2_eid['vni']} | ${dut2_eid['eid']} | ${dut2_eid['prefix']}
 | | Vpp Add Lisp Remote Mapping | ${dut2_node} | ${dut2_static_adjacency['vni']}
-| | ...                         | ${dut2_static_adjacency['deid']}
-| | ...                         | ${dut2_static_adjacency['prefix']}
-| | ...                         | ${dut2_static_adjacency['seid']}
-| | ...                         | ${dut2_static_adjacency['prefix']}
-| | ...                         | ${dut2_static_adjacency['rloc']}
+| | ... | ${dut2_static_adjacency['deid']}
+| | ... | ${dut2_static_adjacency['prefix']}
+| | ... | ${dut2_static_adjacency['seid']}
+| | ... | ${dut2_static_adjacency['prefix']}
+| | ... | ${dut2_static_adjacency['rloc']}
 | | Vpp Add Lisp Adjacency | ${dut2_node} | ${dut2_static_adjacency['vni']}
-| | ...                    | ${dut2_static_adjacency['deid']}
-| | ...                    | ${dut2_static_adjacency['prefix']}
-| | ...                    | ${dut2_static_adjacency['seid']}
-| | ...                    | ${dut2_static_adjacency['prefix']}
+| | ... | ${dut2_static_adjacency['deid']}
+| | ... | ${dut2_static_adjacency['prefix']}
+| | ... | ${dut2_static_adjacency['seid']}
+| | ... | ${dut2_static_adjacency['prefix']}
 
 | Change LISP Configuration
 | | [Documentation] | Change configuration of the Lisp protocol.
@@ -108,18 +106,18 @@
 | | ... | - dut1_to_dut2 - DUT1 towards DUT2 interface name. Type: string
 | | ... | - dut2_to_dut1 - DUT2 towards DUT1 interface name. Type: string
 | | ... | - dut1_to_dut2_mac - DUT1 towards DUT2 interface mac address.
-| | ... |                      Type: string
+| | ... | Type: string
 | | ... | - dut2_to_dut1_mac - DUT2 towards DUT1 interface mac address.
-| | ... |                      Type: string
+| | ... | Type: string
 | | ... | - new_dut1_ip - New DUT1 towards DUT2 interface IP address.
-| | ... |                 Type: string
+| | ... | Type: string
 | | ... | - new_dut2_ip - New DUT2 towards DUT1 interface IP address.
-| | ... |                 Type: string
+| | ... | Type: string
 | | ... | - prefix - Prefix of the DUT nodes. Type: integer
 | | ... | - old_dut1_static_adjacency - Old DUT1 static adjacency.
-| | ... |                               Type: dictionary
+| | ... | Type: dictionary
 | | ... | - new_dut1_static_adjacency - New DUT1 static adjacency.
-| | ... |                               Type: dictionary
+| | ... | Type: dictionary
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
@@ -131,39 +129,39 @@
 | | ... | \| ${old_dut1_static_adjacency} \| ${new_dut1_static_adjacency} \|
 | | ...
 | | [Arguments] | ${dut1_node} | ${dut2_node} | ${dut1_to_dut2}
-| | ...         | ${dut2_to_dut1} | ${dut1_to_dut2_mac} | ${dut2_to_dut1_mac}
-| | ...         | ${new_dut1_ip} | ${new_dut2_ip} | ${prefix}
-| | ...         | ${old_dut1_static_adjacency} | ${new_dut1_static_adjacency}
-| | Flush IPv4 Addresses "${dut2_to_dut1}" "${dut2_node}"
+| | ... | ${dut2_to_dut1} | ${dut1_to_dut2_mac} | ${dut2_to_dut1_mac}
+| | ... | ${new_dut1_ip} | ${new_dut2_ip} | ${prefix}
+| | ... | ${old_dut1_static_adjacency} | ${new_dut1_static_adjacency}
+| | Flush IP Addresses | ${dut2_node} | ${dut2_to_dut1}
 | | Vpp Del Lisp Remote Mapping | ${dut1_node}
-| | ...                         | ${old_dut1_static_adjacency['vni']}
-| | ...                         | ${old_dut1_static_adjacency['deid']}
-| | ...                         | ${old_dut1_static_adjacency['prefix']}
-| | ...                         | ${old_dut1_static_adjacency['seid']}
-| | ...                         | ${old_dut1_static_adjacency['prefix']}
-| | ...                         | ${old_dut1_static_adjacency['rloc']}
+| | ... | ${old_dut1_static_adjacency['vni']}
+| | ... | ${old_dut1_static_adjacency['deid']}
+| | ... | ${old_dut1_static_adjacency['prefix']}
+| | ... | ${old_dut1_static_adjacency['seid']}
+| | ... | ${old_dut1_static_adjacency['prefix']}
+| | ... | ${old_dut1_static_adjacency['rloc']}
 | | Vpp Del Lisp Adjacency | ${dut1_node}
-| | ...                    | ${old_dut1_static_adjacency['vni']}
-| | ...                    | ${old_dut1_static_adjacency['deid']}
-| | ...                    | ${old_dut1_static_adjacency['prefix']}
-| | ...                    | ${old_dut1_static_adjacency['seid']}
-| | ...                    | ${old_dut1_static_adjacency['prefix']}
-| | Set Interface Address | ${dut2_node} | ${dut2_to_dut1}
-| | ...                   | ${new_dut2_ip} | ${prefix}
-| | Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2} | ${new_dut2_ip}
-| | ...            | ${dut2_to_dut1_mac}
-| | Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${new_dut1_ip}
-| | ...            | ${dut1_to_dut2_mac}
+| | ... | ${old_dut1_static_adjacency['vni']}
+| | ... | ${old_dut1_static_adjacency['deid']}
+| | ... | ${old_dut1_static_adjacency['prefix']}
+| | ... | ${old_dut1_static_adjacency['seid']}
+| | ... | ${old_dut1_static_adjacency['prefix']}
+| | VPP Interface Set IP Address | ${dut2_node} | ${dut2_to_dut1}
+| | ... | ${new_dut2_ip} | ${prefix}
+| | VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${new_dut2_ip}
+| | ... | ${dut2_to_dut1_mac}
+| | VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${new_dut1_ip}
+| | ... | ${dut1_to_dut2_mac}
 | | Vpp Add Lisp Remote Mapping | ${dut1_node}
-| | ...                         | ${new_dut1_static_adjacency['vni']}
-| | ...                         | ${new_dut1_static_adjacency['deid']}
-| | ...                         | ${new_dut1_static_adjacency['prefix']}
-| | ...                         | ${new_dut1_static_adjacency['seid']}
-| | ...                         | ${new_dut1_static_adjacency['prefix']}
-| | ...                         | ${new_dut1_static_adjacency['rloc']}
+| | ... | ${new_dut1_static_adjacency['vni']}
+| | ... | ${new_dut1_static_adjacency['deid']}
+| | ... | ${new_dut1_static_adjacency['prefix']}
+| | ... | ${new_dut1_static_adjacency['seid']}
+| | ... | ${new_dut1_static_adjacency['prefix']}
+| | ... | ${new_dut1_static_adjacency['rloc']}
 | | Vpp Add Lisp Adjacency | ${dut1_node}
-| | ...                    | ${new_dut1_static_adjacency['vni']}
-| | ...                    | ${new_dut1_static_adjacency['deid']}
-| | ...                    | ${new_dut1_static_adjacency['prefix']}
-| | ...                    | ${new_dut1_static_adjacency['seid']}
-| | ...                    | ${new_dut1_static_adjacency['prefix']}
+| | ... | ${new_dut1_static_adjacency['vni']}
+| | ... | ${new_dut1_static_adjacency['deid']}
+| | ... | ${new_dut1_static_adjacency['prefix']}
+| | ... | ${new_dut1_static_adjacency['seid']}
+| | ... | ${new_dut1_static_adjacency['prefix']}

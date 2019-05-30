@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,17 +12,16 @@
 # limitations under the License.
 
 *** Settings ***
+| Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPUtil
+| Library | resources.libraries.python.IPv6Util
+| Library | resources.libraries.python.Policer
+| Library | resources.libraries.python.TrafficScriptExecutor
+| ...
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Library | resources.libraries.python.Policer
-| Library | resources.libraries.python.InterfaceUtil
-| Library | resources.libraries.python.IPv4Util
-| Library | resources.libraries.python.TrafficScriptExecutor
-| Library | resources.libraries.python.IPv6Util
-| Library | resources.libraries.python.IPv6Setup
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
-| ...     | WITH NAME | dut1_v4
-| Documentation | *Policer keywords*
+| ...
+| Documentation | Policer keywords
 
 *** Keywords ***
 | Configure topology for IPv4 policer test
@@ -33,15 +32,15 @@
 | | ... | - dut_to_tg_if2_ip - DUT second interface IP address. Type: string
 | | ... | - tg_to_dut_if1_ip - TG first interface IP address. Type: string
 | | ... | - tg_to_dut_if2_ip - TG second interface IP address. Type: string
-| | Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
-| | ...                            | ${nodes['TG']}
+| | Configure path in 2-node circular topology | ${nodes['TG']}
+| | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | Set interfaces in 2-node circular topology up
-| | Set Interface Address | ${dut_node} | ${dut_to_tg_if1}
-| | ...                   | ${dut_to_tg_if1_ip4} | ${ip4_plen}
-| | Set Interface Address | ${dut_node} | ${dut_to_tg_if2}
-| | ...                   | ${dut_to_tg_if2_ip4} | ${ip4_plen}
-| | dut1_v4.Set ARP | ${dut_to_tg_if2} | ${tg_to_dut_if2_ip4}
-| | ...             | ${tg_to_dut_if2_mac}
+| | VPP Interface Set IP Address | ${dut_node} | ${dut_to_tg_if1}
+| | ... | ${dut_to_tg_if1_ip4} | ${ip4_plen}
+| | VPP Interface Set IP Address | ${dut_node} | ${dut_to_tg_if2}
+| | ... | ${dut_to_tg_if2_ip4} | ${ip4_plen}
+| | VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${tg_to_dut_if2_ip4}
+| | ... | ${tg_to_dut_if2_mac}
 | | Set Test Variable | ${dut_to_tg_if1_ip} | ${dut_to_tg_if1_ip4}
 | | Set Test Variable | ${dut_to_tg_if2_ip} | ${dut_to_tg_if2_ip4}
 | | Set Test Variable | ${tg_to_dut_if1_ip} | ${tg_to_dut_if1_ip4}
@@ -55,15 +54,15 @@
 | | ... | - dut_to_tg_if2_ip - DUT second interface IP address. Type: string
 | | ... | - tg_to_dut_if1_ip - TG first interface IP address. Type: string
 | | ... | - tg_to_dut_if2_ip - TG second interface IP address. Type: string
-| | Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
-| | ...                            | ${nodes['TG']}
+| | Configure path in 2-node circular topology | ${nodes['TG']}
+| | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | Set interfaces in 2-node circular topology up
-| | Vpp Set If IPv6 Addr | ${dut_node} | ${dut_to_tg_if1}
-| | ...                  | ${dut_to_tg_if1_ip6} | ${ip6_plen}
-| | Vpp Set If IPv6 Addr | ${dut_node} | ${dut_to_tg_if2}
-| | ...                  | ${dut_to_tg_if2_ip6} | ${ip6_plen}
-| | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${tg_to_dut_if2_ip6}
-| | ...             | ${tg_to_dut_if2_mac}
+| | VPP Interface Set IP Address
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip6} | ${ip6_plen}
+| | VPP Interface Set IP Address
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip6} | ${ip6_plen}
+| | VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${tg_to_dut_if2_ip6}
+| | ... | ${tg_to_dut_if2_mac}
 | | Vpp All RA Suppress Link Layer | ${nodes}
 | | Set Test Variable | ${dut_to_tg_if1_ip} | ${dut_to_tg_if1_ip6}
 | | Set Test Variable | ${dut_to_tg_if2_ip} | ${dut_to_tg_if2_ip6}
@@ -89,11 +88,11 @@
 | | ... | \| 08:00:27:87:4d:f7 \| 52:54:00:d4:d8:22 \| 192.168.122.2 \
 | | ... | \| 192.168.122.1 \| ${dscp} \|
 | | [Arguments] | ${node} | ${tx_if} | ${rx_if} | ${src_mac} | ${dst_mac}
-| | ...         | ${src_ip} | ${dst_ip} | ${dscp}
+| | ... | ${src_ip} | ${dst_ip} | ${dscp}
 | | ${tx_if_name}= | Get Interface Name | ${node} | ${tx_if}
 | | ${rx_if_name}= | Get Interface Name | ${node} | ${rx_if}
 | | ${args}= | Traffic Script Gen Arg | ${rx_if_name} | ${tx_if_name}
-| | ...      | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${dscp_num}= | Get DSCP Num Value | ${dscp}
 | | ${args}= | Set Variable | ${args} --dscp ${dscp_num}
 | | Run Traffic Script On Node | policer.py | ${node} | ${args}

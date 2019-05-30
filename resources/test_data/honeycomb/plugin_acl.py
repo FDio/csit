@@ -126,6 +126,9 @@ def get_variables(test_case, name):
             "dut_to_tg_if2_ip": "20::2",
             "prefix_length": 64,
             "gateway": "20::1",
+            # classified networks
+            "classify_src_net": "12::",
+            "classify_dst_net": "13::",
             # ICMP code and type for control packet
             "icmp_type": 1,
             "icmp_code": 0,

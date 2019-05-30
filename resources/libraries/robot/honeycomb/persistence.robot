@@ -281,7 +281,8 @@
 | | IPv6 address from Honeycomb should contain
 | | ... | ${node} | ${interface} | ${ipv6_address} | ${ipv6_prefix}
 | | IPv6 address from VAT should contain
-| | ... | ${node} | ${interface} | ${ipv6_address} | ${ipv6_prefix}
+| | ... | ${node} | ${interface} | ${ipv6_address}
+| | ... | ${ipv6_prefix} | ${ipv6_mask}
 | | IPv6 neighbor from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv6_neighbor} | ${neighbor_mac}
 

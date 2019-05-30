@@ -1,1 +1,0 @@
-l2fib_add_del mac {mac} bd_id {bd} sw_if_index {interface}

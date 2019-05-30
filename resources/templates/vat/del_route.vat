@@ -1,1 +1,0 @@
-ip_add_del_route {network}/{prefix_length} via {gateway} sw_if_index {sw_if_index} del
