@@ -72,8 +72,8 @@
 | | ... | both DUTs and GRE tunnel between them; verify IPv4 headers on
 | | ... | received packets are correct. [Ref] RFC2784.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Configure path in 3-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
-| | ... | ${nodes['DUT2']} | ${nodes['TG']}
+| | Given Configure path in 3-node circular topology | ${nodes['TG']}
+| | ... | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
 | | And Configure IP addresses on interfaces
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_ip_address} | ${prefix}
@@ -82,8 +82,8 @@
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${net2_gw_address} | ${prefix}
 | | And VPP IP Probe | ${dut1_node} | ${dut1_to_dut2} | ${dut2_ip_address}
 | | And VPP IP Probe | ${dut2_node} | ${dut2_to_dut1} | ${dut1_ip_address}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg} | ${net2_host_address}
-| | ... | ${tg_to_dut2_mac}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_tg}
+| | ... | ${net2_host_address} | ${tg_to_dut2_mac}
 | | ${dut1_gre_interface} | ${dut1_gre_index}=
 | | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut1_node} | ${dut1_ip_address} | ${dut2_ip_address}
@@ -114,8 +114,8 @@
 | | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dut2_ip_address}
-| | ... | ${tg_to_dut_if2_mac}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | ... | ${dut2_ip_address} | ${tg_to_dut_if2_mac}
 | | ${dut1_gre_interface} | ${dut1_gre_index}=
 | | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_ip_address} | ${dut2_ip_address}
@@ -143,8 +143,8 @@
 | | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1} | ${net1_host_address}
-| | ... | ${tg_to_dut_if1_mac}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1}
+| | ... | ${net1_host_address} | ${tg_to_dut_if1_mac}
 | | ${dut1_gre_interface} | ${dut1_gre_index}=
 | | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_ip_address} | ${dut2_ip_address}
@@ -176,8 +176,8 @@
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
 | | ... | ${dut_node} | ${dut1_lo_index} | ${dut1_lo_address} | ${32}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dut2_ip_address}
-| | ... | ${tg_to_dut_if2_mac}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | ... | ${dut2_ip_address} | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add | ${dut_node} | ${tun0_dst} | ${32}
 | | ... | gateway=${dut2_ip_address} | interface=${dut_to_tg_if2}
 | | And Vpp Route Add | ${dut_node} | ${tun1_dst} | ${32}
@@ -227,8 +227,8 @@
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
 | | ... | ${dut_node} | ${dut1_lo_index} | ${dut1_lo_address} | ${32}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dut2_ip_address}
-| | ... | ${tg_to_dut_if2_mac}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | ... | ${dut2_ip_address} | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add | ${dut_node} | ${tun0_dst} | ${32}
 | | ... | gateway=${dut2_ip_address} | interface=${dut_to_tg_if2}
 | | And Vpp Route Add | ${dut_node} | ${tun1_dst} | ${32}
@@ -276,10 +276,10 @@
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
 | | ... | ${dut_node} | ${dut1_lo_index} | ${dut1_lo_address} | ${32}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1} | ${net1_host_address}
-| | ... | ${tg_to_dut_if1_mac}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dut2_ip_address}
-| | ... | ${tg_to_dut_if2_mac}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1}
+| | ... | ${net1_host_address} | ${tg_to_dut_if1_mac}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | ... | ${dut2_ip_address} | ${tg_to_dut_if2_mac}
 | | And Vpp Route Add | ${dut_node} | ${tun0_dst} | ${32}
 | | ... | gateway=${dut2_ip_address} | interface=${dut_to_tg_if2}
 | | And Vpp Route Add | ${dut_node} | ${tun1_dst} | ${32}

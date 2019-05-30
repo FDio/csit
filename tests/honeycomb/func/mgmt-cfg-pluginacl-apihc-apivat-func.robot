@@ -38,6 +38,7 @@
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Library | resources.libraries.python.honeycomb.HcAPIKwACL.ACLKeywords
 | Library | resources.libraries.python.Trace
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv4Setup
 | Library | resources.libraries.python.IPv4Util
 | Library | resources.libraries.python.IPv6Util
@@ -450,9 +451,9 @@
 | | And Honeycomb adds interface IPv6 neighbor
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
 | | And VPP Route Add | ${node} | ${dst_net} | ${prefix_length}
-| | ... | gateway=${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
+| | ... | gateway=${gateway} | interface=${dut_to_tg_if2}
 | | And VPP Route Add | ${node} | ${classify_dst_net} | ${prefix_length}
-| | ... | gateway=${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
+| | ... | gateway=${gateway} | interface=${dut_to_tg_if2}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
 | | ... | ${dut_node} | ${acl_name_l3_ip6} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
@@ -627,9 +628,9 @@
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
 | | And VPP RA suppress link layer | ${dut_node} | ${dut_to_tg_if2}
 | | And VPP Route Add | ${node} | ${dst_net} | ${prefix_length}
-| | ... | gateway=${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
+| | ... | gateway=${gateway} | interface=${dut_to_tg_if2}
 | | And VPP Route Add | ${node} | ${classify_dst_net} | ${prefix_length}
-| | ... | gateway=${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
+| | ... | gateway=${gateway} | interface=${dut_to_tg_if2}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
 | | ... | ${dut_node} | ${acl_name_icmpv6} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
@@ -674,14 +675,14 @@
 | | ...
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | reflex | ${acl_name_reflex}
-| | And Add ARP on DUT
+| | And VPP Add IP Neighbor
 | | ... | ${node} | ${dut_to_tg_if1} | ${gateway2} | ${tg_to_dut_if1_mac}
 | | And VPP Route Add
 | | ... | ${node} | ${src_net} | ${prefix_length} | gateway=${gateway2}
-| | ... | interface=${dut_to_tg_if1} | use_sw_index=False
+| | ... | interface=${dut_to_tg_if1}
 | | And VPP Route Add
 | | ... | ${node} | ${classify_src_net} | ${prefix_length}
-| | ... | gateway=${gateway2} | interface=${dut_to_tg_if1} | use_sw_index=False
+| | ... | gateway=${gateway2} | interface=${dut_to_tg_if1}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
 | | ... | ${dut_node} | ${acl_name_reflex} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
@@ -730,10 +731,10 @@
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
 | | VPP Route Add
 | | ... | ${node} | ${dst_net} | ${prefix_length} | gateway=${gateway}
-| | ... | interface=${dut_to_tg_if2} | use_sw_index=False
+| | ... | interface=${dut_to_tg_if2}
 | | VPP Route Add
 | | ... | ${node} | ${classify_dst_net} | ${prefix_length} | gateway=${gateway}
-| | ... | interface=${dut_to_tg_if2} | use_sw_index=False
+| | ... | interface=${dut_to_tg_if2}
 
 | Setup interfaces and bridge domain for plugin-acl test
 | | [Documentation] | Import test variables, set interfaces up and bridge them.

@@ -79,11 +79,11 @@
 | | ${vhost2}= | And Vpp Create Vhost User Interface | ${dut_node} | ${sock2}
 | | And Set Interface State | ${dut_node} | ${vhost1} | up
 | | And Set Interface State | ${dut_node} | ${vhost2} | up
-| | And Add Fib Table | ${dut_node} | ${fib_table_2}
-| | And Assign Interface To Fib Table | ${dut_node}
-| | ... | ${vhost2} | ${fib_table_2}
-| | And Assign Interface To Fib Table | ${dut_node}
-| | ... | ${dut_to_tg_if2} | ${fib_table_2}
+| | And Add Fib Table | ${dut_node} | ${fib_table_2} | ipv6=${True}
+| | And Assign Interface To Fib Table
+| | ... | ${dut_node} | ${vhost2} | ${fib_table_2}
+| | And Assign Interface To Fib Table
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${fib_table_2}
 | | And Vpp Set If IPv6 Addr
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_ip1} | ${prefix_length}
 | | And Vpp Set If IPv6 Addr
@@ -95,15 +95,16 @@
 | | And Suppress ICMPv6 router advertisement message | ${nodes}
 | | ${vhost2_mac}= | And Get Vhost User Mac By SW Index
 | | ... | ${dut_node} | ${vhost2}
-| | And Vpp Route Add | ${dut_node} | ${net3} | ${prefix_length}
-| | ... | gateway=${net2_ip2} | interface=${vhost1} | resolve_attempts=${NONE}
-| | ... | count=${NONE}
-| | And Vpp Route Add | ${dut_node} | ${net1} | ${prefix_length}
-| | ... | gateway=${net2_ip1} | interface=${vhost2} | resolve_attempts=${NONE}
-| | ... | count=${NONE} | vrf=${fib_table_2}
-| | Add IP Neighbor | ${dut_node} | ${vhost1} | ${net2_ip2} | ${vhost2_mac}
-| | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2}
-| | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add
+| | ... | ${dut_node} | ${net3} | ${prefix_length}
+| | ... | gateway=${net2_ip2} | interface=${vhost1}
+| | And Vpp Route Add
+| | ... | ${dut_node} | ${net1} | ${prefix_length}
+| | ... | gateway=${net2_ip1} | interface=${vhost2} | vrf=${fib_table_2}
+| | Add IP Neighbor
+| | ... | ${dut_node} | ${vhost1} | ${net2_ip2} | ${vhost2_mac}
+| | Add IP Neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2} | ${tg_to_dut_if2_mac}
 | | When Configure VM for vhost L2BD forwarding
 | | ... | ${dut_node} | ${sock1} | ${sock2}
 | | Then Send packet and verify headers

@@ -24,7 +24,6 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.DUTSetup import DUTSetup
-from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
 from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
@@ -419,56 +418,6 @@ class InterfaceUtil(object):
                 node, if_data['sup_sw_if_index'])
 
         return if_data.get('l2_address')
-
-    @staticmethod
-    def vpp_get_interface_ip_addresses(node, interface, ip_version):
-        """Get list of IP addresses from an interface on a VPP node.
-
-        TODO: Move to IPUtils
-
-        :param node: VPP node to get data from.
-        :param interface: Name of an interface on the VPP node.
-        :param ip_version: IP protocol version (ipv4 or ipv6).
-        :type node: dict
-        :type interface: str
-        :type ip_version: str
-        :returns: List of dictionaries, each containing IP address, subnet
-            prefix length and also the subnet mask for ipv4 addresses.
-            Note: A single interface may have multiple IP addresses assigned.
-        :rtype: list
-        """
-
-        try:
-            sw_if_index = Topology.convert_interface_reference(
-                node, interface, 'sw_if_index')
-        except RuntimeError:
-            if isinstance(interface, basestring):
-                sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
-            else:
-                raise
-
-        is_ipv6 = 1 if ip_version == 'ipv6' else 0
-
-        cmd = 'ip_address_dump'
-        cmd_reply = 'ip_address_details'
-        args = dict(sw_if_index=sw_if_index,
-                    is_ipv6=is_ipv6)
-        err_msg = 'Failed to get L2FIB dump on host {host}'.format(
-            host=node['host'])
-        with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
-
-        data = list()
-        for item in papi_resp.reply[0]['api_reply']:
-            item[cmd_reply]['ip'] = inet_ntop(AF_INET6, item[cmd_reply]['ip']) \
-                if is_ipv6 else inet_ntop(AF_INET, item[cmd_reply]['ip'][0:4])
-            data.append(item[cmd_reply])
-
-        if ip_version == 'ipv4':
-            for item in data:
-                item['netmask'] = convert_ipv4_netmask_prefix(
-                    item['prefix_length'])
-        return data
 
     @staticmethod
     def tg_set_interface_driver(node, pci_addr, driver):
@@ -1437,39 +1386,6 @@ class InterfaceUtil(object):
         return papi_resp
 
     @staticmethod
-    def get_interface_vrf_table(node, interface, ip_version='ipv4'):
-        """Get vrf ID for the given interface.
-
-        TODO: Move to proper IP library when implementing CSIT-1459.
-
-        :param node: VPP node.
-        :param interface: Name or sw_if_index of a specific interface.
-        :type node: dict
-        :param ip_version: IP protocol version (ipv4 or ipv6).
-        :type interface: str or int
-        :type ip_version: str
-        :returns: vrf ID of the specified interface.
-        :rtype: int
-        """
-        if isinstance(interface, basestring):
-            sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
-        else:
-            sw_if_index = interface
-
-        is_ipv6 = 1 if ip_version == 'ipv6' else 0
-
-        cmd = 'sw_interface_get_table'
-        args = dict(sw_if_index=sw_if_index,
-                    is_ipv6=is_ipv6)
-        err_msg = 'Failed to get VRF id assigned to interface {ifc}'.format(
-            ifc=interface)
-        with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
-
-        return papi_resp['vrf_id']
-
-    @staticmethod
     def get_sw_if_index(node, interface_name):
         """Get sw_if_index for the given interface from actual interface dump.
 
@@ -1547,29 +1463,6 @@ class InterfaceUtil(object):
         logger.debug('VXLAN-GPE data:\n{vxlan_gpe_data}'.format(
             vxlan_gpe_data=data))
         return data
-
-    @staticmethod
-    def vpp_ip_source_check_setup(node, if_name):
-        """Setup Reverse Path Forwarding source check on interface.
-
-        TODO: Move to proper IP library when implementing CSIT-1459.
-
-        :param node: Node to setup RPF source check.
-        :param if_name: Interface name to setup RPF source check.
-        :type node: dict
-        :type if_name: str
-        """
-
-        cmd = 'ip_source_check_interface_add_del'
-        args = dict(
-            sw_if_index=InterfaceUtil.get_interface_index(node, if_name),
-            is_add=1,
-            loose=0)
-        err_msg = 'Failed to enable source check on interface {ifc}'.format(
-            ifc=if_name)
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
 
     @staticmethod
     def assign_interface_to_fib_table(node, interface, table_id, ipv6=False):

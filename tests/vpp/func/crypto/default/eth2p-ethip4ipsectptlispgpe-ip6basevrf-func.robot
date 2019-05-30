@@ -75,8 +75,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Add Fib Table | ${dut1_node} | ${fib_table_1} | ip6=${TRUE}
-| | And Add Fib Table | ${dut2_node} | ${fib_table_1} | ip6=${TRUE}
+| | And Add Fib Table | ${dut1_node} | ${fib_table_1} | ipv6=${TRUE}
+| | And Add Fib Table | ${dut2_node} | ${fib_table_1} | ipv6=${TRUE}
 | | Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${fib_table_1} | ip6=${TRUE}
 | | Assign Interface To Fib Table | ${dut2_node}

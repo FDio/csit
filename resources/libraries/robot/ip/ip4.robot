@@ -13,14 +13,17 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv4Util.IPv4Util
 | Library | resources.libraries.python.IPv4Setup.IPv4Setup
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Routing
 | Library | resources.libraries.python.TrafficScriptExecutor
+| ...
 | Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
+| ...
 | Variables | resources/libraries/python/IPv4NodeAddress.py | ${nodes}
 | ...
 | Documentation | IPv4 keywords
@@ -135,7 +138,7 @@
 | | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
 
 | Configure IP addresses on interfaces
-| | [Documentation] | Iterates through @{args} list and Set Interface Address
+| | [Documentation] | Iterates through @{args} list and set IP interface address
 | | ... | for every (${dut_node}, ${interface}, ${address},
 | | ... | ${prefix}) tuple.
 | | ...
@@ -154,7 +157,7 @@
 | | ...
 | | [Arguments] | @{args}
 | | :FOR | ${dut_node} | ${interface} | ${address} | ${prefix} | IN | @{args}
-| | | Set Interface Address | ${dut_node} | ${interface} | ${address}
+| | | VPP Interface Set IP Address | ${dut_node} | ${interface} | ${address}
 | | | ... | ${prefix}
 
 | Send ICMP echo request and verify answer
@@ -287,9 +290,9 @@
 | | ...
 | | ${dut_tg_ip4_prefix}= | Set Variable | 24
 | | ...
-| | Add arp on dut | ${dut_node} | ${dut_to_tg_if1} | ${tg_if1_ip4}
+| | VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_if1_ip4}
 | | ... | ${tg_to_dut_if1_mac}
-| | Add arp on dut | ${dut_node} | ${dut_to_tg_if2} | ${tg_if2_ip4}
+| | VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${tg_if2_ip4}
 | | ... | ${tg_to_dut_if2_mac}
 | | ...
 | | Configure IP addresses on interfaces | ${dut_node} | ${dut_to_tg_if1}
@@ -347,13 +350,13 @@
 | | ${dut_tg_ip4_prefix}= | Set Variable | 24
 | | ${dut_link_ip4_prefix}= | Set Variable | 30
 | | ...
-| | Add arp on dut | ${dut1_node} | ${dut1_to_tg} | ${tg_if1_ip4}
+| | VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg_if1_ip4}
 | | ... | ${tg_to_dut1_mac}
-| | Add arp on dut | ${dut1_node} | ${dut1_to_dut2} | ${dut2_if1_ip4}
+| | VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_if1_ip4}
 | | ... | ${dut2_to_dut1_mac}
-| | Add arp on dut | ${dut2_node} | ${dut2_to_dut1} | ${dut1_if2_ip4}
+| | VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_if2_ip4}
 | | ... | ${dut1_to_dut2_mac}
-| | Add arp on dut | ${dut2_node} | ${dut2_to_tg} | ${tg_if2_ip4}
+| | VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg_if2_ip4}
 | | ... | ${tg_to_dut2_mac}
 | | ...
 | | Configure IP addresses on interfaces | ${dut1_node} | ${dut1_to_tg}
