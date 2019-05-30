@@ -217,6 +217,30 @@
     },
     {
       "key": {
+        "uuid": "1af385bf_e3fb11fb",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-30T11:42:12Z",
+      "side": 1,
+      "message": "\u003e How many times you troubleshoot VPP interfaces issues?\n\nZero times. If you say \"retries\" is better for debugging than \"timeout\" (even if I do not see why), than it is probably more important than avoiding long runs.",
+      "parentUuid": "01369d02_cc9fb022",
+      "range": {
+        "startLine": 258,
+        "startChar": 8,
+        "endLine": 258,
+        "endChar": 27
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "51b28fd2_6a3e39de",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 64
@@ -571,6 +595,30 @@
       "side": 1,
       "message": "\u003e Better solution would be to introduce internal function\n \u003e add_cmd_add_del_route\n\nWhat would be the benefit of it? This internal function would be needed to call with list of nearly all parameters anyway...",
       "parentUuid": "f8c235bc_647fddd2",
+      "range": {
+        "startLine": 1983,
+        "startChar": 0,
+        "endLine": 1993,
+        "endChar": 69
+      },
+      "revId": "4872d69dbfb199016ae7d5569b33ed13368ea517",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f94e4a45_87bcf09e",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 64
+      },
+      "lineNbr": 1993,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-05-30T11:42:12Z",
+      "side": 1,
+      "message": "Nevermind then, I wrongly assumed ip_add_del_route function has simpler arguments.",
+      "parentUuid": "5441dbf7_f6f14d96",
       "range": {
         "startLine": 1983,
         "startChar": 0,
