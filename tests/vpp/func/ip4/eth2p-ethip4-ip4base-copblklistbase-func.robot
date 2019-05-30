@@ -71,13 +71,13 @@
 | | And Set interfaces in 3-node circular topology up
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip} | ${ip_prefix}
-| | And Set Interface Address
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip} | ${ip_prefix}
-| | And Add Arp On Dut
+| | And VPP Add IP Neighbor
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip_GW} | ${tg_to_dut1_mac}
-| | And Add Arp On Dut
+| | And VPP Add IP Neighbor
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip_GW} | ${tg_to_dut2_mac}
 | | And Vpp Route Add | ${dut1_node}
 | | ... | ${test_dst_ip} | ${ip_prefix} | gateway=${dut1_if2_ip_GW}

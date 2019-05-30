@@ -121,60 +121,60 @@ class Tg(IPv4Node):
 
     # Implicit constructor is inherited.
 
-    def _execute(self, cmd):
-        """Executes the specified command on TG using SSH.
+    # def _execute(self, cmd):
+    #     """Executes the specified command on TG using SSH.
+    #
+    #     :param cmd: Command to be executed.
+    #     :type cmd: str
+    #     :returns: Content of stdout and stderr returned by command.
+    #     :rtype: tuple
+    #     """
+    #     return exec_cmd_no_error(self.node_info, cmd)
+    #
+    # def _sudo_execute(self, cmd):
+    #     """Executes the specified command with sudo on TG using SSH.
+    #
+    #     :param cmd: Command to be executed.
+    #     :type cmd: str
+    #     :returns: Content of stdout and stderr returned by command.
+    #     :rtype: tuple
+    #     """
+    #     return exec_cmd_no_error(self.node_info, cmd, sudo=True)
 
-        :param cmd: Command to be executed.
-        :type cmd: str
-        :returns: Content of stdout and stderr returned by command.
-        :rtype: tuple
-        """
-        return exec_cmd_no_error(self.node_info, cmd)
+    # def set_ip(self, interface, address, prefix_length):
+    #     cmd = 'ip -4 addr flush dev {}'.format(interface)
+    #     self._sudo_execute(cmd)
+    #     cmd = 'ip addr add {}/{} dev {}'.format(address, prefix_length,
+    #                                             interface)
+    #     self._sudo_execute(cmd)
 
-    def _sudo_execute(self, cmd):
-        """Executes the specified command with sudo on TG using SSH.
+    # def set_route(self, network, prefix_length, gateway, interface, count=1):
+    #     netmask = self._get_netmask(prefix_length)
+    #     cmd = 'route add -net {} netmask {} gw {}'.\
+    #         format(network, netmask, gateway)
+    #     self._sudo_execute(cmd)
 
-        :param cmd: Command to be executed.
-        :type cmd: str
-        :returns: Content of stdout and stderr returned by command.
-        :rtype: tuple
-        """
-        return exec_cmd_no_error(self.node_info, cmd, sudo=True)
+    # def unset_route(self, network, prefix_length, gateway, interface):
+    #     self._sudo_execute('ip route delete {}/{}'.
+    #                        format(network, prefix_length))
 
-    def set_ip(self, interface, address, prefix_length):
-        cmd = 'ip -4 addr flush dev {}'.format(interface)
-        self._sudo_execute(cmd)
-        cmd = 'ip addr add {}/{} dev {}'.format(address, prefix_length,
-                                                interface)
-        self._sudo_execute(cmd)
+    # def arp_ping(self, destination_address, source_interface):
+    #     """Execute 'arping' command to send one ARP packet from the TG node.
+    #
+    #     :param destination_address: Destination IP address for the ARP packet.
+    #     :param source_interface: Name of an interface to send ARP packet from.
+    #     :type destination_address: str
+    #     :type source_interface: str
+    #     """
+    #     self._sudo_execute('arping -c 1 -I {} {}'.format(source_interface,
+    #                                                      destination_address))
 
-    def set_route(self, network, prefix_length, gateway, interface, count=1):
-        netmask = self._get_netmask(prefix_length)
-        cmd = 'route add -net {} netmask {} gw {}'.\
-            format(network, netmask, gateway)
-        self._sudo_execute(cmd)
+    # def ping(self, destination_address, source_interface):
+    #     self._execute('ping -c 1 -w 5 -I {} {}'.format(source_interface,
+    #                                                    destination_address))
 
-    def unset_route(self, network, prefix_length, gateway, interface):
-        self._sudo_execute('ip route delete {}/{}'.
-                           format(network, prefix_length))
-
-    def arp_ping(self, destination_address, source_interface):
-        """Execute 'arping' command to send one ARP packet from the TG node.
-
-        :param destination_address: Destination IP address for the ARP packet.
-        :param source_interface: Name of an interface to send ARP packet from.
-        :type destination_address: str
-        :type source_interface: str
-        """
-        self._sudo_execute('arping -c 1 -I {} {}'.format(source_interface,
-                                                         destination_address))
-
-    def ping(self, destination_address, source_interface):
-        self._execute('ping -c 1 -w 5 -I {} {}'.format(source_interface,
-                                                       destination_address))
-
-    def flush_ip_addresses(self, interface):
-        self._sudo_execute('ip addr flush dev {}'.format(interface))
+    # def flush_ip_addresses(self, interface):
+    #     self._sudo_execute('ip addr flush dev {}'.format(interface))
 
 
 class Dut(IPv4Node):
@@ -204,24 +204,24 @@ class Dut(IPv4Node):
         # TODO: check return value
         VatExecutor.cmd_from_template(self.node_info, script, **args)
 
-    def set_arp(self, iface_key, ip_address, mac_address):
-        """Set entry in ARP cache.
+    # def set_arp(self, iface_key, ip_address, mac_address):
+    #     """Set entry in ARP cache.
+    #
+    #     :param iface_key: Interface key.
+    #     :param ip_address: IP address.
+    #     :param mac_address: MAC address.
+    #     :type iface_key: str
+    #     :type ip_address: str
+    #     :type mac_address: str
+    #     """
+    #     self.exec_vat('add_ip_neighbor.vat',
+    #                   sw_if_index=self.get_sw_if_index(iface_key),
+    #                   ip_address=ip_address, mac_address=mac_address)
 
-        :param iface_key: Interface key.
-        :param ip_address: IP address.
-        :param mac_address: MAC address.
-        :type iface_key: str
-        :type ip_address: str
-        :type mac_address: str
-        """
-        self.exec_vat('add_ip_neighbor.vat',
-                      sw_if_index=self.get_sw_if_index(iface_key),
-                      ip_address=ip_address, mac_address=mac_address)
-
-    def set_ip(self, interface, address, prefix_length):
-        self.exec_vat('add_ip_address.vat',
-                      sw_if_index=self.get_sw_if_index(interface),
-                      address=address, prefix_length=prefix_length)
+    # def set_ip(self, interface, address, prefix_length):
+    #     self.exec_vat('add_ip_address.vat',
+    #                   sw_if_index=self.get_sw_if_index(interface),
+    #                   address=address, prefix_length=prefix_length)
 
     def set_route(self, network, prefix_length, gateway, interface, count=1):
         Routing.vpp_route_add(self.node_info,
@@ -347,17 +347,17 @@ class IPv4Setup(object):
                 mac_address = Topology.get_interface_mac(adj_node, adj_int)
                 get_node(node).set_arp(iface_key, ip_address, mac_address)
 
-    @staticmethod
-    def add_arp_on_dut(node, iface_key, ip_address, mac_address):
-        """Set ARP cache entree on DUT node.
-
-        :param node: VPP Node in the topology.
-        :param iface_key: Interface key.
-        :param ip_address: IP address of the interface.
-        :param mac_address: MAC address of the interface.
-        :type node: dict
-        :type iface_key: str
-        :type ip_address: str
-        :type mac_address: str
-        """
-        get_node(node).set_arp(iface_key, ip_address, mac_address)
+    # @staticmethod
+    # def add_arp_on_dut(node, iface_key, ip_address, mac_address):
+    #     """Set ARP cache entree on DUT node.
+    #
+    #     :param node: VPP Node in the topology.
+    #     :param iface_key: Interface key.
+    #     :param ip_address: IP address of the interface.
+    #     :param mac_address: MAC address of the interface.
+    #     :type node: dict
+    #     :type iface_key: str
+    #     :type ip_address: str
+    #     :type mac_address: str
+    #     """
+    #     get_node(node).set_arp(iface_key, ip_address, mac_address)

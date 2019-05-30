@@ -67,14 +67,14 @@
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip4} | ${prefix4}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip4} | ${prefix4}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
 | | ... | ${tg_to_dut2_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
 | | ... | ${tg_to_dut1_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip4}
-| | ... | ${dut2_to_dut1_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4}
-| | ... | ${dut1_to_dut2_mac}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2}
+| | ... | ${dut2_to_dut1_ip4} | ${dut2_to_dut1_mac}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1
+| | ...} | ${dut1_to_dut2_ip4} | ${dut1_to_dut2_mac}
 | | When Create L2 BD | ${dut1_node} | ${vpp_bd_id}
 | | And Add Interface To L2 BD | ${dut1_node} | ${dut1_to_tg} | ${vpp_bd_id}
 | | And Create L2 BD | ${dut2_node} | ${vpp_bd_id}

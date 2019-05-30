@@ -104,7 +104,7 @@
 | | ... | ${tg_to_dut_if1_mac} | ${server_ip}
 | | ... | ${client_ip} | ${client_mask}
 | | ... | ${lease_time}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1} | ${server_ip}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${server_ip}
 | | ... | ${tg_to_dut_if1_mac}
 | | Then Send ICMP echo request and verify answer
 | | ... | ${tg_node} | ${tg_to_dut_if1}

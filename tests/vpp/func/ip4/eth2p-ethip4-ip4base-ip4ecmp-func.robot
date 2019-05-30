@@ -54,13 +54,13 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And Set Interface Address | ${dut_node}
+| | And VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${ip_1} | ${prefix_length}
-| | And Set Interface Address | ${dut_node}
+| | And VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${ip_2} | ${prefix_length}
-| | And Add Arp On Dut
+| | And VPP Add IP Neighbor
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${neighbor_1_ip} | ${neighbor_1_mac}
-| | And Add Arp On Dut
+| | And VPP Add IP Neighbor
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${neighbor_2_ip} | ${neighbor_2_mac}
 | | When Vpp Route Add
 | | ... | ${dut_node} | ${test_dst_ip} | ${prefix_length}

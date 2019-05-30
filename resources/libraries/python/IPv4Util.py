@@ -25,41 +25,41 @@ from resources.libraries.python.ssh import exec_cmd
 class IPv4Util(object):
     """Implements keywords for IPv4 tests."""
 
-    @staticmethod
-    @keyword('From node "${node}" interface "${port}" ARP-ping '
-             'IPv4 address "${ip_address}"')
-    def arp_ping(node, interface, ip_address):
-        """Send an ARP ping from the specified node.
+    # @staticmethod
+    # @keyword('From node "${node}" interface "${port}" ARP-ping '
+    #          'IPv4 address "${ip_address}"')
+    # def arp_ping(node, interface, ip_address):
+    #     """Send an ARP ping from the specified node.
+    #
+    #     :param node: Node in topology.
+    #     :param ip_address: Destination IP address for the ARP packet.
+    #     :param interface: Name of an interface to send the ARP packet from.
+    #     :type node: dict
+    #     :type ip_address: str
+    #     :type interface: str
+    #     """
+    #     log.debug('From node {} interface {} ARP-ping IPv4 address {}'.
+    #               format(Topology.get_node_hostname(node),
+    #                      interface, ip_address))
+    #     get_node(node).arp_ping(ip_address, interface)
 
-        :param node: Node in topology.
-        :param ip_address: Destination IP address for the ARP packet.
-        :param interface: Name of an interface to send the ARP packet from.
-        :type node: dict
-        :type ip_address: str
-        :type interface: str
-        """
-        log.debug('From node {} interface {} ARP-ping IPv4 address {}'.
-                  format(Topology.get_node_hostname(node),
-                         interface, ip_address))
-        get_node(node).arp_ping(ip_address, interface)
-
-    @staticmethod
-    def set_interface_address(node, interface, address, prefix_length):
-        """See IPv4Node.set_ip for more information.
-
-        :param node: Node where IP address should be set to.
-        :param interface: Interface name.
-        :param address: IP address.
-        :param prefix_length: Prefix length.
-        :type node: dict
-        :type interface: str
-        :type address: str
-        :type prefix_length: int
-        """
-        log.debug('Node {} interface {} has IPv4 address {} with prefix '
-                  'length {}'.format(Topology.get_node_hostname(node),
-                                     interface, address, prefix_length))
-        get_node(node).set_ip(interface, address, int(prefix_length))
+    # @staticmethod
+    # def set_interface_address(node, interface, address, prefix_length):
+    #     """See IPv4Node.set_ip for more information.
+    #
+    #     :param node: Node where IP address should be set to.
+    #     :param interface: Interface name.
+    #     :param address: IP address.
+    #     :param prefix_length: Prefix length.
+    #     :type node: dict
+    #     :type interface: str
+    #     :type address: str
+    #     :type prefix_length: int
+    #     """
+    #     log.debug('Node {} interface {} has IPv4 address {} with prefix '
+    #               'length {}'.format(Topology.get_node_hostname(node),
+    #                                  interface, address, prefix_length))
+    #     get_node(node).set_ip(interface, address, int(prefix_length))
 
     @staticmethod
     def set_route(node, network, prefix_length, interface, gateway):
@@ -190,7 +190,6 @@ class IPv4Util(object):
         :type interface: str
         :raises RuntimeError: If no response for ping, raise error
         """
-        cmd = ''
         if namespace is not None:
             cmd = 'ip netns exec {0} ping -c{1} {2}'.format(
                 namespace, ping_count, destination)

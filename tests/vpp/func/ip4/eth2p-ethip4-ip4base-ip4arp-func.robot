@@ -50,9 +50,9 @@
 | | And Set interfaces in 3-node circular topology up
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | When Set Interface Address | ${dut1_node}
+| | When VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Set Interface Address | ${dut1_node}
+| | And VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
 | | Then Send packet and verify ARP request | ${tg_node}
 | | ... | ${test_src_ip} | ${dut1_to_dut2_ip_GW} | ${tg_to_dut1}
@@ -69,9 +69,9 @@
 | | And Set interfaces in 3-node circular topology up
 | | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | When Set Interface Address | ${dut1_node}
+| | When VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Set Interface Address | ${dut1_node}
+| | And VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}

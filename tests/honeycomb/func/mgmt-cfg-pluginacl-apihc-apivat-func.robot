@@ -38,6 +38,7 @@
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Library | resources.libraries.python.honeycomb.HcAPIKwACL.ACLKeywords
 | Library | resources.libraries.python.Trace
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv4Setup
 | Library | resources.libraries.python.IPv4Util
 | Library | resources.libraries.python.IPv6Util
@@ -674,7 +675,7 @@
 | | ...
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | reflex | ${acl_name_reflex}
-| | And Add ARP on DUT
+| | And VPP Add IP Neighbor
 | | ... | ${node} | ${dut_to_tg_if1} | ${gateway2} | ${tg_to_dut_if1_mac}
 | | And VPP Route Add
 | | ... | ${node} | ${src_net} | ${prefix_length} | gateway=${gateway2}

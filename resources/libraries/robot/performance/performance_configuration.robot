@@ -163,8 +163,8 @@
 | | ... | ${dut1_if1_ip4} | 24
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2}
 | | ... | ${dut2_if2_ip4} | 24
-| | Add arp on dut | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
 | | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
 | | ... | interface=${dut1_if1}
 | | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | gateway=${tg_if2_ip4}
@@ -191,18 +191,20 @@
 | | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | ...
-| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add arp on dut | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
+| | ... | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 1.1.1.2
+| | ... | ${dut2_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add arp on dut | ${dut2} | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | ... | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | 1.1.1.1
+| | ... | ${dut1_if2_mac}
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
-| | Add arp on dut | ${dut} | ${dut_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 20.20.20.2 | ${tg1_if2_mac}
 | | ...
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
 | | ... | 10.10.10.1 | 24
@@ -251,18 +253,20 @@
 | | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
+| | ... | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 2.2.2.2
+| | ... | ${dut2_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add arp on dut | ${dut2} | ${dut2_if1} | 2.2.2.1 | ${dut1_if2_mac}
+| | ... | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | 2.2.2.1
+| | ... | ${dut1_if2_mac}
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
-| | Add arp on dut | ${dut} | ${dut_if2} | 3.3.3.1 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 3.3.3.1 | ${tg1_if2_mac}
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 2.2.2.1
@@ -323,8 +327,8 @@
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 2.2.2.1 | 30
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${tg1_if2_mac}
 | | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | gateway=1.1.1.1
 | | ... | interface=${dut1_if1} | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=2.2.2.2
@@ -375,9 +379,9 @@
 | | | ... | ${dut1_vif2_mac}
 | | | ${qemu_id}= | Set Variable If | ${number} < 10 | 0${number}
 | | | ... | ${number}
-| | | Add arp on dut | ${dut1} | ${dut1-vhost-${number}-if1}
+| | | VPP Add IP Neighbor | ${dut1} | ${dut1-vhost-${number}-if1}
 | | | ... | ${ip_net_vif1}.2 | 52:54:00:00:${qemu_id}:01
-| | | Add arp on dut | ${dut1} | ${dut1-vhost-${number}-if2}
+| | | VPP Add IP Neighbor | ${dut1} | ${dut1-vhost-${number}-if2}
 | | | ... | ${ip_net_vif2}.2 | 52:54:00:00:${qemu_id}:02
 | | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=${ip_net_vif1}.2
 | | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
@@ -437,10 +441,10 @@
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if1} | 2.2.2.1 | ${dut1_if2_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if2} | 3.3.3.2 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | 2.2.2.1 | ${dut1_if2_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 3.3.3.2 | ${tg1_if2_mac}
 | | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | gateway=1.1.1.1
 | | ... | interface=${dut1_if1} | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=2.2.2.2
@@ -526,13 +530,13 @@
 | | | ... | ${dut2_vif2_mac}
 | | | ${qemu_id}= | Set Variable If | ${number} < 10 | 0${number}
 | | | ... | ${number}
-| | | Add arp on dut | ${dut1} | ${dut1-vhost-${number}-if1}
+| | | VPP Add IP Neighbor | ${dut1} | ${dut1-vhost-${number}-if1}
 | | | ... | ${ip_net_vif1}.2 | 52:54:00:00:${qemu_id}:01
-| | | Add arp on dut | ${dut1} | ${dut1-vhost-${number}-if2}
+| | | VPP Add IP Neighbor | ${dut1} | ${dut1-vhost-${number}-if2}
 | | | ... | ${ip_net_vif2}.2 | 52:54:00:00:${qemu_id}:02
-| | | Add arp on dut | ${dut2} | ${dut2-vhost-${number}-if1}
+| | | VPP Add IP Neighbor | ${dut2} | ${dut2-vhost-${number}-if1}
 | | | ... | ${ip_net_vif1}.2 | 52:54:00:00:${qemu_id}:01
-| | | Add arp on dut | ${dut2} | ${dut2-vhost-${number}-if2}
+| | | VPP Add IP Neighbor | ${dut2} | ${dut2-vhost-${number}-if2}
 | | | ... | ${ip_net_vif2}.2 | 52:54:00:00:${qemu_id}:02
 | | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=${ip_net_vif1}.2
 | | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
@@ -598,12 +602,12 @@
 | | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add arp on dut | ${dut1} | ${subif_index_1} | 2.2.2.2
+| | ... | VPP Add IP Neighbor | ${dut1} | ${subif_index_1} | 2.2.2.2
 | | ... | ${dut2_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add arp on dut | ${dut2} | ${subif_index_2} | 2.2.2.1
+| | ... | VPP Add IP Neighbor | ${dut2} | ${subif_index_2} | 2.2.2.1
 | | ... | ${dut1_if2_mac}
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
@@ -611,7 +615,7 @@
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${subif_index_1}
-| | Add arp on dut | ${dut} | ${dut_if2} | 3.3.3.1 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 3.3.3.1 | ${tg1_if2_mac}
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Configure IP addresses on interfaces | ${dut1} | ${subif_index_1}
@@ -1120,8 +1124,8 @@
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2 | 24
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
 | | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
 | | ... | 172.16.0.1 | 172.16.0.2
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${dut1s_vxlan}
@@ -1524,14 +1528,16 @@
 | | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | ...
 | | :FOR | ${number} | IN RANGE | 2 | ${ip_nr}+2
-| | | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.${number}
+| | | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.${number}
 | | | ... | ${tg1_if1_mac}
-| | | Add arp on dut | ${dut} | ${dut_if2} | 20.20.20.${number}
+| | | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 20.20.20.${number}
 | | | ... | ${tg1_if2_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add arp on dut | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
+| | ... | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 1.1.1.2
+| | ... | ${dut2_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add arp on dut | ${dut2} | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | ... | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | 1.1.1.1
+| | ... | ${dut1_if2_mac}
 | | ...
 | | Configure IP addresses on interfaces
 | | ... | ${dut1} | ${dut1_if1} | 10.10.10.1 | 24
@@ -1773,8 +1779,8 @@
 | | ... | 24
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
 | | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
 | | ... | 172.16.0.1 | 172.16.0.2
 | | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
@@ -1925,8 +1931,8 @@
 | | | Add interface to bridge domain | ${dut2} | ${dut2s_vxlan} | ${dut2_bd_id1}
 | | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | Add arp on dut | ${dut1} | ${dut1_if1} | ${dut1_gw} | ${tg_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if2} | ${dut2_gw} | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | ${dut1_gw} | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | ${dut2_gw} | ${tg_if2_mac}
 | | Vpp Route Add | ${dut1} | ${dut1_route_subnet} | ${dut1_route_mask}
 | | ... | gateway=${dut1_gw} | interface=${dut1_if1}
 | | Vpp Route Add | ${dut2} | ${dut2_route_subnet} | ${dut2_route_mask}
@@ -2222,7 +2228,7 @@
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_pci}= |  Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
 | | | Run keyword | ${dut}.Add DPDK Dev | ${if1_pci}
 | | | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
 
@@ -2597,12 +2603,12 @@
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | ${dut2_dut1_address}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | ${dut2_dut1_address}
 | | ... | ${dut2_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_dut2_address}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | ${dut1_dut2_address}
 | | ... | ${dut1_if2_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
 | | ... | ${dut1_tg_address} | ${duts_prefix}
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
@@ -2730,8 +2736,8 @@
 | | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2}
 | | ... | ${dut2_tg_ip4_address} | ${prefix4}
 | | Suppress ICMPv6 router advertisement message | ${nodes}
-| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
 | | Add Ip Neighbor | ${dut1} | ${dut1_if2} | ${dut2_dut1_ip6_address}
 | | ... | ${dut2_if1_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2_if1} | ${dut1_dut2_ip6_address}
@@ -2780,9 +2786,9 @@
 | | Suppress ICMPv6 router advertisement message | ${nodes}
 | | Add Ip Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg1_if1_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg1_if2_mac}
-| | Add arp on dut | ${dut1} | ${dut1_if2} | ${dut2_dut1_ip4_address}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | ${dut2_dut1_ip4_address}
 | | ... | ${dut2_if1_mac}
-| | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_dut2_ip4_address}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | ${dut1_dut2_ip4_address}
 | | ... | ${dut1_if2_mac}
 
 | Initialize NAT44 in circular topology
@@ -2801,9 +2807,11 @@
 | | ...
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | 10.0.0.1 | 20
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 11.0.0.1 | 20
+| | ... | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
+| | ... | 11.0.0.1 | 20
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 11.0.0.2 | 20
+| | ... | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1}
+| | ... | 11.0.0.2 | 20
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2}
 | | ... | ELSE | Set Variable | ${dut1}
@@ -2819,12 +2827,14 @@
 | | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | ...
-| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.0.0.2 | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.0.0.2 | ${tg_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add arp on dut | ${dut1} | ${dut1_if2} | 11.0.0.2 | ${dut2_if1_mac}
+| | ... | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 11.0.0.2
+| | ... | ${dut2_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Add arp on dut | ${dut2} | ${dut2_if1} | 11.0.0.1 | ${dut1_if2_mac}
-| | Add arp on dut | ${dut} | ${dut_if2} | 12.0.0.2 | ${tg_if2_mac}
+| | ... | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | 11.0.0.1
+| | ... | ${dut1_if2_mac}
+| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 12.0.0.2 | ${tg_if2_mac}
 | | ...
 | | Vpp Route Add | ${dut1} | 20.0.0.0 | 18 | gateway=10.0.0.2
 | | ... | interface=${dut1_if1}
@@ -3197,7 +3207,7 @@
 | | ... | ELSE | Set Variable | if2
 | | ${prev_if_mac}= | Get Interface MAC | ${nodes['${prev_node}']}
 | | ... | ${${prev_node}_${prev_if}}
-| | Add ARP on DUT | ${nodes['${dut}']} | ${${dut}_if1} | ${ip_net_if1}.1
+| | VPP Add IP Neighbor | ${nodes['${dut}']} | ${${dut}_if1} | ${ip_net_if1}.1
 | | ... | ${prev_if_mac}
 | | ...
 | | ${fib_table_2}= | Evaluate | ${fib_table_1} + ${count}
@@ -3220,7 +3230,7 @@
 | | ... | ELSE | Set Variable | if1
 | | ${next_if_mac}= | Get Interface MAC | ${nodes['${next_node}']}
 | | ... | ${${next_node}_${next_if}}
-| | Add ARP on DUT | ${nodes['${dut}']} | ${${dut}_if2} | ${ip_net_if2}.2
+| | VPP Add IP Neighbor | ${nodes['${dut}']} | ${${dut}_if2} | ${ip_net_if2}.2
 | | ... | ${next_if_mac}
 | | ...
 | | ${fib_table_1}= | Evaluate | ${fib_table_1} - ${1}
@@ -3265,9 +3275,9 @@
 | | | ... | ${memif2}
 | | | ${memif_if2_mac}= | Get interface mac | ${nodes['${dut}']}
 | | | ... | ${memif_if2_key}
-| | | Add arp on dut | ${nodes['${dut}']} | ${memif1} | ${ip_net_memif2}.1
+| | | VPP Add IP Neighbor | ${nodes['${dut}']} | ${memif1} | ${ip_net_memif2}.1
 | | | ... | ${memif_if2_mac}
-| | | Add arp on dut | ${nodes['${dut}']} | ${memif2} | ${ip_net_memif1}.1
+| | | VPP Add IP Neighbor | ${nodes['${dut}']} | ${memif2} | ${ip_net_memif1}.1
 | | | ... | ${memif_if1_mac}
 
 | Initialize IPv4 routing with memif pairs

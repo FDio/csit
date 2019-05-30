@@ -18,6 +18,7 @@
 | Library | resources.libraries.python.LispUtil
 | Library | resources.libraries.python.VPPUtil
 | Library | resources.libraries.python.IPsecUtil
+| Library | resources.libraries.python.IPUtil
 | Resource | resources/libraries/robot/shared/traffic.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
@@ -249,14 +250,14 @@
 | | And Add Fib Table | ${dut2_node} | ${fib_table}
 | | Assign Interface To Fib Table | ${dut2_node}
 | | ... | ${dut2_to_tg} | ${fib_table}
-| | Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip4}
-| | ... | ${prefix4}
-| | Set Interface Address | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip4}
-| | ... | ${prefix4}
-| | Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip4}
-| | ... | ${prefix4}
-| | Set Interface Address | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip4}
-| | ... | ${prefix4}
+| | VPP Interface Set IP Address | ${dut1_node} | ${dut1_to_dut2}
+| | ... | ${dut1_to_dut2_ip4} | ${prefix4}
+| | VPP Interface Set IP Address | ${dut1_node} | ${dut1_to_tg}
+| | ... | ${dut1_to_tg_ip4} | ${prefix4}
+| | VPP Interface Set IP Address | ${dut2_node} | ${dut2_to_dut1}
+| | ... | ${dut2_to_dut1_ip4} | ${prefix4}
+| | VPP Interface Set IP Address | ${dut2_node} | ${dut2_to_tg}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
 
 | Add IP Neighbors
 | | [Documentation]

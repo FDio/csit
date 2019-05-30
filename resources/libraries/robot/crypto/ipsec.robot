@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.IPsecUtil
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.TrafficScriptExecutor
-| Library | resources.libraries.python.IPv4Util.IPv4Util
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.Routing
 | Library | String
@@ -94,9 +94,9 @@
 | | ... | *Example:*
 | | ... | \| Configure topology for IPv4 IPsec testing \|
 | | Configure path for IPSec test
-| | Set Interface Address | ${dut_node} | ${dut_if} | ${dut_if_ip4}
+| | VPP Interface Set IP Address | ${dut_node} | ${dut_if} | ${dut_if_ip4}
 | | ... | ${ip4_plen}
-| | Set Interface Address | ${dut_node} | ${dut_lo} | ${dut_lo_ip4}
+| | VPP Interface Set IP Address | ${dut_node} | ${dut_lo} | ${dut_lo_ip4}
 | | ... | ${ip4_plen}
 | | dut1_v4.Set Arp | ${dut_if} | ${tg_if_ip4} | ${tg_if_mac}
 | | Vpp Route Add | ${dut_node} | ${tg_lo_ip4} | ${ip4_plen}

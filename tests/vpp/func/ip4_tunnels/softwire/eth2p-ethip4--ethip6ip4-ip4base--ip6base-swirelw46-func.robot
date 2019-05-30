@@ -17,6 +17,7 @@
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/ip/map.robot
+| Library | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SOFTWIRE
 | Test Setup | Set up functional test
@@ -148,7 +149,7 @@ TC03: Decapsulate IPv4 UDP from IPv6.
 | | And   Configure IP addresses on interfaces
 | |       ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | |       ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
-| | And   Add Arp on DUT
+| | And   VPP Add IP Neighbor
 | |       ... | ${dut_node} | ${dut_to_tg_if1}
 | |       ... | ${test_ipv4_outside}
 | |       ... | ${tg_to_dut_if1_mac}

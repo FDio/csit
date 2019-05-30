@@ -19,6 +19,7 @@
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/dhcp.robot
 | Library | resources.libraries.python.Trace
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv4Setup
 | Library | resources.libraries.python.IPv6Setup
 | Library | resources.libraries.python.IPv6Util
@@ -108,9 +109,9 @@
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
 | | Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-| | Add ARP on DUT | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server1_ip}
+| | VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server1_ip}
 | | ... | ${tg_to_dut_if2_mac}
-| | Add ARP on DUT | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server2_ip}
+| | VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server2_ip}
 | | ... | ${tg_to_dut_if2_mac}
 | | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | gateway=${NONE}
 | | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
