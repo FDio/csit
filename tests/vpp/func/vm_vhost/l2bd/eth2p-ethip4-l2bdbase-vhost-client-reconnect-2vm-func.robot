@@ -17,6 +17,7 @@
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/overlay/vxlan.robot
 | Library  | resources.libraries.python.Trace
+| Library  | resources.libraries.python.IPUtil
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | Test Setup | Set up functional test
 | Test Teardown | Run Keywords
@@ -54,8 +55,8 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And Set Interface Address | ${dut_node} | ${dut_to_tg_if1} | ${dut_if1_ip}
-| | ... | ${prefix_length}
+| | And Set VPP Interface Address | ${dut_node} | ${dut_to_tg_if1}
+| | ... | ${dut_if1_ip} | ${prefix_length}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_if1_ip}
 | | ... | ${tg_to_dut_if1_mac}
 | | ${vxlan1}= | And Create VXLAN interface | ${dut_node} | ${101}
@@ -114,8 +115,8 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And Set Interface Address | ${dut_node} | ${dut_to_tg_if1} | ${dut_if1_ip}
-| | ... | ${prefix_length}
+| | And Set VPP Interface Address | ${dut_node} | ${dut_to_tg_if1}
+| | ... | ${dut_if1_ip} | ${prefix_length}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_if1_ip}
 | | ... | ${tg_to_dut_if1_mac}
 | | ${vxlan1}= | And Create VXLAN interface | ${dut_node} | ${101}
@@ -159,8 +160,8 @@
 | | When Setup All Duts | ${nodes}
 | | And Save VPP PIDs
 | | And Set interfaces in 2-node circular topology up
-| | And Set Interface Address | ${dut_node} | ${dut_to_tg_if1} | ${dut_if1_ip}
-| | ... | ${prefix_length}
+| | And Set VPP Interface Address | ${dut_node} | ${dut_to_tg_if1}
+| | ... | ${dut_if1_ip} | ${prefix_length}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_if1_ip}
 | | ... | ${tg_to_dut_if1_mac}
 | | ${vxlan1}= | And Create VXLAN interface | ${dut_node} | ${101}
@@ -201,7 +202,7 @@
 *** Keywords ***
 | Configure QEMU vhost and run it VM
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${qemu_id}
-| | Import Library | resources.libraries.python.QemuUtils | node=${dut_node} |
+| | Import Library | resources.libraries.python.QemuUtils | node=${dut_node}
 | | ... | qemu_id=${qemu_id} | WITH NAME | qemu-${qemu_id}
 | | Run keyword | qemu-${qemu_id}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | qemu-${qemu_id}.Qemu Add Vhost User If | ${sock2}

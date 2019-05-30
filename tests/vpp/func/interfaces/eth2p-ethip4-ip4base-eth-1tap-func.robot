@@ -71,9 +71,9 @@
 | | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut_node} | ${int1} | ${tap1_VPP_ip} | ${prefix}
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip_address} | ${prefix}
 | | And Set Interface State | ${dut_node} | ${int1} | up
 | | And Set Linux Interface MAC | ${dut_node} | ${tap_int1} | ${tap1_NM_mac}
@@ -103,9 +103,9 @@
 | | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut_node} | ${int1} | ${tap1_VPP_ip} | ${prefix}
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip_address} | ${prefix}
 | | And Set Interface State | ${dut_node} | ${int1} | up
 | | When Create Namespace | ${dut_node} | ${namespace1}

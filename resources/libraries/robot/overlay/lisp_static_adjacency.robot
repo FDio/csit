@@ -19,7 +19,7 @@
 | Library  | resources.libraries.python.LispSetup.LispLocalEid
 | Library  | resources.libraries.python.LispSetup.LispAdjacency
 | Library  | resources.libraries.python.LispSetup.LispRemoteMapping
-| Library  | resources.libraries.python.IPv4Util.IPv4Util
+| Library  | resources.libraries.python.IPv4Util.IPUtil
 
 *** Keywords ***
 | Configure LISP topology in 3-node circular topology
@@ -148,8 +148,8 @@
 | | ...                    | ${old_dut1_static_adjacency['prefix']}
 | | ...                    | ${old_dut1_static_adjacency['seid']}
 | | ...                    | ${old_dut1_static_adjacency['prefix']}
-| | Set Interface Address | ${dut2_node} | ${dut2_to_dut1}
-| | ...                   | ${new_dut2_ip} | ${prefix}
+| | Set VPP Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${new_dut2_ip}
+| | ... | ${prefix}
 | | Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2} | ${new_dut2_ip}
 | | ...            | ${dut2_to_dut1_mac}
 | | Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${new_dut1_ip}

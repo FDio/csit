@@ -17,6 +17,7 @@
 | Resource | resources/libraries/robot/overlay/vxlan.robot
 | Resource | resources/libraries/robot/l2/l2_traffic.robot
 | Library  | resources.libraries.python.Trace
+| Library  | resources.libraries.python.IPUtil
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV | VPP_VM_ENV
 | Test Setup | Set up functional test
 | Test Teardown | Run Keywords | Tear down functional test
@@ -77,36 +78,30 @@
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
 | | When Configure vhost interfaces for L2BD forwarding | ${dut1_node}
-| | ...                                                     | ${sock1}
-| | ...                                                     | ${sock2}
-| | ...                                                     | ${dut1_vhost1}
-| | ...                                                     | ${dut1_vhost2}
+| | ... | ${sock1} | ${sock2} | ${dut1_vhost1} | ${dut1_vhost2}
 | | And Configure vhost interfaces for L2BD forwarding | ${dut2_node}
-| | ...                                                    | ${sock1}
-| | ...                                                    | ${sock2}
-| | ...                                                    | ${dut2_vhost1}
-| | ...                                                    | ${dut2_vhost2}
+| | ... | ${sock1} | ${sock2} | ${dut2_vhost1} | ${dut2_vhost2}
 | | And Configure VM for vhost L2BD forwarding | ${dut1_node} | ${sock1}
-| | ...                                       | ${sock2} | ${qemu1}
+| | ... | ${sock2} | ${qemu1}
 | | And Configure VM for vhost L2BD forwarding | ${dut2_node} | ${sock1}
-| | ...                                       | ${sock2} | ${qemu2}
-| | And Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${ip4_addr1}
-| | ...                       | ${ip4_prefix}
-| | And Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${ip4_addr2}
-| | ...                       | ${ip4_prefix}
+| | ... | ${sock2} | ${qemu2}
+| | And Set VPP Interface Address | ${dut1_node} | ${dut1_to_dut2}
+| | ... | ${ip4_addr1} | ${ip4_prefix}
+| | And Set VPP Interface Address | ${dut2_node} | ${dut2_to_dut1}
+| | ... | ${ip4_addr2} | ${ip4_prefix}
 | | And VPP IP Probe | ${dut1_node} | ${dut1_to_dut2} | ${ip4_addr2}
 | | And VPP IP Probe | ${dut2_node} | ${dut2_to_dut1} | ${ip4_addr1}
 | | ${dut1s_vxlan}= | And Create VXLAN interface | ${dut1_node} | ${vni_1}
-| |                 | ...                        | ${ip4_addr1} | ${ip4_addr2}
+| | ... | ${ip4_addr1} | ${ip4_addr2}
 | | ${dut2s_vxlan}= | And Create VXLAN interface | ${dut2_node} | ${vni_1}
-| |                 | ...                        | ${ip4_addr2} | ${ip4_addr1}
-| | And Add interfaces to L2BD | ${dut1_node} | ${bd_id1}
-| | ...                            | ${dut1_to_tg} | ${${dut1_vhost1}}
-| | And Add interfaces to L2BD | ${dut1_node} | ${bd_id2}
-| | ...                            | ${dut1s_vxlan} | ${${dut1_vhost2}}
-| | And Add interfaces to L2BD | ${dut2_node} | ${bd_id1}
-| | ...                            | ${dut2_to_tg} | ${${dut2_vhost1}}
-| | And Add interfaces to L2BD | ${dut2_node} | ${bd_id2}
-| | ...                            | ${dut2s_vxlan} | ${${dut2_vhost2}}
+| | ... | ${ip4_addr2} | ${ip4_addr1}
+| | And Add interfaces to L2BD | ${dut1_node} | ${bd_id1} | ${dut1_to_tg}
+| | ... | ${${dut1_vhost1}}
+| | And Add interfaces to L2BD | ${dut1_node} | ${bd_id2} | ${dut1s_vxlan}
+| | ... | ${${dut1_vhost2}}
+| | And Add interfaces to L2BD | ${dut2_node} | ${bd_id1} | ${dut2_to_tg}
+| | ... | ${${dut2_vhost1}}
+| | And Add interfaces to L2BD | ${dut2_node} | ${bd_id2} | ${dut2s_vxlan}
+| | ... | ${${dut2_vhost2}}
 | | Then Send ICMPv4 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

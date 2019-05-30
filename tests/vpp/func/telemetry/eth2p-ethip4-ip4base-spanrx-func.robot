@@ -16,6 +16,7 @@
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/telemetry/span.robot
 | Library  | resources.libraries.python.Trace
+| Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.IPv4Util
 | Library  | resources.libraries.python.IPv4Setup
 | Library  | resources.libraries.python.telemetry.SPAN
@@ -49,7 +50,7 @@
 | | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And Set interface Address | ${dut_node} | ${dut_to_tg_if1}
+| | And Set VPP Interface Address | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${dut_to_tg_if1_ip4} | ${prefix}
 | | And Set SPAN Mirroring | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
 | | Then Send Packet And Check Received Copies | ${tg_node}
@@ -68,7 +69,7 @@
 | | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And Set interface Address | ${dut_node} | ${dut_to_tg_if1}
+| | And Set VPP Interface Address | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${dut_to_tg_if1_ip4} | ${prefix}
 | | And Add ARP on DUT | ${dut_node} | ${dut_to_tg_if1} | ${tg_to_dut_if1_ip4}
 | | ... | ${tg_to_dut_if1_mac}

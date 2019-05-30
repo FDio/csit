@@ -13,14 +13,17 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv4Util.IPv4Util
 | Library | resources.libraries.python.IPv4Setup.IPv4Setup
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Routing
 | Library | resources.libraries.python.TrafficScriptExecutor
+| ...
 | Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
+| ...
 | Variables | resources/libraries/python/IPv4NodeAddress.py | ${nodes}
 | ...
 | Documentation | IPv4 keywords
@@ -135,7 +138,7 @@
 | | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
 
 | Configure IP addresses on interfaces
-| | [Documentation] | Iterates through @{args} list and Set Interface Address
+| | [Documentation] | Iterates through @{args} list and set IP interface address
 | | ... | for every (${dut_node}, ${interface}, ${address},
 | | ... | ${prefix}) tuple.
 | | ...
@@ -154,7 +157,7 @@
 | | ...
 | | [Arguments] | @{args}
 | | :FOR | ${dut_node} | ${interface} | ${address} | ${prefix} | IN | @{args}
-| | | Set Interface Address | ${dut_node} | ${interface} | ${address}
+| | | Set VPP Interface Address | ${dut_node} | ${interface} | ${address}
 | | | ... | ${prefix}
 
 | Send ICMP echo request and verify answer

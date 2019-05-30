@@ -12,6 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
+| Library | resources.libraries.python.Trace
+| Library | resources.libraries.python.IPUtil
+| ...
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
@@ -19,10 +22,13 @@
 | Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/l2/l2_xconnect.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
-| Library | resources.libraries.python.Trace
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *Source RPF check on IPv4 test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG - DUT1 - DUT2 - TG
@@ -54,18 +60,18 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Set Interface Address | ${dut1_node}
+| | And Set VPP Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Set Interface Address | ${dut1_node}
+| | And Set VPP Interface Address | ${dut1_node}
 | | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
-| | And Add Arp On Dut
+| | And Add Arp On Dut
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip_GW}
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | ... | resolve_attempts=${NONE}
-| | And Add Arp On Dut
+| | And Add Arp On Dut
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip_GW}
 | | ... | ${tg_to_dut1_mac}
 | | And Vpp Route Add
@@ -106,18 +112,18 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Set Interface Address | ${dut1_node}
+| | And Set VPP Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Set Interface Address | ${dut1_node}
+| | And Set VPP Interface Address | ${dut1_node}
 | | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
-| | And Add Arp On Dut
+| | And Add Arp On Dut
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip_GW}
 | | ... | ${tg_to_dut2_mac}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | gateway=${dut1_to_dut2_ip_GW} | interface=${dut1_to_dut2}
 | | ... | resolve_attempts=${NONE}
-| | And Add Arp On Dut
+| | And Add Arp On Dut
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip_GW}
 | | ... | ${tg_to_dut1_mac}
 | | And Vpp Route Add

@@ -61,15 +61,15 @@
 | | ...
 | | [Arguments] | ${prealloc_fifos} | ${fifo_size} | ${private_segment_size}
 | | ...
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.10.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.20.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.30.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.40.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.50.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.60.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.70.2 | 24
-| | Set Interface Address | ${dut1} | ${dut1_if1} | 192.168.80.2 | 24
+| | Set VPP Interface Address | ${dut1} | ${dut1_if1} | up
+| | Set VPP Interface Address | ${dut1} | ${dut1_if1} | 192.168.10.2 | 24
+| | Set VPP Interface Address | ${dut1} | ${dut1_if1} | 192.168.20.2 | 24
+| | Set VPP Interface Address | ${dut1} | ${dut1_if1} | 192.168.30.2 | 24
+| | Set VPP Interface Address | ${dut1} | ${dut1_if1} | 192.168.40.2 | 24
+| | Set VPP Interface Address | ${dut1} | ${dut1_if1} | 192.168.50.2 | 24
+| | Set VPP Interface Address | ${dut1} | ${dut1_if1} | 192.168.60.2 | 24
+| | Set VPP Interface Address | ${dut1} | ${dut1_if1} | 192.168.70.2 | 24
+| | Set VPP Interface Address | ${dut1} | ${dut1_if1} | 192.168.80.2 | 24
 | | Vpp Node Interfaces Ready Wait | ${dut1}
 | | Start HTTP server params | ${dut1} | ${prealloc_fifos} | ${fifo_size}
 | | ... | ${private_segment_size}

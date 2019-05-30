@@ -171,7 +171,8 @@
 | | ... | Qemu and bridge the vhosts.
 | | ${vhost1}= | And Vpp Create Vhost User Interface | ${dut1_node} | ${sock1}
 | | ${vhost2}= | And Vpp Create Vhost User Interface | ${dut1_node} | ${sock2}
-| | Set Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip} | ${prefix6}
+| | Set VPP Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip}
+| | ... | ${prefix6}
 | | Set Interface State | ${dut1_node} | ${vhost1} | up
 | | Set Interface State | ${dut1_node} | ${vhost2} | up
 | | Vpp RA Suppress Link Layer | ${dut1_node} | ${vhost2}

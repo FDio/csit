@@ -107,7 +107,8 @@
 | | And Add Fib Table | ${dut1_node} | ${fib_table}
 | | Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${vhost2} | ${fib_table}
-| | Set Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip} | ${prefix4}
+| | Set VPP Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip}
+| | ... | ${prefix4}
 | | Set Interface State | ${dut1_node} | ${vhost1} | up
 | | Set Interface State | ${dut1_node} | ${vhost2} | up
 | | Create bridge domain | ${dut1_node} | ${bid} | learn=${TRUE}

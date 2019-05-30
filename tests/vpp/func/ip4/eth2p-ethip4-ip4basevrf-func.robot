@@ -344,44 +344,44 @@
 | | Assign Interface To Fib Table
 | | ... | ${dut2_node} | ${dut2_to_tg_if2} | ${fib_table_2}
 
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut1_node} | ${dut1_to_tg_if1} | ${dut1_to_tg_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut1_node} | ${dut1_to_tg_if2} | ${dut1_to_tg_ip2} | ${ip_prefix}
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut1_node} | ${dut1_to_dut2_if1}
 | | ... | ${dut1_to_dut2_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut1_node} | ${dut1_to_dut2_if2}
 | | ... | ${dut1_to_dut2_ip2} | ${ip_prefix}
 
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut2_node} | ${dut2_to_tg_if1} | ${dut2_to_tg_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut2_node} | ${dut2_to_tg_if2} | ${dut2_to_tg_ip2} | ${ip_prefix}
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut2_node} | ${dut2_to_dut1_if1}
 | | ... | ${dut2_to_dut1_ip1} | ${ip_prefix}
-| | And Set Interface Address
+| | And Set VPP Interface Address
 | | ... | ${dut2_node} | ${dut2_to_dut1_if2}
 | | ... | ${dut2_to_dut1_ip2} | ${ip_prefix}
 
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg_if1}
+| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg_if1}
 | | ... | ${tg_dut1_ip1} | ${tg_to_dut1_if1_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2_if1}
+| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2_if1}
 | | ... | ${dut2_to_dut1_ip1} | ${dut2_to_dut1_if1_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg_if1}
+| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg_if1}
 | | ... | ${tg_dut2_ip1} | ${tg_to_dut2_if1_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1_if1}
+| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1_if1}
 | | ... | ${dut1_to_dut2_ip1} | ${dut1_to_dut2_if1_mac}
 
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg_if2}
+| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg_if2}
 | | ... | ${tg_dut1_ip2} | ${tg_to_dut1_if2_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2_if2}
+| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2_if2}
 | | ... | ${dut2_to_dut1_ip2} | ${dut2_to_dut1_if2_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg_if2}
+| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg_if2}
 | | ... | ${tg_dut2_ip2} | ${tg_to_dut2_if2_mac}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1_if2}
+| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1_if2}
 | | ... | ${dut1_to_dut2_ip2} | ${dut1_to_dut2_if2_mac}
 
 | | And Vpp Route Add | ${dut1_node} | ${tg_dut2_ip1} | ${ip_prefix}
