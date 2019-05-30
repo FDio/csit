@@ -53,13 +53,12 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | gateway=${NONE}
-| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
-| | And Set Interface Address | ${dut_node}
+| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | local=${True}
+| | And VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | And Set Interface Address | ${dut_node}
+| | And VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server_ip}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server_ip}
 | | ... | ${tg_to_dut_if2_mac}
 | | When DHCP Proxy Config | ${dut_node} | ${dhcp_server_ip}
 | | ... | ${dut_to_tg_if1_ip}
@@ -77,13 +76,12 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | gateway=${NONE}
-| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
-| | And Set Interface Address | ${dut_node}
+| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | local=${True}
+| | And VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | And Set Interface Address | ${dut_node}
+| | And VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server_ip}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server_ip}
 | | ... | ${tg_to_dut_if2_mac}
 | | When DHCP Proxy Config | ${dut_node} | ${dhcp_server_ip}
 | | ... | ${dut_to_tg_if1_ip}

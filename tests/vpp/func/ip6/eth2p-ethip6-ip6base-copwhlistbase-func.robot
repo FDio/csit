@@ -14,6 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.Cop
+| Library | resources.libraries.python.IPUtil
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/ip/ip6.robot
@@ -83,17 +84,16 @@
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_if1_ip} | ${ip_prefix}
 | | And VPP Set IF IPv6 Addr
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_if2_ip} | ${ip_prefix}
-| | And Add IP Neighbor
+| | And VPP Add IP Neighbor
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip_GW} | ${tg_to_dut1_mac}
-| | And Add IP Neighbor
+| | And VPP Add IP Neighbor
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip_GW} | ${tg_to_dut2_mac}
-| | And Vpp Route Add | ${dut1_node}
-| | ... | ${test_dst_ip} | ${ip_prefix} | gateway=${dut1_if2_ip_GW}
-| | ... | interface=${dut1_to_dut2}
+| | And Vpp Route Add | ${dut1_node} | ${test_dst_ip} | ${ip_prefix}
+| | ... | gateway=${dut1_if2_ip_GW} | interface=${dut1_to_dut2}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
 | | And Add fib table | ${dut1_node} | ${fib_table_number} | ipv6=${TRUE}
-| | And Vpp Route Add | ${dut1_node}
-| | ... | ${cop_dut_ip} | ${ip_prefix} | vrf=${fib_table_number} | local=${TRUE}
+| | And Vpp Route Add | ${dut1_node} | ${cop_dut_ip} | ${ip_prefix}
+| | ... | vrf=${fib_table_number} | local=${TRUE}
 | | When COP Add whitelist Entry | ${dut1_node} | ${dut1_to_tg} | ip6 |
 | | ... | ${fib_table_number}
 | | And COP interface enable or disable | ${dut1_node} | ${dut1_to_tg} | enable

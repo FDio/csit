@@ -16,7 +16,6 @@
 | Library | resources.libraries.python.telemetry.SPAN
 | Library  | resources.libraries.python.InterfaceUtil
 | Library  | resources.libraries.python.IPv4Util
-| Library  | resources.libraries.python.IPv4Setup
 | Library  | resources.libraries.python.Trace
 
 *** Keywords ***
