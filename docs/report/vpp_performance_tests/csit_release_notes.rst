@@ -48,9 +48,13 @@ Release Notes
          for Packet Latency were published as there are no results for Packet
          Latency available.
 
-.. raw:: latex
+.. note::
 
-    \clearpage
+    |csit-release| report was generated with a single run of selected
+    64B frame performance tests on 3n-hsw and 3n-skx test beds
+    in order to spot-check the main data plane paths.
+    NFV service density and soak tests were not run and do not feature in
+    this report.
 
 .. _vpp_known_issues:
 
