@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,17 +13,18 @@
 
 *** Settings ***
 | Library  | Collections
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/l2/l2_xconnect.robot
 | Library  | resources.libraries.python.InterfaceUtil
 | Library  | resources.libraries.python.IPUtil
-| Library  | resources.libraries.python.IPv4Util
 | Library  | resources.libraries.python.IPv6Util
-| Library  | resources.libraries.python.IPv4Setup
 | Library  | resources.libraries.python.L2Util
 | Library  | resources.libraries.python.NodePath
+| ...
+| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
+| Resource | resources/libraries/robot/l2/l2_xconnect.robot
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/interfaces.robot
+| ...
+| Documentation | VXLAN keywords
 
 *** Keywords ***
 | Configure IP addresses and neighbors on interfaces
@@ -55,14 +56,14 @@
 | | ... | ELSE | Set Variable | ${DUT2_INT_INDEX}
 | | ${DUT1_INT_MAC}= | Vpp Get Interface Mac | ${DUT1} | ${DUT1_INT_INDEX}
 | | ${DUT2_INT_MAC}= | Vpp Get Interface Mac | ${DUT2} | ${DUT2_INT_INDEX}
-| | Set Interface Address | ${DUT1} | ${DUT1_INT_INDEX}
+| | VPP Interface Set IP Address | ${DUT1} | ${DUT1_INT_INDEX}
 | | ... | ${dut1s_ip_address} | ${duts_ip_address_prefix}
-| | Set Interface Address | ${DUT2} | ${DUT2_INT_INDEX}
+| | VPP Interface Set IP Address | ${DUT2} | ${DUT2_INT_INDEX}
 | | ... | ${dut2s_ip_address} | ${duts_ip_address_prefix}
-| | Add IP Neighbor | ${DUT1} | ${DUT1_INT_INDEX} | ${dut2s_ip_address}
-| | ... | ${DUT2_INT_MAC}
-| | Add IP Neighbor | ${DUT2} | ${DUT2_INT_INDEX} | ${dut1s_ip_address}
-| | ... | ${DUT1_INT_MAC}
+| | VPP Add IP Neighbor
+| | ... | ${DUT1} | ${DUT1_INT_INDEX} | ${dut2s_ip_address} | ${DUT2_INT_MAC}
+| | VPP Add IP Neighbor
+| | ... | ${DUT2} | ${DUT2_INT_INDEX} | ${dut1s_ip_address} | ${DUT1_INT_MAC}
 
 | Add interfaces to L2BD
 | | [Arguments] | ${DUT} | ${BID} | ${INTERFACE_1} | ${INTERFACE_2}

@@ -12,14 +12,19 @@
 # limitations under the License.
 
 *** Settings ***
+| Library | resources.libraries.python.Trace
+| ...
+| Resource | resources/libraries/robot/ip/ip4.robot
+| Resource | resources/libraries/robot/features/dhcp_proxy.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/features/dhcp_proxy.robot
-| Resource | resources/libraries/robot/ip/ip4.robot
-| Library | resources.libraries.python.Trace
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *DHCPv4 proxy test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG = DUT
@@ -53,13 +58,12 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | gateway=${NONE}
-| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
-| | And Set Interface Address | ${dut_node}
+| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | local=${True}
+| | And VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | And Set Interface Address | ${dut_node}
+| | And VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server_ip}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server_ip}
 | | ... | ${tg_to_dut_if2_mac}
 | | When DHCP Proxy Config | ${dut_node} | ${dhcp_server_ip}
 | | ... | ${dut_to_tg_if1_ip}
@@ -77,13 +81,12 @@
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | gateway=${NONE}
-| | ... | interface=local | use_sw_index=${FALSE} | resolve_attempts=${NONE}
-| | And Set Interface Address | ${dut_node}
+| | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | local=${True}
+| | And VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | And Set Interface Address | ${dut_node}
+| | And VPP Interface Set IP Address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server_ip}
+| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server_ip}
 | | ... | ${tg_to_dut_if2_mac}
 | | When DHCP Proxy Config | ${dut_node} | ${dhcp_server_ip}
 | | ... | ${dut_to_tg_if1_ip}

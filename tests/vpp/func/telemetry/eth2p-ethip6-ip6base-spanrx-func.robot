@@ -12,17 +12,21 @@
 # limitations under the License.
 
 *** Settings ***
+| Library | resources.libraries.python.IPUtil
+| Library  | resources.libraries.python.IPv6Util
+| Library  | resources.libraries.python.telemetry.SPAN
+| Library  | resources.libraries.python.Trace
+| ...
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/telemetry/span.robot
-| Library  | resources.libraries.python.Trace
-| Library  | resources.libraries.python.IPv6Util
-| Library  | resources.libraries.python.IPv6Setup
-| Library  | resources.libraries.python.Routing
-| Library  | resources.libraries.python.telemetry.SPAN
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
+| ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
+| ...
 | Documentation | *SPAN test suite*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two
 | ... | links between nodes.
@@ -47,18 +51,18 @@
 | | ... | [Ver] Make TG send an ICMP packet to DUT through one interface,\
 | | ... | then receive a copy of sent packet and of DUT's ICMP reply\
 | | ... | on the other interface.
-| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
-| | ... | ${nodes['TG']}
+| | Given Configure path in 2-node circular topology
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
-| | And Vpp Ra Suppress Link Layer | ${dut_node} | ${dut_to_tg_if1}
-| | And Vpp Set If Ipv6 Addr | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${dut_to_tg_if1_ip6} | ${prefix}
-| | And Add Ip Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_to_dut_if1_ip6}
-| | ... | ${tg_to_dut_if1_mac}
+| | And VPP Interface Set IP Address
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip6} | ${prefix}
+| | And VPP Add IP Neighbor | ${dut_node}
+| | ... | ${dut_to_tg_if1} | ${tg_to_dut_if1_ip6} | ${tg_to_dut_if1_mac}
 | | And Vpp Route Add | ${dut_node} | ${tg_to_dut_if1_ip6} | ${prefix}
 | | ... | gateway=${dut_to_tg_if1_ip6} | interface=${dut_to_tg_if1}
+| | And Vpp Ra Suppress Link Layer | ${dut_node} | ${dut_to_tg_if1}
 | | And Set SPAN Mirroring | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
-| | Then Send Packet And Check Received Copies | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
+| | Then Send Packet And Check Received Copies
+| | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${dut_to_tg__if1_mac} | ${tg_to_dut_if2}
 | | ... | ${tg_to_dut_if1_ip6} | ${dut_to_tg_if1_ip6} | ICMPv6

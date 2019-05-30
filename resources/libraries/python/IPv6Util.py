@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,123 +13,71 @@
 
 """IPv6 utilities library."""
 
-import re
-
-from resources.libraries.python.ssh import SSH
-from resources.libraries.python.VatExecutor import VatTerminal
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.IPUtil import IPUtil
+from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.topology import NodeType
 
 
 class IPv6Util(object):
     """IPv6 utilities"""
 
     @staticmethod
-    def ipv6_ping(src_node, dst_addr, count=3, data_size=56, timeout=1):
-        """IPv6 ping.
+    def vpp_ra_suppress_link_layer(node, interface):
+        """Suppress ICMPv6 router advertisement message for link scope address.
 
-        :param src_node: Node where ping run.
-        :param dst_addr: Destination IPv6 address.
-        :param count: Number of echo requests. (Optional)
-        :param data_size: Number of the data bytes. (Optional)
-        :param timeout: Time to wait for a response, in seconds. (Optional)
-        :type src_node: dict
-        :type dst_addr: str
-        :type count: int
-        :type data_size: int
-        :type timeout: int
-        :returns: Number of lost packets.
-        :rtype: int
-        """
-        ssh = SSH()
-        ssh.connect(src_node)
-
-        cmd = "ping6 -c {c} -s {s} -W {W} {dst}".format(c=count, s=data_size,
-                                                        W=timeout,
-                                                        dst=dst_addr)
-        (_, stdout, _) = ssh.exec_command(cmd)
-
-        regex = re.compile(r'(\d+) packets transmitted, (\d+) received')
-        match = regex.search(stdout)
-        sent, received = match.groups()
-        packet_lost = int(sent) - int(received)
-
-        return packet_lost
-
-    @staticmethod
-    def ipv6_ping_port(nodes_ip, src_node, dst_node, port, cnt=3,
-                       size=56, timeout=1):
-        """Send IPv6 ping to the node port.
-
-        :param nodes_ip: Nodes IPv6 addresses.
-        :param src_node: Node where ping run.
-        :param dst_node: Destination node.
-        :param port: Port on the destination node.
-        :param cnt: Number of echo requests. (Optional)
-        :param size: Number of the data bytes. (Optional)
-        :param timeout: Time to wait for a response, in seconds. (Optional)
-        :type nodes_ip: dict
-        :type src_node: dict
-        :type dst_node: dict
-        :type port: str
-        :type cnt: int
-        :type size: int
-        :type timeout: int
-        :returns: Number of lost packets.
-        :rtype: int
-        """
-        dst_ip = IPv6Util.get_node_port_ipv6_address(dst_node, port, nodes_ip)
-        return IPv6Util.ipv6_ping(src_node, dst_ip, cnt, size, timeout)
-
-    @staticmethod
-    def get_node_port_ipv6_address(node, iface_key, nodes_addr):
-        """Return IPv6 address of the node port.
-
-        :param node: Node in the topology.
-        :param iface_key: Interface key of the node.
-        :param nodes_addr: Nodes IPv6 addresses.
+        :param node: VPP node.
+        :param interface: Interface name.
         :type node: dict
-        :type iface_key: str
-        :type nodes_addr: dict
-        :returns: IPv6 address string.
-        :rtype: str
+        :type interface: str
         """
-        interface = Topology.get_interface_name(node, iface_key)
-        for net in nodes_addr.values():
-            for port in net['ports'].values():
-                host = port.get('node')
-                dev = port.get('if')
-                if host == node['host'] and dev == interface:
-                    ip_addr = port.get('addr')
-                    if ip_addr is not None:
-                        return ip_addr
-                    else:
-                        raise Exception(
-                            'Node {n} port {p} IPv6 address is not set'.format(
-                                n=node['host'], p=interface))
+        cmd = 'sw_interface_ip6nd_ra_config'
+        args = dict(
+            sw_if_index=InterfaceUtil.get_interface_index(node, interface),
+            suppress=1)
+        err_msg = 'Failed to suppress ICMPv6 router advertisement message on ' \
+                  'interface {ifc}'.format(ifc=interface)
 
-        raise Exception('Node {n} port {p} IPv6 address not found.'.format(
-            n=node['host'], p=interface))
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
 
     @staticmethod
-    def add_ip_neighbor(node, interface, ip_address, mac_address):
-        """Add IP neighbor.
+    def vpp_ra_send_after_interval(node, interface, interval=2):
+        """Setup vpp router advertisement(RA) in such way it sends RA packet
+        after and every interval value.
 
-        :param node: VPP node to add ip neighbor.
-        :param interface: Interface name or sw_if_index.
-        :param ip_address: IP address.
-        :param mac_address: MAC address.
+        :param node: VPP node.
+        :param interface: Interface name.
+        :param interval: Interval for RA resend
         :type node: dict
-        :type interface: str or int
-        :type ip_address: str
-        :type mac_address: str
+        :type interface: str
+        :type interval: int
         """
-        if isinstance(interface, basestring):
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
-        else:
-            sw_if_index = interface
+        cmd = 'sw_interface_ip6nd_ra_config'
+        args = dict(
+            sw_if_index=InterfaceUtil.get_interface_index(node, interface),
+            initial_interval=int(interval))
+        err_msg = 'Failed to set router advertisement interval on ' \
+                  'interface {ifc}'.format(ifc=interface)
 
-        with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template("add_ip_neighbor.vat",
-                                                    sw_if_index=sw_if_index,
-                                                    ip_address=ip_address,
-                                                    mac_address=mac_address)
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+
+    @staticmethod
+    def vpp_all_ra_suppress_link_layer(nodes):
+        """Suppress ICMPv6 router advertisement message for link scope address
+        on all VPP nodes in the topology.
+
+        :param nodes: Nodes of the test topology.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.TG:
+                continue
+            for port_k in node['interfaces'].keys():
+                ip6_addr_list = IPUtil.vpp_get_interface_ip_addresses(
+                    node, port_k, 'ipv6')
+                if ip6_addr_list:
+                    IPv6Util.vpp_ra_suppress_link_layer(node, port_k)
