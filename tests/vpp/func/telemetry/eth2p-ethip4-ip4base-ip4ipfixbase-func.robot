@@ -52,9 +52,9 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Set Interface Address | ${dut1_node}
+| | And VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version} | src
@@ -82,9 +82,9 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Set Interface Address | ${dut1_node}
+| | And VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version} | src
@@ -112,9 +112,9 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Set Interface Address | ${dut1_node}
+| | And VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version} | dst
@@ -143,12 +143,12 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Set Interface Address | ${dut1_node}
+| | And VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip}
-| | ... | ${dut2_to_dut1_mac}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2}
+| | ... | ${dut2_to_dut1_ip} | ${dut2_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version} | dst
 | | And VPP configures classify session L3 | ${dut1_node} | permit
@@ -176,9 +176,9 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Set Interface Address | ${dut1_node}
+| | And VPP Interface Set IP Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version}

@@ -15,12 +15,17 @@
 
 import re
 
-from ipaddress import IPv4Network, ip_address
+from socket import AF_INET, AF_INET6, inet_ntop, inet_pton
+
+from ipaddress import IPv4Network, IPv4Address, IPv6Address, ip_address
+from ipaddress import AddressValueError, NetmaskValueError
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.topology import NodeType, Topology
 
 
 class IPUtil(object):
@@ -51,37 +56,129 @@ class IPUtil(object):
         return str(ip_address(ip_int))
 
     @staticmethod
-    def vpp_ip_probe(node, interface, addr, if_type="key"):
+    def vpp_get_interface_ip_addresses(node, interface, ip_version):
+        """Get list of IP addresses from an interface on a VPP node.
+
+        :param node: VPP node.
+        :param interface: Name of an interface on the VPP node.
+        :param ip_version: IP protocol version (ipv4 or ipv6).
+        :type node: dict
+        :type interface: str
+        :type ip_version: str
+        :returns: List of dictionaries, each containing IP address, subnet
+            prefix length and also the subnet mask for ipv4 addresses.
+            Note: A single interface may have multiple IP addresses assigned.
+        :rtype: list
+        """
+
+        try:
+            sw_if_index = Topology.convert_interface_reference(
+                node, interface, 'sw_if_index')
+        except RuntimeError:
+            if isinstance(interface, basestring):
+                sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
+            else:
+                raise
+
+        is_ipv6 = 1 if ip_version == 'ipv6' else 0
+
+        cmd = 'ip_address_dump'
+        cmd_reply = 'ip_address_details'
+        args = dict(sw_if_index=sw_if_index,
+                    is_ipv6=is_ipv6)
+        err_msg = 'Failed to get L2FIB dump on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
+
+        data = list()
+        for item in papi_resp.reply[0]['api_reply']:
+            item[cmd_reply]['ip'] = inet_ntop(AF_INET6, item[cmd_reply]['ip']) \
+                if is_ipv6 else inet_ntop(AF_INET, item[cmd_reply]['ip'][0:4])
+            data.append(item[cmd_reply])
+
+        if ip_version == 'ipv4':
+            for item in data:
+                item['netmask'] = convert_ipv4_netmask_prefix(
+                    item['prefix_length'])
+        return data
+
+    @staticmethod
+    def get_interface_vrf_table(node, interface, ip_version='ipv4'):
+        """Get vrf ID for the given interface.
+
+        :param node: VPP node.
+        :param interface: Name or sw_if_index of a specific interface.
+        :type node: dict
+        :param ip_version: IP protocol version (ipv4 or ipv6).
+        :type interface: str or int
+        :type ip_version: str
+        :returns: vrf ID of the specified interface.
+        :rtype: int
+        """
+        if isinstance(interface, basestring):
+            sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        is_ipv6 = 1 if ip_version == 'ipv6' else 0
+
+        cmd = 'sw_interface_get_table'
+        args = dict(sw_if_index=sw_if_index,
+                    is_ipv6=is_ipv6)
+        err_msg = 'Failed to get VRF id assigned to interface {ifc}'.format(
+            ifc=interface)
+        with PapiExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+
+        return papi_resp['vrf_id']
+
+    @staticmethod
+    def vpp_ip_source_check_setup(node, if_name):
+        """Setup Reverse Path Forwarding source check on interface.
+
+        :param node: VPP node.
+        :param if_name: Interface name to setup RPF source check.
+        :type node: dict
+        :type if_name: str
+        """
+
+        cmd = 'ip_source_check_interface_add_del'
+        args = dict(
+            sw_if_index=InterfaceUtil.get_interface_index(node, if_name),
+            is_add=1,
+            loose=0)
+        err_msg = 'Failed to enable source check on interface {ifc}'.format(
+            ifc=if_name)
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+
+    @staticmethod
+    def vpp_ip_probe(node, interface, addr):
         """Run ip probe on VPP node.
 
         :param node: VPP node.
         :param interface: Interface key or name.
         :param addr: IPv4/IPv6 address.
-        :param if_type: Interface type
         :type node: dict
         :type interface: str
         :type addr: str
-        :type if_type: str
-        :raises ValueError: If the if_type is unknown.
-        :raises Exception: If vpp probe fails.
         """
-        ssh = SSH()
-        ssh.connect(node)
 
-        if if_type == "key":
-            iface_name = Topology.get_interface_name(node, interface)
-        elif if_type == "name":
-            iface_name = interface
-        else:
-            raise ValueError("if_type unknown: {0}".format(if_type))
+        cmd = 'ip_probe_neighbor'
+        cmd_reply = 'proxy_arp_intfc_enable_disable_reply'
+        args = dict(
+            sw_if_index=InterfaceUtil.get_interface_index(node, interface),
+            dst=str(addr))
+        err_msg = 'VPP ip probe {dev} {ip} failed on {h}'.format(
+            dev=interface, ip=addr, h=node['host'])
 
-        cmd = "{c}".format(c=Constants.VAT_BIN_NAME)
-        cmd_input = 'exec ip probe {dev} {ip}'.format(dev=iface_name, ip=addr)
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd, cmd_input)
-        if int(ret_code) != 0:
-            raise Exception('VPP ip probe {dev} {ip} failed on {h}'.format(
-                dev=iface_name, ip=addr, h=node['host']))
-
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(cmd_reply=cmd_reply, err_msg=err_msg)
+            
     @staticmethod
     def ip_addresses_should_be_equal(ip1, ip2):
         """Fails if the given IP addresses are unequal.
@@ -105,17 +202,18 @@ class IPUtil(object):
         """Setup namespace on given node and attach interface and IP to
         this namespace. Applicable also on TG node.
 
-        :param node: Node to set namespace on.
+        :param node: VPP node.
         :param namespace_name: Namespace name.
         :param interface_name: Interface name.
         :param ip_addr: IP address of namespace's interface.
         :param prefix: IP address prefix length.
         :type node: dict
         :type namespace_name: str
-        :type vhost_if: str
+        :type interface_name: str
         :type ip_addr: str
         :type prefix: int
         """
+
         cmd = ('ip netns add {0}'.format(namespace_name))
         exec_cmd_no_error(node, cmd, sudo=True)
 
@@ -131,11 +229,12 @@ class IPUtil(object):
     def linux_enable_forwarding(node, ip_ver='ipv4'):
         """Enable forwarding on a Linux node, e.g. VM.
 
-        :param node: Node to enable forwarding on.
+        :param node: VPP node.
         :param ip_ver: IP version, 'ipv4' or 'ipv6'.
         :type node: dict
         :type ip_ver: str
         """
+
         cmd = 'sysctl -w net.{0}.ip_forward=1'.format(ip_ver)
         exec_cmd_no_error(node, cmd, sudo=True)
 
@@ -143,7 +242,7 @@ class IPUtil(object):
     def get_linux_interface_name(node, pci_addr):
         """Get the interface name.
 
-        :param node: Node where to execute command.
+        :param node: VPP/TG node.
         :param pci_addr: PCI address
         :type node: dict
         :type pci_addr: str
@@ -159,8 +258,8 @@ class IPUtil(object):
         cmd = "lshw -class network -businfo"
         ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=30, sudo=True)
         if ret_code != 0:
-            raise RuntimeError('Could not get information about interfaces, '
-                               'reason:{0}'.format(stderr))
+            raise RuntimeError('Could not get information about interfaces:\n'
+                               '{err}'.format(err=stderr))
 
         for line in stdout.splitlines()[2:]:
             try:
@@ -174,7 +273,7 @@ class IPUtil(object):
     def set_linux_interface_up(node, interface):
         """Set the specified interface up.
 
-        :param node: Node where to execute command.
+        :param node: VPP/TG node.
         :param interface: Interface in namespace.
         :type node: dict
         :type interface: str
@@ -182,17 +281,14 @@ class IPUtil(object):
         """
 
         cmd = "ip link set {0} up".format(interface)
-        ret_code, _, stderr = exec_cmd(node, cmd, timeout=30, sudo=True)
-        if ret_code != 0:
-            raise RuntimeError('Could not set the interface up, reason:{0}'.
-                               format(stderr))
+        exec_cmd_no_error(node, cmd, timeout=30, sudo=True)
 
     @staticmethod
     def set_linux_interface_ip(node, interface, ip_addr, prefix,
                                namespace=None):
         """Set IP address to interface in linux.
 
-        :param node: Node where to execute command.
+        :param node: VPP/TG ode.
         :param interface: Interface in namespace.
         :param ip_addr: IP to be set on interface.
         :param prefix: IP prefix.
@@ -204,21 +300,21 @@ class IPUtil(object):
         :type namespace: str
         :raises RuntimeError: IP could not be set.
         """
+
         if namespace is not None:
-            cmd = 'ip netns exec {} ip addr add {}/{} dev {}'.format(
-                namespace, ip_addr, prefix, interface)
+            cmd = 'ip netns exec {ns} ip addr add {ip}/{p} dev {dev}'.format(
+                ns=namespace, ip=ip_addr, p=prefix, dev=interface)
         else:
-            cmd = 'ip addr add {}/{} dev {}'.format(ip_addr, prefix, interface)
-        (ret_code, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
-        if ret_code != 0:
-            raise RuntimeError(
-                'Could not set IP for interface, reason:{}'.format(stderr))
+            cmd = 'ip addr add {ip}/{p} dev {dev}'.format(
+                ip=ip_addr, p=prefix, dev=interface)
+
+        exec_cmd_no_error(node, cmd, timeout=5, sudo=True)
 
     @staticmethod
     def set_linux_interface_route(node, interface, route, namespace=None):
         """Set route via interface in linux.
 
-        :param node: Node where to execute command.
+        :param node: VPP/TG node.
         :param interface: Interface in namespace.
         :param route: Route to be added via interface.
         :param namespace: Execute command in namespace. Optional parameter.
@@ -227,12 +323,202 @@ class IPUtil(object):
         :type route: str
         :type namespace: str
         """
+
         if namespace is not None:
-            cmd = 'ip netns exec {} ip route add {} dev {}'.format(
-                namespace, route, interface)
+            cmd = 'ip netns exec {ns} ip route add {rt} dev {dev}'.format(
+                ns=namespace, rt=route, dev=interface)
         else:
-            cmd = 'ip route add {} dev {}'.format(route, interface)
+            cmd = 'ip route add {rt} dev {dev}'.format(rt=route, dev=interface)
         exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def vpp_interface_set_ip_address(node, interface, address,
+                                     prefix_length=None):
+        """Set IP address to VPP interface.
+
+        :param node: VPP node.
+        :param interface: Interface name.
+        :param address: IP address.
+        :param prefix_length: Prefix length.
+        :type node: dict
+        :type interface: str
+        :type address: str
+        :type prefix_length: int
+        """
+
+        try:
+            ip_addr = IPv6Address(unicode(address))
+            af_inet = AF_INET6
+            is_ipv6 = 1
+        except (AddressValueError, NetmaskValueError):
+            ip_addr = IPv4Address(unicode(address))
+            af_inet = AF_INET
+            is_ipv6 = 0
+
+        cmd = 'sw_interface_add_del_address'
+        args = dict(
+            sw_if_index=InterfaceUtil.get_interface_index(node, interface),
+            is_add=1,
+            is_ipv6=is_ipv6,
+            del_all=0,
+            address_length=int(prefix_length) if prefix_length else 128
+            if is_ipv6 else 32,
+            address=inet_pton(af_inet, str(ip_addr)))
+        err_msg = 'Failed to add IP address on interface {ifc}'.format(
+            ifc=interface)
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+
+    @staticmethod
+    def vpp_add_ip_neighbor(node, iface_key, ip_addr, mac_address):
+        """Add IP neighbor on DUT node.
+
+        :param node: VPP node.
+        :param iface_key: Interface key.
+        :param ip_addr: IP address of the interface.
+        :param mac_address: MAC address of the interface.
+        :type node: dict
+        :type iface_key: str
+        :type ip_addr: str
+        :type mac_address: str
+        """
+
+        try:
+            dst_ip = IPv6Address(unicode(ip_addr))
+        except (AddressValueError, NetmaskValueError):
+            dst_ip = IPv4Address(unicode(ip_addr))
+
+        neighbor = dict(
+            sw_if_index=Topology.get_interface_sw_index(
+                node, iface_key),
+            flags=0,
+            mac_address=str(mac_address),
+            ip_address=str(dst_ip))
+        cmd = 'ip_neighbor_add_del'
+        args = dict(
+            is_add=1,
+            neighbor=neighbor)
+        err_msg = 'Failed to add IP neighbor on interface {ifc}'.format(
+            ifc=iface_key)
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+
+    @staticmethod
+    def vpp_route_add(node, network, prefix_len, **kwargs):
+        """Add route to the VPP node.
+
+        :param node: VPP node.
+        :param network: Route destination network address.
+        :param prefix_len: Route destination network prefix length.
+        :param kwargs: Optional key-value arguments:
+
+            gateway: Route gateway address. (str)
+            interface: Route interface. (str)
+            vrf: VRF table ID. (int)
+            count: number of IP addresses to add starting from network IP (int)
+            local: The route is local with same prefix (increment is 1).
+                If None, then is not used. (bool)
+            lookup_vrf: VRF table ID for lookup. (int)
+            multipath: Enable multipath routing. (bool)
+            weight: Weight value for unequal cost multipath routing. (int)
+
+        :type node: dict
+        :type network: str
+        :type prefix_len: int
+        :type kwargs: dict
+        """
+
+        interface = kwargs.get('interface', None)
+        vrf = kwargs.get('vrf', None)
+        count = kwargs.get('count', 1)
+        gateway = kwargs.get('gateway', None)
+        local = kwargs.get('local', False)
+        multipath = kwargs.get('multipath', False)
+        weight = kwargs.get('weight', None)
+        l_vrf = kwargs.get('lookup_vrf', None)
+
+        try:
+            net_addr = IPv6Address(unicode(network))
+            af_inet = AF_INET6
+            is_ipv6 = 1
+        except (AddressValueError, NetmaskValueError):
+            net_addr = IPv4Address(unicode(network))
+            af_inet = AF_INET
+            is_ipv6 = 0
+
+        cmd = 'ip_add_del_route'
+        args = dict(
+            next_hop_sw_if_index=InterfaceUtil.get_interface_index(
+                node, interface) if interface else Constants.BITWISE_NON_ZERO,
+            table_id=int(vrf) if vrf else 0,
+            is_add=1,
+            is_ipv6=is_ipv6,
+            is_local=int(local),
+            is_multipath=int(multipath),
+            next_hop_weight=int(weight) if weight else 1,
+            next_hop_proto=1 if is_ipv6 else 0,
+            dst_address_length=prefix_len,
+            next_hop_address=inet_pton(af_inet, gateway) if gateway else 0,
+            next_hop_table_id=int(l_vrf) if l_vrf else 0)
+        err_msg = 'Failed to add route(s) on host {host}'.format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            for i in xrange(count):
+                papi_exec.add(cmd, dst_address=inet_pton(
+                    af_inet, str(net_addr+i)), **args)
+            papi_exec.get_replies(err_msg).verify_replies(err_msg=err_msg)
+
+    @staticmethod
+    def vpp_nodes_set_ipv4_addresses(nodes, nodes_addr):
+        """Set IPv4 addresses on all VPP nodes in topology.
+
+        :param nodes: Nodes of the test topology.
+        :param nodes_addr: Available nodes IPv4 addresses.
+        :type nodes: dict
+        :type nodes_addr: dict
+        :returns: Affected interfaces as list of (node, interface) tuples.
+        :rtype: list
+        """
+        interfaces = []
+        for net in nodes_addr.values():
+            for port in net['ports'].values():
+                host = port.get('node')
+                if host is None:
+                    continue
+                topo = Topology()
+                node = topo.get_node_by_hostname(nodes, host)
+                if node is None:
+                    continue
+                if node['type'] != NodeType.DUT:
+                    continue
+                iface_key = topo.get_interface_by_name(node, port['if'])
+                IPUtil.vpp_interface_set_ip_address(
+                    node, iface_key, port['addr'], net['prefix'])
+                interfaces.append((node, port['if']))
+
+        return interfaces
+
+    @staticmethod
+    def flush_ip_addresses(node, interface):
+        """Flush all IPv4addresses from specified interface.
+
+        :param node: VPP node.
+        :param interface: Interface name.
+        :type node: dict
+        :type interface: str
+        """
+
+        cmd = 'sw_interface_add_del_address'
+        args = dict(
+            sw_if_index=InterfaceUtil.get_interface_index(node, interface),
+            del_all=1)
+        err_msg = 'Failed to flush IP address on interface {ifc}'.format(
+            ifc=interface)
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
 
 
 def convert_ipv4_netmask_prefix(network):

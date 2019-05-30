@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.IPv6Setup
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.Routing
@@ -100,11 +101,10 @@
 | | ... | ${memif_if2}
 | | ${memif_if2_mac}= | Get interface MAC | ${nodes['DUT1']} | ${memif_if2_key}
 | | And Vpp Route Add | ${dut_node} | ${net3} | ${prefix_length}
-| | ... | gateway=${net2_ip2} | interface=${memif_if1}
-| | ... | resolve_attempts=${NONE} | count=${NONE}
+| | ... | gateway=${net2_ip2} | interface=${memif_if1} | count=${NONE}
 | | And Vpp Route Add | ${dut_node} | ${net1} | ${prefix_length}
-| | ... | gateway=${net2_ip1} | interface=${memif_if2}
-| | ... | resolve_attempts=${NONE} | count=${NONE} | vrf=${fib_table_2}
+| | ... | gateway=${net2_ip1} | interface=${memif_if2} | count=${NONE}
+| | ... | vrf=${fib_table_2}
 | | Add IP Neighbor | ${dut_node} | ${memif_if1} | ${net2_ip2}
 | | ... | ${memif_if2_mac}
 | | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2}

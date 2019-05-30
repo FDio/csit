@@ -74,9 +74,9 @@
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
 | | And VPP IP Probe | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip4}
 | | And VPP IP Probe | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4}
-| | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
+| | And VPP Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
 | | ... | ${tg_to_dut2_mac}
-| | And Add Arp On Dut | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
+| | And VPP Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
 | | ... | ${tg_to_dut1_mac}
 | | When Configure LISP topology in 3-node circular topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}

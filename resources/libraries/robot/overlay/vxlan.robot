@@ -55,9 +55,9 @@
 | | ... | ELSE | Set Variable | ${DUT2_INT_INDEX}
 | | ${DUT1_INT_MAC}= | Vpp Get Interface Mac | ${DUT1} | ${DUT1_INT_INDEX}
 | | ${DUT2_INT_MAC}= | Vpp Get Interface Mac | ${DUT2} | ${DUT2_INT_INDEX}
-| | Set Interface Address | ${DUT1} | ${DUT1_INT_INDEX}
+| | VPP Interface Set IP Address | ${DUT1} | ${DUT1_INT_INDEX}
 | | ... | ${dut1s_ip_address} | ${duts_ip_address_prefix}
-| | Set Interface Address | ${DUT2} | ${DUT2_INT_INDEX}
+| | VPP Interface Set IP Address | ${DUT2} | ${DUT2_INT_INDEX}
 | | ... | ${dut2s_ip_address} | ${duts_ip_address_prefix}
 | | Add IP Neighbor | ${DUT1} | ${DUT1_INT_INDEX} | ${dut2s_ip_address}
 | | ... | ${DUT2_INT_MAC}
