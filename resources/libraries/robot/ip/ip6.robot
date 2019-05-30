@@ -13,12 +13,13 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.IPv6Setup
 | Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.Routing
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
+| ...
 | Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
@@ -183,47 +184,11 @@
 | | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | ipv6_ns.py | ${src_node} | ${args}
 
-| Configure IPv6 on all DUTs in topology
-| | [Documentation] | Setup IPv6 address on all DUTs
-| | [Arguments] | ${nodes} | ${nodes_addr}
-| | Restart Vpp Service On All Duts | ${nodes}
-| | Verify Vpp On All Duts | ${nodes}
-| | VPP Enable Traces On All Duts | ${nodes}
-| | ${interfaces}= | Nodes Set Ipv6 Addresses | ${nodes} | ${nodes_addr}
-| | :FOR | ${interface} | IN | @{interfaces}
-| | | Set Interface State | @{interface} | up | if_type=name
-| | All Vpp Interfaces Ready Wait | ${nodes}
-
 | Suppress ICMPv6 router advertisement message
 | | [Documentation] | Suppress ICMPv6 router advertisement message for link
 | | ... | scope address
 | | [Arguments] | ${nodes}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
-
-| Configure IPv6 routing on all DUTs
-| | [Documentation] | Setup routing on all VPP nodes required for IPv6 tests
-| | [Arguments] | ${nodes} | ${nodes_addr}
-| | Append Nodes | ${nodes['DUT1']} | ${nodes['DUT2']}
-| | Compute Path
-| | ${tg}= | Set Variable | ${nodes['TG']}
-| | ${dut1_if} | ${dut1}= | First Interface
-| | ${dut2_if} | ${dut2}= | Last Interface
-| | ${dut1_if_addr}= | Get Node Port Ipv6 Address | ${dut1} | ${dut1_if}
-| | ... | ${nodes_addr}
-| | ${dut2_if_addr}= | Get Node Port Ipv6 Address | ${dut2} | ${dut2_if}
-| | ... | ${nodes_addr}
-| | @{tg_dut1_links}= | Get active links connecting "${tg}" and "${dut1}"
-| | @{tg_dut2_links}= | Get active links connecting "${tg}" and "${dut2}"
-| | :FOR | ${link} | IN | @{tg_dut1_links}
-| | | ${net}= | Get Link Address | ${link} | ${nodes_addr}
-| | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
-| | | Vpp Route Add | ${dut2} | ${net} | ${prefix} | gateway=${dut1_if_addr}
-| | | ... | interface=${dut2_if}
-| | :FOR | ${link} | IN | @{tg_dut2_links}
-| | | ${net}= | Get Link Address | ${link} | ${nodes_addr}
-| | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
-| | | Vpp Route Add | ${dut1} | ${net} | ${prefix} | gateway=${dut2_if_addr}
-| | | ... | interface=${dut1_if}
 
 | Configure IPv6 forwarding in circular topology
 | | [Documentation]
@@ -330,10 +295,10 @@
 | | Add IP neighbor | ${dut_node} | ${dut_to_tg_if2} | ${tg_if2_ip6}
 | | ... | ${tg_to_dut_if2_mac}
 | | ...
-| | VPP set If IPv6 addr | ${dut_node} | ${dut_to_tg_if1} | ${dut1_if1_ip6}
-| | ... | ${dut_tg_ip6_prefix}
-| | VPP set If IPv6 addr | ${dut_node} | ${dut_to_tg_if2} | ${dut1_if2_ip6}
-| | ... | ${dut_tg_ip6_prefix}
+| | VPP Interface Set IP Address | ${dut_node}
+| | ... | ${dut_to_tg_if1} | ${dut1_if1_ip6} | ${dut_tg_ip6_prefix}
+| | VPP Interface Set IP Address | ${dut_node}
+| | ... | ${dut_to_tg_if2} | ${dut1_if2_ip6} | ${dut_tg_ip6_prefix}
 | | ...
 | | Run Keyword Unless | '${remote_host1_ip6}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut_node} | ${remote_host1_ip6}
@@ -395,14 +360,14 @@
 | | Add IP neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg_if2_ip6}
 | | ... | ${tg_to_dut2_mac}
 | | ...
-| | VPP set If IPv6 addr | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip6}
-| | ... | ${dut_tg_ip6_prefix}
-| | VPP set If IPv6 addr | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip6}
-| | ... | ${dut_link_ip6_prefix}
-| | VPP set If IPv6 addr | ${dut2_node} | ${dut2_to_dut1} | ${dut2_if1_ip6}
-| | ... | ${dut_link_ip6_prefix}
-| | VPP set If IPv6 addr | ${dut2_node} | ${dut2_to_tg} | ${dut2_if2_ip6}
-| | ... | ${dut_tg_ip6_prefix}
+| | VPP Interface Set IP Address
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip6} | ${dut_tg_ip6_prefix}
+| | VPP Interface Set IP Address | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut1_if2_ip6} | ${dut_link_ip6_prefix}
+| | VPP Interface Set IP Address | ${dut2_node}
+| | ... | ${dut2_to_dut1} | ${dut2_if1_ip6} | ${dut_link_ip6_prefix}
+| | VPP Interface Set IP Address
+| | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_if2_ip6} | ${dut_tg_ip6_prefix}
 | | ...
 | | Vpp Route Add | ${dut1_node} | ${tg_if2_ip6} | ${dut_tg_ip6_prefix}
 | | ... | gateway=${dut2_if1_ip6} | interface=${dut1_to_dut2}
