@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5ec596c_a9752392",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-31T09:28:57Z",
+      "side": 1,
+      "message": "Already merge so, please, use the method from L2Util.py.",
+      "range": {
+        "startLine": 35,
+        "startChar": 19,
+        "endLine": 35,
+        "endChar": 51
+      },
+      "revId": "6d7cea696752d962148e914f73c109e6c8ac2266",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7aa3a16a_38cca77f",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-31T09:28:57Z",
+      "side": 1,
+      "message": "What about \u0027MEMIF data:\\n{data}\u0027.format(data\u003ddata) to be consistent with InterfaceUtil.py?",
+      "range": {
+        "startLine": 67,
+        "startChar": 22,
+        "endLine": 67,
+        "endChar": 26
+      },
+      "revId": "6d7cea696752d962148e914f73c109e6c8ac2266",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "988f270b_ca15f089",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-31T09:28:57Z",
+      "side": 1,
+      "message": "Based on line 166 it contains sw_if_index too.",
+      "range": {
+        "startLine": 116,
+        "startChar": 66,
+        "endLine": 117,
+        "endChar": 32
+      },
+      "revId": "6d7cea696752d962148e914f73c109e6c8ac2266",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f58fab71_897b4836",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-31T09:28:57Z",
+      "side": 1,
+      "message": "I would prefer the usage of descriptive string here and use IntEnum type inside the method, similar to e.g. LinkBondLoadBalance in https://git.fd.io/csit/tree/resources/libraries/python/InterfaceUtil.py#n36. Especially when we know that there are pending patches to introduce such types inside vpp.",
+      "range": {
+        "startLine": 136,
+        "startChar": 71,
+        "endLine": 136,
+        "endChar": 77
+      },
+      "revId": "6d7cea696752d962148e914f73c109e6c8ac2266",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "60dbd456_26e663ec",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-31T09:28:57Z",
+      "side": 1,
+      "message": "I think we should provide user-friendly output in case of show commands (like cli command does) - see e.g. https://git.fd.io/csit/tree/resources/libraries/python/InterfaceUtil.py#n1277.",
+      "range": {
+        "startLine": 188,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 31
+      },
+      "revId": "6d7cea696752d962148e914f73c109e6c8ac2266",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "df460b5f_0a31e6a2",
+        "filename": "resources/libraries/robot/shared/memif.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-05-31T09:28:57Z",
+      "side": 1,
+      "message": "The value is not integer :)\nAnyway, I would prefer the usage of more descritpive string here and usage of IntEnum type in Memif.py, similar to e.g. LinkBondLoadBalance in https://git.fd.io/csit/tree/resources/libraries/python/InterfaceUtil.py#n36. Especially when we know that there are pending patches to introduce such types inside vpp.",
+      "range": {
+        "startLine": 36,
+        "startChar": 72,
+        "endLine": 36,
+        "endChar": 77
+      },
+      "revId": "6d7cea696752d962148e914f73c109e6c8ac2266",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
