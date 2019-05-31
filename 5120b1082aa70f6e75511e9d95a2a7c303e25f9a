@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "62a198bf_778aa4af",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-05-31T08:35:17Z",
+      "side": 1,
+      "message": "It was to make it easier for VPP community to enter only tags of interest (not NIC) and also to not run all NIC combination if NIC card is not specified. As adding NIC information can be difficult to know and also initially we only supported x710 as the card on all TB. As currently bootstraps are not tight to Topology files it can be that running x520 on skx is pointless. So this solution was balance between user-friendly and lightweight implementation.",
+      "parentUuid": "10d19bda_7adc55c3",
+      "range": {
+        "startLine": 303,
+        "startChar": 20,
+        "endLine": 304,
+        "endChar": 48
+      },
+      "revId": "5120b1082aa70f6e75511e9d95a2a7c303e25f9a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6b3b7326_7671dfe2",
         "filename": "docs/perf-triggers-design.rst",
         "patchSetId": 12
