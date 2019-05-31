@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "5234e569_6a8efe94",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-31T10:15:00Z",
+      "side": 1,
+      "message": "Per api message checks should be done from day 1. This would require CSIT report just storing api msg name with corresponding crc checksum, vs. storing all json api files as per patch https://gerrit.fd.io/r/#/c/19027/.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 46
+      },
+      "revId": "b9cef3a1a862d10012905da18f8603e48059533a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7c42901a_4fdff6b1",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-05-31T10:15:00Z",
+      "side": 1,
+      "message": "signature",
+      "range": {
+        "startLine": 117,
+        "startChar": 17,
+        "endLine": 117,
+        "endChar": 27
+      },
+      "revId": "b9cef3a1a862d10012905da18f8603e48059533a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "29de55b7_384b19a7",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 6
