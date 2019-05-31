@@ -40,7 +40,7 @@ function ansible_hosts () {
         die "Failed to read hosts from working topology!"
     }
     pushd "${TOOLS_DIR}"/testbed-setup/ansible || die "Pushd failed!"
-    ansible-playbook \
+    ANSIBLE_STDOUT_CALLBACK=yaml ansible-playbook \
         --vault-password-file=vault_pass \
         --extra-vars '@vault.yml' \
         --inventory inventories/lf_inventory/hosts site.yaml \
