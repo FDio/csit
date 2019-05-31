@@ -1,11 +1,8 @@
 ---
 # file: roles/calibration/tasks/main.yaml
 
-- name: Install distribution - release - machine prerequisites
-  include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-
 - name: Run Spectre Meltdown checker
-  raw: 'spectre-meltdown-checker --no-color'
+  raw: 'wget -qO - https://meltdown.ovh | sudo bash -s - --no-color'
   register: spectre_meltdown_output
   tags: run-spectre-meltdown-checker
 
