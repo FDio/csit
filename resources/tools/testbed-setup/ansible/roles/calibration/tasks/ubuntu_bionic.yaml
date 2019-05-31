@@ -1,9 +1,0 @@
----
-# file: roles/calibration/tasks/ubuntu_bionic.yaml
-
-- name: Install calibration dependencies
-  apt:
-    name: 'spectre-meltdown-checker'
-    state: 'present'
-    install_recommends: False
-  tags: install-csit-dependencies
