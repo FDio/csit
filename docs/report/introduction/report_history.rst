@@ -6,6 +6,11 @@ FD.io CSIT-1904 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+| .23            | 1. Added new data                                          |
+|                |                                                            |
+|                |    - VPP 3n-hsw NDRPDR full                                |
+|                |                                                            |
++----------------+------------------------------------------------------------+
 | .22            | 1. Added new data                                          |
 |                |                                                            |
 |                |    - VPP 3n-hsw NDRPDR full                                |
