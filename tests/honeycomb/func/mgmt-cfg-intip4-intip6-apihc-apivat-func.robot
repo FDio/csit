@@ -62,7 +62,7 @@
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
 | | ... | ${node} | ${interface} | ${ipv4_address}
-| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | ... | ${ipv4_prefix} | ${ipv4_mask} | ${1}
 
 | TC03: Honeycomb removes IPv4 address from interface
 | | [Documentation] | Check if Honeycomb API can remove configured ipv4\
@@ -72,7 +72,7 @@
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
 | | ... | ${node} | ${interface} | ${ipv4_address}
-| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | ... | ${ipv4_prefix} | ${ipv4_mask} | ${1}
 | | When Honeycomb removes interface IPv4 addresses | ${node} | ${interface}
 | | Then IPv4 address from Honeycomb should be empty | ${node} | ${interface}
 | | And ipv4 address from VAT should be empty | ${node} | ${interface}
@@ -92,7 +92,7 @@
 | | ... | ${node} | ${interface} | ${ipv4_address2} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
 | | ... | ${node} | ${interface} | ${ipv4_address2}
-| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | ... | ${ipv4_prefix} | ${ipv4_mask} | ${1}
 
 | TC05: Honeycomb modifies IPv4 neighbor table
 | | [Documentation] | Check if Honeycomb API can add and remove ARP entries.
@@ -122,7 +122,7 @@
 | | Then IPv6 address from Honeycomb should contain
 | | ... | ${node} | ${interface} | ${ipv6_address} | ${ipv6_prefix}
 | | And IPv6 address from VAT should contain
-| | ... | ${node} | ${interface} | ${ipv6_address} | ${ipv6_prefix}
+| | ... | ${node} | ${interface} | ${ipv6_address} | ${ipv6_prefix} | ${1}
 
 | TC07: Honeycomb modifies IPv6 neighbor table
 | | [Documentation] | Check if Honeycomb API can add and remove ARP entries.
@@ -145,8 +145,9 @@
 | | ... | ${node} | ${interface} | ${ethernet}
 | | Then Interface ethernet Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${ethernet}
+| | ${mtu}= | Create List | ${ethernet['mtu']} | ${0} | ${0} | ${0}
 | | And Interface ethernet Operational Data From VAT Should Be
-| | ... | ${node} | ${interface} | ${ethernet['mtu']}
+| | ... | ${node} | ${interface} | ${mtu}
 
 | TC09: Honeycomb modifies interface configuration - vrf
 | | [Documentation] | Check if Honeycomb API can configure interface\
@@ -187,11 +188,12 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${ipv4_address}
-| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | ... | ${ipv4_prefix} | ${ipv4_mask} | ${2}
 | | And IPv6 address from Honeycomb should contain
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${ipv6_address} | ${ipv6_prefix}
 | | And IPv6 address from VAT should contain
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${ipv6_address} | ${ipv6_prefix}
+| | ... | ${2}
 | | And Honeycomb configures interface state
 | | ... | ${dut_node} | ${dut_to_tg_if1} | up
 | | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
@@ -264,12 +266,12 @@
 | | ... | ${node} | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
 | | ... | ${node} | ${interface2} | ${ipv4_address}
-| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | ... | ${ipv4_prefix} | ${ipv4_mask} | ${3}
 | | And IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
 | | ... | ${node} | ${interface} | ${ipv4_address}
-| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | ... | ${ipv4_prefix} | ${ipv4_mask} | ${1}
 
 | TC14: Honeycomb removes interface unnumbered configuration
 | | [Documentation] | Check if Honeycomb can remove unnumbered configuration\
@@ -282,12 +284,12 @@
 | | ... | ${node} | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
 | | ... | ${node} | ${interface2} | ${ipv4_address}
-| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | ... | ${ipv4_prefix} | ${ipv4_mask} | ${3}
 | | And IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
 | | ... | ${node} | ${interface} | ${ipv4_address}
-| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | ... | ${ipv4_prefix} | ${ipv4_mask} | ${3}
 | | When Honeycomb removes unnumbered configuration from interface
 | | ... | ${node} | ${interface}
 | | Then Wait until Keyword succeeds | 10s | 2s
@@ -295,7 +297,7 @@
 | | ... | ${node} | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
 | | ... | ${node} | ${interface2} | ${ipv4_address}
-| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | ... | ${ipv4_prefix} | ${ipv4_mask} | ${3}
 | | And IPv4 address from Honeycomb should be empty | ${node} | ${interface}
 | | And ipv4 address from VAT should be empty | ${node} | ${interface}
 

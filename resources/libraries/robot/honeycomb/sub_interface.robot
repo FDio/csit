@@ -546,9 +546,9 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \|
 | | ...
 | | [Arguments] | ${node} | ${sub_interface}
-| | Run keyword and expect error | *No JSON object could be decoded*
-| | ... | VPP get interface ip addresses
+| | ${data}= | VPP get interface ip addresses
 | | ... | ${node} | ${sub_interface} | ipv4
+| | Should be empty | ${data}
 
 | Honeycomb sets sub-interface ipv6 address
 | | [Documentation] | Uses Honeycomb API to configure an ipv6 address on the\
@@ -664,6 +664,6 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \|
 | | ...
 | | [Arguments] | ${node} | ${sub_interface}
-| | Run keyword and expect error | *No JSON object could be decoded*
-| | ... | VPP get interface ip addresses
+| | ${data}= | VPP get interface ip addresses
 | | ... | ${node} | ${sub_interface} | ipv6
+| | Should be empty | ${data}

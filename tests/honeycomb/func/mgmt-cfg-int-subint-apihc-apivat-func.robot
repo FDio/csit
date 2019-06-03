@@ -487,8 +487,8 @@
 | | Then IPv4 address from Honeycomb should be
 | | ... | ${node} | ${super_if2} | ${ipv4['address']} | ${ipv4['prefix-length']}
 | | And IPv4 address from VAT should be
-| | ... | ${node} | ${super_if2}
-| | ... | ${ipv4['address']} | ${ipv4['prefix-length']} | ${ipv4['netmask']}
+| | ... | ${node} | ${super_if2} | ${ipv4['address']}
+| | ... | ${ipv4['prefix-length']} | ${ipv4['netmask']} | ${3}
 | | And sub-interface ipv4 address from Honeycomb should be
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
@@ -509,8 +509,8 @@
 | | Given IPv4 address from Honeycomb should be
 | | ... | ${node} | ${super_if2} | ${ipv4['address']} | ${ipv4['prefix-length']}
 | | And IPv4 address from VAT should be
-| | ... | ${node} | ${super_if2}
-| | ... | ${ipv4['address']} | ${ipv4['prefix-length']} | ${ipv4['netmask']}
+| | ... | ${node} | ${super_if2} | ${ipv4['address']}
+| | ... | ${ipv4['prefix-length']} | ${ipv4['netmask']} | ${3}
 | | And sub-interface ipv4 address from Honeycomb should be
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
@@ -550,8 +550,8 @@
 | | Then IPv4 address from Honeycomb should be
 | | ... | ${node} | ${super_if2} | ${ipv4['address']} | ${ipv4['prefix-length']}
 | | And IPv4 address from VAT should be
-| | ... | ${node} | ${super_if2}
-| | ... | ${ipv4['address']} | ${ipv4['prefix-length']} | ${ipv4['netmask']}
+| | ... | ${node} | ${super_if2} | ${ipv4['address']}
+| | ... | ${ipv4['prefix-length']} | ${ipv4['netmask']} | ${2}
 | | And sub-interface ipv4 address from Honeycomb should be
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
