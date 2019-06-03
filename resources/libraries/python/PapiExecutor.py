@@ -325,6 +325,25 @@ class PapiExecutor(object):
 
         return json.loads(stdout)
 
+    def get_stats_reply(self, err_msg="Failed to get statistics.", timeout=120):
+        """Get VPP Stats reply from VPP Python API.
+
+        :param err_msg: The message used if the PAPI command(s) execution fails.
+        :param timeout: Timeout in seconds.
+        :type err_msg: str
+        :type timeout: int
+        :returns: Requested VPP statistics.
+        :rtype: list
+        """
+
+        args = self._api_command_list[0]['api_args']
+        self._api_command_list = list()
+
+        stdout, _ = self._execute_papi(
+            args, method='stats_request', err_msg=err_msg, timeout=timeout)
+
+        return json.loads(stdout)
+
     def get_replies(self, err_msg="Failed to get replies.",
                     process_reply=True, ignore_errors=False, timeout=120):
         """Get reply/replies from VPP Python API.
@@ -519,7 +538,8 @@ class PapiExecutor(object):
         if not api_data:
             RuntimeError("No API data provided.")
 
-        json_data = json.dumps(api_data) if method == "stats" \
+        json_data = json.dumps(api_data) \
+            if method in ("stats", "stats_request") \
             else json.dumps(self._process_api_data(api_data))
 
         cmd = "{fw_dir}/{papi_provider} --method {method} --data '{json}'".\
