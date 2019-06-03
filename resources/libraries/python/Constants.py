@@ -40,6 +40,9 @@ class Constants(object):
     # KernelVM templates location
     RESOURCES_TPL_VM = 'resources/templates/vm'
 
+    # Container templates location
+    RESOURCES_TPL_CONTAINER = 'resources/templates/container'
+
     # OpenVPP VAT binary name
     VAT_BIN_NAME = 'vpp_api_test'
 
