@@ -214,6 +214,33 @@ def process_stats(args):
             reply=reply, exc=repr(err)))
 
 
+def process_stats_request(args):
+    """Process the VPP Stats requests.
+
+    :param args: Command line arguments passed to VPP PAPI Provider.
+    :type args: ArgumentParser
+    :returns: JSON formatted string.
+    :rtype: str
+    :raises RuntimeError: If PAPI command error occurs.
+    """
+
+    try:
+        stats = VPPStats(args.socket)
+    except Exception as err:
+        raise RuntimeError('PAPI init failed:\n{err}'.format(err=repr(err)))
+
+    try:
+        json_data = json.loads(args.data)
+    except ValueError as err:
+        raise RuntimeError('Input json string is invalid:\n{err}'.
+                           format(err=repr(err)))
+
+    papi_fn = getattr(stats, json_data["api_name"])
+    reply = papi_fn(**json_data.get("api_args", {}))
+
+    return json.dumps(reply)
+
+
 def main():
     """Main function for the Python API provider.
     """
@@ -222,7 +249,8 @@ def main():
     process_request = dict(
         request=process_json_request,
         dump=process_json_request,
-        stats=process_stats
+        stats=process_stats,
+        stats_request=process_stats_request
     )
 
     parser = argparse.ArgumentParser(
