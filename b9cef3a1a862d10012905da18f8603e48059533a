@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3458b0f0_2395f333",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-03T15:54:29Z",
+      "side": 1,
+      "message": "\u003e Per api message checks\n\nAside \"messages\" definitions, there are also \"types\", \"unions\", \"enums\", \"aliases\" and \"services\" definitions to track (CSIT probably does not need to track \"options\" and \"vl_api_version\").\n\n\u003e just storing api msg name with corresponding crc checksum\n\nStoring full content is a feature, as diff will show not only which definitions were affected, but also how.\n\nI think I can create a pre-processing script to split .api.json files into separate definitions, but the result will be harder to maintain.\nIt is easy to list \"messages\" CSIT uses, but identifying which types CSIT relies on (with non-zero value) is harder to figure out.",
+      "parentUuid": "5234e569_6a8efe94",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 46
+      },
+      "revId": "b9cef3a1a862d10012905da18f8603e48059533a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7c42901a_4fdff6b1",
         "filename": "docs/automating_vpp_api_flag_day.rst",
         "patchSetId": 6
