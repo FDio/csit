@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ce65df50_2b21cfa9",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-03T06:23:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5ec596c_a9752392",
+      "range": {
+        "startLine": 35,
+        "startChar": 19,
+        "endLine": 35,
+        "endChar": 51
+      },
+      "revId": "6d7cea696752d962148e914f73c109e6c8ac2266",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7aa3a16a_38cca77f",
         "filename": "resources/libraries/python/Memif.py",
         "patchSetId": 16
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "428f59f7_9b1b67cb",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-03T06:23:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aa3a16a_38cca77f",
+      "range": {
+        "startLine": 67,
+        "startChar": 22,
+        "endLine": 67,
+        "endChar": 26
+      },
+      "revId": "6d7cea696752d962148e914f73c109e6c8ac2266",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "988f270b_ca15f089",
         "filename": "resources/libraries/python/Memif.py",
         "patchSetId": 16
@@ -59,6 +107,30 @@
       "writtenOn": "2019-05-31T09:28:57Z",
       "side": 1,
       "message": "Based on line 166 it contains sw_if_index too.",
+      "range": {
+        "startLine": 116,
+        "startChar": 66,
+        "endLine": 117,
+        "endChar": 32
+      },
+      "revId": "6d7cea696752d962148e914f73c109e6c8ac2266",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3cc19834_5cd0a30f",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-03T06:23:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "988f270b_ca15f089",
       "range": {
         "startLine": 116,
         "startChar": 66,
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "24f5e960_1028efce",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-03T06:23:04Z",
+      "side": 1,
+      "message": "_memif_dump provides json formatted output. It is human readable and also it is possible to easy read it an process by other tools (PAL).",
+      "parentUuid": "60dbd456_26e663ec",
+      "range": {
+        "startLine": 188,
+        "startChar": 8,
+        "endLine": 188,
+        "endChar": 31
+      },
+      "revId": "6d7cea696752d962148e914f73c109e6c8ac2266",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df460b5f_0a31e6a2",
         "filename": "resources/libraries/robot/shared/memif.robot",
         "patchSetId": 16
@@ -128,6 +224,30 @@
       "writtenOn": "2019-05-31T09:28:57Z",
       "side": 1,
       "message": "The value is not integer :)\nAnyway, I would prefer the usage of more descritpive string here and usage of IntEnum type in Memif.py, similar to e.g. LinkBondLoadBalance in https://git.fd.io/csit/tree/resources/libraries/python/InterfaceUtil.py#n36. Especially when we know that there are pending patches to introduce such types inside vpp.",
+      "range": {
+        "startLine": 36,
+        "startChar": 72,
+        "endLine": 36,
+        "endChar": 77
+      },
+      "revId": "6d7cea696752d962148e914f73c109e6c8ac2266",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0adef40_7b542b2f",
+        "filename": "resources/libraries/robot/shared/memif.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-03T06:23:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df460b5f_0a31e6a2",
       "range": {
         "startLine": 36,
         "startChar": 72,
