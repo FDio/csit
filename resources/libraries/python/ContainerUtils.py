@@ -16,6 +16,7 @@
 
 """Library to manipulate Containers."""
 
+from string import Template
 from collections import OrderedDict, Counter
 
 from resources.libraries.python.ssh import SSH
@@ -211,7 +212,7 @@ class ContainerManager(object):
         """
         self.engine.create_vpp_startup_config()
         self.engine.create_vpp_exec_config(
-            'memif_create_chain_l2xc.vat',
+            'memif_create_chain_l2xc.exec',
             mid1=kwargs['mid1'], mid2=kwargs['mid2'],
             sid1=kwargs['sid1'], sid2=kwargs['sid2'],
             socket1='{guest_dir}/memif-{c.name}-{sid1}'.
@@ -237,7 +238,7 @@ class ContainerManager(object):
                 self.engine.container.node, kwargs['dut2_if'])
         self.engine.create_vpp_startup_config_dpdk_dev(if_pci)
         self.engine.create_vpp_exec_config(
-            'memif_create_cross_horizon.vat',
+            'memif_create_cross_horizon.exec',
             mid1=kwargs['mid1'], sid1=kwargs['sid1'], if_name=if_name,
             socket1='{guest_dir}/memif-{c.name}-{sid1}'.
             format(c=self.engine.container, **kwargs))
@@ -250,7 +251,7 @@ class ContainerManager(object):
         """
         self.engine.create_vpp_startup_config_func_dev()
         self.engine.create_vpp_exec_config(
-            'memif_create_chain_functional.vat',
+            'memif_create_chain_functional.exec',
             mid1=kwargs['mid1'], mid2=kwargs['mid2'],
             sid1=kwargs['sid1'], sid2=kwargs['sid2'],
             socket1='{guest_dir}/memif-{c.name}-{sid1}'.
@@ -274,7 +275,7 @@ class ContainerManager(object):
             if (kwargs['mid2'] - 1) % kwargs['nodes'] + 1 == kwargs['nodes'] \
             else '52:54:00:00:{0:02X}:01'.format(kwargs['mid2'] + 1)
         self.engine.create_vpp_exec_config(
-            'memif_create_chain_ip4.vat',
+            'memif_create_chain_ip4.exec',
             mid1=kwargs['mid1'], mid2=kwargs['mid2'],
             sid1=kwargs['sid1'], sid2=kwargs['sid2'],
             socket1='{guest_dir}/memif-{c.name}-{sid1}'.
@@ -319,7 +320,7 @@ class ContainerManager(object):
             format(c=self.engine.container, **kwargs)
 
         self.engine.create_vpp_exec_config(
-            'memif_create_pipeline_ip4.vat',
+            'memif_create_pipeline_ip4.exec',
             mid1=kwargs['mid1'], mid2=kwargs['mid2'],
             sid1=kwargs['sid1'], sid2=kwargs['sid2'],
             socket1=socket1, socket2=socket2, role1=role1, role2=role2,
@@ -504,23 +505,23 @@ class ContainerEngine(object):
         self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
                      .format(config=vpp_config.get_config_str()))
 
-    def create_vpp_exec_config(self, vat_template_file, **kwargs):
+    def create_vpp_exec_config(self, template_file, **kwargs):
         """Create VPP exec configuration on container.
 
-        :param vat_template_file: File name of a VAT template script.
-        :param kwargs: Parameters for VAT script.
-        :type vat_template_file: str
+        :param template_file: File name of a template script.
+        :param kwargs: Parameters for script.
+        :type template_file: str
         :type kwargs: dict
         """
-        vat_file_path = '{p}/{f}'.format(p=Constants.RESOURCES_TPL_VAT,
-                                         f=vat_template_file)
+        running = '/tmp/running.exec'
 
-        with open(vat_file_path, 'r') as template_file:
-            cmd_template = template_file.readlines()
-            for line_tmpl in cmd_template:
-                vat_cmd = line_tmpl.format(**kwargs)
-                self.execute('echo "{c}" >> /tmp/running.exec'
-                             .format(c=vat_cmd.replace('\n', '')))
+        template = '{res}/{tpl}'.format(
+            res=Constants.RESOURCES_TPL_CONTAINER, tpl=template_file)
+
+        with open(template, 'r') as src_file:
+            src = Template(src_file.read())
+            self.execute('echo "{out}" > {running}'.format(
+                out=src.safe_substitute(**kwargs), running=running))
 
     def is_container_running(self):
         """Check if container is running."""
@@ -846,7 +847,7 @@ class Docker(ContainerEngine):
 
         :param command: Command to run inside container.
         :type command: str
-        :raises RuntimeError: If runnig the command in a container failed.
+        :raises RuntimeError: If running the command in a container failed.
         """
         cmd = "docker exec --interactive {c.name} /bin/sh -c '{command}; "\
             "exit $?'".format(c=self.container, command=command)
