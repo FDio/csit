@@ -1,0 +1,15 @@
+create memif socket id {sid1} filename {socket1}
+create interface memif id {mid1} socket-id {sid1} hw-addr {mac1} {role1}
+set interface ip address memif{sid1}/{mid1} 1.1.{sid1}.1/24
+set interface state memif{sid1}/{mid1} up
+
+create memif socket id {sid2} filename {socket2}
+create interface memif id {mid2} socket-id {sid2} hw-addr {mac2} {role2}
+set interface ip address memif{sid2}/{mid2} 1.1.{sid2}.1/24
+set interface state memif{sid2}/{mid2} up
+
+set ip arp static memif{sid1}/{mid1} 1.1.{sid1}.2 {vif1_mac}
+set ip arp static memif{sid2}/{mid2} 1.1.{sid2}.2 {vif2_mac}
+
+ip route add 10.0.0.0/8 via 1.1.{sid1}.2
+ip route add 20.0.0.0/8 via 1.1.{sid2}.2
