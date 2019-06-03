@@ -436,6 +436,15 @@ class VppConfigGenerator(object):
         path = ['statseg', 'size']
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_statseg_per_node_counters(self, value):
+        """Add stats per-node-counters configuration.
+
+        :param value: "on" to switch the counters on.
+        :type value: str
+        """
+        path = ['statseg', 'per-node-counters']
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_plugin(self, state, *plugins):
         """Add plugin section for specific plugin(s).
 
