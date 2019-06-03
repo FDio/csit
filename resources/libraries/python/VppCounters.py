@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,11 +14,14 @@
 """VPP counters utilities library."""
 
 import time
+import prettytable
 
 from robot.api import logger
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
+
+# TODO: Remove
+from resources.libraries.python.VatExecutor import VatExecutor
 
 
 class VppCounters(object):
@@ -28,12 +31,97 @@ class VppCounters(object):
         self._stats_table = None
 
     @staticmethod
+    def _run_cli_cmd(node, cmd):
+        """Run a CLI command.
+
+        :param node: Node to run command on.
+        :param cmd: The CLI command to be run on the node.
+        :type node: dict
+        :type cmd: str
+        :returns: Verified data from PAPI response.
+        :rtype: dict
+        """
+
+        logger.info("Command: {cmd}".format(cmd=cmd))
+
+        cli = 'cli_inband'
+        args = dict(cmd=cmd)
+        err_msg = "Failed to run 'cli_inband {cmd}' PAPI command on host " \
+                  "{host}".format(host=node['host'], cmd=cmd)
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add(cli, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+
+        return data
+
+    @staticmethod
+    def _get_non_zero_items(data):
+        """Extract and return non-zero items from the input data.
+
+        :param data: Data to filter.
+        :type data: dict
+        :returns: Dictionary with non-zero items.
+        :rtype dict
+        """
+
+        return {k: data[k] for k in data.keys() if sum(data[k])}
+
+    @staticmethod
+    def _pprint_errors(data):
+        """Pretty print the table with errors.
+
+        :param data: Errors to print.
+        :type data: dict
+        :returns: String representation of the pretty table.
+        :rtype: str
+        """
+
+        if not data:
+            return ""
+
+        table = prettytable.PrettyTable(["Count", "Node", "Reason"])
+
+        for key, count in data.iteritems():
+            node = "/".join(key.split("/")[2:-1])
+            reason = key.split("/")[-1]
+            table.add_row([count, node, reason])
+        table.set_style(prettytable.prettytable.PLAIN_COLUMNS)
+        table.align["Count"] = "r"
+        table.align["Node"] = "l"
+        table.align["Reason"] = "l"
+
+        return table.get_string()
+
+    @staticmethod
     def vpp_show_errors(node):
         """Run "show errors" debug CLI command.
+
+        TODO: Process and log the output.
 
         :param node: Node to run command on.
         :type node: dict
         """
+        data = VppCounters._run_cli_cmd(node, 'show errors')
+
+        cmd = "vpp-stats-request"
+        args = dict(api_name="set_errors")
+        with PapiExecutor(node) as papi_exec:
+            stats = papi_exec.add(cmd, **args).get_stats_reply()
+
+        cmd = "vpp-stats"
+        args = dict(path='^/err')
+        with PapiExecutor(node) as papi_exec:
+            stats = papi_exec.add(cmd, **args).get_stats()
+
+        errors = VppCounters._get_non_zero_items(stats[0])
+
+        logger.info("Errors:\n{err}".format(err=errors))
+
+        logger.info("Errors:\n{err}".format(
+            err=VppCounters._pprint_errors(errors)))
+
+        # TODO: Remove
         vat = VatExecutor()
         vat.execute_script("show_errors.vat", node, json_out=False)
         vat.script_should_have_passed()
@@ -42,9 +130,19 @@ class VppCounters(object):
     def vpp_show_errors_verbose(node):
         """Run "show errors verbose" debug CLI command.
 
+        TODO: Process and log the output.
+
         :param node: Node to run command on.
         :type node: dict
         """
+        data = VppCounters._run_cli_cmd(node, 'show errors verbose')
+
+        cmd = "vpp-stats"
+        args = dict(path='^/err')
+        with PapiExecutor(node) as papi_exec:
+            stats = papi_exec.add(cmd, **args).get_stats()
+
+        # TODO: Remove
         vat = VatExecutor()
         vat.execute_script("show_errors_verbose.vat", node, json_out=False)
         vat.script_should_have_passed()
@@ -70,11 +168,43 @@ class VppCounters(object):
     def vpp_show_runtime(node):
         """Run "show runtime" CLI command.
 
+        TODO: Process and log the output.
+
         :param node: Node to run command on.
         :type node: dict
         """
+        data = VppCounters._run_cli_cmd(node, 'show runtime')
+
+        cmd = "vpp-stats"
+        args = dict(path='^/sys/node')
+        with PapiExecutor(node) as papi_exec:
+            stats = papi_exec.add(cmd, **args).get_stats()
+
+        # TODO: Remove
         vat = VatExecutor()
         vat.execute_script("show_runtime.vat", node, json_out=False)
+        logger.info(vat.get_script_stdout())
+        vat.script_should_have_passed()
+
+    @staticmethod
+    def vpp_show_runtime_verbose(node):
+        """Run "show runtime verbose" CLI command.
+
+        TODO: Process and log the output.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        data = VppCounters._run_cli_cmd(node, 'show runtime verbose')
+
+        cmd = "vpp-stats"
+        args = dict(path='^/sys/node')
+        with PapiExecutor(node) as papi_exec:
+            stats = papi_exec.add(cmd, **args).get_stats()
+
+        # TODO: Remove
+        vat = VatExecutor()
+        vat.execute_script("show_runtime_verbose.vat", node, json_out=False)
         logger.info(vat.get_script_stdout())
         vat.script_should_have_passed()
 
@@ -90,27 +220,15 @@ class VppCounters(object):
                 VppCounters.vpp_show_runtime(node)
 
     @staticmethod
-    def vpp_show_runtime_verbose(node):
-        """Run "show runtime verbose" CLI command.
-
-        :param node: Node to run command on.
-        :type node: dict
-        """
-        vat = VatExecutor()
-        vat.execute_script("show_runtime_verbose.vat", node, json_out=False)
-        logger.info(vat.get_script_stdout())
-        vat.script_should_have_passed()
-
-    @staticmethod
     def vpp_show_hardware_detail(node):
         """Run "show hardware-interfaces detail" debug CLI command.
 
+        TODO: Process and log the output.
+
         :param node: Node to run command on.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script("show_hardware_detail.vat", node, json_out=False)
-        vat.script_should_have_passed()
+        data = VppCounters._run_cli_cmd(node, 'show hardware detail')
 
     @staticmethod
     def vpp_clear_runtime(node):
@@ -118,18 +236,10 @@ class VppCounters(object):
 
         :param node: Node to run command on.
         :type node: dict
+        :returns: Verified data from PAPI response.
+        :rtype: dict
         """
-        cmd = 'cli_inband'
-        cmd_reply = 'cli_inband_reply'
-        err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".format(
-            host=node['host'], cmd=cmd)
-        args = dict(cmd='clear runtime')
-        with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
-        data = papi_resp.reply[0]['api_reply'][cmd_reply]
-        if data['retval'] != 0:
-            raise RuntimeError("Failed to clear runtime on host {host}".
-                               format(host=node['host']))
+        return VppCounters._run_cli_cmd(node, 'clear runtime')
 
     @staticmethod
     def clear_runtime_counters_on_all_duts(nodes):
@@ -144,22 +254,14 @@ class VppCounters(object):
 
     @staticmethod
     def vpp_clear_interface_counters(node):
-        """Clear interface counters on VPP node.
+        """Run "clear interfaces" CLI command.
 
-        :param node: Node to clear interface counters on.
+        :param node: Node to run command on.
         :type node: dict
+        :returns: Verified data from PAPI response.
+        :rtype: dict
         """
-        cmd = 'cli_inband'
-        cmd_reply = 'cli_inband_reply'
-        err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".format(
-            host=node['host'], cmd=cmd)
-        args = dict(cmd='clear interfaces')
-        with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
-        data = papi_resp.reply[0]['api_reply'][cmd_reply]
-        if data['retval'] != 0:
-            raise RuntimeError("Failed to clear interfaces on host {host}".
-                               format(host=node['host']))
+        return VppCounters._run_cli_cmd(node, 'clear interfaces')
 
     @staticmethod
     def clear_interface_counters_on_all_duts(nodes):
@@ -174,14 +276,14 @@ class VppCounters(object):
 
     @staticmethod
     def vpp_clear_hardware_counters(node):
-        """Clear interface hardware counters on VPP node.
+        """Run "clear hardware" CLI command.
 
-        :param node: Node to clear hardware counters on.
+        :param node: Node to run command on.
         :type node: dict
+        :returns: Verified data from PAPI response.
+        :rtype: dict
         """
-        vat = VatExecutor()
-        vat.execute_script('clear_hardware.vat', node)
-        vat.script_should_have_passed()
+        return VppCounters._run_cli_cmd(node, 'clear hardware')
 
     @staticmethod
     def clear_hardware_counters_on_all_duts(nodes):
@@ -196,14 +298,14 @@ class VppCounters(object):
 
     @staticmethod
     def vpp_clear_errors_counters(node):
-        """Clear errors counters on VPP node.
+        """Run "clear errors" CLI command.
 
-        :param node: Node to clear errors counters on.
+        :param node: Node to run command on.
         :type node: dict
+        :returns: Verified data from PAPI response.
+        :rtype: dict
         """
-        vat = VatExecutor()
-        vat.execute_script('clear_errors.vat', node)
-        vat.script_should_have_passed()
+        return VppCounters._run_cli_cmd(node, 'clear errors')
 
     @staticmethod
     def clear_error_counters_on_all_duts(nodes):
@@ -216,22 +318,22 @@ class VppCounters(object):
             if node['type'] == NodeType.DUT:
                 VppCounters.vpp_clear_errors_counters(node)
 
-    def vpp_dump_stats_table(self, node):
-        """Dump stats table on VPP node.
-
-        :param node: Node to dump stats table on.
-        :type node: dict
-        :returns: Stats table.
-        """
-        with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd('want_stats enable')
-            for _ in range(0, 12):
-                stats_table = vat.vat_terminal_exec_cmd('dump_stats_table')
-                if stats_table['interface_counters']:
-                    self._stats_table = stats_table
-                    return stats_table
-                time.sleep(1)
-            return None
+    # def vpp_dump_stats_table(self, node):
+    #     """Dump stats table on VPP node.
+    #
+    #     :param node: Node to dump stats table on.
+    #     :type node: dict
+    #     :returns: Stats table.
+    #     """
+    #     with VatTerminal(node) as vat:
+    #         vat.vat_terminal_exec_cmd('want_stats enable')
+    #         for _ in range(0, 12):
+    #             stats_table = vat.vat_terminal_exec_cmd('dump_stats_table')
+    #             if stats_table['interface_counters']:
+    #                 self._stats_table = stats_table
+    #                 return stats_table
+    #             time.sleep(1)
+    #         return None
 
     def vpp_get_ipv4_interface_counter(self, node, interface):
         """
