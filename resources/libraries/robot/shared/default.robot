@@ -147,6 +147,7 @@
 | | | Run keyword | ${dut}.Add DPDK Uio Driver
 | | | Run keyword | ${dut}.Add Heapsize | 4G
 | | | Run keyword | ${dut}.Add Statseg size | 4G
+| | | Run keyword | ${dut}.Add Statseg Per Node Counters | on
 | | | Run keyword | ${dut}.Add Plugin | disable | default
 | | | Run keyword | ${dut}.Add Plugin | enable | @{plugins_to_enable}
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
