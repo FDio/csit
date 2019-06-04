@@ -101,7 +101,7 @@ VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("crypto,ip4_tunnels.softwire,ip4_tunnels.vxlan" "ip4,ip4_tunnels.gre,ip4_tunnels.lisp,ip6_tunnels.vxlan,ip6_tunnels.lisp,vm_vhost.ip4,vm_vhost.ip6" "interfaces,ip6,l2bd,l2xc,vm_vhost.l2bd,vm_vhost.l2xc,telemetry")
+TEST_GROUPS=("ip4_tunnels,ip6,ip6_tunnels,l2bd" "ip4,l2xc,telemetry")
 SUITE_PATH="tests.vpp.func"
 SKIP_PATCH="SKIP_PATCH"
 
