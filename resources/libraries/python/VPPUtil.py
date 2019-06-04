@@ -136,6 +136,8 @@ class VPPUtil(object):
             VPPUtil.verify_vpp_started(node)
             # Verify responsivness of PAPI.
             VPPUtil.show_log(node)
+            VPPUtil.vpp_show_version(node, 2)
+            VPPUtil.vpp_show_version(node, 20000)
         finally:
             DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
@@ -151,7 +153,7 @@ class VPPUtil(object):
                 VPPUtil.verify_vpp(node)
 
     @staticmethod
-    def vpp_show_version(node, verbose=True):
+    def vpp_show_version(node, verbose=True, scale=1):
         """Run "show_version" PAPI command.
 
         :param node: Node to run command on.
@@ -162,6 +164,13 @@ class VPPUtil(object):
         :returns: VPP version.
         :rtype: str
         """
+        if scale != 1:
+            with PapiExecutor(node) as papi_exec:
+                for _ in xrange(scale):
+                    papi_exec.add('show_version')
+                papi_exec.execute_should_pass().verify_reply()
+            return
+
         with PapiExecutor(node) as papi_exec:
             data = papi_exec.add('show_version').execute_should_pass().\
                 verify_reply()
