@@ -177,16 +177,19 @@
 | | ... | - address - IP address to expect. Type: string
 | | ... | - prefix - prefix length to expect. Type: string
 | | ... | - netmask - subnet mask to expect. Type: string
+| | ... | - sw_if_index - Index of interface. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| IPv4 address from VAT should be \| ${nodes['DUT1']} \
-| | ... | \| GigabitEthernet0/8/0 \| 192.168.0.2 \| ${24} \| 255.255.255.0 \|
+| | ... | \| GigabitEthernet0/8/0 \| 192.168.0.2 \| ${24} \| 255.255.255.0 \| ${1} \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix} | ${netmask}
+| | ... | ${sw_if_index}
 | | ${vpp_data}= | VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv4
 | | ${settings}= | Create Dictionary
-| | ... | ip=${address} | netmask=${netmask} | prefix_length=${prefix}
+| | ... | ip=${address} | netmask=${netmask} | sw_if_index=${sw_if_index}
+| | ... | prefix_length=${prefix} | is_ipv6=${0}
 | | Should contain | ${vpp_data} | ${settings}
 
 | Honeycomb removes interface IPv4 addresses
@@ -234,9 +237,8 @@
 | | ... | \| IPv4 config from VAT should be empty \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | Run keyword and expect error | *No JSON object could be decoded*
-| | ... | VPP get interface ip addresses
-| | ... | ${node} | ${interface} | ipv4
+| | ${data}= | VPP get interface ip addresses | ${node} | ${interface} | ipv4
+| | Should be empty | ${data}
 
 | Honeycomb adds interface IPv4 neighbor
 | | [Documentation] | Uses Honeycomb API to assign an ipv4 neighbor to the\
@@ -393,16 +395,19 @@
 | | ... | - interface - name of an interface on the specified node. Type: string
 | | ... | - address - IP address to expect. Type: string
 | | ... | - prefix - length of subnet prefix to expect. Type: string
+| | ... | - sw_if_index - index of interface. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| IPv6 address from VAT should contain \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
+| | ... | ${sw_if_index}
 | | ${vpp_data}= | VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv6
 | | ${settings}= | Create Dictionary
-| | ... | ip=${address} | prefix_length=${prefix}
+| | ... | ip=${address} | sw_if_index=${sw_if_index} | prefix_length=${prefix}
+| | ... | is_ipv6=${1}
 | | Should contain | ${vpp_data} | ${settings}
 
 | Honeycomb removes interface IPv6 addresses
@@ -450,9 +455,8 @@
 | | ... | \| IPv6 config from VAT should be empty \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | Run keyword and expect error | *No JSON object could be decoded*
-| | ... | VPP get interface ip addresses
-| | ... | ${node} | ${interface} | ipv6
+| | ${data}= | VPP get interface ip addresses | ${node} | ${interface} | ipv6
+| | Should be empty | ${data}
 
 | Honeycomb adds interface IPv6 neighbor
 | | [Documentation] | Uses Honeycomb API to assign an ipv6 neighbor to the\

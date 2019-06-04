@@ -140,8 +140,8 @@
 | | ... | \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
-| | Run Keyword And Expect Error | ValueError: No JSON object could be decoded
-| | ... | vhost user Dump | ${node}
+| | ${data}= | vhost user Dump | ${node}
+| | Should be empty | ${data}
 
 | Honeycomb fails setting vhost-user on different interface type
 | | [Documentation] | Attempts to set vhost-user settings on an ethernet\
