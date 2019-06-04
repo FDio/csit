@@ -114,7 +114,8 @@
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${vxlan_gpe_params}
 | | ...
-| | ${vat_data}= | VxLAN GPE Dump | ${node} | ${interface}
+| | ${if1}= | Vpp Get Interface Sw Index | ${node} | ${interface}
+| | ${vat_data}= | VxLAN GPE Dump | ${node} | ${if1}
 | | Should be equal as strings
 | | ... | ${vat_data['local']} | ${vxlan_gpe_params['local']}
 | | Should be equal as strings
@@ -125,8 +126,7 @@
 | | ... | ${vat_data['encap_vrf_id']} | ${vxlan_gpe_params['encap-vrf-id']}
 | | Should be equal as strings
 | | ... | ${vat_data['decap_vrf_id']} | ${vxlan_gpe_params['decap-vrf-id']}
-# VAT dump multiplies protocol value by 16777216
-| | Should be equal as strings | ${vat_data['protocol']/16777216}
+| | Should be equal as strings | ${vat_data['protocol']}
 | | ... | ${protocols['${vxlan_gpe_params['next-protocol']}']}
 
 | VxLAN GPE Interface indices from Honeycomb and VAT should correspond
@@ -147,7 +147,8 @@
 | | [Arguments] | ${node} | ${interface}
 | | ...
 | | ${api_data}= | Get interface oper data | ${node} | ${interface}
-| | ${vat_data}= | VxLAN GPE Dump | ${node} | ${interface}
+| | ${if1}= | Vpp Get Interface Sw Index | ${node} | ${interface}
+| | ${vat_data}= | VxLAN GPE Dump | ${node} | ${if1}
 | | ${sw_if_index}= | EVALUATE | ${vat_data['sw_if_index']} + 1
 | | Should be equal as strings
 | | ... | ${api_data['if-index']} | ${sw_if_index}
@@ -180,9 +181,8 @@
 | | ... | \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
-| | ...
-| | Run Keyword And Expect Error | ValueError: No JSON object could be decoded
-| | ... | VxLAN Dump | ${node}
+| | ${data}= | VxLAN Dump | ${node}
+| | Should be empty | ${data}
 
 | Honeycomb fails to create VxLAN GPE interface
 | | [Documentation] | Uses Honeycomb API to configure a VxLAN tunnel with wrong\

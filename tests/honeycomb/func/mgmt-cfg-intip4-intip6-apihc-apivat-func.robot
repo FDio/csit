@@ -14,7 +14,8 @@
 *** Variables ***
 # Interface to run tests on.
 | ${interface}= | ${node['interfaces']['port1']['name']}
-| ${interface2}= | ${node['interfaces']['port3']['name']}
+| ${interface2}= | ${node['interfaces']['port2']['name']}
+| ${interface3}= | ${node['interfaces']['port3']['name']}
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
@@ -145,8 +146,9 @@
 | | ... | ${node} | ${interface} | ${ethernet}
 | | Then Interface ethernet Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${ethernet}
+| | ${mtu}= | Create List | ${ethernet['mtu']} | ${0} | ${0} | ${0}
 | | And Interface ethernet Operational Data From VAT Should Be
-| | ... | ${node} | ${interface} | ${ethernet['mtu']}
+| | ... | ${node} | ${interface} | ${mtu}
 
 | TC09: Honeycomb modifies interface configuration - vrf
 | | [Documentation] | Check if Honeycomb API can configure interface\
@@ -186,12 +188,12 @@
 | | Then IPv4 address from Honeycomb should be
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${ipv4_address}
+| | ... | ${dut_node} | ${interface2} | ${ipv4_address}
 | | ... | ${ipv4_prefix} | ${ipv4_mask}
 | | And IPv6 address from Honeycomb should contain
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${ipv6_address} | ${ipv6_prefix}
 | | And IPv6 address from VAT should contain
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${ipv6_address} | ${ipv6_prefix}
+| | ... | ${dut_node} | ${interface2} | ${ipv6_address} | ${ipv6_prefix}
 | | And Honeycomb configures interface state
 | | ... | ${dut_node} | ${dut_to_tg_if1} | up
 | | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
@@ -256,14 +258,14 @@
 | | [Tags] | EXPECTED_FAILING
 | | ...
 | | Given Honeycomb sets interface IPv4 address | ${node}
-| | ... | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
+| | ... | ${interface3} | ${ipv4_address} | ${ipv4_prefix}
 | | When Honeycomb adds unnumbered configuration to interface
-| | ... | ${node} | ${interface} | ${interface2}
+| | ... | ${node} | ${interface} | ${interface3}
 | | Then Wait until Keyword succeeds | 10s | 2s
 | | ... | IPv4 address from Honeycomb should be
-| | ... | ${node} | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
+| | ... | ${node} | ${interface3} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
-| | ... | ${node} | ${interface2} | ${ipv4_address}
+| | ... | ${node} | ${interface3} | ${ipv4_address}
 | | ... | ${ipv4_prefix} | ${ipv4_mask}
 | | And IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
@@ -279,9 +281,9 @@
 | | [Tags] | EXPECTED_FAILING
 | | ...
 | | Given IPv4 address from Honeycomb should be
-| | ... | ${node} | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
+| | ... | ${node} | ${interface3} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
-| | ... | ${node} | ${interface2} | ${ipv4_address}
+| | ... | ${node} | ${interface3} | ${ipv4_address}
 | | ... | ${ipv4_prefix} | ${ipv4_mask}
 | | And IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
@@ -292,9 +294,9 @@
 | | ... | ${node} | ${interface}
 | | Then Wait until Keyword succeeds | 10s | 2s
 | | ... | IPv4 address from Honeycomb should be
-| | ... | ${node} | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
+| | ... | ${node} | ${interface3} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
-| | ... | ${node} | ${interface2} | ${ipv4_address}
+| | ... | ${node} | ${interface3} | ${ipv4_address}
 | | ... | ${ipv4_prefix} | ${ipv4_mask}
 | | And IPv4 address from Honeycomb should be empty | ${node} | ${interface}
 | | And ipv4 address from VAT should be empty | ${node} | ${interface}

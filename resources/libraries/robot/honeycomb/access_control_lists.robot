@@ -325,8 +325,9 @@
 | | ... | \| ${nodes['DUT1']} \| GigabithEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
 | | ${data}= | Get interface classify table | ${node} | ${interface}
-| | Should be equal | ${data['l2_table_id']} | ${-1}
-| | Should be equal | ${data['ip4_table_id']} | ${-1}
+| | ${bitwise_non_zero}= | Convert To Integer | ${0xFFFFFFFF}
+| | Should be equal | ${data['l2_table_id']} | ${bitwise_non_zero}
+| | Should be equal | ${data['ip4_table_id']} | ${bitwise_non_zero}
 
 | Clear all ACL settings
 | | [Documentation] | Removes all ACL sessions and tables from Honeycomb\
