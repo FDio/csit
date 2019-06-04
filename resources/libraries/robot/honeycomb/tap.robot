@@ -140,5 +140,5 @@
 | | ... | \| ${nodes['DUT1']} \| tap_int1 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
-| | Run Keyword And Expect Error | ValueError: No JSON object could be decoded
-| | ... | TAP Dump | ${node} | ${interface}
+| | ${data}= | TAP Dump | ${node} | ${interface}
+| | Should be empty | ${data}

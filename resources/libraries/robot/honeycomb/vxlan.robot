@@ -127,8 +127,8 @@
 | | ... | \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
-| | Run Keyword And Expect Error | ValueError: No JSON object could be decoded
-| | ... | VxLAN Dump | ${node}
+| | ${data}= | VxLAN Dump | ${node}
+| | Should be empty | ${data}
 
 | Honeycomb fails setting VxLan on different interface type
 | | [Documentation] | Attempts to set VxLAN settings on an ethernet\
