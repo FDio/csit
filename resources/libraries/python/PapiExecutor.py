@@ -507,10 +507,10 @@ class PapiExecutor(object):
                          "\n{apis}".format(host=self._node["host"],
                                            apis=api_data))
             raise
-        except Exception:
+        except Exception as exc:
             raise RuntimeError("PAPI command(s) execution on host {host} "
-                               "failed: {apis}".format(host=self._node["host"],
-                                                       apis=api_data))
+                               "failed: {exc!r}".format(host=self._node["host"],
+                                                        exc=exc))
         if ret_code != 0:
             raise AssertionError(err_msg)
 
