@@ -141,7 +141,8 @@ class VPPUtil(object):
 #            node['interfaces'] = {1: {"vpp_sw_index": 1}, 2: {"vpp_sw_index": 2}}
 #            InterfaceUtil.vpp_sw_interface_rx_placement_dump(node)
             VPPUtil.show_log(node)
-            VPPUtil.vpp_show_version(node)
+            VPPUtil.vpp_show_version(node, scale=2)
+            VPPUtil.vpp_show_version(node, scale=20000)
         finally:
             DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
@@ -157,7 +158,7 @@ class VPPUtil(object):
                 VPPUtil.verify_vpp(node)
 
     @staticmethod
-    def vpp_show_version(node, verbose=True):
+    def vpp_show_version(node, verbose=True, scale=1):
         """Run "show_version" PAPI command.
 
         :param node: Node to run command on.
@@ -168,6 +169,13 @@ class VPPUtil(object):
         :returns: VPP version.
         :rtype: str
         """
+        if scale != 1:
+            with PapiSocketExecutor(node) as papi_exec:
+                for _ in xrange(scale):
+                    papi_exec.add('show_version')
+                papi_exec.get_replies().verify_replies()
+            return
+
         with PapiSocketExecutor(node) as papi_exec:
             data = papi_exec.add('show_version').get_replies().verify_reply()
         logger.debug(repr(data))
