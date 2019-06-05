@@ -15,7 +15,7 @@
 
 import logging
 
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 
@@ -33,16 +33,14 @@ class VhostUser(object):
             response.
         :rtype: list
         """
-        with PapiExecutor(node) as papi_exec:
-            dump = papi_exec.add("sw_interface_vhost_user_dump").get_dump()
+        with PapiSocketExecutor(node) as papi_exec:
+            dump = papi_exec.add("sw_interface_vhost_user_dump").get_details(
+                ).verify_details()
 
-        key = "sw_interface_vhost_user_details"
         data = list()
-        for item in dump.reply[0]["api_reply"]:
-            item[key]["interface_name"] = \
-                item[key]["interface_name"].rstrip('\x00')
-            item[key]["sock_filename"] = \
-                item[key]["sock_filename"].rstrip('\x00')
+        for item in dump.reply:
+            item["interface_name"] = item["interface_name"].rstrip('\x00')
+            item["sock_filename"] = item["sock_filename"].rstrip('\x00')
             data.append(item)
 
         logging.debug("VhostUser data:\n{data}".format(data=data))
@@ -66,9 +64,9 @@ class VhostUser(object):
         args = dict(
             sock_filename=str(socket)
         )
-        with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd, **args).get_replies().verify_reply(
+                err_msg)
 
         # Extract sw_if_idx:
         sw_if_idx = data["sw_if_index"]
