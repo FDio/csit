@@ -21,7 +21,7 @@ from enum import IntEnum
 from robot.api import logger
 
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
 class NATConfigFlags(IntEnum):
@@ -65,9 +65,8 @@ class NATUtil(object):
             is_add=1,
             flags=getattr(NATConfigFlags, "NAT_IS_INSIDE").value
         )
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args_in).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args_in).get_replies().verify_reply(err_msg)
 
         int_out_idx = InterfaceUtil.get_sw_if_index(node, int_out)
         err_msg = 'Failed to set outside interface {int} for NAT44 on host ' \
@@ -77,9 +76,8 @@ class NATUtil(object):
             is_add=1,
             flags=getattr(NATConfigFlags, "NAT_IS_OUTSIDE").value
         )
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args_in).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args_in).get_replies().verify_reply(err_msg)
 
     @staticmethod
     def set_nat44_deterministic(node, ip_in, subnet_in, ip_out, subnet_out):
@@ -107,9 +105,8 @@ class NATUtil(object):
             out_addr=inet_pton(AF_INET, str(ip_out)),
             out_plen=int(subnet_out)
         )
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args_in).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args_in).get_replies().verify_reply(err_msg)
 
     @staticmethod
     def show_nat(node):
@@ -134,9 +131,8 @@ class NATUtil(object):
         cmd = 'nat_show_config'
         err_msg = 'Failed to get NAT configuration on host {host}'.\
             format(host=node['host'])
-        with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add(cmd).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd).get_replies().verify_reply(err_msg)
         logger.debug("NAT Configuration:\n{data}".format(data=pformat(data)))
 
         cmds = [
@@ -149,4 +145,4 @@ class NATUtil(object):
             "nat44_user_session_dump",
             "nat_det_map_dump"
         ]
-        PapiExecutor.dump_and_log(node, cmds)
+        PapiSocketExecutor.dump_and_log(node, cmds)

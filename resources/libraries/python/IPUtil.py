@@ -23,7 +23,7 @@ from ipaddress import AddressValueError, NetmaskValueError
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -82,25 +82,25 @@ class IPUtil(object):
         is_ipv6 = 1 if ip_version == 'ipv6' else 0
 
         cmd = 'ip_address_dump'
-        cmd_reply = 'ip_address_details'
         args = dict(sw_if_index=sw_if_index,
                     is_ipv6=is_ipv6)
         err_msg = 'Failed to get L2FIB dump on host {host}'.format(
             host=node['host'])
 
-        with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_details(
+                err_msg).verify_details()
 
         data = list()
-        for item in papi_resp.reply[0]['api_reply']:
-            item[cmd_reply]['ip'] = inet_ntop(AF_INET6, item[cmd_reply]['ip']) \
-                if is_ipv6 else inet_ntop(AF_INET, item[cmd_reply]['ip'][0:4])
-            item[cmd_reply]['netmask'] = str(
+        for item in papi_resp:
+            item['ip'] = inet_ntop(AF_INET6, item['ip']) \
+                if is_ipv6 else inet_ntop(AF_INET, item['ip'][0:4])
+            item['netmask'] = str(
                 IPv6Network(unicode('::/{pl}'.format(
-                    pl=item[cmd_reply]['prefix_length']))).netmask) if is_ipv6 \
+                    pl=item['prefix_length']))).netmask) if is_ipv6 \
                 else str(IPv4Network(unicode('0.0.0.0/{pl}'.format(
-                    pl=item[cmd_reply]['prefix_length']))).netmask)
-            data.append(item[cmd_reply])
+                    pl=item['prefix_length']))).netmask)
+            data.append(item)
 
         return data
 
@@ -130,9 +130,9 @@ class IPUtil(object):
         err_msg = 'Failed to get VRF id assigned to interface {ifc}'.format(
             ifc=interface)
 
-        with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_resp = papi_exec.add(cmd, **args).get_replies().verify_reply(
+                err_msg)
 
         return papi_resp['vrf_id']
 
@@ -152,9 +152,8 @@ class IPUtil(object):
             loose=0)
         err_msg = 'Failed to enable source check on interface {ifc}'.format(
             ifc=if_name)
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies().verify_reply(err_msg)
 
     @staticmethod
     def vpp_ip_probe(node, interface, addr):
@@ -168,16 +167,14 @@ class IPUtil(object):
         :type addr: str
         """
         cmd = 'ip_probe_neighbor'
-        cmd_reply = 'proxy_arp_intfc_enable_disable_reply'
         args = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
             dst=str(addr))
         err_msg = 'VPP ip probe {dev} {ip} failed on {h}'.format(
             dev=interface, ip=addr, h=node['host'])
 
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(cmd_reply=cmd_reply, err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies().verify_reply(err_msg)
 
     @staticmethod
     def ip_addresses_should_be_equal(ip1, ip2):
@@ -360,9 +357,8 @@ class IPUtil(object):
             address=inet_pton(af_inet, str(ip_addr)))
         err_msg = 'Failed to add IP address on interface {ifc}'.format(
             ifc=interface)
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies().verify_reply(err_msg)
 
     @staticmethod
     def vpp_add_ip_neighbor(node, iface_key, ip_addr, mac_address):
@@ -394,9 +390,8 @@ class IPUtil(object):
             neighbor=neighbor)
         err_msg = 'Failed to add IP neighbor on interface {ifc}'.format(
             ifc=iface_key)
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies().verify_reply(err_msg)
 
     @staticmethod
     def vpp_route_add(node, network, prefix_len, **kwargs):
@@ -459,11 +454,11 @@ class IPUtil(object):
             next_hop_table_id=int(kwargs.get('lookup_vrf', 0)))
         err_msg = 'Failed to add route(s) on host {host}'.format(
             host=node['host'])
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(kwargs.get('count', 1)):
                 papi_exec.add(cmd, dst_address=inet_pton(
                     af_inet, str(net_addr+i)), **args)
-            papi_exec.get_replies(err_msg).verify_replies(err_msg=err_msg)
+            papi_exec.get_replies().verify_replies(err_msg)
 
     @staticmethod
     def vpp_nodes_set_ipv4_addresses(nodes, nodes_addr):
@@ -510,9 +505,8 @@ class IPUtil(object):
             del_all=1)
         err_msg = 'Failed to flush IP address on interface {ifc}'.format(
             ifc=interface)
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies().verify_reply(err_msg)
 
     @staticmethod
     def add_fib_table(node, table_id, ipv6=False):
@@ -532,6 +526,5 @@ class IPUtil(object):
             is_add=1)
         err_msg = 'Failed to add FIB table on host {host}'.format(
             host=node['host'])
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies().verify_reply(err_msg)

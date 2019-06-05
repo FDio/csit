@@ -15,7 +15,7 @@
 
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType
 
 
@@ -38,9 +38,8 @@ class IPv6Util(object):
         err_msg = 'Failed to suppress ICMPv6 router advertisement message on ' \
                   'interface {ifc}'.format(ifc=interface)
 
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies().verify_reply(err_msg)
 
     @staticmethod
     def vpp_ra_send_after_interval(node, interface, interval=2):
@@ -61,9 +60,8 @@ class IPv6Util(object):
         err_msg = 'Failed to set router advertisement interval on ' \
                   'interface {ifc}'.format(ifc=interface)
 
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies().verify_reply(err_msg)
 
     @staticmethod
     def vpp_all_ra_suppress_link_layer(nodes):
