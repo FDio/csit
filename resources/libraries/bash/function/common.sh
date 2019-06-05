@@ -691,6 +691,7 @@ function select_tags () {
     # We will prefix with perftest to prevent running other tests
     # (e.g. Functional).
     prefix="perftestAND"
+    set +x
     if [[ "${TEST_CODE}" == "vpp-"* ]]; then
         # Automatic prefixing for VPP jobs to limit the NIC used and
         # traffic evaluation to MRR.
@@ -710,6 +711,7 @@ function select_tags () {
             TAGS+=("${prefix}${tag}")
         fi
     done
+    set -x
 }
 
 
