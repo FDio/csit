@@ -19,7 +19,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
@@ -135,7 +135,13 @@ class VPPUtil(object):
             # Verify responsivness of vppctl.
             VPPUtil.verify_vpp_started(node)
             # Verify responsivness of PAPI.
+#            # Not importing at top due to https://stackoverflow.com/a/746067
+#            from resources.libraries.python.InterfaceUtil import InterfaceUtil
+#            # Just for debugging the following call.
+#            node['interfaces'] = {1: {"vpp_sw_index": 1}, 2: {"vpp_sw_index": 2}}
+#            InterfaceUtil.vpp_sw_interface_rx_placement_dump(node)
             VPPUtil.show_log(node)
+            VPPUtil.vpp_show_version(node)
         finally:
             DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
@@ -162,9 +168,10 @@ class VPPUtil(object):
         :returns: VPP version.
         :rtype: str
         """
-        with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_version').execute_should_pass().\
-                verify_reply()
+        with PapiSocketExecutor(node) as papi_exec:
+            data = papi_exec.add('show_version').get_replies().verify_reply()
+        logger.debug(repr(data))
+        logger.debug(dir(data))
         version = ('VPP version:      {ver}\n'.
                    format(ver=data['version'].rstrip('\0x00')))
         if verbose:
@@ -195,24 +202,21 @@ class VPPUtil(object):
         """
 
         cmd = 'sw_interface_dump'
-        cmd_reply = 'sw_interface_details'
         args = dict(name_filter_valid=0, name_filter='')
         err_msg = 'Failed to get interface dump on host {host}'.format(
             host=node['host'])
-        with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
-
-        papi_if_dump = papi_resp.reply[0]['api_reply']
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_dump = papi_exec.add(cmd, **args).get_details().verify_details(
+                err_msg)
 
         if_data = list()
-        for item in papi_if_dump:
-            data = item[cmd_reply]
-            data['interface_name'] = data['interface_name'].rstrip('\x00')
-            data['tag'] = data['tag'].rstrip('\x00')
-            data['l2_address'] = str(':'.join(binascii.hexlify(
-                data['l2_address'])[i:i + 2] for i in range(0, 12, 2)).
+        for item in papi_dump:
+            item['interface_name'] = item['interface_name'].rstrip('\x00')
+            item['tag'] = item['tag'].rstrip('\x00')
+            item['l2_address'] = str(':'.join(binascii.hexlify(
+                item['l2_address'])[i:i + 2] for i in range(0, 12, 2)).
                                      decode('ascii'))
-            if_data.append(data)
+            if_data.append(item)
         # TODO: return only base data
         logger.trace('Interface data of host {host}:\n{if_data}'.format(
             host=node['host'], if_data=if_data))
@@ -303,7 +307,7 @@ class VPPUtil(object):
         :returns: VPP log data.
         :rtype: list
         """
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             return papi_exec.add('cli_inband', cmd='show log').get_replies().\
                 verify_reply()["reply"]
 
@@ -316,6 +320,6 @@ class VPPUtil(object):
         :returns: VPP thread data.
         :rtype: list
         """
-        with PapiExecutor(node) as papi_exec:
-            return papi_exec.add('show_threads').execute_should_pass().\
+        with PapiSocketExecutor(node) as papi_exec:
+            return papi_exec.add('show_threads').get_replies().\
                 verify_reply()["thread_data"]
