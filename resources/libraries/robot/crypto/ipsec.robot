@@ -262,6 +262,7 @@
 | | | Run keyword | ${dut}.Add Unix Coredump
 | | | Run keyword | ${dut}.Add Unix CLI Listen | /run/vpp/cli.sock
 | | | Run keyword | ${dut}.Add Unix Gid
+| | | Run keyword | ${dut}.Add Socksvr
 | | | Run keyword | ${dut}.Add Api Segment Gid
 | | | ${socket_id}= | Set Variable | ${0}
 | | | ${sw_dev_count}= | Set Variable | ${1}
