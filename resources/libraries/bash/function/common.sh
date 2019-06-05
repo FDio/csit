@@ -765,27 +765,29 @@ function select_os () {
 
     set -exuo pipefail
 
-    # Variables read:
-    # - OS - os or distro for selecting container image.
     # Variables set:
     # - VPP_VER_FILE - Name of File in CSIT dir containing vpp stable version.
     # - IMAGE_VER_FILE - Name of File in CSIT dir containing the image name.
     # - PKG_SUFFIX - Suffix of OS package file name, "rpm" or "deb."
 
-    case "${OS}" in
-    "ubuntu"*)
-        IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
-        VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_BIONIC"
-        PKG_SUFFIX="deb"
-        ;;
-    "centos"*)
-        IMAGE_VER_FILE="VPP_DEVICE_IMAGE_CENTOS"
-        VPP_VER_FILE="VPP_STABLE_VER_CENTOS"
-        PKG_SUFFIX="rpm"
-        ;;
-    *)
-        die "Unable to identify distro or os from ${OS}"
-        ;;
+    os_id=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g') || {
+        die "Get OS release failed."
+    }
+
+    case "${os_id}" in
+        "ubuntu"*)
+            IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
+            VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_BIONIC"
+            PKG_SUFFIX="deb"
+            ;;
+        "centos"*)
+            IMAGE_VER_FILE="VPP_DEVICE_IMAGE_CENTOS"
+            VPP_VER_FILE="VPP_STABLE_VER_CENTOS"
+            PKG_SUFFIX="rpm"
+            ;;
+        *)
+            die "Unable to identify distro or os from ${OS}"
+            ;;
     esac
 }
 
