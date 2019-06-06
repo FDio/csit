@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -39,7 +39,6 @@ def fmt_latency(lat_min, lat_avg, lat_max):
     :return: Formatted and rounded output "min/avg/max"
     :rtype: string
     """
-
     try:
         t_min = int(round(float(lat_min)))
     except ValueError:
@@ -96,7 +95,6 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
     :type async_start: bool
     :type unidirection: bool
     """
-
     client = None
     total_rcvd = 0
     total_sent = 0
@@ -168,8 +166,7 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
             stats = client.get_stats()
 
             print("##### Warmup statistics #####")
-            print(json.dumps(stats, indent=4, separators=(',', ': '),
-                             sort_keys=True))
+            print(json.dumps(stats, indent=4, separators=(',', ': ')))
 
             lost_a = stats[port_0]["opackets"] - stats[port_1]["ipackets"]
             if not unidirection:
@@ -201,8 +198,7 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
             stats = client.get_stats()
 
             print("##### Statistics #####")
-            print(json.dumps(stats, indent=4, separators=(',', ': '),
-                             sort_keys=True))
+            print(json.dumps(stats, indent=4, separators=(',', ': ')))
 
             lost_a = stats[port_0]["opackets"] - stats[port_1]["ipackets"]
             if not unidirection:
@@ -232,8 +228,8 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
                 print("packets lost from {p_1} --> {p_0}:   {v} pkts".format(
                 p_0=port_0, p_1=port_1, v=lost_b))
 
-    except STLError as err:
-        sys.stderr.write("{0}\n".format(err))
+    except STLError as ex_error:
+        print(ex_error, file=sys.stderr)
         sys.exit(1)
 
     finally:
@@ -243,10 +239,6 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
         else:
             if client:
                 client.disconnect()
-            if isinstance(rate, unicode):
-                rate = rate.encode("utf-8")
-            if isinstance(duration, unicode):
-                duration = duration.encode("utf-8")
             print("rate={0!r}, totalReceived={1}, totalSent={2}, "
                   "frameLoss={3}, latencyStream0(usec)={4}, "
                   "latencyStream1(usec)={5}, targetDuration={d!r}".
@@ -260,7 +252,6 @@ def main():
     It verifies the given command line arguments and runs "simple_burst"
     function.
     """
-
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--profile",
                         required=True,

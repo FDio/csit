@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,29 +32,20 @@ sys.path.insert(0, "/opt/trex-core-2.54/scripts/automation/"+\
                    "trex_control_plane/interactive/")
 from trex.stl.api import *
 
-def get_server_system_info():
-    """Check server info and quit.
-
-    :return: nothing
-    """
-    # create client
+def main():
+    """Check server info and quit."""
     client = STLClient()
-
     try:
         # connect to server
         client.connect()
+
         # get server info
         print(client.get_server_system_info())
     except STLError as ex_error:
-        sys.stderr.write(str(ex_error))
+        print(ex_error, file=sys.stderr)
         sys.exit(1)
     finally:
         client.disconnect()
-
-
-def main():
-    """Main function."""
-    get_server_system_info()
 
 
 if __name__ == "__main__":
