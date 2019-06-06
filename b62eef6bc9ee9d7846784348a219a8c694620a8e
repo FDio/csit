@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "de674fe0_84eef044",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-06T09:12:09Z",
+      "side": 1,
+      "message": "add avf as before, it will fail on HSW.",
+      "revId": "b62eef6bc9ee9d7846784348a219a8c694620a8e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
