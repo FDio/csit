@@ -659,10 +659,6 @@ function select_tags () {
 
     # Blacklisting certain tags per topology.
     case "${TEST_CODE}" in
-        *"3n-hsw"*)
-            test_tag_array+=("!drv_avf")
-            test_tag_array+=("!ipsechwNOTnic_intel-xl710")
-            ;;
         *"2n-skx"*)
             test_tag_array+=("!ipsechw")
             ;;
@@ -678,9 +674,15 @@ function select_tags () {
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
             ;;
+        *"3n-hsw"*)
+            # TODO: If AVF tests are expected to fail on haswell,
+            # add (before excluding) an explanation to:
+            # https://github.com/FDio/vpp/blob/master/src/plugins/avf/README.md
+            test_tag_array+=("!ipsechwNOTnic_intel-xl710")
+            ;;
         *)
             # Default to 3n-hsw due to compatibility.
-            test_tag_array+=("!drv_avf")
+            test_tag_array+=("!ipsechwNOTnic_intel-xl710")
             ;;
     esac
 
@@ -809,6 +811,7 @@ function select_topology () {
 
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
+        # TODO: Move tags to "# Blacklisting certain tags per topology" section.
         "1n_vbox")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
             TOPOLOGIES_TAGS="2_node_single_link_topo"

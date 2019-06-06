@@ -1,0 +1,245 @@
+--- st_o_2s.txt	2019-06-06 12:11:01.495987040 +0200
++++ st_n_2s.txt	2019-06-06 11:01:31.697421554 +0200
+@@ -10,121 +10,36 @@ suite /vpp/perf/container_memif/2n1l-10g
+ test tc01-64B-1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+ test tc02-64B-2c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+ test tc03-64B-4c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+-test tc10-IMIX-1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+-test tc11-IMIX-2c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+-test tc12-IMIX-4c-eth-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+ suite /vpp/perf/container_memif/2n1l-10ge2p1x710-eth-l2xcbase-eth-2memif-1dcr-mrr.robot
+ test tc01-64B-1c-eth-l2xcbase-eth-2memif-1dcr-mrr
+ test tc02-64B-2c-eth-l2xcbase-eth-2memif-1dcr-mrr
+ test tc03-64B-4c-eth-l2xcbase-eth-2memif-1dcr-mrr
+-test tc10-IMIX-1c-eth-l2xcbase-eth-2memif-1dcr-mrr
+-test tc11-IMIX-2c-eth-l2xcbase-eth-2memif-1dcr-mrr
+-test tc12-IMIX-4c-eth-l2xcbase-eth-2memif-1dcr-mrr
+ suite /vpp/perf/container_memif/2n1l-10ge2p1x710-ethip4-ip4base-eth-2memif-1dcr-mrr.robot
+ test tc01-64B-1c-ethip4-ip4base-eth-2memif-1dcr-mrr
+ test tc02-64B-2c-ethip4-ip4base-eth-2memif-1dcr-mrr
+ test tc03-64B-4c-ethip4-ip4base-eth-2memif-1dcr-mrr
+-test tc10-IMIX-1c-ethip4-ip4base-eth-2memif-1dcr-mrr
+-test tc11-IMIX-2c-ethip4-ip4base-eth-2memif-1dcr-mrr
+-test tc12-IMIX-4c-ethip4-ip4base-eth-2memif-1dcr-mrr
+ suite /vpp/perf/ip4
+ suite /vpp/perf/ip4/2n1l-10ge2p1x710-dot1q-ip4base-mrr.robot
+ test tc01-64B-1c-dot1q-ip4base-mrr
+ test tc02-64B-2c-dot1q-ip4base-mrr
+ test tc03-64B-4c-dot1q-ip4base-mrr
+-suite /vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4base-ipolicemarkbase-mrr.robot
+-test tc01-64B-1c-ethip4-ip4base-ipolicemarkbase-mrr
+-test tc02-64B-2c-ethip4-ip4base-ipolicemarkbase-mrr
+-test tc03-64B-4c-ethip4-ip4base-ipolicemarkbase-mrr
+ suite /vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4base-mrr.robot
+ test tc01-64B-1c-ethip4-ip4base-mrr
+ test tc02-64B-2c-ethip4-ip4base-mrr
+ test tc03-64B-4c-ethip4-ip4base-mrr
+-suite /vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale200k-mrr.robot
+-test tc01-64B-1c-ethip4-ip4scale200k-mrr
+-test tc02-64B-2c-ethip4-ip4scale200k-mrr
+-test tc03-64B-4c-ethip4-ip4scale200k-mrr
+-suite /vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale20k-mrr.robot
+-test tc01-64B-1c-ethip4-ip4scale20k-mrr
+-test tc02-64B-2c-ethip4-ip4scale20k-mrr
+-test tc03-64B-4c-ethip4-ip4scale20k-mrr
+-suite /vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale2m-mrr.robot
+-test tc01-64B-1c-ethip4-ip4scale2m-mrr
+-test tc02-64B-2c-ethip4-ip4scale2m-mrr
+-test tc03-64B-4c-ethip4-ip4scale2m-mrr
+-suite /vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-iacl1sf-10kflows-mrr.robot
+-test tc01-64B-1c-ethip4udp-ip4base-iacl1sf-10kflows-mrr
+-test tc02-64B-2c-ethip4udp-ip4base-iacl1sf-10kflows-mrr
+-test tc03-64B-4c-ethip4udp-ip4base-iacl1sf-10kflows-mrr
+-suite /vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-iacl1sl-10kflows-mrr.robot
+-test tc01-64B-1c-ethip4udp-ip4base-iacl1sl-10kflows-mrr
+-test tc02-64B-2c-ethip4udp-ip4base-iacl1sl-10kflows-mrr
+-test tc03-64B-4c-ethip4udp-ip4base-iacl1sl-10kflows-mrr
+-suite /vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-iacl50sf-10kflows-mrr.robot
+-test tc01-64B-1c-ethip4udp-ip4base-iacl50sf-10kflows-mrr
+-test tc02-64B-2c-ethip4udp-ip4base-iacl50sf-10kflows-mrr
+-test tc03-64B-4c-ethip4udp-ip4base-iacl50sf-10kflows-mrr
+-suite /vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-iacl50sl-10kflows-mrr.robot
+-test tc01-64B-1c-ethip4udp-ip4base-iacl50sl-10kflows-mrr
+-test tc02-64B-2c-ethip4udp-ip4base-iacl50sl-10kflows-mrr
+-test tc03-64B-4c-ethip4udp-ip4base-iacl50sl-10kflows-mrr
+ suite /vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-nat44-mrr.robot
+ test tc01-64B-1c-ethip4udp-ip4base-nat44-mrr
+ test tc02-64B-2c-ethip4udp-ip4base-nat44-mrr
+ test tc03-64B-4c-ethip4udp-ip4base-nat44-mrr
+-suite /vpp/perf/ip4/2n1l-25ge2p1xxv710-dot1q-ip4base-mrr.robot
+-test tc01-64B-1c-dot1q-ip4base-mrr
+-test tc02-64B-2c-dot1q-ip4base-mrr
+-test tc03-64B-4c-dot1q-ip4base-mrr
+-suite /vpp/perf/ip4/2n1l-25ge2p1xxv710-ethip4-ip4base-mrr.robot
+-test tc01-64B-1c-ethip4-ip4base-mrr
+-test tc02-64B-2c-ethip4-ip4base-mrr
+-test tc03-64B-4c-ethip4-ip4base-mrr
+-suite /vpp/perf/ip4/2n1l-25ge2p1xxv710-ethip4-ip4scale200k-mrr.robot
+-test tc01-64B-1c-ethip4-ip4scale200k-mrr
+-test tc02-64B-2c-ethip4-ip4scale200k-mrr
+-test tc03-64B-4c-ethip4-ip4scale200k-mrr
+-suite /vpp/perf/ip4/2n1l-25ge2p1xxv710-ethip4-ip4scale20k-mrr.robot
+-test tc01-64B-1c-ethip4-ip4scale20k-mrr
+-test tc02-64B-2c-ethip4-ip4scale20k-mrr
+-test tc03-64B-4c-ethip4-ip4scale20k-mrr
+-suite /vpp/perf/ip4/2n1l-25ge2p1xxv710-ethip4-ip4scale2m-mrr.robot
+-test tc01-64B-1c-ethip4-ip4scale2m-mrr
+-test tc02-64B-2c-ethip4-ip4scale2m-mrr
+-test tc03-64B-4c-ethip4-ip4scale2m-mrr
+ suite /vpp/perf/ip6
++suite /vpp/perf/ip6/2n1l-10ge2p1x710-dot1q-ip6base-mrr.robot
++test tc01-78B-1c-dot1q-ip6base-mrr
++test tc02-78B-2c-dot1q-ip6base-mrr
++test tc03-78B-4c-dot1q-ip6base-mrr
+ suite /vpp/perf/ip6/2n1l-10ge2p1x710-ethip6-ip6base-mrr.robot
+ test tc01-78B-1c-ethip6-ip6base-mrr
+ test tc02-78B-2c-ethip6-ip6base-mrr
+ test tc03-78B-4c-ethip6-ip6base-mrr
+-suite /vpp/perf/ip6/2n1l-10ge2p1x710-ethip6-ip6scale200k-mrr.robot
+-test tc01-78B-1c-ethip6-ip6scale200k-mrr
+-test tc02-78B-2c-ethip6-ip6scale200k-mrr
+-test tc03-78B-4c-ethip6-ip6scale200k-mrr
+-suite /vpp/perf/ip6/2n1l-10ge2p1x710-ethip6-ip6scale20k-mrr.robot
+-test tc01-78B-1c-ethip6-ip6scale20k-mrr
+-test tc02-78B-2c-ethip6-ip6scale20k-mrr
+-test tc03-78B-4c-ethip6-ip6scale20k-mrr
+-suite /vpp/perf/ip6/2n1l-10ge2p1x710-ethip6-ip6scale2m-mrr.robot
+-test tc01-78B-1c-ethip6-ip6scale2m-mrr
+-test tc02-78B-2c-ethip6-ip6scale2m-mrr
+-test tc03-78B-4c-ethip6-ip6scale2m-mrr
+-suite /vpp/perf/ip6/2n1l-25ge2p1xxv710-ethip6-ip6base-mrr.robot
+-test tc01-78B-1c-ethip6-ip6base-mrr
+-test tc02-78B-2c-ethip6-ip6base-mrr
+-test tc03-78B-4c-ethip6-ip6base-mrr
+-suite /vpp/perf/ip6/2n1l-25ge2p1xxv710-ethip6-ip6scale200k-mrr.robot
+-test tc01-78B-1c-ethip6-ip6scale200k-mrr
+-test tc02-78B-2c-ethip6-ip6scale200k-mrr
+-test tc03-78B-4c-ethip6-ip6scale200k-mrr
+-suite /vpp/perf/ip6/2n1l-25ge2p1xxv710-ethip6-ip6scale20k-mrr.robot
+-test tc01-78B-1c-ethip6-ip6scale20k-mrr
+-test tc02-78B-2c-ethip6-ip6scale20k-mrr
+-test tc03-78B-4c-ethip6-ip6scale20k-mrr
+-suite /vpp/perf/ip6/2n1l-25ge2p1xxv710-ethip6-ip6scale2m-mrr.robot
+-test tc01-78B-1c-ethip6-ip6scale2m-mrr
+-test tc02-78B-2c-ethip6-ip6scale2m-mrr
+-test tc03-78B-4c-ethip6-ip6scale2m-mrr
+ suite /vpp/perf/l2
+ suite /vpp/perf/l2/2n1l-10ge2p1x710-avf-eth-l2bdbasemaclrn-mrr.robot
+ test tc01-64B-1c-avf-eth-l2bdbasemaclrn-mrr
+@@ -150,18 +65,6 @@ suite /vpp/perf/l2/2n1l-10ge2p1x710-eth-
+ test tc01-64B-1c-eth-l2bdbasemaclrn-mrr
+ test tc02-64B-2c-eth-l2bdbasemaclrn-mrr
+ test tc03-64B-4c-eth-l2bdbasemaclrn-mrr
+-suite /vpp/perf/l2/2n1l-10ge2p1x710-eth-l2bdscale100kmaclrn-mrr.robot
+-test tc01-64B-1c-eth-l2bdscale100kmaclrn-mrr
+-test tc02-64B-2c-eth-l2bdscale100kmaclrn-mrr
+-test tc03-64B-4c-eth-l2bdscale100kmaclrn-mrr
+-suite /vpp/perf/l2/2n1l-10ge2p1x710-eth-l2bdscale10kmaclrn-mrr.robot
+-test tc01-64B-1c-eth-l2bdscale10kmaclrn-mrr
+-test tc02-64B-2c-eth-l2bdscale10kmaclrn-mrr
+-test tc03-64B-4c-eth-l2bdscale10kmaclrn-mrr
+-suite /vpp/perf/l2/2n1l-10ge2p1x710-eth-l2bdscale1mmaclrn-mrr.robot
+-test tc01-64B-1c-eth-l2bdscale1mmaclrn-mrr
+-test tc02-64B-2c-eth-l2bdscale1mmaclrn-mrr
+-test tc03-64B-4c-eth-l2bdscale1mmaclrn-mrr
+ suite /vpp/perf/l2/2n1l-10ge2p1x710-eth-l2patch-mrr.robot
+ test tc01-64B-1c-eth-l2patch-mrr
+ test tc02-64B-2c-eth-l2patch-mrr
+@@ -170,97 +73,32 @@ suite /vpp/perf/l2/2n1l-10ge2p1x710-eth-
+ test tc01-64B-1c-eth-l2xcbase-mrr
+ test tc02-64B-2c-eth-l2xcbase-mrr
+ test tc03-64B-4c-eth-l2xcbase-mrr
+-suite /vpp/perf/l2/2n1l-25ge2p1xxv710-avf-eth-l2bdbasemaclrn-mrr.robot
+-test tc01-64B-1c-avf-eth-l2bdbasemaclrn-mrr
+-test tc02-64B-2c-avf-eth-l2bdbasemaclrn-mrr
+-test tc03-64B-4c-avf-eth-l2bdbasemaclrn-mrr
+-suite /vpp/perf/l2/2n1l-25ge2p1xxv710-avf-eth-l2patch-mrr.robot
+-test tc01-64B-1c-avf-eth-l2patch-mrr
+-test tc02-64B-2c-avf-eth-l2patch-mrr
+-test tc03-64B-4c-avf-eth-l2patch-mrr
+-suite /vpp/perf/l2/2n1l-25ge2p1xxv710-avf-eth-l2xcbase-mrr.robot
+-test tc01-64B-1c-avf-eth-l2xcbase-mrr
+-test tc02-64B-2c-avf-eth-l2xcbase-mrr
+-test tc03-64B-4c-avf-eth-l2xcbase-mrr
+-suite /vpp/perf/l2/2n1l-25ge2p1xxv710-dot1q-l2bdbasemaclrn-mrr.robot
+-test tc01-64B-1c-dot1q-l2bdbasemaclrn-mrr
+-test tc02-64B-2c-dot1q-l2bdbasemaclrn-mrr
+-test tc03-64B-4c-dot1q-l2bdbasemaclrn-mrr
+-suite /vpp/perf/l2/2n1l-25ge2p1xxv710-dot1q-l2xcbase-mrr.robot
+-test tc01-64B-1c-dot1q-l2xcbase-mrr
+-test tc02-64B-2c-dot1q-l2xcbase-mrr
+-test tc03-64B-4c-dot1q-l2xcbase-mrr
+-suite /vpp/perf/l2/2n1l-25ge2p1xxv710-eth-l2bdbasemaclrn-mrr.robot
+-test tc01-64B-1c-eth-l2bdbasemaclrn-mrr
+-test tc02-64B-2c-eth-l2bdbasemaclrn-mrr
+-test tc03-64B-4c-eth-l2bdbasemaclrn-mrr
+-suite /vpp/perf/l2/2n1l-25ge2p1xxv710-eth-l2bdscale100kmaclrn-mrr.robot
+-test tc01-64B-1c-eth-l2bdscale100kmaclrn-mrr
+-test tc02-64B-2c-eth-l2bdscale100kmaclrn-mrr
+-test tc03-64B-4c-eth-l2bdscale100kmaclrn-mrr
+-suite /vpp/perf/l2/2n1l-25ge2p1xxv710-eth-l2bdscale10kmaclrn-mrr.robot
+-test tc01-64B-1c-eth-l2bdscale10kmaclrn-mrr
+-test tc02-64B-2c-eth-l2bdscale10kmaclrn-mrr
+-test tc03-64B-4c-eth-l2bdscale10kmaclrn-mrr
+-suite /vpp/perf/l2/2n1l-25ge2p1xxv710-eth-l2bdscale1mmaclrn-mrr.robot
+-test tc01-64B-1c-eth-l2bdscale1mmaclrn-mrr
+-test tc02-64B-2c-eth-l2bdscale1mmaclrn-mrr
+-test tc03-64B-4c-eth-l2bdscale1mmaclrn-mrr
+-suite /vpp/perf/l2/2n1l-25ge2p1xxv710-eth-l2patch-mrr.robot
+-test tc01-64B-1c-eth-l2patch-mrr
+-test tc02-64B-2c-eth-l2patch-mrr
+-test tc03-64B-4c-eth-l2patch-mrr
+-suite /vpp/perf/l2/2n1l-25ge2p1xxv710-eth-l2xcbase-mrr.robot
+-test tc01-64B-1c-eth-l2xcbase-mrr
+-test tc02-64B-2c-eth-l2xcbase-mrr
+-test tc03-64B-4c-eth-l2xcbase-mrr
+ suite /vpp/perf/vm_vhost
+ suite /vpp/perf/vm_vhost/2n1l-10ge2p1x710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.robot
+ test tc01-64B-1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+ test tc02-64B-2c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+ test tc03-64B-4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+-test tc10-IMIX-1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+-test tc11-IMIX-2c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+-test tc12-IMIX-4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+ suite /vpp/perf/vm_vhost/2n1l-10ge2p1x710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr.robot
+ test tc01-64B-1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+ test tc02-64B-2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+ test tc03-64B-4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+-test tc10-IMIX-1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+-test tc11-IMIX-2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+-test tc12-IMIX-4c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr
+ suite /vpp/perf/vm_vhost/2n1l-10ge2p1x710-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-mrr.robot
+ test tc01-64B-1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-mrr
+ test tc02-64B-2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-mrr
+ test tc03-64B-4c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-mrr
+-test tc10-IMIX-1c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-mrr
+-test tc11-IMIX-2c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-mrr
+-test tc12-IMIX-4c-eth-l2bdbasemaclrn-eth-4vhostvr1024-2vm-mrr
+ suite /vpp/perf/vm_vhost/2n1l-10ge2p1x710-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr.robot
+ test tc01-64B-1c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
+ test tc02-64B-2c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
+ test tc03-64B-4c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
+-test tc10-IMIX-1c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
+-test tc11-IMIX-2c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
+-test tc12-IMIX-4c-eth-l2xcbase-eth-2vhostvr1024-1vm-mrr
+ suite /vpp/perf/vm_vhost/2n1l-10ge2p1x710-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr.robot
+ test tc01-64B-1c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr
+ test tc02-64B-2c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr
+ test tc03-64B-4c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr
+-test tc10-IMIX-1c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr
+-test tc11-IMIX-2c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr
+-test tc12-IMIX-4c-eth-l2xcbase-eth-4vhostvr1024-2vm-mrr
+ suite /vpp/perf/vm_vhost/2n1l-10ge2p1x710-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr.robot
+ test tc01-64B-1c-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr
+ test tc02-64B-2c-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr
+ test tc03-64B-4c-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr
+-test tc10-IMIX-1c-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr
+-test tc11-IMIX-2c-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr
+-test tc12-IMIX-4c-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr
+ suite /vpp/perf/vm_vhost/2n1l-10ge2p1x710-ethip4-ip4base-eth-4vhostvr1024-2vm-mrr.robot
+ test tc01-64B-1c-ethip4-ip4base-eth-4vhostvr1024-2vm-mrr
+ test tc02-64B-2c-ethip4-ip4base-eth-4vhostvr1024-2vm-mrr
+ test tc03-64B-4c-ethip4-ip4base-eth-4vhostvr1024-2vm-mrr
+-test tc10-IMIX-1c-ethip4-ip4base-eth-4vhostvr1024-2vm-mrr
+-test tc11-IMIX-2c-ethip4-ip4base-eth-4vhostvr1024-2vm-mrr
+-test tc12-IMIX-4c-ethip4-ip4base-eth-4vhostvr1024-2vm-mrr
