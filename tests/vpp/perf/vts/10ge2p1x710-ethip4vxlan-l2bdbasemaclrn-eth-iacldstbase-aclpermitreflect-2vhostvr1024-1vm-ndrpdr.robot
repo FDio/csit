@@ -25,8 +25,7 @@
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance test with vhost and VM with dpdk-testpmd and ACL
-| ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
+| Test Teardown | Tear down performance test with vhost
 | ...
 | Test Template | Local Template
 | ...
@@ -38,12 +37,10 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
 | ... | Eth-IPv4-VXLAN-Eth-IPv4 is applied on link between DUT1 and DUT2.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-
-| ... | domain and MAC learning enabled. Qemu Guest is connected to VPP via
-| ... | vhost-user interfaces. Guest is running DPDK testpmd interconnecting
-| ... | vhost-user interfaces using 5 cores pinned to cpus 5-9 and 2048M
-| ... | memory. Testpmd is using socket-mem=1024M (512x2M hugepages), 5 cores
-| ... | (1 main core and 4 cores dedicated for io), forwarding mode is set to
-| ... | io, rxd/txd=256, burst=64. DUT1, DUT2 are tested with ${nic_name}.\
+| ... | domain and MAC learning enabled. Qemu VNFs are connected \
+| ... | to VPP via vhost-user interfaces. Guest is running VPP l2xc \
+| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1 is tested \
+| ... | with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -64,14 +61,9 @@
 | ${dut1_bd_id1}= | 1
 | ${dut1_bd_id2}= | 2
 | ${dut2_bd_id1}= | 1
-| ${sock1}= | /var/run/vpp/sock-1-${dut1_bd_id1}
-| ${sock2}= | /var/run/vpp/sock-1-${dut1_bd_id2}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-ethip4-vxlansrc253
 | ${acl_type}= | permit+reflect
-# Defaults for teardown:
-| ${dut1}= | ${None}
-| ${dut1_vm_refs}= | ${None}
 
 *** Keywords ***
 | Local Template
@@ -108,13 +100,20 @@
 | | Run Keyword If | '${acl_type}' != '${EMPTY}'
 | | ... | Configure ACLs on a single interface | ${dut1} | ${dut1_if2} | input
 | | ... | ${acl_type} | @{permit_list}
-| | ${nf_cpus}= | Get Affinity NF | ${nodes} | DUT1 | nf_chains=${1}
-| | | ... | nf_nodes=${1} | nf_chain=${1} | nf_node=${1}
-| | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${cpu_count_int}
-| | ${vm1} = | And Configure guest VM with dpdk-testpmd connected via vhost-user
-| | ... | DUT1 | ${sock1} | ${sock2} | ${TEST NAME}DUT1_VM1 | ${nf_cpus}
-| | ... | jumbo=${jumbo} | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
-| | Set Test Variable | &{dut1_vm_refs} | ${TEST NAME}DUT1_VM1=${vm1}
+| | Import Library | resources.libraries.python.QemuManager | ${nodes}
+| | ... | WITH NAME | vnf_manager
+| | Run Keyword | vnf_manager.Initialize
+| | Run Keyword | vnf_manager.Construct VMs on node
+| | ... | node=${dut1}
+| | ... | nf_chains=${1} | nf_nodes=${1} | jumbo=${jumbo}
+| | ... | perf_qemu_qsz=${1024} | use_tuned_cfs=${False}
+| | ... | auto_scale=${True} | vnf=vpp_chain_l2xc
+| | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
+| | ... | vs_dtc=${cpu_count_int} | nf_dtc=${cpu_count_int} | nf_dtcr=${1}
+| | ... | rxq_count_int=${rxq_count_int}
+| | Run Keyword | vnf_manager.Start All VMs | pinning=${True}
+| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
+| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

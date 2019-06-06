@@ -37,13 +37,8 @@
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - perf_vm_image - Guest VM disk image
-| | ... | - perf_qemu_path - Path prefix to QEMU binary
-| | ... | - use_tuned_cfs - Switch to set scheduler policy
-| | ... | - qemu_build - Whether Qemu will be built
 | | ... | - pkt_trace - Switch to enable packet trace for test
 | | ... | - dut_stats - Switch to enable DUT statistics
-| | ... | - uio_driver - Default UIO driver
 | | ... | - plugins_to_enable - List of plugins to be enabled for test
 | | ...
 | | Set Global Variable | ${pkt_trace} | ${False}
