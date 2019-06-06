@@ -113,11 +113,6 @@ class QemuManager(object):
             if pinning:
                 machine.qemu_set_affinity(*machine_affinity)
 
-    def set_scheduler_all_vms(self):
-        """Set CFS scheduler policy on all VMs in manager."""
-        for machine in self.machines.values():
-            machine.qemu_set_scheduler_policy()
-
     def kill_all_vms(self, force=False):
         """Kill all added VMs in manager.
 
