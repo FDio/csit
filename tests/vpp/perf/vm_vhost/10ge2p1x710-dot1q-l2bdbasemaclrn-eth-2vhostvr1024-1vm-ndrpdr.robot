@@ -23,9 +23,7 @@
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance test with vhost and VM with dpdk-testpmd
-| ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
-| ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
+| Test Teardown | Tear down performance test with vhost
 | ...
 | Test Template | Local Template
 | ...
@@ -37,10 +35,10 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4. IEEE\
 | ... | 802.1Q tagging is applied on link between DUT1 and DUT2.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-\
-| ... | domain and MAC learning enabled. Qemu Guest is connected to VPP via\
-| ... | vhost-user interfaces. Guest is running DPDK testpmd interconnecting\
-| ... | vhost-user interfaces, forwarding mode is set to io, rxd/txd=1024.\
-| ... | DUT1 and DUT2 are tested with ${nic_name}.\
+| ... | domain and MAC learning enabled. Qemu VNFs are connected \
+| ... | to VPP via vhost-user interfaces. Guest is running VPP l2xc \
+| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1 is tested \
+| ... | with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -61,6 +59,10 @@
 | ${tag_rewrite}= | pop-1
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
+| ${nf_dtcr}= | ${1}
+| ${nf_dtc}= | ${1}
+| ${nf_chains}= | ${1}
+| ${nf_nodes}= | ${1}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
 
@@ -81,19 +83,15 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | ${dut1_vm_refs}= | Create Dictionary
-| | ${dut2_vm_refs}= | Create Dictionary
-| | Set Test Variable | ${dut1_vm_refs}
-| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 bridge domains with Vhost-User and VLAN in circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
-| | And Configure guest VMs with dpdk-testpmd connected via vhost-user
-| | ... | vm_count=${1} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
-| | ... | use_tuned_cfs=${False}
+| | And Configure chains of NFs connected via vhost-user
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
+| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
