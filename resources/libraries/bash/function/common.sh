@@ -659,10 +659,6 @@ function select_tags () {
 
     # Blacklisting certain tags per topology.
     case "${TEST_CODE}" in
-        *"3n-hsw"*)
-            test_tag_array+=("!drv_avf")
-            test_tag_array+=("!ipsechwNOTnic_intel-xl710")
-            ;;
         *"2n-skx"*)
             test_tag_array+=("!ipsechw")
             ;;
@@ -678,9 +674,12 @@ function select_tags () {
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
             ;;
+        *"3n-hsw"*)
+            test_tag_array+=("!ipsechwNOTnic_intel-xl710")
+            ;;
         *)
             # Default to 3n-hsw due to compatibility.
-            test_tag_array+=("!drv_avf")
+            test_tag_array+=("!ipsechwNOTnic_intel-xl710")
             ;;
     esac
 
