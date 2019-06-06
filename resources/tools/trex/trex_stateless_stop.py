@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,14 +33,9 @@ sys.path.insert(0, "/opt/trex-core-2.54/scripts/automation/"+\
 from trex.stl.api import *
 
 
-def stop_all_traffic_streams():
-    """Stop traffic if any is running.
-
-    :return: nothing
-    """
-    # create client
+def main():
+    """Stop traffic if any is running."""
     client = STLClient()
-
     try:
         # connect to server
         client.connect()
@@ -52,8 +47,7 @@ def stop_all_traffic_streams():
         stats = client.get_stats()
 
         print("#####statistics (approx.)#####")
-        print(json.dumps(stats, indent=4,
-                         separators=(',', ': '), sort_keys=True))
+        print(json.dumps(stats, indent=4, separators=(',', ': ')))
 
         lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
         lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
@@ -61,16 +55,10 @@ def stop_all_traffic_streams():
         print("\npackets lost from 0 --> 1:   {0} pkts".format(lost_a))
         print("packets lost from 1 --> 0:   {0} pkts".format(lost_b))
     except STLError as ex_error:
-        sys.stderr.write(str(ex_error))
+        print(ex_error, file=sys.stderr)
         sys.exit(1)
     finally:
         client.disconnect()
-
-
-def main():
-    """Main function."""
-    stop_all_traffic_streams()
-
 
 if __name__ == "__main__":
     main()

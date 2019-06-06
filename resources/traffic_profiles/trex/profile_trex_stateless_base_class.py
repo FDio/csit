@@ -19,15 +19,13 @@ import socket
 import struct
 
 from random import choice
-from string import letters
+from string import ascii_letters
 
 from trex.stl.api import *
 
 
 class TrafficStreamsBaseClass(object):
-    """Base class for stream profiles for T-rex traffic generator.
-    """
-
+    """Base class for stream profiles for T-rex traffic generator."""
     STREAM_TABLE = {
         'IMIX_v4': [
             {'size': 60, 'pps': 28, 'isg': 0},
@@ -42,7 +40,6 @@ class TrafficStreamsBaseClass(object):
     }
 
     def __init__(self):
-
         # Default value of frame size, it will be overwritten by the value of
         # "framesize" parameter of "get_streams" method.
         self.framesize = 64
@@ -59,10 +56,9 @@ class TrafficStreamsBaseClass(object):
         :returns: The generated payload.
         :rtype: str
         """
-
         payload = ""
         for _ in range(length):
-            payload += choice(letters)
+            payload += choice(ascii_letters)
 
         return payload
 
@@ -78,7 +74,6 @@ class TrafficStreamsBaseClass(object):
         :raises: ValueError if start_ip is greater then end_ip.
         :raises: socket.error if the IP addresses are not valid IPv6 addresses.
         """
-
         try:
             ip1 = socket.inet_pton(socket.AF_INET6, start_ip)
             ip2 = socket.inet_pton(socket.AF_INET6, end_ip)
@@ -117,7 +112,6 @@ class TrafficStreamsBaseClass(object):
         :returns: Traffic streams.
         :rtype: list
         """
-
         base_pkt_a, base_pkt_b, vm1, vm2 = self.define_packets()
 
         # In most cases you will not have to change the code below:
@@ -204,7 +198,6 @@ class TrafficStreamsBaseClass(object):
         :returns: Traffic streams.
         :rtype: list
         """
-
         self.framesize = kwargs['framesize']
 
         return self.create_streams()
