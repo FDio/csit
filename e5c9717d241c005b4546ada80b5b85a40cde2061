@@ -16,6 +16,24 @@
       "revId": "e5c9717d241c005b4546ada80b5b85a40cde2061",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d731453f_b1c76f52",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-06T05:40:47Z",
+      "side": 1,
+      "message": "This is executed from jenkins executor. If executor will be CentOS then it will work",
+      "parentUuid": "0985f788_21ff283d",
+      "revId": "e5c9717d241c005b4546ada80b5b85a40cde2061",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
