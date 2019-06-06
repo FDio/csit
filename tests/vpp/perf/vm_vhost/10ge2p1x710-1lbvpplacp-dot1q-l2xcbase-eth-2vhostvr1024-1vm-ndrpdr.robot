@@ -26,13 +26,12 @@
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance test with vhost and VM with dpdk-testpmd
-| ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
-| ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
+| Test Teardown | Tear down performance test with vhost
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *RFC2544: Pkt throughput L2XC test cases with vhost and vpp link bonding*
+| Documentation | *RFC2544: Pkt throughput L2XC test cases with vhost and vpp
+| ... | link bonding*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
@@ -40,12 +39,10 @@
 | ... | tagging is applied on link between DUT1 and DUT2.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with VPP
 | ... | link bonding (mode LACP, transmit policy l34) on link between DUT1 and
-| ... | DUT2 and L2 cross- connect. Qemu Guest is connected to VPP via
-| ... | vhost-user interfaces. Guest is running DPDK testpmd interconnecting
-| ... | vhost-user interfaces using 5 cores pinned to cpus 5-9 and 2048M memory.
-| ... | Testpmd is using socket-mem=1024M (512x2M hugepages), 5 cores (1 main
-| ... | core and 4 cores dedicated for io), forwarding mode is set to io,
-| ... | rxd/txd=1024, burst=64. DUT1, DUT2 are tested with ${nic_name}.\
+| ... | DUT2 and L2 cross- connect. Qemu VNFs are \
+| ... | connected to VPP via vhost-user interfaces. Guest is running VPP l2xc \
+| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1/DUT2 is \
+| ... | tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -56,12 +53,17 @@
 | ... | flow-group) with all packets containing Ethernet header, IPv4 header
 | ... | with IP protocol=61 and static payload. MAC addresses are matching MAC
 | ... | addresses of the TG node interfaces.
+| ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${4}
 | ${subid}= | 10
 | ${tag_rewrite}= | pop-1
+| ${nf_dtcr}= | ${1}
+| ${nf_dtc}= | ${1}
+| ${nf_chains}= | ${1}
+| ${nf_nodes}= | ${1}
 # Link bonding config
 | ${bond_mode}= | lacp
 | ${lb_mode}= | l34
@@ -85,10 +87,6 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | ${dut1_vm_refs}= | Create Dictionary
-| | ${dut2_vm_refs}= | Create Dictionary
-| | Set Test Variable | ${dut1_vm_refs}
-| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Add VLAN Strip Offload switch off between DUTs in 3-node single link topology
@@ -96,10 +94,9 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
 | | ... | ${subid} | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
-| | And Configure guest VMs with dpdk-testpmd connected via vhost-user
-| | ... | vm_count=${1} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
-| | ... | use_tuned_cfs=${False}
-| | And All Vpp Interfaces Ready Wait | ${nodes}
+| | And Configure chains of NFs connected via vhost-user
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
+| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
