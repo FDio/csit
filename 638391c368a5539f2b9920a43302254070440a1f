@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c4ab934_83814e29",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-06T08:05:48Z",
+      "side": 1,
+      "message": "Does AVF driver really need skylake, or is this just to reduce number of tests on haswell?",
+      "range": {
+        "startLine": 444,
+        "startChar": 30,
+        "endLine": 444,
+        "endChar": 38
+      },
+      "revId": "638391c368a5539f2b9920a43302254070440a1f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
