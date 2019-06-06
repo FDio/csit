@@ -206,6 +206,7 @@ class QemuUtils(object):
         vpp_config.add_cpu_corelist_workers('1-{smp}'.
                                             format(smp=self._opt.get('smp')-1))
         vpp_config.add_dpdk_dev('0000:00:06.0', '0000:00:07.0')
+        vpp_config.add_dpdk_dev_default_rxq(kwargs['queues'])
         vpp_config.add_dpdk_log_level('debug')
         if not kwargs['jumbo_frames']:
             vpp_config.add_dpdk_no_multi_seg()

@@ -22,8 +22,7 @@
 | Suite Teardown | Tear down 2-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance test with vhost and VM with dpdk-testpmd
-| ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
+| Test Teardown | Tear down performance test with vhost
 | ...
 | Test Template | Local Template
 | ...
@@ -33,10 +32,10 @@
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4
-| ... | routing and two static IPv4 /24 route entries. Qemu Guest is connected
-| ... | to VPP via vhost-user interfaces. Guest is running DPDK testpmd
-| ... | interconnecting vhost-user interfaces, forwarding mode is
-| ... | set to mac, rxd/txd=1024. DUT1 is tested with ${nic_name}.\
+| ... | routing and two static IPv4 /24 route entries. Qemu VNFs are connected \
+| ... | to VPP via vhost-user interfaces. Guest is running VPP ip4 \
+| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1 is tested \
+| ... | with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -47,10 +46,15 @@
 | ... | flow-group) with all packets containing Ethernet header, IPv4 header
 | ... | with IP protocol=61 and static payload. MAC addresses are matching MAC
 | ... | addresses of the TG node interfaces.
+| ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
+| ${nf_dtcr}= | ${1}
+| ${nf_dtc}= | ${1}
+| ${nf_chains}= | ${1}
+| ${nf_nodes}= | ${2}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n-ethip4-ip4src253
 
@@ -71,17 +75,15 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | ${dut1_vm_refs}= | Create Dictionary
-| | Set Test Variable | ${dut1_vm_refs}
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding with vhost in 2-node circular topology
-| | ... | vm_count=${2}
-| | And Configure guest VMs with dpdk-testpmd-mac connected via vhost-user
-| | ... | vm_count=${2} | jumbo=${jumbo} | perf_qemu_qsz=${1024}
-| | ... | use_tuned_cfs=${False}
+| | ... | nf_nodes=${nf_nodes}
+| | And Configure chains of NFs connected via vhost-user
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
+| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_ip4_noarp
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
