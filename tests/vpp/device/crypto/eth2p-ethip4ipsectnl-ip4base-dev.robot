@@ -17,8 +17,8 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP4FWD | IPSEC | IP4BASE
 | ...
-| Test Setup | Set up VPP device test
-| Test Setup | Set up IPv4 IPSec functional test
+| Test Setup | Run Keywords | Set up VPP device test
+| ... | AND | Configure topology for IPv4 IPsec testing
 | ...
 | Test Teardown | Tear down VPP device test
 | ...

@@ -473,8 +473,6 @@
 | | Verify VPP PID in Teardown
 
 | Set up VPP device test
-# TODO: Generalize this KW if it will not diverge from Functional derivate too
-# much
 | | [Documentation] | Common test setup for vpp-device tests.
 | | ...
 | | Restart Vpp Service On All Duts | ${nodes}
@@ -486,8 +484,6 @@
 | | Reset PAPI History On All DUTs | ${nodes}
 
 | Tear down VPP device test
-# TODO: Generalize this KW if it will not diverge from Functional derivate too
-# much
 | | [Documentation] | Common test teardown for vpp-device tests.
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
