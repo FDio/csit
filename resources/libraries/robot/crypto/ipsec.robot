@@ -187,26 +187,6 @@
 | | ... | sa_id=${l_sa_id} | laddr_range=${l_ip}
 | | ... | raddr_range=${r_ip} | inbound=${FALSE}
 
-| Update IPSec SA keys
-| | [Documentation] | Update IPsec SA keys on VPP node.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - VPP node to update SA keys. Type: dictionary
-| | ... | - l_sa_id - Local SA ID. Type: string
-| | ... | - r_sa_id - Remote SA ID. Type: string
-| | ... | - crypto_key - Encryption key. Type: string
-| | ... | - integ_key - Integrity key. Type: string
-| | ...
-| | ... | *Example:*
-| | ... | \| Update IPSec SA keys \| ${nodes['DUT1']} \
-| | ... | \| 10 \| 20 \| sixteenbytes_key \| twentybytessecretkey \|
-| | [Arguments] | ${node} | ${l_sa_id} | ${r_sa_id} | ${crypto_key}
-| | ... | ${integ_key}
-| | VPP IPsec SA Set Key | ${dut_node} | ${l_sa_id} | ${crypto_key}
-| | ... | ${integ_key}
-| | VPP IPsec SA Set Key | ${dut_node} | ${r_sa_id} | ${crypto_key}
-| | ... | ${integ_key}
-
 | Send IPsec Packet and verify ESP encapsulation in received packet
 | | [Documentation] | Send IPsec packet from TG to DUT. Receive IPsec packet\
 | | ... | from DUT on TG and verify ESP encapsulation.
@@ -253,33 +233,6 @@
 | | ... | ${args} --dst_tun ${r_tunnel}
 | | Run Traffic Script On Node | ipsec.py | ${node} | ${args}
 
-| Set up IPv4 IPSec functional test
-| | [Documentation]
-| | ... | Set up IPv4 IPSec functional test.
-| | ...
-| | Set up functional test
-| | Configure topology for IPv4 IPsec testing
-
-| Set up IPv6 IPSec functional test
-| | [Documentation]
-| | ... | Set up IPv6 IPSec functional test.
-| | ...
-| | Set up functional test
-| | Configure topology for IPv6 IPsec testing
-
-| Tear down IPSec functional test
-| | [Documentation]
-| | ... | Tear down IPSec functional test.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down IPSec functional test \| ${dut_node} \|
-| | ...
-| | [Arguments] | ${dut_node}
-| | ...
-| | VPP IPsec Show | ${dut_node}
-| | Tear down functional test
-
 | Set up IPSec SW device functional test
 | | [Documentation]
 | | ... | Set up IPSec SW device functional test for required IP version.
@@ -313,7 +266,7 @@
 | | | Run keyword | ${dut}.Add DPDK SW Cryptodev | aesni_gcm | ${socket_id}
 | | | ... | ${sw_dev_count}
 | | Write startup configuration on all VPP DUTs
-| | Set up functional test
+| | Set up VPP device test
 | | Run Keyword | Configure topology for ${ip_version} IPsec testing
 
 | Tear down IPSec SW device functional test
@@ -322,6 +275,5 @@
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | VPP IPsec Show | ${nodes['${dut}']}
 | | | Run keyword | ${dut}.Restore Config
-| | Tear down functional test
+| | Tear down VPP device test
