@@ -685,7 +685,6 @@
 | | Show PAPI History On All DUTs | ${nodes}
 | | Get Core Files on All Nodes | ${nodes}
 | | Set Test Variable | ${pkt_trace} | ${True}
-| | Show statistics on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Traffic should pass with no loss | ${perf_trial_duration} | 10000pps
 | | ... | ${frame_size} | ${traffic_profile} | fail_on_loss=${False}

@@ -123,8 +123,8 @@ class VatExecutor(object):
             vat_path=remote_file_path)
 
         try:
-            ret_code, stdout, stderr = ssh.exec_command_sudo(cmd=cmd,
-                                                             timeout=timeout)
+            ret_code, stdout, stderr = ssh.exec_command_sudo(
+                cmd=cmd, timeout=timeout, log_stdout_err=False)
         except SSHTimeout:
             logger.error("VAT script execution timeout: {0}".format(cmd))
             raise

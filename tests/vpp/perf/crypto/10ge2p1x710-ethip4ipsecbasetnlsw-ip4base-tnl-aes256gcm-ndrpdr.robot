@@ -34,10 +34,9 @@
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 on TG-DUTn,
 | ... | Eth-IPv4-IPSec on DUT1-DUT2
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with DPDK SW
-| ... | crypto devices and multiple IPsec tunnels between them. DUTs get IPv4
-| ... | traffic from TG, encrypt it and send to another DUT, where packets are
-| ... | decrypted and sent back to TG.
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with multiple\
+| ... | IPsec tunnels between them. DUTs get IPv4 traffic from TG, encrypt it\
+| ... | and send to another DUT, where packets are decrypted and sent back to TG
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -92,16 +91,11 @@
 | | # These are enums (not strings) so they cannot be in Variables table.
 | | ${encr_alg}= | Crypto Alg AES GCM 256
 | | ${auth_alg}= | Integ Alg AES GCM 256
-| | ${ipsec_proto}= | IPsec Proto ESP
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
-| | And Add DPDK SW cryptodev on DUTs in 3-node single-link circular topology
-| | ... | aesni_gcm | ${phy_cores}
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
-| | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${nodes} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
