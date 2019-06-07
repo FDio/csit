@@ -146,9 +146,9 @@ Scaling Tags
 
     Test with 1000 VXLAN tunnels.
 
-.. topic:: TNL_1000
+.. topic:: TNL_{t}
 
-    IPSec in tunnel mode - 1000 tunnels.
+    IPSec in tunnel mode - {t} tunnels.
 
 .. topic:: SRC_USER_1
 
