@@ -96,12 +96,8 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
-| | And Add DPDK SW cryptodev on DUTs in 3-node single-link circular topology
-| | ... | aesni_gcm | ${phy_cores}
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
-| | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${nodes} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
