@@ -262,6 +262,29 @@ function compose_pybot_arguments () {
     PYBOT_ARGS+=("--variable" "TOPOLOGY_PATH:${WORKING_TOPOLOGY}")
 
     case "${TEST_CODE}" in
+        *"api-cover"*)
+            prefix="--suite tests.vpp.perf"
+            PYBOT_ARGS+=(
+                "${prefix}.tcp.10ge2p1x710-ethip4tcphttp-httpserver"
+                "${prefix}.vm_vhost.10ge2p1x710-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-mrr"
+                "${prefix}.l2.10ge2p1x710-avf-eth-l2patch-mrr"
+                "${prefix}.l2.10ge2p1x710-dot1ad-l2xcbase-mrr"
+                "${prefix}.ip4_tunnels.10ge2p1x710-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-mrr"
+                "${prefix}.l2.10ge2p1x710-eth-l2bdbasemaclrn-macip-iacl1sl-100flows-mrr"
+                "${prefix}.l2.10ge2p1x710-eth-l2xcbase-mrr"
+                "${prefix}.ip4.10ge2p1x710-ethip4-ip4base-copwhtlistbase-mrr"
+                "${prefix}.container_memif.10ge2p1x710-ethip4-ip4base-eth-2memif-1dcr-mrr"
+                "${prefix}.vm_vhost.10ge2p1x710-ethip4-ip4base-eth-2vhostvr1024-1vm-mrr"
+                "${prefix}.ip4.10ge2p1x710-ethip4-ip4base-iacldstbase-mrr"
+                "${prefix}.ip4.10ge2p1x710-ethip4-ip4base-ipolicemarkbase-mrr"
+                "${prefix}.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-int-aes128cbc-hmac512sha-mrr"
+                "${prefix}.crypto.10ge2p1x710-ethip4ipsecbasetnlsw-ip4base-tnl-aes256gcm-mrr"
+                "${prefix}.ip4_tunnels.10ge2p1x710-ethip4lispip4-ip4base-mrr"
+                "${prefix}.ip4.10ge2p1x710-ethip4udp-ip4base-udpsrcscale15-nat44-mrr"
+                "${prefix}.vts.10ge2p1x710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-mrr"
+                "${prefix}.srv6.10ge2p1x710-ethip6srhip6-ip6base-srv6proxy-dyn-mrr"
+            )
+            ;;
         *"device"*)
             PYBOT_ARGS+=("--suite" "tests.${DUT}.device")
             ;;
@@ -632,6 +655,11 @@ function select_tags () {
 
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
+        *"api-cover"* )
+            test_tag_array=("1cAND${DEFAULT_NIC}NOTimixNOT1518bNOT9000b")
+            # TODO: Where is the best place to put this feature in?
+            export CSIT_PERF_TRIAL_MULTIPLICITY="1"
+            ;;
         *"ndrpdr-weekly"* )
             readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mlr-weekly.txt"
             ;;
