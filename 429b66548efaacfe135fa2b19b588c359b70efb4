@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2bb1d67c_8de6b88f",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Agree with all points. But personally I don\u0027t think it warrants a completely separate section. Edited terminology section, see what you think.",
+      "parentUuid": "bc35f762_76743fa2",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be781441_5edaa256",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2019-04-03T22:29:08Z",
       "side": 1,
       "message": "missing the definition for MRR here",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e8267e8b_87e3deb4",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be781441_5edaa256",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "25a288d3_a5f7aa59",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Good point. See edits.",
+      "parentUuid": "e013ee3b_96ca64d5",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0cd4b4f2_9fbe012f",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2019-04-03T22:29:08Z",
       "side": 1,
       "message": "Note that traffic shaping can potentially influence greatly NDR and PDR: number of flows, sequencing, packet size mix and order...\n\n\"received and reported by an external traffic generator\" is ambiguous sentence... where do the packets come from?\nShould the document specify the hairpin packet path used for measuring NDR and PDR?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "25e2592f_78bd1bf3",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Traffic shaping and any QoS treatment may change the transmission properties of packet stream as you wrote.\nBut what matters from throughput management perspective is that resulting received packet stream is free from disqualifying errors like out-of-sequence packets.\nAnd this validation of resulting packet stream is responsibility of measurement tool used i.e. traffic generator.\n\nNot sure what you mean by the hairping packet path here. Throughput rate is measured between transmit and receive interfaces of traffic generator reflecting behaviour of whatever is on the traffic stream path.",
+      "parentUuid": "0cd4b4f2_9fbe012f",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "8c3dadba_57532c64",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Yes. Added a line clarifying this.",
+      "parentUuid": "fade304d_4cea38a0",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fc59ce4_b72a0770",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2019-04-03T22:29:08Z",
       "side": 1,
       "message": "above statement is confusing.\n\"Start with initial trial duration (in the first phase)\"\nNo idea what the \"in the first phase\" relates to, is it the initial trial duration of the first phase?\nAlso would be good to use the same term - is \"Initial phase\" same as \"first phase\"?\nDo you mean that the intermediate phase starts after the first phase and is followed by the final phase? Well this looks ridiculously obvious so you must mean something else so maybe you mean that intermediate phase starts with a \"trial duration\" coming fro the first phase and finishes with a \"trial duration\" set for the final phase.\nI think confusion comes from the lack of definition for \"trial duration\".\nProbably a diagram would be worth a thousand words.",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2b9d4273_21e7045f",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Updated. Hopefully it is clear now.",
+      "parentUuid": "3fc59ce4_b72a0770",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "83e7daf2_450cf566",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Yes. Added definition in terminology section.",
+      "parentUuid": "37392e05_f37b5804",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b63d0ff8_1c299089",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -132,6 +258,24 @@
       "writtenOn": "2019-04-03T22:29:08Z",
       "side": 1,
       "message": "in the example it is not the bound that is invalid, it is the measured PLR value that is invalid for a given DR.\nIe there are invariants such as\nPLR(lower_bound(NDR)) \u003d\u003d 0\n\nwhich can be violated if the SUT is dropping packets at any traffic rate.",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "038e42c7_f829aa7e",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "It is the bound that\u0027s invalid if measurement is not meeting PLR search criteria.\nIf SUT is dropping packets at any offered rate, then indeed a valid NDR lower_bound can not be found.\nHopefully updated overview clarifies what valid and invalid bounds are.",
+      "parentUuid": "b63d0ff8_1c299089",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "df23568a_3b2f3752",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Yes, it uses external search to find a new valid bound.",
+      "parentUuid": "d4841312_42b8769a",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "527b9902_88aceb6e",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -166,6 +328,24 @@
       "writtenOn": "2019-04-03T22:29:08Z",
       "side": 1,
       "message": "well if a SUT is lossy at any rate, you will end up with invalid bounds regardless.",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6895fdb_e98c03a7",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Correct.",
+      "parentUuid": "527b9902_88aceb6e",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "80426803_6dac1f86",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "This would make the bound invalid, and engage the external search.",
+      "parentUuid": "22d4df9b_eb24c511",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83ea9624_10aa8eef",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -200,6 +398,24 @@
       "writtenOn": "2019-04-03T22:29:08Z",
       "side": 1,
       "message": "what is the \"final width goal\" is it a result of the intermediate phase?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e04dd264_014a511b",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "It is one of the search criteria given by final_relative_width input parameter, that determines measurement resolution.",
+      "parentUuid": "83ea9624_10aa8eef",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "80140e9b_bf15b6fd",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Thanks for the find, indeed we need to stricly follow defined terms, otherwise confusion abounds. See updated terminology section and edited text here. \"set final duration\"  is the final trial duration, one of the final search criteria.",
+      "parentUuid": "b32f310a_0d66af21",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95739537_3ad43fa4",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -234,6 +468,24 @@
       "writtenOn": "2019-04-03T22:29:08Z",
       "side": 1,
       "message": "how do you characterize a well behaving case.\nBy definition, it is logical that a single sweep to calculate n DRs it will take in average 1/n the time of doing n sweeps.",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a82862e2_3a8f4576",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Well behaving cases are where results do not depend on trial duration.",
+      "parentUuid": "95739537_3ad43fa4",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -257,6 +509,24 @@
     },
     {
       "key": {
+        "uuid": "4ee9e0d2_2e49e7f0",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "And this is the case here. But the text is incomplete quoting XL710 NIC limit without specifying the model. Edited.",
+      "parentUuid": "1a350c47_1fe1dc3b",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "423d4b55_3223cba6",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -268,6 +538,24 @@
       "writtenOn": "2019-04-03T23:17:00Z",
       "side": 1,
       "message": "0.5% of what? LR?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b81f18d3_c5f29822",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "No. Relative to lower_bound, as stated: \"(lower_bound, upper_bound) interval width relative to upper_bound.\"\"",
+      "parentUuid": "423d4b55_3223cba6",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -291,6 +579,24 @@
     },
     {
       "key": {
+        "uuid": "8fd3e6ad_6831ea23",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Why not 0.5%? 0.5% is used in FD.io CSIT for PDR of CSIT inception, so it\u0027s default here.",
+      "parentUuid": "de5cd9b9_6e4de844",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "874c6344_d8a9c9f6",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -302,6 +608,24 @@
       "writtenOn": "2019-04-03T23:17:00Z",
       "side": 1,
       "message": "ok that was not obvious by reading the above MLR Overview section that there is an \"s\" and there are multiple intermediate phases!",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e6375fba_6fa95f5b",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Yes, I have already fixed that based on your earlier comments.",
+      "parentUuid": "874c6344_d8a9c9f6",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -325,6 +649,24 @@
     },
     {
       "key": {
+        "uuid": "e00e8188_0c21d940",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Not sure I follow you here.\nThere is no assumption made here that PLR(LR) ~\u003d PLR(PDR), if by LR you mean link rate.\nMTR, MRR, MRR2 are here to find the starting bound values for algo to engage with.\nThen external and internal searches take it away based on validity of the bounds.\nI have further updated the MRR measurements, aligning it with provided MRR definition, and hopefully make it a clearer.",
+      "parentUuid": "054fa40d_aebecffd",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b15a53e_f1dc5a65",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -336,6 +678,24 @@
       "writtenOn": "2019-04-03T23:17:00Z",
       "side": 1,
       "message": "are you expecting some form of settlement?\nDo you expect MRR2 \u003e\u003d MRR or the reverse and why?\nwhat if the PLR changes dramatically between 2 and 3?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d555f50_e15b7d67",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "MLRsearch is using MTR -\u003e MRR -\u003e MRR2 offered load to speed up arriving to the critical search region.\nIn most cases tested in CSIT, under MRR test overload conditions SUT behaviour is linear, and then indeed MRR2 \u003c MRR.\nIn rare cases it\u0027s non-linear, and then MRR2 \u003e\u003d MRR.\nMLRsearch handles both cases, as the first intermediate phase strives to find the valid bounds.\nNote that MRR tests do not care about PLR whatsoever.",
+      "parentUuid": "4b15a53e_f1dc5a65",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -359,6 +719,24 @@
     },
     {
       "key": {
+        "uuid": "e2690c88_355b563c",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "18174b58_6ff916ec",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff3dd7a8_17c3d9e0",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -370,6 +748,24 @@
       "writtenOn": "2019-04-03T23:17:00Z",
       "side": 1,
       "message": "what is \"geometric average\" and how different is it from the average?\npls provide an example with concrete duration values.\n\n\ninitial phase in\u003d.... out\u003d....\nintermediate phase1 in\u003d.... out\u003d....\nintermediate phase2 in\u003d... out\u003d...\nfinal phase in\u003d... out\u003d...\n\nwith real values would help I think,",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "740e87f4_6550adf3",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Geometric average a.k.a. geometric mean is N-th root of the product of N numbers.\nAdded a TODO placeholder to add a sample MLRsearch run with values.",
+      "parentUuid": "ff3dd7a8_17c3d9e0",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -393,6 +789,24 @@
     },
     {
       "key": {
+        "uuid": "e2275489_a41146b5",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d96b801_ad043901",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d34b237_82c73166",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -404,6 +818,24 @@
       "writtenOn": "2019-04-03T23:17:00Z",
       "side": 1,
       "message": "I see reference to 1.g, 1.d, 1.c\nwhat is the meaning of the letter?",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0b2dbd06_5315b65c",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Yes, that was already on our to do list. Markdown rfc2xml formatting mishap. Fixed.",
+      "parentUuid": "2d34b237_82c73166",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -427,6 +859,24 @@
     },
     {
       "key": {
+        "uuid": "738d8690_1c8f0f00",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Sure. Tell us what you need.",
+      "parentUuid": "936c3e4e_b0378cb2",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1d6cf99c_fa04456f",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -438,6 +888,24 @@
       "writtenOn": "2019-04-03T23:17:00Z",
       "side": 1,
       "message": "dont quite get why 4 is a better middle than 5",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "900f5c97_c31a3f91",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-08T15:40:50Z",
+      "side": 1,
+      "message": "Vratko would need to explain this one :)",
+      "parentUuid": "1d6cf99c_fa04456f",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
