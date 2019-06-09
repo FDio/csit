@@ -520,12 +520,6 @@
 | | Tear down QEMU
 | | Verify VPP PID in Teardown
 
-| Set up TAP functional test
-| | [Documentation] | Common test setup for functional tests with TAP.
-| | ...
-| | Set up functional test
-| | Clean Up Namespaces | ${nodes['DUT1']}
-
 | Set up functional test with containers
 | | [Documentation]
 | | ... | Common test setup for functional tests with containers.
@@ -564,29 +558,6 @@
 | | Configure VPP in all '${container_group}' containers
 | | Start VPP in all '${container_group}' containers
 | | Append To List | ${container_groups} | ${container_group}
-
-| Tear down TAP functional test
-| | [Documentation] | Common test teardown for functional tests with TAP.
-| | ...
-| | Tear down functional test
-| | Clean Up Namespaces | ${nodes['DUT1']}
-
-| Tear down TAP functional test with Linux bridge
-| | [Documentation] | Common test teardown for functional tests with TAP and
-| | ... | a Linux bridge.
-| | ...
-| | ... | *Arguments:*
-| | ... | - bid_TAP - Bridge name. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Tear down TAP functional test with Linux bridge \| ${bid_TAP} \|
-| | ...
-| | [Arguments] | ${bid_TAP}
-| | ...
-| | Tear down functional test
-| | Linux Del Bridge | ${nodes['DUT1']} | ${bid_TAP}
-| | Clean Up Namespaces | ${nodes['DUT1']}
 
 | Tear down functional test with container
 | | [Documentation]
