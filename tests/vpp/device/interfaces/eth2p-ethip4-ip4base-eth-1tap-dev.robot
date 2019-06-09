@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -24,11 +24,14 @@
 | Library  | resources.libraries.python.Namespaces
 | Library  | resources.libraries.python.IPUtil
 | ...
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_TEST
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
+| ... | FUNCTEST | IP4FWD | BASE | ETH | IP4BASE | TAP
 | ...
-| Test Setup | Set up TAP functional test
+| Test Setup | Run Keywords | Set up VPP device test
+| ... | AND | Clean Up Namespaces | ${nodes['DUT1']}
 | ...
-| Test Teardown | Tear down TAP functional test
+| Test Teardown | Run Keywords | Tear down VPP device test
+| ... | AND | Clean Up Namespaces | ${nodes['DUT1']}
 | ...
 | Documentation | *Tap Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
