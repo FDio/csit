@@ -145,8 +145,6 @@
 | | ... | address.
 | | ...
 | | Set interfaces in path up
-| | VPP Show Crypto Device Mapping | ${dut1}
-| | VPP Show Crypto Device Mapping | ${dut2}
 | | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
