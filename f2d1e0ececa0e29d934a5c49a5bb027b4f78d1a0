@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "78d77138_f2c3b200",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-10T11:31:55Z",
+      "side": 1,
+      "message": "Added. Need to provide the right links and info.",
+      "parentUuid": "baaa99c8_978f6ac4",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a05ece20_7a84b794",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2019-04-08T13:39:14Z",
       "side": 1,
       "message": "It would be worth adding that capacity planning (as to how many VNF can run per compute) is an important element of decision for commercial viability of a NFVi platform and results from traditional dataplane benchmarks do a very bad job at it because they are single dimensional.",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d8aa9e7_bb00230a",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-10T11:31:55Z",
+      "side": 1,
+      "message": "OK. Updated paragraph.",
+      "parentUuid": "a05ece20_7a84b794",
       "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "b778801b_d6bc70a1",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-10T11:31:55Z",
+      "side": 1,
+      "message": "OK. Added explicit note about multiple chains, updated diagrams.\nRe number of NFs per service, it\u0027s down to specific use case, the draft should not be prescriptive.",
+      "parentUuid": "4933edf6_cc6cc27b",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7bd69494_9b62715a",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2019-04-08T13:39:14Z",
       "side": 1,
       "message": "former \u003d L2?\nplease make it more clear.",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd5cf97e_8eff0721",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-10T11:31:55Z",
+      "side": 1,
+      "message": "OK. It actually refers to both L2 and IP. Updated paragraph.",
+      "parentUuid": "7bd69494_9b62715a",
       "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "7f39972c_a7f6132a",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-10T11:31:55Z",
+      "side": 1,
+      "message": "IP routing in host data plane is also out there e.g. Calico. This draft aims at covering both, L2 and IP routing.",
+      "parentUuid": "df46bb2f_949bae00",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "510349dc_2fb34bc7",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 1
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "c1f128b7_91cba970",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-10T11:31:55Z",
+      "side": 1,
+      "message": "Why do you say that pipeline would be more difficult to operate?\nExpectation is that with cloud-native container based NFV infrastructure pipeline topology will be more efficient, and as such needs to be covered here.",
+      "parentUuid": "510349dc_2fb34bc7",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cfdc0aac_67a1417b",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 1
@@ -115,6 +223,24 @@
       "writtenOn": "2019-04-08T13:39:14Z",
       "side": 1,
       "message": "Using different load per chain will open up a new dimension of benchmarking that will be a lot more complex.\nI think we need outline here the limitations of using an equal load approach and explain why it is still sufficient to satisfy the overall goal of this service chain density spec.",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68739c45_904ed42f",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-10T11:31:55Z",
+      "side": 1,
+      "message": "OK. Updated paragraph.",
+      "parentUuid": "cfdc0aac_67a1417b",
       "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
