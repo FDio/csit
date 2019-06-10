@@ -22,7 +22,6 @@ from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
-from resources.libraries.python.VatExecutor import VatExecutor
 
 
 class VPPUtil(object):
@@ -163,8 +162,7 @@ class VPPUtil(object):
         :rtype: str
         """
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_version').execute_should_pass().\
-                verify_reply()
+            data = papi_exec.add('show_version').get_replies().verify_reply()
         version = ('VPP version:      {ver}\n'.
                    format(ver=data['version'].rstrip('\0x00')))
         if verbose:
@@ -200,7 +198,7 @@ class VPPUtil(object):
         err_msg = 'Failed to get interface dump on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg)
 
         papi_if_dump = papi_resp.reply[0]['api_reply']
 
@@ -218,27 +216,15 @@ class VPPUtil(object):
             host=node['host'], if_data=if_data))
 
     @staticmethod
-    def vpp_show_crypto_device_mapping(node):
-        """Run "show crypto device mapping" CLI command.
-
-        :param node: Node to run command on.
-        :type node: dict
-        """
-        vat = VatExecutor()
-        vat.execute_script("show_crypto_device_mapping.vat", node,
-                           json_out=False)
-
-    @staticmethod
     def vpp_enable_traces_on_dut(node):
         """Enable vpp packet traces on the DUT node.
 
         :param node: DUT node to set up.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script("enable_dpdk_traces.vat", node, json_out=False)
-        vat.execute_script("enable_vhost_user_traces.vat", node, json_out=False)
-        vat.execute_script("enable_memif_traces.vat", node, json_out=False)
+        PapiExecutor.run_cli_cmd(node, "trace add dpdk-input 50")
+        PapiExecutor.run_cli_cmd(node, "trace add vhost-user-input 50")
+        PapiExecutor.run_cli_cmd(node, "trace add memif-input 50")
 
     @staticmethod
     def vpp_enable_traces_on_all_duts(nodes):
@@ -258,9 +244,7 @@ class VPPUtil(object):
         :param node: DUT node to set up.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script("elog_trace_api_cli_barrier.vat", node,
-                           json_out=False)
+        PapiExecutor.run_cli_cmd(node, "elog trace api cli barrier")
 
     @staticmethod
     def vpp_enable_elog_traces_on_all_duts(nodes):
@@ -280,8 +264,7 @@ class VPPUtil(object):
         :param node: DUT node to show traces on.
         :type node: dict
         """
-        vat = VatExecutor()
-        vat.execute_script("show_event_logger.vat", node, json_out=False)
+        PapiExecutor.run_cli_cmd(node, "show event-logger")
 
     @staticmethod
     def show_event_logger_on_all_duts(nodes):
@@ -303,9 +286,7 @@ class VPPUtil(object):
         :returns: VPP log data.
         :rtype: list
         """
-        with PapiExecutor(node) as papi_exec:
-            return papi_exec.add('cli_inband', cmd='show log').get_replies().\
-                verify_reply()["reply"]
+        return PapiExecutor.run_cli_cmd(node, "show log")["reply"]
 
     @staticmethod
     def vpp_show_threads(node):
@@ -317,5 +298,18 @@ class VPPUtil(object):
         :rtype: list
         """
         with PapiExecutor(node) as papi_exec:
-            return papi_exec.add('show_threads').execute_should_pass().\
+            data = papi_exec.add('show_threads').get_replies().\
                 verify_reply()["thread_data"]
+
+        threads_data = list()
+        for thread in data:
+            thread_data = list()
+            for item in thread:
+                if isinstance(item, unicode):
+                    item = item.rstrip('\x00')
+                thread_data.append(item)
+            threads_data.append(thread_data)
+
+        logger.info("show threads:\n{threads}".format(threads=threads_data))
+
+        return threads_data

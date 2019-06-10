@@ -365,6 +365,34 @@ class PapiExecutor(object):
             method='dump', process_reply=process_reply,
             ignore_errors=ignore_errors, err_msg=err_msg, timeout=timeout)
 
+    @staticmethod
+    def run_cli_cmd(node, cmd, log=True):
+        """Run a CLI command.
+
+        :param node: Node to run command on.
+        :param cmd: The CLI command to be run on the node.
+        :param log: If True, the response is logged.
+        :type node: dict
+        :type cmd: str
+        :type log: bool
+        :returns: Verified data from PAPI response.
+        :rtype: dict
+        """
+
+        cli = 'cli_inband'
+        args = dict(cmd=cmd)
+        err_msg = "Failed to run 'cli_inband {cmd}' PAPI command on host " \
+                  "{host}".format(host=node['host'], cmd=cmd)
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add(cli, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+
+        if log:
+            logger.info("{cmd}:\n{data}".format(cmd=cmd, data=data["reply"]))
+
+        return data
+
     def execute_should_pass(self, err_msg="Failed to execute PAPI command.",
                             process_reply=True, ignore_errors=False,
                             timeout=120):
