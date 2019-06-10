@@ -163,8 +163,7 @@ class VPPUtil(object):
         :rtype: str
         """
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_version').execute_should_pass().\
-                verify_reply()
+            data = papi_exec.add('show_version').get_replies().verify_reply()
         version = ('VPP version:      {ver}\n'.
                    format(ver=data['version'].rstrip('\0x00')))
         if verbose:
@@ -200,7 +199,7 @@ class VPPUtil(object):
         err_msg = 'Failed to get interface dump on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg)
 
         papi_if_dump = papi_resp.reply[0]['api_reply']
 
@@ -303,8 +302,10 @@ class VPPUtil(object):
         :returns: VPP log data.
         :rtype: list
         """
+        cli = 'cli_inband'
+        args = dict(cmd='show log')
         with PapiExecutor(node) as papi_exec:
-            return papi_exec.add('cli_inband', cmd='show log').get_replies().\
+            return papi_exec.add(cli, **args).get_replies().\
                 verify_reply()["reply"]
 
     @staticmethod
@@ -317,5 +318,5 @@ class VPPUtil(object):
         :rtype: list
         """
         with PapiExecutor(node) as papi_exec:
-            return papi_exec.add('show_threads').execute_should_pass().\
+            return papi_exec.add('show_threads').get_replies().\
                 verify_reply()["thread_data"]
