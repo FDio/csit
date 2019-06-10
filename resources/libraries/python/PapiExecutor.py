@@ -521,7 +521,7 @@ class PapiExecutor(object):
                    json=json_data)
         try:
             ret_code, stdout, stderr = self._ssh.exec_command_sudo(
-                cmd=cmd, timeout=timeout)
+                cmd=cmd, timeout=timeout, log_stdout_err=False)
         except SSHTimeout:
             logger.error("PAPI command(s) execution timeout on host {host}:"
                          "\n{apis}".format(host=self._node["host"],
