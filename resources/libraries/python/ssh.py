@@ -140,17 +140,19 @@ class SSH(object):
         logger.debug('Reconnecting peer done: {host}, {port}'.
                      format(host=node['host'], port=node['port']))
 
-    def exec_command(self, cmd, timeout=10):
+    def exec_command(self, cmd, timeout=10, log_stdout_err=True):
         """Execute SSH command on a new channel on the connected Node.
 
         :param cmd: Command to run on the Node.
         :param timeout: Maximal time in seconds to wait until the command is
-        done. If set to None then wait forever.
+            done. If set to None then wait forever.
+        :param log_stdout_err: If True, stdout and stderr are logged.
         :type cmd: str or OptionString
         :type timeout: int
-        :return return_code, stdout, stderr
+        :type log_stdout_err: bool
+        :returns: return_code, stdout, stderr
         :rtype: tuple(int, str, str)
-        :raise SSHTimeout: If command is not finished in timeout time.
+        :raises SSHTimeout: If command is not finished in timeout time.
         """
         cmd = str(cmd)
         stdout = StringIO.StringIO()
@@ -203,17 +205,27 @@ class SSH(object):
                      format(peer=peer, total=end-start))
 
         logger.trace('return RC {rc}'.format(rc=return_code))
-        logger.trace('return STDOUT {stdout}'.format(stdout=stdout.getvalue()))
-        logger.trace('return STDERR {stderr}'.format(stderr=stderr.getvalue()))
+        if log_stdout_err or int(return_code):
+            logger.trace('return STDOUT {stdout}'.
+                         format(stdout=stdout.getvalue()))
+            logger.trace('return STDERR {stderr}'.
+                         format(stderr=stderr.getvalue()))
         return return_code, stdout.getvalue(), stderr.getvalue()
 
-    def exec_command_sudo(self, cmd, cmd_input=None, timeout=30):
+    def exec_command_sudo(self, cmd, cmd_input=None, timeout=30,
+                          log_stdout_err=True):
         """Execute SSH command with sudo on a new channel on the connected Node.
 
         :param cmd: Command to be executed.
         :param cmd_input: Input redirected to the command.
         :param timeout: Timeout.
+        :param log_stdout_err: If True, stdout and stderr are logged.
+        :type cmd: str
+        :type cmd_input: str
+        :type timeout: int
+        :type log_stdout_err: bool
         :returns: return_code, stdout, stderr
+        :rtype: tuple(int, str, str)
 
         :Example:
 
@@ -229,7 +241,8 @@ class SSH(object):
             command = 'sudo -S {c}'.format(c=cmd)
         else:
             command = 'sudo -S {c} <<< "{i}"'.format(c=cmd, i=cmd_input)
-        return self.exec_command(command, timeout)
+        return self.exec_command(command, timeout,
+                                 log_stdout_err=log_stdout_err)
 
     def exec_command_lxc(self, lxc_cmd, lxc_name, lxc_params='', sudo=True,
                          timeout=30):
