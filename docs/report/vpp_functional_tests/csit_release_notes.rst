@@ -8,14 +8,6 @@ Changes in |csit-release|
 
    - **Bug fixes**.
 
-#. CSIT TEST MIMGRATION
-
-   - **VPP_Path**: Continuing migration of the original FD.io CSIT VIRL
-     tests to VPP-make_test VPP integration tests for functional
-     acceptance of VPP feature path(s) driven by use case(s). See P1
-     and P2 markup in `CSIT_VIRL migration progress
-     <https://docs.google.com/spreadsheets/d/1PciV8XN9v1qHbIRUpFJoqyES29_vik7lcFDl73G1usc/edit?usp=sharing>`_
-
 Known Issues
 ------------
 
