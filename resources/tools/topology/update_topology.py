@@ -83,7 +83,7 @@ def update_mac_addresses_for_node(node):
     for port_name, port in node['interfaces'].items():
         if 'driver' not in port:
             err_msg = '{0} port {1} has no driver element, exiting'.format(
-                    node['host'], port_name)
+                node['host'], port_name)
             raise RuntimeError(err_msg)
 
         ssh = SSH()
@@ -91,44 +91,115 @@ def update_mac_addresses_for_node(node):
 
         # TODO: make following SSH commands into one-liner to save on SSH opers
 
-        # First unbind from current driver
-        drvr_dir_path = '/sys/bus/pci/devices/{0}/driver'.format(
-                port['pci_address'])
+        sys_macaddr = '/sys/bus/pci/devices/{0}/net/*/address'.format(
+            port['pci_address'])
         cmd = '''\
-            if [ -d {0} ]; then
-                echo {1} | sudo tee {0}/unbind ;
-            else
-                true Do not have to do anything, port already unbound ;
-            fi'''.format(drvr_dir_path, port['pci_address'])
-        ssh_no_error(ssh, cmd)
-
-        # Then bind to the 'driver' from topology for given port
-        cmd = 'echo {0} | sudo tee /sys/bus/pci/drivers/{1}/bind'.\
-              format(port['pci_address'], port['driver'])
-        ssh_no_error(ssh, cmd)
-
-        # Then extract the mac address and store it in the topology
-        cmd = 'cat /sys/bus/pci/devices/{0}/net/*/address'.format(
-                port['pci_address'])
+            if [ -f {0} ] ; then
+                cat {0};
+            fi'''.format(sys_macaddr)
         mac = ssh_no_error(ssh, cmd).strip()
-        pattern = re.compile("^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$")
-        if not pattern.match(mac):
-            raise RuntimeError('MAC address read from host {0} {1} is in '
-                               'bad format "{2}"'
-                               .format(node['host'], port['pci_address'], mac))
-        print '{0}: Found MAC address of PCI device {1}: {2}'.format(
-                node['host'], port['pci_address'], mac)
-        port['mac_address'] = mac
+        if mac == '':
+            # First unbind from current driver
+            drvr_dir_path = '/sys/bus/pci/devices/{0}/driver'.format(
+                port['pci_address'])
+            cmd = '''\
+                if [ -d {0} ]; then
+                    echo {1} | sudo tee {0}/unbind ;
+                else
+                    true Do not have to do anything, port already unbound ;
+                fi'''.format(drvr_dir_path, port['pci_address'])
+            # ssh_no_error(ssh, cmd)
+
+            # Then bind to the 'driver' from topology for given port
+            cmd = 'echo {0} | sudo tee /sys/bus/pci/drivers/{1}/bind'. \
+                format(port['pci_address'], port['driver'])
+            # ssh_no_error(ssh, cmd)
+
+            # Then extract the mac address and store it in the topology
+            cmd = '''\
+                if [ -f {0} ] ; then
+                    cat {0};
+                fi'''.format(sys_macaddr)
+            mac = ssh_no_error(ssh, cmd).strip()
+
+        if mac != '':
+            pattern = re.compile("^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$")
+            if not pattern.match(mac):
+                raise RuntimeError('MAC address read from host {0} {1} is in '
+                                   'bad format "{2}"'
+                                   .format(node['host'], port['pci_address'],
+                                           mac))
+            print \
+                '{0}: Found MAC address of PCI device {1}: {2}'.\
+                format(node['host'], port['pci_address'], mac)
+            port['mac_address'] = mac
+        else:
+            port['mac_address'] = 'NOT FOUND'
 
 
-def update_nodes_mac_addresses(topology):
+def discover_interfaces_for_node(node, verbose=0):
+    """For given node discover all Network Device PCI addresses and populate
+    the port information based on 'lspci' output.
+
+    NOTE:   This functions replaces all existing interface definitions
+            with the discovered information.
+
+    :param node: Node from topology.
+    :type node: dict
+    :param verbose: Verbose output flag
+    :type verbose: bool
+
+    """
+
+    ssh = SSH()
+    ssh.connect(node)
+
+    cmd = 'lspci -Dvmmkd ::0200'
+    enets = ssh_no_error(ssh, cmd).replace('\t', '').splitlines()
+
+    # TODO: Filter out interfaces that aren't supported in the topology schema
+    index = 0
+    port = {}
+    interfaces = {}
+
+    for entry in enets:
+        if entry == '':
+            if verbose:
+                print '--- EndOfRecord ---'
+            interfaces['port{0}'.format(index)] = port
+            index += 1
+            port = {}
+            continue
+        name, value = entry.split(':', 1)
+        if verbose:
+            print 'name = {0}, value = {1}'.format(name, value)
+        if name == 'Slot':
+            port['pci_address'] = value
+        # TODO: Map 'SVendor + SDevice' into the schema enum values for 'model'
+        elif name == 'SVendor':
+            port['model'] = value
+        elif name == 'SDevice':
+            port['model'] = '{0} {1}'.format(port['model'], value)
+        elif name == 'Driver':
+            port['driver'] = value
+        elif port.get('driver') is None and name == 'Module':
+            port['driver'] = value
+
+    node['interfaces'] = interfaces
+
+
+def update_nodes_mac_addresses(topology, args):
     """Loop over nodes in topology and get mac addresses for all listed ports
     based on PCI addresses.
 
     :param topology: Topology information with nodes.
     :type topology: dict
+    :param args: Arguments parsed from command line.
+    :type args: ArgumentParser().parse_args()
     """
     for node in topology['nodes'].values():
+        if args.force or node.get('interfaces') is None:
+            discover_interfaces_for_node(node, args.verbose is True)
         update_mac_addresses_for_node(node)
 
 
@@ -136,8 +207,8 @@ def dump_updated_topology(topology, args):
     """Writes or prints out updated topology file.
 
     :param topology: Topology information with nodes.
-    :param args: Arguments parsed from command line.
     :type topology: dict
+    :param args: Arguments parsed from command line.
     :type args: ArgumentParser().parse_args()
     :return: 1 if error occurred, 0 if successful.
     :rtype: int
@@ -145,13 +216,14 @@ def dump_updated_topology(topology, args):
     if args.output_file:
         if not args.force:
             if os.path.isfile(args.output_file):
-                print ('File {0} already exists. If you want to overwrite this '
-                       'file, add -f as a parameter to this script'.format(
+                print ('File {0} already exists. If you want to overwrite this'
+                       ' file, add -f as a parameter to this script'.format(
                            args.output_file))
                 return 1
         with open(args.output_file, 'w') as stream:
             yaml.dump(topology, stream, default_flow_style=False)
     else:
+        print '\n----- YAML Topology File -----\n'
         print yaml.dump(topology, default_flow_style=False)
     return 0
 
@@ -167,7 +239,7 @@ def main():
     args = parser.parse_args()
 
     topology = load_topology(args)
-    update_nodes_mac_addresses(topology)
+    update_nodes_mac_addresses(topology, args)
     ret = dump_updated_topology(topology, args)
 
     return ret
