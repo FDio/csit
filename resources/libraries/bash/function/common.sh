@@ -675,7 +675,12 @@ function select_tags () {
             test_tag_array+=("!vts")
             ;;
         *"3n-hsw"*)
+            # TODO: Make AVF tests work on Haswell.
+            # Haswell does not support IOMMU, but according to
+            # https://github.com/FDio/vpp/blob/master/src/plugins/avf/README.md
+            # AVF only needs vfio-pci, which can be enabled in NOIOMMU mode.
             test_tag_array+=("!drv_avf")
+            # Only one card has access to QAT for hardware crypto.
             test_tag_array+=("!ipsechwNOTnic_intel-xl710")
             ;;
         *)
