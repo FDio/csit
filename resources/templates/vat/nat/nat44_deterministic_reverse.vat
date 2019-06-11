@@ -1,1 +1,0 @@
-exec nat44 deterministic reverse {ip}:{port}
