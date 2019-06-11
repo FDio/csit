@@ -70,6 +70,30 @@
       "revId": "65b95a6c25aa483701d7b4d6721ce2679fb6d6f8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27e908a2_4fad547f",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-11T10:10:18Z",
+      "side": 1,
+      "message": "So why we should measure it without HW support? Unless Damjan will approve -2 to me.",
+      "parentUuid": "f0f40207_4258b5b2",
+      "range": {
+        "startLine": 681,
+        "startChar": 45,
+        "endLine": 681,
+        "endChar": 59
+      },
+      "revId": "65b95a6c25aa483701d7b4d6721ce2679fb6d6f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
