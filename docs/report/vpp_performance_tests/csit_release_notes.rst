@@ -1,60 +1,60 @@
 Release Notes
 =============
 
-Changes in |csit-release|
--------------------------
-
-#. VPP PERFORMANCE TESTS
-
-   - **Service density 2n-skx tests**: Added higher NF density tests with two
-     NFs' data-plane threads sharing a physical core. VPP IPv4 routing is now
-     used as a VNF payload similar to CNF tests.
-
-   - **Soak Tests**: Optimized performamce soak tests framework
-     code for extended time duration tests and throughput discovery
-     at given PLR and at give total test time e.g. minutes, hours,
-     days, weeks. See updated
-     :ref:`test_methodology` section for more details.
-
-#. TEST FRAMEWORK
-
-   - **Qemu code refactor**: Complete code refactor of the key components of
-     QemuUtil.py and QemuManager.py (L1 and L2 KW counterparts). Added
-     implementation of kernel-image-kvm based VM replacing the previously used
-     NestedVM images. Added ability to run VPP as a payload in VNF.
-
-   - **CSIT PAPI Support**: Continued conversion of CSIT VAT L1 keywords to
-     PAPI L1 KWs in CSIT using VPP Python bindings. Redesign of key components
-     of PAPI Executor and PAPI history.
-
-   - **General Code Housekeeping**: Ongoing RF keywords optimizations,
-     removal of redundant RF keywords.
-
-   - **Test suite generator**: Added capability to generate suites for
-     different NIC models as well as throughput search algorithm types. Uses
-     base tests suites as source.
-
-   - **TOX verification**: Added verifications for test suite generator.
-
-#. PRESENTATION AND ANALYTICS LAYER
-
-   - **Graphs Layout Improvements**: Improved performance graphs layout
-     for better readibility and maintenance: test grouping, axis
-     labels, descriptions, other informative decoration.
-
 ..
+    Changes in |csit-release|
+    -------------------------
+
+    #. VPP PERFORMANCE TESTS
+
+       - **Service density 2n-skx tests**: Network Function Virtualization (NFV)
+         service density tests focus on measuring total per server throughput at
+         varied NFV service *packing* densities with vswitch providing host
+         dataplane. The goal is to compare and contrast performance of a shared
+         vswitch for different network topologies and virtualization technologies,
+         and their impact on vswitch performance and efficiency in a range of NFV
+         service configurations.
+
+       - **Experimental Soak Tests**: Added performamce soak tests framework
+         code for extended time duration tests and throughput discovery
+         at given PLR and at give total test time e.g. minutes, hours,
+         days, weeks, months, years. See updated
+         :ref:`test_methodology` section for more details.
+
+    #. TEST FRAMEWORK
+
+       - **Container code optimizations**: Optimized container library allows to
+         run containre_memif tests faster.
+
+       - **CSIT PAPI Support**: Continue converting existing VAT L1 keywords to
+         PAPI L1 KWs in CSIT using VPP Python bindings. Required for migrating away
+         from VAT.
+
+       - **General Code Housekeeping**: Ongoing RF keywords optimizations,
+         removal of redundant RF keywords.
+
+    #. PRESENTATION AND ANALYTICS LAYER
+
+       - **Graphs Layout Improvements**: Improved performance graphs layout
+         for better readibility and maintenance: test grouping, axis
+         labels, descriptions, other informative decoration.
+
     #. MISCELLANEOUS
 
-       - **2n-dnv Tests (3rd Party)**: Published performance tests for 2n-
-         dnv (2-Node Atom Denverton) from 3rd party testbeds running FD.io
+       - **3n-dnv Tests (3rd Party)**: Published performance tests for 3n-
+         dnv (3-Node Atom Denverton) from 3rd party testbeds running FD.io
          |csit-release| automated testing code.
          Only graphs for Packet Throughput and Speedup Multi-core and not
          for Packet Latency were published as there are no results for Packet
          Latency available.
 
-.. raw:: latex
+.. note::
 
-    \clearpage
+    |csit-release| report was generated with a single run of selected
+    64B frame performance tests on 3n-hsw and 3n-skx test beds
+    in order to spot-check the main data plane paths.
+    NFV service density and soak tests were not run and do not feature in
+    this report.
 
 .. _vpp_known_issues:
 
@@ -63,30 +63,15 @@ Known Issues
 
 List of known issues in |csit-release| for VPP performance tests:
 
-+----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| #  | JiraID                                  | Issue Description                                                                                        |
-+====+=========================================+==========================================================================================================+
-| 1  | `CSIT-570                               | Sporadic (1 in 200) NDR discovery test failures on x520. DPDK reporting rx-errors, indicating L1 issue.  |
-|    | <https://jira.fd.io/browse/CSIT-570>`_  | Suspected issue with HW combination of X710-X520 in LF testbeds. Not observed outside of LF testbeds.    |
-+----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 2  | `CSIT-1503                              | [`TRex-519 <https://trex-tgn.cisco.com/youtrack/issue/trex-519>`_] XL710/XXV710 with FW 6.0.1 will have  |
-|    | <https://jira.fd.io/browse/CSIT-1503>`_ | Rx drop rate of 27MPPS.                                                                                  |
-+----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 3  | `CSIT-1501                              | Sporadic crypto backend fails loading `VPP-1670 <https://jira.fd.io/browse/VPP-1670>`_                   |
-|    | <https://jira.fd.io/browse/CSIT-1501>`_ |                                                                                                          |
-+----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 4  | `CSIT-1427                              | Sporadic HW aes-128-cbc-sha1 tunnel-interface tests are failing.                                         |
-|    | <https://jira.fd.io/browse/CSIT-1427>`_ | `VPP-1671 <https://jira.fd.io/browse/VPP-1671>`_                                                         |
-+----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 5  | `CSIT-1498                              | Memif tests are sporadically failing on initialization of memif connection.                              |
-|    | <https://jira.fd.io/browse/CSIT-1498>`_ |                                                                                                          |
-+----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 6  | `CSIT-1499                              | AVF tests are sporadically failing on initialization of AVF interface.                                   |
-|    | <https://jira.fd.io/browse/CSIT-1499>`_ |                                                                                                          |
-+----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 7  | `VPP-1676                               | 9000B ip4 memif errors - ip4-input: ip4 length > l2 length.                                              |
-|    | <https://jira.fd.io/browse/VPP-1676>`_  | IP4 jumbo frames (9000B) are dropped in case of tests with memif.                                        |
-+----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 8  | `VPP-1677                               | 9000B ip4 nat44: VPP crash + coredump.                                                                   |
-|    | <https://jira.fd.io/browse/VPP-1677>`_  | VPP crashes very often in case that NAT44 is configured and it has to process IP4 jumbo frames (9000B).  |
-+----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
++----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| #  | JiraID                                  | Issue Description                                                                                                               |
++====+=========================================+=================================================================================================================================+
+| 1  | `CSIT-570                               | Sporadic (1 in 200) NDR discovery test failures on x520. DPDK reporting rx-errors, indicating L1 issue.                         |
+|    | <https://jira.fd.io/browse/CSIT-570>`_  | Suspected issue with HW combination of X710-X520 in LF testbeds. Not observed outside of LF testbeds.                           |
++----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| 2  | `VPP-1563                               | AVF L2patch tests are failing for all packet size and core combination. Reason: null-node blackholed packets in show error.     |
+|    | <https://jira.fd.io/browse/VPP-1563>`_  |                                                                                                                                 |
++----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
+| 3  | `CSIT-1465                              | 4c VPP VM vhost tests failiing on 3n-skx                                                                                        |
+|    | <https://jira.fd.io/browse/CSIT-1465>`_ |                                                                                                                                 |
++----+-----------------------------------------+---------------------------------------------------------------------------------------------------------------------------------+
