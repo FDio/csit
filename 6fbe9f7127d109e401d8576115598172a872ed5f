@@ -22,6 +22,30 @@
       "revId": "6fbe9f7127d109e401d8576115598172a872ed5f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9c39635_0d431390",
+        "filename": "requirements.txt",
+        "patchSetId": 32
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-06-11T10:33:11Z",
+      "side": 1,
+      "message": "I guess that\u0027s the reason why virl ubuntu16.04 suite setup is failing - without fixing it we cannot merge it until virl is switched off.",
+      "parentUuid": "0412a8f5_813d0d02",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 13
+      },
+      "revId": "6fbe9f7127d109e401d8576115598172a872ed5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
