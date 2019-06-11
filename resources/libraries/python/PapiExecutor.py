@@ -17,6 +17,8 @@
 import binascii
 import json
 
+from pprint import pformat
+
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
@@ -364,6 +366,21 @@ class PapiExecutor(object):
         return self._execute(
             method='dump', process_reply=process_reply,
             ignore_errors=ignore_errors, err_msg=err_msg, timeout=timeout)
+
+    @staticmethod
+    def dump_and_log(node, cmds):
+        """Dump and log requested information.
+
+        :param node: DUT node.
+        :param cmds: Dump commands to be executed.
+        :type node: dict
+        :type cmds: list
+        """
+        with PapiExecutor(node) as papi_exec:
+            for cmd in cmds:
+                dump = papi_exec.add(cmd).get_dump()
+                logger.debug("{cmd}:\n{data}".format(
+                    cmd=cmd, data=pformat(dump.reply[0]["api_reply"])))
 
     @staticmethod
     def run_cli_cmd(node, cmd, log=True):
