@@ -46,6 +46,30 @@
       "revId": "65b95a6c25aa483701d7b4d6721ce2679fb6d6f8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0f40207_4258b5b2",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-11T10:01:31Z",
+      "side": 1,
+      "message": "On that page? No AVF, just slightly more details on Linux kernel version and how to permanently enable.\nThe primary link is still that on line 680.",
+      "parentUuid": "5accf555_2b7a0c70",
+      "range": {
+        "startLine": 681,
+        "startChar": 45,
+        "endLine": 681,
+        "endChar": 59
+      },
+      "revId": "65b95a6c25aa483701d7b4d6721ce2679fb6d6f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
