@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "82d63db1_586ce6fd",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 9
+      },
+      "writtenOn": "2019-06-12T08:39:46Z",
+      "side": 1,
+      "message": "This statement is wrong",
+      "range": {
+        "startLine": 679,
+        "startChar": 14,
+        "endLine": 679,
+        "endChar": 62
+      },
+      "revId": "65b95a6c25aa483701d7b4d6721ce2679fb6d6f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d809c596_cdecde19",
         "filename": "resources/libraries/bash/function/common.sh",
         "patchSetId": 1
