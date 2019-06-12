@@ -117,6 +117,30 @@
       "revId": "65b95a6c25aa483701d7b4d6721ce2679fb6d6f8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7bddf471_58b66008",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-12T08:50:22Z",
+      "side": 1,
+      "message": "After a quick talk with Damjan, I believe Skylake can be used to test AVF both in IOMMU and NOIOMMU mode. And Haswell as well, unless there is some bug.",
+      "parentUuid": "27e908a2_4fad547f",
+      "range": {
+        "startLine": 681,
+        "startChar": 45,
+        "endLine": 681,
+        "endChar": 59
+      },
+      "revId": "65b95a6c25aa483701d7b4d6721ce2679fb6d6f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
