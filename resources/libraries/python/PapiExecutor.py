@@ -32,6 +32,7 @@ from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd, exec_cmd_no_error, scp_node)
+from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
 
 __all__ = ["PapiExecutor", "PapiSocketExecutor", "PapiResponse"]
@@ -364,6 +365,7 @@ class PapiSocketExecutor(object):
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
             vpp_class.apidir = tmp_dir + "/usr/share/vpp/api"
             logger.debug("apidir: {dir}".format(dir=vpp_class.apidir))
+            VppApiCrcChecker.check_dir(vpp_class.apidir)
             # We need to create instance before removing from sys.path.
             cls._vpp_instance = vpp_class(
                 use_socket=True, server_address="TBD", async_thread=False)
@@ -488,14 +490,21 @@ class PapiSocketExecutor(object):
         The argument name 'csit_papi_command' must be unique enough as it cannot
         be repeated in kwargs.
 
+        The command name is checked for known CRCs.
+        Unsupported commands raise an exception, as CSIT change
+        should not start using messages without making sure which CRCs
+        are supported.
+
         :param csit_papi_command: VPP API command.
         :param kwargs: Optional key-value arguments.
         :type csit_papi_command: str
         :type kwargs: dict
         :returns: self, so that method chaining is possible.
         :rtype: PapiExecutor
+        :raises RuntimeError: If a message without verified CRC is used.
         """
         PapiHistory.add_to_papi_history(self._node, csit_papi_command, **kwargs)
+        VppApiCrcChecker.check_message(csit_papi_command)
         self._api_command_list.append(
             dict(api_name=csit_papi_command, api_args=kwargs))
         return self
