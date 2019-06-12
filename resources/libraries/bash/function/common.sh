@@ -675,7 +675,14 @@ function select_tags () {
             test_tag_array+=("!vts")
             ;;
         *"3n-hsw"*)
+            # TODO: Introduce NOIOMMU version of AVF tests.
+            # TODO: Make (both) AVF tests work on Haswell,
+            # or document why (some of) it is not possible.
+            # https://github.com/FDio/vpp/blob/master/src/plugins/avf/README.md
             test_tag_array+=("!drv_avf")
+            # All cards have access to QAT. But only one card (xl710)
+            # resides in same NUMA as QAT. Other cards must go over QPI
+            # which we do not want to even run.
             test_tag_array+=("!ipsechwNOTnic_intel-xl710")
             ;;
         *)
