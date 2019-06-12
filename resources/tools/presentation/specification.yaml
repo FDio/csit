@@ -381,6 +381,7 @@
         - 52  # NDRPDR full
         - 53  # NDRPDR full
         - 54  # NDRPDR full
+        - 56  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1904-3n-skx:
@@ -1428,6 +1429,7 @@
       - 52  # NDRPDR full
       - 53  # NDRPDR full
       - 54  # NDRPDR full
+      - 56  # NDRPDR full
       - 11  # NDRPDR sel
       - 12  # NDRPDR sel
       - 20  # NDRPDR sel
