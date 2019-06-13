@@ -796,6 +796,42 @@ class InterfaceUtil(object):
         return sw_if_idx
 
     @staticmethod
+    def set_vxlan_bypass(node, interface=None):
+        """Add the 'ip4-vxlan-bypass' graph node for a given interface. By
+        adding the IPv4 vxlan-bypass graph node to an interface, the node
+        checks for and validate input vxlan packet and bypass ip4-lookup,
+        ip4-local, ip4-udp-lookup nodes to speedup vxlan packet forwarding.
+        This node will cause extra overhead to for non-vxlan packets which is
+        kept at a minimum.
+
+        :param node: Node where to set VXLAN bypass.
+        :param interface: Numeric index or name string of a specific interface.
+        :type node: dict
+        :type interface: int or str
+        :raises RuntimeError: if it failed to set VXLAN bypass on interface.
+        """
+        if interface is not None:
+            if isinstance(interface, basestring):
+                sw_if_index = InterfaceUtil.get_interface_index(node, interface)
+            elif isinstance(interface, int):
+                sw_if_index = interface
+            else:
+                raise TypeError('Wrong interface format {ifc}!'.format(
+                    ifc=interface))
+        else:
+            raise ValueError('Missing interface for set_vxlan_bypass!')
+
+        cmd = 'sw_interface_set_vxlan_bypass'
+        args = dict(is_ipv6=0,
+                    sw_if_index=sw_if_index,
+                    enable=1)
+        err_msg = 'Failed to set VXLAN bypass on interface on host {host}'.\
+            format(host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
+
+    @staticmethod
     def vxlan_dump(node, interface=None):
         """Get VxLAN data for the given interface.
 
