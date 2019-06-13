@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3394a84e_ce8d5992",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-13T16:31:40Z",
+      "side": 1,
+      "message": "Do we tolerate lines that are long just because of a long URL?",
+      "range": {
+        "startLine": 37,
+        "startChar": 88,
+        "endLine": 37,
+        "endChar": 93
+      },
+      "revId": "c3900cd91f02338439ffc2e5982c9322e56f7aa5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
