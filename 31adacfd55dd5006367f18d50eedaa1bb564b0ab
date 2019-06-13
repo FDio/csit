@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0de7e093_0162051c",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-13T14:13:01Z",
+      "side": 1,
+      "message": "2019",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "31adacfd55dd5006367f18d50eedaa1bb564b0ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c31e730a_198ddb19",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-13T14:13:01Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 15
+      },
+      "revId": "31adacfd55dd5006367f18d50eedaa1bb564b0ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a5678af5_b02fdf4d",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-13T14:13:01Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 34
+      },
+      "revId": "31adacfd55dd5006367f18d50eedaa1bb564b0ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "89953022_21d09d2a",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-13T14:13:01Z",
+      "side": 1,
+      "message": "exec_cmd_no_error",
+      "range": {
+        "startLine": 99,
+        "startChar": 21,
+        "endLine": 99,
+        "endChar": 29
+      },
+      "revId": "31adacfd55dd5006367f18d50eedaa1bb564b0ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26cde11a_c8e8b162",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-13T14:13:01Z",
+      "side": 1,
+      "message": "indent",
+      "range": {
+        "startLine": 181,
+        "startChar": 22,
+        "endLine": 181,
+        "endChar": 25
+      },
+      "revId": "31adacfd55dd5006367f18d50eedaa1bb564b0ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
