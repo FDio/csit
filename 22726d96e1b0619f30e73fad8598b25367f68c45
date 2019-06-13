@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7d53e62d_400966ee",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-13T10:26:33Z",
+      "side": 1,
+      "message": "remove spaces",
+      "revId": "22726d96e1b0619f30e73fad8598b25367f68c45",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8859de02_9f5b5f3e",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-13T10:26:33Z",
+      "side": 1,
+      "message": "why was this outside of a class,\nbut anyway having class (IPutil) with only static methods is pointless anyway?",
+      "revId": "22726d96e1b0619f30e73fad8598b25367f68c45",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c5497b3c_712ff726",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 17
+      },
+      "lineNbr": 2970,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-13T10:26:33Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 2970,
+        "startChar": 25,
+        "endLine": 2970,
+        "endChar": 27
+      },
+      "revId": "22726d96e1b0619f30e73fad8598b25367f68c45",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
