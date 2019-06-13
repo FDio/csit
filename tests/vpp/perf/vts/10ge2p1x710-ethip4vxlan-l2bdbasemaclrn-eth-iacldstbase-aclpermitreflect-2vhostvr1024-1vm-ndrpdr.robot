@@ -51,10 +51,10 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544, RFC7348.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | acl_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
-| ${overhead}= | ${50}
+| ${overhead}= | ${0}
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
 | ${nf_chains}= | ${1}
@@ -63,7 +63,8 @@
 | ${dut1_bd_id2}= | 2
 | ${dut2_bd_id1}= | 1
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-ethip4-vxlansrc253
+| ${traffic_profile}=
+| ... | trex-sl-ethip4vxlan-ip4src${nf_chains}udpsrcrnd
 | ${acl_type}= | permit+reflect
 
 *** Keywords ***
@@ -84,11 +85,11 @@
 | | Set Test Variable | \${frame_size}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | &{vxlan1} = | Create Dictionary | vni=24 | vtep=172.17.0.2
-| | &{vxlan2} = | Create Dictionary | vni=24 | vtep=172.27.0.2
+| | &{vxlan1} = | Create Dictionary | vni=0 | vtep=172.17.0.2
+| | &{vxlan2} = | Create Dictionary | vni=0 | vtep=172.27.0.2
 | | @{dut1_vxlans} = | Create List | ${vxlan1}
 | | @{dut2_vxlans} = | Create List | ${vxlan2}
 | | Set interfaces in path up
@@ -96,6 +97,9 @@
 | | ... | 172.16.0.1 | 16 | 172.26.0.1 | 16 | 172.16.0.2 | 172.26.0.2
 | | ... | ${dut1_vxlans} | ${dut2_vxlans} | 172.17.0.0 | 16 | 172.27.0.0 | 16
 | | @{permit_list} = | Create List | 10.0.0.1/32 | 10.0.0.2/32
+| | Run Keyword If | '${acl_type}' != '${EMPTY}'
+| | ... | Configure ACLs on a single interface | ${dut1} | ${dut1_if2} | input
+| | ... | ${acl_type} | @{permit_list}
 | | And Configure chains of NFs connected via vhost-user on single node
 | | ... | node=DUT1 | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | ... | jumbo=${jumbo} | use_tuned_cfs=${False} | auto_scale=${True}
