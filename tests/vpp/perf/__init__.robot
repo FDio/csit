@@ -21,7 +21,7 @@
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Setup Corekeeper on All Nodes | ${nodes}
-| ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
+#| ... | AND | Install Vpp on All Duts | ${nodes} | ${packages_dir}
 | ... | AND | Verify Vpp on All Duts | ${nodes}
 | ... | AND | Verify UIO Driver on all DUTs | ${nodes}
 | ... | AND | Show Vpp Version on All Duts | ${nodes}
@@ -29,7 +29,7 @@
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 | ... | skip_tg=${True} | numa_node=${True}
 | ...
-| Suite Teardown | Cleanup Framework | ${nodes}
+#| Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup performance global Variables
@@ -37,10 +37,8 @@
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - pkt_trace - Switch to enable packet trace for test.
 | | ... | - dut_stats - Switch to enable DUT statistics.
 | | ... | - packages_dir - Directory with VPP binary packages.
 | | ...
-| | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
