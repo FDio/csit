@@ -46,6 +46,54 @@
       "revId": "6fbe9f7127d109e401d8576115598172a872ed5f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef2468a9_89ed9627",
+        "filename": "requirements.txt",
+        "patchSetId": 32
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-13T12:31:08Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "0412a8f5_813d0d02",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 13
+      },
+      "revId": "6fbe9f7127d109e401d8576115598172a872ed5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ece79f67_4fee5ef6",
+        "filename": "requirements.txt",
+        "patchSetId": 32
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-13T12:31:08Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "a9c39635_0d431390",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 13
+      },
+      "revId": "6fbe9f7127d109e401d8576115598172a872ed5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
