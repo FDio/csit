@@ -675,16 +675,11 @@ function select_tags () {
             test_tag_array+=("!vts")
             ;;
         *"3n-hsw"*)
-            # TODO: Introduce NOIOMMU version of AVF tests.
-            # TODO: Make AVF tests work on Haswell.
-            # https://github.com/FDio/vpp/blob/master/src/plugins/avf/README.md
-            test_tag_array+=("!drv_avf")
             # Only one card has access to QAT for hardware crypto.
             test_tag_array+=("!ipsechwNOTnic_intel-xl710")
             ;;
         *)
             # Default to 3n-hsw due to compatibility.
-            test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechwNOTnic_intel-xl710")
             ;;
     esac

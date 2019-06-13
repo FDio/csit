@@ -1680,6 +1680,7 @@ class InterfaceUtil(object):
         :type osi_layer: str
         :returns: Virtual Function topology interface keys.
         :rtype: list
+        :raises RuntimeError: If a reason preventing initialization is found.
         """
         ssh = SSH()
         ssh.connect(node)
@@ -1689,6 +1690,10 @@ class InterfaceUtil(object):
         pf_mac_addr = Topology.get_interface_mac(node, ifc_key).split(":")
         uio_driver = Topology.get_uio_driver(node)
         kernel_driver = Topology.get_interface_driver(node, ifc_key)
+        if not kernel_driver:
+            raise RuntimeError(
+                "Topology does not contain driver for {host} {ifc}".format(
+                host=node["host"], ifc=ifc_key))
         current_driver = DUTSetup.get_pci_dev_driver(
             node, pf_pci_addr.replace(':', r'\:'))
 
