@@ -14,30 +14,30 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
 | ... | VHOST | 1VM | VHOST_1024 | CVIM
 | ...
-| Suite Setup | Set up 3-node performance topology with DUT's NIC model
+| Suite Setup | Set up 2-node performance topology with DUT's NIC model
 | ... | L3 | ${nic_name}
-| Suite Teardown | Tear down 3-node performance topology
+| Suite Teardown | Tear down 2-node performance topology
 | ...
 | Test Setup | Set up performance test
 | Test Teardown | Tear down performance test with vhost
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *RFC2544: Pkt throughput L2BD test cases with VXLANoIPv4
+| Documentation | *RFC2544: Packet throughput L2BD test cases with VXLANoIPv4
 | ... | and vhost*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
-| ... | Eth-IPv4-VXLAN-Eth-IPv4 is applied on link between DUT1 and DUT2.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-
-| ... | domain and MAC learning enabled. Qemu VNFs are \
-| ... | connected to VPP via vhost-user interfaces. Guest is running VPP l2xc \
-| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1/DUT2 is \
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.\
+| ... | Eth-IPv4-VXLAN-Eth-IPv4 is applied on link between DUT1 and TG.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge-\
+| ... | domain and MAC learning enabled. Qemu VNFs are connected\
+| ... | to VPP via vhost-user interfaces. Guest is running VPP l2xc\
+| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1 is\
 | ... | tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
@@ -49,7 +49,7 @@
 | ... | flow-group) with all packets containing Ethernet header, IPv4\
 | ... | header, UPD header, VXLAN header and static payload. MAC addresses are\
 | ... | matching MAC addresses of the TG node interfaces.
-| ... | *[Ref] Applicable standard specifications:* RFC7348.
+| ... | *[Ref] Applicable standard specifications:* RFC2544, RFC7348.
 
 *** Variables ***
 | ${nic_name}= | Intel-X710
@@ -72,8 +72,8 @@
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
-| | ... | - phy_cores - Number of physical cores. Type: integer
-| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
+| | ... | - phy_cores - Number of worker threads to be used. Type: integer
+| | ... | - rxq - Number of Rx queues to be used. Type: integer
 | | ...
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | | ...
@@ -93,16 +93,16 @@
 
 *** Test Cases ***
 | tc01-114B-1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
-| | [Tags] | 114B | 1C
-| | frame_size=${64} | phy_cores=${1}
+| | [Tags] | 114B | 1C | THIS
+| | frame_size=${114} | phy_cores=${1}
 
 | tc02-114B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 114B | 2C
-| | frame_size=${64} | phy_cores=${2}
+| | frame_size=${114} | phy_cores=${2}
 
 | tc03-114B-4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 114B | 4C
-| | frame_size=${64} | phy_cores=${4}
+| | frame_size=${114} | phy_cores=${4}
 
 | tc04-1518B-1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 | | [Tags] | 1518B | 1C
