@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "d2f2eada_4e1591bb",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-06-13T12:55:02Z",
+      "side": 1,
+      "message": "\u003e why was this outside of a class,\n\nMethod was removed, netmask is processed directly in vpp_get_interface_ip_address.\n \u003e but anyway having class (IPutil) with only static methods is\n \u003e pointless anyway?\nWell, most of our python libraries is implemented in this way. We can discuss if we should convert them all.",
+      "parentUuid": "8859de02_9f5b5f3e",
+      "revId": "22726d96e1b0619f30e73fad8598b25367f68c45",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c5497b3c_712ff726",
         "filename": "resources/libraries/robot/performance/performance_configuration.robot",
         "patchSetId": 17
