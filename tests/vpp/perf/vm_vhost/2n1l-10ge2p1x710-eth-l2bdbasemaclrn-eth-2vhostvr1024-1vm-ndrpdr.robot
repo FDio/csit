@@ -78,9 +78,12 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User | nf_nodes=${nf_nodes}
+| | When Initialize layer interface
+| | ... | count=${nf_chains}
+| | And Initialize L2 bridge domains for multiple chains with Vhost-User
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
