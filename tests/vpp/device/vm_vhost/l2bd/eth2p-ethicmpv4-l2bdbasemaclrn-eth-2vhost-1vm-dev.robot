@@ -70,7 +70,9 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize L2 bridge domains with Vhost-User | nf_nodes=${nf_nodes}
+| | When Initialize layer interface
+| | ... | count=${nf_chains}
+| | And Initialize L2 bridge domains with Vhost-User | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | vnf=vpp_chain_l2xc
 | | ... | pinning=${False}
