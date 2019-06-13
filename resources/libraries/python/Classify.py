@@ -820,7 +820,7 @@ class Classify(object):
         reg_ex_dport = re.compile(r'(dport \d{1,5})')
 
         acl_rules = list()
-        for rule in rules.split(", "):
+        for rule in rules.split(","):
             acl_rule = dict()
             acl_rule["is_permit"] = 1 if "permit" in rule else 0
             acl_rule["is_ipv6"] = 1 if "ipv6" in rule else 0
