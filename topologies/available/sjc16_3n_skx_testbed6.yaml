@@ -1,0 +1,251 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 3-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "10.195.93.24"
+    port: 22
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port1:
+        mac_address: "3c:fd:fe:d0:e4:78"
+        pci_address: "0000:19:00.0"
+        driver: i40e
+        link: link1
+        model: Intel-XXV710
+      port2:
+        mac_address: "3c:fd:fe:d0:e4:79"
+        pci_address: "0000:19:00.1"
+        driver: i40e
+        link: link2
+        model: Intel-XXV710
+      port3:
+        mac_address: "3c:fd:fe:d1:5c:d8"
+        pci_address: "0000:5e:00.0"
+        driver: i40e
+        link: link3
+        model: Intel-XXV710
+      port4:
+        mac_address: "3c:fd:fe:d1:5c:d9"
+        pci_address: "0000:5e:00.1"
+        driver: i40e
+        link: link4
+        model: Intel-XXV710
+      port5:
+        mac_address: "3c:fd:fe:d3:22:40"
+        pci_address: "0000:86:00.0"
+        driver: i40e
+        link: link5
+        model: Intel-X710
+      port6:
+        mac_address: "3c:fd:fe:d3:22:41"
+        pci_address: "0000:86:00.1"
+        driver: i40e
+        link: link6
+        model: Intel-X710
+      port7:
+        mac_address: "3c:fd:fe:d3:22:42"
+        pci_address: "0000:86:00.2"
+        driver: i40e
+        link: link7
+        model: Intel-X710
+      port8:
+        mac_address: "3c:fd:fe:d3:22:43"
+        pci_address: "0000:86:00.3"
+        driver: i40e
+        link: link8
+        model: Intel-X710
+      port9:
+        mac_address: "3c:fd:fe:d3:1f:50"
+        pci_address: "0000:af:00.0"
+        driver: i40e
+        link: link9
+        model: Intel-X710
+      port10:
+        mac_address: "3c:fd:fe:d3:1f:51"
+        pci_address: "0000:af:00.1"
+        driver: i40e
+        link: link10
+        model: Intel-X710
+      port11:
+        mac_address: "3c:fd:fe:d3:1f:52"
+        pci_address: "0000:af:00.2"
+        driver: i40e
+        link: link11
+        model: Intel-X710
+      port12:
+        mac_address: "3c:fd:fe:d3:1f:53"
+        pci_address: "0000:af:00.3"
+        driver: i40e
+        link: link12
+        model: Intel-X710
+  DUT1:
+    type: DUT
+    host: "10.195.93.26"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    uio_driver: vfio-pci
+    interfaces:
+      port1:
+        mac_address: "3c:fd:fe:d3:34:a4"
+        pci_address: "0000:19:00.0"
+        driver: i40e
+        link: link21
+        model: Intel-XXV710
+      port2:
+        mac_address: "3c:fd:fe:d3:34:a5"
+        pci_address: "0000:19:00.1"
+        driver: i40e
+        link: link1
+        model: Intel-XXV710
+      port3:
+        mac_address: "3c:fd:fe:bd:2d:50"
+        pci_address: "0000:5e:00.0"
+        driver: i40e
+        link: link41
+        model: Intel-XXV710
+      port4:
+        mac_address: "3c:fd:fe:bd:2d:51"
+        pci_address: "0000:5e:00.1"
+        driver: i40e
+        link: link3
+        model: Intel-XXV710
+      port5:
+        mac_address: "3c:fd:fe:d3:1f:d0"
+        pci_address: "0000:86:00.0"
+        driver: i40e
+        link: link61
+        model: Intel-X710
+      port6:
+        mac_address: "3c:fd:fe:d3:1f:d1"
+        pci_address: "0000:86:00.1"
+        driver: i40e
+        link: link5
+        model: Intel-X710
+      port7:
+        mac_address: "3c:fd:fe:d3:1f:d2"
+        pci_address: "0000:86:00.2"
+        driver: i40e
+        link: link81
+        model: Intel-X710
+      port8:
+        mac_address: "3c:fd:fe:d3:1f:d3"
+        pci_address: "0000:86:00.3"
+        driver: i40e
+        link: link7
+        model: Intel-X710
+      port9:
+        mac_address: "3c:fd:fe:d1:04:f0"
+        pci_address: "0000:af:00.0"
+        driver: i40e
+        link: link101
+        model: Intel-X710
+      port10:
+        mac_address: "3c:fd:fe:d1:04:f1"
+        pci_address: "0000:af:00.1"
+        driver: i40e
+        link: link9
+        model: Intel-X710
+      port11:
+        mac_address: "3c:fd:fe:d1:04:f2"
+        pci_address: "0000:af:00.2"
+        driver: i40e
+        link: link121
+        model: Intel-X710
+      port12:
+        mac_address: "3c:fd:fe:d1:04:f3"
+        pci_address: "0000:af:00.3"
+        driver: i40e
+        link: link11
+        model: Intel-X710
+  DUT2:
+    type: DUT
+    host: "10.195.93.28"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    uio_driver: vfio-pci
+    interfaces:
+      port1:
+        mac_address: "3c:fd:fe:d3:33:24"
+        pci_address: "0000:19:00.0"
+        driver: i40e
+        link: link2
+        model: Intel-XXV710
+      port2:
+        mac_address: "3c:fd:fe:d3:33:25"
+        pci_address: "0000:19:00.1"
+        driver: i40e
+        link: link21
+        model: Intel-XXV710
+      port3:
+        mac_address: "3c:fd:fe:d3:31:f8"
+        pci_address: "0000:5e:00.0"
+        driver: i40e
+        link: link4
+        model: Intel-XXV710
+      port4:
+        mac_address: "3c:fd:fe:d3:31:f9"
+        pci_address: "0000:5e:00.1"
+        driver: i40e
+        link: link41
+        model: Intel-XXV710
+      port5:
+        mac_address: "3c:fd:fe:d3:21:a0"
+        pci_address: "0000:86:00.0"
+        driver: i40e
+        link: link6
+        model: Intel-X710
+      port6:
+        mac_address: "3c:fd:fe:d3:21:a1"
+        pci_address: "0000:86:00.1"
+        driver: i40e
+        link: link61
+        model: Intel-X710
+      port7:
+        mac_address: "3c:fd:fe:d3:21:a2"
+        pci_address: "0000:86:00.2"
+        driver: i40e
+        link: link8
+        model: Intel-X710
+      port8:
+        mac_address: "3c:fd:fe:d3:21:a3"
+        pci_address: "0000:86:00.3"
+        driver: i40e
+        link: link81
+        model: Intel-X710
+      port9:
+        mac_address: "3c:fd:fe:d3:22:b8"
+        pci_address: "0000:af:00.0"
+        driver: i40e
+        link: link10
+        model: Intel-X710
+      port10:
+        mac_address: "3c:fd:fe:d3:22:b9"
+        pci_address: "0000:af:00.1"
+        driver: i40e
+        link: link101
+        model: Intel-X710
+      port11:
+        mac_address: "3c:fd:fe:d3:22:ba"
+        pci_address: "0000:af:00.2"
+        driver: i40e
+        link: link12
+        model: Intel-X710
+      port12:
+        mac_address: "3c:fd:fe:d3:22:bb"
+        pci_address: "0000:af:00.3"
+        driver: i40e
+        link: link121
+        model: Intel-X710
