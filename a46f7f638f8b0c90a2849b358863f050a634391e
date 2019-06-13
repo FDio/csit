@@ -70,6 +70,30 @@
       "revId": "a46f7f638f8b0c90a2849b358863f050a634391e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "55155a28_19aaf2b1",
+        "filename": "topologies/available/lf_3n_hsw_testbed1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-13T16:27:52Z",
+      "side": 1,
+      "message": "\u003e i40e/bind\u0027\n\nNow I see that was for a different NIC. i40e is only for x710 \u0026 friends, and it fails [2] later, on:\n18:06:14.461 \tFAIL \tSSHTimeout: Timeout exception during execution of command: sudo -S sh -c \u0027echo 0000:8a:0a.0 | tee /sys/bus/pci/devices/0000\\:8a\\:00.1/virtfn0/driver/unbind\u0027\n\n[2] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-3n-hsw/348/archives/log.html.gz#s1-s1-s1-s1-s3-k1-k1-k2-k1-k2-k1-k1",
+      "parentUuid": "2be02593_180b1707",
+      "range": {
+        "startLine": 143,
+        "startChar": 8,
+        "endLine": 143,
+        "endChar": 20
+      },
+      "revId": "a46f7f638f8b0c90a2849b358863f050a634391e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
