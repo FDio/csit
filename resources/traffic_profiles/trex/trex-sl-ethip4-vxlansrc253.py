@@ -45,10 +45,10 @@ _VXLAN_FLAGS = list('R'*24 + "RRRIRRRRR")
 
 
 class VXLAN(Packet):
-    name = "VXLAN"
-    fields_desc = [FlagsField("flags", 0x08000000, 32, _VXLAN_FLAGS),
-                   ThreeBytesField("vni", 0),
-                   XByteField("reserved", 0x00)]
+    name = 'VXLAN'
+    fields_desc = [FlagsField('flags', 0x08000000, 32, _VXLAN_FLAGS),
+                   ThreeBytesField('vni', 0),
+                   XByteField('reserved', 0x00)]
 
     def mysummary(self):
         return self.sprintf("VXLAN (vni=%VXLAN.vni%)")
@@ -78,42 +78,47 @@ class TrafficStreams(TrafficStreamsBaseClass):
         # Direction 0 --> 1
         base_pkt_a = (
             Ether()/
-            IP(src="172.17.0.2",dst="172.16.0.1")/
-            UDP(sport=1337,dport=4789)/
+            IP(src='172.17.0.2',dst='172.16.0.1')/
+            UDP(sport=1024,dport=4789)/
             VXLAN(vni=24)/
-            Ether(src="00:de:ad:00:00:00",dst="00:de:ad:00:00:01")/
-            IP(src="10.0.0.2",dst="10.0.0.1"))
+            Ether(src='00:de:ad:00:00:00',dst='00:de:ad:00:00:01')/
+            IP(src='10.0.0.2',dst='10.0.0.1'))
 
         # Direction 1 --> 0
         base_pkt_b = (
             Ether()/
-            IP(src="172.27.0.2",dst="172.26.0.1")/
-            UDP(sport=1337,dport=4789)/
+            IP(src='172.27.0.2',dst='172.26.0.1')/
+            UDP(sport=1024,dport=4789)/
             VXLAN(vni=24)/
-            Ether(src="00:de:ad:00:00:01",dst="00:de:ad:00:00:00")/
-            IP(src="10.0.0.1",dst="10.0.0.2"))
-
+            Ether(src='00:de:ad:00:00:01',dst='00:de:ad:00:00:00')/
+            IP(src='10.0.0.1',dst='10.0.0.2'))
 
         # Direction 0 --> 1
         vm1 = STLScVmRaw([
-            STLVmFlowVar(name="src", min_value="172.17.0.2" ,
-                         max_value="172.17.0.254", size=4, op="inc"),
-            STLVmFlowVar(name="src_mac", min_value=2 , max_value=3100,
-                         size=2, op="inc"),
-            STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
-            STLVmWrFlowVar(fv_name="src_mac", pkt_offset=60),
-            STLVmFixIpv4(offset = "IP")
+            STLVmFlowVar(name='src', size=4, op='inc',
+                         min_value='172.17.0.2', max_value='172.17.0.254'),
+            STLVmFlowVar(name='src_mac', min_value=2 , max_value=3100,
+                         size=2, op='inc'),
+            STLVmFlowVar(name='src_port', size=2, op='random',
+                         min_value=1024, max_value=65535),
+            STLVmWrFlowVar(fv_name='src', pkt_offset='IP.src'),
+            STLVmWrFlowVar(fv_name='src_mac', pkt_offset=60),
+            STLVmWrFlowVar(fv_name='src_port', pkt_offset='UDP.sport'),
+            STLVmFixIpv4(offset = 'IP')
         ])
 
         # Direction 1 --> 0
         vm2 = STLScVmRaw([
-            STLVmFlowVar(name="src", min_value="172.27.0.2" ,
-                         max_value="172.27.0.254", size=4, op="inc"),
-            STLVmFlowVar(name="src_mac", min_value=2 , max_value=3100,
-                         size=2, op="inc"),
-            STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
-            STLVmWrFlowVar(fv_name="src_mac", pkt_offset=60),
-            STLVmFixIpv4(offset = "IP")
+            STLVmFlowVar(name='src', size=4, op='inc',
+                         min_value='172.27.0.2', max_value='172.27.0.254'),
+            STLVmFlowVar(name='src_mac', min_value=2 , max_value=3100,
+                         size=2, op='inc'),
+            STLVmFlowVar(name='src_port', size=2, op='random',
+                         min_value=1024, max_value=65535),
+            STLVmWrFlowVar(fv_name='src', pkt_offset='IP.src'),
+            STLVmWrFlowVar(fv_name='src_mac', pkt_offset=60),
+            STLVmWrFlowVar(fv_name='src_port', pkt_offset='UDP.sport'),
+            STLVmFixIpv4(offset = 'IP')
         ])
 
         # for now there's a single VXLAN tunnel per direction, the above
