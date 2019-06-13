@@ -44,10 +44,9 @@
 | | [Documentation]
 | | ... | Additional teardown for tests which uses performance measurement.
 | | ...
-| | Set Test Variable | ${pkt_trace} | ${True}
 | | Run Keyword If Test Failed
 | | ... | Send traffic at specified rate | ${perf_trial_duration} | 10000pps
-| | ... | ${frame_size} | ${traffic_profile}
+| | ... | ${frame_size} | ${traffic_profile} | pkt_trace=${True}
 
 | Additional Test Tear Down Action For packet_trace
 | | [Documentation]

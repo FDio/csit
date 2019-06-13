@@ -48,7 +48,6 @@
 # software interfaces. Run KW at the start phase of VPP setup to split
 # from other "functional" configuration. This will allow modularity of this
 # library
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -66,8 +65,6 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -96,7 +93,6 @@
 # software interfaces. Run KW at the start phase of VPP setup to split
 # from other "functional" configuration. This will allow modularity of this
 # library
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -106,8 +102,6 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
 | | | Run Keyword Unless | '${if1_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -1136,45 +1130,6 @@
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
-| Initialize L2 xconnect with Vhost-User and VLAN with DPDK link bonding in 3-node circular topology
-| | [Documentation]
-| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Setup VLAN
-| | ... | on BondEthernet interfaces between DUTs. Cross connect one Vhost
-| | ... | interface with physical interface towards TG and other Vhost interface
-| | ... | with VLAN sub-interface. All interfaces are brought up.
-| | ...
-| | ... | *Arguments:*
-| | ... | - subid - ID of the sub-interface to be created. Type: string
-| | ... | - tag_rewrite - Method of tag rewrite. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Initialize L2 xconnect with Vhost-User and VLAN with DPDK link\
-| | ... | bonding in 3-node circular topology \| 10 \| pop-1 \|
-| | ...
-| | [Arguments] | ${subid} | ${tag_rewrite}
-| | ...
-| | Set interfaces in path up
-| | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
-| | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
-| | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
-| | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
-| | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
-| | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
-| | ... | ${subid}
-| | Configure L2 tag rewrite method on interfaces
-| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
-| | ... | ${tag_rewrite}
-| | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
-| | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
-| | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
-| | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
-| | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
-| | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
-
 | Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Create one
@@ -1607,8 +1562,8 @@
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
-| | ... | - /tmp/sock-\${VM_ID}-1
-| | ... | - /tmp/sock-\${VM_ID}-2
+| | ... | - /var/run/vpp/sock-\${VM_ID}-1
+| | ... | - /var/run/vpp/sock-\${VM_ID}-2
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1617,24 +1572,27 @@
 | | ...
 | | [Arguments] | ${dut} | ${nf_chain}=${1} | ${nf_nodes}=${1}
 | | ...
-| | ${bd_id2}= | Evaluate | ${nf_nodes}+1
-| | Add interface to bridge domain | ${nodes['${dut}']}
-| | ... | ${${dut}_if1} | ${1}
-| | Add interface to bridge domain | ${nodes['${dut}']}
-| | ... | ${${dut}_if2} | ${bd_id2}
-| | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
+| | ${bd_id1}= | Evaluate | ${nf_nodes} * (${nf_chain} - 1) + ${nf_chain}
+| | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
+| | ${dut_str}= | Convert To Lowercase | ${dut}
+| | Add interface to bridge domain
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | ... | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | ... | ${bd_id2}
+| | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes} + 1
 | | | ${qemu_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
-| | | ${sock1}= | Set Variable | /var/run/vpp/sock-${qemu_id}-1
-| | | ${sock2}= | Set Variable | /var/run/vpp/sock-${qemu_id}-2
-| | | Configure vhost interfaces for L2BD forwarding | ${nodes['${dut}']}
-| | | ... | ${sock1} | ${sock2}
-| | | ... | ${dut}-vhost-${qemu_id}-if1
-| | | ... | ${dut}-vhost-${qemu_id}-if2
-| | | ${bd_id2}= | Evaluate | ${nf_node}+1
-| | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-vhost-${qemu_id}-if1} | ${nf_node}
-| | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-vhost-${qemu_id}-if2} | ${bd_id2}
+| | | Configure vhost interfaces for L2BD forwarding
+| | | ... | ${nodes['${dut}']}
+| | | ... | /var/run/vpp/sock-${qemu_id}-1 | /var/run/vpp/sock-${qemu_id}-2
+| | | ... | ${dut}-vhost-${qemu_id}-if1 | ${dut}-vhost-${qemu_id}-if2
+| | | ${bd_id1}= | Evaluate | ${qemu_id} + (${nf_chain} - 1)
+| | | ${bd_id2}= | Evaluate | ${bd_id1} + 1
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${qemu_id}-if1} | ${bd_id1}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${qemu_id}-if2} | ${bd_id2}
 
 | Initialize L2 bridge domains with Vhost-User
 | | [Documentation]
@@ -1653,10 +1611,9 @@
 | | ...
 | | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Initialize L2 bridge domains with Vhost-User on node | ${dut}
-| | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
+| | | Initialize L2 bridge domains with Vhost-User on node
+| | | ... | ${dut} | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
 
 | Initialize L2 bridge domains for multiple chains with Vhost-User
 | | [Documentation]
@@ -1664,6 +1621,7 @@
 | | ... | with defined number of VNF nodes on all defined VPP nodes. Add each
 | | ... | Vhost-User interface into L2 bridge domains with learning enabled
 | | ... | with physical inteface or Vhost-User interface of another VM.
+| | ... | Put all interfaces in path up.
 | | ...
 | | ... | *Arguments:*
 | | ... | - nf_chains - Number of chains of NFs. Type: integer
@@ -1676,9 +1634,10 @@
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
 | | ...
-| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
-| | | Initialize L2 bridge domains with Vhost-User | nf_chain=${nf_chain}
-| | | ... | nf_nodes=${nf_nodes}
+| | Set interfaces in path up
+| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains} + 1
+| | | Initialize L2 bridge domains with Vhost-User
+| | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
 
 | Initialize L2 bridge domain with VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
@@ -1745,49 +1704,6 @@
 | | ... | vni_start=${vni_start} | src_ip_start=${dut2_ip_start}
 | | ... | dst_ip_start=${dut1_ip_start} | ip_step=${ip_step}
 | | ... | ip_limit=${ip_limit} | bd_id_start=${bd_id_start}
-
-| Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
-| | [Documentation]
-| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
-| | ... | Vhost-User interface into L2 bridge domains with learning enabled
-| | ... | with physical inteface.
-| | ... | Setup VXLANoIPv4 between DUTs by connecting physical and vxlan
-| | ... | interfaces on each DUT. All interfaces are brought up.
-| | ... | IPv4 addresses with prefix /24 are configured on interfaces between
-| | ... | DUTs. VXLAN sub-interfaces has same IPv4 address as interfaces.
-| | ...
-| | ... | *Arguments:*
-| | ... | - bd_id1 - Bridge domain ID. Type: integer
-| | ... | - bd_id2 - Bridge domain ID. Type: integer
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| L2 bridge domains with Vhost-User and VXLANoIPv4 initialized in a\
-| | ... | 3-node circular topology \| 1 \| 2 \|
-| | ...
-| | [Arguments] | ${bd_id1} | ${bd_id2}
-| | ...
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1
-| | ... | 24
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2
-| | ... | 24
-| | Set interfaces in path up
-| | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
-| | ... | 172.16.0.1 | 172.16.0.2
-| | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
-| | ... | 172.16.0.2 | 172.16.0.1
-| | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${dut1s_vxlan} | ${bd_id2}
-| | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${dut2s_vxlan} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 
 | Init L2 bridge domains with single DUT with Vhost-User and VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
@@ -1969,54 +1885,6 @@
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 
-| Initialize L2 bridge domains with Vhost-User and VLAN with DPDK link bonding in a 3-node circular topology
-| | [Documentation]
-| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Setup VLAN
-| | ... | on BondEthernet interfaces between DUTs. Add one Vhost-User interface
-| | ... | into L2 bridge domains with learning enabled with physical interface
-| | ... | towards TG and other Vhost-User interface into L2 bridge domains with
-| | ... | learning enabled with VLAN sub-interface. All interfaces are brought
-| | ... | up.
-| | ...
-| | ... | *Arguments:*
-| | ... | - bd_id1 - Bridge domain ID. Type: integer
-| | ... | - bd_id2 - Bridge domain ID. Type: integer
-| | ... | - subid - ID of the sub-interface to be created. Type: string
-| | ... | - tag_rewrite - Method of tag rewrite. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Initialize L2 bridge domains with Vhost-User and VLAN with DPDK\
-| | ... | link bonding in a 3-node circular topology \| 1 \| 2 \| /tmp/sock1 \
-| | ... | \| /tmp/sock2 \| 10 \| pop-1 \|
-| | ...
-| | [Arguments] | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
-| | ...
-| | Set interfaces in path up
-| | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
-| | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
-| | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
-| | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
-| | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
-| | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
-| | ... | ${subid}
-| | Configure L2 tag rewrite method on interfaces
-| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
-| | ... | ${tag_rewrite}
-| | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
-| | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
-
 | Initialize L2 bridge domains with Vhost-User and VLAN with VPP link bonding in a 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Create one
@@ -2096,6 +1964,17 @@
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 
+| Add VLAN strip offload switch off
+| | [Documentation]
+| | ... | Add VLAN Strip Offload switch off on all PCI devices.
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${dut_str}= | Convert To Lowercase | ${dut}
+| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${${dut_str}_if1_pci}
+| | | ... | vlan-strip-offload | off
+| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${${dut_str}_if2_pci}
+| | | ... | vlan-strip-offload | off
+
 | Add VLAN strip offload switch off between DUTs in 3-node single link topology
 | | [Documentation]
 | | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
@@ -2119,18 +1998,6 @@
 | | ... | vlan-strip-offload | off
 | | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_2_pci}
 | | ... | vlan-strip-offload | off
-
-| Add DPDK bonded ethernet interfaces to DUTs in 3-node single link topology
-| | [Documentation]
-| | ... | Add DPDK bonded Ethernet interfaces with mode XOR and transmit policy
-| | ... | l34 to VPP configuration file.
-| | ...
-| | Run keyword | DUT1.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut1_if2_pci}
-| | Run keyword | DUT2.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut2_if1_pci}
-
-| Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
-| | Add Eth Interface | ${dut1} | ${dut1_eth_bond_if1_name} | ifc_pfx=eth_bond
-| | Add Eth Interface | ${dut2} | ${dut2_eth_bond_if1_name} | ifc_pfx=eth_bond
 
 | Configure chains of NFs connected via vhost-user
 | | [Documentation]
