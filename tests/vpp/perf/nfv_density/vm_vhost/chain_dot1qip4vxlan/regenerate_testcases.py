@@ -15,4 +15,4 @@
 
 from resources.libraries.python.autogen.Regenerator import Regenerator
 
-Regenerator().regenerate_glob("*.robot", protocol="ethip4vxlan")
+Regenerator().regenerate_glob("*.robot", protocol="dot1qip4vxlan")
