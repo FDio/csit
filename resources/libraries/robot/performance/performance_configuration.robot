@@ -1619,8 +1619,8 @@
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
-| | ... | - /tmp/sock-\${VM_ID}-1
-| | ... | - /tmp/sock-\${VM_ID}-2
+| | ... | - /var/run/vpp/sock-\${VM_ID}-1
+| | ... | - /var/run/vpp/sock-\${VM_ID}-2
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1629,24 +1629,27 @@
 | | ...
 | | [Arguments] | ${dut} | ${nf_chain}=${1} | ${nf_nodes}=${1}
 | | ...
-| | ${bd_id2}= | Evaluate | ${nf_nodes}+1
-| | Add interface to bridge domain | ${nodes['${dut}']}
-| | ... | ${${dut}_if1} | ${1}
-| | Add interface to bridge domain | ${nodes['${dut}']}
-| | ... | ${${dut}_if2} | ${bd_id2}
-| | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
+| | ${bd_id1}= | Evaluate | ${nf_nodes} * (${nf_chain} - 1) + ${nf_chain}
+| | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
+| | ${dut_str}= | Convert To Lowercase | ${dut}
+| | Add interface to bridge domain
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | ... | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | ... | ${bd_id2}
+| | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes} + 1
 | | | ${qemu_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
-| | | ${sock1}= | Set Variable | /var/run/vpp/sock-${qemu_id}-1
-| | | ${sock2}= | Set Variable | /var/run/vpp/sock-${qemu_id}-2
-| | | Configure vhost interfaces for L2BD forwarding | ${nodes['${dut}']}
-| | | ... | ${sock1} | ${sock2}
-| | | ... | ${dut}-vhost-${qemu_id}-if1
-| | | ... | ${dut}-vhost-${qemu_id}-if2
-| | | ${bd_id2}= | Evaluate | ${nf_node}+1
-| | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-vhost-${qemu_id}-if1} | ${nf_node}
-| | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-vhost-${qemu_id}-if2} | ${bd_id2}
+| | | Configure vhost interfaces for L2BD forwarding
+| | | ... | ${nodes['${dut}']}
+| | | ... | /var/run/vpp/sock-${qemu_id}-1 | /var/run/vpp/sock-${qemu_id}-2
+| | | ... | ${dut}-vhost-${qemu_id}-if1 | ${dut}-vhost-${qemu_id}-if2
+| | | ${bd_id1}= | Evaluate | ${qemu_id} + (${nf_chain} - 1)
+| | | ${bd_id2}= | Evaluate | ${bd_id1} + 1
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${qemu_id}-if1} | ${bd_id1}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${qemu_id}-if2} | ${bd_id2}
 
 | Initialize L2 bridge domains with Vhost-User
 | | [Documentation]
@@ -1665,10 +1668,9 @@
 | | ...
 | | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Initialize L2 bridge domains with Vhost-User on node | ${dut}
-| | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
+| | | Initialize L2 bridge domains with Vhost-User on node
+| | | ... | ${dut} | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
 
 | Initialize L2 bridge domains for multiple chains with Vhost-User
 | | [Documentation]
@@ -1676,6 +1678,7 @@
 | | ... | with defined number of VNF nodes on all defined VPP nodes. Add each
 | | ... | Vhost-User interface into L2 bridge domains with learning enabled
 | | ... | with physical inteface or Vhost-User interface of another VM.
+| | ... | Put all interfaces in path up.
 | | ...
 | | ... | *Arguments:*
 | | ... | - nf_chains - Number of chains of NFs. Type: integer
@@ -1688,9 +1691,10 @@
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
 | | ...
-| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
-| | | Initialize L2 bridge domains with Vhost-User | nf_chain=${nf_chain}
-| | | ... | nf_nodes=${nf_nodes}
+| | Set interfaces in path up
+| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains} + 1
+| | | Initialize L2 bridge domains with Vhost-User
+| | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
 
 | Initialize L2 bridge domain with VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
@@ -2057,6 +2061,17 @@
 | | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+
+| Add VLAN strip offload switch off
+| | [Documentation]
+| | ... | Add VLAN Strip Offload switch off on all PCI devices.
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${dut_str}= | Convert To Lowercase | ${dut}
+| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${${dut_str}_if1_pci}
+| | | ... | vlan-strip-offload | off
+| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${${dut_str}_if2_pci}
+| | | ... | vlan-strip-offload | off
 
 | Add VLAN strip offload switch off between DUTs in 3-node single link topology
 | | [Documentation]
@@ -2897,7 +2912,7 @@
 | | | ${acl} = | Run Keyword If | '${acl}' == '${EMPTY}'
 | | | ... | Set Variable | ipv4 ${acl_action} src ${subnet}
 | | | ... | ELSE
-| | | ... | Catenate | SEPARATOR=, | ${acl}
+| | | ... | Catenate | SEPARATOR=", " | ${acl}
 | | | ... | ipv4 ${acl_action} src ${subnet}
 | | Add Replace Acl Multi Entries | ${dut} | rules=${acl}
 | | @{acl_list} = | Create List | ${0}
