@@ -711,18 +711,18 @@ class InterfaceUtil(object):
         """Create VLAN sub-interface on node.
 
         :param node: Node to add VLAN subinterface on.
-        :param interface: Interface name on which create VLAN subinterface.
+        :param interface: Interface name or index on which create VLAN
+            subinterface.
         :param vlan: VLAN ID of the subinterface to be created.
         :type node: dict
-        :type interface: str
+        :type interface: str on int
         :type vlan: int
         :returns: Name and index of created subinterface.
         :rtype: tuple
         :raises RuntimeError: if it is unable to create VLAN subinterface on the
-            node.
+            node or interface cannot be converted.
         """
-        iface_key = Topology.get_interface_by_name(node, interface)
-        sw_if_index = Topology.get_interface_sw_index(node, iface_key)
+        sw_if_index = InterfaceUtil.get_interface_index(node, interface)
 
         cmd = 'create_vlan_subif'
         args = dict(sw_if_index=sw_if_index,
@@ -780,6 +780,33 @@ class InterfaceUtil(object):
         Topology.update_interface_name(node, if_key, ifc_name)
 
         return sw_if_index
+
+    @staticmethod
+    def set_vxlan_bypass(node, interface=None):
+        """Add the 'ip4-vxlan-bypass' graph node for a given interface.
+
+        By adding the IPv4 vxlan-bypass graph node to an interface, the node
+        checks for and validate input vxlan packet and bypass ip4-lookup,
+        ip4-local, ip4-udp-lookup nodes to speedup vxlan packet forwarding.
+        This node will cause extra overhead to for non-vxlan packets which is
+        kept at a minimum.
+
+        :param node: Node where to set VXLAN bypass.
+        :param interface: Numeric index or name string of a specific interface.
+        :type node: dict
+        :type interface: int or str
+        :raises RuntimeError: if it failed to set VXLAN bypass on interface.
+        """
+        sw_if_index = InterfaceUtil.get_interface_index(node, interface)
+
+        cmd = 'sw_interface_set_vxlan_bypass'
+        args = dict(is_ipv6=0,
+                    sw_if_index=sw_if_index,
+                    enable=1)
+        err_msg = 'Failed to set VXLAN bypass on interface on host {host}'.\
+            format(host=node['host'])
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg)
 
     @staticmethod
     def vxlan_dump(node, interface=None):
