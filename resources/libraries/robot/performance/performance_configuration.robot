@@ -1571,6 +1571,65 @@
 | | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | Configure MACIP ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
+| Initialize underlay if
+| | [Documentation]
+| | ... | All interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - nf_chains - Number of NF chains. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize underlay if \| DUT1 \| 1 \|
+| | ...
+| | [Arguments] | ${dut} | ${nf_chains}=${1}
+| | ...
+| | ${dut_str}= | Convert To Lowercase | ${dut}
+| | Set Test Variable | ${${dut_str}_if_${nf_chain}_1} | ${${dut_str}_if1}
+| | Set Test Variable | ${${dut_str}_if_${nf_chain}_2} | ${${dut_str}_if2}
+
+| Initialize underlay vxlanoipv4
+| | [Documentation]
+| | ... | Setup VXLANoIPv4 between TG and DUTs by connecting physical and vxlan
+| | ... | interfaces on each DUT. All interfaces are brought up.
+| | ... | IPv4 addresses with prefix /24 are configured on interfaces towards
+| | ... | TG. VXLAN sub-interfaces has same IPv4 address as interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - nf_chain - NF chain. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize underlay vxlanoipv4 \| DUT1 \| 1 \|
+| | ...
+| | [Arguments] | ${dut} | ${nf_chain}=${1}
+| | ...
+| | ${dut_str}= | Convert To Lowercase | ${dut}
+| | ${s}= | Evaluate | ${nf_chain} - 1
+| | ${v}= | Evaluate | 24
+| | Configure IP addresses on interfaces
+| | ... | ${nodes['${dut}']} | ${${dut_str}_if1} | 172.16.${s}.1 | 24
+| | Configure IP addresses on interfaces
+| | ... | ${nodes['${dut}']} | ${${dut_str}_if2} | 172.26.${s}.1 | 24
+| | ${vxlanoipv4_1}= | Create VXLAN interface
+| | ... | ${nodes['${dut}']} | ${v} | 172.16.${s}.1 | 172.17.${s}.2
+| | ${vxlanoipv4_2}= | Create VXLAN interface
+| | ... | ${nodes['${dut}']} | ${v} | 172.26.${s}.1 | 172.27.${s}.2
+| | Add arp on dut
+| | ... | ${nodes['${dut}']} | ${${dut_str}_if1} | 172.16.${s}.2 | ${tg_if1_mac}
+| | Add arp on dut
+| | ... | ${nodes['${dut}']} | ${${dut_str}_if2} | 172.26.${s}.2 | ${tg_if2_mac}
+| | Vpp Route Add
+| | ... | ${nodes['${dut}']} | 172.17.${s}.0 | 24 | gateway=172.16.${s}.2
+| | ... | interface=${${dut_str}_if1}
+| | Vpp Route Add
+| | ... | ${nodes['${dut}']} | 172.27.${s}.0 | 24 | gateway=172.26.${s}.2
+| | ... | interface=${${dut_str}_if2}
+| | Set Test Variable | ${${dut_str}_vxlanoipv4_${nf_chain}_1} | ${vxlanoipv4_1}
+| | Set Test Variable | ${${dut_str}_vxlanoipv4_${nf_chain}_2} | ${vxlanoipv4_2}
+
 | Initialize L2 bridge domains with Vhost-User on node
 | | [Documentation]
 | | ... | Create pairs of Vhost-User interfaces for defined number of VMs on
@@ -1582,37 +1641,42 @@
 | | ... | - dut - DUT node. Type: string
 | | ... | - nf_chain - NF chain. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - underlay - Underlay encapsulation [if|vxlanoipv4]. Type: string
 | | ...
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
-| | ... | - /tmp/sock-\${VM_ID}-1
-| | ... | - /tmp/sock-\${VM_ID}-2
+| | ... | - /var/run/vpp/sock-\${VM_ID}-1
+| | ... | - /var/run/vpp/sock-\${VM_ID}-2
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 bridge domains with Vhost-User on node \| DUT1 \
-| | ... | \| 1 \| 1 \|
+| | ... | \| 1 \| 1 \| if
 | | ...
 | | [Arguments] | ${dut} | ${nf_chain}=${1} | ${nf_nodes}=${1}
+| | ... | ${underlay}=if
 | | ...
-| | ${bd_id2}= | Evaluate | ${nf_nodes}+1
-| | Add interface to bridge domain | ${nodes['${dut}']}
-| | ... | ${${dut}_if1} | ${1}
-| | Add interface to bridge domain | ${nodes['${dut}']}
-| | ... | ${${dut}_if2} | ${bd_id2}
-| | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
+| | ${bd_id1}= | Evaluate | ${nf_nodes} * (${nf_chain} - 1) + ${nf_chain}
+| | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
+| | ${dut_str}= | Convert To Lowercase | ${dut}
+| | Add interface to bridge domain
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${underlay}_${nf_chain}_1}
+| | ... | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${underlay}_${nf_chain}_2}
+| | ... | ${bd_id2}
+| | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes} + 1
 | | | ${qemu_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
-| | | ${sock1}= | Set Variable | /var/run/vpp/sock-${qemu_id}-1
-| | | ${sock2}= | Set Variable | /var/run/vpp/sock-${qemu_id}-2
-| | | Configure vhost interfaces for L2BD forwarding | ${nodes['${dut}']}
-| | | ... | ${sock1} | ${sock2}
-| | | ... | ${dut}-vhost-${qemu_id}-if1
-| | | ... | ${dut}-vhost-${qemu_id}-if2
-| | | ${bd_id2}= | Evaluate | ${nf_node}+1
-| | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-vhost-${qemu_id}-if1} | ${nf_node}
-| | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-vhost-${qemu_id}-if2} | ${bd_id2}
+| | | Configure vhost interfaces for L2BD forwarding
+| | | ... | ${nodes['${dut}']}
+| | | ... | /var/run/vpp/sock-${qemu_id}-1 | /var/run/vpp/sock-${qemu_id}-2
+| | | ... | ${dut}-vhost-${qemu_id}-if1 | ${dut}-vhost-${qemu_id}-if2
+| | | ${bd_id1}= | Evaluate | ${qemu_id} + (${nf_chain} - 1)
+| | | ${bd_id2}= | Evaluate | ${bd_id1} + 1
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${qemu_id}-if1} | ${bd_id1}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut}-vhost-${qemu_id}-if2} | ${bd_id2}
 
 | Initialize L2 bridge domains with Vhost-User
 | | [Documentation]
@@ -1624,17 +1688,21 @@
 | | ... | *Arguments:*
 | | ... | - nf_chain - NF chain. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - underlay - Underlay encapsulation [if|vxlanoipv4]. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize L2 bridge domains with Vhost-User \| 1 \| 1 \|
+| | ... | \| Initialize L2 bridge domains with Vhost-User \| 1 \| 1 \| if
 | | ...
-| | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1}
+| | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1} | ${underlay}=if
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Initialize L2 bridge domains with Vhost-User on node | ${dut}
-| | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
+| | | Run Keyword | Initialize underlay ${underlay}
+| | | ... | ${dut} | nf_chain=${nf_chain}
+| | | Initialize L2 bridge domains with Vhost-User on node
+| | | ... | ${dut} | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
+| | | ... | underlay=${underlay}
 
 | Initialize L2 bridge domains for multiple chains with Vhost-User
 | | [Documentation]
@@ -1646,17 +1714,19 @@
 | | ... | *Arguments:*
 | | ... | - nf_chains - Number of chains of NFs. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - underlay - Underlay encapsulation [if|vxlanoipv4]. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 bridge domains for multiple chains with Vhost-User \
-| | ... | \| 1 \| 1 \|
+| | ... | \| 1 \| 1 \| if
 | | ...
-| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${underlay}=if
 | | ...
-| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
-| | | Initialize L2 bridge domains with Vhost-User | nf_chain=${nf_chain}
-| | | ... | nf_nodes=${nf_nodes}
+| | Set interfaces in path up
+| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains} + 1
+| | | Initialize L2 bridge domains with Vhost-User
+| | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes} | underlay=${underlay}
 
 | Initialize L2 bridge domain with VXLANoIPv4 in 3-node circular topology
 | | [Documentation]
