@@ -22,6 +22,30 @@
       "revId": "a46f7f638f8b0c90a2849b358863f050a634391e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d5cdb09_a76c4819",
+        "filename": "topologies/available/lf_3n_hsw_testbed1.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-13T16:18:01Z",
+      "side": 1,
+      "message": "But I see the subsequent actions are failing:\n16:04:09 SSHTimeout: Timeout exception during execution of command: sudo -S sh -c \u0027echo 0000:0a:00.1 | tee /sys/bus/pci/drivers/i40e/bind\u0027",
+      "parentUuid": "dfbabb94_c9265f46",
+      "range": {
+        "startLine": 143,
+        "startChar": 8,
+        "endLine": 143,
+        "endChar": 20
+      },
+      "revId": "a46f7f638f8b0c90a2849b358863f050a634391e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
