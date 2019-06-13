@@ -63,7 +63,8 @@
 | ${dut1_bd_id2}= | 2
 | ${dut2_bd_id1}= | 1
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-ethip4-vxlansrc253
+| ${traffic_profile}=
+| ... | trex-sl-ethip4vxlan-ip4src${nf_chains}udpsrcrnd
 | ${acl_type}= | ${EMPTY}
 
 *** Keywords ***
@@ -84,11 +85,11 @@
 | | Set Test Variable | \${frame_size}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | &{vxlan1} = | Create Dictionary | vni=24 | vtep=172.17.0.2
-| | &{vxlan2} = | Create Dictionary | vni=24 | vtep=172.27.0.2
+| | &{vxlan1} = | Create Dictionary | vni=0 | vtep=172.17.0.2
+| | &{vxlan2} = | Create Dictionary | vni=0 | vtep=172.27.0.2
 | | @{dut1_vxlans} = | Create List | ${vxlan1}
 | | @{dut2_vxlans} = | Create List | ${vxlan2}
 | | Set interfaces in path up
