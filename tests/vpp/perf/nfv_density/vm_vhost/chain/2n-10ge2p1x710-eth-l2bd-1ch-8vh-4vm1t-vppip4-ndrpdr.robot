@@ -55,6 +55,8 @@
 | ${overhead}= | ${0}
 | ${nf_dtcr}= | ${2}
 | ${nf_dtc}= | ${0.5}
+| ${nf_chains}= | ${1}
+| ${nf_nodes}= | ${4}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n3n-ethip4-ip4src254-1c4n
 
@@ -79,10 +81,12 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains for multiple chains with Vhost-User
-| | ... | nf_chains=${1} | nf_nodes=${4}
+| | When Initialize layer interface
+| | ... | count=${nf_chains}
+| | And Initialize L2 bridge domains for multiple chains with Vhost-User
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
-| | ... | nf_chains=${1} | nf_nodes=${4} | jumbo=${jumbo}
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${False} | vnf=vpp_chain_ip4
 | | Then Find NDR and PDR intervals using optimized search
 
