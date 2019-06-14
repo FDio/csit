@@ -118,15 +118,6 @@ class IPsecUtil(object):
         return CryptoAlg.AES_CBC_128
 
     @staticmethod
-    def crypto_alg_aes_cbc_192():
-        """Return encryption algorithm aes-cbc-192.
-
-        :returns: CryptoAlg enum AES_CBC_192 objec.
-        :rtype: CryptoAlg
-        """
-        return CryptoAlg.AES_CBC_192
-
-    @staticmethod
     def crypto_alg_aes_cbc_256():
         """Return encryption algorithm aes-cbc-256.
 
@@ -176,15 +167,6 @@ class IPsecUtil(object):
         return crypto_alg.scapy_name
 
     @staticmethod
-    def integ_alg_sha1_96():
-        """Return integrity algorithm SHA1-96.
-
-        :returns: IntegAlg enum SHA1_96 object.
-        :rtype: IntegAlg
-        """
-        return IntegAlg.SHA1_96
-
-    @staticmethod
     def integ_alg_sha_256_128():
         """Return integrity algorithm SHA-256-128.
 
@@ -192,15 +174,6 @@ class IPsecUtil(object):
         :rtype: IntegAlg
         """
         return IntegAlg.SHA_256_128
-
-    @staticmethod
-    def integ_alg_sha_384_192():
-        """Return integrity algorithm SHA-384-192.
-
-        :returns: IntegAlg enum SHA_384_192 object.
-        :rtype: IntegAlg
-        """
-        return IntegAlg.SHA_384_192
 
     @staticmethod
     def integ_alg_sha_512_256():
@@ -630,7 +603,8 @@ class IPsecUtil(object):
                 tunnel = (
                     'exec ipsec policy add spd {spd_id} priority {priority} '
                     '{direction} action protect sa {sa_id} '
-                    'remote-ip-range {raddr_s} - {raddr_e}\n'.
+                    'remote-ip-range {raddr_s} - {raddr_e} '
+                    'local-ip-range 0.0.0.0 - 255.255.255.255\n'.
                     format(
                         spd_id=spd_id,
                         priority=priority,
@@ -837,10 +811,10 @@ class IPsecUtil(object):
             nodes['DUT1'], spd_id, interface1)
         IPsecUtil.vpp_ipsec_policy_add(
             nodes['DUT1'], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
-            proto=50)
+            proto=50, laddr_range='100.0.0.0/8', raddr_range='100.0.0.0/8')
         IPsecUtil.vpp_ipsec_policy_add(
             nodes['DUT1'], spd_id, p_hi, PolicyAction.BYPASS, inbound=True,
-            proto=50)
+            proto=50, laddr_range='100.0.0.0/8', raddr_range='100.0.0.0/8')
 
         IPsecUtil.vpp_ipsec_add_spd(
             nodes['DUT2'], spd_id)
@@ -848,10 +822,10 @@ class IPsecUtil(object):
             nodes['DUT2'], spd_id, interface2)
         IPsecUtil.vpp_ipsec_policy_add(
             nodes['DUT2'], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
-            proto=50)
+            proto=50, laddr_range='100.0.0.0/8', raddr_range='100.0.0.0/8')
         IPsecUtil.vpp_ipsec_policy_add(
             nodes['DUT2'], spd_id, p_hi, PolicyAction.BYPASS, inbound=True,
-            proto=50)
+            proto=50, laddr_range='100.0.0.0/8', raddr_range='100.0.0.0/8')
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
             nodes['DUT1'], n_tunnels, sa_id_1, spi_1, crypto_alg, crypto_key,
