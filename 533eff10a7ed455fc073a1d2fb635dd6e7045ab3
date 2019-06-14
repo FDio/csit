@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a18e78e7_e6546f48",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-14T15:09:55Z",
+      "side": 1,
+      "message": "This still does not guarantee people will tests against all registered builds on their ordinary edits.\nBut it is a start. We can even create an automated \"create new CSIT oper branch and vote -1 on all VPP changes\" job to run everytime a Change affecting this file is merged.",
+      "range": {
+        "startLine": 220,
+        "startChar": 21,
+        "endLine": 220,
+        "endChar": 40
+      },
+      "revId": "533eff10a7ed455fc073a1d2fb635dd6e7045ab3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
