@@ -446,6 +446,21 @@ class IPUtil(object):
             else dict(ip4=ip_addr.packed)
 
     @staticmethod
+    def create_ip_address_object(ip_addr):
+        """Create IP address object.
+
+        :param ip_addr: IPv4 or IPv6 address
+        :type ip_addr: IPv4Address or IPv6Address
+        :returns: IP address object.
+        :rtype: dict
+        """
+        return dict(
+            af=getattr(
+                AddressFamily, 'ADDRESS_IP6' if ip_addr.version == 6
+                else 'ADDRESS_IP4').value,
+            un=IPUtil.union_addr(ip_addr))
+
+    @staticmethod
     def compose_vpp_route_structure(node, network, prefix_len, **kwargs):
         """Create route object for ip_route_add_del api call.
 
@@ -476,11 +491,7 @@ class IPUtil(object):
 
         net_addr = ip_address(unicode(network))
 
-        addr = dict(
-            af=getattr(
-                AddressFamily, 'ADDRESS_IP6' if net_addr.version == 6
-                else 'ADDRESS_IP4').value,
-            un=None)
+        addr = IPUtil.create_ip_address_object(net_addr)
         prefix = dict(
             len=int(prefix_len),
             address=addr)
@@ -517,7 +528,6 @@ class IPUtil(object):
             prefix=prefix,
             n_paths=len(paths),
             paths=paths)
-
         return route
 
     @staticmethod

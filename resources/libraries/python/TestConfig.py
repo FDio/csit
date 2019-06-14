@@ -179,9 +179,9 @@ class TestConfig(object):
                                 "has been reached.")
                     vxlan_count = i
                     break
-                args1['address'] = src_ip.packed
-                args2['src_address'] = src_ip.packed
-                args2['dst_address'] = dst_ip.packed
+                args1['address'] = getattr(src_ip, 'packed')
+                args2['src_address'] = getattr(src_ip, 'packed')
+                args2['dst_address'] = getattr(dst_ip, 'packed')
                 args2['vni'] = int(vni_start) + i
                 args3['vlan_id'] = i + 1
                 history = False if 1 < i < vxlan_count else True
