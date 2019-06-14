@@ -77,14 +77,14 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip4 | dst
+| | ... | ${dut1} | ip4 | dst | 14141402
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n}
 | | ... | ip4 | dst | 20.20.20.2
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1} | ${dut1_if1} | ip4 | ${table_idx}
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut2} | ip4 | dst
+| | ... | ${dut2} | ip4 | dst | 0a0a0a02
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut2} | permit | ${table_idx} | ${skip_n} | ${match_n}
 | | ... | ip4 | dst | 10.10.10.2
