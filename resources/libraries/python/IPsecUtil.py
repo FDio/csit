@@ -14,11 +14,13 @@
 """IPsec utilities library."""
 
 import os
-from random import choice
-from string import letters
-from ipaddress import ip_network, ip_address
 
 from enum import Enum, IntEnum
+from ipaddress import ip_network, ip_address
+from ipaddress import IPv4Network, IPv6Network, IPv4Address, IPv6Address
+from ipaddress import AddressValueError, NetmaskValueError
+from random import choice
+from string import letters
 
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.topology import Topology
@@ -36,6 +38,7 @@ def gen_key(length):
     """
     return ''.join(choice(letters) for _ in range(length)).encode('hex')
 
+
 class PolicyAction(Enum):
     """Policy actions."""
     BYPASS = 'bypass'
@@ -48,26 +51,26 @@ class PolicyAction(Enum):
 
 class CryptoAlg(Enum):
     """Encryption algorithms."""
-    AES_CBC_128 = ('aes-cbc-128', 'AES-CBC', 16)
-    AES_CBC_256 = ('aes-cbc-256', 'AES-CBC', 32)
-    AES_GCM_128 = ('aes-gcm-128', 'AES-GCM', 16)
-    AES_GCM_256 = ('aes-gcm-256', 'AES-GCM', 32)
+    AES_CBC_128 = ('aes-cbc-128', 1, 'AES-CBC', 16)
+    AES_CBC_256 = ('aes-cbc-256', 3, 'AES-CBC', 32)
+    AES_GCM_128 = ('aes-gcm-128', 7, 'AES-GCM', 16)
+    AES_GCM_256 = ('aes-gcm-256', 9, 'AES-GCM', 32)
 
-    def __init__(self, alg_name, scapy_name, key_len):
+    def __init__(self, alg_name, alg_int_repr, scapy_name, key_len):
         self.alg_name = alg_name
+        self.alg_int_repr = alg_int_repr
         self.scapy_name = scapy_name
         self.key_len = key_len
 
 
 class IntegAlg(Enum):
     """Integrity algorithm."""
-    SHA_256_128 = ('sha-256-128', 'SHA2-256-128', 32)
-    SHA_512_256 = ('sha-512-256', 'SHA2-512-256', 64)
-    AES_GCM_128 = ('aes-gcm-128', 'AES-GCM', 16)
-    AES_GCM_256 = ('aes-gcm-256', 'AES-GCM', 32)
+    SHA_256_128 = ('sha-256-128', 4, 'SHA2-256-128', 32)
+    SHA_512_256 = ('sha-512-256', 6, 'SHA2-512-256', 64)
 
-    def __init__(self, alg_name, scapy_name, key_len):
+    def __init__(self, alg_name, alg_int_repr, scapy_name, key_len):
         self.alg_name = alg_name
+        self.alg_int_repr = alg_int_repr
         self.scapy_name = scapy_name
         self.key_len = key_len
 
@@ -76,6 +79,13 @@ class IPsecProto(IntEnum):
     """IPsec protocol."""
     ESP = 1
     SEC_AH = 0
+
+
+class IPsecSadFlags(IntEnum):
+    """IPsec Security Association Database flags."""
+    IPSEC_API_SAD_FLAG_NONE = 0
+    IPSEC_API_SAD_FLAG_IS_TUNNEL = 4
+    IPSEC_API_SAD_FLAG_IS_TUNNEL_V6 = 8
 
 
 class IPsecUtil(object):
@@ -255,18 +265,13 @@ class IPsecUtil(object):
         :raises RuntimeError: If failed to select IPsec backend or if no API
             reply received.
         """
-
         cmd = 'ipsec_select_backend'
-        cmd_reply = 'ipsec_select_backend_reply'
         err_msg = 'Failed to select IPsec backend on host {host}'.format(
             host=node['host'])
         args = dict(protocol=protocol, index=index)
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).execute_should_pass(err_msg)
-        data = papi_resp.reply[0]['api_reply'][cmd_reply]
-        if data['retval'] != 0:
-            raise RuntimeError('Failed to select IPsec backend on host {host}'.
-                               format(host=node['host']))
+            papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
     @staticmethod
     def vpp_ipsec_backend_dump(node):
@@ -275,17 +280,15 @@ class IPsecUtil(object):
         :param node: VPP node to dump IPsec backend on.
         :type node: dict
         """
-
         err_msg = 'Failed to dump IPsec backends on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add('ipsec_backend_dump').execute_should_pass(
-                err_msg, process_reply=False)
+            papi_exec.add('ipsec_backend_dump').get_dump(err_msg)
 
     @staticmethod
-    def vpp_ipsec_add_sad_entry(node, sad_id, spi, crypto_alg, crypto_key,
-                                integ_alg, integ_key, tunnel_src=None,
-                                tunnel_dst=None):
+    def vpp_ipsec_add_sad_entry(
+            node, sad_id, spi, crypto_alg, crypto_key, integ_alg=None,
+            integ_key='', tunnel_src=None, tunnel_dst=None):
         """Create Security Association Database entry on the VPP node.
 
         :param node: VPP node to add SAD entry on.
@@ -309,20 +312,48 @@ class IPsecUtil(object):
         :type tunnel_src: str
         :type tunnel_dst: str
         """
-        ckey = crypto_key.encode('hex')
-        ikey = integ_key.encode('hex')
-        tunnel = 'tunnel-src {0} tunnel-dst {1}'.format(tunnel_src, tunnel_dst)\
-            if tunnel_src is not None and tunnel_dst is not None else ''
+        ckey = dict(
+            length=len(crypto_key),
+            data=crypto_key.encode('hex'))
+        ikey = dict(
+            length=len(integ_key),
+            data=integ_key.encode('hex') if integ_key else 0)
 
-        out = VatExecutor.cmd_from_template(node,
-                                            'ipsec/ipsec_sad_add_entry.vat',
-                                            sad_id=sad_id, spi=spi,
-                                            calg=crypto_alg.alg_name, ckey=ckey,
-                                            ialg=integ_alg.alg_name, ikey=ikey,
-                                            tunnel=tunnel)
-        VatJsonUtil.verify_vat_retval(
-            out[0],
-            err_msg='Add SAD entry failed on {0}'.format(node['host']))
+        if tunnel_src and tunnel_dst:
+            try:
+                src_addr = IPv6Address(unicode(tunnel_src))
+                dst_addr = IPv6Address(unicode(tunnel_dst))
+                flag = IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL_V6
+            except (AddressValueError, NetmaskValueError):
+                src_addr = IPv4Address(unicode(tunnel_src))
+                dst_addr = IPv4Address(unicode(tunnel_dst))
+                flag = IPsecSadFlags.IPSEC_API_SAD_FLAG_IS_TUNNEL
+        else:
+            src_addr = 0
+            dst_addr = 0
+            flag = IPsecSadFlags.IPSEC_API_SAD_FLAG_NONE
+
+        cmd = 'ipsec_sad_entry_add_del'
+        err_msg = 'Failed to add Security Association Database entry on ' \
+                  'host {host}'.format(host=node['host'])
+        sad_entry = dict(
+            sad_id=int(sad_id),
+            spi=int(spi),
+            crypto_algorithm=crypto_alg.alg_int_repr,
+            crypto_key=ckey,
+            integrity_algorithm=integ_alg.alg_int_repr,
+            integrity_key=ikey,
+            flags=int(flag),
+            tunnel_src=str(src_addr),
+            tunnel_dst=str(dst_addr),
+            protocol=int(IPsecProto.ESP),
+        )
+        args = dict(
+            is_add=1,
+            entry=sad_entry)
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
 
     @staticmethod
     def vpp_ipsec_add_sad_entries(node, n_entries, sad_id, spi, crypto_alg,
@@ -663,17 +694,19 @@ class IPsecUtil(object):
         with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
             for i in range(0, n_tunnels):
                 ckey = gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
-                ikey = gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
-                integ = ''
-                if not crypto_alg.alg_name.startswith('aes-gcm-'):
+                if integ_alg:
+                    ikey = gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
                     integ = (
                         'integ_alg {integ_alg} '
                         'local_integ_key {local_integ_key} '
                         'remote_integ_key {remote_integ_key} '
-                        .format(
+                            .format(
                             integ_alg=integ_alg.alg_name,
                             local_integ_key=ikey,
                             remote_integ_key=ikey))
+                else:
+                    integ = ''
+
                 tmp_f1.write(
                     'exec set interface ip address {uifc} {laddr}/24\n'
                     'ipsec_tunnel_if_add_del '
