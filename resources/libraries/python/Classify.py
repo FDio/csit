@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,6 +17,7 @@ from robot.api import logger
 
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.topology import Topology
+from resources.libraries.python.PapiExecutor import PapiExecutor
 
 
 class Classify(object):
@@ -25,6 +26,10 @@ class Classify(object):
     @staticmethod
     def vpp_creates_classify_table_l3(node, ip_version, direction):
         """Create classify table for IP address filtering.
+
+        func, perf
+
+        classify_add_del_table
 
         :param node: VPP node to create classify table.
         :param ip_version: Version of IP protocol.
@@ -60,6 +65,10 @@ class Classify(object):
     def vpp_creates_classify_table_l2(node, direction):
         """Create classify table for MAC address filtering.
 
+        Only func
+
+        classify_add_del_table
+
         :param node: VPP node to create classify table.
         :param direction: Direction of traffic - src/dst.
         :type node: dict
@@ -90,6 +99,10 @@ class Classify(object):
     @staticmethod
     def vpp_creates_classify_table_hex(node, hex_mask):
         """Create classify table with hex mask.
+
+        Only func
+
+        classify_add_del_table
 
         :param node: VPP node to create classify table based on hex mask.
         :param hex_mask: Classify hex mask.
@@ -124,6 +137,10 @@ class Classify(object):
                                            direction, address):
         """Configuration of classify session for IP address filtering.
 
+        func, perf
+
+        classify_add_del_session
+
         :param node: VPP node to setup classify session.
         :param acl_method: ACL method - deny/permit.
         :param table_index: Classify table index.
@@ -156,6 +173,10 @@ class Classify(object):
                                            skip_n, match_n, direction, address):
         """Configuration of classify session for MAC address filtering.
 
+        Only func
+
+        classify_add_del_session
+
         :param node: VPP node to setup classify session.
         :param acl_method: ACL method - deny/permit.
         :param table_index: Classify table index.
@@ -186,6 +207,10 @@ class Classify(object):
                                             skip_n, match_n, hex_value):
         """Configuration of classify session with hex value.
 
+        Only func
+
+        classify_add_del_session
+
         :param node: VPP node to setup classify session.
         :param acl_method: ACL method - deny/permit.
         :param table_index: Classify table index.
@@ -213,6 +238,10 @@ class Classify(object):
                                                 skip_n, match_n, match,
                                                 match2=''):
         """Configuration of classify session.
+
+        Only func
+
+        classify_add_del_session
 
         :param node: VPP node to setup classify session.
         :param session_type: Session type - hit-next, l2-hit-next, acl-hit-next
@@ -326,6 +355,10 @@ class Classify(object):
     def get_classify_table_data(node, table_index):
         """Retrieve settings for classify table by ID.
 
+        Only HC func
+
+        classify_table_info
+
         :param node: VPP node to retrieve classify data from.
         :param table_index: Index of a specific classify table.
         :type node: dict
@@ -333,6 +366,19 @@ class Classify(object):
         :returns: Classify table settings.
         :rtype: dict
         """
+        cmd = 'classify_table_info'
+        err_msg = "Failed to get 'classify_table_info' on host {host}".format(
+            host=node['host'])
+        args = dict(
+            table_id=int(table_index)
+        )
+        with PapiExecutor(node) as papi_exec:
+            rpl = papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
+
+        # TODO: Process and return the data
+
+        # TODO: Remove
         with VatTerminal(node) as vat:
             data = vat.vat_terminal_exec_cmd_from_template(
                 "classify_table_info.vat",
@@ -345,6 +391,10 @@ class Classify(object):
         """Retrieve settings for all classify sessions in a table,
         or for a specific classify session.
 
+        Only HC func
+
+        classify_session_dump
+
         :param node: VPP node to retrieve classify data from.
         :param table_index: Index of a classify table.
         :param session_index: Index of a specific classify session. (Optional)
@@ -355,6 +405,12 @@ class Classify(object):
          for a specific classify session.
         :rtype: list or dict
         """
+        with PapiExecutor(node) as papi_exec:
+            dump = papi_exec.add("classify_session_dump").get_dump()
+
+        # TODO: Process and log the dump
+
+        # TODO: Remove
         with VatTerminal(node) as vat:
             data = vat.vat_terminal_exec_cmd_from_template(
                 "classify_session_dump.vat",
@@ -369,9 +425,19 @@ class Classify(object):
         """Retrieve configured settings from the ACL plugin
          and write to robot log.
 
+         perf, HC func
+
+         acl_dump
+
         :param node: VPP node.
         :type node: dict
         """
+        with PapiExecutor(node) as papi_exec:
+            dump = papi_exec.add("acl_dump").get_dump()
+
+        # TODO: Process and log the dump
+
+        # TODO: Remove
         try:
             VatExecutor.cmd_from_template(
                 node, "acl_plugin/acl_dump.vat")
@@ -384,9 +450,19 @@ class Classify(object):
         """Retrieve interface assignment from the ACL plugin
         and write to robot log.
 
+        perf, HC func
+
+        acl_interface_list_dump
+
         :param node: VPP node.
         :type node: dict
         """
+        with PapiExecutor(node) as papi_exec:
+            dump = papi_exec.add("acl_interface_list_dump").get_dump()
+
+        # TODO: Process and log the dump
+
+        # TODO: Remove
         try:
             VatExecutor.cmd_from_template(
                 node, "acl_plugin/acl_interface_dump.vat", json_out=False)
@@ -398,6 +474,10 @@ class Classify(object):
     def set_acl_list_for_interface(node, interface, acl_type, acl_idx=None):
         """Set the list of input or output ACLs applied to the interface. It
         unapplies any previously applied ACLs.
+
+        perf
+
+        acl_interface_set_acl_list
 
         :param node: VPP node to set ACL on.
         :param interface: Interface name or sw_if_index.
@@ -427,68 +507,13 @@ class Classify(object):
                                "on node {1}".format(interface, node['host']))
 
     @staticmethod
-    def add_replace_acl(node, acl_idx=None, ip_ver="ipv4", action="permit",
-                        src=None, dst=None, sport=None, dport=None, proto=None,
-                        tcpflg_val=None, tcpflg_mask=None):
-        """Add a new ACL or replace the existing one. To replace an existing
-        ACL, pass the ID of this ACL.
-
-        :param node: VPP node to set ACL on.
-        :param acl_idx: ID of ACL. (Optional)
-        :param ip_ver: IP version. (Optional)
-        :param action: ACL action. (Optional)
-        :param src: Source IP in format IP/plen. (Optional)
-        :param dst: Destination IP in format IP/plen. (Optional)
-        :param sport: Source port or ICMP4/6 type - range format X-Y allowed.
-         (Optional)
-        :param dport: Destination port or ICMP4/6 code - range format X-Y
-         allowed. (Optional)
-        :param proto: L4 protocol (http://www.iana.org/assignments/protocol-
-         numbers/protocol-numbers.xhtml). (Optional)
-        :param tcpflg_val: TCP flags value. (Optional)
-        :param tcpflg_mask: TCP flags mask. (Optional)
-        :type node: dict
-        :type acl_idx: int
-        :type ip_ver: str
-        :type action: str
-        :type src: str
-        :type dst: str
-        :type sport: str or int
-        :type dport: str or int
-        :type proto: int
-        :type tcpflg_val: int
-        :type tcpflg_mask: int
-        :raises RuntimeError: If unable to add or replace ACL.
-        """
-        acl_idx = '{0}'.format(acl_idx) if acl_idx else ''
-
-        src = 'src {0}'.format(src) if src else ''
-
-        dst = 'dst {0}'.format(dst) if dst else ''
-
-        sport = 'sport {0}'.format(sport) if sport else ''
-
-        dport = 'dport {0}'.format(dport) if dport else ''
-
-        proto = 'proto {0}'.format(proto) if proto else ''
-
-        tcpflags = 'tcpflags {0} {1}'.format(tcpflg_val, tcpflg_mask) \
-            if tcpflg_val and tcpflg_mask else ''
-
-        try:
-            with VatTerminal(node, json_param=False) as vat:
-                vat.vat_terminal_exec_cmd_from_template(
-                    "acl_plugin/acl_add_replace.vat", acl_idx=acl_idx,
-                    ip_ver=ip_ver, action=action, src=src, dst=dst, sport=sport,
-                    dport=dport, proto=proto, tcpflags=tcpflags)
-        except RuntimeError:
-            raise RuntimeError("Adding or replacing of ACL failed on "
-                               "node {0}".format(node['host']))
-
-    @staticmethod
     def add_replace_acl_multi_entries(node, acl_idx=None, rules=None):
         """Add a new ACL or replace the existing one. To replace an existing
         ACL, pass the ID of this ACL.
+
+        perf
+
+        acl_add_replace
 
         :param node: VPP node to set ACL on.
         :param acl_idx: ID of ACL. (Optional)
@@ -513,82 +538,15 @@ class Classify(object):
                                "node {0}".format(node['host']))
 
     @staticmethod
-    def delete_acl(node, idx):
-        """Delete required ACL.
-
-        :param node: VPP node to delete ACL on.
-        :param idx: Index of ACL to be deleted.
-        :type node: dict
-        :type idx: int or str
-        :raises RuntimeError: If unable to delete ACL.
-        """
-        try:
-            with VatTerminal(node, json_param=False) as vat:
-                vat.vat_terminal_exec_cmd_from_template(
-                    "acl_plugin/acl_delete.vat", idx=idx)
-        except RuntimeError:
-            raise RuntimeError("Deletion of ACL failed on node {0}".
-                               format(node['host']))
-
-    @staticmethod
-    def cli_show_acl(node, acl_idx=None):
-        """Show ACLs.
-
-        :param node: VPP node to show ACL on.
-        :param acl_idx: Index of ACL to be shown.
-        :type node: dict
-        :type acl_idx: int or str
-        :raises RuntimeError: If unable to delete ACL.
-        """
-        acl_idx = '{0}'.format(acl_idx) if acl_idx else ''
-
-        try:
-            with VatTerminal(node, json_param=False) as vat:
-                vat.vat_terminal_exec_cmd_from_template(
-                    "acl_plugin/show_acl.vat", idx=acl_idx)
-        except RuntimeError:
-            raise RuntimeError("Failed to show ACL on node {0}".
-                               format(node['host']))
-
-    @staticmethod
-    def add_macip_acl(node, ip_ver="ipv4", action="permit", src_ip=None,
-                      src_mac=None, src_mac_mask=None):
-        """Add a new MACIP ACL.
-
-        :param node: VPP node to set MACIP ACL on.
-        :param ip_ver: IP version. (Optional)
-        :param action: ACL action. (Optional)
-        :param src_ip: Source IP in format IP/plen. (Optional)
-        :param src_mac: Source MAC address in format with colons. (Optional)
-        :param src_mac_mask: Source MAC address mask in format with colons.
-         00:00:00:00:00:00 is a wildcard mask. (Optional)
-        :type node: dict
-        :type ip_ver: str
-        :type action: str
-        :type src_ip: str
-        :type src_mac: str
-        :type src_mac_mask: str
-        :raises RuntimeError: If unable to add MACIP ACL.
-        """
-        src_ip = 'ip {0}'.format(src_ip) if src_ip else ''
-
-        src_mac = 'mac {0}'.format(src_mac) if src_mac else ''
-
-        src_mac_mask = 'mask {0}'.format(src_mac_mask) if src_mac_mask else ''
-
-        try:
-            with VatTerminal(node, json_param=False) as vat:
-                vat.vat_terminal_exec_cmd_from_template(
-                    "acl_plugin/macip_acl_add.vat", ip_ver=ip_ver,
-                    action=action, src_ip=src_ip, src_mac=src_mac,
-                    src_mac_mask=src_mac_mask)
-        except RuntimeError:
-            raise RuntimeError("Adding of MACIP ACL failed on node {0}".
-                               format(node['host']))
-
-    @staticmethod
     def add_macip_acl_multi_entries(node, rules=None):
         """Add a new MACIP ACL.
+
+        perf
+
+        macip_acl_add
+
+        https://docs.fd.io/vpp/19.08/d1/d79/structvl__api__macip__acl__rule__t.html
+        https://docs.fd.io/vpp/19.04/d9/db8/acl_8c_source.html#l01617
 
         :param node: VPP node to set MACIP ACL on.
         :param rules: Required MACIP rules. (Optional)
@@ -608,31 +566,23 @@ class Classify(object):
                                format(node['host']))
 
     @staticmethod
-    def delete_macip_acl(node, idx):
-        """Delete required MACIP ACL.
-
-        :param node: VPP node to delete MACIP ACL on.
-        :param idx: Index of ACL to be deleted.
-        :type node: dict
-        :type idx: int or str
-        :raises RuntimeError: If unable to delete MACIP ACL.
-        """
-        try:
-            with VatTerminal(node, json_param=False) as vat:
-                vat.vat_terminal_exec_cmd_from_template(
-                    "acl_plugin/macip_acl_delete.vat", idx=idx)
-        except RuntimeError:
-            raise RuntimeError("Deletion of MACIP ACL failed on node {0}".
-                               format(node['host']))
-
-    @staticmethod
     def vpp_log_macip_acl_settings(node):
         """Retrieve configured MACIP settings from the ACL plugin
          and write to robot log.
 
+         perf
+
+         macip_acl_dump
+
         :param node: VPP node.
         :type node: dict
         """
+        with PapiExecutor(node) as papi_exec:
+            dump = papi_exec.add("macip_acl_dump").get_dump()
+
+        # TODO: Process and log the dump
+
+        # TODO: Remove
         try:
             VatExecutor.cmd_from_template(
                 node, "acl_plugin/macip_acl_dump.vat")
@@ -643,6 +593,8 @@ class Classify(object):
     @staticmethod
     def add_del_macip_acl_interface(node, interface, action, acl_idx):
         """Apply/un-apply the MACIP ACL to/from a given interface.
+
+        perf
 
         :param node: VPP node to set MACIP ACL on.
         :param interface: Interface name or sw_if_index.
@@ -659,23 +611,37 @@ class Classify(object):
         else:
             sw_if_index = interface
 
-        try:
-            with VatTerminal(node, json_param=False) as vat:
-                vat.vat_terminal_exec_cmd_from_template(
-                    "acl_plugin/macip_acl_interface_add_del.vat",
-                    sw_if_index=sw_if_index, action=action, acl_idx=acl_idx)
-        except RuntimeError:
-            raise RuntimeError("Setting of MACIP ACL index for interface {0} "
-                               "failed on node {1}".
-                               format(interface, node['host']))
+        is_add = 1 if action == "add" else 0
+
+        cmd = 'macip_acl_interface_add_del'
+        err_msg = "Failed to get 'macip_acl_interface' on host {host}".format(
+            host=node['host'])
+        args = dict(
+            is_add=is_add,
+            sw_if_index=int(sw_if_index),
+            acl_index=int(acl_idx)
+        )
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
 
     @staticmethod
     def vpp_log_macip_acl_interface_assignment(node):
         """Get interface list and associated MACIP ACLs and write to robot log.
 
+        perf
+
         :param node: VPP node.
         :type node: dict
         """
+        cmd = 'macip_acl_interface_get'
+        err_msg = "Failed to get 'macip_acl_interface' on host {host}".format(
+            host=node['host'])
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
+
+        # TODO: Remove
         try:
             VatExecutor.cmd_from_template(
                 node, "acl_plugin/macip_acl_interface_get.vat", json_out=False)
