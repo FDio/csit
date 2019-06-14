@@ -49,10 +49,9 @@ class PolicyAction(Enum):
 class CryptoAlg(Enum):
     """Encryption algorithms."""
     AES_CBC_128 = ('aes-cbc-128', 'AES-CBC', 16)
-    AES_CBC_192 = ('aes-cbc-192', 'AES-CBC', 24)
     AES_CBC_256 = ('aes-cbc-256', 'AES-CBC', 32)
-    AES_GCM_128 = ('aes-gcm-128', 'AES-GCM', 20)
-    AES_GCM_256 = ('aes-gcm-256', 'AES-GCM', 40)
+    AES_GCM_128 = ('aes-gcm-128', 'AES-GCM', 16)
+    AES_GCM_256 = ('aes-gcm-256', 'AES-GCM', 32)
 
     def __init__(self, alg_name, scapy_name, key_len):
         self.alg_name = alg_name
@@ -62,12 +61,10 @@ class CryptoAlg(Enum):
 
 class IntegAlg(Enum):
     """Integrity algorithm."""
-    SHA1_96 = ('sha1-96', 'HMAC-SHA1-96', 20)
     SHA_256_128 = ('sha-256-128', 'SHA2-256-128', 32)
-    SHA_384_192 = ('sha-384-192', 'SHA2-384-192', 48)
     SHA_512_256 = ('sha-512-256', 'SHA2-512-256', 64)
-    AES_GCM_128 = ('aes-gcm-128', 'AES-GCM', 20)
-    AES_GCM_256 = ('aes-gcm-256', 'AES-GCM', 40)
+    AES_GCM_128 = ('aes-gcm-128', 'AES-GCM', 16)
+    AES_GCM_256 = ('aes-gcm-256', 'AES-GCM', 32)
 
     def __init__(self, alg_name, scapy_name, key_len):
         self.alg_name = alg_name
