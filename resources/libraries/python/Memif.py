@@ -13,9 +13,9 @@
 
 """Memif interface library."""
 
-import logging
 
 from enum import IntEnum
+from robot.api import logger
 
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.PapiExecutor import PapiExecutor
@@ -54,7 +54,7 @@ class Memif(object):
                 L2Util.bin_to_mac(item["memif_details"]["hw_addr"])
             data.append(item)
 
-        logging.debug("MEMIF data:\n{data}".format(data=data))
+        logger.debug("MEMIF data:\n{data}".format(data=data))
 
         return data
 
