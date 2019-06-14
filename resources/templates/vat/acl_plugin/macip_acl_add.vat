@@ -1,1 +1,0 @@
-macip_acl_add {ip_ver} {action} {src_ip} {src_mac} {src_mac_mask}

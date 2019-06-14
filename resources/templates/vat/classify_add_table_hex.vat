@@ -1,1 +1,0 @@
-classify_add_del_table mask hex {hex_mask}
