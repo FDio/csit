@@ -136,7 +136,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| ACL session from VAT should be \| ${nodes['DUT1']} \
+| | ... | \| ACL session from PAPI should be \| ${nodes['DUT1']} \
 | | ... | \| ${0} \| ${settings} \|
 | | [Arguments] | ${node} | ${table_index} | ${settings}
 | | ${data}= | Get classify table data | ${node} | ${table_index}
@@ -192,23 +192,21 @@
 | | ... | ${node} | ${table_name} | ${settings['match']}
 | | Compare data structures | ${data} | ${settings}
 
-| ACL session from VAT should be
-| | [Documentation] | Retrieves ACL session information from VAT\
+| ACL session from PAPI should be
+| | [Documentation] | Retrieves ACL session information from PAPI\
 | | ... | and compares with expected settings.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - information about a DUT node. Type: dictionary
 | | ... | - table_index - VPP internal index of an ACL table. Type: integer
-| | ... | - session_index - VPP internal index of an ACL session. Type: integer
 | | ... | - settings - expected ACL session settings. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| ACL session from VAT should be \| ${nodes['DUT1']} \
-| | ... | \| ${0} \| ${0} \| ${settings} \|
+| | ... | \| ACL session from PAPI should be \| ${nodes['DUT1']} \
+| | ... | \| ${0} \| ${settings} \|
 | | [Arguments] | ${node} | ${table_index} | ${session_index} | ${settings}
-| | ${data}= | Get classify session data
-| | ... | ${node} | ${table_index} | ${session_index}
+| | ${data}= | Get classify session data | ${node} | ${table_index}
 | | Compare data structures | ${data} | ${settings}
 
 | ACL session from Honeycomb should not exist
@@ -229,8 +227,8 @@
 | | ... | Get classify session oper data
 | | ... | ${node} | ${table_name} | ${session_match}
 
-| ACL session from VAT should not exist
-| | [Documentation] | Retrieves ACL session information from VAT\
+| ACL session from PAPI should not exist
+| | [Documentation] | Retrieves ACL session information from PAPI\
 | | ... | and compares with expected settings.
 | | ...
 | | ... | *Arguments:*
@@ -240,19 +238,17 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| ACL session from VAT should not exist \| ${nodes['DUT1']} \
-| | ... | \| ${0} \| ${0} \|
-| | [Arguments] | ${node} | ${table_index} | ${session_index}
+| | ... | \| ACL session from PAPI should not exist \| ${nodes['DUT1']} \
+| | ... | \| ${0} \|
+| | [Arguments] | ${node} | ${table_index}
 | | Run keyword if | ${session_index} == 0
 | | ... | Run keyword and expect error
 | | ... | ValueError: No JSON object could be decoded
-| | ... | Get classify session data
-| | ... | ${node} | ${table_index} | ${session_index}
+| | ... | Get classify session data | ${node} | ${table_index}
 | | Run keyword if | ${session_index} > 0
 | | ... | Run keyword and expect error
 | | ... | IndexError: list index out of range
-| | ... | Get classify session data
-| | ... | ${node} | ${table_index} | ${session_index}
+| | ... | Get classify session data | ${node} | ${table_index}
 
 | Interface ACL configuration from Honeycomb should be
 | | [Documentation] | Retrieves ACL interface settings from Honeycomb\
