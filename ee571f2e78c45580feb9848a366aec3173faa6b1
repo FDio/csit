@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e51a2f9c_9279d7bb",
+        "filename": "resources/libraries/python/NATUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-14T08:52:25Z",
+      "side": 1,
+      "message": "Define an internal function and call it 8 times? Might be useful for other libraries which just want to dump\u0026log.",
+      "range": {
+        "startLine": 141,
+        "startChar": 8,
+        "endLine": 141,
+        "endChar": 12
+      },
+      "revId": "ee571f2e78c45580feb9848a366aec3173faa6b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
