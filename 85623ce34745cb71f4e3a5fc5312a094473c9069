@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c049da6_cb6b8c5c",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-14T09:34:33Z",
+      "side": 1,
+      "message": "All cards have access to QAT. Only one card (xl710) resides in same NUMA as QAT. Other cards must go over QPI which we do not want to even run.",
+      "range": {
+        "startLine": 682,
+        "startChar": 12,
+        "endLine": 682,
+        "endChar": 66
+      },
+      "revId": "85623ce34745cb71f4e3a5fc5312a094473c9069",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
