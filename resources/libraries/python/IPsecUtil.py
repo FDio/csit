@@ -630,7 +630,8 @@ class IPsecUtil(object):
                 tunnel = (
                     'exec ipsec policy add spd {spd_id} priority {priority} '
                     '{direction} action protect sa {sa_id} '
-                    'remote-ip-range {raddr_s} - {raddr_e}\n'.
+                    'remote-ip-range {raddr_s} - {raddr_e} '
+                    'local-ip-range 0.0.0.0 - 255.255.255.255\n'.
                     format(
                         spd_id=spd_id,
                         priority=priority,
@@ -837,10 +838,10 @@ class IPsecUtil(object):
             nodes['DUT1'], spd_id, interface1)
         IPsecUtil.vpp_ipsec_policy_add(
             nodes['DUT1'], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
-            proto=50)
+            proto=50, laddr_range='100.0.0.0/8', raddr_range='100.0.0.0/8')
         IPsecUtil.vpp_ipsec_policy_add(
             nodes['DUT1'], spd_id, p_hi, PolicyAction.BYPASS, inbound=True,
-            proto=50)
+            proto=50, laddr_range='100.0.0.0/8', raddr_range='100.0.0.0/8')
 
         IPsecUtil.vpp_ipsec_add_spd(
             nodes['DUT2'], spd_id)
@@ -848,10 +849,10 @@ class IPsecUtil(object):
             nodes['DUT2'], spd_id, interface2)
         IPsecUtil.vpp_ipsec_policy_add(
             nodes['DUT2'], spd_id, p_hi, PolicyAction.BYPASS, inbound=False,
-            proto=50)
+            proto=50, laddr_range='100.0.0.0/8', raddr_range='100.0.0.0/8')
         IPsecUtil.vpp_ipsec_policy_add(
             nodes['DUT2'], spd_id, p_hi, PolicyAction.BYPASS, inbound=True,
-            proto=50)
+            proto=50, laddr_range='100.0.0.0/8', raddr_range='100.0.0.0/8')
 
         IPsecUtil.vpp_ipsec_add_sad_entries(
             nodes['DUT1'], n_tunnels, sa_id_1, spi_1, crypto_alg, crypto_key,
