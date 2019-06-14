@@ -1,1 +1,0 @@
-ipsec_spd_add_del spd_id {spd_id}
