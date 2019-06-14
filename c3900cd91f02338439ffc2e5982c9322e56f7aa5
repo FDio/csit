@@ -46,6 +46,30 @@
       "revId": "c3900cd91f02338439ffc2e5982c9322e56f7aa5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3c523c7_92d53fcc",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-14T15:04:59Z",
+      "side": 1,
+      "message": "Lucky, \"https://\" has the exact number of characters we needed to get to 80.",
+      "parentUuid": "441e3658_7b8e549e",
+      "range": {
+        "startLine": 37,
+        "startChar": 88,
+        "endLine": 37,
+        "endChar": 93
+      },
+      "revId": "c3900cd91f02338439ffc2e5982c9322e56f7aa5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
