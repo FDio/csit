@@ -484,6 +484,10 @@ class PapiExecutor(object):
                 for val_k, val_v in val.iteritems():
                     val_dict[str(val_k)] = process_value(val_v)
                 return val_dict
+            elif isinstance(val, list):
+                for idx, item in enumerate(val):
+                    val[idx] = process_value(item)
+                return val
             else:
                 return binascii.hexlify(val) if isinstance(val, str) else val
 
