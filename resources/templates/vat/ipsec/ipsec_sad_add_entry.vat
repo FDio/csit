@@ -1,1 +1,0 @@
-exec ipsec sa add {sad_id} esp spi {spi} crypto-alg {calg} crypto-key {ckey} integ-alg {ialg} integ-key {ikey} {tunnel}
