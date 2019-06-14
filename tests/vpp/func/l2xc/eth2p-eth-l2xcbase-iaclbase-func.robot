@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -52,20 +52,19 @@
 | | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 | | ${table_index} | ${skip_n} | ${match_n}=
-| | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | src
+| | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | src | ${tg_to_dut1_mac}
 | | And Vpp Configures Classify Session L2
-| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
-| | ... | src | ${tg_to_dut1_mac}
+| | ... | ${dut1_node} | permit | ${table_index} | src | ${tg_to_dut1_mac}
 | | And Vpp Enable Input ACL Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index}
-| | Then ICMP packet transmission should fail
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
 | TC02: DUT with iACL MAC dst-addr drops matching pkts
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG.
 | | ... | [Cfg] On DUT1 add destination MAC address to classify
-| | ... |       table with 'deny'.
+| | ... | table with 'deny'.
 | | ... | [Ver] Make TG verify matching packets are dropped.
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -77,20 +76,19 @@
 | | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 | | ${table_index} | ${skip_n} | ${match_n}=
-| | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | dst
+| | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | dst | ${tg_to_dut2_mac}
 | | And Vpp Configures Classify Session L2
-| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
-| | ... | dst | ${tg_to_dut2_mac}
+| | ... | ${dut1_node} | permit | ${table_index} | dst | ${tg_to_dut2_mac}
 | | And Vpp Enable Input ACL Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index}
-| | Then ICMP packet transmission should fail
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
 | TC03: DUT with iACL MAC src-addr and dst-addr drops matching pkts
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG.
 | | ... | [Cfg] On DUT1 add source and destination MAC address to classify
-| | ... |       table with 'deny'.
+| | ... | table with 'deny'.
 | | ... | [Ver] Make TG verify matching packets are dropped.
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -102,20 +100,18 @@
 | | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 | | ${table_index_1} | ${skip_n_1} | ${match_n_1}=
-| | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | src
+| | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | src | ${tg_to_dut1_mac}
 | | And Vpp Configures Classify Session L2
-| | ... | ${dut1_node} | deny | ${table_index_1} | ${skip_n_1} | ${match_n_1}
-| | ... | src | ${tg_to_dut1_mac}
+| | ... | ${dut1_node} | permit | ${table_index_1} | src | ${tg_to_dut1_mac}
 | | ${table_index_2} | ${skip_n_2} | ${match_n_2}=
-| | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | dst
+| | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | dst | ${tg_to_dut1_mac}
 | | And Vpp Configures Classify Session L2
-| | ... | ${dut1_node} | deny | ${table_index_2} | ${skip_n_2} | ${match_n_2}
-| | ... | dst | ${tg_to_dut1_mac}
+| | ... | ${dut1_node} | permit | ${table_index_2} | dst | ${tg_to_dut1_mac}
 | | And Vpp Enable Input ACL Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index_1}
 | | And Vpp Enable Input ACL Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index_2}
-| | Then ICMP packet transmission should fail
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
 | TC04: DUT with iACL EtherType drops matching pkts
@@ -136,9 +132,8 @@
 | | ... | When Vpp Creates Classify Table Hex
 | | ... | ${dut1_node} | 000000000000000000000000ffff
 | | And Vpp Configures Classify Session Hex
-| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
-| | ... | 0000000000000000000000000800
+| | ... | ${dut1_node} | permit | ${table_index} | 0000000000000000000000000800
 | | And Vpp Enable Input ACL Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index}
-| | Then ICMP packet transmission should fail
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
