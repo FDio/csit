@@ -290,20 +290,24 @@ class PapiExecutor(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self._ssh.disconnect(self._node)
 
-    def add(self, csit_papi_command="vpp-stats", **kwargs):
+    def add(self, csit_papi_command="vpp-stats", no_history=False, **kwargs):
         """Add next command to internal command list; return self.
 
         The argument name 'csit_papi_command' must be unique enough as it cannot
         be repeated in kwargs.
 
         :param csit_papi_command: VPP API command.
+        :param no_history: Switch to disable adding command to PAPI command
+            history.
         :param kwargs: Optional key-value arguments.
         :type csit_papi_command: str
         :type kwargs: dict
         :returns: self, so that method chaining is possible.
         :rtype: PapiExecutor
         """
-        PapiHistory.add_to_papi_history(self._node, csit_papi_command, **kwargs)
+        if not no_history:
+            PapiHistory.add_to_papi_history(
+                self._node, csit_papi_command, **kwargs)
         self._api_command_list.append(dict(api_name=csit_papi_command,
                                            api_args=kwargs))
         return self
