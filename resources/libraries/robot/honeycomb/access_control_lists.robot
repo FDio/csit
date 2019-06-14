@@ -199,16 +199,14 @@
 | | ... | *Arguments:*
 | | ... | - node - information about a DUT node. Type: dictionary
 | | ... | - table_index - VPP internal index of an ACL table. Type: integer
-| | ... | - session_index - VPP internal index of an ACL session. Type: integer
 | | ... | - settings - expected ACL session settings. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| ACL session from VAT should be \| ${nodes['DUT1']} \
-| | ... | \| ${0} \| ${0} \| ${settings} \|
+| | ... | \| ${0} \| ${settings} \|
 | | [Arguments] | ${node} | ${table_index} | ${session_index} | ${settings}
-| | ${data}= | Get classify session data
-| | ... | ${node} | ${table_index} | ${session_index}
+| | ${data}= | Get classify session data | ${node} | ${table_index}
 | | Compare data structures | ${data} | ${settings}
 
 | ACL session from Honeycomb should not exist
@@ -241,18 +239,16 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| ACL session from VAT should not exist \| ${nodes['DUT1']} \
-| | ... | \| ${0} \| ${0} \|
-| | [Arguments] | ${node} | ${table_index} | ${session_index}
+| | ... | \| ${0} \|
+| | [Arguments] | ${node} | ${table_index}
 | | Run keyword if | ${session_index} == 0
 | | ... | Run keyword and expect error
 | | ... | ValueError: No JSON object could be decoded
-| | ... | Get classify session data
-| | ... | ${node} | ${table_index} | ${session_index}
+| | ... | Get classify session data | ${node} | ${table_index}
 | | Run keyword if | ${session_index} > 0
 | | ... | Run keyword and expect error
 | | ... | IndexError: list index out of range
-| | ... | Get classify session data
-| | ... | ${node} | ${table_index} | ${session_index}
+| | ... | Get classify session data | ${node} | ${table_index}
 
 | Interface ACL configuration from Honeycomb should be
 | | [Documentation] | Retrieves ACL interface settings from Honeycomb\

@@ -480,10 +480,13 @@ class PapiExecutor(object):
             :rtype: dict or str or int
             """
             if isinstance(val, dict):
-                val_dict = dict()
                 for val_k, val_v in val.iteritems():
-                    val_dict[str(val_k)] = process_value(val_v)
-                return val_dict
+                    val[str(val_k)] = process_value(val_v)
+                return val
+            elif isinstance(val, list):
+                for idx, val_l in enumerate(val):
+                    val[idx] = process_value(val_l)
+                return val
             else:
                 return binascii.hexlify(val) if isinstance(val, str) else val
 
@@ -509,12 +512,32 @@ class PapiExecutor(object):
         :returns: Processed API reply / a part of API reply.
         :rtype: dict
         """
+        def process_value(val):
+            """Process value.
+
+            :param val: Value to be processed.
+            :type val: object
+            :returns: Processed value.
+            :rtype: dict or str or int
+            """
+            if isinstance(val, dict):
+                for val_k, val_v in val.iteritems():
+                    val[str(val_k)] = process_value(val_v)
+                return val
+            elif isinstance(val, list):
+                for idx, val_l in enumerate(val):
+                    val[idx] = process_value(val_l)
+                return val
+            elif isinstance(val, unicode):
+                return binascii.unhexlify(val)
+            else:
+                return val
+
         reply_dict = dict()
         reply_value = dict()
         for reply_key, reply_v in api_r.iteritems():
             for a_k, a_v in reply_v.iteritems():
-                reply_value[a_k] = binascii.unhexlify(a_v) \
-                    if isinstance(a_v, unicode) else a_v
+                reply_value[a_k] = process_value(a_v)
             reply_dict[reply_key] = reply_value
         return reply_dict
 

@@ -82,7 +82,7 @@
 | | Then ACL session from Honeycomb should be
 | | ... | ${node} | ${hc_acl_table['name']} | ${hc_acl_session}
 | | And ACL session from VAT should be
-| | ... | ${node} | ${table_index} | ${session_index} | ${vat_acl_session}
+| | ... | ${node} | ${table_index} | ${vat_acl_session}
 
 | TC05: Honeycomb can remove ACL session
 | | [Documentation] | Check if Honeycomb API can remove an ACL session.
@@ -90,13 +90,13 @@
 | | Given ACL session from Honeycomb should be
 | | ... | ${node} | ${hc_acl_table['name']} | ${hc_acl_session}
 | | And ACL session from VAT should be
-| | ... | ${node} | ${table_index} | ${session_index} | ${vat_acl_session}
+| | ... | ${node} | ${table_index} | ${vat_acl_session}
 | | When Honeycomb removes ACL session
 | | ... | ${node} | ${hc_acl_table['name']} | ${hc_acl_session['match']}
 | | Then ACL session from Honeycomb should not exist
 | | ... | ${node} | ${hc_acl_table['name']} | ${hc_acl_session['match']}
 | | And ACL session from VAT should not exist
-| | ... | ${node} | ${table_index} | ${session_index}
+| | ... | ${node} | ${table_index}
 
 | TC06: Honeycomb manages more than one ACL session on one table
 | | [Documentation] | Check if Honeycomb API can add another ACL session\
@@ -105,7 +105,7 @@
 | | Given ACL session from Honeycomb should not exist
 | | ... | ${node} | ${hc_acl_table['name']} | ${hc_acl_session['match']}
 | | And ACL session from VAT should not exist
-| | ... | ${node} | ${table_index} | ${session_index}
+| | ... | ${node} | ${table_index}
 | | When Honeycomb adds ACL session
 | | ... | ${node} | ${hc_acl_table['name']} | ${hc_acl_session}
 | | And Honeycomb adds ACL session
@@ -113,11 +113,11 @@
 | | Then ACL session from Honeycomb should be
 | | ... | ${node} | ${hc_acl_table['name']} | ${hc_acl_session}
 | | And ACL session from VAT should be
-| | ... | ${node} | ${table_index} | ${session_index} | ${vat_acl_session}
+| | ... | ${node} | ${table_index} | ${vat_acl_session}
 | | And ACL session from Honeycomb should be
 | | ... | ${node} | ${hc_acl_table['name']} | ${hc_acl_session2}
 | | And ACL session from VAT should be
-| | ... | ${node} | ${table_index} | ${session_index2} | ${vat_acl_session2}
+| | ... | ${node} | ${table_index} | ${vat_acl_session2}
 
 | TC07: Honeycomb enables ACL on interface
 | | [Documentation] | Check if Honeycomb API can enable ACL on an interface.
@@ -128,7 +128,7 @@
 | | And ACL session from Honeycomb should be
 | | ... | ${node} | ${hc_acl_table['name']} | ${hc_acl_session}
 | | And ACL session from VAT should be
-| | ... | ${node} | ${table_index} | ${session_index} | ${vat_acl_session}
+| | ... | ${node} | ${table_index} | ${vat_acl_session}
 | | When Honeycomb enables ACL on interface
 | | ... | ${node} | ${interface} | ${hc_acl_table['name']}
 | | Then Interface ACL configuration from Honeycomb should be
