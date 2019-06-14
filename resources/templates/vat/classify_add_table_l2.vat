@@ -1,1 +1,0 @@
-classify_add_del_table mask l2 {direction}
