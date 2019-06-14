@@ -22,6 +22,30 @@
       "revId": "c3900cd91f02338439ffc2e5982c9322e56f7aa5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "441e3658_7b8e549e",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-14T06:21:53Z",
+      "side": 1,
+      "message": "Remove it.",
+      "parentUuid": "3394a84e_ce8d5992",
+      "range": {
+        "startLine": 37,
+        "startChar": 88,
+        "endLine": 37,
+        "endChar": 93
+      },
+      "revId": "c3900cd91f02338439ffc2e5982c9322e56f7aa5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
