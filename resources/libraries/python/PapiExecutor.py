@@ -557,7 +557,8 @@ class PapiExecutor(object):
 
         json_data = json.dumps(api_data) \
             if method in ("stats", "stats_request") \
-            else json.dumps(self._process_api_data(api_data))
+            else json.dumps(self._process_api_data(api_data),
+                            ensure_ascii=False)
 
         cmd = "{fw_dir}/{papi_provider} --method {method} --data '{json}'".\
             format(fw_dir=Constants.REMOTE_FW_DIR,

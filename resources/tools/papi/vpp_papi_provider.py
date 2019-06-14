@@ -139,7 +139,7 @@ def process_json_request(args):
             return val_dict
         elif isinstance(val, unicode):
             return binascii.unhexlify(val)
-        elif isinstance(val, int):
+        elif isinstance(val, int) or isinstance(val, list):
             return val
         else:
             return str(val)
