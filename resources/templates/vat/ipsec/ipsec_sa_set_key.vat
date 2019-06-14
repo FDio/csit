@@ -1,1 +1,0 @@
-exec set ipsec sa {sa_id} crypto-key {ckey} integ-key {ikey}

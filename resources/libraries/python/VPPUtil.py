@@ -13,8 +13,6 @@
 
 """VPP util library."""
 
-import binascii
-
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
