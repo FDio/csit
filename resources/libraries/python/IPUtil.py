@@ -533,7 +533,6 @@ class IPUtil(object):
             prefix=prefix,
             n_paths=len(paths),
             paths=paths)
-
         return route
 
     @staticmethod
