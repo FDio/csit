@@ -62,7 +62,7 @@
 # starting points for non-hitting ACLs
 | ${src_ip_start}= | 30.30.30.1
 | ${ip_step}= | ${1}
-| ${src_mac_start}= | 01:02:03:04:05:06
+| ${src_mac_start}= | 01:02:03:01:01:01
 | ${src_mac_step}= | ${1000}
 | ${src_mac_mask}= | 00:00:00:00:00:00
 | ${tg_stream1_mac}= | ca:fe:00:00:00:00
