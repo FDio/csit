@@ -13,7 +13,7 @@
 
 """Vhost-user interfaces library."""
 
-import logging
+from robot.api import logger
 
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.topology import NodeType, Topology
@@ -45,7 +45,7 @@ class VhostUser(object):
                 item[key]["sock_filename"].rstrip('\x00')
             data.append(item)
 
-        logging.debug("VhostUser data:\n{data}".format(data=data))
+        logger.debug("VhostUser data:\n{data}".format(data=data))
 
         return data
 
