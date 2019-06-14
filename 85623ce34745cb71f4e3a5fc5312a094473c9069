@@ -22,6 +22,30 @@
       "revId": "85623ce34745cb71f4e3a5fc5312a094473c9069",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6ee10117_f19b8e01",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-14T17:20:58Z",
+      "side": 1,
+      "message": "Ok. After some investigation, I believe I did not have any specific reason for [0], except [1]. The trending jobs were failing for a different reason at that time, and verify runs did not select ipsechw. And I have not found any communication from around that time either.\nI was probably lead astray by [2], drawn a wrong conclusion, and stick to it despite discussions on future suite generator.\nAnyway, replaced the comment in later patch.\n\n[0] https://gerrit.fd.io/r/19732\n[1] https://gerrit.fd.io/r/19715\n[2] https://gerrit.fd.io/r/18446",
+      "parentUuid": "9c049da6_cb6b8c5c",
+      "range": {
+        "startLine": 682,
+        "startChar": 12,
+        "endLine": 682,
+        "endChar": 66
+      },
+      "revId": "85623ce34745cb71f4e3a5fc5312a094473c9069",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
