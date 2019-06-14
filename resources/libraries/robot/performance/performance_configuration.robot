@@ -784,15 +784,13 @@
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip6 | dst
 | | And Vpp Configures Classify Session L3
-| | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n}
-| | ... | ip6 | dst | 2001:2::2
+| | ... | ${dut1} | permit | ${table_idx} | ip6 | dst | 2001:2::2
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1} | ${dut1_if1} | ip6 | ${table_idx}
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut2} | ip6 | dst
 | | And Vpp Configures Classify Session L3
-| | ... | ${dut2} | permit | ${table_idx} | ${skip_n} | ${match_n}
-| | ... | ip6 | dst | 2001:1::2
+| | ... | ${dut2} | permit | ${table_idx} | ip6 | dst | 2001:1::2
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip6 | ${table_idx}
 
