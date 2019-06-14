@@ -1,1 +1,0 @@
-macip_acl_interface_add_del sw_if_index {sw_if_index} {action} acl {acl_idx}
