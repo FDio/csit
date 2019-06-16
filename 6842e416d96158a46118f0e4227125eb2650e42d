@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50ef1dd5_dd45bc15",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 38
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-06-16T17:17:52Z",
+      "side": 1,
+      "message": "Since the crc is added to .api.json files at the end of each message by vppapigen, it would be more efficient to search the msg_obj list backwards:\n\nfor item in reversed(msg_obj):",
+      "range": {
+        "startLine": 111,
+        "startChar": 1,
+        "endLine": 112,
+        "endChar": 1
+      },
+      "revId": "6842e416d96158a46118f0e4227125eb2650e42d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
