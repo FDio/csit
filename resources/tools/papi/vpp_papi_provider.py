@@ -91,25 +91,33 @@ def _convert_reply(api_r):
     """
     unwanted_fields = ['count', 'index', 'context']
 
+    def process_value(val):
+        if isinstance(val, dict):
+            val_dict = dict()
+            for val_k, val_v in val.iteritems():
+                val_dict[str(val_k)] = process_value(val_v)
+            return val_dict
+        elif isinstance(val, list):
+            for idx, val_l in enumerate(val):
+                val[idx] = process_value(val_l)
+            return val
+        elif hasattr(val, '__int__'):
+            return int(val)
+        elif hasattr(val, '__str__'):
+            return binascii.hexlify(str(val))
+        # Next handles parameters not supporting preferred integer or string
+        # representation to get it logged
+        elif hasattr(val, '__repr__'):
+            return repr(val)
+        else:
+            return val
+
     reply_dict = dict()
     reply_key = repr(api_r).split('(')[0]
     reply_value = dict()
     for item in dir(api_r):
         if not item.startswith('_') and item not in unwanted_fields:
-            attr_value = getattr(api_r, item)
-            if isinstance(attr_value, list) or isinstance(attr_value, dict):
-                value = attr_value
-            elif hasattr(attr_value, '__int__'):
-                value = int(attr_value)
-            elif hasattr(attr_value, '__str__'):
-                value = binascii.hexlify(str(attr_value))
-            # Next handles parameters not supporting preferred integer or string
-            # representation to get it logged
-            elif hasattr(attr_value, '__repr__'):
-                value = repr(attr_value)
-            else:
-                value = attr_value
-            reply_value[item] = value
+            reply_value[item] = process_value(getattr(api_r, item))
     reply_dict[reply_key] = reply_value
     return reply_dict
 
@@ -137,6 +145,10 @@ def process_json_request(args):
             for val_k, val_v in val.iteritems():
                 val_dict[str(val_k)] = process_value(val_v)
             return val_dict
+        elif isinstance(val, list):
+            for idx, item in enumerate(val):
+                val[idx] = process_value(item)
+            return val
         elif isinstance(val, unicode):
             return binascii.unhexlify(val)
         elif isinstance(val, int):
