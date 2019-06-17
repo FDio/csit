@@ -20,7 +20,9 @@
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
-| Test Teardown | Tear down test | performance
+| Test Teardown | Run Keywords
+| ... | VPP Get IP tables | ${nodes['DUT1']}
+| ... | AND | Tear down test | performance
 | ...
 | Test Template | Local Template
 | ...
