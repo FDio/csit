@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af0dff70_57d94ad0",
+        "filename": "resources/libraries/robot/features/policer.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-17T08:58:44Z",
+      "side": 0,
+      "message": "We also do not like these spaces.",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 34
+      },
+      "revId": "12a51f968499f7710a5f54c7cc3bc2afa5c7bc3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
