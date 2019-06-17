@@ -352,6 +352,7 @@ class InterfaceUtil(object):
             if_dump['b_smac'] = L2Util.bin_to_mac(if_dump['b_smac'])
             return if_dump
 
+        logger.trace("papi_if_dump {!r}".format(papi_if_dump))
         data = list() if interface is None else dict()
         for item in papi_if_dump:
             if interface is None:
