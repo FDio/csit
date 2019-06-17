@@ -22,7 +22,9 @@
 | ...
 | Suite Setup | Setup suite single link
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Run Keywords
+| ... | VPP Get IP tables | ${nodes['DUT1']}
+| ... | AND | Tear down test | packet_trace
 | ...
 | Documentation | *IPv6 routing test cases*
 | ...
