@@ -145,6 +145,23 @@ class IPUtil(object):
         return data
 
     @staticmethod
+    def vpp_get_ip_table(node):
+        """Get dump of all IP FIB tables on a VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+        data = list()
+
+        cmd = 'ip_table_dump'
+        args = dict()
+        err_msg = 'Failed to get IP FIB dump on host {host}'.format(
+            host=node['host'])
+
+        with PapiExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_dump(err_msg)
+
+    @staticmethod
     def get_interface_vrf_table(node, interface, ip_version='ipv4'):
         """Get vrf ID for the given interface.
 
