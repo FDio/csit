@@ -363,7 +363,6 @@
     # Results
 
     vpp-perf-results-3n-hsw:
-      # TODO: Add FULL 1904 data
       csit-vpp-perf-verify-1904-3n-hsw:
         - 32  # NDRPDR full
         - 33  # NDRPDR full
@@ -382,6 +381,7 @@
         - 53  # NDRPDR full
         - 54  # NDRPDR full
         - 56  # NDRPDR full
+        - 58  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1904-3n-skx:
@@ -1410,7 +1410,6 @@
       - 69  # NDRPDR LB
       - 70  # NDRPDR LB
       - 71  # NDRPDR LB
-    # TODO: Add 1904 Data
     csit-vpp-perf-verify-1904-3n-hsw:
       - 9   # MRR sel
       - 32  # NDRPDR full
@@ -1430,6 +1429,7 @@
       - 53  # NDRPDR full
       - 54  # NDRPDR full
       - 56  # NDRPDR full
+      - 58  # NDRPDR full
       - 11  # NDRPDR sel
       - 12  # NDRPDR sel
       - 20  # NDRPDR sel
