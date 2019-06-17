@@ -144,8 +144,7 @@ class InterfaceUtil(object):
             args = dict(sw_if_index=sw_if_index,
                         admin_up_down=admin_up_down)
             with PapiExecutor(node) as papi_exec:
-                papi_exec.add(cmd, **args).get_replies(err_msg).\
-                    verify_reply(err_msg=err_msg)
+                papi_exec.add(cmd, **args).get_reply(err_msg)
         elif node['type'] == NodeType.TG or node['type'] == NodeType.VM:
             cmd = 'ip link set {ifc} {state}'.format(
                 ifc=iface_name, state=state)
@@ -219,8 +218,7 @@ class InterfaceUtil(object):
         args = dict(sw_if_index=sw_if_index,
                     mtu=int(mtu))
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vpp_set_interfaces_mtu_on_node(node, mtu=9200):
@@ -327,15 +325,12 @@ class InterfaceUtil(object):
             param = ''
 
         cmd = 'sw_interface_dump'
-        cmd_reply = 'sw_interface_details'
         args = dict(name_filter_valid=0,
                     name_filter='')
         err_msg = 'Failed to get interface dump on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
-
-        papi_if_dump = papi_resp.reply[0]['api_reply']
+            papi_if_dump = papi_exec.add(cmd, **args).get_details(err_msg)
 
         def process_if_dump(if_dump):
             """Process interface dump.
@@ -355,10 +350,9 @@ class InterfaceUtil(object):
         data = list() if interface is None else dict()
         for item in papi_if_dump:
             if interface is None:
-                data.append(process_if_dump(item[cmd_reply]))
-            elif str(item[cmd_reply].get(param)).rstrip('\x00') == \
-                    str(interface):
-                data = process_if_dump(item[cmd_reply])
+                data.append(process_if_dump(item))
+            elif str(item.get(param)).rstrip('\x00') == str(interface):
+                data = process_if_dump(item)
                 break
 
         logger.debug('Interface data:\n{if_data}'.format(if_data=data))
@@ -450,19 +444,18 @@ class InterfaceUtil(object):
         is_ipv6 = 1 if ip_version == 'ipv6' else 0
 
         cmd = 'ip_address_dump'
-        cmd_reply = 'ip_address_details'
         args = dict(sw_if_index=sw_if_index,
                     is_ipv6=is_ipv6)
         err_msg = 'Failed to get L2FIB dump on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_details(err_msg)
 
         data = list()
-        for item in papi_resp.reply[0]['api_reply']:
-            item[cmd_reply]['ip'] = inet_ntop(AF_INET6, item[cmd_reply]['ip']) \
-                if is_ipv6 else inet_ntop(AF_INET, item[cmd_reply]['ip'][0:4])
-            data.append(item[cmd_reply])
+        for item in papi_resp:
+            item['ip'] = inet_ntop(AF_INET6, item['ip']) if is_ipv6 \
+                else inet_ntop(AF_INET, item['ip'][0:4])
+            data.append(item)
 
         if ip_version == 'ipv4':
             for item in data:
@@ -799,8 +792,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to create VLAN sub-interface on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         sw_if_idx = papi_resp['sw_if_index']
         if_key = Topology.add_new_port(node, 'vlan_subif')
@@ -852,8 +844,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to create VXLAN tunnel interface on host {host}'.\
             format(host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         sw_if_idx = papi_resp['sw_if_index']
         if_key = Topology.add_new_port(node, 'vxlan_tunnel')
@@ -885,14 +876,11 @@ class InterfaceUtil(object):
             sw_if_index = int(Constants.BITWISE_NON_ZERO)
 
         cmd = 'vxlan_tunnel_dump'
-        cmd_reply = 'vxlan_tunnel_details'
         args = dict(sw_if_index=sw_if_index)
         err_msg = 'Failed to get VXLAN dump on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
-
-        papi_vxlan_dump = papi_resp.reply[0]['api_reply']
+            papi_vxlan_dump = papi_exec.add(cmd, **args).get_details(err_msg)
 
         def process_vxlan_dump(vxlan_dump):
             """Process vxlan dump.
@@ -917,9 +905,9 @@ class InterfaceUtil(object):
         data = list() if interface is None else dict()
         for item in papi_vxlan_dump:
             if interface is None:
-                data.append(process_vxlan_dump(item[cmd_reply]))
-            elif item[cmd_reply]['sw_if_index'] == sw_if_index:
-                data = process_vxlan_dump(item[cmd_reply])
+                data.append(process_vxlan_dump(item))
+            elif item['sw_if_index'] == sw_if_index:
+                data = process_vxlan_dump(item)
                 break
 
         logger.debug('VXLAN data:\n{vxlan_data}'.format(vxlan_data=data))
@@ -938,13 +926,10 @@ class InterfaceUtil(object):
         """
 
         cmd = 'sw_interface_vhost_user_dump'
-        cmd_reply = 'sw_interface_vhost_user_details'
         err_msg = 'Failed to get vhost-user dump on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd).get_dump(err_msg)
-
-        papi_vxlan_dump = papi_resp.reply[0]['api_reply']
+            papi_vxlan_dump = papi_exec.add(cmd).get_details(err_msg)
 
         def process_vhost_dump(vhost_dump):
             """Process vhost dump.
@@ -962,7 +947,7 @@ class InterfaceUtil(object):
 
         data = list()
         for item in papi_vxlan_dump:
-            data.append(process_vhost_dump(item[cmd_reply]))
+            data.append(process_vhost_dump(item))
 
         logger.debug('Vhost-user data:\n{vhost_data}'.format(vhost_data=data))
         return data
@@ -984,13 +969,10 @@ class InterfaceUtil(object):
         """
 
         cmd = 'sw_interface_tap_v2_dump'
-        cmd_reply = 'sw_interface_tap_v2_details'
         err_msg = 'Failed to get TAP dump on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd).get_dump(err_msg)
-
-        papi_tap_dump = papi_resp.reply[0]['api_reply']
+            papi_tap_dump = papi_exec.add(cmd).get_details(err_msg)
 
         def process_tap_dump(tap_dump):
             """Process tap dump.
@@ -1015,9 +997,9 @@ class InterfaceUtil(object):
         data = list() if name is None else dict()
         for item in papi_tap_dump:
             if name is None:
-                data.append(process_tap_dump(item[cmd_reply]))
-            elif item[cmd_reply].get('dev_name').rstrip('\x00') == name:
-                data = process_tap_dump(item[cmd_reply])
+                data.append(process_tap_dump(item))
+            elif item.get('dev_name').rstrip('\x00') == name:
+                data = process_tap_dump(item)
                 break
 
         logger.debug('TAP data:\n{tap_data}'.format(tap_data=data))
@@ -1067,8 +1049,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to create sub-interface on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         sw_subif_idx = papi_resp['sw_if_index']
         if_key = Topology.add_new_port(node, 'subinterface')
@@ -1105,8 +1086,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to create GRE tunnel interface on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         sw_if_idx = papi_resp['sw_if_index']
         if_key = Topology.add_new_port(node, 'gre_tunnel')
@@ -1133,8 +1113,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to create loopback interface on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         sw_if_idx = papi_resp['sw_if_index']
         if_key = Topology.add_new_port(node, 'loopback')
@@ -1175,8 +1154,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to create bond interface on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         sw_if_idx = papi_resp['sw_if_index']
         InterfaceUtil.add_eth_interface(node, sw_if_idx=sw_if_idx,
@@ -1235,8 +1213,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to create AVF interface on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         sw_if_idx = papi_resp['sw_if_index']
         InterfaceUtil.add_eth_interface(node, sw_if_idx=sw_if_idx,
@@ -1270,8 +1247,7 @@ class InterfaceUtil(object):
                                                            bond=bond_if,
                                                            host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vpp_show_bond_data_on_node(node, details=False):
@@ -1284,42 +1260,34 @@ class InterfaceUtil(object):
         """
 
         cmd = 'sw_interface_bond_dump'
-        cmd_reply = 'sw_interface_bond_details'
         err_msg = 'Failed to get bond interface dump on host {host}'.format(
             host=node['host'])
 
         data = ('Bond data on node {host}:\n'.format(host=node['host']))
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd).get_dump(err_msg)
+            papi_dump = papi_exec.add(cmd).get_details(err_msg)
 
-        papi_dump = papi_resp.reply[0]['api_reply']
         for item in papi_dump:
-            data += ('{b}\n'.format(b=item[cmd_reply]['interface_name'].
-                                    rstrip('\x00')))
-            data += ('  mode: {m}\n'.
-                     format(m=LinkBondMode(item[cmd_reply]['mode']).name.
-                            lower()))
-            data += ('  load balance: {lb}\n'.
-                     format(lb=LinkBondLoadBalance(item[cmd_reply]['lb']).name.
-                            lower()))
-            data += ('  number of active slaves: {n}\n'.
-                     format(n=item[cmd_reply]['active_slaves']))
+            data += ('{b}\n'.format(b=item['interface_name'].rstrip('\x00')))
+            data += ('  mode: {m}\n'.format(m=LinkBondMode(
+                item['mode']).name.lower()))
+            data += ('  load balance: {lb}\n'.format(lb=LinkBondLoadBalance(
+                item['lb']).name.lower()))
+            data += ('  number of active slaves: {n}\n'.format(
+                n=item['active_slaves']))
             if details:
                 slave_data = InterfaceUtil.vpp_bond_slave_dump(
                     node, Topology.get_interface_by_sw_index(
-                        node, item[cmd_reply]['sw_if_index']))
+                        node, item['sw_if_index']))
                 for slave in slave_data:
                     if not slave['is_passive']:
                         data += ('    {s}\n'.format(s=slave['interface_name']))
-            data += ('  number of slaves: {n}\n'.
-                     format(n=item[cmd_reply]['slaves']))
+            data += ('  number of slaves: {n}\n'.format(n=item['slaves']))
             if details:
                 for slave in slave_data:
                     data += ('    {s}\n'.format(s=slave['interface_name']))
-            data += ('  interface id: {i}\n'.
-                     format(i=item[cmd_reply]['id']))
-            data += ('  sw_if_index: {i}\n'.
-                     format(i=item[cmd_reply]['sw_if_index']))
+            data += ('  interface id: {i}\n'.format(i=item['id']))
+            data += ('  sw_if_index: {i}\n'.format(i=item['sw_if_index']))
         logger.info(data)
 
     @staticmethod
@@ -1334,16 +1302,13 @@ class InterfaceUtil(object):
         :rtype: dict
         """
         cmd = 'sw_interface_slave_dump'
-        cmd_reply = 'sw_interface_slave_details'
         args = dict(sw_if_index=Topology.get_interface_sw_index(
             node, interface))
         err_msg = 'Failed to get slave dump on host {host}'.format(
             host=node['host'])
 
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
-
-        papi_dump = papi_resp.reply[0]['api_reply']
+            papi_dump = papi_exec.add(cmd, **args).get_details(err_msg)
 
         def process_slave_dump(slave_dump):
             """Process slave dump.
@@ -1359,7 +1324,7 @@ class InterfaceUtil(object):
 
         data = list()
         for item in papi_dump:
-            data.append(process_slave_dump(item[cmd_reply]))
+            data.append(process_slave_dump(item))
 
         logger.debug('Slave data:\n{slave_data}'.format(slave_data=data))
         return data
@@ -1405,8 +1370,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to enable input acl on interface {ifc}'.format(
             ifc=interface)
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def get_interface_classify_table(node, interface):
@@ -1431,8 +1395,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to get classify table name by interface {ifc}'.format(
             ifc=interface)
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         return papi_resp
 
@@ -1464,8 +1427,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to get VRF id assigned to interface {ifc}'.format(
             ifc=interface)
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            papi_resp = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         return papi_resp['vrf_id']
 
@@ -1507,14 +1469,11 @@ class InterfaceUtil(object):
             sw_if_index = int(Constants.BITWISE_NON_ZERO)
 
         cmd = 'vxlan_gpe_tunnel_dump'
-        cmd_reply = 'vxlan_gpe_tunnel_details'
         args = dict(sw_if_index=sw_if_index)
         err_msg = 'Failed to get VXLAN-GPE dump on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_dump(err_msg)
-
-        papi_vxlan_dump = papi_resp.reply[0]['api_reply']
+            papi_vxlan_dump = papi_exec.add(cmd, **args).get_details(err_msg)
 
         def process_vxlan_gpe_dump(vxlan_dump):
             """Process vxlan_gpe dump.
@@ -1539,9 +1498,9 @@ class InterfaceUtil(object):
         data = list() if interface_name is None else dict()
         for item in papi_vxlan_dump:
             if interface_name is None:
-                data.append(process_vxlan_gpe_dump(item[cmd_reply]))
-            elif item[cmd_reply]['sw_if_index'] == sw_if_index:
-                data = process_vxlan_gpe_dump(item[cmd_reply])
+                data.append(process_vxlan_gpe_dump(item))
+            elif item['sw_if_index'] == sw_if_index:
+                data = process_vxlan_gpe_dump(item)
                 break
 
         logger.debug('VXLAN-GPE data:\n{vxlan_gpe_data}'.format(
@@ -1568,8 +1527,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to enable source check on interface {ifc}'.format(
             ifc=if_name)
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def assign_interface_to_fib_table(node, interface, table_id, ipv6=False):
@@ -1593,8 +1551,7 @@ class InterfaceUtil(object):
         err_msg = 'Failed to assign interface {ifc} to FIB table'.format(
             ifc=interface)
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def set_linux_interface_mac(node, interface, mac, namespace=None,
@@ -1878,7 +1835,7 @@ class InterfaceUtil(object):
                         node, node_vlan_if),
                     vlan_id=i+1)
                 papi_exec.add(cmd, **args)
-            papi_exec.get_replies().verify_replies()
+            papi_exec.get_replies()
 
         return vxlan_count
 
@@ -1936,7 +1893,7 @@ class InterfaceUtil(object):
                 args2 = dict(sw_if_index=vlan_idx,
                              admin_up_down=1)
                 papi_exec.add(cmd, **args1).add(cmd, **args2)
-            papi_exec.get_replies().verify_replies()
+            papi_exec.get_replies()
 
     @staticmethod
     def vpp_put_vxlan_and_vlan_interfaces_to_bridge_domain(
@@ -2020,7 +1977,7 @@ class InterfaceUtil(object):
                     port_type=0,
                     enable=1)
                 papi_exec.add(cmd, **args)
-            papi_exec.get_replies().verify_replies()
+            papi_exec.get_replies()
 
     @staticmethod
     def vpp_sw_interface_rx_placement_dump(node):
@@ -2033,17 +1990,14 @@ class InterfaceUtil(object):
         """
 
         cmd = 'sw_interface_rx_placement_dump'
-        cmd_reply = 'sw_interface_rx_placement_details'
         err_msg = "Failed to run '{cmd}' PAPI command on host {host}!".format(
             cmd=cmd, host=node['host'])
         with PapiExecutor(node) as papi_exec:
             for ifc in node['interfaces'].values():
                 if ifc['vpp_sw_index'] is not None:
                     papi_exec.add(cmd, sw_if_index=ifc['vpp_sw_index'])
-            papi_resp = papi_exec.get_dump(err_msg)
-        thr_mapping = [s[cmd_reply] for r in papi_resp.reply
-                       for s in r['api_reply']]
-        return sorted(thr_mapping, key=lambda k: k['sw_if_index'])
+            papi_resp = papi_exec.get_details(err_msg)
+        return sorted(papi_resp, key=lambda k: k['sw_if_index'])
 
     @staticmethod
     def vpp_sw_interface_set_rx_placement(node, sw_if_index, queue_id,
@@ -2068,8 +2022,7 @@ class InterfaceUtil(object):
         args = dict(sw_if_index=sw_if_index, queue_id=queue_id,
                     worker_id=worker_id)
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vpp_round_robin_rx_placement(node, prefix):
