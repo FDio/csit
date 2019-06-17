@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -129,6 +129,7 @@
 | | ... | remote_host1_ip4=${remote_host1_ip4}
 | | ... | remote_host2_ip4=${remote_host2_ip4}
 | | ... | remote_host_ip4_prefix=${remote_host_ip4_prefix}
+| | And VPP Get IP tables | ${dut_node}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send IPv4 ping packet and verify headers | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_node} | ${tg_to_dut_if2}
