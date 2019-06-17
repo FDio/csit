@@ -145,6 +145,19 @@ class IPUtil(object):
         return data
 
     @staticmethod
+    def vpp_get_ip_tables(node):
+        """Get dump of all IP FIB tables on a VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+
+        PapiExecutor.run_cli_cmd(node, 'show ip fib')
+        PapiExecutor.run_cli_cmd(node, 'show ip fib summary')
+        PapiExecutor.run_cli_cmd(node, 'show ip6 fib')
+        PapiExecutor.run_cli_cmd(node, 'show ip6 fib summary')
+
+    @staticmethod
     def get_interface_vrf_table(node, interface, ip_version='ipv4'):
         """Get vrf ID for the given interface.
 
@@ -426,6 +439,94 @@ class IPUtil(object):
                 verify_reply(err_msg=err_msg)
 
     @staticmethod
+    def union_addr(ip_addr):
+        """Creates union IP address.
+
+        :param ip_addr: IPv4 or IPv6 address.
+        :type ip_addr: IPv4Address or IPv6Address
+        :returns: Union IP address.
+        :rtype: dict
+        """
+        return dict(ip6=inet_pton(AF_INET6, str(ip_addr))) \
+            if ip_addr.version == 6 \
+            else dict(ip4=inet_pton(AF_INET, str(ip_addr)))
+
+    @staticmethod
+    def compose_vpp_route_structure(node, network, prefix_len, **kwargs):
+        """Create route object for ip_route_add_del api call.
+
+        :param node: VPP node.
+        :param network: Route destination network address.
+        :param prefix_len: Route destination network prefix length.
+        :param kwargs: Optional key-value arguments:
+
+            gateway: Route gateway address. (str)
+            interface: Route interface. (str)
+            vrf: VRF table ID. (int)
+            count: number of IP addresses to add starting from network IP (int)
+            local: The route is local with same prefix (increment is 1).
+                If None, then is not used. (bool)
+            lookup_vrf: VRF table ID for lookup. (int)
+            multipath: Enable multipath routing. (bool)
+            weight: Weight value for unequal cost multipath routing. (int)
+
+        :type node: dict
+        :type network: str
+        :type prefix_len: int
+        :type kwargs: dict
+        :returns: route parameter basic structure
+        :rtype: dict
+        """
+        interface = kwargs.get('interface', '')
+        gateway = kwargs.get('gateway', '')
+
+        net_addr = ip_address(unicode(network))
+
+        addr = dict(
+            af=getattr(
+                AddressFamily, 'ADDRESS_IP6' if net_addr.version == 6
+                else 'ADDRESS_IP4').value,
+            un=None)
+        prefix = dict(
+            len=int(prefix_len),
+            address=addr)
+
+        paths = list()
+        n_hop = dict(
+            address=IPUtil.union_addr(ip_address(unicode(gateway))) if gateway
+            else 0,
+            via_label=MPLS_LABEL_INVALID,
+            obj_id=Constants.BITWISE_NON_ZERO)
+        path = dict(
+            sw_if_index=InterfaceUtil.get_interface_index(node, interface)
+            if interface else Constants.BITWISE_NON_ZERO,
+            table_id=int(kwargs.get('lookup_vrf', 0)),
+            rpf_id=Constants.BITWISE_NON_ZERO,
+            weight=int(kwargs.get('weight', 1)),
+            preference=1,
+            type=getattr(
+                FibPathType, 'FIB_PATH_TYPE_LOCAL'
+                if kwargs.get('local', False)
+                else 'FIB_PATH_TYPE_NORMAL').value,
+            flags=getattr(FibPathFlags, 'FIB_PATH_FLAG_NONE').value,
+            proto=getattr(
+                FibPathNhProto, 'FIB_PATH_NH_PROTO_IP6'
+                if net_addr.version == 6
+                else 'FIB_PATH_NH_PROTO_IP4').value,
+            nh=n_hop,
+            n_labels=0,
+            label_stack=list(0 for _ in range(16)))
+        paths.append(path)
+
+        route = dict(
+            table_id=int(kwargs.get('vrf', 0)),
+            prefix=prefix,
+            n_paths=len(paths),
+            paths=paths)
+
+        return route
+
+    @staticmethod
     def vpp_route_add(node, network, prefix_len, **kwargs):
         """Add route to the VPP node.
 
@@ -468,73 +569,23 @@ class IPUtil(object):
                     multipath='multipath' if multipath else '')
             return
 
-        interface = kwargs.get('interface', '')
-        gateway = kwargs.get('gateway', '')
-
         net_addr = ip_address(unicode(network))
-
-        def union_addr(ip_addr):
-            """Creates union IP address.
-
-            :param ip_addr: IPv4 or IPv6 address.
-            :type ip_addr: IPv4Address or IPv6Address
-            :returns: Union IP address.
-            :rtype: dict
-            """
-            return dict(ip6=inet_pton(AF_INET6, str(ip_addr))) \
-                if ip_addr.version == 6 \
-                else dict(ip4=inet_pton(AF_INET, str(ip_addr)))
-
-        addr = dict(
-            af=getattr(
-                AddressFamily, 'ADDRESS_IP6' if net_addr.version == 6
-                else 'ADDRESS_IP4').value)
-        prefix = dict(address_length=int(prefix_len))
-
-        paths = list()
-        n_hop = dict(
-            address=union_addr(ip_address(unicode(gateway))) if gateway else 0,
-            via_label=MPLS_LABEL_INVALID,
-            obj_id=Constants.BITWISE_NON_ZERO)
-        path = dict(
-            sw_if_index=InterfaceUtil.get_interface_index(node, interface)
-            if interface else Constants.BITWISE_NON_ZERO,
-            table_id=int(kwargs.get('lookup_vrf', 0)),
-            rpf_id=Constants.BITWISE_NON_ZERO,
-            weight=int(kwargs.get('weight', 1)),
-            preference=1,
-            type=getattr(
-                FibPathType, 'FIB_PATH_TYPE_LOCAL'
-                if kwargs.get('local', False)
-                else 'FIB_PATH_TYPE_NORMAL').value,
-            flags=getattr(FibPathFlags, 'FIB_PATH_FLAG_NONE').value,
-            proto=getattr(
-                FibPathNhProto, 'FIB_PATH_NH_PROTO_IP6'
-                if net_addr.version == 6
-                else 'FIB_PATH_NH_PROTO_IP4').value,
-            nh=n_hop,
-            n_labels=0,
-            label_stack=list(0 for _ in range(16)))
-        paths.append(path)
-
-        route = dict(
-            table_id=int(kwargs.get('vrf', 0)),
-            n_paths=len(paths),
-            paths=paths)
         cmd = 'ip_route_add_del'
+        route = IPUtil.compose_vpp_route_structure(
+            node, network, prefix_len, **kwargs)
         args = dict(
             is_add=1,
-            is_multipath=int(kwargs.get('multipath', False)))
+            is_multipath=int(kwargs.get('multipath', False)),
+            route=route)
 
         err_msg = 'Failed to add route(s) on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
             for i in xrange(kwargs.get('count', 1)):
-                addr['un'] = union_addr(net_addr + i)
-                prefix['address'] = addr
-                route['prefix'] = prefix
+                args['route']['prefix']['address']['un'] = \
+                    IPUtil.union_addr(net_addr + i)
                 history = False if 1 < i < kwargs.get('count', 1) else True
-                papi_exec.add(cmd, history=history, route=route, **args)
+                papi_exec.add(cmd, history=history, **args)
                 if i > 0 and i % Constants.PAPI_MAX_API_BULK == 0:
                     papi_exec.get_replies(err_msg).verify_replies(
                         err_msg=err_msg)
