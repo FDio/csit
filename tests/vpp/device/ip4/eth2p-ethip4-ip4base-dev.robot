@@ -22,7 +22,9 @@
 | ...
 | Suite Setup | Setup suite single link
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Run Keywords
+| | ... | VPP Get IP table | ${nodes['DUT1']}
+| | ... | Tear down test | packet_trace
 | ...
 | Documentation | *IPv4 routing test cases*
 | ...
@@ -129,6 +131,7 @@
 | | ... | remote_host1_ip4=${remote_host1_ip4}
 | | ... | remote_host2_ip4=${remote_host2_ip4}
 | | ... | remote_host_ip4_prefix=${remote_host_ip4_prefix}
+| | And VPP Get IP table | ${dut_node}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send IPv4 ping packet and verify headers | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_node} | ${tg_to_dut_if2}
