@@ -1,0 +1,1 @@
+ip_route_add_del {network}/{prefix_length} {vrf} {count} {multipath} {via}
