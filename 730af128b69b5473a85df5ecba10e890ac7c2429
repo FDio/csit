@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "25007bb0_37ed3a3e",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-18T11:58:33Z",
+      "side": 1,
+      "message": "touch {dir}/{job}",
+      "range": {
+        "startLine": 64,
+        "startChar": 30,
+        "endLine": 64,
+        "endChar": 60
+      },
+      "revId": "730af128b69b5473a85df5ecba10e890ac7c2429",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
