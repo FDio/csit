@@ -20,7 +20,7 @@
 | ...
 | Suite Setup | Set up 2-node performance topology with DUT's NIC model
 | ... | L3 | ${nic_name}
-| Suite Teardown | Tear down 2-node performance topology
+| Suite Teardown | Tear down performance suite
 | ...
 | Test Setup | Set up performance test
 | Test Teardown | Tear down performance test with vhost

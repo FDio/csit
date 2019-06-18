@@ -21,7 +21,7 @@
 | ...
 | Suite Setup | Set up IPSec performance test suite | L3 | ${nic_name}
 | ... | HW_DH895xcc
-| Suite Teardown | Tear down 3-node performance topology
+| Suite Teardown | Tear down performance suite
 | ...
 | Test Setup | Set up performance test
 | Test Teardown | Tear down performance test
