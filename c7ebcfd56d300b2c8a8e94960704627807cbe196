@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4466d96c_26583aca",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-18T16:41:54Z",
+      "side": 1,
+      "message": "redundant info",
+      "range": {
+        "startLine": 92,
+        "startChar": 25,
+        "endLine": 92,
+        "endChar": 49
+      },
+      "revId": "c7ebcfd56d300b2c8a8e94960704627807cbe196",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa992486_4271749c",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-18T16:41:54Z",
+      "side": 1,
+      "message": "as it is not critical section, it will not be acurate, thus pointless call",
+      "range": {
+        "startLine": 92,
+        "startChar": 13,
+        "endLine": 92,
+        "endChar": 22
+      },
+      "revId": "c7ebcfd56d300b2c8a8e94960704627807cbe196",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7f8029a0_edd89964",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-18T16:41:54Z",
+      "side": 1,
+      "message": "no echo URL, this must stay Jenkins free.",
+      "range": {
+        "startLine": 93,
+        "startChar": 35,
+        "endLine": 93,
+        "endChar": 66
+      },
+      "revId": "c7ebcfd56d300b2c8a8e94960704627807cbe196",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
