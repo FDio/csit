@@ -16,6 +16,24 @@
       "revId": "89016d0be8e2d7e570fd1530b0d7edcdcf3726e6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44ff0bc1_5cb7d3ac",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-18T13:42:49Z",
+      "side": 1,
+      "message": "Used the opportunity to add also URL. :)",
+      "parentUuid": "c261f2b7_c4b65072",
+      "revId": "89016d0be8e2d7e570fd1530b0d7edcdcf3726e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
