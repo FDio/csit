@@ -21,10 +21,10 @@
 | ... | Set up SRIOV 2-node performance topology with DUT's NIC model
 | ... | L2 | ${nic_name} | AVF
 | ... | AND | Set up performance test suite with AVF driver
-| Suite Teardown | Tear down 2-node performance topology
+| Suite Teardown | Tear down suite | performance
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance test
+| Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local template
 | ...

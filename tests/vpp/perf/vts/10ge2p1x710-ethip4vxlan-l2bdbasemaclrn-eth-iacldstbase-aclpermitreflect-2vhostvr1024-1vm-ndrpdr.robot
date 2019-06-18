@@ -22,10 +22,10 @@
 | ... | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | ${nic_name}
 | ... | AND | Set up performance test suite with ACL
-| Suite Teardown | Tear down 3-node performance topology
+| Suite Teardown | Tear down suite | performance
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance test with vhost
+| Test Teardown | Tear down test | performance | vhost
 | ...
 | Test Template | Local Template
 | ...

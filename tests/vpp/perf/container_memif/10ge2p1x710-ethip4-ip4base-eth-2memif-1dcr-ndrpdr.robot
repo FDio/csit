@@ -21,12 +21,10 @@
 | ... | Set up 3-node performance topology with DUT's NIC model | L3
 | ... | ${nic_name}
 | ... | AND | Set up performance test suite with MEMIF
-| Suite Teardown | Tear down 3-node performance topology
+| Suite Teardown | Tear down suite | performance
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Run Keywords
-| ... | Tear down performance test
-| ... | AND | Tear down performance test with container
+| Test Teardown | Tear down test | performance | container
 | ...
 | Test Template | Local Template
 | ...
