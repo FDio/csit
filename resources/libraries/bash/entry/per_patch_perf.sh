@@ -56,14 +56,14 @@ select_os || die
 activate_virtualenv "${VPP_DIR}" || die
 generate_tests || die
 archive_tests || die
-reserve_testbed || die
+reserve_and_cleanup_testbed || die
 select_tags || die
 compose_pybot_arguments || die
 # Support for interleaved measurements is kept for future.
 iterations=1 # 8
 for ((iter=0; iter<iterations; iter++)); do
     if ((iter)); then
-        # Reserve testbed has already cleaned it once,
+        # Function reserve_and_cleanup_testbed has already cleaned it once,
         # but we need to clean it explicitly on subsequent iterations.
         cleanup_topo
     fi
