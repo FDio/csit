@@ -515,6 +515,8 @@ function reserve_and_cleanup_testbed () {
     # Variables read:
     # - TOPOLOGIES - Array of paths to topology yaml to attempt reservation on.
     # - PYTHON_SCRIPTS_DIR - Path to directory holding the reservation script.
+    # - BUILD_TAG - Any string suitable as filename, usually pointing
+    #   to a run of a Jenkins job running the script. May be unset.
     # Variables set:
     # - TOPOLOGIES - Array of paths to topologies, with failed cleanups removed.
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
@@ -526,7 +528,8 @@ function reserve_and_cleanup_testbed () {
     while [[ ${TOPOLOGIES[@]} ]]; do
         for topo in "${TOPOLOGIES[@]}"; do
             set +e
-            python "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -t "${topo}"
+            scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
+            python "${scrpt}" -t "${topo}" -j "${BUILD_TAG:-Unknown}"
             result="$?"
             set -e
             if [[ "${result}" == "0" ]]; then
