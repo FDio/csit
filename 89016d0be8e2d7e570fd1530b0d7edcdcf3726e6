@@ -34,6 +34,24 @@
       "revId": "89016d0be8e2d7e570fd1530b0d7edcdcf3726e6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "68b0fb14_18230f47",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-18T13:49:07Z",
+      "side": 1,
+      "message": "-1, Why you cannot simple do ls; mkdir touch, nobody cares about URL, no echo, too much calls\n\nWe are looking to implement a way to see if for exmaple someone reserve the TB for different purpose",
+      "parentUuid": "44ff0bc1_5cb7d3ac",
+      "revId": "89016d0be8e2d7e570fd1530b0d7edcdcf3726e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
