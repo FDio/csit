@@ -69,6 +69,30 @@
       "revId": "730af128b69b5473a85df5ecba10e890ac7c2429",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db9d742d_22eb3d24",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-06-18T12:02:59Z",
+      "side": 1,
+      "message": "but we can strip \"https://\" easily...",
+      "parentUuid": "28518a41_fb5c33f8",
+      "range": {
+        "startLine": 64,
+        "startChar": 30,
+        "endLine": 64,
+        "endChar": 60
+      },
+      "revId": "730af128b69b5473a85df5ecba10e890ac7c2429",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
