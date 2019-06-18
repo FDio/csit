@@ -30,7 +30,7 @@
 | Test Setup | Run Keywords | Set up VPP device test
 | ... | AND | Clean Up Namespaces | ${nodes['DUT1']}
 | ...
-| Test Teardown | Run Keywords | Tear down VPP device test
+| Test Teardown | Run Keywords | Tear down test
 | ... | AND | Clean Up Namespaces | ${nodes['DUT1']}
 | ... | AND | Linux Del Bridge | ${nodes['DUT1']} | ${bid_TAP}
 | ...
