@@ -13,12 +13,11 @@
 
 """Interface util library."""
 
-from socket import AF_INET, AF_INET6, inet_ntop, inet_pton
+from socket import AF_INET, AF_INET6, inet_ntop
 from time import sleep
 
 from enum import IntEnum
-from ipaddress import IPv4Address, IPv6Address
-from ipaddress import AddressValueError, NetmaskValueError
+from ipaddress import ip_address
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
@@ -760,23 +759,15 @@ class InterfaceUtil(object):
         :raises RuntimeError: if it is unable to create VxLAN interface on the
             node.
         """
-        try:
-            src_address = IPv6Address(unicode(source_ip))
-            dst_address = IPv6Address(unicode(destination_ip))
-            af_inet = AF_INET6
-            is_ipv6 = 1
-        except (AddressValueError, NetmaskValueError):
-            src_address = IPv4Address(unicode(source_ip))
-            dst_address = IPv4Address(unicode(destination_ip))
-            af_inet = AF_INET
-            is_ipv6 = 0
+        src_address = ip_address(unicode(source_ip))
+        dst_address = ip_address(unicode(destination_ip))
 
         cmd = 'vxlan_add_del_tunnel'
         args = dict(is_add=1,
-                    is_ipv6=is_ipv6,
+                    is_ipv6=1 if src_address.version == 6 else 0,
                     instance=Constants.BITWISE_NON_ZERO,
-                    src_address=inet_pton(af_inet, str(src_address)),
-                    dst_address=inet_pton(af_inet, str(dst_address)),
+                    src_address=src_address.packed,
+                    dst_address=dst_address.packed,
                     mcast_sw_if_index=Constants.BITWISE_NON_ZERO,
                     encap_vrf_id=0,
                     decap_next_index=Constants.BITWISE_NON_ZERO,
@@ -1599,283 +1590,6 @@ class InterfaceUtil(object):
             vf_ifc_keys.append(vf_ifc_key)
 
         return vf_ifc_keys
-
-    @staticmethod
-    def vpp_create_multiple_vxlan_ipv4_tunnels(
-            node, node_vxlan_if, node_vlan_if, op_node, op_node_if,
-            n_tunnels, vni_start, src_ip_start, dst_ip_start, ip_step, ip_limit,
-            bd_id_start):
-        """Create multiple VXLAN tunnel interfaces and VLAN sub-interfaces on
-        VPP node.
-
-        Put each pair of VXLAN tunnel interface and VLAN sub-interface to
-        separate bridge-domain.
-
-        :param node: VPP node to create VXLAN tunnel interfaces.
-        :param node_vxlan_if: VPP node interface key to create VXLAN tunnel
-            interfaces.
-        :param node_vlan_if: VPP node interface key to create VLAN
-            sub-interface.
-        :param op_node: Opposite VPP node for VXLAN tunnel interfaces.
-        :param op_node_if: Opposite VPP node interface key for VXLAN tunnel
-            interfaces.
-        :param n_tunnels: Number of tunnel interfaces to create.
-        :param vni_start: VNI start ID.
-        :param src_ip_start: VXLAN tunnel source IP address start.
-        :param dst_ip_start: VXLAN tunnel destination IP address start.
-        :param ip_step: IP address incremental step.
-        :param ip_limit: IP address limit.
-        :param bd_id_start: Bridge-domain ID start.
-        :type node: dict
-        :type node_vxlan_if: str
-        :type node_vlan_if: str
-        :type op_node: dict
-        :type op_node_if: str
-        :type n_tunnels: int
-        :type vni_start: int
-        :type src_ip_start: str
-        :type dst_ip_start: str
-        :type ip_step: int
-        :type ip_limit: str
-        :type bd_id_start: int
-        """
-        # configure IPs, create VXLAN interfaces and VLAN sub-interfaces
-        vxlan_count = InterfaceUtil.vpp_create_vxlan_and_vlan_interfaces(
-            node, node_vxlan_if, node_vlan_if, n_tunnels, vni_start,
-            src_ip_start, dst_ip_start, ip_step, ip_limit)
-
-        # update topology with VXLAN interfaces and VLAN sub-interfaces data
-        # and put interfaces up
-        InterfaceUtil.vpp_put_vxlan_and_vlan_interfaces_up(
-            node, vxlan_count, node_vlan_if)
-
-        # configure bridge domains, ARPs and routes
-        InterfaceUtil.vpp_put_vxlan_and_vlan_interfaces_to_bridge_domain(
-            node, node_vxlan_if, vxlan_count, op_node, op_node_if, dst_ip_start,
-            ip_step, bd_id_start)
-
-    @staticmethod
-    def vpp_create_vxlan_and_vlan_interfaces(
-            node, node_vxlan_if, node_vlan_if, vxlan_count, vni_start,
-            src_ip_start, dst_ip_start, ip_step, ip_limit):
-        """
-        Configure IPs, create VXLAN interfaces and VLAN sub-interfaces on VPP
-        node.
-
-        :param node: VPP node.
-        :param node_vxlan_if: VPP node interface key to create VXLAN tunnel
-            interfaces.
-        :param node_vlan_if: VPP node interface key to create VLAN
-            sub-interface.
-        :param vxlan_count: Number of tunnel interfaces to create.
-        :param vni_start: VNI start ID.
-        :param src_ip_start: VXLAN tunnel source IP address start.
-        :param dst_ip_start: VXLAN tunnel destination IP address start.
-        :param ip_step: IP address incremental step.
-        :param ip_limit: IP address limit.
-        :type node: dict
-        :type node_vxlan_if: str
-        :type node_vlan_if: str
-        :type vxlan_count: int
-        :type vni_start: int
-        :type src_ip_start: str
-        :type dst_ip_start: str
-        :type ip_step: int
-        :type ip_limit: str
-        :returns: Number of created VXLAN interfaces.
-        :rtype: int
-        """
-        try:
-            src_address_start = IPv6Address(unicode(src_ip_start))
-            dst_address_start = IPv6Address(unicode(dst_ip_start))
-            ip_address_limit = IPv6Address(unicode(ip_limit))
-            af_inet = AF_INET6
-            is_ipv6 = 1
-        except (AddressValueError, NetmaskValueError):
-            src_address_start = IPv4Address(unicode(src_ip_start))
-            dst_address_start = IPv4Address(unicode(dst_ip_start))
-            ip_address_limit = IPv4Address(unicode(ip_limit))
-            af_inet = AF_INET
-            is_ipv6 = 0
-
-        with PapiExecutor(node) as papi_exec:
-            for i in xrange(0, vxlan_count):
-                src_ip = src_address_start + i * ip_step
-                dst_ip = dst_address_start + i * ip_step
-                if src_ip > ip_address_limit or dst_ip > ip_address_limit:
-                    logger.warn("Can't do more iterations - IP address limit "
-                                "has been reached.")
-                    vxlan_count = i
-                    break
-                cmd = 'sw_interface_add_del_address'
-                args = dict(
-                    sw_if_index=InterfaceUtil.get_interface_index(
-                        node, node_vxlan_if),
-                    is_add=1,
-                    is_ipv6=0,
-                    del_all=0,
-                    address_length=128 if is_ipv6 else 32,
-                    address=inet_pton(af_inet, str(src_ip)))
-                papi_exec.add(cmd, **args)
-                cmd = 'vxlan_add_del_tunnel'
-                args = dict(
-                    is_add=1,
-                    is_ipv6=0,
-                    instance=Constants.BITWISE_NON_ZERO,
-                    src_address=inet_pton(af_inet, str(src_ip)),
-                    dst_address=inet_pton(af_inet, str(dst_ip)),
-                    mcast_sw_if_index=Constants.BITWISE_NON_ZERO,
-                    encap_vrf_id=0,
-                    decap_next_index=Constants.BITWISE_NON_ZERO,
-                    vni=int(vni_start)+i)
-                papi_exec.add(cmd, **args)
-                cmd = 'create_vlan_subif'
-                args = dict(
-                    sw_if_index=InterfaceUtil.get_interface_index(
-                        node, node_vlan_if),
-                    vlan_id=i+1)
-                papi_exec.add(cmd, **args)
-            papi_exec.get_replies().verify_replies()
-
-        return vxlan_count
-
-    @staticmethod
-    def vpp_put_vxlan_and_vlan_interfaces_up(node, vxlan_count, node_vlan_if):
-        """
-        Update topology with VXLAN interfaces and VLAN sub-interfaces data
-        and put interfaces up.
-
-        :param node: VPP node.
-        :param vxlan_count: Number of tunnel interfaces.
-        :param node_vlan_if: VPP node interface key where VLAN sub-interfaces
-            have been created.
-        :type node: dict
-        :type vxlan_count: int
-        :type node_vlan_if: str
-        """
-        if_data = InterfaceUtil.vpp_get_interface_data(node)
-
-        with PapiExecutor(node) as papi_exec:
-            for i in xrange(0, vxlan_count):
-                vxlan_subif_key = Topology.add_new_port(node, 'vxlan_tunnel')
-                vxlan_subif_name = 'vxlan_tunnel{nr}'.format(nr=i)
-                vxlan_found = False
-                vxlan_subif_idx = None
-                vlan_subif_key = Topology.add_new_port(node, 'vlan_subif')
-                vlan_subif_name = '{if_name}.{vlan}'.format(
-                    if_name=Topology.get_interface_name(
-                        node, node_vlan_if), vlan=i+1)
-                vlan_found = False
-                vlan_idx = None
-                for data in if_data:
-                    if not vxlan_found \
-                            and data['interface_name'] == vxlan_subif_name:
-                        vxlan_subif_idx = data['sw_if_index']
-                        vxlan_found = True
-                    elif not vlan_found \
-                            and data['interface_name'] == vlan_subif_name:
-                        vlan_idx = data['sw_if_index']
-                        vlan_found = True
-                    if vxlan_found and vlan_found:
-                        break
-                Topology.update_interface_sw_if_index(
-                    node, vxlan_subif_key, vxlan_subif_idx)
-                Topology.update_interface_name(
-                    node, vxlan_subif_key, vxlan_subif_name)
-                cmd = 'sw_interface_set_flags'
-                args1 = dict(sw_if_index=vxlan_subif_idx,
-                             admin_up_down=1)
-                Topology.update_interface_sw_if_index(
-                    node, vlan_subif_key, vlan_idx)
-                Topology.update_interface_name(
-                    node, vlan_subif_key, vlan_subif_name)
-                args2 = dict(sw_if_index=vlan_idx,
-                             admin_up_down=1)
-                papi_exec.add(cmd, **args1).add(cmd, **args2)
-            papi_exec.get_replies().verify_replies()
-
-    @staticmethod
-    def vpp_put_vxlan_and_vlan_interfaces_to_bridge_domain(
-            node, node_vxlan_if, vxlan_count, op_node, op_node_if, dst_ip_start,
-            ip_step, bd_id_start):
-        """
-        Configure ARPs and routes for VXLAN interfaces and put each pair of
-        VXLAN tunnel interface and VLAN sub-interface to separate bridge-domain.
-
-        :param node: VPP node.
-        :param node_vxlan_if: VPP node interface key where VXLAN tunnel
-            interfaces have been created.
-        :param vxlan_count: Number of tunnel interfaces.
-        :param op_node: Opposite VPP node for VXLAN tunnel interfaces.
-        :param op_node_if: Opposite VPP node interface key for VXLAN tunnel
-            interfaces.
-        :param dst_ip_start: VXLAN tunnel destination IP address start.
-        :param ip_step: IP address incremental step.
-        :param bd_id_start: Bridge-domain ID start.
-        :type node: dict
-        :type node_vxlan_if: str
-        :type vxlan_count: int
-        :type op_node: dict
-        :type op_node_if:
-        :type dst_ip_start: str
-        :type ip_step: int
-        :type bd_id_start: int
-        """
-        try:
-            dst_address_start = IPv6Address(unicode(dst_ip_start))
-            af_inet = AF_INET6
-            is_ipv6 = 1
-        except (AddressValueError, NetmaskValueError):
-            dst_address_start = IPv4Address(unicode(dst_ip_start))
-            af_inet = AF_INET
-            is_ipv6 = 0
-
-        with PapiExecutor(node) as papi_exec:
-            for i in xrange(0, vxlan_count):
-                dst_ip = dst_address_start + i * ip_step
-                neighbor = dict(
-                    sw_if_index=Topology.get_interface_sw_index(
-                        node, node_vxlan_if),
-                    flags=0,
-                    mac_address=str(
-                        Topology.get_interface_mac(op_node, op_node_if)),
-                    ip_address=str(dst_ip))
-                cmd = 'ip_neighbor_add_del'
-                args = dict(
-                    is_add=1,
-                    neighbor=neighbor)
-                papi_exec.add(cmd, **args)
-                cmd = 'ip_add_del_route'
-                args = dict(
-                    next_hop_sw_if_index=Topology.get_interface_sw_index(
-                        node, node_vxlan_if),
-                    table_id=0,
-                    is_add=1,
-                    is_ipv6=is_ipv6,
-                    next_hop_weight=1,
-                    next_hop_proto=1 if is_ipv6 else 0,
-                    dst_address_length=128 if is_ipv6 else 32,
-                    dst_address=inet_pton(af_inet, str(dst_ip)),
-                    next_hop_address=inet_pton(af_inet, str(dst_ip)))
-                papi_exec.add(cmd, **args)
-                cmd = 'sw_interface_set_l2_bridge'
-                args = dict(
-                    rx_sw_if_index=Topology.get_interface_sw_index(
-                        node, 'vxlan_tunnel{nr}'.format(nr=i+1)),
-                    bd_id=int(bd_id_start+i),
-                    shg=0,
-                    port_type=0,
-                    enable=1)
-                papi_exec.add(cmd, **args)
-                args = dict(
-                    rx_sw_if_index=Topology.get_interface_sw_index(
-                        node, 'vlan_subif{nr}'.format(nr=i+1)),
-                    bd_id=int(bd_id_start+i),
-                    shg=0,
-                    port_type=0,
-                    enable=1)
-                papi_exec.add(cmd, **args)
-            papi_exec.get_replies().verify_replies()
 
     @staticmethod
     def vpp_sw_interface_rx_placement_dump(node):
