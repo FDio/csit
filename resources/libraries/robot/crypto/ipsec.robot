@@ -250,34 +250,5 @@
 | | ...
 | | [Arguments] | ${ip_version}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Import Library | resources.libraries.python.VppConfigGenerator
-| | | ... | WITH NAME | ${dut}
-| | | Run keyword | ${dut}.Set Node | ${nodes['${dut}']}
-| | | Run keyword | ${dut}.Set Vpp Startup Conf Backup
-| | | Run keyword | ${dut}.Set Vpp Logfile | /tmp/vpp.log
-| | | Run keyword | ${dut}.Add Unix Nodaemon
-| | | Run keyword | ${dut}.Add Unix Log
-| | | Run keyword | ${dut}.Add Unix Coredump
-| | | Run keyword | ${dut}.Add Unix CLI Listen | /run/vpp/cli.sock
-| | | Run keyword | ${dut}.Add Unix Gid
-| | | Run keyword | ${dut}.Add Api Segment Gid
-| | | ${socket_id}= | Set Variable | ${0}
-| | | ${sw_dev_count}= | Set Variable | ${1}
-| | | Run keyword | ${dut}.Add DPDK SW Cryptodev | aesni_mb | ${socket_id}
-| | | ... | ${sw_dev_count}
-| | | Run keyword | ${dut}.Add DPDK SW Cryptodev | aesni_gcm | ${socket_id}
-| | | ... | ${sw_dev_count}
-| | Write startup configuration on all VPP DUTs
 | | Set up VPP device test
 | | Run Keyword | Configure topology for ${ip_version} IPsec testing
-
-| Tear down IPSec SW device functional test
-| | [Documentation]
-| | ... | Tear down IPSec SW device functional test.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Restore Config
-| | Tear down VPP device test
