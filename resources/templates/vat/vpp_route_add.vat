@@ -1,1 +1,1 @@
-ip_route_add_del {network}/{prefix_length} {vrf} {count} {multipath} {via}
+ip_route_add_del {network}/{prefix_length} {vrf} {count} {multipath} {via} {sw_if_index}
