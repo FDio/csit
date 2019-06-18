@@ -73,7 +73,8 @@ hosted by LFN FD.io CSIT project.
  9. 3-Node-Taishan     perf   tsh   skx   1    2    1    0    .5   0    0    0    0    2    0
 10. 3-Node-Mcbin       perf   mcb   skx   1    2    1    0    .5   0    0    0    0    0    2
 11. 1-Node-VIRL        func   hsw   ---   3    3    0    3    0    0    0    0    0    0    0
-                                 Totals: 17   26   14   12   19    1    2    1    1    2    2
+12. 3-Node-Denverton   perf   dnv   skx   1    2    1    0    .5   0    0    2    0    0    0
+                                 Totals: 18   28   15   12   19    1    2    3    1    2    2
 ```
 
 ### 1-Node-Skylake Xeon Intel (1n-skx)
@@ -716,10 +717,39 @@ connectivity and wiring across defined CSIT testbeds:
         - s10-t24-tg1-c9/p2 - FUTURE 100GE-port2 ConnectX5-2p100GE.
 ```
 
-#### 2-Node-Denverton (2n-dnv) TODO
+#### 2-Node-Denverton (2n-dnv) WIP
+
+Note: ServerB28 (TG) is shared between testbed26 & testbed35
 
 ```
-To be completed.
+- ServerB28 [Type-B2]:
+    - testbednames: testbed26 and testbed35.
+    - hostname: s28-t26t35-tg1.
+    - IPMI IP: 10.30.55.10
+    - Host IP: 10.32.8.10
+    - portnames:
+        - s28-t26t35-tg1-c2/p1 - 10GE-port1 x710da2-2p10GE.
+        - s28-t26t35-tg1-c2/p2 - 10GE-port2 x710da2-2p10GE.
+        - s28-t26t35-tg1-c4/p1 - 10GE-port1 x550t2-2p10GE.
+        - s28-t26t35-tg1-c4/p2 - 10GE-port2 x550t2-2p10GE.
+        - s28-t26t35-tg1-c9/p1 - 10GE-port1 x550t2-2p10GE.
+        - s28-t26t35-tg1-c9/p2 - 10GE-port2 x550t2-2p10GE.
+        - s28-t26t35-tg1-c6/p1 - 10GE-port1 x710da2-2p10GE.
+        - s28-t26t35-tg1-c6/p2 - 10GE-port2 x710da2-2p10GE.
+        - s28-t26t35-tg1-c8/p1 - 10GE-port1 x550t2-2p10GE.
+        - s28-t26t35-tg1-c8/p2 - 10GE-port2 x550t2-2p10GE.
+        - s28-t26t35-tg1-c10/p1 - 10GE-port1 x550t2-2p10GE.
+        - s28-t26t35-tg1-c10/p2 - 10GE-port2 x550t2-2p10GE.
+- ServerB29 [Type-B10]:
+    - testbednames: testbed26.
+    - hostname: s29-t26-sut1.
+    - IPMI IP: 10.30.55.11
+    - Host IP: 10.32.8.11
+    - portnames:
+        - s29-t26-sut1-p1 - 10GE-port1 x553 copper port.
+        - s29-t26-sut1-p2 - 10GE-port2 x553 copper port.
+        - s29-t26-sut1-p3 - 10GE-port3 x553 fiber port.
+        - s29-t26-sut1-p4 - 10GE-port4 x553 fiber port.
 ```
 
 #### 2-Node-IxiaPS1L47 (2n-ps1) VERIFY
@@ -991,8 +1021,6 @@ To be completed.
         - s16-t32-tg1-c9/p2 - FUTURE 100GE-port2 ConnectX5-2p100GE.
 ```
 
-Note: ServerB19 (TG) is shared between testbed33 & testbed34
-
 #### 3-Node-Rangeley (3n-rng) VERIFY
 
 Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
@@ -1028,6 +1056,8 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
 ```
 
 #### 3-Node-Taishan (3n-tsh) WIP
+
+Note: ServerB19 (TG) is shared between testbed33 & testbed34
 
 ```
 - ServerB17 [Type-B3]:
@@ -1082,6 +1112,31 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - portnames:
         - s21-t34-sut2-ca/p1 - 10GE-port1 Marvell.
         - s21-t34-sut2-ca/p2 - 10GE-port2 Marvell.
+```
+
+#### 3-Node-Denverton (3n-dnv) WIP
+
+```
+- ServerB30 [Type-B10]:
+    - testbednames: testbed35.
+    - hostname: s30-t35-sut1.
+    - IPMI IP: 10.30.55.12
+    - Host IP: 10.32.8.12
+    - portnames:
+        - s30-t35-sut1-p1 - 10GE-port1 x553 copper port.
+        - s30-t35-sut1-p2 - 10GE-port2 x553 copper port.
+        - s30-t35-sut1-p3 - 10GE-port3 x553 fiber port.
+        - s30-t35-sut1-p4 - 10GE-port4 x553 fiber port.
+- ServerB31 [Type-B10]:
+    - testbednames: testbed35.
+    - hostname: s31-t35-sut2.
+    - IPMI IP: 10.30.55.13
+    - Host IP: 10.32.8.13
+    - portnames:
+        - s31-t35-sut2-p1 - 10GE-port1 x553 copper port.
+        - s31-t35-sut2-p2 - 10GE-port2 x553 copper port.
+        - s31-t35-sut2-p3 - 10GE-port3 x553 fiber port.
+        - s31-t35-sut2-p4 - 10GE-port4 x553 fiber port.
 ```
 
 #### 3-Node-Mcbin (3n-mcb) TODO
@@ -1196,10 +1251,16 @@ To be completed.
         - s10-t24-tg1-c10/p3 to s10-t24-tg1-c10/p4.
 ```
 
-#### 2-Node-Denverton (2n-dnv) TODO
+#### 2-Node-Denverton (2n-dnv) WIP
 
 ```
-To be completed.
+- testbed26:
+    - ring1 10GE-ports x553 copper port on SUT:
+        - s28-t26t35-tg1-c4/p1 to s29-t26-sut1-p1.
+        - s28-t26t35-tg1-c9/p1 to s29-t26-sut1-p2.
+    - ring2 10GE-ports x553 fiber port on SUT:
+        - s28-t26t35-tg1-c2/p1 to s29-t26-sut1-p3.
+        - s28-t26t35-tg1-c2/p2 to s29-t26-sut1-p4.
 ```
 
 #### 2-Node-IxiaPS1L47 (2n-ps1) VERIFY
@@ -1365,6 +1426,20 @@ To be completed.
         - t33t34-tg1-c2/p3 - t34-sut1-ca/p1.
         - t34-sut1-ca/p2 - t34-sut2-ca/p1.
         - t34-sut2-ca/p2 - t33t34-tg1-c2/p4.
+```
+
+#### 3-Node-Denverton (3n-dnv) WIP
+
+```
+- testbed35:
+    - ring1 10GE-ports x553 copper port on SUTs:
+        - s28-t26t35-tg1-c8/p1 to s30-t35-sut1-p2.
+        - s30-t35-sut1-p1 to s31-t35-sut2-p1.
+        - s28-t26t35-tg1-c10/p1 to s31-t35-sut2-p2.
+    - ring2 10GE-ports x553 fiber port on SUTs:
+        - s28-t26t35-tg1-c6/p1 to s30-t35-sut1-p4.
+        - s30-t35-sut1-p3 to s31-t35-sut2-p3.
+        - s28-t26t35-tg1-c6/p2 to s31-t35-sut2-p4.
 ```
 
 ## Inventory
