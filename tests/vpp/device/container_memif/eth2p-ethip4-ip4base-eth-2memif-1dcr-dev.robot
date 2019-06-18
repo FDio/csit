@@ -26,10 +26,7 @@
 | ...
 | Test Setup | Set up VPP device test
 | ...
-| Test Teardown | Run Keywords
-| ... | Tear down functional test with container
-| ... | AND | Tear down VPP device test
-| ... | AND | Show Memif on all DUTs | ${nodes}
+| Test Teardown | Tear down test | packet_trace | container
 | ...
 | Documentation | *IPv4 routing test cases with memif interface*
 | ...
@@ -48,6 +45,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
 
 *** Variables ***
+# Teardown actions
+#| @{test_teardown_actions} | packet_trace
 # IP
 | ${net1}= | 10.0.1.0
 | ${net3}= | 10.0.3.0
