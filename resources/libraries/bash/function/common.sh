@@ -580,7 +580,11 @@ function reserve_and_cleanup_testbed () {
         echo "Sleeping ${sleep_time}"
         sleep "${sleep_time}" || die "Sleep failed."
     done
-    die "Run out of operational testbeds!"
+    if [[ ${TOPOLOGIES[@]} ]]; then
+        echo "Reservation and cleanup successful."
+    else
+        die "Run out of operational testbeds!"
+    fi
 }
 
 
