@@ -67,5 +67,7 @@ for pci_addr in ${pci_whitelist[@]}; do
                 pci_idx=$(( pci_idx + 1 ))
                 ;;
         esac
+        rmmod i40evf
+        modprobe i40evf
     fi
 done
