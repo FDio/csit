@@ -30,9 +30,7 @@
 | Test Setup | Run Keywords | Set up VPP device test
 | ... | AND | Clean Up Namespaces | ${nodes['DUT1']}
 | ...
-| Test Teardown | Run Keywords | Tear down VPP device test
-| ... | AND | Clean Up Namespaces | ${nodes['DUT1']}
-| ... | AND | Linux Del Bridge | ${nodes['DUT1']} | ${bid_TAP}
+| Test Teardown | Tear down test | packet_trace | namespace | linux_bridge
 | ...
 | Documentation | *Tap Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
