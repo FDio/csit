@@ -34,7 +34,10 @@
 | Library | resources.libraries.python.topology.Topology
 | ...
 | Resource | resources/libraries/robot/shared/container.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
+| Resource | resources/libraries/robot/shared/qemu.robot
+| Resource | resources/libraries/robot/shared/suite_teardown.robot
+| Resource | resources/libraries/robot/shared/test_teardown.robot
+
 
 *** Keywords ***
 | Configure all TGs for traffic script
@@ -421,6 +424,7 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Apply Config
+| | Save VPP PIDs
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
 
@@ -486,17 +490,6 @@
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg_udev=${True}
 | | Reset PAPI History On All DUTs | ${nodes}
 
-| Tear down VPP device test
-# TODO: Generalize this KW if it will not diverge from Functional derivate too
-# much
-| | [Documentation] | Common test teardown for vpp-device tests.
-| | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show Packet Trace on All DUTs | ${nodes}
-| | Show PAPI History On All DUTs | ${nodes}
-| | Vpp Show Errors On All DUTs | ${nodes}
-| | Verify VPP PID in Teardown
-
 | Tear down LISP functional test
 | | [Documentation] | Common test teardown for functional tests with LISP.
 | | ...
@@ -506,19 +499,6 @@
 | | Show Vpp Settings | ${nodes['DUT1']}
 | | Show Vpp Settings | ${nodes['DUT2']}
 | | Vpp Show Errors On All DUTs | ${nodes}
-| | Verify VPP PID in Teardown
-
-| Tear down LISP functional test with QEMU
-| | [Documentation] | Common test teardown for functional tests with LISP and\
-| | ... | QEMU.
-| | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show Packet Trace on All DUTs | ${nodes}
-| | Show PAPI History On All DUTs | ${nodes}
-| | Show Vpp Settings | ${nodes['DUT1']}
-| | Show Vpp Settings | ${nodes['DUT2']}
-| | Vpp Show Errors On All DUTs | ${nodes}
-| | Tear down QEMU
 | | Verify VPP PID in Teardown
 
 | Set up functional test with containers
@@ -559,13 +539,6 @@
 | | Configure VPP in all '${container_group}' containers
 | | Start VPP in all '${container_group}' containers
 | | Append To List | ${container_groups} | ${container_group}
-
-| Tear down functional test with container
-| | [Documentation]
-| | ... | Common test teardown for functional tests which uses containers.
-| | ...
-| | :FOR | ${container_group} | IN | @{container_groups}
-| | | Destroy all '${container_group}' containers
 
 | Stop VPP Service on DUT
 | | [Documentation] | Stop the VPP service on the specified node.
