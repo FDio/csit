@@ -33,9 +33,12 @@ def main():
                         help="Topology file")
     parser.add_argument("-c", "--cancel", help="Cancel reservation",
                         action="store_true")
+    parser.add_argument("-j", "--jobtag", required=False, default="Unknown"
+                        help="Identifier for Jenkins run suitable as filename")
     args = parser.parse_args()
     topology_file = args.topo
     cancel_reservation = args.cancel
+    jobtag = args.jobtag
 
     work_file = open(topology_file)
     topology = load(work_file.read())['nodes']
@@ -57,7 +60,9 @@ def main():
     if cancel_reservation:
         ret, _, err = ssh.exec_command("rm -r {}".format(RESERVATION_DIR))
     else:
-        ret, _, err = ssh.exec_command("mkdir {}".format(RESERVATION_DIR))
+        ret, _, err = ssh.exec_command(
+            "mkdir '{dir}' && touch '{dir}/{jobtag}'".format(
+                dir=RESERVATION_DIR, jobtag=jobtag))
 
     if ret != 0:
         print("{} unsuccessful:\n{}".
