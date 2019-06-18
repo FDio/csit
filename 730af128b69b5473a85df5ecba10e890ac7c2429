@@ -117,6 +117,30 @@
       "revId": "730af128b69b5473a85df5ecba10e890ac7c2429",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94d87e38_5884c6b3",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-18T12:22:37Z",
+      "side": 1,
+      "message": "I do not want clickable, what for? from console over vpn?\n\nMy point is to have it as simple as possible\n\n$job_$id\n\ntouch is simple file operation, no read write sync",
+      "parentUuid": "63437fe5_2f594b21",
+      "range": {
+        "startLine": 64,
+        "startChar": 30,
+        "endLine": 64,
+        "endChar": 60
+      },
+      "revId": "730af128b69b5473a85df5ecba10e890ac7c2429",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
