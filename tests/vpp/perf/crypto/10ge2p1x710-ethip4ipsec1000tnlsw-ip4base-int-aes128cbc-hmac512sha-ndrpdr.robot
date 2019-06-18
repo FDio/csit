@@ -22,10 +22,10 @@
 | Suite Setup | Run Keywords
 | ... | Set up IPSec performance test suite | L3 | ${nic_name} | SW_cryptodev
 | ... | AND | Set up performance test suite with crypto ipsecmb
-| Suite Teardown | Tear down 3-node performance topology
+| Suite Teardown | Tear down suite
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance test
+| Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local Template
 | ...

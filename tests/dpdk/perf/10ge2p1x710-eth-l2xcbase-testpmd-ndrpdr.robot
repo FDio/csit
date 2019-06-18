@@ -14,9 +14,6 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Resource | resources/libraries/robot/dpdk/default.robot
-| Library | resources.libraries.python.topology.Topology
-| Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.DPDK.DPDKTools
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | PERFTEST | NDRPDR | 1NUMA
@@ -24,7 +21,7 @@
 | ...
 | Suite Setup | Set up DPDK 3-node performance topology with DUT's NIC model
 | ... | L2 | ${nic_name}
-| Suite Teardown | Tear down DPDK 3-node performance topology
+| Suite Teardown | Tear down suite | dpdk
 | ...
 | Test Template | Local Template
 | ...
