@@ -22,6 +22,30 @@
       "revId": "730af128b69b5473a85df5ecba10e890ac7c2429",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "28518a41_fb5c33f8",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-18T12:00:46Z",
+      "side": 1,
+      "message": "The current content contains \"https://\" to be easily clickable, but it makes it a poor file name.",
+      "parentUuid": "25007bb0_37ed3a3e",
+      "range": {
+        "startLine": 64,
+        "startChar": 30,
+        "endLine": 64,
+        "endChar": 60
+      },
+      "revId": "730af128b69b5473a85df5ecba10e890ac7c2429",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
