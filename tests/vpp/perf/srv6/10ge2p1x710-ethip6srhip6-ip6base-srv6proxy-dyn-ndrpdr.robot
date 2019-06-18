@@ -23,12 +23,12 @@
 | ... | ${nic_name}
 | ... | AND | Set up performance test suite with MEMIF
 | ... | AND | Set up performance test suite with Dynamic SRv6 proxy
-| Suite Teardown | Tear down 3-node performance topology
+| Suite Teardown | Tear down suite
 | ...
 | Test Setup | Set up performance test
 | Test Teardown | Run Keywords
-| ... | Tear down performance test with SRv6 with encapsulation
-| ... | AND | Tear down performance test with container
+| ... | Tear down test with SRv6 with encapsulation
+| ... | AND | Tear down test with container
 | ...
 | Test Template | Local Template
 | ...
