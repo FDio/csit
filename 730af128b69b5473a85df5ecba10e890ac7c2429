@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "871462b8_9ccbd55b",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-18T12:02:35Z",
+      "side": 1,
+      "message": "Should I turn this into \"--job-url\" to be more specific?",
+      "range": {
+        "startLine": 36,
+        "startChar": 30,
+        "endLine": 36,
+        "endChar": 37
+      },
+      "revId": "730af128b69b5473a85df5ecba10e890ac7c2429",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "25007bb0_37ed3a3e",
         "filename": "resources/tools/scripts/topo_reservation.py",
         "patchSetId": 1
