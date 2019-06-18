@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47e87cb9_70fdab85",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-18T14:09:33Z",
+      "side": 1,
+      "message": "I realized that this is not an atomic operation anymore -2\n\ndo only mkdir and in next iteration do touch \u0027{dir}/{jobtag}\u0027\n\nnothing else otherwise it will not work as critical section.",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 71
+      },
+      "revId": "3ef8b98e625a3031f65a1df014596e516b4ca991",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
