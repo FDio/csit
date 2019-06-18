@@ -22,6 +22,30 @@
       "revId": "3ef8b98e625a3031f65a1df014596e516b4ca991",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "15af8cf1_8fefc8c5",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-18T14:28:27Z",
+      "side": 1,
+      "message": "\"ls\" and \"head\" should be no more intrusive than accpering SSH connection and starting bash, so they should be allowed to be run from parallel jobs. \"mkdir\" acts as the lock, only one job at a time passes there. Only that job then does \"touch\" and \"echo \u003e\", as it is allowed to. We do not care about parallel jobs seeing info a few milliseconds old.\n\nThe \"operation must be atomic\" rule is there only to avoid \"partial failure\" states. \"mkdir\" is still doing a fine job ensuring that. In worst case we can see reserved testbeds with no files created (while the owner job is cleaning up and unreserving) if \"touch\" or \"echo \u003e\" failed for some mysterious reasons.",
+      "parentUuid": "47e87cb9_70fdab85",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 71
+      },
+      "revId": "3ef8b98e625a3031f65a1df014596e516b4ca991",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
