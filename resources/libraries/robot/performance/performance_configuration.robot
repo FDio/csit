@@ -285,6 +285,7 @@
 | | ... | interface=${dut2_if1} | count=${count}
 | | Vpp Route Add | ${dut} | 20.0.0.0 | 32 | gateway=3.3.3.1
 | | ... | interface=${dut_if2} | count=${count}
+| | VPP Get IP Tables Prefix | ${dut1} | 10.0.0.1
 
 | Initialize IPv4 forwarding with vhost in 2-node circular topology
 | | [Documentation]

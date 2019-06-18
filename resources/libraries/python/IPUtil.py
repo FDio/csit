@@ -155,6 +155,21 @@ class IPUtil(object):
         PapiExecutor.run_cli_cmd(node, 'show ip6 fib summary')
 
     @staticmethod
+    def vpp_get_ip_tables_prefix(node, address):
+        """Get dump of all IP FIB tables on a VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+        ip = ip_address(unicode(address))
+
+        PapiExecutor.run_cli_cmd(
+            node, 'show {ip_ver} fib {addr}/{addr_len}'.format(
+                ip_ver='ip6' if ip.version == 6 else 'ip',
+                addr=ip,
+                addr_len=ip.max_prefixlen))
+
+    @staticmethod
     def get_interface_vrf_table(node, interface, ip_version='ipv4'):
         """Get vrf ID for the given interface.
 
