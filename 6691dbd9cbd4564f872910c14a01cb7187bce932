@@ -22,6 +22,30 @@
       "revId": "6691dbd9cbd4564f872910c14a01cb7187bce932",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef77d094_7523c297",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-18T12:04:47Z",
+      "side": 1,
+      "message": "https://stackoverflow.com/questions/16860877/remove-an-element-from-a-bash-array",
+      "parentUuid": "a6134476_f34996d4",
+      "range": {
+        "startLine": 557,
+        "startChar": 0,
+        "endLine": 563,
+        "endChar": 48
+      },
+      "revId": "6691dbd9cbd4564f872910c14a01cb7187bce932",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
