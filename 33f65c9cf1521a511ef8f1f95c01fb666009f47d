@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7db10066_98d2bb28",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-19T08:43:09Z",
+      "side": 1,
+      "message": "node",
+      "range": {
+        "startLine": 286,
+        "startChar": 28,
+        "endLine": 286,
+        "endChar": 31
+      },
+      "revId": "33f65c9cf1521a511ef8f1f95c01fb666009f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5398b726_6eea76d5",
+        "filename": "resources/libraries/python/IPv6Util.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-19T08:43:09Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 48,
+        "startChar": 14,
+        "endLine": 48,
+        "endChar": 17
+      },
+      "revId": "33f65c9cf1521a511ef8f1f95c01fb666009f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de30d1cd_ad4aa1a2",
+        "filename": "resources/libraries/python/IPv6Util.py",
+        "patchSetId": 27
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-19T08:43:09Z",
+      "side": 1,
+      "message": "units?",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 47
+      },
+      "revId": "33f65c9cf1521a511ef8f1f95c01fb666009f47d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
