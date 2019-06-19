@@ -15,11 +15,11 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDR
-| ... | IP4FWD | IPSEC | IPSECHW | IPSECINT | NIC_Intel-X710 | TNL_1000
-| ... | AES_128_CBC | HMAC_SHA_256 | HMAC | AES
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_60000
+| ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
+| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES
 | ...
-| Suite Setup | Setup suite single link | performance | ipsechw
+| Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance
@@ -32,8 +32,8 @@
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 on TG-DUTn,
 | ... | Eth-IPv4-IPSec on DUT1-DUT2
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with multiple
-| ... | IPsec tunnels between them. DUTs get IPv4 traffic from TG, encrypt it
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with multiple\
+| ... | IPsec tunnels between them. DUTs get IPv4 traffic from TG, encrypt it\
 | ... | and send to another DUT, where packets are decrypted and sent back to TG
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
@@ -54,9 +54,8 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
 | ${osi_layer}= | L3
-| ${crypto_type}= | HW_DH895xcc
 | ${nic_name}= | Intel-X710
-| ${overhead}= | ${58}
+| ${overhead}= | ${54}
 | ${tg_if1_ip4}= | 192.168.10.2
 | ${dut1_if1_ip4}= | 192.168.10.1
 | ${dut1_if2_ip4}= | 100.0.0.1
@@ -66,14 +65,14 @@
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
-| ${n_tunnels}= | ${1000}
+| ${n_tunnels}= | ${60000}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPSec tunneling AES_128_CBC / HMAC_SHA_256 config.
+| | ... | [Cfg] DUT runs IPSec tunneling AES_128_CBC / HMAC_SHA_512 config.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
@@ -89,14 +88,13 @@
 | | ...
 | | # These are enums (not strings) so they cannot be in Variables table.
 | | ${encr_alg}= | Crypto Alg AES CBC 128
-| | ${auth_alg}= | Integ Alg SHA 256 128
+| | ${auth_alg}= | Integ Alg SHA 512 256
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Add cryptodev to all DUTs | ${phy_cores}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPSec in 3-node circular topology
+| | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
 | | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${auth_alg}
@@ -104,50 +102,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc01-64B-1c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc02-64B-2c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc03-64B-4c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc04-1518B-1c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc05-1518B-2c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc06-1518B-4c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc07-9000B-1c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc08-9000B-2c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc09-9000B-4c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc10-IMIX-1c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc11-IMIX-2c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac256sha-ndrpdr
+| tc12-IMIX-4c-ethip4ipsec60000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}

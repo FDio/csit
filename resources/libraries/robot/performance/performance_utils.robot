@@ -89,8 +89,8 @@
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result.ndr_interval}
-| | Perform additional measurements based on NDRPDR result
-| | ... | ${result} | ${frame_size} | ${traffic_profile}
+#| | Perform additional measurements based on NDRPDR result
+#| | ... | ${result} | ${frame_size} | ${traffic_profile}
 
 | Find critical load using PLRsearch
 | | [Documentation]
