@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c73273df_955aed68",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-06-19T12:26:11Z",
+      "side": 1,
+      "message": "Dot at the end.",
+      "range": {
+        "startLine": 374,
+        "startChar": 25,
+        "endLine": 374,
+        "endChar": 29
+      },
+      "revId": "c7528d6ebbb29bb2be30aa6e7d94b4d00b9636c0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
