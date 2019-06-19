@@ -68,6 +68,30 @@
       "revId": "c7ebcfd56d300b2c8a8e94960704627807cbe196",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4568a6b0_b0529108",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-06-19T08:25:23Z",
+      "side": 1,
+      "message": "I agree with Peter - we don\u0027t need URL, just information about jenkins job and build number using the testbed (provided by build_tag) is enough.",
+      "parentUuid": "7f8029a0_edd89964",
+      "range": {
+        "startLine": 93,
+        "startChar": 35,
+        "endLine": 93,
+        "endChar": 66
+      },
+      "revId": "c7ebcfd56d300b2c8a8e94960704627807cbe196",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
