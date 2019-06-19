@@ -216,26 +216,43 @@ class VPPUtil(object):
             host=node['host'], if_data=if_data))
 
     @staticmethod
-    def vpp_enable_traces_on_dut(node):
+    def vpp_enable_traces_on_dut(node, fail_on_error=True):
         """Enable vpp packet traces on the DUT node.
 
         :param node: DUT node to set up.
+        :param fail_on_error: If True, keyword fails if an error occurs,
+            otherwise passes.
         :type node: dict
+        :type fail_on_error: bool
         """
-        PapiExecutor.run_cli_cmd(node, "trace add dpdk-input 50")
-        PapiExecutor.run_cli_cmd(node, "trace add vhost-user-input 50")
-        PapiExecutor.run_cli_cmd(node, "trace add memif-input 50")
+        cmds = [
+            "trace add dpdk-input 50",
+            "trace add vhost-user-input 50",
+            "trace add memif-input 50"
+        ]
+
+        for cmd in cmds:
+            try:
+                PapiExecutor.run_cli_cmd(node, cmd)
+            except AssertionError as err:
+                if fail_on_error:
+                    raise
+                else:
+                    logger.error(repr(err))
 
     @staticmethod
-    def vpp_enable_traces_on_all_duts(nodes):
+    def vpp_enable_traces_on_all_duts(nodes, fail_on_error=True):
         """Enable vpp packet traces on all DUTs in the given topology.
 
         :param nodes: Nodes in the topology.
+        :param fail_on_error: If True, keyword fails if an error occurs,
+            otherwise passes.
         :type nodes: dict
+        :type fail_on_error: bool
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                VPPUtil.vpp_enable_traces_on_dut(node)
+                VPPUtil.vpp_enable_traces_on_dut(node, fail_on_error)
 
     @staticmethod
     def vpp_enable_elog_traces_on_dut(node):

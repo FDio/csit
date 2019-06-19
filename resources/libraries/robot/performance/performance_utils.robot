@@ -378,7 +378,7 @@
 | | ... | ${unidirection} | ${tx_port} | ${rx_port}
 | | Run Keyword If | ${dut_stats}==${True} | Clear all counters on all DUTs
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
-| | ... | VPP Enable Traces On All DUTs | ${nodes}
+| | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | VPP enable elog traces on all DUTs | ${nodes}
 | | ${results} = | Create List
