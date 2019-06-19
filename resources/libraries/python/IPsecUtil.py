@@ -661,6 +661,12 @@ class IPsecUtil(object):
         vat = VatExecutor()
 
         with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
+            tmp_f2.write(
+                'exec set interface ip address {uifc} {laddr}/24\n'
+                .format(
+                    laddr=ip_address(unicode(if2_ip_addr)),
+                    uifc=Topology.get_interface_name(nodes['DUT2'],
+                                                     if2_key)))
             for i in range(0, n_tunnels):
                 ckey = gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg))
                 ikey = gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg))
@@ -693,11 +699,10 @@ class IPsecUtil(object):
                         remote_crypto_key=ckey,
                         integ=integ,
                         laddr=ip_address(unicode(if1_ip_addr)) + i * addr_incr,
-                        raddr=ip_address(unicode(if2_ip_addr)) + i * addr_incr,
+                        raddr=ip_address(unicode(if2_ip_addr)),
                         uifc=Topology.get_interface_name(nodes['DUT1'],
                                                          if1_key)))
                 tmp_f2.write(
-                    'exec set interface ip address {uifc} {laddr}/24\n'
                     'ipsec_tunnel_if_add_del '
                     'local_spi {local_spi} '
                     'remote_spi {remote_spi} '
@@ -714,10 +719,8 @@ class IPsecUtil(object):
                         local_crypto_key=ckey,
                         remote_crypto_key=ckey,
                         integ=integ,
-                        laddr=ip_address(unicode(if2_ip_addr)) + i * addr_incr,
-                        raddr=ip_address(unicode(if1_ip_addr)) + i * addr_incr,
-                        uifc=Topology.get_interface_name(nodes['DUT2'],
-                                                         if2_key)))
+                        laddr=ip_address(unicode(if2_ip_addr)),
+                        raddr=ip_address(unicode(if1_ip_addr)) + i * addr_incr))
         vat.execute_script(tmp_fn1, nodes['DUT1'], timeout=300, json_out=False,
                            copy_on_execute=True)
         vat.execute_script(tmp_fn2, nodes['DUT2'], timeout=300, json_out=False,
@@ -726,24 +729,27 @@ class IPsecUtil(object):
         os.remove(tmp_fn2)
 
         with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
+            tmp_f2.write(
+                'exec ip route add {raddr}/24 via {uifc}\n'
+                .format(
+                    raddr=ip_address(unicode(if1_ip_addr)) + i * addr_incr,
+                    uifc=Topology.get_interface_name(nodes['DUT2'], if2_key)))
             for i in range(0, n_tunnels):
                 tmp_f1.write(
                     'exec set interface unnumbered ipsec{i} use {uifc}\n'
                     'exec set interface state ipsec{i} up\n'
-                    'exec ip route add {taddr}/32 via {raddr} ipsec{i}\n'
+                    'exec ip route add {taddr}/32 via ipsec{i}\n'
                     .format(
                         taddr=ip_address(unicode(raddr_ip2)) + i,
-                        raddr=ip_address(unicode(if2_ip_addr)) + i * addr_incr,
                         i=i,
                         uifc=Topology.get_interface_name(nodes['DUT1'],
                                                          if1_key)))
                 tmp_f2.write(
                     'exec set interface unnumbered ipsec{i} use {uifc}\n'
                     'exec set interface state ipsec{i} up\n'
-                    'exec ip route add {taddr}/32 via {raddr} ipsec{i}\n'
+                    'exec ip route add {taddr}/32 via ipsec{i}\n'
                     .format(
                         taddr=ip_address(unicode(raddr_ip1)) + i,
-                        raddr=ip_address(unicode(if1_ip_addr)) + i * addr_incr,
                         i=i,
                         uifc=Topology.get_interface_name(nodes['DUT2'],
                                                          if2_key)))
