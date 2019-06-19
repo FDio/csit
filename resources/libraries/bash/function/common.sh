@@ -445,6 +445,14 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="skx"
             ;;
+        *"2n-dnv"*)
+            NODENESS="2n"
+            FLAVOR="dnv"
+            ;;
+        *"3n-dnv"*)
+            NODENESS="3n"
+            FLAVOR="dnv"
+            ;;
         *"3n-tsh"*)
             NODENESS="3n"
             FLAVOR="tsh"
@@ -491,6 +499,7 @@ function get_test_tag_string () {
                 comment="${comment/perftest-3n/perftest}"
                 comment="${comment/perftest-hsw/perftest}"
                 comment="${comment/perftest-skx/perftest}"
+                comment="${comment/perftest-dnv/perftest}"
                 comment="${comment/perftest-tsh/perftest}"
                 tag_string="$(echo "${comment}" \
                     | grep -oE '(perftest$|perftest[[:space:]].+$)' || true)"
@@ -652,6 +661,9 @@ function select_tags () {
 
     # Select default NIC
     case "${TEST_CODE}" in
+        *"3n-dnv"* | *"2n-dnv"*)
+            DEFAULT_NIC='nic_intel-x553'
+            ;;
         *"3n-tsh"*)
             DEFAULT_NIC='nic_intel-x520-da2'
             ;;
@@ -696,6 +708,19 @@ function select_tags () {
             test_tag_array+=("!ipsechw")
             # Not enough nic_intel-xxv710 to support double link tests.
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
+            ;;
+        *"2n-dnv"*)
+            test_tag_array+=("!ipsechw")
+            test_tag_array+=("!memif")
+            test_tag_array+=("!srv6_proxy")
+            test_tag_array+=("!vhost")
+            test_tag_array+=("!vts")
+            ;;
+        *"3n-dnv"*)
+            test_tag_array+=("!memif")
+            test_tag_array+=("!srv6_proxy")
+            test_tag_array+=("!vhost")
+            test_tag_array+=("!vts")
             ;;
         *"3n-tsh"*)
             test_tag_array+=("!ipsechw")
@@ -863,6 +888,14 @@ function select_topology () {
         "3n_skx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_skx*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        "2n_dnv")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_dnv*.yaml )
+            TOPOLOGIES_TAGS="2_node_single_link_topo"
+            ;;
+        "3n_dnv")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_dnv*.yaml )
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         "3n_hsw")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_hsw*.yaml )

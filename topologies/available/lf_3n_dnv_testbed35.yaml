@@ -1,0 +1,74 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 3-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "10.32.8.10"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    interfaces:
+      port1:
+        mac_address: "b4:96:91:46:b2:28"
+        pci_address: "0000:af:00.0"
+        driver: ixgbe
+        link: link1
+        model: Intel-X553
+      port2:
+        mac_address: "b4:96:91:46:ae:3c"
+        pci_address: "0000:d8:00.0"
+        driver: ixgbe
+        link: link2
+        model: Intel-X553
+  DUT1:
+    type: DUT
+    host: "10.32.8.12"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    cryptodev: "0000:01:00.0"
+    uio_driver: vfio-pci
+    interfaces:
+      port1:
+        mac_address: "ac:1f:6b:57:56:c6"
+        pci_address: "0000:08:00.0"
+        driver: ixgbe
+        link: link3
+        model: Intel-X553
+      port2:
+        mac_address: "ac:1f:6b:57:56:c7"
+        pci_address: "0000:08:00.1"
+        driver: ixgbe
+        link: link1
+        model: Intel-X553
+  DUT2:
+    type: DUT
+    host: "10.32.8.13"
+    arch: x86_64
+    port: 22
+    username: testuser
+    password: Csit1234
+    cryptodev: "0000:01:00.0"
+    uio_driver: vfio-pci
+    interfaces:
+      port1:
+        mac_address: "ac:1f:6b:57:57:fe"
+        pci_address: "0000:08:00.0"
+        driver: ixgbe
+        link: link3
+        model: Intel-X553
+      port2:
+        mac_address: "ac:1f:6b:57:57:ff"
+        pci_address: "0000:08:00.1"
+        driver: ixgbe
+        link: link2
+        model: Intel-X553
