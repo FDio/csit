@@ -29,6 +29,7 @@ all:
             10.30.51.55: null #s8-t23-tg1
             10.30.51.57: null #s10-t24-tg1
             10.30.51.60: null #s16-t32-tg1
+            10.32.8.10: null #s28-t26t35-tg1
         sut:
           hosts:
             10.30.51.44: null #s3-t21-sut1
@@ -43,6 +44,13 @@ all:
           hosts:
             10.30.51.50: null #s1-t11-sut1
             10.30.51.51: null #s2-t12-sut1
+    denverton:
+      children:
+        sut:
+          hosts:
+            10.32.8.11: null #s29-t26-sut1
+            10.32.8.12: null #s30-t35-sut1
+            10.32.8.13: null #s31-t35-sut2
     taishan:
       children:
 #        tg:
