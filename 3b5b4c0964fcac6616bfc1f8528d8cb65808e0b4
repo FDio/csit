@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b4f4f0cd_ee58e312",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-19T06:49:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c4a6915_f20ad922",
+      "revId": "3b5b4c0964fcac6616bfc1f8528d8cb65808e0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "10727be0_412b2391",
         "filename": "resources/libraries/python/VppCounters.py",
         "patchSetId": 37
@@ -30,6 +48,30 @@
       "writtenOn": "2019-06-19T06:26:28Z",
       "side": 1,
       "message": "Dead code?",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 53
+      },
+      "revId": "3b5b4c0964fcac6616bfc1f8528d8cb65808e0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "35bc7612_be764e2a",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-19T06:49:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10727be0_412b2391",
       "range": {
         "startLine": 79,
         "startChar": 0,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "b364bb1a_dfbe3fb1",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-19T06:49:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "581bcca5_a635a697",
+      "revId": "3b5b4c0964fcac6616bfc1f8528d8cb65808e0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4912c105_81fff8fd",
         "filename": "resources/tools/papi/vpp_papi_provider.py",
         "patchSetId": 37
@@ -70,6 +130,30 @@
       "writtenOn": "2019-06-19T06:26:28Z",
       "side": 1,
       "message": "try except candidate?",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 37
+      },
+      "revId": "3b5b4c0964fcac6616bfc1f8528d8cb65808e0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ed3a2a85_e3471fb5",
+        "filename": "resources/tools/papi/vpp_papi_provider.py",
+        "patchSetId": 37
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-06-19T06:49:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4912c105_81fff8fd",
       "range": {
         "startLine": 232,
         "startChar": 0,
