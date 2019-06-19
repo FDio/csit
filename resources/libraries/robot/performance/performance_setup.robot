@@ -682,7 +682,7 @@
 | | ... | \| Tear down performance test \|
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show PAPI History On All DUTs | ${nodes}
+#| | Show PAPI History On All DUTs | ${nodes}
 | | Get Core Files on All Nodes | ${nodes}
 | | Set Test Variable | ${pkt_trace} | ${True}
 | | Run Keyword If Test Failed
