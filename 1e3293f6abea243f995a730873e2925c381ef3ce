@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83f78361_94b5e14c",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-20T05:28:58Z",
+      "side": 1,
+      "message": "2_node_single_link_topo\n\ni would say you do not have double link?",
+      "range": {
+        "startLine": 894,
+        "startChar": 35,
+        "endLine": 894,
+        "endChar": 37
+      },
+      "revId": "1e3293f6abea243f995a730873e2925c381ef3ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5acc8f6b_72a47a26",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 898,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-20T05:28:58Z",
+      "side": 1,
+      "message": "3_node_single_link_topo\n\ni would say you do not have double link?",
+      "range": {
+        "startLine": 898,
+        "startChar": 29,
+        "endLine": 898,
+        "endChar": 47
+      },
+      "revId": "1e3293f6abea243f995a730873e2925c381ef3ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
