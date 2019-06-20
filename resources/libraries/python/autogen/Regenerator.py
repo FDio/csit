@@ -118,10 +118,6 @@ class Regenerator(object):
                 if "vic1385" in iface:
                     # Not supported in HW.
                     emit = False
-                if "avf" in suite_id:
-                    # Not supported by AVF driver.
-                    # https://git.fd.io/vpp/tree/src/plugins/avf/README.md
-                    emit = False
             if "-16vm2t-" in suite_id or "-16dcr2t-" in suite_id:
                 if kwargs["phy_cores"] > 3:
                     # CSIT lab only has 28 (physical) core processors,
