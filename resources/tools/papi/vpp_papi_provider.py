@@ -92,11 +92,17 @@ def _convert_reply(api_r):
     unwanted_fields = ['count', 'index', 'context']
 
     def process_value(val):
+        """Process value.
+
+        :param val: Value to be processed.
+        :type val: object
+        :returns: Processed value.
+        :rtype: dict or str or int
+        """
         if isinstance(val, dict):
-            val_dict = dict()
             for val_k, val_v in val.iteritems():
-                val_dict[str(val_k)] = process_value(val_v)
-            return val_dict
+                val[str(val_k)] = process_value(val_v)
+            return val
         elif isinstance(val, list):
             for idx, val_l in enumerate(val):
                 val[idx] = process_value(val_l)
@@ -140,14 +146,20 @@ def process_json_request(args):
     reply = list()
 
     def process_value(val):
+        """Process value.
+
+        :param val: Value to be processed.
+        :type val: object
+        :returns: Processed value.
+        :rtype: dict or str or int
+        """
         if isinstance(val, dict):
-            val_dict = dict()
             for val_k, val_v in val.iteritems():
-                val_dict[str(val_k)] = process_value(val_v)
-            return val_dict
+                val[str(val_k)] = process_value(val_v)
+            return val
         elif isinstance(val, list):
-            for idx, item in enumerate(val):
-                val[idx] = process_value(item)
+            for idx, val_l in enumerate(val):
+                val[idx] = process_value(val_l)
             return val
         elif isinstance(val, unicode):
             return binascii.unhexlify(val)

@@ -918,17 +918,17 @@
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if2} | ${dut1_if2_ip6} | ${prefix}
 | | VPP Interface Set IP Address | ${dut1} | ${dut1-memif-1-if1}
-| | ... | ${dut1-memif-1-if1_ip6} | ${prefix}
+| | ... | ${dut1-memif-1-if1_ip6} | ${mem_prefix}
 | | VPP Interface Set IP Address | ${dut1} | ${dut1-memif-1-if2}
-| | ... | ${dut1-memif-1-if2_ip6} | ${prefix}
+| | ... | ${dut1-memif-1-if2_ip6} | ${mem_prefix}
 | | VPP Interface Set IP Address
 | | ... | ${dut2} | ${dut2_if1} | ${dut2_if1_ip6} | ${prefix}
 | | VPP Interface Set IP Address
 | | ... | ${dut2} | ${dut2_if2} | ${dut2_if2_ip6} | ${prefix}
 | | VPP Interface Set IP Address | ${dut2} | ${dut2-memif-1-if1}
-| | ... | ${dut2-memif-1-if1_ip6} | ${prefix}
+| | ... | ${dut2-memif-1-if1_ip6} | ${mem_prefix}
 | | VPP Interface Set IP Address | ${dut2} | ${dut2-memif-1-if2}
-| | ... | ${dut2-memif-1-if2_ip6} | ${prefix}
+| | ... | ${dut2-memif-1-if2_ip6} | ${mem_prefix}
 | | Suppress ICMPv6 router advertisement message | ${nodes}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${dut1_if2} | ${dut2_if1_ip6} | ${dut2_if1_mac}
