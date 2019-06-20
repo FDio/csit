@@ -15,8 +15,9 @@
 
 import re
 
-from socket import AF_INET, AF_INET6, inet_ntop, inet_pton
+from socket import AF_INET, AF_INET6, inet_pton
 
+from enum import IntEnum
 from ipaddress import ip_address
 from ipaddress import IPv4Network, IPv6Network, IPv4Address, IPv6Address
 from ipaddress import AddressValueError, NetmaskValueError
@@ -26,6 +27,48 @@ from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import NodeType, Topology
+
+
+# from vpp/src/vnet/vnet/mpls/mpls_types.h
+MPLS_IETF_MAX_LABEL = 0xfffff
+MPLS_LABEL_INVALID = MPLS_IETF_MAX_LABEL + 1
+
+
+class AddressFamily(IntEnum):
+    """IP address family."""
+    ADDRESS_IP4 = 0
+    ADDRESS_IP6 = 1
+
+
+class FibPathType(IntEnum):
+    """FIB path types."""
+    FIB_PATH_TYPE_NORMAL = 0
+    FIB_PATH_TYPE_LOCAL = 1
+    FIB_PATH_TYPE_DROP = 2
+    FIB_PATH_TYPE_UDP_ENCAP = 3
+    FIB_PATH_TYPE_BIER_IMP = 4
+    FIB_PATH_TYPE_ICMP_UNREACH = 5
+    FIB_PATH_TYPE_ICMP_PROHIBIT = 6
+    FIB_PATH_TYPE_SOURCE_LOOKUP = 7
+    FIB_PATH_TYPE_DVR = 8
+    FIB_PATH_TYPE_INTERFACE_RX = 9
+    FIB_PATH_TYPE_CLASSIFY = 10
+
+
+class FibPathFlags(IntEnum):
+    """FIB path flags."""
+    FIB_PATH_FLAG_NONE = 0
+    FIB_PATH_FLAG_RESOLVE_VIA_ATTACHED = 1
+    FIB_PATH_FLAG_RESOLVE_VIA_HOST = 2
+
+
+class FibPathNhProto(IntEnum):
+    """FIB path next-hop protocol."""
+    FIB_PATH_NH_PROTO_IP4 = 0
+    FIB_PATH_NH_PROTO_IP6 = 1
+    FIB_PATH_NH_PROTO_MPLS = 2
+    FIB_PATH_NH_PROTO_ETHERNET = 3
+    FIB_PATH_NH_PROTO_BIER = 4
 
 
 class IPUtil(object):
@@ -93,8 +136,10 @@ class IPUtil(object):
 
         data = list()
         for item in papi_resp.reply[0]['api_reply']:
-            item[cmd_reply]['ip'] = inet_ntop(AF_INET6, item[cmd_reply]['ip']) \
-                if is_ipv6 else inet_ntop(AF_INET, item[cmd_reply]['ip'][0:4])
+            item[cmd_reply]['ip'] = item[cmd_reply]['prefix'].split('/')[0]
+            item[cmd_reply]['prefix_length'] = int(
+                item[cmd_reply]['prefix'].split('/')[1])
+            item[cmd_reply]['is_ipv6'] = is_ipv6
             item[cmd_reply]['netmask'] = str(
                 IPv6Network(unicode('::/{pl}'.format(
                     pl=item[cmd_reply]['prefix_length']))).netmask) if is_ipv6 \
@@ -425,44 +470,73 @@ class IPUtil(object):
         interface = kwargs.get('interface', None)
         gateway = kwargs.get('gateway', None)
 
-        try:
-            net_addr = IPv6Address(unicode(network))
-            af_inet = AF_INET6
-            is_ipv6 = 1
-        except (AddressValueError, NetmaskValueError):
-            net_addr = IPv4Address(unicode(network))
-            af_inet = AF_INET
-            is_ipv6 = 0
+        net_addr = ip_address(unicode(network))
 
-        if gateway:
-            try:
-                gt_addr = IPv6Address(unicode(gateway))
-                af_inet_gt = AF_INET6
-            except (AddressValueError, NetmaskValueError):
-                gt_addr = IPv4Address(unicode(gateway))
-                af_inet_gt = AF_INET
+        def union_addr(ip_addr):
+            """Creates union IP address.
 
-        cmd = 'ip_add_del_route'
-        args = dict(
-            next_hop_sw_if_index=InterfaceUtil.get_interface_index(
-                node, interface) if interface else Constants.BITWISE_NON_ZERO,
+            :param ip_addr: IPv4 or IPv6 address.
+            :type ip_addr: IPv4Address or IPv6Address
+            :returns: Union IP address.
+            :rtype: dict
+            """
+            return dict(ip6=inet_pton(AF_INET6, str(ip_addr))) \
+                if ip_addr.version == 6 \
+                else dict(ip4=inet_pton(AF_INET, str(ip_addr)))
+
+        addr = dict(
+            af=getattr(
+                AddressFamily, 'ADDRESS_IP6' if net_addr.version == 6
+                else 'ADDRESS_IP4').value)
+        prefix = dict(address_length=int(prefix_len))
+
+        paths = list()
+        n_hop = dict(
+            address=union_addr(ip_address(unicode(gateway))) if gateway else 0,
+            via_label=MPLS_LABEL_INVALID,
+            obj_id=Constants.BITWISE_NON_ZERO)
+        path = dict(
+            sw_if_index=InterfaceUtil.get_interface_index(node, interface)
+            if interface else Constants.BITWISE_NON_ZERO,
+            table_id=int(kwargs.get('lookup_vrf', 0)),
+            rpf_id=Constants.BITWISE_NON_ZERO,
+            weight=int(kwargs.get('weight', 1)),
+            preference=1,
+            type=getattr(
+                FibPathType, 'FIB_PATH_TYPE_LOCAL'
+                if kwargs.get('local', False)
+                else 'FIB_PATH_TYPE_NORMAL').value,
+            flags=getattr(FibPathFlags, 'FIB_PATH_FLAG_NONE').value,
+            proto=getattr(
+                FibPathNhProto, 'FIB_PATH_NH_PROTO_IP6'
+                if net_addr.version == 6
+                else 'FIB_PATH_NH_PROTO_IP4').value,
+            nh=n_hop,
+            n_labels=0,
+            label_stack=list(0 for _ in range(16)))
+        paths.append(path)
+
+        route = dict(
             table_id=int(kwargs.get('vrf', 0)),
+            n_paths=len(paths),
+            paths=paths)
+        cmd = 'ip_route_add_del'
+        args = dict(
             is_add=1,
-            is_ipv6=is_ipv6,
-            is_local=int(kwargs.get('local', False)),
-            is_multipath=int(kwargs.get('multipath', False)),
-            next_hop_weight=int(kwargs.get('weight', 1)),
-            next_hop_proto=1 if is_ipv6 else 0,
-            dst_address_length=int(prefix_len),
-            next_hop_address=inet_pton(af_inet_gt, str(gt_addr)) if gateway
-            else 0,
-            next_hop_table_id=int(kwargs.get('lookup_vrf', 0)))
+            is_multipath=int(kwargs.get('multipath', False)))
+
         err_msg = 'Failed to add route(s) on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
             for i in xrange(kwargs.get('count', 1)):
-                papi_exec.add(cmd, dst_address=inet_pton(
-                    af_inet, str(net_addr+i)), **args)
+                addr['un'] = union_addr(net_addr + i)
+                prefix['address'] = addr
+                route['prefix'] = prefix
+                history = False if 1 < i < kwargs.get('count', 1) else True
+                papi_exec.add(cmd, history=history, route=route, **args)
+                if i > 0 and i % Constants.PAPI_MAX_API_BULK == 0:
+                    papi_exec.get_replies(err_msg).verify_replies(
+                        err_msg=err_msg)
             papi_exec.get_replies(err_msg).verify_replies(err_msg=err_msg)
 
     @staticmethod
@@ -526,9 +600,11 @@ class IPUtil(object):
         :type ipv6: bool
         """
         cmd = 'ip_table_add_del'
-        args = dict(
+        table = dict(
             table_id=int(table_id),
-            is_ipv6=int(ipv6),
+            is_ip6=int(ipv6))
+        args = dict(
+            table=table,
             is_add=1)
         err_msg = 'Failed to add FIB table on host {host}'.format(
             host=node['host'])
