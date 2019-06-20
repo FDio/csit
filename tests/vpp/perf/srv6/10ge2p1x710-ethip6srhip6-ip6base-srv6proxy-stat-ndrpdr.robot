@@ -83,6 +83,7 @@
 | ${dut2-memif-1-if2_ip6}= | 3002:1::2
 | ${dut2_nh}= | 4001::
 | ${prefix}= | ${64}
+| ${mem_prefix}= | ${128}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip6-ip6src253
 # Container
@@ -112,7 +113,7 @@
 | | And Add PCI devices to all DUTs
 | | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | And Set up performance test with containers | nf_chains=${1} | nf_nodes=${1}
+| | And Start containers for performance test | nf_chains=${1} | nf_nodes=${1}
 | | When Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'static_proxy' behaviour in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
