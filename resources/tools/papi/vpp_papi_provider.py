@@ -137,6 +137,11 @@ def process_json_request(args):
             for val_k, val_v in val.iteritems():
                 val_dict[str(val_k)] = process_value(val_v)
             return val_dict
+        elif isinstance(val, list):
+            val_list = list()
+            for val_l in val:
+                val_list.append(process_value(val_l))
+            return val_list
         elif isinstance(val, unicode):
             return binascii.unhexlify(val)
         elif isinstance(val, int):
