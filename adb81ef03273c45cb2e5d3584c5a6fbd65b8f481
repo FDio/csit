@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "317b7fdd_1480d410",
+        "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/files/csit-initialize-vfs.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-20T05:35:58Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 21,
+        "startChar": 42,
+        "endLine": 21,
+        "endChar": 46
+      },
+      "revId": "adb81ef03273c45cb2e5d3584c5a6fbd65b8f481",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
