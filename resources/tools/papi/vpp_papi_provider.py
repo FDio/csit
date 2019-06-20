@@ -133,10 +133,13 @@ def process_json_request(args):
 
     def process_value(val):
         if isinstance(val, dict):
-            val_dict = dict()
             for val_k, val_v in val.iteritems():
-                val_dict[str(val_k)] = process_value(val_v)
-            return val_dict
+                val[str(val_k)] = process_value(val_v)
+            return val
+        elif isinstance(val, list):
+            for idx, item in val:
+                val[idx] = process_value(item)
+            return val
         elif isinstance(val, unicode):
             return binascii.unhexlify(val)
         elif isinstance(val, int):
