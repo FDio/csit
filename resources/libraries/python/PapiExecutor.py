@@ -290,20 +290,24 @@ class PapiExecutor(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self._ssh.disconnect(self._node)
 
-    def add(self, csit_papi_command="vpp-stats", **kwargs):
+    def add(self, csit_papi_command="vpp-stats", history=True, **kwargs):
         """Add next command to internal command list; return self.
 
         The argument name 'csit_papi_command' must be unique enough as it cannot
         be repeated in kwargs.
 
         :param csit_papi_command: VPP API command.
+        :param history: Enable/disable adding command to PAPI command history.
         :param kwargs: Optional key-value arguments.
         :type csit_papi_command: str
+        :type history: bool
         :type kwargs: dict
         :returns: self, so that method chaining is possible.
         :rtype: PapiExecutor
         """
-        PapiHistory.add_to_papi_history(self._node, csit_papi_command, **kwargs)
+        if history:
+            PapiHistory.add_to_papi_history(
+                self._node, csit_papi_command, **kwargs)
         self._api_command_list.append(dict(api_name=csit_papi_command,
                                            api_args=kwargs))
         return self
@@ -484,6 +488,11 @@ class PapiExecutor(object):
                 for val_k, val_v in val.iteritems():
                     val_dict[str(val_k)] = process_value(val_v)
                 return val_dict
+            elif isinstance(val, list):
+                val_list = list()
+                for val_l in val:
+                    val_list.append(process_value(val_l))
+                return val_list
             else:
                 return binascii.hexlify(val) if isinstance(val, str) else val
 
