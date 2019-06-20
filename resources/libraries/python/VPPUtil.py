@@ -162,7 +162,7 @@ class VPPUtil(object):
         :rtype: str
         """
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_version').get_replies().verify_reply()
+            data = papi_exec.add('show_version').get_reply()
         version = ('VPP version:      {ver}\n'.
                    format(ver=data['version'].rstrip('\0x00')))
         if verbose:
@@ -193,24 +193,20 @@ class VPPUtil(object):
         """
 
         cmd = 'sw_interface_dump'
-        cmd_reply = 'sw_interface_details'
         args = dict(name_filter_valid=0, name_filter='')
         err_msg = 'Failed to get interface dump on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg)
-
-        papi_if_dump = papi_resp.reply[0]['api_reply']
+            papi_if_dump = papi_exec.add(cmd, **args).get_details(err_msg)
 
         if_data = list()
         for item in papi_if_dump:
-            data = item[cmd_reply]
-            data['interface_name'] = data['interface_name'].rstrip('\x00')
-            data['tag'] = data['tag'].rstrip('\x00')
-            data['l2_address'] = str(':'.join(binascii.hexlify(
-                data['l2_address'])[i:i + 2] for i in range(0, 12, 2)).
+            item['interface_name'] = item['interface_name'].rstrip('\x00')
+            item['tag'] = item['tag'].rstrip('\x00')
+            item['l2_address'] = str(':'.join(binascii.hexlify(
+                item['l2_address'])[i:i + 2] for i in range(0, 12, 2)).
                                      decode('ascii'))
-            if_data.append(data)
+            if_data.append(item)
         # TODO: return only base data
         logger.trace('Interface data of host {host}:\n{if_data}'.format(
             host=node['host'], if_data=if_data))
@@ -315,8 +311,7 @@ class VPPUtil(object):
         :rtype: list
         """
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_threads').get_replies().\
-                verify_reply()["thread_data"]
+            data = papi_exec.add('show_threads').get_reply()["thread_data"]
 
         threads_data = list()
         for thread in data:
