@@ -47,8 +47,7 @@ class VppCounters(object):
                   "{host}".format(host=node['host'], cmd=cmd)
 
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add(cli, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            data = papi_exec.add(cli, **args).get_reply(err_msg)
 
         if log:
             logger.info("{cmd}:\n{data}".format(cmd=cmd, data=data["reply"]))
