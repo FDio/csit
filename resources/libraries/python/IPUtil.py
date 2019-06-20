@@ -462,6 +462,9 @@ class IPUtil(object):
             for i in xrange(kwargs.get('count', 1)):
                 papi_exec.add(cmd, dst_address=inet_pton(
                     af_inet, str(net_addr+i)), **args)
+                if i > 0 and i % Constants.PAPI_MAX_API_BULK == 0:
+                    papi_exec.get_replies(err_msg).verify_replies(
+                        err_msg=err_msg)
             papi_exec.get_replies(err_msg).verify_replies(err_msg=err_msg)
 
     @staticmethod
