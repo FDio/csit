@@ -22,6 +22,30 @@
       "revId": "adb81ef03273c45cb2e5d3584c5a6fbd65b8f481",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "32959a31_dd09d9c5",
+        "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/files/csit-initialize-vfs.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-06-20T07:18:21Z",
+      "side": 1,
+      "message": "What\u0027s the problem? Ansible will rename the file it copies to csit-initialize-vfs-data.sh",
+      "parentUuid": "317b7fdd_1480d410",
+      "range": {
+        "startLine": 21,
+        "startChar": 42,
+        "endLine": 21,
+        "endChar": 46
+      },
+      "revId": "adb81ef03273c45cb2e5d3584c5a6fbd65b8f481",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
