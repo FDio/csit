@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | SRv6 | SRv6_2SID_NODECAP
@@ -21,7 +21,7 @@
 | ... | L3 | ${nic_name}
 | Suite Teardown | Tear down suite | performance
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance | srv6
 | ...
 | Test Template | Local Template
@@ -51,6 +51,7 @@
 | ... | draft 3.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | Intel-X710
 # outer IPv6 header + SRH with 2 SIDs: 40+40B
 | ${overhead}= | ${80}
