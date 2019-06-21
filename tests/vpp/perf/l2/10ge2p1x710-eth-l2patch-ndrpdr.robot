@@ -21,7 +21,7 @@
 | ... | L2 | ${nic_name}
 | Suite Teardown | Tear down suite | performance
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local Template
@@ -46,6 +46,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
 # Traffic profile:
@@ -70,7 +71,7 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add DPDK dev default RXD to all DUTs | 2048
 | | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
