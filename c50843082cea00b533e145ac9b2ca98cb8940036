@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "79c25e69_3bfe2f42",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-21T11:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e08c8cda_8c422c37",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "50294df2_0f697f6b",
         "filename": "resources/libraries/robot/shared/suite_teardown.robot",
         "patchSetId": 20
@@ -36,6 +60,30 @@
       "writtenOn": "2019-06-21T11:03:12Z",
       "side": 1,
       "message": "See later comment about incomplete teardowns.",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 35,
+        "endChar": 27
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80bf7197_fb608d16",
+        "filename": "resources/libraries/robot/shared/suite_teardown.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-21T11:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50294df2_0f697f6b",
       "range": {
         "startLine": 35,
         "startChar": 2,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "43e045a3_c58b5eec",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-21T11:40:42Z",
+      "side": 1,
+      "message": "If rename is good enough, done? I guess there is no such thing as __in python. Or private class in Java. So renaming should be fine.",
+      "parentUuid": "d1a0ae2f_11fed107",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 33
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "80d01926_419f1c8d",
         "filename": "resources/libraries/robot/shared/test_teardown.robot",
         "patchSetId": 20
@@ -82,6 +154,30 @@
       "writtenOn": "2019-06-21T11:03:12Z",
       "side": 1,
       "message": "In principle, Documentation should mention every such implicit argument, but I guess if the code is so short it is readable anyway.",
+      "range": {
+        "startLine": 55,
+        "startChar": 37,
+        "endLine": 55,
+        "endChar": 56
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "94bd7414_dbbd50ec",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-21T11:40:42Z",
+      "side": 1,
+      "message": "Agree, but generally lots of variables are suite or test one like \"Setup 2-node blah blah\" is setting the most critical ${dut1} but we are not mentioning it in every doc string that it is read from xyz kw as global var. I mean threshold for some common variables read from global vs document all ?",
+      "parentUuid": "80d01926_419f1c8d",
       "range": {
         "startLine": 55,
         "startChar": 37,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "e493f92b_69fd1df1",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-21T11:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2b6dc26_265e58d3",
+      "range": {
+        "startLine": 120,
+        "startChar": 10,
+        "endLine": 120,
+        "endChar": 11
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0503a908_069690a9",
         "filename": "tests/kubernetes/perf/container_memif/10ge2p1x710-eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral-k8s-ndrpdr.robot",
         "patchSetId": 20
@@ -128,6 +248,30 @@
       "writtenOn": "2019-06-21T11:03:12Z",
       "side": 1,
       "message": "Tear down test  |  ligato\n\nSee my earlier comment about incomplete teardowns.",
+      "range": {
+        "startLine": 26,
+        "startChar": 18,
+        "endLine": 26,
+        "endChar": 44
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22c7eecf_1cd68dc2",
+        "filename": "tests/kubernetes/perf/container_memif/10ge2p1x710-eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral-k8s-ndrpdr.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-21T11:40:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0503a908_069690a9",
       "range": {
         "startLine": 26,
         "startChar": 18,
