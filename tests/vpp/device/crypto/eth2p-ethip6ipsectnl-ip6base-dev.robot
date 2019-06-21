@@ -17,8 +17,9 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP6FWD | IPSEC | IPSEC_TNL | IP6BASE
 | ...
-| Test Setup | Set up IPSec SW device functional test | IPv6
+| Suite Setup | Setup suite | ${nic_name}
 | ...
+| Test Setup | Setup test | vpp_device
 | Test Teardown | Tear down test | packet_trace
 | ...
 | Documentation | *IPv6 IPsec tunnel mode test suite.*
@@ -33,6 +34,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC4303.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
+| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
 | ${tg_spi}= | ${1000}
 | ${dut_spi}= | ${1001}
 | ${ESP_PROTO}= | ${50}
@@ -51,10 +54,14 @@
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | ...
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure topology for IPv6 IPsec testing
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA 256 128
-| | Given Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | When Configure manual keyed connection for IPSec
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Configure manual keyed connection for IPSec
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip} | is_ipv6=${TRUE}
@@ -71,10 +78,14 @@
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | ...
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure topology for IPv6 IPsec testing
 | | ${encr_alg}= | Crypto Alg AES CBC 256
 | | ${auth_alg}= | Integ Alg SHA 256 128
-| | Given Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | When Configure manual keyed connection for IPSec
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Configure manual keyed connection for IPSec
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip} | is_ipv6=${TRUE}
@@ -91,10 +102,14 @@
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | ...
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure topology for IPv6 IPsec testing
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA 512 256
-| | Given Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | When Configure manual keyed connection for IPSec
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Configure manual keyed connection for IPSec
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip} | is_ipv6=${TRUE}
@@ -111,10 +126,14 @@
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | ...
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure topology for IPv6 IPsec testing
 | | ${encr_alg}= | Crypto Alg AES CBC 256
 | | ${auth_alg}= | Integ Alg SHA 512 256
-| | Given Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | When Configure manual keyed connection for IPSec
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Configure manual keyed connection for IPSec
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip} | is_ipv6=${TRUE}

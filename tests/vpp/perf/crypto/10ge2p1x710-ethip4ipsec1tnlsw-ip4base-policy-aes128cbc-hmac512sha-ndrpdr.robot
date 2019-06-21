@@ -19,12 +19,11 @@
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECTUN | NIC_Intel-X710 | BASE
 | ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up IPSec performance test suite | L3 | ${nic_name} | SW_cryptodev
-| ... | AND | Set up performance test suite with crypto ipsecmb
+| Suite Setup | Set up IPSec performance test suite | L3 | ${nic_name}
+| ... | SW_cryptodev
 | Suite Teardown | Tear down suite | performance
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local Template
@@ -54,6 +53,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC4303 and RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
+| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${58}
 | ${tg_if1_ip4}= | 192.168.10.2
@@ -97,7 +98,7 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPSec in 3-node circular topology
+| | When Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${nodes} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${auth_alg} | ${dut1_if2_ip4} | ${dut2_if1_ip4}

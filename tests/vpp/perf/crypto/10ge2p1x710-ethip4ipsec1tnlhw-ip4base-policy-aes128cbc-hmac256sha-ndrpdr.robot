@@ -23,7 +23,7 @@
 | ... | HW_DH895xcc
 | Suite Teardown | Tear down suite | performance
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local Template
@@ -52,6 +52,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC4303 and RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
+| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${58}
 | ${tg_if1_ip4}= | 192.168.10.2
@@ -91,10 +93,10 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add cryptodev to all DUTs | ${phy_cores}
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPSec in 3-node circular topology
+| | When Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${${nodes} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${auth_alg} | ${dut1_if2_ip4} | ${dut2_if1_ip4}

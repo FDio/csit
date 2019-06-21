@@ -20,8 +20,9 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP4FWD | BASE | ETH | IP4BASE
 | ...
-| Test Setup | Set up VPP device test
+| Suite Setup | Setup suite | ${nic_name}
 | ...
+| Test Setup | Setup test | vpp_device
 | Test Teardown | Tear down test
 | ...
 | Documentation | *IPv4 routing test cases*
@@ -38,6 +39,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${tg_to_dut_if1_ip4}= | 10.10.10.2
 | ${tg_to_dut_if2_ip4}= | 20.20.20.2
 | ${dut_to_tg_if1_ip4}= | 10.10.10.1
@@ -54,7 +56,10 @@
 | | ...
 | | ${hops}= | Set Variable | ${0}
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
 | | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
@@ -72,7 +77,10 @@
 | | ...
 | | ${hops}= | Set Variable | ${0}
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
 | | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
@@ -90,7 +98,10 @@
 | | ...
 | | ${hops}= | Set Variable | ${1}
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
 | | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
@@ -108,7 +119,10 @@
 | | ...
 | | ${hops}= | Set Variable | ${1}
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
 | | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
