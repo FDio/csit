@@ -22,7 +22,7 @@
 | ... | L2 | ${nic_name}
 | Suite Teardown | Tear down suite | performance
 | ...
-| Test Setup | Set up performance test with Ligato Kubernetes
+| Test Setup | Setup test | ligato
 | Test Teardown | Tear down test | ligato
 | ...
 | Test Template | Local Template
@@ -51,6 +51,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
 # SFC profile

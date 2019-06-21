@@ -30,8 +30,9 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP4FWD | BASE | ETH | VHOST | 1VM
 | ...
-| Test Setup | Set up VPP device test
+| Suite Setup | Setup suite | ${nic_name}
 | ...
+| Test Setup | Setup test | vpp_device
 | Test Teardown | Tear down test | packet_trace | vhost
 | ...
 | Documentation | *IPv4 routing test cases with vhost user interface*
@@ -50,6 +51,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
+| ${nic_name}= | virtual
 | ${net1}= | 10.0.1.0
 | ${net3}= | 10.0.3.0
 | ${net1_ip1}= | 10.0.1.1
@@ -71,7 +74,10 @@
 | | ... | the same network. There is created linux bridge on VM to pass packet \
 | | ... | from one vhost-user interface to another one.
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure interfaces in path up
 | | ${vhost1}= | And Vpp Create Vhost User Interface | ${dut_node} | ${sock1}
@@ -98,7 +104,7 @@
 | | VPP Add IP Neighbor | ${dut_node} | ${vhost1} | ${net2_ip2} | ${vhost2_mac}
 | | VPP Add IP Neighbor
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2} | ${tg_to_dut_if2_mac}
-| | When Configure VM for vhost L2BD forwarding
+| | And Configure VM for vhost L2BD forwarding
 | | ... | ${dut_node} | ${sock1} | ${sock2}
 | | Then Send packet and verify headers
 | | ... | ${tg_node} | ${net1_ip2} | ${net3_ip2}
