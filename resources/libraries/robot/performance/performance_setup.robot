@@ -25,107 +25,6 @@
 
 # Keywords used in setups and teardowns
 
-| Set variables in 2-node circular topology with DUT interface model
-| | [Documentation]
-| | ... | Compute path for testing on two given nodes in circular topology
-| | ... | based on interface model provided as an argument and set
-| | ... | corresponding suite variables.
-| | ...
-| | ... | *Arguments:*
-| | ... | - iface_model - Interface model. Type: string
-| | ...
-| | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - tg - TG node
-| | ... | - tg_if1 - 1st TG interface towards DUT.
-| | ... | - tg_if1 - 1st TG interface MAC address.
-| | ... | - tg_if2 - 2nd TG interface towards DUT.
-| | ... | - tg_if2 - 2nd TG interface MAC address.
-| | ... | - dut1 - DUT1 node
-| | ... | - dut1_if1 - 1st DUT interface towards TG.
-| | ... | - dut1_if2 - 2nd DUT interface towards TG.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Set variables in 2-node circular topology with DUT interface model\
-| | ... | \| Intel-X520-DA2 \|
-| | ...
-| | [Arguments] | ${iface_model}
-| | ...
-| | ${iface_model_list}= | Create list | ${iface_model}
-| | Append Node | ${nodes['TG']}
-| | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
-| | Append Node | ${nodes['TG']}
-| | Compute Path | always_same_link=${FALSE}
-| | ${tg_if1} | ${tg}= | First Interface
-| | ${dut1_if1} | ${dut1}= | First Ingress Interface
-| | ${dut1_if2} | ${dut1}= | Last Egress Interface
-| | ${tg_if2} | ${tg}= | Last Interface
-| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | Set Suite Variable | ${tg}
-| | Set Suite Variable | ${tg_if1}
-| | Set Suite Variable | ${tg_if1_mac}
-| | Set Suite Variable | ${tg_if2}
-| | Set Suite Variable | ${tg_if2_mac}
-| | Set Suite Variable | ${dut1}
-| | Set Suite Variable | ${dut1_if1}
-| | Set Suite Variable | ${dut1_if2}
-
-| Set variables in 3-node circular topology with DUT interface model
-| | [Documentation]
-| | ... | Compute path for testing on three given nodes in circular topology
-| | ... | based on interface model provided as an argument and set
-| | ... | corresponding suite variables.
-| | ...
-| | ... | *Arguments:*
-| | ... | - iface_model - Interface model. Type: string
-| | ...
-| | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - tg - TG node
-| | ... | - tg_if1 - 1st TG interface towards DUT.
-| | ... | - tg_if1 - 1st TG interface MAC address.
-| | ... | - tg_if2 - 2nd TG interface towards DUT.
-| | ... | - tg_if2 - 2nd TG interface MAC address.
-| | ... | - dut1 - DUT1 node
-| | ... | - dut1_if1 - DUT1 interface towards TG.
-| | ... | - dut1_if2 - DUT1 interface towards DUT2.
-| | ... | - dut2 - DUT2 node
-| | ... | - dut2_if1 - DUT2 interface towards DUT1.
-| | ... | - dut2_if2 - DUT2 interface towards TG.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Set variables in 3-node circular topology with DUT interface model\
-| | ... | \| Intel-X520-DA2 \|
-| | ...
-| | [Arguments] | ${iface_model}
-| | ...
-| | ${iface_model_list}= | Create list | ${iface_model}
-| | Append Node | ${nodes['TG']}
-| | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
-| | Append Node | ${nodes['DUT2']} | filter_list=${iface_model_list}
-| | Append Node | ${nodes['TG']}
-| | Compute Path
-| | ${tg_if1} | ${tg}= | Next Interface
-| | ${dut1_if1} | ${dut1}= | Next Interface
-| | ${dut1_if2} | ${dut1}= | Next Interface
-| | ${dut2_if1} | ${dut2}= | Next Interface
-| | ${dut2_if2} | ${dut2}= | Next Interface
-| | ${tg_if2} | ${tg}= | Next Interface
-| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | Set Suite Variable | ${tg}
-| | Set Suite Variable | ${tg_if1}
-| | Set Suite Variable | ${tg_if1_mac}
-| | Set Suite Variable | ${tg_if2}
-| | Set Suite Variable | ${tg_if2_mac}
-| | Set Suite Variable | ${dut1}
-| | Set Suite Variable | ${dut1_if1}
-| | Set Suite Variable | ${dut1_if2}
-| | Set Suite Variable | ${dut2}
-| | Set Suite Variable | ${dut2_if1}
-| | Set Suite Variable | ${dut2_if2}
-
 | Set variables in 3-node circular topology with DUT interface model with double link between DUTs
 | | [Documentation]
 | | ... | Compute path for testing on three given nodes in circular topology
@@ -219,37 +118,9 @@
 | | ...
 | | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
-| | Set variables in 2-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
-
-| Set up 2-node-switched performance topology with DUT's NIC model
-| | [Documentation]
-| | ... | Suite preparation phase that sets the default startup configuration of
-| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets the global
-| | ... | variables used in test cases based on interface model provided as an
-| | ... | argument. Initializes traffic generator.
-| | ...
-| | ... | *Arguments:*
-| | ... | - osi_layer - OSI Layer type to initialize TG with. Type: string
-| | ... | - nic_name - Interface model. Type: string
-| | ... | - tg_if1_dest_mac - Interface 1 destination MAC address. Type: string
-| | ... | - tg_if2_dest_mac - Interface 2 destination MAC address. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| 2-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \
-| | ... | \| 22:22:33:44:55:66 \| 22:22:33:44:55:55 \|
-| | ...
-| | [Arguments] | ${osi_layer} | ${nic_name} | ${tg_if1_dest_mac}
-| | ... | ${tg_if2_dest_mac}
-| | ...
-| | Set variables in 2-node circular topology with DUT interface model
-| | ... | ${nic_name}
-| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
-| | ... | ${tg_if1_dest_mac} | ${tg_if2_dest_mac}
 
 | Set up 3-node performance topology with DUT's NIC model
 | | [Documentation]
@@ -269,8 +140,7 @@
 | | ...
 | | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
-| | Set variables in 3-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
 
@@ -315,8 +185,7 @@
 | | ...
 | | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
-| | Set variables in 2-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
@@ -338,8 +207,7 @@
 | | ...
 | | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
-| | Set variables in 3-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
@@ -367,8 +235,7 @@
 | | [Arguments] | ${osi_layer} | ${nic_name} | ${vf_driver}
 | | ... | ${numvfs}=${1}
 | | ...
-| | Set variables in 2-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Run Keyword If | '${vf_driver}' == 'AVF'
 | | ... | Configure AVF interfaces on all DUTs | numvfs=${numvfs}
 | | ... | osi_layer=${osi_layer}
@@ -398,8 +265,7 @@
 | | [Arguments] | ${osi_layer} | ${nic_name} | ${vf_driver}
 | | ... | ${numvfs}=${1}
 | | ...
-| | Set variables in 3-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Run Keyword If | '${vf_driver}' == 'AVF'
 | | ... | Configure AVF interfaces on all DUTs | numvfs=${numvfs}
 | | ... | osi_layer=${osi_layer}
@@ -440,71 +306,6 @@
 | | ... | force_init=${True}
 | | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
 
-| Set up performance test suite with MEMIF
-| | [Documentation]
-| | ... | Append memif_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | memif_plugin.so
-
-| Set up performance test suite with NAT
-| | [Documentation]
-| | ... | Append nat_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | nat_plugin.so
-
-| Set up performance test suite with ACL
-| | [Documentation]
-| | ... | Append acl_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | acl_plugin.so
-
-| Set up performance test suite with AVF driver
-| | [Documentation]
-| | ... | Append avf_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | avf_plugin.so
-
-| Set up performance test suite with Static SRv6 proxy
-| | [Documentation]
-| | ... | Append srv6as_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | srv6as_plugin.so
-
-| Set up performance test suite with Dynamic SRv6 proxy
-| | [Documentation]
-| | ... | Append srv6ad_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | srv6ad_plugin.so
-
-| Set up performance test suite with Masquerading SRv6 proxy
-| | [Documentation]
-| | ... | Append srv6am_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | srv6am_plugin.so
-
-| Set up performance test suite with LACP mode link bonding
-| | [Documentation]
-| | ... | Append lacp_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | lacp_plugin.so
-
-| Set up performance test suite with crypto ipsecmb
-| | [Documentation]
-| | ... | Append crypto_ipsecmb_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | crypto_ia32_plugin.so
-| | Append To List | ${plugins_to_enable} | crypto_ipsecmb_plugin.so
-| | Append To List | ${plugins_to_enable} | crypto_openssl_plugin.so
-
 | Set up 3-node performance topology with wrk and DUT's NIC model
 | | [Documentation]
 | | ... | Suite preparation phase that sets the default startup configuration of
@@ -522,8 +323,7 @@
 | | ...
 | | [Arguments] | ${iface_model}
 | | ...
-| | Set variables in 3-node circular topology with DUT interface model
-| | ... | ${iface_model}
+| | Setup suite | ${iface_model}
 | | Iface update numa node | ${tg}
 # Make sure TRex is stopped
 | | ${running}= | Is TRex running | ${tg}
@@ -550,67 +350,3 @@
 | | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.80.1 | 24
 | | Set Linux interface up | ${tg} | ${intf_name}
 | | Install wrk | ${tg}
-
-# Tests setups
-
-| Set up performance test
-| | [Documentation] | Common test setup for performance tests.
-| | ...
-| | Reset PAPI History On All DUTs | ${nodes}
-| | Create base startup configuration of VPP on all DUTs
-
-| Set up tcp performance test
-| | [Documentation] | Common test setup for TCP performance tests.
-| | ...
-| | Reset PAPI History On All DUTs | ${nodes}
-| | Create base startup configuration of VPP for TCP tests on all DUTs
-
-| Set up performance test with Ligato Kubernetes
-| | [Documentation] | Common test setup for performance tests with Ligato \
-| | ... | Kubernetes.
-| | ...
-| | Apply Kubernetes resource on all duts | ${nodes} | namespaces/csit.yaml
-| | Apply Kubernetes resource on all duts | ${nodes} | pods/kafka.yaml
-| | Apply Kubernetes resource on all duts | ${nodes} | pods/etcdv3.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | configmaps/vswitch-agent-cfg.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | configmaps/vnf-agent-cfg.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | pods/contiv-sfc-controller.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | pods/contiv-vswitch.yaml
-
-| Set up performance test with containers
-| | [Documentation]
-| | ... | Common test setup for performance tests with containers
-| | ...
-| | ... | *Arguments:*
-| | ... | - chains: Total number of chains. Type: integer
-| | ... | - nodeness: Total number of nodes per chain. Type: integer
-| | ... | - auto_scale - If True, use same amount of Dataplane threads for
-| | ... |   network function as DUT, otherwise use single physical core for
-| | ... |   every network function. Type: boolean
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Set up performance test with containers \| 1 \| 1 \|
-| | ...
-| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
-| | ...
-| | Set Test Variable | @{container_groups} | @{EMPTY}
-| | Set Test Variable | ${container_group} | CNF
-| | Set Test Variable | ${nf_nodes}
-| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
-| | ... | engine=${container_engine} | WITH NAME | ${container_group}
-| | Construct chains of containers on all DUTs | ${nf_chains} | ${nf_nodes}
-| | ... | auto_scale=${auto_scale}
-| | Acquire all '${container_group}' containers
-| | Create all '${container_group}' containers
-| | Configure VPP in all '${container_group}' containers
-| | Stop VPP service on all DUTs | ${nodes}
-| | Start VPP in all '${container_group}' containers
-| | Restart VPP service on all DUTs | ${nodes}
-| | Verify VPP on all DUTs | ${nodes}
-| | Save VPP PIDs
-| | Append To List | ${container_groups} | ${container_group}
