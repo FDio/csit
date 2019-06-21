@@ -17,13 +17,11 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | MEMIF | DOCKER
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up 3-node performance topology with DUT's NIC model | L2
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model | L2
 | ... | ${nic_name}
-| ... | AND | Set up performance test suite with MEMIF
 | Suite Teardown | Tear down suite | performance
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance | container
 | ...
 | Test Template | Local Template
@@ -55,6 +53,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${4}
 | ${subid}= | 10
@@ -86,10 +85,10 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | And Set up performance test with containers
-| | When Initialize L2 Bridge Domain with memif pairs and VLAN in circular topology
+| | When Setup test with containers
+| | And Initialize L2 Bridge Domain with memif pairs and VLAN in circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | Then Find NDR and PDR intervals using optimized search
 
