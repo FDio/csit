@@ -22,7 +22,7 @@
 | ... | L2 | ${nic_name}
 | Suite Teardown | Tear down suite
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance | vhost
 | ...
 | Test Template | Local Template
@@ -52,6 +52,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${4}
 | ${subid}= | 10

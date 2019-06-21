@@ -21,7 +21,7 @@
 | ... | L3 | ${nic_name}
 | Suite Teardown | Tear down suite | performance
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local Template
@@ -49,6 +49,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${4}
 | ${subid}= | 10
@@ -78,7 +79,7 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding with VLAN dot1q sub-interfaces in circular topology
 | | ... | ${tg_if1_net} | ${tg_if2_net} | ${subid} | ${tag_rewrite}

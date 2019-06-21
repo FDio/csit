@@ -28,8 +28,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP4FWD | BASE | ETH | IP4BASE | TAP
 | ...
-| Test Setup | Run Keywords | Set up VPP device test
-| ... | AND | Clean Up Namespaces | ${nodes['DUT1']}
+| Test Setup | Setup test | vpp_device | namespace
 | ...
 | Test Teardown | Tear down test | packet_trace | namespace
 | ...
@@ -48,13 +47,12 @@
 | ... | *[Ref] Applicable standard specifications:*
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${tap1_VPP_ip}= | 16.0.10.1
 | ${tap1_NM_ip}= | 16.0.10.2
 | ${tap1_NM_mac}= | 02:00:00:00:00:02
 | ${tap_int1}= | tap0
-
 | ${namespace1}= | nmspace1
-
 | ${dut_ip_address}= | 192.168.0.1
 | ${tg_ip_address}= | 192.168.0.2
 | ${tg_ip_address_GW}= | 192.168.0.0
@@ -68,7 +66,10 @@
 | | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is\
 | | ... | received on TG.
 | | ...
-| | Given Configure path in 2-node circular topology | ${nodes['TG']}
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology | ${nodes['TG']}
 | | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |

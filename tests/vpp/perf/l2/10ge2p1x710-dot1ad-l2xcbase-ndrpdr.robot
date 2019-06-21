@@ -22,7 +22,7 @@
 | ... | L2 | ${nic_name}
 | Suite Teardown | Tear down suite | performance
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local Template
@@ -50,6 +50,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${8}
 | ${subid}= | 10
@@ -79,7 +80,7 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And Set interfaces in path up
 | | When Initialize VLAN sub-interfaces in 3-node circular topology
