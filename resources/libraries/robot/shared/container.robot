@@ -181,3 +181,76 @@
 | | ... | all DUT nodes.
 | | ...
 | | Run Keyword | ${group}.Destroy all containers
+
+| Start containers for performance test
+| | [Documentation]
+| | ... | Start containers for performance test.
+| | ...
+| | ... | *Arguments:*
+| | ... | - chains: Total number of chains. Type: integer
+| | ... | - nodeness: Total number of nodes per chain. Type: integer
+| | ... | - auto_scale - If True, use same amount of Dataplane threads for
+| | ... |   network function as DUT, otherwise use single physical core for
+| | ... |   every network function. Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up performance test with containers \| 1 \| 1 \|
+| | ...
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
+| | ...
+| | Set Test Variable | @{container_groups} | @{EMPTY}
+| | Set Test Variable | ${container_group} | CNF
+| | Set Test Variable | ${nf_nodes}
+| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
+| | ... | engine=${container_engine} | WITH NAME | ${container_group}
+| | Construct chains of containers on all DUTs | ${nf_chains} | ${nf_nodes}
+| | ... | auto_scale=${auto_scale}
+| | Acquire all '${container_group}' containers
+| | Create all '${container_group}' containers
+| | Configure VPP in all '${container_group}' containers
+| | Stop VPP service on all DUTs | ${nodes}
+| | Start VPP in all '${container_group}' containers
+| | Restart VPP service on all DUTs | ${nodes}
+| | Verify VPP on all DUTs | ${nodes}
+| | Save VPP PIDs
+| | Append To List | ${container_groups} | ${container_group}
+
+| Start containers for device test
+| | [Documentation]
+| | ... | Start containers for device test.
+| | ...
+| | ... | *Arguments:*
+| | ... | - chains: Total number of chains (Optional). Type: integer, default
+| | ... | value: ${1}
+| | ... | - nodeness: Total number of nodes per chain (Optional). Type: integer,
+| | ... | default value: ${1}
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variables:
+| | ... | - dcr_uuid - Parent container UUID.
+| | ... | - dcr_root - Parent container overlay.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up functional test with containers \| 1 \| 1 \|
+| | ...
+| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
+| | ...
+| | Set Test Variable | @{container_groups} | @{EMPTY}
+| | Set Test Variable | ${container_group} | CNF
+| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
+| | ... | engine=${container_engine} | WITH NAME | ${container_group}
+| | ...
+| | ${dcr_uuid}= | Get Environment Variable | CSIT_DUT1_UUID
+| | ${dcr_root}= | Run Keyword | Get Docker Mergeddir | ${nodes['DUT1']}
+| | ... | ${dcr_uuid}
+| | Set Test Variable | ${dcr_uuid}
+| | Set Test Variable | ${dcr_root}
+| | ...
+| | Construct chains of containers on all DUTs | ${chains} | ${nodeness}
+| | ... | nested=${True}
+| | Acquire all '${container_group}' containers
+| | Create all '${container_group}' containers
+| | Configure VPP in all '${container_group}' containers
+| | Start VPP in all '${container_group}' containers
+| | Append To List | ${container_groups} | ${container_group}

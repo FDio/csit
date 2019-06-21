@@ -33,18 +33,18 @@
 | Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.topology.Topology
 | ...
+| Resource | resources/libraries/robot/crypto/ipsec.robot
+| Resource | resources/libraries/robot/performance/performance_configuration.robot
+| Resource | resources/libraries/robot/performance/performance_limits.robot
+| Resource | resources/libraries/robot/performance/performance_utils.robot
 | Resource | resources/libraries/robot/shared/container.robot
 | Resource | resources/libraries/robot/shared/qemu.robot
 | Resource | resources/libraries/robot/shared/suite_teardown.robot
+| Resource | resources/libraries/robot/shared/suite_setup.robot
 | Resource | resources/libraries/robot/shared/test_teardown.robot
-
+| Resource | resources/libraries/robot/shared/test_setup.robot
 
 *** Keywords ***
-| Configure all TGs for traffic script
-| | [Documentation] | Prepare all TGs before traffic scripts execution.
-| | ...
-| | All TGs Set Interface Default Driver | ${nodes}
-
 | Show Vpp Errors On All DUTs
 | | [Documentation] | Show VPP errors verbose on all DUTs.
 | | ...
@@ -58,14 +58,6 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp Get Bridge Domain Data | ${nodes['${dut}']}
-
-| Setup Scheduler Policy for Vpp On All DUTs
-| | [Documentation] | Set realtime scheduling policy (SCHED_RR) with priority 1
-| | ... | on all VPP worker threads on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Set VPP Scheduling rr | ${nodes['${dut}']}
 
 | Configure crypto device on all DUTs
 | | [Documentation] | Verify if Crypto QAT device virtual functions are
@@ -85,36 +77,9 @@
 | | ...
 | | [Arguments] | ${crypto_type} | ${numvfs} | ${force_init}=${False}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Crypto Device Verify | ${nodes['${dut}']} | ${crypto_type}
 | | | ... | ${numvfs} | force_init=${force_init}
-
-| Configure AVF interfaces on all DUTs
-| | [Documentation] | Configure virtual functions for AVF interfaces on PCI
-| | ... | interface on all DUTs.
-| | ...
-| | ... | *Arguments:*
-| | ... | - numvfs - Number of VFs to initialize, 0 - disable the VFs
-| | ... | (Optional). Type: integer, default value: ${1}
-| | ... | - osi_layer - OSI Layer type to initialize TG with.
-| | ... | (Optional). Type: string, default value: L2
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Configure AVF device on all DUTs \| ${1} \| L2 \|
-| | ...
-| | [Arguments] | ${numvfs}=${1} | ${osi_layer}=L2
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | numvfs=${numvfs} | osi_layer=${osi_layer}
-| | | ${if2_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if2}
-| | | ... | numvfs=${numvfs} | osi_layer=${osi_layer}
-# Currently only one AVF is supported.
-| | | Set Suite Variable | ${${dut}_if1_vf0} | ${if1_avf_arr[0]}
-| | | Set Suite Variable | ${${dut}_if2_vf0} | ${if2_avf_arr[0]}
 
 | Configure kernel module on all DUTs
 | | [Documentation] | Verify if specific kernel module is loaded on all DUTs.
@@ -136,7 +101,6 @@
 | Create base startup configuration of VPP on all DUTs
 | | [Documentation] | Create base startup configuration of VPP to all DUTs.
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
@@ -176,7 +140,6 @@
 | | ...
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -241,7 +204,6 @@
 | | ...
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
 | | | ... | ${${dut}_if1} | ${${dut}_if2}
@@ -289,17 +251,68 @@
 | | ... | cpu_skip=${cpu_skip} | filename=/tmp/vnf${i}.conf
 | | ... | i=${i_int}
 
+| Add PCI devices to all DUTs
+| | [Documentation]
+| | ... | Add PCI devices to VPP configuration file.
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | ${if1_pci}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ${if1_1_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | | ${if1_2_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2}
+| | | ${if2_pci}= | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ${if2_1_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_1}
+| | | ${if2_2_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_2}
+| | | @{pci_devs}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Create List | ${if1_pci}
+| | | ... | ELSE
+| | | ... | Create List | ${if1_1_pci} | ${if1_2_pci}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Append To List | ${pci_devs} | ${if2_pci}
+| | | ... | ELSE
+| | | ... | Append To List | ${pci_devs} | ${if2_1_pci} | ${if2_2_pci}
+| | | Run keyword | ${dut}.Add DPDK Dev | @{pci_devs}
+| | | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if1_1_pci} | ${if1_1_pci}
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if1_2_pci} | ${if1_2_pci}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if2_pci} | ${if2_pci}
+| | | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if2_1_pci} | ${if2_1_pci}
+| | | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Set Test Variable | ${${dut}_if2_2_pci} | ${if2_2_pci}
+
+| Add single PCI device to all DUTs
+| | [Documentation]
+| | ... | Add single (first) PCI device on DUT1 and single (last) PCI device on
+| | ... | DUT2 to VPP configuration file.
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
+| | | Run keyword | ${dut}.Add DPDK Dev | ${if1_pci}
+| | | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
+
 | Add no multi seg to all DUTs
 | | [Documentation] | Add No Multi Seg to VPP startup configuration to all DUTs.
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK No Multi Seg
 
 | Add DPDK no PCI to all DUTs
 | | [Documentation] | Add DPDK no-pci to VPP startup configuration to all DUTs.
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK no PCI
 
@@ -316,7 +329,6 @@
 | | ...
 | | [Arguments] | ${rxd}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Dev Default RXD | ${rxd}
 
@@ -333,7 +345,6 @@
 | | ...
 | | [Arguments] | ${txd}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Dev Default TXD | ${txd}
 
@@ -350,14 +361,12 @@
 | | ...
 | | [Arguments] | ${uio_driver}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Uio Driver | ${uio_driver}
 
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add NAT
 
@@ -372,7 +381,7 @@
 | | ... | \| Add cryptodev to all DUTs \| ${4} \|
 | | ...
 | | [Arguments] | ${count}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | ...
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
 | | | ${thr_count_int}= | Run keyword if | ${smt_used}
@@ -413,7 +422,6 @@
 | Write startup configuration on all VPP DUTs
 | | [Documentation] | Write VPP startup configuration on all DUTs.
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Write Config
 
@@ -421,7 +429,6 @@
 | | [Documentation] | Write VPP startup configuration and restart VPP on all
 | | ... | DUTs.
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Apply Config
 | | Save VPP PIDs
@@ -435,6 +442,7 @@
 | | ...
 | | ${setup_vpp_pids}= | Get VPP PIDs | ${nodes}
 | | ${keys}= | Get Dictionary Keys | ${setup_vpp_pids}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${key} | IN | @{keys}
 | | | ${pid}= | Get From Dictionary | ${setup_vpp_pids} | ${key}
 | | | Run Keyword If | $pid is None | FAIL | No VPP PID found on node ${key}
@@ -462,7 +470,7 @@
 | | Verify Vpp On All Duts | ${nodes}
 | | VPP Enable Traces On All Duts | ${nodes}
 | | Save VPP PIDs
-| | Configure all TGs for traffic script
+| | All TGs Set Interface Default Driver | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes}
 | | Reset PAPI History On All DUTs | ${nodes}
 
@@ -475,19 +483,6 @@
 | | Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
 
-| Set up VPP device test
-# TODO: Generalize this KW if it will not diverge from Functional derivate too
-# much
-| | [Documentation] | Common test setup for vpp-device tests.
-| | ...
-| | Restart Vpp Service On All Duts | ${nodes}
-| | Verify Vpp On All Duts | ${nodes}
-| | VPP Enable Traces On All Duts | ${nodes}
-| | Save VPP PIDs
-| | Configure all TGs for traffic script
-| | Update All Interface Data On All Nodes | ${nodes} | skip_tg_udev=${True}
-| | Reset PAPI History On All DUTs | ${nodes}
-
 | Tear down LISP functional test
 | | [Documentation] | Common test teardown for functional tests with LISP.
 | | ...
@@ -498,45 +493,6 @@
 | | Show Vpp Settings | ${nodes['DUT2']}
 | | Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
-
-| Set up functional test with containers
-| | [Documentation]
-| | ... | Common test setup for functional tests with containers.
-| | ...
-| | ... | *Arguments:*
-| | ... | - chains: Total number of chains (Optional). Type: integer, default
-| | ... | value: ${1}
-| | ... | - nodeness: Total number of nodes per chain (Optional). Type: integer,
-| | ... | default value: ${1}
-| | ...
-| | ... | _NOTE:_ This KW sets following test case variables:
-| | ... | - dcr_uuid - Parent container UUID.
-| | ... | - dcr_root - Parent container overlay.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Set up functional test with containers \| 1 \| 1 \|
-| | ...
-| | [Arguments] | ${chains}=${1} | ${nodeness}=${1}
-| | ...
-| | Set Test Variable | @{container_groups} | @{EMPTY}
-| | Set Test Variable | ${container_group} | CNF
-| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
-| | ... | engine=${container_engine} | WITH NAME | ${container_group}
-| | ...
-| | ${dcr_uuid}= | Get Environment Variable | CSIT_DUT1_UUID
-| | ${dcr_root}= | Run Keyword | Get Docker Mergeddir | ${nodes['DUT1']}
-| | ... | ${dcr_uuid}
-| | Set Test Variable | ${dcr_uuid}
-| | Set Test Variable | ${dcr_root}
-| | ...
-| | Construct chains of containers on all DUTs | ${chains} | ${nodeness}
-| | ... | nested=${True}
-| | Acquire all '${container_group}' containers
-| | Create all '${container_group}' containers
-| | Configure VPP in all '${container_group}' containers
-| | Start VPP in all '${container_group}' containers
-| | Append To List | ${container_groups} | ${container_group}
 
 | Stop VPP Service on DUT
 | | [Documentation] | Stop the VPP service on the specified node.
