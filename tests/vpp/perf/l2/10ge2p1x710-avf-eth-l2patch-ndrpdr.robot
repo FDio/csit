@@ -12,18 +12,14 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2PATCH | BASE | DRV_AVF
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up SRIOV 3-node performance topology with DUT's NIC model
-| ... | L2 | ${nic_name} | AVF
-| ... | AND | Set up performance test suite with AVF driver
+| Suite Setup | Setup suite single link | performance_avf
 | Suite Teardown | Tear down suite | performance
-| ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local template
@@ -49,6 +45,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | avf_plugin.so
+| ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
 # Traffic profile:
@@ -73,7 +71,7 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add DPDK no PCI to all DUTs
-| | Set Max Rate And Jumbo
+| | And Set Max Rate And Jumbo
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize AVF interfaces
 | | And Initialize L2 patch
