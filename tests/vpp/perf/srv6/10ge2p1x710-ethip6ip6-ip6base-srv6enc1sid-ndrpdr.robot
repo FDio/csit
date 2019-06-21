@@ -21,7 +21,7 @@
 | ... | L3 | ${nic_name}
 | Suite Teardown | Tear down suite | performance
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance | srv6
 | ...
 | Test Template | Local Template
@@ -51,6 +51,7 @@
 | ... | draft 3.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | Intel-X710
 # outer IPv6 header: 40B
 | ${overhead}= | ${40}

@@ -28,8 +28,10 @@
 | | ...
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show PAPI History On All DUTs | ${nodes}
-| | Get Core Files on All Nodes | ${nodes}
-| | Verify VPP PID in Teardown
+| | Run Keyword If Test Failed
+| | ... | Get Core Files on All Nodes | ${nodes}
+| | Run Keyword If Test Failed
+| | ... | Verify VPP PID in Teardown
 | | :FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
 
@@ -59,7 +61,6 @@
 | | [Documentation]
 | | ... | Additional teardown for tests which uses vhost(s) and VM(s).
 | | ...
-| | # TODO: Remove IF condition once devicetest is running KernelVM.
 | | Show VPP vhost on all DUTs | ${nodes}
 | | Run Keyword If | "PERFTEST" in @{TEST TAGS} | vnf_manager.Kill All VMs
 | | Run Keyword If | "DEVICETEST" in @{TEST TAGS} | vm_node.Qemu Kill
@@ -68,15 +69,14 @@
 | | [Documentation]
 | | ... | Additional teardown for tests which uses NAT feature.
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Show NAT verbose | ${nodes['${dut}']}
+| | | Run Keyword If Test Failed
+| | | ... | Show NAT verbose | ${nodes['${dut}']}
 
 | Additional Test Tear Down Action For namespace
 | | [Documentation]
 | | ... | Additional teardown for tests which uses namespace.
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Clean Up Namespaces | ${nodes['${dut}']}
 
@@ -84,7 +84,6 @@
 | | [Documentation]
 | | ... | Additional teardown for tests which uses linux_bridge.
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Linux Del Bridge | ${nodes['${dut}']} | ${bid_TAP}
 
@@ -94,16 +93,16 @@
 | | ...
 | | Run Keyword If Test Failed
 | | ... | Vpp Log Plugin Acl Settings | ${dut1}
-| | Run Keyword If Test Failed | Run Keyword And Ignore Error
+| | Run Keyword If Test Failed
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 
 | Additional Test Tear Down Action For macipacl
 | | [Documentation]
 | | ... | Additional teardown for tests which uses MACIP ACL feature.
 | | ...
-| | Run Keyword If Test Failed | Run Keyword And Ignore Error
+| | Run Keyword If Test Failed
 | | ... | Vpp Log Macip Acl Settings | ${dut1}
-| | Run Keyword And Ignore Error
+| | Run Keyword If Test Failed
 | | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
 
 | Additional Test Tear Down Action For srv6
@@ -114,7 +113,8 @@
 | | ... | Show SR Policies on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Show SR Steering Policies on all DUTs | ${nodes}
-| | Run Keyword If Test Failed | Show SR LocalSIDs on all DUTs | ${nodes}
+| | Run Keyword If Test Failed
+| | ... | Show SR LocalSIDs on all DUTs | ${nodes}
 
 | Additional Test Tear Down Action For ligato
 | | [Documentation]

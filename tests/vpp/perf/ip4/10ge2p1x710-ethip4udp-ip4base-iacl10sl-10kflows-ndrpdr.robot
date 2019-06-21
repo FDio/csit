@@ -18,13 +18,9 @@
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | ACL | ACL_STATELESS
 | ... | IACL | ACL10 | 10K_FLOWS
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up 3-node performance topology with DUT's NIC model | L3
-| ... | ${nic_name}
-| ... | AND | Set up performance test suite with ACL
+| Suite Setup | Setup suite | performance
 | Suite Teardown | Tear down suite | performance
-| ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance | acl
 | ...
 | Test Template | Local Template
@@ -51,6 +47,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | acl_plugin.so
+| ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
 # ACL test setup
@@ -88,7 +86,7 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | ${ip_nr}= | Set Variable | 10
 | | When Initialize IPv4 routing for '${ip_nr}' addresses with IPv4 ACLs on DUT1 in circular topology

@@ -18,13 +18,11 @@
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER | 4R1C
 | ... | NF_DENSITY | PIPELINE | NF_VPPIP4 | 4DCR1T
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up 2-node performance topology with DUT's NIC model | L3
+| Suite Setup | Set up 2-node performance topology with DUT's NIC model | L3
 | ... | ${nic_name}
-| ... | AND | Set up performance test suite with MEMIF
 | Suite Teardown | Tear down suite | performance
 | ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance | container
 | ...
 | Test Template | Local Template
@@ -53,6 +51,7 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
 | ${nf_dtcr}= | ${2}
@@ -82,9 +81,9 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | And Set up performance test with containers
+| | And Setup test with containers
 | | ... | nf_chains=${4} | nf_nodes=${1} | auto_scale=${False}
 | | And Initialize L2 Bridge Domain for multiple pipelines with memif pairs
 | | ... | nf_chains=${4} | nf_nodes=${1} | auto_scale=${False}
