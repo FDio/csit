@@ -44,6 +44,4 @@
 | | ...
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
-| | @{plugins_to_enable}= | Create List | dpdk_plugin.so
-| | Set Global Variable | @{plugins_to_enable}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
