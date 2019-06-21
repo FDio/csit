@@ -39,11 +39,8 @@
 | | ... | _NOTE:_ This KW sets following suite variables:
 | | ... | - pkt_trace - Switch to enable packet trace for test.
 | | ... | - dut_stats - Switch to enable DUT statistics.
-| | ... | - plugins_to_enable - List of plugins to be enabled for test.
 | | ... | - packages_dir - Directory with VPP binary packages.
 | | ...
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
-| | @{plugins_to_enable}= | Create List | dpdk_plugin.so
-| | Set Global Variable | @{plugins_to_enable}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/

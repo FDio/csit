@@ -12,17 +12,15 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | SCALE | L2BD_10 | DOT1Q | VLAN_10
 | ... | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY | VXLAN_10
 | ...
-| Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L2 | ${nic_name}
+| Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
-| ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local Template
@@ -50,6 +48,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544, RFC7348.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
+| ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${50}
 # Traffic profile:
@@ -77,7 +77,7 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize L2 bridge domain with VLAN and VXLANoIPv4 in 3-node circular topology
 | | ... | vxlan_count=${vxlan_count}

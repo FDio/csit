@@ -12,19 +12,16 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_10000
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
 | ... | AES_128_GCM | AES
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up IPSec performance test suite | L3 | ${nic_name} | SW_cryptodev
-| ... | AND | Set up performance test suite with crypto ipsecmb
+| Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
-| ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local Template
@@ -54,6 +51,9 @@
 | ... | *[Ref] Applicable standard specifications:* RFC4303 and RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
+| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
+| ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${54}
 | ${tg_if1_ip4}= | 192.168.10.2
@@ -94,7 +94,7 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPSec in 3-node circular topology
+| | When Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
 | | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${auth_alg}

@@ -216,7 +216,7 @@ class VPPUtil(object):
             host=node['host'], if_data=if_data))
 
     @staticmethod
-    def vpp_enable_traces_on_dut(node, fail_on_error=True):
+    def vpp_enable_traces_on_dut(node, fail_on_error=False):
         """Enable vpp packet traces on the DUT node.
 
         :param node: DUT node to set up.
@@ -234,14 +234,12 @@ class VPPUtil(object):
         for cmd in cmds:
             try:
                 PapiExecutor.run_cli_cmd(node, cmd)
-            except AssertionError as err:
+            except AssertionError:
                 if fail_on_error:
                     raise
-                else:
-                    logger.error(repr(err))
 
     @staticmethod
-    def vpp_enable_traces_on_all_duts(nodes, fail_on_error=True):
+    def vpp_enable_traces_on_all_duts(nodes, fail_on_error=False):
         """Enable vpp packet traces on all DUTs in the given topology.
 
         :param nodes: Nodes in the topology.
