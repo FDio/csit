@@ -19,8 +19,9 @@
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECTUN | NIC_Intel-X710 | SCALE
 | ... | AES_128_GCM | AES
 | ...
-| Suite Setup | Set up IPSec performance test suite | L3 | ${nic_name}
-| ... | SW_cryptodev
+| Suite Setup | Run Keywords
+| ... | Set up IPSec performance test suite | L3 | ${nic_name} | SW_cryptodev
+| ... | AND | Set up performance test suite with crypto ipsecmb
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
