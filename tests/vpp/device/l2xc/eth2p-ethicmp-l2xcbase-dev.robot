@@ -20,7 +20,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2XCFWD | BASE | ETH | ICMP
 | ...
-| Test Setup | Set up VPP device test
+| Test Setup | Setup test | vpp_device
 | ...
 | Test Teardown | Tear down test
 | ...
@@ -38,6 +38,9 @@
 | ... | verifies packets for correctness and their IPv4 (IPv6) src-addr, \
 | ... | dst-addr and MAC addresses.
 | ... | *[Ref] Applicable standard specifications:* RFC792
+
+*** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 
 *** Test Cases ***
 | tc01-eth2p-ethicmpv4-l2xcbase-device

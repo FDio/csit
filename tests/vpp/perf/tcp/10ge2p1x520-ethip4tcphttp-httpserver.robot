@@ -22,8 +22,8 @@
 | ...
 | Suite Setup | Set up 3-node performance topology with wrk and DUT's NIC model
 | ... | Intel-XL710
-| ...
 | Test Setup | Set up tcp performance test
+| ...
 | Test Teardown | Tear down test
 | ...
 | Test Template | Local template
@@ -37,6 +37,9 @@
 | ... | *[Cfg] DUT configuration:*
 | ... | *[Ver] TG verification:*
 | ... | *[Ref] Applicable standard specifications:*
+
+*** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 
 *** Keywords ***
 | Local template

@@ -21,7 +21,8 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2BDMACLRN | BASE | ETH | MEMIF | DOCKER
 | ...
-| Test Setup | Set up VPP device test
+| Suite Setup | Setup suite | ${nic_name}
+| Test Setup | Setup test | vpp_device
 | ...
 | Test Teardown | Tear down test | packet_trace | container
 | ...
@@ -41,6 +42,8 @@
 | ... | src-addr, dst-addr and MAC addresses.pecifications:* RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
+| ${nic_name}= | virtual
 # L2BD
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2

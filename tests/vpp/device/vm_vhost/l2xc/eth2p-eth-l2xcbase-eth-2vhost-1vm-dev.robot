@@ -24,7 +24,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2XCFWD | BASE | ETH | VHOST | 1VM
 | ...
-| Test Setup | Set up VPP device test
+| Test Setup | Setup test | vpp_device
 | ...
 | Test Teardown | Tear down test | packet_trace | vhost
 | ...
@@ -45,6 +45,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${sock1}= | /tmp/sock1
 | ${sock2}= | /tmp/sock2
 

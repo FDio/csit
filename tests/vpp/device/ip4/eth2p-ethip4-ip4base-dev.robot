@@ -20,7 +20,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP4FWD | BASE | ETH | IP4BASE
 | ...
-| Test Setup | Set up VPP device test
+| Test Setup | Setup test | vpp_device
 | ...
 | Test Teardown | Tear down test
 | ...
@@ -38,6 +38,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${tg_to_dut_if1_ip4}= | 10.10.10.2
 | ${tg_to_dut_if2_ip4}= | 20.20.20.2
 | ${dut_to_tg_if1_ip4}= | 10.10.10.1

@@ -24,7 +24,8 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP4FWD | BASE | ETH | MEMIF | DOCKER
 | ...
-| Test Setup | Set up VPP device test
+| Suite Setup | Setup suite | ${nic_name}
+| Test Setup | Setup test | vpp_device
 | ...
 | Test Teardown | Tear down test | packet_trace | container
 | ...
@@ -45,6 +46,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
+| ${nic_name}= | virtual
 # IP
 | ${net1}= | 10.0.1.0
 | ${net3}= | 10.0.3.0

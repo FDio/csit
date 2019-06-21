@@ -22,7 +22,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2BDMACLRN | BASE | ETH | ICMP
 | ...
-| Test Setup | Set up VPP device test
+| Test Setup | Setup test | vpp_device
 | ...
 | Test Teardown | Tear down test
 | ...
@@ -42,6 +42,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${bd_id}= | 1
 
 *** Test Cases ***
