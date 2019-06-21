@@ -39,8 +39,6 @@
 | | ... | - dut_stats - Switch to enable DUT statistics
 | | ... | - vm_image - Guest VM disk image.
 | | ... | - packages_dir - Path to directory where VPP packages are stored.
-| | ... | - vpp_rpm_pkgs - Package list for CentOS based system.
-| | ... | - vpp_deb_pkgs - Package list for Debian based system.
 | | ...
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}

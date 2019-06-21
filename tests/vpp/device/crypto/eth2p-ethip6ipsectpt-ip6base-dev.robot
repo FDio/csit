@@ -12,13 +12,13 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/crypto/ipsec.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP6FWD | IPSEC | IPSEC_TPT | IP6BASE
 | ...
-| Test Setup | Set up IPSec SW device functional test | IPv6
-| ...
+| Suite Setup | Setup suite
+| Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 | ...
 | Documentation | *IPv6 IPsec transport mode test suite.*
@@ -33,6 +33,9 @@
 | ... | *[Ref] Applicable standard specifications:* RFC4303.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
+| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
+| ${nic_name}= | virtual
 | ${tg_spi}= | ${1000}
 | ${dut_spi}= | ${1001}
 | ${ESP_PROTO}= | ${50}
@@ -51,10 +54,14 @@
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | ...
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure topology for IPv6 IPsec testing
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA 256 128
-| | Given Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | When Configure manual keyed connection for IPSec
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Configure manual keyed connection for IPSec
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
 | | ... | is_ipv6=${TRUE}
@@ -63,55 +70,21 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
 
-| tc02-eth2p-ethip6ipsectpt-ip6base-device-aes-256-cbc-sha-256-128
-| | [Documentation]
-| | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-256 and integrity algorithm SHA-256-128 in transport
-| | ... | mode.
-| | ... | [Ver] Send and receive ESP packet between TG and VPP node.
-| | ...
-| | ${encr_alg}= | Crypto Alg AES CBC 256
-| | ${auth_alg}= | Integ Alg SHA 256 128
-| | Given Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | When Configure manual keyed connection for IPSec
-| | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
-| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
-| | ... | is_ipv6=${TRUE}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet
-| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
-| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
-
-| tc03-eth2p-ethip6ipsectpt-ip6base-device-aes-128-cbc-sha-512-256
+| tc02-eth2p-ethip6ipsectpt-ip6base-device-aes-128-cbc-sha-512-256
 | | [Documentation]
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
 | | ... | algorithm AES-CBC-128 and integrity algorithm SHA-512-256 in transport
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | ...
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure topology for IPv6 IPsec testing
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA 512 256
-| | Given Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | When Configure manual keyed connection for IPSec
-| | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
-| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
-| | ... | is_ipv6=${TRUE}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet
-| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
-| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
-
-| tc04-eth2p-ethip6ipsectpt-ip6base-device-aes-256-cbc-sha-512-256
-| | [Documentation]
-| | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-256 and integrity algorithm SHA-512-256 in transport
-| | ... | mode.
-| | ... | [Ver] Send and receive ESP packet between TG and VPP node.
-| | ...
-| | ${encr_alg}= | Crypto Alg AES CBC 256
-| | ${auth_alg}= | Integ Alg SHA 512 256
-| | Given Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | When Configure manual keyed connection for IPSec
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Configure manual keyed connection for IPSec
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
 | | ... | is_ipv6=${TRUE}
