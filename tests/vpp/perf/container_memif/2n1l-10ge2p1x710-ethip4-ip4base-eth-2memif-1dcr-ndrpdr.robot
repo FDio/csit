@@ -12,18 +12,14 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | MEMIF | DOCKER
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up 2-node performance topology with DUT's NIC model | L3
-| ... | ${nic_name}
-| ... | AND | Set up performance test suite with MEMIF
+| Suite Setup | Setup suite | performance
 | Suite Teardown | Tear down suite | performance
-| ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance | container
 | ...
 | Test Template | Local Template
@@ -51,7 +47,9 @@
 | ... | addresses of the TG node interfaces.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${nic_name}= | Intel-X710
+| ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n-ethip4-ip4src254
@@ -78,9 +76,9 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | And Set up performance test with containers
+| | When Setup performance test with containers
 | | And Initialize IPv4 routing with memif pairs
 | | Then Find NDR and PDR intervals using optimized search
 

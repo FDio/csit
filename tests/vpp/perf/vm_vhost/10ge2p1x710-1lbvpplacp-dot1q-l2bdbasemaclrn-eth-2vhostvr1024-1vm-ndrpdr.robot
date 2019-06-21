@@ -12,20 +12,16 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
 | ... | LBOND_1L
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up 3-node performance topology with DUT's NIC model | L2
-| ... | ${nic_name}
-| ... | AND | Set up performance test suite with LACP mode link bonding
-| Suite Teardown | Tear down suite
-| ...
-| Test Setup | Set up performance test
+| Suite Setup | Setup suite | performance
+| Suite Teardown | Tear down suite | performance
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance | vhost
 | ...
 | Test Template | Local Template
@@ -56,6 +52,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | lacp_plugin.so
+| ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${4}
 | ${subid}= | 10

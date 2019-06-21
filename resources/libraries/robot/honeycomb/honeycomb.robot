@@ -233,7 +233,7 @@
 | | Restart Vpp Service | ${node}
 | | Verify Vpp | ${node}
 | | VPP Enable Traces On DUT | ${node}
-| | Configure all TGs for traffic script
+| | All TGs Set Interface Default Driver | ${nodes}
 | | Configure Honeycomb for functional testing | ${node}
 | | Configure ODL Client for functional testing | ${node}
 

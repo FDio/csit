@@ -12,18 +12,16 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-X710 | BASE
 | ... | AES_128_GCM | AES
 | ...
-| Suite Setup | Set up IPSec performance test suite | L3 | ${nic_name}
-| ... | HW_DH895xcc
+| Suite Setup | Setup suite | performance | ipsechw
 | Suite Teardown | Tear down suite | performance
-| ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local Template
@@ -53,6 +51,10 @@
 | ... | *[Ref] Applicable standard specifications:* RFC4303 and RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
+| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
+| ${osi_layer}= | L3
+| ${crypto_type}= HW_DH895xcc
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${54}
 | ${tg_if1_ip4}= | 192.168.10.2
@@ -92,12 +94,12 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add cryptodev to all DUTs | ${phy_cores}
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
 | | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
-| | And Initialize IPSec in 3-node circular topology
+| | When Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${nodes} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${auth_alg} | ${dut1_if2_ip4} | ${dut2_if1_ip4}

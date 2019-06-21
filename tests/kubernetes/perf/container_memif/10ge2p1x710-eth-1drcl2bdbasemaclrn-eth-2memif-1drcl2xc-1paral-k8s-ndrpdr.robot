@@ -12,17 +12,15 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | L2BDBASE | BASE | MEMIF
 | ... | K8S | 1VSWITCH | 1VNF | VPP_AGENT | SFC_CONTROLLER | PARALLEL
 | ...
-| Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L2 | ${nic_name}
+| Suite Setup | Setup suite | performance
 | Suite Teardown | Tear down suite | performance
-| ...
-| Test Setup | Set up performance test with Ligato Kubernetes
+| Test Setup | Setup test | ligato
 | Test Teardown | Tear down test | ligato
 | ...
 | Test Template | Local Template
@@ -51,6 +49,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
+| ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
 # SFC profile

@@ -12,20 +12,15 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | SRv6 | IP6FWD | FEATURE | SRv6_PROXY
 | ... | SRv6_PROXY_DYN | MEMIF | LXC
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up 3-node performance topology with DUT's NIC model | L3
-| ... | ${nic_name}
-| ... | AND | Set up performance test suite with MEMIF
-| ... | AND | Set up performance test suite with Dynamic SRv6 proxy
+| Suite Setup | Setup suite | performance
 | Suite Teardown | Tear down suite | performance
-| ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance | srv6 | container
 | ...
 | Test Template | Local Template
@@ -55,6 +50,8 @@
 | ... | draft 3 and Segment Routing for Service Chaining - internet draft 01.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so | srv6ad_plugin.so
+| ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 # outer IPv6 header + SRH with 3 SIDs: 40+(8+3*16)B
 | ${overhead}= | ${96}
