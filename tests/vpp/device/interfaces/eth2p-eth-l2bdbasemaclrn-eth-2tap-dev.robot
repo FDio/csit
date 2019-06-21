@@ -27,8 +27,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2BD | BASE | ETH | TAP
 | ...
-| Test Setup | Run Keywords | Set up VPP device test
-| ... | AND | Clean Up Namespaces | ${nodes['DUT1']}
+| Test Setup | Setup test | vpp_device | namespace
 | ...
 | Test Teardown | Tear down test | packet_trace | namespace | linux_bridge
 | ...
@@ -47,10 +46,10 @@
 | ... | *[Ref] Applicable standard specifications:*
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${bid_from_TG}= | 19
 | ${bid_to_TG}= | 20
 | ${bid_TAP}= | tapBr
-
 | ${tap_int1}= | tap0
 | ${tap_int2}= | tap1
 
@@ -63,7 +62,10 @@
 | | ... | [Ver] Packet sent from TG is passed through all L2BD and received\
 | | ... | back on TG. Then src_ip, dst_ip and MAC are checked.
 | | ...
-| | Given Configure path in 2-node circular topology | ${nodes['TG']}
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology | ${nodes['TG']}
 | | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1}

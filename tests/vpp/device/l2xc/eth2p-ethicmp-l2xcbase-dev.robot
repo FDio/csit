@@ -20,7 +20,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2XCFWD | BASE | ETH | ICMP
 | ...
-| Test Setup | Set up VPP device test
+| Test Setup | Setup test | vpp_device
 | ...
 | Test Teardown | Tear down test
 | ...
@@ -39,6 +39,9 @@
 | ... | dst-addr and MAC addresses.
 | ... | *[Ref] Applicable standard specifications:* RFC792
 
+*** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
+
 *** Test Cases ***
 | tc01-eth2p-ethicmpv4-l2xcbase-device
 | | [Documentation]
@@ -49,11 +52,14 @@
 | | ... | its interfaces to be switched by DUT1; verify all packets are \
 | | ... | received.
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure interfaces in path up
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
+| | And All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv4 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 
@@ -66,10 +72,13 @@
 | | ... | its interfaces to be switched by DUT1; verify all packets are \
 | | ... | received.
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure interfaces in path up
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
+| | And All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv6 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}

@@ -20,7 +20,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP6FWD | BASE | ETH | IP6BASE
 | ...
-| Test Setup | Set up VPP device test
+| Test Setup | Setup test | vpp_device
 | ...
 | Test Teardown | Tear down test
 | ...
@@ -38,6 +38,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2460, RFC4443, RFC4861
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${tg_to_dut_if1_ip6}= | 2001:1::2
 | ${tg_to_dut_if2_ip6}= | 2001:2::2
 | ${dut_to_tg_if1_ip6}= | 2001:1::1
@@ -54,12 +55,15 @@
 | | ...
 | | ${hops}= | Set Variable | ${0}
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
 | | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
 | | And Suppress ICMPv6 router advertisement message | ${nodes}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
+| | And All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send IPv6 echo request packet and verify headers | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${tg_to_dut_if1_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if1_mac}
@@ -73,12 +77,15 @@
 | | ...
 | | ${hops}= | Set Variable | ${0}
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
 | | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
 | | And Suppress ICMPv6 router advertisement message | ${nodes}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
+| | And All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send IPv6 echo request packet and verify headers | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${tg_to_dut_if1_ip6} | ${dut_to_tg_if2_ip6} | ${dut_to_tg_if1_mac}
@@ -92,12 +99,15 @@
 | | ...
 | | ${hops}= | Set Variable | ${1}
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
 | | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
 | | And Suppress ICMPv6 router advertisement message | ${nodes}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
+| | And All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send IPv6 echo request packet and verify headers | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_node} | ${tg_to_dut_if2}
 | | ... | ${tg_to_dut_if1_ip6} | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_mac}
@@ -111,7 +121,10 @@
 | | ...
 | | ${hops}= | Set Variable | ${1}
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
 | | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
@@ -119,7 +132,7 @@
 | | ... | remote_host2_ip6=${remote_host2_ip6}
 | | ... | remote_host_ip6_prefix=${remote_host_ip6_prefix}
 | | And Suppress ICMPv6 router advertisement message | ${nodes}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
+| | And All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send IPv6 echo request packet and verify headers | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_node} | ${tg_to_dut_if2}
 | | ... | ${remote_host1_ip6} | ${remote_host2_ip6} | ${dut_to_tg_if1_mac}
