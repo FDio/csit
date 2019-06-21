@@ -219,8 +219,7 @@
 | | ...
 | | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
-| | Set variables in 2-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
 
@@ -245,8 +244,7 @@
 | | [Arguments] | ${osi_layer} | ${nic_name} | ${tg_if1_dest_mac}
 | | ... | ${tg_if2_dest_mac}
 | | ...
-| | Set variables in 2-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
 | | ... | ${tg_if1_dest_mac} | ${tg_if2_dest_mac}
@@ -269,8 +267,7 @@
 | | ...
 | | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
-| | Set variables in 3-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
 
@@ -315,8 +312,7 @@
 | | ...
 | | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
-| | Set variables in 2-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
@@ -338,8 +334,7 @@
 | | ...
 | | [Arguments] | ${osi_layer} | ${nic_name}
 | | ...
-| | Set variables in 3-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
@@ -367,8 +362,7 @@
 | | [Arguments] | ${osi_layer} | ${nic_name} | ${vf_driver}
 | | ... | ${numvfs}=${1}
 | | ...
-| | Set variables in 2-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Run Keyword If | '${vf_driver}' == 'AVF'
 | | ... | Configure AVF interfaces on all DUTs | numvfs=${numvfs}
 | | ... | osi_layer=${osi_layer}
@@ -398,8 +392,7 @@
 | | [Arguments] | ${osi_layer} | ${nic_name} | ${vf_driver}
 | | ... | ${numvfs}=${1}
 | | ...
-| | Set variables in 3-node circular topology with DUT interface model
-| | ... | ${nic_name}
+| | Setup suite | ${nic_name}
 | | Run Keyword If | '${vf_driver}' == 'AVF'
 | | ... | Configure AVF interfaces on all DUTs | numvfs=${numvfs}
 | | ... | osi_layer=${osi_layer}
@@ -440,71 +433,6 @@
 | | ... | force_init=${True}
 | | Configure kernel module on all DUTs | vfio_pci | force_load=${True}
 
-| Set up performance test suite with MEMIF
-| | [Documentation]
-| | ... | Append memif_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | memif_plugin.so
-
-| Set up performance test suite with NAT
-| | [Documentation]
-| | ... | Append nat_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | nat_plugin.so
-
-| Set up performance test suite with ACL
-| | [Documentation]
-| | ... | Append acl_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | acl_plugin.so
-
-| Set up performance test suite with AVF driver
-| | [Documentation]
-| | ... | Append avf_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | avf_plugin.so
-
-| Set up performance test suite with Static SRv6 proxy
-| | [Documentation]
-| | ... | Append srv6as_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | srv6as_plugin.so
-
-| Set up performance test suite with Dynamic SRv6 proxy
-| | [Documentation]
-| | ... | Append srv6ad_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | srv6ad_plugin.so
-
-| Set up performance test suite with Masquerading SRv6 proxy
-| | [Documentation]
-| | ... | Append srv6am_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | srv6am_plugin.so
-
-| Set up performance test suite with LACP mode link bonding
-| | [Documentation]
-| | ... | Append lacp_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | lacp_plugin.so
-
-| Set up performance test suite with crypto ipsecmb
-| | [Documentation]
-| | ... | Append crypto_ipsecmb_plugin.so to the list of enabled plugins.
-| | ...
-| | Set Suite Variable | @{plugins_to_enable}
-| | Append To List | ${plugins_to_enable} | crypto_ia32_plugin.so
-| | Append To List | ${plugins_to_enable} | crypto_ipsecmb_plugin.so
-| | Append To List | ${plugins_to_enable} | crypto_openssl_plugin.so
-
 | Set up 3-node performance topology with wrk and DUT's NIC model
 | | [Documentation]
 | | ... | Suite preparation phase that sets the default startup configuration of
@@ -522,8 +450,7 @@
 | | ...
 | | [Arguments] | ${iface_model}
 | | ...
-| | Set variables in 3-node circular topology with DUT interface model
-| | ... | ${iface_model}
+| | Setup suite | ${iface_model}
 | | Iface update numa node | ${tg}
 # Make sure TRex is stopped
 | | ${running}= | Is TRex running | ${tg}
@@ -550,67 +477,3 @@
 | | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.80.1 | 24
 | | Set Linux interface up | ${tg} | ${intf_name}
 | | Install wrk | ${tg}
-
-# Tests setups
-
-| Set up performance test
-| | [Documentation] | Common test setup for performance tests.
-| | ...
-| | Reset PAPI History On All DUTs | ${nodes}
-| | Create base startup configuration of VPP on all DUTs
-
-| Set up tcp performance test
-| | [Documentation] | Common test setup for TCP performance tests.
-| | ...
-| | Reset PAPI History On All DUTs | ${nodes}
-| | Create base startup configuration of VPP for TCP tests on all DUTs
-
-| Set up performance test with Ligato Kubernetes
-| | [Documentation] | Common test setup for performance tests with Ligato \
-| | ... | Kubernetes.
-| | ...
-| | Apply Kubernetes resource on all duts | ${nodes} | namespaces/csit.yaml
-| | Apply Kubernetes resource on all duts | ${nodes} | pods/kafka.yaml
-| | Apply Kubernetes resource on all duts | ${nodes} | pods/etcdv3.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | configmaps/vswitch-agent-cfg.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | configmaps/vnf-agent-cfg.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | pods/contiv-sfc-controller.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | pods/contiv-vswitch.yaml
-
-| Set up performance test with containers
-| | [Documentation]
-| | ... | Common test setup for performance tests with containers
-| | ...
-| | ... | *Arguments:*
-| | ... | - chains: Total number of chains. Type: integer
-| | ... | - nodeness: Total number of nodes per chain. Type: integer
-| | ... | - auto_scale - If True, use same amount of Dataplane threads for
-| | ... |   network function as DUT, otherwise use single physical core for
-| | ... |   every network function. Type: boolean
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Set up performance test with containers \| 1 \| 1 \|
-| | ...
-| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
-| | ...
-| | Set Test Variable | @{container_groups} | @{EMPTY}
-| | Set Test Variable | ${container_group} | CNF
-| | Set Test Variable | ${nf_nodes}
-| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
-| | ... | engine=${container_engine} | WITH NAME | ${container_group}
-| | Construct chains of containers on all DUTs | ${nf_chains} | ${nf_nodes}
-| | ... | auto_scale=${auto_scale}
-| | Acquire all '${container_group}' containers
-| | Create all '${container_group}' containers
-| | Configure VPP in all '${container_group}' containers
-| | Stop VPP service on all DUTs | ${nodes}
-| | Start VPP in all '${container_group}' containers
-| | Restart VPP service on all DUTs | ${nodes}
-| | Verify VPP on all DUTs | ${nodes}
-| | Save VPP PIDs
-| | Append To List | ${container_groups} | ${container_group}
