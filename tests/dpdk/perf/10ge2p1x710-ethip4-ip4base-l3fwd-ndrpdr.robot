@@ -19,8 +19,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | 1NUMA
 | ... | NIC_Intel-X710 | DPDK | IP4FWD | BASE | ETH
 | ...
-| Suite Setup | Set up DPDK 3-node performance topology with DUT's NIC model
-| ... | L3 | ${nic_name}
+| Suite Setup | Setup suite | performance | dpdk
 | Suite Teardown | Tear down suite | performance | dpdk
 | ...
 | Test Template | Local Template
@@ -44,6 +43,7 @@
 | ... | interfaces.
 
 *** Variables ***
+| ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
 # Traffic profile:

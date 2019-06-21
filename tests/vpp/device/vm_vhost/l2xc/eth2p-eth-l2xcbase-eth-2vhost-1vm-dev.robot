@@ -24,8 +24,8 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2XCFWD | BASE | ETH | VHOST | 1VM
 | ...
-| Test Setup | Set up VPP device test
-| ...
+| Suite Setup | Setup suite
+| Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | vhost
 | ...
 | Documentation | *L2 cross-connect test cases with vhost user interface*
@@ -45,6 +45,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
+| ${nic_name}= | virtual
 | ${sock1}= | /tmp/sock1
 | ${sock2}= | /tmp/sock2
 
@@ -58,10 +60,13 @@
 | | ... | i/fs to be switched by DUT to and from VM; verify all packets \
 | | ... | are received. [Ref]
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure interfaces in path up
-| | When Configure vhost interfaces for L2BD forwarding | ${dut_node}
+| | And Configure vhost interfaces for L2BD forwarding | ${dut_node}
 | | ... | ${sock1} | ${sock2}
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${vhost_if1}
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if2} | ${vhost_if2}
@@ -80,10 +85,13 @@
 | | ... | be switched by DUT to and from VM; verify all packets are \
 | | ... | received. [Ref]
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure interfaces in path up
-| | When Configure vhost interfaces for L2BD forwarding | ${dut_node}
+| | And Configure vhost interfaces for L2BD forwarding | ${dut_node}
 | | ... | ${sock1} | ${sock2}
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${vhost_if1}
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if2} | ${vhost_if2}

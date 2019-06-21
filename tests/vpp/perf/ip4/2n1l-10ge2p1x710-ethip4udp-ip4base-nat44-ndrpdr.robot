@@ -12,20 +12,16 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/ip/nat.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | BASE
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up 2-node performance topology with DUT's NIC model | L3
-| ... | ${nic_name}
-| ... | AND | Set up performance test suite with NAT
+| Suite Setup | Setup suite | performance
 | Suite Teardown | Tear down suite | performance
-| ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
 | Test Template | Local Template
@@ -51,6 +47,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | nat_plugin.so
+| ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
 # Traffic profile:
@@ -76,7 +74,7 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize NAT44 in circular topology
