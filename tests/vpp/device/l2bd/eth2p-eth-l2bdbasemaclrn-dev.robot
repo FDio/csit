@@ -13,17 +13,17 @@
 
 *** Settings ***
 | Library | resources.libraries.python.L2Util
+| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/l2/l2_traffic.robot
-| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2BDMACLRN | BASE | ETH | ICMP
 | ...
-| Test Setup | Set up VPP device test
-| ...
+| Suite Setup | Setup suite single link
+| Test Setup | Setup test
 | Test Teardown | Tear down test
 | ...
 | Documentation | *L2 bridge-domain test cases*
@@ -42,6 +42,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
+| ${nic_name}= | virtual
 | ${bd_id}= | 1
 
 *** Test Cases ***
@@ -54,7 +56,10 @@
 | | ... | its interfaces to be switched by DUT1; verify all packets are \
 | | ... | received.
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure interfaces in path up
 | | And Create bridge domain | ${dut_node} | ${bd_id}
@@ -62,7 +67,7 @@
 | | ... | ${bd_id}
 | | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${bd_id}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
+| | And All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 | | ...
@@ -78,7 +83,10 @@
 | | ... | its interfaces to be switched by DUT1; verify all packets are \
 | | ... | received.
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure interfaces in path up
 | | And Create bridge domain | ${dut_node} | ${bd_id}
@@ -86,7 +94,7 @@
 | | ... | ${bd_id}
 | | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${bd_id}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
+| | And All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv6 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 | | VPP get bridge domain data | ${nodes['DUT1']} | bd_id=${bd_id}

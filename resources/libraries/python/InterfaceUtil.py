@@ -1543,9 +1543,6 @@ class InterfaceUtil(object):
         :rtype: list
         :raises RuntimeError: If a reason preventing initialization is found.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         # Read PCI address and driver.
         pf_pci_addr = Topology.get_interface_pci_addr(node, ifc_key)
         pf_mac_addr = Topology.get_interface_mac(node, ifc_key).split(":")

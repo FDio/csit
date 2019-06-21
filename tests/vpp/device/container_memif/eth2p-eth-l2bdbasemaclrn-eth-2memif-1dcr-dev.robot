@@ -12,17 +12,16 @@
 # limitations under the License.
 
 *** Settings ***
+| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/l2/l2_traffic.robot
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/memif.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2BDMACLRN | BASE | ETH | MEMIF | DOCKER
 | ...
-| Test Setup | Set up VPP device test
-| ...
+| Suite Setup | Setup suite single link
+| Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | container
 | ...
 | Documentation | *L2 bridge-domain test cases with memif interface*
@@ -41,6 +40,8 @@
 | ... | src-addr, dst-addr and MAC addresses.pecifications:* RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
+| ${nic_name}= | virtual
 # L2BD
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
@@ -50,7 +51,6 @@
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_functional
 
-# TODO: Add update of VPP PIDs after container creation
 *** Test Cases ***
 | tc01-eth2p-ethip4-l2bdbase-eth-2memif-1dcr-device
 | | [Documentation]
@@ -61,9 +61,12 @@
 | | ... | two of its interfaces to be switched by DUT1; verify all packets are \
 | | ... | received.
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Set up functional test with containers
+| | And Start containers for device test
 | | And Configure interfaces in path up
 | | When Set up memif interfaces on DUT node | ${dut_node} | ${sock_base}
 | | ... | ${sock_base} | dcr_uuid=${dcr_uuid}
@@ -90,7 +93,10 @@
 | | ... | two of its interfaces to be switched by DUT1; verify all packets are \
 | | ... | received.
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set up functional test with containers
 | | And Configure interfaces in path up
