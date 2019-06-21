@@ -20,8 +20,8 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | L2BDMACLRN | BASE | ETH | VHOST | 1VM
 | ...
-| Test Setup | Set up VPP device test
-| ...
+| Suite Setup | Setup suite
+| Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | vhost
 | ...
 | Documentation | *L2 bridge-domain test cases with vhost user interface*
@@ -41,9 +41,10 @@
 | ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
+| ${nic_name}= | virtual
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
-
 | ${sock1}= | /tmp/sock1
 | ${sock2}= | /tmp/sock2
 
@@ -57,10 +58,13 @@
 | | ... | switched thru DUT1 and VM in both directions and are correct on \
 | | ... | receive. [Ref]
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure interfaces in path up
-| | When Configure vhost interfaces for L2BD forwarding | ${dut_node}
+| | And Configure vhost interfaces for L2BD forwarding | ${dut_node}
 | | ... | ${sock1}
 | | ... | ${sock2}
 | | And Create bridge domain | ${dut_node} | ${bd_id1}
@@ -87,10 +91,13 @@
 | | ... | switched thru DUT1 and VM in both directions and are correct on \
 | | ... | receive. [Ref]
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Configure interfaces in path up
-| | When Configure vhost interfaces for L2BD forwarding | ${dut_node}
+| | And Configure vhost interfaces for L2BD forwarding | ${dut_node}
 | | ... | ${sock1}
 | | ... | ${sock2}
 | | And Create bridge domain | ${dut_node} | ${bd_id1}

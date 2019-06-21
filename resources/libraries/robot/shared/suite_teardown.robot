@@ -41,7 +41,6 @@
 | | [Documentation]
 | | ... | Additional teardown for suites which uses dpdk.
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Cleanup DPDK Environment
 | | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}

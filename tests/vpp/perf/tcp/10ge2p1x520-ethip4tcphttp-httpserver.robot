@@ -15,15 +15,15 @@
 
 | Library  | resources.tools.wrk.wrk
 | Resource | resources/libraries/robot/wrk/wrk_utils.robot
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/tcp/tcp_setup.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | HTTP | TCP
 | ...
 | Suite Setup | Set up 3-node performance topology with wrk and DUT's NIC model
 | ... | Intel-XL710
+| Test Setup | Setup test
 | ...
-| Test Setup | Set up tcp performance test
 | Test Teardown | Tear down test
 | ...
 | Test Template | Local template
@@ -37,6 +37,9 @@
 | ... | *[Cfg] DUT configuration:*
 | ... | *[Ver] TG verification:*
 | ... | *[Ref] Applicable standard specifications:*
+
+*** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
 
 *** Keywords ***
 | Local template
