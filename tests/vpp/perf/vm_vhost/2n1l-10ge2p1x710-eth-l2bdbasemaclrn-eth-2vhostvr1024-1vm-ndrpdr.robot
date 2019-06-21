@@ -12,16 +12,14 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | 1VM | VHOST_1024
 | ...
-| Suite Setup | Set up 2-node performance topology with DUT's NIC model
-| ... | L2 | ${nic_name}
-| Suite Teardown | Tear down suite
-| ...
-| Test Setup | Set up performance test
+| Suite Setup | Setup suite | performance
+| Suite Teardown | Tear down suite | performance
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance | vhost
 | ...
 | Test Template | Local Template
@@ -50,6 +48,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so
+| ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
 | ${nf_dtcr}= | ${1}

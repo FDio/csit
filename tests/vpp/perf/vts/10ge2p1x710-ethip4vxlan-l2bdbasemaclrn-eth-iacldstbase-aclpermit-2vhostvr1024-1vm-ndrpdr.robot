@@ -12,19 +12,15 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance/performance_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
 | ... | VHOST | VM | VHOST_1024 | VTS | ACL_PERMIT
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up 3-node performance topology with DUT's NIC model
-| ... | L3 | ${nic_name}
-| ... | AND | Set up performance test suite with ACL
+| Suite Setup | Setup suite | performance
 | Suite Teardown | Tear down suite | performance
-| ...
-| Test Setup | Set up performance test
+| Test Setup | Setup test
 | Test Teardown | Tear down test | performance | vhost
 | ...
 | Test Template | Local Template
@@ -55,6 +51,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544, RFC7348.
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | acl_plugin.so
+| ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${50}
 | ${nf_dtcr}= | ${1}

@@ -15,17 +15,16 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPUtil
 | ...
-| Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/memif.robot
+| Resource | resources/libraries/robot/ip/ip4.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
 | ... | FUNCTEST | IP4FWD | BASE | ETH | MEMIF | DOCKER
 | ...
-| Test Setup | Set up VPP device test
-| ...
+| Suite Setup | Setup suite
+| Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | container
 | ...
 | Documentation | *IPv4 routing test cases with memif interface*
@@ -45,6 +44,8 @@
 | ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
 
 *** Variables ***
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
+| ${nic_name}= | virtual
 # IP
 | ${net1}= | 10.0.1.0
 | ${net3}= | 10.0.3.0
@@ -62,7 +63,6 @@
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_functional
 
-# TODO: Add update of VPP PIDs after container creation
 *** Test Cases ***
 | tc01-eth2p-ethip4-ip4base-eth-2memif-1dcr-device
 | | [Documentation]
@@ -72,7 +72,10 @@
 | | ... | send ICMPv4 Echo Reqest form one TG interface to another one to be \
 | | ... | switched by DUT1; verify header of received packet.
 | | ...
-| | Given Configure path in 2-node circular topology
+| | Given Add PCI devices to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set up functional test with containers
 | | And Configure interfaces in path up
