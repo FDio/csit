@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e08c8cda_8c422c37",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-21T11:03:12Z",
+      "side": 1,
+      "message": "2019\n\nI am once again thinking about adding a checker script for this.",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50294df2_0f697f6b",
+        "filename": "resources/libraries/robot/shared/suite_teardown.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-21T11:03:12Z",
+      "side": 1,
+      "message": "See later comment about incomplete teardowns.",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 35,
+        "endChar": 27
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1a0ae2f_11fed107",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-21T11:03:12Z",
+      "side": 1,
+      "message": "Additional Test Tear Down Action For ${action}\n\nThese are NOT complete teardowns, you should discourage contributors from accidentally invoking them thinking they are complete teardowns.",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 33
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80d01926_419f1c8d",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-21T11:03:12Z",
+      "side": 1,
+      "message": "In principle, Documentation should mention every such implicit argument, but I guess if the code is so short it is readable anyway.",
+      "range": {
+        "startLine": 55,
+        "startChar": 37,
+        "endLine": 55,
+        "endChar": 56
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2b6dc26_265e58d3",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-21T11:03:12Z",
+      "side": 1,
+      "message": "Additional",
+      "range": {
+        "startLine": 120,
+        "startChar": 10,
+        "endLine": 120,
+        "endChar": 11
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0503a908_069690a9",
+        "filename": "tests/kubernetes/perf/container_memif/10ge2p1x710-eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral-k8s-ndrpdr.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-21T11:03:12Z",
+      "side": 1,
+      "message": "Tear down test  |  ligato\n\nSee my earlier comment about incomplete teardowns.",
+      "range": {
+        "startLine": 26,
+        "startChar": 18,
+        "endLine": 26,
+        "endChar": 44
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fda3eaf0_f7a986fd",
+        "filename": "tests/vpp/perf/container_memif/10ge2p1x710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-21T11:03:12Z",
+      "side": 1,
+      "message": "Would it be better to add dummy suite setups/teardowns to device tests, and here do\n  Tear down suite  |  performance\n?\n\nIn future we might want to do some common step in device test teardown. Also \"performance\" already is an add-on to test teardown.",
+      "range": {
+        "startLine": 24,
+        "startChar": 19,
+        "endLine": 24,
+        "endChar": 34
+      },
+      "revId": "c50843082cea00b533e145ac9b2ca98cb8940036",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
