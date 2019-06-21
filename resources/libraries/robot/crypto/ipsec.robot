@@ -236,19 +236,3 @@
 | | ${args}= | Set Variable If | "${r_tunnel}" == "${None}" | ${args}
 | | ... | ${args} --dst_tun ${r_tunnel}
 | | Run Traffic Script On Node | ipsec.py | ${node} | ${args}
-
-| Set up IPSec SW device functional test
-| | [Documentation]
-| | ... | Set up IPSec SW device functional test for required IP version.
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${ip_version} - IP version: IPv4 or IPv6. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Set up IPSec SW device functional test \| IPv4 \|
-| | ...
-| | [Arguments] | ${ip_version}
-| | ...
-| | Set up VPP device test
-| | Run Keyword | Configure topology for ${ip_version} IPsec testing
