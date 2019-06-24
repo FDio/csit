@@ -32,6 +32,7 @@ from resources.libraries.python.PythonThree import raise_from
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd, exec_cmd_no_error, scp_node)
+from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
 
 __all__ = ["PapiExecutor", "PapiSocketExecutor"]
@@ -65,6 +66,7 @@ def dictize(obj):
     new_get = lambda self, key: dictize(old_get(self, key))
     ret.__getitem__ = new_get
     return ret
+
 
 class PapiSocketExecutor(object):
     """Methods for executing VPP Python API commands on forwarded socket.
@@ -116,7 +118,9 @@ class PapiSocketExecutor(object):
     """
 
     # Class cache for reuse between instances.
+    _directory = None
     _vpp_instance = None
+    _crc_checker = None
 
     def __init__(self, node, remote_vpp_socket="/run/vpp-api.sock"):
         """Initialization.
@@ -136,6 +140,20 @@ class PapiSocketExecutor(object):
         self._temp_dir = None
         self._ssh_control_socket = None
         self._local_vpp_socket = None
+
+    @property
+    def crc_checker(self):
+        """Return the cached instance or create new one from directory.
+
+        It is assumed self._directory is set, as a class variable.
+
+        :returns: Cached or newly created instance aware of .api.json content.
+        :rtype: VppApiCrc.VppApiCrcChecker
+        """
+        cls = self.__class__
+        if cls._crc_checker is None:
+            cls._crc_checker = VppApiCrcChecker(cls._directory)
+        return cls._crc_checker
 
     @property
     def vpp_instance(self):
@@ -179,6 +197,10 @@ class PapiSocketExecutor(object):
             exec_cmd_no_error(node, ["ls", "-l", "/tmp/papi.txz"])
             scp_node(node, tmp_dir + "/papi.txz", "/tmp/papi.txz", get=True)
             run(["tar", "xvf", tmp_dir + "/papi.txz", "-C", tmp_dir])
+            cls._directory = tmp_dir + "/usr/share/vpp/api"
+            # Perform initial checks before .api.json files are gone,
+            # by accessing the property (which also creates its instance).
+            self.crc_checker
             # When present locally, we finally can find the installation path.
             package_path = glob.glob(tmp_dir + installed_papi_glob)[-1]
             logger.debug("papi module path: {path}".format(path=package_path))
@@ -190,7 +212,7 @@ class PapiSocketExecutor(object):
             logger.debug("package path: {path}".format(path=package_path))
             sys.path.append(package_path)
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
-            vpp_class.apidir = tmp_dir + "/usr/share/vpp/api"
+            vpp_class.apidir = cls._directory
             logger.debug("apidir: {dir}".format(dir=vpp_class.apidir))
             # We need to create instance before removing from sys.path.
             cls._vpp_instance = vpp_class(
@@ -317,14 +339,25 @@ class PapiSocketExecutor(object):
         The argument name 'csit_papi_command' must be unique enough as it cannot
         be repeated in kwargs.
 
+        Any pending conflicts from .api.json processing are raised.
+        Then the command name is checked for known CRCs.
+        Unsupported commands raise an exception, as CSIT change
+        should not start using messages without making sure which CRCs
+        are supported.
+        Each CRC issue is raised only once, so subsequent tests
+        can raise other issues.
+
         :param csit_papi_command: VPP API command.
         :param kwargs: Optional key-value arguments.
         :type csit_papi_command: str
         :type kwargs: dict
         :returns: self, so that method chaining is possible.
         :rtype: PapiExecutor
+        :raises RuntimeError: If unverified or conflicting CRC is encountered.
         """
+        self.crc_checker.report_initial_conflicts()
         PapiHistory.add_to_papi_history(self._node, csit_papi_command, **kwargs)
+        self.crc_checker.check_api_name(csit_papi_command)
         self._api_command_list.append(
             dict(api_name=csit_papi_command, api_args=kwargs))
         return self
