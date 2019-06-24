@@ -162,16 +162,16 @@ class VPPUtil(object):
         :rtype: str
         """
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_version').get_replies().verify_reply()
-        version = ('VPP version:      {ver}\n'.
-                   format(ver=data['version'].rstrip('\0x00')))
+            reply = papi_exec.add('show_version').get_reply()
+        return_version = reply['version'].rstrip('\0x00')
+        version = 'VPP version:      {ver}\n'.format(ver=return_version)
         if verbose:
             version += ('Compile date:     {date}\n'
-                        'Compile location: {cl}\n '.
-                        format(date=data['build_date'].rstrip('\0x00'),
-                               cl=data['build_directory'].rstrip('\0x00')))
+                        'Compile location: {cl}\n'.
+                        format(date=reply['build_date'].rstrip('\0x00'),
+                               cl=reply['build_directory'].rstrip('\0x00')))
         logger.info(version)
-        return data['version'].rstrip('\0x00')
+        return return_version
 
     @staticmethod
     def show_vpp_version_on_all_duts(nodes):
@@ -193,24 +193,20 @@ class VPPUtil(object):
         """
 
         cmd = 'sw_interface_dump'
-        cmd_reply = 'sw_interface_details'
         args = dict(name_filter_valid=0, name_filter='')
         err_msg = 'Failed to get interface dump on host {host}'.format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            papi_resp = papi_exec.add(cmd, **args).get_replies(err_msg)
-
-        papi_if_dump = papi_resp.reply[0]['api_reply']
+            details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         if_data = list()
-        for item in papi_if_dump:
-            data = item[cmd_reply]
-            data['interface_name'] = data['interface_name'].rstrip('\x00')
-            data['tag'] = data['tag'].rstrip('\x00')
-            data['l2_address'] = str(':'.join(binascii.hexlify(
-                data['l2_address'])[i:i + 2] for i in range(0, 12, 2)).
-                                     decode('ascii'))
-            if_data.append(data)
+        for if_dump in details:
+            if_dump['interface_name'] = if_dump['interface_name'].rstrip('\x00')
+            if_dump['tag'] = if_dump['tag'].rstrip('\x00')
+            hexa = binascii.hexlify(if_dump['l2_address'])
+            if_dump['l2_address'] = str(':'.join(
+                [hexa[i:i + 2] for i in xrange(0, 12, 2)]).decode('ascii'))
+            if_data.append(if_dump)
         # TODO: return only base data
         logger.trace('Interface data of host {host}:\n{if_data}'.format(
             host=node['host'], if_data=if_data))
@@ -315,11 +311,10 @@ class VPPUtil(object):
         :rtype: list
         """
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add('show_threads').get_replies().\
-                verify_reply()["thread_data"]
+            reply = papi_exec.add('show_threads').get_reply()
 
         threads_data = list()
-        for thread in data:
+        for thread in reply["thread_data"]:
             thread_data = list()
             for item in thread:
                 if isinstance(item, unicode):

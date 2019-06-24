@@ -39,8 +39,7 @@ class IPv6Util(object):
                   'interface {ifc}'.format(ifc=interface)
 
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vpp_ra_send_after_interval(node, interface, interval=2):
@@ -62,8 +61,7 @@ class IPv6Util(object):
                   'interface {ifc}'.format(ifc=interface)
 
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vpp_all_ra_suppress_link_layer(nodes):
