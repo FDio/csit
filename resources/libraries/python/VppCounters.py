@@ -19,6 +19,7 @@ from pprint import pformat
 
 from robot.api import logger
 from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -46,7 +47,7 @@ class VppCounters(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiExecutor.run_cli_cmd(node, 'show errors')
+        PapiSocketExecutor.run_cli_cmd(node, 'show errors')
 
     @staticmethod
     def vpp_show_errors_verbose(node):
@@ -55,7 +56,7 @@ class VppCounters(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiExecutor.run_cli_cmd(node, 'show errors verbose')
+        PapiSocketExecutor.run_cli_cmd(node, 'show errors verbose')
 
     @staticmethod
     def vpp_show_errors_on_all_duts(nodes, verbose=False):
@@ -161,7 +162,7 @@ class VppCounters(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiExecutor.run_cli_cmd(node, 'show hardware detail')
+        PapiSocketExecutor.run_cli_cmd(node, 'show hardware detail')
 
     @staticmethod
     def vpp_clear_runtime(node):
@@ -172,7 +173,7 @@ class VppCounters(object):
         :returns: Verified data from PAPI response.
         :rtype: dict
         """
-        return PapiExecutor.run_cli_cmd(node, 'clear runtime', log=False)
+        return PapiSocketExecutor.run_cli_cmd(node, 'clear runtime', log=False)
 
     @staticmethod
     def clear_runtime_counters_on_all_duts(nodes):
@@ -194,7 +195,7 @@ class VppCounters(object):
         :returns: Verified data from PAPI response.
         :rtype: dict
         """
-        return PapiExecutor.run_cli_cmd(node, 'clear interfaces', log=False)
+        return PapiSocketExecutor.run_cli_cmd(node, 'clear interfaces', log=False)
 
     @staticmethod
     def clear_interface_counters_on_all_duts(nodes):
@@ -216,7 +217,7 @@ class VppCounters(object):
         :returns: Verified data from PAPI response.
         :rtype: dict
         """
-        return PapiExecutor.run_cli_cmd(node, 'clear hardware', log=False)
+        return PapiSocketExecutor.run_cli_cmd(node, 'clear hardware', log=False)
 
     @staticmethod
     def clear_hardware_counters_on_all_duts(nodes):
@@ -238,7 +239,7 @@ class VppCounters(object):
         :returns: Verified data from PAPI response.
         :rtype: dict
         """
-        return PapiExecutor.run_cli_cmd(node, 'clear errors', log=False)
+        return PapiSocketExecutor.run_cli_cmd(node, 'clear errors', log=False)
 
     @staticmethod
     def clear_error_counters_on_all_duts(nodes):
