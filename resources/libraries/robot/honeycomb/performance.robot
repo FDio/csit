@@ -77,6 +77,7 @@
 | | Run keyword | VPP_config.Add Unix Log
 | | Run keyword | VPP_config.Add Unix CLI Listen
 | | Run keyword | VPP_config.Add Unix Nodaemon
+| | Run keyword | VPP_config.Add Socksvr
 | | Run keyword | VPP_config.Add CPU Main Core | ${1}
 | | Run keyword | VPP_config.Apply Config
 
