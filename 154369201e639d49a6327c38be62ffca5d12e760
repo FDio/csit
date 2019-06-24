@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "0e086654_47113da8",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-24T16:52:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5532d64a_d04ee897",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 31
+      },
+      "revId": "154369201e639d49a6327c38be62ffca5d12e760",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe490434_04060249",
         "filename": "resources/tools/scripts/topo_reservation.py",
         "patchSetId": 10
@@ -95,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "8600b057_71a6fc5c",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-24T16:52:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe490434_04060249",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 24
+      },
+      "revId": "154369201e639d49a6327c38be62ffca5d12e760",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c2afdfe9_e81bc5a2",
         "filename": "resources/tools/scripts/topo_reservation.py",
         "patchSetId": 10
@@ -106,6 +154,30 @@
       "writtenOn": "2019-06-24T16:09:06Z",
       "side": 1,
       "message": "it can be beautified with exec_command_no_error (so no SSH()) and parsing return value it also keeps prevent of any other SSH errors. But good for now",
+      "range": {
+        "startLine": 124,
+        "startChar": 23,
+        "endLine": 124,
+        "endChar": 35
+      },
+      "revId": "154369201e639d49a6327c38be62ffca5d12e760",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0de3a641_4947b8e7",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-24T16:52:19Z",
+      "side": 1,
+      "message": "Added TODOs about missing features of exec_cmd_no_error.\nTurns out there are many rc!\u003d0 actions to chose from.",
+      "parentUuid": "c2afdfe9_e81bc5a2",
       "range": {
         "startLine": 124,
         "startChar": 23,
