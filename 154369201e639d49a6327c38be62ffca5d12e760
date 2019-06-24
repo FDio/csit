@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9905f888_e03c9195",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-24T16:48:49Z",
+      "side": 1,
+      "message": "I do not want to care about lines such as 41 right now.\nWe will be migrating everything to python3 next release, bulk editing is more efficient.",
+      "parentUuid": "fcf2ba0c_c35876a3",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "154369201e639d49a6327c38be62ffca5d12e760",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5532d64a_d04ee897",
         "filename": "resources/tools/scripts/topo_reservation.py",
         "patchSetId": 10
