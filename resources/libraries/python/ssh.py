@@ -24,29 +24,11 @@ from robot.api import logger
 from scp import SCPClient, SCPException
 
 from resources.libraries.python.OptionString import OptionString
+from resources.libraries.python.PythonThree import raise_from
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
 # TODO: load priv key
-
-
-def raise_from(raising, excepted):
-    """Function to be replaced by "raise from" in Python 3.
-
-    Neither "six" nor "future" offer good enough implementation right now.
-    chezsoi.org/lucas/blog/displaying-chained-exceptions-stacktraces-in-python-2
-
-    Current implementation just logs excepted error, and raises the new one.
-
-    :param raising: The exception to raise.
-    :param excepted: The exception we excepted and want to log.
-    :type raising: BaseException
-    :type excepted: BaseException
-    :raises: raising
-    """
-    logger.error("Excepted: {exc!r}\nRaising: {rai!r}".format(
-        exc=excepted, rai=raising))
-    raise raising
 
 
 class SSHTimeout(Exception):
