@@ -44,15 +44,13 @@ class Memif(object):
         :rtype: list
         """
         with PapiExecutor(node) as papi_exec:
-            dump = papi_exec.add("memif_dump").get_dump()
+            details = papi_exec.add("memif_dump").get_details()
 
         data = list()
-        for item in dump.reply[0]["api_reply"]:
-            item["memif_details"]["if_name"] = \
-                item["memif_details"]["if_name"].rstrip('\x00')
-            item["memif_details"]["hw_addr"] = \
-                L2Util.bin_to_mac(item["memif_details"]["hw_addr"])
-            data.append(item)
+        for memif in details:
+            memif["if_name"] = memif["if_name"].rstrip('\x00')
+            memif["hw_addr"] = L2Util.bin_to_mac(memif["hw_addr"])
+            data.append(memif)
 
         logger.debug("MEMIF data:\n{data}".format(data=data))
 
@@ -83,13 +81,11 @@ class Memif(object):
             socket_filename=str('/tmp/' + filename)
         )
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
-        return data
+            return papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def _memif_create(node, mid, sid, rxq=1, txq=1, role=1):
-        """Create Memif interface on the given node.
+        """Create Memif interface on the given node, return its sw_if_index.
 
         :param node: Given node to create Memif interface on.
         :param mid: Memif interface ID.
@@ -103,8 +99,8 @@ class Memif(object):
         :type rxq: int
         :type txq: int
         :type role: int
-        :returns: Verified data from PAPI response.
-        :rtype: dict
+        :returns: sw_if_index
+        :rtype: int
         """
         cmd = 'memif_create'
         err_msg = 'Failed to create memif interface on host {host}'.format(
@@ -117,9 +113,7 @@ class Memif(object):
             id=int(mid)
         )
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
-        return data
+            return papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
     @staticmethod
     def create_memif_interface(node, filename, mid, sid, rxq=1, txq=1,
@@ -151,23 +145,24 @@ class Memif(object):
         Memif._memif_socket_filename_add_del(node, True, filename, sid)
 
         # Create memif
-        rsp = Memif._memif_create(node, mid, sid, rxq=rxq, txq=txq, role=role)
+        sw_if_index = Memif._memif_create(
+            node, mid, sid, rxq=rxq, txq=txq, role=role)
 
         # Update Topology
         if_key = Topology.add_new_port(node, 'memif')
-        Topology.update_interface_sw_if_index(node, if_key, rsp["sw_if_index"])
+        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
 
-        ifc_name = Memif.vpp_get_memif_interface_name(node, rsp["sw_if_index"])
+        ifc_name = Memif.vpp_get_memif_interface_name(node, sw_if_index)
         Topology.update_interface_name(node, if_key, ifc_name)
 
-        ifc_mac = Memif.vpp_get_memif_interface_mac(node, rsp["sw_if_index"])
+        ifc_mac = Memif.vpp_get_memif_interface_mac(node, sw_if_index)
         Topology.update_interface_mac_address(node, if_key, ifc_mac)
 
         Topology.update_interface_memif_socket(node, if_key, '/tmp/' + filename)
         Topology.update_interface_memif_id(node, if_key, mid)
         Topology.update_interface_memif_role(node, if_key, str(role))
 
-        return rsp["sw_if_index"]
+        return sw_if_index
 
     @staticmethod
     def show_memif(node):
@@ -191,13 +186,13 @@ class Memif(object):
                 Memif.show_memif(node)
 
     @staticmethod
-    def vpp_get_memif_interface_name(node, sw_if_idx):
+    def vpp_get_memif_interface_name(node, sw_if_index):
         """Get Memif interface name from Memif interfaces dump.
 
         :param node: DUT node.
-        :param sw_if_idx: DUT node.
+        :param sw_if_index: DUT node.
         :type node: dict
-        :type sw_if_idx: int
+        :type sw_if_index: int
         :returns: Memif interface name, or None if not found.
         :rtype: str
         """
@@ -205,18 +200,18 @@ class Memif(object):
         dump = Memif._memif_dump(node)
 
         for item in dump:
-            if item["memif_details"]["sw_if_index"] == sw_if_idx:
-                return item["memif_details"]["if_name"]
+            if item["sw_if_index"] == sw_if_index:
+                return item["if_name"]
         return None
 
     @staticmethod
-    def vpp_get_memif_interface_mac(node, sw_if_idx):
+    def vpp_get_memif_interface_mac(node, sw_if_index):
         """Get Memif interface MAC address from Memif interfaces dump.
 
         :param node: DUT node.
-        :param sw_if_idx: DUT node.
+        :param sw_if_index: DUT node.
         :type node: dict
-        :type sw_if_idx: int
+        :type sw_if_index: int
         :returns: Memif interface MAC address, or None if not found.
         :rtype: str
         """
@@ -224,6 +219,6 @@ class Memif(object):
         dump = Memif._memif_dump(node)
 
         for item in dump:
-            if item["memif_details"]["sw_if_index"] == sw_if_idx:
-                return item["memif_details"]["hw_addr"]
+            if item["sw_if_index"] == sw_if_index:
+                return item["hw_addr"]
         return None

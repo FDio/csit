@@ -29,33 +29,6 @@ class VppCounters(object):
         self._stats_table = None
 
     @staticmethod
-    def _run_cli_cmd(node, cmd, log=True):
-        """Run a CLI command.
-
-        :param node: Node to run command on.
-        :param cmd: The CLI command to be run on the node.
-        :param log: If True, the response is logged.
-        :type node: dict
-        :type cmd: str
-        :type log: bool
-        :returns: Verified data from PAPI response.
-        :rtype: dict
-        """
-        cli = 'cli_inband'
-        args = dict(cmd=cmd)
-        err_msg = "Failed to run 'cli_inband {cmd}' PAPI command on host " \
-                  "{host}".format(host=node['host'], cmd=cmd)
-
-        with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add(cli, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
-
-        if log:
-            logger.info("{cmd}:\n{data}".format(cmd=cmd, data=data["reply"]))
-
-        return data
-
-    @staticmethod
     def _get_non_zero_items(data):
         """Extract and return non-zero items from the input data.
 
@@ -73,7 +46,7 @@ class VppCounters(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        VppCounters._run_cli_cmd(node, 'show errors')
+        PapiExecutor.run_cli_cmd(node, 'show errors')
 
     @staticmethod
     def vpp_show_errors_verbose(node):
@@ -82,7 +55,7 @@ class VppCounters(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        VppCounters._run_cli_cmd(node, 'show errors verbose')
+        PapiExecutor.run_cli_cmd(node, 'show errors verbose')
 
     @staticmethod
     def vpp_show_errors_on_all_duts(nodes, verbose=False):
@@ -112,6 +85,7 @@ class VppCounters(object):
         args = dict(path='^/sys/node')
         with PapiExecutor(node) as papi_exec:
             stats = papi_exec.add("vpp-stats", **args).get_stats()[0]
+            # TODO: Introduce get_stat?
 
         names = stats['/sys/node/names']
 
@@ -187,7 +161,7 @@ class VppCounters(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        VppCounters._run_cli_cmd(node, 'show hardware detail')
+        PapiExecutor.run_cli_cmd(node, 'show hardware detail')
 
     @staticmethod
     def vpp_clear_runtime(node):
@@ -198,7 +172,7 @@ class VppCounters(object):
         :returns: Verified data from PAPI response.
         :rtype: dict
         """
-        return VppCounters._run_cli_cmd(node, 'clear runtime', log=False)
+        return PapiExecutor.run_cli_cmd(node, 'clear runtime', log=False)
 
     @staticmethod
     def clear_runtime_counters_on_all_duts(nodes):
@@ -220,7 +194,7 @@ class VppCounters(object):
         :returns: Verified data from PAPI response.
         :rtype: dict
         """
-        return VppCounters._run_cli_cmd(node, 'clear interfaces', log=False)
+        return PapiExecutor.run_cli_cmd(node, 'clear interfaces', log=False)
 
     @staticmethod
     def clear_interface_counters_on_all_duts(nodes):
@@ -242,7 +216,7 @@ class VppCounters(object):
         :returns: Verified data from PAPI response.
         :rtype: dict
         """
-        return VppCounters._run_cli_cmd(node, 'clear hardware', log=False)
+        return PapiExecutor.run_cli_cmd(node, 'clear hardware', log=False)
 
     @staticmethod
     def clear_hardware_counters_on_all_duts(nodes):
@@ -264,7 +238,7 @@ class VppCounters(object):
         :returns: Verified data from PAPI response.
         :rtype: dict
         """
-        return VppCounters._run_cli_cmd(node, 'clear errors', log=False)
+        return PapiExecutor.run_cli_cmd(node, 'clear errors', log=False)
 
     @staticmethod
     def clear_error_counters_on_all_duts(nodes):
@@ -315,9 +289,9 @@ class VppCounters(object):
         """
         version = 'ip6' if is_ipv6 else 'ip4'
         topo = Topology()
-        if_index = topo.get_interface_sw_index(node, interface)
-        if if_index is None:
-            logger.trace('{i} sw_index not found.'.format(i=interface))
+        sw_if_index = topo.get_interface_sw_index(node, interface)
+        if sw_if_index is None:
+            logger.trace('{i} sw_if_index not found.'.format(i=interface))
             return 0
 
         if_counters = self._stats_table.get('interface_counters')
@@ -327,7 +301,7 @@ class VppCounters(object):
         for counter in if_counters:
             if counter['vnet_counter_type'] == version:
                 data = counter['data']
-                return data[if_index]
+                return data[sw_if_index]
         logger.trace('{i} {v} counter not found.'.format(
             i=interface, v=version))
         return 0
