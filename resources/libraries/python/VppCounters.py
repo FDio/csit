@@ -19,6 +19,7 @@ from pprint import pformat
 
 from robot.api import logger
 from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -46,7 +47,7 @@ class VppCounters(object):
         err_msg = "Failed to run 'cli_inband {cmd}' PAPI command on host " \
                   "{host}".format(host=node['host'], cmd=cmd)
 
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             data = papi_exec.add(cli, **args).get_reply(err_msg)
 
         if log:

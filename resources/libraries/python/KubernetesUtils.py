@@ -528,6 +528,7 @@ class KubernetesUtils(object):
         vpp_config.set_node(kwargs['node'])
         vpp_config.add_unix_cli_listen(value='0.0.0.0:5002')
         vpp_config.add_unix_nodaemon()
+        vpp_config.add_socksvr()
         # We will pop first core from list to be main core
         vpp_config.add_cpu_main_core(str(cpuset_main.pop(0)))
         # if this is not only core in list, the rest will be used as workers.

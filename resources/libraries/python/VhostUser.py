@@ -15,7 +15,7 @@
 
 from robot.api import logger
 
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 
@@ -33,7 +33,7 @@ class VhostUser(object):
             response.
         :rtype: list
         """
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             dump = papi_exec.add("sw_interface_vhost_user_dump").get_details()
 
         data = list()
@@ -63,7 +63,7 @@ class VhostUser(object):
         args = dict(
             sock_filename=str(socket)
         )
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             data = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         # Extract sw_if_idx:

@@ -449,6 +449,7 @@ class ContainerEngine(object):
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec('/tmp/running.exec')
+        vpp_config.add_socksvr()
         # We will pop the first core from the list to be a main core
         vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
         # If more cores in the list, the rest will be used as workers.
@@ -498,6 +499,7 @@ class ContainerEngine(object):
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec('/tmp/running.exec')
+        vpp_config.add_socksvr()
         vpp_config.add_plugin('disable', 'dpdk_plugin.so')
 
         # Apply configuration
