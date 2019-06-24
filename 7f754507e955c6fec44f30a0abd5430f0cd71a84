@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "6387a49f_5c38405d",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-24T14:22:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3e6eecd_89c174e4",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "7f754507e955c6fec44f30a0abd5430f0cd71a84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "76e7f3e3_e8a141dc",
         "filename": "resources/libraries/robot/shared/suite_setup.robot",
         "patchSetId": 22
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "98461d6e_592498c1",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-24T14:22:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a67f309f_c8b687f1",
+      "range": {
+        "startLine": 87,
+        "startChar": 14,
+        "endLine": 87,
+        "endChar": 25
+      },
+      "revId": "7f754507e955c6fec44f30a0abd5430f0cd71a84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7ecf4802_9b1fcf44",
         "filename": "resources/libraries/robot/shared/suite_setup.robot",
         "patchSetId": 22
@@ -178,6 +226,30 @@
       "side": 1,
       "message": "Yes my intention is to make this usable in device test. However the decomposition of problem is the following:\n\n1) Configure AVF interfaces on all DUTs (this is doing SRIOV acrobatics and is not needed for Device test, as device test is already using SRIOV) so maybe renaming avf \"action\" into performance_avf ? while func will not needed this.\n\n2) Run TG/scapy but with newly created interfaces. (fully optimal solution is to replace ${dut1_if2vf_0} with ${dut1_if2} so we do not need extra variables for AVF and all the KW would be working without any extra work). This will be done when i will be coding AVF for Device test very soon.\n\nFor now i will little bit clean this.",
       "parentUuid": "7ecf4802_9b1fcf44",
+      "range": {
+        "startLine": 192,
+        "startChar": 4,
+        "endLine": 192,
+        "endChar": 18
+      },
+      "revId": "7f754507e955c6fec44f30a0abd5430f0cd71a84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c82dd2c_a2cb23c8",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-24T14:22:28Z",
+      "side": 1,
+      "message": "Done for now, but i will rewrite when doing AVF for DEV",
+      "parentUuid": "1cd71a8d_bb0871b6",
       "range": {
         "startLine": 192,
         "startChar": 4,
