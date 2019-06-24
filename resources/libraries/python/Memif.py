@@ -18,7 +18,7 @@ from enum import IntEnum
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.L2Util import L2Util
 
 
@@ -43,7 +43,7 @@ class Memif(object):
         :returns: List of memif interfaces extracted from Papi response.
         :rtype: list
         """
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add("memif_dump").get_details()
 
         for memif in details:
@@ -78,7 +78,7 @@ class Memif(object):
             socket_id=int(sid),
             socket_filename=str('/tmp/' + filename)
         )
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             return papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -110,7 +110,7 @@ class Memif(object):
             socket_id=int(sid),
             id=int(mid)
         )
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             return papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
     @staticmethod

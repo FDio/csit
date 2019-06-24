@@ -411,7 +411,7 @@
 | | ... | ${thr_count_int}
 
 | Write startup configuration on all VPP DUTs
-| | [Documentation] | Write VPP startup configuration on all DUTs.
+| | [Documentation] | Write VPP startup configuration without restarting VPP.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}

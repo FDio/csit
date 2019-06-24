@@ -20,7 +20,7 @@ from ipaddress import ip_network, ip_address
 
 from enum import Enum, IntEnum
 
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
@@ -260,7 +260,7 @@ class IPsecUtil(object):
         err_msg = 'Failed to select IPsec backend on host {host}'.format(
             host=node['host'])
         args = dict(protocol=protocol, index=index)
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -273,7 +273,7 @@ class IPsecUtil(object):
 
         err_msg = 'Failed to dump IPsec backends on host {host}'.format(
             host=node['host'])
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add('ipsec_backend_dump').get_details(err_msg)
 
     @staticmethod
