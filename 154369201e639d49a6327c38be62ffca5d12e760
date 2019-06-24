@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fcf2ba0c_c35876a3",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-24T16:09:06Z",
+      "side": 1,
+      "message": "does python supports running as py3 and loading SSH lib which is python2?",
+      "range": {
+        "startLine": 1,
+        "startChar": 15,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "154369201e639d49a6327c38be62ffca5d12e760",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5532d64a_d04ee897",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-24T16:09:06Z",
+      "side": 1,
+      "message": "i think python recommends with open(file) as: but good for now.",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 31
+      },
+      "revId": "154369201e639d49a6327c38be62ffca5d12e760",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe490434_04060249",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-24T16:09:06Z",
+      "side": 1,
+      "message": "is it needed with exec_command?",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 24
+      },
+      "revId": "154369201e639d49a6327c38be62ffca5d12e760",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c2afdfe9_e81bc5a2",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-24T16:09:06Z",
+      "side": 1,
+      "message": "it can be beautified with exec_command_no_error (so no SSH()) and parsing return value it also keeps prevent of any other SSH errors. But good for now",
+      "range": {
+        "startLine": 124,
+        "startChar": 23,
+        "endLine": 124,
+        "endChar": 35
+      },
+      "revId": "154369201e639d49a6327c38be62ffca5d12e760",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
