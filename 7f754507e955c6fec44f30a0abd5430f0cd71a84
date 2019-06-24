@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd8908af_50d63de4",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-24T12:15:23Z",
+      "side": 1,
+      "message": "Rename these two. They are not complete setups, and looking at the usage they are not run as a setup action (yet) either.",
+      "range": {
+        "startLine": 185,
+        "startChar": 2,
+        "endLine": 185,
+        "endChar": 41
+      },
+      "revId": "7f754507e955c6fec44f30a0abd5430f0cd71a84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b6ef1fb3_a8757eb0",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-24T12:15:23Z",
+      "side": 1,
+      "message": "Setup suite single link",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 27,
+        "endChar": 13
+      },
+      "revId": "7f754507e955c6fec44f30a0abd5430f0cd71a84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76e7f3e3_e8a141dc",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-24T12:15:23Z",
+      "side": 1,
+      "message": "Alternatively, turn \"double link\" into an action.",
+      "range": {
+        "startLine": 87,
+        "startChar": 14,
+        "endLine": 87,
+        "endChar": 25
+      },
+      "revId": "7f754507e955c6fec44f30a0abd5430f0cd71a84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ecf4802_9b1fcf44",
+        "filename": "resources/libraries/robot/shared/suite_setup.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-24T12:15:23Z",
+      "side": 1,
+      "message": "Instead of pasting \"Additional Suite Setup Action For performance\" code here, document \"performance\" setup action has to come after \"avf\" action. Perhaps even add a check for that.\nIdeally, that way \"avf\" action would work also in functional tests (but not devicetest, as AVF needs access to PF, while devicetest only exposes VF).",
+      "range": {
+        "startLine": 192,
+        "startChar": 4,
+        "endLine": 192,
+        "endChar": 18
+      },
+      "revId": "7f754507e955c6fec44f30a0abd5430f0cd71a84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
