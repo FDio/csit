@@ -34,10 +34,6 @@
 | | ... | - txq - TX queues; 0 means do not set (Optional). Type: integer,
 | | ... | default value: ${1}
 | | ... | - role - Memif role (Optional). Type: string, default value: SLAVE
-| | ... | - dcr_uuid - UUID string (including prefix - underscore character) of
-| | ... | DUT1 /tmp volume created outside of the DUT1 docker in case of
-| | ... | vpp-device test. ${EMPTY} value means that /tmp directory is inside
-| | ... | the DUT1 docker. (Optional). Type: string, default value: ${EMPTY}
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - ${${memif_if1}} - 1st Memif interface.
@@ -55,15 +51,15 @@
 | | ...
 | | [Arguments] | ${dut_node} | ${filename1} | ${filename2} | ${mid}=${1}
 | | ... | ${memif_if1}=memif_if1 | ${memif_if2}=memif_if2 | ${rxq}=${1}
-| | ... | ${txq}=${1} | ${role}=SLAVE | ${dcr_uuid}=${EMPTY}
+| | ... | ${txq}=${1} | ${role}=SLAVE
 | | ...
 | | ${sid_1}= | Evaluate | (${mid}*2)-1
 | | ${sid_2}= | Evaluate | (${mid}*2)
 | | ${memif_1}= | Create memif interface | ${dut_node}
-| | ... | ${filename1}${mid}${dcr_uuid}-${sid_1} | ${mid} | ${sid_1}
+| | ... | ${filename1}${mid}${dut1_uuid}-${sid_1} | ${mid} | ${sid_1}
 | | ... | rxq=${rxq} | txq=${txq} | role=${role}
 | | ${memif_2}= | Create memif interface | ${dut_node}
-| | ... | ${filename2}${mid}${dcr_uuid}-${sid_2} | ${mid} | ${sid_2}
+| | ... | ${filename2}${mid}${dut1_uuid}-${sid_2} | ${mid} | ${sid_2}
 | | ... | rxq=${rxq} | txq=${txq} | role=${role}
 | | Set Interface State | ${dut_node} | ${memif_1} | up
 | | Set Interface State | ${dut_node} | ${memif_2} | up
