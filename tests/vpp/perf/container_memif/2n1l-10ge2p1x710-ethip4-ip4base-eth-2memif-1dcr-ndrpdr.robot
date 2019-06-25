@@ -56,6 +56,7 @@
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain
+| ${dcr_uuid}= | ${EMPTY}
 
 *** Keywords ***
 | Local Template
