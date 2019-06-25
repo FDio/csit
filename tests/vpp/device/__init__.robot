@@ -35,12 +35,10 @@
 | | ... | Setup suite Variables. Variables are used across device testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - pkt_trace - Switch to enable packet trace for test
 | | ... | - dut_stats - Switch to enable DUT statistics
 | | ... | - vm_image - Guest VM disk image.
 | | ... | - packages_dir - Path to directory where VPP packages are stored.
 | | ...
-| | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
 | | Set Global Variable | ${vm_image} | /var/lib/vm/csit-nested-1.7.img
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
