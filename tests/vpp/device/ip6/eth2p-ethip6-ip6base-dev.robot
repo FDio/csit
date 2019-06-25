@@ -13,14 +13,11 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/ip/ip6.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| Resource | resources/libraries/robot/shared/traffic.robot
 | ...
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
-| ... | FUNCTEST | IP6FWD | BASE | ETH | IP6BASE
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
+| ... | NIC_Virtual | ETH | IP6FWD | BASE | IP6BASE
 | ...
-| Suite Setup | Setup suite single link
+| Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 | ...
@@ -40,102 +37,76 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
-| ${tg_to_dut_if1_ip6}= | 2001:1::2
-| ${tg_to_dut_if2_ip6}= | 2001:2::2
-| ${dut_to_tg_if1_ip6}= | 2001:1::1
-| ${dut_to_tg_if2_ip6}= | 2001:2::1
-| ${remote_host1_ip6}= | 3ffe:5f::1
-| ${remote_host2_ip6}= | 3ffe:5f::2
-| ${remote_host_ip6_prefix}= | 128
+| ${overhead}= | ${0}
 
 *** Test Cases ***
-| tc01-eth2p-ethicmpv6-ip6base-device_echo-req-to-dut-ingress-interface
+| tc01-eth2p-ethicmpv6-ip6base-dev_echo-req-to-dut-ingress-interface
 | | [Documentation]
-| | ... | Make TG send ICMPv6 Echo Req to DUT1 ingress interface. Make TG \
-| | ... | verify ICMPv6 Echo Reply is correct.
+| | ... | [Ver ]Make TG send ICMPv6 Echo Req to DUT1 ingress interface.\
+| | ... | Make TG verify ICMPv6 Echo Reply is correct.
 | | ...
-| | ${hops}= | Set Variable | ${0}
+| | Set Test Variable | ${frame_size} | ${62}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
-| | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
-| | And Suppress ICMPv6 router advertisement message | ${nodes}
-| | And All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Send IPv6 echo request packet and verify headers | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${tg_to_dut_if1_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if1_mac}
-| | ... | ${hops}
-| | Get interface Ipv6 addresses | ${nodes['DUT1']} | ${dut_to_tg_if1}
+| | When Initialize IPv6 forwarding in circular topology
+| | Then Send IPv6 echo request packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if1}
+| | ... | 2001:1::2 | 2001:1::1 | ${dut1_if1_mac} | ${0}
 
-| tc02-eth2p-ethicmpv6-ip6base-device_echo-req-to-dut-egress-interface
+| tc02-eth2p-ethicmpv6-ip6base-dev_echo-req-to-dut-egress-interface
 | | [Documentation]
-| | ... | Make TG send ICMPv6 Echo Req towards DUT1 egress interface. Make TG \
-| | ... | verify ICMPv6 Echo Reply is correct.
+| | ... | [Ver] Make TG send ICMPv6 Echo Req towards DUT1 egress interface.\
+| | ... | Make TG verify ICMPv6 Echo Reply is correct.
 | | ...
-| | ${hops}= | Set Variable | ${0}
+| | Set Test Variable | ${frame_size} | ${62}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
-| | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
-| | And Suppress ICMPv6 router advertisement message | ${nodes}
-| | And All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Send IPv6 echo request packet and verify headers | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${dut_node} | ${dut_to_tg_if2}
-| | ... | ${tg_to_dut_if1_ip6} | ${dut_to_tg_if2_ip6} | ${dut_to_tg_if1_mac}
-| | ... | ${hops}
+| | When Initialize IPv6 forwarding in circular topology
+| | Then Send IPv6 echo request packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if2}
+| | ... | 2001:1::2 | 2001:2::1 | ${dut1_if1_mac} | ${0}
 
-| tc03-eth2p-ethicmpv6-ip6base-device_echo-req-to-tg-interface-for-local-ipv4-address
+| tc03-eth2p-ethicmpv6-ip6base-dev_echo-req-to-tg-interface-for-local-ipv4-address
 | | [Documentation]
-| | ... | Make TG send ICMPv6 Echo Req between its interfaces across DUT1 for \
-| | ... | locally connected IPv6 addresses. Make TG verify ICMPv6 Echo Replies \
+| | ... | [Ver] Make TG send ICMPv6 Echo Req between its interfaces across DUT1\
+| | ... | for locally connected IPv6 addresses. Make TG verify ICMPv6 Echo\
+| | ... | Replies are correct.
+| | ...
+| | Set Test Variable | ${frame_size} | ${62}
+| | Set Test Variable | ${rxq_count_int} | ${1}
+| | ...
+| | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
+| | And Apply startup configuration on all VPP DUTs
+| | And VPP Enable Traces On All Duts | ${nodes}
+| | When Initialize IPv6 forwarding in circular topology
+| | Then Send IPv6 echo request packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
+| | ... | 2001:1::2 | 2001:2::2 | ${dut1_if1_mac} | ${1}
+
+| tc04-eth2p-ethicmpv6-ip6base-dev_echo-req-to-tg-interface-for-remote-host-ipv4-address
+| | [Documentation]
+| | ... | [Ver] Make TG send ICMPv6 Echo Req between its interfaces across DUT1\
+| | ... | for remote host IPv6 addresses. Make TG verify ICMPv6 Echo Replies\
 | | ... | are correct.
 | | ...
-| | ${hops}= | Set Variable | ${1}
+| | Set Test Variable | ${frame_size} | ${62}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
-| | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
-| | And Suppress ICMPv6 router advertisement message | ${nodes}
-| | And All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Send IPv6 echo request packet and verify headers | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${tg_node} | ${tg_to_dut_if2}
-| | ... | ${tg_to_dut_if1_ip6} | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_mac}
-| | ... | ${hops} | ${dut_to_tg_if2_mac}
-
-| tc04-eth2p-ethicmpv6-ip6base-device_echo-req-to-tg-interface-for-remote-host-ipv4-address
-| | [Documentation]
-| | ... | Make TG send ICMPv6 Echo Req between its interfaces across DUT1 for \
-| | ... | remote host IPv6 addresses. Make TG verify ICMPv6 Echo Replies are \
-| | ... | correct.
-| | ...
-| | ${hops}= | Set Variable | ${1}
-| | ...
-| | Given Add PCI devices to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure IPv6 forwarding in circular topology | ${tg_to_dut_if1_ip6}
-| | ... | ${tg_to_dut_if2_ip6} | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if2_ip6}
-| | ... | remote_host1_ip6=${remote_host1_ip6}
-| | ... | remote_host2_ip6=${remote_host2_ip6}
-| | ... | remote_host_ip6_prefix=${remote_host_ip6_prefix}
-| | And Suppress ICMPv6 router advertisement message | ${nodes}
-| | And VPP Get IP tables | ${dut_node}
-| | And All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Send IPv6 echo request packet and verify headers | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${tg_node} | ${tg_to_dut_if2}
-| | ... | ${remote_host1_ip6} | ${remote_host2_ip6} | ${dut_to_tg_if1_mac}
-| | ... | ${hops} | ${dut_to_tg_if2_mac}
+| | When Initialize IPv6 forwarding in circular topology
+| | ... | remote_host1_ip=3ffe:5f::1 | remote_host2_ip=3ffe:5f::2
+| | Then Send IPv6 echo request packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
+| | ... | 3ffe:5f::1 | 3ffe:5f::2 | ${dut1_if1_mac} | ${1} | ${dut1_if2_mac}
