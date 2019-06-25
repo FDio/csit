@@ -1936,6 +1936,8 @@ class InterfaceUtil(object):
         """
         worker_id = 0
         worker_cnt = len(VPPUtil.vpp_show_threads(node)) - 1
+        if not worker_cnt:
+            return
         for placement in InterfaceUtil.vpp_sw_interface_rx_placement_dump(node):
             for interface in node['interfaces'].values():
                 if placement['sw_if_index'] == interface['vpp_sw_index'] \

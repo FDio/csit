@@ -43,6 +43,7 @@
 | Resource | resources/libraries/robot/shared/suite_setup.robot
 | Resource | resources/libraries/robot/shared/test_teardown.robot
 | Resource | resources/libraries/robot/shared/test_setup.robot
+| Resource | resources/libraries/robot/shared/traffic.robot
 
 *** Keywords ***
 | Show Vpp Errors On All DUTs

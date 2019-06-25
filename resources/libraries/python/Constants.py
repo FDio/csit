@@ -111,6 +111,7 @@ class Constants(object):
         "Intel-X710": 10000000000,
         "Intel-XL710": 24500000000,
         "Intel-XXV710": 24500000000,
+        "virtual": 100000000,
     }
 
     # Suite file names use somewhat more rich (less readable) codes for NICs.
