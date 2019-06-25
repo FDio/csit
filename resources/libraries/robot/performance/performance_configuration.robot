@@ -48,7 +48,6 @@
 # software interfaces. Run KW at the start phase of VPP setup to split
 # from other "functional" configuration. This will allow modularity of this
 # library
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -66,8 +65,6 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -96,7 +93,6 @@
 # software interfaces. Run KW at the start phase of VPP setup to split
 # from other "functional" configuration. This will allow modularity of this
 # library
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -106,8 +102,6 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
 | | | Run Keyword Unless | '${if1_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -179,19 +173,25 @@
 | | ... | on DUT1-DUT2 link and set routing on both DUT nodes with prefix /24
 | | ... | and next hop of neighbour DUT interface IPv4 address.
 | | ...
+| | ... | *Arguments:*
+| | ... | - remote_host1_ip4 - IP address of remote host1 (Optional).
+| | ... | Type: string
+| | ... | - remote_host2_ip4 - IP address of remote host2 (Optional).
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize IPv4 forwarding in circular topology \
+| | ... | \| 192.168.0.1 \| 192.168.0.2 \|
+| | ...
+| | [Arguments] | ${remote_host1_ip4}=${NONE} | ${remote_host2_ip4}=${NONE}
+| | ...
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
 | | ...
 | | Set interfaces in path up
 | | ...
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | ...
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
@@ -204,7 +204,7 @@
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
-| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 20.20.20.2 | ${tg_if2_mac}
 | | ...
 | | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
 | | ... | 10.10.10.1 | 24
@@ -223,6 +223,21 @@
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=1.1.1.1
 | | ... | interface=${dut2_if1}
+| | ...
+| | Run Keyword Unless | '${remote_host1_ip4}' == '${NONE}'
+| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip4} | 32
+| | ... | gateway=10.10.10.2 | interface=${dut1_if1}
+| | Run Keyword Unless | '${remote_host2_ip4}' == '${NONE}'
+| | ... | Vpp Route Add | ${dut} | ${remote_host2_ip4} | 32
+| | ... | gateway=20.20.20.2 | interface=${dut_if2}
+| | Run Keyword Unless | '${remote_host1_ip4}' == '${NONE}'
+| | ... | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip4} | 32
+| | ... | gateway=1.1.1.2 | interface=${dut1_if2}
+| | Run Keyword Unless | '${remote_host2_ip4}' == '${NONE}'
+| | ... | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip4} | 32
+| | ... | gateway=1.1.1.1 | interface=${dut2_if1}
 
 | Initialize IPv4 forwarding with scaling in circular topology
 | | [Documentation]
@@ -2813,10 +2828,8 @@
 | | ...
 | | [Arguments] | ${dut} | ${count}
 | | ...
-| | @{duts}= | Get Matches | ${nodes} | DUT*
 | | ${dut_index}= | Get Index From List | ${duts} | ${dut}
-| | ${duts_length}= | Get Length | ${duts}
-| | ${last_dut_index}= | Evaluate | ${duts_length} - ${1}
+| | ${last_dut_index}= | Evaluate | ${duts_count} - ${1}
 | | ...
 | | ${tg_if1_net}= | Set Variable | 10.10.10.0
 | | ${tg_if2_net}= | Set Variable | 20.20.20.0
@@ -2930,7 +2943,6 @@
 | | ...
 | | [Arguments] | ${count}=${1}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize IPv4 routing with memif pairs on DUT node | ${dut} | ${count}
 | | Set interfaces in path up
