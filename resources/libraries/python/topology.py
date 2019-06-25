@@ -382,28 +382,28 @@ class Topology(object):
         return retval
 
     @staticmethod
-    def get_interface_by_sw_index(node, sw_index):
+    def get_interface_by_sw_index(node, sw_if_index):
         """Return interface name of link on node.
 
         This method returns the interface name associated with a software
         interface index assigned to the interface by vpp for a given node.
 
         :param node: The node topology dictionary.
-        :param sw_index: Sw_index of the link that a interface is connected to.
+        :param sw_if_index: sw_if_index of the link that a interface is connected to.
         :type node: dict
-        :type sw_index: int
+        :type sw_if_index: int
         :returns: Interface name of the interface connected to the given link.
         :rtype: str
         """
         return Topology._get_interface_by_key_value(node, "vpp_sw_index",
-                                                    sw_index)
+                                                    sw_if_index)
 
     @staticmethod
     def get_interface_sw_index(node, iface_key):
         """Get VPP sw_if_index for the interface using interface key.
 
         :param node: Node to get interface sw_if_index on.
-        :param iface_key: Interface key from topology file, or sw_index.
+        :param iface_key: Interface key from topology file, or sw_if_index.
         :type node: dict
         :type iface_key: str/int
         :returns: Return sw_if_index or None if not found.
@@ -710,7 +710,7 @@ class Topology(object):
     def get_node_link_mac(node, link_name):
         """Return interface mac address by link name.
 
-        :param node: Node to get interface sw_index on.
+        :param node: Node to get interface sw_if_index on.
         :param link_name: Link name.
         :type node: dict
         :type link_name: str
