@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a9bb424_873c982c",
+        "filename": "resources/libraries/bash/entry/check/copyright.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-25T12:55:04Z",
+      "side": 1,
+      "message": "i would safely remove. Make it simple just grep changes and as per line 65-69 just grep and if date !\u003d current year mark it as failure. If Copyright not there then  we do not care?\n\nOtherwise good",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "88ef83dff5b10b3ab097e26b1ddd18fa2a67ca88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
