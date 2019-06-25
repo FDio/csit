@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "94a75a9e_47d785f4",
+        "filename": "resources/libraries/robot/honeycomb/honeycomb.robot",
+        "patchSetId": 30
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-25T12:24:46Z",
+      "side": 1,
+      "message": "Created https://gerrit.fd.io/r/20318 so reviewers do not need to look for these.",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "1577123a3c27541181097cb4186aa8855f20b1cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
