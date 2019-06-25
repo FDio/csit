@@ -40,7 +40,9 @@
 | | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
 | | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
 | | ... | \| Generate keys for IPSec \| ${encr_alg} \| ${auth_alg} \|
+| | ...
 | | [Arguments] | ${crypto_alg} | ${integ_alg}
+| | ...
 | | ${encr_key_len}= | Get Crypto Alg Key Len | ${crypto_alg}
 | | ${encr_key}= | Generate Random String | ${encr_key_len}
 | | ${auth_key_len}= | Get Integ Alg Key Len | ${integ_alg}
@@ -62,23 +64,11 @@
 | | ...
 | | ... | *Example:*
 | | ... | \| Configure path for IPSec test \|
-| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']}
-| | Compute Path
-| | ${tg_if} | ${tg_node}= | Next Interface
-| | ${dut_if} | ${dut_node}= | Next Interface
-| | ${dut_if_mac}= | Get Interface Mac | ${dut_node} | ${dut_if}
-| | ${tg_if_mac}= | Get Interface Mac | ${tg_node} | ${tg_if}
-| | ${dut_lo}= | Vpp Create Loopback | ${dut_node}
-| | Set Interface State | ${dut_node} | ${dut_if} | up
-| | Set Interface State | ${dut_node} | ${dut_lo} | up
-| | Vpp Node Interfaces Ready Wait | ${dut_node}
-| | Set Test Variable | ${tg_node}
-| | Set Test Variable | ${tg_if}
-| | Set Test Variable | ${tg_if_mac}
-| | Set Test Variable | ${dut_node}
-| | Set Test Variable | ${dut_if}
-| | Set Test Variable | ${dut_if_mac}
-| | Set Test Variable | ${dut_lo}
+| | ${dut1_lo1}= | Vpp Create Loopback | ${dut1}
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_lo1} | up
+| | Vpp Node Interfaces Ready Wait | ${dut1}
+| | Set Test Variable | ${dut1_lo1}
 
 | Configure topology for IPv4 IPsec testing
 | | [Documentation] | Setup topology for IPv4 IPsec testing.
@@ -91,14 +81,17 @@
 | | ...
 | | ... | *Example:*
 | | ... | \| Configure topology for IPv4 IPsec testing \|
+| | ...
 | | Configure path for IPSec test
-| | VPP Interface Set IP Address | ${dut_node} | ${dut_if} | ${dut_if_ip4}
-| | ... | ${ip4_plen}
-| | VPP Interface Set IP Address | ${dut_node} | ${dut_lo} | ${dut_lo_ip4}
-| | ... | ${ip4_plen}
-| | VPP Add IP Neighbor | ${dut_node} | ${dut_if} | ${tg_if_ip4} | ${tg_if_mac}
-| | Vpp Route Add | ${dut_node} | ${tg_lo_ip4} | ${ip4_plen}
-| | ... | gateway=${tg_if_ip4} | interface=${dut_if}
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${dut1_if1} | ${dut_if_ip4} | ${ip4_plen}
+| | VPP Interface Set IP Address
+| | ... | ${dut1} | ${dut1_lo1} | ${dut_lo_ip4} | ${ip4_plen}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${dut1_if1} | ${tg_if_ip4} | ${tg_if_mac}
+| | Vpp Route Add
+| | ... | ${dut1} | ${tg_lo_ip4} | ${ip4_plen} | gateway=${tg_if_ip4}
+| | ... | interface=${dut1_if1}
 | | Set Test Variable | ${dut_tun_ip} | ${dut_if_ip4}
 | | Set Test Variable | ${dut_src_ip} | ${dut_lo_ip4}
 | | Set Test Variable | ${tg_tun_ip} | ${tg_if_ip4}
@@ -115,15 +108,18 @@
 | | ...
 | | ... | *Example:*
 | | ... | \| Configure topology for IPv6 IPsec testing \|
+| | ...
 | | Configure path for IPSec test
 | | VPP Interface Set IP Address
-| | ... | ${dut_node} | ${dut_if} | ${dut_if_ip6} | ${ip6_plen}
+| | ... | ${dut1} | ${dut1_if1} | ${dut_if_ip6} | ${ip6_plen}
 | | VPP Interface Set IP Address
-| | ... | ${dut_node} | ${dut_lo} | ${dut_lo_ip6} | ${ip6_plen}
-| | VPP Add IP Neighbor | ${dut_node} | ${dut_if} | ${tg_if_ip6} | ${tg_if_mac}
+| | ... | ${dut1} | ${dut1_lo1} | ${dut_lo_ip6} | ${ip6_plen}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${dut1_if1} | ${tg_if_ip6} | ${tg_if_mac}
 | | Vpp All RA Suppress Link Layer | ${nodes}
-| | Vpp Route Add | ${dut_node} | ${tg_lo_ip6} | ${ip6_plen_rt}
-| | ... | gateway=${tg_if_ip6} | interface=${dut_if}
+| | Vpp Route Add
+| | ... | ${dut1} | ${tg_lo_ip6} | ${ip6_plen_rt} | gateway=${tg_if_ip6}
+| | ... | interface=${dut1_if1}
 | | Set Test Variable | ${dut_tun_ip} | ${dut_if_ip6}
 | | Set Test Variable | ${dut_src_ip} | ${dut_lo_ip6}
 | | Set Test Variable | ${tg_tun_ip} | ${tg_if_ip6}
@@ -218,10 +214,12 @@
 | | ... | \| 52:54:00:d4:d8:22 \| ${encr_alg} \| sixteenbytes_key \
 | | ... | \| ${auth_alg} \| twentybytessecretkey \| ${1001} \| ${1000} \
 | | ... | \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \| 192.168.100.3 \|
+| | ...
 | | [Arguments] | ${node} | ${interface} | ${dst_mac} | ${crypto_alg}
 | | ... | ${crypto_key} | ${integ_alg} | ${integ_key} | ${l_spi}
 | | ... | ${r_spi} | ${l_ip} | ${r_ip} | ${l_tunnel}=${None}
 | | ... | ${r_tunnel}=${None}
+| | ...
 | | ${src_mac}= | Get Interface Mac | ${node} | ${interface}
 | | ${if_name}= | Get Interface Name | ${node} | ${interface}
 | | ${args}= | Traffic Script Gen Arg | ${if_name} | ${if_name} | ${src_mac}
