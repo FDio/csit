@@ -97,6 +97,9 @@ class Constants(object):
     # Equivalent to ~0 used in vpp code
     BITWISE_NON_ZERO = 0xffffffff
 
+    # Maximum number of API calls per PapiExecutor execution
+    PAPI_MAX_API_BULK = 250
+
     # Mapping from NIC name to its bps limit.
     # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.
     NIC_NAME_TO_LIMIT = {
