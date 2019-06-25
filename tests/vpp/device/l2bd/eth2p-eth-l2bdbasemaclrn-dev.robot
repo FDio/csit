@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,17 +12,12 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.L2Util
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/l2/l2_traffic.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
 | ...
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
-| ... | FUNCTEST | L2BDMACLRN | BASE | ETH | ICMP
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
+| ... | NIC_Virtual | ETH | L2BDMACLRN | BASE | ICMP
 | ...
-| Suite Setup | Setup suite single link
+| Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 | ...
@@ -44,57 +39,38 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
-| ${bd_id}= | 1
+| ${overhead}= | ${0}
 
 *** Test Cases ***
-| tc01-eth2p-ethicmpv4-l2bdbase-device
+| tc01-eth2p-ethicmpv4-l2bdbase-dev
 | | [Documentation]
-| | ... | [Top] TG-DUT1-TG. [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] Configure L2 bridge-domain (L2BD) with MAC learning enabled on \
-| | ... | DUT1. Add both interfaces towards TG to this L2BD.
-| | ... | [Ver] Make TG send ICMPv4 Echo Req in both directions between two of \
-| | ... | its interfaces to be switched by DUT1; verify all packets are \
-| | ... | received.
+| | ... | [Ver] Make TG send ICMPv4 Echo Reqs in both directions between two\
+| | ... | of its interfaces to be switched by DUT to and from docker; verify\
+| | ... | all packets are received.
+| | ...
+| | Set Test Variable | ${frame_size} | ${42}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure interfaces in path up
-| | And Create bridge domain | ${dut_node} | ${bd_id}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${bd_id}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
-| | ... | ${bd_id}
-| | And All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
-| | ...
-| | And VPP get bridge domain data | ${nodes['DUT1']}
-| | And Get L2 Fib Table | ${nodes['DUT1']} | ${bd_id}
+| | When Initialize L2 bridge domain in circular topology
+| | Then Send ICMPv4 bidirectionally and verify received packets
+| | ... | ${tg} | ${tg_if1} | ${tg_if2}
 
-| tc02-eth2p-ethicmpv6-l2bdbase-device
+| tc02-eth2p-ethicmpv6-l2bdbase-dev
 | | [Documentation]
-| | ... | [Top] TG-DUT1-TG. [Enc] Eth-IPv6-ICMPv6.
-| | ... | [Cfg] Configure L2 bridge-domain (L2BD) with MAC learning enabled on \
-| | ... | DUT1. Add both interfaces towards TG to this L2BD.
-| | ... | [Ver] Make TG send ICMPv6 Echo Req in both directions between two of \
-| | ... | its interfaces to be switched by DUT1; verify all packets are \
-| | ... | received.
+| | ... | [Ver] Make TG send ICMPv6 Echo Reqs in both directions between two\
+| | ... | of its interfaces to be switched by DUT to and from docker; verify\
+| | ... | all packets are received.
+| | ...
+| | Set Test Variable | ${frame_size} | ${62}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure interfaces in path up
-| | And Create bridge domain | ${dut_node} | ${bd_id}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${bd_id}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
-| | ... | ${bd_id}
-| | And All Vpp Interfaces Ready Wait | ${nodes}
+| | When Initialize L2 bridge domain in circular topology
 | | Then Send ICMPv6 bidirectionally and verify received packets
-| | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
-| | VPP get bridge domain data | ${nodes['DUT1']} | bd_id=${bd_id}
+| | ... | ${tg} | ${tg_if1} | ${tg_if2}
