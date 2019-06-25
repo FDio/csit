@@ -48,7 +48,6 @@
 # software interfaces. Run KW at the start phase of VPP setup to split
 # from other "functional" configuration. This will allow modularity of this
 # library
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -66,8 +65,6 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -96,7 +93,6 @@
 # software interfaces. Run KW at the start phase of VPP setup to split
 # from other "functional" configuration. This will allow modularity of this
 # library
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -106,8 +102,6 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
 | | | Run Keyword Unless | '${if1_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -2813,10 +2807,8 @@
 | | ...
 | | [Arguments] | ${dut} | ${count}
 | | ...
-| | @{duts}= | Get Matches | ${nodes} | DUT*
 | | ${dut_index}= | Get Index From List | ${duts} | ${dut}
-| | ${duts_length}= | Get Length | ${duts}
-| | ${last_dut_index}= | Evaluate | ${duts_length} - ${1}
+| | ${last_dut_index}= | Evaluate | ${duts_count} - ${1}
 | | ...
 | | ${tg_if1_net}= | Set Variable | 10.10.10.0
 | | ${tg_if2_net}= | Set Variable | 20.20.20.0
@@ -2876,6 +2868,7 @@
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
 | | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
+| | | ... | dcr_uuid=${dcr_uuid}
 | | | ${memif1}= | Set Variable | ${${dut}-memif-${number}-if1}
 | | | ${memif2}= | Set Variable | ${${dut}-memif-${number}-if2}
 | | | ${fib_table_1}= | Evaluate | ${fib_table_1} + ${1}
@@ -2930,7 +2923,6 @@
 | | ...
 | | [Arguments] | ${count}=${1}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize IPv4 routing with memif pairs on DUT node | ${dut} | ${count}
 | | Set interfaces in path up
