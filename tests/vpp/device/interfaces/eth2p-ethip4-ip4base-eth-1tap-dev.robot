@@ -12,23 +12,12 @@
 # limitations under the License.
 
 *** Settings ***
-| Library  | resources.libraries.python.IPUtil
-| Library  | resources.libraries.python.Namespaces
-| Library  | resources.libraries.python.Tap
-| Library  | resources.libraries.python.Trace
-| ...
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/ip/ip6.robot
-| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/shared/traffic.robot
 | ...
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
-| ... | FUNCTEST | IP4FWD | BASE | ETH | IP4BASE | TAP
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
+| ... | NIC_Virtual | ETH | IP4FWD | BASE | IP4BASE | TAP
 | ...
-| Suite Setup | Setup suite single link
+| Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test | namespace
 | Test Teardown | Tear down test | packet_trace | namespace
 | ...
@@ -49,50 +38,50 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
+| ${overhead}= | ${0}
 | ${tap1_VPP_ip}= | 16.0.10.1
 | ${tap1_NM_ip}= | 16.0.10.2
 | ${tap1_NM_mac}= | 02:00:00:00:00:02
-| ${tap_int1}= | tap0
-| ${namespace1}= | nmspace1
 | ${dut_ip_address}= | 192.168.0.1
 | ${tg_ip_address}= | 192.168.0.2
 | ${tg_ip_address_GW}= | 192.168.0.0
 | ${prefix}= | 24
 
 *** Test Cases ***
-| tc01-eth2p-ethicmpv4-ip4base-device_tap-no-namespace
+| tc01-eth2p-ethicmpv4-ip4base-dev_tap-no-namespace
 | | [Documentation]
 | | ... | [Cfg] On DUT1 configure two interface addresses with IPv4 of which\
 | | ... | one is TAP interface (dut_to_tg_if and TAP) and one is linux-TAP.
 | | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is\
 | | ... | received on TG.
 | | ...
+| | Set Test Variable | ${frame_size} | ${42}
+| | Set Test Variable | ${rxq_count_int} | ${1}
+| | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology | ${nodes['TG']}
-| | ... | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Set interfaces in 2-node circular topology up
-| | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
+| | When Set interfaces in path up
+| | ${int1}= | And Add Tap Interface | ${dut1} | tap0
 | | And VPP Interface Set IP Address
-| | ... | ${dut_node} | ${int1} | ${tap1_VPP_ip} | ${prefix}
+| | ... | ${dut1} | ${int1} | ${tap1_VPP_ip} | ${prefix}
 | | And VPP Interface Set IP Address
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip_address} | ${prefix}
-| | And Set Interface State | ${dut_node} | ${int1} | up
-| | And Set Linux Interface MAC | ${dut_node} | ${tap_int1} | ${tap1_NM_mac}
-| | And Set Linux Interface IP | ${dut_node}
-| | ... | ${tap_int1} | ${tap1_NM_ip} | ${prefix}
-| | And Add Linux Route | ${dut_node}
-| | ... | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip}
-| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${tg_ip_address} | ${tg_to_dut_if1_mac}
-| | And VPP Add IP Neighbor | ${dut_node} | ${int1}
-| | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
-| | Then Send ICMP echo request and verify answer | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
+| | ... | ${dut1} | ${dut_to_tg_if1} | ${dut_ip_address} | ${prefix}
+| | And Set Interface State | ${dut1} | ${int1} | up
+| | And Set Linux Interface MAC | ${dut1} | tap0 | ${tap1_NM_mac}
+| | And Set Linux Interface IP | ${dut1} | tap0 | ${tap1_NM_ip} | ${prefix}
+| | And Add Linux Route
+| | ... | ${dut1} | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip}
+| | And VPP Add IP Neighbor
+| | ... | ${dut1} | ${dut1_if1} | ${tg_ip_address} | ${tg_if1_mac}
+| | And VPP Add IP Neighbor
+| | ... | ${dut1} | ${int1} | ${tap1_NM_ip} | ${tap1_NM_mac}
+| | Then Send ICMP echo request and verify answer
+| | ... | ${tg} | ${tg_if1} | ${dut1_if1_mac} | ${tg_if1_mac}
 | | ... | ${tap1_NM_ip} | ${tg_ip_address}
 
-| tc02-eth2p-ethicmpv4-ip4base-device_tap-namespace
+| tc02-eth2p-ethicmpv4-ip4base-dev_tap-namespace
 | | [Documentation]
 | | ... | [Cfg] On DUT1 configure two interface addresses with IPv4 of which\
 | | ... | one is TAP interface (dut_to_tg_if and TAP) and one is linux-TAP in\
@@ -100,31 +89,32 @@
 | | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is\
 | | ... | received on TG.
 | | ...
+| | Set Test Variable | ${frame_size} | ${42}
+| | Set Test Variable | ${rxq_count_int} | ${1}
+| | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology | ${nodes['TG']}
-| | ... | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Set interfaces in 2-node circular topology up
-| | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
+| | When Set interfaces in path up
+| | ${int1}= | And Add Tap Interface | ${dut1} | tap0
 | | And VPP Interface Set IP Address
-| | ... | ${dut_node} | ${int1} | ${tap1_VPP_ip} | ${prefix}
+| | ... | ${dut1} | ${int1} | ${tap1_VPP_ip} | ${prefix}
 | | And VPP Interface Set IP Address
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip_address} | ${prefix}
-| | And Set Interface State | ${dut_node} | ${int1} | up
-| | When Create Namespace | ${dut_node} | ${namespace1}
-| | And Attach Interface To Namespace | ${dut_node}
-| | ... | ${namespace1} | ${tap_int1}
-| | And Set Linux Interface MAC | ${dut_node}
-| | ... | ${tap_int1} | ${tap1_NM_mac} | ${namespace1}
-| | And Set Linux Interface IP | ${dut_node}
-| | ... | ${tap_int1} | ${tap1_NM_ip} | ${prefix} | ${namespace1}
-| | And VPP Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${tg_ip_address} | ${tg_to_dut_if1_mac}
-| | And VPP Add IP Neighbor | ${dut_node} | ${int1}
-| | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
-| | And Add Linux Route | ${dut_node}
-| | ... | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip} | ${namespace1}
-| | Then Send ICMP echo request and verify answer | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
+| | ... | ${dut1} | ${dut1_if1} | ${dut_ip_address} | ${prefix}
+| | And Set Interface State | ${dut1} | ${int1} | up
+| | And Create Namespace | ${dut1} | nmspace1
+| | And Attach Interface To Namespace | ${dut1} | nmspace1 | tap0
+| | And Set Linux Interface MAC
+| | ... | ${dut1} | tap0 | ${tap1_NM_mac} | nmspace1
+| | And Set Linux Interface IP
+| | ... | ${dut1} | tap0 | ${tap1_NM_ip} | ${prefix} | nmspace1
+| | And VPP Add IP Neighbor
+| | ... | ${dut1} | ${dut_to_tg_if1} | ${tg_ip_address} | ${tg_if1_mac}
+| | And VPP Add IP Neighbor
+| | ... | ${dut1} | ${int1} | ${tap1_NM_ip} | ${tap1_NM_mac}
+| | And Add Linux Route
+| | ... | ${dut1} | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip} | nmspace1
+| | Then Send ICMP echo request and verify answer
+| | ... | ${tg} | ${tg_if1} | ${dut1_if1_mac} | ${tg_if1_mac}
 | | ... | ${tap1_NM_ip} | ${tg_ip_address}

@@ -37,10 +37,11 @@
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - pkt_trace - Switch to enable packet trace for test.
 | | ... | - dut_stats - Switch to enable DUT statistics.
+| | ... | - dcr_uuid - Docker unique identificator of NF container (empty if
+| | ... | DUT runs on bare metal).
 | | ... | - packages_dir - Directory with VPP binary packages.
 | | ...
-| | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${True}
+| | Set Global Variable | ${dcr_uuid} | ${EMPTY}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
