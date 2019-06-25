@@ -16,7 +16,7 @@
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/overlay/vxlan.robot
 | Resource | resources/libraries/robot/l2/l2_traffic.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
+| Resource | resources/libraries/robot/shared/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV | SKIP_VPP_PATCH
 | Test Setup | Set up functional test
