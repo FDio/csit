@@ -38,7 +38,10 @@
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
 | | ... | - dut_stats - Switch to enable DUT statistics.
+| | ... | - dcr_uuid - Docker unique identificator of NF container (empty if
+| | ... | DUT runs on bare metal).
 | | ... | - packages_dir - Directory with VPP binary packages.
 | | ...
 | | Set Global Variable | ${dut_stats} | ${True}
+| | Set Global Variable | ${dcr_uuid} | ${EMPTY}
 | | Set Global Variable | ${packages_dir} | /tmp/openvpp-testing/download_dir/
