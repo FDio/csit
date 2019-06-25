@@ -72,7 +72,7 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize IPv6 forwarding in 2-node circular topology
+| | And Initialize IPv6 forwarding in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

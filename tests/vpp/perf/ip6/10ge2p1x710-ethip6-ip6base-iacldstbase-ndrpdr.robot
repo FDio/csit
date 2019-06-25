@@ -74,7 +74,7 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv6 forwarding in 3-node circular topology
+| | When Initialize IPv6 forwarding in circular topology
 | | And Initialize IPv6 iAcl whitelist in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
