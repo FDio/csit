@@ -24,6 +24,7 @@
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.L2Util
+| Library | resources.libraries.python.Namespaces
 | Library | resources.libraries.python.SchedUtils
 | Library | resources.libraries.python.Tap
 | Library | resources.libraries.python.TGSetup
@@ -43,6 +44,7 @@
 | Resource | resources/libraries/robot/shared/suite_setup.robot
 | Resource | resources/libraries/robot/shared/test_teardown.robot
 | Resource | resources/libraries/robot/shared/test_setup.robot
+| Resource | resources/libraries/robot/shared/traffic.robot
 
 *** Keywords ***
 | Show Vpp Errors On All DUTs
