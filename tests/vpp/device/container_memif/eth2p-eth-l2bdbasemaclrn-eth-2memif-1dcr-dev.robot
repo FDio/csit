@@ -13,14 +13,11 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/l2/l2_traffic.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
 | ...
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
-| ... | FUNCTEST | L2BDMACLRN | BASE | ETH | MEMIF | DOCKER
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
+| ... | NIC_Virtual | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER
 | ...
-| Suite Setup | Setup suite single link
+| Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | container
 | ...
@@ -37,81 +34,50 @@
 | ... | *[Ver] TG verification:* Test ICMPv4 (or ICMPv6) Echo Request packets \
 | ... | are sent in both directions by TG on links to DUT1 and via container; \
 | ... | on receive TG verifies packets for correctness and their IPv4 (IPv6) \
-| ... | src-addr, dst-addr and MAC addresses.pecifications:* RFC792
+| ... | src-addr, dst-addr and MAC addresses.
+| ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${nic_name}= | virtual
-# L2BD
-| ${bd_id1}= | 1
-| ${bd_id2}= | 2
-# Memif
-| ${sock_base}= | memif-DUT1_CNF
+| ${overhead}= | ${0}
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_functional
 
 *** Test Cases ***
-| tc01-eth2p-ethip4-l2bdbase-eth-2memif-1dcr-device
+| tc01-eth2p-ethip4-l2bdbase-eth-2memif-1dcr-dev
 | | [Documentation]
-| | ... | [Top] TG=DUT=DCR. [Enc] Eth-IPv4-ICMPv4. [Cfg] Configure two \
-| | ... | L2 bridge-domains (L2BD) with MAC learning enabled on DUT1, each \
-| | ... | with one untagged interface to TG and untagged i/f to docker over \
-| | ... | memif. [Ver] Make TG send ICMPv4 Echo Req in both directions between \
-| | ... | two of its interfaces to be switched by DUT1; verify all packets are \
-| | ... | received.
+| | ... | [Ver] Make TG send ICMPv4 Echo Reqs in both directions between two\
+| | ... | of its interfaces to be switched by DUT to and from docker; verify\
+| | ... | all packets are received.
+| | ...
+| | Set Test Variable | ${frame_size} | ${42}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Start containers for device test
-| | And Configure interfaces in path up
-| | When Set up memif interfaces on DUT node | ${dut_node} | ${sock_base}
-| | ... | ${sock_base} | dcr_uuid=${dcr_uuid}
-| | ... | memif_if1=memif_if1 | memif_if2=memif_if2 | rxq=${0} | txq=${0}
-| | And Create bridge domain | ${dut_node} | ${bd_id1}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${bd_id1}
-| | And Add interface to bridge domain | ${dut_node} | ${memif_if1}
-| | ... | ${bd_id1}
-| | And Create bridge domain | ${dut_node} | ${bd_id2}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
-| | ... | ${bd_id2}
-| | And Add interface to bridge domain | ${dut_node} | ${memif_if2}
-| | ... | ${bd_id2}
-| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | When Start containers for device test
+| | And Initialize L2 Bridge Domain with memif pairs | auto_scale=${False}
+| | Then Send ICMPv4 bidirectionally and verify received packets
+| | ... | ${tg} | ${tg_if1} | ${tg_if2}
 
-| tc02-eth2p-ethip6-l2bdbase-eth-2memif-1dcr-device
+| tc02-eth2p-ethip6-l2bdbase-eth-2memif-1dcr-dev
 | | [Documentation]
-| | ... | [Top] TG=DUT=DCR. [Enc] Eth-IPv6-ICMPv6. [Cfg] Configure two \
-| | ... | L2 bridge-domains (L2BD) with MAC learning enabled on DUT1, each \
-| | ... | with one untagged interface to TG and untagged i/f to docker over \
-| | ... | memif. [Ver] Make TG send ICMPv4 Echo Req in both directions between \
-| | ... | two of its interfaces to be switched by DUT1; verify all packets are \
-| | ... | received.
+| | ... | [Ver] Make TG send ICMPv6 Echo Reqs in both directions between two\
+| | ... | of its interfaces to be switched by DUT to and from docker; verify\
+| | ... | all packets are received.
+| | ...
+| | Set Test Variable | ${frame_size} | ${62}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Start containers for device test
-| | And Configure interfaces in path up
-| | When Set up memif interfaces on DUT node | ${dut_node} | ${sock_base}
-| | ... | ${sock_base} | dcr_uuid=${dcr_uuid}
-| | ... | memif_if1=memif_if1 | memif_if2=memif_if2 | rxq=${0} | txq=${0}
-| | And Create bridge domain | ${dut_node} | ${bd_id1}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${bd_id1}
-| | And Add interface to bridge domain | ${dut_node} | ${memif_if1}
-| | ... | ${bd_id1}
-| | And Create bridge domain | ${dut_node} | ${bd_id2}
-| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
-| | ... | ${bd_id2}
-| | And Add interface to bridge domain | ${dut_node} | ${memif_if2}
-| | ... | ${bd_id2}
+| | When Start containers for device test
+| | And Initialize L2 Bridge Domain with memif pairs | auto_scale=${False}
 | | Then Send ICMPv6 bidirectionally and verify received packets
-| | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | ... | ${tg} | ${tg_if1} | ${tg_if2}
