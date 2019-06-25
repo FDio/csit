@@ -48,7 +48,6 @@
 # software interfaces. Run KW at the start phase of VPP setup to split
 # from other "functional" configuration. This will allow modularity of this
 # library
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -66,8 +65,6 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -96,7 +93,6 @@
 # software interfaces. Run KW at the start phase of VPP setup to split
 # from other "functional" configuration. This will allow modularity of this
 # library
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -106,8 +102,6 @@
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
 | | | Run Keyword Unless | '${if1_status}' == 'PASS'
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -900,12 +894,12 @@
 | | ${sock2}= | Set Variable | memif-DUT2_CNF
 | | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock1}
 | | ... | ${1} | dut1-memif-1-if1 | dut1-memif-1-if2 | ${rxq_count_int}
-| | ... | ${rxq_count_int}
+| | ... | ${rxq_count_int} | dcr_uuid=${dcr_uuid}
 | | VPP Set interface MTU | ${dut1} | ${dut1-memif-1-if1}
 | | VPP Set interface MTU | ${dut1} | ${dut1-memif-1-if2}
 | | Set up memif interfaces on DUT node | ${dut2} | ${sock2} | ${sock2}
 | | ... | ${1} | dut2-memif-1-if1 | dut2-memif-1-if2 | ${rxq_count_int}
-| | ... | ${rxq_count_int}
+| | ... | ${rxq_count_int} | dcr_uuid=${dcr_uuid}
 | | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if1}
 | | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if2}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
@@ -2519,6 +2513,7 @@
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
 | | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
+| | | ... | dcr_uuid=${dcr_uuid}
 | | | ${xconnect_if1}= | Set Variable If | ${number}==1 | ${${dut}_if1}
 | | | ... | ${${dut}-memif-${prev_index}-if2}
 | | | Configure L2XC | ${nodes['${dut}']} | ${xconnect_if1}
@@ -2586,7 +2581,7 @@
 | | | ${sock2}= | Set Variable | memif-${dut}_CNF
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${nf_id} | ${dut}-memif-${nf_id}-if1
-| | | ... | ${dut}-memif-${nf_id}-if2 | ${rxq} | ${rxq}
+| | | ... | ${dut}-memif-${nf_id}-if2 | ${rxq} | ${rxq} | dcr_uuid=${dcr_uuid}
 | | | ${bd_id2}= | Evaluate | ${nf_node}+1
 | | | Add interface to bridge domain | ${nodes['${dut}']}
 | | | ... | ${${dut}-memif-${nf_id}-if1} | ${nf_node}
@@ -2760,7 +2755,7 @@
 | | ${memif_if2_name}= | Set Variable | DUT1-memif-${number}-if2
 | | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock2}
 | | ... | ${number} | ${memif_if1_name} | ${memif_if2_name} | ${rxq_count_int}
-| | ... | ${rxq_count_int}
+| | ... | ${rxq_count_int} | dcr_uuid=${dcr_uuid}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${${memif_if1_name}} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${${memif_if2_name}} | ${bd_id2}
@@ -2776,7 +2771,7 @@
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set up memif interfaces on DUT node | ${dut2} | ${sock1} | ${sock2}
 | | ... | ${number} | ${memif_if1_name} | ${memif_if2_name} | ${rxq_count_int}
-| | ... | ${rxq_count_int}
+| | ... | ${rxq_count_int} | dcr_uuid=${dcr_uuid}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Add interface to bridge domain | ${dut2} | ${subif_index_2}
 | | ... | ${bd_id1}
@@ -2813,10 +2808,8 @@
 | | ...
 | | [Arguments] | ${dut} | ${count}
 | | ...
-| | @{duts}= | Get Matches | ${nodes} | DUT*
 | | ${dut_index}= | Get Index From List | ${duts} | ${dut}
-| | ${duts_length}= | Get Length | ${duts}
-| | ${last_dut_index}= | Evaluate | ${duts_length} - ${1}
+| | ${last_dut_index}= | Evaluate | ${duts_count} - ${1}
 | | ...
 | | ${tg_if1_net}= | Set Variable | 10.10.10.0
 | | ${tg_if2_net}= | Set Variable | 20.20.20.0
@@ -2876,6 +2869,7 @@
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${number} | ${dut}-memif-${number}-if1
 | | | ... | ${dut}-memif-${number}-if2 | ${rxq_count_int} | ${rxq_count_int}
+| | | ... | dcr_uuid=${dcr_uuid}
 | | | ${memif1}= | Set Variable | ${${dut}-memif-${number}-if1}
 | | | ${memif2}= | Set Variable | ${${dut}-memif-${number}-if2}
 | | | ${fib_table_1}= | Evaluate | ${fib_table_1} + ${1}
@@ -2930,7 +2924,6 @@
 | | ...
 | | [Arguments] | ${count}=${1}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize IPv4 routing with memif pairs on DUT node | ${dut} | ${count}
 | | Set interfaces in path up

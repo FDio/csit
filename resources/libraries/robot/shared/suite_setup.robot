@@ -174,6 +174,13 @@
 | | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${osi_layer}
 
+| Additional Suite Setup Action For scapy
+| | [Documentation]
+| | ... | Additional Setup for suites which uses scapy as Traffic generator.
+| | ...
+| | Set Interface State | ${tg} | ${tg_if1} | up
+| | Set Interface State | ${tg} | ${tg_if2} | up
+
 | Additional Suite Setup Action For dpdk
 | | [Documentation]
 | | ... | Additional Setup for suites which uses dpdk.
