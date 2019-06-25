@@ -113,7 +113,7 @@
 | | And Add PCI devices to all DUTs
 | | Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | And Start containers for performance test | nf_chains=${1} | nf_nodes=${1}
+| | And Start containers for test | nf_chains=${1} | nf_nodes=${1}
 | | When Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'masquerading' behaviour in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 

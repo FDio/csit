@@ -13,14 +13,11 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| Resource | resources/libraries/robot/shared/traffic.robot
 | ...
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
-| ... | FUNCTEST | IP4FWD | BASE | ETH | IP4BASE
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
+| ... | NIC_Virtual | ETH | IP4FWD | BASE | IP4BASE
 | ...
-| Suite Setup | Setup suite single link
+| Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 | ...
@@ -40,98 +37,76 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
-| ${tg_to_dut_if1_ip4}= | 10.10.10.2
-| ${tg_to_dut_if2_ip4}= | 20.20.20.2
-| ${dut_to_tg_if1_ip4}= | 10.10.10.1
-| ${dut_to_tg_if2_ip4}= | 20.20.20.1
-| ${remote_host1_ip4}= | 192.168.0.1
-| ${remote_host2_ip4}= | 192.168.0.2
-| ${remote_host_ip4_prefix}= | 32
+| ${overhead}= | ${0}
 
 *** Test Cases ***
-| tc01-eth2p-ethicmpv4-ip4base-device_echo-req-to-dut-ingress-interface
+| tc01-eth2p-ethicmpv4-ip4base-dev_echo-req-to-dut-ingress-interface
 | | [Documentation]
-| | ... | Make TG send ICMPv4 Echo Req to DUT1 ingress interface. Make TG \
-| | ... | verify ICMP Echo Reply is correct.
+| | ... | [Ver] Make TG send ICMPv4 Echo Req towards DUT1 egress interface.\
+| | ... | Make TG verify ICMP Echo Reply is correct.
 | | ...
-| | ${hops}= | Set Variable | ${0}
+| | Set Test Variable | ${frame_size} | ${42}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
-| | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Send IPv4 ping packet and verify headers | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${tg_to_dut_if1_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if1_mac}
-| | ... | ${hops}
-| | Get interface Ipv4 addresses | ${nodes['DUT1']} | ${dut_to_tg_if1}
+| | When Initialize IPv4 forwarding in circular topology
+| | Then Send IPv4 ping packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if1}
+| | ... | 10.10.10.2 | 10.10.10.1 | ${dut1_if1_mac} | ${0}
 
-| tc02-eth2p-ethicmpv4-ip4base-device_echo-req-to-dut-egress-interface
+| tc02-eth2p-ethicmpv4-ip4base-dev_echo-req-to-dut-egress-interface
 | | [Documentation]
-| | ... | Make TG send ICMPv4 Echo Req towards DUT1 egress interface. Make TG \
-| | ... | verify ICMP Echo Reply is correct.
+| | ... | [Ver] Make TG send ICMPv4 Echo Req towards DUT1 egress interface.\
+| | ... | Make TG verify ICMP Echo Reply is correct.
 | | ...
-| | ${hops}= | Set Variable | ${0}
+| | Set Test Variable | ${frame_size} | ${42}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
-| | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Send IPv4 ping packet and verify headers | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${dut_node} | ${dut_to_tg_if2}
-| | ... | ${tg_to_dut_if1_ip4} | ${dut_to_tg_if2_ip4} | ${dut_to_tg_if1_mac}
-| | ... | ${hops}
+| | When Initialize IPv4 forwarding in circular topology
+| | Then Send IPv4 ping packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if2}
+| | ... | 20.20.20.2 | 20.20.20.1 | ${dut1_if1_mac} | ${0}
 
-| tc03-eth2p-ethicmpv4-ip4base-device_echo-req-to-tg-interface-for-local-ipv4-address
+| tc03-eth2p-ethicmpv4-ip4base-dev_echo-req-to-tg-interface-for-local-ipv4-address
 | | [Documentation]
-| | ... | Make TG send ICMPv4 Echo Req between its interfaces across DUT1 for \
-| | ... | locally connected IPv4 addresses. Make TG verify ICMPv4 Echo Replies \
+| | ... | [Ver] Make TG send ICMPv4 Echo Req between its interfaces across DUT1\
+| | ... | for remote host IPv4 addresses. Make TG verify ICMPv4 Echo Replies\
 | | ... | are correct.
 | | ...
-| | ${hops}= | Set Variable | ${1}
+| | Set Test Variable | ${frame_size} | ${42}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
-| | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Send IPv4 ping packet and verify headers | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${tg_node} | ${tg_to_dut_if2}
-| | ... | ${tg_to_dut_if1_ip4} | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_mac}
-| | ... | ${hops}
+| | When Initialize IPv4 forwarding in circular topology
+| | Then Send IPv4 ping packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
+| | ... | 10.10.10.2 | 20.20.20.2 | ${dut1_if1_mac} | ${0}
 
-| tc04-eth2p-ethicmpv4-ip4base-device_echo-req-to-tg-interface-for-remote-host-ipv4-address
+| tc04-eth2p-ethicmpv4-ip4base-dev_echo-req-to-tg-interface-for-remote-host-ipv4-address
 | | [Documentation]
-| | ... | Make TG send ICMPv4 Echo Req between its interfaces across DUT1 for \
-| | ... | remote host IPv4 addresses. Make TG verify ICMPv4 Echo Replies are \
-| | ... | correct.
+| | ... | [Ver] Make TG send ICMPv4 Echo Req between its interfaces across DUT1\
+| | ... | for remote host IPv4 addresses. Make TG verify ICMPv4 Echo Replies\
+| | ... | are correct.
 | | ...
-| | ${hops}= | Set Variable | ${1}
+| | Set Test Variable | ${frame_size} | ${42}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Configure IPv4 forwarding in circular topology | ${tg_to_dut_if1_ip4}
-| | ... | ${tg_to_dut_if2_ip4} | ${dut_to_tg_if1_ip4} | ${dut_to_tg_if2_ip4}
-| | ... | remote_host1_ip4=${remote_host1_ip4}
-| | ... | remote_host2_ip4=${remote_host2_ip4}
-| | ... | remote_host_ip4_prefix=${remote_host_ip4_prefix}
-| | And VPP Get IP tables | ${dut_node}
-| | When All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Send IPv4 ping packet and verify headers | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${tg_node} | ${tg_to_dut_if2}
-| | ... | ${remote_host1_ip4} | ${remote_host2_ip4} | ${dut_to_tg_if1_mac}
-| | ... | ${hops}
+| | When Initialize IPv4 forwarding in circular topology
+| | ... | remote_host1_ip4=192.168.0.1 | remote_host2_ip4=192.168.0.2
+| | Then Send IPv4 ping packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
+| | ... | 192.168.0.1 | 192.168.0.2 | ${dut1_if1_mac} | ${1}
