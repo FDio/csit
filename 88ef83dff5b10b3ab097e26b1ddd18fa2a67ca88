@@ -22,6 +22,30 @@
       "revId": "88ef83dff5b10b3ab097e26b1ddd18fa2a67ca88",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "892a2d41_794bd778",
+        "filename": "resources/libraries/bash/entry/check/copyright.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-25T16:35:10Z",
+      "side": 1,
+      "message": "\u003e If Copyright not there then  we do not care?\n\nWe are obliged to care: https://fd.io/charter/#7\n\nAnd we need the whitelist, because you never know when sobebody adds a new extension (as .svg) or adds a special processing rule to otherwise unremarkable file (as VPP_REPO_URL).",
+      "parentUuid": "2a9bb424_873c982c",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "88ef83dff5b10b3ab097e26b1ddd18fa2a67ca88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
