@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -26,6 +26,10 @@
 | | ...
 | | ... | perf_trial_multiplicity - Number of trials to execute in MRR test.
 | | ... | perf_trial_duration - Duration of one trial in MRR test.
+| | ... | dut1_uuid - UUID string of DUT1 /tmp volume created outside of the
+| | ... |   DUT1 docker in case of vpp-device test. ${EMPTY} value means that
+| | ... |   /tmp directory is inside the DUT1 docker
 | | ...
 | | Ensure Global Variable | perf_trial_multiplicity | 10
 | | Ensure Global Variable | perf_trial_duration | 1
+| | Ensure Global Variable | dut1_uuid | ${EMPTY}

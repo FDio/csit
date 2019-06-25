@@ -31,29 +31,31 @@
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
 | | ... |   network function as DUT, otherwise use single physical core for
 | | ... |   every network function. Type: boolean
-| | ... | - nested: Set True if starting nested containers.
-| | ... | Type: boolean, default value: ${False}
+| | ... | - pinning: Set True if CPU pinning should be done on starting
+| | ... |   containers. Type: boolean, default value: ${False}
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Construct container on all DUTs \| 1 \| 1 \| 1 \| 1 \| ${True} \|
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${nf_chain}=${1}
-| | ... | ${nf_node}=${1} | ${auto_scale}=${True} | ${nested}=${False}
+| | ... | ${nf_node}=${1} | ${auto_scale}=${True} | ${pinning}=${True}
 | | ...
 | | ${nf_dtcr_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${nf_dtcr}
 | | ${nf_dtcr}= | Run Keyword If | '${nf_dtcr_status}' == 'PASS'
 | | ... | Set Variable | ${nf_dtcr} | ELSE | Set Variable | ${1}
-| | ${nf_dtc}= | Run Keyword Unless | ${nested}
+| | ${nf_dtc}= | Run Keyword If | ${pinning}
 | | ... | Set Variable If | ${auto_scale} | ${cpu_count_int}
 | | ... | ${nf_dtc}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
 | | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
-| | | ${uuid}= | Get Variable Value | ${dcr_uuid} | ${Empty}
-| | | ${root}= | Get Variable Value | ${dcr_root} | ${Empty}
+| | | ${dut1_uuid_length} = | Get Length | ${dut1_uuid}
+| | | ${root}= | Run Keyword If | ${dut1_uuid_length}
+| | | ... | Get Docker Mergeddir | ${nodes['DUT1']} | ${dut1_uuid}
+| | | ... | ELSE | Set Variable | ${EMPTY}
 | | | ${mnt}= | Create List
 | | | ... | ${root}/tmp/:/mnt/host/
 | | | ... | ${root}/dev/vfio/:/dev/vfio/
@@ -62,15 +64,15 @@
 | | | ... | ${root}/usr/lib/x86_64-linux-gnu/:/usr/lib/x86_64-linux-gnu/
 | | | ... | ${root}/usr/share/vpp/:/usr/share/vpp/
 | | | ${nf_cpus}= | Set Variable | ${None}
-| | | ${nf_cpus}= | Run Keyword Unless | ${nested}
+| | | ${nf_cpus}= | Run Keyword If | ${pinning}
 | | | ... | Get Affinity NF | ${nodes} | ${dut}
 | | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | | ... | nf_chain=${nf_chain} | nf_node=${nf_node}
 | | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | | &{cont_args}= | Create Dictionary
-| | | ... | name=${dut}_${container_group}${nf_id}${uuid}
+| | | ... | name=${dut}_${container_group}${nf_id}${dut1_uuid}
 | | | ... | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
-| | | Run Keyword Unless | ${nested}
+| | | Run Keyword If | ${pinning}
 | | | ... | Set To Dictionary | ${cont_args} | cpuset_cpus=${nf_cpus}
 | | | Run Keyword | ${container_group}.Construct container | &{cont_args}
 
@@ -84,8 +86,8 @@
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
 | | ... |   network function as DUT, otherwise use single physical core for
 | | ... |   every network function. Type: boolean
-| | ... | - nested: Set True if starting nested containers.
-| | ... | Type: boolean, default value: ${False}
+| | ... | - pinning: Set True if CPU pinning should be done on starting
+| | ... |   containers. Type: boolean, default value: ${False}
 | | ...
 | | ... | *Example:*
 | | ...
@@ -93,38 +95,38 @@
 | | ... | \| ${True} \|
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${nf_chain}=${1}
-| | ... | ${auto_scale}=${True} | ${nested}=${False}
+| | ... | ${auto_scale}=${True} | ${pinning}=${True}
 | | ...
 | | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
 | | | Construct container on all DUTs | nf_chains=${nf_chains}
 | | | ... | nf_nodes=${nf_nodes} | nf_chain=${nf_chain} | nf_node=${nf_node}
-| | | ... | auto_scale=${auto_scale} | nested=${nested}
+| | | ... | auto_scale=${auto_scale} | pinning=${pinning}
 
 | Construct chains of containers on all DUTs
 | | [Documentation] | Construct 1..N chains of 1..N CNFs on all DUT nodes.
 | | ...
 | | ... | *Arguments:*
 | | ... | - nf_chains: Total number of chains (Optional). Type: integer, default
-| | ... | value: ${1}
+| | ... |   value: ${1}
 | | ... | - nf_nodes: Total number of nodes per chain (Optional). Type: integer,
-| | ... | default value: ${1}
+| | ... |   default value: ${1}
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
 | | ... |   network function as DUT, otherwise use single physical core for
 | | ... |   every network function. Type: boolean
-| | ... | - nested: Set True if starting nested containers.
-| | ... | Type: boolean, default value: ${False}
+| | ... | - pinning: Set True if CPU pinning should be done on starting
+| | ... |   containers. Type: boolean, default value: ${True}
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Construct chains of containers on all DUTs \| 1 \| 1 \|
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
-| | ... | ${nested}=${False}
+| | ... | ${pinning}=${True}
 | | ...
 | | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
 | | | Construct chain of containers on all DUTs | nf_chains=${nf_chains}
 | | | ... | nf_nodes=${nf_nodes} | nf_chain=${nf_chain}
-| | | ... | auto_scale=${auto_scale} | nested=${nested}
+| | | ... | auto_scale=${auto_scale} | pinning=${pinning}
 
 | Acquire all '${group}' containers
 | | [Documentation] | Acquire all container(s) in specific container group on
@@ -182,9 +184,9 @@
 | | ...
 | | Run Keyword | ${group}.Destroy all containers
 
-| Start containers for performance test
+| Start containers for test
 | | [Documentation]
-| | ... | Start containers for performance test.
+| | ... | Start containers for test.
 | | ...
 | | ... | *Arguments:*
 | | ... | - nf_chains: Total number of chains. Type: integer
@@ -192,12 +194,15 @@
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
 | | ... |   network function as DUT, otherwise use single physical core for
 | | ... |   every network function. Type: boolean
+| | ... | - pinning: Set True if CPU pinning should be done on starting
+| | ... |   containers. Type: boolean, default value: ${False}
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Start containers for performance test \| 1 \| 1 \|
+| | ... | \| Start containers for test \| 1 \| 1 \|
 | | ...
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
+| | ... | ${pinning}=${True}
 | | ...
 | | Set Test Variable | @{container_groups} | @{EMPTY}
 | | Set Test Variable | ${container_group} | CNF
@@ -205,50 +210,7 @@
 | | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
 | | ... | engine=${container_engine} | WITH NAME | ${container_group}
 | | Construct chains of containers on all DUTs | ${nf_chains} | ${nf_nodes}
-| | ... | auto_scale=${auto_scale}
-| | Acquire all '${container_group}' containers
-| | Create all '${container_group}' containers
-| | Configure VPP in all '${container_group}' containers
-| | Stop VPP service on all DUTs | ${nodes}
-| | Start VPP in all '${container_group}' containers
-| | Restart VPP service on all DUTs | ${nodes}
-| | Verify VPP on all DUTs | ${nodes}
-| | Save VPP PIDs
-| | Append To List | ${container_groups} | ${container_group}
-
-| Start containers for device test
-| | [Documentation]
-| | ... | Start containers for device test.
-| | ...
-| | ... | *Arguments:*
-| | ... | - nf_chains: Total number of chains (Optional). Type: integer, default
-| | ... | value: ${1}
-| | ... | - nf_nodes: Total number of nodes per chain (Optional). Type: integer,
-| | ... | default value: ${1}
-| | ...
-| | ... | _NOTE:_ This KW sets following test case variables:
-| | ... | - dcr_uuid - Parent container UUID.
-| | ... | - dcr_root - Parent container overlay.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Set up functional test with containers \| 1 \| 1 \|
-| | ...
-| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
-| | ...
-| | Set Test Variable | @{container_groups} | @{EMPTY}
-| | Set Test Variable | ${container_group} | CNF
-| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
-| | ... | engine=${container_engine} | WITH NAME | ${container_group}
-| | ...
-| | ${dcr_uuid}= | Get Environment Variable | CSIT_DUT1_UUID
-| | ${dcr_root}= | Run Keyword | Get Docker Mergeddir | ${nodes['DUT1']}
-| | ... | ${dcr_uuid}
-| | Set Test Variable | ${dcr_uuid}
-| | Set Test Variable | ${dcr_root}
-| | ...
-| | Construct chains of containers on all DUTs | ${nf_chains} | ${nf_nodes}
-| | ... | nested=${True}
+| | ... | auto_scale=${auto_scale} | pinning=${pinning}
 | | Acquire all '${container_group}' containers
 | | Create all '${container_group}' containers
 | | Configure VPP in all '${container_group}' containers

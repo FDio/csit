@@ -14,10 +14,10 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
-| ... | FUNCTEST | IP4FWD | IPSEC | IPSEC_TNL | IP4BASE
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
+| ... | NIC_Virtual | IP4FWD | IPSEC | IPSEC_TNL | IP4BASE
 | ...
-| Suite Setup | Setup suite single link
+| Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 | ...
@@ -36,6 +36,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
 | ${nic_name}= | virtual
+| ${overhead}= | ${58}
 | ${tg_spi}= | ${1000}
 | ${dut_spi}= | ${1001}
 | ${ESP_PROTO}= | ${50}
@@ -46,14 +47,17 @@
 | ${ip4_plen}= | ${24}
 
 *** Test Cases ***
-| tc01-eth2p-ethip4ipsectnl-ip4base-device-aes-128-cbc-sha-256-128
+| tc01-eth2p-ethip4ipsectnl-ip4base-dev-aes-128-cbc-sha-256-128
 | | [Documentation]
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
 | | ... | algorithm AES-CBC-128 and integrity algorithm SHA-256-128 in tunnel\
 | | ... | mode.
-| | ... | [Ver] Send and receive ESP packet between TG and VPP node.
+| | ...
+| | Set Test Variable | ${frame_size} | ${106}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
 | | When Configure topology for IPv4 IPsec testing
@@ -61,23 +65,26 @@
 | | ${auth_alg}= | Integ Alg SHA 256 128
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Configure manual keyed connection for IPSec
-| | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${dut1} | ${dut1_if1} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
 | | Then Send IPsec Packet and verify ESP encapsulation in received packet
-| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${tg} | ${tg_if1} | ${dut1_if1_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
 
-| tc02-eth2p-ethip4ipsectnl-ip4base-device-aes-128-cbc-sha-512-256
+| tc02-eth2p-ethip4ipsectnl-ip4base-dev-aes-128-cbc-sha-512-256
 | | [Documentation]
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
 | | ... | algorithm AES-CBC-128 and integrity algorithm SHA-512-256 in tunnel\
 | | ... | mode.
-| | ... | [Ver] Send and receive ESP packet between TG and VPP node.
+| | ...
+| | Set Test Variable | ${frame_size} | ${106}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
 | | When Configure topology for IPv4 IPsec testing
@@ -85,11 +92,11 @@
 | | ${auth_alg}= | Integ Alg SHA 512 256
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Configure manual keyed connection for IPSec
-| | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${dut1} | ${dut1_if1} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
 | | Then Send IPsec Packet and verify ESP encapsulation in received packet
-| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${tg} | ${tg_if1} | ${dut1_if1_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
