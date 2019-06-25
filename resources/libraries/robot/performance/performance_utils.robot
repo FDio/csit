@@ -363,15 +363,16 @@
 | | ... | - unidirection - False if traffic is bidirectional. Type: boolean
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
 | | ... | - rx_port - RX port of TG, default 1. Type: integer
+| | ... | - pkt_trace - True to enable packet trace. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Send traffic at specified rate \| ${1.0} \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \| ${10} \| ${False} \| ${0} | ${1} \|
+| | ... | \| 3-node-IPv4 \| ${10} \| ${False} \| ${0} | ${1} \| ${False}
 | | ...
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${subsamples}=${1} | ${unidirection}=${False}
-| | ... | ${tx_port}=${0} | ${rx_port}=${1}
+| | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${pkt_trace}=${False}
 | | ...
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${frame_size} | ${traffic_profile}

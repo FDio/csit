@@ -19,10 +19,10 @@
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
 | ...
-| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV
-| ... | FUNCTEST | IP6FWD | BASE | ETH | MEMIF | DOCKER
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
+| ... | NIC_Virtual | ETH | IP6FWD | BASE | MEMIF | DOCKER
 | ...
-| Suite Setup | Setup suite single link
+| Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | container
 | ...
@@ -45,69 +45,57 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${nic_name}= | virtual
-# IP
-| ${net1}= | 2001:1::0
-| ${net3}= | 2001:3::0
-| ${net1_ip1}= | 2001:1::1
-| ${net1_ip2}= | 2001:1::2
-| ${net2_ip1}= | 2001:2::1
-| ${net2_ip2}= | 2001:2::2
-| ${net3_ip1}= | 2001:3::1
-| ${net3_ip2}= | 2001:3::2
-| ${prefix_length}= | 64
-| ${fib_table_2}= | 20
-# Memif
-| ${sock_base}= | memif-DUT1_CNF
+| ${overhead}= | ${0}
 # Container
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_functional
 
 *** Test Cases ***
-| tc01-eth2p-ethip6-ip6base-eth-2memif-1dcr-device
+| tc01-eth2p-ethip6-ip6base-eth-2memif-1dcr-scapy
 | | [Documentation]
-| | ... | [Top] TG=DUT=DCR. [Enc] Eth-IPv6-ICMPv6. [Cfg] Configure two VRFs to \
-| | ... | route IPv6 traffic through two memif interfaces. Both interfaces are \
-| | ... | configured with IP addresses from the same network. [Ver] Make TG to \
-| | ... | send ICMPv6 Echo Reqest form one TG interface to another one to be \
-| | ... | switched by DUT1; verify header of received packet.
+| | ... | [Ver] Make TG send ICMPv6 Echo Reqs in both directions between two\
+| | ... | of its interfaces to be routed by DUT to and from docker; verify\
+| | ... | all packets are received.
+| | ...
+| | Set Test Variable | ${frame_size} | ${62}
+| | Set Test Variable | ${rxq_count_int} | ${1}
 | | ...
 | | Given Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure path in 2-node circular topology
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Start containers for device test
-| | And Configure interfaces in path up
-| | When Set up memif interfaces on DUT node
-| | ... | ${dut_node} | ${sock_base} | ${sock_base} | dcr_uuid=${dcr_uuid}
-| | ... | memif_if1=memif_if1 | memif_if2=memif_if2 | rxq=${0} | txq=${0}
-| | And Add Fib Table | ${dut_node} | ${fib_table_2} | ipv6=${True}
+| | When Start containers for device test
+| | And Set interfaces in path up
+| | And Set up memif interfaces on DUT node
+| | ... | ${dut1} | memif-DUT1_CNF | memif-DUT1_CNF | dcr_uuid=${dcr_uuid}
+| | ... | memif_if1=memif_if1 | memif_if2=memif_if2
+| | ... | rxq=${rxq_count_int} | txq=${rxq_count_int}
+| | And Add Fib Table | ${dut1} | 20 | ipv6=${True}
 | | And Assign Interface To Fib Table
-| | ... | ${dut_node} | ${memif_if2} | ${fib_table_2} | ipv6=${True}
+| | ... | ${dut1} | ${memif_if2} | 20 | ipv6=${True}
 | | And Assign Interface To Fib Table
-| | ... | ${dut_node} | ${dut_to_tg_if2} | ${fib_table_2} | ipv6=${True}
+| | ... | ${dut1} | ${dut1_if2} | 20 | ipv6=${True}
 | | And VPP Interface Set IP Address
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_ip1} | ${prefix_length}
+| | ... | ${dut1} | ${dut1_if1} | 2001:1::1 | 64
 | | And VPP Interface Set IP Address
-| | ... | ${dut_node} | ${memif_if1} | ${net2_ip1} | ${prefix_length}
+| | ... | ${dut1} | ${memif_if1} | 2001:2::1 | 64
 | | And VPP Interface Set IP Address
-| | ... | ${dut_node} | ${memif_if2} | ${net2_ip2} | ${prefix_length}
+| | ... | ${dut1} | ${memif_if2} | 2001:2::2 | 64
 | | And VPP Interface Set IP Address
-| | ... | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip1} | ${prefix_length}
+| | ... | ${dut1} | ${dut1_if2} | 2001:3::1 | 64
 | | ${memif_if2_key}= | Get interface by sw index | ${nodes['DUT1']}
 | | ... | ${memif_if2}
 | | ${memif_if2_mac}= | Get interface MAC | ${nodes['DUT1']} | ${memif_if2_key}
 | | And Vpp Route Add
-| | ... | ${dut_node} | ${net3} | ${prefix_length}
-| | ... | gateway=${net2_ip2} | interface=${memif_if1}
+| | ... | ${dut1} | 2001:3::0 | 64 | gateway=2001:2::2 | interface=${memif_if1}
 | | And Vpp Route Add
-| | ... | ${dut_node} | ${net1} | ${prefix_length}
-| | ... | gateway=${net2_ip1} | interface=${memif_if2} | vrf=${fib_table_2}
+| | ... | ${dut1} | 2001:1::0 | 64 | gateway=2001:2::2 | interface=${memif_if2}
+| | ... | vrf=20
 | | VPP Add IP Neighbor
-| | ... | ${dut_node} | ${memif_if1} | ${net2_ip2} | ${memif_if2_mac}
+| | ... | ${dut1} | ${memif_if1} | 2001:2::2 | ${memif_if2_mac}
 | | VPP Add IP Neighbor
-| | ... | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2} | ${tg_to_dut_if2_mac}
+| | ... | ${dut1} | ${dut1_if2} | 2001:3::2 | ${tg_if2_mac}
 | | Then Send packet and verify headers
-| | ... | ${tg_node} | ${net1_ip2} | ${net3_ip2}
-| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
-| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
+| | ... | ${tg} | 2001:1::1 | 2001:3::2
+| | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
+| | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
