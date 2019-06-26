@@ -1,0 +1,43 @@
+diff --git a/src/vpp-api/python/vpp_papi/vpp_papi.py b/src/vpp-api/python/vpp_papi/vpp_papi.py
+index 78809653d..02c47ebfa 100644
+--- a/src/vpp-api/python/vpp_papi/vpp_papi.py
++++ b/src/vpp-api/python/vpp_papi/vpp_papi.py
+@@ -236,6 +236,8 @@ class VPPApiClient(object):
+         self.use_socket = use_socket
+         self.server_address = server_address
+         self._apifiles = apifiles
++        self.last_msg = None
++        self.skip_write = 0
+ 
+         if use_socket:
+             from . vpp_transport_socket import VppTransport
+diff --git a/src/vpp-api/python/vpp_papi/vpp_transport_socket.py b/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
+index d26a3d47b..c5a14bff8 100644
+--- a/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
++++ b/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
+@@ -186,8 +186,12 @@ class VppTransport(object):
+ 
+         # Send header
+         header = self.header.pack(0, len(buf), 0)
+-        n = self.socket.send(header)
+-        n = self.socket.send(buf)
++        if self.parent.skip_write:
++            self.parent.skip_write -= 1
++            self.q.put(self.parent.last_msg)
++        else:
++            n = self.socket.send(header)
++            n = self.socket.send(buf)
+ 
+     def _read(self):
+         hdr = self.socket.recv(16)
+@@ -208,8 +212,10 @@ class VppTransport(object):
+                 nbytes = self.socket.recv_into(view, left)
+                 view = view[nbytes:]
+                 left -= nbytes
++            self.parent.last_msg = buf
+             return buf
+         if hdrlen == len(msg):
++            self.parent.last_msg = msg
+             return msg
+         raise VppTransportSocketIOError(1, 'Unknown socket read error')
+ 
