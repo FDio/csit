@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c681de9e_ecc76708",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T16:37:39Z",
+      "side": 1,
+      "message": "Empty line here.",
+      "range": {
+        "startLine": 800,
+        "startChar": 71,
+        "endLine": 800,
+        "endChar": 72
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bff5e6ab_7e550931",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T16:37:39Z",
+      "side": 1,
+      "message": "Looking at the implementation of this function, it should handle most of the ifs and raises. I prefer inhancing its functionality (e.g. line 822) from wrapping each call site in boilerplate.",
+      "range": {
+        "startLine": 815,
+        "startChar": 30,
+        "endLine": 815,
+        "endChar": 63
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "45fc34d8_b501d068",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1598,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T16:37:39Z",
+      "side": 1,
+      "message": "Are they? I only see few test variables being defined. Update docstring, possibly also keyword name.",
+      "range": {
+        "startLine": 1598,
+        "startChar": 14,
+        "endLine": 1598,
+        "endChar": 39
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abb0e81c_7c8c9e4e",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1632,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T16:37:39Z",
+      "side": 1,
+      "message": "More descriptive variable names please.",
+      "range": {
+        "startLine": 1632,
+        "startChar": 6,
+        "endLine": 1632,
+        "endChar": 7
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a20a001_06939736",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T16:37:39Z",
+      "side": 1,
+      "message": "If the variables are never modified and start with the same value, why do you need two of them?",
+      "range": {
+        "startLine": 1633,
+        "startChar": 4,
+        "endLine": 1633,
+        "endChar": 8
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10f620ad_6ae24d34",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1674,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T16:37:39Z",
+      "side": 1,
+      "message": "Part of device name. For historic reasons we use \"if\" as the part for devices which apply no encapsulation.\nMaybe you can document \"if\" meaning \"no encap\" already at line 1598.",
+      "range": {
+        "startLine": 1674,
+        "startChar": 47,
+        "endLine": 1674,
+        "endChar": 49
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68b80eb7_52e91e95",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T16:37:39Z",
+      "side": 1,
+      "message": "for single chain\n\nTo keep correspondence with line 1736. Although that would imply previous keywords should also contain \"for single chain\", I am not sure whether it is needed overall.",
+      "range": {
+        "startLine": 1711,
+        "startChar": 30,
+        "endLine": 1711,
+        "endChar": 31
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31a4cfeb_9b589472",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1713,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T16:37:39Z",
+      "side": 1,
+      "message": "Define test variables and create\n\nThat way line 1731 can contain \"define\", line 1732 \"create\" while line 1711 keeps \"initialize\".\nOtherwise lines 1711 and 1732 look too similar to me, considering there is one more \"define\" step distinguishing them.",
+      "range": {
+        "startLine": 1713,
+        "startChar": 10,
+        "endLine": 1713,
+        "endChar": 16
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2d4ccc5_d6a7b368",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1755,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T16:37:39Z",
+      "side": 1,
+      "message": "Mention in docstring.",
+      "range": {
+        "startLine": 1755,
+        "startChar": 4,
+        "endLine": 1755,
+        "endChar": 29
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e788e5f_3150c48a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-ethip4vxlan-ip4src1dst1udpsrcrnd.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T16:37:39Z",
+      "side": 1,
+      "message": "Do we want to vary those? Multiple MAC addresses with identical IP addresses seem strange.",
+      "range": {
+        "startLine": 26,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 47
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
