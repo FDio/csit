@@ -107,11 +107,6 @@ function activate_virtualenv () {
     # Functions called:
     # - die - Print to stderr and exit.
 
-    # TODO: Do we want the callers to be able to set the env dir name?
-    # TODO: + In that case, do we want to support env switching?
-    # TODO:   + In that case we want to make env_dir global.
-    # TODO: Do we want the callers to override PYTHONPATH loaction?
-
     root_path="${1-$CSIT_DIR}"
     env_dir="${root_path}/env"
     req_path=${2-$CSIT_DIR/requirements.txt}
@@ -156,7 +151,6 @@ function check_download_dir () {
     set -exuo pipefail
 
     # Fail if there are no files visible in ${DOWNLOAD_DIR}.
-    # TODO: Do we need this as a function, if it is (almost) a one-liner?
     #
     # Variables read:
     # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
@@ -619,11 +613,11 @@ function run_pybot () {
     # - die - Print to stderr and exit.
 
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${PYBOT_ARGS[@]}")
+    all_options+=("--noncritical" "EXPECTED_FAILING")
     all_options+=("${EXPANDED_TAGS[@]}")
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
-    # TODO: Make robot tests not require "$(pwd)" == "${CSIT_DIR}".
     pybot "${all_options[@]}" "${GENERATED_DIR}/tests/"
     PYBOT_EXIT_STATUS="$?"
     set -e
