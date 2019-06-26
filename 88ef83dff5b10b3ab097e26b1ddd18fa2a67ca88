@@ -214,6 +214,30 @@
       "revId": "88ef83dff5b10b3ab097e26b1ddd18fa2a67ca88",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a7c1285_1b7059b1",
+        "filename": "resources/libraries/bash/entry/check/copyright.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T18:24:06Z",
+      "side": 1,
+      "message": "\u003e Remove filtering.\n\nIt is there (patch set #2) as a TODO, with comments explaining why I decided not to endeavor to get there (testing all files) in this single Change.\nCurrently I do not care whether README should be considered code, documentation, or both, so I see no reason for updating the charter.\nPreviously we had zero automatic coverage for our copyright debt, this Change introduces partial (just to avoid blockage e.g. VPP_STABLE_VER_UBUNTU_BIONIC) coverage.\n\n\u003e your note does not solve the problem\n\nEither you think a full solution is achievable in a single small-ish change, or you are talking about different problem than me.",
+      "parentUuid": "0450d56c_88df122f",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "88ef83dff5b10b3ab097e26b1ddd18fa2a67ca88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
