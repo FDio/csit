@@ -359,19 +359,21 @@ class PapiSocketExecutor(object):
             dict(api_name=csit_papi_command, api_args=kwargs))
         return self
 
-    def get_replies(self, err_msg="Failed to get replies."):
+    def get_replies(self, err_msg="Failed to get replies.", fake=False):
         """Get replies from VPP Python API.
 
         The replies are parsed into dict-like objects,
         "retval" field is guaranteed to be zero on success.
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
+        :param fake: If true, do not call PAPI, but still pretend to check retval.
         :type err_msg: str
+        :type fake: bool
         :returns: Responses, dict objects with fields due to API and "retval".
         :rtype: list of dict
         :raises RuntimeError: If retval is nonzero, parsing or ssh error.
         """
-        return self._execute(err_msg=err_msg)
+        return self._execute(err_msg=err_msg, fake=fake)
 
     def get_reply(self, err_msg="Failed to get reply."):
         """Get reply from VPP Python API.
@@ -428,7 +430,7 @@ class PapiSocketExecutor(object):
         """
         return self._execute(err_msg)
 
-    def _execute(self, err_msg="Undefined error message"):
+    def _execute(self, err_msg="Undefined error message", fake=False):
         """Turn internal command list into data and execute; return replies.
 
         This method also clears the internal command list.
@@ -441,7 +443,9 @@ class PapiSocketExecutor(object):
         - get_details()
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
+        :param fake: If true, do not call PAPI, but still pretend to check retval.
         :type err_msg: str
+        :type fake: bool
         :returns: Papi responses parsed into a dict-like object,
             with field due to API or stats hierarchy.
         :rtype: list of dict
@@ -455,14 +459,17 @@ class PapiSocketExecutor(object):
         for command in local_list:
             api_name = command["api_name"]
             papi_fn = getattr(vpp_instance.api, api_name)
-            try:
-                reply = papi_fn(**command["api_args"])
-            except IOError as err:
-                # Ocassionally an error happens, try reconnect.
-                logger.error("Reconnect after error: {err!r}".format(err=err))
-                self.vpp_instance.disconnect()
-                self.vpp_instance.connect_sync("csit_socket")
-                reply = papi_fn(**command["api_args"])
+            if fake:
+                reply = {"retval": 0}
+            else:
+                try:
+                    reply = papi_fn(**command["api_args"])
+                except IOError as err:
+                    # Ocassionally an error happens, try reconnect.
+                    logger.error("Reconnect after error: {err!r}".format(err=err))
+                    self.vpp_instance.disconnect()
+                    self.vpp_instance.connect_sync("csit_socket")
+                    reply = papi_fn(**command["api_args"])
             # We need to cut the vpp_papi.vpp_serializer part.
             # Only *_dump return list of objects.
             if not isinstance(reply, list):
