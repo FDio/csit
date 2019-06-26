@@ -452,9 +452,9 @@ class IPUtil(object):
             host=node['host'])
         with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(kwargs.get('count', 1)):
-                papi_exec.add(cmd, dst_address=inet_pton(
+                papi_exec.add(cmd, skip_socket=(i != 0), dst_address=inet_pton(
                     af_inet, str(net_addr+i)), **args)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK == 0:
+                if i % Constants.PAPI_MAX_API_BULK == 0:
                     papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
