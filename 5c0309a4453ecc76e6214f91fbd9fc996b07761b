@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d319bd15_0d08846e",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-26T08:13:03Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 4
+      },
+      "revId": "5c0309a4453ecc76e6214f91fbd9fc996b07761b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
