@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,28 +25,10 @@ class SPAN(object):
         pass
 
     @staticmethod
-    def set_span_mirroring(node, src_if, dst_if):
-        """Set Span mirroring on the specified node.
-
-        :param node: DUT node.
-        :param src_if: Interface to mirror traffic from.
-        :param dst_if: Interface to mirror traffic to.
-        :type node: dict
-        :type src_if: str
-        :type dst_if: str
-        """
-
-        src_if = Topology.get_interface_sw_index(node, src_if)
-        dst_if = Topology.get_interface_sw_index(node, dst_if)
-
-        with VatTerminal(node, json_param=False) as vat:
-            vat.vat_terminal_exec_cmd_from_template('span_create.vat',
-                                                    src_sw_if_index=src_if,
-                                                    dst_sw_if_index=dst_if)
-
-    @staticmethod
     def vpp_get_span_configuration(node):
         """Get full SPAN configuration from VPP node.
+
+        Used by Honeycomb.
 
         :param node: DUT node.
         :type node: dict
@@ -64,6 +46,8 @@ class SPAN(object):
                                                 ret_format="sw_if_index"):
         """Get a list of all interfaces currently being mirrored
         to the specified interface.
+
+        Used by Honeycomb.
 
         :param node: DUT node.
         :param dst_interface: Name, sw_if_index or key of interface.
