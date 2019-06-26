@@ -166,6 +166,30 @@
       "revId": "88ef83dff5b10b3ab097e26b1ddd18fa2a67ca88",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d9b51b3_46032141",
+        "filename": "resources/libraries/bash/entry/check/copyright.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T10:39:36Z",
+      "side": 1,
+      "message": "\u003e Make it simple and remove it all.\n\nNot sure what do you mean. See comments in patch set 2.",
+      "parentUuid": "9a074c72_3c1b7728",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "88ef83dff5b10b3ab097e26b1ddd18fa2a67ca88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
