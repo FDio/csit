@@ -1,0 +1,12 @@
+diff --git a/src/vpp-api/python/vpp_papi/vpp_transport_socket.py b/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
+index d26a3d47b..9e8a748ce 100644
+--- a/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
++++ b/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
+@@ -123,6 +123,7 @@ class VppTransport(object):
+             raise VppTransportSocketIOError('Invalid reply message')
+ 
+         r, length = sockclnt_create_reply.unpack(msg)
++        logger.info("Unpacked sockclnt_create_reply: {r!r}".format(r=r))
+         self.socket_index = r.index
+         for m in r.message_table:
+             n = m.name.rstrip(b'\x00\x13')
