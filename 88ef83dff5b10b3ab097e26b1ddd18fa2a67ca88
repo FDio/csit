@@ -94,6 +94,30 @@
       "revId": "88ef83dff5b10b3ab097e26b1ddd18fa2a67ca88",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "678bfa8f_e3d8783e",
+        "filename": "resources/libraries/bash/entry/check/copyright.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-26T08:44:35Z",
+      "side": 1,
+      "message": "gitignore is not a code. it is tool settings.\ntxt, md, rst is not a code it is just doc which should be copyrighted from tool that generate the doc (like sphinx) and we do have it in HTML version once.\n\nSo -1 until either all files or only code.",
+      "parentUuid": "64711957_c62673c3",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "88ef83dff5b10b3ab097e26b1ddd18fa2a67ca88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
