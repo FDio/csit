@@ -204,6 +204,9 @@ class PapiSocketExecutor(object):
             # When present locally, we finally can find the installation path.
             package_path = glob.glob(tmp_dir + installed_papi_glob)[-1]
             logger.debug("papi module path: {path}".format(path=package_path))
+            run(["bash", "-c", "patch " + package_path
+                 + "/vpp_transport_socket.py < " + os.environ["CSIT_DIR"]
+                 + "/vpp_transport_socket.diff"], check=True)
             # Package path has to be one level above the vpp_papi directory.
             package_path = package_path.rsplit('/', 1)[0]
             logger.debug("package path: {path}".format(path=package_path))
