@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,7 +14,7 @@
 """SPAN setup library"""
 
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatTerminal
+from resources.libraries.python.PapiExecutor import PapiExecutor
 
 
 class SPAN(object):
@@ -25,45 +25,34 @@ class SPAN(object):
         pass
 
     @staticmethod
-    def set_span_mirroring(node, src_if, dst_if):
-        """Set Span mirroring on the specified node.
-
-        :param node: DUT node.
-        :param src_if: Interface to mirror traffic from.
-        :param dst_if: Interface to mirror traffic to.
-        :type node: dict
-        :type src_if: str
-        :type dst_if: str
-        """
-
-        src_if = Topology.get_interface_sw_index(node, src_if)
-        dst_if = Topology.get_interface_sw_index(node, dst_if)
-
-        with VatTerminal(node, json_param=False) as vat:
-            vat.vat_terminal_exec_cmd_from_template('span_create.vat',
-                                                    src_sw_if_index=src_if,
-                                                    dst_sw_if_index=dst_if)
-
-    @staticmethod
-    def vpp_get_span_configuration(node):
+    def vpp_get_span_configuration(node, is_l2=False):
         """Get full SPAN configuration from VPP node.
 
+        Used by Honeycomb.
+
         :param node: DUT node.
         :type node: dict
+
         :returns: Full SPAN configuration as list. One list entry for every
             source/destination interface pair.
         :rtype: list of dict
         """
+        args = dict(
+            is_l2=1 if is_l2 else 0
+        )
+        with PapiExecutor(node) as papi_exec:
+            dump = papi_exec.add("sw_interface_span_dump", **args). \
+                get_dump().reply[0]["api_reply"]
 
-        with VatTerminal(node, json_param=True) as vat:
-            data = vat.vat_terminal_exec_cmd_from_template('span_dump.vat')
-            return data[0]
+        return dump
 
     @staticmethod
     def vpp_get_span_configuration_by_interface(node, dst_interface,
                                                 ret_format="sw_if_index"):
         """Get a list of all interfaces currently being mirrored
         to the specified interface.
+
+        Used by Honeycomb.
 
         :param node: DUT node.
         :param dst_interface: Name, sw_if_index or key of interface.
@@ -78,12 +67,13 @@ class SPAN(object):
 
         data = SPAN.vpp_get_span_configuration(node)
 
-        dst_interface = Topology.convert_interface_reference(
+        dst_int = Topology.convert_interface_reference(
             node, dst_interface, "sw_if_index")
         src_interfaces = []
         for item in data:
-            if item["dst-if-index"] == dst_interface:
-                src_interfaces.append(item["src-if-index"])
+            if item["sw_interface_span_details"]["sw_if_index_to"] == dst_int:
+                src_interfaces.append(
+                    item["sw_interface_span_details"]["sw_if_index_from"])
 
         if ret_format != "sw_if_index":
             src_interfaces = [
