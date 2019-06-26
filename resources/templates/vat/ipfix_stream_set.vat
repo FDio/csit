@@ -1,1 +1,0 @@
-set_ipfix_classify_stream {domain} {src_port}
