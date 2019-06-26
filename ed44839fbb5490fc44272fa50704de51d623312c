@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e38a798_af9801af",
+        "filename": "resources/libraries/robot/honeycomb/access_control_lists.robot",
+        "patchSetId": 70
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-26T11:45:35Z",
+      "side": 1,
+      "message": "PAPI?",
+      "range": {
+        "startLine": 230,
+        "startChar": 19,
+        "endLine": 230,
+        "endChar": 22
+      },
+      "revId": "ed44839fbb5490fc44272fa50704de51d623312c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "639debe2_e31f6629",
+        "filename": "tests/honeycomb/func/mgmt-cfg-acl-apihc-apivat-func.robot",
+        "patchSetId": 70
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-26T11:45:35Z",
+      "side": 1,
+      "message": "2019",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "ed44839fbb5490fc44272fa50704de51d623312c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa873e7e_745d465f",
+        "filename": "tests/vpp/func/l2xc/eth2p-eth-l2xcbase-iaclbase-func.robot",
+        "patchSetId": 70
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-26T11:45:35Z",
+      "side": 1,
+      "message": "passed",
+      "range": {
+        "startLine": 34,
+        "startChar": 62,
+        "endLine": 34,
+        "endChar": 69
+      },
+      "revId": "ed44839fbb5490fc44272fa50704de51d623312c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "775fb57b_30b0d40a",
+        "filename": "tests/vpp/func/l2xc/eth2p-eth-l2xcbase-iaclbase-func.robot",
+        "patchSetId": 70
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-26T11:45:35Z",
+      "side": 1,
+      "message": "permit",
+      "range": {
+        "startLine": 40,
+        "startChar": 35,
+        "endLine": 40,
+        "endChar": 40
+      },
+      "revId": "ed44839fbb5490fc44272fa50704de51d623312c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6082fa18_71acf816",
+        "filename": "tests/vpp/func/l2xc/eth2p-eth-l2xcbase-iaclbase-func.robot",
+        "patchSetId": 70
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-26T11:45:35Z",
+      "side": 1,
+      "message": "long",
+      "revId": "ed44839fbb5490fc44272fa50704de51d623312c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
