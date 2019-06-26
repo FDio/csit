@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45c00654_c3f263ba",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 71
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-06-26T14:36:35Z",
+      "side": 1,
+      "message": "Why do we need to use this method here if mac expected format is \u003c0-ffffffffffff\u003e (i.e. no colon expected in mac string)?",
+      "range": {
+        "startLine": 44,
+        "startChar": 55,
+        "endLine": 44,
+        "endChar": 71
+      },
+      "revId": "db6e160ca5af1de68b44f43a29eeb49dbe650330",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
