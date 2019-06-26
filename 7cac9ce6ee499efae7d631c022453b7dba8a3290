@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2a52bf8f_29dd4e37",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T10:56:15Z",
+      "side": 0,
+      "message": "I guess the answer is: No, \"env\" is to remain hardcoded.",
+      "range": {
+        "startLine": 110,
+        "startChar": 49,
+        "endLine": 110,
+        "endChar": 70
+      },
+      "revId": "7cac9ce6ee499efae7d631c022453b7dba8a3290",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "24b0be24_1f7d867d",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T10:56:15Z",
+      "side": 0,
+      "message": "I guess the answer is: No, PYTHONPATH remains pinned to CSIT_DIR in foreseeable future.",
+      "range": {
+        "startLine": 113,
+        "startChar": 38,
+        "endLine": 113,
+        "endChar": 67
+      },
+      "revId": "7cac9ce6ee499efae7d631c022453b7dba8a3290",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a6ee7c9_30ad46ae",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T10:56:15Z",
+      "side": 0,
+      "message": "I guess the answer is: Line length means the code does not fit into single line, and as we have 5 call sites, it is worth keeping as a function.",
+      "range": {
+        "startLine": 159,
+        "startChar": 18,
+        "endLine": 159,
+        "endChar": 41
+      },
+      "revId": "7cac9ce6ee499efae7d631c022453b7dba8a3290",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c53259f9_56bcbba4",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T10:56:15Z",
+      "side": 0,
+      "message": "This is actually still desirable. Imagine line 631 having || die, which would skip the popd.\nBut the function is already written, it happens to work, and we have no time for low priority improvements like that, so no big deal losing this TODO.",
+      "range": {
+        "startLine": 626,
+        "startChar": 29,
+        "endLine": 626,
+        "endChar": 66
+      },
+      "revId": "7cac9ce6ee499efae7d631c022453b7dba8a3290",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
