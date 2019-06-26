@@ -1,1 +1,0 @@
-flow_classify_set_interface sw_if_index {interface} {table} {delete}
