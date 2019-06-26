@@ -118,6 +118,30 @@
       "revId": "88ef83dff5b10b3ab097e26b1ddd18fa2a67ca88",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d0fd2fb3_7b5894cb",
+        "filename": "resources/libraries/bash/entry/check/copyright.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-26T10:04:54Z",
+      "side": 1,
+      "message": "I want \"all files\", but some files simply do not support copyright notices, so I only whitelisted those that I know can.\nI am going to update comments here to make it clearer.",
+      "parentUuid": "678bfa8f_e3d8783e",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 25
+      },
+      "revId": "88ef83dff5b10b3ab097e26b1ddd18fa2a67ca88",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
