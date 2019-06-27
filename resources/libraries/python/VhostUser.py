@@ -33,21 +33,17 @@ class VhostUser(object):
             response.
         :rtype: list
         """
+        cmd = "sw_interface_vhost_user_dump"
         with PapiExecutor(node) as papi_exec:
-            dump = papi_exec.add("sw_interface_vhost_user_dump").get_dump()
+            details = papi_exec.add(cmd).get_details()
 
-        key = "sw_interface_vhost_user_details"
-        data = list()
-        for item in dump.reply[0]["api_reply"]:
-            item[key]["interface_name"] = \
-                item[key]["interface_name"].rstrip('\x00')
-            item[key]["sock_filename"] = \
-                item[key]["sock_filename"].rstrip('\x00')
-            data.append(item)
+        for vhost in details:
+            vhost["interface_name"] = vhost["interface_name"].rstrip('\x00')
+            vhost["sock_filename"] = vhost["sock_filename"].rstrip('\x00')
 
-        logger.debug("VhostUser data:\n{data}".format(data=data))
+        logger.debug("VhostUser details:\n{details}".format(details=details))
 
-        return data
+        return details
 
     @staticmethod
     def vpp_create_vhost_user_interface(node, socket):
@@ -67,25 +63,21 @@ class VhostUser(object):
             sock_filename=str(socket)
         )
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
-
-        # Extract sw_if_idx:
-        sw_if_idx = data["sw_if_index"]
+            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         # Update the Topology:
         if_key = Topology.add_new_port(node, 'vhost')
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
+        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
 
-        ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_idx)
+        ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
         Topology.update_interface_name(node, if_key, ifc_name)
 
-        ifc_mac = InterfaceUtil.vpp_get_interface_mac(node, sw_if_idx)
+        ifc_mac = InterfaceUtil.vpp_get_interface_mac(node, sw_if_index)
         Topology.update_interface_mac_address(node, if_key, ifc_mac)
 
         Topology.update_interface_vhost_socket(node, if_key, socket)
 
-        return sw_if_idx
+        return sw_if_index
 
     @staticmethod
     def get_vhost_user_if_name_by_sock(node, socket):
