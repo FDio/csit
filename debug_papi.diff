@@ -1,0 +1,141 @@
+diff --git a/src/vpp-api/python/vpp_papi/vpp_papi.py b/src/vpp-api/python/vpp_papi/vpp_papi.py
+index 5207bbf0b..a1a2df5f7 100644
+--- a/src/vpp-api/python/vpp_papi/vpp_papi.py
++++ b/src/vpp-api/python/vpp_papi/vpp_papi.py
+@@ -20,7 +20,6 @@ import ctypes
+ import sys
+ import multiprocessing as mp
+ import os
+-import logging
+ import functools
+ import json
+ import threading
+@@ -30,8 +29,6 @@ import atexit
+ from . vpp_serializer import VPPType, VPPEnumType, VPPUnionType
+ from . vpp_serializer import VPPMessage, vpp_get_type, VPPTypeAlias
+ 
+-logger = logging.getLogger(__name__)
+-
+ if sys.version[0] == '2':
+     import Queue as queue
+ else:
+@@ -66,7 +63,6 @@ def vpp_atexit(vpp_weakref):
+     """Clean up VPP connection on shutdown."""
+     vpp_instance = vpp_weakref()
+     if vpp_instance and vpp_instance.transport.connected:
+-        vpp_instance.logger.debug('Cleaning up VPP on exit')
+         vpp_instance.disconnect()
+ 
+ 
+@@ -78,19 +74,6 @@ else:
+         return d.items()
+ 
+ 
+-def call_logger(msgdef, kwargs):
+-    s = 'Calling {}('.format(msgdef.name)
+-    for k, v in kwargs.items():
+-        s += '{}:{} '.format(k, v)
+-    s += ')'
+-    return s
+-
+-
+-def return_logger(r):
+-    s = 'Return from {}'.format(r)
+-    return s
+-
+-
+ class VppApiDynamicMethodHolder(object):
+     pass
+ 
+@@ -201,7 +184,7 @@ class VPPApiClient(object):
+             try:
+                 self.messages[m[0]] = VPPMessage(m[0], m[1:])
+             except VPPNotImplementedError:
+-                self.logger.error('Not implemented error for {}'.format(m[0]))
++                pass
+ 
+     def __init__(self, apifiles=None, testmode=False, async_thread=True,
+                  logger=None, loglevel=None,
+@@ -219,10 +202,6 @@ class VPPApiClient(object):
+         loglevel, if supplied, is the log level this logger is set
+         to report at (from the loglevels in the logging module).
+         """
+-        if logger is None:
+-            logger = logging.getLogger(__name__)
+-            if loglevel is not None:
+-                logger.setLevel(loglevel)
+         self.logger = logger
+ 
+         self.messages = {}
+@@ -452,9 +431,6 @@ class VPPApiClient(object):
+                         multipart = False
+                     f = self.make_function(msg, i, multipart, do_async)
+                     setattr(self._api, name, FuncWrapper(f))
+-            else:
+-                self.logger.debug(
+-                    'No such message type or failed CRC checksum: %s', n)
+ 
+     def connect_internal(self, name, msg_handler, chroot_prefix, rx_qlen,
+                          do_async):
+@@ -556,7 +532,6 @@ class VPPApiClient(object):
+ 
+     def decode_incoming_msg(self, msg, no_type_conversion=False):
+         if not msg:
+-            self.logger.warning('vpp_api.read failed')
+             return
+ 
+         (i, ci), size = self.header.unpack(msg, 0)
+@@ -631,8 +606,6 @@ class VPPApiClient(object):
+             pass
+         self.validate_args(msgdef, kwargs)
+ 
+-        logging.debug(call_logger(msgdef, kwargs))
+-
+         b = msgdef.pack(kwargs)
+         self.transport.suspend()
+ 
+@@ -666,7 +639,6 @@ class VPPApiClient(object):
+ 
+         self.transport.resume()
+ 
+-        logger.debug(return_logger(rl))
+         return rl
+ 
+     def _call_vpp_async(self, i, msg, **kwargs):
+diff --git a/src/vpp-api/python/vpp_papi/vpp_transport_socket.py b/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
+index ee142584c..a49c204cb 100644
+--- a/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
++++ b/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
+@@ -10,7 +10,6 @@ try:
+     import queue as queue
+ except ImportError:
+     import Queue as queue
+-import logging
+ from . import vpp_papi
+ 
+ 
+@@ -46,7 +45,6 @@ class VppTransport(object):
+                                              self.sque._reader], [], [])
+             except socket.error:
+                 # Terminate thread
+-                logging.error('select failed')
+                 self.q.put(None)
+                 return
+ 
+@@ -91,7 +89,6 @@ class VppTransport(object):
+         try:
+             self.socket.connect(self.server_address)
+         except socket.error as msg:
+-            logging.error("{} on socket {}".format(msg, self.server_address))
+             raise
+ 
+         self.connected = True
+@@ -152,6 +149,8 @@ class VppTransport(object):
+         if self.message_thread is not None and self.message_thread.is_alive():
+             # Allow additional connect() calls.
+             self.message_thread.join()
++        # Wipe message table, VPP can be restarted with different plugins.
++        self.message_table = {}
+         # Collect garbage.
+         self.message_thread = None
+         self.socket = None
