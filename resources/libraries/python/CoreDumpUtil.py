@@ -148,7 +148,7 @@ class CoreDumpUtil(object):
                 # processing.
                 continue
 
-            local_path = 'archive/{name}'.format(name=name)
+            local_path = 'archives/{name}'.format(name=name)
             remote_path = '{dir}/{name}'.format(dir=Constants.CORE_DUMP_DIR,
                                                 name=name)
             try:
