@@ -13,7 +13,7 @@
 
 """Packet trace library."""
 
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType
 
 
@@ -34,8 +34,8 @@ class Trace(object):
 
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                PapiExecutor.run_cli_cmd(node, cmd="show trace {max}".
-                                         format(max=maximum))
+                PapiSocketExecutor.run_cli_cmd(
+                    node, cmd="show trace {max}".format(max=maximum))
 
     @staticmethod
     def clear_packet_trace_on_all_duts(nodes):
@@ -46,4 +46,4 @@ class Trace(object):
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                PapiExecutor.run_cli_cmd(node, cmd="clear trace")
+                PapiSocketExecutor.run_cli_cmd(node, cmd="clear trace")
