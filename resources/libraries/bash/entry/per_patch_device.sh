@@ -24,7 +24,7 @@ set -exuo pipefail
 # + Everything needed to build VPP is already installed locally.
 # Consequences:
 # + The following directories (relative to VPP repo) are (re)created:
-# ++ csit_current, build_current, archive, csit/archive, csit_download_dir.
+# ++ csit_current, build_current, archives, csit/archives, csit_download_dir.
 
 # TODO: Implement some kind of VPP build caching.
 
@@ -55,6 +55,6 @@ activate_docker_topology || die
 select_vpp_device_tags || die
 compose_pybot_arguments || die
 run_pybot || die
-copy_archives || die
+move_archives || die
 archive_test_results "csit_current" || die
 die_on_pybot_error || die

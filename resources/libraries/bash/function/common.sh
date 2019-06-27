@@ -192,7 +192,8 @@ function common_dirs () {
     # - RESOURCES_DIR - Path to existing CSIT subdirectory "resources".
     # - TOOLS_DIR - Path to existing resources subdirectory "tools".
     # - PYTHON_SCRIPTS_DIR - Path to existing tools subdirectory "scripts".
-    # - ARCHIVE_DIR - Path to created CSIT subdirectory "archive".
+    # - ARCHIVE_DIR - Path to created CSIT subdirectory "archives".
+    #   The name is chosen to match what ci-management expects.
     # - DOWNLOAD_DIR - Path to created CSIT subdirectory "download_dir".
     # - GENERATED_DIR - Path to created CSIT subdirectory "generated".
     # Directories created if not present:
@@ -222,7 +223,7 @@ function common_dirs () {
         die "Readlink failed."
     }
 
-    ARCHIVE_DIR="$(readlink -f "${CSIT_DIR}/archive")" || {
+    ARCHIVE_DIR="$(readlink -f "${CSIT_DIR}/archives")" || {
         die "Readlink failed."
     }
     mkdir -p "${ARCHIVE_DIR}" || die "Mkdir failed."
@@ -280,26 +281,43 @@ function compose_pybot_arguments () {
 }
 
 
-function copy_archives () {
+function move_archives () {
 
     set -exuo pipefail
 
+    # Move archive directory to top of workspace, if not already there.
+    #
+    # ARCHIVE_DIR is positioned relative to CSIT_DIR,
+    # but in some jobs CSIT_DIR is not same as WORKSPACE
+    # (e.g. under VPP_DIR). To simplify ci-management settings,
+    # we want to move the data to the top. We do not want simple copy,
+    # as ci-management is eager with recursive search.
+    #
+    # As some scripts may call this function multiple times,
+    # the actual implementation use copying and deletion,
+    # so the workspace gets "union" of contents (except overwrites on conflict).
+    # The consequence is empty ARCHIVE_DIR remaining after this call.
+    #
+    # As the source directory is emptied,
+    # the check for dirs being different is essential.
+    #
     # Variables read:
-    # - WORKSPACE - Jenkins workspace, copy only if the value is not empty.
+    # - WORKSPACE - Jenkins workspace, move only if the value is not empty.
     #   Can be unset, then it speeds up manual testing.
-    # - ARCHIVE_DIR - Path to directory with content to be copied.
+    # - ARCHIVE_DIR - Path to directory with content to be moved.
     # Directories updated:
     # - ${WORKSPACE}/archives/ - Created if does not exist.
-    #   Content of ${ARCHIVE_DIR}/ is copied here.
+    #   Content of ${ARCHIVE_DIR}/ is moved.
     # Functions called:
     # - die - Print to stderr and exit.
 
-    # We will create additional archive if workspace variable is set.
-    # This way if script is running in jenkins all will be
-    # automatically archived to logs.fd.io.
     if [[ -n "${WORKSPACE-}" ]]; then
-        mkdir -p "${WORKSPACE}/archives/" || die "Archives dir create failed."
-        cp -rf "${ARCHIVE_DIR}"/* "${WORKSPACE}/archives" || die "Copy failed."
+        target=$(readlink -f "${WORKSPACE}/archives")
+        if [[ "${target}" != "${CSIT_DIR}" ]]; then
+            mkdir -p "${target}" || die "Archives dir create failed."
+            cp -rf "${ARCHIVE_DIR}"/* "${target}" || die "Copy failed."
+            rm -rf "${ARCHIVE_DIR}"/* || die "Delete failed."
+        fi
     fi
 }
 
