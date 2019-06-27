@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "01e432f0_c5d6cf5f",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1598,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-27T14:02:42Z",
+      "side": 1,
+      "message": "was fixed i later ps",
+      "parentUuid": "45fc34d8_b501d068",
+      "range": {
+        "startLine": 1598,
+        "startChar": 14,
+        "endLine": 1598,
+        "endChar": 39
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "abb0e81c_7c8c9e4e",
         "filename": "resources/libraries/robot/performance/performance_configuration.robot",
         "patchSetId": 15
@@ -82,6 +106,30 @@
       "writtenOn": "2019-06-26T16:37:39Z",
       "side": 1,
       "message": "More descriptive variable names please.",
+      "range": {
+        "startLine": 1632,
+        "startChar": 6,
+        "endLine": 1632,
+        "endChar": 7
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c47a3072_891bcc8d",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1632,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-27T14:02:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abb0e81c_7c8c9e4e",
       "range": {
         "startLine": 1632,
         "startChar": 6,
@@ -117,6 +165,30 @@
     },
     {
       "key": {
+        "uuid": "d3403086_25c22d5f",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1633,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-27T14:02:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a20a001_06939736",
+      "range": {
+        "startLine": 1633,
+        "startChar": 4,
+        "endLine": 1633,
+        "endChar": 8
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "10f620ad_6ae24d34",
         "filename": "resources/libraries/robot/performance/performance_configuration.robot",
         "patchSetId": 15
@@ -128,6 +200,30 @@
       "writtenOn": "2019-06-26T16:37:39Z",
       "side": 1,
       "message": "Part of device name. For historic reasons we use \"if\" as the part for devices which apply no encapsulation.\nMaybe you can document \"if\" meaning \"no encap\" already at line 1598.",
+      "range": {
+        "startLine": 1674,
+        "startChar": 47,
+        "endLine": 1674,
+        "endChar": 49
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cfc8393a_a6a48a2e",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1674,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-27T14:02:42Z",
+      "side": 1,
+      "message": "Not really the approach i need to solve is that the configuration works in layers.\n\n- physical layer (do anything with IFs like tagging|bonding|avf|...\n- add overlay (encap) layer ip4|ip4vxlan|ipsec| or combination of those\n- then last part is stitching layer (ip4|l2bd|ip6)\n\nThis is the first time in CSIT doing this (previously it was chaotic ad-hoc creating of L2 KW and that is why we have so many duplicates), but idea is to find some working model so configuration can be defined by model.\n\nAlthough i have limited time to build such model now (like yang) with all the dependencies. Ideally i want to create graph model in CSIT with dependencies. But that is huge task for this release so candidate for 20.01",
+      "parentUuid": "10f620ad_6ae24d34",
       "range": {
         "startLine": 1674,
         "startChar": 47,
@@ -163,6 +259,30 @@
     },
     {
       "key": {
+        "uuid": "cd9b2e9e_b61ba209",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1711,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-27T14:02:42Z",
+      "side": 1,
+      "message": "This would require renaming quite large amount of KW. As all are for single. Not sure if fits in time frame.",
+      "parentUuid": "68b80eb7_52e91e95",
+      "range": {
+        "startLine": 1711,
+        "startChar": 30,
+        "endLine": 1711,
+        "endChar": 31
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "31a4cfeb_9b589472",
         "filename": "resources/libraries/robot/performance/performance_configuration.robot",
         "patchSetId": 15
@@ -174,6 +294,30 @@
       "writtenOn": "2019-06-26T16:37:39Z",
       "side": 1,
       "message": "Define test variables and create\n\nThat way line 1731 can contain \"define\", line 1732 \"create\" while line 1711 keeps \"initialize\".\nOtherwise lines 1711 and 1732 look too similar to me, considering there is one more \"define\" step distinguishing them.",
+      "range": {
+        "startLine": 1713,
+        "startChar": 10,
+        "endLine": 1713,
+        "endChar": 16
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53e28fc7_aefdb105",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1713,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-27T14:02:42Z",
+      "side": 1,
+      "message": "hmm naming... well need to think in the Gherkin style or model style. Though to use both.",
+      "parentUuid": "31a4cfeb_9b589472",
       "range": {
         "startLine": 1713,
         "startChar": 10,
@@ -209,6 +353,30 @@
     },
     {
       "key": {
+        "uuid": "c9df76cb_881396ab",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 1755,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-27T14:02:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2d4ccc5_d6a7b368",
+      "range": {
+        "startLine": 1755,
+        "startChar": 4,
+        "endLine": 1755,
+        "endChar": 29
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3e788e5f_3150c48a",
         "filename": "resources/traffic_profiles/trex/trex-sl-ethip4vxlan-ip4src1dst1udpsrcrnd.py",
         "patchSetId": 15
@@ -220,6 +388,30 @@
       "writtenOn": "2019-06-26T16:37:39Z",
       "side": 1,
       "message": "Do we want to vary those? Multiple MAC addresses with identical IP addresses seem strange.",
+      "range": {
+        "startLine": 26,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 47
+      },
+      "revId": "e592cc8ded861d4faf0a995b9ca7f31628346793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53f0b37c_e57c49b3",
+        "filename": "resources/traffic_profiles/trex/trex-sl-ethip4vxlan-ip4src1dst1udpsrcrnd.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-27T14:02:42Z",
+      "side": 1,
+      "message": "basic case with NAT, but no idea. It does hashing already.",
+      "parentUuid": "3e788e5f_3150c48a",
       "range": {
         "startLine": 26,
         "startChar": 46,
