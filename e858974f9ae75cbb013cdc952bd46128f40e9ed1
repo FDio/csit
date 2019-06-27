@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9763af83_c138390a",
+        "filename": "tests/vpp/func/ip4/eth2p-ethip4-ip4base-iaclbase-func.robot",
+        "patchSetId": 73
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-27T08:56:51Z",
+      "side": 1,
+      "message": "I think the point of access control lists is to restrict access. Some tests with packets being actually refused would be nice.\nWas there something wrong with the original \u0027deny\u0027 tests?",
+      "range": {
+        "startLine": 103,
+        "startChar": 9,
+        "endLine": 103,
+        "endChar": 39
+      },
+      "revId": "e858974f9ae75cbb013cdc952bd46128f40e9ed1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
