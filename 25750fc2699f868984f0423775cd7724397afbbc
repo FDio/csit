@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ce9244d6_f3ace5a1",
+        "filename": "resources/libraries/robot/telemetry/span.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-27T09:02:04Z",
+      "side": 1,
+      "message": "One \"empty\" line is enough.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 7
+      },
+      "revId": "25750fc2699f868984f0423775cd7724397afbbc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
