@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a836f44_3712de45",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-28T14:34:48Z",
+      "side": 1,
+      "message": "Should be a single VLAN ID. Reflecting the use case of a single infrastructure dot1q VLAN carrying multiple VXLAN tunnels.",
+      "range": {
+        "startLine": 20,
+        "startChar": 39,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09e21317_08f4767a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-28T14:34:48Z",
+      "side": 1,
+      "message": "It would be good to be more explicit to indicate which octets are changing, as current notation may be misinterpreted as containing 256 address range, vs. two as it is actually coded. Suggestion: 172.17.[0..1].2",
+      "range": {
+        "startLine": 21,
+        "startChar": 39,
+        "endLine": 21,
+        "endChar": 62
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09b923f5_00c00792",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-28T14:34:48Z",
+      "side": 1,
+      "message": "Should be a single address for VTEP on VPP: 172.16.0.1",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 62
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7452aad3_25ede358",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-28T14:34:48Z",
+      "side": 1,
+      "message": "Suggestion: [0..1]",
+      "range": {
+        "startLine": 25,
+        "startChar": 39,
+        "endLine": 25,
+        "endChar": 44
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46a56243_037df398",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-28T14:34:48Z",
+      "side": 1,
+      "message": "Suggestion: 00:aa:aa:00:00:[00..ff]",
+      "range": {
+        "startLine": 26,
+        "startChar": 39,
+        "endLine": 26,
+        "endChar": 76
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "842629ed_123b7759",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-28T14:34:48Z",
+      "side": 1,
+      "message": "Payload source IP should be incrementing too: 10.0.1.[0.255]",
+      "range": {
+        "startLine": 27,
+        "startChar": 39,
+        "endLine": 27,
+        "endChar": 47
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a0af09e3_f1bdf2a7",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-28T14:34:48Z",
+      "side": 1,
+      "message": "Suggestion: 00:bb:bb:00:00:[00..ff]",
+      "range": {
+        "startLine": 28,
+        "startChar": 39,
+        "endLine": 28,
+        "endChar": 76
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96662d52_b709303a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-28T14:34:48Z",
+      "side": 1,
+      "message": "Payload destination IP should be incrementing too: 10.0.2.[0.255]",
+      "range": {
+        "startLine": 29,
+        "startChar": 39,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19b9c311_2a614b11",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-28T14:34:48Z",
+      "side": 1,
+      "message": "Same comments as per Direction 0 --\u003e 1.",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 30,
+        "endChar": 20
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
