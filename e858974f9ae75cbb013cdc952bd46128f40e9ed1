@@ -70,6 +70,30 @@
       "revId": "e858974f9ae75cbb013cdc952bd46128f40e9ed1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16c1401d_9fb12a36",
+        "filename": "tests/vpp/func/ip4/eth2p-ethip4-ip4base-iaclbase-func.robot",
+        "patchSetId": 73
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-06-28T14:13:32Z",
+      "side": 1,
+      "message": "Agree, the functional tests verifying matching deny entries should be kept, unless there is a valid reason to remove them (e.g. functionality discontinued or refactored on VPP side).",
+      "parentUuid": "ae2c80fe_fe68fd48",
+      "range": {
+        "startLine": 103,
+        "startChar": 9,
+        "endLine": 103,
+        "endChar": 39
+      },
+      "revId": "e858974f9ae75cbb013cdc952bd46128f40e9ed1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
