@@ -182,6 +182,8 @@ class PapiSocketExecutor(object):
             # When present locally, we finally can find the installation path.
             package_path = glob.glob(tmp_dir + installed_papi_glob)[-1]
             logger.debug("papi module path: {path}".format(path=package_path))
+            run(["bash", "-c", "export CSIT_DIR=`pwd`; cd " + package_path
+                 + "; patch < ${CSIT_DIR}/debug_papi.diff"], check=True, log=True)
             # Package path has to be one level above the vpp_papi directory.
             package_path = package_path.rsplit('/', 1)[0]
             logger.debug("package path: {path}".format(path=package_path))
@@ -419,6 +421,8 @@ class PapiSocketExecutor(object):
         local_list = self._api_command_list
         # Clear first as execution may fail.
         self._api_command_list = list()
+        # Debug control ping.
+        vpp_instance.api.control_ping()
         replies = list()
         for command in local_list:
             api_name = command["api_name"]
