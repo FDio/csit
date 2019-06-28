@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b5b8cc29_86dfcacd",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-28T15:59:07Z",
+      "side": 1,
+      "message": "Doable but does not make sense at all. Nobody will deploy or design NW like this. As basically then you can have acess port on switch doing tagging for you. This is nfvbench/packet.net specifics",
+      "parentUuid": "7a836f44_3712de45",
+      "range": {
+        "startLine": 20,
+        "startChar": 39,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09e21317_08f4767a",
         "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
         "patchSetId": 20
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9b13d087_f4e49ed8",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-28T15:59:07Z",
+      "side": 1,
+      "message": "Will fix notation",
+      "parentUuid": "09e21317_08f4767a",
+      "range": {
+        "startLine": 21,
+        "startChar": 39,
+        "endLine": 21,
+        "endChar": 62
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "09b923f5_00c00792",
         "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
         "patchSetId": 20
@@ -59,6 +107,30 @@
       "writtenOn": "2019-06-28T14:34:48Z",
       "side": 1,
       "message": "Should be a single address for VTEP on VPP: 172.16.0.1",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 62
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdbed70a_b05573b7",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-28T15:59:07Z",
+      "side": 1,
+      "message": "Make sense",
+      "parentUuid": "09b923f5_00c00792",
       "range": {
         "startLine": 22,
         "startChar": 5,
@@ -174,6 +246,30 @@
       "writtenOn": "2019-06-28T14:34:48Z",
       "side": 1,
       "message": "Payload destination IP should be incrementing too: 10.0.2.[0.255]",
+      "range": {
+        "startLine": 29,
+        "startChar": 39,
+        "endLine": 29,
+        "endChar": 47
+      },
+      "revId": "07d603e6d4956a2e71515c19540ff27806971f0c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6b08cd14_a78cfd4f",
+        "filename": "resources/traffic_profiles/trex/trex-sl-dot1qip4vxlan-ip4src2dst2udpsrcrnd.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-06-28T15:59:07Z",
+      "side": 1,
+      "message": "Keeping same ip logic so s.s.1.x here",
+      "parentUuid": "96662d52_b709303a",
       "range": {
         "startLine": 29,
         "startChar": 39,
