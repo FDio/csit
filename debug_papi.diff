@@ -1,0 +1,210 @@
+diff --git a/src/vpp-api/python/vpp_papi/vpp_papi.py b/src/vpp-api/python/vpp_papi/vpp_papi.py
+index 5207bbf0b..759a6a71d 100644
+--- a/src/vpp-api/python/vpp_papi/vpp_papi.py
++++ b/src/vpp-api/python/vpp_papi/vpp_papi.py
+@@ -454,7 +454,8 @@ class VPPApiClient(object):
+                     setattr(self._api, name, FuncWrapper(f))
+             else:
+                 self.logger.debug(
+-                    'No such message type or failed CRC checksum: %s', n)
++                    'No such message type or failed CRC checksum: {n}'.format(
++                        n=n))
+ 
+     def connect_internal(self, name, msg_handler, chroot_prefix, rx_qlen,
+                          do_async):
+@@ -631,7 +632,7 @@ class VPPApiClient(object):
+             pass
+         self.validate_args(msgdef, kwargs)
+ 
+-        logging.debug(call_logger(msgdef, kwargs))
++        self.logger.debug(call_logger(msgdef, kwargs))
+ 
+         b = msgdef.pack(kwargs)
+         self.transport.suspend()
+@@ -647,26 +648,31 @@ class VPPApiClient(object):
+         rl = []
+         while (True):
+             msg = self.transport.read()
++            self.logger.debug("Read from transport {r!r}".format(r=msg))
+             if not msg:
+                 raise VPPIOError(2, 'VPP API client: read failed')
+             r = self.decode_incoming_msg(msg, no_type_conversion)
+             msgname = type(r).__name__
+             if context not in r or r.context == 0 or context != r.context:
+                 # Message being queued
++                self.logger.debug("Message queued {r!r}".format(r=r))
+                 self.message_queue.put_nowait(r)
+                 continue
+ 
+             if not multipart:
+                 rl = r
++                self.logger.debug("Passing singlepart {r!r}".format(r=r))
+                 break
+             if msgname == 'control_ping_reply':
++                self.logger.debug("Got ping reply {r!r}".format(r=r))
+                 break
+ 
++            self.logger.debug("Appending multipart {r!r}".format(r=r))
+             rl.append(r)
+ 
+         self.transport.resume()
+ 
+-        logger.debug(return_logger(rl))
++        self.logger.debug(return_logger(rl))
+         return rl
+ 
+     def _call_vpp_async(self, i, msg, **kwargs):
+@@ -690,6 +696,7 @@ class VPPApiClient(object):
+             kwargs['client_index'] = 0
+         kwargs['_vl_msg_id'] = i
+         b = msg.pack(kwargs)
++        self.logger.debug("Sending async {b!r}".format(b=b))
+ 
+         self.transport.write(b)
+ 
+diff --git a/src/vpp-api/python/vpp_papi/vpp_transport_socket.py b/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
+index ee142584c..05024a175 100644
+--- a/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
++++ b/src/vpp-api/python/vpp_papi/vpp_transport_socket.py
+@@ -10,7 +10,6 @@ try:
+     import queue as queue
+ except ImportError:
+     import Queue as queue
+-import logging
+ from . import vpp_papi
+ 
+ 
+@@ -46,35 +45,39 @@ class VppTransport(object):
+                                              self.sque._reader], [], [])
+             except socket.error:
+                 # Terminate thread
+-                logging.error('select failed')
+-                self.q.put(None)
++                self.parent.logger.error('select failed')
++                self.q.put((None, []))
+                 return
+ 
+             for r in rlist:
+                 if r == self.sque._reader:
+                     # Terminate
+-                    self.q.put(None)
++                    self.q.put((None, []))
+                     return
+ 
+                 elif r == self.socket:
+                     try:
+-                        msg = self._read()
++                        msg, logs = self._read()
+                         if not msg:
+-                            self.q.put(None)
++                            self.q.put((None, logs))
+                             return
+                     except socket.error:
+-                        self.q.put(None)
++                        self.q.put((None, []))
+                         return
+                     # Put either to local queue or if context == 0
+                     # callback queue
+                     if self.parent.has_context(msg):
+-                        self.q.put(msg)
++                        self.q.put((msg, logs))
+                     else:
+                         self.parent.msg_handler_async(msg)
+                 else:
+                     raise VppTransportSocketIOError(
+                         2, 'Unknown response from select')
+ 
++    def log_logs(self, logs):
++        for log in logs:
++            self.parent.logger.debug("Read log: {log}".format(log=log))
++
+     def connect(self, name, pfx, msg_handler, rx_qlen):
+         # TODO: Reorder the actions and add "roll-backs",
+         # to restore clean disconnect state when failure happens durng connect.
+@@ -91,7 +94,7 @@ class VppTransport(object):
+         try:
+             self.socket.connect(self.server_address)
+         except socket.error as msg:
+-            logging.error("{} on socket {}".format(msg, self.server_address))
++            self.parent.logger.error("{} on socket {}".format(msg, self.server_address))
+             raise
+ 
+         self.connected = True
+@@ -116,17 +119,22 @@ class VppTransport(object):
+                 'context': 124}
+         b = sockclnt_create.pack(args)
+         self.write(b)
+-        msg = self._read()
++        msg, logs = self._read()
++        self.log_logs(logs)
+         hdr, length = self.parent.header.unpack(msg, 0)
+         if hdr.msgid != 16:
+             # TODO: Add first numeric argument.
+             raise VppTransportSocketIOError('Invalid reply message')
+ 
+         r, length = sockclnt_create_reply.unpack(msg)
++        self.parent.logger.info("Got sockclnt_create_reply.")
+         self.socket_index = r.index
++        text_list = ["Processed index msg table:"]
+         for m in r.message_table:
+             n = m.name.rstrip(b'\x00\x13')
+             self.message_table[n] = m.index
++            text.append("{i!r}, {n!r}".format(n=n, i=m.index))
++        self.parent.logger.debug('\n'.join(text_list))
+ 
+         self.message_thread.daemon = True
+         self.message_thread.start()
+@@ -152,6 +160,8 @@ class VppTransport(object):
+         if self.message_thread is not None and self.message_thread.is_alive():
+             # Allow additional connect() calls.
+             self.message_thread.join()
++        # Wipe message table, VPP can be restarted with different plugins.
++        self.message_table = {}
+         # Collect garbage.
+         self.message_thread = None
+         self.socket = None
+@@ -192,13 +202,16 @@ class VppTransport(object):
+             raise VppTransportSocketIOError(1, 'Not connected')
+ 
+     def _read(self):
++        logs = []
+         hdr = self.socket.recv(16)
++        logs.append("Received header {m!r}".format(m=hdr))
+         if not hdr:
+-            return
++            return None, logs
+         (_, hdrlen, _) = self.header.unpack(hdr)  # If at head of message
+ 
+         # Read rest of message
+         msg = self.socket.recv(hdrlen)
++        logs.append("Received message start {m!r}".format(m=msg))
+         if hdrlen > len(msg):
+             nbytes = len(msg)
+             buf = bytearray(hdrlen)
+@@ -208,17 +221,23 @@ class VppTransport(object):
+             left = hdrlen - nbytes
+             while left:
+                 nbytes = self.socket.recv_into(view, left)
++                logs.append("Received message chunk {m!r}".format(m=view[:nbytes]))
+                 view = view[nbytes:]
+                 left -= nbytes
+-            return buf
++                logs.append("Left {m!r}".format(m=left))
++            logs.append("Chunked message done.")
++            return buf, logs
+         if hdrlen == len(msg):
+-            return msg
++            logs.append("Start message full.")
++            return msg, logs
+         raise VppTransportSocketIOError(1, 'Unknown socket read error')
+ 
+     def read(self):
+         if not self.connected:
+             raise VppTransportSocketIOError(1, 'Not connected')
+         try:
+-            return self.q.get(True, self.read_timeout)
++            msg, logs = self.q.get(True, self.read_timeout)
++            self.log_logs(logs)
++            return msg
+         except queue.Empty:
+             return None
