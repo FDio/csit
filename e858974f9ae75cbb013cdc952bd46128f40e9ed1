@@ -46,6 +46,30 @@
       "revId": "e858974f9ae75cbb013cdc952bd46128f40e9ed1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ae2c80fe_fe68fd48",
+        "filename": "tests/vpp/func/ip4/eth2p-ethip4-ip4base-iaclbase-func.robot",
+        "patchSetId": 73
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-06-28T11:23:11Z",
+      "side": 1,
+      "message": "Yes, that is why need both types of checks. You may notice that original tests are sending two packets, one shall be dropped, other shall be forwarded.\n\nI am just curious why in supposedly simple VAT-to-PAPI change we are also removing 11 \u0027deny\u0027 tests (with both packet checks), and adding 3 \u0027allow\u0027 tests (with only drop check).",
+      "parentUuid": "60fcbe29_25dcc60b",
+      "range": {
+        "startLine": 103,
+        "startChar": 9,
+        "endLine": 103,
+        "endChar": 39
+      },
+      "revId": "e858974f9ae75cbb013cdc952bd46128f40e9ed1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
