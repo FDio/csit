@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,6 +15,12 @@
 
 from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.topology import Topology
+from resources.libraries.python.PapiExecutor import PapiExecutor
+from ipaddress import IPv4Address, IPv6Address
+from resources.libraries.python.L2Util import L2Util
+
+# TODO: Remove
+from robot.api import logger
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
 
@@ -28,16 +34,26 @@ class LispUtil(object):
     def vpp_show_lisp_state(node):
         """Get lisp state from VPP node.
 
+        HC, func
+
         :param node: VPP node.
         :type node: dict
         :returns: Lisp gpe state.
-        :rtype: list
+        :rtype: dict
         """
+        cmd = 'show_lisp_status'
+        err_msg = "Failed to get LISP status on host {host}".format(
+            host=node['host'])
 
-        vat = VatExecutor()
-        vat.execute_script_json_out('lisp/show_lisp_status.vat',
-                                    node)
-        return JsonParser().parse_data(vat.get_script_stdout())
+        with PapiExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
+
+        data = dict()
+        data["feature_status"] = "enabled" if reply["feature_status"] else \
+            "disabled"
+        data["gpe_status"] = "enabled" if reply["gpe_status"] else "disabled"
+        return data
 
     @staticmethod
     def vpp_show_lisp_locator_set(node, items_filter):
@@ -52,12 +68,22 @@ class LispUtil(object):
         :rtype: list
         """
 
+        ifilter = {"_": 0, "_local": 1, "_remote": 2}
+        args = dict(filter=ifilter["_" + items_filter])
+
+        cmd = 'lisp_locator_set_dump'
+        err_msg = "Failed to get LISP locator set on host {host}".format(
+            host=node['host'])
+
         try:
-            with VatTerminal(node) as vat:
-                response = vat.vat_terminal_exec_cmd_from_template(
-                    'lisp/show_lisp_locator_set.vat', filter=items_filter)
-            return response[0]
-        except ValueError:
+            with PapiExecutor(node) as papi_exec:
+                dump = papi_exec.add(cmd, **args).get_dump(err_msg)
+            data = []
+            for details in dump.reply[0]["api_reply"]:
+                data.append({"ls_name": details["lisp_locator_set_details"]["ls_name"].rstrip('\x00'),
+                             "ls_index": details["lisp_locator_set_details"]["ls_index"]})
+            return data
+        except (ValueError, LookupError):
             return []
 
     @staticmethod
@@ -70,9 +96,36 @@ class LispUtil(object):
         :rtype: list
         """
 
-        vat = VatExecutor()
-        vat.execute_script_json_out('lisp/show_lisp_eid_table.vat', node)
-        return JsonParser().parse_data(vat.get_script_stdout())
+        cmd = 'lisp_eid_table_dump'
+        err_msg = "Failed to get LISP eid table on host {host}".format(
+            host=node['host'])
+
+        with PapiExecutor(node) as papi_exec:
+            dump = papi_exec.add(cmd).get_dump(err_msg)
+# TODO: remove
+            logger.info(dump)
+
+        data = []
+        for details in dump.reply[0]["api_reply"]:
+            eid = 'N/A'
+            if details["lisp_eid_table_details"]["eid_type"] == 0:
+                eid = str(IPv4Address(details["lisp_eid_table_details"]["eid"][0:4])) + "/" + str(
+                    details["lisp_eid_table_details"]["eid_prefix_len"])
+            elif details["lisp_eid_table_details"]["eid_type"] == 1:
+                eid = str(IPv6Address(details["lisp_eid_table_details"]["eid"])) + "/" + str(
+                    details["lisp_eid_table_details"]["eid_prefix_len"])
+            elif details["lisp_eid_table_details"]["eid_type"] == 2:
+                eid = str(L2Util.bin_to_mac(details["lisp_eid_table_details"]["eid"][0:6]))
+
+            data.append({"action": details["lisp_eid_table_details"]["action"],
+                         "is_local": details["lisp_eid_table_details"]["is_local"],
+                         "eid": eid,
+                         "vni": details["lisp_eid_table_details"]["vni"],
+                         "ttl": details["lisp_eid_table_details"]["ttl"],
+                         "authoritative": details["lisp_eid_table_details"]["authoritative"]
+                         })
+        logger.info(data)
+        return data
 
     @staticmethod
     def vpp_show_lisp_map_resolver(node):
@@ -84,9 +137,30 @@ class LispUtil(object):
         :rtype: list
         """
 
-        vat = VatExecutor()
-        vat.execute_script_json_out('lisp/show_lisp_map_resolver.vat', node)
-        return JsonParser().parse_data(vat.get_script_stdout())
+        cmd = 'lisp_map_resolver_dump'
+        err_msg = "Failed to get LISP map resolver on host {host}".format(
+            host=node['host'])
+
+        with PapiExecutor(node) as papi_exec:
+            dump = papi_exec.add(cmd).get_dump(err_msg)
+# TODO: remove
+            logger.info(dump)
+
+        data = []
+        for details in dump.reply[0]["api_reply"]:
+            ip = 'N/A'
+            if details["lisp_map_resolver_details"]["is_ipv6"] == 0:
+                ip = str(IPv4Address(details["lisp_map_resolver_details"]["ip_address"][0:4]))
+            elif details["lisp_map_resolver_details"]["is_ipv6"] == 1:
+                ip = str(IPv6Address(details["lisp_map_resolver_details"]["ip_address"]))
+            data.append({"map resolver": ip})
+        logger.info(data)
+        return data
+
+        #TODO: remove
+#        vat = VatExecutor()
+#        vat.execute_script_json_out('lisp/show_lisp_map_resolver.vat', node)
+#        return JsonParser().parse_data(vat.get_script_stdout())
 
     @staticmethod
     def vpp_show_lisp_map_register(node):
@@ -98,6 +172,17 @@ class LispUtil(object):
         :rtype: list
         """
 
+        cmd = 'show_lisp_map_register_state'
+        err_msg = "Failed to get LISP map register state on host {host}".format(
+            host=node['host'])
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+# TODO: remove
+            logger.info(data)
+
+#TODO: remove
         vat = VatExecutor()
         vat.execute_script_json_out('lisp/show_lisp_map_register.vat', node)
         return JsonParser().parse_data(vat.get_script_stdout())
@@ -112,6 +197,17 @@ class LispUtil(object):
         :rtype: list
         """
 
+        cmd = 'show_lisp_map_request_mode'
+        err_msg = "Failed to get LISP map request mode on host {host}".format(
+            host=node['host'])
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+# TODO: remove
+            logger.info(data)
+
+#TODO: remove
         vat = VatExecutor()
         vat.execute_script_json_out('lisp/show_lisp_map_request_mode.vat', node)
         return JsonParser().parse_data(vat.get_script_stdout())
@@ -126,6 +222,16 @@ class LispUtil(object):
         :rtype: list
         """
 
+        cmd = 'lisp_map_server_dump'
+        err_msg = "Failed to get LISP map server on host {host}".format(
+            host=node['host'])
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd).get_dump(err_msg)
+# TODO: remove
+            logger.info(data)
+
+#TODO: remove
         vat = VatExecutor()
         vat.execute_script_json_out('lisp/show_lisp_map_server.vat', node)
         return JsonParser().parse_data(vat.get_script_stdout())
@@ -154,6 +260,17 @@ class LispUtil(object):
         :rtype: list
         """
 
+        cmd = 'show_lisp_rloc_probe_state'
+        err_msg = "Failed to get LISP rloc config on host {host}".format(
+            host=node['host'])
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+# TODO: remove
+            logger.info(data)
+
+# TODO: remove
         vat = VatExecutor()
         vat.execute_script_json_out('lisp/show_lisp_rloc_config.vat', node)
         return JsonParser().parse_data(vat.get_script_stdout())
@@ -168,6 +285,17 @@ class LispUtil(object):
         :rtype: dict
         """
 
+        cmd = 'show_lisp_pitr'
+        err_msg = "Failed to get LISP pitr on host {host}".format(
+            host=node['host'])
+
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd).get_replies(err_msg). \
+                verify_reply(err_msg=err_msg)
+# TODO: remove
+            logger.info(data)
+
+# TODO: remove
         vat = VatExecutor()
         vat.execute_script_json_out('lisp/show_lisp_pitr.vat', node)
         return JsonParser().parse_data(vat.get_script_stdout())
