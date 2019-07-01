@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ef8db158_de129a24",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-01T17:07:16Z",
+      "side": 1,
+      "message": "data\n\nOr better yet, \"reply\" for all occurences.",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 15
+      },
+      "revId": "cba391526033dd7d85378a17a36c3a455a4f7d50",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
