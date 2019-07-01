@@ -16,20 +16,24 @@
 from robot.api import logger
 
 
-def raise_from(raising, excepted):
+def raise_from(raising, excepted, level="WARN"):
     """Function to be replaced by "raise from" in Python 3.
 
     Neither "six" nor "future" offer good enough implementation right now.
     chezsoi.org/lucas/blog/displaying-chained-exceptions-stacktraces-in-python-2
 
     Current implementation just logs the excepted error, and raises the new one.
+    For allower log level values, see:
+    robot-framework.readthedocs.io/en/latest/autodoc/robot.api.html#log-levels
 
     :param raising: The exception to raise.
     :param excepted: The exception we excepted and want to log.
+    :param level: Robot logger logging level to log with.
     :type raising: BaseException
     :type excepted: BaseException
+    :type level: str
     :raises: raising
     """
-    logger.error("Excepted: {exc!r}\nRaising: {rai!r}".format(
-        exc=excepted, rai=raising))
+    logger.write("Excepted: {exc!r}\nRaising: {rai!r}".format(
+        exc=excepted, rai=raising), level)
     raise raising

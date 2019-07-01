@@ -11,7 +11,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""VPP Configuration File Generator library."""
+"""VPP Configuration File Generator library.
+
+TODO: Support initialization with default values,
+so that we do not need to have block of 6 "Add Unix" commands
+in 7 various places of CSIT code.
+"""
 
 import re
 
@@ -190,6 +195,11 @@ class VppConfigGenerator(object):
         """Add UNIX exec configuration."""
         path = ['unix', 'exec']
         self.add_config_item(self._nodeconfig, value, path)
+
+    def add_socksvr(self, socket="default"):
+        """Add socksvr configuration."""
+        path = ['socksvr', socket]
+        self.add_config_item(self._nodeconfig, '', path)
 
     def add_api_segment_gid(self, value='vpp'):
         """Add API-SEGMENT gid configuration.
