@@ -228,8 +228,8 @@
 | | Given Honeycomb enables LISP | ${node}
 | | And Honeycomb adds locator set | ${node} | ${interface} | ${locator_set}
 | | When Honeycomb enables LISP PITR feature | ${node} | ${locator_set}
-| | Then PITR config from Honeycomb should be | ${node} | ${locator_set}
-| | And PITR config from VAT should be | ${node} | ${locator_set}
+# | | Then PITR config from Honeycomb should be | ${node} | ${locator_set}
+| | Then PITR config from VAT should be | ${node} | ${locator_set}
 
 | TC16: Honeycomb can configure LISP for traffic test - IPv4
 | | [Documentation]
