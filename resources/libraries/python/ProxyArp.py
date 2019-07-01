@@ -54,5 +54,4 @@ class ProxyArp(object):
         err_msg = 'Failed to enable proxy ARP on interface {ifc}'.format(
             ifc=interface)
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
