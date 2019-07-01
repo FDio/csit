@@ -15,6 +15,9 @@
 
 from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.topology import Topology
+from resources.libraries.python.PapiExecutor import PapiExecutor
+
+# TODO: Remove
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
 
@@ -28,12 +31,22 @@ class LispUtil(object):
     def vpp_show_lisp_state(node):
         """Get lisp state from VPP node.
 
+        HC, func
+
         :param node: VPP node.
         :type node: dict
         :returns: Lisp gpe state.
         :rtype: list
         """
+        cmd = 'show_lisp_status'
+        err_msg = "Failed to get LISP status on host {host}".format(
+            host=node['host'])
 
+        with PapiExecutor(node) as papi_exec:
+            data = papi_exec.add(cmd).get_replies(err_msg).\
+                verify_reply(err_msg=err_msg)
+
+        # TODO: Remove
         vat = VatExecutor()
         vat.execute_script_json_out('lisp/show_lisp_status.vat',
                                     node)
