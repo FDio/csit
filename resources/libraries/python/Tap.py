@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -43,28 +43,28 @@ class Tap(object):
             resp = vat.vat_terminal_exec_cmd_from_template('tap.vat',
                                                            tap_command=command,
                                                            tap_arguments=args)
-        sw_if_idx = resp[0]['sw_if_index']
+        sw_if_index = resp[0]['sw_if_index']
         if_key = Topology.add_new_port(node, 'tap')
-        Topology.update_interface_sw_if_index(node, if_key, sw_if_idx)
-        ifc_name = Tap.vpp_get_tap_interface_name(node, sw_if_idx)
+        Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
+        ifc_name = Tap.vpp_get_tap_interface_name(node, sw_if_index)
         Topology.update_interface_name(node, if_key, ifc_name)
         if mac is None:
-            mac = Tap.vpp_get_tap_interface_mac(node, sw_if_idx)
+            mac = Tap.vpp_get_tap_interface_mac(node, sw_if_index)
         Topology.update_interface_mac_address(node, if_key, mac)
         Topology.update_interface_tap_dev_name(node, if_key, tap_name)
 
-        return sw_if_idx
+        return sw_if_index
 
     @staticmethod
-    def modify_tap_interface(node, if_index, tap_name, mac=None):
+    def modify_tap_interface(node, sw_if_index, tap_name, mac=None):
         """Modify tap interface like linux interface name or VPP MAC.
 
         :param node: Node to modify tap on.
-        :param if_index: Index of tap interface to be modified.
+        :param sw_if_index: Index of tap interface to be modified.
         :param tap_name: Tap interface name for linux tap.
         :param mac: Optional MAC address for VPP tap.
         :type node: dict
-        :type if_index: int
+        :type sw_if_index: int
         :type tap_name: str
         :type mac: str
         :returns: Returns a interface index.
@@ -73,14 +73,14 @@ class Tap(object):
         command = 'modify'
         if mac is not None:
             args = 'sw_if_index {} tapname {} mac {}'.format(
-                if_index, tap_name, mac)
+                sw_if_index, tap_name, mac)
         else:
-            args = 'sw_if_index {} tapname {}'.format(if_index, tap_name)
+            args = 'sw_if_index {} tapname {}'.format(sw_if_index, tap_name)
         with VatTerminal(node) as vat:
             resp = vat.vat_terminal_exec_cmd_from_template('tap.vat',
                                                            tap_command=command,
                                                            tap_arguments=args)
-        if_key = Topology.get_interface_by_sw_index(node, if_index)
+        if_key = Topology.get_interface_by_sw_index(node, sw_if_index)
         Topology.update_interface_tap_dev_name(node, if_key, tap_name)
         if mac:
             Topology.update_interface_mac_address(node, if_key, mac)
@@ -88,17 +88,17 @@ class Tap(object):
         return resp[0]['sw_if_index']
 
     @staticmethod
-    def delete_tap_interface(node, if_index):
+    def delete_tap_interface(node, sw_if_index):
         """Delete tap interface.
 
         :param node: Node to delete tap on.
-        :param if_index: Index of tap interface to be deleted.
+        :param sw_if_index: Index of tap interface to be deleted.
         :type node: dict
-        :type if_index: int
+        :type sw_if_index: int
         :raises RuntimeError: Deletion was not successful.
         """
         command = 'delete'
-        args = 'sw_if_index {}'.format(if_index)
+        args = 'sw_if_index {}'.format(sw_if_index)
         with VatTerminal(node) as vat:
             resp = vat.vat_terminal_exec_cmd_from_template('tap.vat',
                                                            tap_command=command,
@@ -106,7 +106,7 @@ class Tap(object):
             if int(resp[0]['retval']) != 0:
                 raise RuntimeError(
                     'Could not remove tap interface: {}'.format(resp))
-        if_key = Topology.get_interface_sw_index(node, if_index)
+        if_key = Topology.get_interface_sw_index(node, sw_if_index)
         Topology.remove_port(node, if_key)
 
     @staticmethod
@@ -125,13 +125,13 @@ class Tap(object):
                 'Tap interface :{} does not exist'.format(tap_name))
 
     @staticmethod
-    def vpp_get_tap_interface_name(node, sw_if_idx):
+    def vpp_get_tap_interface_name(node, sw_if_index):
         """Get VPP tap interface name from hardware interfaces dump.
 
         :param node: DUT node.
-        :param sw_if_idx: DUT node.
+        :param sw_if_index: DUT node.
         :type node: dict
-        :type sw_if_idx: int
+        :type sw_if_index: int
         :returns: VPP tap interface name.
         :rtype: str
         """
@@ -142,19 +142,19 @@ class Tap(object):
         for line in str(response[0]).splitlines():
             if line.startswith('tap-'):
                 line_split = line.split()
-                if line_split[1] == sw_if_idx:
+                if line_split[1] == sw_if_index:
                     return line_split[0]
 
         return None
 
     @staticmethod
-    def vpp_get_tap_interface_mac(node, sw_if_idx):
+    def vpp_get_tap_interface_mac(node, sw_if_index):
         """Get tap interface MAC address from hardware interfaces dump.
 
         :param node: DUT node.
-        :param sw_if_idx: DUT node.
+        :param sw_if_index: DUT node.
         :type node: dict
-        :type sw_if_idx: int
+        :type sw_if_index: int
         :returns: Tap interface MAC address.
         :rtype: str
         """
@@ -169,7 +169,7 @@ class Tap(object):
                 return line_split[-1]
             if line.startswith('tap-'):
                 line_split = line.split()
-                if line_split[1] == sw_if_idx:
+                if line_split[1] == sw_if_index:
                     tap_if_match = True
 
         return None
