@@ -288,10 +288,13 @@ function gather_vpp () {
             download_artifacts || die
             ;;
         "vpp-csit-"*)
-            # Use locally built packages.
-            mv "${DOWNLOAD_DIR}"/../"vpp"*".${PKG_SUFFIX}" "${DOWNLOAD_DIR}"/ || {
-                die "Move command failed."
-            }
+            # Download from Jenkins.
+            wget "https://jenkins.fd.io/job/vpp-beta-verify-master-ubuntu1804/8304/artifact/*zip*/archive.zip" || die
+            unzip "archive.zip" || die
+            ## Use locally built packages.
+            #mv "${DOWNLOAD_DIR}"/../"vpp"*".${PKG_SUFFIX}" "${DOWNLOAD_DIR}"/ || {
+            #    die "Move command failed."
+            #}
             ;;
         *)
             die "Unable to identify job type from: ${TEST_CODE}"
