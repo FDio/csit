@@ -26,7 +26,6 @@ from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatTerminal
 
 
 # from vpp/src/vnet/vnet/mpls/mpls_types.h
@@ -449,25 +448,6 @@ class IPUtil(object):
         :type prefix_len: int
         :type kwargs: dict
         """
-        count = kwargs.get("count", 1)
-
-        if count > 100:
-            gateway = kwargs.get("gateway", '')
-
-            vrf = kwargs.get("vrf", None)
-            multipath = kwargs.get("multipath", False)
-
-            with VatTerminal(node, json_param=False) as vat:
-                vat.vat_terminal_exec_cmd_from_template(
-                    'vpp_route_add.vat',
-                    network=network,
-                    prefix_length=prefix_len,
-                    via='via {}'.format(gateway) if gateway else '',
-                    vrf='vrf {}'.format(vrf) if vrf else '',
-                    count='count {}'.format(count) if count else '',
-                    multipath='multipath' if multipath else '')
-            return
-
         interface = kwargs.get('interface', '')
         gateway = kwargs.get('gateway', '')
 
