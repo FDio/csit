@@ -36,6 +36,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
+#source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
 common_dirs || die
 set_perpatch_vpp_dir || die
 build_vpp_ubuntu_amd64 "CURRENT" || die
@@ -47,6 +48,7 @@ set_perpatch_dut || die
 select_topology || die
 select_os || die
 select_build "build_current" || die
+#gather_build || die
 check_download_dir || die
 activate_virtualenv "${VPP_DIR}" || die
 generate_tests || die
