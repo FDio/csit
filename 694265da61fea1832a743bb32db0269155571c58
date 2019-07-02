@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9a50418_964e9e3c",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-02T13:17:06Z",
+      "side": 1,
+      "message": "This selects those tests in every 3n-dnv job (even the manually triggered ones). Do you really want that?\nPerhaps you just want to add those to mrr-daily.txt (with nic_intel-x553)?",
+      "range": {
+        "startLine": 721,
+        "startChar": 28,
+        "endLine": 721,
+        "endChar": 29
+      },
+      "revId": "694265da61fea1832a743bb32db0269155571c58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
