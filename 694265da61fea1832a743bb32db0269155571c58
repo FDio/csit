@@ -22,6 +22,30 @@
       "revId": "694265da61fea1832a743bb32db0269155571c58",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8dd155ea_bf865edf",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1461
+      },
+      "writtenOn": "2019-07-02T14:15:30Z",
+      "side": 1,
+      "message": "Hi Vratko,\n\nBasically, hardware crypto acceleration is an important feature for denverton platform, we want that always can be tested since\nvpp 19.01 and vpp 19.04 release both have regression issue of this feature.",
+      "parentUuid": "b9a50418_964e9e3c",
+      "range": {
+        "startLine": 721,
+        "startChar": 28,
+        "endLine": 721,
+        "endChar": 29
+      },
+      "revId": "694265da61fea1832a743bb32db0269155571c58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
