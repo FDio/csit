@@ -718,10 +718,15 @@ function select_tags () {
             test_tag_array+=("!vts")
             ;;
         *"3n-dnv"*)
+            test_tag_array+=("mrrAND${DEFAULT_NIC}AND1cAND64bANDvxlan")
+            test_tag_array+=("mrrAND${DEFAULT_NIC}AND1cAND64bANDipsechw")
+            test_tag_array+=("mrrAND${DEFAULT_NIC}AND1cAND1518bANDipsechw")
             test_tag_array+=("!memif")
             test_tag_array+=("!srv6_proxy")
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
+            test_tag_array+=("!scale")
+            test_tag_array+=("!lispgpe")
             ;;
         *"3n-tsh"*)
             test_tag_array+=("!ipsechw")
