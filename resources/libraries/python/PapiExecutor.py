@@ -15,6 +15,9 @@
 """
 
 import binascii
+import copy
+import gc
+from guppy import hpy
 import json
 
 from pprint import pformat
@@ -24,6 +27,9 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import SSH, SSHTimeout
 from resources.libraries.python.PapiHistory import PapiHistory
+
+
+mem_prof = hpy()
 
 
 __all__ = ["PapiExecutor", "PapiResponse"]
@@ -305,6 +311,9 @@ class PapiExecutor(object):
         :returns: self, so that method chaining is possible.
         :rtype: PapiExecutor
         """
+        # Caller may be editing dicts (or even strings?) in-place.
+        csit_papi_command = copy.deepcopy(csit_papi_command)
+        kwargs = copy.deepcopy(kwargs)
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
