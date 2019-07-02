@@ -15,6 +15,7 @@
 """
 
 import binascii
+import gc
 import json
 
 from pprint import pformat
@@ -667,6 +668,9 @@ class PapiExecutor(object):
 
         # Log processed papi reply to be able to check API replies changes
         logger.debug("Processed PAPI reply: {reply}".format(reply=papi_reply))
+
+        # In scale tests, Python does not free enough memory on its own.
+        gc.collect()
 
         return PapiResponse(
             papi_reply=papi_reply, stdout=stdout, stderr=stderr,
