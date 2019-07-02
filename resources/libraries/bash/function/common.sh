@@ -660,18 +660,23 @@ function select_tags () {
     # All topologies DUT NICs - Selected topology DUT NICs
     exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}")))
 
-    # Select default NIC
+    # Select default NIC and set TEST_ARCH variable
+    # TODO:set TEST_ARCH for other arch which need specific mrr-daily.txt
     case "${TEST_CODE}" in
         *"3n-dnv"* | *"2n-dnv"*)
             DEFAULT_NIC='nic_intel-x553'
+            TEST_ARCH="-dnv"
             ;;
         *"3n-tsh"*)
             DEFAULT_NIC='nic_intel-x520-da2'
+            TEST_ARCH=""
             ;;
         *)
             DEFAULT_NIC='nic_intel-x710'
+            TEST_ARCH=""
             ;;
     esac
+
 
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
@@ -679,7 +684,8 @@ function select_tags () {
             readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mlr-weekly.txt"
             ;;
         *"mrr-daily"* )
-            readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mrr-daily.txt"
+            readarray -t test_tag_array < \
+                "${BASH_FUNCTION_DIR}/mrr-daily${TEST_ARCH}.txt"
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mrr-weekly.txt"
@@ -716,12 +722,14 @@ function select_tags () {
             test_tag_array+=("!srv6_proxy")
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
+            test_tag_array+=("!drv_avf")
             ;;
         *"3n-dnv"*)
             test_tag_array+=("!memif")
             test_tag_array+=("!srv6_proxy")
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
+            test_tag_array+=("!drv_avf")
             ;;
         *"3n-tsh"*)
             test_tag_array+=("!ipsechw")
