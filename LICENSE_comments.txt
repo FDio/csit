@@ -1,0 +1,43 @@
+Disclaimer: Not written by a lawyer.
+
+CSIT is a software project without a binary distribution.
+The whole git repository (including history) is both
+the Source form and the Object form of CSIT.
+
+While the Apache License, Version 2.0
+  https://www.apache.org/licenses/LICENSE-2.0
+still applies to CSIT as a whole,
+CSIT uses a specific way to fulfill its license conditions.
+
+> 4.a You must give any other recipients of the Work or
+> Derivative Works a copy of this License;
+
+Single LICENSE file at the top to git repository is enough.
+Per-file license notices are allowed, but unnecessary.
+
+> 4.b You must cause any modified files to carry
+> prominent notices stating that You changed the files;
+
+While copright notices are allowed, they are only informative.
+As every contribution contains a sign-off and a date,
+the true record of file modifications is the git history.
+
+> 4.c You must retain, in the Source form of any Derivative Works
+> that You distribute, all copyright, patent, trademark, and
+> attribution notices from the Source form of the Work,
+> excluding those notices that do not pertain to any part of
+> the Derivative Works;
+
+Removal of duplicate notices is allowed, as long as at least one notice
+(of each type) still covers the same parts of CSIT.
+
+> 4.d If the Work includes a "NOTICE" text file as part of its distribution
+(...)
+
+CSIT does contain a NOTICE file, but that file does not contain any
+specific attributions. Instead it contains parts of FD.io charter,
+specifying two licenses that apply.
+One for "inbound code" and "outbound code", other for "documentation".
+
+Currently, it is not clear which parts (files) of CSIT are covered
+by which license (or both, or neither).
