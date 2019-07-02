@@ -55,6 +55,5 @@ activate_docker_topology || die
 select_vpp_device_tags || die
 compose_pybot_arguments || die
 run_pybot || die
-copy_archives || die
 archive_test_results "csit_current" || die
 die_on_pybot_error || die
