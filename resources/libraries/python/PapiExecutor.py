@@ -15,6 +15,8 @@
 """
 
 import binascii
+import copy
+import gc
 import json
 
 from pprint import pformat
@@ -305,6 +307,9 @@ class PapiExecutor(object):
         :returns: self, so that method chaining is possible.
         :rtype: PapiExecutor
         """
+        # Caller may be editing dicts (or even strings?) in-place.
+        csit_papi_command = copy.deepcopy(csit_papi_command)
+        kwargs = copy.deepcopy(kwargs)
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
@@ -667,6 +672,11 @@ class PapiExecutor(object):
 
         # Log processed papi reply to be able to check API replies changes
         logger.debug("Processed PAPI reply: {reply}".format(reply=papi_reply))
+
+        # In scale tests, Python does not free enough memory on its own.
+        logger.console("Calling GC collect...")
+        gc.collect()
+        logger.console("GC done.")
 
         return PapiResponse(
             papi_reply=papi_reply, stdout=stdout, stderr=stderr,
