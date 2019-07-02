@@ -38,16 +38,16 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 common_dirs || die
 set_perpatch_vpp_dir || die
-build_vpp_ubuntu_amd64 "CURRENT" || die
-set_aside_commit_build_artifacts || die
+#build_vpp_ubuntu_amd64 "CURRENT" || die
+#set_aside_commit_build_artifacts || die
 initialize_csit_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
 set_perpatch_dut || die
 select_topology || die
 select_os || die
-select_build "build_current" || die
-check_download_dir || die
+#select_build "build_current" || die
+#check_download_dir || die
 activate_virtualenv "${VPP_DIR}" || die
 generate_tests || die
 archive_tests || die
