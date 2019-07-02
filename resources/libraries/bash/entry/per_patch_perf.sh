@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -70,7 +70,6 @@ for ((iter=0; iter<iterations; iter++)); do
     select_build "build_parent" || die
     check_download_dir || die
     run_pybot || die
-    copy_archives || die
     archive_parse_test_results "csit_parent/${iter}" || die
     die_on_pybot_error || die
     # TODO: Use less heavy way to avoid apt remove failures.
@@ -78,7 +77,6 @@ for ((iter=0; iter<iterations; iter++)); do
     select_build "build_current" || die
     check_download_dir || die
     run_pybot || die
-    copy_archives || die
     archive_parse_test_results "csit_current/${iter}" || die
     die_on_pybot_error || die
 done
