@@ -695,7 +695,8 @@ function select_tags () {
             readarray -t test_tag_array < "${tfd}/mlr-weekly.txt" || die
             ;;
         *"mrr-daily"* )
-            readarray -t test_tag_array < "${tfd}/mrr-daily.txt" || die
+            readarray -t test_tag_array < \
+                "${tfd}/mrr-daily-${FLAVOR}.txt" || die
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array < "${tfd}/mrr-weekly.txt" || die
@@ -736,12 +737,14 @@ function select_tags () {
             test_tag_array+=("!srv6_proxy")
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
+            test_tag_array+=("!drv_avf")
             ;;
         *"3n-dnv"*)
             test_tag_array+=("!memif")
             test_tag_array+=("!srv6_proxy")
             test_tag_array+=("!vhost")
             test_tag_array+=("!vts")
+            test_tag_array+=("!drv_avf")
             ;;
         *"3n-tsh"*)
             test_tag_array+=("!ipsechw")
