@@ -64,6 +64,9 @@ below:
       log /tmp/vpe.log
       nodaemon
     }
+    socksvr {
+      default
+    }
     ip6
     {
       heap-size 4G
