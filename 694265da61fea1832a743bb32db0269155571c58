@@ -46,6 +46,30 @@
       "revId": "694265da61fea1832a743bb32db0269155571c58",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df6268ba_f6f246fb",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-03T15:15:23Z",
+      "side": 1,
+      "message": "Agree with Vratko\n\nplease remove lines 721-732. It will run ipsechw anyway as you are not blacklisting it on demand.\n\nWhat you want is to create on line 682 condition to load customized mrr-daily.txt",
+      "parentUuid": "8dd155ea_bf865edf",
+      "range": {
+        "startLine": 721,
+        "startChar": 28,
+        "endLine": 721,
+        "endChar": 29
+      },
+      "revId": "694265da61fea1832a743bb32db0269155571c58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
