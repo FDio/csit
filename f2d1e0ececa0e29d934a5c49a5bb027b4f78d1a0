@@ -248,6 +248,24 @@
     },
     {
       "key": {
+        "uuid": "68474203_0ad2f059",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-07-03T19:23:34Z",
+      "side": 1,
+      "message": "it can be any design. The most efficient one will likely avoid passing packets between guest user space and guest kernel space.\nPeople have tried to come up with domain specific reference NFs but they all fall short because the memory footprint/signature of each commercial NF is unique.\nYou will not find 2 commercial VNFs that will use the LLC in a same way.\nAnd that pretty much limits the real relevance of any study of noisy neighbor using any form of test VNF.\nThe only relevant benchmark is to run it on the real thing:\nchains using real VNFs on the real platform on the real HW.\nAnything else is just estimation and approximation.\nThat is why nfvbench was designed to run on the final system.\n\nMy concern about this CNCF style of matrix is that 99.99% of readers will do a 1:1 comparison between the matrices: 1 x 1 VM vs 1 x 1 CNF, 1 x 10 VM vs 1 x 10 CNF etc... \nSuch comparison is inappropriate for the above reasons.\n\nI would say that any spec that leads to that kind of ill conceived comparison is dangerous and requires guard rails.\n\nPerhaps this spec needs to have an important \"How to (not) interpret results\" section.\n\"Can the results of such measurement predict that one technology is superior to another one?\"\nWhat does this spec and one technology buys to the folks who will deploy and actually have to make money out of dense deployments?\nFrom all practical purpose, I think this spec advances in one area, which is to formalize the dense deployment perf measurement, advertise why it is important and how the results can be used (which is IMHO good to do capacity planning: how many chains can I stuff in a compute).\n\nThe risk I can see is some people will want to use the raw results to say for ex that VM Is slow and CNF is 10x faster and hence I should drop VM technology.",
+      "parentUuid": "ed73003b_7a5c55a5",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cfdc0aac_67a1417b",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 1
