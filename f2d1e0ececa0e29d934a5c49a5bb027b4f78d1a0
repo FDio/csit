@@ -212,6 +212,24 @@
     },
     {
       "key": {
+        "uuid": "54e14f08_93deee2c",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-07-03T16:19:31Z",
+      "side": 1,
+      "message": "more difficult in terms of control plane.\nright now in csit you hardcode the placement of your NFs, this is not possible in a generic NFV cloud control plane as you need to use the tools/APIs available to place your NFs in the way you exactly want.\nThat is the main difference between a research experiment and productization.\nThink about it, in production you not only have 1 compute but you have many of them, how are you going to spread your chains? By packing each compute one by one? or by spreading them across all compute nodes?\nAlso this paper makes you think that all these combos are equally important. They are not. Today, nobody ever deploys any chain in high density with more than 2 NFs per chain. So the value of a 4-NF chain is clearly not that useful other than purely speculative (not to mention 10-NF chain).\nThe concurrent multi-chain dimension is a lot more interesting today (10 x single NF chains is a lot more interesting than 1x10-NF chain)\nThis might change with CNCF with lighter containers and more of them in a chain but this opens up a whole set of other control plane  issues that are not present in the current deployment VNFs (all in one VM).\nAlso it is not exactly fair to compare different technologies with same chain depth.\nVM based VNFs tend to pool all NFs in 1 VM, so depth is 1.\nContainer based VNFs aim to disaggregate into plenty of smaller containers so depth is \u003e\u003e1.\nA more fair comparison is to compare VM based VNF to container based VNF, so that would be more like comparing \n- VM based shallow chain\n- vs. container based deep chain\n E.g. 10 chains of 1 VM vs 10 chains or 10-deep containers\n\nWhat is the purpose of doing otherwise? That would be confusing message. It would be as if you want to compare the throughput of 1 hardware router vs, the throughput of 1 of the disaggregated piece of the router in isolation (say ACL), clearly wrong.\n\n\n\nI think it is important to put things in perspective and associate them to the reality of the field.",
+      "parentUuid": "c1f128b7_91cba970",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cfdc0aac_67a1417b",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 1
