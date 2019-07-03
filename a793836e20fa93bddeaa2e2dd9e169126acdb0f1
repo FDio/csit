@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "f69d54cc_03baed43",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-07-03T16:19:31Z",
+      "side": 1,
+      "message": "target: https://opnfv-nfvbench.readthedocs.io/en/latest/testing/user/userguide/readme.html\n\ntitle: NFVbench Data Plane Performance Measurement Features\n\ndate: 2016-2019",
+      "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ca36f68_a3ab8319",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 3
@@ -22,6 +39,57 @@
       "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a9467c6_35ad273c",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-07-03T16:19:31Z",
+      "side": 1,
+      "message": "this can be generalized to ndr/pdr.\nthe values measured should be \n- throughput (bps)\n- packet rate (pps or fps)\n- latency (usec)\nIdeally these values should be itemized per chain and per direction (forward/reverse)\n\nyou can always note the limitations of current scripts/tools.",
+      "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4894dd6_74b6ff39",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 880,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-07-03T16:19:31Z",
+      "side": 1,
+      "message": "I am missing the nfvbench sweep chart, can we add it here?\nY\u003dthroughput or packet rate\nX\u003dnumber of concurrent chains\n\neach series (curve) would correspond to one profile (eg packet size or number of NF in a chain or number of vswitch cores).",
+      "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b388a5df_d9c45ba0",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 78
+      },
+      "writtenOn": "2019-07-03T16:19:31Z",
+      "side": 1,
+      "message": "+nfvbench/trex",
+      "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
