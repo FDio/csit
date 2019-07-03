@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ffc9f01_dfafe8de",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-dev.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-03T13:31:13Z",
+      "side": 1,
+      "message": "Do we still need these calls? If they are useful, they could be added as an additional tear down action (to line 27 here).",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "5b73f437f98e2b31587b229242f5ead57fe86c64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e4a26c78_4fa0351d",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-dev.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-03T13:31:13Z",
+      "side": 1,
+      "message": "I doubt we need the check here.\nIn teardown maybe, perhaps to be only called on test failure.",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 25
+      },
+      "revId": "5b73f437f98e2b31587b229242f5ead57fe86c64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
