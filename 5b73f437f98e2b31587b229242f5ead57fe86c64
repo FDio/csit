@@ -117,6 +117,30 @@
       "revId": "5b73f437f98e2b31587b229242f5ead57fe86c64",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b48fba13_a455abc2",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-dev.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-03T15:21:33Z",
+      "side": 1,
+      "message": "Ok.",
+      "parentUuid": "d427a2d5_a096bc1c",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 25
+      },
+      "revId": "5b73f437f98e2b31587b229242f5ead57fe86c64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
