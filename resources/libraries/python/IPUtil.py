@@ -20,7 +20,7 @@ from ipaddress import ip_address, IPv4Network, IPv6Network
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatTerminal
@@ -112,28 +112,22 @@ class IPUtil(object):
         """
         sw_if_index = InterfaceUtil.get_interface_index(node, interface)
 
-        if sw_if_index:
-            is_ipv6 = 1 if ip_version == 'ipv6' else 0
+        if not sw_if_index:
+            return list()
 
-            cmd = 'ip_address_dump'
-            args = dict(sw_if_index=sw_if_index,
-                        is_ipv6=is_ipv6)
-            err_msg = 'Failed to get L2FIB dump on host {host}'.format(
-                host=node['host'])
+        is_ipv6 = 1 if ip_version == 'ipv6' else 0
 
-            with PapiExecutor(node) as papi_exec:
-                details = papi_exec.add(cmd, **args).get_details(err_msg)
+        cmd = 'ip_address_dump'
+        args = dict(sw_if_index=sw_if_index,
+                    is_ipv6=is_ipv6)
+        err_msg = 'Failed to get L2FIB dump on host {host}'.format(
+            host=node['host'])
 
-            for item in details:
-                item['ip'] = item['prefix'].split('/')[0]
-                item['prefix_length'] = int(item['prefix'].split('/')[1])
-                item['is_ipv6'] = is_ipv6
-                item['netmask'] = \
-                    str(IPv6Network(unicode('::/{pl}'.format(
-                        pl=item['prefix_length']))).netmask) \
-                    if is_ipv6 \
-                    else str(IPv4Network(unicode('0.0.0.0/{pl}'.format(
-                        pl=item['prefix_length']))).netmask)
+        with PapiSocketExecutor(node) as papi_exec:
+            details = papi_exec.add(cmd, **args).get_details(err_msg)
+
+        # TODO: CSIT currently looks only whether the list is empty.
+        # Add proper value processing if values become important.
 
         return details
 
@@ -145,10 +139,10 @@ class IPUtil(object):
         :type node: dict
         """
 
-        PapiExecutor.run_cli_cmd(node, 'show ip fib')
-        PapiExecutor.run_cli_cmd(node, 'show ip fib summary')
-        PapiExecutor.run_cli_cmd(node, 'show ip6 fib')
-        PapiExecutor.run_cli_cmd(node, 'show ip6 fib summary')
+        PapiSocketExecutor.run_cli_cmd(node, 'show ip fib')
+        PapiSocketExecutor.run_cli_cmd(node, 'show ip fib summary')
+        PapiSocketExecutor.run_cli_cmd(node, 'show ip6 fib')
+        PapiSocketExecutor.run_cli_cmd(node, 'show ip6 fib summary')
 
     @staticmethod
     def get_interface_vrf_table(node, interface, ip_version='ipv4'):
@@ -173,7 +167,7 @@ class IPUtil(object):
         err_msg = 'Failed to get VRF id assigned to interface {ifc}'.format(
             ifc=interface)
 
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
         return reply['vrf_id']
@@ -194,7 +188,7 @@ class IPUtil(object):
             loose=0)
         err_msg = 'Failed to enable source check on interface {ifc}'.format(
             ifc=if_name)
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -215,7 +209,7 @@ class IPUtil(object):
         err_msg = 'VPP ip probe {dev} {ip} failed on {h}'.format(
             dev=interface, ip=addr, h=node['host'])
 
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -392,7 +386,7 @@ class IPUtil(object):
             address=ip_addr.packed)
         err_msg = 'Failed to add IP address on interface {ifc}'.format(
             ifc=interface)
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -421,7 +415,7 @@ class IPUtil(object):
             neighbor=neighbor)
         err_msg = 'Failed to add IP neighbor on interface {ifc}'.format(
             ifc=iface_key)
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -565,7 +559,7 @@ class IPUtil(object):
 
         err_msg = 'Failed to add route(s) on host {host}'.format(
             host=node['host'])
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(kwargs.get('count', 1)):
                 args['route']['prefix']['address']['un'] = \
                     IPUtil.union_addr(net_addr + i)
@@ -590,7 +584,7 @@ class IPUtil(object):
             del_all=1)
         err_msg = 'Failed to flush IP address on interface {ifc}'.format(
             ifc=interface)
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -613,5 +607,5 @@ class IPUtil(object):
             is_add=1)
         err_msg = 'Failed to add FIB table on host {host}'.format(
             host=node['host'])
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
