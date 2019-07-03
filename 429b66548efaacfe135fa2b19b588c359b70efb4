@@ -387,6 +387,24 @@
     },
     {
       "key": {
+        "uuid": "d1d4b41e_9396fbe5",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-03T17:55:10Z",
+      "side": 1,
+      "message": "\u003e prematurely stop the algorithm\n\nYes, there are several heuristics available to save time. The downside is they are only valid when the system is deterministic. In CSIT we prefer to do a slightly longer search to get more conservative results.",
+      "parentUuid": "80426803_6dac1f86",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83ea9624_10aa8eef",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -906,6 +924,24 @@
       "side": 1,
       "message": "Vratko would need to explain this one :)",
       "parentUuid": "1d6cf99c_fa04456f",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "39427635_cb313ed6",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-03T17:55:10Z",
+      "side": 1,
+      "message": "Intervals 2-4 and 4-8 have relative width 0.5 both.\nIntervals 2-5 and 5-8 have relative widths 0.6 and 0.375 respecively.",
+      "parentUuid": "900f5c97_c31a3f91",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
