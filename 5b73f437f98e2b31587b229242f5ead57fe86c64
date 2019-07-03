@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "a123cbad_381d52c2",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-dev.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-07-03T13:53:47Z",
+      "side": 1,
+      "message": "I agree. Just forgot to revert it :(",
+      "parentUuid": "2ff90159_da518fdc",
+      "range": {
+        "startLine": 26,
+        "startChar": 8,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "5b73f437f98e2b31587b229242f5ead57fe86c64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e4a26c78_4fa0351d",
         "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-dev.robot",
         "patchSetId": 14
@@ -60,6 +84,30 @@
       "writtenOn": "2019-07-03T13:31:13Z",
       "side": 1,
       "message": "I doubt we need the check here.\nIn teardown maybe, perhaps to be only called on test failure.",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 134,
+        "endChar": 25
+      },
+      "revId": "5b73f437f98e2b31587b229242f5ead57fe86c64",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d427a2d5_a096bc1c",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-dev.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-07-03T13:53:47Z",
+      "side": 1,
+      "message": "I\u0027d like to keep it here for debugging possible failures in the future.",
+      "parentUuid": "e4a26c78_4fa0351d",
       "range": {
         "startLine": 134,
         "startChar": 8,
