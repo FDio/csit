@@ -230,6 +230,24 @@
     },
     {
       "key": {
+        "uuid": "ed73003b_7a5c55a5",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-03T18:10:18Z",
+      "side": 1,
+      "message": "\u003e VNFs (all in one VM)\n\nIs it a fancy monolithic application which performs multiple functions at once using high-performance techniques (zero copy),\nor is it several smaller applications relying on Linux kernel (in VM) to move packets between them?\n\nFrom test point of view, I believe we can treat NFs as blackboxes, as long as we report throughput per NF (so deployments can filter by what is achievable or cost-efficient for then).\nOf course, in tests we need to pick well-defined \"blackboxes\" to detect possible \"noisy neighbor\" characteristics.",
+      "parentUuid": "54e14f08_93deee2c",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cfdc0aac_67a1417b",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 1
