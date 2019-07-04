@@ -16,6 +16,7 @@
 
 import binascii
 import glob
+import copy
 import json
 import shutil
 import subprocess
@@ -325,6 +326,9 @@ class PapiSocketExecutor(object):
         :returns: self, so that method chaining is possible.
         :rtype: PapiSocketExecutor
         """
+        # Caller may be editing dicts (or even strings?) in-place.
+        csit_papi_command = copy.deepcopy(csit_papi_command)
+        kwargs = copy.deepcopy(kwargs)
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
@@ -614,6 +618,9 @@ class PapiExecutor(object):
         :returns: self, so that method chaining is possible.
         :rtype: PapiExecutor
         """
+        # Caller may be editing dicts (or even strings?) in-place.
+        csit_papi_command = copy.deepcopy(csit_papi_command)
+        kwargs = copy.deepcopy(kwargs)
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
