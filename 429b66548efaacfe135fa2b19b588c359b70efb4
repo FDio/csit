@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "3c80bff4_8f2cf9b7",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2bb1d67c_8de6b88f",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "be781441_5edaa256",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "be781441_5edaa256",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc68af55_7851fc28",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8267e8b_87e3deb4",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -107,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "507cc631_6d3df6b7",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25a288d3_a5f7aa59",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0cd4b4f2_9fbe012f",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -136,6 +190,24 @@
       "side": 1,
       "message": "Traffic shaping and any QoS treatment may change the transmission properties of packet stream as you wrote.\nBut what matters from throughput management perspective is that resulting received packet stream is free from disqualifying errors like out-of-sequence packets.\nAnd this validation of resulting packet stream is responsibility of measurement tool used i.e. traffic generator.\n\nNot sure what you mean by the hairping packet path here. Throughput rate is measured between transmit and receive interfaces of traffic generator reflecting behaviour of whatever is on the traffic stream path.",
       "parentUuid": "0cd4b4f2_9fbe012f",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bfcf1053_bd8906a0",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25e2592f_78bd1bf3",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -177,6 +249,24 @@
     },
     {
       "key": {
+        "uuid": "714c8182_3debe669",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c3dadba_57532c64",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3fc59ce4_b72a0770",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -206,6 +296,24 @@
       "side": 1,
       "message": "Updated. Hopefully it is clear now.",
       "parentUuid": "3fc59ce4_b72a0770",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb5f3982_4d077d26",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b9d4273_21e7045f",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -247,6 +355,24 @@
     },
     {
       "key": {
+        "uuid": "c6666980_9c1efa30",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83e7daf2_450cf566",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b63d0ff8_1c299089",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -276,6 +402,24 @@
       "side": 1,
       "message": "It is the bound that\u0027s invalid if measurement is not meeting PLR search criteria.\nIf SUT is dropping packets at any offered rate, then indeed a valid NDR lower_bound can not be found.\nHopefully updated overview clarifies what valid and invalid bounds are.",
       "parentUuid": "b63d0ff8_1c299089",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4045c929_1570ef00",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "038e42c7_f829aa7e",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -317,6 +461,24 @@
     },
     {
       "key": {
+        "uuid": "2b6504c3_f13cf780",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df23568a_3b2f3752",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "527b9902_88aceb6e",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -346,6 +508,24 @@
       "side": 1,
       "message": "Correct.",
       "parentUuid": "527b9902_88aceb6e",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2951a950_eb14a130",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6895fdb_e98c03a7",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -405,6 +585,24 @@
     },
     {
       "key": {
+        "uuid": "11c2ced6_31b2b373",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1d4b41e_9396fbe5",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "83ea9624_10aa8eef",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -434,6 +632,24 @@
       "side": 1,
       "message": "It is one of the search criteria given by final_relative_width input parameter, that determines measurement resolution.",
       "parentUuid": "83ea9624_10aa8eef",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3fa3e35_bc02802a",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e04dd264_014a511b",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -475,6 +691,24 @@
     },
     {
       "key": {
+        "uuid": "f6f8b459_97c2da3f",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80140e9b_bf15b6fd",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95739537_3ad43fa4",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -504,6 +738,24 @@
       "side": 1,
       "message": "Well behaving cases are where results do not depend on trial duration.",
       "parentUuid": "95739537_3ad43fa4",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "684efd55_dc7f8429",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a82862e2_3a8f4576",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -545,6 +797,24 @@
     },
     {
       "key": {
+        "uuid": "d1f4a02f_427395c3",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ee9e0d2_2e49e7f0",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "423d4b55_3223cba6",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -574,6 +844,24 @@
       "side": 1,
       "message": "No. Relative to lower_bound, as stated: \"(lower_bound, upper_bound) interval width relative to upper_bound.\"\"",
       "parentUuid": "423d4b55_3223cba6",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ac2e80e_132cc55b",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b81f18d3_c5f29822",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -615,6 +903,24 @@
     },
     {
       "key": {
+        "uuid": "acfb8daa_b4f096f1",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fd3e6ad_6831ea23",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "874c6344_d8a9c9f6",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -644,6 +950,24 @@
       "side": 1,
       "message": "Yes, I have already fixed that based on your earlier comments.",
       "parentUuid": "874c6344_d8a9c9f6",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95d2f7c3_85f40bfc",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6375fba_6fa95f5b",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -685,6 +1009,24 @@
     },
     {
       "key": {
+        "uuid": "62acdd3e_88ca7e14",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e00e8188_0c21d940",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4b15a53e_f1dc5a65",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -714,6 +1056,24 @@
       "side": 1,
       "message": "MLRsearch is using MTR -\u003e MRR -\u003e MRR2 offered load to speed up arriving to the critical search region.\nIn most cases tested in CSIT, under MRR test overload conditions SUT behaviour is linear, and then indeed MRR2 \u003c MRR.\nIn rare cases it\u0027s non-linear, and then MRR2 \u003e\u003d MRR.\nMLRsearch handles both cases, as the first intermediate phase strives to find the valid bounds.\nNote that MRR tests do not care about PLR whatsoever.",
       "parentUuid": "4b15a53e_f1dc5a65",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "70d99d79_fe048f90",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d555f50_e15b7d67",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -755,6 +1115,24 @@
     },
     {
       "key": {
+        "uuid": "871bfa1c_d715d47b",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2690c88_355b563c",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ff3dd7a8_17c3d9e0",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -784,6 +1162,24 @@
       "side": 1,
       "message": "Geometric average a.k.a. geometric mean is N-th root of the product of N numbers.\nAdded a TODO placeholder to add a sample MLRsearch run with values.",
       "parentUuid": "ff3dd7a8_17c3d9e0",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "709cb598_934e66af",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "740e87f4_6550adf3",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -825,6 +1221,24 @@
     },
     {
       "key": {
+        "uuid": "127703d6_71e53296",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2275489_a41146b5",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d34b237_82c73166",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -860,6 +1274,24 @@
     },
     {
       "key": {
+        "uuid": "58e8baea_d955e8ce",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b2dbd06_5315b65c",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "936c3e4e_b0378cb2",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 1
@@ -889,6 +1321,24 @@
       "side": 1,
       "message": "Sure. Tell us what you need.",
       "parentUuid": "936c3e4e_b0378cb2",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f2044187_c0e67f0a",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "738d8690_1c8f0f00",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -942,6 +1392,24 @@
       "side": 1,
       "message": "Intervals 2-4 and 4-8 have relative width 0.5 both.\nIntervals 2-5 and 5-8 have relative widths 0.6 and 0.375 respecively.",
       "parentUuid": "900f5c97_c31a3f91",
+      "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a9780876_4e9b2985",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39427635_cb313ed6",
       "revId": "429b66548efaacfe135fa2b19b588c359b70efb4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
