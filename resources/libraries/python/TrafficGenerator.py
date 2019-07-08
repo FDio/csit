@@ -324,7 +324,7 @@ class TrafficGenerator(AbstractMeasurer):
                    "nohup ./t-rex-64 {mode} -i -c 7 > "
                    "/tmp/trex.log 2>&1 &' > /dev/null"
                    .format(dir=Constants.TREX_INSTALL_DIR,
-                           mode='--astf' if osi_layer == 'L7' else ''))
+                           mode='--astf --hdrh' if osi_layer == 'L7' else ''))
             try:
                 exec_cmd_no_error(self._node, cmd, sudo=True)
             except RuntimeError:

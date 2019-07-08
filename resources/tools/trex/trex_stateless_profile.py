@@ -22,7 +22,7 @@ import sys
 import argparse
 import json
 
-sys.path.insert(0, "/opt/trex-core-2.54/scripts/automation/"
+sys.path.insert(0, "/opt/trex-core-2.58/scripts/automation/"
                    "trex_control_plane/interactive/")
 from trex.stl.api import *
 
@@ -205,15 +205,18 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
                 lost_b = stats[port_1]["opackets"] - stats[port_0]["ipackets"]
 
             if latency:
-                lat_a = fmt_latency(
-                    str(stats["latency"][port_0]["latency"]["total_min"]),
-                    str(stats["latency"][port_0]["latency"]["average"]),
-                    str(stats["latency"][port_0]["latency"]["total_max"]))
+                lat_a = repr(stats["latency"])
                 if not unidirection:
-                    lat_b = fmt_latency(
-                        str(stats["latency"][port_1]["latency"]["total_min"]),
-                        str(stats["latency"][port_1]["latency"]["average"]),
-                        str(stats["latency"][port_1]["latency"]["total_max"]))
+                    lat_b = "see above"
+#                lat_a = fmt_latency(
+#                    str(stats["latency"][port_0]["latency"]["total_min"]),
+#                    str(stats["latency"][port_0]["latency"]["average"]),
+#                    str(stats["latency"][port_0]["latency"]["total_max"]))
+#                if not unidirection:
+#                    lat_b = fmt_latency(
+#                        str(stats["latency"][port_1]["latency"]["total_min"]),
+#                        str(stats["latency"][port_1]["latency"]["average"]),
+#                        str(stats["latency"][port_1]["latency"]["total_max"]))
 
             if not unidirection:
                 total_sent = stats[0]["opackets"] + stats[1]["opackets"]
