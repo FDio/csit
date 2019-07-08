@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c0782ff_93364abb",
+        "filename": "resources/libraries/python/ProxyArp.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-07-08T18:09:21Z",
+      "side": 1,
+      "message": "It is my understanding that one should always extend an existing copyright instead of replacing it with a new year, otherwise the change would amount to relinquishing the previous copyright.\n\nIn this case, this would become \u00272016-2019\".",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "23a1dd6807a62ebc0f8975bd71c0bdbef4c570e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d6cf71e_a23b14c6",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-07-08T18:09:21Z",
+      "side": 1,
+      "message": "Same as previous copyright comment.",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "23a1dd6807a62ebc0f8975bd71c0bdbef4c570e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77ff7de6_5876c234",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-07-08T18:09:21Z",
+      "side": 1,
+      "message": "Same copyright comment.",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "23a1dd6807a62ebc0f8975bd71c0bdbef4c570e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
