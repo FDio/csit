@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "06135667_407ddeec",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78d77138_f2c3b200",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a05ece20_7a84b794",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "OK. Updated paragraph.",
       "parentUuid": "a05ece20_7a84b794",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e1e27a98_45ead006",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d8aa9e7_bb00230a",
       "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -107,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "79e544f6_ee194701",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b778801b_d6bc70a1",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7bd69494_9b62715a",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 1
@@ -142,6 +196,24 @@
     },
     {
       "key": {
+        "uuid": "84034b1f_dcfc11fb",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd5cf97e_8eff0721",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "df46bb2f_949bae00",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 1
@@ -171,6 +243,24 @@
       "side": 1,
       "message": "IP routing in host data plane is also out there e.g. Calico. This draft aims at covering both, L2 and IP routing.",
       "parentUuid": "df46bb2f_949bae00",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f730be9_30d7901e",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f39972c_a7f6132a",
       "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -266,6 +356,24 @@
     },
     {
       "key": {
+        "uuid": "97f3156a_1d42a6e5",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "This spec is about benchmarking methodology of different NF service instance topologies and densities. It is treating each instantiation of NF (VM or container) as a black box with packet interfaces, and is focusing on evaluating e2e system performance paying attention to service topology (number of NFs, how they\u0027re interconnected), type of virtual interfaces, number of service instances (density) and allocation of the main shared resources processor cores. And of course, included sample results are not representative to every deployment, but rather are examples of applying this spec to lab tests.\n\nIf you have suggestions on how to avoid misinterpreting the results, pls share. I have added a separate (PLACEHOLDER) section to this effect: \n\n## Intrepreting the Sample Results\n\nTODO How to interpret and avoid misreading included results? And how to\navoid falling into the trap of using these results to draw generilized\nconclusions about performance of different virtualization technologies,\ne.g. VM and Containers, irrespective of deployment scenarios and what\nVNFs and CNFs are in the actual use.",
+      "parentUuid": "68474203_0ad2f059",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cfdc0aac_67a1417b",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 1
@@ -295,6 +403,24 @@
       "side": 1,
       "message": "OK. Updated paragraph.",
       "parentUuid": "cfdc0aac_67a1417b",
+      "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "27a19ad7_bd417b0b",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 525,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68739c45_904ed42f",
       "revId": "f2d1e0ececa0e29d934a5c49a5bb027b4f78d1a0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
