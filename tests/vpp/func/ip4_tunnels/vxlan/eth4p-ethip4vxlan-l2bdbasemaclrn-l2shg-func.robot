@@ -18,7 +18,6 @@
 | Resource | resources/libraries/robot/overlay/vxlan.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
 | ...
