@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f47bc6c1_621dc450",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 75
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-08T16:27:41Z",
+      "side": 1,
+      "message": "What is the reasoning behind this? Tests fail if the result has odd length.\n  14:03:34  14:00:36 TypeError: Odd-length string\nhttps://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-functional-master-ubuntu1604-virl/8137/console-timestamp.log.gz",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 45,
+        "endChar": 23
+      },
+      "revId": "10e0393fde6d919cf0e5848bc5e506d981642ef8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
