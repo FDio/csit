@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a61da09_8cbc13f0",
+        "filename": "docs/ietf/draft-vpolak-bmwg-plrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T21:49:44Z",
+      "side": 1,
+      "message": "chooses",
+      "range": {
+        "startLine": 504,
+        "startChar": 29,
+        "endLine": 504,
+        "endChar": 35
+      },
+      "revId": "b3418dba7a8fc6ace51cf69fc8c9aa8e2abf5600",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
