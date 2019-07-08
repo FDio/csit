@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "06c538f7_9dd066d4",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93105d82_bf084cc4",
+      "range": {
+        "startLine": 76,
+        "startChar": 44,
+        "endLine": 76,
+        "endChar": 49
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "323e7657_db13ac72",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44112fba_3773efb5",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "323e7657_db13ac72",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 9
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "4a297157_5cef92eb",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Added: Unless otherwise noted, bi-directional tests use\n  the same (symmetric) load in both directions.",
+      "parentUuid": "c8228f69_59739235",
+      "range": {
+        "startLine": 88,
+        "startChar": 20,
+        "endLine": 88,
+        "endChar": 21
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "001e2e2a_8289a47f",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -91,6 +163,30 @@
       "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "200194ef_b219c377",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "001e2e2a_8289a47f",
+      "range": {
+        "startLine": 91,
+        "startChar": 37,
+        "endLine": 91,
+        "endChar": 48
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "9e142fca_687a2b97",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "edc7621f_e5d302d3",
+      "range": {
+        "startLine": 93,
+        "startChar": 53,
+        "endLine": 94,
+        "endChar": 13
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53eecacb_c7a916ed",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -137,6 +257,30 @@
       "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a6ec7ac_484e76fb",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53eecacb_c7a916ed",
+      "range": {
+        "startLine": 97,
+        "startChar": 21,
+        "endLine": 97,
+        "endChar": 28
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "1a7e7da6_bfc5e9c5",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5a06897_fe6b2d49",
+      "range": {
+        "startLine": 98,
+        "startChar": 34,
+        "endLine": 98,
+        "endChar": 69
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a76fd0d6_bae8601c",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -183,6 +351,30 @@
       "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a2fac66_75af3c0b",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a76fd0d6_bae8601c",
+      "range": {
+        "startLine": 100,
+        "startChar": 27,
+        "endLine": 100,
+        "endChar": 30
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "98c5cd86_50ff1509",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Corrected to: For bi-directional tests, packet\n  throughput rate should be reported as aggregate for both directions.\n  Measured in packets-per-second (pps) or frames-per-second (fps),\n  equivalent metrics.",
+      "parentUuid": "ebcd2ef1_2ad8624f",
+      "range": {
+        "startLine": 103,
+        "startChar": 54,
+        "endLine": 103,
+        "endChar": 64
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "05a8c3e9_69007807",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "b546d821_5c0d5105",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Removed, as throughput definition applies here.",
+      "parentUuid": "05a8c3e9_69007807",
+      "range": {
+        "startLine": 117,
+        "startChar": 10,
+        "endLine": 117,
+        "endChar": 43
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5457f37a_1a5e15ef",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -247,6 +487,24 @@
       "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7af7c55e_f07c10e1",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "What paragraph on curves, clarify pls.",
+      "parentUuid": "5457f37a_1a5e15ef",
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     },
     {
       "key": {
@@ -273,6 +531,30 @@
     },
     {
       "key": {
+        "uuid": "134329a9_afdb7c52",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "\"Receive\" in the name to emphasize the fact it\u0027s all about received packets, regardless of loss.\nDeleted \"throughput\" here.",
+      "parentUuid": "b238ce3c_133a740a",
+      "range": {
+        "startLine": 127,
+        "startChar": 47,
+        "endLine": 127,
+        "endChar": 57
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef24783f_03292f84",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -293,6 +575,30 @@
       "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2c1e88c_e92f0919",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Good reference. But I went ahead with much simpler description: Trial: a single measurement step.",
+      "parentUuid": "ef24783f_03292f84",
+      "range": {
+        "startLine": 136,
+        "startChar": 18,
+        "endLine": 136,
+        "endChar": 28
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -319,6 +625,30 @@
     },
     {
       "key": {
+        "uuid": "fd21211e_f864e023",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc00bf16_54d632c7",
+      "range": {
+        "startLine": 156,
+        "startChar": 55,
+        "endLine": 157,
+        "endChar": 7
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8733977a_e20e27c0",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -342,6 +672,30 @@
     },
     {
       "key": {
+        "uuid": "8ca6fd8c_37c5d543",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8733977a_e20e27c0",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 7
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8125dcf2_87dbf985",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -353,6 +707,30 @@
       "writtenOn": "2019-07-03T17:55:10Z",
       "side": 1,
       "message": "increasing? Perhaps remove 166-169, as I am not sure what is considered effective for sometimes-decreasing curves.",
+      "range": {
+        "startLine": 168,
+        "startChar": 24,
+        "endLine": 168,
+        "endChar": 33
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "977e28b0_da3adda5",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "s/increased/growing/. And I left the paragraph in for now.",
+      "parentUuid": "8125dcf2_87dbf985",
       "range": {
         "startLine": 168,
         "startChar": 24,
@@ -388,6 +766,30 @@
     },
     {
       "key": {
+        "uuid": "f030e3f1_257a4fc5",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b50f650a_c76382d8",
+      "range": {
+        "startLine": 173,
+        "startChar": 6,
+        "endLine": 173,
+        "endChar": 7
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc7406dd_bd582f29",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -411,6 +813,30 @@
     },
     {
       "key": {
+        "uuid": "a3f5a309_4e060e5c",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cc7406dd_bd582f29",
+      "range": {
+        "startLine": 207,
+        "startChar": 28,
+        "endLine": 207,
+        "endChar": 39
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5c9f3072_1bf9f935",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -422,6 +848,30 @@
       "writtenOn": "2019-07-03T17:55:10Z",
       "side": 1,
       "message": "Two things not mentioned in this version.\nAside of initial phase, the only way for a bound to become invalid is when it is re-measured at higher trial duration.\nEach non-initial phase needs to re-measure before returning, as short duration results are not trusted.",
+      "range": {
+        "startLine": 230,
+        "startChar": 25,
+        "endLine": 230,
+        "endChar": 41
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a49606a_5cf4f277",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Added:       * Bound can become invalid if it re-measured at longer trial\n        duration in sub-sequent phase.",
+      "parentUuid": "5c9f3072_1bf9f935",
       "range": {
         "startLine": 230,
         "startChar": 25,
@@ -457,6 +907,30 @@
     },
     {
       "key": {
+        "uuid": "4dfffd5a_dd26b49e",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50ff3e4a_f4e571af",
+      "range": {
+        "startLine": 303,
+        "startChar": 10,
+        "endLine": 303,
+        "endChar": 13
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ef2cd625_98695ff3",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -477,6 +951,30 @@
       "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "add530db_5b13003e",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ef2cd625_98695ff3",
+      "range": {
+        "startLine": 312,
+        "startChar": 33,
+        "endLine": 312,
+        "endChar": 37
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -503,6 +1001,30 @@
     },
     {
       "key": {
+        "uuid": "cf5d7175_891920bd",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Added: or the amount needed to hit the current width goal, whichever is larger.",
+      "parentUuid": "cb979531_18280e23",
+      "range": {
+        "startLine": 360,
+        "startChar": 40,
+        "endLine": 360,
+        "endChar": 63
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ae2eda59_7492733c",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -523,6 +1045,30 @@
       "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba95cbb7_0e617f32",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T20:58:36Z",
+      "side": 1,
+      "message": "Ok. Replaced with: a geometric average of NDR lower_bound and NDR upper_bound.\nSame PDR point below.",
+      "parentUuid": "ae2eda59_7492733c",
+      "range": {
+        "startLine": 374,
+        "startChar": 68,
+        "endLine": 375,
+        "endChar": 42
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
