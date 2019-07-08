@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b972072_822aff9c",
+        "filename": "resources/libraries/bash/entry/per_patch_perf.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-07-08T18:16:54Z",
+      "side": 1,
+      "message": "It is my understanding that one should always extend an existing copyright instead of replacing it with a new year, otherwise the change would amount to relinquishing the previous copyright.\n\nIn this case, this would become \u00272018-2019\".",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 20
+      },
+      "revId": "44e71d8bb89cbf4835c729a60767effef2cd0412",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
