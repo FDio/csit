@@ -25,7 +25,6 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | ...
 # import additional Lisp settings from resource file
 | Variables | resources/test_data/lisp/static_adjacency/lisp_static_adjacency.py

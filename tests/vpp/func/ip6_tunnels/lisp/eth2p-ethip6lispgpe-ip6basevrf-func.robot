@@ -24,7 +24,6 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
-| Resource | resources/libraries/robot/vm/qemu.robot
 | ...
 # Import configuration and test data:
 | Variables | resources/test_data/lisp/ipv6_lispgpe_ipv6/ipv6_lispgpe_ipv6.py
