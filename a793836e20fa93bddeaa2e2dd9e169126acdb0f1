@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "67a78481_20156603",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f69d54cc_03baed43",
+      "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ca36f68_a3ab8319",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 3
@@ -30,6 +48,30 @@
       "writtenOn": "2019-07-03T13:50:33Z",
       "side": 1,
       "message": "Quantity names and value expressions are nice and human-readable in this document, but perhaps we can also recommend some machine-readable variants to use in our tests. Perhaps even recommend which (primary) quantities should be given in test definition, and which (secondary) quantities are to be computed from them for comparison reasons.\n\nFor example, our suite names contain the total number of memif endpoints (secondary quantity in my view).\nAnd our current testsuite code needs both of these two lines:\n  | ${nf_dtcr}\u003d | ${2}\n  | ${nf_dtc}\u003d | ${0.5}\nto specify NF-0.5c is used.",
+      "range": {
+        "startLine": 598,
+        "startChar": 30,
+        "endLine": 598,
+        "endChar": 44
+      },
+      "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42790ffb_98403822",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "Re primary vs. secondary quantities being called out for human and/or machine readability, can you provide some more examples, as the one you quoted is not that clear to me, see below:\n\nTotal number of memifs/vhost interfaces together with the number of containers/vms are listed in suite names to hint the content of the test suite.\n\nIf following is always true: ${nf_dtc} \u003d 1 / ${nf_dtcr}, why two variables?",
+      "parentUuid": "8ca36f68_a3ab8319",
       "range": {
         "startLine": 598,
         "startChar": 30,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "f3203e43_ce467073",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 680,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "Added a separate section addressing those points.",
+      "parentUuid": "5a9467c6_35ad273c",
+      "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d4894dd6_74b6ff39",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 3
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "ea67a271_b408ad5b",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 880,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "Yes, of course. Do you have an external link we can refer to?\n\nIn any case, I have added a placeholder section: Sample Results: NFVbench.",
+      "parentUuid": "d4894dd6_74b6ff39",
+      "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b388a5df_d9c45ba0",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 3
@@ -87,6 +165,24 @@
       "writtenOn": "2019-07-03T16:19:31Z",
       "side": 1,
       "message": "+nfvbench/trex",
+      "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7376f8f8_6d0b055e",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-08T18:47:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b388a5df_d9c45ba0",
       "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
