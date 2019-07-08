@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0899b8d1_80ec243e",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-08T11:28:23Z",
+      "side": 1,
+      "message": "Do you intend this word to be inside the string? Because currently it is not.",
+      "range": {
+        "startLine": 43,
+        "startChar": 18,
+        "endLine": 43,
+        "endChar": 22
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "284f1ac6_1d380819",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-08T11:28:23Z",
+      "side": 1,
+      "message": "Looking at https://github.com/FDio/vpp/blob/master/src/vnet/cop/cop.api#L33-L54\nthe field names (except \"client_index\" and \"content\" added automatically) are \"fib_id\", \"ip4\", \"ip6\", \"default_cop\".\n\nSo, no \"id_\" prefix, and three 1/0 values to be created from string argument ip_format.",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 21
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "81b6f9fb_3a390e8a",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-08T11:28:23Z",
+      "side": 1,
+      "message": "Still adding trailing thitespace. Please do not.",
+      "range": {
+        "startLine": 53,
+        "startChar": 45,
+        "endLine": 53,
+        "endChar": 49
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5786a01b_21696477",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-08T11:28:23Z",
+      "side": 1,
+      "message": "interface\u003dinterface, state\u003dstate\n\nWhen the placeholders in the string are named, so should be the format arguments.",
+      "range": {
+        "startLine": 74,
+        "startChar": 40,
+        "endLine": 74,
+        "endChar": 55
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8877f1c2_3d6f785a",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-08T11:28:23Z",
+      "side": 1,
+      "message": "enable_disable, accepting 0 or 1.",
+      "range": {
+        "startLine": 79,
+        "startChar": 16,
+        "endLine": 79,
+        "endChar": 24
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ff2e86f_b43c97d9",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-08T11:28:23Z",
+      "side": 1,
+      "message": "No empty lines at the end of the file please.",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 0
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
