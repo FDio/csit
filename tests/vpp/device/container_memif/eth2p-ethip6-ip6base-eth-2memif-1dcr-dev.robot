@@ -21,6 +21,8 @@
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | container
 | ...
+| Test Template | Local Template
+| ...
 | Documentation | *IPv4 routing test cases with memif interface*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
@@ -45,20 +47,26 @@
 | ${container_engine}= | Docker
 | ${container_chain_topology}= | chain_functional
 
-*** Test Cases ***
-| tc01-eth2p-ethip6-ip6base-eth-2memif-1dcr-dev
+*** Keywords ***
+| Local Template
 | | [Documentation]
 | | ... | [Ver] Make TG send ICMPv6 Echo Reqs in both directions between two\
 | | ... | of its interfaces to be routed by DUT to and from docker; verify\
 | | ... | all packets are received.
 | | ...
-| | Set Test Variable | ${frame_size} | ${62}
-| | Set Test Variable | ${rxq_count_int} | ${1}
+| | ... | *Arguments:*
+| | ... | - frame_size - Framesize in Bytes in integer. Type: integer
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | Given Add PCI devices to all DUTs
+| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
+| | ...
+| | Set Test Variable | \${frame_size}
+| | ...
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
+| | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Apply startup configuration on all VPP DUTs
-| | And VPP Enable Traces On All Duts | ${nodes}
+| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Start containers for test | auto_scale=${False} | pinning=${False}
 | | And Set interfaces in path up
 | | And Set up memif interfaces on DUT node
@@ -94,3 +102,8 @@
 | | ... | ${tg} | 2001:1::1 | 2001:3::2
 | | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
 | | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
+
+*** Test Cases ***
+| tc01-78B-eth2p-ethip6-ip6base-eth-2memif-1dcr-dev
+| | [Tags] | 78B
+| | frame_size=${78} | phy_cores=${0}
