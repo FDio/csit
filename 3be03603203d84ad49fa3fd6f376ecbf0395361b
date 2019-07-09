@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b98a825_a68a8ff5",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-09T12:45:56Z",
+      "side": 1,
+      "message": "Should we switch all CSIT to use the standard [0] term: Forwarding rate at maximum offered load (FRMOL)?\n\n[0] https://tools.ietf.org/html/rfc2285#section-3.6.2",
+      "range": {
+        "startLine": 152,
+        "startChar": 2,
+        "endLine": 152,
+        "endChar": 28
+      },
+      "revId": "3be03603203d84ad49fa3fd6f376ecbf0395361b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a9ca1e5_515c6fb8",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-09T12:45:56Z",
+      "side": 1,
+      "message": "Maximum offered load (MOL)\n\nhttps://tools.ietf.org/html/rfc2285#section-3.5.3",
+      "range": {
+        "startLine": 153,
+        "startChar": 39,
+        "endLine": 153,
+        "endChar": 66
+      },
+      "revId": "3be03603203d84ad49fa3fd6f376ecbf0395361b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
