@@ -14,7 +14,7 @@
 """SPAN setup library"""
 
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
 class SPAN(object):
@@ -41,7 +41,7 @@ class SPAN(object):
         args = dict(
             is_l2=1 if is_l2 else 0
         )
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details()
 
         return details
