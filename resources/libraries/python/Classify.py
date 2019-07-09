@@ -16,7 +16,7 @@
 import binascii
 import re
 
-from socket import AF_INET, AF_INET6, inet_aton, inet_pton
+from ipaddress import ip_address
 
 from robot.api import logger
 
@@ -40,9 +40,17 @@ class Classify(object):
         :returns MAC ACL mask in hexstring format.
         :rtype: str
         """
+        src_mac = src_mac.replace(':', '')
+        dst_mac = dst_mac.replace(':', '')
+        if ether_type:
+            end = 24 + len(ether_type)
+        elif src_mac:
+            end = 12 + len(src_mac)
+        else:
+            end = len(dst_mac)
+
         return ('{!s:0>12}{!s:0>12}{!s:0>4}'.format(
-            dst_mac.replace(':', ''), src_mac.replace(':', ''), ether_type)).\
-            rstrip('0')
+            dst_mac, src_mac, ether_type))[0:end]
 
     @staticmethod
     def _build_ip_mask(proto='', src_ip='', dst_ip='', src_port='',
@@ -62,8 +70,19 @@ class Classify(object):
         :returns: IP mask in hexstring format.
         :rtype: str
         """
+        if dst_port:
+            end = 44 + len(dst_port)
+        elif src_port:
+            end = 40 + len(src_port)
+        elif dst_ip:
+            end = 32 + len(dst_ip)
+        elif src_ip:
+            end = 20 + len(src_ip)
+        else:
+            end = len(proto)
+
         return ('{!s:0>20}{!s:0>12}{!s:0>8}{!s:0>4}{!s:0>4}'.format(
-            proto, src_ip, dst_ip, src_port, dst_port)).rstrip('0')
+            proto, src_ip, dst_ip, src_port, dst_port))[0:end]
 
     @staticmethod
     def _build_ip6_mask(next_hdr='', src_ip='', dst_ip='', src_port='',
@@ -83,8 +102,19 @@ class Classify(object):
         :returns: IPv6 ACL mask in hexstring format.
         :rtype: str
         """
+        if dst_port:
+            end = 84 + len(dst_port)
+        elif src_port:
+            end = 80 + len(src_port)
+        elif dst_ip:
+            end = 48 + len(dst_ip)
+        elif src_ip:
+            end = 14 + len(src_ip)
+        else:
+            end = len(next_hdr)
+
         return ('{!s:0>14}{!s:0>34}{!s:0>32}{!s:0>4}{!s:0>4}'.format(
-            next_hdr, src_ip, dst_ip, src_port, dst_port)).rstrip('0')
+            next_hdr, src_ip, dst_ip, src_port, dst_port))[0:end]
 
     @staticmethod
     def _build_mac_match(dst_mac='', src_mac='', ether_type=''):
@@ -99,13 +129,17 @@ class Classify(object):
         :returns: MAC ACL match data in hexstring format.
         :rtype: str
         """
-        if dst_mac:
-            dst_mac = dst_mac.replace(':', '')
-        if src_mac:
-            src_mac = src_mac.replace(':', '')
+        src_mac = src_mac.replace(':', '')
+        dst_mac = dst_mac.replace(':', '')
+        if ether_type:
+            end = 24 + len(ether_type)
+        elif src_mac:
+            end = 12 + len(src_mac)
+        else:
+            end = len(dst_mac)
 
         return ('{!s:0>12}{!s:0>12}{!s:0>4}'.format(
-            dst_mac, src_mac, ether_type)).rstrip('0')
+            dst_mac, src_mac, ether_type))[0:end]
 
     @staticmethod
     def _build_ip_match(proto=0, src_ip='', dst_ip='', src_port=0, dst_port=0):
@@ -125,13 +159,25 @@ class Classify(object):
         :rtype: str
         """
         if src_ip:
-            src_ip = binascii.hexlify(inet_aton(src_ip))
+            src_ip = binascii.hexlify(ip_address(unicode(src_ip)).packed)
         if dst_ip:
-            dst_ip = binascii.hexlify(inet_aton(dst_ip))
+            dst_ip = binascii.hexlify(ip_address(unicode(dst_ip)).packed)
+        proto = hex(proto)[2:]
+        src_port = hex(src_port)[2:]
+        dst_port = hex(dst_port)[2:]
+        if dst_port:
+            end = 44 + len(str(dst_port))
+        elif src_port:
+            end = 40 + len(str(src_port))
+        elif dst_ip:
+            end = 32 + len(dst_ip)
+        elif src_ip:
+            end = 20 + len(src_ip)
+        else:
+            end = len(str(proto))
 
         return ('{!s:0>20}{!s:0>12}{!s:0>8}{!s:0>4}{!s:0>4}'.format(
-            hex(proto)[2:], src_ip, dst_ip, hex(src_port)[2:],
-            hex(dst_port)[2:])).rstrip('0')
+            proto, src_ip, dst_ip, src_port, dst_port))[0:end]
 
     @staticmethod
     def _build_ip6_match(next_hdr=0, src_ip='', dst_ip='', src_port=0,
@@ -153,13 +199,25 @@ class Classify(object):
         :rtype: str
         """
         if src_ip:
-            src_ip = binascii.hexlify(inet_pton(AF_INET6, src_ip))
+            src_ip = binascii.hexlify(ip_address(unicode(src_ip)).packed)
         if dst_ip:
-            dst_ip = binascii.hexlify(inet_pton(AF_INET6, dst_ip))
+            dst_ip = binascii.hexlify(ip_address(unicode(dst_ip)).packed)
+        next_hdr = hex(next_hdr)[2:]
+        src_port = hex(src_port)[2:]
+        dst_port = hex(dst_port)[2:]
+        if dst_port:
+            end = 84 + len(str(dst_port))
+        elif src_port:
+            end = 80 + len(str(src_port))
+        elif dst_ip:
+            end = 48 + len(dst_ip)
+        elif src_ip:
+            end = 14 + len(src_ip)
+        else:
+            end = len(str(next_hdr))
 
         return ('{!s:0>14}{!s:0>34}{!s:0>32}{!s:0>4}{!s:0>4}'.format(
-            hex(next_hdr)[2:], src_ip, dst_ip, hex(src_port)[2:],
-            hex(dst_port)[2:])).rstrip('0')
+            next_hdr, src_ip, dst_ip, src_port, dst_port))[0:end]
 
     @staticmethod
     def _classify_add_del_table(node, is_add, mask, match_n_vectors=1,
@@ -415,10 +473,8 @@ class Classify(object):
             ip4=Classify._build_ip_mask,
             ip6=Classify._build_ip6_mask
         )
-        if ip_version == "ip4":
-            ip_addr = binascii.hexlify(inet_aton(ip_addr))
-        elif ip_version == "ip6":
-            ip_addr = binascii.hexlify(inet_pton(AF_INET6, ip_addr))
+        if ip_version == "ip4" or ip_version == "ip6":
+            ip_addr = binascii.hexlify(ip_address(unicode(ip_addr)).packed)
         else:
             raise ValueError("IP version {ver} is not supported.".
                              format(ver=ip_version))
@@ -785,15 +841,13 @@ class Classify(object):
             groups = re.search(reg_ex_src_ip, rule)
             if groups:
                 grp = groups.group(1).split(' ')[1].split('/')
-                acl_rule["src_ip_addr"] = str(inet_pton(
-                    AF_INET6 if acl_rule["is_ipv6"] else AF_INET, grp[0]))
+                acl_rule["src_ip_addr"] = ip_address(unicode(grp[0])).packed
                 acl_rule["src_ip_prefix_len"] = int(grp[1])
 
             groups = re.search(reg_ex_dst_ip, rule)
             if groups:
                 grp = groups.group(1).split(' ')[1].split('/')
-                acl_rule["dst_ip_addr"] = str(inet_pton(
-                    AF_INET6 if acl_rule["is_ipv6"] else AF_INET, grp[0]))
+                acl_rule["dst_ip_addr"] = ip_address(unicode(grp[0])).packed
                 acl_rule["dst_ip_prefix_len"] = int(grp[1])
 
             groups = re.search(reg_ex_sport, rule)
@@ -846,8 +900,7 @@ class Classify(object):
             groups = re.search(reg_ex_ip, rule)
             if groups:
                 grp = groups.group(1).split(' ')[1].split('/')
-                acl_rule["src_ip_addr"] = str(inet_pton(
-                    AF_INET6 if acl_rule["is_ipv6"] else AF_INET, grp[0]))
+                acl_rule["src_ip_addr"] = ip_address(unicode(grp[0])).packed
                 acl_rule["src_ip_prefix_len"] = int(grp[1])
 
             acl_rules.append(acl_rule)
