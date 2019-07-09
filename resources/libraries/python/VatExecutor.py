@@ -74,7 +74,7 @@ class VatExecutor(object):
         self._script_name = None
 
     def execute_script(self, vat_name, node, timeout=120, json_out=True,
-                       copy_on_execute=False):
+                       copy_on_execute=False, history=True):
         """Execute VAT script on remote node, and store the result. There is an
         option to copy script from local host to remote host before execution.
         Path is defined automatically.
@@ -87,11 +87,13 @@ class VatExecutor(object):
         :param json_out: Require JSON output.
         :param copy_on_execute: If true, copy the file from local host to remote
             before executing.
+        :param history: If true, add command to history.
         :type vat_name: str
         :type node: dict
         :type timeout: int
         :type json_out: bool
         :type copy_on_execute: bool
+        :type history: bool
         :raises SSHException: If cannot open connection for VAT.
         :raises SSHTimeout: If VAT execution is timed out.
         :raises RuntimeError: If VAT script execution fails.
@@ -107,11 +109,12 @@ class VatExecutor(object):
         if copy_on_execute:
             ssh.scp(vat_name, vat_name)
             remote_file_path = vat_name
-            with open(vat_name, 'r') as vat_file:
-                for line in vat_file:
-                    PapiHistory.add_to_papi_history(node,
-                                                    line.replace('\n', ''),
-                                                    papi=False)
+            if history:
+                with open(vat_name, 'r') as vat_file:
+                    for line in vat_file:
+                        PapiHistory.add_to_papi_history(node,
+                                                        line.replace('\n', ''),
+                                                        papi=False)
         else:
             remote_file_path = '{0}/{1}/{2}'.format(Constants.REMOTE_FW_DIR,
                                                     Constants.RESOURCES_TPL_VAT,
