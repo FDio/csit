@@ -15,11 +15,14 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | IP4FWD | IPSEC | IPSEC_TPT | IP4BASE
+| ... | NIC_Virtual | IP4FWD | IPSEC | IPSECSW | IPSECTPT | IP4BASE
+| ... | AES_256_GCM | AES
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
+| ...
+| Test Template | Local Template
 | ...
 | Documentation | *IPv4 IPsec transport mode test suite.*
 | ...
@@ -36,7 +39,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
 | ${nic_name}= | virtual
-| ${overhead}= | ${58}
+| ${overhead}= | ${54}
 | ${tg_spi}= | ${1000}
 | ${dut_spi}= | ${1001}
 | ${ESP_PROTO}= | ${50}
@@ -46,23 +49,30 @@
 | ${dut_lo_ip4}= | 192.168.4.4
 | ${ip4_plen}= | ${24}
 
-*** Test Cases ***
-| tc01-eth2p-ethip4ipsectpt-ip4base-dev-aes-128-cbc-sha-256-128
+*** Keywords ***
+| Local Template
 | | [Documentation]
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-128 and integrity algorithm SHA-256-128 in\
-| | ... | transport mode.
+| | ... | algorithm AES_128_CBC in transport mode.
 | | ...
-| | Set Test Variable | ${frame_size} | ${90}
-| | Set Test Variable | ${rxq_count_int} | ${1}
+| | ... | *Arguments:*
+| | ... | - frame_size - Framesize in Bytes in integer. Type: integer
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | Given Add PCI devices to all DUTs
+| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
+| | ...
+| | Set Test Variable | \${frame_size}
+| | ...
+| | # These are enums (not strings) so they cannot be in Variables table.
+| | ${encr_alg}= | Crypto Alg AES GCM 256
+| | ${auth_alg}= | Set Variable | ${NONE}
+| | ...
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
+| | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Apply startup configuration on all VPP DUTs
-| | And VPP Enable Traces On All Duts | ${nodes}
+| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Configure topology for IPv4 IPsec testing
-| | ${encr_alg}= | Crypto Alg AES CBC 128
-| | ${auth_alg}= | Integ Alg SHA 256 128
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Configure manual keyed connection for IPSec
 | | ... | ${dut1} | ${dut1_if1} | ${encr_alg} | ${encr_key} | ${auth_alg}
@@ -72,27 +82,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
 
-| tc02-eth2p-ethip4ipsectpt-ip4base-dev-aes-128-cbc-sha-512-256
-| | [Documentation]
-| | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-128 and integrity algorithm SHA-512-256 in\
-| | ... | transport mode.
-| | ...
-| | Set Test Variable | ${frame_size} | ${90}
-| | Set Test Variable | ${rxq_count_int} | ${1}
-| | ...
-| | Given Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Apply startup configuration on all VPP DUTs
-| | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure topology for IPv4 IPsec testing
-| | ${encr_alg}= | Crypto Alg AES CBC 128
-| | ${auth_alg}= | Integ Alg SHA 512 256
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | And Configure manual keyed connection for IPSec
-| | ... | ${dut1} | ${dut1_if1} | ${encr_alg} | ${encr_key} | ${auth_alg}
-| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet
-| | ... | ${tg} | ${tg_if1} | ${dut1_if1_mac}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
-| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
+*** Test Cases ***
+| tc01-110B-eth2p-ethip4ipsec1tptsw-ip4base-policy-aes-256-gcm-dev
+| | [Tags] | 110B
+| | frame_size=${110} | phy_cores=${0}
