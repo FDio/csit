@@ -743,6 +743,30 @@
     },
     {
       "key": {
+        "uuid": "56e46867_8c9316b2",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-09T13:09:52Z",
+      "side": 1,
+      "message": "This is the \"that paragraph on curves\" I was mentioning earlier.",
+      "parentUuid": "977e28b0_da3adda5",
+      "range": {
+        "startLine": 168,
+        "startChar": 24,
+        "endLine": 168,
+        "endChar": 33
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b50f650a_c76382d8",
         "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
         "patchSetId": 2
@@ -1060,6 +1084,30 @@
       "side": 1,
       "message": "Ok. Replaced with: a geometric average of NDR lower_bound and NDR upper_bound.\nSame PDR point below.",
       "parentUuid": "ae2eda59_7492733c",
+      "range": {
+        "startLine": 374,
+        "startChar": 68,
+        "endLine": 375,
+        "endChar": 42
+      },
+      "revId": "94840d83d16f7f6d9d3baf014161d3642d0d828c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d7c7c22f_b8ee3592",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-09T13:09:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ba95cbb7_0e617f32",
       "range": {
         "startLine": 374,
         "startChar": 68,
