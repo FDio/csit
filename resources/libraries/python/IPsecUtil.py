@@ -900,10 +900,12 @@ class IPsecUtil(object):
                             raddr=if1_ip + i * addr_incr))
             vat.execute_script(
                 tmp_fn1, nodes['DUT1'], timeout=1800, json_out=False,
-                copy_on_execute=True)
+                copy_on_execute=True,
+                history=False if n_tunnels > 100 else True)
             vat.execute_script(
                 tmp_fn2, nodes['DUT2'], timeout=1800, json_out=False,
-                copy_on_execute=True)
+                copy_on_execute=True,
+                history=False if n_tunnels > 100 else True)
             os.remove(tmp_fn1)
             os.remove(tmp_fn2)
 
@@ -938,10 +940,12 @@ class IPsecUtil(object):
                             mask=128 if if2_ip.version == 6 else 32))
             vat.execute_script(
                 tmp_fn1, nodes['DUT1'], timeout=1800, json_out=False,
-                copy_on_execute=True)
+                copy_on_execute=True,
+                history=False if n_tunnels > 100 else True)
             vat.execute_script(
                 tmp_fn2, nodes['DUT2'], timeout=1800, json_out=False,
-                copy_on_execute=True)
+                copy_on_execute=True,
+                history=False if n_tunnels > 100 else True)
             os.remove(tmp_fn1)
             os.remove(tmp_fn2)
             return
