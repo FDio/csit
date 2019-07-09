@@ -15,11 +15,13 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | IP4FWD | BASE | IP4BASE | TAP
+| ... | NIC_Virtual | ETH | IP4FWD | BASE | IP4BASE | 1TAP
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test | namespace
 | Test Teardown | Tear down test | packet_trace | namespace
+| ...
+| Test Template | Local Template
 | ...
 | Documentation | *Tap Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
@@ -47,21 +49,27 @@
 | ${tg_ip_address_GW}= | 192.168.0.0
 | ${prefix}= | 24
 
-*** Test Cases ***
-| tc01-eth2p-ethicmpv4-ip4base-dev_tap-no-namespace
+*** Keywords ***
+| Local Template
 | | [Documentation]
 | | ... | [Cfg] On DUT1 configure two interface addresses with IPv4 of which\
 | | ... | one is TAP interface (dut_to_tg_if and TAP) and one is linux-TAP.
 | | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is\
 | | ... | received on TG.
 | | ...
-| | Set Test Variable | ${frame_size} | ${42}
-| | Set Test Variable | ${rxq_count_int} | ${1}
+| | ... | *Arguments:*
+| | ... | - frame_size - Framesize in Bytes in integer. Type: integer
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | Given Add PCI devices to all DUTs
+| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
+| | ...
+| | Set Test Variable | \${frame_size}
+| | ...
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
+| | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Apply startup configuration on all VPP DUTs
-| | And VPP Enable Traces On All Duts | ${nodes}
+| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Set interfaces in path up
 | | ${int1}= | And Add Tap Interface | ${dut1} | tap0
 | | And VPP Interface Set IP Address
@@ -81,40 +89,7 @@
 | | ... | ${tg} | ${tg_if1} | ${dut1_if1_mac} | ${tg_if1_mac}
 | | ... | ${tap1_NM_ip} | ${tg_ip_address}
 
-| tc02-eth2p-ethicmpv4-ip4base-dev_tap-namespace
-| | [Documentation]
-| | ... | [Cfg] On DUT1 configure two interface addresses with IPv4 of which\
-| | ... | one is TAP interface (dut_to_tg_if and TAP) and one is linux-TAP in\
-| | ... | namespace.
-| | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is\
-| | ... | received on TG.
-| | ...
-| | Set Test Variable | ${frame_size} | ${42}
-| | Set Test Variable | ${rxq_count_int} | ${1}
-| | ...
-| | Given Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Apply startup configuration on all VPP DUTs
-| | And VPP Enable Traces On All Duts | ${nodes}
-| | When Set interfaces in path up
-| | ${int1}= | And Add Tap Interface | ${dut1} | tap0
-| | And VPP Interface Set IP Address
-| | ... | ${dut1} | ${int1} | ${tap1_VPP_ip} | ${prefix}
-| | And VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | ${dut_ip_address} | ${prefix}
-| | And Set Interface State | ${dut1} | ${int1} | up
-| | And Create Namespace | ${dut1} | nmspace1
-| | And Attach Interface To Namespace | ${dut1} | nmspace1 | tap0
-| | And Set Linux Interface MAC
-| | ... | ${dut1} | tap0 | ${tap1_NM_mac} | nmspace1
-| | And Set Linux Interface IP
-| | ... | ${dut1} | tap0 | ${tap1_NM_ip} | ${prefix} | nmspace1
-| | And VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if1} | ${tg_ip_address} | ${tg_if1_mac}
-| | And VPP Add IP Neighbor
-| | ... | ${dut1} | ${int1} | ${tap1_NM_ip} | ${tap1_NM_mac}
-| | And Add Linux Route
-| | ... | ${dut1} | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip} | nmspace1
-| | Then Send ICMP echo request and verify answer
-| | ... | ${tg} | ${tg_if1} | ${dut1_if1_mac} | ${tg_if1_mac}
-| | ... | ${tap1_NM_ip} | ${tg_ip_address}
+*** Test Cases ***
+| tc01-64B-eth2p-ethicmpv4-ip4base-eth-1tap-dev
+| | [Tags] | 64B
+| | frame_size=${64} | phy_cores=${0}
