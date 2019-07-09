@@ -15,19 +15,22 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | IP6FWD | IPSEC | IPSEC_TNL | IP6BASE
+| ... | NIC_Virtual | IP6FWD | IPSEC | IPSECSW | IPSECTPT | IP6BASE
+| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 | ...
-| Documentation | *IPv6 IPsec tunnel mode test suite.*
+| Test Template | Local Template
+| ...
+| Documentation | *IPv6 IPsec transport mode test suite.*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1 2-node topology with one link\
 | ... | between nodes.
 | ... | *[Cfg] DUT configuration:* On DUT1 create loopback interface, configure
 | ... | loopback an physical interface IPv6 addresses, static ARP record, route
-| ... | and IPsec manual keyed connection in tunnel mode.
+| ... | and IPsec manual keyed connection in transport mode.
 | ... | *[Ver] TG verification:* ESP packet is sent from TG to DUT1. ESP packet
 | ... | is received on TG from DUT1.
 | ... | *[Ref] Applicable standard specifications:* RFC4303.
@@ -47,57 +50,42 @@
 | ${ip6_plen}= | ${64}
 | ${ip6_plen_rt}= | ${128}
 
-*** Test Cases ***
-| tc01-eth2p-ethip6ipsectnl-ip6base-dev-aes-128-cbc-sha-256-128
+*** Keywords ***
+| Local Template
 | | [Documentation]
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-128 and integrity algorithm SHA-256-128 in tunnel\
-| | ... | mode.
+| | ... | algorithm AES_128_CBC and integrity algorithm HMAC_SHA_512 in\
+| | ... | transport mode.
 | | ...
-| | Set Test Variable | ${frame_size} | ${158}
-| | Set Test Variable | ${rxq_count_int} | ${1}
+| | ... | *Arguments:*
+| | ... | - frame_size - Framesize in Bytes in integer. Type: integer
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | Given Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Apply startup configuration on all VPP DUTs
-| | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure topology for IPv6 IPsec testing
-| | ${encr_alg}= | Crypto Alg AES CBC 128
-| | ${auth_alg}= | Integ Alg SHA 256 128
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | And Configure manual keyed connection for IPSec
-| | ... | ${dut1} | ${dut1_if1} | ${encr_alg} | ${encr_key} | ${auth_alg}
-| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
-| | ... | ${dut_tun_ip} | ${tg_tun_ip} | is_ipv6=${TRUE}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet
-| | ... | ${tg} | ${tg_if1} | ${dut1_if1_mac}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
-| | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
-| | ... | ${dut_tun_ip}
-
-| tc02-eth2p-ethip6ipsectnl-ip6base-dev-aes-128-cbc-sha-512-256
-| | [Documentation]
-| | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-128 and integrity algorithm SHA-512-256 in tunnel\
-| | ... | mode.
+| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | Set Test Variable | ${frame_size} | ${158}
-| | Set Test Variable | ${rxq_count_int} | ${1}
+| | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Apply startup configuration on all VPP DUTs
-| | And VPP Enable Traces On All Duts | ${nodes}
-| | When Configure topology for IPv6 IPsec testing
+| | # These are enums (not strings) so they cannot be in Variables table.
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA 512 256
+| | ...
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
+| | And Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
+| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
+| | When Configure topology for IPv6 IPsec testing
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Configure manual keyed connection for IPSec
 | | ... | ${dut1} | ${dut1_if1} | ${encr_alg} | ${encr_key} | ${auth_alg}
-| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
-| | ... | ${dut_tun_ip} | ${tg_tun_ip} | is_ipv6=${TRUE}
+| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
+| | ... | is_ipv6=${TRUE}
 | | Then Send IPsec Packet and verify ESP encapsulation in received packet
 | | ... | ${tg} | ${tg_if1} | ${dut1_if1_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
-| | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
-| | ... | ${dut_tun_ip}
+| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
+
+*** Test Cases ***
+| tc01-124B-eth2p-ethip6ipsectpt-ip6base-policy-aes-128-cbc-sha-512-256-dev
+| | [Tags] | 124B
+| | frame_size=${124} | phy_cores=${0}
