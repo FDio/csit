@@ -29,12 +29,12 @@ class Trace(object):
         :type nodes: dict
         :type maximum: int
         """
-        maximum = "max {count}".format(count=maximum) if maximum is not None\
+        maximum = " max {count}".format(count=maximum) if maximum is not None\
             else ""
 
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                PapiExecutor.run_cli_cmd(node, cmd="show trace {max}".
+                PapiExecutor.run_cli_cmd(node, cmd="show trace{max}".
                                          format(max=maximum))
 
     @staticmethod
