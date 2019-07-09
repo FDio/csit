@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "611214da_47486df6",
+        "filename": "docs/ietf/draft-vpolak-mkonstan-bmwg-mlrsearch-02.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-09T13:09:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2a49606a_5cf4f277",
+      "range": {
+        "startLine": 230,
+        "startChar": 25,
+        "endLine": 230,
+        "endChar": 41
+      },
+      "revId": "681443b9fdf79463edae4726d8f7b27c9dfced02",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
