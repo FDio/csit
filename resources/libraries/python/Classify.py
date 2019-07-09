@@ -290,11 +290,10 @@ class Classify(object):
             host=node['host'])
 
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
-        return int(data["new_table_index"]), int(data["skip_n_vectors"]),\
-            int(data["match_n_vectors"])
+        return int(reply["new_table_index"]), int(reply["skip_n_vectors"]),\
+            int(reply["match_n_vectors"])
 
     @staticmethod
     def _classify_add_del_session(node, is_add, table_index, match,
@@ -357,8 +356,7 @@ class Classify(object):
             host=node['host'])
 
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def _macip_acl_add(node, rules, tag=""):
@@ -382,8 +380,7 @@ class Classify(object):
             host=node['host'])
 
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def _acl_interface_set_acl_list(node, sw_if_index, acl_type, acls):
@@ -411,8 +408,7 @@ class Classify(object):
             format(idx=sw_if_index, host=node['host'])
 
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def _acl_add_replace(node, acl_idx, rules, tag=""):
@@ -439,8 +435,7 @@ class Classify(object):
             host=node['host'])
 
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg). \
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vpp_creates_classify_table_l3(node, ip_version, direction, ip_addr):
@@ -738,10 +733,8 @@ class Classify(object):
             table_id=int(table_index)
         )
         with PapiExecutor(node) as papi_exec:
-            data = papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
-
-        return data
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+        return reply
 
     @staticmethod
     def get_classify_session_data(node, table_index):
@@ -754,14 +747,14 @@ class Classify(object):
         :returns: List of classify session settings.
         :rtype: list or dict
         """
+        cmd = "classify_session_dump"
         args = dict(
             table_id=int(table_index)
         )
         with PapiExecutor(node) as papi_exec:
-            dump = papi_exec.add("classify_session_dump", **args).\
-                get_dump().reply[0]["api_reply"]["classify_session_details"]
+            details = papi_exec.add(cmd, **args).get_details()
 
-        return dump
+        return details
 
     @staticmethod
     def vpp_log_plugin_acl_settings(node):
@@ -941,8 +934,7 @@ class Classify(object):
             acl_index=int(acl_idx)
         )
         with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def vpp_log_macip_acl_interface_assignment(node):
@@ -955,5 +947,5 @@ class Classify(object):
         err_msg = "Failed to get 'macip_acl_interface' on host {host}".format(
             host=node['host'])
         with PapiExecutor(node) as papi_exec:
-            rpl = papi_exec.add(cmd).get_replies(err_msg).reply[0]["api_reply"]
-        logger.info(rpl["macip_acl_interface_get_reply"])
+            reply = papi_exec.add(cmd).get_reply(err_msg)
+        logger.info(reply)
