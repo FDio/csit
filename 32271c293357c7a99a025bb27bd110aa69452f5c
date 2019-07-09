@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c4c93082_6b0ea26e",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-09T16:07:55Z",
+      "side": 1,
+      "message": "I didn\u0027t want to include information in Topo files that don\u0027t need to be there - we can discover architecture during setup, just like we do with cpu layout.",
+      "parentUuid": "3a08c815_38ea1114",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 41
+      },
+      "revId": "32271c293357c7a99a025bb27bd110aa69452f5c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a31824d_5f8f8307",
         "filename": "tests/vpp/device/__init__.robot",
         "patchSetId": 3
