@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0f7c1acd_3ddfdf23",
+        "filename": "resources/libraries/python/ProxyArp.py",
+        "patchSetId": 43
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-09T10:30:08Z",
+      "side": 1,
+      "message": "\u003e amount to relinquishing the previous copyright\n\nI do not agree (but I am not a lawyer).\n\n\u003e 2016-2019\n\nI can see the benefits of considering the multiple edits to be \"essentially the same file\" and applying a copyright to the whole set, but it would take considerable amount of \"git log\" commands to find the initial year of each file, so I am not going to change the current CSIT usage (which can be interpreted as each edit constituting a different file with different copyright).\n\nYou are welcome to join existing discussion on how to handle copyright and liceses in CSIT:\nhttps://lists.fd.io/g/csit-dev/topic/copyright_check/32229604?p\u003d,,,20,0,0,0::recentpostdate%2Fsticky,,,20,2,0,32229604",
+      "parentUuid": "6c0782ff_93364abb",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "23a1dd6807a62ebc0f8975bd71c0bdbef4c570e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3d6cf71e_a23b14c6",
         "filename": "resources/libraries/python/Tap.py",
         "patchSetId": 43
