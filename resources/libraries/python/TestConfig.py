@@ -189,9 +189,8 @@ class TestConfig(object):
                     add(cmd2, history=history, **args2).\
                     add(cmd3, history=history, **args3)
                 if i > 0 and i % (Constants.PAPI_MAX_API_BULK / 3) == 0:
-                    papi_exec.get_replies(err_msg).verify_replies(
-                        err_msg=err_msg)
-            papi_exec.get_replies().verify_replies()
+                    papi_exec.get_replies(err_msg)
+            papi_exec.get_replies()
 
         return vxlan_count
 
@@ -298,10 +297,9 @@ class TestConfig(object):
                 papi_exec.add(cmd, history=history, **args1). \
                     add(cmd, history=history, **args2)
                 if i > 0 and i % (Constants.PAPI_MAX_API_BULK / 2) == 0:
-                    papi_exec.get_replies(err_msg).verify_replies(
-                        err_msg=err_msg)
+                    papi_exec.get_replies(err_msg)
                 papi_exec.add(cmd, **args1).add(cmd, **args2)
-            papi_exec.get_replies().verify_replies()
+            papi_exec.get_replies()
 
     @staticmethod
     def vpp_put_vxlan_and_vlan_interfaces_to_bridge_domain(
@@ -423,6 +421,5 @@ class TestConfig(object):
                     add(cmd3, history=history, **args3). \
                     add(cmd3, history=history, **args4)
                 if i > 0 and i % (Constants.PAPI_MAX_API_BULK / 4) == 0:
-                    papi_exec.get_replies(err_msg).verify_replies(
-                        err_msg=err_msg)
-            papi_exec.get_replies().verify_replies()
+                    papi_exec.get_replies(err_msg)
+            papi_exec.get_replies()
