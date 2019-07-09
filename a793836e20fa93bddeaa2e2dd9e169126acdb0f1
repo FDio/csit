@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "1de1a8c8_ad58916f",
+        "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-09T12:45:56Z",
+      "side": 1,
+      "message": "I have found the specific edit which claimed to use nomenclature from this draft, but was still confusing for me: https://gerrit.fd.io/r/#/c/19062/4/resources/libraries/python/CpuUtils.py\n\nPrimary-vs-secondary is not that clear, as different implementations (of the utility that pins software to hardware cores) may find different quantities convenient to use as their primary inputs.",
+      "parentUuid": "42790ffb_98403822",
+      "range": {
+        "startLine": 598,
+        "startChar": 30,
+        "endLine": 598,
+        "endChar": 44
+      },
+      "revId": "a793836e20fa93bddeaa2e2dd9e169126acdb0f1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a9467c6_35ad273c",
         "filename": "docs/ietf/draft-mkonstan-nf-service-density-01.md",
         "patchSetId": 3
