@@ -22,6 +22,30 @@
       "revId": "10e0393fde6d919cf0e5848bc5e506d981642ef8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2772d25d_af5b9a94",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 75
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-07-09T11:15:04Z",
+      "side": 1,
+      "message": "fix here: https://gerrit.fd.io/r/#/c/20557/",
+      "parentUuid": "f47bc6c1_621dc450",
+      "range": {
+        "startLine": 45,
+        "startChar": 12,
+        "endLine": 45,
+        "endChar": 23
+      },
+      "revId": "10e0393fde6d919cf0e5848bc5e506d981642ef8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
