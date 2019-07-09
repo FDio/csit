@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6a31824d_5f8f8307",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-09T13:47:30Z",
+      "side": 1,
+      "message": "These two should be set in suites, so copypaste to another density is easier (also for future density aware suite generator). Not sure about the other two you are adding, but I assume we also prefer suites to set them.",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 34
+      },
+      "revId": "32271c293357c7a99a025bb27bd110aa69452f5c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
