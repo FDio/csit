@@ -15,11 +15,13 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | L2BD | BASE | TAP
+| ... | NIC_Virtual | ETH | L2BD | BASE | 2TAP
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test | namespace
 | Test Teardown | Tear down test | packet_trace | namespace | linux_bridge
+| ...
+| Test Template | Local Template
 | ...
 | Documentation | *Tap Interface Traffic Tests*
 | ...
@@ -42,19 +44,25 @@
 | ${overhead}= | ${0}
 | ${bid_TAP}= | tapBr
 
-*** Test Cases ***
-| tc01-eth2p-ethicmpv4-l2bdbasemaclrn-eth-2tap-dev_tap-simple-bd
+*** Keywords ***
+| Local Template
 | | [Documentation]
 | | ... | [Ver] Packet sent from TG is passed through all L2BD and received\
 | | ... | back on TG. Then src_ip, dst_ip and MAC are checked.
 | | ...
-| | Set Test Variable | ${frame_size} | ${42}
-| | Set Test Variable | ${rxq_count_int} | ${1}
+| | ... | *Arguments:*
+| | ... | - frame_size - Framesize in Bytes in integer. Type: integer
+| | ... | - phy_cores - Number of physical cores. Type: integer
+| | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
 | | ...
-| | Given Add PCI devices to all DUTs
+| | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
+| | ...
+| | Set Test Variable | \${frame_size}
+| | ...
+| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
+| | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Apply startup configuration on all VPP DUTs
-| | And VPP Enable Traces On All Duts | ${nodes}
+| | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Set interfaces in path up
 | | ${int1}= | And Add Tap Interface | ${dut1} | tap0
 | | ${int2}= | And Add Tap Interface | ${dut1} | tap1
@@ -69,3 +77,8 @@
 | | And Add interface to bridge domain | ${dut1} | ${dut1_if2} | 19 | 0
 | | Then Send ICMP packet and verify received packet
 | | ... | ${tg} | ${tg_if1} | ${tg_if2}
+
+*** Test Cases ***
+| tc01-eth2p-ethicmpv4-l2bdbasemaclrn-eth-2tap-dev
+| | [Tags] | 64B
+| | frame_size=${64} | phy_cores=${0}
