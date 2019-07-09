@@ -37,14 +37,14 @@ class SPAN(object):
             source/destination interface pair.
         :rtype: list of dict
         """
+        cmd = "sw_interface_span_dump"
         args = dict(
             is_l2=1 if is_l2 else 0
         )
         with PapiExecutor(node) as papi_exec:
-            dump = papi_exec.add("sw_interface_span_dump", **args). \
-                get_dump().reply[0]["api_reply"]
+            details = papi_exec.add(cmd, **args).get_details()
 
-        return dump
+        return details
 
     @staticmethod
     def vpp_get_span_configuration_by_interface(node, dst_interface,
@@ -71,9 +71,8 @@ class SPAN(object):
             node, dst_interface, "sw_if_index")
         src_interfaces = []
         for item in data:
-            if item["sw_interface_span_details"]["sw_if_index_to"] == dst_int:
-                src_interfaces.append(
-                    item["sw_interface_span_details"]["sw_if_index_from"])
+            if item["sw_if_index_to"] == dst_int:
+                src_interfaces.append(item["sw_if_index_from"])
 
         if ret_format != "sw_if_index":
             src_interfaces = [

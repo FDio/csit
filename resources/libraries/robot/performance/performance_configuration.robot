@@ -1270,7 +1270,7 @@
 | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_2}
 | | ... | ${dut2_eth_bond_if1}
-| | VPP Show Bond Data On All Nodes | ${nodes} | details=${TRUE}
+| | VPP Show Bond Data On All Nodes | ${nodes} | verbose=${TRUE}
 | | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
 | | ... | ${subid}
@@ -2116,7 +2116,7 @@
 | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | ... | VPP Enslave Physical Interface | ${dut2} | ${dut2_if1_2}
 | | ... | ${dut2_eth_bond_if1}
-| | VPP Show Bond Data On All Nodes | ${nodes} | details=${TRUE}
+| | VPP Show Bond Data On All Nodes | ${nodes} | verbose=${TRUE}
 | | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
 | | ... | ${subid}
