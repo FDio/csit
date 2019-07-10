@@ -23,7 +23,6 @@ set -exuo pipefail
 
 
 function activate_docker_topology () {
-    set -exuo pipefail
 
     # Create virtual vpp-device topology. Output of the function is topology
     # file describing created environment saved to a file.
@@ -34,8 +33,11 @@ function activate_docker_topology () {
     # - NODENESS - Node multiplicity of desired testbed.
     # - FLAVOR - Node flavor string, usually describing the processor.
     # - IMAGE_VER_FILE - Name of file that contains the image version.
+    # - CSIT_DIR - Directory where ${IMAGE_VER_FILE} is located.
     # Variables set:
     # - WORKING_TOPOLOGY - Path to topology file.
+
+    set -exuo pipefail
 
     source "${BASH_FUNCTION_DIR}/device.sh" || {
         die "Source failed!"
@@ -48,7 +50,7 @@ function activate_docker_topology () {
             # We execute reservation over csit-shim-dcr (ssh) which runs sourced
             # script's functions. Env variables are read from ssh output
             # back to localhost for further processing.
-            hostname=$(grep search /etc/resolv.conf | cut -d' ' -f3)
+            hostname=$(grep search /etc/resolv.conf | cut -d' ' -f3) || die
             ssh="ssh root@${hostname} -p 6022"
             run="activate_wrapper ${NODENESS} ${FLAVOR} ${device_image}"
             # backtics to avoid https://midnight-commander.org/ticket/2142
@@ -91,8 +93,6 @@ function activate_docker_topology () {
 
 function activate_virtualenv () {
 
-    set -exuo pipefail
-
     # Update virtualenv pip package, delete and create virtualenv directory,
     # activate the virtualenv, install requirements, set PYTHONPATH.
 
@@ -106,6 +106,8 @@ function activate_virtualenv () {
     # - PYTHONPATH - CSIT_DIR, as CSIT Python scripts usually need this.
     # Functions called:
     # - die - Print to stderr and exit.
+
+    set -exuo pipefail
 
     root_path="${1-$CSIT_DIR}"
     env_dir="${root_path}/env"
@@ -130,8 +132,6 @@ function activate_virtualenv () {
 
 function archive_tests () {
 
-    set -exuo pipefail
-
     # Create .tar.xz of generated/tests for archiving.
     # To be run after generate_tests, kept separate to offer more flexibility.
 
@@ -140,6 +140,8 @@ function archive_tests () {
     # File rewriten:
     # - ${ARCHIVE_DIR}/tests.tar.xz - Archive of generated tests.
 
+    set -exuo pipefail
+
     tar c "${GENERATED_DIR}/tests" | xz -9e > "${ARCHIVE_DIR}/tests.tar.xz" || {
         die "Error creating archive of generated tests."
     }
@@ -147,8 +149,6 @@ function archive_tests () {
 
 
 function check_download_dir () {
-
-    set -exuo pipefail
 
     # Fail if there are no files visible in ${DOWNLOAD_DIR}.
     #
@@ -159,6 +159,8 @@ function check_download_dir () {
     # Functions called:
     # - die - Print to stderr and exit.
 
+    set -exuo pipefail
+
     if [[ ! "$(ls -A "${DOWNLOAD_DIR}")" ]]; then
         die "No artifacts downloaded!"
     fi
@@ -167,11 +169,11 @@ function check_download_dir () {
 
 function cleanup_topo () {
 
-    set -exuo pipefail
-
     # Variables read:
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # - PYTHON_SCRIPTS_DIR - Path to directory holding the reservation script.
+
+    set -exuo pipefail
 
     python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t "${WORKING_TOPOLOGY}"
     # Not using "|| die" as some callers might want to ignore errors,
@@ -180,8 +182,6 @@ function cleanup_topo () {
 
 
 function common_dirs () {
-
-    set -exuo pipefail
 
     # Set global variables, create some directories (without touching content).
 
@@ -199,6 +199,8 @@ function common_dirs () {
     # ARCHIVE_DIR, DOWNLOAD_DIR, GENERATED_DIR.
     # Functions called:
     # - die - Print to stderr and exit.
+
+    set -exuo pipefail
 
     BASH_FUNCTION_DIR="$(dirname "$(readlink -e "${BASH_SOURCE[0]}")")" || {
         die "Some error during localizing this source directory."
@@ -239,8 +241,6 @@ function common_dirs () {
 
 function compose_pybot_arguments () {
 
-    set -exuo pipefail
-
     # Variables read:
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # - DUT - CSIT test/ subdirectory, set while processing tags.
@@ -250,6 +250,8 @@ function compose_pybot_arguments () {
     # Variables set:
     # - PYBOT_ARGS - String holding part of all arguments for pybot.
     # - EXPANDED_TAGS - Array of strings pybot arguments compiled from tags.
+
+    set -exuo pipefail
 
     # No explicit check needed with "set -u".
     PYBOT_ARGS=("--loglevel" "TRACE")
@@ -282,8 +284,10 @@ function compose_pybot_arguments () {
 
 function copy_archives () {
 
-    set -exuo pipefail
-
+    # Create additional archive if workspace variable is set.
+    # This way if script is running in jenkins all will be
+    # automatically archived to logs.fd.io.
+    #
     # Variables read:
     # - WORKSPACE - Jenkins workspace, copy only if the value is not empty.
     #   Can be unset, then it speeds up manual testing.
@@ -294,9 +298,8 @@ function copy_archives () {
     # Functions called:
     # - die - Print to stderr and exit.
 
-    # We will create additional archive if workspace variable is set.
-    # This way if script is running in jenkins all will be
-    # automatically archived to logs.fd.io.
+    set -exuo pipefail
+
     if [[ -n "${WORKSPACE-}" ]]; then
         mkdir -p "${WORKSPACE}/archives/" || die "Archives dir create failed."
         cp -rf "${ARCHIVE_DIR}"/* "${WORKSPACE}/archives" || die "Copy failed."
@@ -305,6 +308,7 @@ function copy_archives () {
 
 
 function deactivate_docker_topology () {
+
     # Deactivate virtual vpp-device topology by removing containers.
     #
     # Variables read:
@@ -316,9 +320,9 @@ function deactivate_docker_topology () {
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
         "1n_skx")
-            hostname=$(grep search /etc/resolv.conf | cut -d' ' -f3)
+            hostname=$(grep search /etc/resolv.conf | cut -d' ' -f3) || die
             ssh="ssh root@${hostname} -p 6022"
-            env_vars="$(env | grep CSIT_ | tr '\n' ' ' )"
+            env_vars=$(env | grep CSIT_ | tr '\n' ' ' ) || die
             ${ssh} "$(declare -f); deactivate_wrapper ${env_vars}" || {
                 die "Topology cleanup via shim-dcr failed!"
             }
@@ -337,6 +341,7 @@ function deactivate_docker_topology () {
 
 
 function die () {
+
     # Print the message to standard error end exit with error code specified
     # by the second argument.
     #
@@ -355,14 +360,14 @@ function die () {
 
 function die_on_pybot_error () {
 
-    set -exuo pipefail
-
     # Source this fragment if you want to abort on any failed test case.
     #
     # Variables read:
     # - PYBOT_EXIT_STATUS - Set by a pybot running fragment.
     # Functions called:
     # - die - Print to stderr and exit.
+
+    set -exuo pipefail
 
     if [[ "${PYBOT_EXIT_STATUS}" != "0" ]]; then
         die "Test failures are present!" "${PYBOT_EXIT_STATUS}"
@@ -371,8 +376,6 @@ function die_on_pybot_error () {
 
 
 function generate_tests () {
-
-    set -exuo pipefail
 
     # Populate ${GENERATED_DIR}/tests based on ${CSIT_DIR}/tests/.
     # Any previously existing content of ${GENERATED_DIR}/tests is wiped before.
@@ -387,8 +390,10 @@ function generate_tests () {
     # Directories replaced:
     # - ${GENERATED_DIR}/tests - Overwritten by the generated tests.
 
-    rm -rf "${GENERATED_DIR}/tests"
-    cp -r "${CSIT_DIR}/tests" "${GENERATED_DIR}/tests"
+    set -exuo pipefail
+
+    rm -rf "${GENERATED_DIR}/tests" || die
+    cp -r "${CSIT_DIR}/tests" "${GENERATED_DIR}/tests" || die
     cmd_line=("find" "${GENERATED_DIR}/tests" "-type" "f")
     cmd_line+=("-executable" "-name" "*.py")
     file_list=$("${cmd_line[@]}") || die
@@ -405,8 +410,6 @@ function generate_tests () {
 
 function get_test_code () {
 
-    set -exuo pipefail
-
     # Arguments:
     # - ${1} - Optional, argument of entry script (or empty as unset).
     #   Test code value to override job name from environment.
@@ -416,6 +419,8 @@ function get_test_code () {
     # - TEST_CODE - The test selection string from environment or argument.
     # - NODENESS - Node multiplicity of desired testbed.
     # - FLAVOR - Node flavor string, usually describing the processor.
+
+    set -exuo pipefail
 
     TEST_CODE="${1-}" || die "Reading optional argument failed, somehow."
     if [[ -z "${TEST_CODE}" ]]; then
@@ -462,17 +467,17 @@ function get_test_code () {
 
 function get_test_tag_string () {
 
-    set -exuo pipefail
-
     # Variables read:
     # - GERRIT_EVENT_TYPE - Event type set by gerrit, can be unset.
     # - GERRIT_EVENT_COMMENT_TEXT - Comment text, read for "comment-added" type.
     # - TEST_CODE - The test selection string from environment or argument.
     # Variables set:
-    # - TEST_TAG_STRING - The string following "perftest" in gerrit comment,
-    #   or empty.
+    # - TEST_TAG_STRING - The string following trigger word in gerrit comment.
+    #   May be empty, not set on event types not adding comment.
 
     # TODO: ci-management scripts no longer need to perform this.
+
+    set -exuo pipefail
 
     trigger=""
     if [[ "${GERRIT_EVENT_TYPE-}" == "comment-added" ]]; then
@@ -509,8 +514,6 @@ function get_test_tag_string () {
 
 function reserve_and_cleanup_testbed () {
 
-    set -exuo pipefail
-
     # Reserve physical testbed, perform cleanup, register trap to unreserve.
     # When cleanup fails, remove from topologies and keep retrying
     # until all topologies are removed.
@@ -529,6 +532,8 @@ function reserve_and_cleanup_testbed () {
     # - die - Print to stderr and exit.
     # Traps registered:
     # - EXIT - Calls cancel_all for ${WORKING_TOPOLOGY}.
+
+    set -exuo pipefail
 
     while [[ ${TOPOLOGIES[@]} ]]; do
         for topo in "${TOPOLOGIES[@]}"; do
@@ -600,8 +605,8 @@ function reserve_and_cleanup_testbed () {
 
 function run_pybot () {
 
-    set -exuo pipefail
-
+    # Run pybot with options based on input variables. Create output_info.xml
+    #
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # - ARCHIVE_DIR - Path to store robot result files in.
@@ -611,6 +616,8 @@ function run_pybot () {
     # - PYBOT_EXIT_STATUS - Exit status of most recent pybot invocation.
     # Functions called:
     # - die - Print to stderr and exit.
+
+    set -exuo pipefail
 
     all_options=("--outputdir" "${ARCHIVE_DIR}" "${PYBOT_ARGS[@]}")
     all_options+=("--noncritical" "EXPECTED_FAILING")
@@ -628,14 +635,12 @@ function run_pybot () {
     all_options+=("--report" "none")
     all_options+=("--output" "${ARCHIVE_DIR}/output_info.xml")
     all_options+=("${ARCHIVE_DIR}/output.xml")
-    rebot "${all_options[@]}"
+    rebot "${all_options[@]}" || true
     popd || die "Change directory operation failed."
 }
 
 
 function select_tags () {
-
-    set -exuo pipefail
 
     # Variables read:
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
@@ -643,8 +648,11 @@ function select_tags () {
     # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
     #   Can be unset.
     # - TOPOLOGIES_DIR - Path to existing directory with available tpologies.
+    # - BASH_FUNCTION_DIR - Directory with input files to process.
     # Variables set:
     # - TAGS - Array of processed tag boolean expressions.
+
+    set -exuo pipefail
 
     # NIC SELECTION
     start_pattern='^  TG:'
@@ -658,40 +666,44 @@ function select_tags () {
     reserved=$(sed "${sed_command}" "${WORKING_TOPOLOGY}" \
                | grep -hoP "model: \K.*" | sort -u)
     # All topologies DUT NICs - Selected topology DUT NICs
-    exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}")))
+    exclude_nics=($(comm -13 <(echo "${reserved}") <(echo "${available}"))) || {
+        die "Computation of excluded NICs failed."
+    }
 
-    # Select default NIC
+    # Select default NIC tag.
     case "${TEST_CODE}" in
         *"3n-dnv"* | *"2n-dnv"*)
-            DEFAULT_NIC='nic_intel-x553'
+            default_nic="nic_intel-x553"
             ;;
         *"3n-tsh"*)
-            DEFAULT_NIC='nic_intel-x520-da2'
+            default_nic="nic_intel-x520-da2"
             ;;
         *)
-            DEFAULT_NIC='nic_intel-x710'
+            default_nic="nic_intel-x710"
             ;;
     esac
 
+    # Tag file directory shorthand.
+    tfd="${BASH_FUNCTION_DIR}"
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
         *"ndrpdr-weekly"* )
-            readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mlr-weekly.txt"
+            readarray -t test_tag_array < "${tfd}/mlr-weekly.txt" || die
             ;;
         *"mrr-daily"* )
-            readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mrr-daily.txt"
+            readarray -t test_tag_array < "${tfd}/mrr-daily.txt" || die
             ;;
         *"mrr-weekly"* )
-            readarray -t test_tag_array < "${BASH_FUNCTION_DIR}/mrr-weekly.txt"
+            readarray -t test_tag_array < "${tfd}/mrr-weekly.txt" || die
             ;;
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrAND${DEFAULT_NIC}AND1cAND64bANDip4base"
-                                "mrrAND${DEFAULT_NIC}AND1cAND78bANDip6base"
-                                "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2bdbase"
-                                "mrrAND${DEFAULT_NIC}AND1cAND64bANDl2xcbase"
+                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
+                                "mrrAND${default_nic}AND1cAND78bANDip6base"
+                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
+                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
                                 "!dot1q" "!drv_avf")
             else
                 # If trigger contains tags, split them into array.
@@ -701,6 +713,10 @@ function select_tags () {
     esac
 
     # Blacklisting certain tags per topology.
+    #
+    # Reasons for blacklisting:
+    # - ipsechw - Blacklisted on testbeds without crypto hardware accelerator.
+    # TODO: Add missing reasons here (if general) or where used (if specific).
     case "${TEST_CODE}" in
         *"2n-skx"*)
             test_tag_array+=("!ipsechw")
@@ -763,7 +779,7 @@ function select_tags () {
         if [[ "${TEST_TAG_STRING-}" == *"nic_"* ]]; then
             prefix="${prefix}mrrAND"
         else
-            prefix="${prefix}mrrAND${DEFAULT_NIC}AND"
+            prefix="${prefix}mrrAND${default_nic}AND"
         fi
     fi
     for tag in "${test_tag_array[@]}"; do
@@ -782,14 +798,14 @@ function select_tags () {
 
 function select_vpp_device_tags () {
 
-    set -exuo pipefail
-
     # Variables read:
     # - TEST_CODE - String affecting test selection, usually jenkins job name.
     # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
     #   Can be unset.
     # Variables set:
     # - TAGS - Array of processed tag boolean expressions.
+
+    set -exuo pipefail
 
     case "${TEST_CODE}" in
         # Select specific performance tests based on jenkins job type variable.
@@ -827,12 +843,12 @@ function select_vpp_device_tags () {
 
 function select_os () {
 
-    set -exuo pipefail
-
     # Variables set:
     # - VPP_VER_FILE - Name of File in CSIT dir containing vpp stable version.
     # - IMAGE_VER_FILE - Name of File in CSIT dir containing the image name.
     # - PKG_SUFFIX - Suffix of OS package file name, "rpm" or "deb."
+
+    set -exuo pipefail
 
     os_id=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g') || {
         die "Get OS release failed."
@@ -858,8 +874,6 @@ function select_os () {
 
 function select_topology () {
 
-    set -exuo pipefail
-
     # Variables read:
     # - NODENESS - Node multiplicity of testbed, either "2n" or "3n".
     # - FLAVOR - Node flavor string, currently either "hsw" or "skx".
@@ -871,9 +885,12 @@ function select_topology () {
     # Functions called:
     # - die - Print to stderr and exit.
 
+    set -exuo pipefail
+
     case_text="${NODENESS}_${FLAVOR}"
     case "${case_text}" in
         # TODO: Move tags to "# Blacklisting certain tags per topology" section.
+        # TODO: Double link availability depends on NIC used.
         "1n_vbox")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*vpp_device*.template )
             TOPOLOGIES_TAGS="2_node_single_link_topo"
@@ -919,6 +936,7 @@ function select_topology () {
 
 
 function untrap_and_unreserve_testbed () {
+
     # Use this as a trap function to ensure testbed does not remain reserved.
     # Perhaps call directly before script exit, to free testbed for other jobs.
     # This function is smart enough to avoid multiple unreservations (so safe).
@@ -957,10 +975,13 @@ function untrap_and_unreserve_testbed () {
 
 
 function warn () {
+
     # Print the message to standard error.
     #
     # Arguments:
     # - ${@} - The text of the message.
+
+    set -exuo pipefail
 
     echo "$@" >&2
 }

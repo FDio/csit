@@ -82,22 +82,24 @@ Safety
 
     + TODO: Consider giving examples both for good and bad usage.
 
-  + Command substitution on right hand side of assignment should be safe
+  + Command substitution on right hand side of assignment are safe
     without quotes.
-
-    + But still, quotes are RECOMMENDED, unless line length is a concern.
 
     + Note that command substitution limits the scope for quotes,
       so it is NOT REQUIRED to escape the quotes in deeper levels.
 
-    + TODO: Do we prefer backtics, or "dollar round-bracket"?
+    + Both backtics and "dollar round-bracket" provide command substitution.
+      The folowing rules are RECOMMENDED:
 
-      + Backticks are more readable, especially when there are
-        round brackets in the surrounding text.
+      + For simple constructs, use "dollar round-bracket".
 
-      + Backticks do not allow nested command substitution.
+      + If there are round brackets in the surrounding text, use backticks,
+        as some editor highlighting logic can get confused.
 
-        + But we might want to avoid nested command substitution anyway?
+      + Avoid nested command substitution.
+
+        + Put intermediate results into local variables,
+          use "|| die" on each step of command substitution.
 
   + Code SHOULD NOT be structured in a way where
     word splitting is intended.
@@ -541,21 +543,25 @@ Library documentation
 
 + Then SHALL be the function definitions, and inside:
 
-  + "set -exuo pipefail" again.
-
-  + Following that SHALL be the function documentation explaining API contract.
+  + The body SHALL sart with the function documentation explaining API contract.
     Similar to Robot [Documentation] or Python function-level docstring.
 
     + See below.
 
-  + Following that SHALL be varius TODOs, FIXMEs and code itself.
+  + Following that SHALL be various top-level TODOs and FIXMEs.
+
+    + TODO: Document (in an appropriate place) how TODOs differ from FIXMEs.
+
+  + "set -exuo pipefail" SHALL be the first executable line
+    in the function body, except functions which legitimely need
+    different flags. Those SHALL also start with appropriate "set" command(s).
+
+  + Lines containing code itself SHALL follow.
 
     + "Code itself" SHALL include comment lines
       explaining any non-obvious logic.
 
-    + TODO: Document (in an appropriate place) how TODOs differ from FIXMEs.
-
-  + There SHALL be two empty lines before next function definition.
+  + There SHALL be two empty lines between function definitions.
 
 More details on function documentation:
 
