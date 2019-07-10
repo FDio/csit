@@ -705,9 +705,7 @@ class IPsecUtil(object):
                         remote_crypto_key=ckey,
                         integ=integ,
                         laddr=ip_address(unicode(if1_ip_addr)) + i * addr_incr,
-                        raddr=ip_address(unicode(if2_ip_addr)),
-                        uifc=Topology.get_interface_name(nodes['DUT1'],
-                                                         if1_key)))
+                        raddr=ip_address(unicode(if2_ip_addr))))
                 tmp_f2.write(
                     'ipsec_tunnel_if_add_del '
                     'local_spi {local_spi} '

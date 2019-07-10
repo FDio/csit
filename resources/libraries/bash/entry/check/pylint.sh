@@ -29,7 +29,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     echo "Source failed." >&2
     exit 1
 }
-pylint_args=("--rcfile=pylint.cfg" "resources/" "tests/")
+pylint_args=("--rcfile=pylint.cfg" "resources/")
 if pylint "${pylint_args[@]}" > "pylint.log"; then
     warn
     warn "Pylint checker: PASS"

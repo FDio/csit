@@ -161,13 +161,13 @@ class IPUtil(object):
         :param node: VPP node.
         :type node: dict
         """
-        ip = ip_address(unicode(address))
+        addr = ip_address(unicode(address))
 
         PapiExecutor.run_cli_cmd(
             node, 'show {ip_ver} fib {addr}/{addr_len}'.format(
-                ip_ver='ip6' if ip.version == 6 else 'ip',
-                addr=ip,
-                addr_len=ip.max_prefixlen))
+                ip_ver='ip6' if addr.version == 6 else 'ip',
+                addr=addr,
+                addr_len=addr.max_prefixlen))
 
     @staticmethod
     def get_interface_vrf_table(node, interface, ip_version='ipv4'):
