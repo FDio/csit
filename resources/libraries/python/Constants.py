@@ -61,6 +61,9 @@ class Constants(object):
     # QEMU VM kernel image path
     QEMU_VM_KERNEL = '/opt/boot/vmlinuz'
 
+    # QEMU VM kernel initrd path
+    QEMU_VM_KERNEL_INITRD = '/opt/boot/initrd.img'
+
     # QEMU VM nested image path
     QEMU_VM_IMAGE = '/var/lib/vm/vhost-nested.img'
 

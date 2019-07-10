@@ -39,12 +39,12 @@
 | Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 | Resource | resources/libraries/robot/shared/container.robot
-| Resource | resources/libraries/robot/shared/qemu.robot
 | Resource | resources/libraries/robot/shared/suite_teardown.robot
 | Resource | resources/libraries/robot/shared/suite_setup.robot
 | Resource | resources/libraries/robot/shared/test_teardown.robot
 | Resource | resources/libraries/robot/shared/test_setup.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
+| Resource | resources/libraries/robot/shared/vm.robot
 
 *** Keywords ***
 | Show Vpp Errors On All DUTs
@@ -160,7 +160,8 @@
 | | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${CPU_CNT_MAIN}
 | | | ${skip_cnt}= | Evaluate | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN}
-| | | ${cpu_wt}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
+| | | ${cpu_wt}= | Run keyword if | ${cpu_count_int} > 0 |
+| | | ... | Cpu list per node str | ${nodes['${dut}']} | ${numa}
 | | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${cpu_count_int}
 | | | ... | smt_used=${smt_used}
 | | | ${thr_count_int}= | Run keyword if | ${smt_used}
@@ -172,9 +173,12 @@
 | | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
 | | | ... | Set variable | ${1}
 | | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | Run keyword | ${dut}.Add CPU Main Core | ${cpu_main}
-| | | Run keyword | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
-| | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
+| | | Run keyword if | ${cpu_count_int} > 0
+| | | ... | ${dut}.Add CPU Main Core | ${cpu_main}
+| | | Run keyword if | ${cpu_count_int} > 0
+| | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
+| | | Run keyword
+| | | ... | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
 # For now there is no way to easily predict the number of buffers. Statically
 # doing maximum amount of buffers allowed by DPDK.
 | | | Run keyword if | ${smt_used}

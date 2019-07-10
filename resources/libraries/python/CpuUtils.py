@@ -62,15 +62,20 @@ class CpuUtils(object):
         return bool(count == cpu_mems_len)
 
     @staticmethod
-    def get_cpu_layout_from_all_nodes(nodes):
-        """Retrieve cpu layout from all nodes, assuming all nodes
-           are Linux nodes.
+    def get_cpu_info_from_all_nodes(nodes):
+        """Assuming all nodes are Linux nodes, retrieve the following
+           cpu information from all nodes:
+               - cpu architecture
+               - cpu layout
 
         :param nodes: DICT__nodes from Topology.DICT__nodes.
         :type nodes: dict
-        :raises RuntimeError: If the ssh command "lscpu -p" fails.
+        :raises RuntimeError: If an ssh command retrieving cpu information
+                              fails.
         """
         for node in nodes.values():
+            stdout, _ = exec_cmd_no_error(node, 'uname -m')
+            node['arch'] = stdout.strip()
             stdout, _ = exec_cmd_no_error(node, 'lscpu -p')
             node['cpuinfo'] = list()
             for line in stdout.split("\n"):

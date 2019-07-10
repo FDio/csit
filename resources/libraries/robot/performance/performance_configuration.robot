@@ -341,6 +341,8 @@
 | | ... | ${dut1} | ${dut1_if2} | 200.0.0.1 | 30
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 100.0.0.2 | ${tg1_if1_mac}
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 200.0.0.2 | ${tg1_if2_mac}
 | | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=100.0.0.2
@@ -728,6 +730,79 @@
 | | ... | gateway=2001:4::1 | interface=${dut2_if1} | count=${count}
 | | Vpp Route Add | ${dut} | 2001:2::0 | ${host_prefix} | gateway=2001:5::2
 | | ... | interface=${dut_if2} | count=${count}
+
+| Initialize IPv6 forwarding with vhost in 2-node circular topology
+| | [Documentation]
+| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on \
+| | ... | VPP node. Set UP state of all VPP interfaces in path. Create \
+| | ... | nf_nodes+1 FIB tables on DUT with multipath routing. Assign each \
+| | ... | Virtual interface to FIB table with Physical interface or Virtual \
+| | ... | interface on both nodes. Setup IPv6 addresses with /64 prefix on \
+| | ... | DUT-TG links. Set routing on DUT nodes in all FIB tables with \
+| | ... | prefix /64 and next hop of neighbour IPv6 address. Setup neighbours \
+| | ... | on all VPP interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nf_nodes - Number of guest VMs. Type: integer
+| | ...
+| | ... | *Note:*
+| | ... | Socket paths for VM are defined in following format:
+| | ... | - /var/run/vpp/sock-${VM_ID}-1
+| | ... | - /var/run/vpp/sock-${VM_ID}-2
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| IPv6 forwarding with Vhost-User initialized in a 2-node circular\
+| | ... | topology \| 1 \|
+| | ...
+| | [Arguments] | ${nf_nodes}=${1}
+| | ...
+| | Suppress ICMPv6 router advertisement message | ${nodes}
+| | Set interfaces in path up
+| | ${prefix}= | Set Variable | 64
+| | ${fib_table_1}= | Set Variable | ${101}
+| | ${fib_table_2}= | Evaluate | ${fib_table_1}+${nf_nodes}
+| | Add Fib Table | ${dut1} | ${fib_table_1} | ipv6=${True}
+| | Add Fib Table | ${dut1} | ${fib_table_2} | ipv6=${True}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table_1}
+| | ... | ipv6=${True}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table_2}
+| | ... | ipv6=${True}
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 2001:100::1
+| | ... | ${prefix}
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if2} | 2001:200::1
+| | ... | ${prefix}
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:100::2 | ${tg1_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 2001:200::2 | ${tg1_if2_mac}
+| | Vpp Route Add | ${dut1} | 2001:1::0 | 64 | gateway=2001:100::2
+| | ... | interface=${dut1_if1} | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=2001:200::2
+| | ... | interface=${dut1_if2} | vrf=${fib_table_2}
+| | :FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
+| | | ${fib_table_1}= | Evaluate | ${100}+${number}
+| | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
+| | | Configure vhost interfaces for L2BD forwarding | ${dut1}
+| | | ... | /var/run/vpp/sock-${number}-1 | /var/run/vpp/sock-${number}-2
+| | | ... | dut1-vhost-${number}-if1 | dut1-vhost-${number}-if2
+| | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
+| | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if2} | up
+| | | Add Fib Table | ${dut1} | ${fib_table_1} | ipv6=${True}
+| | | Add Fib Table | ${dut1} | ${fib_table_2} | ipv6=${True}
+| | | Assign Interface To Fib Table | ${dut1} | ${dut1-vhost-${number}-if1}
+| | | ... | ${fib_table_1} | ipv6=${True}
+| | | Assign Interface To Fib Table | ${dut1} | ${dut1-vhost-${number}-if2}
+| | | ... | ${fib_table_2} | ipv6=${True}
+| | | Configure IP addresses on interfaces
+| | | ... | ${dut1} | ${dut1-vhost-${number}-if1} | 1:1::2 | 64
+| | | ... | ${dut1} | ${dut1-vhost-${number}-if2} | 1:2::2 | 64
+| | | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=1:1::1
+| | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
+| | | Vpp Route Add | ${dut1} | 2001:1::0 | 64 | gateway=1:2::1
+| | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
 
 | Initialize IPv6 forwarding with VLAN dot1q sub-interfaces in circular topology
 | | [Documentation]
@@ -2171,87 +2246,6 @@
 | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
 | | Add Eth Interface | ${dut1} | ${dut1_eth_bond_if1_name} | ifc_pfx=eth_bond
 | | Add Eth Interface | ${dut2} | ${dut2_eth_bond_if1_name} | ifc_pfx=eth_bond
-
-| Configure chains of NFs connected via vhost-user
-| | [Documentation]
-| | ... | Start 1..N chains of 1..N QEMU guests (VNFs) with two vhost-user\
-| | ... | interfaces and interconnecting NF.
-| | ...
-| | ... | *Arguments:*
-| | ... | - nf_chains - Number of chains of NFs. Type: integer
-| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
-| | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
-| | ... | in the test. Type: boolean
-| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: integer
-| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
-| | ... | Type: boolean
-| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
-| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
-| | ... | - vnf - Network function as a payload. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Configure chains of VMs connected via vhost-user
-| | ... | \| 1 \| 1 \| False \| 1024 \| False \| False \| vpp
-| | ...
-| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${jumbo}=${False}
-| | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
-| | ... | ${auto_scale}=${True} | ${vnf}=vpp
-| | ...
-| | Import Library | resources.libraries.python.QemuManager | ${nodes}
-| | ... | WITH NAME | vnf_manager
-| | Run Keyword | vnf_manager.Construct VMs on all nodes
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
-| | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
-| | ... | auto_scale=${auto_scale} | vnf=${vnf}
-| | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
-| | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
-| | ... | rxq_count_int=${rxq_count_int}
-| | Run Keyword | vnf_manager.Start All VMs | pinning=${True}
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
-
-| Configure chains of NFs connected via vhost-user on single node
-| | [Documentation]
-| | ... | Start 1..N chains of 1..N QEMU guests (VNFs) with two vhost-user\
-| | ... | interfaces and interconnecting NF on single DUT node.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - DUT node. Type: dictionary
-| | ... | - nf_chains - Number of chains of NFs. Type: integer
-| | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
-| | ... | - jumbo - Jumbo frames are used (True) or are not used (False)
-| | ... | in the test. Type: boolean
-| | ... | - perf_qemu_qsz - Virtio Queue Size. Type: integer
-| | ... | - use_tuned_cfs - Set True if CFS RR should be used for Qemu SMP.
-| | ... | Type: boolean
-| | ... | - auto_scale - Whether to use same amount of RXQs for memif interface
-| | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
-| | ... | - vnf - Network function as a payload. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Configure chains of NFs connected via vhost-user on single node
-| | ... | \| DUT1 \| 1 \| 1 \| False \| 1024 \| False \| False \| vpp
-| | ...
-| | [Arguments] | ${node} | ${nf_chains}=${1} | ${nf_nodes}=${1}
-| | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${1024}
-| | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${True} | ${vnf}=vpp
-| | ...
-| | Import Library | resources.libraries.python.QemuManager | ${nodes}
-| | ... | WITH NAME | vnf_manager
-| | Run Keyword | vnf_manager.Initialize
-| | Run Keyword | vnf_manager.Construct VMs on node
-| | ... | node=${node}
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
-| | ... | perf_qemu_qsz=${perf_qemu_qsz} | use_tuned_cfs=${use_tuned_cfs}
-| | ... | auto_scale=${auto_scale} | vnf=${vnf}
-| | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
-| | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
-| | ... | rxq_count_int=${rxq_count_int}
-| | Run Keyword | vnf_manager.Start All VMs | pinning=${True}
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-| | VPP round robin RX placement on all DUTs | ${nodes} | prefix=Virtual
 
 | Initialize LISP IPv4 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG \
