@@ -1,0 +1,45 @@
+---
+# file: roles/common/tasks/kernel_install.yaml
+
+- name: Backup remote initramfs modules
+  copy:
+    src: '/etc/initramfs-tools/modules'
+    dest: '/etc/initramfs-tools/modules.bkp'
+    remote_src: yes
+  tags: install-kernel-image
+
+- name: Update initramfs modules
+  copy:
+    src: '../files/initramfs_modules'
+    dest: '/etc/initramfs-tools/modules'
+  tags: install-kernel-image
+
+- name: Create target kernel dir
+  file:
+    path: '/opt/boot'
+    state: 'directory'
+  tags: install-kernel-image
+
+- name: Build initrd image
+  shell: 'update-initramfs -k {{ ansible_kernel }} -c -b /opt/boot'
+  tags: install-kernel-image
+
+- name: Copy corresponding kernel img
+  copy:
+    src: '/boot/vmlinuz-{{ ansible_kernel }}'
+    dest: '/opt/boot/vmlinuz-{{ ansible_kernel }}'
+    remote_src: yes
+  tags: install-kernel-image
+
+- name: Restore remote initramfs modules
+  copy:
+    src: '/etc/initramfs-tools/modules.bkp'
+    dest: '/etc/initramfs-tools/modules'
+    remote_src: yes
+  tags: install-kernel-image
+
+- name: Remove backup initramfs modules
+  file:
+    path: '/etc/initramfs-tools/modules.bkp'
+    state: 'absent'
+  tags: install-kernel-image
