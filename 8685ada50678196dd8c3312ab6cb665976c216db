@@ -116,6 +116,30 @@
       "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b18ddef_e9a41463",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-10T15:17:03Z",
+      "side": 1,
+      "message": "\u003e Do you mean using constants.REPO_ROOT\n\nNo, I mean not even introducing REPO_ROOT, as there is no need (yet) to read files there.\n\n\u003e getenv(\u0027IMAGE_VER_FILE\u0027)\n\nYes. Perhaps exported as CSIT_IMAGE_VER_FILE (but that practice has not made it into bash_code_style.rst yet, currently I would prefer FDIO_CSIT_ prefix).\nStill with ubuntu amd64 value as default when the env variable is not set, to simplify life for people running pybot directly (without bootstrap scripts).",
+      "parentUuid": "7c2c913c_bdcb4895",
+      "range": {
+        "startLine": 787,
+        "startChar": 45,
+        "endLine": 787,
+        "endChar": 78
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
