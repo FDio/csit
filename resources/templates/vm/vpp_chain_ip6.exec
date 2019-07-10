@@ -1,0 +1,10 @@
+set interface ip address GigabitEthernet0/6/0 1:1::1/64
+set interface state GigabitEthernet0/6/0 up
+
+set interface ip address GigabitEthernet0/7/0 1:2::1/64
+set interface state GigabitEthernet0/7/0 up
+
+ip route add 2001:1::/64 via 1:1::2 GigabitEthernet0/6/0
+ip route add 2001:2::/64 via 1:2::2 GigabitEthernet0/7/0
+
+show version

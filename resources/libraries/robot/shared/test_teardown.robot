@@ -15,7 +15,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/container.robot
-| Resource | resources/libraries/robot/shared/qemu.robot
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.topology.Topology
 | ...
@@ -66,8 +65,7 @@
 | | ... | Additional teardown for tests which uses vhost(s) and VM(s).
 | | ...
 | | Show VPP vhost on all DUTs | ${nodes}
-| | Run Keyword If | "PERFTEST" in @{TEST TAGS} | vnf_manager.Kill All VMs
-| | Run Keyword If | "DEVICETEST" in @{TEST TAGS} | vm_node.Qemu Kill
+| | vnf_manager.Kill All VMs
 
 | Additional Test Tear Down Action For nat
 | | [Documentation]
