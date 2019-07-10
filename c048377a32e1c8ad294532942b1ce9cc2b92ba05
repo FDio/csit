@@ -22,6 +22,30 @@
       "revId": "c048377a32e1c8ad294532942b1ce9cc2b92ba05",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f689698d_c83f8833",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-10T14:54:56Z",
+      "side": 1,
+      "message": "Alright, but used .debug in next patch.",
+      "parentUuid": "06c14044_9b1ab56c",
+      "range": {
+        "startLine": 219,
+        "startChar": 19,
+        "endLine": 219,
+        "endChar": 23
+      },
+      "revId": "c048377a32e1c8ad294532942b1ce9cc2b92ba05",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
