@@ -92,6 +92,30 @@
       "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c2c913c_bdcb4895",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:34:04Z",
+      "side": 1,
+      "message": "Do you mean using constants.REPO_ROOT with getenv(\u0027IMAGE_VER_FILE\u0027)? I like that.\n\nWhat should be the default if IMAGE_VER_FILE is not set?",
+      "parentUuid": "f47f4e8b_df091041",
+      "range": {
+        "startLine": 787,
+        "startChar": 45,
+        "endLine": 787,
+        "endChar": 78
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
