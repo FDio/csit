@@ -45,6 +45,29 @@
       "revId": "4e5546d87adc958ac30976652e81586df2e397cc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4da46b32_fbeb5424",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T20:31:55Z",
+      "side": 1,
+      "message": "To me this can be thrown to “mrr-daily-${TEST_CODE}” having per topology file. It will be safer simpler as having another variable on previous lines. Anyway such request for split will be more frequent so later we will converge to it anyway. We will not save anything having only dnv and arm separated.",
+      "range": {
+        "startLine": 688,
+        "startChar": 0,
+        "endLine": 688,
+        "endChar": 64
+      },
+      "revId": "4e5546d87adc958ac30976652e81586df2e397cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
