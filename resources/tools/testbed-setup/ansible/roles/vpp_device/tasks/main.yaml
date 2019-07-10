@@ -35,3 +35,6 @@
   tags: set-grub
 
 - meta: flush_handlers
+
+- name: Kernel VM install
+  import_tasks: '../../common/tasks/kernel_install.yaml'

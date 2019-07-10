@@ -27,20 +27,5 @@
     install_recommends: False
   tags: install-csit-dependencies
 
-- name: Get kernel-kvm version
-  shell: "apt-cache depends -i linux-image-kvm | grep Depends: | cut -d' ' -f4"
-  register: 'linux__image_kvm_read'
-  tags: install-kernelvm
-
-- name: Download kernel-kvm
-  shell: "apt-get -y download {{ linux__image_kvm_read.stdout }}"
-  args:
-    warn: false # Prevent warning as APT module does not support download.
-  register: 'linux__image_kvm_download'
-  when: 'linux__image_kvm_read'
-  tags: install-kernelvm
-
-- name: Unpack kernel-kvm
-  shell: "dpkg --extract {{ linux__image_kvm_read.stdout }}_*.deb /opt/"
-  when: 'linux__image_kvm_download'
-  tags: install-kernelvm
+- name: Kernel VM install
+  import_tasks: '../../common/tasks/kernel_install.yaml'
