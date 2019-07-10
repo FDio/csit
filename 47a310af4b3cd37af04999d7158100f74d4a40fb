@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b950b4e9_03ad101c",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "Will add",
+      "parentUuid": "9b9ff5a8_426216bb",
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4fb84a8c_6adc4718",
         "filename": "resources/libraries/bash/function/device.sh",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "4d53096c_818fa909",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "Will add",
+      "parentUuid": "4fb84a8c_6adc4718",
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7975d93e_f3ac3338",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 2
@@ -47,6 +83,30 @@
       "writtenOn": "2019-07-10T13:42:14Z",
       "side": 1,
       "message": "Thinking loud. Does it make sense to split? What about part of  get_cpu_layout_from_all_nodes() function? (maybe rename to get_cpu_info_from_all_nodes",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 41
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd15e923_a71cf2b7",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "Merging the two functions together and renaming them to get_cpu_info_from_all_nodes makes a lot of sense.",
+      "parentUuid": "7975d93e_f3ac3338",
       "range": {
         "startLine": 74,
         "startChar": 0,
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "118a461a_a6b5af71",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "Will change. If we need to add another arch we can change it then.",
+      "parentUuid": "9a26d35b_9e7e0c84",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 41
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cc080520_f147e67e",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 2
@@ -93,6 +177,30 @@
       "writtenOn": "2019-07-10T13:42:14Z",
       "side": 1,
       "message": "console \u003d \u0027ttyAMA0\u0027 if self._arch \u003d\u003d \u0027aarch64\u0027 else \u0027ttyS0\u0027",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 29
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c46d9677_81a82e26",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "Will change. If we need to add another arch we can change it then.",
+      "parentUuid": "cc080520_f147e67e",
       "range": {
         "startLine": 179,
         "startChar": 0,
@@ -128,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "6da3ac5f_b0c0df81",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "Will remove then.",
+      "parentUuid": "66e36b8b_c0d951aa",
+      "range": {
+        "startLine": 409,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 30
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44e1c63f_abc4bdbb",
         "filename": "resources/libraries/robot/shared/vm.robot",
         "patchSetId": 2
@@ -139,6 +271,24 @@
       "writtenOn": "2019-07-10T13:42:14Z",
       "side": 1,
       "message": "pinning param?",
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e6f046bc_250f23f3",
+        "filename": "resources/libraries/robot/shared/vm.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "Will add",
+      "parentUuid": "44e1c63f_abc4bdbb",
       "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -162,6 +312,24 @@
     },
     {
       "key": {
+        "uuid": "cf51c47a_94c34000",
+        "filename": "resources/libraries/robot/shared/vm.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "Will add",
+      "parentUuid": "2928b5f1_86440e16",
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7417eb1a_98e5d6d7",
         "filename": "resources/libraries/robot/shared/vm.robot",
         "patchSetId": 2
@@ -173,6 +341,30 @@
       "writtenOn": "2019-07-10T13:42:14Z",
       "side": 1,
       "message": "make it in doc string",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 28
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a2e942b_d799ef72",
+        "filename": "resources/libraries/robot/shared/vm.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "Will add",
+      "parentUuid": "7417eb1a_98e5d6d7",
       "range": {
         "startLine": 85,
         "startChar": 0,
@@ -208,6 +400,30 @@
     },
     {
       "key": {
+        "uuid": "d5eedc50_14be26af",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "I\u0027ll merge cpu arch and cpu layout to cpu info and refactor accordingly",
+      "parentUuid": "e3bfcc0d_53f5ccb8",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 52
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ddab9554_2eb82307",
         "filename": "tests/vpp/device/__init__.robot",
         "patchSetId": 2
@@ -219,6 +435,30 @@
       "writtenOn": "2019-07-10T13:42:14Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 43
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d30a9b88_19551a78",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "Will remove",
+      "parentUuid": "ddab9554_2eb82307",
       "range": {
         "startLine": 40,
         "startChar": 0,
@@ -248,6 +488,24 @@
     },
     {
       "key": {
+        "uuid": "be1156a9_8affc729",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "I didn\u0027t find anything with images in perf init, so nothing to do here :-)",
+      "parentUuid": "683d0655_1fde032e",
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94373c52_d319579e",
         "filename": "tests/vpp/device/__init__.robot",
         "patchSetId": 2
@@ -259,6 +517,30 @@
       "writtenOn": "2019-07-10T13:42:14Z",
       "side": 1,
       "message": "Would be better to have like perf so perf/device is aligned. see my https://gerrit.fd.io/r/#/c/20565/",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 49
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "72a9be2e_a21f0835",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "I\u0027ll align them",
+      "parentUuid": "94373c52_d319579e",
       "range": {
         "startLine": 45,
         "startChar": 0,
@@ -294,6 +576,30 @@
     },
     {
       "key": {
+        "uuid": "7d0156cb_29fcbacd",
+        "filename": "tests/vpp/device/vm_vhost/ip4/eth2p-ethip4-ip4base-eth-2vhost-1vm-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "Will remove",
+      "parentUuid": "9d572d25_8804568a",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 59
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e45e5458_49aadab2",
         "filename": "tests/vpp/device/vm_vhost/ip4/eth2p-ethip4-ip4base-eth-2vhost-1vm-dev.robot",
         "patchSetId": 2
@@ -305,6 +611,30 @@
       "writtenOn": "2019-07-10T13:42:14Z",
       "side": 1,
       "message": "not needed",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 64
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebae601c_18a94906",
+        "filename": "tests/vpp/device/vm_vhost/ip4/eth2p-ethip4-ip4base-eth-2vhost-1vm-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T14:25:16Z",
+      "side": 1,
+      "message": "I think this was needed since it\u0027s not in Initialize IPv4 forwarding with vhost in 2-node circular topology.\n\nI\u0027ll move it there and do the same for the ipv6 test.",
+      "parentUuid": "e45e5458_49aadab2",
       "range": {
         "startLine": 64,
         "startChar": 0,
