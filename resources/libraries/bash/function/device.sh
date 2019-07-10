@@ -14,9 +14,11 @@
 set -exuo pipefail
 
 # This library defines functions used by multiple entry scripts.
+# Deliberately not depending on common.sh to allow standalone usage.
 # Keep functions ordered alphabetically, please.
 
 function activate_wrapper () {
+
     # Acts as wrapper for activate docker topology.
     #
     # Variables read:
@@ -37,6 +39,7 @@ function activate_wrapper () {
 
 
 function bind_interfaces_to_containers () {
+
     # Bind linux network interface to container and create symlink for PCI
     # address in container.
     #
@@ -83,6 +86,7 @@ function bind_interfaces_to_containers () {
 
 
 function bind_interfaces_to_driver () {
+
     # Bind network interface specified by parameter to driver specified by
     # parameter.
     #
@@ -90,9 +94,11 @@ function bind_interfaces_to_driver () {
     # - ADDR - PCI address of network interface.
     # - DRIVER - Kernel driver.
 
+    set -exuo pipefail
+
     pci_path="/sys/bus/pci/devices/${ADDR}"
     drv_path="/sys/bus/pci/drivers/${DRIVER}"
-    vd="$(cat ${pci_path}/vendor ${pci_path}/device)" || {
+    vd=$(cat ${pci_path}/vendor ${pci_path}/device) || {
         die "Failed to retrieve interface details!"
     }
     set +e
@@ -108,6 +114,7 @@ function bind_interfaces_to_driver () {
 
 
 function clean_environment () {
+
     # Cleanup environment by removing topology containers and shared volumes
     # and binding interfaces back to original driver.
     #
@@ -143,9 +150,12 @@ function clean_environment () {
 
 
 function clean_environment_on_exit () {
+
     # Cleanup environment by removing topology containers and binding
     # interfaces back to original driver only if exit code is not 0.
     # This function acts as workaround as 'set -eu' does not trigger ERR trap.
+
+    set -exuo pipefail
 
     if [ $? -ne 0 ]; then
         clean_environment || die
@@ -154,6 +164,7 @@ function clean_environment_on_exit () {
 
 
 function deactivate_wrapper () {
+
     # Acts as wrapper for deactivate docker topology.
     #
     # Variables read:
@@ -169,8 +180,11 @@ function deactivate_wrapper () {
 
 
 function die () {
+
     # Print the message to standard error end exit with error code specified
     # by the second argument.
+    #
+    # Duplicate of common.sh function, as this file is also used standalone.
     #
     # Hardcoded values:
     # - The default error message.
@@ -186,6 +200,7 @@ function die () {
 
 
 function enter_mutex () {
+
     # Enter mutual exclusion for protecting execution from starvation and
     # deadlock.
 
@@ -208,6 +223,7 @@ function enter_mutex () {
 
 
 function exit_mutex () {
+
     # Exit mutual exclusion.
 
     set -exuo pipefail
@@ -222,11 +238,12 @@ function exit_mutex () {
 
 
 function get_available_interfaces () {
+
     # Find and get available Virtual functions.
     #
     # Arguments:
-    # - ${1} - Node flavor string, usually describing the processor and node
-    # multiplicity of desired testbed, separated by underscore.
+    # - ${1} - Nodeness, as set by common.sh get_test_code.
+    # - ${2} - Flavor, as set by common.sh get_test_code.
     # Variables set:
     # - DUT1_NETDEVS - List of network devices allocated to DUT1 container.
     # - DUT1_PCIDEVS - List of PCI addresses allocated to DUT1 container.
@@ -347,6 +364,7 @@ function get_available_interfaces () {
 
 
 function get_krn_driver () {
+
     # Get kernel driver from linux network device name.
     #
     # Variables read:
@@ -364,6 +382,7 @@ function get_krn_driver () {
 
 
 function get_mac_addr () {
+
     # Get MAC address from linux network device name.
     #
     # Variables read:
@@ -382,6 +401,7 @@ function get_mac_addr () {
 
 
 function get_pci_addr () {
+
     # Get PCI address in <domain>:<bus:<device>.<func> format from linux network
     # device name.
     #
@@ -405,9 +425,9 @@ function get_pci_addr () {
 
 function installed () {
 
-    set -exuo pipefail
-
     # Check if the given utility is installed. Fail if not installed.
+    #
+    # Duplicate of common.sh function, as this file is also used standalone.
     #
     # Arguments:
     # - ${1} - Utility to check.
@@ -415,24 +435,31 @@ function installed () {
     # - 0 - If command is installed.
     # - 1 - If command is not installed.
 
+    set -exuo pipefail
+
     command -v "${1}"
 }
 
 
 function print_env_variables () {
+
     # Get environment variables prefixed by CSIT_.
 
     set -exuo pipefail
 
-    env | grep CSIT_
+    env | grep CSIT_ || true
 }
 
 
 function read_env_variables () {
+
     # Read environment variables from parameters.
     #
     # Arguments:
     # - ${@} - Variables passed as an argument.
+    # Variables read, set or exported: Multiple,
+    # see the code for the current list.
+    # TODO: Do we need to list them and their meanings?
 
     set -exuo pipefail
 
@@ -454,6 +481,7 @@ function read_env_variables () {
 
 
 function set_env_variables () {
+
     # Set environment variables.
     #
     # Variables read:
@@ -465,6 +493,7 @@ function set_env_variables () {
     # - TG_NETMACS - List of network devices MAC addresses of TG container.
     # - TG_PCIDEVS - List of PCI addresses of devices of TG container.
     # - TG_DRIVERS - List of interface drivers to TG container.
+    # Variables set: TODO.
 
     set -exuo pipefail
 
@@ -502,6 +531,7 @@ function set_env_variables () {
 
 
 function start_topology_containers () {
+
     # Starts csit-sut-dcr docker containers for TG/DUT1.
     #
     # Variables read:
@@ -551,11 +581,11 @@ function start_topology_containers () {
 
     # Run TG and DUT1. As initial version we do support only 2-node.
     params=(${dcr_stc_params} --name csit-tg-$(uuidgen) ${dcr_image})
-    DCR_UUIDS+=([tg]="$(docker run "${params[@]}")") || {
+    DCR_UUIDS+=([tg]=$(docker run "${params[@]}")) || {
         die "Failed to start TG docker container!"
     }
     params=(${dcr_stc_params} --name csit-dut1-$(uuidgen) ${dcr_image})
-    DCR_UUIDS+=([dut1]="$(docker run "${params[@]}")") || {
+    DCR_UUIDS+=([dut1]=$(docker run "${params[@]}")) || {
         die "Failed to start DUT1 docker container!"
     }
 
@@ -565,21 +595,21 @@ function start_topology_containers () {
 
     # Get Containers TCP ports.
     params=(${DCR_UUIDS[tg]})
-    DCR_PORTS+=([tg]="$(docker port "${params[@]}")") || {
+    DCR_PORTS+=([tg]=$(docker port "${params[@]}")) || {
         die "Failed to get port of TG docker container!"
     }
     params=(${DCR_UUIDS[dut1]})
-    DCR_PORTS+=([dut1]="$(docker port "${params[@]}")") || {
+    DCR_PORTS+=([dut1]=$(docker port "${params[@]}")) || {
         die "Failed to get port of DUT1 docker container!"
     }
 
     # Get Containers PIDs.
     params=(--format="{{ .State.Pid }}" ${DCR_UUIDS[tg]})
-    DCR_CPIDS+=([tg]="$(docker inspect "${params[@]}")") || {
+    DCR_CPIDS+=([tg]=$(docker inspect "${params[@]}")) || {
         die "Failed to get PID of TG docker container!"
     }
     params=(--format="{{ .State.Pid }}" ${DCR_UUIDS[dut1]})
-    DCR_CPIDS+=([dut1]="$(docker inspect "${params[@]}")") || {
+    DCR_CPIDS+=([dut1]=$(docker inspect "${params[@]}")) || {
         die "Failed to get PID of DUT1 docker container!"
     }
 }
@@ -587,8 +617,12 @@ function start_topology_containers () {
 function warn () {
     # Print the message to standard error.
     #
+    # Duplicate of common.sh function, as this file is also used standalone.
+    #
     # Arguments:
     # - ${@} - The text of the message.
+
+    set -exuo pipefail
 
     echo "$@" >&2
 }

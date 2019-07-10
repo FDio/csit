@@ -16,12 +16,16 @@
 set -exuo pipefail
 
 function download_artifacts_hc () {
-    # Get and/or install HC artifacts from packagecloud.io.
+
+    # Download or install HC artifacts from packagecloud.io.
     #
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # Variables set:
     # - REPO_URL - FD.io Packagecloud repository.
+    # Functions conditionally called (see their documentation for side effects):
+    # - download_ubuntu_artifacts_hc
+    # - download_centos_artifacts_hc
 
     set -exuo pipefail
 
@@ -48,12 +52,14 @@ function download_artifacts_hc () {
 }
 
 function download_ubuntu_artifacts_hc () {
-    # Get and/or install Ubuntu HC artifacts from packagecloud.io.
+
+    # Download or install Ubuntu HC artifacts from packagecloud.io.
     #
     # Variables read:
     # - REPO_URL - FD.io Packagecloud repository.
     # - HC_VERSION - HC version.
-    # - INSTALL - If install packages or download only. Default: download
+    # - INSTALL - Whether install packages (if set to "true") or download only.
+    #             Default: "false".
 
     set -exuo pipefail
 
@@ -69,7 +75,7 @@ function download_ubuntu_artifacts_hc () {
         artifacts+=(${hc[@]/%/=${HC_VERSION-}})
     fi
 
-    if [ "${INSTALL:-false}" = true ]; then
+    if [[ "${INSTALL:-false}" == "true" ]]; then
         sudo apt-get -y install "${artifacts[@]}" || {
             die "Install HC artifacts failed."
         }
@@ -81,12 +87,14 @@ function download_ubuntu_artifacts_hc () {
 }
 
 function download_centos_artifacts_hc () {
-    # Get and/or install CentOS HC artifacts from packagecloud.io.
+
+    # Download or install CentOS HC artifacts from packagecloud.io.
     #
     # Variables read:
     # - REPO_URL - FD.io Packagecloud repository.
     # - HC_VERSION - HC version.
-    # - INSTALL - If install packages or download only. Default: download
+    # - INSTALL - Whether install packages (if set to "true") or download only.
+    #             Default: "false".
 
     set -exuo pipefail
 
@@ -102,7 +110,7 @@ function download_centos_artifacts_hc () {
         artifacts+=(${hc[@]/%/-${HC_VERSION-}})
     fi
 
-    if [ "${INSTALL:-false}" = true ]; then
+    if [[ "${INSTALL:-false}" == "true" ]]; then
         sudo yum -y install "${artifacts[@]}" || {
             die "Install HC artifact failed."
         }
@@ -112,4 +120,3 @@ function download_centos_artifacts_hc () {
         }
     fi
 }
-

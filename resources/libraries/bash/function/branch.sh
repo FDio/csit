@@ -21,8 +21,6 @@ set -exuo pipefail
 
 function checkout_csit_for_vpp () {
 
-    set -exuo pipefail
-
     # This should be useful mainly for vpp-csit jobs (and timed csit-vpp jobs),
     # which want to use csit oper branches (especially for vpp stable branches).
     # This allows the Jenkins job to checkout CSIT master branch,
@@ -51,6 +49,8 @@ function checkout_csit_for_vpp () {
     # Functions called:
     # - die - Print to stderr and exit, defined in "common" library.
 
+    set -exuo pipefail
+
     case "${1}" in
         "stable/"*)
             branch_id="origin/${1/stable\//oper-rls}"
@@ -74,10 +74,10 @@ function checkout_csit_for_vpp () {
     csit_branch="${csit_branch#origin/}" || die
     override_ref="${CSIT_REF-}"
     if [[ -n "${override_ref}" ]]; then
-        git fetch --depth=1 https://gerrit.fd.io/r/csit "${override_ref}"
-        git checkout FETCH_HEAD
+        git fetch --depth=1 https://gerrit.fd.io/r/csit "${override_ref}" || die
+        git checkout FETCH_HEAD || die
     else
-        git checkout "${csit_branch}"
+        git checkout "${csit_branch}" || die
     fi
-    popd
+    popd || die
 }
