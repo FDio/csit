@@ -188,6 +188,30 @@
       "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f26945fe_f5bbe877",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T15:55:16Z",
+      "side": 1,
+      "message": "Ok, that makes sense. Is this the right patch to make this change (IMAGE_VER_FILE -\u003e FDIO_CSIT_IMAGE (possibly FDIO_CSIT_DOCKER_IMAGE?), the same for VPP version) or should we create a separate patch?",
+      "parentUuid": "3d9253f0_282a56a5",
+      "range": {
+        "startLine": 787,
+        "startChar": 45,
+        "endLine": 787,
+        "endChar": 78
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
