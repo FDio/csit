@@ -210,9 +210,14 @@ class InterfaceUtil(object):
             host=node['host'])
         args = dict(sw_if_index=sw_if_index,
                     mtu=int(mtu))
-        with PapiExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_replies(err_msg).\
-                verify_reply(err_msg=err_msg)
+        try:
+            with PapiExecutor(node) as papi_exec:
+                papi_exec.add(cmd, **args).get_replies(err_msg).\
+                    verify_reply(err_msg=err_msg)
+        except AssertionError as err:
+            # TODO: Make failure tolerance optional.
+            logger.debug("Setting MTU failed. Expected?\n{err}".format(
+                err=err))
 
     @staticmethod
     def vpp_set_interfaces_mtu_on_node(node, mtu=9200):
