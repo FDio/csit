@@ -13,6 +13,8 @@
 
 """Constants used in CSIT."""
 
+import os.path
+import glob
 
 class Constants(object):
     """Constants used in CSIT.
@@ -58,8 +60,22 @@ class Constants(object):
     # QEMU binary path
     QEMU_BIN_PATH = '/usr/bin'
 
+    # QEMU VM kernel dir
+    QEMU_VM_KERNEL_DIR = '/opt/boot/'
+
     # QEMU VM kernel image path
-    QEMU_VM_KERNEL = '/opt/boot/vmlinuz'
+    QEMU_VM_KERNEL = glob.glob(os.path.join(QEMU_VM_KERNEL_DIR, 'vmlinuz*'))
+    if QEMU_VM_KERNEL:
+        QEMU_VM_KERNEL = QEMU_VM_KERNEL[-1]  # -1 is latest
+    else:
+        QEMU_VM_KERNEL = None
+
+    # QEMU VM initrd path
+    QEMU_VM_INITRD = glob.glob(os.path.join(QEMU_VM_KERNEL_DIR, 'initrd.img*'))
+    if QEMU_VM_INITRD:
+        QEMU_VM_INITRD = QEMU_VM_INITRD[-1]  # -1 is latest
+    else:
+        QEMU_VM_INITRD = None
 
     # QEMU VM nested image path
     QEMU_VM_IMAGE = '/var/lib/vm/vhost-nested.img'
