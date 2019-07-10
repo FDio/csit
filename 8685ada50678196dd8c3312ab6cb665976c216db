@@ -212,6 +212,30 @@
       "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4c56977_a94f9e2e",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-10T16:02:47Z",
+      "side": 1,
+      "message": "For me it is easier to review the two edits in a single change, especially since the name of the exported variable is not chosen yet.",
+      "parentUuid": "f26945fe_f5bbe877",
+      "range": {
+        "startLine": 787,
+        "startChar": 45,
+        "endLine": 787,
+        "endChar": 78
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
