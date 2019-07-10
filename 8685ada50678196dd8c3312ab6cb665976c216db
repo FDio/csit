@@ -140,6 +140,30 @@
       "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d62990e_b3c90755",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-10T15:25:27Z",
+      "side": 1,
+      "message": "This is what I see in common.sh:\nIMAGE_VER_FILE\u003d\"VPP_DEVICE_IMAGE_UBUNTU\"\n\nI would still need to read that file to get the actual image name. I how would I know where the file is without REPO_ROOT? Or should I get that from the node using REMOTE_FW_DIR? That seems convoluted.",
+      "parentUuid": "2b18ddef_e9a41463",
+      "range": {
+        "startLine": 787,
+        "startChar": 45,
+        "endLine": 787,
+        "endChar": 78
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
