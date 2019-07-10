@@ -28,7 +28,7 @@
 | ...         | AND          | Load Docker image on all duts | ${nodes}
 | ...                        | ${dcr_image}
 | ...         | AND          | Setup Kubernetes on all duts | ${nodes}
-| ...         | AND          | Get CPU Layout from all nodes | ${nodes}
+| ...         | AND          | Get CPU Info from All Nodes | ${nodes}
 | ...         | AND          | Update all numa nodes | ${nodes}
 | ...                        | skip_tg=${True}
 | ...         | AND          | Update NIC interface names on all duts | ${nodes}

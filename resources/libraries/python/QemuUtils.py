@@ -13,13 +13,13 @@
 
 """QEMU utilities library."""
 
-from time import sleep
-from string import Template
-import json
-from re import match
 # Disable due to pylint bug
 # pylint: disable=no-name-in-module,import-error
 from distutils.version import StrictVersion
+import json
+from re import match
+from string import Template
+from time import sleep
 
 from robot.api import logger
 from resources.libraries.python.Constants import Constants
@@ -59,6 +59,11 @@ class QemuUtils(object):
         """
         self._vhost_id = 0
         self._node = node
+        self._arch = Topology.get_node_arch(self._node)
+        dpdk_target = 'arm64-armv8a' if self._arch == 'aarch64' \
+            else 'x86_64-native'
+        self._testpmd_path = '{path}/{dpdk_target}-linuxapp-gcc/app'\
+            .format(path=Constants.QEMU_VM_DPDK, dpdk_target=dpdk_target)
         self._vm_info = {
             'host': node['host'],
             'type': NodeType.VM,
@@ -82,16 +87,25 @@ class QemuUtils(object):
         # Temporary files.
         self._temp = dict()
         self._temp['pidfile'] = '/var/run/qemu_{id}.pid'.format(id=qemu_id)
-        if '/var/lib/vm/' in img:
+        if img == Constants.QEMU_VM_IMAGE:
             self._opt['vm_type'] = 'nestedvm'
             self._temp['qmp'] = '/var/run/qmp_{id}.sock'.format(id=qemu_id)
             self._temp['qga'] = '/var/run/qga_{id}.sock'.format(id=qemu_id)
-        elif '/opt/boot/vmlinuz' in img:
+        elif img == Constants.QEMU_VM_KERNEL:
+            self._opt['img'], _ = exec_cmd_no_error(
+                node,
+                'ls -1 {img}* | tail -1'.format(img=Constants.QEMU_VM_KERNEL),
+                message='Qemu Kernel VM image not found!')
             self._opt['vm_type'] = 'kernelvm'
             self._temp['log'] = '/tmp/serial_{id}.log'.format(id=qemu_id)
             self._temp['ini'] = '/etc/vm_init_{id}.conf'.format(id=qemu_id)
+            self._opt['initrd'], _ = exec_cmd_no_error(
+                node,
+                'ls -1 {initrd}* | tail -1'.format(
+                    initrd=Constants.QEMU_VM_KERNEL_INITRD),
+                message='Qemu Kernel initrd image not found!')
         else:
-            raise RuntimeError('QEMU: Unknown VM image option!')
+            raise RuntimeError('QEMU: Unknown VM image option: {}'.format(img))
         # Computed parameters for QEMU command line.
         self._params = OptionString(prefix='-')
         self.add_params()
@@ -119,8 +133,13 @@ class QemuUtils(object):
         self._params.add('enable-kvm')
         self._params.add_with_value('pidfile', self._temp.get('pidfile'))
         self._params.add_with_value('cpu', 'host')
+
+        if self._arch == 'aarch64':
+            machine_args = 'virt,accel=kvm,usb=off,mem-merge=off,gic-version=3'
+        else:
+            machine_args = 'pc,accel=kvm,usb=off,mem-merge=off'
         self._params.add_with_value(
-            'machine', 'pc,accel=kvm,usb=off,mem-merge=off')
+            'machine', machine_args)
         self._params.add_with_value(
             'smp', '{smp},sockets=1,cores={smp},threads=1'.format(
                 smp=self._opt.get('smp')))
@@ -163,21 +182,22 @@ class QemuUtils(object):
 
     def add_kernelvm_params(self):
         """Set KernelVM QEMU parameters."""
-        self._params.add_with_value(
-            'chardev', 'file,id=char0,path={log}'.format(
-                log=self._temp.get('log')))
-        self._params.add_with_value('device', 'isa-serial,chardev=char0')
+        console = 'ttyAMA0' if self._arch == 'aarch64' else 'ttyS0'
+        self._params.add_with_value('serial', 'file:{log}'.format(
+            log=self._temp.get('log')))
         self._params.add_with_value(
             'fsdev', 'local,id=root9p,path=/,security_model=none')
         self._params.add_with_value(
-            'device', 'virtio-9p-pci,fsdev=root9p,mount_tag=/dev/root')
+            'device', 'virtio-9p-pci,fsdev=root9p,mount_tag=virtioroot')
         self._params.add_with_value(
-            'kernel', '$(readlink -m {img}* | tail -1)'.format(
-                img=self._opt.get('img')))
+            'kernel', '{img}'.format(img=self._opt.get('img')))
         self._params.add_with_value(
-            'append', '"ro rootfstype=9p rootflags=trans=virtio console=ttyS0'
-            ' tsc=reliable hugepages=256 init={init}"'.format(
-                init=self._temp.get('ini')))
+            'initrd', '{initrd}'.format(initrd=self._opt.get('initrd')))
+        self._params.add_with_value(
+            'append', '"ro rootfstype=9p rootflags=trans=virtio '
+                      'root=virtioroot console={console} tsc=reliable '
+                      'hugepages=256 init={init}"'.format(
+                          console=console, init=self._temp.get('ini')))
 
     def create_kernelvm_config_vpp(self, **kwargs):
         """Create QEMU VPP config files.
@@ -203,8 +223,9 @@ class QemuUtils(object):
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_exec(running)
         vpp_config.add_cpu_main_core('0')
-        vpp_config.add_cpu_corelist_workers('1-{smp}'.
-                                            format(smp=self._opt.get('smp')-1))
+        if self._opt.get('smp') > 1:
+            vpp_config.add_cpu_corelist_workers('1-{smp}'.format(
+                smp=self._opt.get('smp')-1))
         vpp_config.add_dpdk_dev('0000:00:06.0', '0000:00:07.0')
         vpp_config.add_dpdk_dev_default_rxq(kwargs['queues'])
         vpp_config.add_dpdk_log_level('debug')
@@ -233,9 +254,6 @@ class QemuUtils(object):
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
-        testpmd_path = ('{path}/{arch}-native-linuxapp-gcc/app'.
-                        format(path=Constants.QEMU_VM_DPDK,
-                               arch=Topology.get_node_arch(self._node)))
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_corelist='0-{smp}'.format(smp=self._opt.get('smp') - 1),
             eal_driver=False,
@@ -249,7 +267,7 @@ class QemuUtils(object):
             pmd_nb_cores=str(self._opt.get('smp') - 1))
 
         self._opt['vnf_bin'] = ('{testpmd_path}/{testpmd_cmd}'.
-                                format(testpmd_path=testpmd_path,
+                                format(testpmd_path=self._testpmd_path,
                                        testpmd_cmd=testpmd_cmd))
 
     def create_kernelvm_config_testpmd_mac(self, **kwargs):
@@ -258,9 +276,6 @@ class QemuUtils(object):
         :param kwargs: Key-value pairs to construct command line parameters.
         :type kwargs: dict
         """
-        testpmd_path = ('{path}/{arch}-native-linuxapp-gcc/app'.
-                        format(path=Constants.QEMU_VM_DPDK,
-                               arch=Topology.get_node_arch(self._node)))
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
             eal_corelist='0-{smp}'.format(smp=self._opt.get('smp') - 1),
             eal_driver=False,
@@ -277,7 +292,7 @@ class QemuUtils(object):
             pmd_nb_cores=str(self._opt.get('smp') - 1))
 
         self._opt['vnf_bin'] = ('{testpmd_path}/{testpmd_cmd}'.
-                                format(testpmd_path=testpmd_path,
+                                format(testpmd_path=self._testpmd_path,
                                        testpmd_cmd=testpmd_cmd))
 
     def create_kernelvm_init(self, **kwargs):
@@ -407,7 +422,7 @@ class QemuUtils(object):
                       format(queue_size=queue_size)) if queue_size else ''
         mbuf = 'on,host_mtu=9200'
         self._params.add_with_value(
-            'device', 'virtio-net-pci,netdev=vhost{vhost},mac={mac},bus=pci.0,'
+            'device', 'virtio-net-pci,netdev=vhost{vhost},mac={mac},'
             'addr={addr}.0,mq=on,vectors={vectors},csum=off,gso=off,'
             'guest_tso4=off,guest_tso6=off,guest_ecn=off,mrg_rxbuf={mbuf},'
             '{queue_size}'.format(
@@ -597,8 +612,7 @@ class QemuUtils(object):
         """
         cmd_opts = OptionString()
         cmd_opts.add('{bin_path}/qemu-system-{arch}'.format(
-            bin_path=Constants.QEMU_BIN_PATH,
-            arch=Topology.get_node_arch(self._node)))
+            bin_path=Constants.QEMU_BIN_PATH, arch=self._arch))
         cmd_opts.extend(self._params)
         message = ('QEMU: Start failed on {host}!'.
                    format(host=self._node['host']))
@@ -643,7 +657,7 @@ class QemuUtils(object):
         """
         command = ('{bin_path}/qemu-system-{arch} --version'.format(
             bin_path=Constants.QEMU_BIN_PATH,
-            arch=Topology.get_node_arch(self._node)))
+            arch=self._arch))
         try:
             stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
             ver = match(r'QEMU emulator version ([\d.]*)', stdout).group(1)

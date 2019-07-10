@@ -20,7 +20,7 @@
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ...         | AND          | Setup Framework | ${nodes}
 | ...         | AND          | Install DPDK test on all DUTs | ${nodes}
-| ...         | AND          | Get CPU Layout from all nodes | ${nodes}
+| ...         | AND          | Get CPU Info from All Nodes | ${nodes}
 | ...         | AND          | Update All Numa Nodes
 | ...                        | ${nodes} | skip_tg=${True}
 | Suite Teardown | Cleanup Framework | ${nodes}
