@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "706230b7_a2b4ebe2",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T20:16:20Z",
+      "side": 1,
+      "message": "I am more thinking of this file to be yaml/txt based without option to have code in it.\nAlso please note it is not very clever to have this variable to be linked with VPP_DEVICE_IMAGE as there still could be a reason why people will for NF density images use different one. I made this as a single image in past from purely convenient way as se still do not have proper ci/cd. So it was fast enough to use existing pre-cached image.\n\nThose global files are consumed by BASH mainly for bootstraping underlay infra. While constant.py is more pybot inside infra.",
+      "parentUuid": "26c9b39b_5d3d59c2",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 52
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f47f4e8b_df091041",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 4
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "For me it is easier to review the two edits in a single change, especially since the name of the exported variable is not chosen yet.",
       "parentUuid": "f26945fe_f5bbe877",
+      "range": {
+        "startLine": 787,
+        "startChar": 45,
+        "endLine": 787,
+        "endChar": 78
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3a2fc7b9_2b0c23ae",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T20:16:20Z",
+      "side": 1,
+      "message": "See my comment aside. I still think to not mix up outside infra file with inner NF density image which could be different in fact. So i would keep the Constants.NF_IMAGE \u003d snergster/smthing:tag",
+      "parentUuid": "c4c56977_a94f9e2e",
       "range": {
         "startLine": 787,
         "startChar": 45,
