@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "06c14044_9b1ab56c",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T14:24:26Z",
+      "side": 1,
+      "message": "trace\n\ninfo is now overloaded with too much content",
+      "range": {
+        "startLine": 219,
+        "startChar": 19,
+        "endLine": 219,
+        "endChar": 23
+      },
+      "revId": "c048377a32e1c8ad294532942b1ce9cc2b92ba05",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
