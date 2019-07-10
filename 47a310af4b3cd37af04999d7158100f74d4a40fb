@@ -644,6 +644,30 @@
       "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a1125d7_d51aae9e",
+        "filename": "tests/vpp/device/vm_vhost/ip4/eth2p-ethip4-ip4base-eth-2vhost-1vm-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T20:19:01Z",
+      "side": 1,
+      "message": "See suite setup first",
+      "parentUuid": "ebae601c_18a94906",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 64
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
