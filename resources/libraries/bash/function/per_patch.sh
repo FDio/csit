@@ -15,12 +15,9 @@ set -exuo pipefail
 
 # This library defines functions used mainly by per patch entry scripts.
 # Generally, the functions assume "common.sh" library has been sourced already.
-
 # Keep functions ordered alphabetically, please.
 
 function archive_test_results () {
-
-    set -exuo pipefail
 
     # Arguments:
     # - ${1}: Directory to archive to. Required. Parent has to exist.
@@ -33,6 +30,8 @@ function archive_test_results () {
     # - ${1} - Created, and robot and parsing files are moved/created there.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory command failed."
     TARGET="$(readlink -f "$1")"
@@ -47,8 +46,6 @@ function archive_test_results () {
 
 function archive_parse_test_results () {
 
-    set -exuo pipefail
-
     # Arguments:
     # - ${1}: Directory to archive to. Required. Parent has to exist.
     # Variables read:
@@ -58,6 +55,8 @@ function archive_parse_test_results () {
     # - archive_test_results - Archiving results.
     # - parse_bmrr_results - See definition in this file.
 
+    set -exuo pipefail
+
     archive_test_results "$1" || die
     parse_bmrr_results "${TARGET}" || {
         die "The function should have died on error."
@@ -66,8 +65,6 @@ function archive_parse_test_results () {
 
 
 function build_vpp_ubuntu_amd64 () {
-
-    set -exuo pipefail
 
     # This function is using Vagrant script to build VPP with all dependencies
     # that is ARCH/OS aware. VPP repo is SSOT for building mechanics and CSIT
@@ -82,6 +79,8 @@ function build_vpp_ubuntu_amd64 () {
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
+    set -exuo pipefail
+
     cd "${VPP_DIR}" || die "Change directory command failed."
     echo 'Building using "make build-root/vagrant/build.sh"'
     build-root/vagrant/"build.sh" || die "Vagrant VPP build script failed."
@@ -94,8 +93,6 @@ function build_vpp_ubuntu_amd64 () {
 
 
 function compare_test_results () {
-
-    set -exuo pipefail
 
     # Variables read:
     # - VPP_DIR - Path to directory with VPP git repo (at least built parts).
@@ -111,6 +108,8 @@ function compare_test_results () {
     # - 0 - If the comparison utility sees no regression (nor data error).
     # - 1 - If the comparison utility sees a regression (or data error).
 
+    set -exuo pipefail
+
     cd "${VPP_DIR}" || die "Change directory operation failed."
     # Reusing CSIT main virtualenv.
     pip install -r "${PYTHON_SCRIPTS_DIR}/perpatch_requirements.txt" || {
@@ -122,8 +121,6 @@ function compare_test_results () {
 
 
 function download_builds () {
-
-    set -exuo pipefail
 
     # This is mostly useful only for Sandbox testing, to avoid recompilation.
     #
@@ -137,6 +134,8 @@ function download_builds () {
     # - built_parent - Holding built artifacts of parent of PUT.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
     dirs=("build-root" "build_parent" "build_current" "archive" "csit_current")
@@ -152,8 +151,6 @@ function download_builds () {
 
 function initialize_csit_dirs () {
 
-    set -exuo pipefail
-
     # This could be in prepare_test, but download_builds also needs this.
     #
     # Variables read:
@@ -163,6 +160,8 @@ function initialize_csit_dirs () {
     # - csit_parent - Holding test results of parent of PUT.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "csit_current" "csit_parent" || {
@@ -176,8 +175,6 @@ function initialize_csit_dirs () {
 
 function parse_bmrr_results () {
 
-    set -exuo pipefail
-
     # Currently "parsing" is just two greps.
     # TODO: Re-use PAL parsing code, make parsing more general and centralized.
     #
@@ -189,6 +186,8 @@ function parse_bmrr_results () {
     # - results.txt - (Re)created, in argument location.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
 
     rel_dir="$(readlink -e "${1}")" || die "Readlink failed."
     in_file="${rel_dir}/output.xml"
@@ -206,8 +205,6 @@ function parse_bmrr_results () {
 
 function select_build () {
 
-    set -exuo pipefail
-
     # Arguments:
     # - ${1} - Path to directory to copy VPP artifacts from. Required.
     # Variables read:
@@ -220,6 +217,8 @@ function select_build () {
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
+    set -exuo pipefail
+
     cd "${VPP_DIR}" || die "Change directory operation failed."
     source_dir="$(readlink -e "$1")"
     rm -rf "${DOWNLOAD_DIR}"/* || die "Cleanup of download dir failed."
@@ -230,8 +229,6 @@ function select_build () {
 
 
 function set_aside_commit_build_artifacts () {
-
-    set -exuo pipefail
 
     # Function is copying VPP built artifacts from actual checkout commit for
     # further use and clean git.
@@ -244,6 +241,8 @@ function set_aside_commit_build_artifacts () {
     # - build_current - Old contents removed, content of build-root copied here.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "build_current" || die "Remove operation failed."
@@ -262,8 +261,6 @@ function set_aside_commit_build_artifacts () {
 
 function set_aside_parent_build_artifacts () {
 
-    set -exuo pipefail
-
     # Function is copying VPP built artifacts from parent checkout commit for
     # further use. Checkout to parent is not part of this function.
     # Variables read:
@@ -275,6 +272,8 @@ function set_aside_parent_build_artifacts () {
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
 
+    set -exuo pipefail
+
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "build_parent" || die "Remove failed."
     mkdir -p "build_parent" || die "Directory creation operation failed."
@@ -284,12 +283,12 @@ function set_aside_parent_build_artifacts () {
 
 function set_perpatch_dut () {
 
-    set -exuo pipefail
-
     # Variables set:
     # - DUT - CSIT test/ subdirectory containing suites to execute.
 
     # TODO: Detect DUT from job name, when we have more than just VPP perpatch.
+
+    set -exuo pipefail
 
     DUT="vpp"
 }
@@ -297,14 +296,14 @@ function set_perpatch_dut () {
 
 function set_perpatch_vpp_dir () {
 
-    set -exuo pipefail
-
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # Variables set:
     # - VPP_DIR - Path to existing root of local VPP git repository.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
 
     # In perpatch, CSIT is cloned inside VPP clone.
     VPP_DIR="$(readlink -e "${CSIT_DIR}/..")" || die "Readlink failed."

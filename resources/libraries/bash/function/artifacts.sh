@@ -17,12 +17,17 @@
 set -exuo pipefail
 
 function download_artifacts () {
-    # Get and/or install VPP artifacts from packagecloud.io.
+
+    # Download or install VPP artifacts from packagecloud.io.
     #
     # Variables read:
     # - CSIT_DIR - Path to existing root of local CSIT git repository.
     # Variables set:
     # - REPO_URL - FD.io Packagecloud repository.
+    # Functions conditionally called (see their documentation for side effects):
+    # - download_ubuntu_artifacts
+    # - download_centos_artifacts
+    # - download_opensuse_artifacts
 
     set -exuo pipefail
 
@@ -51,12 +56,14 @@ function download_artifacts () {
 }
 
 function download_ubuntu_artifacts () {
-    # Get and/or install Ubuntu VPP artifacts from packagecloud.io.
+
+    # Download or install Ubuntu VPP artifacts from packagecloud.io.
     #
     # Variables read:
     # - REPO_URL - FD.io Packagecloud repository.
     # - VPP_VERSION - VPP version.
-    # - INSTALL - If install packages or download only. Default: download
+    # - INSTALL - Whether install packages (if set to "true") or download only.
+    #             Default: "false".
 
     set -exuo pipefail
 
@@ -112,7 +119,7 @@ function download_ubuntu_artifacts () {
     done
     set -x
 
-    if [ "${INSTALL:-false}" = true ]; then
+    if [[ "${INSTALL:-false}" == "true" ]]; then
         sudo apt-get -y install "${artifacts[@]}" || {
             die "Install VPP artifacts failed."
         }
@@ -124,12 +131,14 @@ function download_ubuntu_artifacts () {
 }
 
 function download_centos_artifacts () {
-    # Get and/or install CentOS VPP artifacts from packagecloud.io.
+
+    # Download or install CentOS VPP artifacts from packagecloud.io.
     #
     # Variables read:
     # - REPO_URL - FD.io Packagecloud repository.
     # - VPP_VERSION - VPP version.
-    # - INSTALL - If install packages or download only. Default: download
+    # - INSTALL - Whether install packages (if set to "true") or download only.
+    #             Default: "false".
 
     set -exuo pipefail
 
@@ -145,7 +154,7 @@ function download_centos_artifacts () {
         artifacts+=(${packages[@]/%/-${VPP_VERSION-}})
     fi
 
-    if [ "${INSTALL:-false}" = true ]; then
+    if [[ "${INSTALL:-false}" == "true" ]]; then
         sudo yum -y install "${artifacts[@]}" || {
             die "Install VPP artifact failed."
         }
@@ -157,12 +166,14 @@ function download_centos_artifacts () {
 }
 
 function download_opensuse_artifacts () {
-    # Get and/or install OpenSuSE VPP artifacts from packagecloud.io.
+
+    # Download or install OpenSuSE VPP artifacts from packagecloud.io.
     #
     # Variables read:
     # - REPO_URL - FD.io Packagecloud repository.
     # - VPP_VERSION - VPP version.
-    # - INSTALL - If install packages or download only. Default: download
+    # - INSTALL - Whether install packages (if set to "true") or download only.
+    #             Default: "false".
 
     set -exuo pipefail
 
@@ -178,7 +189,7 @@ function download_opensuse_artifacts () {
         artifacts+=(${packages[@]/%/-${VPP_VERSION-}})
     fi
 
-    if [ "${INSTALL:-false}" = true ]; then
+    if [[ "${INSTALL:-false}" == "true" ]]; then
         sudo yum -y install "${artifacts[@]}" || {
             die "Install VPP artifact failed."
         }

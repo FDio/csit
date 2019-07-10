@@ -17,6 +17,7 @@ set -exuo pipefail
 
 
 function ansible_hosts () {
+
     # Run ansible playbook on hosts in working topology file. Ansible scope is
     # determined by tags passed as parameters to this function.
     #
@@ -51,15 +52,15 @@ function ansible_hosts () {
 
 function installed () {
 
-    set -exuo pipefail
-
     # Check if the given utility is installed. Fail if not installed.
     #
     # Arguments:
     # - ${1} - Utility to check.
-    # Returns:
+    # Returns (implicitly):
     # - 0 - If command is installed.
     # - 1 - If command is not installed.
+
+    set -exuo pipefail
 
     command -v "${1}"
 }

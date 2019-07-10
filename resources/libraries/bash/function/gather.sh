@@ -24,8 +24,6 @@ set -exuo pipefail
 
 function gather_build () {
 
-    set -exuo pipefail
-
     # Variables read:
     # - TEST_CODE - String affecting test selection, usually jenkins job name.
     # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
@@ -42,6 +40,8 @@ function gather_build () {
 
     # TODO: Separate DUT-from-TEST_CODE from gather-for-DUT,
     #   when the first one becomes relevant for per_patch.
+
+    set -exuo pipefail
 
     pushd "${DOWNLOAD_DIR}" || die "Pushd failed."
     case "${TEST_CODE}" in
@@ -71,8 +71,6 @@ function gather_build () {
 
 function gather_dpdk () {
 
-    set -exuo pipefail
-
     # Ensure latest DPDK archive is downloaded.
     #
     # Variables read:
@@ -83,6 +81,8 @@ function gather_dpdk () {
     # - ./ - Assumed ${DOWNLOAD_DIR}, dpdk-*.tar.xz is downloaded if not there.
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
+
+    set -exuo pipefail
 
     dpdk_repo="https://fast.dpdk.org/rel"
     # Use downloaded packages with specific version
@@ -116,8 +116,6 @@ function gather_dpdk () {
 
 
 function gather_ligato () {
-
-    set -exuo pipefail
 
     # Build docker image (with vpp, ligato and vpp-agent),
     # and put it to ${DOWNLOAD_DIR}/.
@@ -154,6 +152,8 @@ function gather_ligato () {
     #   But the abstracted blocks are mostly one-liners (plus "|| die"),
     #   so maybe it is not worth introducing fragments/functions for the blocks.
     # TODO: This fragment is too long anyway, split it up.
+
+    set -exuo pipefail
 
     gather_vpp || die "The function should have died on error."
 
@@ -244,8 +244,6 @@ function gather_ligato () {
 
 function gather_vpp () {
 
-    set -exuo pipefail
-
     # Variables read:
     # - BASH_FUNCTION_DIR - Bash directory with functions.
     # - TEST_CODE - The test selection string from environment or argument.
@@ -267,6 +265,8 @@ function gather_vpp () {
     # Bash scripts executed:
     # - ${CSIT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh
     #   - Should download and extract requested files to ./.
+
+    set -exuo pipefail
 
     case "${TEST_CODE}" in
         # Not csit-vpp as this code is re-used by ligato gathering.
