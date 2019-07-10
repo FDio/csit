@@ -1,0 +1,319 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b9ff5a8_426216bb",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": ".",
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4fb84a8c_6adc4718",
+        "filename": "resources/libraries/bash/function/device.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": ".",
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7975d93e_f3ac3338",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "Thinking loud. Does it make sense to split? What about part of  get_cpu_layout_from_all_nodes() function? (maybe rename to get_cpu_info_from_all_nodes",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 41
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a26d35b_9e7e0c84",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "dpdk_target \u003d \u0027arm64-armv8a\u0027 if self._arch \u003d\u003d \u0027aarch64\u0027 else \u0027x86_64-native\u0027",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 41
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cc080520_f147e67e",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "console \u003d \u0027ttyAMA0\u0027 if self._arch \u003d\u003d \u0027aarch64\u0027 else \u0027ttyS0\u0027",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 29
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66e36b8b_c0d951aa",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "feel free to remove (it works on x86)",
+      "range": {
+        "startLine": 409,
+        "startChar": 0,
+        "endLine": 412,
+        "endChar": 30
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44e1c63f_abc4bdbb",
+        "filename": "resources/libraries/robot/shared/vm.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "pinning param?",
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2928b5f1_86440e16",
+        "filename": "resources/libraries/robot/shared/vm.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "Jan would be arguing to have \\| at the end as it is table.",
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7417eb1a_98e5d6d7",
+        "filename": "resources/libraries/robot/shared/vm.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "make it in doc string",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 28
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3bfcc0d_53f5ccb8",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "the same for perf __init__.robot",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 52
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ddab9554_2eb82307",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 43
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "683d0655_1fde032e",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "remove image also from perf",
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94373c52_d319579e",
+        "filename": "tests/vpp/device/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "Would be better to have like perf so perf/device is aligned. see my https://gerrit.fd.io/r/#/c/20565/",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 49
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9d572d25_8804568a",
+        "filename": "tests/vpp/device/vm_vhost/ip4/eth2p-ethip4-ip4base-eth-2vhost-1vm-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 59
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e45e5458_49aadab2",
+        "filename": "tests/vpp/device/vm_vhost/ip4/eth2p-ethip4-ip4base-eth-2vhost-1vm-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T13:42:14Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 64
+      },
+      "revId": "47a310af4b3cd37af04999d7158100f74d4a40fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
