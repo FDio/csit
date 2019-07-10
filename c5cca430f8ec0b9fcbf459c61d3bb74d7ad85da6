@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "364de5f9_ec4e6de6",
+        "filename": "resources/tools/testbed-setup/ansible/roles/common/tasks/kernel_install.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T09:36:19Z",
+      "side": 1,
+      "message": "put header with \n\n---\n# file: roles/....",
+      "revId": "c5cca430f8ec0b9fcbf459c61d3bb74d7ad85da6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd106a7a_bb566771",
+        "filename": "resources/tools/testbed-setup/ansible/roles/sut/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T09:36:19Z",
+      "side": 1,
+      "message": "add tags to this layer otherwise it wont run as --tags \u0027install-kernel-image\u0027 as ansible does not see tags inside",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 25
+      },
+      "revId": "c5cca430f8ec0b9fcbf459c61d3bb74d7ad85da6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6cac2692_4f88504c",
+        "filename": "resources/tools/testbed-setup/ansible/roles/sut/tasks/ubuntu_bionic.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T09:36:19Z",
+      "side": 1,
+      "message": "include_tasks\n\n -otherwise error:\n\nfatal: [10.30.51.52]: FAILED! \u003d\u003e {\"reason\": \"Error when evaluating variable in dynamic parent include path: {{ ansible\n_distribution|lower }}_{{ ansible_distribution_release }}.yaml. When using static imports, the parent dynamic include \ncannot utilize host facts or variables from inventory\"}",
+      "range": {
+        "startLine": 31,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 14
+      },
+      "revId": "c5cca430f8ec0b9fcbf459c61d3bb74d7ad85da6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4579b5ca_b3dbb178",
+        "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/tasks/main.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-10T09:36:19Z",
+      "side": 1,
+      "message": "include_tasks otherwise it fails.",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 14
+      },
+      "revId": "c5cca430f8ec0b9fcbf459c61d3bb74d7ad85da6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
