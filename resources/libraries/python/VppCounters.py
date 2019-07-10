@@ -21,6 +21,7 @@ from robot.api import logger
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 class VppCounters(object):
@@ -162,7 +163,8 @@ class VppCounters(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, 'show hardware detail')
+        #PapiSocketExecutor.run_cli_cmd(node, 'show hardware detail')
+        exec_cmd_no_error(node, cmd="vppctl show hardware detail", sude=True)
 
     @staticmethod
     def vpp_clear_runtime(node):
