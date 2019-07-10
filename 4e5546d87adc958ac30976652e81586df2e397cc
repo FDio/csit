@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c69a6b48_f79be00c",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-10T12:07:20Z",
+      "side": 1,
+      "message": "Shuld be listed in the block starting at line 646. But probably should be a local variable instead.\nBoth objections already apply to DEFAULT_NIC, so submitted https://gerrit.fd.io/r/20581 to make things more consistent.",
+      "range": {
+        "startLine": 663,
+        "startChar": 33,
+        "endLine": 663,
+        "endChar": 42
+      },
+      "revId": "4e5546d87adc958ac30976652e81586df2e397cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71d17c2a_de761dab",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-10T12:07:20Z",
+      "side": 1,
+      "message": "I am thinking about supporting (ignoring) comment lines in the input files, so contributors can state reasons for their tag expressions (and committers can require the reasons), but I will probably not have time to implement anything in 1908 cycle.",
+      "range": {
+        "startLine": 688,
+        "startChar": 38,
+        "endLine": 688,
+        "endChar": 59
+      },
+      "revId": "4e5546d87adc958ac30976652e81586df2e397cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
