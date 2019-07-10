@@ -132,11 +132,11 @@ class TestConfig(object):
                         ip=src_ip,
                         ip_len=128 if src_ip.version == 6 else 32))
                 commands.append(
-                    'vxlan_add_del_tunnel src {src_ip} dst {dst_ip} vni {vni}\n'
-                        .format(src_ip=src_ip, dst_ip=dst_ip,
+                    'vxlan_add_del_tunnel src {srcip} dst {dstip} vni {vni}\n'\
+                        .format(srcip=src_ip, dstip=dst_ip,
                                 vni=vni_start + i))
                 commands.append(
-                    'create_vlan_subif sw_if_index {sw_idx} vlan {vlan}\n'
+                    'create_vlan_subif sw_if_index {sw_idx} vlan {vlan}\n'\
                         .format(sw_idx=Topology.get_interface_sw_index(
                             node, node_vlan_if), vlan=i + 1))
             VatExecutor().write_and_execute_script(node, tmp_fn, commands)
