@@ -170,13 +170,20 @@ def main():
         src_tun = src_ip
         dst_tun = dst_ip
 
-    sa_in = SecurityAssociation(ESP, spi=r_spi, crypt_algo=crypto_alg,
-                                crypt_key=crypto_key, auth_algo=integ_alg,
-                                auth_key=integ_key, tunnel_header=tunnel_in)
-
-    sa_out = SecurityAssociation(ESP, spi=l_spi, crypt_algo=crypto_alg,
-                                 crypt_key=crypto_key, auth_algo=integ_alg,
-                                 auth_key=integ_key, tunnel_header=tunnel_out)
+    if integ_key:
+        sa_in = SecurityAssociation(
+            ESP, spi=r_spi, crypt_algo=crypto_alg, crypt_key=crypto_key,
+            auth_algo=integ_alg, auth_key=integ_key, tunnel_header=tunnel_in)
+        sa_out = SecurityAssociation(
+            ESP, spi=l_spi, crypt_algo=crypto_alg, crypt_key=crypto_key,
+            auth_algo=integ_alg, auth_key=integ_key, tunnel_header=tunnel_out)
+    else:
+        sa_in = SecurityAssociation(
+            ESP, spi=r_spi, crypt_algo=crypto_alg, crypt_key=crypto_key,
+            tunnel_header=tunnel_in)
+        sa_out = SecurityAssociation(
+            ESP, spi=l_spi, crypt_algo=crypto_alg, crypt_key=crypto_key,
+            tunnel_header=tunnel_out)
 
     sent_packets = []
 
