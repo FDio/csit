@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2523eb1d_6524803d",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-11T12:23:05Z",
+      "side": 1,
+      "message": "See later comment.",
+      "parentUuid": "6b9a1e56_a75aa1a4",
+      "range": {
+        "startLine": 43,
+        "startChar": 18,
+        "endLine": 43,
+        "endChar": 22
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "284f1ac6_1d380819",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "I have passed the argument ip_format to be among any of the three values (ipv4/ipv6/default_cop). Is it fine ?",
       "parentUuid": "284f1ac6_1d380819",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 21
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3fdeaf3d_346fba68",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-11T12:23:05Z",
+      "side": 1,
+      "message": "No, keys of this dict have to be \"fib_id\", \"ip4\", \"ip6\" and \"default_cop\" exactly.",
+      "parentUuid": "9cafd3fe_5056e504",
       "range": {
         "startLine": 48,
         "startChar": 12,
@@ -143,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "47013f11_9f59c44a",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-11T12:23:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3b0f9364_1055af17",
+      "range": {
+        "startLine": 53,
+        "startChar": 45,
+        "endLine": 53,
+        "endChar": 49
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5786a01b_21696477",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 2
@@ -190,6 +262,30 @@
     },
     {
       "key": {
+        "uuid": "1ac45a38_97a36dcc",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-11T12:23:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e61140f7_dc78ad17",
+      "range": {
+        "startLine": 74,
+        "startChar": 40,
+        "endLine": 74,
+        "endChar": 55
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8877f1c2_3d6f785a",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 2
@@ -225,6 +321,30 @@
       "side": 1,
       "message": "Have modified the variable int_state to be a string (enable/disable)",
       "parentUuid": "8877f1c2_3d6f785a",
+      "range": {
+        "startLine": 79,
+        "startChar": 16,
+        "endLine": 79,
+        "endChar": 24
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7a123f9d_ab4b0bdc",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-11T12:23:05Z",
+      "side": 1,
+      "message": "You have freedom to use whatever name and type for python staticmethod cop_interface_enable_or_disable you are editing here (assuming you update call sites as well).\nYou do not have freedom to alter names and types of arguments PapiExecutor adds, as underlying PAPI library creates the implementation from .api files, so you have to follow names and types defined there.",
+      "parentUuid": "87d6518e_7a057624",
       "range": {
         "startLine": 79,
         "startChar": 16,
@@ -281,6 +401,30 @@
       "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5559fdee_3cfc9425",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-11T12:23:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9cbdcd27_e9d4dd29",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 0
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
