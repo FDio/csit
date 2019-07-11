@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Library | resources.libraries.python.Cop
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | COPWHLIST
@@ -56,10 +55,7 @@
 
 *** Keywords ***
 | Local Template
-| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config.
-| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
 | | ... | *Arguments:*
