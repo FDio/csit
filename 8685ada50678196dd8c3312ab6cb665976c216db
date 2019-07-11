@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "4b8700f1_63342aa8",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-11T07:36:21Z",
+      "side": 1,
+      "message": "I get it now, the image used for NF/memif tests doesn\u0027t necessarily have to (and probably shouldn\u0027t) be the same as the image used for VPP Device testbed.\n\nFor that reason, just having a string here is the way to go. There\u0027s another question looming - how do we support multiple architectures? Should we have a separate variable for each in case the image names are different?",
+      "parentUuid": "706230b7_a2b4ebe2",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 52
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f47f4e8b_df091041",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 4
