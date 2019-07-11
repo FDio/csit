@@ -1,1 +1,0 @@
-exec sr policy add bsid {bsid} {sid_conf} {mode}
