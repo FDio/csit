@@ -1,1 +1,0 @@
-exec sr steer {params} via bsid {bsid}
