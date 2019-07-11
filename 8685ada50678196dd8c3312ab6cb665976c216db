@@ -380,6 +380,30 @@
       "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62cbd02f_8be9c260",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-11T11:14:32Z",
+      "side": 1,
+      "message": "This looks like mixing the logic of environment setup and test setup. Let bootstrap do what it need with the environment, let robot discover what it needs about the setup and implement its logic.\n\nIt\u0027s \"configurable\" in Constants.py. If anyone wants to use a different image, they can if they change it there. Now that I think about it, how would changing a string in Constants.py be different from changing a string in select_os (or in a file that select_os reads)?",
+      "parentUuid": "d94bf17c_6b9fcd9f",
+      "range": {
+        "startLine": 787,
+        "startChar": 45,
+        "endLine": 787,
+        "endChar": 78
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
