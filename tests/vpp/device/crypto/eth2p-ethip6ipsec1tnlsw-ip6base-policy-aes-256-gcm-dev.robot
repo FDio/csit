@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | IP6FWD | IPSEC | IPSECSW | IPSECTUN | IP6BASE
-| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES
+| ... | AES_256_GCM | AES
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
@@ -54,8 +54,7 @@
 | Local Template
 | | [Documentation]
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES_128_CBC and integrity algorithm HMAC_SHA_512 in tunnel\
-| | ... | mode.
+| | ... | algorithm AES_256_GCM in tunnel mode.
 | | ...
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
@@ -67,8 +66,9 @@
 | | Set Test Variable | \${frame_size}
 | | ...
 | | # These are enums (not strings) so they cannot be in Variables table.
-| | ${encr_alg}= | Crypto Alg AES CBC 128
-| | ${auth_alg}= | Integ Alg SHA 512 256
+| | ${encr_alg}= | Crypto Alg AES GCM 256
+| | ${auth_alg}= | Set Variable | ${NONE}
+| | ${ipsec_proto}= | IPsec Proto ESP
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
@@ -88,6 +88,6 @@
 | | ... | ${dut_tun_ip}
 
 *** Test Cases ***
-| tc01-124B-ethip6ipsec1tnlsw-ip6base-policy-aes-128-cbc-sha-512-256-dev
+| tc01-124B-eth2p-ethip6ipsec1tnlsw-ip6base-policy-aes-256-gcm-dev
 | | [Tags] | 124B
 | | frame_size=${124} | phy_cores=${0}
