@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "1bf7e071_4443ddc2",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T08:06:16Z",
+      "side": 1,
+      "message": "It is similar why for VM test we are not using VIRL image (although we could). But could be that in future we might diverge",
+      "parentUuid": "4b8700f1_63342aa8",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 52
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f47f4e8b_df091041",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 4
