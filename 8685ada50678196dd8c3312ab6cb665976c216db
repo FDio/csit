@@ -332,6 +332,30 @@
       "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d94bf17c_6b9fcd9f",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-11T10:10:01Z",
+      "side": 1,
+      "message": "\u003e inner NF density image which could be different in fact\n\nDifferent and hardcoded, or different and configurable? I prefer the latter.\nThen select_os can export a different variable (possible with INNER in its name), value chosen to be appropriate for given architecture and operating system.",
+      "parentUuid": "3a2fc7b9_2b0c23ae",
+      "range": {
+        "startLine": 787,
+        "startChar": 45,
+        "endLine": 787,
+        "endChar": 78
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
