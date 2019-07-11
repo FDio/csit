@@ -20,19 +20,20 @@
 | Library | OperatingSystem
 | Library | String
 | ...
-| Library | resources.libraries.python.CoreDumpUtil
 | Library | resources.libraries.python.CpuUtils
+| Library | resources.libraries.python.CoreDumpUtil
+| Library | resources.libraries.python.Cop
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.Namespaces
+| Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.SchedUtils
 | Library | resources.libraries.python.Tap
 | Library | resources.libraries.python.TGSetup
-| Library | resources.libraries.python.PapiHistory
+| library | resources.libraries.python.topology.topology
+| Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.VppCounters
 | Library | resources.libraries.python.VPPUtil
-| Library | resources.libraries.python.Trace
-| Library | resources.libraries.python.topology.Topology
 | ...
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
