@@ -551,46 +551,6 @@
 | | Vpp Route Add | ${dut} | ${tg_if2_net} | 30 | gateway=3.3.3.1
 | | ... | interface=${dut_if2}
 
-| Initialize IPv4 policer 2r3c-${t} in circular topology
-| | [Documentation]
-| | ... | Setup of 2r3c color-aware or color-blind policer with dst ip match
-| | ... | on all DUT nodes in 2-node / 3-node circular topology. Policer is
-| | ... | applied on links TG - DUTx.
-| | ...
-| | ${dscp}= | DSCP AF22
-| | Policer Set Name | policer1
-| | Policer Set CIR | ${cir}
-| | Policer Set EIR | ${eir}
-| | Policer Set CB | ${cb}
-| | Policer Set EB | ${eb}
-| | Policer Set Rate Type pps
-| | Policer Set Round Type Closest
-| | Policer Set Type 2R3C 2698
-| | Policer Set Conform Action Transmit
-| | Policer Set Exceed Action Mark and Transmit | ${dscp}
-| | Policer Set Violate Action Transmit
-| | Policer Enable Color Aware
-| | Run Keyword If | ${t} == 'ca' | Policer Enable Color Aware
-| | Policer Classify Set Precolor Exceed
-| | Policer Set Node | ${dut1}
-| | Policer Classify Set Interface | ${dut1_if1}
-| | Policer Classify Set Match IP | 20.20.20.2 | ${False}
-| | Policer Set Configuration
-| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
-| | ... | Variable Should Exist | ${dut2}
-| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2}
-| | ... | ELSE | Set Variable | ${dut1}
-| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Set Variable | ${dut2_if2}
-| | ... | ELSE | Set Variable | ${dut1_if2}
-| | Run Keyword Unless | '${dut2_status}' == 'PASS'
-| | ... | Policer Set Name | policer2
-| | Policer Set Node | ${dut}
-| | Policer Classify Set Interface | ${dut_if2}
-| | Policer Classify Set Match IP | 10.10.10.2 | ${False}
-| | Policer Set Configuration
-
 | Initialize IPv6 forwarding in circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 2-node / 3-node
@@ -819,24 +779,6 @@
 | | ... | gateway=2002:2::1 | interface=${subif_index_2}
 | | Vpp Route Add | ${dut} | ${tg_if2_net} | ${host_prefix}
 | | ... | gateway=2002:3::1 | interface=${dut_if2}
-
-| Initialize IPv6 iAcl whitelist in 3-node circular topology
-| | [Documentation]
-| | ... | Creates classify L3 table on DUTs. IPv6 iAcl security whitelist
-| | ... | ingress /64 filter entries applied on links TG - DUT1 and DUT2 - TG.
-| | ...
-| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip6 | dst
-| | And Vpp Configures Classify Session L3
-| | ... | ${dut1} | permit | ${table_idx} | ip6 | dst | 2001:2::2
-| | And Vpp Enable Input Acl Interface
-| | ... | ${dut1} | ${dut1_if1} | ip6 | ${table_idx}
-| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut2} | ip6 | dst
-| | And Vpp Configures Classify Session L3
-| | ... | ${dut2} | permit | ${table_idx} | ip6 | dst | 2001:1::2
-| | And Vpp Enable Input Acl Interface
-| | ... | ${dut2} | ${dut2_if2} | ip6 | ${table_idx}
 
 | Initialize IPv6 forwarding over SRv6 with encapsulation with '${n}' x SID '${prepos}' decapsulation in 3-node circular topology
 | | [Documentation]
