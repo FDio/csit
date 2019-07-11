@@ -14,7 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | IACLDST
 | ...
 | Suite Setup | Setup suite single link | performance
@@ -26,13 +26,13 @@
 | ...
 | Documentation | *RFC2544: Pkt throughput IPv4 iAcl whitelist test cases*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv4
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4
 | ... | routing, two static IPv4 /24 routes and IPv4 iAcl security whitelist
-| ... | ingress /24 filter entries applied on links TG - DUT1 and DUT2 - TG.
-| ... | DUT1 and DUT2 tested with ${nic_name}.\
+| ... | ingress /24 filter entries applied on links TG - DUT1.
+| ... | DUT1 is tested with ${nic_name}.\
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -51,7 +51,7 @@
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
+| ${traffic_profile}= | trex-sl-2n-ethip4-ip4src253
 
 *** Keywords ***
 | Local Template
@@ -81,12 +81,6 @@
 | | ... | ${dut1} | permit | ${table_idx} | ip4 | dst | 20.20.20.2
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1} | ${dut1_if1} | ip4 | ${table_idx}
-| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut2} | ip4 | dst | 10.10.10.2
-| | And Vpp Configures Classify Session L3
-| | ... | ${dut2} | permit | ${table_idx} | ip4 | dst | 10.10.10.2
-| | And Vpp Enable Input Acl Interface
-| | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
