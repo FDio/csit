@@ -58,7 +58,6 @@
 
 *** Keywords ***
 | Local Template
-| | ...
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
