@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Library | resources.libraries.python.Cop
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | COPWHLIST
@@ -56,10 +55,7 @@
 
 *** Keywords ***
 | Local Template
-| | ...
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config.
-| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
 | | ... | *Arguments:*
@@ -77,10 +73,6 @@
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in circular topology
-| | And Add Fib Table | ${dut1} | 1
-| | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
-| | And Add Fib Table | ${dut2} | 1
-| | And Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
 | | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
