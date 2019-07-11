@@ -68,6 +68,30 @@
       "revId": "4e5546d87adc958ac30976652e81586df2e397cc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f48dbe90_3c0a88b6",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T08:13:23Z",
+      "side": 1,
+      "message": "I am sorry i meant to use ${FLAVOR} here. And remove line 668,672,676",
+      "parentUuid": "4da46b32_fbeb5424",
+      "range": {
+        "startLine": 688,
+        "startChar": 0,
+        "endLine": 688,
+        "endChar": 64
+      },
+      "revId": "4e5546d87adc958ac30976652e81586df2e397cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
