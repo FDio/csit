@@ -34,7 +34,7 @@
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - encr_key - Encryption key. Type: string
-| | ... | - auth_key - Integrity key. Type: string
+| | ... | - auth_key - Integrity key or None. Type: string
 | | ...
 | | ... | *Example:*
 | | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
@@ -45,8 +45,12 @@
 | | ...
 | | ${encr_key_len}= | Get Crypto Alg Key Len | ${crypto_alg}
 | | ${encr_key}= | Generate Random String | ${encr_key_len}
-| | ${auth_key_len}= | Get Integ Alg Key Len | ${integ_alg}
-| | ${auth_key}= | Generate Random String | ${auth_key_len}
+| | ${auth_key_len}= | Run Keyword If | ${integ_alg} |
+| | ... | Get Integ Alg Key Len | ${integ_alg}
+| | ... | ELSE | Set Variable | ${None}
+| | ${auth_key}= | Run Keyword If | ${integ_alg} |
+| | ... | Generate Random String | ${auth_key_len}
+| | ... | ELSE | Set Variable | ${none}
 | | Set Test Variable | ${encr_key}
 | | Set Test Variable | ${auth_key}
 
