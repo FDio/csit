@@ -48,6 +48,52 @@
     },
     {
       "key": {
+        "uuid": "6938d6b7_0a41e859",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-11T12:23:05Z",
+      "side": 1,
+      "message": "Whitespace still trails in some places.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 8
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e54c15a_c1e2a017",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-11T12:23:05Z",
+      "side": 1,
+      "message": "This works syntactically, but adds all the spaces before the \"with\" word, so the message would look ugly.",
+      "range": {
+        "startLine": 42,
+        "startChar": 63,
+        "endLine": 42,
+        "endChar": 64
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f4edff11_2ba88783",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 3
