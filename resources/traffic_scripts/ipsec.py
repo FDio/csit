@@ -132,9 +132,8 @@ def check_ipv6(pkt_recv, dst_tun, src_ip, dst_ip, sa_in):
 def main():
     """Send and receive IPsec packet."""
     args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
-                             'crypto_alg', 'crypto_key', 'integ_alg',
-                             'integ_key', 'l_spi', 'r_spi'],
-                            ['src_tun', 'dst_tun'])
+                             'crypto_alg', 'crypto_key','l_spi', 'r_spi'],
+                            ['integ_alg', 'integ_key', 'src_tun', 'dst_tun'])
 
     rxq = RxQueue(args.get_arg('rx_if'))
     txq = TxQueue(args.get_arg('tx_if'))
