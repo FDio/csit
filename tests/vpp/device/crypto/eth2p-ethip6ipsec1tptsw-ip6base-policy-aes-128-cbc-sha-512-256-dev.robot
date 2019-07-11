@@ -75,7 +75,10 @@
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Configure topology for IPv6 IPsec testing
-| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | ${encr_key} | ${integ_key}= |
+| | ... | Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | Set Test Variable | ${encr_key}
+| | Set Test Variable | ${auth_key}
 | | And Configure manual keyed connection for IPSec
 | | ... | ${dut1} | ${dut1_if1} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
