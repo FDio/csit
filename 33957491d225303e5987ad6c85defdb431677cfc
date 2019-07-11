@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5537c5c_4ca1c2cc",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T07:13:45Z",
+      "side": 1,
+      "message": "a",
+      "range": {
+        "startLine": 73,
+        "startChar": 33,
+        "endLine": 73,
+        "endChar": 35
+      },
+      "revId": "33957491d225303e5987ad6c85defdb431677cfc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
