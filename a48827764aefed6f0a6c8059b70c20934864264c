@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6b9a1e56_a75aa1a4",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-11T11:16:37Z",
+      "side": 1,
+      "message": "Yes, I would like to frame the string as \u0027Failed to add COP whitelist on interface \u003cintf\u003e with \u003cip_format\u003e\u0027 .\n\nI have made the necessary changes.",
+      "parentUuid": "0899b8d1_80ec243e",
+      "range": {
+        "startLine": 43,
+        "startChar": 18,
+        "endLine": 43,
+        "endChar": 22
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "284f1ac6_1d380819",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-08T11:28:23Z",
       "side": 1,
       "message": "Looking at https://github.com/FDio/vpp/blob/master/src/vnet/cop/cop.api#L33-L54\nthe field names (except \"client_index\" and \"content\" added automatically) are \"fib_id\", \"ip4\", \"ip6\", \"default_cop\".\n\nSo, no \"id_\" prefix, and three 1/0 values to be created from string argument ip_format.",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 48,
+        "endChar": 21
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cafd3fe_5056e504",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-11T11:16:37Z",
+      "side": 1,
+      "message": "I have passed the argument ip_format to be among any of the three values (ipv4/ipv6/default_cop). Is it fine ?",
+      "parentUuid": "284f1ac6_1d380819",
       "range": {
         "startLine": 48,
         "startChar": 12,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3b0f9364_1055af17",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-11T11:16:37Z",
+      "side": 1,
+      "message": "Have removed the trailing white space.",
+      "parentUuid": "81b6f9fb_3a390e8a",
+      "range": {
+        "startLine": 53,
+        "startChar": 45,
+        "endLine": 53,
+        "endChar": 49
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5786a01b_21696477",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2019-07-08T11:28:23Z",
       "side": 1,
       "message": "interface\u003dinterface, state\u003dstate\n\nWhen the placeholders in the string are named, so should be the format arguments.",
+      "range": {
+        "startLine": 74,
+        "startChar": 40,
+        "endLine": 74,
+        "endChar": 55
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e61140f7_dc78ad17",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-11T11:16:37Z",
+      "side": 1,
+      "message": "I have modified the variable \"err_msg\" to accept the format arguments.",
+      "parentUuid": "5786a01b_21696477",
       "range": {
         "startLine": 74,
         "startChar": 40,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "87d6518e_7a057624",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-11T11:16:37Z",
+      "side": 1,
+      "message": "Have modified the variable int_state to be a string (enable/disable)",
+      "parentUuid": "8877f1c2_3d6f785a",
+      "range": {
+        "startLine": 79,
+        "startChar": 16,
+        "endLine": 79,
+        "endChar": 24
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0ff2e86f_b43c97d9",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 2
@@ -128,6 +248,30 @@
       "writtenOn": "2019-07-08T11:28:23Z",
       "side": 1,
       "message": "No empty lines at the end of the file please.",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 0
+      },
+      "revId": "a48827764aefed6f0a6c8059b70c20934864264c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cbdcd27_e9d4dd29",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-11T11:16:37Z",
+      "side": 1,
+      "message": "Empty lines have been removed from the file.",
+      "parentUuid": "0ff2e86f_b43c97d9",
       "range": {
         "startLine": 90,
         "startChar": 0,
