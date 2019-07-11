@@ -67,6 +67,6 @@
 | | ... | 10.10.10.2 | 20.20.20.2 | ${dut1_if1_mac} | ${1}
 
 *** Test Cases ***
-| tc01-64B-eth2p-ethicmpv4-ip4base-tg-ingress-dev
+| tc01-64B-ethicmpv4-ip4base-tg-ingress-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

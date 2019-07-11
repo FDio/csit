@@ -104,6 +104,6 @@
 | | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
 
 *** Test Cases ***
-| tc01-78B-eth2p-ethicmpv6-ip6base-eth-2memif-1dcr-dev
+| tc01-78B-ethicmpv6-ip6base-eth-2memif-1dcr-dev
 | | [Tags] | 78B
 | | frame_size=${78} | phy_cores=${0}

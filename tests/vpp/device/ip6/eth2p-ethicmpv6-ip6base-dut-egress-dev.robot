@@ -66,6 +66,6 @@
 | | ... | 2001:1::2 | 2001:2::1 | ${dut1_if1_mac} | ${0}
 
 *** Test Cases ***
-| tc01-78B-eth2p-ethicmpv6-ip6base-dut-egress-dev
+| tc01-78B-ethicmpv6-ip6base-dut-egress-dev
 | | [Tags] | 78B
 | | frame_size=${78} | phy_cores=${0}

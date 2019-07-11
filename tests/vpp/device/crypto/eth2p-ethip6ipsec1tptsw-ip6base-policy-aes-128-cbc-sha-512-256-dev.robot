@@ -86,6 +86,6 @@
 | | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
 
 *** Test Cases ***
-| tc01-124B-eth2p-ethip6ipsectpt-ip6base-policy-aes-128-cbc-sha-512-256-dev
+| tc01-124B-ethip6ipsec1tptsw-ip6base-policy-aes-128-cbc-sha-512-256-dev
 | | [Tags] | 124B
 | | frame_size=${124} | phy_cores=${0}

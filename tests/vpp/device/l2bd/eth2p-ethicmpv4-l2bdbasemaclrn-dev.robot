@@ -67,6 +67,6 @@
 | | ... | ${tg} | ${tg_if1} | ${tg_if2}
 
 *** Test Cases ***
-| tc01-eth2p-ethicmpv4-l2bdbasemaclrn-dev
+| tc01-64B-ethicmpv4-l2bdbasemaclrn-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

@@ -66,6 +66,6 @@
 | | ... | 10.10.10.2 | 20.20.20.1 | ${dut1_if1_mac} | ${0}
 
 *** Test Cases ***
-| tc01-64B-eth2p-ethicmpv4-ip4base-dut-egress-dev
+| tc01-64B-ethicmpv4-ip4base-dut-egress-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

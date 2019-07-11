@@ -67,6 +67,6 @@
 | | ... | 2001:1::2 | 2001:2::2 | ${dut1_if1_mac} | ${1} | ${dut1_if2_mac}
 
 *** Test Cases ***
-| tc01-78B-eth2p-ethicmpv6-ip6base-tg-ingress-dev
+| tc01-78B-ethicmpv6-ip6base-tg-ingress-dev
 | | [Tags] | 78B
 | | frame_size=${78} | phy_cores=${0}

@@ -75,6 +75,6 @@
 | | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
 
 *** Test Cases ***
-| tc01-64B-eth2p-ethicmpv4-ip4base-eth-2memif-1dcr-dev
+| tc01-64B-ethicmpv4-ip4base-eth-2memif-1dcr-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}
