@@ -17,7 +17,7 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+SCRIPT_DIR="` cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd `"
 export PYTHONPATH=${SCRIPT_DIR}
 
 OS_ID=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g')
@@ -28,8 +28,10 @@ if [ "$OS_ID" == "centos" ]; then
     PACKAGE="rpm"
     sudo yum install -y python-devel python-virtualenv
 elif [ "$OS_ID" == "ubuntu" ]; then
-    DISTRO="UBUNTU"
-    PACKAGE="deb"
+    #DISTRO="UBUNTU"
+    #PACKAGE="deb"
+    DISTRO="CENTOS"
+    PACKAGE="rpm"
     export DEBIAN_FRONTEND=noninteractive
     sudo apt-get -y update
     sudo apt-get -y install libpython2.7-dev python-virtualenv
@@ -190,7 +192,7 @@ done
 # Pick for each TEST_GROUP least loaded server
 VIRL_SERVER=()
 for index in "${!TEST_GROUPS[@]}"; do
-    least_load_server_idx=$(echo "${VIRL_SERVER_LOAD[*]}" | tr -s ' ' '\n' | awk '{print($0" "NR)}' | sort -g -k1,1 | head -1 | cut -f2 -d' ')
+    least_load_server_idx=`echo "${VIRL_SERVER_LOAD[*]}" | tr -s ' ' '\n' | awk '{print($0" "NR)}' | sort -g -k1,1 | head -1 | cut -f2 -d' '`
     least_load_server=${VIRL_SERVERS[$least_load_server_idx-1]}
     VIRL_SERVER+=($least_load_server)
     # Adjusting load as we are not going run simulation immediately
