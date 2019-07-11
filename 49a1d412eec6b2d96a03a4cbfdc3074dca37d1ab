@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9cd33b6e_d293141f",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T11:41:52Z",
+      "side": 1,
+      "message": "2019",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0468ed99_e592c26d",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T11:41:52Z",
+      "side": 1,
+      "message": "it is better to unify to \"is_ipv6\"",
+      "range": {
+        "startLine": 24,
+        "startChar": 49,
+        "endLine": 24,
+        "endChar": 58
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4edff11_2ba88783",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T11:41:52Z",
+      "side": 1,
+      "message": "state \u003d \u0027\u0027 if state \u003d\u003d \u0027enable\u0027 else \u0027disable\u0027",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 26
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1292994a_1b34edd6",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T11:41:52Z",
+      "side": 1,
+      "message": "please remove tabs and replace by spaces (no trailing spaces)",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 12
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e510333_22ab70c7",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T11:41:52Z",
+      "side": 1,
+      "message": "? dead code?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 13
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
