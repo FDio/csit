@@ -404,6 +404,30 @@
       "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "890f0c12_cef30839",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 787,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-11T13:00:13Z",
+      "side": 1,
+      "message": "If it is just manually editing strings, I agree it does not matter.\nBut if it is an autodetection logic, we need to be careful. Bootstrap scripts historically assume arch+os on Robot host is the same as in the SUTs. Manual invokers of pybot command would appreciate the ability to override anything so they can run agains remote SUT with different arch+os.",
+      "parentUuid": "62cbd02f_8be9c260",
+      "range": {
+        "startLine": 787,
+        "startChar": 45,
+        "endLine": 787,
+        "endChar": 78
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
