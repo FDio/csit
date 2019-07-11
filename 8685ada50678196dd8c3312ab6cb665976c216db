@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "0dfe1bb9_fb1423f9",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-11T10:24:32Z",
+      "side": 1,
+      "message": "\u003e Should we have a separate variable for each in case the image names are different?\n\nYes, but in a bash function called by bootstrapt scripts. Here, just a fallback (x86_64 ubuntu).",
+      "parentUuid": "1bf7e071_4443ddc2",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 52
+      },
+      "revId": "8685ada50678196dd8c3312ab6cb665976c216db",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f47f4e8b_df091041",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 4
