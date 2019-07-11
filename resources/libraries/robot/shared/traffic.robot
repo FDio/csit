@@ -17,10 +17,10 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.Policer
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
 | ...
-| Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/counters.robot
 | ...
 | Documentation | Traffic keywords
@@ -552,3 +552,32 @@
 | | ${args}= | Catenate | ${args} | --h_num ${hops} | --src_nh_mac ${src_nh_mac}
 | | ... | --dst_nh_mac ${dst_nh_mac} | --is_dst_tg ${is_dst_tg}
 | | Run Traffic Script On Node | icmpv6_echo_req_resp.py | ${tx_node} | ${args}
+
+| Send packet and verify marking
+| | [Documentation] | Send packet and verify DSCP of the received packet.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - TG node. Type: dictionary
+| | ... | - tx_if - TG transmit interface. Type: string
+| | ... | - rx_if - TG receive interface. Type: string
+| | ... | - src_mac - Packet source MAC. Type: string
+| | ... | - dst_mac - Packet destination MAC. Type: string
+| | ... | - src_ip - Packet source IP address. Type: string
+| | ... | - dst_ip - Packet destination IP address. Type: string
+| | ...
+| | ... | *Example:*
+| | ... | \| Send packet and verify marking \| ${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| 08:00:27:87:4d:f7 \| 52:54:00:d4:d8:22 \| 192.168.122.2 \
+| | ... | \| 192.168.122.1 \|
+| | ...
+| | [Arguments] | ${node} | ${tx_if} | ${rx_if} | ${src_mac} | ${dst_mac}
+| | ... | ${src_ip} | ${dst_ip}
+| | ...
+| | ${dscp}= | DSCP AF22
+| | ${tx_if_name}= | Get Interface Name | ${node} | ${tx_if}
+| | ${rx_if_name}= | Get Interface Name | ${node} | ${rx_if}
+| | ${args}= | Traffic Script Gen Arg | ${rx_if_name} | ${tx_if_name}
+| | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ${dscp_num}= | Get DSCP Num Value | ${dscp}
+| | ${args}= | Set Variable | ${args} --dscp ${dscp_num}
+| | Run Traffic Script On Node | policer.py | ${node} | ${args}
