@@ -22,6 +22,29 @@
       "revId": "f8c89b6783c60c8a19cfb67823109ab78590e7fb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8745b56_91334c74",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T10:56:48Z",
+      "side": 1,
+      "message": "${nodes[\u0027${dut}\u0027]}",
+      "range": {
+        "startLine": 59,
+        "startChar": 39,
+        "endLine": 59,
+        "endChar": 54
+      },
+      "revId": "f8c89b6783c60c8a19cfb67823109ab78590e7fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
