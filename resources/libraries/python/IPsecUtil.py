@@ -237,6 +237,30 @@ class IPsecUtil(object):
         return int(IPsecProto.SEC_AH)
 
     @staticmethod
+    def generate_keys_for_ipsec(crypto_alg, integ_alg):
+        """Generate Crypto and Integration strings as a keys.
+
+        :param crypto_alg: Encryption key.
+        :param integ_alg: Integration key.
+        :type crypto_alg: CryptoAlg
+        :type integ_alg: IntegAlg
+        :returns: The generated keys.
+        :rtype: tuple
+        """
+        ckey_name = IPsecUtil.get_crypto_alg_scapy_name(crypto_alg)
+        ckey_len = IPsecUtil.get_crypto_alg_key_len(crypto_alg)
+        ckey = ''.join(choice(letters) for _ in range(ckey_len))
+
+        if integ_alg:
+            ikey_name = IPsecUtil.get_integ_alg_scapy_name(integ_alg)
+            ikey_len = IPsecUtil.get_integ_alg_key_len(integ_alg)
+            ikey = ''.join(choice(letters) for _ in range(ikey_len))
+        else:
+            ikey = None
+
+        return ckey, ikey
+
+    @staticmethod
     def vpp_ipsec_select_backend(node, protocol, index=1):
         """Select IPsec backend.
 
