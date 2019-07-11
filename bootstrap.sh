@@ -17,6 +17,31 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
+function upgrade_ssh () {
+    sudo bash -i <<END
+        tgz="openssh-7.2p2.tar.gz"
+        pushd "/usr/src"
+        rm -f "${tgz}"
+        wget "https://openbsd.cs.toronto.edu/pub/OpenBSD/OpenSSH/portable/${tgz}"
+        tar -xvzf "${tgz}"
+        yum install -y rpm-build gcc make wget openssl-devel krb5-devel pam-devel libX11-devel xmkmf libXt-devel
+        rm -rf /root/rpmbuild/{SOURCES,SPECS}
+        mkdir -p /root/rpmbuild/{SOURCES,SPECS}
+        cp ./openssh-7.2p2/contrib/redhat/openssh.spec /root/rpmbuild/SPECS/
+        cp openssh-7.2p2.tar.gz /root/rpmbuild/SOURCES/
+        popd
+        pushd /root/rpmbuild/SPECS
+        sed -i -e "s/%define no_gnome_askpass 0/%define no_gnome_askpass 1/g" openssh.spec
+        sed -i -e "s/%define no_x11_askpass 0/%define no_x11_askpass 1/g" openssh.spec
+        sed -i -e "s/BuildPreReq/BuildRequires/g" openssh.spec
+        rpmbuild -bb openssh.spec
+        popd
+        ls -l /usr/src/redhat/RPMS/
+        ls -l /root/rpmbuild/RPMS/
+    END
+    exit 1
+}
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
 
@@ -27,6 +52,7 @@ if [ "$OS_ID" == "centos" ]; then
     DISTRO="CENTOS"
     PACKAGE="rpm"
     sudo yum install -y python-devel python-virtualenv
+    upgrade_ssh
 elif [ "$OS_ID" == "ubuntu" ]; then
     DISTRO="UBUNTU"
     PACKAGE="deb"
