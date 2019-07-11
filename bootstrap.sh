@@ -17,6 +17,11 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
+function upgrade_ssh () {
+    sudo yum install -y openssh-clients
+    ssh -v localhost
+}
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
 
@@ -27,6 +32,7 @@ if [ "$OS_ID" == "centos" ]; then
     DISTRO="CENTOS"
     PACKAGE="rpm"
     sudo yum install -y python-devel python-virtualenv
+    upgrade_ssh
 elif [ "$OS_ID" == "ubuntu" ]; then
     DISTRO="UBUNTU"
     PACKAGE="deb"
