@@ -14,6 +14,7 @@
 """IPsec utilities library."""
 
 import os
+import binascii
 
 from random import choice
 from string import letters
@@ -236,6 +237,28 @@ class IPsecUtil(object):
         return int(IPsecProto.SEC_AH)
 
     @staticmethod
+    def generate_keys_for_ipsec(crypto_alg, integ_alg):
+        """Generate Crypto and Integration strings as a keys.
+
+        :param crypto_alg: Encryption key.
+        :param integ_alg: Integration key.
+        :type crypto_alg: CryptoAlg
+        :type integ_alg: IntegAlg
+        :returns: The generated keys.
+        :rtype: tuple of str
+        """
+        clen = IPsecUtil.get_crypto_alg_key_len(crypto_alg)
+        ckey = ''.join(choice(letters) for _ in range(clen))
+
+        if integ_alg:
+            ilen = IPsecUtil.get_integ_alg_key_len(integ_alg)
+            ikey = ''.join(choice(letters) for _ in range(ilen))
+        else:
+            ikey = ''
+
+        return ckey, ikey
+
+    @staticmethod
     def vpp_ipsec_select_backend(node, protocol, index=1):
         """Select IPsec backend.
 
@@ -333,6 +356,8 @@ class IPsecUtil(object):
             tunnel_dst=str(dst_addr),
             protocol=int(IPsecProto.ESP)
         )
+        if !integ_alg:
+            sad_entry .update(salt=int(binascii.hexlify('salt'), 16)))
         args = dict(
             is_add=1,
             entry=sad_entry
