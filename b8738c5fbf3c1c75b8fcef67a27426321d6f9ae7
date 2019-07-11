@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fe68ae78_5e03337b",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T09:44:18Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 14
+      },
+      "revId": "b8738c5fbf3c1c75b8fcef67a27426321d6f9ae7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fc18816a_29635965",
+        "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/files/csit-initialize-vfs-tx2.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T09:44:18Z",
+      "side": 1,
+      "message": "80char",
+      "range": {
+        "startLine": 16,
+        "startChar": 72,
+        "endLine": 16,
+        "endChar": 81
+      },
+      "revId": "b8738c5fbf3c1c75b8fcef67a27426321d6f9ae7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c7ff36e0_eb11fe20",
+        "filename": "resources/tools/testbed-setup/ansible/roles/vpp_device/files/csit-initialize-vfs.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-11T09:44:18Z",
+      "side": 1,
+      "message": "is this passing with -e and variable not defined? (i am lazy to test)",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 48
+      },
+      "revId": "b8738c5fbf3c1c75b8fcef67a27426321d6f9ae7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
