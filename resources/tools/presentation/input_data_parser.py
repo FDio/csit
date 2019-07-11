@@ -19,6 +19,7 @@
 - filter the data using tags,
 """
 
+import copy
 import multiprocessing
 import os
 import re
@@ -99,24 +100,28 @@ class ExecutionChecker(ResultVisitor):
                         "direction1": {
                             "min": float,
                             "avg": float,
-                            "max": float
+                            "max": float,
+                            "hdrh": str
                         },
                         "direction2": {
                             "min": float,
                             "avg": float,
-                            "max": float
+                            "max": float,
+                            "hdrh": str
                         }
                     },
                     "PDR": {
                         "direction1": {
                             "min": float,
                             "avg": float,
-                            "max": float
+                            "max": float,
+                            "hdrh": str
                         },
                         "direction2": {
                             "min": float,
                             "avg": float,
-                            "max": float
+                            "max": float,
+                            "hdrh": str
                         }
                     }
                 }
@@ -148,60 +153,6 @@ class ExecutionChecker(ResultVisitor):
                 }
             }
 
-            # TODO: Remove when definitely no NDRPDRDISC tests are used:
-            # NDRPDRDISC tests:
-            "ID": {
-                "name": "Test name",
-                "parent": "Name of the parent of the test",
-                "doc": "Test documentation",
-                "msg": "Test message",
-                "tags": ["tag 1", "tag 2", "tag n"],
-                "type": "PDR" | "NDR",
-                "status": "PASS" | "FAIL",
-                "throughput": {  # Only type: "PDR" | "NDR"
-                    "value": int,
-                    "unit": "pps" | "bps" | "percentage"
-                },
-                "latency": {  # Only type: "PDR" | "NDR"
-                    "direction1": {
-                        "100": {
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        },
-                        "50": {  # Only for NDR
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        },
-                        "10": {  # Only for NDR
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        }
-                    },
-                    "direction2": {
-                        "100": {
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        },
-                        "50": {  # Only for NDR
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        },
-                        "10": {  # Only for NDR
-                            "min": int,
-                            "avg": int,
-                            "max": int
-                        }
-                    }
-                },
-                "lossTolerance": "lossTolerance",  # Only type: "PDR"
-                "conf-history": "DUT1 and DUT2 VAT History"
-                "show-run": "Show Run"
-            },
             "ID" {
                 # next test
             }
@@ -259,19 +210,6 @@ class ExecutionChecker(ResultVisitor):
                                    r'NDR_UPPER:\s(\d+.\d+).*\n'
                                    r'PDR_LOWER:\s(\d+.\d+).*\n.*\n'
                                    r'PDR_UPPER:\s(\d+.\d+)')
-
-    # TODO: Remove when definitely no NDRPDRDISC tests are used:
-    REGEX_LAT_NDR = re.compile(r'^[\D\d]*'
-                               r'LAT_\d+%NDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
-                               r'\s\'(-?\d+/-?\d+/-?\d+)\'\]\s\n'
-                               r'LAT_\d+%NDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
-                               r'\s\'(-?\d+/-?\d+/-?\d+)\'\]\s\n'
-                               r'LAT_\d+%NDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
-                               r'\s\'(-?\d+/-?\d+/-?\d+)\'\]')
-
-    REGEX_LAT_PDR = re.compile(r'^[\D\d]*'
-                               r'LAT_\d+%PDR:\s\[\'(-?\d+/-?\d+/-?\d+)\','
-                               r'\s\'(-?\d+/-?\d+/-?\d+)\'\][\D\d]*')
 
     REGEX_NDRPDR_LAT = re.compile(r'LATENCY.*\[\'(.*)\', \'(.*)\'\]\s\n.*\n.*\n'
                                   r'LATENCY.*\[\'(.*)\', \'(.*)\'\]')
@@ -518,53 +456,6 @@ class ExecutionChecker(ResultVisitor):
                 except KeyError:
                     pass
 
-    # TODO: Remove when definitely no NDRPDRDISC tests are used:
-    def _get_latency(self, msg, test_type):
-        """Get the latency data from the test message.
-
-        :param msg: Message to be parsed.
-        :param test_type: Type of the test - NDR or PDR.
-        :type msg: str
-        :type test_type: str
-        :returns: Latencies parsed from the message.
-        :rtype: dict
-        """
-
-        if test_type == "NDR":
-            groups = re.search(self.REGEX_LAT_NDR, msg)
-            groups_range = range(1, 7)
-        elif test_type == "PDR":
-            groups = re.search(self.REGEX_LAT_PDR, msg)
-            groups_range = range(1, 3)
-        else:
-            return {}
-
-        latencies = list()
-        for idx in groups_range:
-            try:
-                lat = [int(item) for item in str(groups.group(idx)).split('/')]
-            except (AttributeError, ValueError):
-                lat = [-1, -1, -1]
-            latencies.append(lat)
-
-        keys = ("min", "avg", "max")
-        latency = {
-            "direction1": {
-            },
-            "direction2": {
-            }
-        }
-
-        latency["direction1"]["100"] = dict(zip(keys, latencies[0]))
-        latency["direction2"]["100"] = dict(zip(keys, latencies[1]))
-        if test_type == "NDR":
-            latency["direction1"]["50"] = dict(zip(keys, latencies[2]))
-            latency["direction2"]["50"] = dict(zip(keys, latencies[3]))
-            latency["direction1"]["10"] = dict(zip(keys, latencies[4]))
-            latency["direction2"]["10"] = dict(zip(keys, latencies[5]))
-
-        return latency
-
     def _get_ndrpdr_throughput(self, msg):
         """Get NDR_LOWER, NDR_UPPER, PDR_LOWER and PDR_UPPER from the test
         message.
@@ -629,31 +520,46 @@ class ExecutionChecker(ResultVisitor):
         :returns: Parsed data as a dict and the status (PASS/FAIL).
         :rtype: tuple(dict, str)
         """
-
+        latency_default = {"min": -1.0, "avg": -1.0, "max": -1.0, "hdrh": ""}
         latency = {
             "NDR": {
-                "direction1": {"min": -1.0, "avg": -1.0, "max": -1.0},
-                "direction2": {"min": -1.0, "avg": -1.0, "max": -1.0}
+                "direction1": copy.copy(latency_default),
+                "direction2": copy.copy(latency_default)
             },
             "PDR": {
-                "direction1": {"min": -1.0, "avg": -1.0, "max": -1.0},
-                "direction2": {"min": -1.0, "avg": -1.0, "max": -1.0}
+                "direction1": copy.copy(latency_default),
+                "direction2": copy.copy(latency_default)
             }
         }
         status = "FAIL"
         groups = re.search(self.REGEX_NDRPDR_LAT, msg)
 
+        def process_latency(in_str):
+            """Return object with parsed latency values.
+
+            TODO: Define class for the return type.
+
+            :param in_str: Input string, min/avg/max/hdrh format.
+            :type in_str: str
+            :returns: Dict with corresponding keys, except hdrh float values.
+            :rtype dict:
+            :throws IndexError: If in_str does not have enough substrings.
+            :throws ValueError: If a substring does not convert to float.
+            """
+            in_list = in_str.split('/')
+            return {
+                "min": float(in_list[0]),
+                "avg": float(in_list[1]),
+                "max": float(in_list[2]),
+                "hdrh": str(in_list[3]),
+            }
+
         if groups is not None:
-            keys = ("min", "avg", "max")
             try:
-                latency["NDR"]["direction1"] = dict(
-                    zip(keys, [float(l) for l in groups.group(1).split('/')]))
-                latency["NDR"]["direction2"] = dict(
-                    zip(keys, [float(l) for l in groups.group(2).split('/')]))
-                latency["PDR"]["direction1"] = dict(
-                    zip(keys, [float(l) for l in groups.group(3).split('/')]))
-                latency["PDR"]["direction2"] = dict(
-                    zip(keys, [float(l) for l in groups.group(4).split('/')]))
+                latency["NDR"]["direction1"] = process_latency(groups.group(1))
+                latency["NDR"]["direction2"] = process_latency(groups.group(2))
+                latency["PDR"]["direction1"] = process_latency(groups.group(3))
+                latency["PDR"]["direction2"] = process_latency(groups.group(4))
                 status = "PASS"
             except (IndexError, ValueError):
                 pass
