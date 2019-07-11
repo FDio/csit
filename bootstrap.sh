@@ -26,13 +26,13 @@ OS_VERSION_ID=$(grep '^VERSION_ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\
 if [ "$OS_ID" == "centos" ]; then
     DISTRO="CENTOS"
     PACKAGE="rpm"
-    sudo yum install -y python-devel python-virtualenv
+    sudo yum install -y python-devel python-virtualenv openssh-clients sshpass
 elif [ "$OS_ID" == "ubuntu" ]; then
     DISTRO="UBUNTU"
     PACKAGE="deb"
     export DEBIAN_FRONTEND=noninteractive
     sudo apt-get -y update
-    sudo apt-get -y install libpython2.7-dev python-virtualenv
+    sudo apt-get -y install libpython2.7-dev python-virtualenv sshpass
 else
     echo "$OS_ID is not yet supported."
     exit 1
