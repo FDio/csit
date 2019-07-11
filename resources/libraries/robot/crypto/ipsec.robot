@@ -25,31 +25,6 @@
 | Documentation | IPsec keywords
 
 *** Keywords ***
-| Generate keys for IPSec
-| | [Documentation] | Generate keys for IPsec.
-| | ...
-| | ... | *Arguments:*
-| | ... | - crypto_alg - Encryption algorithm. Type: enum
-| | ... | - integ_alg - Integrity algorithm. Type: enum
-| | ...
-| | ... | _NOTE:_ This KW sets following test case variable:
-| | ... | - encr_key - Encryption key. Type: string
-| | ... | - auth_key - Integrity key. Type: string
-| | ...
-| | ... | *Example:*
-| | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
-| | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
-| | ... | \| Generate keys for IPSec \| ${encr_alg} \| ${auth_alg} \|
-| | ...
-| | [Arguments] | ${crypto_alg} | ${integ_alg}
-| | ...
-| | ${encr_key_len}= | Get Crypto Alg Key Len | ${crypto_alg}
-| | ${encr_key}= | Generate Random String | ${encr_key_len}
-| | ${auth_key_len}= | Get Integ Alg Key Len | ${integ_alg}
-| | ${auth_key}= | Generate Random String | ${auth_key_len}
-| | Set Test Variable | ${encr_key}
-| | Set Test Variable | ${auth_key}
-
 | Configure path for IPSec test
 | | [Documentation] | Setup path for IPsec testing TG<-->DUT1.
 | | ...
@@ -220,10 +195,15 @@
 | | ${args}= | Traffic Script Gen Arg | ${if_name} | ${if_name} | ${src_mac}
 | | ... | ${dst_mac} | ${l_ip} | ${r_ip}
 | | ${crypto_alg_str}= | Get Crypto Alg Scapy Name | ${crypto_alg}
-| | ${integ_alg_str}= | Get Integ Alg Scapy Name | ${integ_alg}
+| | ${integ_alg_str}= | Run Keyword If | ${integ_alg} |
+| | ... | Get Integ Alg Scapy Name | ${integ_alg}
+| | ... | ELSE | Set Variable | ${Empty}
 | | ${args}= | Catenate | ${args} | --crypto_alg ${crypto_alg_str}
-| | ... | --crypto_key ${crypto_key} | --integ_alg ${integ_alg_str}
-| | ... | --integ_key ${integ_key} | --l_spi ${l_spi} | --r_spi ${r_spi}
+| | ... | --crypto_key ${crypto_key} | --l_spi ${l_spi} | --r_spi ${r_spi}
+| | ${args}= | Set Variable If | "${integ_key}" == "${Empty}" | ${args}
+| | ... | ${args} --integ_key ${integ_key}
+| | ${args}= | Set Variable If | "${integ_alg}" == "${None}" | ${args}
+| | ... | ${args} --integ_alg ${integ_alg_str}
 | | ${args}= | Set Variable If | "${l_tunnel}" == "${None}" | ${args}
 | | ... | ${args} --src_tun ${l_tunnel}
 | | ${args}= | Set Variable If | "${r_tunnel}" == "${None}" | ${args}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -132,9 +132,8 @@ def check_ipv6(pkt_recv, dst_tun, src_ip, dst_ip, sa_in):
 def main():
     """Send and receive IPsec packet."""
     args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
-                             'crypto_alg', 'crypto_key', 'integ_alg',
-                             'integ_key', 'l_spi', 'r_spi'],
-                            ['src_tun', 'dst_tun'])
+                             'crypto_alg', 'crypto_key','l_spi', 'r_spi'],
+                            ['integ_alg', 'integ_key', 'src_tun', 'dst_tun'])
 
     rxq = RxQueue(args.get_arg('rx_if'))
     txq = TxQueue(args.get_arg('tx_if'))
@@ -169,6 +168,14 @@ def main():
     else:
         src_tun = src_ip
         dst_tun = dst_ip
+
+    # Scapy is considering key and salt to be part of crypt_key string:
+    # https://github.com/secdev/scapy/blob/master/scapy/layers/ipsec.py#L816
+    # For this reason key_len != len(crypto_key) for selected crypto algorithms.
+    if crypto_alg == 'AES-CTR' or crypto_alg == 'AES-GCM':
+        crypto_key = crypto_key + 'salt'
+    if crypto_alg == 'AES-CCM':
+        crypto_key = crypto_key + 'slt'
 
     sa_in = SecurityAssociation(ESP, spi=r_spi, crypt_algo=crypto_alg,
                                 crypt_key=crypto_key, auth_algo=integ_alg,
