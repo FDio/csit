@@ -75,7 +75,18 @@
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding in circular topology
-| | And Initialize IPv6 iAcl whitelist in 3-node circular topology
+| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
+| | ... | ${dut1} | ip6 | dst | 2001:2::2
+| | And Vpp Configures Classify Session L3
+| | ... | ${dut1} | permit | ${table_idx} | ip6 | dst | 2001:2::2
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1} | ${dut1_if1} | ip6 | ${table_idx}
+| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
+| | ... | ${dut2} | ip6 | dst | 2001:1::2
+| | And Vpp Configures Classify Session L3
+| | ... | ${dut2} | permit | ${table_idx} | ip6 | dst | 2001:1::2
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut2} | ${dut2_if2} | ip6 | ${table_idx}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
