@@ -13,7 +13,6 @@
 
 """Interface util library."""
 
-from socket import AF_INET, AF_INET6, inet_ntop
 from time import sleep
 
 from enum import IntEnum
@@ -845,22 +844,22 @@ class InterfaceUtil(object):
             """
             if vxlan_dump['is_ipv6']:
                 vxlan_dump['src_address'] = \
-                    inet_ntop(AF_INET6, vxlan_dump['src_address'])
+                    ip_address(unicode(vxlan_dump['src_address']))
                 vxlan_dump['dst_address'] = \
-                    inet_ntop(AF_INET6, vxlan_dump['dst_address'])
+                    ip_address(unicode(vxlan_dump['dst_address']))
             else:
                 vxlan_dump['src_address'] = \
-                    inet_ntop(AF_INET, vxlan_dump['src_address'][0:4])
+                    ip_address(unicode(vxlan_dump['src_address'][0:4]))
                 vxlan_dump['dst_address'] = \
-                    inet_ntop(AF_INET, vxlan_dump['dst_address'][0:4])
+                    ip_address(unicode(vxlan_dump['dst_address'][0:4]))
             return vxlan_dump
 
         data = list() if interface is None else dict()
-        for vxlan_dump in details:
+        for dump in details:
             if interface is None:
-                data.append(process_vxlan_dump(vxlan_dump))
-            elif vxlan_dump['sw_if_index'] == sw_if_index:
-                data = process_vxlan_dump(vxlan_dump)
+                data.append(process_vxlan_dump(dump))
+            elif dump['sw_if_index'] == sw_if_index:
+                data = process_vxlan_dump(dump)
                 break
 
         logger.debug('VXLAN data:\n{vxlan_data}'.format(vxlan_data=data))
@@ -904,58 +903,6 @@ class InterfaceUtil(object):
         logger.debug('Vhost-user details:\n{vhost_details}'.format(
             vhost_details=details))
         return details
-
-    @staticmethod
-    def tap_dump(node, name=None):
-        """Get all TAP interface data from the given node, or data about
-        a specific TAP interface.
-
-        TODO: Move to Tap.py
-
-        :param node: VPP node to get data from.
-        :param name: Optional name of a specific TAP interface.
-        :type node: dict
-        :type name: str
-        :returns: Dictionary of information about a specific TAP interface, or
-            a List of dictionaries containing all TAP data for the given node.
-        :rtype: dict or list
-        """
-        cmd = 'sw_interface_tap_v2_dump'
-        err_msg = 'Failed to get TAP dump on host {host}'.format(
-            host=node['host'])
-        with PapiSocketExecutor(node) as papi_exec:
-            details = papi_exec.add(cmd).get_details(err_msg)
-
-        def process_tap_dump(tap_dump):
-            """Process tap dump.
-
-            :param tap_dump: Tap interface dump.
-            :type tap_dump: dict
-            :returns: Processed tap interface dump.
-            :rtype: dict
-            """
-            tap_dump['dev_name'] = tap_dump['dev_name'].rstrip('\x00')
-            tap_dump['host_if_name'] = tap_dump['host_if_name'].rstrip('\x00')
-            tap_dump['host_namespace'] = \
-                tap_dump['host_namespace'].rstrip('\x00')
-            tap_dump['host_mac_addr'] = \
-                L2Util.bin_to_mac(tap_dump['host_mac_addr'])
-            tap_dump['host_ip4_addr'] = \
-                inet_ntop(AF_INET, tap_dump['host_ip4_addr'])
-            tap_dump['host_ip6_addr'] = \
-                inet_ntop(AF_INET6, tap_dump['host_ip6_addr'])
-            return tap_dump
-
-        data = list() if name is None else dict()
-        for tap_dump in details:
-            if name is None:
-                data.append(process_tap_dump(tap_dump))
-            elif tap_dump.get('dev_name').rstrip('\x00') == name:
-                data = process_tap_dump(tap_dump)
-                break
-
-        logger.debug('TAP data:\n{tap_data}'.format(tap_data=data))
-        return data
 
     @staticmethod
     def create_subinterface(node, interface, sub_id, outer_vlan_id=None,
@@ -1390,22 +1337,22 @@ class InterfaceUtil(object):
             """
             if vxlan_dump['is_ipv6']:
                 vxlan_dump['local'] = \
-                    inet_ntop(AF_INET6, vxlan_dump['local'])
+                    ip_address(unicode(vxlan_dump['local']))
                 vxlan_dump['remote'] = \
-                    inet_ntop(AF_INET6, vxlan_dump['remote'])
+                    ip_address(unicode(vxlan_dump['remote']))
             else:
                 vxlan_dump['local'] = \
-                    inet_ntop(AF_INET, vxlan_dump['local'][0:4])
+                    ip_address(unicode(vxlan_dump['local'][0:4]))
                 vxlan_dump['remote'] = \
-                    inet_ntop(AF_INET, vxlan_dump['remote'][0:4])
+                    ip_address(unicode(vxlan_dump['remote'][0:4]))
             return vxlan_dump
 
         data = list() if interface_name is None else dict()
-        for vxlan_dump in details:
+        for dump in details:
             if interface_name is None:
-                data.append(process_vxlan_gpe_dump(vxlan_dump))
-            elif vxlan_dump['sw_if_index'] == sw_if_index:
-                data = process_vxlan_gpe_dump(vxlan_dump)
+                data.append(process_vxlan_gpe_dump(dump))
+            elif dump['sw_if_index'] == sw_if_index:
+                data = process_vxlan_gpe_dump(dump)
                 break
 
         logger.debug('VXLAN-GPE data:\n{vxlan_gpe_data}'.format(
