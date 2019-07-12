@@ -14,7 +14,7 @@
 """DHCP utilities for VPP."""
 
 
-from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
 class DhcpProxy(object):
@@ -31,7 +31,12 @@ class DhcpProxy(object):
         :returns: DHCP relay data.
         :rtype: list
         """
+        cmd = 'dhcp_proxy_dump'
+        args = dict(is_ip6=1 if ip_version == 'ipv6' else 0)
+        err_msg = 'Failed to get DHCP proxy dump on host {host}'.format(
+            host=node['host'])
 
-        return VatExecutor.cmd_from_template(
-            node, "dhcp_proxy_dump.vat",
-            ipv6="ipv6" if ip_version == "ipv6" else "")
+        with PapiSocketExecutor(node) as papi_exec:
+            details = papi_exec.add(cmd, **args).get_details(err_msg)
+
+        return details
