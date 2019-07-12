@@ -18,9 +18,9 @@ import time
 from pprint import pformat
 
 from robot.api import logger
-from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 class VppCounters(object):

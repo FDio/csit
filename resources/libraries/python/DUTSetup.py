@@ -48,7 +48,7 @@ class DUTSetup(object):
                           message=message)
 
     @staticmethod
-    def get_service_logs_on_all_duts(nodes, service):
+    def get_service_logs_on_all_duts(nodes, service=Constants.VPP_UNIT):
         """Get specific service unit logs from all DUTs.
 
         :param nodes: Nodes in the topology.
