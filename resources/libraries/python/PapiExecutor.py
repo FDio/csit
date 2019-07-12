@@ -192,7 +192,8 @@ class PapiSocketExecutor(object):
             # We need to create instance before removing from sys.path.
             cls.cached_vpp_instance = vpp_class(
                 use_socket=True, server_address="TBD", async_thread=False,
-                logger=logger)
+                read_timeout=6, logger=logger)
+            # TODO: Stop overriding read_timeout when x520 issue is fixed.
         finally:
             shutil.rmtree(tmp_dir)
             if sys.path[-1] == package_path:
