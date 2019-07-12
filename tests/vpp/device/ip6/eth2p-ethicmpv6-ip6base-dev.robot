@@ -44,7 +44,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send ICMPv6 Echo Req towards DUT1 egress interface.\
+| | ... | [Ver] Make TG send ICMPv6 Echo Req routed over DUT1 interfaces;\
 | | ... | Make TG verify ICMPv6 Echo Reply is correct.
 | | ...
 | | ... | *Arguments:*
@@ -61,11 +61,21 @@
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize IPv6 forwarding in circular topology
+| | ... | remote_host1_ip=3ffe:5f::1 | remote_host2_ip=3ffe:5f::2
 | | Then Send IPv6 echo request packet and verify headers
 | | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if2}
 | | ... | 2001:1::2 | 2001:2::1 | ${dut1_if1_mac} | ${0}
+| | Then Send IPv6 echo request packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if1}
+| | ... | 2001:1::2 | 2001:1::1 | ${dut1_if1_mac} | ${0}
+| | Then Send IPv6 echo request packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
+| | ... | 2001:1::2 | 2001:2::2 | ${dut1_if1_mac} | ${1} | ${dut1_if2_mac}
+| | Then Send IPv6 echo request packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
+| | ... | 3ffe:5f::1 | 3ffe:5f::2 | ${dut1_if1_mac} | ${1} | ${dut1_if2_mac}
 
 *** Test Cases ***
-| tc01-78B-ethicmpv6-ip6base-dut-egress-dev
+| tc01-78B-ethicmpv6-ip6base-dev
 | | [Tags] | 78B
 | | frame_size=${78} | phy_cores=${0}
