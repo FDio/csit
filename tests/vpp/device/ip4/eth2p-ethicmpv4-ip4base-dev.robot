@@ -44,9 +44,8 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send ICMPv4 Echo Req between its interfaces across DUT1\
-| | ... | for remote host IPv4 addresses. Make TG verify ICMPv4 Echo Replies\
-| | ... | are correct.
+| | ... | [Ver] Make TG send ICMPv4 Echo Req routed over DUT1 interfaces.\
+| | ... | Make TG verify ICMPv4 Echo Reply is correct.
 | | ...
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
@@ -64,10 +63,19 @@
 | | When Initialize IPv4 forwarding in circular topology
 | | ... | remote_host1_ip=192.168.0.1 | remote_host2_ip=192.168.0.2
 | | Then Send IPv4 ping packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if2}
+| | ... | 10.10.10.2 | 20.20.20.1 | ${dut1_if1_mac} | ${0}
+| | Then Send IPv4 ping packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if1}
+| | ... | 10.10.10.2 | 10.10.10.1 | ${dut1_if1_mac} | ${0}
+| | Then Send IPv4 ping packet and verify headers
+| | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
+| | ... | 10.10.10.2 | 20.20.20.2 | ${dut1_if1_mac} | ${1}
+| | Then Send IPv4 ping packet and verify headers
 | | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
 | | ... | 192.168.0.1 | 192.168.0.2 | ${dut1_if1_mac} | ${1}
 
 *** Test Cases ***
-| tc01-64B-ethicmpv4-ip4base-tg-ingress-for-remote-host-dev
+| tc01-64B-ethicmpv4-ip4base-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}
