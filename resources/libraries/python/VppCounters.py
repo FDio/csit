@@ -20,7 +20,9 @@ from pprint import pformat
 from robot.api import logger
 from resources.libraries.python.PapiExecutor import PapiExecutor
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.VatExecutor import VatTerminal
 from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 class VppCounters(object):
@@ -163,6 +165,12 @@ class VppCounters(object):
         :type node: dict
         """
         PapiSocketExecutor.run_cli_cmd(node, 'show hardware detail')
+        # ^^ does not work (neither does the old PapiExecutor).
+        #exec_cmd_no_error(node, cmd="vppctl show hardware detail", sudo=True)
+        # ^^ does work without any issues.
+        #with VatTerminal(node) as vat:
+        #    vat.vat_terminal_exec_cmd('exec show hardware detail')
+        # ^^ fails.
 
     @staticmethod
     def vpp_clear_runtime(node):
