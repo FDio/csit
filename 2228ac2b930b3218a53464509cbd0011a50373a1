@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9797c362_c6d9006e",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-12T10:26:29Z",
+      "side": 1,
+      "message": "Alright, now when it is merged, can you add explanations to the exclusion tags?",
+      "range": {
+        "startLine": 734,
+        "startChar": 17,
+        "endLine": 734,
+        "endChar": 19
+      },
+      "revId": "2228ac2b930b3218a53464509cbd0011a50373a1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
