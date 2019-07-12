@@ -13,8 +13,12 @@
 
 """Tap utilities library."""
 
+
+from resources.libraries.python.Constants import Constants
+from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.VatExecutor import VatTerminal
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 
 
@@ -34,95 +38,37 @@ class Tap(object):
         :returns: Returns a interface index.
         :rtype: int
         """
-        command = 'create'
-        if mac is not None:
-            args = 'tapname {} mac {}'.format(tap_name, mac)
-        else:
-            args = 'tapname {}'.format(tap_name)
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template('tap.vat',
-                                                           tap_command=command,
-                                                           tap_arguments=args)
-        sw_if_index = resp[0]['sw_if_index']
+        cmd = 'tap_create_v2'
+        args = dict(
+            id=Constants.BITWISE_NON_ZERO,
+            use_random_mac=0 if mac else 1,
+            mac_address=L2Util.mac_to_bin(mac) if mac else 6 * b'\x00',
+            host_namespace=0,
+            host_mac_addr=6 * b'\x00',
+            host_if_name_set=1,
+            host_if_name=tap_name + (64 - len(tap_name)) * b'\x00',
+            host_bridge=0,
+            host_ip4_addr=4 * b'\x00',
+            host_ip6_addr=16 * b'\x00',
+            host_ip4_gw=4 * b'\x00',
+            host_ip6_gw=16 * b'\x00'
+        )
+        err_msg = 'Failed to create tap interface {tap} on host {host}'.format(
+            tap=tap_name, host=node['host'])
+
+        with PapiSocketExecutor(node) as papi_exec:
+            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+
         if_key = Topology.add_new_port(node, 'tap')
         Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
-        ifc_name = Tap.vpp_get_tap_interface_name(node, sw_if_index)
+        ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
         Topology.update_interface_name(node, if_key, ifc_name)
         if mac is None:
-            mac = Tap.vpp_get_tap_interface_mac(node, sw_if_index)
+            mac = InterfaceUtil.vpp_get_interface_mac(node, sw_if_index)
         Topology.update_interface_mac_address(node, if_key, mac)
         Topology.update_interface_tap_dev_name(node, if_key, tap_name)
 
         return sw_if_index
-
-    @staticmethod
-    def modify_tap_interface(node, sw_if_index, tap_name, mac=None):
-        """Modify tap interface like linux interface name or VPP MAC.
-
-        :param node: Node to modify tap on.
-        :param sw_if_index: Index of tap interface to be modified.
-        :param tap_name: Tap interface name for linux tap.
-        :param mac: Optional MAC address for VPP tap.
-        :type node: dict
-        :type sw_if_index: int
-        :type tap_name: str
-        :type mac: str
-        :returns: Returns a interface index.
-        :rtype: int
-        """
-        command = 'modify'
-        if mac is not None:
-            args = 'sw_if_index {} tapname {} mac {}'.format(
-                sw_if_index, tap_name, mac)
-        else:
-            args = 'sw_if_index {} tapname {}'.format(sw_if_index, tap_name)
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template('tap.vat',
-                                                           tap_command=command,
-                                                           tap_arguments=args)
-        if_key = Topology.get_interface_by_sw_index(node, sw_if_index)
-        Topology.update_interface_tap_dev_name(node, if_key, tap_name)
-        if mac:
-            Topology.update_interface_mac_address(node, if_key, mac)
-
-        return resp[0]['sw_if_index']
-
-    @staticmethod
-    def delete_tap_interface(node, sw_if_index):
-        """Delete tap interface.
-
-        :param node: Node to delete tap on.
-        :param sw_if_index: Index of tap interface to be deleted.
-        :type node: dict
-        :type sw_if_index: int
-        :raises RuntimeError: Deletion was not successful.
-        """
-        command = 'delete'
-        args = 'sw_if_index {}'.format(sw_if_index)
-        with VatTerminal(node) as vat:
-            resp = vat.vat_terminal_exec_cmd_from_template('tap.vat',
-                                                           tap_command=command,
-                                                           tap_arguments=args)
-            if int(resp[0]['retval']) != 0:
-                raise RuntimeError(
-                    'Could not remove tap interface: {}'.format(resp))
-        if_key = Topology.get_interface_sw_index(node, sw_if_index)
-        Topology.remove_port(node, if_key)
-
-    @staticmethod
-    def check_tap_present(node, tap_name):
-        """Check whether specific tap interface exists.
-
-        :param node: Node to check tap on.
-        :param tap_name: Tap interface name for linux tap.
-        :type node: dict
-        :type tap_name: str
-        :raises RuntimeError: Specified interface was not found.
-        """
-        tap_if = InterfaceUtil.tap_dump(node, tap_name)
-        if not tap_if:
-            raise RuntimeError(
-                'Tap interface :{} does not exist'.format(tap_name))
 
     @staticmethod
     def vpp_get_tap_interface_name(node, sw_if_index):
