@@ -210,6 +210,15 @@
 | | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1_vf0} | ${dut2} | ${dut2_if2_vf0} | ${osi_layer}
 
+| Additional Suite Setup Action For avf
+| | [Documentation]
+| | ... | Additional Setup for suites which uses SRIOV AVF.
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+# Currently only one AVF is supported.
+| | | Set Suite Variable | ${${dut}_if1_vf0} | ${${dut}_if1}
+| | | Set Suite Variable | ${${dut}_if2_vf0} | ${${dut}_if2}
+
 | Additional Suite Setup Action For ipsechw
 | | [Documentation]
 | | ... | Additional Setup for suites which uses QAT HW.
