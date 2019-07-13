@@ -30,7 +30,7 @@
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with\
 | ... | single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing. IEEE 802.1Q\
-| ... | tagging is applied on link between DUT1-if2 and TG-if2.
+| ... | tagging is applied on link between TG-DUT1.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and\
 | ... | two static IPv4 /30 route entries. DUT1 is tested with ${nic_name}.\
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
