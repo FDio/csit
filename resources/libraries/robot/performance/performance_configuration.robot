@@ -2078,42 +2078,6 @@
 | | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 
-| Add VLAN strip offload switch off between DUTs in 3-node single link topology
-| | [Documentation]
-| | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
-| | ... | configuration file.
-| | ...
-| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_pci}
-| | ... | vlan-strip-offload | off
-| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_pci}
-| | ... | vlan-strip-offload | off
-
-| Add VLAN strip offload switch off between DUTs in 3-node double link topology
-| | [Documentation]
-| | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
-| | ... | configuration file.
-| | ...
-| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_1_pci}
-| | ... | vlan-strip-offload | off
-| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_2_pci}
-| | ... | vlan-strip-offload | off
-| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_1_pci}
-| | ... | vlan-strip-offload | off
-| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_2_pci}
-| | ... | vlan-strip-offload | off
-
-| Add DPDK bonded ethernet interfaces to DUTs in 3-node single link topology
-| | [Documentation]
-| | ... | Add DPDK bonded Ethernet interfaces with mode XOR and transmit policy
-| | ... | l34 to VPP configuration file.
-| | ...
-| | Run keyword | DUT1.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut1_if2_pci}
-| | Run keyword | DUT2.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut2_if1_pci}
-
-| Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
-| | Add Eth Interface | ${dut1} | ${dut1_eth_bond_if1_name} | ifc_pfx=eth_bond
-| | Add Eth Interface | ${dut2} | ${dut2_eth_bond_if1_name} | ifc_pfx=eth_bond
-
 | Configure chains of NFs connected via vhost-user
 | | [Documentation]
 | | ... | Start 1..N chains of 1..N QEMU guests (VNFs) with two vhost-user\
