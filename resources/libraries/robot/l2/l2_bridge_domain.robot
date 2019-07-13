@@ -32,6 +32,28 @@
 | | ... | Vpp Add L2fib Entry | ${dut_node} | ${mac} | ${if2} | ${1}
 | | Vpp Node Interfaces Ready Wait | ${dut_node}
 
+| Initialize L2 bridge domain
+| | [Documentation]
+| | ... | Setup L2 DB topology by adding two interfaces on each DUT into BD
+| | ... | that is created automatically with index 1. Learning is enabled.
+| | ... | Interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - bd_id - Bridge domain ID. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domain \| 1 \|
+| | ...
+| | [Arguments] | ${bd_id}=${1}
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${dut_str}= | Convert To Lowercase | ${dut}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_1_1} | ${bd_id}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_1_1} | ${bd_id}
+
 | Configure path for 3-node BD-SHG test
 | | [Documentation] | Compute path for bridge domain split-horizon group testing
 | | ...             | on three given nodes with following interconnections
