@@ -429,6 +429,41 @@
 | | Run keyword | DUT2.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
 | | ... | ${thr_count_int}
 
+| Add VLAN strip offload switch off
+| | [Documentation]
+| | ... | Add VLAN Strip Offload switch off on all PCI devices.
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${dut_str}= | Convert To Lowercase | ${dut}
+| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${${dut_str}_if1_pci}
+| | | ... | vlan-strip-offload | off
+| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${${dut_str}_if2_pci}
+| | | ... | vlan-strip-offload | off
+
+| Add VLAN strip offload switch off between DUTs in 3-node single link topology
+| | [Documentation]
+| | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
+| | ... | configuration file.
+| | ...
+| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_pci}
+| | ... | vlan-strip-offload | off
+
+| Add VLAN strip offload switch off between DUTs in 3-node double link topology
+| | [Documentation]
+| | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
+| | ... | configuration file.
+| | ...
+| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_1_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_2_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_1_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_2_pci}
+| | ... | vlan-strip-offload | off
+
 | Write startup configuration on all VPP DUTs
 | | [Documentation] | Write VPP startup configuration without restarting VPP.
 | | ...
