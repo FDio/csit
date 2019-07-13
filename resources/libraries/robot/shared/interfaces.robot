@@ -152,8 +152,8 @@
 | | ...
 | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | :FOR | ${id} | IN RANGE | 1 | ${count} + 1
-| | | ${vlan_west}= | Evaluate | 100 + ${id} - 1
-| | | ${vlan_east}= | Evaluate | 200 + ${id} - 1
+| | | ${vlan_west}= | Evaluate | 1300 + ${id} - 1
+| | | ${vlan_east}= | Evaluate | 1301 + ${id} - 1
 | | | ${if1_name} | ${if1_index}= | Run Keyword Unless
 | | | ... | ${create} and ${id} > ${1}
 | | | ... | Create Vlan Subinterface
