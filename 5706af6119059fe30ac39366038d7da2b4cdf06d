@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0ebac46d_32635ba1",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-13T05:10:29Z",
+      "side": 1,
+      "message": "not needed as ls -1 is returning just latest + it is pylint violation",
+      "range": {
+        "startLine": 109,
+        "startChar": 21,
+        "endLine": 109,
+        "endChar": 59
+      },
+      "revId": "5706af6119059fe30ac39366038d7da2b4cdf06d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
