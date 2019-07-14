@@ -18,12 +18,18 @@ Running CSIT locally in Vagrant
 3. Install vagrant plugins
    From command line run:
       vagrant plugin install vagrant-vbguest
+      
       vagrant plugin install vagrant-cachier
 
    If you are behind a proxy, install proxyconf plugin and update proxy
    settings in Vagrantfile:
       vagrant plugin install vagrant-proxyconf
 
+4. add csit box
+      vagrant box add https://app.vagrantup.com/fdio-csit/boxes/ubuntu-14.04.4_2016-05-25_1.0
+      
+      vagrant init fdio-csit/boxes/ubuntu-14.04.4_2016-05-25_1.0
+      
 4. Start the provisioning:
       vagrant up --provider virtualbox
 
