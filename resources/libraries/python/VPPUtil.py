@@ -13,14 +13,12 @@
 
 """VPP util library."""
 
-import binascii
-
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.L2Util import L2Util
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 
@@ -136,6 +134,7 @@ class VPPUtil(object):
             VPPUtil.verify_vpp_started(node)
             # Verify responsivness of PAPI.
             VPPUtil.show_log(node)
+            VPPUtil.vpp_show_version(node)
         finally:
             DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
 
@@ -162,7 +161,7 @@ class VPPUtil(object):
         :returns: VPP version.
         :rtype: str
         """
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add('show_version').get_reply()
         return_version = reply['version'].rstrip('\0x00')
         version = 'VPP version:      {ver}\n'.format(ver=return_version)
@@ -197,7 +196,7 @@ class VPPUtil(object):
         args = dict(name_filter_valid=0, name_filter='')
         err_msg = 'Failed to get interface dump on host {host}'.format(
             host=node['host'])
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         for if_dump in details:
@@ -226,7 +225,7 @@ class VPPUtil(object):
 
         for cmd in cmds:
             try:
-                PapiExecutor.run_cli_cmd(node, cmd)
+                PapiSocketExecutor.run_cli_cmd(node, cmd)
             except AssertionError:
                 if fail_on_error:
                     raise
@@ -252,7 +251,7 @@ class VPPUtil(object):
         :param node: DUT node to set up.
         :type node: dict
         """
-        PapiExecutor.run_cli_cmd(node, "elog trace api cli barrier")
+        PapiSocketExecutor.run_cli_cmd(node, "elog trace api cli barrier")
 
     @staticmethod
     def vpp_enable_elog_traces_on_all_duts(nodes):
@@ -272,7 +271,7 @@ class VPPUtil(object):
         :param node: DUT node to show traces on.
         :type node: dict
         """
-        PapiExecutor.run_cli_cmd(node, "show event-logger")
+        PapiSocketExecutor.run_cli_cmd(node, "show event-logger")
 
     @staticmethod
     def show_event_logger_on_all_duts(nodes):
@@ -294,7 +293,7 @@ class VPPUtil(object):
         :returns: VPP log data.
         :rtype: list
         """
-        return PapiExecutor.run_cli_cmd(node, "show log")
+        return PapiSocketExecutor.run_cli_cmd(node, "show log")
 
     @staticmethod
     def vpp_show_threads(node):
@@ -305,7 +304,7 @@ class VPPUtil(object):
         :returns: VPP thread data.
         :rtype: list
         """
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add('show_threads').get_reply()
 
         threads_data = list()
