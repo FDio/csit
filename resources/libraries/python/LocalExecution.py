@@ -40,7 +40,7 @@ __all__ = ["run"]
 MESSAGE_TEMPLATE = "Command {com} ended with RC {ret} and output:\n{out}"
 
 
-def run(command, msg="", check=False, log=True, console=False):
+def run(command, msg="", check=True, log=False, console=False):
     """Wrapper around subprocess.check_output that can tolerates nonzero RCs.
 
     Stderr is redirected to stdout, so it is part of output
