@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "33c11328_252a932c",
+        "filename": "resources/libraries/python/FilteredLogger.py",
+        "patchSetId": 290
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-15T11:52:39Z",
+      "side": 1,
+      "message": "This works, but only if the third party code actually calls the injected logger (e.g. as opposed to logging module directly).\nAs [0] (running patch set 289) shows, sometimes it does, mostly it does not.\nSome fixes on VPP side are needed, but for CSIT side the current code all that is needed.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/2501/archives/archive/log.html.gz#s1-s1-s1-k1-k5",
+      "range": {
+        "startLine": 72,
+        "startChar": 34,
+        "endLine": 72,
+        "endChar": 36
+      },
+      "revId": "0efc9405afe4c82bd4bba276cef8b83b2bab8281",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
