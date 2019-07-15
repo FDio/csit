@@ -19,7 +19,7 @@ from textwrap import wrap
 from enum import IntEnum
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.ssh import exec_cmd_no_error
 
@@ -129,7 +129,7 @@ class L2Util(object):
                     static_mac=int(static_mac),
                     filter_mac=int(filter_mac),
                     bvi_mac=int(bvi_mac))
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -168,7 +168,7 @@ class L2Util(object):
                     learn=int(learn),
                     arp_term=int(arp_term),
                     is_add=1)
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -200,7 +200,7 @@ class L2Util(object):
                     shg=int(shg),
                     port_type=int(port_type),
                     enable=1)
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -248,7 +248,7 @@ class L2Util(object):
         err_msg = 'Failed to add L2 bridge domain with 2 interfaces on host' \
                   ' {host}'.format(host=node['host'])
 
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd1, **args1).add(cmd2, **args2).add(cmd2, **args3)
             papi_exec.get_replies(err_msg)
 
@@ -285,7 +285,7 @@ class L2Util(object):
         err_msg = 'Failed to add L2 cross-connect between two interfaces on' \
                   ' host {host}'.format(host=node['host'])
 
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
 
     @staticmethod
@@ -321,7 +321,7 @@ class L2Util(object):
         err_msg = 'Failed to add L2 patch between two interfaces on' \
                   ' host {host}'.format(host=node['host'])
 
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args1).add(cmd, **args2).get_replies(err_msg)
 
     @staticmethod
@@ -391,7 +391,7 @@ class L2Util(object):
         args = dict(bd_id=int(bd_id))
         err_msg = 'Failed to get L2FIB dump on host {host}'.format(
             host=node['host'])
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         bd_data = list() if bd_id == Constants.BITWISE_NON_ZERO else dict()
@@ -401,8 +401,6 @@ class L2Util(object):
             else:
                 if bridge_domain['bd_id'] == bd_id:
                     return bridge_domain
-
-        return bd_data
 
     @staticmethod
     def l2_vlan_tag_rewrite(node, interface, tag_rewrite_method,
@@ -444,7 +442,7 @@ class L2Util(object):
                     tag2=tag2_id)
         err_msg = 'Failed to set VLAN TAG rewrite on host {host}'.format(
             host=node['host'])
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
@@ -463,7 +461,7 @@ class L2Util(object):
         args = dict(bd_id=int(bd_id))
         err_msg = 'Failed to get L2FIB dump on host {host}'.format(
             host=node['host'])
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         for fib_item in details:
