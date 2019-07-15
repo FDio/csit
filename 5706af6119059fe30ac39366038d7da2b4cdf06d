@@ -22,6 +22,30 @@
       "revId": "5706af6119059fe30ac39366038d7da2b4cdf06d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82266efb_5326a55e",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-15T11:03:13Z",
+      "side": 1,
+      "message": "\u003e ls -1 is returning just latest\n\nThe \"-1\" here means \"list one file per line\". Are you sure only one file will be listed?",
+      "parentUuid": "0ebac46d_32635ba1",
+      "range": {
+        "startLine": 109,
+        "startChar": 21,
+        "endLine": 109,
+        "endChar": 59
+      },
+      "revId": "5706af6119059fe30ac39366038d7da2b4cdf06d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
