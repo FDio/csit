@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "59fcfd1b_80fba351",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-15T13:17:52Z",
+      "side": 1,
+      "message": "When changing parameters, you have to update also call sides.\n  ~/fdio/csit$ fgrep -rin \u0027cop add whitelist entry\u0027\ncurrently lists 10 lines to update.",
+      "range": {
+        "startLine": 25,
+        "startChar": 43,
+        "endLine": 25,
+        "endChar": 54
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "094f1237_056691bf",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-15T13:17:52Z",
+      "side": 1,
+      "message": "Update docstrings to reflect current parameters.",
+      "range": {
+        "startLine": 30,
+        "startChar": 15,
+        "endLine": 30,
+        "endChar": 24
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b1f93e20_ed625b0c",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-15T13:17:52Z",
+      "side": 1,
+      "message": "These spaces are still added to the string. It is better to have separate strings on each line and join them.",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 8
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fa9ffda_459758f7",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-15T13:17:52Z",
+      "side": 1,
+      "message": "Line 68 shows this does not need to be a parameter.",
+      "range": {
+        "startLine": 44,
+        "startChar": 31,
+        "endLine": 44,
+        "endChar": 42
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4635186b_0d7dc157",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-15T13:17:52Z",
+      "side": 1,
+      "message": "PAPI argument names are still not correct. See https://gerrit.fd.io/r/c/20500/2/resources/libraries/python/Cop.py#48",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 15
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eff2c2fb_d59be2dc",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-15T13:17:52Z",
+      "side": 1,
+      "message": "In the meantime, https://gerrit.fd.io/r/20170 has been merged, so rebase and follow the new calling pattern.",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 28
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
