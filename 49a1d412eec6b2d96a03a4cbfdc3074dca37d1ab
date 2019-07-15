@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "72553252_ef698946",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-15T13:17:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5eeae3c3_8a647220",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 8
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1e54c15a_c1e2a017",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 3
