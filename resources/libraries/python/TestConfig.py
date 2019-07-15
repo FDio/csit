@@ -19,7 +19,7 @@ from robot.api import logger
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.PapiExecutor import PapiExecutor
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor
 
@@ -169,7 +169,7 @@ class TestConfig(object):
         err_msg = 'Failed to create VXLAN and VLAN interfaces on host {host}'.\
             format(host=node['host'])
 
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(0, vxlan_count):
                 try:
                     src_ip = src_ip_addr_start + i * ip_step
@@ -261,7 +261,7 @@ class TestConfig(object):
         err_msg = 'Failed to put VXLAN and VLAN interfaces up on host {host}'. \
             format(host=node['host'])
 
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(0, vxlan_count):
                 vxlan_subif_key = Topology.add_new_port(node, 'vxlan_tunnel')
                 vxlan_subif_name = 'vxlan_tunnel{nr}'.format(nr=i)
@@ -401,7 +401,7 @@ class TestConfig(object):
         err_msg = 'Failed to put VXLAN and VLAN interfaces to bridge domain ' \
                   'on host {host}'.format(host=node['host'])
 
-        with PapiExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(0, vxlan_count):
                 dst_ip = dst_ip_addr_start + i * ip_step
                 args1['neighbor']['ip_address'] = str(dst_ip)
