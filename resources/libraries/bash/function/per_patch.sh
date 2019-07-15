@@ -66,12 +66,10 @@ function archive_parse_test_results () {
 
 function build_vpp_ubuntu_amd64 () {
 
-    # This function is using Vagrant script to build VPP with all dependencies
+    # This function is using make pkg-deb to build VPP with all dependencies
     # that is ARCH/OS aware. VPP repo is SSOT for building mechanics and CSIT
     # is consuming artifacts. This way if VPP will introduce change in building
     # mechanics they will not be blocked by CSIT repo.
-    # Arguments:
-    # - ${1} - String identifier for echo, can be unset.
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
     # Directories updated:
@@ -82,13 +80,7 @@ function build_vpp_ubuntu_amd64 () {
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory command failed."
-    echo 'Building using "make build-root/vagrant/build.sh"'
-    build-root/vagrant/"build.sh" || die "Vagrant VPP build script failed."
-    echo "*******************************************************************"
-    echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
-        die "Argument not found."
-    }
-    echo "*******************************************************************"
+    make pkg-deb || die "VPP build using make pkg-deb failed."
 }
 
 
