@@ -46,6 +46,30 @@
       "revId": "5706af6119059fe30ac39366038d7da2b4cdf06d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2a32197_b99d3b76",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-15T11:26:29Z",
+      "side": 1,
+      "message": "I thought in past we had ls -1 | head -1\nmy bad, i prefer ls -1 | head -1 as initrd_stdout.strip().splitlines()[-1] is just pylint violation",
+      "parentUuid": "82266efb_5326a55e",
+      "range": {
+        "startLine": 109,
+        "startChar": 21,
+        "endLine": 109,
+        "endChar": 59
+      },
+      "revId": "5706af6119059fe30ac39366038d7da2b4cdf06d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
