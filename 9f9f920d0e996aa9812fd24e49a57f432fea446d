@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ee1b8d1b_5ee9f068",
+        "filename": "tox.ini",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-15T10:38:19Z",
+      "side": 1,
+      "message": "I think tc_naming is a better name, I no not see the added value of _convention.",
+      "range": {
+        "startLine": 28,
+        "startChar": 57,
+        "endLine": 28,
+        "endChar": 77
+      },
+      "revId": "9f9f920d0e996aa9812fd24e49a57f432fea446d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
