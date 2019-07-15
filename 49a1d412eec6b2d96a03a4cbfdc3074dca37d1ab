@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "465b9283_b4a09dab",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-15T12:49:57Z",
+      "side": 1,
+      "message": "If changed to \"is_ipv6\", the outcome will be a Boolean Value. But in line number - 36, the \"if\" condition is designed to do a string comparison.\n\nPlease share your views.",
+      "parentUuid": "0468ed99_e592c26d",
+      "range": {
+        "startLine": 24,
+        "startChar": 49,
+        "endLine": 24,
+        "endChar": 58
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6938d6b7_0a41e859",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 3
@@ -59,6 +83,30 @@
       "writtenOn": "2019-07-11T12:23:05Z",
       "side": 1,
       "message": "Whitespace still trails in some places.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 8
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5eeae3c3_8a647220",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-15T12:49:57Z",
+      "side": 1,
+      "message": "Trailing white spaces have been removed.",
+      "parentUuid": "6938d6b7_0a41e859",
       "range": {
         "startLine": 39,
         "startChar": 0,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "7a5066f5_a7c07130",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-15T12:49:57Z",
+      "side": 1,
+      "message": "Message has been restructured to avoid irregular spaces.",
+      "parentUuid": "1e54c15a_c1e2a017",
+      "range": {
+        "startLine": 42,
+        "startChar": 63,
+        "endLine": 42,
+        "endChar": 64
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f4edff11_2ba88783",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 3
@@ -105,6 +177,30 @@
       "writtenOn": "2019-07-11T11:41:52Z",
       "side": 1,
       "message": "state \u003d \u0027\u0027 if state \u003d\u003d \u0027enable\u0027 else \u0027disable\u0027",
+      "range": {
+        "startLine": 67,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 26
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b80cadf7_bbb2f37e",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-15T12:49:57Z",
+      "side": 1,
+      "message": "Could you please elaborate ?",
+      "parentUuid": "f4edff11_2ba88783",
       "range": {
         "startLine": 67,
         "startChar": 12,
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "6552534e_6af3d19d",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-15T12:49:57Z",
+      "side": 1,
+      "message": "Trailing spaces have been removed.",
+      "parentUuid": "1292994a_1b34edd6",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 12
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3e510333_22ab70c7",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 3
@@ -151,6 +271,30 @@
       "writtenOn": "2019-07-11T11:41:52Z",
       "side": 1,
       "message": "? dead code?",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 13
+      },
+      "revId": "49a1d412eec6b2d96a03a4cbfdc3074dca37d1ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30410cdf_98081313",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-15T12:49:57Z",
+      "side": 1,
+      "message": "Indentation has been done for the lines 80-82 to keep the \"else\" block active.",
+      "parentUuid": "3e510333_22ab70c7",
       "range": {
         "startLine": 84,
         "startChar": 0,
