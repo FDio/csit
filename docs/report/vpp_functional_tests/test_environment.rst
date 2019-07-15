@@ -402,6 +402,9 @@ There is used the default startup configuration as defined in `VPP startup.conf`
     {
       gid vpp
     }
+    socksvr {
+      default
+    }
     dpdk
     {
       vdev cryptodev_aesni_gcm_pmd,socket_id=0
