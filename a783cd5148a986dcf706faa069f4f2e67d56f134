@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d95ea1c2_3b24af21",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T12:20:17Z",
+      "side": 1,
+      "message": "Oh, socket API currently does not support two concurrent executors.\nCan you split this into several blocks, each for one executor?",
+      "range": {
+        "startLine": 949,
+        "startChar": 56,
+        "endLine": 949,
+        "endChar": 58
+      },
+      "revId": "a783cd5148a986dcf706faa069f4f2e67d56f134",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
