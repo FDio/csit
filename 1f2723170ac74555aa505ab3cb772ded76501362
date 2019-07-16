@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "73450ccd_64239369",
+        "filename": "resources/libraries/bash/function/per_patch.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T11:48:54Z",
+      "side": 0,
+      "message": "Entry scripts still provide this value, most notably perf per patch distingushes parent and current build.\nAdd echo here or remove arguments from call sites.",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 12
+      },
+      "revId": "1f2723170ac74555aa505ab3cb772ded76501362",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
