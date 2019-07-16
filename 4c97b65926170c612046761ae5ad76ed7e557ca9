@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "74406849_25cf27f5",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T13:13:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e4846aff_6f14b827",
+      "range": {
+        "startLine": 25,
+        "startChar": 43,
+        "endLine": 25,
+        "endChar": 54
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "094f1237_056691bf",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 4
@@ -93,6 +117,30 @@
       "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b33e7409_03e337e1",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T13:13:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7ddc966_523570a0",
+      "range": {
+        "startLine": 30,
+        "startChar": 15,
+        "endLine": 30,
+        "endChar": 24
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -143,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "3cfa1df3_ec7736f2",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T13:13:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "620d637c_4399f84d",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 8
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7fa9ffda_459758f7",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 4
@@ -187,6 +259,30 @@
       "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "956bb2e1_435ac1c2",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T13:13:29Z",
+      "side": 1,
+      "message": "You are right when referring to PAPI argument. But the value can be computed from \"node\" and \"interface\", so it does not need to be a separate argument of this static method.",
+      "parentUuid": "91b9fd95_2a1bf045",
+      "range": {
+        "startLine": 44,
+        "startChar": 31,
+        "endLine": 44,
+        "endChar": 42
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -237,6 +333,30 @@
     },
     {
       "key": {
+        "uuid": "12a571c5_a43a6e44",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T13:13:29Z",
+      "side": 1,
+      "message": "Better, but not fully correct.",
+      "parentUuid": "67e0a0e0_05f65768",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 15
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eff2c2fb_d59be2dc",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 4
@@ -281,6 +401,30 @@
       "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d6909260_0d8aa663",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T13:13:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0c025a86_acc6c468",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 28
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
