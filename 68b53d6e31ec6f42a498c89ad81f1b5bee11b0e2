@@ -22,6 +22,30 @@
       "revId": "68b53d6e31ec6f42a498c89ad81f1b5bee11b0e2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10bafd11_efe8eb06",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 294
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T11:40:32Z",
+      "side": 1,
+      "message": "Opened https://jira.fd.io/browse/CSIT-1546\nShuld I also add TODO lines to affected blocks?",
+      "parentUuid": "32b32b07_a41d9c8c",
+      "range": {
+        "startLine": 853,
+        "startChar": 0,
+        "endLine": 854,
+        "endChar": 50
+      },
+      "revId": "68b53d6e31ec6f42a498c89ad81f1b5bee11b0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
