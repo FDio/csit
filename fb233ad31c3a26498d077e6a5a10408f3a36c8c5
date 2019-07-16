@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e49e3143_b312c166",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T13:13:29Z",
+      "side": 1,
+      "message": "You have not updated call sites, as described in https://gerrit.fd.io/r/c/20500/4/resources/libraries/python/Cop.py#25\nwhile adding a mandatory argument (albeit different one than discussed in that comment).",
+      "range": {
+        "startLine": 24,
+        "startChar": 49,
+        "endLine": 24,
+        "endChar": 60
+      },
+      "revId": "fb233ad31c3a26498d077e6a5a10408f3a36c8c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "afa60dfc_fa3129c4",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T13:13:29Z",
+      "side": 1,
+      "message": "See line 71 on how to obtain this value (so that this staticmethod does not need it as separate argument at line 24, but the value is still available for line 47).",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "fb233ad31c3a26498d077e6a5a10408f3a36c8c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9e6dbe2_04472bc6",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T13:13:29Z",
+      "side": 1,
+      "message": "The preffered abbreviation of interface is \"ifc\" . Also, remove the trailing space from the string.",
+      "range": {
+        "startLine": 45,
+        "startChar": 50,
+        "endLine": 45,
+        "endChar": 58
+      },
+      "revId": "fb233ad31c3a26498d077e6a5a10408f3a36c8c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "34641127_75e539d0",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T13:13:29Z",
+      "side": 1,
+      "message": "You still need to add arguments \"ip4\" and \"ip6\".",
+      "range": {
+        "startLine": 49,
+        "startChar": 18,
+        "endLine": 49,
+        "endChar": 19
+      },
+      "revId": "fb233ad31c3a26498d077e6a5a10408f3a36c8c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6f97498_ad9ba1f6",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-16T13:13:29Z",
+      "side": 1,
+      "message": "The argument required here is \"enable_disable\".\nhttps://github.com/FDio/vpp/blob/master/src/vnet/cop/cop.api#L18-L31",
+      "range": {
+        "startLine": 77,
+        "startChar": 16,
+        "endLine": 77,
+        "endChar": 21
+      },
+      "revId": "fb233ad31c3a26498d077e6a5a10408f3a36c8c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
