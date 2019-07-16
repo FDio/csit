@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e4846aff_6f14b827",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-16T12:52:12Z",
+      "side": 1,
+      "message": "I have set \"default_cop\u003d0\" as a default argument in the function definition to enable ip4/ip6 filtration.\n\nThe non-ip4 and non-ip6 filtration test cases can set \"default_cop\u003d1\" when they call the function \"cop_add_whitelist_entry\"",
+      "parentUuid": "59fcfd1b_80fba351",
+      "range": {
+        "startLine": 25,
+        "startChar": 43,
+        "endLine": 25,
+        "endChar": 54
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "094f1237_056691bf",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-15T13:17:52Z",
       "side": 1,
       "message": "Update docstrings to reflect current parameters.",
+      "range": {
+        "startLine": 30,
+        "startChar": 15,
+        "endLine": 30,
+        "endChar": 24
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7ddc966_523570a0",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-16T12:52:12Z",
+      "side": 1,
+      "message": "docstrings have been updated with the new argument as below,\n\n:param default_cop: 1 \u003d\u003e enable non-ip4, non-ip6 filtration",
+      "parentUuid": "094f1237_056691bf",
       "range": {
         "startLine": 30,
         "startChar": 15,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "620d637c_4399f84d",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-16T12:52:12Z",
+      "side": 1,
+      "message": "I have restructured the statement as below\n\nerr_msg \u003d \u0027Failed to add COP whitelist on intf {} \u0027.format(interface)",
+      "parentUuid": "b1f93e20_ed625b0c",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 8
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7fa9ffda_459758f7",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2019-07-15T13:17:52Z",
       "side": 1,
       "message": "Line 68 shows this does not need to be a parameter.",
+      "range": {
+        "startLine": 44,
+        "startChar": 31,
+        "endLine": 44,
+        "endChar": 42
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91b9fd95_2a1bf045",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-16T12:52:12Z",
+      "side": 1,
+      "message": "Checked the below link for arguments and i understand that \"sw_if_index\" is a mandatory argument.\n\nhttps://github.com/FDio/vpp/blob/master/src/vnet/cop/cop.api#L33-L54\n\nHenceforth i had quoted that argument. Could you please let me know as to why it does not need to be a parameter ?",
+      "parentUuid": "7fa9ffda_459758f7",
       "range": {
         "startLine": 44,
         "startChar": 31,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "67e0a0e0_05f65768",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-16T12:52:12Z",
+      "side": 1,
+      "message": "I have renamed the PAPI arguments as below,\n\n            sw_if_index\u003dint(sw_if_index),\n            ip_format\u003dip_format,\n            fib_id\u003dint(fib_id),\n            default_cop\u003dint(default_cop)\n\nPlease correct me, if found to be wrong ?",
+      "parentUuid": "4635186b_0d7dc157",
+      "range": {
+        "startLine": 46,
+        "startChar": 12,
+        "endLine": 46,
+        "endChar": 15
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eff2c2fb_d59be2dc",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 4
@@ -128,6 +248,30 @@
       "writtenOn": "2019-07-15T13:17:52Z",
       "side": 1,
       "message": "In the meantime, https://gerrit.fd.io/r/20170 has been merged, so rebase and follow the new calling pattern.",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 28
+      },
+      "revId": "4c97b65926170c612046761ae5ad76ed7e557ca9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c025a86_acc6c468",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-16T12:52:12Z",
+      "side": 1,
+      "message": "I have restructured the PAPI statements as below\n\n        with PapiExecutor(node) as papi_exec:\n            papi_exec.add(cmd, **args_in).get_reply(err_msg)",
+      "parentUuid": "eff2c2fb_d59be2dc",
       "range": {
         "startLine": 51,
         "startChar": 16,
