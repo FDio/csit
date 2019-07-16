@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a69d1080_5d269e74",
+        "filename": "tests/vpp/device/vm_vhost/ip4/eth2p-ethicmpv4-ip4base-eth-2vhost-1vm-dev.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-16T11:12:15Z",
+      "side": 1,
+      "message": "space typo",
+      "range": {
+        "startLine": 54,
+        "startChar": 10,
+        "endLine": 54,
+        "endChar": 11
+      },
+      "revId": "9ad5439826edb8fa290ed14d52ac5c2bdb49c219",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "454b7434_c966f975",
+        "filename": "tests/vpp/device/vm_vhost/ip4/eth2p-ethicmpv4-ip4base-eth-2vhost-1vm-dev.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-16T11:12:15Z",
+      "side": 1,
+      "message": "FYI, we can safely use \"for all duts\" version.",
+      "range": {
+        "startLine": 73,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 71
+      },
+      "revId": "9ad5439826edb8fa290ed14d52ac5c2bdb49c219",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7bbe1283_7f8669e4",
+        "filename": "tests/vpp/device/vm_vhost/l2bd/eth2p-ethicmpv4-l2bdbasemaclrn-eth-2vhost-1vm-dev.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-16T11:12:15Z",
+      "side": 1,
+      "message": "not there",
+      "range": {
+        "startLine": 37,
+        "startChar": 45,
+        "endLine": 37,
+        "endChar": 56
+      },
+      "revId": "9ad5439826edb8fa290ed14d52ac5c2bdb49c219",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e1c0ead_0f51e518",
+        "filename": "tests/vpp/device/vm_vhost/l2bd/eth2p-ethicmpv4-l2bdbasemaclrn-eth-2vhost-1vm-dev.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-16T11:12:15Z",
+      "side": 1,
+      "message": "double space",
+      "range": {
+        "startLine": 54,
+        "startChar": 15,
+        "endLine": 54,
+        "endChar": 17
+      },
+      "revId": "9ad5439826edb8fa290ed14d52ac5c2bdb49c219",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
