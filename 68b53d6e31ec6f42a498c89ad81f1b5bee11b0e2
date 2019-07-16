@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "32b32b07_a41d9c8c",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 294
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-16T11:21:52Z",
+      "side": 1,
+      "message": "This must go to executor images (docker) to avoid downloading lots of data during runtime over crapy LF network.",
+      "range": {
+        "startLine": 853,
+        "startChar": 0,
+        "endLine": 854,
+        "endChar": 50
+      },
+      "revId": "68b53d6e31ec6f42a498c89ad81f1b5bee11b0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
