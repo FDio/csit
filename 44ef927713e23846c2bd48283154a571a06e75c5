@@ -22,6 +22,92 @@
       "revId": "44ef927713e23846c2bd48283154a571a06e75c5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "346bd028_e6c84933",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-17T15:19:33Z",
+      "side": 1,
+      "message": "not needed prefix",
+      "range": {
+        "startLine": 53,
+        "startChar": 6,
+        "endLine": 53,
+        "endChar": 19
+      },
+      "revId": "44ef927713e23846c2bd48283154a571a06e75c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa06730c_818a8d99",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-17T15:19:33Z",
+      "side": 1,
+      "message": "container_statistics",
+      "range": {
+        "startLine": 63,
+        "startChar": 39,
+        "endLine": 63,
+        "endChar": 54
+      },
+      "revId": "44ef927713e23846c2bd48283154a571a06e75c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "461ecad6_238424d5",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-17T15:19:33Z",
+      "side": 1,
+      "message": "remove and call as two actions\n\nteardown | container_statistics | container",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 49
+      },
+      "revId": "44ef927713e23846c2bd48283154a571a06e75c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ec3de80e_26922e36",
+        "filename": "topologies/available/baremetal-sjc16.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-17T15:19:33Z",
+      "side": 1,
+      "message": "remove this file from gerrit",
+      "revId": "44ef927713e23846c2bd48283154a571a06e75c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
