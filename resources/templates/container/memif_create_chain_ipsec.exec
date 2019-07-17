@@ -1,0 +1,12 @@
+create memif socket id 1 filename $socket1
+create interface memif id $mid1 socket-id $sid1 hw-addr $mac1 slave
+set interface ip address memif$sid1/$mid1 $local_ip/24
+set interface state memif$sid1/$mid1 up
+
+create memif socket id 2 filename $socket2
+create interface memif id $mid2 socket-id $sid2 hw-addr $mac2 slave
+set interface ip address memif$sid2/$mid2 $remote_ip/24
+set interface state memif$sid2/$mid2 up
+
+set ip arp memif$sid2/$mid2 $tg_if2_ip4 $tg_if2_mac static
+ip route add $raddr_ip4/8 via $tg_if2_ip4 memif$sid2/$mid2
