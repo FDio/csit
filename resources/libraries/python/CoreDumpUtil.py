@@ -112,7 +112,7 @@ class CoreDumpUtil:
         :param node: DUT Node in the topology.
         :type node: dict
         """
-        if node['type'] == NodeType.DUT and self.is_core_limit_enabled():
+        if node[u"type"] == NodeType.DUT and self.is_core_limit_enabled():
             vpp_pid = DUTSetup.get_vpp_pid(node)
             self.enable_coredump_limit(node, vpp_pid)
 
@@ -150,6 +150,6 @@ class CoreDumpUtil:
                     if disable_on_success:
                         self.set_core_limit_disabled()
                 except RuntimeError:
-                    # If compress was not successful ignore error and skip further
-                    # processing.
+                    # If compress was not successful ignore error and skip
+                    # further processing.
                     continue

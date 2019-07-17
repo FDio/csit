@@ -19,7 +19,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error
-from resources.libraries.python.topology import NodeType
+from resources.libraries.python.topology import Topology, SocketType, NodeType
 
 
 class VPPUtil:
@@ -55,13 +55,20 @@ class VPPUtil:
             exec_cmd_no_error(node, command, timeout=30, sudo=True)
 
     @staticmethod
-    def restart_vpp_service(node):
+    def restart_vpp_service(node, node_key=None):
         """Restart VPP service on the specified topology node.
 
         :param node: Topology node.
+        :param node_key: Topology node key.
         :type node: dict
+        :type node_key: str
         """
         DUTSetup.restart_service(node, Constants.VPP_UNIT)
+        if node_key:
+            Topology.add_new_socket(
+                node, SocketType.PAPI, node_key, Constants.SOCKSVR_PATH)
+            Topology.add_new_socket(
+                node, SocketType.STATS, node_key, Constants.SOCKSTAT_PATH)
 
     @staticmethod
     def restart_vpp_service_on_all_duts(nodes):
@@ -70,18 +77,23 @@ class VPPUtil:
         :param nodes: Topology nodes.
         :type nodes: dict
         """
-        for node in nodes.values():
+        for node_key, node in nodes.items():
             if node[u"type"] == NodeType.DUT:
-                VPPUtil.restart_vpp_service(node)
+                VPPUtil.restart_vpp_service(node, node_key)
 
     @staticmethod
-    def stop_vpp_service(node):
+    def stop_vpp_service(node, node_key=None):
         """Stop VPP service on the specified topology node.
 
         :param node: Topology node.
+        :param node_key: Topology node key.
         :type node: dict
+        :type node_key: str
         """
         DUTSetup.stop_service(node, Constants.VPP_UNIT)
+        if node_key:
+            Topology.del_node_socket_id(node, SocketType.PAPI, node_key)
+            Topology.del_node_socket_id(node, SocketType.STATS, node_key)
 
     @staticmethod
     def stop_vpp_service_on_all_duts(nodes):
@@ -90,9 +102,9 @@ class VPPUtil:
         :param nodes: Topology nodes.
         :type nodes: dict
         """
-        for node in nodes.values():
+        for node_key, node in nodes.items():
             if node[u"type"] == NodeType.DUT:
-                VPPUtil.stop_vpp_service(node)
+                VPPUtil.stop_vpp_service(node, node_key)
 
     @staticmethod
     def verify_vpp_installed(node):
@@ -227,7 +239,7 @@ class VPPUtil:
 
         for cmd in cmds:
             try:
-                PapiSocketExecutor.run_cli_cmd(node, cmd)
+                PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, cmd)
             except AssertionError:
                 if fail_on_error:
                     raise
@@ -253,7 +265,8 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, "elog trace api cli barrier")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, u"elog trace api cli barrier")
 
     @staticmethod
     def vpp_enable_elog_traces_on_all_duts(nodes):
@@ -273,7 +286,8 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show event-logger")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, u"show event-logger")
 
     @staticmethod
     def show_event_logger_on_all_duts(nodes):
