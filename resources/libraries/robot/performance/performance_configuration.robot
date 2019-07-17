@@ -50,40 +50,60 @@
 # from other "functional" configuration. This will allow modularity of this
 # library
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
-| | | ... | ELSE
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if2}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
-| | | ... | ELSE
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
-| | | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | ELSE
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
-| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if2}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
-| | | ... | ELSE
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
-| | | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
+| | | Set interfaces in path up on DUT | ${dut}
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
+
+
+| Set interfaces in path up on DUT
+| | [Documentation]
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
+| | ... | set maximal MTU.*
+| | ... |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node on which to set the interfaces up.
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | Set interfaces in path up on DUT \| DUT1
+| | ...
+| | [Arguments] | ${dut}
+# TODO: Rework KW to set all interfaces in path UP and set MTU (including
+# software interfaces. Run KW at the start phase of VPP setup to split
+# from other "functional" configuration. This will allow modularity of this
+# library
+| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if1}
+| | Run Keyword If | '${if1_status}' == 'PASS'
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
+| | ... | ELSE
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
+| | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
+| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if2}
+| | Run Keyword If | '${if2_status}' == 'PASS'
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
+| | ... | ELSE
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
+| | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
+| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if1}
+| | Run Keyword If | '${if1_status}' == 'PASS'
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
+| | ... | ELSE
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if2}
+| | Run Keyword If | '${if2_status}' == 'PASS'
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
+| | ... | ELSE
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
+| | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
 
 | Set single interfaces in path up
 | | [Documentation]
@@ -164,6 +184,34 @@
 | | ... | interface=${dut1_if1}
 | | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | gateway=${tg_if2_ip4}
 | | ... | interface=${dut2_if2}
+
+| Initialize IPSec in 3-node circular container topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
+| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG and
+| | ... | DUT1-DUT2 links. Set routing for encrypted traffic on both DUT nodes
+| | ... | with prefix /8 and next hop of neighbour DUT or TG interface IPv4
+| | ... | address.
+| | ...
+| | Set interfaces in path up on DUT | DUT1
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${dut2_if2_mac}= | Get Interface MAC | ${dut2} | ${dut2_if2}
+| | Set Test Variable | ${tg_if1_mac}
+| | Set Test Variable | ${tg_if2_mac}
+| | Set Test Variable | ${dut1_if1_mac}
+| | Set Test Variable | ${dut1_if2_mac}
+| | Set Test Variable | ${dut2_if1_mac}
+| | Set Test Variable | ${dut2_if2_mac}
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
+| | ... | ${dut1_if1_ip4} | 24
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
+| | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
+| | ... | interface=${dut1_if1}
 
 | Initialize IPv4 forwarding in circular topology
 | | [Documentation]
