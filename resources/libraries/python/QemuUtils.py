@@ -222,6 +222,7 @@ class QemuUtils(object):
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_exec(running)
+        vpp_config.add_socksvr()
         vpp_config.add_cpu_main_core('0')
         if self._opt.get('smp') > 1:
             vpp_config.add_cpu_corelist_workers('1-{smp}'.format(
