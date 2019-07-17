@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "fde5ffec_f470f9c2",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 294
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-17T08:21:27Z",
+      "side": 1,
+      "message": "Right, the return line was only deleted by acident.",
+      "parentUuid": "45112a42_f5c88bef",
+      "revId": "68b53d6e31ec6f42a498c89ad81f1b5bee11b0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f772bcd3_e2078704",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 294
