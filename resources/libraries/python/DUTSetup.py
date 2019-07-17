@@ -132,6 +132,8 @@ class DUTSetup:
         :type node: dict
         :type service: str
         """
+        DUTSetup.get_service_logs(node, service)
+
         command = f"supervisorctl stop {service}" \
             if DUTSetup.running_in_container(node) \
             else f"service {service} stop"
@@ -140,8 +142,6 @@ class DUTSetup:
         exec_cmd_no_error(
             node, command, timeout=180, sudo=True, message=message
         )
-
-        DUTSetup.get_service_logs(node, service)
 
     @staticmethod
     def stop_service_on_all_duts(nodes, service):
