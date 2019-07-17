@@ -787,12 +787,6 @@ class Docker(ContainerEngine):
             setattr(self.container, 'image',
                     Constants.DOCKER_SUT_IMAGE_UBUNTU)
 
-        cmd = 'docker pull {image}'.format(image=self.container.image)
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
-        if int(ret) != 0:
-            raise RuntimeError('Failed to create container {c.name}.'
-                               .format(c=self.container))
         if self.container.cpuset_cpus:
             self._configure_cgroup('docker')
 
