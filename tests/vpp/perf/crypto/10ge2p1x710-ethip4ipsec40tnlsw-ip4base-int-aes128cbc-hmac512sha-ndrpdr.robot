@@ -126,18 +126,6 @@
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-| | [Tags] | 9000B | 1C
-| | frame_size=${9000} | phy_cores=${1}
-
-| tc08-9000B-2c-ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-| | [Tags] | 9000B | 2C
-| | frame_size=${9000} | phy_cores=${2}
-
-| tc09-9000B-4c-ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
-| | [Tags] | 9000B | 4C
-| | frame_size=${9000} | phy_cores=${4}
-
 | tc10-IMIX-1c-ethip4ipsec40tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
