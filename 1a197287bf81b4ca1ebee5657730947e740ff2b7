@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a3ff6f6a_5aeb5ab9",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-17T12:08:47Z",
+      "side": 1,
+      "message": "Looking at https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/2554/archives/archive/log.html.gz#s1-s1-s1-s4-s2-t1-k2-k9\nthe call site puts \"1\" here (str, not int). Either fix the call sites, or allow str inputs and convert to int here.",
+      "range": {
+        "startLine": 51,
+        "startChar": 19,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "1a197287bf81b4ca1ebee5657730947e740ff2b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "247d262f_3859724a",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-17T12:08:47Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/20695 has been just merged, so rebase and rename this to PapiSocketExecutor (also for line 86).",
+      "range": {
+        "startLine": 57,
+        "startChar": 13,
+        "endLine": 57,
+        "endChar": 25
+      },
+      "revId": "1a197287bf81b4ca1ebee5657730947e740ff2b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c3b849ee_fb57b53a",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-17T12:08:47Z",
+      "side": 1,
+      "message": "It would be slightly better if this was called enable_disable, but good enough.",
+      "range": {
+        "startLine": 74,
+        "startChar": 16,
+        "endLine": 74,
+        "endChar": 21
+      },
+      "revId": "1a197287bf81b4ca1ebee5657730947e740ff2b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
