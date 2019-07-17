@@ -16,6 +16,7 @@
 
 """Library to manipulate Containers."""
 
+from time import sleep
 from string import Template
 from collections import OrderedDict, Counter
 
@@ -23,7 +24,7 @@ from resources.libraries.python.ssh import SSH
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
-
+from resources.libraries.python.CpuUtils import CpuUtils
 
 __all__ = ["ContainerManager", "ContainerEngine", "LXC", "Docker", "Container"]
 
@@ -151,6 +152,12 @@ class ContainerManager(object):
             self.engine.container = self.containers[container]
             self.engine.restart_vpp()
 
+    def verify_vpp_in_all_containers(self):
+        """Verify that VPP is installed and running in all containers."""
+        for container in self.containers:
+            self.engine.container = self.containers[container]
+            self.engine.verify_vpp()
+
     def configure_vpp_in_all_containers(self, chain_topology, **kwargs):
         """Configure VPP in all containers.
 
@@ -195,6 +202,17 @@ class ContainerManager(object):
                                               sid1=sid1, sid2=sid2,
                                               guest_dir=guest_dir,
                                               **kwargs)
+            elif chain_topology == 'chain_vswitch':
+                self._configure_vpp_chain_vswitch(mid1=mid1, mid2=mid2,
+                                                  sid1=sid1, sid2=sid2,
+                                                  guest_dir=guest_dir,
+                                                  **kwargs)
+            elif chain_topology == 'chain_ipsec':
+                self._configure_vpp_chain_ipsec(mid1=mid1, mid2=mid2,
+                                                sid1=sid1, sid2=sid2,
+                                                guest_dir=guest_dir,
+                                                nf_instance=(i % mod + 1),
+                                                **kwargs)
             elif chain_topology == 'pipeline_ip4':
                 self._configure_vpp_pipeline_ip4(mid1=mid1, mid2=mid2,
                                                  sid1=sid1, sid2=sid2,
@@ -286,6 +304,99 @@ class ContainerManager(object):
             mac2='52:54:00:00:{0:02X}:02'.format(kwargs['mid2']),
             vif1_mac=vif1_mac, vif2_mac=vif2_mac)
 
+    def _configure_vpp_chain_vswitch(self, **kwargs):
+        """Configure VPP as vswitch in container.
+
+        :param kwargs: Named parameters.
+        :param kwargs: dict
+        """
+        if1_pci = Topology.get_interface_pci_addr(
+            self.engine.container.node, kwargs['dut2_if1'])
+        if2_pci = Topology.get_interface_pci_addr(
+            self.engine.container.node, kwargs['dut2_if2'])
+        if_red_name = Topology.get_interface_name(
+            self.engine.container.node, kwargs['dut2_if1'])
+        if_black_name = Topology.get_interface_name(
+            self.engine.container.node, kwargs['dut2_if2'])
+        n_instances = int(kwargs['n_instances'])
+        rxq = 1
+        if 'rxq' in kwargs:
+            rxq = int(kwargs['rxq'])
+        buffers = 215040
+        if 'buffers' in kwargs:
+            buffers = int(kwargs['buffers'])
+        nodes = kwargs['nodes']
+        cpuset_cpus = CpuUtils.get_affinity_nf(nodes, 'DUT2', nf_chains=1,
+                                               nf_nodes=1, nf_chain=1,
+                                               nf_node=1, vs_dtc=0, nf_dtc=4,
+                                               nf_mtcr=1, nf_dtcr=1)
+        self.engine.create_vpp_startup_config_vswitch(cpuset_cpus, rxq,
+                                                      buffers, if1_pci, if2_pci)
+        instances = []
+        for i in range(1, n_instances + 1):
+            instances.append(
+                'create interface memif id {mid1} socket-id {sid1} master\n'
+                'set interface state memif{sid1}/{mid1} up\n'
+                'set interface l2 bridge memif{sid1}/{mid1} 1\n'
+                'create interface memif id {mid2} socket-id {sid2} master\n'
+                'set interface state memif{sid2}/{mid2} up\n'
+                'set interface l2 bridge memif{sid2}/{mid2} 2\n'
+                'set ip arp memif{sid2}/{mid2} {tg_if2_ip4} {tg_if2_mac} '
+                'static\n\n'.format(
+                    mid1=i,
+                    mid2=i,
+                    sid1='1',
+                    sid2='2',
+                    tg_if2_ip4=kwargs['tg_if2_ip4'],
+                    tg_if2_mac=kwargs['tg_if2_mac']))
+
+        self.engine.create_vpp_exec_config(
+            'memif_create_chain_vswitch_ipsec.exec',
+            socket1='{guest_dir}/memif-vswitch-1'.format(**kwargs),
+            socket2='{guest_dir}/memif-vswitch-2'.format(**kwargs),
+            if_red_name=if_red_name,
+            if_black_name=if_black_name,
+            instances='\n\n'.join(instances))
+
+    def _configure_vpp_chain_ipsec(self, **kwargs):
+        """Configure VPP in container with memifs.
+
+        :param kwargs: Named parameters.
+        :param kwargs: dict
+        """
+        nf_nodes = int(kwargs['nf_nodes'])
+        nf_instance = int(kwargs['nf_instance'])
+        nodes = kwargs['nodes']
+        cpuset_cpus = CpuUtils.get_affinity_nf(nodes, 'DUT2', nf_chains=1,
+                                               nf_nodes=nf_nodes, nf_chain=1,
+                                               nf_node=nf_instance, vs_dtc=10,
+                                               nf_dtc=1, nf_mtcr=1, nf_dtcr=1)
+        self.engine.create_vpp_startup_config_ipsec(cpuset_cpus)
+        local_ip_base = kwargs['dut2_if1_ip4'].rsplit('.', 1)[0]
+        remote_ip_base = kwargs['dut2_if2_ip4'].rsplit('.', 1)[0]
+
+        self.engine.create_vpp_exec_config(
+            'memif_create_chain_ipsec.exec',
+            socket1='{guest_dir}/memif-vswitch-1'.format(**kwargs),
+            socket2='{guest_dir}/memif-vswitch-2'.format(**kwargs),
+            mid1=nf_instance,
+            mid2=nf_instance,
+            sid1='1',
+            sid2='2',
+            mac1='02:01:00:00:00:{0:02X}'.format(nf_instance - 1),
+            mac2='02:02:00:00:00:{0:02X}'.format(nf_instance - 1),
+            tg_if2_ip4=kwargs['tg_if2_ip4'],
+            tg_if2_mac=kwargs['tg_if2_mac'],
+            raddr_ip4=kwargs['raddr_ip4'],
+            local_ip='{base}.{instance}'.format(base=local_ip_base,
+                                                instance=nf_instance),
+            remote_ip='{base}.{instance}'.format(base=remote_ip_base,
+                                                instance=nf_instance)
+        )
+        self.engine.execute(
+            'cat {guest_dir}/ipsec_create_tunnel_cnf_dut2_{nf_instance}.config '
+            '>> /tmp/running.exec'.format(**kwargs))
+
     def _configure_vpp_pipeline_ip4(self, **kwargs):
         """Configure VPP in pipeline topology with ip4.
 
@@ -327,6 +438,16 @@ class ContainerManager(object):
             mac1='52:54:00:00:{0:02X}:01'.format(mid1),
             mac2='52:54:00:00:{0:02X}:02'.format(mid2),
             vif1_mac=vif1_mac, vif2_mac=vif2_mac)
+
+    def get_vpp_statistics_from_all_containers(self):
+        """Get VPP statistics from all containers."""
+        cmd = (
+            'vppctl show int;'
+            'vppctl show memif;'
+            'vppctl show hardware detail;'
+            'vppctl show errors;'
+            'vppctl show runtime')
+        self.execute_on_all_containers(cmd)
 
     def stop_all_containers(self):
         """Stop all containers."""
@@ -435,13 +556,38 @@ class ContainerEngine(object):
         self.execute('supervisorctl restart vpp')
         self.execute('cat /tmp/supervisord.log')
 
-    def create_base_vpp_startup_config(self):
+    # TODO Rewrite .execute to accept retries parameter and get rid of this
+    # function.
+    def verify_vpp(self, retries=120, retry_wait=1):
+        """Verify that VPP is installed and running inside container.
+
+        :param retries: Check for VPP for this number of times Default: 120
+        :param retry_wait: Wait for this number of seconds between retries.
+
+        """
+        cmd = ('vppctl show pci 2>&1 | '
+               'fgrep -v "Connection refused" | '
+               'fgrep -v "No such file or directory"')
+
+        for _ in range(retries + 1):
+            try:
+                self.execute(cmd)
+                break
+            except RuntimeError:
+                sleep(retry_wait)
+        else:
+            msg = 'VPP did not come up in container: {name}'.format(
+                name=self.container.name)
+            raise RuntimeError(msg)
+
+    def create_base_vpp_startup_config(self, cpuset_cpus=None):
         """Create base startup configuration of VPP on container.
 
         :returns: Base VPP startup configuration.
         :rtype: VppConfigGenerator
         """
-        cpuset_cpus = self.container.cpuset_cpus
+        if cpuset_cpus is None:
+            cpuset_cpus = self.container.cpuset_cpus
 
         # Create config instance
         vpp_config = VppConfigGenerator()
@@ -450,6 +596,11 @@ class ContainerEngine(object):
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec('/tmp/running.exec')
         vpp_config.add_socksvr()
+        vpp_config.add_heapsize('4G')
+        vpp_config.add_ip_heap_size('4G')
+        vpp_config.add_ip6_heap_size('4G')
+        vpp_config.add_statseg_size('4G')
+        vpp_config.add_statseg_per_node_counters('on')
         # We will pop the first core from the list to be a main core
         vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
         # If more cores in the list, the rest will be used as workers.
@@ -501,6 +652,52 @@ class ContainerEngine(object):
         vpp_config.add_unix_exec('/tmp/running.exec')
         vpp_config.add_socksvr()
         vpp_config.add_plugin('disable', 'dpdk_plugin.so')
+
+        # Apply configuration
+        self.execute('mkdir -p /etc/vpp/')
+        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
+                     .format(config=vpp_config.get_config_str()))
+
+    def create_vpp_startup_config_vswitch(self, cpuset_cpus, rxq, buffers,
+                                          *devices):
+        """Create startup configuration of VPP vswitch.
+
+        :param cpuset_cpus: CPU list to run on.
+        :param rxq: Number of interface RX queues.
+        :param buffers: Number of buffers per numa.
+        :param devices: List of PCI devices to add.
+        :type cpuset_cpus: list
+        :type rxq: int
+        :type buffers: int
+        :type devices: list
+        """
+        vpp_config = self.create_base_vpp_startup_config(cpuset_cpus)
+        vpp_config.add_dpdk_dev(*devices)
+        vpp_config.add_dpdk_log_level('debug')
+        vpp_config.add_plugin('disable', 'default')
+        vpp_config.add_plugin('enable', 'dpdk_plugin.so')
+        vpp_config.add_plugin('enable', 'memif_plugin.so')
+        vpp_config.add_dpdk_no_tx_checksum_offload()
+        vpp_config.add_buffers_per_numa(buffers)
+        vpp_config.add_dpdk_dev_default_rxq(rxq)
+
+        # Apply configuration
+        self.execute('mkdir -p /etc/vpp/')
+        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
+                     .format(config=vpp_config.get_config_str()))
+
+    def create_vpp_startup_config_ipsec(self, cpuset_cpus):
+        """Create startup configuration of VPP with IPsec on container.
+
+        :param cpuset_cpus: CPU list to run on.
+        :type cpuset_cpus: list
+        """
+        vpp_config = self.create_base_vpp_startup_config(cpuset_cpus)
+        vpp_config.add_plugin('disable', 'default')
+        vpp_config.add_plugin('enable', 'memif_plugin.so')
+        vpp_config.add_plugin('enable', 'crypto_ia32_plugin.so')
+        vpp_config.add_plugin('enable', 'crypto_ipsecmb_plugin.so')
+        vpp_config.add_plugin('enable', 'crypto_openssl_plugin.so')
 
         # Apply configuration
         self.execute('mkdir -p /etc/vpp/')
