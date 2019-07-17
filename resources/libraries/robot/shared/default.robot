@@ -147,50 +147,74 @@
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | @{if_list}= | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Create List | ${${dut}_if1}
-| | | ... | ELSE | Create List | ${${dut}_if1_1} | ${${dut}_if1_2}
-| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if2}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | Append To List | ${if_list} | ${${dut}_if2}
-| | | ... | ELSE
-| | | ... | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
-| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']} | @{if_list}
-| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
-| | | ${skip_cnt}= | Set variable | ${CPU_CNT_SYSTEM}
-| | | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
-| | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${CPU_CNT_MAIN}
-| | | ${skip_cnt}= | Evaluate | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN}
-| | | ${cpu_wt}= | Run keyword if | ${cpu_count_int} > 0 |
-| | | ... | Cpu list per node str | ${nodes['${dut}']} | ${numa}
-| | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${cpu_count_int}
-| | | ... | smt_used=${smt_used}
-| | | ${thr_count_int}= | Run keyword if | ${smt_used}
-| | | ... | Evaluate | int(${cpu_count_int}*2)
-| | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_count_int}= | Run keyword if | ${rx_queues}
-| | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/2)
-| | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
-| | | ... | Set variable | ${1}
-| | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | Run keyword if | ${cpu_count_int} > 0
-| | | ... | ${dut}.Add CPU Main Core | ${cpu_main}
-| | | Run keyword if | ${cpu_count_int} > 0
-| | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
-| | | Run keyword
-| | | ... | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
+| | | Add worker threads and rxqueues to DUT | ${dut} | ${phy_cores} |
+| | | ... | ${None}
+
+| Add worker threads and rxqueues to DUT
+| | [Documentation] | Setup worker threads and rxqueues in vpp startup
+| | ... | configuration on DUT. Based on the SMT configuration of DUT if
+| | ... | enabled keyword will automatically map also the sibling logical cores.
+| | ... | Keyword will automatically set the appropriate test TAGs in format
+| | ... | mTnC, where m=logical_core_count and n=physical_core_count.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT on which to set the worker threads and rxqueues
+| | ... | - phy_cores - Number of physical cores to use. Type: integer
+| | ... | - rx_queues - Number of RX queues. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add worker threads and rxqueues to DUT \| DUT1
+| | ... | \| ${1} \| ${1} \|
+| | ...
+| | [Arguments] | ${dut} | ${phy_cores} | ${rx_queues}=${None}
+| | ...
+| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
+| | ${thr_count_int} | Convert to Integer | ${phy_cores}
+| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if1}
+| | @{if_list}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | ... | Create List | ${${dut}_if1}
+| | ... | ELSE | Create List | ${${dut}_if1_1} | ${${dut}_if1_2}
+| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if2}
+| | Run Keyword If | '${if2_status}' == 'PASS'
+| | ... | Append To List | ${if_list} | ${${dut}_if2}
+| | ... | ELSE
+| | ... | Append To List | ${if_list} | ${${dut}_if2_1} | ${${dut}_if2_2}
+| | ${numa}= | Get interfaces numa node | ${nodes['${dut}']} | @{if_list}
+| | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | ${skip_cnt}= | Set variable | ${CPU_CNT_SYSTEM}
+| | ${cpu_main}= | Cpu list per node str | ${nodes['${dut}']} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${CPU_CNT_MAIN}
+| | ${skip_cnt}= | Evaluate | ${CPU_CNT_SYSTEM} + ${CPU_CNT_MAIN}
+| | ${cpu_wt}= | Run keyword if | ${cpu_count_int} > 0 |
+| | ... | Cpu list per node str | ${nodes['${dut}']} | ${numa}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${cpu_count_int}
+| | ... | smt_used=${smt_used}
+| | ${thr_count_int}= | Run keyword if | ${smt_used}
+| | ... | Evaluate | int(${cpu_count_int}*2)
+| | ... | ELSE | Set variable | ${thr_count_int}
+| | ${rxq_count_int}= | Run keyword if | ${rx_queues}
+| | ... | Set variable | ${rx_queues}
+| | ... | ELSE | Evaluate | int(${thr_count_int}/2)
+| | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
+| | ... | Set variable | ${1}
+| | ... | ELSE | Set variable | ${rxq_count_int}
+| | Run keyword if | ${cpu_count_int} > 0
+| | ... | ${dut}.Add CPU Main Core | ${cpu_main}
+| | Run keyword if | ${cpu_count_int} > 0
+| | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
+| | Run keyword
+| | ... | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
 # For now there is no way to easily predict the number of buffers. Statically
 # doing maximum amount of buffers allowed by DPDK.
-| | | Run keyword if | ${smt_used}
-| | | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${215040} | ELSE
-| | | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${107520}
-| | | Run keyword if | ${thr_count_int} > 1
-| | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
-| | | Set Tags | ${thr_count_int}T${cpu_count_int}C
+| | Run keyword if | ${smt_used}
+| | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${215040} | ELSE
+| | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${107520}
+| | Run keyword if | ${thr_count_int} > 1
+| | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
+| | Set Tags | ${thr_count_int}T${cpu_count_int}C
 | | Set Test Variable | ${smt_used}
 | | Set Test Variable | ${thr_count_int}
 | | Set Test Variable | ${cpu_count_int}
@@ -266,43 +290,58 @@
 | | ... | Add PCI devices to VPP configuration file.
 | | ...
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | ${if1_pci}= | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ${if1_1_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_1}
-| | | ${if1_2_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_2}
-| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if2}
-| | | ${if2_pci}= | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
-| | | ${if2_1_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_1}
-| | | ${if2_2_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_2}
-| | | @{pci_devs}= | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Create List | ${if1_pci}
-| | | ... | ELSE
-| | | ... | Create List | ${if1_1_pci} | ${if1_2_pci}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | Append To List | ${pci_devs} | ${if2_pci}
-| | | ... | ELSE
-| | | ... | Append To List | ${pci_devs} | ${if2_1_pci} | ${if2_2_pci}
-| | | Run keyword | ${dut}.Add DPDK Dev | @{pci_devs}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if1_1_pci} | ${if1_1_pci}
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if1_2_pci} | ${if1_2_pci}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if2_pci} | ${if2_pci}
-| | | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if2_1_pci} | ${if2_1_pci}
-| | | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | Set Test Variable | ${${dut}_if2_2_pci} | ${if2_2_pci}
+| | | Add PCI devices to DUT | ${dut}
+
+| Add PCI devices to DUT
+| | [Documentation]
+| | ... | Add PCI devices to VPP configuration file.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT on which to set the PCI devices. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | Add PCI devices to DUT \| DUT1
+| | ...
+| | [Arguments] | ${dut}
+| | ...
+| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if1}
+| | ${if1_pci}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
+| | ${if1_1_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | ${if1_2_pci}= | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if2}
+| | ${if2_pci}= | Run Keyword If | '${if2_status}' == 'PASS'
+| | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
+| | ${if2_1_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_1}
+| | ${if2_2_pci}= | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | ... | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2_2}
+| | @{pci_devs}= | Run Keyword If | '${if1_status}' == 'PASS'
+| | ... | Create List | ${if1_pci}
+| | ... | ELSE
+| | ... | Create List | ${if1_1_pci} | ${if1_2_pci}
+| | Run Keyword If | '${if2_status}' == 'PASS'
+| | ... | Append To List | ${pci_devs} | ${if2_pci}
+| | ... | ELSE
+| | ... | Append To List | ${pci_devs} | ${if2_1_pci} | ${if2_2_pci}
+| | Run keyword | ${dut}.Add DPDK Dev | @{pci_devs}
+| | Run Keyword If | '${if1_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
+| | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut}_if1_1_pci} | ${if1_1_pci}
+| | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut}_if1_2_pci} | ${if1_2_pci}
+| | Run Keyword If | '${if2_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut}_if2_pci} | ${if2_pci}
+| | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut}_if2_1_pci} | ${if2_1_pci}
+| | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | ... | Set Test Variable | ${${dut}_if2_2_pci} | ${if2_2_pci}
 
 | Add single PCI device to all DUTs
 | | [Documentation]
@@ -493,6 +532,28 @@
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
 | | Run keyword If | ${with_trace} | VPP Enable Traces On All Duts | ${nodes}
+
+| Apply startup configuration on VPP DUT
+| | [Documentation] | Write VPP startup configuration and restart VPP DUT
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT on which to apply the configuration. Type: string
+| | ... | - with_trace - Enable packet trace after VPP restart Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Apply startup configuration on VPP DUT \| DUT1 \| False \|
+| | ...
+| | [Arguments] | ${dut} | ${with_trace}=${False}
+| | ...
+| | Run keyword | ${dut}.Apply Config
+| | Save VPP PIDs on DUT | ${dut}
+| | Enable Coredump Limit VPP on DUT | ${nodes['${dut}']}
+| | ${dutnode}= | Copy Dictionary | ${nodes}
+| | Keep In Dictionary | ${dutnode} | ${dut}
+| | Update All Interface Data On All Nodes | ${dutnode} | skip_tg=${True}
+| | Run keyword If | ${with_trace} | VPP Enable Traces On Dut
+| | ... | ${nodes['${dut}']}
 
 | Save VPP PIDs
 | | [Documentation] | Get PIDs of VPP processes from all DUTs in topology and\
