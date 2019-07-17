@@ -44,4 +44,12 @@ source "${BASH_FUNCTION_DIR}/branch.sh" || die "Source failed."
 checkout_csit_for_vpp "${GERRIT_BRANCH}" || die
 cmd="${1}"
 shift
+pwd
+ls -l .
+ls -l csit
+ls -l csit/resources
+ls -l csit/resources/libraries
+ls -l csit/resources/libraries/bash
+ls -l csit/resources/libraries/bash/entry
+ls -l csit/resources/libraries/bash/entry/check_crc.sh
 source "${BASH_ENTRY_DIR}/${cmd}" "$@"
