@@ -282,6 +282,31 @@ function compose_pybot_arguments () {
 }
 
 
+function copy_archives () {
+
+    # Create additional archive if workspace variable is set.
+    # This way if script is running in jenkins all will be
+    # automatically archived to logs.fd.io.
+    #
+    # Variables read:
+    # - WORKSPACE - Jenkins workspace, copy only if the value is not empty.
+    #   Can be unset, then it speeds up manual testing.
+    # - ARCHIVE_DIR - Path to directory with content to be copied.
+    # Directories updated:
+    # - ${WORKSPACE}/archives/ - Created if does not exist.
+    #   Content of ${ARCHIVE_DIR}/ is copied here.
+    # Functions called:
+    # - die - Print to stderr and exit.
+
+    set -exuo pipefail
+
+    if [[ -n "${WORKSPACE-}" ]]; then
+        mkdir -p "${WORKSPACE}/archives/" || die "Archives dir create failed."
+        cp -rf "${ARCHIVE_DIR}"/* "${WORKSPACE}/archives" || die "Copy failed."
+    fi
+}
+
+
 function deactivate_docker_topology () {
 
     # Deactivate virtual vpp-device topology by removing containers.
