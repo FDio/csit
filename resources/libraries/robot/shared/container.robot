@@ -214,9 +214,12 @@
 | | ... | nodes=${nf_nodes}
 | | ... | ELSE IF | '${container_chain_topology}' == 'chain_ipsec'
 | | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
+| | ... | tg_if1_ip4=${tg_if1_ip4} | tg_if1_mac=${tg_if1_mac}
 | | ... | tg_if2_ip4=${tg_if2_ip4} | tg_if2_mac=${tg_if2_mac}
+| | ... | dut1_if1_ip4=${dut1_if1_ip4} | dut1_if2_ip4=${dut1_if2_ip4}
 | | ... | dut2_if1_ip4=${dut2_if1_ip4} | dut2_if2_ip4=${dut2_if2_ip4}
-| | ... | raddr_ip4=${raddr_ip4} | nodes=${nodes} | nf_nodes=${nf_nodes}
+| | ... | raddr_ip4=${raddr_ip4} | laddr_ip4=${laddr_ip4}
+| | ... | nodes=${nodes} | nf_nodes=${nf_nodes}
 | | ... | ELSE IF | '${container_chain_topology}' == 'pipeline_ip4'
 | | ... | ${group}.Configure VPP In All Containers | ${container_chain_topology}
 | | ... | tg_if1_mac=${tg_if1_mac} | tg_if2_mac=${tg_if2_mac}
@@ -238,6 +241,13 @@
 | | ... | all DUT nodes.
 | |
 | | Run Keyword | ${group}.Destroy all containers
+
+| Verify VPP in all '${group}' containers
+| | [Documentation] | Verify that VPP is running inside containers in specific
+| | ... | container group on all DUT nodes. Does 120 retries with one second
+| | ... | between retries.
+| |
+| | Run Keyword | ${group}.Verify VPP in all containers
 
 | Start containers for test
 | | [Documentation]
@@ -275,3 +285,94 @@
 | | Start VPP in all '${container_group}' containers
 | | Append To List | ${container_groups} | ${container_group}
 | | Save VPP PIDs
+
+# TODO: Remove the vswitch startup.conf and read the host configuration instead.
+| Start vswitch in container on DUT
+| | [Documentation]
+| | ... | Configure and start vswitch in container.
+| |
+| | ... | *Arguments:*
+| | ... | - dut: DUT node on which to install vswitch. Type: string
+| | ... | - phy_cores - Number of physical cores to use. Type: integer
+| | ... | - rx_queues: Number of RX queues. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Start vswitch in container on DUT \| DUT1 \| 1 \| 1 \|
+| |
+| | [Arguments] | ${dut} | ${phy_cores} | ${rx_queues}=${None}
+| |
+| | Set Test Variable | ${container_group} | VSWITCH
+| | Import Library | resources.libraries.python.ContainerUtils.ContainerManager
+| | ... | engine=${container_engine} | WITH NAME | VSWITCH
+| | Construct container on DUT | ${dut}
+| | ... | nf_chains=${1} | nf_nodes=${1} | nf_chain=${1}
+| | ... | nf_node=${1} | auto_scale=${False} | pinning=${False}
+| | Acquire all '${container_group}' containers
+| | Create all '${container_group}' containers
+| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
+| | ${thr_count_int} | Convert to Integer | ${phy_cores}
+| | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | ${thr_count_int}= | Run keyword if | ${smt_used}
+| | ... | Evaluate | int(${cpu_count_int}*2)
+| | ... | ELSE | Set variable | ${thr_count_int}
+| | ${rxq_count_int}= | Run keyword if | ${rx_queues}
+| | ... | Set variable | ${rx_queues}
+| | ... | ELSE | Evaluate | int(${thr_count_int}/2)
+| | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
+| | ... | Set variable | ${1}
+| | ... | ELSE | Set variable | ${rxq_count_int}
+| | VSWITCH.Configure VPP in all containers | chain_vswitch
+| | ... | rxq=${rxq_count_int} | n_instances=${n_instances}
+| | ... | buffers=${215040} | node=${dut}
+| | ... | dut1_if1=${dut1_if1} | dut1_if2=${dut1_if2}
+| | ... | dut2_if1=${dut2_if1} | dut2_if2=${dut2_if2}
+| | ... | dut2_if2_ip4=${dut2_if2_ip4}
+| | ... | tg_if1_ip4=${tg_if1_ip4} | tg_if1_mac=${tg_if1_mac}
+| | ... | tg_if2_ip4=${tg_if2_ip4} | tg_if2_mac=${tg_if2_mac}
+| | ... | nodes=${nodes}
+| | Start VPP in all '${container_group}' containers
+| | Verify VPP in all '${container_group}' containers
+| | Append To List | ${container_groups} | ${container_group}
+| | Save VPP PIDs
+
+| Start vswitch in container on all DUTs
+| | [Documentation]
+| | ... | Configure and start vswitch in container on all DUTs.
+| |
+| | ... | *Arguments:*
+| | ... | - phy_cores - Number of physical cores to use. Type: integer
+| | ... | - rx_queues: Number of RX queues. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | \| Start vswitch in container on all DUTs \| 1 \| 1 \|
+| |
+| | [Arguments] | ${phy_cores} | ${rx_queues}=${None}
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | | Run Keyword | Start vswitch in container on DUT
+| | | ... | ${dut} | ${phy_cores} | ${rx_queues}
+| | END
+
+| Start vswitch in container
+| | [Documentation]
+| | ... | Configure and start vswitch in container on all/specific DUT(s)
+| |
+| | ... | *Arguments:*
+| | ... | - dut: DUT node on which to install vswitch. Type: string
+| | ... | - phy_cores - Number of physical cores to use. Type: integer
+| | ... | - rx_queues: Number of RX queues. Type: integer
+| |
+| | ... | *Example:*
+| |
+| | ... | Start vswitch in container \| DUT1 \| 1 \| 1
+| |
+| | [Arguments] | ${dut}=${None} | ${phy_cores}=${1} | ${rx_queues}=${None}
+| |
+| | Run Keyword If | '${dut}' == '${None}'
+| | ... | Start vswitch in container on all DUTs
+| | ... | ${phy_cores} | ${rx_queues}
+| | ... | ELSE
+| | ... | Start vswitch in container on DUT | ${dut}
+| | ... | ${phy_cores} | ${rx_queues}
