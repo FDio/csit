@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "119df491_e995b46e",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 294
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-17T08:49:30Z",
+      "side": 1,
+      "message": "I will test that, in the meantime I have updated the list ov images to update:\nhttps://jira.fd.io/browse/CSIT-1546?focusedCommentId\u003d14111\u0026page\u003dcom.atlassian.jira.plugin.system.issuetabpanels:comment-tabpanel#comment-14111",
+      "parentUuid": "0a0db83f_cdfe218f",
+      "range": {
+        "startLine": 853,
+        "startChar": 0,
+        "endLine": 854,
+        "endChar": 50
+      },
+      "revId": "68b53d6e31ec6f42a498c89ad81f1b5bee11b0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45112a42_f5c88bef",
         "filename": "resources/libraries/python/L2Util.py",
         "patchSetId": 294
