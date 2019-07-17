@@ -55,8 +55,8 @@ class VppConfigGenerator:
         """Initialize library."""
         # VPP Node to apply configuration on
         self._node = u""
-        # VPP Hostname
-        self._hostname = u""
+        # Topology node key
+        self._node_key = u""
         # VPP Configuration
         self._nodeconfig = dict()
         # Serialized VPP Configuration
@@ -70,7 +70,7 @@ class VppConfigGenerator:
         # VPP Startup config backup location
         self._vpp_startup_conf_backup = None
 
-    def set_node(self, node):
+    def set_node(self, node, node_key=None):
         """Set DUT node.
 
         :param node: Node to store configuration on.
@@ -82,7 +82,7 @@ class VppConfigGenerator:
                 u"Startup config can only be applied to DUTnode."
             )
         self._node = node
-        self._hostname = Topology.get_node_hostname(node)
+        self._node_key = node_key
 
     def set_vpp_logfile(self, logfile):
         """Set VPP logfile location.
@@ -612,7 +612,7 @@ class VppConfigGenerator:
         """
         self.write_config(filename=filename)
 
-        VPPUtil.restart_vpp_service(self._node)
+        VPPUtil.restart_vpp_service(self._node, self._node_key)
         if verify_vpp:
             VPPUtil.verify_vpp(self._node)
 
