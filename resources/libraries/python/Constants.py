@@ -71,7 +71,7 @@ class Constants(object):
     QEMU_VM_DPDK = '/opt/dpdk-19.02'
 
     # Docker container SUT image
-    DOCKER_SUT_IMAGE_UBUNTU = 'snergster/csit-sut:latest'
+    DOCKER_SUT_IMAGE_UBUNTU = 'csit-sut:dev'
 
     # TRex install version
     TREX_INSTALL_VERSION = '2.54'
