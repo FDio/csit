@@ -361,7 +361,8 @@
   general:
     file-name: "output_info.xml.gz"
     file-format: ".gz"
-    download-path: "{job}/{build}/archives/{filename}"
+    download-path: "{job}/{build}/archives/csit/archive/{filename}"
+    download-path-old: "{job}/{build}/archives/{filename}"
     extract: "output.xml"
     # Number of days from now to the past. Only files generated in this
     # time period are used.

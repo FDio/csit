@@ -193,6 +193,26 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
         if not is_zipfile(new_name):
             success = False
 
+    # If not successful, download from old path (Jenkins, logs.fd.io):
+    if not success:
+        full_name = spec.input["download-path-old"]. \
+            format(job=job, build=build["build"], filename=file_name)
+        if not job.startswith("intel-dnv-"):
+            url = "{0}/{1}".format(url, full_name)
+        new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
+                        "{job}{sep}{build}{sep}{name}".
+                        format(job=job, sep=SEPARATOR, build=build["build"],
+                               name=file_name))
+
+        # Download the file from the defined source (Jenkins, logs.fd.io):
+        success, downloaded_name = _download_file(url, new_name, log)
+        if success:
+            new_name = downloaded_name
+
+        if success and new_name.endswith(".zip"):
+            if not is_zipfile(new_name):
+                success = False
+
     # If not successful, download from docs.fd.io:
     if not success:
         log.append(("INFO", "    Trying to download from https://docs.fd.io:"))
