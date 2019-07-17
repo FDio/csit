@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "adbea748_2ab46abb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-17T13:49:52Z",
+      "side": 1,
+      "message": "You are not explaining why are you doing this.\nWe do not WANT to keep duplicates. We want https://gerrit.fd.io/r/20695 or some resolution to https://jira.fd.io/browse/CSIT-1548",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 4
+      },
+      "revId": "4cb1e342832d8bd94d62f6f283223b54e426926b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
