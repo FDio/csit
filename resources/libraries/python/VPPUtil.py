@@ -19,6 +19,7 @@ from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.topology import NodeType
 
 
@@ -151,6 +152,16 @@ class VPPUtil:
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
                 VPPUtil.verify_vpp(node)
+                # Register VPP sockets.
+                topo_instance = BuiltIn().get_library_instance(
+                    u"resources.libraries.python.topology.Topology"
+                )
+                topo_instance.add_new_socket(
+                    node, SocketType.PAPI, node, Constants.SOCKSVR_PATH
+                )
+                topo_instance.add_new_socket(
+                    node, SocketType.STATS, node, Constants.SOCKSTAT_PATH
+                )
 
     @staticmethod
     def vpp_show_version(node):
@@ -227,7 +238,7 @@ class VPPUtil:
 
         for cmd in cmds:
             try:
-                PapiSocketExecutor.run_cli_cmd(node, cmd)
+                PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, cmd)
             except AssertionError:
                 if fail_on_error:
                     raise
@@ -253,7 +264,8 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, "elog trace api cli barrier")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, u"elog trace api cli barrier")
 
     @staticmethod
     def vpp_enable_elog_traces_on_all_duts(nodes):
@@ -273,7 +285,8 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show event-logger")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, u"show event-logger")
 
     @staticmethod
     def show_event_logger_on_all_duts(nodes):
