@@ -227,7 +227,7 @@ class VPPUtil:
 
         for cmd in cmds:
             try:
-                PapiSocketExecutor.run_cli_cmd(node, cmd)
+                PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, cmd)
             except AssertionError:
                 if fail_on_error:
                     raise
@@ -253,7 +253,8 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, "elog trace api cli barrier")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, u"elog trace api cli barrier")
 
     @staticmethod
     def vpp_enable_elog_traces_on_all_duts(nodes):
@@ -273,7 +274,8 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show event-logger")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+            node, u"show event-logger")
 
     @staticmethod
     def show_event_logger_on_all_duts(nodes):
@@ -293,7 +295,7 @@ class VPPUtil:
         :param node: Topology node.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, u"show logging")
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show logging")
 
     @staticmethod
     def show_log_on_all_duts(nodes):
