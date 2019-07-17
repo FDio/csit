@@ -1,0 +1,12 @@
+create memif socket id 1 filename $socket1
+create memif socket id 2 filename $socket2
+
+create bridge-domain 1 learn 1 forward 1 uu-flood 1 flood 1 arp-term 0
+create bridge-domain 2 learn 1 forward 1 uu-flood 1 flood 1 arp-term 0
+
+set interface l2 bridge $if_red_name 1
+set interface l2 bridge $if_black_name 2
+set interface state $if_red_name up
+set interface state $if_black_name up
+
+$instances

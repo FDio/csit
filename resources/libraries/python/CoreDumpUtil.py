@@ -105,6 +105,17 @@ class CoreDumpUtil:
             LimitUtil.set_pid_limit(node, pid, u"core", u"unlimited")
             LimitUtil.get_pid_limit(node, pid)
 
+    def enable_coredump_limit_vpp_on_dut(self, node):
+        """Enable coredump for VPP PID by setting no core limits on DUT
+        if setting of core limit by this library is enabled.
+
+        :param node: DUT Node in the topology.
+        :type node: dict
+        """
+        if node[u"type"] == NodeType.DUT and self.is_core_limit_enabled():
+            vpp_pid = DUTSetup.get_vpp_pid(node)
+            self.enable_coredump_limit(node, vpp_pid)
+
     def enable_coredump_limit_vpp_on_all_duts(self, nodes):
         """Enable coredump for all VPP PIDs by setting no core limits on all
         DUTs if setting of core limit by this library is enabled.
@@ -113,9 +124,7 @@ class CoreDumpUtil:
         :type nodes: dict
         """
         for node in nodes.values():
-            if node[u"type"] == NodeType.DUT and self.is_core_limit_enabled():
-                vpp_pid = DUTSetup.get_vpp_pid(node)
-                self.enable_coredump_limit(node, vpp_pid)
+            self.enable_coredump_limit_vpp_on_dut(node)
 
     def get_core_files_on_all_nodes(self, nodes, disable_on_success=True):
         """Process all core files and remove the original core files on all

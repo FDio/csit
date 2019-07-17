@@ -41,12 +41,8 @@ def load_topo_from_yaml():
         return safe_load(work_file.read())[u"nodes"]
 
 
-
 class NodeType:
     """Defines node types used in topology dictionaries."""
-    # TODO: Two letter initialisms are well-known, but too short for pylint.
-    # Candidates: TG -> TGN, VM -> VNF.
-
     # Device Under Test (this node has VPP running on it)
     DUT = u"DUT"
     # Traffic Generator (this node has traffic generator on it)
@@ -95,8 +91,8 @@ class Topology:
     does not rely on the data retrieved from nodes, this allows to call most of
     the methods without having filled active topology with internal nodes data.
     """
-
-    def add_node_item(self, node, value, path):
+    @staticmethod
+    def add_node_item(node, value, path):
         """Add item to topology node.
 
         :param node: Topology node.
@@ -114,7 +110,7 @@ class Topology:
         elif isinstance(node[path[0]], str):
             node[path[0]] = dict() if node[path[0]] == u"" \
                 else {node[path[0]]: u""}
-        self.add_node_item(node[path[0]], value, path[1:])
+        Topology.add_node_item(node[path[0]], value, path[1:])
 
     @staticmethod
     def add_new_port(node, ptype):
@@ -1065,12 +1061,13 @@ class Topology:
         except KeyError:
             return None
 
-    def add_new_socket(self, node, socket_type, socket_id, socket_path):
+    @staticmethod
+    def add_new_socket(node, socket_type, socket_id, socket_path):
         """Add socket file of specific SocketType and ID to node.
 
         :param node: Node to add socket on.
         :param socket_type: Socket type.
-        :param socket_id: Socket id.
+        :param socket_id: Socket id, currently unique Node ID.
         :param socket_path: Socket absolute path.
         :type node: dict
         :type socket_type: SocketType
@@ -1078,7 +1075,20 @@ class Topology:
         :type socket_path: str
         """
         path = [u"sockets", socket_type, socket_id]
-        self.add_node_item(node, socket_path, path)
+        Topology.add_node_item(node, socket_path, path)
+
+    @staticmethod
+    def del_node_socket_id(node, socket_type, socket_id):
+        """Delete socket of specific SocketType and ID from node.
+
+        :param node: Node to delete socket from.
+        :param socket_type: Socket type.
+        :param socket_id: Socket id, currently equals to unique node key.
+        :type node: dict
+        :type socket_type: SocketType
+        :type socket_id: str
+        """
+        node[u"sockets"][socket_type].pop(socket_id)
 
     @staticmethod
     def get_node_sockets(node, socket_type=None):
