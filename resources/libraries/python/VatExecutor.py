@@ -14,7 +14,7 @@
 """VAT executor library."""
 
 import json
-from os import remove
+from os import remove, path
 
 from paramiko.ssh_exception import SSHException
 from robot.api import logger
@@ -74,7 +74,8 @@ class VatExecutor(object):
         self._script_name = None
 
     def execute_script(self, vat_name, node, timeout=120, json_out=True,
-                       copy_on_execute=False, history=True):
+                       copy_on_execute=False, history=True,
+                       container_id=None):
         """Execute VAT script on remote node, and store the result. There is an
         option to copy script from local host to remote host before execution.
         Path is defined automatically.
@@ -88,12 +89,14 @@ class VatExecutor(object):
         :param copy_on_execute: If true, copy the file from local host to remote
             before executing.
         :param history: If true, add command to history.
+        :param container_id: Container on which to execute the VAT script on.
         :type vat_name: str
         :type node: dict
         :type timeout: int
         :type json_out: bool
         :type copy_on_execute: bool
         :type history: bool
+        :type container_id: str
         :raises SSHException: If cannot open connection for VAT.
         :raises SSHTimeout: If VAT execution is timed out.
         :raises RuntimeError: If VAT script execution fails.
@@ -106,21 +109,32 @@ class VatExecutor(object):
                                "command(s) from vat script {name}"
                                .format(name=vat_name))
 
+        if container_id:
+            basename = path.basename(path.normpath(vat_name))
+            remote_file_path = '/mnt/host/{basename}'.format(
+                basename=basename)
+        else:
+            remote_file_path = '{0}/{1}/{2}'.format(
+                Constants.REMOTE_FW_DIR, Constants.RESOURCES_TPL_VAT,
+                vat_name)
+
         if copy_on_execute:
-            ssh.scp(vat_name, vat_name)
-            remote_file_path = vat_name
+            if container_id:
+                copy_to = '/tmp/{basename}'.format(basename=basename)
+            else:
+                copy_to = vat_name
+                remote_file_path = vat_name
+            ssh.scp(vat_name, copy_to)
             if history:
                 with open(vat_name, 'r') as vat_file:
                     for line in vat_file:
                         PapiHistory.add_to_papi_history(node,
                                                         line.replace('\n', ''),
                                                         papi=False)
-        else:
-            remote_file_path = '{0}/{1}/{2}'.format(Constants.REMOTE_FW_DIR,
-                                                    Constants.RESOURCES_TPL_VAT,
-                                                    vat_name)
 
-        cmd = "{vat_bin} {json} in {vat_path} script".format(
+        cmd = '{run_in_container}{vat_bin} {json} in {vat_path} script'.format(
+            run_in_container='docker exec {container_id} '
+            .format(container_id=container_id) if container_id else "",
             vat_bin=Constants.VAT_BIN_NAME,
             json="json" if json_out is True else "",
             vat_path=remote_file_path)
