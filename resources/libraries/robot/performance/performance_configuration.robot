@@ -1187,45 +1187,6 @@
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
-| Initialize L2 xconnect with Vhost-User and VLAN with DPDK link bonding in 3-node circular topology
-| | [Documentation]
-| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Setup VLAN
-| | ... | on BondEthernet interfaces between DUTs. Cross connect one Vhost
-| | ... | interface with physical interface towards TG and other Vhost interface
-| | ... | with VLAN sub-interface. All interfaces are brought up.
-| | ...
-| | ... | *Arguments:*
-| | ... | - subid - ID of the sub-interface to be created. Type: string
-| | ... | - tag_rewrite - Method of tag rewrite. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Initialize L2 xconnect with Vhost-User and VLAN with DPDK link\
-| | ... | bonding in 3-node circular topology \| 10 \| pop-1 \|
-| | ...
-| | [Arguments] | ${subid} | ${tag_rewrite}
-| | ...
-| | Set interfaces in path up
-| | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
-| | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
-| | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
-| | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
-| | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
-| | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
-| | ... | ${subid}
-| | Configure L2 tag rewrite method on interfaces
-| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
-| | ... | ${tag_rewrite}
-| | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
-| | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
-| | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
-| | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
-| | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
-| | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
-
 | Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Create one
@@ -2018,54 +1979,6 @@
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 
-| Initialize L2 bridge domains with Vhost-User and VLAN with DPDK link bonding in a 3-node circular topology
-| | [Documentation]
-| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Setup VLAN
-| | ... | on BondEthernet interfaces between DUTs. Add one Vhost-User interface
-| | ... | into L2 bridge domains with learning enabled with physical interface
-| | ... | towards TG and other Vhost-User interface into L2 bridge domains with
-| | ... | learning enabled with VLAN sub-interface. All interfaces are brought
-| | ... | up.
-| | ...
-| | ... | *Arguments:*
-| | ... | - bd_id1 - Bridge domain ID. Type: integer
-| | ... | - bd_id2 - Bridge domain ID. Type: integer
-| | ... | - subid - ID of the sub-interface to be created. Type: string
-| | ... | - tag_rewrite - Method of tag rewrite. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Initialize L2 bridge domains with Vhost-User and VLAN with DPDK\
-| | ... | link bonding in a 3-node circular topology \| 1 \| 2 \| /tmp/sock1 \
-| | ... | \| /tmp/sock2 \| 10 \| pop-1 \|
-| | ...
-| | [Arguments] | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
-| | ...
-| | Set interfaces in path up
-| | Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
-| | Set Interface State | ${dut1} | ${dut1_eth_bond_if1} | up
-| | VPP Set interface MTU | ${dut1} | ${dut1_eth_bond_if1}
-| | Set Interface State | ${dut2} | ${dut2_eth_bond_if1} | up
-| | VPP Set interface MTU | ${dut2} | ${dut2_eth_bond_if1}
-| | Initialize VLAN dot1q sub-interfaces in circular topology
-| | ... | ${dut1} | ${dut1_eth_bond_if1} | ${dut2} | ${dut2_eth_bond_if1}
-| | ... | ${subid}
-| | Configure L2 tag rewrite method on interfaces
-| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
-| | ... | ${tag_rewrite}
-| | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
-| | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | /var/run/vpp/sock-1-${bd_id1} | /var/run/vpp/sock-1-${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
-
 | Initialize L2 bridge domains with Vhost-User and VLAN with VPP link bonding in a 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Create one
@@ -2168,18 +2081,6 @@
 | | ... | vlan-strip-offload | off
 | | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_2_pci}
 | | ... | vlan-strip-offload | off
-
-| Add DPDK bonded ethernet interfaces to DUTs in 3-node single link topology
-| | [Documentation]
-| | ... | Add DPDK bonded Ethernet interfaces with mode XOR and transmit policy
-| | ... | l34 to VPP configuration file.
-| | ...
-| | Run keyword | DUT1.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut1_if2_pci}
-| | Run keyword | DUT2.Add DPDK Eth Bond Dev | 0 | 2 | l34 | ${dut2_if1_pci}
-
-| Add DPDK bonded ethernet interfaces to topology file in 3-node single link topology
-| | Add Eth Interface | ${dut1} | ${dut1_eth_bond_if1_name} | ifc_pfx=eth_bond
-| | Add Eth Interface | ${dut2} | ${dut2_eth_bond_if1_name} | ifc_pfx=eth_bond
 
 | Initialize LISP IPv4 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG \
