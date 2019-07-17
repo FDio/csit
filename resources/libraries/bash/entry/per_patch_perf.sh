@@ -52,7 +52,7 @@ get_test_code "${1-}" || die
 get_test_tag_string || die
 set_perpatch_dut || die
 select_topology || die
-select_os || die
+select_arch_os || die
 activate_virtualenv "${VPP_DIR}" || die
 generate_tests || die
 archive_tests || die

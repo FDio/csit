@@ -648,7 +648,7 @@ function run_pybot () {
 }
 
 
-function select_os () {
+function select_arch_os () {
 
     # Populate variables related to local operating system.
     #
@@ -678,7 +678,19 @@ function select_os () {
             PKG_SUFFIX="rpm"
             ;;
         *)
-            die "Unable to identify distro or os from ${OS}"
+            die "Unable to identify distro or os from ${os_id}"
+            ;;
+    esac
+
+    arch=$(uname -m) || {
+        die "Get CPU architecture failed."
+    }
+
+    case "${arch}" in
+        "aarch64")
+            IMAGE_VER_FILE="${IMAGE_VER_FILE}_ARM"
+            ;;
+        *)
             ;;
     esac
 }
