@@ -26,15 +26,9 @@ OS_VERSION_ID=$(grep '^VERSION_ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\
 if [ "$OS_ID" == "centos" ]; then
     DISTRO="CENTOS"
     PACKAGE="rpm"
-    # TODO: Remove when corresponding part of CSIT-1546 is addressed.
-    sudo yum install -y python-devel python-virtualenv openssh-clients sshpass
 elif [ "$OS_ID" == "ubuntu" ]; then
     DISTRO="UBUNTU"
     PACKAGE="deb"
-    # TODO: Remove when corresponding part of CSIT-1546 is addressed.
-    export DEBIAN_FRONTEND=noninteractive
-    sudo apt-get -y update
-    sudo apt-get -y install libpython2.7-dev python-virtualenv sshpass
 else
     echo "$OS_ID is not yet supported."
     exit 1

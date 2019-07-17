@@ -646,16 +646,11 @@ function select_os () {
             IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
             VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_BIONIC"
             PKG_SUFFIX="deb"
-            # TODO: Remove when corresponding part of CSIT-1546 is addressed.
-            sudo apt-get update -y || die
-            sudo apt-get install -y sshpass || die
             ;;
         "centos"*)
             IMAGE_VER_FILE="VPP_DEVICE_IMAGE_CENTOS"
             VPP_VER_FILE="VPP_STABLE_VER_CENTOS"
             PKG_SUFFIX="rpm"
-            # TODO: Remove when corresponding part of CSIT-1546 is addressed.
-            sudo yum install -y sshpass || die
             ;;
         *)
             die "Unable to identify distro or os from ${OS}"
