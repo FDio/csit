@@ -172,7 +172,7 @@ class QemuUtils(object):
         self._params.add_with_value(
             'device', 'virtio-9p-pci,fsdev=root9p,mount_tag=/dev/root')
         self._params.add_with_value(
-            'kernel', '$(readlink -m {img}* | tail -1)'.format(
+            'kernel', '$(readlink -m {img}*-kvm | tail -1)'.format(
                 img=self._opt.get('img')))
         self._params.add_with_value(
             'append', '"ro rootfstype=9p rootflags=trans=virtio console=ttyS0'
