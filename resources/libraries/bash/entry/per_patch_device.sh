@@ -45,7 +45,7 @@ get_test_code "${1-}" || die
 get_test_tag_string || die
 set_perpatch_dut || die
 select_topology || die
-select_os || die
+select_arch_os || die
 select_build "build_current" || die
 check_download_dir || die
 activate_virtualenv "${VPP_DIR}" || die
