@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5f742e66_c447d7eb",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1338,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-17T15:18:05Z",
+      "side": 1,
+      "message": "In the long run, using the usual PapiSocketExecutor-based keywords with appropriate ${node} argument (exposing sockets from the container to host if there is not sshd in the container to connect to) is better than adding similar keywords with VAT implementation.",
+      "range": {
+        "startLine": 1338,
+        "startChar": 8,
+        "endLine": 1338,
+        "endChar": 26
+      },
+      "revId": "44ef927713e23846c2bd48283154a571a06e75c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
