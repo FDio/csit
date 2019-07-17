@@ -54,7 +54,7 @@ def pack_framework_dir():
 
     run(["tar", "--sparse", "--exclude-vcs", "--exclude=output*.xml",
          "--exclude=./tmp", "-zcf", file_name, "."],
-        check=True, msg="Could not pack testing framework")
+        msg="Could not pack testing framework")
 
     return file_name
 
