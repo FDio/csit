@@ -60,6 +60,14 @@
 | | :FOR | ${container_group} | IN | @{container_groups}
 | | | Destroy all '${container_group}' containers
 
+| Additional Test Tear Down Action For ipsec container
+| | [Documentation]
+| | ... | Additional teardown for ipsec container tests.
+| | ...
+| | :FOR | ${container_group} | IN | @{container_groups}
+| | | Gather VPP Statistics From All '${container_group}' Containers
+| | | Destroy all '${container_group}' containers
+
 | Additional Test Tear Down Action For vhost
 | | [Documentation]
 | | ... | Additional teardown for tests which uses vhost(s) and VM(s).
