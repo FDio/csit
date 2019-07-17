@@ -35,7 +35,7 @@ common_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
 select_topology || die
-select_os || die
+select_arch_os || die
 gather_build || die
 check_download_dir || die
 activate_virtualenv || die
