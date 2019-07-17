@@ -267,7 +267,7 @@ class PapiSocketExecutor(object):
         if password:
             # Prepend sshpass command to set password.
             ssh_cmd[:0] = ["sshpass", "-p", password]
-        time_stop = time.time() + 10.0
+        time_stop = time.time() + 30.0
         # subprocess.Popen seems to be the best way to run commands
         # on background. Other ways (shell=True with "&" and ssh with -f)
         # seem to be too dependent on shell behavior.
