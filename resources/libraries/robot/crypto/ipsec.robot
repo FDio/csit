@@ -198,3 +198,19 @@
 | | ... | interface=${dut1_if1}
 | | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | gateway=${tg_if2_ip4}
 | | ... | interface=${dut2_if2}
+
+| Initialize IPSec in 3-node circular container topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
+| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG and
+| | ... | DUT1-DUT2 links. Set routing for encrypted traffic on both DUT nodes
+| | ... | with prefix /8 and next hop of neighbour DUT or TG interface IPv4
+| | ... | address.
+| | ...
+| | Set interfaces in path up on DUT | DUT1
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
+| | ... | ${dut1_if1_ip4} | 24
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
+| | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
+| | ... | interface=${dut1_if1}
