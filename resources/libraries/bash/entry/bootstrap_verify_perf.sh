@@ -48,4 +48,5 @@ select_tags || die
 compose_pybot_arguments || die
 run_pybot || die
 untrap_and_unreserve_testbed || die
+copy_archives || die
 die_on_pybot_error || die
