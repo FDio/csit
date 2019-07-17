@@ -315,13 +315,29 @@
 | |
 | | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Apply Config
-| | | Add New Socket | ${nodes['${dut}']} | PAPI | ${dut} | ${SOCKSVR_PATH}
-| | | Add New Socket | ${nodes['${dut}']} | STATS | ${dut} | ${SOCKSTAT_PATH}
 | | END
 | | Save VPP PIDs
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
 | | Run keyword If | ${with_trace} | VPP Enable Traces On All Duts | ${nodes}
+
+| Apply startup configuration on VPP DUT
+| | [Documentation] | Write VPP startup configuration and restart VPP DUT.
+| |
+| | ... | *Arguments:*
+| | ... | - dut - DUT on which to apply the configuration. Type: string
+| | ... | - with_trace - Enable packet trace after VPP restart Type: boolean
+| |
+| | [Arguments] | ${dut} | ${with_trace}=${False}
+| |
+| | Run keyword | ${dut}.Apply Config
+| | Save VPP PIDs on DUT | ${dut}
+| | Enable Coredump Limit VPP on DUT | ${nodes['${dut}']}
+| | ${dutnode}= | Copy Dictionary | ${nodes}
+| | Keep In Dictionary | ${dutnode} | ${dut}
+| | Update All Interface Data On All Nodes | ${dutnode} | skip_tg=${True}
+| | Run keyword If | ${with_trace} | VPP Enable Traces On Dut
+| | ... | ${nodes['${dut}']}
 
 | Save VPP PIDs
 | | [Documentation] | Get PIDs of VPP processes from all DUTs in topology and\
@@ -335,6 +351,24 @@
 | | | ${pid}= | Get From Dictionary | ${setup_vpp_pids} | ${key}
 | | | Run Keyword If | $pid is None | FAIL | No VPP PID found on node ${key}
 | | END
+| | Set Test Variable | ${setup_vpp_pids}
+
+| Save VPP PIDs on DUT
+| | [Documentation] | Get PID of VPP processes from DUT and\
+| | ... | set it as a test variable. The PID is stored as dictionary item\
+| | ... | where the key is the host and the value is the PID.
+| | ...
+| | [Arguments] | ${dut}
+| | ...
+| | ${vpp_pids}= | Get VPP PID | ${nodes['${dut}']}
+| | Run Keyword If | ${vpp_pids} is None | FAIL
+| | ... | No VPP PID found on node ${nodes['${dut}']['host']
+| | ${status} | ${message}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${setup_vpp_pids}
+| | ${setup_vpp_pids}= | Run Keyword If | '${status}' == 'FAIL'
+| | ... | Create Dictionary | ${nodes['${dut}']['host']}=${vpp_pids}
+| | ... | ELSE | Set To Dictionary | ${setup_vpp_pids}
+| | ... | ${nodes['${dut}']['host']}=${vpp_pids}
 | | Set Test Variable | ${setup_vpp_pids}
 
 | Verify VPP PID in Teardown
