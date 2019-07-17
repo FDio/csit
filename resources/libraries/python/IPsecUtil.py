@@ -26,6 +26,7 @@ from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.ssh import scp_node
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor
 
@@ -1161,6 +1162,153 @@ class IPsecUtil:
             papi_exec.get_replies(err_msg)
 
     @staticmethod
+    def _create_ipsec_script_files(dut, instances):
+        """Create script files for configuring IPsec in containers
+
+        :param dut: DUT node on which to create the script files
+        :param instances: number of containers on DUT node
+        :type dut: string
+        :type instances: int
+        """
+        scripts = []
+        for cnf in range(0, instances):
+            script_filename = (
+                f"/tmp/ipsec_create_tunnel_cnf_{dut}_{cnf + 1}.config"
+            )
+            scripts.append(open(script_filename, 'w', buffering=0))
+        return scripts
+
+    @staticmethod
+    def _close_and_copy_ipsec_script_files(
+            dut, nodes, instances, scripts):
+        """Close created scripts and copy them to containers
+
+        :param dut: DUT node on which to create the script files
+        :param nodes: VPP nodes
+        :param instances: number of containers on DUT node
+        :param scripts: dictionary holding the script files
+        :type dut: string
+        :type nodes: dict
+        :type instances: int
+        :type scripts: dict
+        """
+        for cnf in range(0, instances):
+            scripts[cnf].close()
+            script_filename = (
+                f"/tmp/ipsec_create_tunnel_cnf_{dut}_{cnf + 1}.config"
+            )
+            scp_node(nodes[dut], script_filename, script_filename)
+
+
+    @staticmethod
+    def vpp_ipsec_create_tunnel_interfaces_in_containers(
+            nodes, if1_ip_addr, if2_ip_addr, if1_key, if2_key, n_tunnels,
+            crypto_alg, integ_alg, raddr_ip1, raddr_ip2, raddr_range,
+            n_instances):
+        """Create multiple IPsec tunnel interfaces between two VPP nodes.
+
+        :param nodes: VPP nodes to create tunnel interfaces.
+        :param if1_ip_addr: VPP node 1 interface IP4 address.
+        :param if2_ip_addr: VPP node 2 interface IP4 address.
+        :param if1_key: VPP node 1 interface key from topology file.
+        :param if2_key: VPP node 2 interface key from topology file.
+        :param n_tunnels: Number of tunnell interfaces to create.
+        :param crypto_alg: The encryption algorithm name.
+        :param integ_alg: The integrity algorithm name.
+        :param raddr_ip1: Policy selector remote IPv4 start address for the
+            first tunnel in direction node1->node2.
+        :param raddr_ip2: Policy selector remote IPv4 start address for the
+            first tunnel in direction node2->node1.
+        :param raddr_range: Mask specifying range of Policy selector Remote
+            IPv4 addresses. Valid values are from 1 to 32.
+        :param n_instances: Number of containers.
+        :type nodes: dict
+        :type if1_ip_addr: str
+        :type if2_ip_addr: str
+        :type if1_key: str
+        :type if2_key: str
+        :type n_tunnels: int
+        :type crypto_alg: CryptoAlg
+        :type integ_alg: IntegAlg
+        :type raddr_ip1: string
+        :type raddr_ip2: string
+        :type raddr_range: int
+        :type n_instances: int
+        """
+        spi_1 = 100000
+        spi_2 = 200000
+        addr_incr = 1 << (32 - raddr_range)
+
+        dut1_scripts = IPsecUtil._create_ipsec_script_files(
+            u"DUT1", n_instances)
+        dut2_scripts = IPsecUtil._create_ipsec_script_files(
+            u"DUT2", n_instances)
+
+        for cnf in range(0, n_instances):
+            dut1_scripts[cnf].write(
+                u"create loopback interface\n"
+                u"set interface state loop0 up\n\n"
+            )
+            dut2_scripts[cnf].write(
+                f"ip route add {if1_ip_addr}/8 via "
+                f"{ip_address(if2_ip_addr) + cnf + 100} memif1/{cnf + 1}\n\n"
+            )
+
+        for tnl in range(0, n_tunnels):
+            tnl_incr = tnl * addr_incr
+            cnf = tnl % n_instances
+            i = tnl // n_instances
+            ckey = gen_key(IPsecUtil.get_crypto_alg_key_len(
+                crypto_alg)).hex()
+            integ = u""
+            if integ_alg:
+                ikey = gen_key(IPsecUtil.get_integ_alg_key_len(
+                    integ_alg)).hex()
+                integ = (
+                    f"integ-alg {integ_alg.alg_name} "
+                    f"local-integ-key {ikey} "
+                    f"remote-integ-key {ikey} "
+                )
+
+            # Configure tunnel end point(s) on left side
+            dut1_scripts[cnf].write(
+                u"set interface ip address loop0 "
+                f"{ip_address(if1_ip_addr) + tnl_incr}/32\n"
+                f"create ipsec tunnel "
+                f"local-ip {ip_address(if1_ip_addr) + tnl_incr} "
+                f"local-spi {spi_1 + tnl} "
+                f"remote-ip {ip_address(if2_ip_addr) + cnf} "
+                f"remote-spi {spi_2 + tnl} "
+                f"crypto-alg {crypto_alg.alg_name} "
+                f"local-crypto-key {ckey} "
+                f"remote-crypto-key {ckey} "
+                f"{integ} \n"
+                f"set interface unnumbered ipsec{i} use loop0\n"
+                f"set interface state ipsec{i} up\n"
+                f"ip route add {ip_address(raddr_ip2)+tnl}/32 via ipsec{i}\n\n"
+            )
+
+            # Configure tunnel end point(s) on right side
+            dut2_scripts[cnf].write(
+                f"create ipsec tunnel local-ip {ip_address(if2_ip_addr) + cnf} "
+                f"local-spi {spi_2 + tnl} "
+                f"remote-ip {ip_address(if1_ip_addr) + tnl_incr} "
+                f"remote-spi {spi_1 + tnl} "
+                f"crypto-alg {crypto_alg.alg_name} "
+                f"local-crypto-key {ckey} "
+                f"remote-crypto-key {ckey} "
+                f"{integ} \n"
+                f"set interface unnumbered ipsec{i} use {memif1/{cnf + 1}}\n"
+                f"set interface state ipsec{i} up\n"
+                f"ip route add {ip_address(raddr_ip1)+tnl}/32 via ipsec{i}\n\n"
+            )
+
+        IPsecUtil._close_and_copy_ipsec_script_files(
+            u"DUT1", nodes, n_instances, dut1_scripts)
+        IPsecUtil._close_and_copy_ipsec_script_files(
+            u"DUT2", nodes, n_instances, dut2_scripts)
+
+    @staticmethod
     def vpp_ipsec_add_multiple_tunnels(
             nodes, interface1, interface2, n_tunnels, crypto_alg, integ_alg,
             tunnel_ip1, tunnel_ip2, raddr_ip1, raddr_ip2, raddr_range):
@@ -1178,8 +1326,8 @@ class IPsecUtil:
             first tunnel in direction node1->node2.
         :param raddr_ip2: Policy selector remote IPv4 start address for the
             first tunnel in direction node2->node1.
-        :param raddr_range: Mask specifying range of Policy selector Remote IPv4
-            addresses. Valid values are from 1 to 32.
+        :param raddr_range: Mask specifying range of Policy selector Remote
+            IPv4 addresses. Valid values are from 1 to 32.
         :type nodes: dict
         :type interface1: str or int
         :type interface2: str or int
