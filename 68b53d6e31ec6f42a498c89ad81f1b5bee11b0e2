@@ -46,6 +46,69 @@
       "revId": "68b53d6e31ec6f42a498c89ad81f1b5bee11b0e2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45112a42_f5c88bef",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 294
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-07-17T07:54:11Z",
+      "side": 1,
+      "message": "We need to return all bd_data if not filtered for one bd_id.",
+      "revId": "68b53d6e31ec6f42a498c89ad81f1b5bee11b0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f772bcd3_e2078704",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 294
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-07-17T07:54:11Z",
+      "side": 1,
+      "message": "branch",
+      "range": {
+        "startLine": 224,
+        "startChar": 19,
+        "endLine": 224,
+        "endChar": 24
+      },
+      "revId": "68b53d6e31ec6f42a498c89ad81f1b5bee11b0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ee9dcba_d6b6a6bb",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 294
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-07-17T07:54:11Z",
+      "side": 1,
+      "message": "entry",
+      "range": {
+        "startLine": 315,
+        "startChar": 29,
+        "endLine": 315,
+        "endChar": 34
+      },
+      "revId": "68b53d6e31ec6f42a498c89ad81f1b5bee11b0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
