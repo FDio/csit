@@ -14,7 +14,7 @@
 """VAT executor library."""
 
 import json
-from os import remove
+from os import remove, path
 
 from paramiko.ssh_exception import SSHException
 from robot.api import logger
@@ -121,6 +121,61 @@ class VatExecutor(object):
             vat_bin=Constants.VAT_BIN_NAME,
             json="json" if json_out is True else "",
             vat_path=remote_file_path)
+
+        try:
+            ret_code, stdout, stderr = ssh.exec_command_sudo(cmd=cmd,
+                                                             timeout=timeout)
+        except SSHTimeout:
+            logger.error("VAT script execution timeout: {0}".format(cmd))
+            raise
+        except:
+            raise RuntimeError("VAT script execution failed: {0}".format(cmd))
+
+        self._ret_code = ret_code
+        self._stdout = stdout
+        self._stderr = stderr
+        self._script_name = vat_name
+
+    def execute_script_in_container(self, vat_name, node, container_id,
+                                    timeout=120, json_out=True):
+        """Execute VAT script in container running on remote node,
+        and store the result. Script is copied from local host to remote
+        host before execution.
+        Path in container is defined as: /mnt/host/{script_base_name}.
+
+        :param vat_name: Name of the vat script file. Only the file name of
+            the script is required, the resources path is prepended
+            automatically.
+        :param node: Node to execute the VAT script on.
+        :param container_id: Docker container identifier
+        :param timeout: Seconds to allow the script to run.
+        :param json_out: Require JSON output.
+        :type vat_name: str
+        :type node: dict
+        :type container_id: int
+        :type timeout: int
+        :type json_out: bool
+        :raises SSHException: If cannot open connection for VAT.
+        :raises SSHTimeout: If VAT execution is timed out.
+        :raises RuntimeError: If VAT script execution fails.
+        """
+        ssh = SSH()
+        try:
+            ssh.connect(node)
+        except:
+            raise SSHException("Cannot open SSH connection to execute VAT "
+                               "command(s) from vat script {name}"
+                               .format(name=vat_name))
+
+        basename = path.basename(path.normpath(vat_name))
+        remote_file_path = '/tmp/{basename}'.format(basename=basename)
+        ssh.scp(vat_name, remote_file_path)
+
+        cmd = "docker exec {container_id} {vat_bin} {json} in {vat_path} script".format(
+            container_id=container_id,
+            vat_bin=Constants.VAT_BIN_NAME,
+            json="json" if json_out is True else "",
+            vat_path='/mnt/host/{basename}'.format(basename=basename))
 
         try:
             ret_code, stdout, stderr = ssh.exec_command_sudo(cmd=cmd,
