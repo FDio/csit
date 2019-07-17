@@ -593,8 +593,12 @@ class LXC(ContainerEngine):
             else:
                 return
 
+        target_arch = 'arm64' \
+            if Topology.get_node_arch(self.container.node) == 'aarch64' \
+            else 'amd64'
+
         image = self.container.image if self.container.image else\
-            "-d ubuntu -r bionic -a amd64"
+            "-d ubuntu -r bionic -a {arch}".format(arch=target_arch)
 
         cmd = 'lxc-create -t download --name {c.name} -- {image} '\
             '--no-validate'.format(c=self.container, image=image)
@@ -786,8 +790,10 @@ class Docker(ContainerEngine):
                 return
 
         if not self.container.image:
-            setattr(self.container, 'image',
-                    Constants.DOCKER_SUT_IMAGE_UBUNTU)
+            img = Constants.DOCKER_SUT_IMAGE_UBUNTU_ARM \
+                if Topology.get_node_arch(self.container.node) == 'aarch64' \
+                else Constants.DOCKER_SUT_IMAGE_UBUNTU
+            setattr(self.container, 'image', img)
 
         cmd = 'docker pull {image}'.format(image=self.container.image)
 
@@ -795,6 +801,7 @@ class Docker(ContainerEngine):
         if int(ret) != 0:
             raise RuntimeError('Failed to create container {c.name}.'
                                .format(c=self.container))
+
         if self.container.cpuset_cpus:
             self._configure_cgroup('docker')
 

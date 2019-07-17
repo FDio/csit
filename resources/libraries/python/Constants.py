@@ -73,6 +73,9 @@ class Constants(object):
     # Docker container SUT image
     DOCKER_SUT_IMAGE_UBUNTU = 'snergster/csit-sut:latest'
 
+    # Docker container arm SUT image
+    DOCKER_SUT_IMAGE_UBUNTU_ARM = 'snergster/csit-sut-arm-ubuntu18:latest'
+
     # TRex install version
     TREX_INSTALL_VERSION = '2.54'
 
