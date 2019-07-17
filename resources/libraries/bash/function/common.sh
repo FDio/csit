@@ -202,37 +202,41 @@ function common_dirs () {
 
     set -exuo pipefail
 
-    BASH_FUNCTION_DIR="$(dirname "$(readlink -e "${BASH_SOURCE[0]}")")" || {
-        die "Some error during localizing this source directory."
+    this_file=$(readlink -e "${BASH_SOURCE[0]}") || {
+        die "Some error during locating of this source file."
+    }
+    BASH_FUNCTION_DIR=$(dirname "${this_file}") || {
+        die "Some error during dirname call."
     }
     # Current working directory could be in a different repo, e.g. VPP.
     pushd "${BASH_FUNCTION_DIR}" || die "Pushd failed"
-    CSIT_DIR="$(readlink -e "$(git rev-parse --show-toplevel)")" || {
-        die "Readlink or git rev-parse failed."
+    relative_csit_dir=$(git rev-parse --show-toplevel) || {
+        die "Git rev-parse failed."
     }
+    CSIT_DIR=$(readlink -e "${relative_csit_dir}") || die "Readlink failed."
     popd || die "Popd failed."
-    TOPOLOGIES_DIR="$(readlink -e "${CSIT_DIR}/topologies/available")" || {
+    TOPOLOGIES_DIR=$(readlink -e "${CSIT_DIR}/topologies/available") || {
         die "Readlink failed."
     }
-    RESOURCES_DIR="$(readlink -e "${CSIT_DIR}/resources")" || {
+    RESOURCES_DIR=$(readlink -e "${CSIT_DIR}/resources") || {
         die "Readlink failed."
     }
-    TOOLS_DIR="$(readlink -e "${RESOURCES_DIR}/tools")" || {
+    TOOLS_DIR=$(readlink -e "${RESOURCES_DIR}/tools") || {
         die "Readlink failed."
     }
-    PYTHON_SCRIPTS_DIR="$(readlink -e "${TOOLS_DIR}/scripts")" || {
+    PYTHON_SCRIPTS_DIR=$(readlink -e "${TOOLS_DIR}/scripts") || {
         die "Readlink failed."
     }
 
-    ARCHIVE_DIR="$(readlink -f "${CSIT_DIR}/archive")" || {
+    ARCHIVE_DIR=$(readlink -f "${CSIT_DIR}/archive") || {
         die "Readlink failed."
     }
     mkdir -p "${ARCHIVE_DIR}" || die "Mkdir failed."
-    DOWNLOAD_DIR="$(readlink -f "${CSIT_DIR}/download_dir")" || {
+    DOWNLOAD_DIR=$(readlink -f "${CSIT_DIR}/download_dir") || {
         die "Readlink failed."
     }
     mkdir -p "${DOWNLOAD_DIR}" || die "Mkdir failed."
-    GENERATED_DIR="$(readlink -f "${CSIT_DIR}/generated")" || {
+    GENERATED_DIR=$(readlink -f "${CSIT_DIR}/generated") || {
         die "Readlink failed."
     }
     mkdir -p "${GENERATED_DIR}" || die "Mkdir failed."
@@ -619,6 +623,47 @@ function run_pybot () {
 }
 
 
+function select_os () {
+
+    # Populate variables related to local operating system.
+    #
+    # Also install any missing prerequisities CSIT tests need.
+    # TODO: Move the installation to a separate function?
+    #
+    # Variables set:
+    # - VPP_VER_FILE - Name of File in CSIT dir containing vpp stable version.
+    # - IMAGE_VER_FILE - Name of File in CSIT dir containing the image name.
+    # - PKG_SUFFIX - Suffix of OS package file name, "rpm" or "deb."
+
+    set -exuo pipefail
+
+    os_id=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g') || {
+        die "Get OS release failed."
+    }
+
+    case "${os_id}" in
+        "ubuntu"*)
+            IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
+            VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_BIONIC"
+            PKG_SUFFIX="deb"
+            # TODO: Remove when corresponding part of CSIT-1546 is addressed.
+            sudo apt-get update -y || die
+            sudo apt-get install -y sshpass || die
+            ;;
+        "centos"*)
+            IMAGE_VER_FILE="VPP_DEVICE_IMAGE_CENTOS"
+            VPP_VER_FILE="VPP_STABLE_VER_CENTOS"
+            PKG_SUFFIX="rpm"
+            # TODO: Remove when corresponding part of CSIT-1546 is addressed.
+            sudo yum install -y sshpass || die
+            ;;
+        *)
+            die "Unable to identify distro or os from ${OS}"
+            ;;
+    esac
+}
+
+
 function select_tags () {
 
     # Variables read:
@@ -778,82 +823,6 @@ function select_tags () {
 }
 
 
-function select_vpp_device_tags () {
-
-    # Variables read:
-    # - TEST_CODE - String affecting test selection, usually jenkins job name.
-    # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
-    #   Can be unset.
-    # Variables set:
-    # - TAGS - Array of processed tag boolean expressions.
-
-    set -exuo pipefail
-
-    case "${TEST_CODE}" in
-        # Select specific performance tests based on jenkins job type variable.
-        * )
-            if [[ -z "${TEST_TAG_STRING-}" ]]; then
-                # If nothing is specified, we will run pre-selected tests by
-                # following tags. Items of array will be concatenated by OR
-                # in Robot Framework.
-                test_tag_array=()
-            else
-                # If trigger contains tags, split them into array.
-                test_tag_array=(${TEST_TAG_STRING//:/ })
-            fi
-            ;;
-    esac
-
-    TAGS=()
-
-    # We will prefix with devicetest to prevent running other tests
-    # (e.g. Functional).
-    prefix="devicetestAND"
-    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
-        # Automatic prefixing for VPP jobs to limit testing.
-        prefix="${prefix}"
-    fi
-    for tag in "${test_tag_array[@]}"; do
-        if [[ ${tag} == "!"* ]]; then
-            # Exclude tags are not prefixed.
-            TAGS+=("${tag}")
-        else
-            TAGS+=("${prefix}${tag}")
-        fi
-    done
-}
-
-function select_os () {
-
-    # Variables set:
-    # - VPP_VER_FILE - Name of File in CSIT dir containing vpp stable version.
-    # - IMAGE_VER_FILE - Name of File in CSIT dir containing the image name.
-    # - PKG_SUFFIX - Suffix of OS package file name, "rpm" or "deb."
-
-    set -exuo pipefail
-
-    os_id=$(grep '^ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\"//g') || {
-        die "Get OS release failed."
-    }
-
-    case "${os_id}" in
-        "ubuntu"*)
-            IMAGE_VER_FILE="VPP_DEVICE_IMAGE_UBUNTU"
-            VPP_VER_FILE="VPP_STABLE_VER_UBUNTU_BIONIC"
-            PKG_SUFFIX="deb"
-            ;;
-        "centos"*)
-            IMAGE_VER_FILE="VPP_DEVICE_IMAGE_CENTOS"
-            VPP_VER_FILE="VPP_STABLE_VER_CENTOS"
-            PKG_SUFFIX="rpm"
-            ;;
-        *)
-            die "Unable to identify distro or os from ${OS}"
-            ;;
-    esac
-}
-
-
 function select_topology () {
 
     # Variables read:
@@ -916,6 +885,51 @@ function select_topology () {
     fi
 }
 
+
+function select_vpp_device_tags () {
+
+    # Variables read:
+    # - TEST_CODE - String affecting test selection, usually jenkins job name.
+    # - TEST_TAG_STRING - String selecting tags, from gerrit comment.
+    #   Can be unset.
+    # Variables set:
+    # - TAGS - Array of processed tag boolean expressions.
+
+    set -exuo pipefail
+
+    case "${TEST_CODE}" in
+        # Select specific performance tests based on jenkins job type variable.
+        * )
+            if [[ -z "${TEST_TAG_STRING-}" ]]; then
+                # If nothing is specified, we will run pre-selected tests by
+                # following tags. Items of array will be concatenated by OR
+                # in Robot Framework.
+                test_tag_array=()
+            else
+                # If trigger contains tags, split them into array.
+                test_tag_array=(${TEST_TAG_STRING//:/ })
+            fi
+            ;;
+    esac
+
+    TAGS=()
+
+    # We will prefix with devicetest to prevent running other tests
+    # (e.g. Functional).
+    prefix="devicetestAND"
+    if [[ "${TEST_CODE}" == "vpp-"* ]]; then
+        # Automatic prefixing for VPP jobs to limit testing.
+        prefix="${prefix}"
+    fi
+    for tag in "${test_tag_array[@]}"; do
+        if [[ ${tag} == "!"* ]]; then
+            # Exclude tags are not prefixed.
+            TAGS+=("${tag}")
+        else
+            TAGS+=("${prefix}${tag}")
+        fi
+    done
+}
 
 function untrap_and_unreserve_testbed () {
 
