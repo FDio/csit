@@ -33,7 +33,8 @@ class Trace:
 
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                PapiSocketExecutor.run_cli_cmd(node, f"show trace {maximum}")
+                PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+                    node, f"show trace {maximum}")
 
     @staticmethod
     def clear_packet_trace_on_all_duts(nodes):
@@ -44,4 +45,5 @@ class Trace:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                PapiSocketExecutor.run_cli_cmd(node, u"clear trace")
+                PapiSocketExecutor.run_cli_cmd_on_all_sockets(
+                    node, u"clear trace")
