@@ -145,7 +145,7 @@ class VppCounters(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
             node, 'show memory verbose api-segment stats-segment main-heap')
 
     @staticmethod

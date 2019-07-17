@@ -25,40 +25,59 @@
 # from other "functional" configuration. This will allow modularity of this
 # library
 | | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
-| | | ... | ELSE
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if2}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
-| | | ... | ELSE
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
-| | | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | ELSE
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
-| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if2}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
-| | | ... | ELSE
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
-| | | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
+| | | Set interfaces in path up on DUT | ${dut}
 | | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
+
+| Set interfaces in path up on DUT
+| | [Documentation]
+| | ... | *Set UP state on VPP interfaces in path on specified DUT node and
+| | ... | set maximal MTU.*
+| | ... |
+| | ... | *Arguments:*
+| | ... | - dut - DUT node on which to set the interfaces up.
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | Set interfaces in path up on DUT \| DUT1
+| | ...
+| | [Arguments] | ${dut}
+# TODO: Rework KW to set all interfaces in path UP and set MTU (including
+# software interfaces. Run KW at the start phase of VPP setup to split
+# from other "functional" configuration. This will allow modularity of this
+# library
+| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if1}
+| | Run Keyword If | '${if1_status}' == 'PASS'
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
+| | ... | ELSE
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
+| | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
+| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if2}
+| | Run Keyword If | '${if2_status}' == 'PASS'
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
+| | ... | ELSE
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
+| | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
+| | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if1}
+| | Run Keyword If | '${if1_status}' == 'PASS'
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
+| | ... | ELSE
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${${dut}_if2}
+| | Run Keyword If | '${if2_status}' == 'PASS'
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
+| | ... | ELSE
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
+| | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
 
 | Set single interfaces in path up
 | | [Documentation]

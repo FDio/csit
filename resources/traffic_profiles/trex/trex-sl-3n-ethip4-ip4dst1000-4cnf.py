@@ -18,10 +18,10 @@ Stream profile:
  - Packet: ETH / IP /
  - Direction 0 --> 1:
    - Source IP address range:      10.0.0.1
-   - Destination IP address range: 20.0.0.0 - 20.0.3.231
+   - Destination IP address range: 20.0.0.0 - 20.0.1.143
  - Direction 1 --> 0:
    - Source IP address range:      20.0.0.1
-   - Destination IP address range: 10.0.0.0 - 10.0.3.231
+   - Destination IP address range: 10.0.0.0 - 10.0.1.143
 """
 
 from trex.stl.api import *
@@ -36,8 +36,11 @@ class TrafficStreams(TrafficStreamsBaseClass):
 
         super(TrafficStreamsBaseClass, self).__init__()
 
-        self.p2_dst_start_mac = '02:02:00:00:00:00'
-        self.p2_dst_end_mac = '02:02:00:00:00:03'
+        self.p1_dst_start_mac = '02:02:00:00:12:00'
+        self.p1_dst_end_mac = '02:02:00:00:12:03'
+
+        self.p2_dst_start_mac = '02:02:00:00:02:00'
+        self.p2_dst_end_mac = '02:02:00:00:02:03'
 
         # IPs used in packet headers.
         self.p1_src_start_ip = '10.0.0.1'
@@ -58,7 +61,7 @@ class TrafficStreams(TrafficStreamsBaseClass):
         """
 
         # Direction 0 --> 1
-        base_pkt_a = (Ether() /
+        base_pkt_a = (Ether(dst=self.p1_dst_start_mac) /
                       IP(src=self.p1_src_start_ip,
                          dst=self.p1_dst_start_ip,
                          proto=61))
@@ -69,7 +72,12 @@ class TrafficStreams(TrafficStreamsBaseClass):
                          proto=61))
 
         # Direction 0 --> 1
-        vm1 = STLScVmRaw([STLVmFlowVar(name="dst",
+        vm1 = STLScVmRaw([STLVmFlowVar(name="mac_dst",
+                                       min_value=0,
+                                       max_value=3,
+                                       size=1, op="inc"),
+                          STLVmWrFlowVar(fv_name="mac_dst", pkt_offset=5),
+                          STLVmFlowVar(name="dst",
                                        min_value=self.p1_dst_start_ip,
                                        max_value=self.p1_dst_end_ip,
                                        size=4, op="inc"),
