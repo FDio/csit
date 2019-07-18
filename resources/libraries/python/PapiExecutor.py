@@ -33,6 +33,7 @@ from resources.libraries.python.PythonThree import raise_from
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
+from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
 
 __all__ = ["PapiExecutor", "PapiSocketExecutor"]
@@ -66,6 +67,7 @@ def dictize(obj):
     new_get = lambda self, key: dictize(old_get(self, key))
     ret.__getitem__ = new_get
     return ret
+
 
 class PapiSocketExecutor(object):
     """Methods for executing VPP Python API commands on forwarded socket.
@@ -126,6 +128,8 @@ class PapiSocketExecutor(object):
 
     # Class cache for reuse between instances.
     cached_vpp_instance = None
+    api_json_directory = None
+    crc_checker_instance = None
 
     def __init__(self, node, remote_vpp_socket="/run/vpp-api.sock"):
         """Store the given arguments, declare managed variables.
@@ -143,6 +147,20 @@ class PapiSocketExecutor(object):
         self._temp_dir = None
         self._ssh_control_socket = None
         self._local_vpp_socket = None
+
+    @property
+    def crc_checker(self):
+        """Return the cached instance or create new one from directory.
+
+        It is assumed self.api_json_directory is set, as a class variable.
+
+        :returns: Cached or newly created instance aware of .api.json content.
+        :rtype: VppApiCrc.VppApiCrcChecker
+        """
+        cls = self.__class__
+        if cls.crc_checker_instance is None:
+            cls.crc_checker_instance = VppApiCrcChecker(cls.api_json_directory)
+        return cls.crc_checker_instance
 
     @property
     def vpp_instance(self):
@@ -183,13 +201,17 @@ class PapiSocketExecutor(object):
             exec_cmd_no_error(node, ["bash", "-c", "'" + inner_cmd + "'"])
             scp_node(node, tmp_dir + "/papi.txz", "/tmp/papi.txz", get=True)
             run(["tar", "xf", tmp_dir + "/papi.txz", "-C", tmp_dir])
+            cls.api_json_directory = tmp_dir + "/usr/share/vpp/api"
+            # Perform initial checks before .api.json files are gone,
+            # by accessing the property (which also creates its instance).
+            self.crc_checker
             # When present locally, we finally can find the installation path.
             package_path = glob.glob(tmp_dir + installed_papi_glob)[0]
             # Package path has to be one level above the vpp_papi directory.
             package_path = package_path.rsplit('/', 1)[0]
             sys.path.append(package_path)
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
-            vpp_class.apidir = tmp_dir + "/usr/share/vpp/api"
+            vpp_class.apidir = cls.api_json_directory
             # We need to create instance before removing from sys.path.
             cls.cached_vpp_instance = vpp_class(
                 use_socket=True, server_address="TBD", async_thread=False,
@@ -315,6 +337,14 @@ class PapiSocketExecutor(object):
         be repeated in kwargs.
         Unless disabled, new entry to papi history is also added at this point.
 
+        Any pending conflicts from .api.json processing are raised.
+        Then the command name is checked for known CRCs.
+        Unsupported commands raise an exception, as CSIT change
+        should not start using messages without making sure which CRCs
+        are supported.
+        Each CRC issue is raised only once, so subsequent tests
+        can raise other issues.
+
         :param csit_papi_command: VPP API command.
         :param history: Enable/disable adding command to PAPI command history.
         :param kwargs: Optional key-value arguments.
@@ -323,10 +353,13 @@ class PapiSocketExecutor(object):
         :type kwargs: dict
         :returns: self, so that method chaining is possible.
         :rtype: PapiSocketExecutor
+        :raises RuntimeError: If unverified or conflicting CRC is encountered.
         """
+        self.crc_checker.report_initial_conflicts()
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
+        self.crc_checker.check_api_name(csit_papi_command)
         self._api_command_list.append(
             dict(api_name=csit_papi_command, api_args=kwargs))
         return self
@@ -486,6 +519,7 @@ class PapiSocketExecutor(object):
             if not isinstance(reply, list):
                 reply = [reply]
             for item in reply:
+                self.crc_checker.check_api_name(item.__class__.__name__)
                 dict_item = dictize(item)
                 if "retval" in dict_item.keys():
                     # *_details messages do not contain retval.
