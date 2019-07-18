@@ -161,10 +161,12 @@ class VppApiCrcChecker(object):
         if new_crcs:
             # Some collections recognized the CRC.
             self._crcs = new_crcs
+            print "Pass:", api_name, crc
             return
         # No new_crcs means some colections knew the api_name,
         # but CRC does not match any. This has to be reported.
         self._reported[api_name] = crc
+        print "Fail:", api_name, crc
 
     def _check_dir(self, directory):
         """Parse every .api.json found under directory, remember conflicts.
@@ -180,8 +182,11 @@ class VppApiCrcChecker(object):
         :param directory: Root directory of the search for .api.json files.
         :type directory: str
         """
+        print "directory", directory
         for root, _, files in os.walk(directory):
+            print "root", root
             for filename in files:
+                print "filename", filename
                 if not filename.endswith(".api.json"):
                     continue
                 with open(root + '/' + filename, "r") as file_in:
