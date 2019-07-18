@@ -18,6 +18,6 @@
 
 - name: Compile DPDK release
   become: yes
-  command: 'make install T={{ ansible_machine }}-native-linuxapp-gcc DESTDIR={{ dpdk.target_dir }}/{{ dpdk.version }} chdir={{ dpdk.target_dir }}/{{ dpdk.version }}'
+  command: 'make install T={{ dpdk.build_targets[ansible_machine] }}-linuxapp-gcc DESTDIR={{ dpdk.target_dir }}/{{ dpdk.version }} chdir={{ dpdk.target_dir }}/{{ dpdk.version }}'
   when: 'linux__dpdk_extracted'
   tags: install-dpdk

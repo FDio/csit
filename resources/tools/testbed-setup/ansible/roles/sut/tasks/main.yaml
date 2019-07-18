@@ -5,10 +5,6 @@
   include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
   tags: [ install-csit-dependencies, install-kernel-image ]
 
-- name: Taishan aarch64 specific
-  import_tasks: taishan_workaround.yaml
-  when: taishan_workaround is defined
-
 - name: Copy 80-vpp.conf
   file:
     src: '/dev/null'

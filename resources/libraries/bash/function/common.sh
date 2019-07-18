@@ -788,11 +788,9 @@ function select_tags () {
             test_tag_array+=("!drv_avf")
             ;;
         *"3n-tsh"*)
+            # 3n-tsh only has x520 NICs which don't work with AVF
+            test_tag_array+=("!drv_avf")
             test_tag_array+=("!ipsechw")
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
             ;;
         *"3n-hsw"*)
             # TODO: Introduce NOIOMMU version of AVF tests.
@@ -893,7 +891,7 @@ function select_topology () {
             ;;
         "3n_tsh")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_tsh*.yaml )
-            TOPOLOGIES_TAGS="3_node_*_link_topo"
+            TOPOLOGIES_TAGS="3_node_single_link_topo"
             ;;
         *)
             # No falling back to 3n_hsw default, that should have been done
