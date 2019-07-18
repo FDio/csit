@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "9f6ff529_d2968915",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-07-18T06:44:38Z",
+      "side": 1,
+      "message": "Please, rebase your patch and use PapiSocketExecutor instead of PapiExecutor.",
+      "range": {
+        "startLine": 16,
+        "startChar": 52,
+        "endLine": 16,
+        "endChar": 64
+      },
+      "revId": "1a197287bf81b4ca1ebee5657730947e740ff2b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3720abf4_e1d0be34",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-07-18T06:44:38Z",
+      "side": 1,
+      "message": "Please, use named arguments in string formatting:\n\u0027... ifc {ifc}\u0027.format(ifc\u003dinterface)\n\n- check everywhere",
+      "range": {
+        "startLine": 48,
+        "startChar": 50,
+        "endLine": 48,
+        "endChar": 75
+      },
+      "revId": "1a197287bf81b4ca1ebee5657730947e740ff2b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3ff6f6a_5aeb5ab9",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 6
