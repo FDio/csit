@@ -161,10 +161,12 @@ class VppApiCrcChecker(object):
         if new_crcs:
             # Some collections recognized the CRC.
             self._crcs = new_crcs
+            print "Pass: {n} {c}".format(n=api_name, c=crc)
             return
         # No new_crcs means some colections knew the api_name,
         # but CRC does not match any. This has to be reported.
         self._reported[api_name] = crc
+        print "Fail: {n} {c}".format(n=api_name, c=crc)
 
     def _check_dir(self, directory):
         """Parse every .api.json found under directory, remember conflicts.
