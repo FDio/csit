@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bedb844f_fd12850e",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-18T15:07:06Z",
+      "side": 1,
+      "message": "Write to stderr and also copy output into a *.log file to get archived.",
+      "range": {
+        "startLine": 68,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 12
+      },
+      "revId": "7d9675b7600ca99fb533ae454485e510ad492ff1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
