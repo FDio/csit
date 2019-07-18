@@ -191,8 +191,11 @@ class VppApiCrcChecker(object):
         :param directory: Root directory of the search for .api.json files.
         :type directory: str
         """
+        print "directory", directory
         for root, _, files in os.walk(directory):
+            print "root", root
             for filename in files:
+                print "filename", filename
                 if not filename.endswith(".api.json"):
                     continue
                 with open(root + '/' + filename, "r") as file_in:
