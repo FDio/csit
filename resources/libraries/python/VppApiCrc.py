@@ -155,6 +155,7 @@ class VppApiCrcChecker(object):
         :type api_name: str
         :type crc: str or unicode
         """
+        logger.console("{n}_{c}".format(n=api_name, c=crc))
         # Regardless of the result, remember as found.
         self._found[api_name] = crc
         old_expected = self._expected
