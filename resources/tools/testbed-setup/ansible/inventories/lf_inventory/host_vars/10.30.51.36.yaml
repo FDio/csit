@@ -12,4 +12,4 @@ sysctl:
   vm:
     nr_hugepages: 4096
     max_map_count: 20000
-taishan_workaround: True
+cpu_microarchitecture: "taishan"
