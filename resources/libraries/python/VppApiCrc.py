@@ -155,6 +155,7 @@ class VppApiCrcChecker(object):
         :type api_name: str
         :type crc: str or unicode
         """
+        logger.console("{n}_{c}".format(n=api_name, c=crc))
         # Regardless of the result, remember as found.
         self._found[api_name] = crc
         old_expected = self._expected
@@ -190,8 +191,11 @@ class VppApiCrcChecker(object):
         :param directory: Root directory of the search for .api.json files.
         :type directory: str
         """
+        logger.console("directory {}".format(directory))
         for root, _, files in os.walk(directory):
+            logger.console("subdir {}".format(root))
             for filename in files:
+                logger.console("file {}".format(filename))
                 if not filename.endswith(".api.json"):
                     continue
                 with open(root + '/' + filename, "r") as file_in:
