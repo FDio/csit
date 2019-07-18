@@ -236,6 +236,7 @@ class VppApiCrcChecker(object):
         """
         if api_name in self._reported:
             return
+        logger.console("{n}_{c}".fomrat(n=api_name, c=crc)
         old_expected = self._expected
         new_expected = old_expected.copy()
         for collection_name, collection_dict in old_expected.items():
