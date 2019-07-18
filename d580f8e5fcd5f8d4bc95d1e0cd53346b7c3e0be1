@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8b85b9f8_d2fa55d5",
+        "filename": "resources/tools/integrated/check_crc.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-18T16:01:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e753308_f1f09222",
+      "range": {
+        "startLine": 48,
+        "startChar": 9,
+        "endLine": 48,
+        "endChar": 14
+      },
+      "revId": "d580f8e5fcd5f8d4bc95d1e0cd53346b7c3e0be1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "180eced1_862ad9a4",
         "filename": "resources/tools/integrated/check_crc.py",
         "patchSetId": 28
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-18T15:50:53Z",
       "side": 1,
       "message": "\"Please rebase the patch to see if that fixes the problem.\\n\"\n\"If that fails email csit-dev@lists.fd.io for a new\\n\"\n\"operational branch supporting the api changes.\\n\"",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 56
+      },
+      "revId": "d580f8e5fcd5f8d4bc95d1e0cd53346b7c3e0be1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "52be58e5_dbd4ef69",
+        "filename": "resources/tools/integrated/check_crc.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-18T16:01:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "180eced1_862ad9a4",
       "range": {
         "startLine": 51,
         "startChar": 0,
