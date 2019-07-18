@@ -468,16 +468,20 @@ class PapiSocketExecutor(object):
             api_name = command["api_name"]
             papi_fn = getattr(vpp_instance.api, api_name)
             try:
-                reply = papi_fn(**command["api_args"])
-            except IOError as err:
-                # Ocassionally an error happens, try reconnect.
-                logger.warn("Reconnect after error: {err!r}".format(err=err))
-                self.vpp_instance.disconnect()
-                # Testing showes immediate reconnect fails.
-                time.sleep(1)
-                self.vpp_instance.connect_sync("csit_socket")
-                logger.trace("Reconnected.")
-                reply = papi_fn(**command["api_args"])
+                try:
+                    reply = papi_fn(**command["api_args"])
+                except IOError as err:
+                    # Ocassionally an error happens, try reconnect.
+                    logger.warn("Reconnect after error: {err!r}".format(
+                        err=err))
+                    self.vpp_instance.disconnect()
+                    # Testing showes immediate reconnect fails.
+                    time.sleep(1)
+                    self.vpp_instance.connect_sync("csit_socket")
+                    logger.trace("Reconnected.")
+                    reply = papi_fn(**command["api_args"])
+            except (AttributeError, IOError) as err:
+                raise_from(AssertionError(err_msg), err, level="INFO")
             # *_dump commands return list of objects, convert, ordinary reply.
             if not isinstance(reply, list):
                 reply = [reply]
