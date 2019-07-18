@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f2994f32_6c24c7db",
+        "filename": "resources/tools/integrated/check_crc.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-18T16:01:29Z",
+      "side": 1,
+      "message": "I am going to wait for this, as missing messages detection is a must to really avoid csit breakage.",
+      "range": {
+        "startLine": 36,
+        "startChar": 62,
+        "endLine": 36,
+        "endChar": 67
+      },
+      "revId": "d7f8b86ba27bb4829dc4a97f6bf25660351313d5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
