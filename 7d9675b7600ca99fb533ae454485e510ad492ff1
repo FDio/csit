@@ -91,6 +91,30 @@
       "revId": "7d9675b7600ca99fb533ae454485e510ad492ff1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70f4085f_39918520",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-18T15:32:41Z",
+      "side": 1,
+      "message": "\u003e Something failed\n\nThe expression in line 70. See: https://unix.stackexchange.com/a/63306",
+      "parentUuid": "c1500364_80678414",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 4
+      },
+      "revId": "7d9675b7600ca99fb533ae454485e510ad492ff1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
