@@ -15,3 +15,4 @@ sysctl:
 
 inventory_ipmi_hostname: '10.30.50.45'
 cobbler_profile: 'ubuntu-18.04.2-server-x86_64'
+cpu_microarchitecture: "skylake"
