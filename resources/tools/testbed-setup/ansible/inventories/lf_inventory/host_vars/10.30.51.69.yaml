@@ -5,3 +5,4 @@ hostname: "s27-t13-sut1"
 vfs_data_file: "csit-initialize-vfs-tx2.sh"
 grub:
   nr_hugepages: 57344
+cpu_microarchitecture: "thunderx2"
