@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "68db6912_77641f55",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-18T15:14:52Z",
+      "side": 1,
+      "message": "For some reason, -x got applied anyway.\nYou probably need an explicit +x to supress output.",
+      "range": {
+        "startLine": 16,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 8
+      },
+      "revId": "7d9675b7600ca99fb533ae454485e510ad492ff1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bedb844f_fd12850e",
         "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
         "patchSetId": 5
@@ -18,6 +41,52 @@
         "startChar": 8,
         "endLine": 68,
         "endChar": 12
+      },
+      "revId": "7d9675b7600ca99fb533ae454485e510ad492ff1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98a485ff_5f2fd6d3",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-18T15:14:52Z",
+      "side": 1,
+      "message": "Only increase on actual failure.",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 70,
+        "endChar": 20
+      },
+      "revId": "7d9675b7600ca99fb533ae454485e510ad492ff1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1500364_80678414",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-18T15:14:52Z",
+      "side": 1,
+      "message": "Something failed, -e skipped all outputs below.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 4
       },
       "revId": "7d9675b7600ca99fb533ae454485e510ad492ff1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
