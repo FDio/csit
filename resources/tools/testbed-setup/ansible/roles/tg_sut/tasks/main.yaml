@@ -7,9 +7,9 @@
 - name: Machine specifics
   include_tasks: '{{ ansible_machine }}.yaml'
 
-- name: skylake specific
+- name: Skylake specific
   import_tasks: skylake.yaml
-  when: ("skylake" in groups) and inventory_hostname in groups['skylake']
+  when: cpu_microarchitecture == "skylake"
 
 - name: Copy netplan network config file
   template:
@@ -53,29 +53,7 @@
     enabled: 'no'
   tags: set-ondemand
 
-- name: Install CSIT PIP requirements
-  pip:
-    name:
-      - 'docopt==0.6.2'
-      - 'ecdsa==0.13'
-      - 'enum34==1.1.2'
-      - 'ipaddress==1.0.16'
-      - 'paramiko==1.16.0'
-      - 'pexpect==4.6.0'
-      - 'pycrypto==2.6.1'
-      - 'pykwalify==1.5.0'
-      - 'pypcap==1.1.5'
-      - 'python-dateutil==2.4.2'
-      - 'PyYAML==3.11'
-      - 'requests==2.9.1'
-      - 'robotframework==2.9.2'
-      - 'scapy==2.3.1'
-      - 'scp==0.10.2'
-      - 'six==1.12.0'
-      - 'dill==0.2.8.2'
-      - 'numpy==1.14.5'
-      - 'scipy==1.1.0'
-  tags: install-pip
+  when: ansible_machine == 'x86_64'
 
 - name: Install VPP PIP requirements
   pip:

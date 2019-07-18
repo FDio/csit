@@ -47,6 +47,9 @@ dpdk:
   target_dir: '/opt'
   version: 'dpdk-19.02'
   url: 'https://fast.dpdk.org/rel'
+  build_targets:
+    aarch64: "arm64-armv8a"
+    x86_64: "x86_64-native"
 
 # Calibration settings.
 jitter:

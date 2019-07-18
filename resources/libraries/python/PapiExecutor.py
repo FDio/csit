@@ -193,7 +193,7 @@ class PapiSocketExecutor(object):
             # We need to create instance before removing from sys.path.
             cls.cached_vpp_instance = vpp_class(
                 use_socket=True, server_address="TBD", async_thread=False,
-                read_timeout=6, logger=FilteredLogger(logger, "INFO"))
+                read_timeout=14, logger=FilteredLogger(logger, "INFO"))
             # Cannot use loglevel parameter, robot.api.logger lacks support.
             # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
         finally:
