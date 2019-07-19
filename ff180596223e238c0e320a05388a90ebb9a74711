@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0cb07d53_177404f5",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 730,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-19T12:18:54Z",
+      "side": 1,
+      "message": "I always feel safer when the sed \"program\" is enclosed in single quotes, but that is tricky to combine with variable substitution.",
+      "range": {
+        "startLine": 730,
+        "startChar": 25,
+        "endLine": 730,
+        "endChar": 26
+      },
+      "revId": "ff180596223e238c0e320a05388a90ebb9a74711",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
