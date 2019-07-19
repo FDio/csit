@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f3e919e1_6d61e676",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-19T07:29:43Z",
+      "side": 1,
+      "message": "I have changed the class name from \"PapiExecutor\" to \"PapiSocketExecutor\"",
+      "parentUuid": "9f6ff529_d2968915",
+      "range": {
+        "startLine": 16,
+        "startChar": 52,
+        "endLine": 16,
+        "endChar": 64
+      },
+      "revId": "1a197287bf81b4ca1ebee5657730947e740ff2b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3720abf4_e1d0be34",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-18T06:44:38Z",
       "side": 1,
       "message": "Please, use named arguments in string formatting:\n\u0027... ifc {ifc}\u0027.format(ifc\u003dinterface)\n\n- check everywhere",
+      "range": {
+        "startLine": 48,
+        "startChar": 50,
+        "endLine": 48,
+        "endChar": 75
+      },
+      "revId": "1a197287bf81b4ca1ebee5657730947e740ff2b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "200bcc11_056575a4",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-19T07:29:43Z",
+      "side": 1,
+      "message": "Restructured the message as below,\n\nerr_msg \u003d \u0027Failed to add COP whitelist on ifc {ifc}\u0027\\\n           .format(ifc\u003dinterface)",
+      "parentUuid": "3720abf4_e1d0be34",
       "range": {
         "startLine": 48,
         "startChar": 50,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "c9cc0398_054c2f5b",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-19T07:29:43Z",
+      "side": 1,
+      "message": "Made a change as below,\n\nfib_id\u003dint(fib_id)",
+      "parentUuid": "a3ff6f6a_5aeb5ab9",
+      "range": {
+        "startLine": 51,
+        "startChar": 19,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "1a197287bf81b4ca1ebee5657730947e740ff2b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "247d262f_3859724a",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 6
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "3f9d0d0c_c24caf15",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-19T07:29:43Z",
+      "side": 1,
+      "message": "Yes, Had renamed \"PapiExecutor\" to \"PapiSocketExecutor\"",
+      "parentUuid": "247d262f_3859724a",
+      "range": {
+        "startLine": 57,
+        "startChar": 13,
+        "endLine": 57,
+        "endChar": 25
+      },
+      "revId": "1a197287bf81b4ca1ebee5657730947e740ff2b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c3b849ee_fb57b53a",
         "filename": "resources/libraries/python/Cop.py",
         "patchSetId": 6
@@ -105,6 +201,30 @@
       "writtenOn": "2019-07-17T12:08:47Z",
       "side": 1,
       "message": "It would be slightly better if this was called enable_disable, but good enough.",
+      "range": {
+        "startLine": 74,
+        "startChar": 16,
+        "endLine": 74,
+        "endChar": 21
+      },
+      "revId": "1a197287bf81b4ca1ebee5657730947e740ff2b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec2b1516_3f80651a",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-19T07:29:43Z",
+      "side": 1,
+      "message": "Yes, I agree\n\n            if state \u003d\u003d \u0027enable\u0027:\n                enable_disable \u003d 1\n            else:\n                enable_disable \u003d 0",
+      "parentUuid": "c3b849ee_fb57b53a",
       "range": {
         "startLine": 74,
         "startChar": 16,
