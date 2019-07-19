@@ -601,10 +601,10 @@
 | | Suppress ICMPv6 router advertisement message | ${nodes}
 | | ...
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut1} | 2001:2::0 | 24 | gateway=2001:3::2
+| | ... | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=2001:3::2
 | | ... | interface=${dut1_if2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Vpp Route Add | ${dut2} | 2001:1::0 | 24 | gateway=2001:3::1
+| | ... | Vpp Route Add | ${dut2} | 2001:1::0 | 64 | gateway=2001:3::1
 | | ... | interface=${dut2_if1}
 | | ...
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
