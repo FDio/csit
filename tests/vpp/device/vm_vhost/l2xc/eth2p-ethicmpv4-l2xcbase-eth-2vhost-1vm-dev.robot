@@ -77,6 +77,6 @@
 | | ... | ${tg_if1} | ${tg_if2}
 
 *** Test Cases ***
-| tc01-eth2p-ethicmpv4-l2xcbase-eth-2vhost-1vm-dev
+| tc01-64B-ethicmpv4-l2xcbase-eth-2vhost-1vm-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

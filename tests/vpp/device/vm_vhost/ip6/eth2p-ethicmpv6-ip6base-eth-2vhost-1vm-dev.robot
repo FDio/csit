@@ -80,6 +80,6 @@
 
 
 *** Test Cases ***
-| tc01-eth2p-ethicmpv6-ip6base-eth-2vhost-1vm-dev
+| tc01-64B-ethicmpv6-ip6base-eth-2vhost-1vm-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}
