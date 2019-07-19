@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2016-2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,7 +13,11 @@
 
 """Library to set up Lisp in topology."""
 
+from ipaddress import ip_address
+from robot.api import logger
+
 from resources.libraries.python.topology import NodeType
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.VatExecutor import VatExecutor
 
 
@@ -32,10 +36,21 @@ class LispStatus(object):
         :type node: dict
         :type state: str
         """
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/eth2p-ethip4lisp-ip4base-func.robot
+#         /csit/tests/vpp/func/ip4_tunnels/lisp/api-crud-lisp-func.robot
 
-        VatExecutor.cmd_from_template(node,
-                                      'lisp/lisp_status.vat',
-                                      state=state)
+        args = dict(is_en=0 if state == 'disable' else 1)
+
+        cmd = 'lisp_enable_disable'
+        err_msg = "Failed to set LISP status on host {host}".format(
+            host=node['host'])
+
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+
+#        VatExecutor.cmd_from_template(node,
+#                                      'lisp/lisp_status.vat',
+#                                      state=state)
 
 
 class LispRemoteMapping(object):
@@ -66,6 +81,9 @@ class LispRemoteMapping(object):
         :type rloc: str
         :type is_mac: bool
         """
+
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/eth2p-ethip4lisp-l2bdbasemaclrn-func.robot
+
         if is_mac:
             deid_prefix = ''
             seid_prefix = ''
@@ -101,6 +119,8 @@ class LispRemoteMapping(object):
         :type seid_prefix: int
         :type rloc: str
         """
+
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/eth2p-ethip4lispgpe-ip6base-func.robot
 
         VatExecutor.cmd_from_template(node,
                                       'lisp/del_lisp_remote_mapping.vat',
@@ -138,6 +158,9 @@ class LispAdjacency(object):
         :type seid_prefix: int
         :type is_mac: bool
         """
+
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/eth2p-ethip4lisp-ip4base-func.robot
+
         if is_mac:
             deid_prefix = ''
             seid_prefix = ''
@@ -171,6 +194,8 @@ class LispAdjacency(object):
         :type seid_prefix: int
         """
 
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/eth2p-ethip4lispgpe-ip6base-func.robot
+
         VatExecutor.cmd_from_template(node,
                                       'lisp/del_lisp_adjacency.vat',
                                       vni=vni,
@@ -195,30 +220,45 @@ class LispGpeStatus(object):
         :type node: dict
         :type state: str
         """
+# used in /csit/tests/honeycomb/func/mgmt-cfg-lispgpe-apihc-apivat-func.robot
+#         /csit/tests/vpp/func/ip4_tunnels/lisp/eth2p-ethip4lispgpe-ip4base-func.robot
+#         /csit/tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr.robot
 
-        VatExecutor.cmd_from_template(node, 'lisp/lisp_gpe_status.vat',
-                                      state=state)
+        args = dict(is_en=0 if state == 'disable' else 1)
+
+        cmd = 'gpe_enable_disable'
+        err_msg = "Failed to set LISP GPE status on host {host}".format(
+            host=node['host'])
+
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
 
-class LispGpeIface(object):
-    """Class for Lisp gpe interface API."""
+#        VatExecutor.cmd_from_template(node, 'lisp/lisp_gpe_status.vat',
+#                                      state=state)
 
-    def __init__(self):
-        pass
 
-    @staticmethod
-    def vpp_lisp_gpe_iface(node, state):
-        """Set lisp gpe interface up or down on the VPP node in topology.
-
-        :param node: VPP node.
-        :param state: State of the gpe iface, up or down.
-        :type node: dict
-        :type state: str
-        """
-
-        VatExecutor.cmd_from_template(node, 'lisp/lisp_gpe_iface.vat',
-                                      state=state)
-
+# class LispGpeIface(object):
+#     """Class for Lisp gpe interface API."""
+#
+#     def __init__(self):
+#         pass
+#
+#     @staticmethod
+#     def vpp_lisp_gpe_iface(node, state):
+#         """Set lisp gpe interface up or down on the VPP node in topology.
+#
+#         :param node: VPP node.
+#         :param state: State of the gpe iface, up or down.
+#         :type node: dict
+#         :type state: str
+#         """
+#
+# # not used in robot, used in lispsetup class
+#
+#         VatExecutor.cmd_from_template(node, 'lisp/lisp_gpe_iface.vat',
+#                                       state=state)
+#
 
 class LispGpeForwardEntry(object):
     """The functionality needed for these methods is not implemented in VPP
@@ -226,6 +266,8 @@ class LispGpeForwardEntry(object):
 
     TODO: Implement when VPP-334 is fixed.
     """
+
+# not used
 
     def __init__(self):
         pass
@@ -259,9 +301,23 @@ class LispMapResolver(object):
         :type map_resolver_ip: str
         """
 
-        VatExecutor.cmd_from_template(node,
-                                      'lisp/add_lisp_map_resolver.vat',
-                                      address=map_resolver_ip)
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/eth2p-ethip4lisp-l2bdbasemaclrn-func.robot
+
+        args = dict(is_add=1,
+                    is_ipv6=0 if ip_address(unicode(map_resolver_ip)).version == 4 else 1,
+                    ip_address=ip_address(unicode(map_resolver_ip)).packed)
+
+        cmd = 'lisp_add_del_map_resolver'
+        err_msg = "Failed to add map resolver on host {host}".format(
+            host=node['host'])
+
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+
+
+#        VatExecutor.cmd_from_template(node,
+#                                      'lisp/add_lisp_map_resolver.vat',
+#                                      address=map_resolver_ip)
 
     @staticmethod
     def vpp_del_map_resolver(node, map_resolver_ip):
@@ -273,9 +329,22 @@ class LispMapResolver(object):
         :type map_resolver_ip: str
         """
 
-        VatExecutor.cmd_from_template(node,
-                                      'lisp/del_lisp_map_resolver.vat',
-                                      address=map_resolver_ip)
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/api-crud-lisp-func.robot
+
+        args = dict(is_add=0,
+                    is_ipv6=0 if ip_address(unicode(map_resolver_ip)).version == 4 else 1,
+                    ip_address=ip_address(unicode(map_resolver_ip)).packed)
+
+        cmd = 'lisp_add_del_map_resolver'
+        err_msg = "Failed to delete map resolver on host {host}".format(
+            host=node['host'])
+
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+
+#        VatExecutor.cmd_from_template(node,
+#                                      'lisp/del_lisp_map_resolver.vat',
+#                                      address=map_resolver_ip)
 
 
 class LispLocalEid(object):
@@ -300,6 +369,8 @@ class LispLocalEid(object):
         :type eid: str
         :type prefix_len: int
         """
+
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/eth2p-ethip4lisp-ip4base-func.robot
 
         if prefix_len is not None:
             VatExecutor.cmd_from_template(node,
@@ -331,6 +402,8 @@ class LispLocalEid(object):
         :type eid: str
         :type prefix_len: int
         """
+
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/api-crud-lisp-func.robot
 
         if prefix_len is not None:
             VatExecutor.cmd_from_template(node,
@@ -369,12 +442,44 @@ class LispLocator(object):
         :type weight: int
         """
 
-        VatExecutor.cmd_from_template(node,
-                                      'lisp/add_lisp_locator.vat',
-                                      lisp_name=locator_name,
-                                      sw_if_index=sw_if_index,
-                                      priority=priority,
-                                      weight=weight)
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/eth2p-ethip4lisp-l2bdbasemaclrn-func.robot
+#         Data
+#         Fields
+
+#         u8
+#         is_add
+#
+#         u8
+#         locator_set_name[64]
+#
+#         u32
+#         sw_if_index
+#
+#         u8
+#         priority
+#
+#         u8
+#         weight
+
+        args = dict(is_add=1,
+                    locator_set_name=locator_name,
+                    sw_if_index=sw_if_index,
+                    priority=priority,
+                    weight=weight)
+
+        cmd = 'lisp_add_del_locator'
+        err_msg = "Failed to add locator on host {host}".format(
+            host=node['host'])
+
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+
+        # VatExecutor.cmd_from_template(node,
+        #                               'lisp/add_lisp_locator.vat',
+        #                               lisp_name=locator_name,
+        #                               sw_if_index=sw_if_index,
+        #                               priority=priority,
+        #                               weight=weight)
 
     @staticmethod
     def vpp_del_lisp_locator(node, locator_name, sw_if_index, priority, weight):
@@ -392,12 +497,27 @@ class LispLocator(object):
         :type weight: int
         """
 
-        VatExecutor.cmd_from_template(node,
-                                      'lisp/del_lisp_locator.vat',
-                                      lisp_name=locator_name,
-                                      sw_if_index=sw_if_index,
-                                      priority=priority,
-                                      weight=weight)
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/api-crud-lisp-func.robot
+
+        args = dict(is_add=0,
+                    locator_set_name=locator_name,
+                    sw_if_index=sw_if_index,
+                    priority=priority,
+                    weight=weight)
+
+        cmd = 'lisp_add_del_locator'
+        err_msg = "Failed to delete locator on host {host}".format(
+            host=node['host'])
+
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+
+        # VatExecutor.cmd_from_template(node,
+        #                               'lisp/del_lisp_locator.vat',
+        #                               lisp_name=locator_name,
+        #                               sw_if_index=sw_if_index,
+        #                               priority=priority,
+        #                               weight=weight)
 
 
 class LispLocatorSet(object):
@@ -416,9 +536,24 @@ class LispLocatorSet(object):
         :type name: str
         """
 
-        VatExecutor.cmd_from_template(node,
-                                      'lisp/add_lisp_locator_set.vat',
-                                      lisp_name=name)
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/eth2p-ethip4lisp-l2bdbasemaclrn-func.robot
+
+        args = dict(is_add=1,
+                    locator_set_name=name,
+                    locator_num=0,
+                    locators=[])
+
+        cmd = 'lisp_add_del_locator_set'
+        err_msg = "Failed to add locator set on host {host}".format(
+            host=node['host'])
+
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+
+
+       # VatExecutor.cmd_from_template(node,
+       #                               'lisp/add_lisp_locator_set.vat',
+       #                               lisp_name=name)
 
     @staticmethod
     def vpp_del_lisp_locator_set(node, name):
@@ -430,9 +565,23 @@ class LispLocatorSet(object):
         :type name: str
         """
 
-        VatExecutor.cmd_from_template(node,
-                                      'lisp/del_lisp_locator_set.vat',
-                                      lisp_name=name)
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/api-crud-lisp-func.robot
+
+        args = dict(is_add=0,
+                    locator_set_name=name,
+                    locator_num=0,
+                    locators=[])
+
+        cmd = 'lisp_add_del_locator_set'
+        err_msg = "Failed to delete locator set on host {host}".format(
+            host=node['host'])
+
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+
+        # VatExecutor.cmd_from_template(node,
+        #                               'lisp/del_lisp_locator_set.vat',
+        #                               lisp_name=name)
 
 
 class LispSetup(object):
@@ -454,6 +603,8 @@ class LispSetup(object):
         if node['type'] != NodeType.DUT:
             raise ValueError('Node is not DUT')
 
+        logger.info(locator_set_list)
+
         lisp_locator = LispLocator()
         lisp_locator_set = LispLocatorSet()
         for locator_set in locator_set_list:
@@ -465,6 +616,11 @@ class LispSetup(object):
                 sw_if_index = locator.get('locator-index')
                 priority = locator.get('priority')
                 weight = locator.get('weight')
+                logger.info(node)
+                logger.info(locator_set_name)
+                logger.info(sw_if_index)
+                logger.info(priority)
+                logger.info(weight)
                 lisp_locator.vpp_add_lisp_locator(node,
                                                   locator_set_name,
                                                   sw_if_index,
@@ -484,6 +640,8 @@ class LispSetup(object):
         if node['type'] != NodeType.DUT:
             raise ValueError('Lisp locator set, node is not DUT')
 
+        logger.info(locator_set_list)
+
         lisp_locator = LispLocator()
         lisp_locator_set = LispLocatorSet()
         for locator_set in locator_set_list:
@@ -493,6 +651,11 @@ class LispSetup(object):
                 sw_if_index = locator.get('locator-index')
                 priority = locator.get('priority')
                 weight = locator.get('weight')
+                logger.info(node)
+                logger.info(locator_set_name)
+                logger.info(sw_if_index)
+                logger.info(priority)
+                logger.info(weight)
                 lisp_locator.vpp_del_lisp_locator(node,
                                                   locator_set_name,
                                                   sw_if_index,
@@ -590,18 +753,18 @@ class LispSetup(object):
         for map_ip in map_resolver:
             lisp_map_res.vpp_del_map_resolver(node, map_ip.get('map resolver'))
 
-    @staticmethod
-    def vpp_lisp_gpe_interface_status(node, state):
-        """Set lisp gpe interface status on VPP node in topology.
-
-        :param node: VPP node.
-        :param state: State of the gpe iface, up or down
-        :type node: dict
-        :type state: str
-        """
-
-        lgi = LispGpeIface()
-        lgi.vpp_lisp_gpe_iface(node, state)
+    # @staticmethod
+    # def vpp_lisp_gpe_interface_status(node, state):
+    #     """Set lisp gpe interface status on VPP node in topology.
+    #
+    #     :param node: VPP node.
+    #     :param state: State of the gpe iface, up or down
+    #     :type node: dict
+    #     :type state: str
+    #     """
+    #
+    #     lgi = LispGpeIface()
+    #     lgi.vpp_lisp_gpe_iface(node, state)
 
 
 class LispEidTableMap(object):
@@ -623,11 +786,50 @@ class LispEidTableMap(object):
         :type bd_id: int
         :type vrf: int
         """
+
+# used in /csit/tests/vpp/func/ip4_tunnels/lisp/eth2p-ethip4lisp-l2bdbasemaclrn-func.robot
+
+        # Data
+        # Fields
+        #
+        # u8
+        # is_add
+        #
+        # u32
+        # vni
+        #
+        # u32
+        # dp_table
+        #
+        # u8
+        # is_l2
+
         if bd_id:
-            bd_or_vrf = 'bd_index {}'.format(bd_id)
+            is_l2=1
+            dp_table=bd_id
         else:
-            bd_or_vrf = 'vrf {}'.format(vrf)
-        VatExecutor.cmd_from_template(node,
-                                      'lisp/lisp_eid_table_add_del_map.vat',
-                                      vni=vni,
-                                      bd_or_vrf=bd_or_vrf)
+            is_l2=0
+            dp_table=vrf
+
+        args = dict(is_add=1,
+                    vni=vni,
+                    dp_table=dp_table,
+                    is_l2=is_l2)
+
+        cmd = 'lisp_eid_table_add_del_map'
+        err_msg = "Failed to add eid table map on host {host}".format(
+            host=node['host'])
+
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
+
+
+
+        # if bd_id:
+        #     bd_or_vrf = 'bd_index {}'.format(bd_id)
+        # else:
+        #     bd_or_vrf = 'vrf {}'.format(vrf)
+        # VatExecutor.cmd_from_template(node,
+        #                               'lisp/lisp_eid_table_add_del_map.vat',
+        #                               vni=vni,
+        #                               bd_or_vrf=bd_or_vrf)
