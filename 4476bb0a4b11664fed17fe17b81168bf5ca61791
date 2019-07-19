@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f49b9f15_8c717902",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-19T10:49:27Z",
+      "side": 1,
+      "message": "Delete at the start, so local invocations do not accumulate.",
+      "range": {
+        "startLine": 92,
+        "startChar": 35,
+        "endLine": 92,
+        "endChar": 50
+      },
+      "revId": "4476bb0a4b11664fed17fe17b81168bf5ca61791",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
