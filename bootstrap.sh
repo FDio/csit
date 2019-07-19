@@ -103,7 +103,8 @@ VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("ip4_tunnels,l2bd" "ip4,ip6_tunnels,l2xc")
+#TEST_GROUPS=("ip6,ip4_tunnels,l2bd" "ip4,ip6_tunnels,l2xc")
+TEST_GROUPS=("ip4_tunnels" "ip6_tunnels")
 SUITE_PATH="tests.vpp.func"
 SKIP_PATCH="SKIP_PATCH"
 
