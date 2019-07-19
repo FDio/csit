@@ -99,6 +99,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv6 forwarding over SRv6 with encapsulation with '1' x SID 'with' decapsulation in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
+| | Fail | Just to trigger conditional parts of teardown.
 
 *** Test Cases ***
 | tc01-78B-1c-ethip6ip6-ip6base-srv6enc1sid-ndrpdr
