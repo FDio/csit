@@ -61,6 +61,8 @@
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize IPv6 forwarding in circular topology
+| | And Add Fib Table | ${dut1} | 1 | ipv6=${True}
+| | And Vpp Route Add | ${dut1} | 2002:1::0 | 64 | vrf=1 | local=${True}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip6 | 1
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
 | | Then Send packet and verify headers
