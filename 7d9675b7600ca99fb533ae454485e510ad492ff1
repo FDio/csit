@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "d6147716_e05953f2",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-19T05:47:22Z",
+      "side": 1,
+      "message": "Ack, will do in next patch, but first i need to find why it is not working like in my localhost",
+      "parentUuid": "bedb844f_fd12850e",
+      "range": {
+        "startLine": 68,
+        "startChar": 8,
+        "endLine": 68,
+        "endChar": 12
+      },
+      "revId": "7d9675b7600ca99fb533ae454485e510ad492ff1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "98a485ff_5f2fd6d3",
         "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
         "patchSetId": 5
@@ -106,6 +130,30 @@
       "side": 1,
       "message": "\u003e Something failed\n\nThe expression in line 70. See: https://unix.stackexchange.com/a/63306",
       "parentUuid": "c1500364_80678414",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 4
+      },
+      "revId": "7d9675b7600ca99fb533ae454485e510ad492ff1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7076ec4_1a93e69a",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-19T05:47:22Z",
+      "side": 1,
+      "message": "i will rewrite",
+      "parentUuid": "70f4085f_39918520",
       "range": {
         "startLine": 71,
         "startChar": 0,
