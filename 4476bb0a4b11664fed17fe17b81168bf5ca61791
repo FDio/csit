@@ -70,6 +70,30 @@
       "revId": "4476bb0a4b11664fed17fe17b81168bf5ca61791",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "62bda884_a4161c66",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-19T13:21:18Z",
+      "side": 1,
+      "message": "L91",
+      "parentUuid": "fd094614_62cbaa02",
+      "range": {
+        "startLine": 92,
+        "startChar": 35,
+        "endLine": 92,
+        "endChar": 50
+      },
+      "revId": "4476bb0a4b11664fed17fe17b81168bf5ca61791",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
