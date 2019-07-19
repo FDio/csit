@@ -52,6 +52,7 @@
 
 *** Test Cases ***
 | TC01: DUT1 and DUT2 route IPv6 bidirectionally over LISP GPE tunnel using physical interfaces
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG.
 | | ... | [Enc] Eth-IPv6-LISPGPE-IPv6-ICMPv6 on DUT1-DUT2, Eth-IPv6-ICMPv6 on\
