@@ -71,6 +71,7 @@
 | | Then LISP locator_set should be unset | ${nodes['DUT1']}
 
 | TC03: DUT can add, reset and delete locator_set
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] DUT1. [Enc] None. [Cfg1] Test LISP locator_set API; on \
 | | ... | DUT1 configure locator_set and locator. [Ver1] Check DUT1

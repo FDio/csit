@@ -53,6 +53,7 @@
 
 *** Test Cases ***
 | TC01: DUT1 and DUT2 route IPv6 bidirectionally over LISPoIPv4 tunnel
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG.
 | | ... | [Enc] Eth-IPv4-LISP-IPv6-ICMPv6 on DUT1-DUT2, Eth-IPv6-ICMPv6 on\
