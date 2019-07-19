@@ -109,7 +109,7 @@ for idx in "${!testcases_names[@]}"; do
         if [[ ! "${suites_names[idx]}" =~ ${r_rule} ]]; then
             msg=""
             msg+="${suites_dirs[idx]}/${suites_names[idx]} / "
-            msg+="${testcases_names[idx]} ${s_testc_rules[pass]} "
+            msg+="${testcases_names[idx]} ${s_suite_rules[pass]} "
             msg+="is not matching suite naming rule!"
             echo "${msg}" | tee -a "tc_naming.log" || die
             total_failed_su=$((total_failed_su + 1))
