@@ -22,6 +22,30 @@
       "revId": "2ac9968ba883c1a7c53b4ea6e8d7fcadfa59c0f0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6730527_2ecb6aa5",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-19T13:21:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "afbc43b8_87a74690",
+      "range": {
+        "startLine": 107,
+        "startChar": 22,
+        "endLine": 107,
+        "endChar": 27
+      },
+      "revId": "2ac9968ba883c1a7c53b4ea6e8d7fcadfa59c0f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
