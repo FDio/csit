@@ -727,6 +727,7 @@ function select_tags () {
             ;;
     esac
 
+    sed_nic_sub_cmd="sed s/\${default_nic}/${default_nic}/"
     # Tag file directory shorthand.
     tfd="${BASH_FUNCTION_DIR}"
     case "${TEST_CODE}" in
@@ -735,8 +736,8 @@ function select_tags () {
             readarray -t test_tag_array < "${tfd}/mlr-weekly.txt" || die
             ;;
         *"mrr-daily"* )
-            readarray -t test_tag_array < \
-                "${tfd}/mrr-daily-${FLAVOR}.txt" || die
+            readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
+                ${tfd}/mrr-daily-${FLAVOR}.txt) || die
             ;;
         *"mrr-weekly"* )
             readarray -t test_tag_array < "${tfd}/mrr-weekly.txt" || die
