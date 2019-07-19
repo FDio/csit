@@ -91,20 +91,6 @@
 | | ... | ${tg_node} | ${tg2_ip6o4} | ${tg1_ip6o4}
 | | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
-| | When Change LISP Configuration | ${dut1_node} | ${dut2_node}
-| | ... | ${dut1_to_dut2} | ${dut2_to_dut1} | ${dut1_to_dut2_mac}
-| | ... | ${dut2_to_dut1_mac} | ${dut1_to_dut2_ip6o4}
-| | ... | ${dut2_to_dut1_ip6o4_reconf} | ${dut_prefix6o4}
-| | ... | ${dut1_ip6o4_static_adjacency}
-| | ... | ${dut1_ip6o4_static_adjacency_reconf}
-| | Then Send packet and verify headers
-| | ... | ${tg_node} | ${tg1_ip6o4} | ${tg2_ip6o4}
-| | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
-| | ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
-| | And Send packet and verify headers
-| | ... | ${tg_node} | ${tg2_ip6o4} | ${tg1_ip6o4}
-| | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
-| | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
 
 *** Keywords ***
 | Add IP Neighbors
