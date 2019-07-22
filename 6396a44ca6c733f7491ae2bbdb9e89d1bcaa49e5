@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fb574841_af1f3324",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f9efb7a_4ffd19b2",
+      "range": {
+        "startLine": 210,
+        "startChar": 58,
+        "endLine": 210,
+        "endChar": 66
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "53eedf2a_3882964d",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-18T08:30:56Z",
       "side": 1,
       "message": "we are not doing this in bare metal",
+      "range": {
+        "startLine": 318,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 36
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "440f7675_daf6d849",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53eedf2a_3882964d",
       "range": {
         "startLine": 318,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "6224d312_e254aa49",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff03f871_c6477b55",
+      "range": {
+        "startLine": 362,
+        "startChar": 94,
+        "endLine": 362,
+        "endChar": 95
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44dae0e1_6c231d90",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 2
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "adc9a59b_f394ab2f",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44dae0e1_6c231d90",
+      "range": {
+        "startLine": 385,
+        "startChar": 22,
+        "endLine": 385,
+        "endChar": 69
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "39244172_4c2e6441",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 2
@@ -105,6 +201,30 @@
       "writtenOn": "2019-07-18T08:30:56Z",
       "side": 1,
       "message": "confusing , why not cnf +1 to make it even",
+      "range": {
+        "startLine": 1342,
+        "startChar": 92,
+        "endLine": 1342,
+        "endChar": 95
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04eb0df5_02e8f3ad",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39244172_4c2e6441",
       "range": {
         "startLine": 1342,
         "startChar": 92,
@@ -180,6 +300,30 @@
     },
     {
       "key": {
+        "uuid": "7afe4b8d_ca3b47c6",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9ea52a4_a72c801e",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 36
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "167beddc_b2a29a90",
         "filename": "resources/libraries/robot/performance/performance_configuration.robot",
         "patchSetId": 2
@@ -203,6 +347,30 @@
     },
     {
       "key": {
+        "uuid": "95a6423a_fcf3ffb4",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "167beddc_b2a29a90",
+      "range": {
+        "startLine": 61,
+        "startChar": 7,
+        "endLine": 61,
+        "endChar": 7
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2110d1b4_c3691cce",
         "filename": "resources/libraries/robot/shared/container.robot",
         "patchSetId": 2
@@ -214,6 +382,24 @@
       "writtenOn": "2019-07-18T08:30:56Z",
       "side": 1,
       "message": "\\|",
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4f5b7fa1_8df56101",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2110d1b4_c3691cce",
       "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -266,6 +452,54 @@
     },
     {
       "key": {
+        "uuid": "321a826b_ad2922ea",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff050f8f_073f1c84",
+      "range": {
+        "startLine": 380,
+        "startChar": 10,
+        "endLine": 380,
+        "endChar": 35
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a99ddf7d_5c13f912",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5681eb45_2734d61e",
+      "range": {
+        "startLine": 380,
+        "startChar": 38,
+        "endLine": 380,
+        "endChar": 46
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aaf39b2e_48208753",
         "filename": "resources/libraries/robot/shared/container.robot",
         "patchSetId": 2
@@ -277,6 +511,30 @@
       "writtenOn": "2019-07-18T08:30:56Z",
       "side": 1,
       "message": "no way, must be detected. look at our verify vpp functions ;including line below",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 44
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ec13969_9acf491e",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aaf39b2e_48208753",
       "range": {
         "startLine": 386,
         "startChar": 0,
@@ -306,6 +564,24 @@
     },
     {
       "key": {
+        "uuid": "5bea4627_c6c0d17f",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1386a2d6_e6af7ff3",
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0d9cc748_741ccc64",
         "filename": "resources/libraries/robot/shared/default.robot",
         "patchSetId": 2
@@ -317,6 +593,30 @@
       "writtenOn": "2019-07-18T08:30:56Z",
       "side": 1,
       "message": "remove not needed, container is exporting pid to parent DUT so the outer function will catch all vpp running no matter if container or not",
+      "range": {
+        "startLine": 531,
+        "startChar": 0,
+        "endLine": 545,
+        "endChar": 41
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d3b9d3a_c1e45bdc",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "In VPP-IPSec container testing, DUT1 and DUT2 are not symetric. Containers are not yet running on DUT2 when Apply Startup Configuration is called and therefore no VPP is running on DUT2 which ends up in raised exception.",
+      "parentUuid": "0d9cc748_741ccc64",
       "range": {
         "startLine": 531,
         "startChar": 0,
@@ -352,6 +652,30 @@
     },
     {
       "key": {
+        "uuid": "0d5d989d_629372eb",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fc07642_f689ffc9",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 49
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c8bc770_128f1eff",
         "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst40-2cnf.py",
         "patchSetId": 2
@@ -363,6 +687,30 @@
       "writtenOn": "2019-07-18T08:30:56Z",
       "side": 1,
       "message": "2019",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a271344_0a0af922",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst40-2cnf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c8bc770_128f1eff",
       "range": {
         "startLine": 1,
         "startChar": 16,
@@ -398,6 +746,30 @@
     },
     {
       "key": {
+        "uuid": "5e728abb_f3b54c9a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst40-2cnf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a894e20_1862cb91",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 54
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c957a35_6ce1b387",
         "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst40-2cnf.py",
         "patchSetId": 2
@@ -421,6 +793,30 @@
     },
     {
       "key": {
+        "uuid": "042b21f1_fb81dbf3",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst40-2cnf.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c957a35_6ce1b387",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 30
+      },
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "07384799_86d0aab4",
         "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/3n-10ge4p1x710-l2bd-4mif-2drc1c-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr.robot",
         "patchSetId": 2
@@ -432,6 +828,24 @@
       "writtenOn": "2019-07-18T08:30:56Z",
       "side": 1,
       "message": "-remove 3n prefix\n-move to 10ge2p1x710\n\nactually i think this is the way (not 100% sure):\n10ge2p1x710-ethip4ipsec40tnlsw-l2bd-1ch-4mif-2drc1c-vppip4-aes256gcm-ndrpdr",
+      "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "45aee7e9_cb5d264c",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/3n-10ge4p1x710-l2bd-4mif-2drc1c-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07384799_86d0aab4",
       "revId": "6396a44ca6c733f7491ae2bbdb9e89d1bcaa49e5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
