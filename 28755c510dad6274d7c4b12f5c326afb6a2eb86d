@@ -1,0 +1,268 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5c13a252_7e0438ae",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "I still prefer to use built-in ssh.py functionality but both self.execute function must be rewritten to use exec_cmd_no_error() with retries parameter and exported up to this function.\n\nI think put here # TODO: to get rid of this function entirely.",
+      "range": {
+        "startLine": 585,
+        "startChar": 0,
+        "endLine": 605,
+        "endChar": 35
+      },
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c2cff28f_e9989e79",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1354,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "still do not understand this. Why 20? and why is it here?",
+      "range": {
+        "startLine": 1354,
+        "startChar": 0,
+        "endLine": 1354,
+        "endChar": 22
+      },
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f84096b_596866ce",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "long",
+      "range": {
+        "startLine": 69,
+        "startChar": 73,
+        "endLine": 69,
+        "endChar": 81
+      },
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9df14448_192d7691",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 516,
+        "startChar": 48,
+        "endLine": 516,
+        "endChar": 82
+      },
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b875f85_a3926782",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-ip4dst40-2cnf.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "What is mask here? If Trex increment mask then you have only 1B on offset 5",
+      "range": {
+        "startLine": 39,
+        "startChar": 53,
+        "endLine": 39,
+        "endChar": 78
+      },
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c51f349c_4759581c",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/10ge2p1x710-ethip4ipsec40tnlsw-l2bd-1ch-4mif-2drc1c-vppip4-aes256gcm-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "+ DOCKER | 2R1C | NF_DENSITY | CHAIN | NF_VPPIP4 | 1DCR1T",
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b88de1e7_f6f9145f",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/10ge2p1x710-ethip4ipsec40tnlsw-l2bd-1ch-4mif-2drc1c-vppip4-aes256gcm-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 25,
+        "startChar": 72,
+        "endLine": 25,
+        "endChar": 81
+      },
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b9932fc6_9950a34b",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/10ge2p1x710-ethip4ipsec40tnlsw-l2bd-1ch-4mif-2drc1c-vppip4-aes256gcm-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "it is 3 node",
+      "range": {
+        "startLine": 32,
+        "startChar": 36,
+        "endLine": 32,
+        "endChar": 53
+      },
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b7dd5910_77e746d6",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/10ge2p1x710-ethip4ipsec40tnlsw-l2bd-1ch-4mif-2drc1c-vppip4-aes256gcm-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "isn\u0027t proto ESP look on other GCM tests",
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82c8fbfe_a4d6710f",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/10ge2p1x710-ethip4ipsec40tnlsw-l2bd-1ch-4mif-2drc1c-vppip4-aes256gcm-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "I would maybe try to do:\n\n| | And Apply startup configuration on VPP DUT | DUT1\n| | And Apply startup configuration on VPP DUT | DUT2 | restart\u003dfalse\n\nThen stop DUT2 VPP and in:\n\n| | And Start vswitch in container on DUT | DUT2 | ${phy_cores} | ${rxq}\n\ni would just mount the startup.conf\n\n\nThis way you can align more the setup of container vswitch with main vswitch.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 53
+      },
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a58aebc_fde28f1d",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/10ge2p1x710-ethip4ipsec40tnlsw-l2bd-1ch-4mif-2drc1c-vppip4-aes256gcm-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "the naming is same as for suite",
+      "range": {
+        "startLine": 120,
+        "startChar": 14,
+        "endLine": 120,
+        "endChar": 80
+      },
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a100a46e_e010fff6",
+        "filename": "tests/vpp/perf/nfv_density/dcr_memif/chain/10ge2p1x710-ethip4ipsec40tnlsw-l2bd-1ch-4mif-2drc1c-vppip4-aes256gcm-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T09:51:29Z",
+      "side": 1,
+      "message": "i think 9000 must be removed to pass generator",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 39
+      },
+      "revId": "28755c510dad6274d7c4b12f5c326afb6a2eb86d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
