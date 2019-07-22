@@ -131,6 +131,24 @@
       "revId": "44ef927713e23846c2bd48283154a571a06e75c5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d77d6e6d_15a4aef3",
+        "filename": "topologies/available/baremetal-sjc16.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1655
+      },
+      "writtenOn": "2019-07-22T13:11:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec3de80e_26922e36",
+      "revId": "44ef927713e23846c2bd48283154a571a06e75c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
