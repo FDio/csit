@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d6df2d51_45edef2d",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-22T08:38:07Z",
+      "side": 1,
+      "message": "Robot tends to put unicode here, so a careful conversion might be needed.",
+      "range": {
+        "startLine": 38,
+        "startChar": 24,
+        "endLine": 38,
+        "endChar": 27
+      },
+      "revId": "831a4bbab9b29d2c7838747a6656d1ef1b52f27c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
