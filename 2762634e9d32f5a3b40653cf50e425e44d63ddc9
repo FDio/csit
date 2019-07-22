@@ -22,6 +22,30 @@
       "revId": "2762634e9d32f5a3b40653cf50e425e44d63ddc9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ffcd6bd_0df532b7",
+        "filename": "resources/libraries/bash/entry/check/tc_coverage.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-22T11:29:38Z",
+      "side": 1,
+      "message": "Summary (93-97) is console only. But point of this was to have CSV table so line 72 must be there and then yes/no is coverage mapping. But i can dummy print also other tables into other files with table per type (like all device test, all 2n tests)",
+      "parentUuid": "6cec01bc_c22e05ea",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 15
+      },
+      "revId": "2762634e9d32f5a3b40653cf50e425e44d63ddc9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
