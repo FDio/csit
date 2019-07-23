@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a7139963_4d21ece0",
+        "filename": "resources/tools/testbed-setup/ansible/inventories/lf_inventory/hosts",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-23T08:08:26Z",
+      "side": 1,
+      "message": "remove null?",
+      "range": {
+        "startLine": 40,
+        "startChar": 21,
+        "endLine": 40,
+        "endChar": 25
+      },
+      "revId": "2298d2ee139dcf76e36dcf30ef1027b9636ee244",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
