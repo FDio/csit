@@ -196,7 +196,7 @@ class QemuUtils(object):
         self._params.add_with_value(
             'append', '"ro rootfstype=9p rootflags=trans=virtio '
                       'root=virtioroot console={console} tsc=reliable '
-                      'hugepages=256 init={init}"'.format(
+                      'hugepages=256 init={init} fastboot"'.format(
                           console=console, init=self._temp.get('ini')))
 
     def create_kernelvm_config_vpp(self, **kwargs):
@@ -262,9 +262,8 @@ class QemuUtils(object):
             pmd_num_mbufs=16384,
             pmd_rxq=kwargs['queues'],
             pmd_txq=kwargs['queues'],
-            pmd_tx_offloads=False,
+            pmd_tx_offloads='0x0',
             pmd_disable_hw_vlan=False,
-            pmd_max_pkt_len=9200 if kwargs['jumbo_frames'] else None,
             pmd_nb_cores=str(self._opt.get('smp') - 1))
 
         self._opt['vnf_bin'] = ('{testpmd_path}/{testpmd_cmd}'.
@@ -287,9 +286,8 @@ class QemuUtils(object):
             pmd_eth_peer_1='1,{mac}'.format(mac=kwargs['vif2_mac']),
             pmd_rxq=kwargs['queues'],
             pmd_txq=kwargs['queues'],
-            pmd_tx_offloads=False,
+            pmd_tx_offloads='0x0',
             pmd_disable_hw_vlan=False,
-            pmd_max_pkt_len=9200 if kwargs['jumbo_frames'] else None,
             pmd_nb_cores=str(self._opt.get('smp') - 1))
 
         self._opt['vnf_bin'] = ('{testpmd_path}/{testpmd_cmd}'.
