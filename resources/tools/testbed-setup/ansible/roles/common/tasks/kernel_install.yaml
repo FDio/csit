@@ -4,14 +4,27 @@
 - name: Backup remote initramfs modules
   copy:
     src: '/etc/initramfs-tools/modules'
-    dest: '/etc/initramfs-tools/modules.bkp'
+    dest: '/tmp/initramfs_modules.bkp'
     remote_src: yes
   tags: install-kernel-image
 
-- name: Update initramfs modules
+- name: Update remote initramfs modules
   copy:
     src: '../files/initramfs_modules'
     dest: '/etc/initramfs-tools/modules'
+  tags: install-kernel-image
+
+- name: Backup remote initramfs resume config
+  copy:
+    src: '/etc/initramfs-tools/conf.d/resume'
+    dest: '/tmp/initramfs-resume.bkp'
+    remote_src: yes
+  tags: install-kernel-image
+
+- name: Update remote initramfs resume config
+  copy:
+    src: '../files/initramfs_resume'
+    dest: '/etc/initramfs-tools/conf.d/resume'
   tags: install-kernel-image
 
 - name: Create target kernel dir
@@ -33,13 +46,26 @@
 
 - name: Restore remote initramfs modules
   copy:
-    src: '/etc/initramfs-tools/modules.bkp'
+    src: '/tmp/initramfs_modules.bkp'
     dest: '/etc/initramfs-tools/modules'
     remote_src: yes
   tags: install-kernel-image
 
-- name: Remove backup initramfs modules
+- name: Remove remote backup initramfs modules
   file:
-    path: '/etc/initramfs-tools/modules.bkp'
+    path: '/tmp/initramfs_modules.bkp'
+    state: 'absent'
+  tags: install-kernel-image
+
+- name: Restore remote initramfs resume config
+  copy:
+    src: '/tmp/initramfs-resume.bkp'
+    dest: '/etc/initramfs-tools/conf.d/resume'
+    remote_src: yes
+  tags: install-kernel-image
+
+- name: Remove remote backup initramfs resume config
+  file:
+    path: '/tmp/initramfs-resume.bkp'
     state: 'absent'
   tags: install-kernel-image
