@@ -35,7 +35,7 @@ LOG_PATH="$TMPDIR"
 
 if [ -f "/etc/redhat-release" ]; then
     DISTRO="CENTOS"
-    sudo yum install -y python-devel python-virtualenv
+    sudo yum install -y python-devel python-virtualenv openssh-client
     PACKAGE=rpm
 else
     DISTRO="UBUNTU"
