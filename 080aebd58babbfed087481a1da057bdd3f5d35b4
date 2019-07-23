@@ -16,6 +16,24 @@
       "revId": "080aebd58babbfed087481a1da057bdd3f5d35b4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09c1c0c1_63c215bb",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-07-23T07:50:29Z",
+      "side": 1,
+      "message": "No reason, it should work on arm - I can leave this in if you want.\n\nThere\u0027s one more thing to consider though. If docker pull is not needed for anything at this point in time (I understood that it would be useful in the future), isn\u0027t it better to remove it and only reintroduce it when is serves an actual purpose?",
+      "parentUuid": "1f69636e_186eef31",
+      "revId": "080aebd58babbfed087481a1da057bdd3f5d35b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
