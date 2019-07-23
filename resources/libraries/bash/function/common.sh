@@ -650,14 +650,11 @@ function run_pybot () {
 
 function select_arch_os () {
 
-    # Populate variables related to local operating system.
-    #
-    # Also install any missing prerequisities CSIT tests need.
-    # TODO: Move the installation to a separate function?
+    # Set variables affected by local CPU architecture and operating system.
     #
     # Variables set:
-    # - VPP_VER_FILE - Name of File in CSIT dir containing vpp stable version.
-    # - IMAGE_VER_FILE - Name of File in CSIT dir containing the image name.
+    # - VPP_VER_FILE - Name of file in CSIT dir containing vpp stable version.
+    # - IMAGE_VER_FILE - Name of file in CSIT dir containing the image name.
     # - PKG_SUFFIX - Suffix of OS package file name, "rpm" or "deb."
 
     set -exuo pipefail
