@@ -41,7 +41,7 @@ OS_VERSION_ID=$(grep '^VERSION_ID=' /etc/os-release | cut -f2- -d= | sed -e 's/\
 if [ "$OS_ID" == "centos" ]; then
     DISTRO="CENTOS"
     PACKAGE="rpm"
-    sudo yum install -y python-devel python-virtualenv openssh-client sshpass
+    sudo yum install -y python-devel python-virtualenv openssh-clients sshpass
 elif [ "$OS_ID" == "ubuntu" ]; then
     DISTRO="UBUNTU"
     PACKAGE="deb"
