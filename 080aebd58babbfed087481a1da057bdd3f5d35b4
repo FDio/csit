@@ -34,6 +34,24 @@
       "revId": "080aebd58babbfed087481a1da057bdd3f5d35b4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bcf58c92_5414ea00",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-23T07:59:55Z",
+      "side": 1,
+      "message": "Kiknos project is using custom images. I would leave it here for now.",
+      "parentUuid": "09c1c0c1_63c215bb",
+      "revId": "080aebd58babbfed087481a1da057bdd3f5d35b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
