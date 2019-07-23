@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a36b467a_bb4ed9a1",
+        "filename": "resources/tools/testbed-setup/ansible/roles/tg_sut/tasks/main.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-23T07:57:37Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 35
+      },
+      "revId": "8e796cfecf5bfc03a840c32a84b2fc37f644847e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
