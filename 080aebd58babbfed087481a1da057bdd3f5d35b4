@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1f69636e_186eef31",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-23T07:43:36Z",
+      "side": 1,
+      "message": "I realize that docker pull might be needed in scenarios where we want to only download image and then use for post processing other then RUN. Like build in future. Is there any reason why it won\u0027t work on ARM?",
+      "revId": "080aebd58babbfed087481a1da057bdd3f5d35b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
