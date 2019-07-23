@@ -82,7 +82,7 @@ function build_vpp_ubuntu_amd64 () {
     set -exuo pipefail
 
     cd "${VPP_DIR}" || die "Change directory command failed."
-    make pkg-verify || die "VPP build using make pkg-verify failed."
+    make UNATTENDED=y pkg-verify || die "VPP build using make pkg-verify failed."
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
