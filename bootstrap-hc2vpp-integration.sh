@@ -39,7 +39,7 @@ OS=$2
 
 if [ -f "/etc/redhat-release" ]; then
     DISTRO="CENTOS"
-    sudo yum install -y python-devel python-virtualenv openssh-client
+    sudo yum install -y python-devel python-virtualenv openssh-client sshpass
     VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
     VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
 else
