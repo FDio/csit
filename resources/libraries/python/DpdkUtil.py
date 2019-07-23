@@ -67,8 +67,7 @@ class DpdkUtil(object):
         # Set the number of queues in the RX to N.
         options.add_equals_from_dict('rxq', 'pmd_rxq', kwargs, 1)
         # Set the hexadecimal bitmask of offloads.
-        options.add_equals_if_from_dict(
-            'txqflags', '0xf00', 'pmd_tx_offloads', kwargs, True)
+        options.add_equals_from_dict('tx-offloads', 'pmd_tx_offloads', kwargs)
         # Set the number of mbufs to be allocated in the mbuf pools.
         options.add_equals_from_dict('total-num-mbufs', 'pmd_num_mbufs', kwargs)
         # Disable hardware VLAN.
