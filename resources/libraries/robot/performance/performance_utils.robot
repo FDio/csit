@@ -120,7 +120,7 @@
 | | ...
 | | [Arguments] | ${packet_loss_ratio}=${1e-7} | ${timeout}=${1800.0}
 | | ...
-| | ${min_rate} = | Set Variable | ${20000}
+| | ${min_rate} = | Set Variable | ${1}
 | | ${average} | ${stdev} = | Perform soak search | ${frame_size}
 | | ... | ${traffic_profile} | ${min_rate} | ${max_rate*2}
 | | ... | ${packet_loss_ratio} | timeout=${timeout}
