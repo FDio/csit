@@ -614,20 +614,23 @@ class TrafficGenerator(AbstractMeasurer):
                 loss, loss_acceptance))
 
     def set_rate_provider_defaults(self, frame_size, traffic_profile,
-                                   warmup_time=0.0):
+                                   warmup_time=0.0, b2b=0.0):
         """Store values accessed by measure().
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
             See resources/traffic_profiles/trex for implemented modules.
         :param warmup_time: Traffic duration before measurement starts [s].
+        :param b2b: If specified nonzero, measure back-to-back frames instead.
         :type frame_size: str or int
         :type traffic_profile: str
         :type warmup_time: float
+        :type b2b: float
         """
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
         self.warmup_time = float(warmup_time)
+        self.b2b = float(b2b)
 
     def measure(self, duration, transmit_rate):
         """Run bi-directional measurement, parse and return results.
@@ -644,17 +647,32 @@ class TrafficGenerator(AbstractMeasurer):
         """
         duration = float(duration)
         transmit_rate = float(transmit_rate)
-        # Trex needs target Tr per stream, but reports aggregate Tx and Dx.
-        unit_rate = str(transmit_rate / 2.0) + "pps"
-        self.send_traffic_on_tg(
-            duration, unit_rate, self.frame_size, self.traffic_profile,
-            warmup_time=self.warmup_time, latency=True)
-        transmit_count = int(self.get_sent())
-        loss_count = int(self.get_loss())
-        measurement = ReceiveRateMeasurement(
-            duration, transmit_rate, transmit_count, loss_count)
-        measurement.latency = self.get_latency_int()
-        return measurement
+        if not b2b:
+            # Trex needs target Tr per stream, but reports aggregate Tx and Dx.
+            unit_rate = str(transmit_rate / 2.0) + "pps"
+            self.send_traffic_on_tg(
+                duration, unit_rate, self.frame_size, self.traffic_profile,
+                warmup_time=self.warmup_time, latency=True)
+            transmit_count = int(self.get_sent())
+            loss_count = int(self.get_loss())
+            measurement = ReceiveRateMeasurement(
+                duration, transmit_rate, transmit_count, loss_count)
+            measurement.latency = self.get_latency_int()
+            return measurement
+        else
+            # Use b2b rate.
+            unit_rate = str(self.b2b / 2.0) + "pps"
+            # Set real duration to sent transmit_rate packets (aggregate).
+            real_duration = 1.0 * transmit_rate / self.b2b
+            self.send_traffic_on_tg(
+                real_duration, unit_rate, self.frame_size, self.traffic_profile,
+                warmup_time=self.warmup_time, latency=True)
+            transmit_count = int(self.get_sent())
+            loss_count = int(self.get_loss())
+            measurement = ReceiveRateMeasurement(
+                duration, transmit_rate, transmit_count, loss_count)
+            measurement.latency = self.get_latency_int()
+            return measurement
 
 
 class OptimizedSearch(object):
@@ -755,7 +773,8 @@ class OptimizedSearch(object):
         """
         tg_instance = BuiltIn().get_library_instance(
             'resources.libraries.python.TrafficGenerator')
-        tg_instance.set_rate_provider_defaults(frame_size, traffic_profile)
+        tg_instance.set_rate_provider_defaults(
+            frame_size, traffic_profile, b2b=maximum_transmit_rate)
         algorithm = PLRsearch(
             measurer=tg_instance, trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,
