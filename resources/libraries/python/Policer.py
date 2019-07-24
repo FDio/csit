@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,600 +13,197 @@
 
 """Policer utilities library."""
 
-from enum import Enum
+from enum import IntEnum
 
-from ipaddress import ip_address
-
-from resources.libraries.python.VatExecutor import VatExecutor
-from resources.libraries.python.VatJsonUtil import VatJsonUtil
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 
 
-class PolicerRateType(Enum):
+class PolicerRateType(IntEnum):
     """Policer rate types."""
-    KBPS = 'kbps'
-    PPS = 'pps'
-
-    def __init__(self, string):
-        self.string = string
+    KBPS = 0
+    PPS = 1
+    INVALID = 2
 
 
-# pylint: disable=invalid-name
-class PolicerRoundType(Enum):
+class PolicerRoundType(IntEnum):
     """Policer round types."""
-    CLOSEST = 'closest'
-    UP = 'up'
-    DOWN = 'down'
-
-    def __init__(self, string):
-        self.string = string
+    ROUND_TO_CLOSEST = 0
+    ROUND_TO_UP = 1
+    ROUND_TO_DOWN = 2
+    ROUND_TO_INVALID = 3
 
 
-class PolicerType(Enum):
+class PolicerType(IntEnum):
     """Policer type."""
-    P_1R2C = '1r2c'
-    P_1R3C = '1r3c'
-    P_2R3C_2698 = '2r3c-2698'
-    P_2R3C_4115 = '2r3c-4115'
-    P_2R3C_MEF5CF1 = '2r3c-mef5cf1'
-
-    def __init__(self, string):
-        self.string = string
+    TYPE_1R2C = 0
+    TYPE_1R3C_RFC_2697 = 1
+    TYPE_2R3C_RFC_2698 = 2
+    TYPE_2R3C_RFC_4115 = 3
+    TYPE_2R3C_RFC_MEF5CF1 = 4
+    TYPE_MAX = 5
 
 
-class PolicerAction(Enum):
+class PolicerAction(IntEnum):
     """Policer action."""
-    DROP = 'drop'
-    TRANSMIT = 'transmit'
-    MARK_AND_TRANSMIT = 'mark-and-transmit'
-
-    def __init__(self, string):
-        self.string = string
+    DROP = 0
+    TRANSMIT = 1
+    MARK_AND_TRANSMIT = 2
 
 
-class DSCP(Enum):
+class DSCP(IntEnum):
     """DSCP for mark-and-transmit action."""
-    CS0 = ('CS0', 0)
-    CS1 = ('CS1', 8)
-    CS2 = ('CS2', 16)
-    CS3 = ('CS3', 24)
-    CS4 = ('CS4', 32)
-    CS5 = ('CS5', 40)
-    CS6 = ('CS6', 48)
-    CS7 = ('CS7', 56)
-    AF11 = ('AF11', 10)
-    AF12 = ('AF12', 12)
-    AF13 = ('AF13', 14)
-    AF21 = ('AF21', 18)
-    AF22 = ('AF22', 20)
-    AF23 = ('AF23', 22)
-    AF31 = ('AF31', 26)
-    AF32 = ('AF32', 28)
-    AF33 = ('AF33', 30)
-    EF = ('EF', 46)
-
-    def __init__(self, string, num):
-        self.string = string
-        self.num = num
-
-
-class PolicerClassifyPreColor(Enum):
-    """Policer classify precolor."""
-    CONFORM_COLOR = 'conform-color'
-    EXCEED_COLOR = 'exceed-color'
-
-    def __init__(self, string):
-        self.string = string
-
-
-class PolicerClassifyTableType(Enum):
-    """Policer classify table type."""
-    IP4_TABLE = 'ip4-table'
-    IP6_TABLE = 'ip6-table'
-    L2_TABLE = 'l2-table'
-
-    def __init__(self, string):
-        self.string = string
+    D_CS0 = 0
+    D_CS1 = 8
+    D_CS2 = 16
+    D_CS3 = 24
+    D_CS4 = 32
+    D_vCS5 = 40
+    D_CS6 = 48
+    D_CS7 = 56
+    D_AF11 = 10
+    D_AF12 = 12
+    D_AF13 = 14
+    D_AF21 = 18
+    D_AF22 = 20
+    D_AF23 = 22
+    D_AF31 = 26
+    D_AF32 = 28
+    D_AF33 = 30
+    D_EF = 46
 
 
 class Policer(object):
     """Policer utilities."""
 
-    def __init__(self):
-        self._cir = 0
-        self._eir = 0
-        self._cb = 0
-        self._eb = 0
-        self._rate_type = None
-        self._round_type = None
-        self._policer_type = None
-        self._conform_action = None
-        self._conform_dscp = None
-        self._exceed_action = None
-        self._exceed_dscp = None
-        self._violate_action = None
-        self._violate_dscp = None
-        self._color_aware = False
-        self._classify_match_ip = ''
-        self._classify_match_is_src = True
-        self._classify_precolor = None
-        self._sw_if_index = 0
-        self._node = None
-        self._policer_name = ''
-
-    def policer_set_configuration(self):
+    # pylint: disable=too-many-arguments
+    # pylint: disable=too-many-local-variables
+    @staticmethod
+    def policer_set_configuration(
+            node, policer_name, cir, eir, cbs, ebs, rate_type, round_type,
+            policer_type, conform_action_type, exceed_action_type,
+            violate_action_type, color_aware, is_add=True, conform_dscp=None,
+            exceed_dscp=None, violate_dscp=None):
         """Configure policer on VPP node.
 
-        ...note:: First set all required parameters.
+        :param node: VPP node.
+        :param policer_name: Name of the policer.
+        :param cir: Committed information rate.
+        :param eir: Excess (or Peak) information rate.
+        :param cbs: Committed burst size.
+        :param ebs: Excess (or Peak) burst size.
+        :param rate_type: Rate type.
+        :param round_type: Round type.
+        :param policer_type: Policer algorithm.
+        :param conform_action_type: Conform action type.
+        :param exceed_action_type: Exceed action type.
+        :param violate_action_type: Violate action type.
+        :param color_aware: Color-blind (cb) or color-aware (ca).
+        :param is_add: Add policer if True, else delete.
+        :param conform_dscp: DSCP for conform mark_and_transmit action.
+        :param exceed_dscp: DSCP for exceed mark_and_transmit action.
+        :param violate_dscp: DSCP for vilate mark_and_transmit action.
+        :type node: dict
+        :type policer_name: str
+        :type cir: int
+        :type eir: int
+        :type cbs: int
+        :type ebs: int
+        :type rate_type: str
+        :type round_type: str
+        :type policer_type: str
+        :type conform_action_type: str
+        :type exceed_action_type: str
+        :type violate_action_type: str
+        :type color_aware: str
+        :type is_add: bool
+        :type conform_dscp: str
+        :type exceed_dscp: str
+        :type violate_dscp: str
         """
-        node = self._node
+        cmd = 'policer_add_del'
+        args = dict(
+            is_add=int(is_add),
+            name=str(policer_name),
+            cir=int(cir),
+            eir=int(eir),
+            cb=int(cbs),
+            eb=int(ebs),
+            rate_type=getattr(PolicerRateType, rate_type.upper()).value,
+            round_type=getattr(
+                PolicerRoundType, 'ROUND_TO_{rt}'.format(
+                    rt=round_type.upper())).value,
+            type=getattr(PolicerType, 'TYPE_{pt}'.format(
+                pt=policer_type.upper())).value,
+            conform_action_type=getattr(
+                PolicerAction, conform_action_type.upper()).value,
+            conform_dscp=getattr(DSCP, 'D_{dscp}'.format(
+                dscp=conform_dscp.upper())).value
+            if
+            conform_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.name
+            else 0,
+            exceed_action_type=getattr(
+                PolicerAction, exceed_action_type.upper()).value,
+            exceed_dscp=getattr(DSCP, 'D_{dscp}'.format(
+                dscp=exceed_dscp.upper())).value
+            if
+            exceed_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.value
+            else 0,
+            violate_action_type=getattr(
+                PolicerAction, violate_action_type.upper()).value,
+            violate_dscp=getattr(DSCP, 'D_{dscp}'.format(
+                dscp=violate_dscp.upper())).value
+            if
+            violate_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.value
+            else 0,
+            color_aware=1 if color_aware == 'ca' else 0
+        )
+        err_msg = 'Failed to configure policer {pn} on host {host}'.format(
+            pn=policer_name, host=node['host'])
 
-        # create policer
-        color_aware = 'color-aware' if self._color_aware else ''
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
-        conform_action = self._conform_action.value
+        return reply['policer_index']
 
-        if PolicerAction.MARK_AND_TRANSMIT == self._conform_action:
-            conform_action += ' {0}'.format(self._conform_dscp.string)
-
-        exceed_action = self._exceed_action.value
-        if PolicerAction.MARK_AND_TRANSMIT == self._exceed_action:
-            exceed_action += ' {0}'.format(self._exceed_dscp.string)
-
-        violate_action = self._violate_action.value
-        if PolicerAction.MARK_AND_TRANSMIT == self._violate_action:
-            violate_action += ' {0}'.format(self._violate_dscp.string)
-
-        out = VatExecutor.cmd_from_template(node,
-                                            "policer/policer_add_3c.vat",
-                                            name=self._policer_name,
-                                            cir=self._cir,
-                                            eir=self._eir,
-                                            cb=self._cb,
-                                            eb=self._eb,
-                                            rate_type=self._rate_type.value,
-                                            round_type=self._round_type.value,
-                                            p_type=self._policer_type.value,
-                                            conform_action=conform_action,
-                                            exceed_action=exceed_action,
-                                            violate_action=violate_action,
-                                            color_aware=color_aware)
-
-        VatJsonUtil.verify_vat_retval(
-            out[0],
-            err_msg='Add policer {0} failed on {1}'.format(self._policer_name,
-                                                           node['host']))
-
-        policer_index = out[0].get('policer_index')
-
-        # create classify table
-        direction = 'src' if self._classify_match_is_src else 'dst'
-
-        if ip_address(unicode(self._classify_match_ip)).version == 6:
-            ip_version = 'ip6'
-            table_type = PolicerClassifyTableType.IP6_TABLE
-        else:
-            ip_version = 'ip4'
-            table_type = PolicerClassifyTableType.IP4_TABLE
-
-        out = VatExecutor.cmd_from_template(node,
-                                            "classify_add_table.vat",
-                                            ip_version=ip_version,
-                                            direction=direction)
-
-        VatJsonUtil.verify_vat_retval(
-            out[0],
-            err_msg='Add classify table failed on {0}'.format(node['host']))
-
-        new_table_index = out[0].get('new_table_index')
-        skip_n_vectors = out[0].get('skip_n_vectors')
-        match_n_vectors = out[0].get('match_n_vectors')
-
-        # create classify session
-        match = 'l3 {0} {1} {2}'.format(ip_version,
-                                        direction,
-                                        self._classify_match_ip)
-
-        out = VatExecutor.cmd_from_template(
-            node,
-            "policer/policer_classify_add_session.vat",
-            policer_index=policer_index,
-            pre_color=self._classify_precolor.value,
-            table_index=new_table_index,
-            skip_n=skip_n_vectors,
-            match_n=match_n_vectors,
-            match=match)
-
-        VatJsonUtil.verify_vat_retval(
-            out[0],
-            err_msg='Add classify session failed on {0}'.format(node['host']))
-
-        # set classify interface
-        out = VatExecutor.cmd_from_template(
-            node,
-            "policer/policer_classify_set_interface.vat",
-            sw_if_index=self._sw_if_index,
-            table_type=table_type.value,
-            table_index=new_table_index)
-
-        VatJsonUtil.verify_vat_retval(
-            out[0],
-            err_msg='Set classify interface failed on {0}'.format(node['host']))
-
-    def policer_clear_settings(self):
-        """Clear policer settings."""
-        self._cir = 0
-        self._eir = 0
-        self._cb = 0
-        self._eb = 0
-        self._rate_type = None
-        self._round_type = None
-        self._policer_type = None
-        self._conform_action = None
-        self._conform_dscp = None
-        self._exceed_action = None
-        self._exceed_dscp = None
-        self._violate_action = None
-        self._violate_dscp = None
-        self._color_aware = False
-        self._classify_match_ip = ''
-        self._classify_match_is_src = True
-        self._classify_precolor = None
-        self._sw_if_index = 0
-        self._node = None
-        self._policer_name = ''
-
-    def policer_set_name(self, name):
-        """Set policer name.
-
-        :param name: Policer name.
-        :type name: str
-        """
-        self._policer_name = name
-
-    def policer_set_node(self, node):
-        """Set node to setup policer on.
+    @staticmethod
+    def policer_classify_set_interface(
+            node, interface, ip4_table_index=0xFFFFFFFF,
+            ip6_table_index=0xFFFFFFFF, l2_table_index=0xFFFFFFFF, is_add=1):
+        """Set/unset policer classify interface.
 
         :param node: VPP node.
+        :param interface: Interface name or sw_if_index to set/unset policer
+            classify.
+        :param ip4_table_index: IP4 classify table index (0xFFFFFFFF to skip).
+            (Default value = 0xFFFFFFFF)
+        :param ip6_table_index: IP6 classify table index (0xFFFFFFFF to skip).
+            (Default value = 0xFFFFFFFF)
+        :param l2_table_index: L2 classify table index (0xFFFFFFFF to skip).
+            (Default value = 0xFFFFFFFF)
+        :param is_add: Set if non-zero, else unset.
         :type node: dict
-        """
-        self._node = node
-
-    def policer_set_cir(self, cir):
-        """Set policer CIR.
-
-        :param cir: Committed Information Rate.
-        :type cir: int
-        """
-        self._cir = cir
-
-    def policer_set_eir(self, eir):
-        """Set polcier EIR.
-
-        :param eir: Excess Information Rate.
-        :type eir: int
-        """
-        self._eir = eir
-
-    def policer_set_cb(self, cb):
-        """Set policer CB.
-
-        :param cb: Committed Burst size.
-        :type cb: int or str
-        """
-        if cb == "IMIX_v4_1":
-            self._cb = 1518
-        else:
-            self._cb = cb
-
-    def policer_set_eb(self, eb):
-        """Set policer EB.
-
-        :param eb: Excess Burst size.
-        :type eb: int or str
-        """
-        if eb == "IMIX_v4_1":
-            self._eb = 1518
-        else:
-            self._eb = eb
-
-    def policer_set_rate_type_kbps(self):
-        """Set policer rate type to kbps."""
-        self._rate_type = PolicerRateType.KBPS
-
-    def policer_set_rate_type_pps(self):
-        """Set policer rate type to pps."""
-        self._rate_type = PolicerRateType.PPS
-
-    def policer_set_round_type_closest(self):
-        """Set policer round type to closest."""
-        self._round_type = PolicerRoundType.CLOSEST
-
-    def policer_set_round_type_up(self):
-        """Set policer round type to up."""
-        self._round_type = PolicerRoundType.UP
-
-    def policer_set_round_type_down(self):
-        """Set policer round type to down."""
-        self._round_type = PolicerRoundType.DOWN
-
-    def policer_set_type_1r2c(self):
-        """Set policer type to 1r2c."""
-        self._policer_type = PolicerType.P_1R2C
-
-    def policer_set_type_1r3c(self):
-        """Set policer type to 1r3c RFC2697."""
-        self._policer_type = PolicerType.P_1R3C
-
-    def policer_set_type_2r3c_2698(self):
-        """Set policer type to 2r3c RFC2698."""
-        self._policer_type = PolicerType.P_2R3C_2698
-
-    def policer_set_type_2r3c_4115(self):
-        """Set policer type to 2r3c RFC4115."""
-        self._policer_type = PolicerType.P_2R3C_4115
-
-    def policer_set_type_2r3c_mef5cf1(self):
-        """Set policer type to 2r3c MEF5CF1."""
-        self._policer_type = PolicerType.P_2R3C_MEF5CF1
-
-    def policer_set_conform_action_drop(self):
-        """Set policer conform-action to drop."""
-        self._conform_action = PolicerAction.DROP
-
-    def policer_set_conform_action_transmit(self):
-        """Set policer conform-action to transmit."""
-        self._conform_action = PolicerAction.TRANSMIT
-
-    def policer_set_conform_action_mark_and_transmit(self, dscp):
-        """Set policer conform-action to mark-and-transmit.
-
-        :param dscp: DSCP value to mark.
-        :type dscp: DSCP
-        """
-        self._conform_action = PolicerAction.MARK_AND_TRANSMIT
-        self._conform_dscp = dscp
-
-    def policer_set_exceed_action_drop(self):
-        """Set policer exceed-action to drop."""
-        self._exceed_action = PolicerAction.DROP
-
-    def policer_set_exceed_action_transmit(self):
-        """Set policer exceed-action to transmit."""
-        self._exceed_action = PolicerAction.TRANSMIT
-
-    def policer_set_exceed_action_mark_and_transmit(self, dscp):
-        """Set policer exceed-action to mark-and-transmit.
-
-        :param dscp: DSCP value to mark.
-        :type dscp: DSCP
-        """
-        self._exceed_action = PolicerAction.MARK_AND_TRANSMIT
-        self._exceed_dscp = dscp
-
-    def policer_set_violate_action_drop(self):
-        """Set policer violate-action to drop."""
-        self._violate_action = PolicerAction.DROP
-
-    def policer_set_violate_action_transmit(self):
-        """Set policer violate-action to transmit."""
-        self._violate_action = PolicerAction.TRANSMIT
-
-    def policer_set_violate_action_mark_and_transmit(self, dscp):
-        """Set policer violate-action to mark-and-transmit.
-
-        :param dscp: DSCP value to mark.
-        :type dscp: DSCP
-        """
-        self._violate_action = PolicerAction.MARK_AND_TRANSMIT
-        self._violate_dscp = dscp
-
-    def policer_enable_color_aware(self):
-        """Enable color-aware mode for policer."""
-        self._color_aware = True
-
-    def policer_classify_set_precolor_conform(self):
-        """Set policer classify pre-color to conform-color."""
-        self._classify_precolor = PolicerClassifyPreColor.CONFORM_COLOR
-
-    def policer_classify_set_precolor_exceed(self):
-        """Set policer classify pre-color to exceeed-color."""
-        self._classify_precolor = PolicerClassifyPreColor.EXCEED_COLOR
-
-    def policer_classify_set_interface(self, interface):
-        """Set policer classify interface.
-
-        .. note:: First set node with policer_set_node.
-
-        :param interface: Interface name or sw_if_index.
         :type interface: str or int
+        :type ip4_table_index: int
+        :type ip6_table_index: int
+        :type l2_table_index: int
         """
         if isinstance(interface, basestring):
-            self._sw_if_index = Topology.get_interface_sw_index(self._node,
-                                                                interface)
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
         else:
-            self._sw_if_index = interface
+            sw_if_index = interface
 
-    def policer_classify_set_match_ip(self, ip, is_src=True):
-        """Set policer classify match source IP address.
+        cmd = 'policer_classify_set_interface'
 
-        :param ip: IPv4 or IPv6 address.
-        :param is_src: Match src IP if True otherwise match dst IP.
-        :type ip: str
-        :type is_src: bool
-        """
-        self._classify_match_ip = ip
-        self._classify_match_is_src = is_src
+        args = dict(
+            is_add=int(is_add),
+            sw_if_index=sw_if_index,
+            ip4_table_index=int(ip4_table_index),
+            ip6_table_index=int(ip6_table_index),
+            l2_table_index=int(l2_table_index)
+        )
+        err_msg = 'Failed to set/unset policer classify interface {ifc} ' \
+                  'on host {host}'.format(ifc=interface, host=node['host'])
 
-    @staticmethod
-    def dscp_cs0():
-        """Return DSCP CS0.
-
-        :returns: DSCP enum CS0 object.
-        :rtype: DSCP
-        """
-        return DSCP.CS0
-
-    @staticmethod
-    def dscp_cs1():
-        """Return DSCP CS1.
-
-        :returns: DSCP enum CS1 object.
-        :rtype: DSCP
-        """
-        return DSCP.CS1
-
-    @staticmethod
-    def dscp_cs2():
-        """Return DSCP CS2.
-
-        :returns: DSCP enum CS2 object.
-        :rtype: DSCP
-        """
-        return DSCP.CS2
-
-    @staticmethod
-    def dscp_cs3():
-        """Return DSCP CS3.
-
-        :returns: DSCP enum CS3 object.
-        :rtype: DSCP
-        """
-        return DSCP.CS3
-
-    @staticmethod
-    def dscp_cs4():
-        """Return DSCP CS4.
-
-        :returns: DSCP enum CS4 object.
-        :rtype: DSCP
-        """
-        return DSCP.CS4
-
-    @staticmethod
-    def dscp_cs5():
-        """Return DSCP CS5.
-
-        :returns: DSCP enum CS5 object.
-        :rtype: DSCP
-        """
-        return DSCP.CS5
-
-    @staticmethod
-    def dscp_cs6():
-        """Return DSCP CS6.
-
-        :returns: DSCP enum CS6 object.
-        :rtype: DSCP
-        """
-        return DSCP.CS6
-
-    @staticmethod
-    def dscp_cs7():
-        """Return DSCP CS7.
-
-        :returns: DSCP enum CS7 object.
-        :rtype: DSCP
-        """
-        return DSCP.CS7
-
-    @staticmethod
-    def dscp_ef():
-        """Return DSCP EF.
-
-        :returns: DSCP enum EF object.
-        :rtype: DSCP
-        """
-        return DSCP.EF
-
-    @staticmethod
-    def dscp_af11():
-        """Return DSCP AF11.
-
-        :returns: DSCP enum AF11 object.
-        :rtype: DSCP
-        """
-        return DSCP.AF11
-
-    @staticmethod
-    def dscp_af12():
-        """Return DSCP AF12.
-
-        :returns: DSCP enum AF12 object.
-        :rtype: DSCP
-        """
-        return DSCP.AF12
-
-    @staticmethod
-    def dscp_af13():
-        """Return DSCP AF13.
-
-        :returns: DSCP enum AF13 object.
-        :rtype: DSCP
-        """
-        return DSCP.AF13
-
-    @staticmethod
-    def dscp_af21():
-        """Return DSCP AF21.
-
-        :returns: DSCP enum AF21 object.
-        :rtype: DSCP
-        """
-        return DSCP.AF21
-
-    @staticmethod
-    def dscp_af22():
-        """Return DSCP AF22.
-
-        :returns: DSCP enum AF22 object.
-        :rtype: DSCP
-        """
-        return DSCP.AF22
-
-    @staticmethod
-    def dscp_af23():
-        """Return DSCP AF23.
-
-        :returns: DSCP enum AF23 object.
-        :rtype: DSCP
-        """
-        return DSCP.AF23
-
-    @staticmethod
-    def dscp_af31():
-        """Return DSCP AF31.
-
-        :returns: DSCP enum AF31 object.
-        :rtype: DSCP
-        """
-        return DSCP.AF31
-
-    @staticmethod
-    def dscp_af32():
-        """Return DSCP AF32.
-
-        :returns: DSCP enum AF32 object.
-        :rtype: DSCP
-        """
-        return DSCP.AF32
-
-    @staticmethod
-    def dscp_af33():
-        """Return DSCP AF33.
-
-        :returns: DSCP enum AF33 object.
-        :rtype: DSCP
-        """
-        return DSCP.AF33
-
-    @staticmethod
-    def get_dscp_num_value(dscp):
-        """Return DSCP numeric value.
-
-        :param dscp: DSCP enum object.
-        :type dscp: DSCP
-        :returns: DSCP numeric value.
-        :rtype: int
-        """
-        return dscp.num
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
