@@ -20,7 +20,9 @@
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
-| Test Teardown | Tear down test | performance
+| Test Teardown | Run Keywords
+| ... | Show Classify Tables Verbose | ${dut1}
+| ... | AND | Tear down test | performance
 | ...
 | Test Template | Local Template
 | ...
@@ -51,6 +53,7 @@
 | ${overhead}= | ${0}
 | ${cir}= | ${100}
 | ${eir}= | ${150}
+| ${dscp}= | AF22
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n-ethip4-ip4src253
 

@@ -330,3 +330,38 @@ class VPPUtil(object):
         logger.info("show threads:\n{threads}".format(threads=threads_data))
 
         return threads_data
+
+    @staticmethod
+    def api_trace_on(node):
+        """Dump API trace.
+
+        :param node: Topology node.
+        :type node: dict
+        :returns: API trace data.
+        :rtype: str
+        """
+        return PapiSocketExecutor.run_cli_cmd(node, "api trace on")
+
+    @staticmethod
+    def api_trace_save(node, file_name):
+        """Dump API trace.
+
+        :param node: Topology node.
+        :type node: dict
+        :returns: API trace data.
+        :rtype: str
+        """
+        return PapiSocketExecutor.run_cli_cmd(
+            node, "api trace save {name}.api".format(name=file_name))
+
+    @staticmethod
+    def api_trace_dump(node, file_name):
+        """Dump API trace.
+
+        :param node: Topology node.
+        :type node: dict
+        :returns: API trace data.
+        :rtype: str
+        """
+        return PapiSocketExecutor.run_cli_cmd(
+            node, "api trace dump /tmp/{name}.api".format(name=file_name))
