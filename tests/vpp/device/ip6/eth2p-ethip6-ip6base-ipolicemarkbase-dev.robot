@@ -41,6 +41,7 @@
 | ${overhead}= | ${0}
 | ${cir}= | ${100}
 | ${eir}= | ${150}
+| ${dscp}= | AF22
 
 *** Keywords ***
 | Local Template
