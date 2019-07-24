@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a31c5dc3_57a1af6a",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-24T13:32:32Z",
+      "side": 1,
+      "message": "Tests failed, I believe they did not recognize this argument name.\nDo you mean \"type\"?\nhttps://github.com/FDio/vpp/blob/9d42087149a6870965896be74dc6260f72d2cac9/src/vnet/policer/policer.api#L43-L58",
+      "range": {
+        "startLine": 171,
+        "startChar": 12,
+        "endLine": 171,
+        "endChar": 18
+      },
+      "revId": "fc2a2ce59bddc9eaf6463aa04321121b90724b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b44dca5_a4585faf",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-24T13:32:32Z",
+      "side": 1,
+      "message": "I prefer this variable to be called \"reply\".",
+      "range": {
+        "startLine": 182,
+        "startChar": 12,
+        "endLine": 182,
+        "endChar": 15
+      },
+      "revId": "fc2a2ce59bddc9eaf6463aa04321121b90724b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1c1530a4_83683d21",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-24T13:32:32Z",
+      "side": 1,
+      "message": "Remove these blocks, get_reply already checks retval.",
+      "range": {
+        "startLine": 184,
+        "startChar": 8,
+        "endLine": 184,
+        "endChar": 19
+      },
+      "revId": "fc2a2ce59bddc9eaf6463aa04321121b90724b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2d0b077_c4b69807",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-24T13:32:32Z",
+      "side": 1,
+      "message": "reply[\u0027policer_index\u0027]",
+      "range": {
+        "startLine": 189,
+        "startChar": 24,
+        "endLine": 189,
+        "endChar": 51
+      },
+      "revId": "fc2a2ce59bddc9eaf6463aa04321121b90724b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
