@@ -51,6 +51,7 @@
 | ${overhead}= | ${0}
 | ${cir}= | ${100}
 | ${eir}= | ${150}
+| ${dscp}= | AF22
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n-ethip4-ip4src253
 
