@@ -232,6 +232,11 @@
     vxlan_add_del_tunnel_reply: '0xfda5941f'  # virl
     vxlan_tunnel_details: '0xce38e127'  # virl
     vxlan_tunnel_dump: '0x529cb13f'  # virl
+    # ^^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
+    policer_add_del: '0xdfea2be8'  # dev
+    policer_add_del_reply: '0xa177cef2'  # dev
+    policer_classify_set_interface: '0xe09537b0' # dev
+    policer_classify_set_interface_reply: '0xe8d4e804' # dev
 
 
 # https://gerrit.fd.io/r/c/vpp/+/21997

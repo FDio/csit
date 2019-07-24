@@ -20,7 +20,7 @@
 | Library | OperatingSystem
 | Library | String
 | ...
-| Library | resources.libraries.python.Classify.Classify
+| Library | resources.libraries.python.Classify
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.CoreDumpUtil
 | Library | resources.libraries.python.Cop
