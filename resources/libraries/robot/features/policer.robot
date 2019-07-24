@@ -24,24 +24,12 @@
 | | ... | applied on links TG - DUTx.
 | | ...
 | | ${dscp}= | DSCP AF22
-| | Policer Set Name | policer1
-| | Policer Set CIR | ${cir}
-| | Policer Set EIR | ${eir}
-| | Policer Set CB | ${cb}
-| | Policer Set EB | ${eb}
-| | Policer Set Rate Type pps
-| | Policer Set Round Type Closest
-| | Policer Set Type 2R3C 2698
-| | Policer Set Conform Action Transmit
-| | Policer Set Exceed Action Mark and Transmit | ${dscp}
-| | Policer Set Violate Action Transmit
-| | Policer Enable Color Aware
-| | Run Keyword If | ${t} == 'ca' | Policer Enable Color Aware
 | | Policer Classify Set Precolor Exceed
-| | Policer Set Node | ${dut1}
-| | Policer Classify Set Interface | ${dut1_if1}
+| | Policer Classify Set Interface | ${dut1} | ${dut1_if1}
 | | Policer Classify Set Match IP | 20.20.20.2 | ${False}
-| | Policer Set Configuration
+| | Policer Set Configuration | ${dut1} | policer1 | ${cir} | ${eir} | ${cb} | ${eb}
+| | ... | pps | Closest | 2R3C 2698 | Transmit 
+| | ... | Mark and Transmit | Transmit | True | exceed_dscp=${dscp}
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
