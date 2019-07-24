@@ -27,6 +27,7 @@ from scipy.special import erfcx, erfc
 # Current usage of relative imports is just a short term workaround.
 import Integrator  # pylint: disable=relative-import
 from log_plus import log_plus, log_minus  # pylint: disable=relative-import
+from measurement_filter import MeasurementFilter  # pylint: disable=relative-import
 import stat_trackers  # pylint: disable=relative-import
 
 
@@ -170,7 +171,7 @@ class PLRsearch(object):
         max_rate = float(max_rate)
         logging.info("Started search with min_rate %(min)r, max_rate %(max)r",
                      {"min": min_rate, "max": max_rate})
-        trial_result_list = list()
+        measurement_filter = MeasurementFilter(self.packet_loss_ratio_target)
         trial_number = self.trial_number_offset
         focus_trackers = (None, None)
         transmit_rate = (min_rate + max_rate) / 2.0
@@ -181,7 +182,8 @@ class PLRsearch(object):
             logging.info("Trial %(number)r", {"number": trial_number})
             results = self.measure_and_compute(
                 self.trial_duration_per_trial * trial_number, transmit_rate,
-                trial_result_list, min_rate, max_rate, focus_trackers)
+                measurement_filter.get_list(), min_rate, max_rate,
+                focus_trackers)
             measurement, average, stdev, avg1, avg2, focus_trackers = results
             zeros += 1
             # TODO: Ratio of fill rate to drain rate seems to have
@@ -194,7 +196,7 @@ class PLRsearch(object):
             lossy_loads.sort()
             if stop_time <= time.time():
                 return average, stdev
-            trial_result_list.append(measurement)
+            measurement_filter.insert(measurement)
             if (trial_number - self.trial_number_offset) <= 1:
                 next_load = max_rate
             elif (trial_number - self.trial_number_offset) <= 3:
