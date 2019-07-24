@@ -12,6 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
+| Library | resources.libraries.python.Classify
 | Library | resources.libraries.python.Policer
 | ...
 | Documentation | Policer keywords
@@ -23,25 +24,18 @@
 | | ... | on all DUT nodes in 2-node / 3-node circular topology. Policer is
 | | ... | applied on links TG - DUTx.
 | | ...
-| | ${dscp}= | DSCP AF22
-| | Policer Set Name | policer1
-| | Policer Set CIR | ${cir}
-| | Policer Set EIR | ${eir}
-| | Policer Set CB | ${cb}
-| | Policer Set EB | ${eb}
-| | Policer Set Rate Type pps
-| | Policer Set Round Type Closest
-| | Policer Set Type 2R3C 2698
-| | Policer Set Conform Action Transmit
-| | Policer Set Exceed Action Mark and Transmit | ${dscp}
-| | Policer Set Violate Action Transmit
-| | Policer Enable Color Aware
-| | Run Keyword If | ${t} == 'ca' | Policer Enable Color Aware
-| | Policer Classify Set Precolor Exceed
-| | Policer Set Node | ${dut1}
-| | Policer Classify Set Interface | ${dut1_if1}
-| | Policer Classify Set Match IP | 20.20.20.2 | ${False}
-| | Policer Set Configuration
+| | ${policer_index}= | Policer Set Configuration | ${dut1} | policer1 | ${cir}
+| | ... | ${eir} | ${cb} | ${eb} | pps | Closest | 2R3C_RFC_2698 | Transmit
+| | ... | Mark_and_Transmit | Transmit | ${t} | exceed_dscp=${dscp}
+| | ${table_idx} | ${skip_n} | ${match_n}= | Vpp Creates Classify Table L3
+| | ... | ${dut1} | ip4 | dst | 255.255.255.255
+| | ${pre_color}= | Policer Classify Get Precolor | exceed_color
+| | Vpp Configures Classify Session L3 | ${dut1} | permit | ${table_idx}
+| | ... | ${skip_n} | ${match_n} | ip4 | dst | 20.20.20.2
+| | ... | hit_next_index=${policer_index} | opaque_index=${pre_color}
+| | Policer Classify Set Interface | ${dut1} | ${dut1_if1}
+| | ... | ip4_table_index=${table_idx}
+| | ...
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -50,12 +44,21 @@
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
-| | Run Keyword Unless | '${dut2_status}' == 'PASS'
-| | ... | Policer Set Name | policer2
-| | Policer Set Node | ${dut}
-| | Policer Classify Set Interface | ${dut_if2}
-| | Policer Classify Set Match IP | 10.10.10.2 | ${False}
-| | Policer Set Configuration
+| | ...
+| | ${policer_index}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Policer Set Configuration | ${dut} | policer2 | ${cir}
+| | ... | ${eir} | ${cb} | ${eb} | pps | Closest | 2R3C_RFC_2698 | Transmit
+| | ... | Mark_and_Transmit | Transmit | ${t} | exceed_dscp=${dscp}
+| | ... | ELSE | Set Variable | ${policer_index}
+| | ${table_idx} | ${skip_n} | ${match_n}=
+| | ... | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Creates Classify Table L3 | ${dut} | ip4 | dst | 255.255.255.255
+| | ... | ELSE | Set Variable | ${table_idx} | ${skip_n} | ${match_n}
+| | Vpp Configures Classify Session L3 | ${dut} | permit | ${table_idx}
+| | ... | ${skip_n} | ${match_n} | ip4 | dst | 10.10.10.2
+| | ... | hit_next_index=${policer_index} | opaque_index=${pre_color}
+| | Policer Classify Set Interface | ${dut} | ${dut_if2}
+| | ... | ip4_table_index=${table_idx}
 
 | Initialize IPv6 policer 2r3c-${t} in circular topology
 | | [Documentation]
@@ -63,25 +66,18 @@
 | | ... | on all DUT nodes in 2-node / 3-node circular topology. Policer is
 | | ... | applied on links TG - DUTx.
 | | ...
-| | ${dscp}= | DSCP AF22
-| | Policer Set Name | policer1
-| | Policer Set CIR | ${cir}
-| | Policer Set EIR | ${eir}
-| | Policer Set CB | ${cb}
-| | Policer Set EB | ${eb}
-| | Policer Set Rate Type pps
-| | Policer Set Round Type Closest
-| | Policer Set Type 2R3C 2698
-| | Policer Set Conform Action Transmit
-| | Policer Set Exceed Action Mark and Transmit | ${dscp}
-| | Policer Set Violate Action Transmit
-| | Policer Enable Color Aware
-| | Run Keyword If | ${t} == 'ca' | Policer Enable Color Aware
-| | Policer Classify Set Precolor Exceed
-| | Policer Set Node | ${dut1}
-| | Policer Classify Set Interface | ${dut1_if1}
-| | Policer Classify Set Match IP | 2001:2::2 | ${False}
-| | Policer Set Configuration
+| | ${policer_index}= | Policer Set Configuration | ${dut1} | policer1 | ${cir}
+| | ... | ${eir} | ${cb} | ${eb} | pps | Closest | 2R3C_RFC_2698 | Transmit
+| | ... | Mark_and_Transmit | Transmit | ${t} | exceed_dscp=${dscp}
+| | ${table_idx} | ${skip_n} | ${match_n}= | Vpp Creates Classify Table L3
+| | ... | ${dut1} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
+| | ${pre_color}= | Policer Classify Get Precolor | exceed_color
+| | Vpp Configures Classify Session L3 | ${dut1} | permit | ${table_idx}
+| | ... | ${skip_n} | ${match_n} | ip6 | dst | 2001:2::2
+| | ... | hit_next_index=${policer_index} | opaque_index=${pre_color}
+| | Policer Classify Set Interface | ${dut1} | ${dut1_if1}
+| | ... | ip6_table_index=${table_idx}
+| | ...
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -90,9 +86,35 @@
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
-| | Run Keyword Unless | '${dut2_status}' == 'PASS'
-| | ... | Policer Set Name | policer2
-| | Policer Set Node | ${dut}
-| | Policer Classify Set Interface | ${dut_if2}
-| | Policer Classify Set Match IP | 2001:1::2 | ${False}
-| | Policer Set Configuration
+| | ...
+| | ${policer_index}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Policer Set Configuration | ${dut} | policer2 | ${cir}
+| | ... | ${eir} | ${cb} | ${eb} | pps | Closest | 2R3C_RFC_2698 | Transmit
+| | ... | Mark_and_Transmit | Transmit | ${t} | exceed_dscp=${dscp}
+| | ... | ELSE | Set Variable | ${policer_index}
+| | ${table_idx} | ${skip_n} | ${match_n}=
+| | ... | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Creates Classify Table L3
+| | ... | ${dut} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
+| | ... | ELSE | Set Variable | ${table_idx} | ${skip_n} | ${match_n}
+| | Vpp Configures Classify Session L3 | ${dut} | permit | ${table_idx}
+| | ... | ${skip_n} | ${match_n} | ip6 | dst | 2001:1::2
+| | ... | hit_next_index=${policer_index} | opaque_index=${pre_color}
+| | Policer Classify Set Interface | ${dut} | ${dut_if2}
+| | ... | ip6_table_index=${table_idx}
+
+| Show Classify Tables Verbose on all DUTs
+| | [Documentation] | Show classify tables verbose on all DUT nodes in topology.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nodes - Topology. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Show Classify Tables Verbose on all DUTs \| ${nodes} \|
+| | ...
+| | [Arguments] | ${nodes}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Show Classify Tables Verbose | ${nodes['${dut}']}

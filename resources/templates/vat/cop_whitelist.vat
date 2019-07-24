@@ -1,1 +1,0 @@
-cop_whitelist_enable_disable sw_if_index {sw_if_index} {ip} fib-id {fib_id}
