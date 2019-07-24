@@ -41,6 +41,7 @@
 | ${overhead}= | ${0}
 | ${cir}= | ${100}
 | ${eir}= | ${150}
+| ${dscp}= | AF22
 
 *** Keywords ***
 | Local Template
@@ -64,7 +65,11 @@
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize IPv4 forwarding in circular topology
+| | API Trace On | ${dut1}
 | | And Initialize IPv4 policer 2r3c-'ca' in circular topology
+| | API Trace Save | ${dut1} | policer
+| | API Trace Dump | ${dut1} | policer
+| | Show Classify Tables Verbose | ${dut1}
 | | Then Send packet and verify marking
 | | ... | ${tg} | ${tg_if1} | ${tg_if2} | ${tg_if1_mac} | ${dut1_if1_mac}
 | | ... | 10.10.10.2 | 20.20.20.2
