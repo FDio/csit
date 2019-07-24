@@ -442,7 +442,7 @@ class PapiSocketExecutor(object):
         cmd = 'cli_inband'
         args = dict(cmd=cli_cmd)
         err_msg = "Failed to run 'cli_inband {cmd}' PAPI command on host " \
-                  "{host}".format(host=node['host'], cmd=cmd)
+                  "{host}".format(host=node['host'], cmd=cli_cmd)
         with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)["reply"]
         if log:
