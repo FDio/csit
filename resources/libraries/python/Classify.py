@@ -20,6 +20,7 @@ from ipaddress import ip_address
 
 from robot.api import logger
 
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
@@ -40,16 +41,10 @@ class Classify(object):
         :returns MAC ACL mask in hexstring format.
         :rtype: str
         """
-        if ether_type:
-            end = 28
-        elif src_mac:
-            end = 24
-        else:
-            end = 12
 
         return ('{!s:0>12}{!s:0>12}{!s:0>4}'.format(
             dst_mac.replace(':', ''), src_mac.replace(':', ''),
-            ether_type))[0:end]
+            ether_type)).decode('hex').rstrip('\0')
 
     @staticmethod
     def _build_ip_mask(proto='', src_ip='', dst_ip='', src_port='',
@@ -69,19 +64,10 @@ class Classify(object):
         :returns: IP mask in hexstring format.
         :rtype: str
         """
-        if dst_port:
-            end = 48
-        elif src_port:
-            end = 44
-        elif dst_ip:
-            end = 40
-        elif src_ip:
-            end = 32
-        else:
-            end = 20
 
         return ('{!s:0>20}{!s:0>12}{!s:0>8}{!s:0>4}{!s:0>4}'.format(
-            proto, src_ip, dst_ip, src_port, dst_port))[0:end]
+            proto, src_ip, dst_ip, src_port, dst_port)).decode('hex').\
+            rstrip('\0')
 
     @staticmethod
     def _build_ip6_mask(next_hdr='', src_ip='', dst_ip='', src_port='',
@@ -101,19 +87,10 @@ class Classify(object):
         :returns: IPv6 ACL mask in hexstring format.
         :rtype: str
         """
-        if dst_port:
-            end = 88
-        elif src_port:
-            end = 84
-        elif dst_ip:
-            end = 80
-        elif src_ip:
-            end = 48
-        else:
-            end = 14
 
         return ('{!s:0>14}{!s:0>34}{!s:0>32}{!s:0>4}{!s:0>4}'.format(
-            next_hdr, src_ip, dst_ip, src_port, dst_port))[0:end]
+            next_hdr, src_ip, dst_ip, src_port, dst_port)).decode('hex').\
+            rstrip('\0')
 
     @staticmethod
     def _build_mac_match(dst_mac='', src_mac='', ether_type=''):
@@ -128,24 +105,18 @@ class Classify(object):
         :returns: MAC ACL match data in hexstring format.
         :rtype: str
         """
-        if ether_type:
-            end = 28
-        elif src_mac:
-            end = 24
-        else:
-            end = 12
 
         return ('{!s:0>12}{!s:0>12}{!s:0>4}'.format(
             dst_mac.replace(':', ''), src_mac.replace(':', ''),
-            ether_type))[0:end]
+            ether_type)).decode('hex').rstrip('\0')
 
     @staticmethod
     def _build_ip_match(proto=0, src_ip='', dst_ip='', src_port=0, dst_port=0):
-        """Build IP ACL match data in hexstring format.
+        """Build IP ACL match data in byte-string format.
 
         :param proto: Protocol number with valid option "x".
-        :param src_ip: Source ip address with format of "x.x.x.x".
-        :param dst_ip: Destination ip address with format of "x.x.x.x".
+        :param src_ip: Source ip address in packed format.
+        :param dst_ip: Destination ip address in packed format.
         :param src_port: Source port number "x".
         :param dst_port: Destination port number "x".
         :type proto: int
@@ -153,37 +124,26 @@ class Classify(object):
         :type dst_ip: str
         :type src_port: int
         :type dst_port: int
-        :returns: IP ACL match data in hexstring format.
+        :returns: IP ACL match data in byte-string format.
         :rtype: str
         """
-        if src_ip:
-            src_ip = binascii.hexlify(ip_address(unicode(src_ip)).packed)
-        if dst_ip:
-            dst_ip = binascii.hexlify(ip_address(unicode(dst_ip)).packed)
-        if dst_port:
-            end = 48
-        elif src_port:
-            end = 44
-        elif dst_ip:
-            end = 40
-        elif src_ip:
-            end = 32
-        else:
-            end = 20
+        # if src_ip:
+        #     src_ip = binascii.hexlify(ip_address(unicode(src_ip)).packed)
+        # if dst_ip:
+        #     dst_ip = binascii.hexlify(ip_address(unicode(dst_ip)).packed)
 
         return ('{!s:0>20}{!s:0>12}{!s:0>8}{!s:0>4}{!s:0>4}'.format(
             hex(proto)[2:], src_ip, dst_ip, hex(src_port)[2:],
-            hex(dst_port)[2:]))[0:end]
+            hex(dst_port)[2:])).decode('hex').rstrip('\0')
 
     @staticmethod
     def _build_ip6_match(next_hdr=0, src_ip='', dst_ip='', src_port=0,
                          dst_port=0):
-        """Build IPv6 ACL match data in hexstring format.
+        """Build IPv6 ACL match data in byte-string format.
 
         :param next_hdr: Next header number with valid option "x".
-        :param src_ip: Source ip6 address with format of "xxxx:xxxx::xxxx".
-        :param dst_ip: Destination ip6 address with format of
-            "xxxx:xxxx::xxxx".
+        :param src_ip: Source ip6 address in packed format.
+        :param dst_ip: Destination ip6 address in packed format.
         :param src_port: Source port number "x".
         :param dst_port: Destination port number "x".
         :type next_hdr: int
@@ -191,52 +151,40 @@ class Classify(object):
         :type dst_ip: str
         :type src_port: int
         :type dst_port: int
-        :returns: IPv6 ACL match data in hexstring format.
+        :returns: IPv6 ACL match data in byte-string format.
         :rtype: str
         """
-        if src_ip:
-            src_ip = binascii.hexlify(ip_address(unicode(src_ip)).packed)
-        if dst_ip:
-            dst_ip = binascii.hexlify(ip_address(unicode(dst_ip)).packed)
-        if dst_port:
-            end = 88
-        elif src_port:
-            end = 84
-        elif dst_ip:
-            end = 80
-        elif src_ip:
-            end = 48
-        else:
-            end = 14
+        # if src_ip:
+        #     src_ip = binascii.hexlify(ip_address(unicode(src_ip)).packed)
+        # if dst_ip:
+        #     dst_ip = binascii.hexlify(ip_address(unicode(dst_ip)).packed)
 
         return ('{!s:0>14}{!s:0>34}{!s:0>32}{!s:0>4}{!s:0>4}'.format(
             hex(next_hdr)[2:], src_ip, dst_ip, hex(src_port)[2:],
-            hex(dst_port)[2:]))[0:end]
+            hex(dst_port)[2:])).decode('hex').rstrip('\0')
 
     @staticmethod
-    def _classify_add_del_table(node, is_add, mask, match_n_vectors=1,
-                                table_index=0xFFFFFFFF, nbuckets=2,
-                                memory_size=2097152, skip_n_vectors=0,
-                                next_table_index=0xFFFFFFFF,
-                                miss_next_index=0xFFFFFFFF, current_data_flag=0,
-                                current_data_offset=0):
+    def _classify_add_del_table(
+            node, is_add, mask, match_n_vectors=Constants.BITWISE_NON_ZERO,
+            table_index=Constants.BITWISE_NON_ZERO, nbuckets=2,
+            memory_size=2097152, skip_n_vectors=Constants.BITWISE_NON_ZERO,
+            next_table_index=Constants.BITWISE_NON_ZERO,
+            miss_next_index=Constants.BITWISE_NON_ZERO,
+            current_data_flag=0, current_data_offset=0):
         """Add or delete a classify table.
 
         :param node: VPP node to create classify table.
         :param is_add: If 1 the table is added, if 0 the table is deleted.
         :param mask: ACL mask in hexstring format.
-        :param match_n_vectors: Number of vectors to match (Default value = 1).
-        :param table_index: Index of the classify table.
-            (Default value = 0xFFFFFFFF)
+        :param match_n_vectors: Number of vectors to match (Default value = ~0).
+        :param table_index: Index of the classify table. (Default value = ~0)
         :param nbuckets: Number of buckets when adding a table.
             (Default value = 2)
         :param memory_size: Memory size when adding a table.
             (Default value = 2097152)
-        :param skip_n_vectors: Number of skip vectors (Default value = 0).
-        :param next_table_index: Index of next table.
-            (Default value = 0xFFFFFFFF)
-        :param miss_next_index: Index of miss table.
-            (Default value = 0xFFFFFFFF)
+        :param skip_n_vectors: Number of skip vectors (Default value = ~0).
+        :param next_table_index: Index of next table. (Default value = ~0)
+        :param miss_next_index: Index of miss table. (Default value = ~0)
         :param current_data_flag: Option to use current node's packet payload
             as the starting point from where packets are classified.
             This option is only valid for L2/L3 input ACL for now.
@@ -267,9 +215,7 @@ class Classify(object):
             match_n: Number of match vectors.
         :rtype: tuple(int, int, int)
         """
-        mask_len = ((len(mask) - 1) / 16 + 1) * 16
-        mask = mask + '\0' * (mask_len - len(mask))
-
+        cmd = 'classify_add_del_table'
         args = dict(
             is_add=is_add,
             table_index=table_index,
@@ -281,11 +227,9 @@ class Classify(object):
             miss_next_index=miss_next_index,
             current_data_flag=current_data_flag,
             current_data_offset=current_data_offset,
-            mask_len=mask_len,
+            mask_len=len(mask),
             mask=mask
         )
-
-        cmd = 'classify_add_del_table'
         err_msg = "Failed to create a classify table on host {host}".format(
             host=node['host'])
 
@@ -296,10 +240,9 @@ class Classify(object):
             int(reply["match_n_vectors"])
 
     @staticmethod
-    def _classify_add_del_session(node, is_add, table_index, match,
-                                  opaque_index=0xFFFFFFFF,
-                                  hit_next_index=0xFFFFFFFF, advance=0,
-                                  action=0, metadata=0):
+    def _classify_add_del_session(
+            node, is_add, table_index, match, opaque_index=0xFFFFFFFF,
+            hit_next_index=0xFFFFFFFF, advance=0, action=0, metadata=0):
         """Add or delete a classify session.
 
         :param node: VPP node to create classify session.
@@ -438,18 +381,18 @@ class Classify(object):
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_creates_classify_table_l3(node, ip_version, direction, ip_addr):
+    def vpp_creates_classify_table_l3(node, ip_version, direction, netmask):
         """Create classify table for IP address filtering.
 
         :param node: VPP node to create classify table.
         :param ip_version: Version of IP protocol.
         :param direction: Direction of traffic - src/dst.
-        :param ip_addr: IPv4 or Ipv6 (depending on the parameter 'ip_version')
-            address.
+        :param netmask: IPv4 or Ipv6 (depending on the parameter 'ip_version')
+            netmask (decimal, e.g. 255.255.255.255).
         :type node: dict
         :type ip_version: str
         :type direction: str
-        :type ip_addr: str
+        :type netmask: str
         :returns: (table_index, skip_n, match_n)
             table_index: Classify table index.
             skip_n: Number of skip vectors.
@@ -462,25 +405,42 @@ class Classify(object):
             ip4=Classify._build_ip_mask,
             ip6=Classify._build_ip6_mask
         )
+
         if ip_version == "ip4" or ip_version == "ip6":
-            ip_addr = binascii.hexlify(ip_address(unicode(ip_addr)).packed)
+            netmask = binascii.hexlify(ip_address(unicode(netmask)).packed)
         else:
             raise ValueError("IP version {ver} is not supported.".
                              format(ver=ip_version))
 
         if direction == "src":
-            mask = mask_f[ip_version](src_ip=ip_addr)
+            mask = mask_f[ip_version](src_ip=netmask)
         elif direction == "dst":
-            mask = mask_f[ip_version](dst_ip=ip_addr)
+            mask = mask_f[ip_version](dst_ip=netmask)
         else:
             raise ValueError("Direction {dir} is not supported.".
                              format(dir=direction))
 
+        # Add l2 ethernet header to mask
+        mask = 14 * '\0' + mask
+
+        # Get index of the first significant mask octet
+        i = len(mask) - len(mask.lstrip('\0'))
+
+        # Compute skip_n parameter
+        skip_n = i // 16
+        # Remove octets to be skipped from the mask
+        mask = mask[skip_n*16:]
+        # Pad mask to an even multiple of the verctor size
+        mask = mask + (16 - len(mask) % 16 if len(mask) % 16 else 0) * '\0'
+        # Compute match_n parameter
+        match_n = len(mask) // 16
+
         return Classify._classify_add_del_table(
             node,
             is_add=1,
-            mask=binascii.unhexlify(mask),
-            match_n_vectors=(len(mask) - 1) // 32 + 1
+            mask=mask,
+            match_n_vectors=match_n,
+            skip_n_vectors=skip_n
         )
 
     @staticmethod
@@ -509,11 +469,24 @@ class Classify(object):
             raise ValueError("Direction {dir} is not supported.".
                              format(dir=direction))
 
+        # Get index of the first significant mask octet
+        i = len(mask) - len(mask.lstrip('\0'))
+
+        # Compute skip_n parameter
+        skip_n = i // 16
+        # Remove octets to be skipped from the mask
+        mask = mask[skip_n * 16:]
+        # Pad mask to an even multiple of the verctor size
+        mask = mask + (16 - len(mask) % 16 if len(mask) % 16 else 0) * '\0'
+        # Compute match_n parameter
+        match_n = len(mask) // 16
+
         return Classify._classify_add_del_table(
             node,
             is_add=1,
-            mask=binascii.unhexlify(mask),
-            match_n_vectors=(len(mask) - 1) // 32 + 1
+            mask=mask,
+            match_n_vectors=match_n,
+            skip_n_vectors=skip_n
         )
 
     @staticmethod
@@ -538,8 +511,9 @@ class Classify(object):
         )
 
     @staticmethod
-    def vpp_configures_classify_session_l3(node, acl_method, table_index,
-                                           ip_version, direction, address):
+    def vpp_configures_classify_session_l3(
+            node, acl_method, table_index, ip_version, direction, address,
+            hit_next_index=0xFFFFFFFF, opaque_index=0xFFFFFFFF):
         """Configuration of classify session for IP address filtering.
 
         :param node: VPP node to setup classify session.
@@ -548,12 +522,18 @@ class Classify(object):
         :param ip_version: Version of IP protocol.
         :param direction: Direction of traffic - src/dst.
         :param address: IPv4 or IPv6 address.
+        :param hit_next_index: hit_next_index of new session.
+            (Default value = 0xFFFFFFFF)
+        :param opaque_index: opaque_index of new session.
+            (Default value = 0xFFFFFFFF)
         :type node: dict
         :type acl_method: str
         :type table_index: int
         :type ip_version: str
         :type direction: str
         :type address: str
+        :type hit_next_index: int
+        :type opaque_index: int
         :raises ValueError: If the parameter 'direction' has incorrect value.
         """
         match_f = dict(
@@ -575,8 +555,11 @@ class Classify(object):
             node,
             is_add=1,
             table_index=table_index,
+            hit_next_index=hit_next_index,
+            opaque_index=opaque_index,
             match=binascii.unhexlify(match),
-            action=action[acl_method])
+            action=action[acl_method]
+        )
 
     @staticmethod
     def vpp_configures_classify_session_l2(node, acl_method, table_index,
@@ -755,6 +738,18 @@ class Classify(object):
             details = papi_exec.add(cmd, **args).get_details()
 
         return details
+
+    @staticmethod
+    def show_classify_tables_verbose(node):
+        """Show classify tables verbose.
+
+        :param node: Topology node.
+        :type node: dict
+        :returns: Classify tables verbose data.
+        :rtype: str
+        """
+        return PapiSocketExecutor.run_cli_cmd(
+            node, "show classify tables verbose")
 
     @staticmethod
     def vpp_log_plugin_acl_settings(node):
