@@ -76,9 +76,10 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding in circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip4 | dst | 20.20.20.2
+| | ... | ${dut1} | ip4 | dst | 255.255.255.0
 | | And Vpp Configures Classify Session L3
-| | ... | ${dut1} | permit | ${table_idx} | ip4 | dst | 20.20.20.2
+| | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip4 | dst
+| | ... | 20.20.20.0
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1} | ${dut1_if1} | ip4 | ${table_idx}
 | | Then Find NDR and PDR intervals using optimized search
