@@ -72,6 +72,7 @@
 | | ... | ${tg} | 10.10.10.2 | 20.20.20.2
 | | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
 | | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
+| | Show Classify Tables Verbose | ${dut1}
 
 *** Test Cases ***
 | tc01-64B-ethip4-ip4base-iacldstbase-dev
