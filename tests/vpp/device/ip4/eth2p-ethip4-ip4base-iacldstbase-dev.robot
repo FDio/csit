@@ -19,7 +19,9 @@
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Run Keywords
+| | ... | Show Classify Tables Verbose | ${dut1}
+| | ... | AND | Tear down test | packet_trace
 | ...
 | Test Template | Local Template
 | ...
@@ -63,7 +65,7 @@
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize IPv4 forwarding in circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip4 | dst | 20.20.20.2
+| | ... | ${dut1} | ip4 | dst | 255.255.255.255
 | | And Vpp Configures Classify Session L3
 | | ... | ${dut1} | permit | ${table_idx} | ip4 | dst | 20.20.20.2
 | | And Vpp Enable Input Acl Interface
