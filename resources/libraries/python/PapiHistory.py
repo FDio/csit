@@ -51,6 +51,8 @@ class PapiHistory(object):
     def add_to_papi_history(node, csit_papi_command, papi=True, **kwargs):
         """Add command to PAPI command history on DUT node.
 
+        Repr strings are used for argument values.
+
         The argument name 'csit_papi_command' must be unique enough as it cannot
         be repeated in kwargs.
 
@@ -84,7 +86,7 @@ class PapiHistory(object):
         if papi:
             args = list()
             for key, val in kwargs.iteritems():
-                args.append("{key}={val}".format(key=key, val=val))
+                args.append("{key}={val!r}".format(key=key, val=val))
             item = "{cmd}({args})".format(cmd=csit_papi_command,
                                           args=",".join(args))
         else:
