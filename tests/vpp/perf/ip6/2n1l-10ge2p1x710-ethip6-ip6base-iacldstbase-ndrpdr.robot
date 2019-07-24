@@ -50,6 +50,7 @@
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${0}
+| ${dscp}= | AF22
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n-ethip6-ip6src253
 
