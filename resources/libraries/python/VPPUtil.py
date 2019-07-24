@@ -330,3 +330,15 @@ class VPPUtil(object):
         logger.info("show threads:\n{threads}".format(threads=threads_data))
 
         return threads_data
+
+    @staticmethod
+    def api_trace_dump(node):
+        """Dump API trace.
+
+        :param node: Topology node.
+        :type node: dict
+        :returns: API trace data.
+        :rtype: str
+        """
+        return PapiSocketExecutor.run_cli_cmd(node, "api trace dump")
+
