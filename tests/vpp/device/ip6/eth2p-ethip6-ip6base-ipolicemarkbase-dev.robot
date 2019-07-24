@@ -19,7 +19,7 @@
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Tear down test | packet_trace | classify
 | ...
 | Test Template | Local Template
 | ...
@@ -41,6 +41,7 @@
 | ${overhead}= | ${0}
 | ${cir}= | ${100}
 | ${eir}= | ${150}
+| ${dscp}= | AF22
 
 *** Keywords ***
 | Local Template
