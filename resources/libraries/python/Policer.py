@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,8 +17,7 @@ from enum import Enum
 
 from ipaddress import ip_address
 
-from resources.libraries.python.VatExecutor import VatExecutor
-from resources.libraries.python.VatJsonUtil import VatJsonUtil
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 
 
@@ -135,7 +134,7 @@ class Policer(object):
         self._node = None
         self._policer_name = ''
 
-    def policer_set_configuration(self):
+    def policer_set_configuration(self, is_add=1):
         """Configure policer on VPP node.
 
         ...note:: First set all required parameters.
@@ -145,41 +144,30 @@ class Policer(object):
         # create policer
         color_aware = 'color-aware' if self._color_aware else ''
 
-        # pylint: disable=no-member
-        conform_action = self._conform_action.value
+        cmd = 'policer_add_del'
+        args_in = dict(
+            is_add=int(is_add),
+            name=self._policer_name,
+            cir=self._cir,
+            eir=self._eir,
+            cb=self._cb,
+            eb=self._eb,
+            rate_type=self._rate_type.value,
+            round_type=self._round_type.value,
+            type=self._policer_type.value,
+            conform_action_type=self._conform_action.value,
+            exceed_action_type=self._exceed_action.value,
+            violate_action_type=self._violate_action.value,
+            color_aware=color_aware
+        )
 
-        if PolicerAction.MARK_AND_TRANSMIT == self._conform_action:
-            conform_action += ' {0}'.format(self._conform_dscp.string)
+        err_msg = 'Add policer {0} failed on {1}'.format(self._policer_name,
+                                                         node['host'])
 
-        exceed_action = self._exceed_action.value
-        if PolicerAction.MARK_AND_TRANSMIT == self._exceed_action:
-            exceed_action += ' {0}'.format(self._exceed_dscp.string)
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
-        violate_action = self._violate_action.value
-        if PolicerAction.MARK_AND_TRANSMIT == self._violate_action:
-            violate_action += ' {0}'.format(self._violate_dscp.string)
-
-        out = VatExecutor.cmd_from_template(node,
-                                            "policer/policer_add_3c.vat",
-                                            name=self._policer_name,
-                                            cir=self._cir,
-                                            eir=self._eir,
-                                            cb=self._cb,
-                                            eb=self._eb,
-                                            rate_type=self._rate_type.value,
-                                            round_type=self._round_type.value,
-                                            p_type=self._policer_type.value,
-                                            conform_action=conform_action,
-                                            exceed_action=exceed_action,
-                                            violate_action=violate_action,
-                                            color_aware=color_aware)
-
-        VatJsonUtil.verify_vat_retval(
-            out[0],
-            err_msg='Add policer {0} failed on {1}'.format(self._policer_name,
-                                                           node['host']))
-
-        policer_index = out[0].get('policer_index')
+        policer_index = reply['policer_index']
 
         # create classify table
         direction = 'src' if self._classify_match_is_src else 'dst'
@@ -191,49 +179,47 @@ class Policer(object):
             ip_version = 'ip4'
             table_type = PolicerClassifyTableType.IP4_TABLE
 
-        out = VatExecutor.cmd_from_template(node,
-                                            "classify_add_table.vat",
-                                            ip_version=ip_version,
-                                            direction=direction)
+        cmd = 'classify_add_del_table'
+        args_in = dict(
+            ip_version=ip_version,
+            direction=direction
+        )
+        err_msg = 'Add classify table failed on {0}'.format(node['host'])
+        with PapiSocketExecutor(node) as papi_exec:
+            reply = papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
-        VatJsonUtil.verify_vat_retval(
-            out[0],
-            err_msg='Add classify table failed on {0}'.format(node['host']))
-
-        new_table_index = out[0].get('new_table_index')
-        skip_n_vectors = out[0].get('skip_n_vectors')
-        match_n_vectors = out[0].get('match_n_vectors')
+        new_table_index = reply['new_table_index']
+        skip_n_vectors = reply['skip_n_vectors']
+        match_n_vectors = reply['match_n_vectors']
 
         # create classify session
         match = 'l3 {0} {1} {2}'.format(ip_version,
                                         direction,
                                         self._classify_match_ip)
-
-        out = VatExecutor.cmd_from_template(
-            node,
-            "policer/policer_classify_add_session.vat",
+        cmd = 'classify_add_del_session'
+        args_in = dict(
             policer_index=policer_index,
-            pre_color=self._classify_precolor.value, # pylint: disable=no-member
+            pre_color=self._classify_precolor.value,  # pylint:disable=no-member
             table_index=new_table_index,
             skip_n=skip_n_vectors,
             match_n=match_n_vectors,
-            match=match)
+            match=match
+        )
+        err_msg = 'Add classify session failed on {0}'.format(node['host'])
 
-        VatJsonUtil.verify_vat_retval(
-            out[0],
-            err_msg='Add classify session failed on {0}'.format(node['host']))
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
         # set classify interface
-        out = VatExecutor.cmd_from_template(
-            node,
-            "policer/policer_classify_set_interface.vat",
+        cmd = 'policer_classify_set_interface'
+        args_in = dict(
             sw_if_index=self._sw_if_index,
-            table_type=table_type.value, # pylint: disable=no-member
-            table_index=new_table_index)
-
-        VatJsonUtil.verify_vat_retval(
-            out[0],
-            err_msg='Set classify interface failed on {0}'.format(node['host']))
+            table_type=table_type.value,  # pylint: disable=no-member
+            table_index=new_table_index
+        )
+        err_msg = 'Set classify interface failed on {0}'.format(node['host'])
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
     def policer_clear_settings(self):
         """Clear policer settings."""
@@ -264,7 +250,7 @@ class Policer(object):
         :param name: Policer name.
         :type name: str
         """
-        self._policer_name = name
+        self._policer_name = name.encode("utf-8")
 
     def policer_set_node(self, node):
         """Set node to setup policer on.
