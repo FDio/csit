@@ -184,7 +184,10 @@
     vxlan_add_del_tunnel_reply: '0xfda5941f'  # virl
     vxlan_tunnel_details: '0xce38e127'  # virl
     vxlan_tunnel_dump: '0x529cb13f'  # virl
-
+    # ^^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
+    policer_add_del: '0xdfea2be8'  # dev
+    policer_add_del_reply: '0xa177cef2'  # dev
+    
 # TODO: Create an on-demand perf verify job with a tag expression
 # covering API calls used only in perf tests,
 # and maintain the expression as device test gets more coverage.
