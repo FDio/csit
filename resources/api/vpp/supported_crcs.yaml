@@ -63,9 +63,9 @@
     # classify_table_info / reply # honeycomb
     cli_inband: '0xf8377302'  # dev setup
     cli_inband_reply: '0x05879051'  # dev setup
-    cop_interface_enable_disable: '0x35049db2'  # dev
+    cop_interface_enable_disable: '0x69d24598'  # dev
     cop_interface_enable_disable_reply: '0xe8d4e804'  # dev
-    cop_whitelist_enable_disable: '0xe89bc1f3'  # dev
+    cop_whitelist_enable_disable: '0x8bb8f6dc'  # dev
     cop_whitelist_enable_disable_reply: '0xe8d4e804'  # dev
     create_loopback: '0x16e13d38'  # dev
     create_loopback_reply: '0x903324db'  # dev
@@ -249,6 +249,11 @@
     vxlan_add_del_tunnel_reply: '0xfda5941f'  # dev
     # vxlan_gpe_tunnel_dump / details # honeycomb
     # vxlan_tunnel_dump /details # unused L2 keyword: Get VXLAN dump
+    # ^^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
+    policer_add_del: '0xdfea2be8'  # dev
+    policer_add_del_reply: '0xa177cef2'  # dev
+    policer_classify_set_interface: '0xe09537b0' # dev
+    policer_classify_set_interface_reply: '0xe8d4e804' # dev
 
 
 # https://gerrit.fd.io/r/c/vpp/+/21997
@@ -284,9 +289,9 @@
     # classify_table_info / reply # honeycomb
     cli_inband: '0xf8377302'  # dev setup
     cli_inband_reply: '0x05879051'  # dev setup
-    cop_interface_enable_disable: '0x35049db2'  # dev
+    cop_interface_enable_disable: '0x69d24598'  # dev
     cop_interface_enable_disable_reply: '0xe8d4e804'  # dev
-    cop_whitelist_enable_disable: '0xe89bc1f3'  # dev
+    cop_whitelist_enable_disable: '0x8bb8f6dc'  # dev
     cop_whitelist_enable_disable_reply: '0xe8d4e804'  # dev
     create_loopback: '0x42bb5d22'  # dev
     create_loopback_reply: '0x5383d31f'  # dev
