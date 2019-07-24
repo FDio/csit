@@ -111,6 +111,13 @@
 | | Run Keyword If Test Failed
 | | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
 
+| Additional Test Tear Down Action For classify
+| | [Documentation]
+| | ... | Additional teardown for tests which uses classify tables.
+| | ...
+| | Run Keyword If Test Failed
+| | ... | Show Classify Tables Verbose on all DUTs | ${nodes}
+
 | Additional Test Tear Down Action For srv6
 | | [Documentation]
 | | ... | Additional teardown for tests which uses SRv6.

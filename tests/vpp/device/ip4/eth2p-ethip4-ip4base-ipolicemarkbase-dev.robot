@@ -19,7 +19,7 @@
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Tear down test | packet_trace | classify
 | ...
 | Test Template | Local Template
 | ...
@@ -41,6 +41,7 @@
 | ${overhead}= | ${0}
 | ${cir}= | ${100}
 | ${eir}= | ${150}
+| ${dscp}= | AF22
 
 *** Keywords ***
 | Local Template
@@ -68,6 +69,7 @@
 | | Then Send packet and verify marking
 | | ... | ${tg} | ${tg_if1} | ${tg_if2} | ${tg_if1_mac} | ${dut1_if1_mac}
 | | ... | 10.10.10.2 | 20.20.20.2
+| | And Show Classify Tables Verbose | ${dut1}
 
 *** Test Cases ***
 | tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
