@@ -19,7 +19,9 @@
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Run Keywords
+| | ... | Show Classify Tables Verbose | ${dut1}
+| | ... | AND | Tear down test | packet_trace
 | ...
 | Test Template | Local Template
 | ...
@@ -63,9 +65,10 @@
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize IPv6 forwarding in circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
-| | ... | ${dut1} | ip6 | dst | 2001:2::2
+| | ... | ${dut1} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff
 | | And Vpp Configures Classify Session L3
-| | ... | ${dut1} | permit | ${table_idx} | ip6 | dst | 2001:2::2
+| | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 | dst
+| | ... | 2001:2::2
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1} | ${dut1_if1} | ip6 | ${table_idx}
 | | Then Send packet and verify headers
