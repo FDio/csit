@@ -571,7 +571,6 @@
 | | [Arguments] | ${node} | ${tx_if} | ${rx_if} | ${src_mac} | ${dst_mac}
 | | ... | ${src_ip} | ${dst_ip}
 | | ...
-| | ${dscp}= | DSCP AF22
 | | ${tx_if_name}= | Get Interface Name | ${node} | ${tx_if}
 | | ${rx_if_name}= | Get Interface Name | ${node} | ${rx_if}
 | | ${args}= | Traffic Script Gen Arg | ${rx_if_name} | ${tx_if_name}
