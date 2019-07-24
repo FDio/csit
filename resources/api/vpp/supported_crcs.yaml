@@ -172,7 +172,11 @@
     show_threads: '0x51077d14'  # dev
     show_threads_reply: '0xf5e0b66f'  # dev
     show_version: '0x51077d14'  # dev setup
+<<<<<<< HEAD
     show_version_reply: '0xc919bde1'  # dev setup
+=======
+    show_version_reply: '0xb9bcf6df'  # dev setup
+>>>>>>> 92992c7... Policer - VAT API to PAPI
     sr_localsid_add_del: '0xb30489eb'  # perf
     sr_localsid_add_del_reply: '0xe8d4e804'  # perf
     sr_localsids_details: '0x0791babc'  # perf
@@ -181,6 +185,11 @@
     sr_policies_dump: '0x51077d14'  # perf
     sr_policy_add: '0x4b6e2484'  # perf
     sr_policy_add_reply: '0xe8d4e804'  # perf
+<<<<<<< HEAD
+=======
+    sr_policy_del: '0xe4133171'  # perf
+    sr_policy_del_reply: '0xe8d4e804'  # perf
+>>>>>>> 92992c7... Policer - VAT API to PAPI
     sr_set_encap_source: '0xd05bb4de'  # perf
     sr_set_encap_source_reply: '0xe8d4e804'  # perf
     sr_steering_add_del: '0x28b5dcab'  # perf
@@ -194,8 +203,13 @@
     sw_interface_bond_details: '0xa8ac5a5f'  # perf
     sw_interface_bond_dump: '0x51077d14'  # perf
     # ^^ see bond_*
+<<<<<<< HEAD
     sw_interface_details: '0xe67d02b6'  # dev setup
     sw_interface_dump: '0x4ecaa564'  # dev setup
+=======
+    sw_interface_details: '0x156a9465'  # dev setup
+    sw_interface_dump: '0xe116dcdc'  # dev setup
+>>>>>>> 92992c7... Policer - VAT API to PAPI
     sw_interface_ip6nd_ra_config: '0xc3f02daa'  # dev
     sw_interface_ip6nd_ra_config_reply: '0xe8d4e804'  # dev
     sw_interface_rx_placement_details: '0x93d413ec'  # perf
@@ -232,6 +246,11 @@
     vxlan_add_del_tunnel_reply: '0xfda5941f'  # virl
     vxlan_tunnel_details: '0xce38e127'  # virl
     vxlan_tunnel_dump: '0x529cb13f'  # virl
+    # ^^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
+    policer_add_del: '0xdfea2be8'  # dev
+    policer_add_del_reply: '0xa177cef2'  # dev
+    policer_classify_set_interface: '0xe09537b0' # dev
+    policer_classify_set_interface_reply: '0xe8d4e804' # dev
 
 # TODO: Create an on-demand perf verify job with a tag expression
 # covering API calls used only in perf tests,
