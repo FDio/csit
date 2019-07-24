@@ -296,10 +296,9 @@ class Classify(object):
             int(reply["match_n_vectors"])
 
     @staticmethod
-    def _classify_add_del_session(node, is_add, table_index, match,
-                                  opaque_index=0xFFFFFFFF,
-                                  hit_next_index=0xFFFFFFFF, advance=0,
-                                  action=0, metadata=0):
+    def _classify_add_del_session(
+            node, is_add, table_index, match, opaque_index=0xFFFFFFFF,
+            hit_next_index=0xFFFFFFFF, advance=0, action=0, metadata=0):
         """Add or delete a classify session.
 
         :param node: VPP node to create classify session.
@@ -480,7 +479,8 @@ class Classify(object):
             node,
             is_add=1,
             mask=binascii.unhexlify(mask),
-            match_n_vectors=(len(mask) - 1) // 32 + 1
+            match_n_vectors=(len(mask) - 1) // 32 + 1,
+            skip_n_vectors=1 if direction == 'dst' else 0
         )
 
     @staticmethod
@@ -538,8 +538,9 @@ class Classify(object):
         )
 
     @staticmethod
-    def vpp_configures_classify_session_l3(node, acl_method, table_index,
-                                           ip_version, direction, address):
+    def vpp_configures_classify_session_l3(
+            node, acl_method, table_index, ip_version, direction, address,
+            hit_next_index=0xFFFFFFFF, opaque_index=0xFFFFFFFF):
         """Configuration of classify session for IP address filtering.
 
         :param node: VPP node to setup classify session.
@@ -548,12 +549,18 @@ class Classify(object):
         :param ip_version: Version of IP protocol.
         :param direction: Direction of traffic - src/dst.
         :param address: IPv4 or IPv6 address.
+        :param hit_next_index: hit_next_index of new session.
+            (Default value = 0xFFFFFFFF)
+        :param opaque_index: opaque_index of new session.
+            (Default value = 0xFFFFFFFF)
         :type node: dict
         :type acl_method: str
         :type table_index: int
         :type ip_version: str
         :type direction: str
         :type address: str
+        :type hit_next_index: int
+        :type opaque_index: int
         :raises ValueError: If the parameter 'direction' has incorrect value.
         """
         match_f = dict(
@@ -575,8 +582,11 @@ class Classify(object):
             node,
             is_add=1,
             table_index=table_index,
+            hit_next_index=hit_next_index,
+            opaque_index=opaque_index,
             match=binascii.unhexlify(match),
-            action=action[acl_method])
+            action=action[acl_method]
+        )
 
     @staticmethod
     def vpp_configures_classify_session_l2(node, acl_method, table_index,
