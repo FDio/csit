@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -82,6 +82,44 @@
 | | Set Test Variable | ${prev_layer} | if
 | | Set interfaces in path up
 
+| Initialize layer avf on node
+| | [Documentation]
+| | ... | Initialize AVF interfaces on DUT. Interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize layer avf on node \| DUT1 \|
+| | ...
+| | [Arguments] | ${dut}
+| | ...
+| | ${dut_str}= | Convert To Lowercase | ${dut}
+| | ${if1_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if1}
+| | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
+| | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
+| | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
+| | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | ... | ${${dut}_if1_vf0}
+| | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | ... | ${${dut}_if2_vf0}
+| | ${dut_eth_vf_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
+| | ... | ${if1_pci} | ${rxq_count_int}
+| | ${dut_eth_vf_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
+| | ... | ${if2_pci} | ${rxq_count_int}
+| | Set Test Variable | ${${dut}_if1} | ${dut_eth_vf_if1}
+| | Set Test Variable | ${${dut}_if2} | ${dut_eth_vf_if2}
+
+| Initialize AVF interfaces
+| | [Documentation]
+| | ... | Initialize AVF interfaces on each DUT. Interfaces are brought up.
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+| | | Initialize layer avf on node | ${dut}
+| | Set Test Variable | ${prev_layer} | vf
+| | Set interfaces in path up
+
 | Initialize layer bonding on node
 | | [Documentation]
 | | ... | Bonded interface and variables to be created on across east and
@@ -152,18 +190,28 @@
 | | ...
 | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | :FOR | ${id} | IN RANGE | 1 | ${count} + 1
-| | | ${vlan_west}= | Evaluate | 100 + ${id} - 1
-| | | ${vlan_east}= | Evaluate | 200 + ${id} - 1
+| | | ${if1_vlan}= | Run Keyword If | ${${dut_str}_vlan1}
+| | | ... | Set Variable | ${${dut_str}_vlan1}
+| | | ... | ELSE
+| | | ... | Evaluate | ${100} + ${id} - ${1}
+| | | ${if2_vlan}= | Run Keyword If | ${${dut_str}_vlan2}
+| | | ... | Set Variable | ${${dut_str}_vlan2}
+| | | ... | ELSE
+| | | ... | Evaluate | ${200} + ${id} - ${1}
 | | | ${if1_name} | ${if1_index}= | Run Keyword Unless
 | | | ... | ${create} and ${id} > ${1}
 | | | ... | Create Vlan Subinterface
 | | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1}
-| | | ... | ${vlan_west}
+| | | ... | ${if1_vlan}
 | | | ${if2_name} | ${if2_index}= | Run Keyword Unless
 | | | ... | ${create} and ${id} > ${1}
 | | | ... | Create Vlan Subinterface
 | | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2}
-| | | ... | ${vlan_east}
+| | | ... | ${if2_vlan}
+| | | Configure L2 tag rewrite method on interfaces
+| | | ... | ${nodes['${dut}']} | ${if1_index} | TAG_REWRITE_METHOD=pop-1
+| | | Configure L2 tag rewrite method on interfaces
+| | | ... | ${nodes['${dut}']} | ${if2_index} | TAG_REWRITE_METHOD=pop-1
 | | | Run Keyword Unless | ${create} and ${id} > ${1}
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${if1_index} | up
 | | | Run Keyword Unless | ${create} and ${id} > ${1}
