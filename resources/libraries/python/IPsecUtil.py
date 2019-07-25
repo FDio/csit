@@ -21,7 +21,6 @@ from string import letters
 from enum import Enum, IntEnum
 from ipaddress import ip_network, ip_address
 
-from resources.libraries.python.Constants import Constants
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
@@ -461,8 +460,6 @@ class IPsecUtil(object):
                     if tunnel_src and tunnel_dst else dst_addr
                 history = False if 1 < i < n_entries - 1 else True
                 papi_exec.add(cmd, history=history, **args)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
     @staticmethod
@@ -553,8 +550,6 @@ class IPsecUtil(object):
                 history = False if 1 < i < n_tunnels - 1 else True
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK / 2 == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
     @staticmethod
@@ -730,9 +725,9 @@ class IPsecUtil(object):
                             raddr_s=raddr_s,
                             raddr_e=raddr_e))
                     tmp_file.write(tunnel)
-            vat = VatExecutor()
-            vat.execute_script(tmp_filename, node, timeout=300, json_out=False,
-                               copy_on_execute=True)
+            VatExecutor().execute_script(
+                tmp_filename, node, timeout=300, json_out=False,
+                copy_on_execute=True)
             os.remove(tmp_filename)
             return
 
@@ -775,8 +770,6 @@ class IPsecUtil(object):
                     IPUtil.union_addr(raddr_ip + i)
                 history = False if 1 < i < n_entries - 1 else True
                 papi_exec.add(cmd, history=history, **args)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
     @staticmethod
@@ -822,7 +815,7 @@ class IPsecUtil(object):
         addr_incr = 1 << (128 - raddr_range) if if1_ip.version == 6 \
             else 1 << (32 - raddr_range)
 
-        if n_tunnels > 10:
+        if n_tunnels > 1:
             tmp_fn1 = '/tmp/ipsec_create_tunnel_dut1.config'
             tmp_fn2 = '/tmp/ipsec_create_tunnel_dut2.config'
             vat = VatExecutor()
@@ -1034,11 +1027,6 @@ class IPsecUtil(object):
                 history = False if 1 < i < n_tunnels - 1 else True
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK / 2 == 0:
-                    replies = papi_exec.get_replies(err_msg)
-                    for reply in replies:
-                        if 'sw_if_index' in reply:
-                            ipsec_tunnels.append(reply["sw_if_index"])
             replies = papi_exec.get_replies(err_msg)
             for reply in replies:
                 if 'sw_if_index' in reply:
@@ -1079,8 +1067,6 @@ class IPsecUtil(object):
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2).\
                     add(cmd3, history=history, **args3)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK / 3 == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
         with PapiSocketExecutor(nodes['DUT2']) as papi_exec:
@@ -1137,11 +1123,6 @@ class IPsecUtil(object):
                     args2['remote_integ_key'] = ikeys[i]
                 history = False if 1 < i < n_tunnels - 1 else True
                 papi_exec.add(cmd2, history=history, **args2)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK / 2 == 0:
-                    replies = papi_exec.get_replies(err_msg)
-                    for reply in replies:
-                        if 'sw_if_index' in reply:
-                            ipsec_tunnels.append(reply["sw_if_index"])
             replies = papi_exec.get_replies(err_msg)
             for reply in replies:
                 if 'sw_if_index' in reply:
@@ -1195,8 +1176,6 @@ class IPsecUtil(object):
                 papi_exec.add(cmd1, history=history, **args1). \
                     add(cmd2, history=history, **args2). \
                     add(cmd3, history=history, **args3)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK / 3 == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
     @staticmethod
