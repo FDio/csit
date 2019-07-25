@@ -655,17 +655,26 @@ class TrafficGenerator(AbstractMeasurer):
             unit_rate = str(self.b2b / 2.0) + "pps"
             # Set real duration to sent transmit_rate packets (aggregate).
             real_duration = 1.0 * transmit_rate / self.b2b
-            self.send_traffic_on_tg(
-                real_duration, unit_rate, self.frame_size, self.traffic_profile,
-                warmup_time=self.warmup_time, latency=True)
-            transmit_count = int(self.get_sent())
-            loss_count = int(self.get_loss())
-            measurement = ReceiveRateMeasurement(
-                duration, transmit_rate, transmit_count, loss_count)
-            measurement.latency = self.get_latency_int()
-            if real_duration < duration:
-                time.sleep(duration - real_duration)
-            return measurement
+            results = list()
+            time_start = time.time()
+            while 1:
+                self.send_traffic_on_tg(
+                    real_duration, unit_rate, self.frame_size, self.traffic_profile,
+                    warmup_time=self.warmup_time, latency=True)
+                transmit_count = int(self.get_sent())
+                loss_count = int(self.get_loss())
+                measurement = ReceiveRateMeasurement(
+                    duration, transmit_rate, transmit_count, loss_count)
+                measurement.latency = self.get_latency_int()
+                results.append(measurement)
+                timedelta_so_far = time.time() - time_start
+                timedelta_left = duration - timedelta_so_far
+                timedelta_per_measurement = timedelta_so_far / len(results)
+                if timedelta_left >= timedelta_per_measurement:
+                    continue
+                time.sleep(timedelta_left)
+                break
+            return results
         # Trex needs target Tr per stream, but reports aggregate Tx and Dx.
         unit_rate = str(transmit_rate / 2.0) + "pps"
         self.send_traffic_on_tg(
