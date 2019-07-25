@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -22,3 +22,41 @@
 | | Set Interface State | ${node} | ${if1} | up
 | | Set Interface State | ${node} | ${if2} | up
 | | Vpp Setup Bidirectional Cross Connect | ${node} | ${if1} | ${if2}
+
+| Initialize L2 cross connect on node
+| | [Documentation]
+| | ... | Setup L2 cross connect topology by connecting RX/TX of two interfaces
+| | ... | on each DUT. Interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - count - Number of interfaces pairs to connect. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 cross connect on node \| DUT1 \| 1 \|
+| | ...
+| | [Arguments] | ${dut} | ${count}=${1}
+| | ...
+| | :FOR | ${id} | IN RANGE | 1 | ${count} + 1
+| | | ${dut_str}= | Convert To Lowercase | ${dut}
+| | | Vpp Setup Bidirectional Cross Connect | ${nodes['${dut}']}
+| | | ... | ${${dut_str}_${prev_layer}_${id}_1}
+| | | ... | ${${dut_str}_${prev_layer}_${id}_2}
+
+| Initialize L2 cross connect
+| | [Documentation]
+| | ... | Setup L2 cross connect topology by connecting RX/TX of two interfaces
+| | ... | on each DUT. Interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - count - Number of interfaces pairs to connect. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 cross connect \| 1 \|
+| | ...
+| | [Arguments] | ${count}=${1}
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+| | | Initialize L2 cross connect on node | ${dut} | count=${count}
