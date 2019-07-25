@@ -32,6 +32,47 @@
 | | ... | Vpp Add L2fib Entry | ${dut_node} | ${mac} | ${if2} | ${1}
 | | Vpp Node Interfaces Ready Wait | ${dut_node}
 
+| Initialize L2 bridge domain on node
+| | [Documentation]
+| | ... | Setup L2 bridge domain topology by adding two interfaces on DUT into
+| | ... | separate bridge domains that are created automatically starting with
+| | ... | index 1. Learning is enabled. Interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - count - Number of bridge domains interfaces. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domain on node \| DUT1 \| 1 \|
+| | ...
+| | [Arguments] | ${dut} | ${count}=${1}
+| | ...
+| | :FOR | ${id} | IN RANGE | 1 | ${count} + 1
+| | | ${dut_str}= | Convert To Lowercase | ${dut}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1} | ${id}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2} | ${id}
+
+| Initialize L2 bridge domain
+| | [Documentation]
+| | ... | Setup L2 bridge domain topology by adding two interfaces on each DUT
+| | ... | into separate bridge domains that are created automatically starting
+| | ... | with index 1. Learning is enabled. Interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - count - Number of bridge domains. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domain \| 1 \|
+| | ...
+| | [Arguments] | ${count}=${1}
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+| | | Initialize L2 bridge domain on node | ${dut} | count=${count}
+
 | Configure path for 3-node BD-SHG test
 | | [Documentation] | Compute path for bridge domain split-horizon group testing
 | | ...             | on three given nodes with following interconnections
