@@ -60,7 +60,10 @@ schema;type_interfaces:
         model:
           type: str
           enum: [Cisco-VIC-1227, Cisco-VIC-1385, Intel-X520-DA2,
-                 Intel-X710, Intel-XL710]
+                 Intel-X710, Intel-XL710, Intel-XXV710]
+        vlan:
+          type: int
+          required: no
 
 schema;type_interface_tg: &type_interface_tg
   type: map
