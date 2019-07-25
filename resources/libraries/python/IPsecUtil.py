@@ -461,8 +461,6 @@ class IPsecUtil(object):
                     if tunnel_src and tunnel_dst else dst_addr
                 history = False if 1 < i < n_entries - 1 else True
                 papi_exec.add(cmd, history=history, **args)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
     @staticmethod
@@ -553,8 +551,6 @@ class IPsecUtil(object):
                 history = False if 1 < i < n_tunnels - 1 else True
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK / 2 == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
     @staticmethod
@@ -775,8 +771,6 @@ class IPsecUtil(object):
                     IPUtil.union_addr(raddr_ip + i)
                 history = False if 1 < i < n_entries - 1 else True
                 papi_exec.add(cmd, history=history, **args)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
     @staticmethod
@@ -1034,11 +1028,6 @@ class IPsecUtil(object):
                 history = False if 1 < i < n_tunnels - 1 else True
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK / 2 == 0:
-                    replies = papi_exec.get_replies(err_msg)
-                    for reply in replies:
-                        if 'sw_if_index' in reply:
-                            ipsec_tunnels.append(reply["sw_if_index"])
             replies = papi_exec.get_replies(err_msg)
             for reply in replies:
                 if 'sw_if_index' in reply:
@@ -1079,8 +1068,6 @@ class IPsecUtil(object):
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2).\
                     add(cmd3, history=history, **args3)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK / 3 == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
         with PapiSocketExecutor(nodes['DUT2']) as papi_exec:
@@ -1137,11 +1124,6 @@ class IPsecUtil(object):
                     args2['remote_integ_key'] = ikeys[i]
                 history = False if 1 < i < n_tunnels - 1 else True
                 papi_exec.add(cmd2, history=history, **args2)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK / 2 == 0:
-                    replies = papi_exec.get_replies(err_msg)
-                    for reply in replies:
-                        if 'sw_if_index' in reply:
-                            ipsec_tunnels.append(reply["sw_if_index"])
             replies = papi_exec.get_replies(err_msg)
             for reply in replies:
                 if 'sw_if_index' in reply:
@@ -1195,8 +1177,6 @@ class IPsecUtil(object):
                 papi_exec.add(cmd1, history=history, **args1). \
                     add(cmd2, history=history, **args2). \
                     add(cmd3, history=history, **args3)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK / 3 == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
     @staticmethod
