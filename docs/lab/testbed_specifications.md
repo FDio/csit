@@ -25,31 +25,31 @@
    1. [Naming Convention](#naming-convention)
 1. [Testbeds Configuration](#testbeds-configuration)
    1. [Per Testbed Server Allocation and Naming](#per-testbed-server-allocation-and-naming)
-      1. [1-Node-Skylake (1n-skx) PROD](#1-node-skylake-1n-skx-prod)
-      1. [1-Node-Thunderx2 (1n-tx2) WIP](#1-node-thunderx2-1n-tx2-wip)
-      1. [1-Node-Cascadelake (1n-clx) SETUP](#1-node-cascadelake-1n-clx-setup)
-      1. [2-Node-Skylake (2n-skx) PROD](#2-node-skylake-2n-skx-prod)
-      1. [2-Node-Denverton (2n-dnv) TODO](#2-node-denverton-2n-dnv-todo)
-      1. [2-Node-IxiaPS1L47 (2n-ps1) VERIFY](#2-node-ixiaps1l47-2n-ps1-verify)
-      1. [2-Node-Cascadelake (2n-clx) SETUP](#2-node-cascadelake-2n-clx-setup)
-      1. [3-Node-Haswell (3n-hsw) PROD](#3-node-haswell-3n-hsw-prod)
-      1. [3-Node-Skylake (3n-skx) PROD](#3-node-skylake-3n-skx-prod)
-      1. [3-Node-Rangeley (3n-rng) VERIFY](#3-node-rangeley-3n-rng-verify)
-      1. [3-Node-Taishan (3n-tsh) WIP](#3-node-taishan-3n-tsh-wip)
-      1. [3-Node-Mcbin (3n-mcb) TODO](#3-node-mcbin-3n-mcb-todo)
+      1. [1-Node-Skylake Servers (1n-skx) PROD](#1-node-skylake-servers-1n-skx-prod)
+      1. [1-Node-Thunderx2 Servers (1n-tx2) WIP](#1-node-thunderx2-servers-1n-tx2-wip)
+      1. [1-Node-Cascadelake Servers (1n-clx) SETUP](#1-node-cascadelake-servers-1n-clx-setup)
+      1. [2-Node-Skylake Servers (2n-skx) PROD](#2-node-skylake-servers-2n-skx-prod)
+      1. [2-Node-Denverton Servers (2n-dnv) TODO](#2-node-denverton-servers-2n-dnv-todo)
+      1. [2-Node-IxiaPS1L47 Servers (2n-ps1) VERIFY](#2-node-ixiaps1l47-servers-2n-ps1-verify)
+      1. [2-Node-Cascadelake Servers (2n-clx) SETUP](#2-node-cascadelake-servers-2n-clx-setup)
+      1. [3-Node-Haswell Servers (3n-hsw) PROD](#3-node-haswell-servers-3n-hsw-prod)
+      1. [3-Node-Skylake Servers (3n-skx) PROD](#3-node-skylake-servers-3n-skx-prod)
+      1. [3-Node-Rangeley Servers (3n-rng) VERIFY](#3-node-rangeley-servers-3n-rng-verify)
+      1. [3-Node-Taishan Servers (3n-tsh) WIP](#3-node-taishan-servers-3n-tsh-wip)
+      1. [3-Node-Mcbin Servers (3n-mcb) TODO](#3-node-mcbin-servers-3n-mcb-todo)
    1. [Per Testbed Wiring](#per-testbed-wiring)
-      1. [1-Node-Skylake (1n-skx) PROD](#1-node-skylake-1n-skx-prod)
-      1. [1-Node-Thunderx2 (1n-tx2) WIP](#1-node-thunderx2-1n-tx2-wip)
-      1. [1-Node-Cascadelake (1n-clx) SETUP](#1-node-cascadelake-1n-clx-setup)
-      1. [2-Node-Skylake (2n-skx) PROD](#2-node-skylake-2n-skx-prod)
-      1. [2-Node-Denverton (2n-dnv) TODO](#2-node-denverton-2n-dnv-todo)
-      1. [2-Node-IxiaPS1L47 (2n-ps1) VERIFY](#2-node-ixiaps1l47-2n-ps1-verify)
-      1. [2-Node-Cascadelake (2n-clx) SETUP](#2-node-cascadelake-2n-clx-setup)
-      1. [3-Node-Haswell (3n-hsw) PROD](#3-node-haswell-3n-hsw-prod)
-      1. [3-Node-Skylake (3n-skx) PROD](#3-node-skylake-3n-skx-prod)
-      1. [3-Node-Rangeley (3n-rng) TODO](#3-node-rangeley-3n-rng-todo)
-      1. [3-Node-Taishan (3n-tsh) WIP](#3-node-taishan-3n-tsh-wip)
-      1. [3-Node-Mcbin (3n-mcb) WIP](#3-node-mcbin-3n-mcb-wip)
+      1. [1-Node-Skylake Wiring (1n-skx) PROD](#1-node-skylake-wiring-1n-skx-prod)
+      1. [1-Node-Thunderx2 Wiring (1n-tx2) WIP](#1-node-thunderx2-wiring-1n-tx2-wip)
+      1. [1-Node-Cascadelake Wiring (1n-clx) SETUP](#1-node-cascadelake-wiring-1n-clx-setup)
+      1. [2-Node-Skylake Wiring (2n-skx) PROD](#2-node-skylake-wiring-2n-skx-prod)
+      1. [2-Node-Denverton Wiring (2n-dnv) TODO](#2-node-denverton-wiring-2n-dnv-todo)
+      1. [2-Node-IxiaPS1L47 Wiring (2n-ps1) VERIFY](#2-node-ixiaps1l47-wiring-2n-ps1-verify)
+      1. [2-Node-Cascadelake Wiring (2n-clx) SETUP](#2-node-cascadelake-wiring-2n-clx-setup)
+      1. [3-Node-Haswell Wiring (3n-hsw) PROD](#3-node-haswell-wiring-3n-hsw-prod)
+      1. [3-Node-Skylake Wiring (3n-skx) PROD](#3-node-skylake-wiring-3n-skx-prod)
+      1. [3-Node-Rangeley Wiring (3n-rng) TODO](#3-node-rangeley-wiring-3n-rng-todo)
+      1. [3-Node-Taishan Wiring (3n-tsh) WIP](#3-node-taishan-wiring-3n-tsh-wip)
+      1. [3-Node-Mcbin Wiring (3n-mcb) WIP](#3-node-mcbin-wiring-3n-mcb-wip)
 1. [Inventory](#inventory)
    1. [Appliances](#appliances)
    1. [Arm Servers](#arm-servers)
@@ -434,7 +434,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-2. Server-Type-B2: Purpose - Skylake Xeon TG for FD.io performance testing.
+5. Server-Type-B2: Purpose - Skylake Xeon TG for FD.io performance testing.
     - Quantity: ---
     - Physical connectivity:
         - IPMI and host management ports.
@@ -454,7 +454,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: x710-4p10GE Intel.
-3. Server-Type-B3: Purpose - TaiShan Arm Huawei SUT for FD.io performance testing.
+6. Server-Type-B3: Purpose - TaiShan Arm Huawei SUT for FD.io performance testing.
     - Quantity: 2
     - Physical connectivity:
         - IPMI(?) and host management ports.
@@ -467,7 +467,7 @@ FD.io CSIT lab contains following server types:
     - NICs configuration:
         - PCIe Slot4 e9:00.xx: connectx4-2p25GE Mellanox.
         - PCIe Slot6 11:00.xx: x520-2p10GE Intel.
-4. Server-Type-B4: Purpose - MACCHIATObin Arm Marvell SUT for FD.io performance testing.
+7. Server-Type-B4: Purpose - MACCHIATObin Arm Marvell SUT for FD.io performance testing.
     - Quantity: 3
     - Physical connectivity:
         - Host management ports.
@@ -479,7 +479,7 @@ FD.io CSIT lab contains following server types:
         - Disks: 1* 128GB(?) SATA SDD
     - NICs configuration:
         - pp2-2p10GE Marvell (on-chip Ethernet ports ; marvell plugin in VPP)
-5. Server-Type-B5: Purpose - Rangeley Atom SUT for FD.io performance testing.
+8. Server-Type-B5: Purpose - Rangeley Atom SUT for FD.io performance testing.
     - Quantity: TBD based on testbed allocation.
     - Physical connectivity:
         - Management: serial Port (usb) for console
@@ -492,7 +492,7 @@ FD.io CSIT lab contains following server types:
     - NICs configuration:
         - 2x 10Gb Intel 82599ES
         - 4x 1GB Intel I354
-6. Server-Type-B6: Purpose - Skylake Xeon SUT for FD.io VPP_Device functional tests.
+9. Server-Type-B6: Purpose - Skylake Xeon SUT for FD.io VPP_Device functional tests.
     - Quantity: 2.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -512,7 +512,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-7. Server-Type-B7: Purpose - Ixia PerfectStorm One Appliance TG for FD.io TCP/IP performance tests.
+10. Server-Type-B7: Purpose - Ixia PerfectStorm One Appliance TG for FD.io TCP/IP performance tests.
     - Quantity: 1.
     - Physical connectivity:
         - Host management interface: 10/100/1000-BaseT.
@@ -531,7 +531,7 @@ FD.io CSIT lab contains following server types:
         - Port-2: 10GE SFP+.
         - Port-3: 10GE SFP+.
         - Port-4: 10GE SFP+.
-8. Server-Type-B8: Purpose - Skylake Xeon SUT for TCP/IP host stack tests.
+11. Server-Type-B8: Purpose - Skylake Xeon SUT for TCP/IP host stack tests.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -551,7 +551,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-9. Server-Type-B9: Purpose - ThunderX2 Arm Marvell SUT for FD.io VPP_Device functional tests.
+12. Server-Type-B9: Purpose - ThunderX2 Arm Marvell SUT for FD.io VPP_Device functional tests.
     - Quantity: 1
     - Physical connectivity:
         - IPMI and host management ports.
@@ -568,7 +568,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot3 08:00.xx: XL710-QDA2.
         - Numa1:
             - PCIe Slot6 85:00.xx: XL710-QDA2.
-10. Server-Type-B10: Purpose - Denverton Atom SUT for FD.io performance testing.
+13. Server-Type-B10: Purpose - Denverton Atom SUT for FD.io performance testing.
     - Quantity: 4
     - Physical connectivity:
         - IPMI and host management ports.
@@ -583,7 +583,7 @@ FD.io CSIT lab contains following server types:
         - 2x 10Gb Intel x553 copper ports
         - 4x 1GB Intel I350 ports
 
-6. Server-Type-C1: Purpose - Cascadelake Xeon SUT for FD.io VPP_Device functional tests.
+14. Server-Type-C1: Purpose - Cascadelake Xeon SUT for FD.io VPP_Device functional tests.
     - Quantity: 1.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -604,7 +604,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
 
-4. Server-Type-C2: Purpose - Cascadelake Xeon SUT for FD.io performance testing.
+15. Server-Type-C2: Purpose - Cascadelake Xeon SUT for FD.io performance testing.
     - Quantity: 3
     - Physical connectivity:
         - IPMI and host management ports.
@@ -625,7 +625,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot6 86:00.xx: empty.
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
-2. Server-Type-C3: Purpose - Cascadelake Xeon TG for FD.io performance testing.
+16. Server-Type-C3: Purpose - Cascadelake Xeon TG for FD.io performance testing.
     - Quantity: 3.
     - Physical connectivity:
         - IPMI and host management ports.
@@ -647,7 +647,7 @@ FD.io CSIT lab contains following server types:
             - PCIe Slot8 af:00.xx: empty.
             - PCIe Slot10 d8:00.xx: empty.
 
-3. Server-Type-C4: Purpose - Cascadelake Xeon Backend hosts for FD.io builds and data processing.
+17. Server-Type-C4: Purpose - Cascadelake Xeon Backend hosts for FD.io builds and data processing.
     - Quantity: 3.
     - Physical connectivity:
         - CIMC and host management ports.
@@ -690,7 +690,7 @@ connectivity and wiring across defined CSIT testbeds:
 
 ### Per Testbed Server Allocation and Naming
 
-#### 1-Node-Skylake (1n-skx) PROD
+#### 1-Node-Skylake Servers (1n-skx) PROD
 
 ```
 - SUT [Server-Type-B6]:
@@ -723,7 +723,7 @@ connectivity and wiring across defined CSIT testbeds:
         - s2-t12-sut1-c4/p4 - 10GE-port4 x710-4p10GE.
 ```
 
-#### 1-Node-Thunderx2 (1n-tx2) WIP
+#### 1-Node-Thunderx2 Servers (1n-tx2) WIP
 
 ```
 - SUT [Server-Type-B9]:
@@ -740,7 +740,7 @@ connectivity and wiring across defined CSIT testbeds:
         - s27-t13-sut1-c6/p2 - 40GE-port2 XL710-QDA2-2p40GE.
 ```
 
-#### 1-Node-Cascadelake (1n-clx) SETUP
+#### 1-Node-Cascadelake Servers (1n-clx) SETUP
 
 ```
 - SUT [Server-Type-C1]:
@@ -759,7 +759,7 @@ connectivity and wiring across defined CSIT testbeds:
         - s32-t14-sut1-c4/p4 - 10GE-port4 x710-4p10GE.
 ```
 
-#### 2-Node-Skylake (2n-skx) PROD
+#### 2-Node-Skylake Servers (2n-skx) PROD
 
 ```
 - SUT [Server-Type-B1]:
@@ -860,7 +860,7 @@ connectivity and wiring across defined CSIT testbeds:
         - s10-t24-tg1-c4/p2 - 25GE-port2 xxv710-DA2-2p25GE.
 ```
 
-#### 2-Node-Denverton (2n-dnv) WIP
+#### 2-Node-Denverton Servers (2n-dnv) WIP
 
 Note: ServerB28 (TG) is shared between testbed26 & testbed35
 
@@ -895,7 +895,7 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s29-t26-sut1-p4 - 10GE-port4 x553 fiber port.
 ```
 
-#### 2-Node-IxiaPS1L47 (2n-ps1) VERIFY
+#### 2-Node-IxiaPS1L47 Servers (2n-ps1) VERIFY
 
 ```
 - SUT [Server-Type-B8]:
@@ -920,7 +920,7 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s26-t25-tg1-p4 - 10GE-port4.
 ```
 
-#### 2-Node-Cascadelake (2n-clx) SETUP
+#### 2-Node-Cascadelake Servers (2n-clx) SETUP
 
 ```
 - SUT [Server-Type-C2]:
@@ -1009,7 +1009,7 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s38-t29-tg1-c9/p2 - FUTURE 100GE-port2 ConnectX5-2p100GE.
 ```
 
-#### 3-Node-Haswell (3n-hsw) PROD
+#### 3-Node-Haswell Servers (3n-hsw) PROD
 
 ```
  1. SUT [Server-Type-A1]:
@@ -1164,7 +1164,7 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - t3-tg1-c6/p2 - 10GE port2 on Intel NIC x710 2p10GE.
 ```
 
-#### 3-Node-Skylake (3n-skx) PROD
+#### 3-Node-Skylake Servers (3n-skx) PROD
 
 ```
 - ServerB11 [Server-Type-B1]:
@@ -1253,7 +1253,7 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
         - s16-t32-tg1-c9/p2 - FUTURE 100GE-port2 ConnectX5-2p100GE.
 ```
 
-#### 3-Node-Rangeley (3n-rng) VERIFY
+#### 3-Node-Rangeley Servers (3n-rng) VERIFY
 
 Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
 
@@ -1287,7 +1287,7 @@ Note: There is no IPMI. Serial console is accessible via VIRL2 and VIRL3 USB.
     - 1GB ports (tbd)
 ```
 
-#### 3-Node-Taishan (3n-tsh) WIP
+#### 3-Node-Taishan Servers (3n-tsh) WIP
 
 Note: ServerB19 (TG) is shared between testbed33 & testbed34
 
@@ -1346,7 +1346,7 @@ Note: ServerB19 (TG) is shared between testbed33 & testbed34
         - s21-t34-sut2-ca/p2 - 10GE-port2 Marvell.
 ```
 
-#### 3-Node-Denverton (3n-dnv) WIP
+#### 3-Node-Denverton Servers (3n-dnv) WIP
 
 ```
 - ServerB30 [Server-Type-B10]:
@@ -1371,7 +1371,7 @@ Note: ServerB19 (TG) is shared between testbed33 & testbed34
         - s31-t35-sut2-p4 - 10GE-port4 x553 fiber port.
 ```
 
-#### 3-Node-Mcbin (3n-mcb) TODO
+#### 3-Node-Mcbin Servers (3n-mcb) TODO
 
 ```
 To be completed.
@@ -1379,7 +1379,7 @@ To be completed.
 
 ### Per Testbed Wiring
 
-#### 1-Node-Skylake (1n-skx) PROD
+#### 1-Node-Skylake Wiring (1n-skx) PROD
 
 ```
 - testbed11:
@@ -1402,7 +1402,7 @@ To be completed.
         - s2-t12-sut1-c2/p3 to s2-t12-sut1-c4/p3.
 ```
 
-#### 1-Node-Thunderx2 (1n-tx2) WIP
+#### 1-Node-Thunderx2 Wiring (1n-tx2) WIP
 
 ```
 - testbed13:
@@ -1414,7 +1414,7 @@ To be completed.
         - s27-t13-sut1-c6/p2 - s27-t13-sut1-c1/p1.
 ```
 
-#### 1-Node-Cascadelake (1n-clx) SETUP
+#### 1-Node-Cascadelake Wiring (1n-clx) SETUP
 
 ```
 - testbed14:
@@ -1428,7 +1428,7 @@ To be completed.
         - s32-t14-sut1-c2/p3 to s32-t14-sut1-c4/p3.
 ```
 
-#### 2-Node-Skylake (2n-skx) PROD
+#### 2-Node-Skylake Wiring (2n-skx) PROD
 
 ```
 - testbed21:
@@ -1473,7 +1473,7 @@ To be completed.
         - s9-t24-sut1-c4/p2 to s10-t24-tg1-c4/p2.
 ```
 
-#### 2-Node-Denverton (2n-dnv) WIP
+#### 2-Node-Denverton Wiring (2n-dnv) WIP
 
 ```
 - testbed26:
@@ -1485,7 +1485,7 @@ To be completed.
         - s28-t26t35-tg1-c2/p2 to s29-t26-sut1-p4.
 ```
 
-#### 2-Node-IxiaPS1L47 (2n-ps1) VERIFY
+#### 2-Node-IxiaPS1L47 Wiring (2n-ps1) VERIFY
 
 ```
 - testbed25:
@@ -1499,7 +1499,7 @@ To be completed.
         - t25-tg1-p4 to t25-sut1-c2/p4.
 ```
 
-#### 2-Node-Cascadelake (2n-clx) SETUP
+#### 2-Node-Cascadelake Wiring (2n-clx) SETUP
 
 ```
 - testbed27:
@@ -1543,7 +1543,7 @@ To be completed.
         - s37-t29-sut1-c9/p2 to s38-t29-tg1-c9/p2.
 ```
 
-#### 3-Node-Haswell (3n-hsw) PROD
+#### 3-Node-Haswell Wiring (3n-hsw) PROD
 
 ```
  1. testbed1:
@@ -1619,7 +1619,7 @@ To be completed.
         - t3-tg1-c6/p1 to t3-tg1-c6/p2.
 ```
 
-#### 3-Node-Skylake (3n-skx) PROD
+#### 3-Node-Skylake Wiring (3n-skx) PROD
 
 ```
 - testbed31:
@@ -1664,13 +1664,13 @@ To be completed.
         - s16-t32-tg1-c10/p3 to s16-t32-tg1-c10/p4.
 ```
 
-#### 3-Node-Rangeley (3n-rng) TODO
+#### 3-Node-Rangeley Wiring (3n-rng) TODO
 
 ```
 To be completed.
 ```
 
-#### 3-Node-Taishan (3n-tsh) WIP
+#### 3-Node-Taishan Wiring (3n-tsh) WIP
 
 ```
 - testbed33:
@@ -1684,7 +1684,7 @@ To be completed.
         - t33-sut2-c4/p1 - t33t34-tg1-c4/p1.
 ```
 
-#### 3-Node-Mcbin (3n-mcb) WIP
+#### 3-Node-Mcbin Wiring (3n-mcb) WIP
 
 ```
 - testbed34:
@@ -1694,7 +1694,7 @@ To be completed.
         - t34-sut2-ca/p2 - t33t34-tg1-c2/p4.
 ```
 
-#### 3-Node-Denverton (3n-dnv) WIP
+#### 3-Node-Denverton Wiring (3n-dnv) WIP
 
 ```
 - testbed35:
