@@ -152,8 +152,8 @@
 | | ...
 | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | :FOR | ${id} | IN RANGE | 1 | ${count} + 1
-| | | ${vlan_west}= | Evaluate | 100 + ${id} - 1
-| | | ${vlan_east}= | Evaluate | 200 + ${id} - 1
+| | | ${vlan_west}= | Evaluate | 1300 + ${id} - 1
+| | | ${vlan_east}= | Evaluate | 1301 + ${id} - 1
 | | | ${if1_name} | ${if1_index}= | Run Keyword Unless
 | | | ... | ${create} and ${id} > ${1}
 | | | ... | Create Vlan Subinterface
@@ -164,6 +164,10 @@
 | | | ... | Create Vlan Subinterface
 | | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2}
 | | | ... | ${vlan_east}
+| | | Configure L2 tag rewrite method on interfaces
+| | | ... | ${nodes['${dut}']} | ${if1_index} | TAG_REWRITE_METHOD=pop-1
+| | | Configure L2 tag rewrite method on interfaces
+| | | ... | ${nodes['${dut}']} | ${if2_index} | TAG_REWRITE_METHOD=pop-1
 | | | Run Keyword Unless | ${create} and ${id} > ${1}
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${if1_index} | up
 | | | Run Keyword Unless | ${create} and ${id} > ${1}
