@@ -696,6 +696,21 @@ class Topology(object):
             return None
 
     @staticmethod
+    def get_interface_vlan(node, iface_key):
+        """Get interface vlan.
+
+        :param node: Node to get interface driver on.
+        :param iface_key: Interface key from topology file.
+        :type node: dict
+        :type iface_key: str
+        :returns: Return interface vlan or None if not found.
+        """
+        try:
+            return node['interfaces'][iface_key].get('vlan')
+        except KeyError:
+            return None
+
+    @staticmethod
     def get_node_interfaces(node):
         """Get all node interfaces.
 
