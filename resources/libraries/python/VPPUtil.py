@@ -220,7 +220,8 @@ class VPPUtil(object):
         cmds = [
             "trace add dpdk-input 50",
             "trace add vhost-user-input 50",
-            "trace add memif-input 50"
+            "trace add memif-input 50",
+            "trace add avf-input 50"
         ]
 
         for cmd in cmds:
