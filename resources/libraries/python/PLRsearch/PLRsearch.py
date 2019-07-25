@@ -184,19 +184,20 @@ class PLRsearch(object):
                 self.trial_duration_per_trial * trial_number, transmit_rate,
                 measurement_filter.get_list(), min_rate, max_rate,
                 focus_trackers)
-            measurement, average, stdev, avg1, avg2, focus_trackers = results
-            zeros += 1
-            # TODO: Ratio of fill rate to drain rate seems to have
-            # exponential impact. Make it configurable, or is 4:3 good enough?
-            if measurement.loss_fraction >= self.packet_loss_ratio_target:
-                for _ in range(4 * zeros):
-                    lossy_loads.append(measurement.target_tr)
-            if measurement.loss_count > 0:
-                zeros = 0
-            lossy_loads.sort()
-            if stop_time <= time.time():
-                return average, stdev
-            measurement_filter.insert(measurement)
+            measurements, average, stdev, avg1, avg2, focus_trackers = results
+            for measurement in measurements:
+                zeros += 1
+                # TODO: Ratio of fill rate to drain rate seems to have
+                # exponential impact. Make it configurable, or is 4:3 good enough?
+                if measurement.loss_fraction >= self.packet_loss_ratio_target:
+                    for _ in range(4 * zeros):
+                        lossy_loads.append(measurement.target_tr)
+                if measurement.loss_count > 0:
+                    zeros = 0
+                lossy_loads.sort()
+                if stop_time <= time.time():
+                    return average, stdev
+                measurement_filter.insert(measurement)
             if (trial_number - self.trial_number_offset) <= 1:
                 next_load = max_rate
             elif (trial_number - self.trial_number_offset) <= 3:
@@ -513,7 +514,7 @@ class PLRsearch(object):
         :type focus_trackers: 2-tuple of None or stat_trackers.VectorStatTracker
         :type max_samples: None or int
         :returns: Measurement and computation results.
-        :rtype: 6-tuple: ReceiveRateMeasurement, 4 floats, 2-tuple of trackers.
+        :rtype: 6-tuple: list of ReceiveRateMeasurement, 4 floats, 2-tuple of trackers.
         """
         logging.debug(
             "measure_and_compute started with self %(self)r, trial_duration "
@@ -601,7 +602,7 @@ class PLRsearch(object):
         stretch_pipe = start_computing(
             self.lfit_stretch, stretch_focus_tracker)
         # Measurement phase.
-        measurement = self.measurer.measure(trial_duration, transmit_rate)
+        measurements = self.measurer.measure(trial_duration, transmit_rate)
         # Processing phase.
         def stop_computing(name, pipe):
             """Just a block of code to be used for each worker.
@@ -666,5 +667,5 @@ class PLRsearch(object):
              "nt": focus_trackers, "ot": old_trackers, "ss": stretch_samples,
              "es": erf_samples})
         return (
-            measurement, avg, stdev, math.exp(stretch_avg),
+            measurements, avg, stdev, math.exp(stretch_avg),
             math.exp(erf_avg), focus_trackers)
