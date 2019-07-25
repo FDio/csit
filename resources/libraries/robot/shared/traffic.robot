@@ -581,3 +581,52 @@
 | | ${dscp_num}= | Get DSCP Num Value | ${dscp}
 | | ${args}= | Set Variable | ${args} --dscp ${dscp_num}
 | | Run Traffic Script On Node | policer.py | ${node} | ${args}
+
+| Send VXLAN encapsulated packet and verify received packet
+| | [Documentation] | Send VXLAN encapsulated Ethernet frame and check \
+| | ... | received one.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - Node where to run traffic script. Type: dictionary
+| | ... | - tx_if - Interface from where send VXLAN packet. Type: string
+| | ... | - rx_if - Interface where receive VXLAN packet. Type: string
+| | ... | - tx_src_mac - Source MAC address of sent packet. Type: string
+| | ... | - tx_dst_mac - Destination MAC address of sent packet. Type: string
+| | ... | - tx_src_ip - Source IP address of sent VXLAN packet. Type: string
+| | ... | - tx_dst_ip - Destination IP address of sent VXLAN packet.
+| | ... | Type: string
+| | ... | - tx_vni - VNI of sent VXLAN packet. Type: string
+| | ... | - rx_src_ip - Source IP address of received VXLAN packet. Type: string
+| | ... | - rx_dst_ip - Destination IP address of received VXLAN packet.
+| | ... | Type: string
+| | ... | - rx_vni - VNI of received VXLAN packet. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send VXLAN encapsulated packet and verify received packet \
+| | ... | \| ${tg_node} \| port4 \| port4 \
+| | ... | \| fa:16:3e:6d:f9:c5 \| fa:16:3e:e6:6d:9a \| 192.168.0.1 \
+| | ... | \| 192.168.0.2 \| ${101} \| 192.168.0.2 \| 192.168.0.1 \| ${102} \|
+| | ...
+| | [Arguments] | ${tg_node} | ${tx_if} | ${rx_if}
+| | ... | ${tx_src_mac} | ${tx_dst_mac}
+| | ... | ${tx_src_ip} | ${tx_dst_ip} | ${tx_vni}
+| | ... | ${rx_src_ip} | ${rx_dst_ip} | ${rx_vni}
+| | ${tx_if_name}= | Get interface name | ${tg_node} | ${tx_if}
+| | ${rx_if_name}= | Get interface name | ${tg_node} | ${rx_if}
+| | ${args}= | Catenate
+| | ... | --tx_if ${tx_if_name}
+| | ... | --rx_if ${rx_if_name}
+| | ... | --tx_src_mac ${tx_src_mac}
+| | ... | --tx_dst_mac ${tx_dst_mac}
+| | ... | --tx_src_ip ${tx_src_ip}
+| | ... | --tx_dst_ip ${tx_dst_ip}
+| | ... | --tx_vni ${tx_vni}
+| | ... | --rx_src_ip ${rx_src_ip}
+| | ... | --rx_dst_ip ${rx_dst_ip}
+| | ... | --rx_vni ${rx_vni}
+| | Run Traffic Script On Node | send_vxlan_check_vxlan.py | ${tg_node}
+| | ... | ${args}
