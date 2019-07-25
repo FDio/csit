@@ -959,7 +959,7 @@ function select_vpp_device_tags () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        # Select specific performance tests based on jenkins job type variable.
+        # Select specific device tests based on jenkins job type variable.
         * )
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
@@ -970,6 +970,20 @@ function select_vpp_device_tags () {
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
             fi
+            ;;
+    esac
+
+    # Blacklisting certain tags per topology.
+    #
+    # Reasons for blacklisting:
+    # - avf - AVF is not possible to run on enic driver of VirtualBox.
+    # - vhost - VirtualBox does not support nesting virtualization on Intel CPU.
+    case "${TEST_CODE}" in
+        *"1n-vbox"*)
+            test_tag_array+=("!avf")
+            test_tag_array+=("!vhost")
+            ;;
+        *)
             ;;
     esac
 
