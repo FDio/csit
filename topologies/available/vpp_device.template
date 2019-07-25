@@ -21,12 +21,14 @@ nodes:
         link: link1
         model: virtual
         driver: "${CSIT_TG_INTERFACES_PORT1_DRV}"
+        vlan: ${CSIT_TG_INTERFACES_PORT1_VLAN}
       port2:
         mac_address: "${CSIT_TG_INTERFACES_PORT2_MAC}"
         pci_address: "${CSIT_TG_INTERFACES_PORT2_PCI}"
         link: link2
         model: virtual
         driver: "${CSIT_TG_INTERFACES_PORT2_DRV}"
+        vlan: ${CSIT_TG_INTERFACES_PORT2_VLAN}
   DUT1:
     type: DUT
     host: "${CSIT_DUT1_HOST}"
@@ -41,9 +43,11 @@ nodes:
         link: link1
         model: virtual
         driver: "${CSIT_DUT1_INTERFACES_PORT1_DRV}"
+        vlan: ${CSIT_DUT1_INTERFACES_PORT1_VLAN}
       port2:
         mac_address: "${CSIT_DUT1_INTERFACES_PORT2_MAC}"
         pci_address: "${CSIT_DUT1_INTERFACES_PORT2_PCI}"
         link: link2
         model: virtual
         driver: "${CSIT_DUT1_INTERFACES_PORT2_DRV}"
+        vlan: ${CSIT_DUT1_INTERFACES_PORT2_VLAN}
