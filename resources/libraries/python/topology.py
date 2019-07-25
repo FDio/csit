@@ -198,6 +198,19 @@ class Topology(object):
         node['interfaces'][iface_key]['pci_address'] = str(pci_address)
 
     @staticmethod
+    def update_interface_vlan(node, iface_key, vlan):
+        """Update VLAN on the interface from the node.
+
+        :param node: Node to update VLAN on.
+        :param iface_key: Topology key of the interface.
+        :param vlan: VLAN ID.
+        :type node: dict
+        :type iface_key: str
+        :type vlan: str
+        """
+        node['interfaces'][iface_key]['vlan'] = int(vlan)
+
+    @staticmethod
     def update_interface_vhost_socket(node, iface_key, vhost_socket):
         """Update vhost socket name on the interface from the node.
 
@@ -692,6 +705,21 @@ class Topology(object):
         """
         try:
             return node['interfaces'][iface_key].get('driver')
+        except KeyError:
+            return None
+
+    @staticmethod
+    def get_interface_vlan(node, iface_key):
+        """Get interface vlan.
+
+        :param node: Node to get interface driver on.
+        :param iface_key: Interface key from topology file.
+        :type node: dict
+        :type iface_key: str
+        :returns: Return interface vlan or None if not found.
+        """
+        try:
+            return node['interfaces'][iface_key].get('vlan')
         except KeyError:
             return None
 
