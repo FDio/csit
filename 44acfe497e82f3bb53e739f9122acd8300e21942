@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1ffa39a1_c6981dae",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "This is c\u0026p error (one shouldn\u0027t be doing this in the evening after a very very hot weather day in England!) :)\nThe order is chronological per testbed type.",
+      "parentUuid": "1b213fd7_0b6ce66a",
+      "range": {
+        "startLine": 41,
+        "startChar": 17,
+        "endLine": 41,
+        "endChar": 28
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "063964dc_af1dca24",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-25T08:43:32Z",
       "side": 1,
       "message": "In other place we agreed to call this \"2-node circular topology\" or something similar.",
+      "range": {
+        "startLine": 129,
+        "startChar": 27,
+        "endLine": 129,
+        "endChar": 39
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88975e4c_8f089aa7",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "\"2-node circular topology\" is fine for me as it also communicates how the test packets are flowing. \"Back-to-back\" and \"full-mesh\" are also technically correct, but less illustrative. The \"back-to-back\" term is also overlapping with how 1-node testbeds are described, so if someone fast reads, they may get confused. Another point for sticking to your suggestion :)",
+      "parentUuid": "063964dc_af1dca24",
       "range": {
         "startLine": 129,
         "startChar": 27,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "b257998e_e85ad7d6",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "\"3-node circular topology\" is fine for me as it also communicates how the test packets are flowing. \"Back-to-back\" and \"full-mesh\" are also technically correct, but less illustrative.",
+      "parentUuid": "dfaa0831_2cfa78a7",
+      "range": {
+        "startLine": 135,
+        "startChar": 33,
+        "endLine": 135,
+        "endChar": 51
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eaf649c3_11676668",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 3
@@ -91,6 +163,30 @@
       "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d1fc35ca_8d8843ee",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "Removed Netgate device. Added link to server types section.",
+      "parentUuid": "eaf649c3_11676668",
+      "range": {
+        "startLine": 158,
+        "startChar": 63,
+        "endLine": 158,
+        "endChar": 77
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "5a8aafdc_6e40d2e7",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbd950c2_e78ba44f",
+      "range": {
+        "startLine": 736,
+        "startChar": 19,
+        "endLine": 736,
+        "endChar": 21
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fcc3d37_6bac3990",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 3
@@ -137,6 +257,30 @@
       "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b01081f_cb1a224e",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fcc3d37_6bac3990",
+      "range": {
+        "startLine": 1005,
+        "startChar": 21,
+        "endLine": 1005,
+        "endChar": 22
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "d1403d0d_3cc7c224",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4d6b20a_6fa36161",
+      "range": {
+        "startLine": 1021,
+        "startChar": 21,
+        "endLine": 1021,
+        "endChar": 22
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fd39a08_1128604f",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 3
@@ -183,6 +351,30 @@
       "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13a8d21f_648258f5",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1037,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fd39a08_1128604f",
+      "range": {
+        "startLine": 1037,
+        "startChar": 20,
+        "endLine": 1037,
+        "endChar": 21
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "86b464c5_ac7e1586",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1055,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0b28c85_c72f0d16",
+      "range": {
+        "startLine": 1055,
+        "startChar": 21,
+        "endLine": 1055,
+        "endChar": 22
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1884530f_34d6295a",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 3
@@ -229,6 +445,30 @@
       "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e2e69443_1db43f27",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1071,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1884530f_34d6295a",
+      "range": {
+        "startLine": 1071,
+        "startChar": 21,
+        "endLine": 1071,
+        "endChar": 22
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "e2a5e8a1_bd208a78",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d82b07ff_9336d814",
+      "range": {
+        "startLine": 1087,
+        "startChar": 20,
+        "endLine": 1087,
+        "endChar": 21
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a32639bc_cc65019c",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 3
@@ -275,6 +539,30 @@
       "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7d86c91_ac3e90af",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a32639bc_cc65019c",
+      "range": {
+        "startLine": 1105,
+        "startChar": 21,
+        "endLine": 1105,
+        "endChar": 22
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "e3367085_820f4231",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99ca6c5c_de0df930",
+      "range": {
+        "startLine": 1121,
+        "startChar": 21,
+        "endLine": 1121,
+        "endChar": 22
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "769cc4ef_54e47c39",
         "filename": "docs/lab/testbed_specifications.md",
         "patchSetId": 3
@@ -321,6 +633,30 @@
       "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6fe041e_a65b02e0",
+        "filename": "docs/lab/testbed_specifications.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-07-25T12:09:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "769cc4ef_54e47c39",
+      "range": {
+        "startLine": 1137,
+        "startChar": 20,
+        "endLine": 1137,
+        "endChar": 21
+      },
+      "revId": "44acfe497e82f3bb53e739f9122acd8300e21942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
