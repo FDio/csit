@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "55bf1202_c22ecae6",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-25T10:56:07Z",
+      "side": 1,
+      "message": "From \"policer.api\", i understand that the argument name is \"type\". The argument name \"type\" coincides with the function \"type()\" in python.\n\nWould it be good to rename the argument name \"type\" to \"policer_type\" . Please provide your valuable suggestions.",
+      "parentUuid": "a31c5dc3_57a1af6a",
+      "range": {
+        "startLine": 171,
+        "startChar": 12,
+        "endLine": 171,
+        "endChar": 18
+      },
+      "revId": "fc2a2ce59bddc9eaf6463aa04321121b90724b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5b44dca5_a4585faf",
         "filename": "resources/libraries/python/Policer.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-24T13:32:32Z",
       "side": 1,
       "message": "I prefer this variable to be called \"reply\".",
+      "range": {
+        "startLine": 182,
+        "startChar": 12,
+        "endLine": 182,
+        "endChar": 15
+      },
+      "revId": "fc2a2ce59bddc9eaf6463aa04321121b90724b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "718f50e5_11b54680",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-25T10:56:07Z",
+      "side": 1,
+      "message": "I have renamed \"out\" as \"reply\"",
+      "parentUuid": "5b44dca5_a4585faf",
       "range": {
         "startLine": 182,
         "startChar": 12,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "17c09fc0_da898605",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-25T10:56:07Z",
+      "side": 1,
+      "message": "Removed the VatJsonUtil block.",
+      "parentUuid": "1c1530a4_83683d21",
+      "range": {
+        "startLine": 184,
+        "startChar": 8,
+        "endLine": 184,
+        "endChar": 19
+      },
+      "revId": "fc2a2ce59bddc9eaf6463aa04321121b90724b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a2d0b077_c4b69807",
         "filename": "resources/libraries/python/Policer.py",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2019-07-24T13:32:32Z",
       "side": 1,
       "message": "reply[\u0027policer_index\u0027]",
+      "range": {
+        "startLine": 189,
+        "startChar": 24,
+        "endLine": 189,
+        "endChar": 51
+      },
+      "revId": "fc2a2ce59bddc9eaf6463aa04321121b90724b75",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8071e341_201e693e",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-07-25T10:56:07Z",
+      "side": 1,
+      "message": "policer_index \u003d reply[\u0027policer_index\u0027]",
+      "parentUuid": "a2d0b077_c4b69807",
       "range": {
         "startLine": 189,
         "startChar": 24,
