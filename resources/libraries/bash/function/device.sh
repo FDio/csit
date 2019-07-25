@@ -305,11 +305,13 @@ function get_available_interfaces () {
     TG_PCIDEVS=()
     TG_NETMACS=()
     TG_DRIVERS=()
+    TG_VLANS=()
     # DUT1 side of connections.
     DUT1_NETDEVS=()
     DUT1_PCIDEVS=()
     DUT1_NETMACS=()
     DUT1_DRIVERS=()
+    DUT1_VLANS=()
 
     # Find the first ${device_count} number of available TG Linux network
     # VF device names. Only allowed VF PCI IDs are filtered.
@@ -350,17 +352,21 @@ function get_available_interfaces () {
         get_pci_addr
         get_mac_addr
         get_krn_driver
+        get_vlan_filter
         TG_PCIDEVS+=(${PCI_ADDR})
         TG_NETMACS+=(${MAC_ADDR})
         TG_DRIVERS+=(${KRN_DRIVER})
+        TG_VLANS+=(${VLAN_ID})
     done
     for NETDEV in "${DUT1_NETDEVS[@]}"; do
         get_pci_addr
         get_mac_addr
         get_krn_driver
+        get_vlan_filter
         DUT1_PCIDEVS+=(${PCI_ADDR})
         DUT1_NETMACS+=(${MAC_ADDR})
         DUT1_DRIVERS+=(${KRN_DRIVER})
+        DUT1_VLANS+=(${VLAN_ID})
     done
 
     # We need at least two interfaces for TG/DUT1 for building topology.
@@ -433,6 +439,24 @@ function get_pci_addr () {
 }
 
 
+function get_vlan_filter () {
+
+    # Get VLAN stripping filter from PF searched by mac adress.
+    #
+    # Variables read:
+    # - MAC_ADDR - MAC address of VF.
+    # Variables set:
+    # - VLAN_ID - VLAN ids.
+
+    set -exuo pipefail
+
+    # Sed regular expression pattern.
+    cmd_sed="s/^.*vlan ([[:digit:]]+).*$/\1/"
+    VLAN_ID=\
+        $(ip link | grep vlan | grep ${MAC_ADDR} | sed -re "${cmd_sed}") || true
+}
+
+
 function installed () {
 
     # Check if the given utility is installed. Fail if not installed.
@@ -481,12 +505,16 @@ function read_env_variables () {
     DCR_UUIDS+=([dut1]="${CSIT_DUT1_UUID}")
     TG_PCIDEVS=("${CSIT_TG_INTERFACES_PORT1_PCI}")
     TG_DRIVERS=("${CSIT_TG_INTERFACES_PORT1_DRV}")
+    TG_VLANS+=("${CSIT_TG_INTERFACES_PORT1_VLAN}")
     TG_PCIDEVS+=("${CSIT_TG_INTERFACES_PORT2_PCI}")
     TG_DRIVERS+=("${CSIT_TG_INTERFACES_PORT2_DRV}")
+    TG_VLANS+=("${CSIT_TG_INTERFACES_PORT2_VLAN}")
     DUT1_PCIDEVS=("${CSIT_DUT1_INTERFACES_PORT1_PCI}")
     DUT1_DRIVERS=("${CSIT_DUT1_INTERFACES_PORT1_DRV}")
+    DUT1_VLANS+=("${CSIT_DUT1_INTERFACES_PORT1_VLAN}")
     DUT1_PCIDEVS+=("${CSIT_DUT1_INTERFACES_PORT2_PCI}")
     DUT1_DRIVERS+=("${CSIT_DUT1_INTERFACES_PORT2_DRV}")
+    DUT1_VLANS+=("${CSIT_DUT1_INTERFACES_PORT2_VLAN}")
 }
 
 
@@ -527,15 +555,19 @@ function set_env_variables () {
     CSIT_TG_INTERFACES_PORT1_MAC="${TG_NETMACS[0]}"
     CSIT_TG_INTERFACES_PORT1_PCI="${TG_PCIDEVS[0]}"
     CSIT_TG_INTERFACES_PORT1_DRV="${TG_DRIVERS[0]}"
+    CSIT_TG_INTERFACES_PORT1_VLAN="${TG_VLANS[0]}"
     CSIT_TG_INTERFACES_PORT2_MAC="${TG_NETMACS[1]}"
     CSIT_TG_INTERFACES_PORT2_PCI="${TG_PCIDEVS[1]}"
     CSIT_TG_INTERFACES_PORT2_DRV="${TG_DRIVERS[1]}"
+    CSIT_TG_INTERFACES_PORT2_VLAN="${TG_VLANS[1]}"
     CSIT_DUT1_INTERFACES_PORT1_MAC="${DUT1_NETMACS[0]}"
     CSIT_DUT1_INTERFACES_PORT1_PCI="${DUT1_PCIDEVS[0]}"
     CSIT_DUT1_INTERFACES_PORT1_DRV="${DUT1_DRIVERS[0]}"
+    CSIT_DUT1_INTERFACES_PORT1_VLAN="${DUT1_VLANS[0]}"
     CSIT_DUT1_INTERFACES_PORT2_MAC="${DUT1_NETMACS[1]}"
     CSIT_DUT1_INTERFACES_PORT2_PCI="${DUT1_PCIDEVS[1]}"
     CSIT_DUT1_INTERFACES_PORT2_DRV="${DUT1_DRIVERS[1]}"
+    CSIT_DUT1_INTERFACES_PORT2_VLAN="${DUT1_VLANS[1]}"
     set +a
 }
 
@@ -577,8 +609,6 @@ function start_topology_containers () {
     # Mount vfio to be able to bind to see binded interfaces. We cannot use
     # --device=/dev/vfio as this does not see newly binded interfaces.
     dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
-    # Mount nested_vm image to be able to run VM tests.
-    dcr_stc_params+="--volume /var/lib/vm/vhost-nested.img:/var/lib/vm/vhost-nested.img "
     # Mount docker.sock to be able to use docker deamon of the host.
     dcr_stc_params+="--volume /var/run/docker.sock:/var/run/docker.sock "
     # Mount /opt/boot/ where VM kernel and initrd are located.
