@@ -1524,6 +1524,7 @@ class InterfaceUtil(object):
         # Read PCI address and driver.
         pf_pci_addr = Topology.get_interface_pci_addr(node, ifc_key)
         pf_mac_addr = Topology.get_interface_mac(node, ifc_key).split(":")
+        pf_vlan_id = Topology.get_interface_vlan(node, ifc_key)
         uio_driver = Topology.get_uio_driver(node)
         kernel_driver = Topology.get_interface_driver(node, ifc_key)
         if kernel_driver not in ("i40e", "i40evf"):
@@ -1571,10 +1572,13 @@ class InterfaceUtil(object):
             vf_ifc_name = '{pf_if_key}_vf'.format(pf_if_key=ifc_key)
             vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
             vf_ifc_key = Topology.add_new_port(node, vf_ifc_name)
+
             Topology.update_interface_name(node, vf_ifc_key,
                                            vf_ifc_name+str(vf_id+1))
             Topology.update_interface_mac_address(node, vf_ifc_key, vf_mac_addr)
             Topology.update_interface_pci_address(node, vf_ifc_key, vf_pci_addr)
+            if pf_vlan_id:
+                Topology.update_interface_vlan(node, vf_ifc_key, pf_vlan_id)
             vf_ifc_keys.append(vf_ifc_key)
 
         return vf_ifc_keys
