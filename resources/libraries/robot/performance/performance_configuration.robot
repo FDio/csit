@@ -2068,9 +2068,13 @@
 | | ...
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${dut_str}= | Convert To Lowercase | ${dut}
-| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${${dut_str}_if1_pci}
+| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | | ... | ${${dut_str}_if1}
+| | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | | ... | ${${dut_str}_if2}
+| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${if1_pci}
 | | | ... | vlan-strip-offload | off
-| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${${dut_str}_if2_pci}
+| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${if2_pci}
 | | | ... | vlan-strip-offload | off
 
 | Add VLAN strip offload switch off between DUTs in 3-node single link topology
