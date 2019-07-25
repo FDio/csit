@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0acea362_2ba6fe63",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-25T15:26:59Z",
+      "side": 1,
+      "message": "I noticed why the tests are failing. Instead of a *_action field, the API expectes *_action_type and *_dscp fields.",
+      "range": {
+        "startLine": 173,
+        "startChar": 12,
+        "endLine": 173,
+        "endChar": 25
+      },
+      "revId": "d3d82a52b4fd2c7afc531407ca6872ea057bc9fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51e20ff0_f7843cc5",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-25T15:26:59Z",
+      "side": 1,
+      "message": "When a value is not accessed, do not store it to variable.",
+      "range": {
+        "startLine": 204,
+        "startChar": 12,
+        "endLine": 204,
+        "endChar": 18
+      },
+      "revId": "d3d82a52b4fd2c7afc531407ca6872ea057bc9fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0d6e025_d9769916",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-25T15:26:59Z",
+      "side": 1,
+      "message": "You removed one block, three more to go.",
+      "range": {
+        "startLine": 206,
+        "startChar": 8,
+        "endLine": 206,
+        "endChar": 19
+      },
+      "revId": "d3d82a52b4fd2c7afc531407ca6872ea057bc9fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
