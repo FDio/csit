@@ -1526,7 +1526,7 @@ class InterfaceUtil(object):
         pf_mac_addr = Topology.get_interface_mac(node, ifc_key).split(":")
         uio_driver = Topology.get_uio_driver(node)
         kernel_driver = Topology.get_interface_driver(node, ifc_key)
-        if kernel_driver != "i40e":
+        if kernel_driver != "i40e" or kernel_driver != "i40evf":
             raise RuntimeError(
                 "AVF needs i40e driver, not {driver} at node {host} ifc {ifc}"\
                 .format(driver=kernel_driver, host=node["host"], ifc=ifc_key))
@@ -1543,7 +1543,7 @@ class InterfaceUtil(object):
             # Bind to kernel driver.
             DUTSetup.pci_driver_bind(node, pf_pci_addr, kernel_driver)
 
-        # Initialize PCI VFs
+        # Initialize PCI VFs.
         DUTSetup.set_sriov_numvfs(node, pf_pci_addr, numvfs)
 
         vf_ifc_keys = []

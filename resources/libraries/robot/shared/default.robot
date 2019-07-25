@@ -374,6 +374,31 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Uio Driver | ${uio_driver}
 
+| Add VLAN strip offload switch off
+| | [Documentation]
+| | ... | Add VLAN Strip Offload switch off on all PCI devices.
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${dut_str}= | Convert To Lowercase | ${dut}
+| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | | ... | ${${dut_str}_if1}
+| | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | | ... | ${${dut_str}_if2}
+| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${if1_pci}
+| | | ... | vlan-strip-offload | off
+| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${if2_pci}
+| | | ... | vlan-strip-offload | off
+
+| Add VLAN strip offload switch off between DUTs in 3-node single link topology
+| | [Documentation]
+| | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
+| | ... | configuration file.
+| | ...
+| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_pci}
+| | ... | vlan-strip-offload | off
+
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | | ...
