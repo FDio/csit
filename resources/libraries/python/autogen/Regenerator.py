@@ -252,16 +252,16 @@ class Regenerator(object):
         kwargs_list = tc_kwargs_list if tc_kwargs_list else [
             {"frame_size": min_frame_size, "phy_cores": 1},
             {"frame_size": min_frame_size, "phy_cores": 2},
-            {"frame_size": min_frame_size, "phy_cores": 4},
+            {"frame_size": min_frame_size, "phy_cores": 8},
             {"frame_size": 1518, "phy_cores": 1},
             {"frame_size": 1518, "phy_cores": 2},
-            {"frame_size": 1518, "phy_cores": 4},
+            {"frame_size": 1518, "phy_cores": 8},
             {"frame_size": 9000, "phy_cores": 1},
             {"frame_size": 9000, "phy_cores": 2},
-            {"frame_size": 9000, "phy_cores": 4},
+            {"frame_size": 9000, "phy_cores": 8},
             {"frame_size": "IMIX_v4_1", "phy_cores": 1},
             {"frame_size": "IMIX_v4_1", "phy_cores": 2},
-            {"frame_size": "IMIX_v4_1", "phy_cores": 4}
+            {"frame_size": "IMIX_v4_1", "phy_cores": 8}
         ]
         for in_filename in glob(pattern):
             if not self.quiet:
