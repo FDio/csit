@@ -27,30 +27,6 @@
 | Documentation | VXLAN keywords
 
 *** Keywords ***
-| Create vlan interfaces for VXLAN
-| | [Documentation] | *Create VLAN subinterface on interfaces on DUTs with given
-| | ... | VLAN ID.*
-| | ...
-| | ... | _Set testcase variables with name and index of created interfaces:_
-| | ... | - ${dut1s_vlan_name}
-| | ... | - ${dut1s_vlan_index}
-| | ... | - ${dut2s_vlan_name}
-| | ... | - ${dut2s_vlan_index}
-| | ...
-| | [Arguments] | ${VLAN} | ${DUT1} | ${INT1} | ${DUT2} | ${INT2}
-| | ${INT1_NAME}= | Get interface name | ${DUT1} | ${INT1}
-| | ${INT2_NAME}= | Get interface name | ${DUT2} | ${INT2}
-| | ${dut1s_vlan_name} | ${dut1s_vlan_index}= | Create Vlan Subinterface
-| | ... | ${DUT1} | ${INT1_NAME} | ${VLAN}
-| | ${dut2s_vlan_name} | ${dut2s_vlan_index}= | Create Vlan Subinterface
-| | ... | ${DUT2} | ${INT2_NAME} | ${VLAN}
-| | Set Interface State | ${DUT1} | ${dut1s_vlan_index} | up
-| | Set Interface State | ${DUT2} | ${dut2s_vlan_index} | up
-| | Set Test Variable | ${dut1s_vlan_name}
-| | Set Test Variable | ${dut1s_vlan_index}
-| | Set Test Variable | ${dut2s_vlan_name}
-| | Set Test Variable | ${dut2s_vlan_index}
-
 | Get VXLAN dump
 | | [Documentation] | Get VXLAN dump.
 | | ...
