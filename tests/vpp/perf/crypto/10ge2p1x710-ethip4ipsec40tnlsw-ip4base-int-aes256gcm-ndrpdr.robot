@@ -112,8 +112,8 @@
 | | frame_size=${64} | phy_cores=${2}
 
 | tc03-64B-4c-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 64B | 4C
-| | frame_size=${64} | phy_cores=${4}
+| | [Tags] | 64B | 8C
+| | frame_size=${64} | phy_cores=${8}
 
 | tc04-1518B-1c-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 1C
@@ -124,8 +124,8 @@
 | | frame_size=${1518} | phy_cores=${2}
 
 | tc06-1518B-4c-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 1518B | 4C
-| | frame_size=${1518} | phy_cores=${4}
+| | [Tags] | 1518B | 8C
+| | frame_size=${1518} | phy_cores=${8}
 
 | tc07-9000B-1c-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 9000B | 1C
@@ -136,8 +136,8 @@
 | | frame_size=${9000} | phy_cores=${2}
 
 | tc09-9000B-4c-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | 9000B | 4C
-| | frame_size=${9000} | phy_cores=${4}
+| | [Tags] | 9000B | 8C
+| | frame_size=${9000} | phy_cores=${8}
 
 | tc10-IMIX-1c-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 1C
@@ -148,5 +148,5 @@
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
 | tc12-IMIX-4c-ethip4ipsec40tnlsw-ip4base-int-aes256gcm-ndrpdr
-| | [Tags] | IMIX | 4C
-| | frame_size=IMIX_v4_1 | phy_cores=${4}
+| | [Tags] | IMIX | 8C
+| | frame_size=IMIX_v4_1 | phy_cores=${8}
