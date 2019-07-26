@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_100
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_400
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
 | ... | AES_128_GCM | AES
 | ...
@@ -65,7 +65,7 @@
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
-| ${n_tunnels}= | ${100}
+| ${n_tunnels}= | ${400}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
@@ -103,50 +103,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc01-64B-1c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc02-64B-2c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc03-64B-4c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc04-1518B-1c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc05-1518B-2c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc06-1518B-4c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc07-9000B-1c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc08-9000B-2c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc09-9000B-4c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc10-IMIX-1c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc11-IMIX-2c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsec100tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc12-IMIX-4c-ethip4ipsec400tnlsw-ip4base-int-aes128gcm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
