@@ -67,7 +67,7 @@ function download_ubuntu_artifacts () {
 
     set -exuo pipefail
 
-    curl -s "${REPO_URL}"/script.deb.sh | sudo bash || {
+    curl -s "${REPO_URL}"/script.deb.sh | sudo -E bash || {
         die "Packagecloud FD.io repo fetch failed."
     }
     # If version is set we will add suffix.
@@ -142,7 +142,7 @@ function download_centos_artifacts () {
 
     set -exuo pipefail
 
-    curl -s "${REPO_URL}"/script.rpm.sh | sudo bash || {
+    curl -s "${REPO_URL}"/script.rpm.sh | sudo -E bash || {
         die "Packagecloud FD.io repo fetch failed."
     }
     # If version is set we will add suffix.
@@ -177,7 +177,7 @@ function download_opensuse_artifacts () {
 
     set -exuo pipefail
 
-    curl -s "${REPO_URL}"/script.rpm.sh | sudo bash || {
+    curl -s "${REPO_URL}"/script.rpm.sh | sudo -E bash || {
         die "Packagecloud FD.io repo fetch failed."
     }
     # If version is set we will add suffix.
