@@ -28,8 +28,8 @@
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with\
 | ... | single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4. IEEE\
-| ... | 802.1Q tagging is applied on link between DUT1-if2 and TG-if2.
+| ... | *[Enc] Packet Encapsulations:* Dot1q-IPv4 for L2 switching of IPv4. \
+| ... | IEEE 802.1Q tagging is applied on link between DUT1-if2 and TG-if2.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge domain\
 | ... | and MAC learning enabled. DUT1 is tested with ${nic_name}.\
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
