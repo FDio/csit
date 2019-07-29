@@ -331,7 +331,7 @@ class ContainerManager(object):
         nodes = kwargs['nodes']
         cpuset_cpus = CpuUtils.get_affinity_nf(nodes, 'DUT2', nf_chains=1,
                                                nf_nodes=1, nf_chain=1,
-                                               nf_node=1, vs_dtc=0, nf_dtc=4,
+                                               nf_node=1, vs_dtc=0, nf_dtc=8,
                                                nf_mtcr=1, nf_dtcr=1)
         self.engine.create_vpp_startup_config_vswitch(cpuset_cpus, rxq,
                                                       buffers, heapsize,
