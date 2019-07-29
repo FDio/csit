@@ -803,21 +803,24 @@ class Classify(object):
                                              acls=acls)
 
     @staticmethod
-    def add_replace_acl_multi_entries(node, acl_idx=None, rules=None):
+    def add_replace_acl_multi_entries(node, acl_idx=None, rules=None, tag=""):
         """Add a new ACL or replace the existing one. To replace an existing
         ACL, pass the ID of this ACL.
 
         :param node: VPP node to set ACL on.
         :param acl_idx: ID of ACL. (Optional)
         :param rules: Required rules. (Optional)
+        :param tag: ACL tag (Optional).
         :type node: dict
         :type acl_idx: int
         :type rules: str
+        :type tag: str
         """
         reg_ex_src_ip = re.compile(r'(src [0-9a-fA-F.:/\d{1,2}]*)')
         reg_ex_dst_ip = re.compile(r'(dst [0-9a-fA-F.:/\d{1,2}]*)')
         reg_ex_sport = re.compile(r'(sport \d{1,5})')
         reg_ex_dport = re.compile(r'(dport \d{1,5})')
+        reg_ex_proto = re.compile(r'(proto \d{1,5})')
 
         acl_rules = list()
         for rule in rules.split(", "):
@@ -842,18 +845,30 @@ class Classify(object):
                 port = int(groups.group(1).split(' ')[1])
                 acl_rule["srcport_or_icmptype_first"] = port
                 acl_rule["srcport_or_icmptype_last"] = port
+            else:
+                acl_rule["srcport_or_icmptype_first"] = 0
+                acl_rule["srcport_or_icmptype_last"] = 65535
 
             groups = re.search(reg_ex_dport, rule)
             if groups:
                 port = int(groups.group(1).split(' ')[1])
                 acl_rule["dstport_or_icmpcode_first"] = port
                 acl_rule["dstport_or_icmpcode_last"] = port
+            else:
+                acl_rule["dstport_or_icmpcode_first"] = 0
+                acl_rule["dstport_or_icmpcode_last"] = 65535
 
-            acl_rule["proto"] = 0
+            groups = re.search(reg_ex_proto, rule)
+            if groups:
+                proto = int(groups.group(1).split(' ')[1])
+                acl_rule["proto"] = proto
+            else:
+                acl_rule["proto"] = 0
 
             acl_rules.append(acl_rule)
 
-        Classify._acl_add_replace(node, acl_idx=acl_idx, rules=acl_rules)
+        Classify._acl_add_replace(
+            node, acl_idx=acl_idx, rules=acl_rules, tag=tag)
 
     @staticmethod
     def add_macip_acl_multi_entries(node, rules=""):
