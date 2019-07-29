@@ -48,4 +48,4 @@ class SoakMeasurer(AbstractMeasurer):
         result = ReceiveRateMeasurement(duration, transmit_rate, tx, dx)
         if not self.fast:
             time.sleep(duration + 0.5)
-        return result
+        return [result]
