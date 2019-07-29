@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9cc6a0c_a367c202",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-29T12:19:02Z",
+      "side": 1,
+      "message": "158-159 block results are unused, remove.",
+      "range": {
+        "startLine": 150,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 10
+      },
+      "revId": "a916d694aab010fd1f038e29ae13c18815eacf84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0a5a2db_4bfa818b",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-29T12:19:02Z",
+      "side": 1,
+      "message": "\u003e csit-vpp-device-master-ubuntu1804-1n-skx/2779/\n\nLooking at [0] (and following the stacktrace) I can confirm the fauilure is due to Robot passing strings as unicode, but Struct (used internally by PAPI library) requiring byte strings. You need to add .encode(\"utf-8\") either here, or at line 270.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/2779/archives/log.html.gz#s1-s1-s1-s4-s5-t1-k2-k9-k19",
+      "range": {
+        "startLine": 164,
+        "startChar": 17,
+        "endLine": 164,
+        "endChar": 35
+      },
+      "revId": "a916d694aab010fd1f038e29ae13c18815eacf84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd5b35a5_b311fada",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-29T12:19:02Z",
+      "side": 1,
+      "message": "If you want to keep current setters (line 358), you need to convert from enum to int either there or here.",
+      "range": {
+        "startLine": 172,
+        "startChar": 32,
+        "endLine": 172,
+        "endChar": 52
+      },
+      "revId": "a916d694aab010fd1f038e29ae13c18815eacf84",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
