@@ -1045,18 +1045,20 @@ class InterfaceUtil(object):
         return ifc_name, sw_if_index
 
     @staticmethod
-    def vpp_create_loopback(node):
+    def vpp_create_loopback(node, mac=None):
         """Create loopback interface on VPP node.
 
         :param node: Node to create loopback interface on.
+        :param mac: Optional MAC address for Loopback interface.
         :type node: dict
+        :type mac: str
         :returns: SW interface index.
         :rtype: int
         :raises RuntimeError: If it is not possible to create loopback on the
             node.
         """
         cmd = 'create_loopback'
-        args = dict(mac_address=0)
+        args = dict(mac_address=L2Util.mac_to_bin(mac) if mac else 0)
         err_msg = 'Failed to create loopback interface on host {host}'.format(
             host=node['host'])
         with PapiSocketExecutor(node) as papi_exec:
@@ -1066,6 +1068,9 @@ class InterfaceUtil(object):
         Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
         Topology.update_interface_name(node, if_key, ifc_name)
+        if mac:
+            mac = InterfaceUtil.vpp_get_interface_mac(node, ifc_name)
+            Topology.update_interface_mac_address(node, if_key, mac)
 
         return sw_if_index
 
