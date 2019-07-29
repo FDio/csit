@@ -37,11 +37,12 @@
 | Library | resources.libraries.python.VPPUtil
 | ...
 | Resource | resources/libraries/robot/crypto/ipsec.robot
+| Resource | resources/libraries/robot/features/gbp.robot
+| Resource | resources/libraries/robot/features/policer.robot
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 | Resource | resources/libraries/robot/shared/container.robot
-| Resource | resources/libraries/robot/features/policer.robot
 | Resource | resources/libraries/robot/shared/suite_teardown.robot
 | Resource | resources/libraries/robot/shared/suite_setup.robot
 | Resource | resources/libraries/robot/shared/test_teardown.robot
