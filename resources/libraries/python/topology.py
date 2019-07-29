@@ -138,7 +138,8 @@ class Topology(object):
         :returns: Nothing
         """
         port_types = ('subinterface', 'vlan_subif', 'memif', 'tap', 'vhost',
-                      'loopback', 'gre_tunnel', 'vxlan_tunnel', 'eth_bond')
+                      'loopback', 'gre_tunnel', 'vxlan_tunnel', 'eth_bond',
+                      'avf')
 
         for node_data in nodes.values():
             if node_data['type'] == NodeType.DUT:
