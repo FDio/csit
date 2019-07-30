@@ -1331,7 +1331,10 @@ class InputData(object):
 
         for job, builds in self._cfg.builds.items():
             for build in builds:
-                work_queue.put((job, build, repeat))
+                try:
+                    work_queue.put((job, build, repeat))
+                except (MemoryError, EOFError) as err:
+                    logging.error(repr(err))
 
             work_queue.join()
 
@@ -1370,7 +1373,6 @@ class InputData(object):
 
                 except (MemoryError, EOFError) as err:
                     logging.error(repr(err))
-                    raise
 
         del data_queue
 
