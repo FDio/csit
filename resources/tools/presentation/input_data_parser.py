@@ -1333,45 +1333,44 @@ class InputData(object):
             for build in builds:
                 work_queue.put((job, build, repeat))
 
-        work_queue.join()
+            work_queue.join()
 
-        logging.info("Done.")
+            logging.info("Done.")
 
-        logging.info("Collecting data:")
+            logging.info("Collecting data:")
 
-        while not data_queue.empty():
+            while not data_queue.empty():
+                try:
+                    result = data_queue.get()
 
-            try:
-                result = data_queue.get()
+                    job = result["job"]
+                    build_nr = result["build"]["build"]
 
-                job = result["job"]
-                build_nr = result["build"]["build"]
+                    logging.info("  {job}-{build}".format(job=job,
+                                                          build=build_nr))
+                    if result["data"]:
+                        data = result["data"]
+                        build_data = pd.Series({
+                            "metadata": pd.Series(
+                                data["metadata"].values(),
+                                index=data["metadata"].keys()),
+                            "suites": pd.Series(data["suites"].values(),
+                                                index=data["suites"].keys()),
+                            "tests": pd.Series(data["tests"].values(),
+                                               index=data["tests"].keys())})
 
-                logging.info("  {job}-{build}".format(job=job, build=build_nr))
+                        if self._input_data.get(job, None) is None:
+                            self._input_data[job] = pd.Series()
+                        self._input_data[job][str(build_nr)] = build_data
 
-                if result["data"]:
-                    data = result["data"]
-                    build_data = pd.Series({
-                        "metadata": pd.Series(data["metadata"].values(),
-                                              index=data["metadata"].keys()),
-                        "suites": pd.Series(data["suites"].values(),
-                                            index=data["suites"].keys()),
-                        "tests": pd.Series(data["tests"].values(),
-                                           index=data["tests"].keys())})
+                        self._cfg.set_input_file_name(
+                            job, build_nr, result["build"]["file-name"])
 
-                    if self._input_data.get(job, None) is None:
-                        self._input_data[job] = pd.Series()
-                    self._input_data[job][str(build_nr)] = build_data
+                    self._cfg.set_input_state(job, build_nr, result["state"])
 
-                    self._cfg.set_input_file_name(job, build_nr,
-                                                  result["build"]["file-name"])
-
-                self._cfg.set_input_state(job, build_nr, result["state"])
-
-            except (MemoryError, EOFError) as err:
-                logging.error(repr(err))
-                raise
-
+                except (MemoryError, EOFError) as err:
+                    logging.error(repr(err))
+                    raise
 
         del data_queue
 
