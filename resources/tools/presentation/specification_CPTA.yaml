@@ -198,7 +198,6 @@
           - 416
           - 418
           - 423
-          - 540
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 33
         end: "lastCompletedBuild"
@@ -213,7 +212,6 @@
           - 416
           - 418
           - 423
-          - 540
 
     plot-performance-trending-dpdk-3n-skx:
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
@@ -365,7 +363,6 @@
         - 416
         - 418
         - 423
-        - 540
     csit-dpdk-perf-mrr-weekly-master-3n-skx:
       start: 33
       end: "lastCompletedBuild"
