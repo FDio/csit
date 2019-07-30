@@ -201,14 +201,19 @@
           - 782
           - 783
           - 784
+          - 791 #
           - 793
           - 795
           - 796
           - 797
           - 798
           - 799
+          - 801 #
+          - 803 #
           - 805
           - 806
+          - 808 #
+          - 809 #
       csit-dpdk-perf-mrr-weekly-master:
         start: 73
         end: "lastCompletedBuild"
@@ -247,14 +252,19 @@
           - 782
           - 783
           - 784
+          - 791 #
           - 793
           - 795
           - 796
           - 797
           - 798
           - 799
+          - 801 #
+          - 803 #
           - 805
           - 806
+          - 808 #
+          - 809 #
 
     plot-performance-trending-dpdk-3n-hsw:
       csit-dpdk-perf-mrr-weekly-master:
@@ -296,13 +306,20 @@
           - 532
           - 533
           - 534
+          - 541 #
+          - 543 #
           - 545
           - 546
           - 547
           - 548
           - 549
+          - 551 #
+          - 553 #
           - 555
           - 556
+          - 558 #
+          - 560 #
+          - 562 #
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
         start: 38
         end: "lastCompletedBuild"
@@ -341,13 +358,20 @@
           - 532
           - 533
           - 534
+          - 541 #
+          - 543 #
           - 545
           - 546
           - 547
           - 548
           - 549
+          - 551 #
+          - 553 #
           - 555
           - 556
+          - 558 #
+          - 560 #
+          - 562 #
 
     plot-performance-trending-dpdk-3n-skx:
       csit-dpdk-perf-mrr-weekly-master-3n-skx:
@@ -572,14 +596,19 @@
         - 782
         - 783
         - 784
+        - 791 #
         - 793
         - 795
         - 796
         - 797
         - 798
         - 799
+        - 801 #
+        - 803 #
         - 805
         - 806
+        - 808 #
+        - 809 #
     csit-dpdk-perf-mrr-weekly-master:
       start: 73
       end: "lastCompletedBuild"
@@ -618,13 +647,20 @@
         - 532
         - 533
         - 534
+        - 541 #
+        - 543 #
         - 545
         - 546
         - 547
         - 548
         - 549
+        - 551 #
+        - 553 #
         - 555
         - 556
+        - 558 #
+        - 560 #
+        - 562 #
     csit-dpdk-perf-mrr-weekly-master-3n-skx:
       start: 38
       end: "lastCompletedBuild"
