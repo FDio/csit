@@ -74,7 +74,7 @@
 | | And Set Max Rate And Jumbo
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize AVF interfaces
-| | When Initialize IPv4 forwarding in circular topology
+| | And Initialize IPv4 forwarding in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
