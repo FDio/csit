@@ -71,6 +71,7 @@
     "10.30.51.24": "LF-3n-HSW-03"
     "10.30.51.48": "LF-3n-SKX-31"
     "10.30.51.60": "LF-3n-SKX-32"
+    "10.30.51.49": "LF-3n-TSH-33"
 
 -
   type: "configuration"
@@ -122,10 +123,12 @@
         - "last-failed-tests-3n-hsw"
         - "last-failed-tests-3n-skx"
         - "last-failed-tests-2n-skx"
+        - "last-failed-tests-3n-tsh"
         urls:
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-skx"
           - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-2n-skx"
+          - "https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-tsh"
         url-details: "https://docs.fd.io/csit/master/trending/introduction/failures.html"
 
     configurations:
@@ -164,6 +167,9 @@
         - "lastCompletedBuild"
     table-last-failed-tests-nf-2n-skx:
       csit-vpp-perf-mrr-weekly-master-2n-skx:
+        - "lastCompletedBuild"
+    table-last-failed-tests-3n-tsh:
+      csit-vpp-perf-mrr-daily-master-3n-tsh:
         - "lastCompletedBuild"
 
     # 3n-hsw
@@ -494,6 +500,17 @@
         skip:
           - 21
 
+    # 3n-tsh
+    plot-performance-trending-all-3n-tsh:
+      csit-vpp-perf-mrr-daily-master-3n-tsh:
+        start: 55
+        end: "lastCompletedBuild"
+
+    plot-performance-trending-vpp-3n-tsh:
+      csit-vpp-perf-mrr-daily-master-3n-tsh:
+        start: 55
+        end: "lastCompletedBuild"
+
   plot-layouts:
 
     plot-cpta:
@@ -747,6 +764,11 @@
       skip:
         - 39
 
+    # 3n-tsh
+    csit-vpp-perf-mrr-daily-master-3n-tsh:
+      start: 55
+      end: "lastCompletedBuild"
+
 -
   type: "output"
   output:
@@ -795,6 +817,19 @@
   output-file-ext: ".txt"
   output-file: "{DIR[STATIC,VPP]}/last-failed-tests-2n-skx"
   data: "table-last-failed-tests-2n-skx"
+  filter: "'MRR'"
+  parameters:
+    - "name"
+    - "parent"
+    - "status"
+
+-
+  type: "table"
+  title: "Last failed tests (last builds) 3n-tsh"
+  algorithm: "table_last_failed_tests"
+  output-file-ext: ".txt"
+  output-file: "{DIR[STATIC,VPP]}/last-failed-tests-3n-tsh"
+  data: "table-last-failed-tests-3n-tsh"
   filter: "'MRR'"
   parameters:
     - "name"
@@ -1127,6 +1162,98 @@
   output-file: "{DIR[STATIC,VPP]}/failed-tests-2n-skx.rst"
   testbed: "2n-skx"
 
+################################################################################
+# 3n-tsh
+-
+  type: "table"
+  title: "Performance trending dashboard 1t1c-3n-tsh"
+  algorithm: "table_performance_trending_dashboard"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-tsh"
+  data: "plot-performance-trending-all-3n-tsh"
+  filter: "'MRR' and '1T1C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  window: 14
+  long-trend-window: 180
+
+-
+  type: "table"
+  title: "Performance trending dashboard 2t2c-3n-tsh"
+  algorithm: "table_performance_trending_dashboard"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c-3n-tsh"
+  data: "plot-performance-trending-all-3n-tsh"
+  filter: "'MRR' and '2T2C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  window: 14
+  long-trend-window: 180
+
+-
+  type: "table"
+  title: "Performance trending dashboard 4t4c-3n-tsh"
+  algorithm: "table_performance_trending_dashboard"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c-3n-tsh"
+  data: "plot-performance-trending-all-3n-tsh"
+  filter: "'MRR' and '4T4C'"
+  parameters:
+  - "name"
+  - "parent"
+  - "result"
+  window: 14
+  long-trend-window: 180
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 1t1c-3n-tsh"
+  algorithm: "table_performance_trending_dashboard_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-tsh.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-1t1c-3n-tsh.rst"
+  testbed: "3n-tsh"
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 2t2c-3n-tsh"
+  algorithm: "table_performance_trending_dashboard_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c-3n-tsh.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-2t2c-3n-tsh.rst"
+  testbed: "3n-tsh"
+
+-
+  type: "table"
+  title: "HTML performance trending dashboard 4t4c-3n-tsh"
+  algorithm: "table_performance_trending_dashboard_html"
+  input-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c-3n-tsh.csv"
+  output-file: "{DIR[STATIC,VPP]}/performance-trending-dashboard-4t4c-3n-tsh.rst"
+  testbed: "3n-tsh"
+
+-
+  type: "table"
+  title: "Failed MRR tests 3n-tsh"
+  algorithm: "table_failed_tests"
+  output-file-ext: ".csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-tsh"
+  data: "plot-performance-trending-all-3n-tsh"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "status"
+  window: 7  # days
+
+-
+  type: "table"
+  title: "HTML Failed MRR tests 3n-tsh"
+  algorithm: "table_failed_tests_html"
+  input-file: "{DIR[STATIC,VPP]}/failed-tests-3n-tsh.csv"
+  output-file: "{DIR[STATIC,VPP]}/failed-tests-3n-tsh.rst"
+  testbed: "3n-tsh"
 
 ################################################################################
 ###                                 C P T A                                  ###
@@ -4340,3 +4467,366 @@
 #      parameters:
 #      - "result"
 #      layout: "plot-cpta"
+
+################################################################################
+# 3n-tsh
+
+# L2 - x520
+
+    - title: "3n-tsh-x520-l2sw-64b-base-scale-1t1c"
+      output-file-name: "l2-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-64b-base-scale-2t2c"
+      output-file-name: "l2-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-64b-base-scale-4t4c"
+      output-file-name: "l2-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-64b-features-1t1c"
+      output-file-name: "l2-feature-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-64b-features-2t2c"
+      output-file-name: "l2-feature-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-64b-features-4t4c"
+      output-file-name: "l2-feature-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'MEMIF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# IPv4 - x520
+
+    - title: "3n-tsh-x520-ip4-64b-base-scale-1t1c"
+      output-file-name: "ip4-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '1T1C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip4-64b-base-scale-2t2c"
+      output-file-name: "ip4-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '2T2C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip4-64b-base-scale-4t4c"
+      output-file-name: "ip4-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and ('BASE' or 'SCALE') and '4T4C' and 'IP4FWD' and not 'FEATURE' and not 'IPSEC' and not 'VHOST' and not 'POLICE_MARK' and not 'MEMIF'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip4-64b-features-1t1c"
+      output-file-name: "ip4-feature-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '1T1C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip4-64b-features-2t2c"
+      output-file-name: "ip4-feature-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '2T2C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip4-64b-features-4t4c"
+      output-file-name: "ip4-feature-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'FEATURE' and '4T4C' and 'IP4FWD' and not 'IPSEC' and not 'VHOST'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# IPv4 Tunnels - x520
+
+    - title: "3n-tsh-x520-ip4tun-64b-base-1t1c"
+      output-file-name: "ip4-tunnels-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '1T1C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip4tun-64b-base-2t2c"
+      output-file-name: "ip4-tunnels-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '2T2C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip4tun-64b-base-4t4c"
+      output-file-name: "ip4-tunnels-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'ENCAP' and 'MRR' and '4T4C' and ('VXLAN' or 'VXLANGPE' or 'LISP' or 'LISPGPE' or 'GRE') and not 'VHOST' and not 'IPSECHW'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# IPv6 - x520
+
+    - title: "3n-tsh-x520-ip6-78b-base-scale-1t1c"
+      output-file-name: "ip6-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '1T1C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip6-78b-base-scale-2t2c"
+      output-file-name: "ip6-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '2T2C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip6-78b-base-scale-4t4c"
+      output-file-name: "ip6-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '78B' and ('BASE' or 'SCALE' or 'FEATURE') and '4T4C' and 'IP6FWD' and not 'IPSEC' and not 'VHOST' and not 'DOT1Q'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# Container memif - x520, 64B
+
+    - title: "3n-tsh-x520-l2sw-memif-64b-base-1t1c"
+      output-file-name: "container-memif-l2-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-memif-64b-base-2t2c"
+      output-file-name: "container-memif-l2-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-memif-64b-base-4t4c"
+      output-file-name: "container-memif-l2-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and '64B' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'NF_DENSITY'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# Container memif - x520, IMIX
+
+    - title: "3n-tsh-x520-l2sw-memif-imix-base-1t1c"
+      output-file-name: "container-memif-imix-l2-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and 'IMIX' and 'BASE' and '1T1C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-memif-imix-base-2t2c"
+      output-file-name: "container-memif-imix-l2-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and 'IMIX' and 'BASE' and '2T2C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-memif-imix-base-4t4c"
+      output-file-name: "container-memif-imix-l2-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'MRR' and 'IMIX' and 'BASE' and '4T4C' and 'MEMIF' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST' and not 'DOT1Q' and not 'NF_DENSITY'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# VM vhost - x520, ethip4, 64B
+
+    - title: "3n-tsh-x520-ip4-vhost-64b-base-1t1c"
+      output-file-name: "vm-vhost-ethip4-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip4-vhost-64b-base-2t2c"
+      output-file-name: "vm-vhost-ethip4-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip4-vhost-64b-base-4t4c"
+      output-file-name: "vm-vhost-ethip4-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# VM vhost - x520, ethip4, IMIX
+
+    - title: "3n-tsh-x520-ip4-vhost-imix-base-1t1c"
+      output-file-name: "vm-vhost-imix-ethip4-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip4-vhost-imix-base-2t2c"
+      output-file-name: "vm-vhost-imix-ethip4-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-ip4-vhost-imix-base-4t4c"
+      output-file-name: "vm-vhost-imix-ethip4-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'LBOND' and not 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# VM vhost - x520, eth, 64B
+
+    - title: "3n-tsh-x520-l2sw-vhost-64b-base-1t1c"
+      output-file-name: "vm-vhost-eth-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-vhost-64b-base-2t2c"
+      output-file-name: "vm-vhost-eth-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-vhost-64b-base-4t4c"
+      output-file-name: "vm-vhost-eth-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# VM vhost - x520, eth, IMIX
+
+    - title: "3n-tsh-x520-l2sw-vhost-imix-base-1t1c"
+      output-file-name: "vm-vhost-imix-eth-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '1T1C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-vhost-imix-base-2t2c"
+      output-file-name: "vm-vhost-imix-eth-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '2T2C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-l2sw-vhost-imix-base-4t4c"
+      output-file-name: "vm-vhost-imix-eth-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '4T4C' and 'VHOST' and not 'VXLAN' and not 'IP4FWD' and not 'LBOND' and not 'VTS'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+# Link Bonding - x520
+
+    - title: "3n-tsh-x520-lb-64b-1t1c"
+      output-file-name: "lb-64b-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '1T1C' and 'LBOND_VPP'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-lb-64b-2t2c"
+      output-file-name: "lb-64b-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '2T2C' and 'LBOND_VPP'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-lb-64b-4t4c"
+      output-file-name: "lb-64b-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and '64B' and 'MRR' and '4T4C' and 'LBOND_VPP'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-lb-imix-1t1c"
+      output-file-name: "lb-imix-1t1c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '1T1C' and 'LBOND_VPP'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-lb-imix-2t2c"
+      output-file-name: "lb-imix-2t2c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '2T2C' and 'LBOND_VPP'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
+
+    - title: "3n-tsh-x520-lb-imix-4t4c"
+      output-file-name: "lb-imix-4t4c-x520-3n-tsh"
+      data: "plot-performance-trending-vpp-3n-tsh"
+      filter: "'NIC_Intel-X520-DA2' and 'IMIX' and 'MRR' and '4T4C' and 'LBOND_VPP'"
+      parameters:
+      - "result"
+      layout: "plot-cpta"
