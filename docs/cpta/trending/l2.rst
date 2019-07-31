@@ -17,3 +17,5 @@ L2 Ethernet Switching
     l2-2n-skx-xxv710-64b-base-scale
     l2-3n-hsw-vic1227-64b-base-scale
     l2-3n-hsw-vic1385-64b-base-scale
+    l2-3n-tsh-x520-64b-base-scale
+    l2-3n-tsh-x520-64b-features
