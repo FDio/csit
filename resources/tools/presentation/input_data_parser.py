@@ -1262,11 +1262,11 @@ class InputData(object):
                         file_name = self._cfg.input["file-name"]
                         full_name = join(
                             self._cfg.environment["paths"]["DIR[WORKING,DATA]"],
-                            "{job}{sep}{build}{sep}{name}".
-                                format(job=job,
-                                       sep=SEPARATOR,
-                                       build=build["build"],
-                                       name=file_name))
+                            "{job}{sep}{build}{sep}{name}".format(
+                                job=job,
+                                sep=SEPARATOR,
+                                build=build["build"],
+                                name=file_name))
                         try:
                             remove(full_name)
                             logs.append(("INFO",
@@ -1308,11 +1308,6 @@ class InputData(object):
 
                 result = self._download_and_parse_build(job, build, repeat)
 
-                job = result["job"]
-                build_nr = result["build"]["build"]
-
-                logging.info("  {job}-{build}".format(job=job,
-                                                      build=build_nr))
                 if result["data"]:
                     data = result["data"]
                     build_data = pd.Series({
@@ -1326,12 +1321,12 @@ class InputData(object):
 
                     if self._input_data.get(job, None) is None:
                         self._input_data[job] = pd.Series()
-                    self._input_data[job][str(build_nr)] = build_data
+                    self._input_data[job][str(build)] = build_data
 
                     self._cfg.set_input_file_name(
-                        job, build_nr, result["build"]["file-name"])
+                        job, build, result["build"]["file-name"])
 
-                self._cfg.set_input_state(job, build_nr, result["state"])
+                self._cfg.set_input_state(job, build, result["state"])
 
         logging.info("Done.")
 
