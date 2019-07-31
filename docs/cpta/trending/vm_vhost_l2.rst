@@ -13,6 +13,7 @@ L2 VMs vhost-user
     vm_vhost_l2-3n-skx-x710-imix-base
     vm_vhost_l2-2n-skx-x710-64b-base
     vm_vhost_l2-2n-skx-x710-imix-base
+    vm_vhost_l2-3n-tsh-x520-64b-base
 
 ..
     vm_vhost_l2-2n-skx-xxv710-64b-base
