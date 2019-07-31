@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3e115cf4_99694052",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-31T15:13:06Z",
+      "side": 1,
+      "message": "https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/2843/archives/log.html.gz#s1-s1-s1-s4-s5-t1-k2-k9-k19\n\nThe VAT implementation did not include dscp values if not set.\nWith PAPI you can either do the same (skip adding dscp keys if the values would be None), or set the value to 0 if that leads to simpler code.",
+      "range": {
+        "startLine": 159,
+        "startChar": 31,
+        "endLine": 159,
+        "endChar": 43
+      },
+      "revId": "06161fdc2c38d2b2a9b3796df274e1e727a7da0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
