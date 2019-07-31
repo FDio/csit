@@ -22,6 +22,30 @@
       "revId": "5c6a2f06ba08de7c1daca18f717765dbf7fc06b7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37449471_316a9e1f",
+        "filename": "resources/libraries/bash/entry/check/tc_coverage.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-07-31T13:29:30Z",
+      "side": 1,
+      "message": "No, I guess i need to learn more about PolyGerrit new UI",
+      "parentUuid": "bf0e937a_5c48bc6a",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 15
+      },
+      "revId": "5c6a2f06ba08de7c1daca18f717765dbf7fc06b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
