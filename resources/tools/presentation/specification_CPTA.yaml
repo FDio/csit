@@ -319,6 +319,7 @@
           - 533
           - 534
           - 541 #
+          - 542
           - 543 #
           - 545
           - 546
@@ -371,6 +372,7 @@
           - 533
           - 534
           - 541 #
+          - 542 #
           - 543 #
           - 545
           - 546
@@ -584,7 +586,7 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 720
+      start: 720  # 670
       end: "lastCompletedBuild"
       skip:
 #        - 672
@@ -641,7 +643,7 @@
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 450
+      start: 450  # 420
       end: "lastCompletedBuild"
       skip:
 #        - 423
@@ -678,6 +680,7 @@
         - 538
         - 539
         - 541 #
+        - 542 #
         - 543 #
         - 545
         - 546
