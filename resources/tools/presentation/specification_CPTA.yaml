@@ -169,7 +169,7 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 761
+        start: 720
         end: "lastCompletedBuild"
         skip:
 #          - 672
@@ -186,18 +186,18 @@
 #          - 690
 #          - 694
 #          - 695
-#          - 726
-#          - 749
-#          - 750
-#          - 751
-#          - 752
-#          - 753
-#          - 754
-#          - 755
-#          - 756
-#          - 757
-#          - 758
-#          - 760
+          - 726
+          - 749
+          - 750
+          - 751
+          - 752
+          - 753
+          - 754
+          - 755
+          - 756
+          - 757
+          - 758
+          - 760
           - 781
           - 782
           - 783
@@ -226,7 +226,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 761
+        start: 720
         end: "lastCompletedBuild"
         skip:
 #          - 672
@@ -243,18 +243,18 @@
 #          - 690
 #          - 694
 #          - 695
-#          - 726
-#          - 749
-#          - 750
-#          - 751
-#          - 752
-#          - 753
-#          - 754
-#          - 755
-#          - 756
-#          - 757
-#          - 758
-#          - 760
+          - 726
+          - 749
+          - 750
+          - 751
+          - 752
+          - 753
+          - 754
+          - 755
+          - 756
+          - 757
+          - 758
+          - 760
           - 781
           - 782
           - 783
@@ -286,7 +286,7 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 482
+        start: 450
         end: "lastCompletedBuild"
         skip:
 #          - 423
@@ -300,8 +300,8 @@
 #          - 440
 #          - 444
 #          - 446
-#          - 480
-#          - 481
+          - 480
+          - 481
           - 499
           - 500
           - 501
@@ -338,7 +338,7 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 482
+        start: 450
         end: "lastCompletedBuild"
         skip:
 #          - 423
@@ -352,8 +352,8 @@
 #          - 440
 #          - 444
 #          - 446
-#          - 480
-#          - 481
+          - 480
+          - 481
           - 499
           - 500
           - 501
@@ -578,13 +578,13 @@
     extract: "output.xml"
     # Number of days from now to the past. Only files generated in this
     # time period are used.
-    time-period: 60
+    time-period: 90
 
   builds:
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 761
+      start: 720
       end: "lastCompletedBuild"
       skip:
 #        - 672
@@ -601,18 +601,18 @@
 #        - 690
 #        - 694
 #        - 695
-#        - 726
-#        - 749
-#        - 750
-#        - 751
-#        - 752
-#        - 753
-#        - 754
-#        - 755
-#        - 756
-#        - 757
-#        - 758
-#        - 760
+        - 726
+        - 749
+        - 750
+        - 751
+        - 752
+        - 753
+        - 754
+        - 755
+        - 756
+        - 757
+        - 758
+        - 760
         - 781
         - 782
         - 783
@@ -641,7 +641,7 @@
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 482
+      start: 450
       end: "lastCompletedBuild"
       skip:
 #        - 423
@@ -655,8 +655,8 @@
 #        - 440
 #        - 444
 #        - 446
-#        - 480
-#        - 481
+        - 480
+        - 481
         - 499
         - 500
         - 501

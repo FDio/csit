@@ -3,8 +3,8 @@ Sphinx==1.7.6
 sphinx-rtd-theme==0.4.0
 robotframework==2.9.2
 sphinxcontrib-programoutput
-PyYAML
-numpy
-pandas
+PyYAML==5.1.1
+numpy=1.16.4
+pandas==0.24.2
 plotly==3.3.0
-PTable
+PTable==0.9.2
