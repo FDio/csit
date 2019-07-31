@@ -578,7 +578,7 @@
     extract: "output.xml"
     # Number of days from now to the past. Only files generated in this
     # time period are used.
-    time-period: 90
+    time-period: 60
 
   builds:
 
