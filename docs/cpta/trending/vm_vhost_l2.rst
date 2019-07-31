@@ -21,3 +21,5 @@ L2 VMs vhost-user
 ..
     vm_vhost_l2-3n-hsw-xl710-64b-base
     vm_vhost_l2-3n-hsw-xl710-imix-base
+    vm_vhost_l2-3n-tsh-x520-64b-base
+    vm_vhost_l2-3n-tsh-x520-imix-base
