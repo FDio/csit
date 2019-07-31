@@ -37,6 +37,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/per_patch.sh" || die "Source failed."
 common_dirs || die
+check_prerequisities || die
 set_perpatch_vpp_dir || die
 build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die

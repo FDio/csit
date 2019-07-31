@@ -167,6 +167,21 @@ function check_download_dir () {
 }
 
 
+function check_prerequisities () {
+
+    # Fail if prerequisites are not met.
+    #
+    # Functions called:
+    # - installed - Check if application is installed/present in system.
+    # - die - Print to stderr and exit.
+
+    set -exuo pipefail
+
+    if ! installed sshpass; then
+        die "Please install sshpass before continue!"
+    fi
+}
+
 function cleanup_topo () {
 
     # Variables read:
@@ -517,6 +532,24 @@ function get_test_tag_string () {
                 die "Unknown specification: ${TEST_CODE}"
         esac
     fi
+}
+
+
+function installed () {
+
+    # Check if the given utility is installed. Fail if not installed.
+    #
+    # Duplicate of common.sh function, as this file is also used standalone.
+    #
+    # Arguments:
+    # - ${1} - Utility to check.
+    # Returns:
+    # - 0 - If command is installed.
+    # - 1 - If command is not installed.
+
+    set -exuo pipefail
+
+    command -v "${1}"
 }
 
 

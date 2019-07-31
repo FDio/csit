@@ -32,6 +32,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
 }
 source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
 common_dirs || die
+check_prerequisities || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
 select_topology || die
