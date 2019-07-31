@@ -1307,6 +1307,7 @@ class InputData(object):
             for build in builds:
 
                 result = self._download_and_parse_build(job, build, repeat)
+                build_nr = result["build"]["build"]
 
                 if result["data"]:
                     data = result["data"]
@@ -1321,12 +1322,12 @@ class InputData(object):
 
                     if self._input_data.get(job, None) is None:
                         self._input_data[job] = pd.Series()
-                    self._input_data[job][str(build)] = build_data
+                    self._input_data[job][str(build_nr)] = build_data
 
                     self._cfg.set_input_file_name(
-                        job, build, result["build"]["file-name"])
+                        job, build_nr, result["build"]["file-name"])
 
-                self._cfg.set_input_state(job, build, result["state"])
+                self._cfg.set_input_state(job, build_nr, result["state"])
 
         logging.info("Done.")
 
