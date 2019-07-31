@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6723c62_8e9af2d0",
+        "filename": "resources/libraries/bash/entry/check/tc_coverage.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-31T11:47:35Z",
+      "side": 1,
+      "message": "I still prefer the numerous lines to go only into the log file (and not into console).",
+      "range": {
+        "startLine": 77,
+        "startChar": 12,
+        "endLine": 77,
+        "endChar": 15
+      },
+      "revId": "5f02cfe2f3215b845a12750b840c17d05d66cd82",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb1d887e_84d227bb",
+        "filename": "resources/libraries/bash/entry/check/tc_coverage.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-07-31T11:47:35Z",
+      "side": 1,
+      "message": "coverage",
+      "range": {
+        "startLine": 100,
+        "startChar": 15,
+        "endLine": 100,
+        "endChar": 21
+      },
+      "revId": "5f02cfe2f3215b845a12750b840c17d05d66cd82",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
