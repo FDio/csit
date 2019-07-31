@@ -1318,6 +1318,9 @@ class InputData(object):
         data_queue = manager.Queue()
         cpus = multiprocessing.cpu_count()
 
+        logging.info("Nr of CPUs: {0}".format(cpus))
+        os.system("lscpu")
+
         workers = list()
         for cpu in range(cpus):
             worker = Worker(work_queue,
