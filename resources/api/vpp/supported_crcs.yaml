@@ -1,0 +1,186 @@
+# Copyright (c) 2019 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+
+# Recommended collection name is a version string.
+# Comment https link towards the build used to get or verify the CRC values.
+# Link cannot easily be name as it is too long.
+
+# Prefer x86_64, Ubuntu, latest LTS.
+# Note that during flag day process, the link would point
+# to (logged artifacts of) verify job, not merge job.
+
+# Note that you cannot easily avoid quotes for CRC values.
+# With leading 0x, yaml library attempts str(), which interprets
+# the values as numbers (instead of strings CSIT expects).
+# Even with 0x removed, hexa CRC value may appear as decimal number.
+
+# Trailing comments are optional, for tracking how to test the message.
+
+# https://logs.fd.io/production/vex-yul-rot-jenkins-1/
+# vpp-beta-merge-master-ubuntu1804/3370/archives/build-root/
+19.08-rc0~806-g4f9446444~b3370:
+    acl_add_replace: '0x13bc8539'  # perf
+    acl_add_replace_reply: '0xac407b0c'  # perf
+    acl_dump: '0xef34fea4'  # perf teardown
+    acl_interface_list_dump: '0x529cb13f'  # perf teardown
+    # ^^^^ tc01-64B-1c-ethip4udp-ip4base-iacl1sf-10kflows-mrr
+    acl_interface_set_acl_list: '0x8baece38'  # perf
+    acl_interface_set_acl_list_reply: '0xe8d4e804'  # perf
+    acl_details: '0xf89d7a88'  # perf teardown
+    acl_interface_list_details: '0xd5e80809'  # perf teardown
+    # ^^^^ tc01-64B-1c-ethip4udp-ip4base-iacl1sl-10kflows-mrr
+    # ^^ ip4fwdANDiaclANDacl10AND100_flows
+    avf_create: '0xdaab8ae2'  # perf
+    avf_create_reply: '0xfda5941f'  # perf
+    # ^^ tc01-64B-1c-avf-eth-l2bdbasemaclrn-mrr
+    # ^ l2bdmaclrnANDbaseANDdrv_avf
+    bridge_domain_add_del: '0xc6360720'  # dev
+    bridge_domain_add_del_reply: '0xe8d4e804'  # dev
+    classify_add_del_session: '0x85fd79f4'  # dev
+    classify_add_del_session_reply: '0xe8d4e804'  # dev
+    classify_add_del_table: '0x9bd794ae'  # dev
+    classify_add_del_table_reply: '0x05486349'  # dev
+    cli_inband: '0xb1ad59b3'  # dev setup
+    cli_inband_reply: '0x6d3c80a4'  # dev setup
+    cop_interface_enable_disable: '0x69d24598'  # dev
+    cop_interface_enable_disable_reply: '0xe8d4e804'  # dev
+    cop_whitelist_enable_disable: '0x8bb8f6dc'  # dev
+    cop_whitelist_enable_disable_reply: '0xe8d4e804'  # dev
+    create_loopback: '0x3b54129c'  # dev
+    create_loopback_reply: '0xfda5941f'  # dev
+    create_subif: '0x86cfe408'  # virl
+    create_subif_reply: '0xfda5941f'  # virl
+    create_vhost_user_if: '0xa3438cd4'  # dev
+    create_vhost_user_if_reply: '0xfda5941f'  # dev
+    create_vlan_subif: '0x70cadeda'  # virl
+    create_vlan_subif_reply: '0xfda5941f'  # virl
+    gre_tunnel_add_del: '0x04199f47'  # virl
+    gre_tunnel_add_del_reply: '0x903324db'  # virl
+    gpe_enable_disable: '0xeb0e943b'  # virl
+    gpe_enable_disable_reply: '0xe8d4e804'  # virl
+    hw_interface_set_mtu: '0x132da1e7'  # dev
+    hw_interface_set_mtu_reply: '0xe8d4e804'  # dev
+    input_acl_set_interface: '0xe09537b0'  # dev
+    input_acl_set_interface_reply: '0xe8d4e804'  # dev
+    ip_address_details: '0x2f1dbc7d'  # dev
+    ip_address_dump: '0x6b7bcd0a'  # dev
+    ip_neighbor_add_del: '0x7a68a3c4'  # dev
+    ip_neighbor_add_del_reply: '0x1992deab'  # dev
+    ip_probe_neighbor: '0x2736142d'  # virl
+    ip_route_add_del: '0x83e086ce'  # dev
+    ip_route_add_del_reply: '0x1992deab'  # dev
+    ip_source_check_interface_add_del: '0x0a60152a'  # virl
+    ip_source_check_interface_add_del_reply: '0xe8d4e804'  # virl
+    ip_table_add_del: '0xe5d378f2'  # dev
+    ip_table_add_del_reply: '0xe8d4e804'  # dev
+    ipsec_interface_add_del_spd: '0x1e3b8286'  # dev
+    ipsec_interface_add_del_spd_reply: '0xe8d4e804'  # dev
+    ipsec_sad_entry_add_del: '0xa25ab61e'  # dev
+    ipsec_sad_entry_add_del_reply: '0x9ffac24b'  # dev
+    ipsec_spd_add_del: '0x9ffdf5da'  # dev
+    ipsec_spd_add_del_reply: '0xe8d4e804'  # dev
+    ipsec_spd_entry_add_del: '0x6bc6a3b5'  # dev
+    ipsec_spd_entry_add_del_reply: '0x9ffac24b'  # dev
+    l2_interface_vlan_tag_rewrite: '0xb90be6b4'  # virl
+    l2_interface_vlan_tag_rewrite_reply: '0xe8d4e804'  # virl
+    l2_patch_add_del: '0x62506e63'  # perf
+    l2_patch_add_del_reply: '0xe8d4e804'  # perf
+    # ^^ tc01-64B-1c-avf-eth-l2patch-mrr
+    # ^ l2patchANDdrv_avf
+    lisp_add_del_adjacency: '0xf047390d'  # virl
+    lisp_add_del_adjacency_reply: '0xe8d4e804'  # virl
+    lisp_add_del_local_eid: '0xe6d00717'  # virl
+    lisp_add_del_local_eid_reply: '0xe8d4e804'  # virl
+    lisp_add_del_locator: '0x006a4240'  # virl
+    lisp_add_del_locator_reply: '0xe8d4e804'  # virl
+    lisp_add_del_locator_set: '0x06968e38'  # virl
+    lisp_add_del_locator_set_reply: '0xb6666db4'  # virl
+    lisp_add_del_remote_mapping: '0xb879c3a9'  # virl
+    lisp_add_del_remote_mapping_reply: '0xe8d4e804'  # virl
+    lisp_eid_table_details: '0xdcd9f414'  # virl
+    lisp_eid_table_dump: '0xe0df64da'  # virl
+    lisp_enable_disable: '0xeb0e943b'  # virl
+    lisp_enable_disable_reply: '0xe8d4e804'  # virl
+    lisp_locator_set_details: '0x6b846882'  # virl
+    lisp_locator_set_dump: '0xc79e8ab0'  # virl
+    lisp_map_resolver_details: '0x60a5f5ca'  # virl
+    lisp_map_resolver_dump: '0x51077d14'  # virl
+    memif_create: '0x6597cdb2'  # dev
+    memif_create_reply: '0xfda5941f'  # dev
+    memif_details: '0x4f5a3397'  # dev
+    memif_dump: '0x51077d14'  # dev
+    memif_socket_filename_add_del: '0x30e3929d'  # dev
+    memif_socket_filename_add_del_reply: '0xe8d4e804'  # dev
+    nat_det_add_del_map: '0x04b76549'  # perf
+    nat_det_add_del_map_reply: '0xe8d4e804'  # perf
+    nat44_interface_add_del_feature: '0xef3edad1'  # perf
+    nat44_interface_add_del_feature_reply: '0xe8d4e804'  # perf
+    # ^^^^ tc01-64B-1c-ethip4udp-ip4base-nat44-mrr
+    # ^ nat44NOTscaleNOTsrc_user_1
+    proxy_arp_intfc_enable_disable: '0x69d24598'  # virl
+    proxy_arp_intfc_enable_disable_reply: '0xe8d4e804'  # virl
+    show_lisp_status: '0x51077d14'  # virl
+    show_lisp_status_reply: '0xddcf48ef'  # virl
+    show_threads: '0x51077d14'  # dev
+    show_threads_reply: '0xf5e0b66f'  # dev
+    show_version: '0x51077d14'  # dev setup
+    show_version_reply: '0xb9bcf6df'  # dev setup
+    sw_interface_add_del_address: '0x7b583179'  # dev
+    sw_interface_add_del_address_reply: '0xe8d4e804'  # dev
+    sw_interface_details: '0xe4ee7eb6'  # dev setup
+    sw_interface_dump: '0x052753c5'  # dev setup
+    sw_interface_ip6nd_ra_config: '0xc3f02daa'  # dev
+    sw_interface_ip6nd_ra_config_reply: '0xe8d4e804'  # dev
+    sw_interface_rx_placement_details: '0x0e9e33f4'  # perf
+    sw_interface_rx_placement_dump: '0x529cb13f'  # perf
+    # ^^ tc01-64B-1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+    # ^ dot1qANDl2bdmaclrnANDbaseANDmemif
+    sw_interface_set_flags: '0x555485f5'  # dev
+    sw_interface_set_flags_reply: '0xe8d4e804'  # dev
+    sw_interface_set_l2_bridge: '0x5579f809'  # dev
+    sw_interface_set_l2_bridge_reply: '0xe8d4e804'  # dev
+    sw_interface_set_l2_xconnect: '0x95de3988'  # dev
+    sw_interface_set_l2_xconnect_reply: '0xe8d4e804'  # dev
+    sw_interface_set_rx_placement: '0x4ef4377d'  # perf
+    sw_interface_set_rx_placement_reply: '0xe8d4e804'  # perf
+    # ^^ tc01-64B-1c-eth-l2xcbase-eth-2memif-1dcr-mrr
+    # ^ l2xcfwdANDbaseANDlxcANDmemif
+    sw_interface_set_table: '0xacb25d89'  # dev
+    sw_interface_set_table_reply: '0xe8d4e804'  # dev
+    sw_interface_set_vxlan_bypass: '0xe74ca095'  # dev
+    sw_interface_set_vxlan_bypass_reply: '0xe8d4e804'  # dev
+    sw_interface_vhost_user_details: '0x91ff3307'  # dev
+    sw_interface_vhost_user_dump: '0x51077d14'  # dev
+    vxlan_add_del_tunnel: '0x00f4bdd0'  # virl
+    vxlan_add_del_tunnel_reply: '0xfda5941f'  # virl
+    vxlan_tunnel_details: '0xce38e127'  # virl
+    vxlan_tunnel_dump: '0x529cb13f'  # virl
+
+# TODO: Create an on-demand perf verify job with a tag expression
+# covering API calls used only in perf tests,
+# and maintain the expression as device test gets more coverage.
+# Current trigger needed: csit-3n-skx-perftest
+# mrrAND1cAND64bANDnic_intel-x710ANDip4fwdANDiaclANDacl10AND100_flows
+# mrrAND1cAND64bANDnic_intel-x710ANDl2bdmaclrnANDbaseANDdrv_avf
+# mrrAND1cAND64bANDnic_intel-x710ANDl2patchANDdrv_avf
+# mrrAND1cAND64bANDnic_intel-x710ANDnat44NOTscaleNOTsrc_user_1
+# mrrAND1cAND64bANDnic_intel-x710ANDdot1qANDl2bdmaclrnANDbaseANDmemif
+# mrrAND1cAND64bANDnic_intel-x710ANDl2xcfwdANDbaseANDlxcANDmemif
+
+# TODO: Once device job has complete API coverage,
+# add a check to make sure each message was encountered;
+# failure means we need to add more tests to device test job.
+# Alternatively, add an option to compile messages actually
+# used or encountered, so CSIT knows what to remove from mapping.
