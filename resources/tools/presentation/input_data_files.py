@@ -219,15 +219,14 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
     else:
         return False
 
-    if spec.configuration.get("archive-inputs", True):
-        if spec.input["file-name"].endswith(".gz"):
-            if "docs.fd.io" in url:
-                execute_command("gzip --decompress --keep --force {0}".
-                                format(new_name))
-            else:
-                rename(new_name, new_name[:-3])
-                execute_command("gzip --keep {0}".format(new_name[:-3]))
-            build["file-name"] = new_name[:-3]
+    if spec.input["file-name"].endswith(".gz"):
+        if "docs.fd.io" in url:
+            execute_command("gzip --decompress --keep --force {0}".
+                            format(new_name))
+        elif spec.configuration.get("archive-inputs", True):
+            rename(new_name, new_name[:-3])
+            execute_command("gzip --keep {0}".format(new_name[:-3]))
+        build["file-name"] = new_name[:-3]
 
     if new_name.endswith(".zip"):
         if is_zipfile(new_name):
