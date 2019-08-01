@@ -15,12 +15,28 @@
 
 import json
 import os
+import yaml
 
 from robot.api import logger
 
 
+def _str(text):
+    """Convert from possible unicode without interpreting as number.
+
+    :param text: Input to convert.
+    :type text: str or unicode
+    :returns: Converted text.
+    :rtype: str
+    """
+    return text.encode("utf-8") if isinstance(text, unicode) else text
+
+
 class VppApiCrcChecker(object):
     """Holder of data related to tracking VPP API CRCs.
+
+    Both message names and crc hexa strings are tracked as
+    ordinary Python2 (bytes) str, so _str() is used when input is
+    possibly unicode or otherwise not safe.
 
     Each instance of this class starts with same default state,
     so make sure the calling libraries have appropriate robot library scope.
@@ -40,13 +56,11 @@ class VppApiCrcChecker(object):
         """Mapping from collection name to mapping from API name to CRC string.
 
         Colection name should be something useful for logging.
-        API name is ordinary Python2 str, CRC is also str.
 
         Order of addition reflects the order colections should be queried.
         If an incompatible CRC is found, affected collections are removed.
         A CRC that would remove all does not, added to _reported instead,
-        while causing a failure in single test.
-        """
+        while causing a failure in single test."""
 
         self._missing = dict()
         """Mapping from collection name to mapping from API name to CRC string.
@@ -75,19 +89,32 @@ class VppApiCrcChecker(object):
         self._register_all()
         self._check_dir(directory)
 
-    def _register_collection(self, collection_name, collection_dict):
+    def _register_collection(self, collection_name, name_to_crc_mapping):
         """Add a named (copy of) collection of CRCs.
 
         :param collection_name: Helpful string describing the collection.
-        :param collection_dict: Mapping from API names to CRCs.
-        :type collection_name: str
-        :type collection_dict: dict from str to str
+        :param name_to_crc_mapping: Mapping from API names to CRCs.
+        :type collection_name: str or unicode
+        :type name_to_crc_mapping: dict from str/unicode to str/unicode
         """
+        collection_name = _str(collection_name)
         if collection_name in self._expected:
-            raise RuntimeError("Collection {cl} already registered.".format(
+            raise RuntimeError("Collection {cl!r} already registered.".format(
                 cl=collection_name))
-        self._expected[collection_name] = collection_dict.copy()
-        self._missing[collection_name] = collection_dict.copy()
+        mapping = {_str(k): _str(v) for k, v in name_to_crc_mapping.items()}
+        self._expected[collection_name] = mapping
+        self._missing[collection_name] = mapping.copy()
+
+    def _register_all(self):
+        """Add all collections this CSIT codebase is tested against."""
+
+        file_path = os.path.normpath(os.path.join(
+            os.path.dirname(os.path.abspath(__file__)), "..", "..",
+            "api", "vpp", "supported_crcs.yaml"))
+        with open(file_path, "r") as file_in:
+            collections_dict = yaml.load(file_in.read())
+        for collection_name, name_to_crc_mapping in collections_dict.items():
+            self._register_collection(collection_name, name_to_crc_mapping)
 
     @staticmethod
     def _get_name(msg_obj):
@@ -102,7 +129,7 @@ class VppApiCrcChecker(object):
         for item in msg_obj:
             if isinstance(item, (dict, list)):
                 continue
-            return item
+            return _str(item)
         raise RuntimeError("No name found for message: {obj!r}".format(
             obj=msg_obj))
 
@@ -121,7 +148,7 @@ class VppApiCrcChecker(object):
                 continue
             crc = item.get("crc", None)
             if crc:
-                return crc
+                return _str(crc)
         raise RuntimeError("No CRC found for message: {obj!r}".format(
             obj=msg_obj))
 
@@ -153,16 +180,16 @@ class VppApiCrcChecker(object):
         :param api_name: API name to check.
         :param crc: Discovered CRC to check for the name.
         :type api_name: str
-        :type crc: str or unicode
+        :type crc: str
         """
         # Regardless of the result, remember as found.
         self._found[api_name] = crc
         old_expected = self._expected
         new_expected = old_expected.copy()
-        for collection_name, collection_dict in old_expected.items():
-            if api_name not in collection_dict:
+        for collection_name, name_to_crc_mapping in old_expected.items():
+            if api_name not in name_to_crc_mapping:
                 continue
-            if collection_dict[api_name] == crc:
+            if name_to_crc_mapping[api_name] == crc:
                 self._missing[collection_name].pop(api_name, None)
                 continue
             # Remove the offending collection.
@@ -201,7 +228,7 @@ class VppApiCrcChecker(object):
                     msg_name = self._get_name(msg_obj)
                     msg_crc = self._get_crc(msg_obj)
                     self._process_crc(msg_name, msg_crc)
-        logger.info("Surviving collections: {col}".format(
+        logger.debug("Surviving collections: {col!r}".format(
             col=self._expected.keys()))
 
     def report_initial_conflicts(self, report_missing=False):
@@ -239,15 +266,16 @@ class VppApiCrcChecker(object):
         Intended use: Call everytime an API call is queued or response received.
 
         :param api_name: VPP API messagee name to check.
-        :type api_name: str
+        :type api_name: str or unicode
         :raises RuntimeError: If no verified CRC for the api_name is found.
         """
+        api_name = _str(api_name)
         if api_name in self._reported:
             return
         old_expected = self._expected
         new_expected = old_expected.copy()
-        for collection_name, collection_dict in old_expected.items():
-            if api_name in collection_dict:
+        for collection_name, name_to_crc_mapping in old_expected.items():
+            if api_name in name_to_crc_mapping:
                 continue
             # Remove the offending collection.
             new_expected.pop(collection_name, None)
@@ -258,166 +286,5 @@ class VppApiCrcChecker(object):
         crc = self._found.get(api_name, None)
         self._reported[api_name] = crc
         # Disabled temporarily during CRC mismatch.
-        #raise RuntimeError("No active collection has API {api} CRC found {crc}"\
-        #    .format(api=api_name, crc=crc))
-
-    # Moved to the end as this part will be edited frequently.
-    def _register_all(self):
-        """Add all collections this CSIT codebase is tested against."""
-
-        # Rework to read from files?
-        self._register_collection(
-            "19.08-rc0~762-gbb2e5221a", {
-                "acl_add_replace": "0x13bc8539",  # perf
-                "acl_add_replace_reply": "0xac407b0c",  # perf
-                "acl_dump": "0xef34fea4",  # perf teardown
-                "acl_interface_list_dump": "0x529cb13f",  # perf teardown
-                # ^^^^ tc01-64B-1c-ethip4udp-ip4base-iacl1sf-10kflows-mrr
-                "acl_interface_set_acl_list": "0x8baece38",  # perf
-                "acl_interface_set_acl_list_reply": "0xe8d4e804",  # perf
-                "acl_details": "0xf89d7a88",  # perf teardown
-                "acl_interface_list_details": "0xd5e80809",  # perf teardown
-                # ^^^^ tc01-64B-1c-ethip4udp-ip4base-iacl1sl-10kflows-mrr
-                # ^^ ip4fwdANDiaclANDacl10AND100_flows
-                "avf_create": "0xdaab8ae2",  # perf
-                "avf_create_reply": "0xfda5941f",  # perf
-                # ^^ tc01-64B-1c-avf-eth-l2bdbasemaclrn-mrr
-                # ^ l2bdmaclrnANDbaseANDdrv_avf
-                "bridge_domain_add_del": "0xc6360720",  # dev
-                "bridge_domain_add_del_reply": "0xe8d4e804",  # dev
-                "classify_add_del_session": "0x85fd79f4",  # dev
-                "classify_add_del_session_reply": "0xe8d4e804",  # dev
-                "classify_add_del_table": "0x9bd794ae",  # dev
-                "classify_add_del_table_reply": "0x05486349",  # dev
-                "cli_inband": "0xb1ad59b3",  # dev setup
-                "cli_inband_reply": "0x6d3c80a4",  # dev setup
-                "cop_interface_enable_disable": "0x69d24598",  # dev
-                "cop_interface_enable_disable_reply": "0xe8d4e804",  # dev
-                "cop_whitelist_enable_disable": "0x8bb8f6dc",  # dev
-                "cop_whitelist_enable_disable_reply": "0xe8d4e804",  # dev
-                "create_loopback": "0x3b54129c",  # dev
-                "create_loopback_reply": "0xfda5941f",  # dev
-                "create_subif": "0x86cfe408",  # virl
-                "create_subif_reply": "0xfda5941f",  # virl
-                "create_vhost_user_if": "0xbd230b87",  # dev
-                "create_vhost_user_if_reply": "0xfda5941f",  # dev
-                "create_vlan_subif": "0x70cadeda",  # virl
-                "create_vlan_subif_reply": "0xfda5941f",  # virl
-                "gre_tunnel_add_del": "0x04199f47",  # virl
-                "gre_tunnel_add_del_reply": "0x903324db",  # virl
-                "gpe_enable_disable": "0xeb0e943b",  # virl
-                "gpe_enable_disable_reply": "0xe8d4e804",  # virl
-                "hw_interface_set_mtu": "0x132da1e7",  # dev
-                "hw_interface_set_mtu_reply": "0xe8d4e804",  # dev
-                "input_acl_set_interface": "0xe09537b0",  # dev
-                "input_acl_set_interface_reply": "0xe8d4e804",  # dev
-                "ip_address_details": "0x2f1dbc7d",  # dev
-                "ip_address_dump": "0x6b7bcd0a",  # dev
-                "ip_neighbor_add_del": "0x7a68a3c4",  # dev
-                "ip_neighbor_add_del_reply": "0x1992deab",  # dev
-                "ip_probe_neighbor": "0x2736142d",  # virl
-                "ip_route_add_del": "0x83e086ce",  # dev
-                "ip_route_add_del_reply": "0x1992deab",  # dev
-                "ip_source_check_interface_add_del": "0x0a60152a",  # virl
-                "ip_source_check_interface_add_del_reply": "0xe8d4e804",  # virl
-                "ip_table_add_del": "0xe5d378f2",  # dev
-                "ip_table_add_del_reply": "0xe8d4e804",  # dev
-                "ipsec_interface_add_del_spd": "0x1e3b8286",  # dev
-                "ipsec_interface_add_del_spd_reply": "0xe8d4e804",  # dev
-                "ipsec_sad_entry_add_del": "0xa25ab61e",  # dev
-                "ipsec_sad_entry_add_del_reply": "0x9ffac24b",  # dev
-                "ipsec_spd_add_del": "0x9ffdf5da",  # dev
-                "ipsec_spd_add_del_reply": "0xe8d4e804",  # dev
-                "ipsec_spd_entry_add_del": "0x6bc6a3b5",  # dev
-                "ipsec_spd_entry_add_del_reply": "0x9ffac24b",  # dev
-                "l2_interface_vlan_tag_rewrite": "0xb90be6b4",  # virl
-                "l2_interface_vlan_tag_rewrite_reply": "0xe8d4e804",  # virl
-                "l2_patch_add_del": "0x62506e63",  # perf
-                "l2_patch_add_del_reply": "0xe8d4e804",  # perf
-                # ^^ tc01-64B-1c-avf-eth-l2patch-mrr
-                # ^ l2patchANDdrv_avf
-                "lisp_add_del_adjacency": "0xf047390d",  # virl
-                "lisp_add_del_adjacency_reply": "0xe8d4e804",  # virl
-                "lisp_add_del_local_eid": "0xe6d00717",  # virl
-                "lisp_add_del_local_eid_reply": "0xe8d4e804",  # virl
-                "lisp_add_del_locator": "0x006a4240",  # virl
-                "lisp_add_del_locator_reply": "0xe8d4e804",  # virl
-                "lisp_add_del_locator_set": "0x06968e38",  # virl
-                "lisp_add_del_locator_set_reply": "0xb6666db4",  # virl
-                "lisp_add_del_remote_mapping": "0xb879c3a9",  # virl
-                "lisp_add_del_remote_mapping_reply": "0xe8d4e804",  # virl
-                "lisp_eid_table_details": "0xdcd9f414",  # virl
-                "lisp_eid_table_dump": "0xe0df64da",  # virl
-                "lisp_enable_disable": "0xeb0e943b",  # virl
-                "lisp_enable_disable_reply": "0xe8d4e804",  # virl
-                "lisp_locator_set_details": "0x6b846882",  # virl
-                "lisp_locator_set_dump": "0xc79e8ab0",  # virl
-                "lisp_map_resolver_details": "0x60a5f5ca",  # virl
-                "lisp_map_resolver_dump": "0x51077d14",  # virl
-                "memif_create": "0x6597cdb2",  # dev
-                "memif_create_reply": "0xfda5941f",  # dev
-                "memif_details": "0x4f5a3397",  # dev
-                "memif_dump": "0x51077d14",  # dev
-                "memif_socket_filename_add_del": "0x30e3929d",  # dev
-                "memif_socket_filename_add_del_reply": "0xe8d4e804",  # dev
-                "nat_det_add_del_map": "0x04b76549",  # perf
-                "nat_det_add_del_map_reply": "0xe8d4e804",  # perf
-                "nat44_interface_add_del_feature": "0xef3edad1",  # perf
-                "nat44_interface_add_del_feature_reply": "0xe8d4e804",  # perf
-                # ^^^^ tc01-64B-1c-ethip4udp-ip4base-nat44-mrr
-                # ^ nat44NOTscaleNOTsrc_user_1
-                "proxy_arp_intfc_enable_disable": "0x69d24598",  # virl
-                "proxy_arp_intfc_enable_disable_reply": "0xe8d4e804",  # virl
-                "show_lisp_status": "0x51077d14",  # virl
-                "show_lisp_status_reply": "0xddcf48ef",  # virl
-                "show_threads": "0x51077d14",  # dev
-                "show_threads_reply": "0xf5e0b66f",  # dev
-                "show_version": "0x51077d14",  # dev setup
-                "show_version_reply": "0xb9bcf6df",  # dev setup
-                "sw_interface_add_del_address": "0x7b583179",  # dev
-                "sw_interface_add_del_address_reply": "0xe8d4e804",  # dev
-                "sw_interface_details": "0xe4ee7eb6",  # dev setup
-                "sw_interface_dump": "0x052753c5",  # dev setup
-                "sw_interface_ip6nd_ra_config": "0xc3f02daa",  # dev
-                "sw_interface_ip6nd_ra_config_reply": "0xe8d4e804",  # dev
-                "sw_interface_rx_placement_details": "0x0e9e33f4",  # perf
-                "sw_interface_rx_placement_dump": "0x529cb13f",  # perf
-                # ^^ tc01-64B-1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr
-                # ^ dot1qANDl2bdmaclrnANDbaseANDmemif
-                "sw_interface_set_flags": "0x555485f5",  # dev
-                "sw_interface_set_flags_reply": "0xe8d4e804",  # dev
-                "sw_interface_set_l2_bridge": "0x5579f809",  # dev
-                "sw_interface_set_l2_bridge_reply": "0xe8d4e804",  # dev
-                "sw_interface_set_l2_xconnect": "0x95de3988",  # dev
-                "sw_interface_set_l2_xconnect_reply": "0xe8d4e804",  # dev
-                "sw_interface_set_rx_placement": "0x4ef4377d",  # perf
-                "sw_interface_set_rx_placement_reply": "0xe8d4e804",  # perf
-                # ^^ tc01-64B-1c-eth-l2xcbase-eth-2memif-1dcr-mrr
-                # ^ l2xcfwdANDbaseANDlxcANDmemif
-                "sw_interface_set_table": "0xacb25d89",  # dev
-                "sw_interface_set_table_reply": "0xe8d4e804",  # dev
-                "sw_interface_set_vxlan_bypass": "0xe74ca095",  # dev
-                "sw_interface_set_vxlan_bypass_reply": "0xe8d4e804",  # dev
-                "sw_interface_vhost_user_details": "0x91ff3307",  # dev
-                "sw_interface_vhost_user_dump": "0x51077d14",  # dev
-                "vxlan_add_del_tunnel": "0x00f4bdd0",  # virl
-                "vxlan_add_del_tunnel_reply": "0xfda5941f",  # virl
-                "vxlan_tunnel_details": "0xce38e127",  # virl
-                "vxlan_tunnel_dump": "0x529cb13f",  # virl
-            }
-            # Perf verify with: csit-3n-skx-perftest
-            # mrrAND1cAND64bANDnic_intel-x710ANDip4fwdANDiaclANDacl10AND100_flows
-            # mrrAND1cAND64bANDnic_intel-x710ANDl2bdmaclrnANDbaseANDdrv_avf
-            # mrrAND1cAND64bANDnic_intel-x710ANDl2patchANDdrv_avf
-            # mrrAND1cAND64bANDnic_intel-x710ANDnat44NOTscaleNOTsrc_user_1
-            # mrrAND1cAND64bANDnic_intel-x710ANDdot1qANDl2bdmaclrnANDbaseANDmemif
-            # mrrAND1cAND64bANDnic_intel-x710ANDl2xcfwdANDbaseANDlxcANDmemif
-
-            # TODO: Add a tag expression for covering those perf tests,
-            # even though any CSIT change can make that outdated.
-            # TODO: Once API coverage job is ready,
-            # add a check to make sure each message was encountered;
-            # failure means we need to add more tests to API coverage job.
-            # Alternatively, add an option to compile messages actually
-            # used or encountered, so CSIT knows what to remove from mapping.
-        )
+        #raise RuntimeError("No active collection has API {api!r}"
+        #                   " CRC found {crc!r}".format(api=api_name, crc=crc))
