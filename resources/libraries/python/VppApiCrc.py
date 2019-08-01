@@ -257,9 +257,8 @@ class VppApiCrcChecker(object):
             return
         crc = self._found.get(api_name, None)
         self._reported[api_name] = crc
-        # Disabled temporarily during CRC mismatch.
-        #raise RuntimeError("No active collection has API {api} CRC found {crc}"\
-        #    .format(api=api_name, crc=crc))
+        raise RuntimeError("No active collection has API {api} CRC found {crc}"\
+            .format(api=api_name, crc=crc))
 
     # Moved to the end as this part will be edited frequently.
     def _register_all(self):
