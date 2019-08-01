@@ -8,4 +8,3 @@ numpy==1.16.4
 pandas==0.24.2
 plotly==3.3.0
 PTable==0.9.2
-objgraph==3.4.1
