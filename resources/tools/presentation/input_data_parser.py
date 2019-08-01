@@ -1330,8 +1330,8 @@ class InputData(object):
 
                 self._cfg.set_input_state(job, build_nr, result["state"])
 
-                logging.info("Memory allocation: {0}kB".format(
-                    resource.getrusage(resource.RUSAGE_SELF).ru_maxrss))
+                logging.info("Memory allocation: {0:,d}MB".format(
+                    resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000))
 
         logging.info("Done.")
 
