@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd2a96d7_85251eb9",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-01T17:01:30Z",
+      "side": 1,
+      "message": "It seems we still need an analogue of Base block 148-160, for adding DSCP values when the corresponding action is MARK_AND_TRANSMIT.",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 9
+      },
+      "revId": "f41166c15275d85804fefbcd8f6a7c99e9a94cda",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
