@@ -22,6 +22,8 @@
 import multiprocessing
 import os
 import re
+import resource
+import objgraph
 import pandas as pd
 import logging
 
@@ -1328,6 +1330,22 @@ class InputData(object):
                         job, build_nr, result["build"]["file-name"])
 
                 self._cfg.set_input_state(job, build_nr, result["state"])
+
+                logging.info("ru_maxrss = {0}".format(
+                    resource.getrusage(resource.RUSAGE_SELF).ru_maxrss))
+                logging.info("ru_ixrss = {0}".format(
+                    resource.getrusage(resource.RUSAGE_SELF).ru_ixrss))
+                logging.info("ru_idrss = {0}".format(
+                    resource.getrusage(resource.RUSAGE_SELF).ru_idrss))
+                logging.info("ru_isrss = {0}".format(
+                    resource.getrusage(resource.RUSAGE_SELF).ru_isrss))
+                logging.info("ru_nswap = {0}".format(
+                    resource.getrusage(resource.RUSAGE_SELF).ru_nswap))
+
+                logging.info("getpagesize = {0}".format(
+                    resource.getpagesize()))
+
+                logging.info(objgraph.most_common_types())
 
         logging.info("Done.")
 
