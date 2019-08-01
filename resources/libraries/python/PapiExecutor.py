@@ -355,9 +355,11 @@ class PapiSocketExecutor(object):
         :rtype: PapiSocketExecutor
         :raises RuntimeError: If unverified or conflicting CRC is encountered.
         """
+        self.crc_checker.report_initial_conflicts()
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
+        self.crc_checker.check_api_name(csit_papi_command)
         self._api_command_list.append(
             dict(api_name=csit_papi_command, api_args=kwargs))
         return self
@@ -517,6 +519,7 @@ class PapiSocketExecutor(object):
             if not isinstance(reply, list):
                 reply = [reply]
             for item in reply:
+                self.crc_checker.check_api_name(item.__class__.__name__)
                 dict_item = dictize(item)
                 if "retval" in dict_item.keys():
                     # *_details messages do not contain retval.
