@@ -138,7 +138,8 @@ def generate_cpta(spec, data):
             css_file:
         css_file.write(THEME_OVERRIDES)
 
-    archive_input_data(spec)
+    if spec.configuration.get("archive-inputs", True):
+        archive_input_data(spec)
 
     logging.info("Done.")
 
