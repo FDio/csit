@@ -34,17 +34,17 @@ VPP worker on 4t4c
 3n-skx
 ------
 
-VPP worker on 1t1c
+VPP worker on 2t1c
 ``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-3n-skx.rst
 
-VPP worker on 2t2c
+VPP worker on 4t2c
 ``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t2c-3n-skx.rst
 
-VPP worker on 4t4c
+VPP worker on 8t4c
 ``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-8t4c-3n-skx.rst
@@ -52,17 +52,17 @@ VPP worker on 4t4c
 2n-skx
 ------
 
-VPP worker on 1t1c
+VPP worker on 2t1c
 ``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-2n-skx.rst
 
-VPP worker on 2t2c
+VPP worker on 4t2c
 ``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t2c-2n-skx.rst
 
-VPP worker on 4t4c
+VPP worker on 8t4c
 ``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-8t4c-2n-skx.rst
