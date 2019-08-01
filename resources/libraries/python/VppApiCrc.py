@@ -267,7 +267,134 @@ class VppApiCrcChecker(object):
 
         # Rework to read from files?
         self._register_collection(
-            "19.08-rc0~762-gbb2e5221a", {
+            "19.08-rc0~793-g3efcd0d7c~b3358", {
+                "acl_add_replace": "0x364a32ce",
+                "acl_add_replace_reply": "0x7f363910",
+                "acl_details": "0x862ee36e",
+                "acl_dump": "0xdccef8b6",
+                "acl_interface_list_details": "0xef0bb1fc",
+                "acl_interface_list_dump": "0x50922ce6",
+                "acl_interface_set_acl_list": "0x9db85adb",
+                "acl_interface_set_acl_list_reply": "0xe8a05384",
+                "avf_create": "0x3a6d664b",
+                "avf_create_reply": "0x92206182",
+                "bridge_domain_add_del": "0x51d43c20",
+                "bridge_domain_add_del_reply": "0xe8a05384",
+                "classify_add_del_session": "0xaec908fa",
+                "classify_add_del_session_reply": "0xe8a05384",
+                "classify_add_del_table": "0x40256f95",
+                "classify_add_del_table_reply": "0xbfaac255",
+                "cli_inband": "0xd078b7b3",
+                "cli_inband_reply": "0x40667059",
+                "cop_interface_enable_disable": "0x0bc37881",
+                "cop_interface_enable_disable_reply": "0xe8a05384",
+                "cop_whitelist_enable_disable": "0x7870fe58",
+                "cop_whitelist_enable_disable_reply": "0xe8a05384",
+                "create_loopback": "0x22764505",
+                "create_loopback_reply": "0x92206182",
+                "create_subif": "0x7a09f0d3",
+                "create_subif_reply": "0x92206182",
+                "create_vhost_user_if": "0x9c2d423e",
+                "create_vhost_user_if_reply": "0x92206182",
+                "create_vlan_subif": "0xadfe35c4",
+                "create_vlan_subif_reply": "0x92206182",
+                "gpe_enable_disable": "0xee6e29f0",
+                "gpe_enable_disable_reply": "0xe8a05384",
+                "gre_tunnel_add_del": "0x8cdab961",
+                "gre_tunnel_add_del_reply": "0x12f22e8d",
+                "hw_interface_set_mtu": "0xdb2c79e0",
+                "hw_interface_set_mtu_reply": "0xe8a05384",
+                "input_acl_set_interface": "0x3a4b8614",
+                "input_acl_set_interface_reply": "0xe8a05384",
+                "ip_address_details": "0x1629d49c",
+                "ip_address_dump": "0xab5a6200",
+                "ip_neighbor_add_del": "0xebdc0355",
+                "ip_neighbor_add_del_reply": "0x3cda0bd4",
+                "ip_probe_neighbor": "0xb575f439",
+                "ip_route_add_del": "0x1a7c4560",
+                "ip_route_add_del_reply": "0x3cda0bd4",
+                "ip_source_check_interface_add_del": "0x791314db",
+                "ip_source_check_interface_add_del_reply": "0xe8a05384",
+                "ip_table_add_del": "0x93b8a073",
+                "ip_table_add_del_reply": "0xe8a05384",
+                "ipsec_interface_add_del_spd": "0x68cf36c5",
+                "ipsec_interface_add_del_spd_reply": "0xe8a05384",
+                "ipsec_sad_entry_add_del": "0xe01bcb5a",
+                "ipsec_sad_entry_add_del_reply": "0xdff2902e",
+                "ipsec_spd_add_del": "0xcd928d0a",
+                "ipsec_spd_add_del_reply": "0xe8a05384",
+                "ipsec_spd_entry_add_del": "0x9ad1dbdd",
+                "ipsec_spd_entry_add_del_reply": "0xdff2902e",
+                "l2_interface_vlan_tag_rewrite": "0x8f21fce6",
+                "l2_interface_vlan_tag_rewrite_reply": "0xe8a05384",
+                "l2_patch_add_del": "0x038b9453",
+                "l2_patch_add_del_reply": "0xe8a05384",
+                "lisp_add_del_adjacency": "0x29bf1eec",
+                "lisp_add_del_adjacency_reply": "0xe8a05384",
+                "lisp_add_del_local_eid": "0xc02e85bd",
+                "lisp_add_del_local_eid_reply": "0xe8a05384",
+                "lisp_add_del_locator": "0xab7f3b43",
+                "lisp_add_del_locator_reply": "0xe8a05384",
+                "lisp_add_del_locator_set": "0x4d3472bf",
+                "lisp_add_del_locator_set_reply": "0x5c916105",
+                "lisp_add_del_remote_mapping": "0xe01e3dbb",
+                "lisp_add_del_remote_mapping_reply": "0xe8a05384",
+                "lisp_eid_table_details": "0x082bd334",
+                "lisp_eid_table_dump": "0xd953a035",
+                "lisp_enable_disable": "0xee6e29f0",
+                "lisp_enable_disable_reply": "0xe8a05384",
+                "lisp_locator_set_details": "0x7e643a71",
+                "lisp_locator_set_dump": "0x819e47ab",
+                "lisp_map_resolver_details": "0x70bfcca7",
+                "lisp_map_resolver_dump": "0x8856aae6",
+                "memif_create": "0xcafac501",
+                "memif_create_reply": "0x92206182",
+                "memif_details": "0xea530f62",
+                "memif_dump": "0x8856aae6",
+                "memif_socket_filename_add_del": "0xde1defad",
+                "memif_socket_filename_add_del_reply": "0xe8a05384",
+                "nat44_interface_add_del_feature": "0xf63e2ad4",
+                "nat44_interface_add_del_feature_reply": "0xe8a05384",
+                "nat_det_add_del_map": "0xe723edbf",
+                "nat_det_add_del_map_reply": "0xe8a05384",
+                "proxy_arp_intfc_enable_disable": "0x0bc37881",
+                "proxy_arp_intfc_enable_disable_reply": "0xe8a05384",
+                "show_lisp_status": "0x8856aae6",
+                "show_lisp_status_reply": "0x3db526d5",
+                "show_threads": "0x8856aae6",
+                "show_threads_reply": "0xb191b5a9",
+                "show_version": "0x8856aae6",
+                "show_version_reply": "0x7640dbe6",
+                "sw_interface_add_del_address": "0xe8452fdb",
+                "sw_interface_add_del_address_reply": "0xe8a05384",
+                "sw_interface_details": "0xc4e7f76c",
+                "sw_interface_dump": "0xf62b4c1c",
+                "sw_interface_ip6nd_ra_config": "0xd7eb73c4",
+                "sw_interface_ip6nd_ra_config_reply": "0xe8a05384",
+                "sw_interface_rx_placement_details": "0x202fc176",
+                "sw_interface_rx_placement_dump": "0x50922ce6",
+                "sw_interface_set_flags": "0x1c6fcc73",
+                "sw_interface_set_flags_reply": "0xe8a05384",
+                "sw_interface_set_l2_bridge": "0x0514fc26",
+                "sw_interface_set_l2_bridge_reply": "0xe8a05384",
+                "sw_interface_set_l2_xconnect": "0x61526cf3",
+                "sw_interface_set_l2_xconnect_reply": "0xe8a05384",
+                "sw_interface_set_rx_placement": "0xd994eae1",
+                "sw_interface_set_rx_placement_reply": "0xe8a05384",
+                "sw_interface_set_table": "0xe58f6159",
+                "sw_interface_set_table_reply": "0xe8a05384",
+                "sw_interface_set_vxlan_bypass": "0x1f494c9f",
+                "sw_interface_set_vxlan_bypass_reply": "0xe8a05384",
+                "sw_interface_vhost_user_details": "0x5aecc274",
+                "sw_interface_vhost_user_dump": "0x8856aae6",
+                "vxlan_add_del_tunnel": "0x5bef8400",
+                "vxlan_add_del_tunnel_reply": "0x92206182",
+                "vxlan_tunnel_details": "0x0f1d121c",
+                "vxlan_tunnel_dump": "0x50922ce6",
+            }
+        )
+        self._register_collection(
+            "19.08-rc0~794-g7520e17bf~b3359", {
                 "acl_add_replace": "0x13bc8539",  # perf
                 "acl_add_replace_reply": "0xac407b0c",  # perf
                 "acl_dump": "0xef34fea4",  # perf teardown
@@ -299,7 +426,7 @@ class VppApiCrcChecker(object):
                 "create_loopback_reply": "0xfda5941f",  # dev
                 "create_subif": "0x86cfe408",  # virl
                 "create_subif_reply": "0xfda5941f",  # virl
-                "create_vhost_user_if": "0xbd230b87",  # dev
+                "create_vhost_user_if": "0xa3438cd4",  # dev
                 "create_vhost_user_if_reply": "0xfda5941f",  # dev
                 "create_vlan_subif": "0x70cadeda",  # virl
                 "create_vlan_subif_reply": "0xfda5941f",  # virl
@@ -405,19 +532,19 @@ class VppApiCrcChecker(object):
                 "vxlan_tunnel_details": "0xce38e127",  # virl
                 "vxlan_tunnel_dump": "0x529cb13f",  # virl
             }
-            # Perf verify with: csit-3n-skx-perftest
-            # mrrAND1cAND64bANDnic_intel-x710ANDip4fwdANDiaclANDacl10AND100_flows
-            # mrrAND1cAND64bANDnic_intel-x710ANDl2bdmaclrnANDbaseANDdrv_avf
-            # mrrAND1cAND64bANDnic_intel-x710ANDl2patchANDdrv_avf
-            # mrrAND1cAND64bANDnic_intel-x710ANDnat44NOTscaleNOTsrc_user_1
-            # mrrAND1cAND64bANDnic_intel-x710ANDdot1qANDl2bdmaclrnANDbaseANDmemif
-            # mrrAND1cAND64bANDnic_intel-x710ANDl2xcfwdANDbaseANDlxcANDmemif
-
-            # TODO: Add a tag expression for covering those perf tests,
-            # even though any CSIT change can make that outdated.
-            # TODO: Once API coverage job is ready,
-            # add a check to make sure each message was encountered;
-            # failure means we need to add more tests to API coverage job.
-            # Alternatively, add an option to compile messages actually
-            # used or encountered, so CSIT knows what to remove from mapping.
         )
+        # Perf verify with: csit-3n-skx-perftest
+        # mrrAND1cAND64bANDnic_intel-x710ANDip4fwdANDiaclANDacl10AND100_flows
+        # mrrAND1cAND64bANDnic_intel-x710ANDl2bdmaclrnANDbaseANDdrv_avf
+        # mrrAND1cAND64bANDnic_intel-x710ANDl2patchANDdrv_avf
+        # mrrAND1cAND64bANDnic_intel-x710ANDnat44NOTscaleNOTsrc_user_1
+        # mrrAND1cAND64bANDnic_intel-x710ANDdot1qANDl2bdmaclrnANDbaseANDmemif
+        # mrrAND1cAND64bANDnic_intel-x710ANDl2xcfwdANDbaseANDlxcANDmemif
+
+        # TODO: Add a tag expression for covering those perf tests,
+        # even though any CSIT change can make that outdated.
+        # TODO: Once API coverage job is ready,
+        # add a check to make sure each message was encountered;
+        # failure means we need to add more tests to API coverage job.
+        # Alternatively, add an option to compile messages actually
+        # used or encountered, so CSIT knows what to remove from mapping.
