@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0d21d73b_09cdba77",
+        "filename": "VPP_STABLE_VER_CENTOS",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-02T08:59:56Z",
+      "side": 1,
+      "message": "It had been: https://gerrit.fd.io/r/c/csit/+/21002/6#message-3f08af88_d0c7dd07\nI just triggered the perf test later, and it needed 2 attempts.",
+      "parentUuid": "2d320569_66a71325",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 28
+      },
+      "revId": "b3ec7d2f062f52f65fc7df39bc4ba2b6cdae67bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56554ddf_73bc8d69",
         "filename": "resources/libraries/python/VppApiCrc.py",
         "patchSetId": 6
