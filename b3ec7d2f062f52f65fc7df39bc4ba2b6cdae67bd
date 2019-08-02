@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "14c0eeef_4663685d",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-02T08:56:32Z",
+      "side": 1,
+      "message": "Added comments, basically the stable vpp I chosen yesterday had different CRCs, but newer builds were not available for Centos. I do not plan to do another bump soon.",
+      "parentUuid": "56554ddf_73bc8d69",
+      "range": {
+        "startLine": 270,
+        "startChar": 3,
+        "endLine": 270,
+        "endChar": 47
+      },
+      "revId": "b3ec7d2f062f52f65fc7df39bc4ba2b6cdae67bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "874a29c5_150684dd",
         "filename": "resources/libraries/python/VppApiCrc.py",
         "patchSetId": 6
@@ -59,6 +83,30 @@
       "writtenOn": "2019-08-02T06:24:33Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 535,
+        "startChar": 8,
+        "endLine": 542,
+        "endChar": 72
+      },
+      "revId": "b3ec7d2f062f52f65fc7df39bc4ba2b6cdae67bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca8810dd_a891f721",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-02T08:56:32Z",
+      "side": 1,
+      "message": "I still need some place to keep this info around for verifying VPP version bumps. Added some comments to make that more clear.",
+      "parentUuid": "874a29c5_150684dd",
       "range": {
         "startLine": 535,
         "startChar": 8,
@@ -88,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "9f8d21cb_ac587f3c",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-02T08:56:32Z",
+      "side": 1,
+      "message": "Improved the description.",
+      "parentUuid": "cafea259_d74647ea",
+      "revId": "b3ec7d2f062f52f65fc7df39bc4ba2b6cdae67bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2b2cb55b_2174e078",
         "filename": "resources/libraries/python/VppApiCrc.py",
         "patchSetId": 6
@@ -99,6 +165,30 @@
       "writtenOn": "2019-08-02T06:24:33Z",
       "side": 1,
       "message": "Not clear, job is ready, what check needs to be done?",
+      "range": {
+        "startLine": 546,
+        "startChar": 0,
+        "endLine": 546,
+        "endChar": 47
+      },
+      "revId": "b3ec7d2f062f52f65fc7df39bc4ba2b6cdae67bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57de7743_d59fce84",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-02T08:56:32Z",
+      "side": 1,
+      "message": "Clarified this is about device test job getting full API coverage.",
+      "parentUuid": "2b2cb55b_2174e078",
       "range": {
         "startLine": 546,
         "startChar": 0,
