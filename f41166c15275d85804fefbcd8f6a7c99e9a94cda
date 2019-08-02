@@ -22,6 +22,30 @@
       "revId": "f41166c15275d85804fefbcd8f6a7c99e9a94cda",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f832a4f8_c6477cb2",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-02T15:08:00Z",
+      "side": 1,
+      "message": "\u003e an analogue\n\nA more explicit hint on what I had in mind:\n    if PolicerAction.MARK_AND_TRANSMIT \u003d\u003d self._exceed_action:\n        args_in[\u0027exceed_dscp\u0027] \u003d self._exceed_dscp.value",
+      "parentUuid": "fd2a96d7_85251eb9",
+      "range": {
+        "startLine": 162,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 9
+      },
+      "revId": "f41166c15275d85804fefbcd8f6a7c99e9a94cda",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
