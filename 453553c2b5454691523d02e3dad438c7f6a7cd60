@@ -22,6 +22,29 @@
       "revId": "453553c2b5454691523d02e3dad438c7f6a7cd60",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "372a69c7_43a259d9",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-02T10:53:01Z",
+      "side": 1,
+      "message": "as of today CSIT is using 3 VPP versions. Are they covered? How to map the name to CENTOS/UBUNTU/UBUNTUBIONIC/ARM/...?",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 45
+      },
+      "revId": "453553c2b5454691523d02e3dad438c7f6a7cd60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
