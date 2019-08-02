@@ -16,12 +16,15 @@ Download all data.
 """
 
 import re
+import requests
 
 from os import rename, mkdir
 from os.path import join
 from zipfile import ZipFile, is_zipfile, BadZipfile
 from httplib import responses
-from requests import get, codes, RequestException, Timeout, TooManyRedirects, \
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
+from requests import codes, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
 
 from errors import PresentationError
@@ -49,17 +52,41 @@ def _download_file(url, file_name, log):
     :rtype: bool
     """
 
+    def requests_retry_session(retries=3,
+                               backoff_factor=0.3,
+                               status_forcelist=(500, 502, 504)):
+        """
+
+        :param retries:
+        :param backoff_factor:
+        :param status_forcelist:
+        :returns:
+        """
+
+        retry = Retry(
+            total=retries,
+            read=retries,
+            connect=retries,
+            backoff_factor=backoff_factor,
+            status_forcelist=status_forcelist,
+        )
+        adapter = HTTPAdapter(max_retries=retry)
+        session = requests.Session()
+        session.mount('http://', adapter)
+        session.mount('https://', adapter)
+        return session
+
     success = False
     try:
         log.append(("INFO", "    Connecting to '{0}' ...".format(url)))
-        response = get(url, stream=True)
+        response = requests_retry_session().get(url, stream=True)
         code = response.status_code
         log.append(("INFO", "    {0}: {1}".format(code, responses[code])))
 
         if code != codes["OK"]:
             url = url.replace("_info", "")
             log.append(("INFO", "    Connecting to '{0}' ...".format(url)))
-            response = get(url, stream=True)
+            response = requests_retry_session().get(url, stream=True)
             code = response.status_code
             log.append(("INFO", "    {0}: {1}".format(code, responses[code])))
             if code != codes["OK"]:
