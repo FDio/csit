@@ -682,7 +682,7 @@ def table_performance_trending_dashboard(table, input_data):
     for job, builds in table["data"].items():
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].iteritems():
-                if tst_name.lower() in table["ignore-list"]:
+                if tst_name.lower() in table.get("ignore-list", False):
                     continue
                 if tbl_dict.get(tst_name, None) is None:
                     groups = re.search(REGEX_NIC, tst_data["parent"])
@@ -1074,7 +1074,7 @@ def table_failed_tests(table, input_data):
         for build in builds:
             build = str(build)
             for tst_name, tst_data in data[job][build].iteritems():
-                if tst_name.lower() in table["ignore-list"]:
+                if tst_name.lower() in table.get("ignore-list", False):
                     continue
                 if tbl_dict.get(tst_name, None) is None:
                     groups = re.search(REGEX_NIC, tst_data["parent"])
