@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84a6bb11_64980541",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-02T09:58:55Z",
+      "side": 1,
+      "message": "I meant ~794.\nCoincidentally, this also emulates what would be the CSIT response if ~793 was merged, and ~794 a planned API change.",
+      "range": {
+        "startLine": 14,
+        "startChar": 8,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "453553c2b5454691523d02e3dad438c7f6a7cd60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
