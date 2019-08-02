@@ -19,8 +19,6 @@
 - filter the data using tags,
 """
 
-import multiprocessing
-import os
 import re
 import resource
 import pandas as pd
@@ -38,7 +36,6 @@ from json import loads
 from jumpavg.AvgStdevMetadataFactory import AvgStdevMetadataFactory
 
 from input_data_files import download_and_unzip_data_file
-from utils import Worker
 
 
 # Separator used in file names

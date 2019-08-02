@@ -14,8 +14,6 @@
 """Generation of Continuous Performance Trending and Analysis.
 """
 
-import multiprocessing
-import os
 import logging
 import csv
 import prettytable
@@ -27,8 +25,7 @@ from collections import OrderedDict
 from datetime import datetime
 from copy import deepcopy
 
-from utils import archive_input_data, execute_command, \
-    classify_anomalies, Worker
+from utils import archive_input_data, execute_command, classify_anomalies
 
 
 # Command to build the html format of the report
@@ -324,7 +321,7 @@ def _generate_all_charts(spec, input_data):
     :type input_data: InputData
     """
 
-    def _generate_chart(_, data_q, graph):
+    def _generate_chart(graph):
         """Generates the chart.
         """
 
@@ -499,13 +496,19 @@ def _generate_all_charts(spec, input_data):
             except plerr.PlotlyEmptyDataError:
                 logs.append(("WARNING", "No data for the plot. Skipped."))
 
-        data_out = {
-            "job_name": job_name,
-            "csv_table": csv_tbl,
-            "results": res,
-            "logs": logs
-        }
-        data_q.put(data_out)
+        for level, line in logs:
+            if level == "INFO":
+                logging.info(line)
+            elif level == "ERROR":
+                logging.error(line)
+            elif level == "DEBUG":
+                logging.debug(line)
+            elif level == "CRITICAL":
+                logging.critical(line)
+            elif level == "WARNING":
+                logging.warning(line)
+
+        return {"job_name": job_name, "csv_table": csv_tbl, "results": res}
 
     builds_dict = dict()
     for job in spec.input["builds"].keys():
@@ -534,26 +537,6 @@ def _generate_all_charts(spec, input_data):
                 testbed
             )
 
-    work_queue = multiprocessing.JoinableQueue()
-    manager = multiprocessing.Manager()
-    data_queue = manager.Queue()
-    cpus = multiprocessing.cpu_count()
-
-    workers = list()
-    for cpu in range(cpus):
-        worker = Worker(work_queue,
-                        data_queue,
-                        _generate_chart)
-        worker.daemon = True
-        worker.start()
-        workers.append(worker)
-        os.system("taskset -p -c {0} {1} > /dev/null 2>&1".
-                  format(cpu, worker.pid))
-
-    for chart in spec.cpta["plots"]:
-        work_queue.put((chart, ))
-    work_queue.join()
-
     anomaly_classifications = list()
 
     # Create the header:
@@ -570,30 +553,11 @@ def _generate_all_charts(spec, input_data):
         header = "Version:," + ",".join(versions) + '\n'
         csv_tables[job_name].append(header)
 
-    while not data_queue.empty():
-        result = data_queue.get()
+    for chart in spec.cpta["plots"]:
+        result = _generate_chart(chart)
 
         anomaly_classifications.extend(result["results"])
         csv_tables[result["job_name"]].extend(result["csv_table"])
-
-        for item in result["logs"]:
-            if item[0] == "INFO":
-                logging.info(item[1])
-            elif item[0] == "ERROR":
-                logging.error(item[1])
-            elif item[0] == "DEBUG":
-                logging.debug(item[1])
-            elif item[0] == "CRITICAL":
-                logging.critical(item[1])
-            elif item[0] == "WARNING":
-                logging.warning(item[1])
-
-    del data_queue
-
-    # Terminate all workers
-    for worker in workers:
-        worker.terminate()
-        worker.join()
 
     # Write the tables:
     for job_name, csv_table in csv_tables.items():
