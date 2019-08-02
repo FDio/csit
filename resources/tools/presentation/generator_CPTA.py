@@ -327,8 +327,6 @@ def _generate_all_charts(spec, input_data):
 
         logs = list()
 
-        logging.info("  Generating the chart '{0}' ...".
-                     format(graph.get("title", "")))
         logs.append(("INFO", "  Generating the chart '{0}' ...".
                      format(graph.get("title", ""))))
 
