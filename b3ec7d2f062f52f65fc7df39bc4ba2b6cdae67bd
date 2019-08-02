@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2d320569_66a71325",
+        "filename": "VPP_STABLE_VER_CENTOS",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-02T06:24:33Z",
+      "side": 1,
+      "message": "Verify by verify JOB",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 28
+      },
+      "revId": "b3ec7d2f062f52f65fc7df39bc4ba2b6cdae67bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56554ddf_73bc8d69",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-02T06:24:33Z",
+      "side": 1,
+      "message": "Why do we keep 2 instances?",
+      "range": {
+        "startLine": 270,
+        "startChar": 3,
+        "endLine": 270,
+        "endChar": 47
+      },
+      "revId": "b3ec7d2f062f52f65fc7df39bc4ba2b6cdae67bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "874a29c5_150684dd",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-02T06:24:33Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 535,
+        "startChar": 8,
+        "endLine": 542,
+        "endChar": 72
+      },
+      "revId": "b3ec7d2f062f52f65fc7df39bc4ba2b6cdae67bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cafea259_d74647ea",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-02T06:24:33Z",
+      "side": 1,
+      "message": "not clear what TODO.",
+      "revId": "b3ec7d2f062f52f65fc7df39bc4ba2b6cdae67bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b2cb55b_2174e078",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-02T06:24:33Z",
+      "side": 1,
+      "message": "Not clear, job is ready, what check needs to be done?",
+      "range": {
+        "startLine": 546,
+        "startChar": 0,
+        "endLine": 546,
+        "endChar": 47
+      },
+      "revId": "b3ec7d2f062f52f65fc7df39bc4ba2b6cdae67bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
