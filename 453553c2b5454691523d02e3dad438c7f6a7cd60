@@ -69,6 +69,30 @@
       "revId": "453553c2b5454691523d02e3dad438c7f6a7cd60",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60c0e090_07a26bed",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-02T10:59:52Z",
+      "side": 1,
+      "message": "Should I add a comment specifying a particular name is for checking which build was used to get the values, but it does not mean other builds are expected to fail?",
+      "parentUuid": "c1e193a9_12639cd8",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 45
+      },
+      "revId": "453553c2b5454691523d02e3dad438c7f6a7cd60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
