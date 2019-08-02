@@ -45,6 +45,30 @@
       "revId": "453553c2b5454691523d02e3dad438c7f6a7cd60",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1e193a9_12639cd8",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-02T10:58:35Z",
+      "side": 1,
+      "message": "In future, CSIT will support VPP builds that are not merged yet. In that case the ~bNNNN part is needed.\nAs to why the exact version format differs between OSes, VPP developers is unifying that, bu occasional \u0027-\u0027 vs \u0027_\u0027 may stay there for historic reasons.",
+      "parentUuid": "372a69c7_43a259d9",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 45
+      },
+      "revId": "453553c2b5454691523d02e3dad438c7f6a7cd60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
