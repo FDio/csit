@@ -45,8 +45,8 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-report_week = '22'
-project = u'FD.io CSIT-1901.2.{week}'.format(week=report_week)
+report_week = '32'
+project = u'FD.io CSIT-1901.3.{week}'.format(week=report_week)
 copyright = u'2019, FD.io'
 author = u'FD.io CSIT'
 
@@ -109,13 +109,13 @@ rst_epilog = """
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h={release}
 .. _K8s configuration files: https://github.com/FDio/csit/tree/{release}/resources/templates/kubernetes
 .. _VPP startup.conf: https://git.fd.io/vpp/tree/src/vpp/conf/startup.conf?h=stable/{srelease}
-""".format(release='rls1901_2',
+""".format(release='rls1901_3',
            report_week=report_week,
            prev_release='rls1810',
-           srelease='1901_2',
-           csitrelease='1901.2',
+           srelease='1901_3',
+           csitrelease='1901.3',
            csit_prev_release='1810',
-           vpprelease='19.01.2',
+           vpprelease='19.01.3',
            vpp_prev_release='1810',
            dpdkrelease='18.11',
            sdpdkrelease='1811',

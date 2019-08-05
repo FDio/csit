@@ -51,7 +51,7 @@ Release Notes
 .. note::
 
     |csit-release| report was generated with a single run of selected
-    64B frame performance tests on 3n-hsw and 3n-skx test beds
+    64B frame performance tests on 3n-hsw test beds
     in order to spot-check the main data plane paths.
     NFV service density and soak tests were not run and do not feature in
     this report.
