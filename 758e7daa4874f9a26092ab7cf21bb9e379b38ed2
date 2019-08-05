@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "41cc33a9_1d172254",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-05T11:08:09Z",
+      "side": 1,
+      "message": "Sorry, I have not realized a DSCP value is a tuple (duplicating string name for some reason).\nEither .num or .value[1] should fix the failing test.\n(DSCP enum could also be refactored, but that can be done later if needed.)",
+      "range": {
+        "startLine": 169,
+        "startChar": 56,
+        "endLine": 169,
+        "endChar": 62
+      },
+      "revId": "758e7daa4874f9a26092ab7cf21bb9e379b38ed2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
