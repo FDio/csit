@@ -22,6 +22,30 @@
       "revId": "758e7daa4874f9a26092ab7cf21bb9e379b38ed2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f7a9e77d_618bced1",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-08-05T14:50:06Z",
+      "side": 1,
+      "message": "Thank You !\n\nI renamed as self._*_dscp.value[1]",
+      "parentUuid": "41cc33a9_1d172254",
+      "range": {
+        "startLine": 169,
+        "startChar": 56,
+        "endLine": 169,
+        "endChar": 62
+      },
+      "revId": "758e7daa4874f9a26092ab7cf21bb9e379b38ed2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
