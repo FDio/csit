@@ -152,22 +152,32 @@
 | | ...
 | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | :FOR | ${id} | IN RANGE | 1 | ${count} + 1
-| | | ${vlan_west}= | Evaluate | 100 + ${id} - 1
-| | | ${vlan_east}= | Evaluate | 200 + ${id} - 1
-| | | ${if1_name} | ${if1_index}= | Run Keyword Unless
-| | | ... | ${create} and ${id} > ${1}
+| | | ${if1_vlan}= | Evaluate | ${100} + ${id} - ${1}
+| | | ${if2_vlan}= | Evaluate | ${200} + ${id} - ${1}
+| | | ${if1_name} | ${if1_index}= | Run Keyword If
+| | | ... | ${create} or ${id} == ${1}
 | | | ... | Create Vlan Subinterface
 | | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1}
-| | | ... | ${vlan_west}
-| | | ${if2_name} | ${if2_index}= | Run Keyword Unless
-| | | ... | ${create} and ${id} > ${1}
+| | | ... | ${if1_vlan}
+| | | ${if2_vlan} | ${if2_index}= | Run Keyword If
+| | | ... | ${create} or ${id} == ${1}
 | | | ... | Create Vlan Subinterface
 | | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2}
-| | | ... | ${vlan_east}
-| | | Run Keyword Unless | ${create} and ${id} > ${1}
+| | | ... | ${if2_vlan}
+| | | Run Keyword If | ${create} or ${id} == ${1}
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${if1_index} | up
-| | | Run Keyword Unless | ${create} and ${id} > ${1}
+| | | Run Keyword If | ${create} or ${id} == ${1}
 | | | ... | Set Interface State | ${nodes['${dut}']} | ${if2_index} | up
+| | | Run Keyword If | ${create} or ${id} == ${1}
+| | | ... | Configure L2 tag rewrite method on interfaces
+| | | ... | ${nodes['${dut}']} | ${if1_index} | TAG_REWRITE_METHOD=pop-1
+| | | Run Keyword If | ${create} or ${id} == ${1}
+| | | ... | Configure L2 tag rewrite method on interfaces
+| | | ... | ${nodes['${dut}']} | ${if2_index} | TAG_REWRITE_METHOD=pop-1
+| | | ${if1_index}= | Set Variable If | ${if1_index} is ${None}
+| | | ... | ${${dut_str}_dot1q_1_1}
+| | | ${if2_index}= | Set Variable If | ${if2_index} is ${None}
+| | | ... | ${${dut_str}_dot1q_1_2}
 | | | Set Test Variable | ${${dut_str}_dot1q_${id}_1} | ${if1_index}
 | | | Set Test Variable | ${${dut_str}_dot1q_${id}_2} | ${if2_index}
 
