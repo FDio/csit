@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9d4690a3_e6982d02",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-05T16:03:38Z",
+      "side": 1,
+      "message": "Sorry, Set Variable If syntax does not have this.\nhttps://robotframework.org/robotframework/latest/libraries/BuiltIn.html#Set%20Variable%20If",
+      "range": {
+        "startLine": 178,
+        "startChar": 36,
+        "endLine": 178,
+        "endChar": 42
+      },
+      "revId": "a30052db19afa28d03d7ccde8d88be3343c3d491",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
