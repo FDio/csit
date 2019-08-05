@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
     # Base box definition, currently using
     #  Official Ubuntu 18.04 LTS (Bionic Beaver) Daily Build
     config.vm.box = "ubuntu/bionic64"
+    config.vm.box_version = "20190724.1.0"
 
     # Disable automatic box update checking
     config.vm.box_check_update = false
