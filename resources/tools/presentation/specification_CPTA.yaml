@@ -177,23 +177,9 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 670
+        start: 700
         end: "lastCompletedBuild"
         skip:
-          - 672
-          - 673
-          - 674
-          - 675
-          - 676
-          - 677
-          - 678
-          - 679
-          - 680
-          - 688
-          - 689
-          - 690
-          - 694
-          - 695
           - 726
           - 749
           - 750
@@ -237,23 +223,9 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 670
+        start: 700
         end: "lastCompletedBuild"
         skip:
-          - 672
-          - 673
-          - 674
-          - 675
-          - 676
-          - 677
-          - 678
-          - 679
-          - 680
-          - 688
-          - 689
-          - 690
-          - 694
-          - 695
           - 726
           - 749
           - 750
@@ -300,20 +272,9 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 420
+        start: 450
         end: "lastCompletedBuild"
         skip:
-          - 423
-          - 424
-          - 425
-          - 426
-          - 427
-          - 428
-          - 429
-          - 430
-          - 440
-          - 444
-          - 446
           - 480
           - 481
           - 499
@@ -359,20 +320,9 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 420
+        start: 450
         end: "lastCompletedBuild"
         skip:
-          - 423
-          - 424
-          - 425
-          - 426
-          - 427
-          - 428
-          - 429
-          - 430
-          - 440
-          - 444
-          - 446
           - 480
           - 481
           - 499
@@ -421,20 +371,9 @@
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 420
+        start: 450
         end: "lastCompletedBuild"
         skip:
-          - 423
-          - 424
-          - 425
-          - 426
-          - 427
-          - 428
-          - 429
-          - 430
-          - 431
-          - 441
-          - 444
           - 477
           - 500
           - 501
@@ -468,20 +407,9 @@
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 420
+        start: 450
         end: "lastCompletedBuild"
         skip:
-          - 423
-          - 424
-          - 425
-          - 426
-          - 427
-          - 428
-          - 429
-          - 430
-          - 431
-          - 441
-          - 444
           - 477
           - 500
           - 501
@@ -629,29 +557,15 @@
     extract: "output.xml"
     # Number of days from now to the past. Only files generated in this
     # time period are used.
-    time-period: 90
+    time-period: 60
 
   builds:
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 670
+      start: 700
       end: "lastCompletedBuild"
       skip:
-        - 672
-        - 673
-        - 674
-        - 675
-        - 676
-        - 677
-        - 678
-        - 679
-        - 680
-        - 688
-        - 689
-        - 690
-        - 694
-        - 695
         - 726
         - 749
         - 750
@@ -695,20 +609,9 @@
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 420
+      start: 450
       end: "lastCompletedBuild"
       skip:
-        - 423
-        - 424
-        - 425
-        - 426
-        - 427
-        - 428
-        - 429
-        - 430
-        - 440
-        - 444
-        - 446
         - 480
         - 481
         - 499
@@ -754,20 +657,9 @@
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
-      start: 420
+      start: 450
       end: "lastCompletedBuild"
       skip:
-        - 423
-        - 424
-        - 425
-        - 426
-        - 427
-        - 428
-        - 429
-        - 430
-        - 431
-        - 441
-        - 444
         - 477
         - 500
         - 501
