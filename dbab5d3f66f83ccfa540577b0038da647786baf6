@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39656c24_22309da8",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-05T13:47:57Z",
+      "side": 1,
+      "message": "| ELSE | ${if1_index}\nOtherwise the value could be set to None.\n\nBetter yet, use ELSE in lines 181-182 without any lines 177-180.",
+      "range": {
+        "startLine": 178,
+        "startChar": 38,
+        "endLine": 178,
+        "endChar": 39
+      },
+      "revId": "dbab5d3f66f83ccfa540577b0038da647786baf6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
