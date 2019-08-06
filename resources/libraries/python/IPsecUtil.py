@@ -525,16 +525,10 @@ class IPsecUtil(object):
             address=None
         )
         cmd2 = 'ip_route_add_del'
-        route = IPUtil.compose_vpp_route_structure(
-            node, taddr,
-            prefix_len=128 if taddr.version == 6 else 32,
-            interface=interface,
-            gateway=tunnel_dst
-        )
         args2 = dict(
             is_add=1,
             is_multipath=0,
-            route=route
+            route=None
         )
         err_msg = 'Failed to configure IP addresses and IP routes on ' \
                   'interface {ifc} on host {host}'.\
@@ -543,10 +537,13 @@ class IPsecUtil(object):
         with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(n_tunnels):
                 args1['address'] = getattr(laddr + i * addr_incr, 'packed')
-                args2['route']['prefix']['address']['un'] = \
-                    IPUtil.union_addr(taddr + i)
-                args2['route']['paths'][0]['nh']['address'] = \
-                    IPUtil.union_addr(raddr + i * addr_incr)
+                args2['route'] = IPUtil.compose_vpp_route_structure(
+                    node,
+                    taddr + i,
+                    prefix_len=128 if taddr.version == 6 else 32,
+                    interface=interface,
+                    gateway=raddr + i * addr_incr
+                )
                 history = False if 1 < i < n_tunnels - 1 else True
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2)
@@ -783,7 +780,7 @@ class IPsecUtil(object):
         :param if2_ip_addr: VPP node 2 interface IPv4/IPv6 address.
         :param if1_key: VPP node 1 interface key from topology file.
         :param if2_key: VPP node 2 interface key from topology file.
-        :param n_tunnels: Number of tunnell interfaces to create.
+        :param n_tunnels: Number of tunnel interfaces to create.
         :param crypto_alg: The encryption algorithm name.
         :param integ_alg: The integrity algorithm name.
         :param raddr_ip1: Policy selector remote IPv4/IPv6 start address for the
@@ -815,7 +812,7 @@ class IPsecUtil(object):
         addr_incr = 1 << (128 - raddr_range) if if1_ip.version == 6 \
             else 1 << (32 - raddr_range)
 
-        if n_tunnels > 1:
+        if n_tunnels > 10:
             tmp_fn1 = '/tmp/ipsec_create_tunnel_dut1.config'
             tmp_fn2 = '/tmp/ipsec_create_tunnel_dut2.config'
             vat = VatExecutor()
@@ -1044,25 +1041,22 @@ class IPsecUtil(object):
                 sw_if_index=0,
                 admin_up_down=1)
             cmd3 = 'ip_route_add_del'
-            route = IPUtil.compose_vpp_route_structure(
-                nodes['DUT1'], raddr_ip2.compressed,
-                prefix_len=128 if raddr_ip2.version == 6 else 32,
-                interface=0
-            )
             args3 = dict(
                 is_add=1,
                 is_multipath=0,
-                route=route
+                route=None
             )
             err_msg = 'Failed to add IP routes on host {host}'.format(
                 host=nodes['DUT1']['host'])
             for i in xrange(n_tunnels):
                 args1['unnumbered_sw_if_index'] = ipsec_tunnels[i]
                 args2['sw_if_index'] = ipsec_tunnels[i]
-                args3['route']['prefix']['address']['un'] = \
-                    IPUtil.union_addr(raddr_ip2 + i)
-                args3['route']['paths'][0]['sw_if_index'] = \
-                    ipsec_tunnels[i]
+                args3['route'] = IPUtil.compose_vpp_route_structure(
+                    nodes['DUT1'],
+                    (raddr_ip2 + i).compressed,
+                    prefix_len=128 if raddr_ip2.version == 6 else 32,
+                    interface=ipsec_tunnels[i]
+                )
                 history = False if 1 < i < n_tunnels - 1 else True
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2).\
@@ -1153,25 +1147,22 @@ class IPsecUtil(object):
                 sw_if_index=0,
                 admin_up_down=1)
             cmd3 = 'ip_route_add_del'
-            route = IPUtil.compose_vpp_route_structure(
-                nodes['DUT2'], raddr_ip1.compressed,
-                prefix_len=128 if raddr_ip1.version == 6 else 32,
-                interface=0
-            )
             args3 = dict(
                 is_add=1,
                 is_multipath=0,
-                route=route
+                route=None
             )
             err_msg = 'Failed to add IP routes on host {host}'.format(
                 host=nodes['DUT2']['host'])
             for i in xrange(n_tunnels):
                 args1['unnumbered_sw_if_index'] = ipsec_tunnels[i]
                 args2['sw_if_index'] = ipsec_tunnels[i]
-                args3['route']['prefix']['address']['un'] = \
-                    IPUtil.union_addr(raddr_ip1 + i)
-                args3['route']['paths'][0]['sw_if_index'] = \
-                    ipsec_tunnels[i]
+                args3['route'] = IPUtil.compose_vpp_route_structure(
+                    nodes['DUT1'],
+                    (raddr_ip1 + i).compressed,
+                    prefix_len=128 if raddr_ip1.version == 6 else 32,
+                    interface=ipsec_tunnels[i]
+                )
                 history = False if 1 < i < n_tunnels - 1 else True
                 papi_exec.add(cmd1, history=history, **args1). \
                     add(cmd2, history=history, **args2). \
