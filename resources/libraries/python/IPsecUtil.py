@@ -20,6 +20,7 @@ from string import letters
 
 from enum import Enum, IntEnum
 from ipaddress import ip_network, ip_address
+from robot.api import logger
 
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
@@ -815,7 +816,7 @@ class IPsecUtil(object):
         addr_incr = 1 << (128 - raddr_range) if if1_ip.version == 6 \
             else 1 << (32 - raddr_range)
 
-        if n_tunnels > 1:
+        if n_tunnels > 10:
             tmp_fn1 = '/tmp/ipsec_create_tunnel_dut1.config'
             tmp_fn2 = '/tmp/ipsec_create_tunnel_dut2.config'
             vat = VatExecutor()
@@ -968,6 +969,8 @@ class IPsecUtil(object):
                 del_all=0,
                 address_length=96 if if2_ip.version == 6 else 24,
                 address=getattr(if2_ip - 1, 'packed'))
+            logger.debug(
+                'sw_interface_add_del_address:{}'.format(args1['address']))
             err_msg = 'Failed to set IP address on interface {ifc} on host ' \
                       '{host}'.format(ifc=if1_key, host=nodes['DUT1']['host'])
             papi_exec.add(cmd1, **args1).get_reply(err_msg)
@@ -1004,16 +1007,23 @@ class IPsecUtil(object):
             ckeys = list()
             ikeys = list()
             for i in xrange(n_tunnels):
+                logger.debug(
+                    'loop {}'.format(i))
                 ckeys.append(
                     gen_key(IPsecUtil.get_crypto_alg_key_len(crypto_alg)))
                 if integ_alg:
                     ikeys.append(
                         gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)))
                 args1['address'] = getattr(if1_ip + i * addr_incr, 'packed')
+                logger.debug(
+                    ' sw_interface_add_del_address:{}'.format(args1['address']))
                 args2['local_spi'] = spi_1 + i
                 args2['remote_spi'] = spi_2 + i
                 args2['local_ip'] = IPUtil.create_ip_address_object(
                     if1_ip + i * addr_incr)
+                logger.debug(
+                    ' ipsec_tunnel_if_add_del - licap_ip:{}'.format(
+                        args2['local_ip']))
                 args2['remote_ip'] = IPUtil.create_ip_address_object(if2_ip)
                 args2['local_crypto_key_len'] = len(ckeys[i])
                 args2['local_crypto_key'] = ckeys[i]
