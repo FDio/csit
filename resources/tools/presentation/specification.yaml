@@ -333,7 +333,7 @@
 
     vpp-perf-results-3n-hsw:
       csit-vpp-perf-verify-1901-3n-hsw:
-        - 84  # 1901.2 NDRPDR sel
+        - 86  # 1901.2 NDRPDR sel
 
 #    vpp-perf-results-3n-skx:
 #      csit-vpp-perf-verify-1901-3n-skx:
