@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b9a71c69_2ea0dcca",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-06T10:49:48Z",
+      "side": 1,
+      "message": "Moving the conversion (to line 282 in this case) would be more consistent.",
+      "range": {
+        "startLine": 155,
+        "startChar": 16,
+        "endLine": 155,
+        "endChar": 20
+      },
+      "revId": "5335c5ff87523480dd9a27bd7a0bc3df96b455fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
