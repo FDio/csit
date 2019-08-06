@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47204766_367dad38",
+        "filename": "resources/libraries/python/GBP.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-06T13:08:24Z",
+      "side": 1,
+      "message": "Move to arguments as default value?",
+      "range": {
+        "startLine": 90,
+        "startChar": 37,
+        "endLine": 90,
+        "endChar": 47
+      },
+      "revId": "5c3fb2c918ce7bdfa96ed58be21dbdf62b814af9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "21365fce_0812ae0f",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-06T13:08:24Z",
+      "side": 1,
+      "message": "nonzero?\nsee line 1071.",
+      "range": {
+        "startLine": 1052,
+        "startChar": 28,
+        "endLine": 1052,
+        "endChar": 29
+      },
+      "revId": "5c3fb2c918ce7bdfa96ed58be21dbdf62b814af9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d95cd149_ee3c6970",
+        "filename": "resources/libraries/robot/features/gbp.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-06T13:08:24Z",
+      "side": 1,
+      "message": "max 9?\nsee line 37.",
+      "range": {
+        "startLine": 26,
+        "startChar": 20,
+        "endLine": 26,
+        "endChar": 26
+      },
+      "revId": "5c3fb2c918ce7bdfa96ed58be21dbdf62b814af9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
