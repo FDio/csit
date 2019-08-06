@@ -593,8 +593,6 @@ class IPUtil(object):
                     IPUtil.union_addr(net_addr + i)
                 history = False if 1 < i < kwargs.get('count', 1) else True
                 papi_exec.add(cmd, history=history, **args)
-                if i > 0 and i % Constants.PAPI_MAX_API_BULK == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies(err_msg)
 
     @staticmethod

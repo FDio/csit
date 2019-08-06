@@ -188,8 +188,6 @@ class TestConfig(object):
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2).\
                     add(cmd3, history=history, **args3)
-                if i > 0 and i % (Constants.PAPI_MAX_API_BULK / 3) == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies()
 
         return vxlan_count
@@ -296,8 +294,6 @@ class TestConfig(object):
                 history = False if 1 < i < vxlan_count else True
                 papi_exec.add(cmd, history=history, **args1). \
                     add(cmd, history=history, **args2)
-                if i > 0 and i % (Constants.PAPI_MAX_API_BULK / 2) == 0:
-                    papi_exec.get_replies(err_msg)
                 papi_exec.add(cmd, **args1).add(cmd, **args2)
             papi_exec.get_replies()
 
@@ -420,6 +416,4 @@ class TestConfig(object):
                     add(cmd2, history=history, **args2). \
                     add(cmd3, history=history, **args3). \
                     add(cmd3, history=history, **args4)
-                if i > 0 and i % (Constants.PAPI_MAX_API_BULK / 4) == 0:
-                    papi_exec.get_replies(err_msg)
             papi_exec.get_replies()
