@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6db2da0e_e93bcac3",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-06T14:37:20Z",
+      "side": 1,
+      "message": "Ah, now I see. Everything after equals is the value.\nSo either replace lowercase strings with ints, or use tuples as in DSCP.",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "bf5a9034f7df796a4934d690027c6ded95edf3bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
