@@ -77,7 +77,7 @@ s_suite_rules=(
     )
 r_suite_rules=(
     '^(2n1l|2n){0,1}-'
-    '(eth2p|10ge2p1x710)-'
+    '(eth2p|10ge2p1x710|40ge2p1xl710)-'
     '(avf-|1lbvpplacp-|2lbvpplacp-){0,1}'
     '(eth|dot1q|dot1ad)'
     # TODO: Packet encapsulation (here majority of TC starts failing).
@@ -85,7 +85,7 @@ r_suite_rules=(
     #'(ipsec[[:digit:]]+tnlhw|ipsec[[:digit:]]+tnlsw|'
     #'srhip6|tcp|udp|lispip6|lispip4|vxlan){0,1}'
     #'(http){0,1}-'
-    '(.*)-(dev|ndrpdr|cps)$'
+    '(.*)-(dev|ndrpdr|cps|rps)$'
     )
 
 rm -f "tc_naming.log" || die
