@@ -14,35 +14,31 @@
 """TCP util library.
 """
 
-from resources.libraries.python.VatExecutor import VatTerminal
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.Constants import Constants
 
 
 class TCPUtils(object):
     """Implementation of the TCP utilities.
     """
+    www_root_dir = '{}/{}'.format(Constants.REMOTE_FW_DIR,
+                                  Constants.RESOURCES_TP_WRK_WWW)
 
     def __init__(self):
         pass
 
-    @staticmethod
-    def start_http_server(node):
-        """Start HTTP server on the given node.
+    @classmethod
+    def start_vpp_http_server_params(cls, node, http_static_plugin, prealloc_fifos,
+                                     fifo_size, private_segment_size):
+        """Start the test HTTP server internal application or
+           the HTTP static server plugin internal applicatoin on the given node.
 
-        :param node: Node to start HTTP server on.
-        :type node: dict
-        """
-
-        with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template(
-                "start_http_server.vat")
-
-    @staticmethod
-    def start_http_server_params(node, prealloc_fifos, fifo_size,
-                                 private_segment_size):
-        """Start HTTP server on the given node.
-
+        http static server www-root <www-root-dir> prealloc-fifos <N> fifo-size <size in kB>
+        private-segment-size <seg_size expressed as number + unit, e.g. 100m>
+                                -- or --
         test http server static prealloc-fifos <N> fifo-size <size in kB>
         private-segment-size <seg_size expressed as number + unit, e.g. 100m>
+
 
         Where N is the max number of connections you expect to handle at one
         time and <size> should be small if you test for CPS and exchange few
@@ -55,28 +51,34 @@ class TCPUtils(object):
         Example:
 
         For CPS
-        test http server static prealloc-fifos 10000 fifo-size 64
+        http static server www-root <www-root-dir> prealloc-fifos 10000 fifo-size 64
         private-segment-size 4000m
 
         For RPS
         test http server static prealloc-fifos 500000 fifo-size 4
-        test http server static prealloc-fifos 500000 fifo-size 4
         private-segment-size 4000m
 
         :param node: Node to start HTTP server on.
+        :param http_static_plugin: Run HTTP static server plugin
         :param prealloc_fifos: Max number of connections you expect to handle at
             one time.
         :param fifo_size: FIFO size in kB.
         :param private_segment_size: Private segment size. Number + unit.
         :type node: dict
+        :type http_static_plugin: boolean
         :type prealloc_fifos: str
         :type fifo_size: str
         :type private_segment_size: str
         """
+        if http_static_plugin == True:
+            cmd='http static server www-root {} prealloc-fifos {} '\
+                'fifo-size {} private-segment-size {}'\
+                .format(cls.www_root_dir, prealloc_fifos, fifo_size,
+                        private_segment_size)
+        else:
+            cmd='test http server static prealloc-fifos {} '\
+                'fifo-size {} private-segment-size {}'\
+                .format(prealloc_fifos, fifo_size,
+                        private_segment_size)
+        PapiSocketExecutor.run_cli_cmd(node, cmd)
 
-        with VatTerminal(node, json_param=False) as vat:
-            vat.vat_terminal_exec_cmd_from_template(
-                "start_http_server_params.vat",
-                prealloc_fifos=prealloc_fifos,
-                fifo_size=fifo_size,
-                private_segment_size=private_segment_size)
