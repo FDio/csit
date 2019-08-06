@@ -20,4 +20,4 @@ CSIT source code for the test cases used for plots can be found in
 
 .. toctree::
 
-    ipsec-3n-hsw-xl710
+    ipsec-3n-skx-x710
