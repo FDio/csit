@@ -74,6 +74,7 @@ class Regenerator(object):
             "ip4": 64,
             "ip6": 78,
             "ethip4vxlan": 114,  # What is the real minimum for latency stream?
+            "dot1qip4": 68,
             "dot1qip4vxlan": 118
         }
         min_frame_size_values = protocol_to_min_frame_size.values()

@@ -17,7 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
 | ... | VHOST | VM | VHOST_1024 | VXLAN | DOT1Q | NF_DENSITY | NF_TESTPMD
-| ... | CHAIN | 10R1C | 10VM2T
+| ... | CHAIN | 10R1C | 1AR1C | 10VM2T
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -27,13 +27,12 @@
 | Test Template | Local Template
 | ...
 | Documentation | *RFC2544: Packet throughput L2BD test cases with Dot1Q and
-| ... | VXLANoIPv4 and vhost*
+| ... | vhost*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Dot1q-IPv4-UDP-VXLAN-Eth-IPv4 for L2\
-| ... | switching of IPv4. Dot1q-IPv4-UDP-VXLAN-Eth-IPv4 is applied on link\
-| ... | between DUT1 and TG.
+| ... | *[Enc] Packet Encapsulations:* Dot1q-IPv4 for L2\
+| ... | switching. IPv4 is applied on link between DUT1 and TG.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge-\
 | ... | domain and MAC learning enabled. Qemu VNFs are connected\
 | ... | to VPP via vhost-user interfaces. Guest is running testpmd l2xc\
@@ -55,14 +54,15 @@
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
-| ${overhead}= | ${54}
+| ${overhead}= | ${4}
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
 | ${nf_chains}= | ${10}
+| ${nf_added_chains}= | ${1}
 | ${nf_nodes}= | ${1}
 # Traffic profile:
 | ${traffic_profile}=
-| ... | trex-sl-dot1qip4vxlan-ip4src${nf_chains}udpsrcrnd
+| ... | trex-sl-dot1qip4-ip4src${nf_chains}udpsrcrnd
 
 *** Keywords ***
 | Local Template
@@ -81,16 +81,15 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
+| | ${nf_total_chains}= | Evaluate | ${nf_chains} + ${nf_added_chains}
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer interface
-| | ... | count=${nf_chains}
+| | ... | count=${nf_total_chains}
 | | And Initialize layer dot1q
-| | ... | count=${nf_chains} | vlan_per_chain={False}
-| | And Initialize layer ip4vxlan
-| | ... | count=${nf_chains}
+| | ... | count=${nf_chains} | create=${False}
 | | And Initialize L2 bridge domains for multiple chains with Vhost-User
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
@@ -99,50 +98,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-118B-1c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
-| | [Tags] | 118B | 1C
-| | frame_size=${118} | phy_cores=${1}
+| tc01-68B-1c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
+| | [Tags] | 68B | 1C
+| | frame_size=${68} | phy_cores=${1}
 
-| tc02-118B-2c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
-| | [Tags] | 118B | 2C
-| | frame_size=${118} | phy_cores=${2}
+| tc02-68B-2c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
+| | [Tags] | 68B | 2C
+| | frame_size=${68} | phy_cores=${2}
 
-| tc03-118B-4c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
-| | [Tags] | 118B | 4C
-| | frame_size=${118} | phy_cores=${4}
+| tc03-68B-4c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
+| | [Tags] | 68B | 4C
+| | frame_size=${68} | phy_cores=${4}
 
-| tc04-1518B-1c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
+| tc04-1518B-1c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
+| tc05-1518B-2c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
+| tc06-1518B-4c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
+| tc07-9000B-1c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
+| tc08-9000B-2c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
+| tc09-9000B-4c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
+| tc10-IMIX-1c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
+| tc11-IMIX-2c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-dot1qip4vxlan-l2bd-10ch-20vh-10vm2t-testpmd-ndrpdr
+| tc12-IMIX-4c-dot1qip4-l2bd-10ch-1ach-20vh-10vm2t-testpmd-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
