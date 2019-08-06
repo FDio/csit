@@ -64,9 +64,9 @@ Additional information about graph data:
     vm_vhost
     container_memif
     ipsec
-    srv6
-    vts
 
 ..
+    srv6
+    vts
     ip6_tunnels
     container_orchestrated

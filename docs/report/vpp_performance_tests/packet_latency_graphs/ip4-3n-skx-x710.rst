@@ -73,6 +73,7 @@
             \label{fig:ip4-3n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
     \end{figure}
 
+
 .. raw:: latex
 
     \clearpage
