@@ -63,10 +63,10 @@ Additional information about graph data:
     ip4_tunnels
     vm_vhost
     container_memif
+
+..
     ipsec
     srv6
     vts
-
-..
     ip6_tunnels
     container_orchestrated
