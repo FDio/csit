@@ -114,7 +114,7 @@ function wrk_utils.traffic_1_url_1_core {
     if [ "${header}" != "None" ]; then
         header="${header}"
     else
-        header=""
+        header="''"
     fi
 
     taskset --cpu-list ${cpu} \
@@ -174,7 +174,7 @@ function wrk_utils.traffic_n_urls_n_cores {
     if [ "${header}" != "None" ]; then
         header="${header}"
     else
-        header=""
+        header="''"
     fi
 
     urls=$(echo ${urls} | tr ";" "\n")
@@ -244,7 +244,7 @@ function wrk_utils.traffic_n_urls_m_cores {
     if [ "${header}" != "None" ]; then
         header="${header}"
     else
-        header=""
+        header="''"
     fi
 
     urls=$(echo ${urls} | tr ";" "\n")
