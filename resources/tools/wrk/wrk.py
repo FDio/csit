@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -75,7 +75,7 @@ def install_wrk(tg_node):
     ret, _, _ = ssh.exec_command(
         "sudo -E "
         "sh -c '{0}/resources/tools/wrk/wrk_utils.sh install false'".
-        format(Constants.REMOTE_FW_DIR), timeout=1800)
+        format(Constants.REMOTE_FW_DIR), timeout=2400)
     if int(ret) != 0:
         raise RuntimeError('Installation of wrk on TG node failed.')
 
