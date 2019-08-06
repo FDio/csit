@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "185ecbbf_6dc880fa",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-06T15:11:36Z",
+      "side": 1,
+      "message": "Why not? it is not none, it is not 0 (int), it is string of positive length (17chars).\n\n\u003e\u003e\u003e str\u003d\u002700:00:00:00:00:00\u0027\n\u003e\u003e\u003e if str:\n...     print(\u0027ha\u0027)\n... \nha\n\u003e\u003e\u003e",
+      "parentUuid": "5c6b0fad_35101a4f",
+      "range": {
+        "startLine": 1052,
+        "startChar": 28,
+        "endLine": 1052,
+        "endChar": 29
+      },
+      "revId": "5c3fb2c918ce7bdfa96ed58be21dbdf62b814af9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d95cd149_ee3c6970",
         "filename": "resources/libraries/robot/features/gbp.robot",
         "patchSetId": 10
