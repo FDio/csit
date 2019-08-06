@@ -22,6 +22,30 @@
       "revId": "52cbe79568e0e1ada9c075f8e5ddcac7e04399a6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ca79183_6240ab45",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-06T08:51:39Z",
+      "side": 1,
+      "message": "I still do not understand why sometimes in RF capitals matters and sometimes not. IoW will it then break anything? I guess i will try",
+      "parentUuid": "eea48307_943b400f",
+      "range": {
+        "startLine": 111,
+        "startChar": 28,
+        "endLine": 111,
+        "endChar": 31
+      },
+      "revId": "52cbe79568e0e1ada9c075f8e5ddcac7e04399a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
