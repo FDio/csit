@@ -17,7 +17,6 @@
 | Library  | resources.libraries.python.DUTSetup
 | Library  | resources.libraries.python.TrafficGenerator
 | Library  | resources.libraries.python.topology.Topology
-| Resource | resources/libraries/robot/performance/performance_setup.robot
 | ...
 | Documentation | L2 keywords to set up wrk and to measure performance
 | ... | parameters using wrk.
