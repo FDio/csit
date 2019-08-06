@@ -1,1 +1,0 @@
-exec test http server static

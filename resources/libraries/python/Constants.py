@@ -43,6 +43,9 @@ class Constants(object):
     # Container templates location
     RESOURCES_TPL_CONTAINER = 'resources/templates/container'
 
+    # HTTP Server www root directory
+    RESOURCES_TP_WRK_WWW = 'resources/traffic_profiles/wrk/www'
+
     # OpenVPP VAT binary name
     VAT_BIN_NAME = 'vpp_api_test'
 
