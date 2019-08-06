@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -21,12 +21,8 @@ WRK_TARGET="/opt"
 WRK_INSTALL_DIR=${WRK_TARGET}/wrk-${WRK_VERSION}
 
 function wrk_utils.install {
-    # Install wrk
-
-    # Directory for wrk:
-    dir=${1}
     # Force the installation:
-    force=${2:-false}
+    force=${1:-false}
 
     # Check if wrk is installed:
     if [ "${force}" = true ]; then
@@ -34,16 +30,17 @@ function wrk_utils.install {
     else
         which wrk
         if [ $? -eq 0 ]; then
-            test -d ${dir}/${WRK_INSTALL_DIR} && echo "WRK already installed: ${dir}/${WRK_INSTALL_DIR}" && exit 0
+            test -d ${WRK_INSTALL_DIR} && echo "WRK already installed: ${WRK_INSTALL_DIR}" && exit 0
         fi
     fi
 
     # Install pre-requisites:
-    apt-get update
-    apt-get install build-essential libssl-dev -y
-
-    # Remove previous installation:
-    wrk_utils.destroy
+    BUILD_PREREQUISITES="build-essential libssl-dev"
+    dpkg -l ${BUILD_PREREQUISITES} >/dev/null
+    if [ ! $? -eq 0 ] ; then
+        apt-get update
+        apt-get install -y ${BUILD_PREREQUISITES}
+     fi
 
     # Change the directory:
     cd ${WRK_TARGET}
@@ -114,7 +111,7 @@ function wrk_utils.traffic_1_url_1_core {
     if [ "${header}" != "None" ]; then
         header="${header}"
     else
-        header=""
+        header="''"
     fi
 
     taskset --cpu-list ${cpu} \
@@ -174,7 +171,7 @@ function wrk_utils.traffic_n_urls_n_cores {
     if [ "${header}" != "None" ]; then
         header="${header}"
     else
-        header=""
+        header="''"
     fi
 
     urls=$(echo ${urls} | tr ";" "\n")
@@ -244,7 +241,7 @@ function wrk_utils.traffic_n_urls_m_cores {
     if [ "${header}" != "None" ]; then
         header="${header}"
     else
-        header=""
+        header="''"
     fi
 
     urls=$(echo ${urls} | tr ";" "\n")
