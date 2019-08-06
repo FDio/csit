@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "5c6b0fad_35101a4f",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 1052,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-06T14:44:27Z",
+      "side": 1,
+      "message": "If caller set mac to \u002700:00:00:00:00:00\u0027, then line 1073 will not be executed. So later code may fail when accessing the mac address from topology.\nNot sure whether it is relevant, but including \"nonzero\" would hint caller that zero mac behaves weird.",
+      "parentUuid": "eb0ff195_d0d8fe3c",
+      "range": {
+        "startLine": 1052,
+        "startChar": 28,
+        "endLine": 1052,
+        "endChar": 29
+      },
+      "revId": "5c3fb2c918ce7bdfa96ed58be21dbdf62b814af9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d95cd149_ee3c6970",
         "filename": "resources/libraries/robot/features/gbp.robot",
         "patchSetId": 10
