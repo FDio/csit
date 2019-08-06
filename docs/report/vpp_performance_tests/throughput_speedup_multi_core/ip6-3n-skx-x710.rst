@@ -70,45 +70,46 @@
             \label{fig:ip6-3n-skx-x710-78b-base_and_scale-pdr-tsa}
     \end{figure}
 
-.. raw:: latex
+..
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-78b-base_and_features
----------------------
+    78b-base_and_features
+    ---------------------
 
-.. raw:: html
+    .. raw:: html
 
-    <center>
-    <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-base_and_features-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-base_and_features-ndr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-x710-78b-base_and_features-ndr-tsa}
-            \label{fig:ip6-3n-skx-x710-78b-base_and_features-ndr-tsa}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-x710-78b-base_and_features-ndr-tsa}
+                \label{fig:ip6-3n-skx-x710-78b-base_and_features-ndr-tsa}
+        \end{figure}
 
-.. raw:: latex
+    .. raw:: latex
 
-    \clearpage
+        \clearpage
 
-.. raw:: html
+    .. raw:: html
 
-    <center>
-    <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-base_and_features-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
+        <center>
+        <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-skx-x710-78b-base_and_features-pdr-tsa.html"></iframe>
+        <p><br></p>
+        </center>
 
-.. raw:: latex
+    .. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-x710-78b-base_and_features-pdr-tsa}
-            \label{fig:ip6-3n-skx-x710-78b-base_and_features-pdr-tsa}
-    \end{figure}
+        \begin{figure}[H]
+            \centering
+                \graphicspath{{../_build/_static/vpp/}}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-skx-x710-78b-base_and_features-pdr-tsa}
+                \label{fig:ip6-3n-skx-x710-78b-base_and_features-pdr-tsa}
+        \end{figure}

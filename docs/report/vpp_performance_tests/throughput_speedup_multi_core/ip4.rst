@@ -19,10 +19,10 @@ CSIT source code for the test cases used for plots can be found in
 
 .. toctree::
 
-    ip4-3n-hsw-x520
     ip4-3n-skx-x710
 
 ..
+    ip4-3n-hsw-x520
     ip4-3n-hsw-x710
     ip4-3n-hsw-xl710
     ip4-3n-skx-x710

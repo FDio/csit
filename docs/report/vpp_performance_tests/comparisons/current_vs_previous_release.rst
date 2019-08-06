@@ -30,30 +30,31 @@ results repeatability vary between the test cases.
     with RF result files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
 
-3n-hsw
-~~~~~~
-
-NDR Comparison
-``````````````
-
-Comparison tables in ASCII and CSV formats:
-
-  - `ASCII 1t1c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-ndr.txt>`_
-  - `ASCII 2t2c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-ndr.txt>`_
-  - `CSV 1t1c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-ndr.csv>`_
-  - `CSV 2t2c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-ndr.csv>`_
-
-PDR Comparison
-``````````````
-
-Comparison tables in ASCII and CSV formats:
-
-  - `ASCII 1t1c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-pdr.txt>`_
-  - `ASCII 2t2c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-pdr.txt>`_
-  - `CSV 1t1c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-pdr.csv>`_
-  - `CSV 2t2c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-pdr.csv>`_
-
 ..
+    3n-hsw
+    ~~~~~~
+
+    NDR Comparison
+    ``````````````
+
+    Comparison tables in ASCII and CSV formats:
+
+      - `ASCII 1t1c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-ndr.txt>`_
+      - `ASCII 2t2c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-ndr.txt>`_
+      - `CSV 1t1c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-ndr.csv>`_
+      - `CSV 2t2c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-ndr.csv>`_
+
+    PDR Comparison
+    ``````````````
+
+    Comparison tables in ASCII and CSV formats:
+
+      - `ASCII 1t1c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-pdr.txt>`_
+      - `ASCII 2t2c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-pdr.txt>`_
+      - `CSV 1t1c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-pdr.csv>`_
+      - `CSV 2t2c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-pdr.csv>`_
+
+
     MRR Comparison
     ``````````````
 
