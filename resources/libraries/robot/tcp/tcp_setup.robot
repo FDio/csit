@@ -21,24 +21,27 @@
 | Documentation | L2 keywords to set up VPP to test tcp.
 
 *** Keywords ***
-| Set up HTTP server with paramters on the VPP node
+| Set up HTTP server with parameters on the VPP node
 | | [Documentation]
 | | ... | Configure IP address on the port, set it up and start HTTP server on
 | | ... | the VPP.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${prealloc_fifos} - Max number of connections you expect to handle
+| | ... | - http_static_plugin - Use the HTTP static plugin http server.
+| | ... | Type: boolean
+| | ... | - prealloc_fifos - Max number of connections you expect to handle
 | | ... | at one time. Type: string
-| | ... | - ${fifo_size} - FIFO size in kB. Type: string
-| | ... | - ${private_segment_size} - Private segment size. Number + unit.
+| | ... | - fifo_size - FIFO size in kB. Type: string
+| | ... | - private_segment_size - Private segment size. Number + unit.
 | | ... | Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Set up HTTP server with paramters on the VPP node \| 400 \| 4096\
-| | ... | \| 2g \|
+| | ... | \| Set up HTTP server with paramters on the VPP node \| ${true}\
+| | ... | \| 400 \| 4096 \| 2g \|
 | | ...
-| | [Arguments] | ${prealloc_fifos} | ${fifo_size} | ${private_segment_size}
+| | [Arguments] | ${http_static_plugin} | ${prealloc_fifos} | ${fifo_size}
+| | ... | ${private_segment_size}
 | | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.10.2 | 24
@@ -50,6 +53,5 @@
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.70.2 | 24
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.80.2 | 24
 | | Vpp Node Interfaces Ready Wait | ${dut1}
-| | Start HTTP server params | ${dut1} | ${prealloc_fifos} | ${fifo_size}
-| | ... | ${private_segment_size}
-| | Sleep | 30
+| | Start VPP HTTP server params | ${dut1} | ${http_static_plugin}
+| | ... | ${prealloc_fifos} | ${fifo_size} | ${private_segment_size}
