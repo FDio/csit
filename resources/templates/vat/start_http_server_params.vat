@@ -1,1 +1,0 @@
-exec test http server static prealloc-fifos {prealloc_fifos} fifo-size {fifo_size} private-segment-size {private_segment_size}
