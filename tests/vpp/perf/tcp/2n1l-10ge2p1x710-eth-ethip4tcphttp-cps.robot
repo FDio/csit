@@ -18,7 +18,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/tcp/tcp_setup.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | HTTP | TCP
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | HTTP | TCP
 | ...
 | Suite Setup | Setup suite single link | wrk
 | Suite Teardown | Tear down suite
@@ -38,12 +38,13 @@
 | ... | *[Ref] Applicable standard specifications:*
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | http_static_plugin.so | hs_apps_plugin.so
+| ${nic_name}= | Intel-X710
 
 *** Keywords ***
 | Local template
 | | [Arguments] | ${traffic_profile} | ${phy_cores} | ${test_type}
-| | ... | ${rxq}=${None}
+| | ... | ${rxq}=${None} | ${http_static_plugin}=${true}
 | | ...
 | | Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | Add PCI devices to all DUTs
@@ -66,46 +67,46 @@
 | | Apply startup configuration on all VPP DUTs
 | | Run Keyword If | '${test_type}' == 'bw'
 | | ... | Run keywords
-| | ... | Set up HTTP server with paramters on the VPP node
-| | ... | 500000 | 4 | 4000m | AND
+| | ... | Set up HTTP server with parameters on the VPP node
+| | ... | ${http_static_plugin} | 500000 | 4 | 4000m | AND
 | | ... | Measure throughput | ${traffic_profile}
 | | ... | ELSE IF | '${test_type}' == 'rps'
 | | ... | Run keywords
-| | ... | Set up HTTP server with paramters on the VPP node
-| | ... | 500000 | 4 | 4000m | AND
+| | ... | Set up HTTP server with parameters on the VPP node
+| | ... | ${http_static_plugin} | 500000 | 4 | 4000m | AND
 | | ... | Measure requests per second | ${traffic_profile}
 | | ... | ELSE IF | '${test_type}' == 'cps'
 | | ... | Run keywords
-| | ... | Set up HTTP server with paramters on the VPP node
-| | ... | 31000 | 64 | 4000m | AND
+| | ... | Set up HTTP server with parameters on the VPP node
+| | ... | ${http_static_plugin} | 31000 | 64 | 4000m | AND
 | | ... | Measure connections per second | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-1t1c-ethip4tcphttp-httpserver-cps
+| tc01-IMIX-1c-eth-ip4tcphttp-wrk8u8c50con-cps
 | | [Documentation]
 | | ... | Measure number of connections per second using wrk.
 | | ...
 | | [Tags] | 1C | TCP_CPS
 | | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | phy_cores=${1}
-| | ... | test_type=cps
+| | ... | http_static_plugin=${false} | test_type=cps
 
-| tc02-2t2c-ethip4tcphttp-httpserver-cps
+| tc02-IMIX-2c-eth-ip4tcphttp-wrk8u8c50con-cps
 | | [Documentation]
 | | ... | Measure number of connections per second using wrk.
 | | ...
 | | [Tags] | 2C | TCP_CPS
 | | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | phy_cores=${2}
-| | ... | test_type=cps
+| | ... | http_static_plugin=${false} | test_type=cps
 
-| tc03-4t4c-ethip4tcphttp-httpserver-cps
+| tc03-IMIX-4c-eth-ip4tcphttp-wrk8u8c50con-cps
 | | [Documentation]
 | | ... | Measure number of connections per second using wrk.
 | | ...
 | | [Tags] | 4C | TCP_CPS
 | | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-cps | phy_cores=${4}
-| | ... | test_type=cps
+| | ... | http_static_plugin=${false} | test_type=cps
 
-| tc04-1t1c-ethip4tcphttp-httpserver-rps
+| tc04-IMIX-1c-eth-ip4tcphttp-wrk8u8c50con-rps
 | | [Documentation]
 | | ... | Measure and report number of requests per second using wrk.
 | | ...
@@ -113,7 +114,7 @@
 | | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | phy_cores=${1}
 | | ... | test_type=rps
 
-| tc05-2t2c-ethip4tcphttp-httpserver-rps
+| tc05-IMIX-2c-eth-ip4tcphttp-wrk8u8c50con-rps
 | | [Documentation]
 | | ... | Measure and report number of requests per second using wrk.
 | | ...
@@ -121,7 +122,7 @@
 | | traffic_profile=wrk-sf-2n-ethip4tcphttp-8u8c50con-rps | phy_cores=${2}
 | | ... | test_type=rps
 
-| tc06-4t4c-ethip4tcphttp-httpserver-rps
+| tc06-IMIX-4c-eth-ip4tcphttp-wrk8u8c50con-rps
 | | [Documentation]
 | | ... | Measure and report number of requests per second using wrk.
 | | ...
