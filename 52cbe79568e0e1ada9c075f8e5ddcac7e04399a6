@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eea48307_943b400f",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 27
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-06T08:35:28Z",
+      "side": 1,
+      "message": "dut_str\n\nIf you want line 64 to catch this.",
+      "range": {
+        "startLine": 111,
+        "startChar": 28,
+        "endLine": 111,
+        "endChar": 31
+      },
+      "revId": "52cbe79568e0e1ada9c075f8e5ddcac7e04399a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
