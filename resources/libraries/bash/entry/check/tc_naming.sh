@@ -85,7 +85,7 @@ r_suite_rules=(
     #'(ipsec[[:digit:]]+tnlhw|ipsec[[:digit:]]+tnlsw|'
     #'srhip6|tcp|udp|lispip6|lispip4|vxlan){0,1}'
     #'(http){0,1}-'
-    '(.*)-(dev|ndrpdr|cps)$'
+    '(.*)-(dev|ndrpdr|cps|rps)$'
     )
 
 rm -f "tc_naming.log" || die

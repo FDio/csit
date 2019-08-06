@@ -1,18 +1,17 @@
-# This is an example wrk traffic profile.
+# wrk-sf-2n-ethip4tcphttp-8u8c50con-rps traffic profile.
 
 # List of urls for requests. Each url is requested in a separate instance of
 # wrk.
 # Type: list
 urls:
-  # There must be a file (1kB - 1MB) requested but vpp does not support it.
-  - "http://192.168.10.2"
-  - "http://192.168.20.2"
-  - "http://192.168.30.2"
-  - "http://192.168.40.2"
-  - "http://192.168.50.2"
-  - "http://192.168.60.2"
-  - "http://192.168.70.2"
-  - "http://192.168.80.2"
+  - "http://192.168.10.2/empty.html"
+  - "http://192.168.20.2/empty.html"
+  - "http://192.168.30.2/empty.html"
+  - "http://192.168.40.2/empty.html"
+  - "http://192.168.50.2/empty.html"
+  - "http://192.168.60.2/empty.html"
+  - "http://192.168.70.2/empty.html"
+  - "http://192.168.80.2/empty.html"
 
 # Index of the first CPU on the numa used to run wrk.
 # Type: integer
