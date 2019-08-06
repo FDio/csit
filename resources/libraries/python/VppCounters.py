@@ -156,13 +156,13 @@ class VppCounters(object):
                 VppCounters.vpp_show_runtime(node)
 
     @staticmethod
-    def vpp_show_hardware_detail(node):
-        """Run "show hardware-interfaces detail" debug CLI command.
+    def vpp_show_hardware_verbose(node):
+        """Run "show hardware-interfaces verbose" debug CLI command.
 
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(node, 'show hardware detail')
+        PapiSocketExecutor.run_cli_cmd(node, 'show hardware verbose')
 
     @staticmethod
     def vpp_clear_runtime(node):
@@ -316,7 +316,7 @@ class VppCounters(object):
         :type node: dict
         """
         VppCounters.vpp_show_errors(node)
-        VppCounters.vpp_show_hardware_detail(node)
+        VppCounters.vpp_show_hardware_verbose(node)
         VppCounters.vpp_show_runtime(node)
 
     @staticmethod
