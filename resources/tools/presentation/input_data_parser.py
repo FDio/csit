@@ -19,9 +19,8 @@
 - filter the data using tags,
 """
 
-import multiprocessing
-import os
 import re
+import resource
 import pandas as pd
 import logging
 
@@ -37,7 +36,6 @@ from json import loads
 from jumpavg.AvgStdevMetadataFactory import AvgStdevMetadataFactory
 
 from input_data_files import download_and_unzip_data_file
-from utils import Worker
 
 
 # Separator used in file names
@@ -1187,13 +1185,10 @@ class InputData(object):
 
         return checker.data
 
-    def _download_and_parse_build(self, pid, data_queue, job, build, repeat):
+    def _download_and_parse_build(self, job, build, repeat, pid=10000):
         """Download and parse the input data file.
 
         :param pid: PID of the process executing this method.
-        :param data_queue: Shared memory between processes. Queue which keeps
-            the result data. This data is then read by the main process and used
-            in further processing.
         :param job: Name of the Jenkins job which generated the processed input
             file.
         :param build: Information about the Jenkins build which generated the
@@ -1201,7 +1196,6 @@ class InputData(object):
         :param repeat: Repeat the download specified number of times if not
             successful.
         :type pid: int
-        :type data_queue: multiprocessing.Manager().Queue()
         :type job: str
         :type build: dict
         :type repeat: int
@@ -1266,11 +1260,11 @@ class InputData(object):
                         file_name = self._cfg.input["file-name"]
                         full_name = join(
                             self._cfg.environment["paths"]["DIR[WORKING,DATA]"],
-                            "{job}{sep}{build}{sep}{name}".
-                                format(job=job,
-                                       sep=SEPARATOR,
-                                       build=build["build"],
-                                       name=file_name))
+                            "{job}{sep}{build}{sep}{name}".format(
+                                job=job,
+                                sep=SEPARATOR,
+                                build=build["build"],
+                                name=file_name))
                         try:
                             remove(full_name)
                             logs.append(("INFO",
@@ -1278,8 +1272,8 @@ class InputData(object):
                                          format(name=full_name)))
                         except OSError as err:
                             logs.append(("ERROR",
-                                        "Cannot remove the file '{0}': {1}".
-                                        format(full_name, repr(err))))
+                                         "Cannot remove the file '{0}': {1}".
+                                         format(full_name, repr(err))))
         logs.append(("INFO", "  Done."))
 
         for level, line in logs:
@@ -1294,13 +1288,7 @@ class InputData(object):
             elif level == "WARNING":
                 logging.warning(line)
 
-        result = {
-            "data": data,
-            "state": state,
-            "job": job,
-            "build": build
-        }
-        data_queue.put(result)
+        return {"data": data, "state": state, "job": job, "build": build}
 
     def download_and_parse_data(self, repeat=1):
         """Download the input data files, parse input data from input files and
@@ -1313,61 +1301,34 @@ class InputData(object):
 
         logging.info("Downloading and parsing input files ...")
 
-        work_queue = multiprocessing.JoinableQueue()
-        manager = multiprocessing.Manager()
-        data_queue = manager.Queue()
-        cpus = multiprocessing.cpu_count()
-
-        workers = list()
-        for cpu in range(cpus):
-            worker = Worker(work_queue,
-                            data_queue,
-                            self._download_and_parse_build)
-            worker.daemon = True
-            worker.start()
-            workers.append(worker)
-            os.system("taskset -p -c {0} {1} > /dev/null 2>&1".
-                      format(cpu, worker.pid))
-
         for job, builds in self._cfg.builds.items():
             for build in builds:
-                work_queue.put((job, build, repeat))
 
-        work_queue.join()
+                result = self._download_and_parse_build(job, build, repeat)
+                build_nr = result["build"]["build"]
 
-        logging.info("Done.")
+                if result["data"]:
+                    data = result["data"]
+                    build_data = pd.Series({
+                        "metadata": pd.Series(
+                            data["metadata"].values(),
+                            index=data["metadata"].keys()),
+                        "suites": pd.Series(data["suites"].values(),
+                                            index=data["suites"].keys()),
+                        "tests": pd.Series(data["tests"].values(),
+                                           index=data["tests"].keys())})
 
-        while not data_queue.empty():
-            result = data_queue.get()
+                    if self._input_data.get(job, None) is None:
+                        self._input_data[job] = pd.Series()
+                    self._input_data[job][str(build_nr)] = build_data
 
-            job = result["job"]
-            build_nr = result["build"]["build"]
+                    self._cfg.set_input_file_name(
+                        job, build_nr, result["build"]["file-name"])
 
-            if result["data"]:
-                data = result["data"]
-                build_data = pd.Series({
-                    "metadata": pd.Series(data["metadata"].values(),
-                                          index=data["metadata"].keys()),
-                    "suites": pd.Series(data["suites"].values(),
-                                        index=data["suites"].keys()),
-                    "tests": pd.Series(data["tests"].values(),
-                                       index=data["tests"].keys())})
+                self._cfg.set_input_state(job, build_nr, result["state"])
 
-                if self._input_data.get(job, None) is None:
-                    self._input_data[job] = pd.Series()
-                self._input_data[job][str(build_nr)] = build_data
-
-                self._cfg.set_input_file_name(job, build_nr,
-                                              result["build"]["file-name"])
-
-            self._cfg.set_input_state(job, build_nr, result["state"])
-
-        del data_queue
-
-        # Terminate all workers
-        for worker in workers:
-            worker.terminate()
-            worker.join()
+                logging.info("Memory allocation: {0:,d}MB".format(
+                    resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000))
 
         logging.info("Done.")
 
