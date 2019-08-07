@@ -70,9 +70,9 @@
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize IPv4 forwarding with vhost in 2-node circular topology
 | | ... | nf_nodes=${nf_nodes}
-| | And Configure chains of NFs connected via vhost-user
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
-| | ... | vnf=vpp_chain_ip4_noarp | pinning=${False}
+#| | And Configure chains of NFs connected via vhost-user
+#| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
+#| | ... | vnf=vpp_chain_ip4_noarp | pinning=${False}
 | | Then Send packet and verify headers
 | | ... | ${tg} | ${tg_if1_ip} | ${tg_if2_ip}
 | | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
