@@ -15,6 +15,7 @@
 """
 
 import binascii
+import copy
 import glob
 import json
 import shutil
@@ -332,9 +333,11 @@ class PapiSocketExecutor(object):
     def add(self, csit_papi_command, history=True, **kwargs):
         """Add next command to internal command list; return self.
 
+        Unless disabled, new entry to papi history is also added at this point.
         The argument name 'csit_papi_command' must be unique enough as it cannot
         be repeated in kwargs.
-        Unless disabled, new entry to papi history is also added at this point.
+        The kwargs dict is deep-copied, so it is safe to use the original
+        with partial modifications for subsequent commands.
 
         Any pending conflicts from .api.json processing are raised.
         Then the command name is checked for known CRCs.
@@ -358,7 +361,7 @@ class PapiSocketExecutor(object):
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
         self._api_command_list.append(
-            dict(api_name=csit_papi_command, api_args=kwargs))
+            dict(api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)))
         return self
 
     def get_replies(self, err_msg="Failed to get replies."):
@@ -600,6 +603,8 @@ class PapiExecutor(object):
 
         The argument name 'csit_papi_command' must be unique enough as it cannot
         be repeated in kwargs.
+        The kwargs dict is deep-copied, so it is safe to use the original
+        with partial modifications for subsequent commands.
 
         :param csit_papi_command: VPP API command.
         :param history: Enable/disable adding command to PAPI command history.
@@ -613,8 +618,8 @@ class PapiExecutor(object):
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
-        self._api_command_list.append(dict(api_name=csit_papi_command,
-                                           api_args=kwargs))
+        self._api_command_list.append(dict(
+            api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)))
         return self
 
     def get_stats(self, err_msg="Failed to get statistics.", timeout=120):
