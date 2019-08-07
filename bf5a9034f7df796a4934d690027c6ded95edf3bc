@@ -22,6 +22,30 @@
       "revId": "bf5a9034f7df796a4934d690027c6ded95edf3bc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70970cd0_a9623988",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-08-07T07:38:25Z",
+      "side": 1,
+      "message": "From the dictionary arguments, i see that rate_type is \"pps\" which is a string. I also understand that the CLI command\u0027s requisite is also a string (pps).\n\nWith that in picture, could you please elaborate as to why the lowercase strings (Line No - 26) should be converted to ints or used as tuples.",
+      "parentUuid": "6db2da0e_e93bcac3",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "bf5a9034f7df796a4934d690027c6ded95edf3bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
