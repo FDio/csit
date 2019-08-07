@@ -32,3 +32,13 @@ Legend to the tables:
 ------
 
 .. include:: ../../../_build/_static/vpp/failed-tests-3n-tsh.rst
+
+3n-dnv
+------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-3n-dnv.rst
+
+2n-dnv
+------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-2n-dnv.rst
