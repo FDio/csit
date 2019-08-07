@@ -50,7 +50,7 @@
 | | | ... | ${nodes['${dut}']} | ${dut_lo} | bd_id=${id}
 | | | GBP Endpoint Group Add
 | | | ... | ${nodes['${dut}']} | ${100} | bd_id=${id} | rd_id=${id}
-| | | Configure IP addresses on interfaces
+| | | VPP Interface Set IP Address
 | | | ... | ${nodes['${dut}']} | ${dut_lo} | 1.1.1.1 | 24
 | | | GBP Subnet Add Del
 | | | ... | ${nodes['${dut}']} | 1.1.1.0 | 24 | ${100} | rd_id=${id}
