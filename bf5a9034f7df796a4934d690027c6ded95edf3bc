@@ -94,6 +94,30 @@
       "revId": "bf5a9034f7df796a4934d690027c6ded95edf3bc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e42be8e0_b53c12ff",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-07T10:43:52Z",
+      "side": 1,
+      "message": "\u003e below link\n\nAs the table states, those are \"VPP API Test (VAT) Commands History\".\nVPP has several interfaces. PAPI is a wrapper around \"binary api\", governed by .api files (so various types are \"u8\", represented in Python as int). There is also CLI (the 452-464 block shows how VPP converts from string CLI arguments to internal numeric ones). The xlate.h enums are used internally in the VPP code to make numeric values more readable.\nAnd finally, there is VAT we are migrating away from. VAT also uses string inputs, but converts them here [1], again to numeric values using the same xlate.h enums.\n\nThis CSIT file previously mapped Python enums to VAT string arguments, for PAPI we need to map from Python enums to integer values.\n\n[1] https://github.com/FDio/vpp/blob/4208a4ce8d72d3fb6428527cde1fba7b397bd6f7/src/vat/api_format.c#L456-L571",
+      "parentUuid": "fbdd5b80_cffdb7b8",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "bf5a9034f7df796a4934d690027c6ded95edf3bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
