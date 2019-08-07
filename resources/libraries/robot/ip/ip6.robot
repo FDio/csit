@@ -17,13 +17,207 @@
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.NodePath
 | ...
-| Resource | resources/libraries/robot/shared/default.robot
-| ...
 | Documentation | IPv6 keywords
 
 *** Keywords ***
-| Suppress ICMPv6 router advertisement message
-| | [Documentation] | Suppress ICMPv6 router advertisement message for link
-| | ... | scope address
-| | [Arguments] | ${nodes}
+| Initialize IPv6 forwarding in circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node / 3-node
+| | ... | circular topology. Get the interface MAC addresses and setup neighbor
+| | ... | on all VPP interfaces. Setup IPv6 addresses with /64 prefix on DUT-TG
+| | ... | links. In case of 3-node topology setup IPv6 adresses with /64 prefix
+| | ... | on DUT1-DUT2 link and set routing on both DUT nodes with prefix /64
+| | ... | and next hop of neighbour DUT interface IPv4 address.
+| | ...
+| | ... | *Arguments:*
+| | ... | - remote_host1_ip - IP address of remote host1 (Optional).
+| | ... | Type: string
+| | ... | - remote_host2_ip - IP address of remote host2 (Optional).
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize IPv6 forwarding in circular topology \
+| | ... | \| 3ffe:5f::1 \| 3ffe:5f::2 \|
+| | ...
+| | [Arguments] | ${remote_host1_ip}=${NONE} | ${remote_host2_ip}=${NONE}
+| | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
+| | Set interfaces in path up
+| | ...
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Add IP Neighbor
+| | ... | ${dut1} | ${dut1_if2} | 2001:3::1 | ${dut2_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Add IP Neighbor
+| | ... | ${dut2} | ${dut2_if1} | 2001:3::2 | ${dut1_if2_mac}
+| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2}
+| | ... | ELSE | Set Variable | ${dut1}
+| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2_if2}
+| | ... | ELSE | Set Variable | ${dut1_if2}
+| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 2001:2::2 | ${tg_if2_mac}
+| | ...
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 2001:1::1 | 64
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Interface Set IP Address | ${dut1} | ${dut1_if2} | 2001:3::1 | 64
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Interface Set IP Address | ${dut2} | ${dut2_if1} | 2001:3::2 | 64
+| | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 2001:2::1 | 64
+| | ...
 | | Vpp All Ra Suppress Link Layer | ${nodes}
+| | ...
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=2001:3::2
+| | ... | interface=${dut1_if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | 2001:1::0 | 64 | gateway=2001:3::1
+| | ... | interface=${dut2_if1}
+| | ...
+| | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
+| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 128
+| | ... | gateway=2001:1::2 | interface=${dut1_if1}
+| | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
+| | ... | Vpp Route Add | ${dut} | ${remote_host2_ip} | 128
+| | ... | gateway=2001:2::2 | interface=${dut_if2}
+| | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
+| | ... | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 128
+| | ... | gateway=2001:3::2 | interface=${dut1_if2}
+| | Run Keyword Unless | '${remote_host2_ip}' == '${NONE}'
+| | ... | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | ${remote_host2_ip} | 128
+| | ... | gateway=2001:3::1 | interface=${dut2_if1}
+
+| Initialize IPv6 forwarding with scaling in circular topology
+| | [Documentation]
+| | ... | Custom setup of IPv6 topology with scalability of ip routes on all
+| | ... | DUT nodes in 2-node / 3-node circular topology
+| | ...
+| | ... | *Arguments:*
+| | ... | - count - IP route count. Type: integer
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize IPv6 forwarding with scaling in circular \
+| | ... | topology \| 100000 \|
+| | ...
+| | [Arguments] | ${count}
+| | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
+| | Set interfaces in path up
+| | ...
+| | ${prefix}= | Set Variable | 64
+| | ${host_prefix}= | Set Variable | 128
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 2001:3::1 | ${prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Interface Set IP Address
+| | ... | ${dut1} | ${dut1_if2} | 2001:4::1 | ${prefix}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Interface Set IP Address
+| | ... | ${dut2} | ${dut2_if1} | 2001:4::2 | ${prefix}
+| | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2}
+| | ... | ELSE | Set Variable | ${dut1}
+| | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Set Variable | ${dut2_if2}
+| | ... | ELSE | Set Variable | ${dut1_if2}
+| | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 2001:5::1 | ${prefix}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:3::2 | ${tg_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Add Ip Neighbor
+| | ... | ${dut1} | ${dut1_if2} | 2001:4::2 | ${dut2_if1_mac}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | VPP Add Ip Neighbor
+| | ... | ${dut2} | ${dut2_if1} | 2001:4::1 | ${dut1_if2_mac}
+| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 2001:5::2 | ${tg_if2_mac}
+| | Vpp Route Add | ${dut1} | 2001:1::0 | ${host_prefix} | gateway=2001:3::2
+| | ... | interface=${dut1_if1} | count=${count}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut1} | 2001:2::0 | ${host_prefix}
+| | ... | gateway=2001:4::2 | interface=${dut1_if2} | count=${count}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Vpp Route Add | ${dut2} | 2001:1::0 | ${host_prefix}
+| | ... | gateway=2001:4::1 | interface=${dut2_if1} | count=${count}
+| | Vpp Route Add | ${dut} | 2001:2::0 | ${host_prefix} | gateway=2001:5::2
+| | ... | interface=${dut_if2} | count=${count}
+
+| Initialize IPv6 forwarding with vhost in 2-node circular topology
+| | [Documentation]
+| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on \
+| | ... | VPP node. Set UP state of all VPP interfaces in path. Create \
+| | ... | nf_nodes+1 FIB tables on DUT with multipath routing. Assign each \
+| | ... | Virtual interface to FIB table with Physical interface or Virtual \
+| | ... | interface on both nodes. Setup IPv6 addresses with /64 prefix on \
+| | ... | DUT-TG links. Set routing on DUT nodes in all FIB tables with \
+| | ... | prefix /64 and next hop of neighbour IPv6 address. Setup neighbours \
+| | ... | on all VPP interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | - nf_nodes - Number of guest VMs. Type: integer
+| | ...
+| | ... | *Note:*
+| | ... | Socket paths for VM are defined in following format:
+| | ... | - /var/run/vpp/sock-${VM_ID}-1
+| | ... | - /var/run/vpp/sock-${VM_ID}-2
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| IPv6 forwarding with Vhost-User initialized in a 2-node circular\
+| | ... | topology \| 1 \|
+| | ...
+| | [Arguments] | ${nf_nodes}=${1}
+| | ...
+| | Vpp All Ra Suppress Link Layer | ${nodes}
+| | Set interfaces in path up
+| | ${prefix}= | Set Variable | 64
+| | ${fib_table_1}= | Set Variable | ${101}
+| | ${fib_table_2}= | Evaluate | ${fib_table_1}+${nf_nodes}
+| | Add Fib Table | ${dut1} | ${fib_table_1} | ipv6=${True}
+| | Add Fib Table | ${dut1} | ${fib_table_2} | ipv6=${True}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table_1}
+| | ... | ipv6=${True}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table_2}
+| | ... | ipv6=${True}
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 2001:100::1
+| | ... | ${prefix}
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if2} | 2001:200::1
+| | ... | ${prefix}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:100::2 | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 2001:200::2 | ${tg_if2_mac}
+| | Vpp Route Add | ${dut1} | 2001:1::0 | 64 | gateway=2001:100::2
+| | ... | interface=${dut1_if1} | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=2001:200::2
+| | ... | interface=${dut1_if2} | vrf=${fib_table_2}
+| | :FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
+| | | ${fib_table_1}= | Evaluate | ${100}+${number}
+| | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
+| | | Configure vhost interfaces for L2BD forwarding | ${dut1}
+| | | ... | /var/run/vpp/sock-${number}-1 | /var/run/vpp/sock-${number}-2
+| | | ... | dut1-vhost-${number}-if1 | dut1-vhost-${number}-if2
+| | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
+| | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if2} | up
+| | | Add Fib Table | ${dut1} | ${fib_table_1} | ipv6=${True}
+| | | Add Fib Table | ${dut1} | ${fib_table_2} | ipv6=${True}
+| | | Assign Interface To Fib Table | ${dut1} | ${dut1-vhost-${number}-if1}
+| | | ... | ${fib_table_1} | ipv6=${True}
+| | | Assign Interface To Fib Table | ${dut1} | ${dut1-vhost-${number}-if2}
+| | | ... | ${fib_table_2} | ipv6=${True}
+| | | VPP Interface Set IP Address
+| | | ... | ${dut1} | ${dut1-vhost-${number}-if1} | 1:1::2 | 64
+| | | VPP Interface Set IP Address
+| | | ... | ${dut1} | ${dut1-vhost-${number}-if2} | 1:2::2 | 64
+| | | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=1:1::1
+| | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
+| | | Vpp Route Add | ${dut1} | 2001:1::0 | 64 | gateway=1:2::1
+| | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
