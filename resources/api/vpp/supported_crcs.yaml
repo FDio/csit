@@ -184,13 +184,16 @@
 # TODO: Create an on-demand perf verify job with a tag expression
 # covering API calls used only in perf tests,
 # and maintain the expression as device test gets more coverage.
-# Current trigger needed: csit-3n-skx-perftest
+# Currently two triggers are needed (3n vs 2n):
+# csit-3n-skx-perftest
 # mrrAND1cAND64bANDnic_intel-x710ANDip4fwdANDiaclANDacl10AND100_flows
 # mrrAND1cAND64bANDnic_intel-x710ANDl2bdmaclrnANDbaseANDdrv_avf
 # mrrAND1cAND64bANDnic_intel-x710ANDl2patchANDdrv_avf
 # mrrAND1cAND64bANDnic_intel-x710ANDnat44NOTscaleNOTsrc_user_1
 # mrrAND1cAND64bANDnic_intel-x710ANDdot1qANDl2bdmaclrnANDbaseANDmemif
 # mrrAND1cAND64bANDnic_intel-x710ANDl2xcfwdANDbaseANDlxcANDmemif
+# csit-2n-skx-perftest
+# mrrAND1cAND64bANDnic_intel-x710ANDdot1qANDbaseANDdrv_avfANDgbp
 
 # TODO: Once device job has complete API coverage,
 # add a check to make sure each message was encountered;
