@@ -17,7 +17,8 @@ from ipaddress import ip_address, AddressValueError
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
+    InterfaceStatusFlags
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
@@ -145,11 +146,10 @@ class TestConfig(object):
         cmd1 = 'sw_interface_add_del_address'
         args1 = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, node_vxlan_if),
-            is_add=1,
-            is_ipv6=1 if src_ip_addr_start.version == 6 else 0,
-            del_all=0,
-            address_length=128 if src_ip_addr_start.version == 6 else 32,
-            address=None)
+            is_add=True,
+            del_all=False,
+            prefix=None
+        )
         cmd2 = 'vxlan_add_del_tunnel'
         args2 = dict(
             is_add=1,
@@ -160,12 +160,14 @@ class TestConfig(object):
             mcast_sw_if_index=Constants.BITWISE_NON_ZERO,
             encap_vrf_id=0,
             decap_next_index=Constants.BITWISE_NON_ZERO,
-            vni=None)
+            vni=None
+        )
         cmd3 = 'create_vlan_subif'
         args3 = dict(
             sw_if_index=InterfaceUtil.get_interface_index(
                 node, node_vlan_if),
-            vlan_id=None)
+            vlan_id=None
+        )
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(0, vxlan_count):
@@ -177,7 +179,8 @@ class TestConfig(object):
                                 "has been reached.")
                     vxlan_count = i
                     break
-                args1['address'] = getattr(src_ip, 'packed')
+                args1['prefix'] = IPUtil.create_prefix_object(
+                    src_ip, 128 if src_ip_addr_start.version == 6 else 32)
                 args2['src_address'] = getattr(src_ip, 'packed')
                 args2['dst_address'] = getattr(dst_ip, 'packed')
                 args2['vni'] = int(vni_start) + i
@@ -250,10 +253,12 @@ class TestConfig(object):
         cmd = 'sw_interface_set_flags'
         args1 = dict(
             sw_if_index=None,
-            admin_up_down=1)
+            flags=InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value
+        )
         args2 = dict(
             sw_if_index=None,
-            admin_up_down=1)
+            flags=InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value
+        )
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(0, vxlan_count):
