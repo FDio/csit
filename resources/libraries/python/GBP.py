@@ -19,7 +19,6 @@ from ipaddress import ip_address
 from resources.libraries.python.IPUtil import IPUtil
 from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
-from resources.libraries.python.topology import Topology
 
 
 class GBPEndpointFlags(IntEnum):
@@ -89,12 +88,12 @@ class GBP(object):
                   .format(node=node['host'])
 
         args_in = dict(
-            rd = dict (
-                rd_id = rd_id,
-                ip4_table_id = ip4_table_id,
-                ip6_table_id = ip6_table_id,
-                ip4_uu_sw_if_index = ip4_uu_sw_if_index,
-                ip6_uu_sw_if_index = ip6_uu_sw_if_index
+            rd=dict(
+                rd_id=rd_id,
+                ip4_table_id=ip4_table_id,
+                ip6_table_id=ip6_table_id,
+                ip4_uu_sw_if_index=ip4_uu_sw_if_index,
+                ip6_uu_sw_if_index=ip6_uu_sw_if_index
             )
         )
 
@@ -125,14 +124,14 @@ class GBP(object):
                   .format(node=node['host'])
 
         args_in = dict(
-            bd = dict(
-                flags = getattr(GBPBridgeDomainFlags,
-                                'GBP_BD_API_FLAG_NONE').value,
-                bvi_sw_if_index = bvi_sw_if_index,
-                uu_fwd_sw_if_index = uu_fwd_sw_if_index,
-                bm_flood_sw_if_index = bm_flood_sw_if_index,
-                bd_id = bd_id,
-                rd_id = rd_id
+            bd=dict(
+                flags=getattr(GBPBridgeDomainFlags,
+                              'GBP_BD_API_FLAG_NONE').value,
+                bvi_sw_if_index=bvi_sw_if_index,
+                uu_fwd_sw_if_index=uu_fwd_sw_if_index,
+                bm_flood_sw_if_index=bm_flood_sw_if_index,
+                bd_id=bd_id,
+                rd_id=rd_id
             )
         )
 
@@ -165,14 +164,14 @@ class GBP(object):
                   .format(node=node['host'])
 
         args_in = dict(
-            epg = dict (
-                uplink_sw_if_index = uplink_sw_if_index,
-                bd_id = bd_id,
-                rd_id = rd_id,
-                vnid = vnid,
-                sclass = sclass,
-                retention = dict (
-                    remote_ep_timeout = remote_ep_timeout
+            epg=dict(
+                uplink_sw_if_index=uplink_sw_if_index,
+                bd_id=bd_id,
+                rd_id=rd_id,
+                vnid=vnid,
+                sclass=sclass,
+                retention=dict(
+                    remote_ep_timeout=remote_ep_timeout
                 )
             )
         )
@@ -208,17 +207,17 @@ class GBP(object):
             ip_address(unicode('0.0.0.0')))
 
         args_in = dict(
-            endpoint = dict(
-                sw_if_index = sw_if_index,
-                ips = ips,
-                n_ips = len(ips),
-                mac = L2Util.mac_to_bin(mac_addr),
-                sclass = sclass,
-                flags = getattr(GBPEndpointFlags,
-                                'GBP_API_ENDPOINT_FLAG_EXTERNAL').value,
-                tun = dict(
-                    src = tun_src,
-                    dst = tun_dst
+            endpoint=dict(
+                sw_if_index=sw_if_index,
+                ips=ips,
+                n_ips=len(ips),
+                mac=L2Util.mac_to_bin(mac_addr),
+                sclass=sclass,
+                flags=getattr(GBPEndpointFlags,
+                              'GBP_API_ENDPOINT_FLAG_EXTERNAL').value,
+                tun=dict(
+                    src=tun_src,
+                    dst=tun_dst
                 )
             )
         )
@@ -244,13 +243,13 @@ class GBP(object):
                   .format(node=node['host'])
 
         args_in = dict(
-            is_add = 1,
-            ext_itf = dict(
-                sw_if_index = sw_if_index,
-                bd_id = bd_id,
-                rd_id = rd_id,
-                flags = getattr(GBPExtItfFlags,
-                                'GBP_API_EXT_ITF_F_NONE').value
+            is_add=1,
+            ext_itf=dict(
+                sw_if_index=sw_if_index,
+                bd_id=bd_id,
+                rd_id=rd_id,
+                flags=getattr(GBPExtItfFlags,
+                              'GBP_API_EXT_ITF_F_NONE').value
             )
         )
 
@@ -281,18 +280,18 @@ class GBP(object):
                   .format(node=node['host'])
 
         args_in = dict(
-            is_add = 1,
-            subnet = dict(
-                type = getattr(GBPSubnetType,
-                               'GBP_API_SUBNET_L3_OUT').value,
-                sw_if_index = sw_if_index,
-                sclass = sclass,
-                prefix = dict(
-                    address = IPUtil.create_ip_address_object(
+            is_add=1,
+            subnet=dict(
+                type=getattr(GBPSubnetType,
+                             'GBP_API_SUBNET_L3_OUT').value,
+                sw_if_index=sw_if_index,
+                sclass=sclass,
+                prefix=dict(
+                    address=IPUtil.create_ip_address_object(
                         ip_address(unicode(address))),
-                    len = int(subnet_length)
+                    len=int(subnet_length)
                 ),
-                rd_id = rd_id
+                rd_id=rd_id
             )
         )
 
@@ -317,26 +316,26 @@ class GBP(object):
                   .format(node=node['host'])
 
         rule_permit = dict(
-            action = getattr(GBPRuleAction,
-                             'GBP_API_RULE_PERMIT').value,
-            nh_set = dict(
-                hash_mode = list(),
-                n_nhs = 8,
-                nhs = [dict()]*8,
+            action=getattr(GBPRuleAction,
+                           'GBP_API_RULE_PERMIT').value,
+            nh_set=dict(
+                hash_mode=list(),
+                n_nhs=8,
+                nhs=[dict()]*8,
             )
         )
         rules = [rule_permit, rule_permit]
 
         args_in = dict(
-            is_add = 1,
-            contract = dict(
-                acl_index = acl_index,
-                sclass = sclass,
-                dclass = dclass,
-                n_rules = len(rules),
-                rules = rules,
-                n_ether_types = 16,
-                allowed_ethertypes = [0x800, 0x86dd] + [0]*14
+            is_add=1,
+            contract=dict(
+                acl_index=acl_index,
+                sclass=sclass,
+                dclass=dclass,
+                n_rules=len(rules),
+                rules=rules,
+                n_ether_types=16,
+                allowed_ethertypes=[0x800, 0x86dd] + [0]*14
             )
         )
 

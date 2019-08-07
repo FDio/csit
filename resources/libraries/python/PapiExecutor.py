@@ -204,7 +204,7 @@ class PapiSocketExecutor(object):
             cls.api_json_directory = tmp_dir + "/usr/share/vpp/api"
             # Perform initial checks before .api.json files are gone,
             # by accessing the property (which also creates its instance).
-            self.crc_checker
+            self.get_crc_checker()
             # When present locally, we finally can find the installation path.
             package_path = glob.glob(tmp_dir + installed_papi_glob)[0]
             # Package path has to be one level above the vpp_papi directory.
