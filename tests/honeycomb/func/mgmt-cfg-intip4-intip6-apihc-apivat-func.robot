@@ -206,7 +206,7 @@
 | | ... | ${ipv6_neighbor} | ${neighbor_mac}
 | | And Honeycomb adds interface IPv6 neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${ipv6_neighbor2} | ${neighbor_mac2}
-| | And Suppress ICMPv6 router advertisement message | ${nodes}
+| | And Vpp All Ra Suppress Link Layer | ${nodes}
 | | Then Ping and Verify IP address | ${nodes['TG']}
 | | ... | ${ipv4_neighbor} | ${ipv4_address}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
