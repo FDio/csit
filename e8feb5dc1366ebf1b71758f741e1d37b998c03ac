@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8551463d_4b023215",
+        "filename": "tests/vpp/perf/tcp/2n1l-10ge2p1x710-eth-ethip4tcphttp-cps.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-07T15:24:58Z",
+      "side": 1,
+      "message": "Still XL710 !\u003d X710\nXL is 40GE, X is 10GE.",
+      "range": {
+        "startLine": 42,
+        "startChar": 17,
+        "endLine": 42,
+        "endChar": 28
+      },
+      "revId": "e8feb5dc1366ebf1b71758f741e1d37b998c03ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
