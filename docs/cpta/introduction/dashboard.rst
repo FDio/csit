@@ -84,3 +84,39 @@ VPP worker on 4t4c
 ``````````````````
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c-3n-tsh.rst
+
+3n-dnv
+------
+
+VPP worker on 1t1c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c-3n-dnv.rst
+
+VPP worker on 2t2c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c-3n-dnv.rst
+
+VPP worker on 4t4c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c-3n-dnv.rst
+
+2n-dnv
+------
+
+VPP worker on 1t1c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c-2n-dnv.rst
+
+VPP worker on 2t2c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c-2n-dnv.rst
+
+VPP worker on 4t4c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c-2n-dnv.rst
