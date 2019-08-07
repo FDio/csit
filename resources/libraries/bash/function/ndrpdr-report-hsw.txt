@@ -1,0 +1,35 @@
+# container_memif
+
+# crypto
+ndrpdrAND${default_nic}ANDscaleANDipsecswAND64bNOTipsectunANDhmac_sha_256ANDaes_128_gcmANDtnl_40ANDtnl_400ANDtnl_5000ANDtnl_20000ANDtnl_40000ANDtnl_60000
+ndrpdrAND${default_nic}ANDscaleANDipsechwANDtnl_1000AND64bNOTipsectunANDhmac_sha_256ANDaes_128_gcm
+ndrpdrAND${default_nic}ANDbaseANDipsechwAND64bNOTipsectunANDhmac_sha_256ANDaes_128_gcm
+
+# ip4
+ndrpdrAND${default_nic}ANDip4fwdANDbaseAND64bNOTmemifANDipsecANDnat44
+ndrpdrAND${default_nic}ANDip4fwdANDscaleANDfib_2mAND64bNOTnat44
+
+# ip4_tunnels
+ndrpdrAND${default_nic}ANDvxlanAND64bNOTscale
+
+# ip6
+ndrpdrAND${default_nic}ANDip6fwdANDbaseAND78bNOTmemif
+ndrpdrAND${default_nic}ANDip6fwdANDscaleANDfib_2mAND78b
+
+# ip6_tunnels
+
+# l2
+ndrpdrAND${default_nic}ANDl2bdmaclrnANDbaseAND64bNOTmemif
+ndrpdrAND${default_nic}ANDl2xcfwdANDbaseAND64bNOTdot1ad
+ndrpdrAND${default_nic}ANDl2patchANDbaseAND64b
+ndrpdrAND${default_nic}ANDl2bdmaclrnANDscaleANDfib_1mAND64b
+
+# srv6
+ndrpdrAND${default_nic}ANDfeatureANDsrv6AND78b
+
+# vm_vhost
+ndrpdrAND${default_nic}ANDvhostANDbaseAND64bNOTvxlanANDlbondANDdot1q
+ndrpdrAND${default_nic}ANDvhostANDl2bdmaclrnAND64bANDdot1q
+
+# vts
+ndrpdrAND${default_nic}ANDvtsAND114b
