@@ -13,6 +13,8 @@
 
 """Performance testing traffic generator library."""
 
+import time
+
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
@@ -65,31 +67,24 @@ class TGDropRateSearchImpl(DropRateSearch):
 
         if tg_instance.node['subtype'] is None:
             raise RuntimeError('TG subtype not defined')
-        elif tg_instance.node['subtype'] == NodeSubTypeTG.TREX:
-            unit_rate = str(rate) + self.get_rate_type_str()
-            if skip_warmup:
-                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
-                                                       unit_rate, frame_size,
-                                                       traffic_profile,
-                                                       warmup_time=0.0)
-            else:
-                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
-                                                       unit_rate, frame_size,
-                                                       traffic_profile)
-            loss = tg_instance.get_loss()
-            sent = tg_instance.get_sent()
-            if self.loss_acceptance_type_is_percentage():
-                loss = (float(loss) / float(sent)) * 100
-
-            logger.trace("comparing: {} < {} {}".format(loss,
-                                                        loss_acceptance,
-                                                        loss_acceptance_type))
-            if float(loss) > float(loss_acceptance):
-                return False
-            else:
-                return True
-        else:
+        elif tg_instance.node['subtype'] != NodeSubTypeTG.TREX:
             raise NotImplementedError("TG subtype not supported")
+        unit_rate = str(rate) + self.get_rate_type_str()
+        if skip_warmup:
+            tg_instance.trex_stl_start_remote_exec(
+                self.get_duration(), unit_rate, frame_size, traffic_profile,
+                warmup_time=0.0)
+        else:
+            tg_instance.trex_stl_start_remote_exec(
+                self.get_duration(), unit_rate, frame_size, traffic_profile)
+        loss = tg_instance.get_loss()
+        sent = tg_instance.get_sent()
+        if self.loss_acceptance_type_is_percentage():
+            loss = (float(loss) / float(sent)) * 100
+
+        logger.trace("comparing: {l} < {la} {lat}".format(
+            l=loss, la=loss_acceptance, lat=loss_acceptance_type))
+        return float(loss) <= float(loss_acceptance)
 
     def get_latency(self):
         """Returns min/avg/max latency.
@@ -120,6 +115,8 @@ class TrafficGenerator(AbstractMeasurer):
         self._latency = None
         self._received = None
         self._node = None
+        self._start_time = None
+        self._rate = None
         # T-REX interface order mapping
         self._ifaces_reordered = False
         # Parameters not given by measure().
@@ -471,6 +468,8 @@ class TrafficGenerator(AbstractMeasurer):
             raise RuntimeError('TRex stateless runtime error')
         elif async_call:
             #no result
+            self._start_time = time.time()
+            self._rate = float(rate[:-3]) if "pps" in rate else rate
             self._received = None
             self._sent = None
             self._loss = None
@@ -486,6 +485,8 @@ class TrafficGenerator(AbstractMeasurer):
             self._latency = []
             self._latency.append(self._result.split(', ')[4].split('=')[1])
             self._latency.append(self._result.split(', ')[5].split('=')[1])
+            self._start_time = None
+            self._rate = None
 
     def stop_traffic_on_tg(self):
         """Stop all traffic on TG.
@@ -629,6 +630,36 @@ class TrafficGenerator(AbstractMeasurer):
         self.traffic_profile = str(traffic_profile)
         self.warmup_time = float(warmup_time)
 
+    def get_measurement_result(self, duration=None, transmit_rate=None):
+        """Return the result of last measurement as ReceiveRateMeasurement.
+
+        Separate function, as measurements can end either by time
+        or by explicit call, this is the common block at the end.
+
+        TODO: Fail on running or already reported measurement.
+
+        :param duration: Measurement duration [s] if known beforehand.
+            For explicitly stopped measurement it is estimated.
+        :param transmit_rate: Target aggregate transmit rate [pps].
+            If not given, computed assuming it was bidirectional.
+        :type duration: float or NoneType
+        :type transmit_rate: float or NoneType
+        :returns: Structure containing the result of the measurement.
+        :rtype: ReceiveRateMeasurement
+        """
+        if duration is None:
+            duration = time.time() - self._start_time
+            self._start_time = None
+        if transmit_rate is None:
+            # Assuming bi-directional traffic here.
+            transmit_rate = self._rate * 2.0
+        transmit_count = int(self.get_sent())
+        loss_count = int(self.get_loss())
+        measurement = ReceiveRateMeasurement(
+            duration, transmit_rate, transmit_count, loss_count)
+        measurement.latency = self.get_latency_int()
+        return measurement
+
     def measure(self, duration, transmit_rate):
         """Run bi-directional measurement, parse and return results.
 
@@ -649,12 +680,7 @@ class TrafficGenerator(AbstractMeasurer):
         self.send_traffic_on_tg(
             duration, unit_rate, self.frame_size, self.traffic_profile,
             warmup_time=self.warmup_time, latency=True)
-        transmit_count = int(self.get_sent())
-        loss_count = int(self.get_loss())
-        measurement = ReceiveRateMeasurement(
-            duration, transmit_rate, transmit_count, loss_count)
-        measurement.latency = self.get_latency_int()
-        return measurement
+        return self.get_measurement_results(duration, transmit_rate)
 
 
 class OptimizedSearch(object):
