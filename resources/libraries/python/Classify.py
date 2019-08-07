@@ -892,12 +892,12 @@ class Classify(object):
             groups = re.search(reg_ex_mac, rule)
             if groups:
                 mac = groups.group(1).split(' ')[1].replace(':', '')
-                acl_rule["src_mac"] = unicode(mac)
+                acl_rule["src_mac"] = binascii.unhexlify(unicode(mac))
 
             groups = re.search(reg_ex_mask, rule)
             if groups:
                 mask = groups.group(1).split(' ')[1].replace(':', '')
-                acl_rule["src_mac_mask"] = unicode(mask)
+                acl_rule["src_mac_mask"] = binascii.unhexlify(unicode(mask))
 
             groups = re.search(reg_ex_ip, rule)
             if groups:
