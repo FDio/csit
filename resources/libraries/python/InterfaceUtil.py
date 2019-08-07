@@ -30,6 +30,61 @@ from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VPPUtil import VPPUtil
 
 
+class InterfaceStatusFlags(IntEnum):
+    """Interface status falgs."""
+    IF_STATUS_API_FLAG_ADMIN_UP = 1
+    IF_STATUS_API_FLAG_LINK_UP = 2
+
+
+class MtuProto(IntEnum):
+    """MTU protocol."""
+    MTU_PROTO_API_L3 = 0
+    MTU_PROTO_API_IP4 = 1
+    MTU_PROTO_API_IP6 = 2
+    MTU_PROTO_API_MPLS = 3
+    MTU_PROTO_API_N = 4
+
+
+class LinkDuplex(IntEnum):
+    """Link duplex"""
+    LINK_DUPLEX_API_UNKNOWN = 0
+    LINK_DUPLEX_API_HALF = 1
+    LINK_DUPLEX_API_FULL = 2
+
+
+class SubInterfaceFlags(IntEnum):
+    """Sub-interface flags."""
+    SUB_IF_API_FLAG_NO_TAGS = 1
+    SUB_IF_API_FLAG_ONE_TAG = 2
+    SUB_IF_API_FLAG__TWO_TAGS = 4
+    SUB_IF_API_FLAG_DOT1AD = 8
+    SUB_IF_API_FLAG_EXACT_MATCH = 16
+    SUB_IF_API_FLAG_DEFAUTL = 32
+    SUB_IF_API_FLAG_OUTER_VLAN_ID_ANY = 64
+    SUB_IF_API_FLAG_INNER_VLAN_ID_ANY = 128
+    SUB_IF_API_FLAG_DOT1AH = 256
+
+
+class RxMode(IntEnum):
+    """RX mode"""
+    RX_MODE_API_UNKNOWN = 0
+    RX_MODE_API_POLLING = 1
+    RX_MODE_API_INTERRUPT = 2
+    RX_MODE_API_ADAPTIVE = 3
+    RX_MODE_API_DEFAULT = 4
+
+
+class IfType(IntEnum):
+    """Interface type"""
+    # A hw interface
+    IF_API_TYPE_HARDWARE = 0
+    # A sub-interface
+    IF_API_TYPE_SUB = 1
+    IF_API_TYPE_P2P = 2
+    IF_API_TYPE_PIPE = 3
+
+
+# pylint: disable=invalid-name
 class LinkBondLoadBalance(IntEnum):
     """Link bonding load balance."""
     L2 = 0
@@ -126,17 +181,18 @@ class InterfaceUtil(object):
 
         if node['type'] == NodeType.DUT:
             if state == 'up':
-                admin_up_down = 1
+                flags = InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value
             elif state == 'down':
-                admin_up_down = 0
+                flags = 0
             else:
                 raise ValueError('Unexpected interface state: {state}'.format(
                     state=state))
             cmd = 'sw_interface_set_flags'
             err_msg = 'Failed to set interface state on host {host}'.format(
                 host=node['host'])
-            args = dict(sw_if_index=sw_if_index,
-                        admin_up_down=admin_up_down)
+            args = dict(
+                sw_if_index=sw_if_index,
+                flags=flags)
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         elif node['type'] == NodeType.TG or node['type'] == NodeType.VM:
@@ -258,13 +314,12 @@ class InterfaceUtil(object):
             not_ready = list()
             out = InterfaceUtil.vpp_get_interface_data(node)
             for interface in out:
-                if interface.get('admin_up_down') == 1:
-                    if interface.get('link_up_down') != 1:
-                        not_ready.append(interface.get('interface_name'))
+                if interface.get('flags') == 1:
+                    not_ready.append(interface.get('interface_name'))
             if not not_ready:
                 break
             else:
-                logger.debug('Interfaces still in link-down state:\n{ifs} '
+                logger.debug('Interfaces still not in link-up state:\n{ifs} '
                              '\nWaiting...'.format(ifs=not_ready))
                 sleep(1)
         else:
@@ -312,11 +367,16 @@ class InterfaceUtil(object):
             :returns: Processed interface dump.
             :rtype: dict
             """
-            if_dump['interface_name'] = if_dump['interface_name'].rstrip('\x00')
-            if_dump['tag'] = if_dump['tag'].rstrip('\x00')
-            if_dump['l2_address'] = L2Util.bin_to_mac(if_dump['l2_address'])
-            if_dump['b_dmac'] = L2Util.bin_to_mac(if_dump['b_dmac'])
-            if_dump['b_smac'] = L2Util.bin_to_mac(if_dump['b_smac'])
+            if_dump['l2_address'] = str(if_dump['l2_address'])
+            if_dump['b_dmac'] = str(if_dump['b_dmac'])
+            if_dump['b_smac'] = str(if_dump['b_smac'])
+            if_dump['flags'] = if_dump['flags'].value
+            if_dump['type'] = if_dump['type'].value
+            if_dump['link_duplex'] = if_dump['link_duplex'].value
+            if_dump['sub_if_flags'] = if_dump['sub_if_flags'].value \
+                if hasattr(if_dump['sub_if_flags'], 'value') \
+                else int(if_dump['sub_if_flags'])
+
             return if_dump
 
         if interface is not None:
@@ -331,12 +391,13 @@ class InterfaceUtil(object):
             param = ''
 
         cmd = 'sw_interface_dump'
-        args = dict(name_filter_valid=0,
+        args = dict(name_filter_valid=False,
                     name_filter='')
         err_msg = 'Failed to get interface dump on host {host}'.format(
             host=node['host'])
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
+        logger.debug('Received data:\n{d!r}'.format(d=details))
 
         data = list() if interface is None else dict()
         for dump in details:
