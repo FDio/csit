@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "730cada7_40e5c2d9",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-07T16:20:30Z",
+      "side": 1,
+      "message": "I will probably choose a different name in https://gerrit.fd.io/r/c/csit/+/21003\nbut for now this is ok.",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 26
+      },
+      "revId": "b1a3fa4073a6be39d5f385010bd83d81db0c1d2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
