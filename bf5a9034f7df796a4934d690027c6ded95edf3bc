@@ -70,6 +70,30 @@
       "revId": "bf5a9034f7df796a4934d690027c6ded95edf3bc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbdd5b80_cffdb7b8",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-08-07T09:39:09Z",
+      "side": 1,
+      "message": "Referred the below link and got to understand that rate_type is not an integer,\n https://docs.fd.io/csit/master/report/test_configuration/vpp_functional_configuration/vpp_functional_configuration_policer.html\n\npolicer_add_del name policer1  cir 100 eir 150 cb 200 eb 300 rate_type pps round_type closest type 2r3c-2698 conform_action transmit exceed_action mark-and-transmit AF22 violate_action drop color-aware\n\nCould you please clarify.",
+      "parentUuid": "54590ca9_a134fcc4",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "bf5a9034f7df796a4934d690027c6ded95edf3bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
