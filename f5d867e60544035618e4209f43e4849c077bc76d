@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55a9f926_11eff0e2",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-07T14:44:55Z",
+      "side": 1,
+      "message": "For this to work you need to rename line 152, delete line 151, and do few more renames in https://gerrit.fd.io/r/c/csit/+/21003",
+      "range": {
+        "startLine": 207,
+        "startChar": 17,
+        "endLine": 207,
+        "endChar": 34
+      },
+      "revId": "f5d867e60544035618e4209f43e4849c077bc76d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
