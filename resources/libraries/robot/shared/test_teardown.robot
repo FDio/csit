@@ -65,7 +65,9 @@
 | | ... | Additional teardown for tests which uses vhost(s) and VM(s).
 | | ...
 | | Show VPP vhost on all DUTs | ${nodes}
-| | vnf_manager.Kill All VMs
+| | ${vnf_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Keyword Should Exist | ${vnf_manager}
+| | Run Keyword If | '${vnf_status}' == 'PASS' | vnf_manager.Kill All VMs
 
 | Additional Test Tear Down Action For nat
 | | [Documentation]
