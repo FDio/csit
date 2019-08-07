@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aed1723d_5fe63766",
+        "filename": "tests/vpp/perf/tcp/10ge2p1x520-ethip4tcphttp-httpserver.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-07T12:25:31Z",
+      "side": 1,
+      "message": "Suite name says x520. Pick one (per suite file).",
+      "range": {
+        "startLine": 42,
+        "startChar": 23,
+        "endLine": 42,
+        "endChar": 28
+      },
+      "revId": "40a7ddac2646157663216e289590cfade2a2362e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
