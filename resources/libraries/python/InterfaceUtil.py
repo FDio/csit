@@ -1161,10 +1161,8 @@ class InterfaceUtil(object):
 
         for bond in details:
             data += ('{b}\n'.format(b=bond['interface_name'].rstrip('\x00')))
-            data += ('  mode: {m}\n'.format(m=LinkBondMode(
-                bond['mode']).name.lower()))
-            data += ('  load balance: {lb}\n'.format(lb=LinkBondLoadBalance(
-                bond['lb']).name.lower()))
+            data += ('  mode: {m}\n'.format(m=bond['mode']).lower())
+            data += ('  load balance: {lb}\n'.format(lb=bond['lb']).lower())
             data += ('  number of active slaves: {n}\n'.format(
                 n=bond['active_slaves']))
             if verbose:

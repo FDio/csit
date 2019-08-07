@@ -166,8 +166,6 @@ class TestConfig(object):
             sw_if_index=InterfaceUtil.get_interface_index(
                 node, node_vlan_if),
             vlan_id=None)
-        err_msg = 'Failed to create VXLAN and VLAN interfaces on host {host}'.\
-            format(host=node['host'])
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(0, vxlan_count):
@@ -256,8 +254,6 @@ class TestConfig(object):
         args2 = dict(
             sw_if_index=None,
             admin_up_down=1)
-        err_msg = 'Failed to put VXLAN and VLAN interfaces up on host {host}'. \
-            format(host=node['host'])
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(0, vxlan_count):
@@ -394,8 +390,6 @@ class TestConfig(object):
             shg=0,
             port_type=0,
             enable=1)
-        err_msg = 'Failed to put VXLAN and VLAN interfaces to bridge domain ' \
-                  'on host {host}'.format(host=node['host'])
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(0, vxlan_count):

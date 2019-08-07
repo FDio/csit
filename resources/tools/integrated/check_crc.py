@@ -27,12 +27,12 @@ from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 # TODO: Read FDIO_VPP_DIR environment variable, or some other input,
 # instead of using hardcoded relative path?
 
-api_dir = op.normpath(op.join(
+API_DIR = op.normpath(op.join(
     op.dirname(op.abspath(__file__)), "..", "..", "..", "..",
     "build-root", "install-vpp-native", "vpp", "share", "vpp", "api"))
-checker = VppApiCrcChecker(api_dir)
+CHECKER = VppApiCrcChecker(API_DIR)
 try:
-    checker.report_initial_conflicts(report_missing=True)
+    CHECKER.report_initial_conflicts(report_missing=True)
 except RuntimeError as err:
     sys.stderr.write("{err!r}\n".format(err=err))
     sys.stderr.write(

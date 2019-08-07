@@ -148,8 +148,7 @@ class PapiSocketExecutor(object):
         self._ssh_control_socket = None
         self._local_vpp_socket = None
 
-    @property
-    def crc_checker(self):
+    def create_crc_checker(self):
         """Return the cached instance or create new one from directory.
 
         It is assumed self.api_json_directory is set, as a class variable.
@@ -204,7 +203,7 @@ class PapiSocketExecutor(object):
             cls.api_json_directory = tmp_dir + "/usr/share/vpp/api"
             # Perform initial checks before .api.json files are gone,
             # by accessing the property (which also creates its instance).
-            self.crc_checker
+            self.create_crc_checker()
             # When present locally, we finally can find the installation path.
             package_path = glob.glob(tmp_dir + installed_papi_glob)[0]
             # Package path has to be one level above the vpp_papi directory.
