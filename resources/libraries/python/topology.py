@@ -403,7 +403,8 @@ class Topology(object):
         interface index assigned to the interface by vpp for a given node.
 
         :param node: The node topology dictionary.
-        :param sw_if_index: sw_if_index of the link that a interface is connected to.
+        :param sw_if_index: sw_if_index of the link that a interface is
+            connected to.
         :type node: dict
         :type sw_if_index: int
         :returns: Interface name of the interface connected to the given link.
