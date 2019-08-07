@@ -124,6 +124,14 @@ class PapiSocketExecutor(object):
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, sw_if_index=ifc['vpp_sw_index']).\
                 get_details(err_msg)
+
+    It is possible to override socket read timeout within "with" block:
+
+        cmd = 'sw_interface_rx_placement_dump'
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.set_timeout_temporarily(timeout=180.0)
+            details = papi_exec.add(cmd, sw_if_index=ifc['vpp_sw_index']).\
+                get_details(err_msg)
     """
 
     # Class cache for reuse between instances.
@@ -143,6 +151,8 @@ class PapiSocketExecutor(object):
         self._remote_vpp_socket = remote_vpp_socket
         # The list of PAPI commands to be executed on the node.
         self._api_command_list = list()
+        # Overridable timeout to use, reset on __enter__.
+        self._socket_read_timeout = 0.0
         # The following values are set on enter, reset on exit.
         self._temp_dir = None
         self._ssh_control_socket = None
@@ -235,6 +245,7 @@ class PapiSocketExecutor(object):
         """
         # Parsing takes longer than connecting, prepare instance before tunnel.
         vpp_instance = self.vpp_instance
+        self._socket_read_timeout = vpp_instance.read_timeout
         node = self._node
         self._temp_dir = tempfile.mkdtemp(dir="/tmp")
         self._local_vpp_socket = self._temp_dir + "/vpp-api.sock"
@@ -324,6 +335,7 @@ class PapiSocketExecutor(object):
         Arguments related to possible exception are entirely ignored.
         """
         self.vpp_instance.disconnect()
+        self._socket_read_timeout = 0.0
         run(["ssh", "-S", self._ssh_control_socket, "-O", "exit", "0.0.0.0"],
             check=False)
         shutil.rmtree(self._temp_dir)
@@ -430,6 +442,20 @@ class PapiSocketExecutor(object):
         """
         return self._execute(err_msg)
 
+    def set_timeout_temporarily(self, timeout):
+        """Override socket read timeout, until this "with" block ends.
+
+        Values of 0.0 and None are supported by accident, see
+        https://docs.python.org/2/library/socket.html#socket.socket.settimeout
+
+        :param timeout: Timedelta [s] after which read error is raised.
+        :type timeout: float
+        :returns: self, so that method chaining is possible.
+        :rtype: PapiSocketExecutor
+        """
+        self._socket_read_timeout = timeout
+        return self
+
     @staticmethod
     def run_cli_cmd(node, cmd, log=True):
         """Run a CLI command as cli_inband, return the "reply" field of reply.
@@ -499,6 +525,8 @@ class PapiSocketExecutor(object):
             papi_fn = getattr(vpp_instance.api, api_name)
             try:
                 try:
+                    self.vpp_instance.transport.socket.settimeout(
+                        self._socket_read_timeout)
                     reply = papi_fn(**command["api_args"])
                 except IOError as err:
                     # Ocassionally an error happens, try reconnect.
@@ -509,6 +537,9 @@ class PapiSocketExecutor(object):
                     time.sleep(1)
                     self.vpp_instance.connect_sync("csit_socket")
                     logger.trace("Reconnected.")
+                    # The socket has been replaced, timeout needs to be set.
+                    self.vpp_instance.transport.socket.settimeout(
+                        self._socket_read_timeout)
                     reply = papi_fn(**command["api_args"])
             except (AttributeError, IOError) as err:
                 raise_from(AssertionError(err_msg), err, level="INFO")
