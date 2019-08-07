@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/features/acl.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | L2BDMACLRN | FEATURE | ACL | ACL_STATEFUL
