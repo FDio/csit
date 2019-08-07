@@ -162,10 +162,16 @@
 | | ... | ${${dut}_if2_vf0}
 | | ${dut_eth_vf_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
 | | ... | ${if1_pci} | ${rxq_count_int}
+| | ${dut_eth_vf_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_eth_vf_if1}
 | | ${dut_eth_vf_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
 | | ... | ${if2_pci} | ${rxq_count_int}
+| | ${dut_eth_vf_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_eth_vf_if2}
 | | Set Test Variable | ${${dut_str}_if1} | ${dut_eth_vf_if1}
 | | Set Test Variable | ${${dut_str}_if2} | ${dut_eth_vf_if2}
+| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_eth_vf_if1_mac}
+| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_eth_vf_if2_mac}
 
 | Initialize AVF interfaces
 | | [Documentation]
