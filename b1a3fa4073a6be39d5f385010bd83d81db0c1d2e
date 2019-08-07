@@ -22,6 +22,30 @@
       "revId": "b1a3fa4073a6be39d5f385010bd83d81db0c1d2e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b21a6ac9_c8450c37",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-07T19:10:25Z",
+      "side": 1,
+      "message": "Well this is why property should not do init. Having getter an setter is fine . but mixing is not really best practice. Not pythonic",
+      "parentUuid": "730cada7_40e5c2d9",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 26
+      },
+      "revId": "b1a3fa4073a6be39d5f385010bd83d81db0c1d2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
