@@ -124,6 +124,14 @@ class PapiSocketExecutor(object):
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, sw_if_index=ifc['vpp_sw_index']).\
                 get_details(err_msg)
+
+    It is possible to override socket read timeout within "with" block:
+
+        cmd = 'sw_interface_rx_placement_dump'
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.set_timeout_temporarily(timeout=180.0)
+            details = papi_exec.add(cmd, sw_if_index=ifc['vpp_sw_index']).\
+                get_details(err_msg)
     """
 
     # Class cache for reuse between instances.
@@ -430,6 +438,23 @@ class PapiSocketExecutor(object):
         :rtype: list of dict
         """
         return self._execute(err_msg)
+
+    def set_timeout_temporarily(self, timeout):
+        """Override socket read timeout, until the nearest disconnect.
+
+        This should fail when vpp isntance is not connected.
+        Values of 0.0 and None are supported by accident, see
+        https://docs.python.org/2/library/socket.html#socket.socket.settimeout
+
+        TODO: How to persist over reconnects but not over "with" blocks?
+
+        :param timeout: Timedelta [s] after which read error is raised.
+        :type timeout: float
+        :returns: self, so that method chaining is possible.
+        :rtype: PapiSocketExecutor
+        """
+        self.vpp_instance.transport.socket.settimeout(timeout)
+        return self
 
     @staticmethod
     def run_cli_cmd(node, cmd, log=True):
