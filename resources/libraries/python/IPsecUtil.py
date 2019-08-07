@@ -22,7 +22,8 @@ from enum import Enum, IntEnum
 from ipaddress import ip_network, ip_address
 
 from resources.libraries.python.IPUtil import IPUtil
-from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
+    InterfaceStatusFlags
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor
@@ -518,11 +519,9 @@ class IPsecUtil(object):
         cmd1 = 'sw_interface_add_del_address'
         args1 = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
-            is_add=1,
-            is_ipv6=1 if laddr.version == 6 else 0,
-            del_all=0,
-            address_length=raddr_range,
-            address=None
+            is_add=True,
+            del_all=False,
+            prefix=None
         )
         cmd2 = 'ip_route_add_del'
         args2 = dict(
@@ -536,7 +535,8 @@ class IPsecUtil(object):
 
         with PapiSocketExecutor(node) as papi_exec:
             for i in xrange(n_tunnels):
-                args1['address'] = getattr(laddr + i * addr_incr, 'packed')
+                args1['prefix'] = IPUtil.create_prefix_object(
+                    laddr + i * addr_incr, raddr_range)
                 args2['route'] = IPUtil.compose_vpp_route_structure(
                     node,
                     taddr + i,
@@ -951,7 +951,7 @@ class IPsecUtil(object):
             cmd1 = 'sw_interface_set_flags'
             args1 = dict(
                 sw_if_index=loop_sw_if_idx,
-                admin_up_down=1)
+                flags=InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value)
             err_msg = 'Failed to set loopback interface state up on host ' \
                       '{host}'.format(host=nodes['DUT1']['host'])
             papi_exec.add(cmd1, **args1).get_reply(err_msg)
@@ -960,22 +960,21 @@ class IPsecUtil(object):
             args1 = dict(
                 sw_if_index=InterfaceUtil.get_interface_index(
                     nodes['DUT1'], if1_key),
-                is_add=1,
-                is_ipv6=1 if if2_ip.version == 6 else 0,
-                del_all=0,
-                address_length=96 if if2_ip.version == 6 else 24,
-                address=getattr(if2_ip - 1, 'packed'))
+                is_add=True,
+                del_all=False,
+                prefix=IPUtil.create_prefix_object(
+                    if2_ip - 1, 96 if if2_ip.version == 6 else 24)
+            )
             err_msg = 'Failed to set IP address on interface {ifc} on host ' \
                       '{host}'.format(ifc=if1_key, host=nodes['DUT1']['host'])
             papi_exec.add(cmd1, **args1).get_reply(err_msg)
             # Configure IPsec tunnel interfaces
             args1 = dict(
                 sw_if_index=loop_sw_if_idx,
-                is_add=1,
-                is_ipv6=1 if if1_ip.version == 6 else 0,
-                del_all=0,
-                address_length=128 if if1_ip.version == 6 else 32,
-                address='')
+                is_add=True,
+                del_all=False,
+                prefix=None
+            )
             cmd2 = 'ipsec_tunnel_if_add_del'
             args2 = dict(
                 is_add=1,
@@ -1006,7 +1005,8 @@ class IPsecUtil(object):
                 if integ_alg:
                     ikeys.append(
                         gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)))
-                args1['address'] = getattr(if1_ip + i * addr_incr, 'packed')
+                args1['prefix'] = IPUtil.create_prefix_object(
+                    if1_ip + i * addr_incr, 128 if if1_ip.version == 6 else 32)
                 args2['local_spi'] = spi_1 + i
                 args2['remote_spi'] = spi_2 + i
                 args2['local_ip'] = IPUtil.create_ip_address_object(
@@ -1031,7 +1031,7 @@ class IPsecUtil(object):
             # Configure IP routes
             cmd1 = 'sw_interface_set_unnumbered'
             args1 = dict(
-                is_add=1,
+                is_add=True,
                 sw_if_index=InterfaceUtil.get_interface_index(
                     nodes['DUT1'], if1_key),
                 unnumbered_sw_if_index=0
@@ -1039,7 +1039,7 @@ class IPsecUtil(object):
             cmd2 = 'sw_interface_set_flags'
             args2 = dict(
                 sw_if_index=0,
-                admin_up_down=1)
+                flags=InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value)
             cmd3 = 'ip_route_add_del'
             args3 = dict(
                 is_add=1,
@@ -1069,11 +1069,11 @@ class IPsecUtil(object):
             args1 = dict(
                 sw_if_index=InterfaceUtil.get_interface_index(
                     nodes['DUT2'], if2_key),
-                is_add=1,
-                is_ipv6=1 if if2_ip.version == 6 else 0,
-                del_all=0,
-                address_length=96 if if2_ip.version == 6 else 24,
-                address=if2_ip.packed)
+                is_add=True,
+                del_all=False,
+                prefix=IPUtil.create_prefix_object(
+                    if2_ip, 96 if if2_ip.version == 6 else 24)
+            )
             err_msg = 'Failed to set IP address on interface {ifc} on host ' \
                       '{host}'.format(ifc=if2_key, host=nodes['DUT2']['host'])
             papi_exec.add(cmd1, **args1).get_reply(err_msg)
@@ -1137,7 +1137,7 @@ class IPsecUtil(object):
             papi_exec.add(cmd1, **args1)
             cmd1 = 'sw_interface_set_unnumbered'
             args1 = dict(
-                is_add=1,
+                is_add=True,
                 sw_if_index=InterfaceUtil.get_interface_index(
                     nodes['DUT2'], if2_key),
                 unnumbered_sw_if_index=0
@@ -1145,7 +1145,7 @@ class IPsecUtil(object):
             cmd2 = 'sw_interface_set_flags'
             args2 = dict(
                 sw_if_index=0,
-                admin_up_down=1)
+                flags=InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value)
             cmd3 = 'ip_route_add_del'
             args3 = dict(
                 is_add=1,
