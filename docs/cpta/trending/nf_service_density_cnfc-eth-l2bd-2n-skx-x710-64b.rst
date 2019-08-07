@@ -18,7 +18,7 @@ CNF Service Chains
 
     </b>
     Links to builds:
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-master-2n-skx" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-cnfc-eth-l2bd-64b-2t1c-x710-2n-skx.html"></iframe>
     <p><br><br></p>
@@ -38,7 +38,7 @@ CNF Service Chains
 
     </b>
     Links to builds:
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-master-2n-skx" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-cnfc-eth-l2bd-64b-4t2c-x710-2n-skx.html"></iframe>
     <p><br><br></p>
@@ -58,7 +58,7 @@ CNF Service Chains
 
     </b>
     Links to builds:
-    <a href="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.xenial.main/io/fd/vpp/vpp/" target="_blank">vpp-ref</a>,
+    <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-weekly-master-2n-skx" target="_blank">csit-ref</a>
     <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-cnfc-eth-l2bd-64b-8t4c-x710-2n-skx.html"></iframe>
     <p><br><br></p>
