@@ -46,6 +46,30 @@
       "revId": "bf5a9034f7df796a4934d690027c6ded95edf3bc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "54590ca9_a134fcc4",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1804
+      },
+      "writtenOn": "2019-08-07T08:32:03Z",
+      "side": 1,
+      "message": "in api it is defined as int\nu8 rate_type;\n\n 452 static uword\n 453 unformat_policer_rate_type (unformat_input_t * input, va_list * args)\n 454 {\n 455   u8 *r \u003d va_arg (*args, u8 *);\n 456 \n 457   if (unformat (input, \"kbps\"))\n 458     *r \u003d SSE2_QOS_RATE_KBPS;\n 459   else if (unformat (input, \"pps\"))\n 460     *r \u003d SSE2_QOS_RATE_PPS;\n 461   else\n 462     return 0;\n 463   return 1;\n 464 }\n\nfrom policer/xlate.h\ntypedef enum\n{\n  SSE2_QOS_RATE_KBPS \u003d 0,\n  SSE2_QOS_RATE_PPS,\n  SSE2_QOS_RATE_INVALID\n} sse2_qos_rate_type_en;",
+      "parentUuid": "70970cd0_a9623988",
+      "range": {
+        "startLine": 26,
+        "startChar": 11,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "bf5a9034f7df796a4934d690027c6ded95edf3bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
