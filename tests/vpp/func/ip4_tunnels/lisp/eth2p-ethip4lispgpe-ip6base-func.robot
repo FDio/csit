@@ -67,13 +67,16 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Configure IP addresses on interfaces
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_dut2}
 | | ... | ${dut1_to_dut2_ip6o4} | ${dut_prefix6o4}
+| | And VPP Interface Set IP Address
 | | ... | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${dut1_to_tg_ip6o4} | ${tg_prefix6o4}
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_dut1}
 | | ... | ${dut2_to_dut1_ip6o4} | ${dut_prefix6o4}
+| | And VPP Interface Set IP Address
 | | ... | ${dut2_node} | ${dut2_to_tg}
 | | ... | ${dut2_to_tg_ip6o4} | ${tg_prefix6o4}
 | | And Add IP Neighbors

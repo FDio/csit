@@ -260,10 +260,10 @@
 | | [Arguments] | ${dut} | ${count}=${1}
 | | ...
 | | ${dut_str}= | Convert To Lowercase | ${dut}
-| | Configure IP addresses on interfaces
+| | VPP Interface Set IP Address
 | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_1_1}
 | | ... | 172.16.0.1 | 24
-| | Configure IP addresses on interfaces
+| | VPP Interface Set IP Address
 | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_1_2}
 | | ... | 172.26.0.1 | 24
 | | :FOR | ${id} | IN RANGE | 1 | ${count} + 1
