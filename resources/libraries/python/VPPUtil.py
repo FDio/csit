@@ -193,16 +193,25 @@ class VPPUtil(object):
         """
 
         cmd = 'sw_interface_dump'
-        args = dict(name_filter_valid=0, name_filter='')
+        args = dict(
+            name_filter_valid=False,
+            name_filter=''
+        )
         err_msg = 'Failed to get interface dump on host {host}'.format(
             host=node['host'])
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
 
         for if_dump in details:
-            if_dump['interface_name'] = if_dump['interface_name'].rstrip('\x00')
-            if_dump['tag'] = if_dump['tag'].rstrip('\x00')
-            if_dump['l2_address'] = L2Util.bin_to_mac(if_dump['l2_address'])
+            if_dump['l2_address'] = str(if_dump['l2_address'])
+            if_dump['b_dmac'] = str(if_dump['b_dmac'])
+            if_dump['b_smac'] = str(if_dump['b_smac'])
+            if_dump['flags'] = if_dump['flags'].value
+            if_dump['type'] = if_dump['type'].value
+            if_dump['link_duplex'] = if_dump['link_duplex'].value
+            if_dump['sub_if_flags'] = if_dump['sub_if_flags'].value \
+                if hasattr(if_dump['sub_if_flags'], 'value') \
+                else int(if_dump['sub_if_flags'])
         # TODO: return only base data
         logger.trace('Interface data of host {host}:\n{details}'.format(
             host=node['host'], details=details))

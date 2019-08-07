@@ -113,7 +113,7 @@ class Constants(object):
     SOCKSVR_PATH = "/run/vpp/api.sock"
 
     # Global "kill switch" for CRC checking during runtime.
-    CRC_MISMATCH_FAILS_TEST = True
+    CRC_MISMATCH_FAILS_TEST = False
 
     # Mapping from NIC name to its bps limit.
     # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.
