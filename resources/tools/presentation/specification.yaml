@@ -1549,7 +1549,7 @@
     title: "rls1810"
     data: "vpp-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls1901.1"
+    title: "rls1901.3"
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -1573,7 +1573,7 @@
     title: "rls1810"
     data: "vpp-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls1901.1"
+    title: "rls1901.3"
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -1597,7 +1597,7 @@
     title: "rls1810"
     data: "vpp-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls1901.1"
+    title: "rls1901.3"
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -1621,7 +1621,7 @@
     title: "rls1810"
     data: "vpp-performance-changes-3n-hsw-ref"
   compare:
-    title: "rls1901.1"
+    title: "rls1901.3"
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
