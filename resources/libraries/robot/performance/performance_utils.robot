@@ -92,6 +92,55 @@
 | | Perform additional measurements based on NDRPDR result
 | | ... | ${result} | ${frame_size} | ${traffic_profile}
 
+| Find Throughput Using MLRsearch
+| | [Documentation]
+| | ... | Find and return lower bound PDR (zero PLR by default) throughput
+| | ... | using MLRsearch algorithm.
+| | ... | Fail if a resulting lower bound has too high loss fraction.
+| | ... | Input rates are understood as uni-directional,
+| | ... | reported result contains bi-directional rates.
+| | ... | Currently, the min_rate value is hardcoded to match test teardowns.
+| | ...
+| | ... | TODO: Should the trial duration of the additional
+| | ... | measurements be configurable?
+| | ...
+| | ... | Some inputs are read from variables to streamline suites.
+| | ...
+| | ... | *Test (or broader scope) variables read:*
+| | ... | - traffic_profile - Name of module defining traffc for measurements.
+| | ... | Type: string
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
+| | ... | Type: float
+| | ...
+| | ... | *Arguments:*
+| | ... | - packet_loss_ratio - Accepted loss during search. Type: float
+| | ... | - final_relative_width - Maximal width multiple of upper. Type: float
+| | ... | - final_trial_duration - Duration of final trials [s]. Type: float
+| | ... | - initial_trial_duration - Duration of initial trials [s]. Type: float
+| | ... | - intermediate phases - Number of intermediate phases [1]. Type: int
+| | ... | - timeout - Fail if search duration is longer [s]. Type: float
+| | ... | - doublings - How many doublings to do when expanding [1]. Type: int
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| \${throughpt}= \| Find Throughput Using MLRsearch \| \${0} \|
+| | ... |  \${0.005} \| \${30.0}\| \${1.0} \| \${2} \| ${600.0} \| ${2} \|
+| | ...
+| | [Arguments] | ${packet_loss_ratio}=${0.0}
+| | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${30.0}
+| | ... | ${initial_trial_duration}=${1.0}
+| | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${720.0}
+| | ... | ${doublings}=${2}
+| | ...
+| | ${result} = | Perform optimized ndrpdr search | ${frame_size}
+| | ... | ${traffic_profile} | ${20000} | ${max_rate*2}
+| | ... | ${packet_loss_ratio} | ${final_relative_width}
+| | ... | ${final_trial_duration} | ${initial_trial_duration}
+| | ... | ${number_of_intermediate_phases} | timeout=${timeout}
+| | ... | doublings=${doublings}
+| | Return From Keyword | ${result.pdr_interval.measured_low.transmit_rate}
+
 | Find critical load using PLRsearch
 | | [Documentation]
 | | ... | Find boundaries for troughput (of given target loss ratio)
