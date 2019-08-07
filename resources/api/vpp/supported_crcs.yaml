@@ -45,6 +45,10 @@
     avf_create_reply: '0xfda5941f'  # perf
     # ^^ tc01-64B-1c-avf-eth-l2bdbasemaclrn-mrr
     # ^ l2bdmaclrnANDbaseANDdrv_avf
+    bond_create: '0xf19b4ad0'  # perf
+    bond_create_reply: '0xfda5941f'  # perf
+    bond_enslave: '0x0ded34f6'  # perf
+    bond_enslave_reply: '0xe8d4e804'  # perf
     bridge_domain_add_del: '0xc6360720'  # dev
     bridge_domain_add_del_reply: '0xe8d4e804'  # dev
     classify_add_del_session: '0x85fd79f4'  # dev
@@ -57,14 +61,14 @@
     cop_interface_enable_disable_reply: '0xe8d4e804'  # dev
     cop_whitelist_enable_disable: '0x8bb8f6dc'  # dev
     cop_whitelist_enable_disable_reply: '0xe8d4e804'  # dev
-    create_loopback: '0x3b54129c'  # dev
-    create_loopback_reply: '0xfda5941f'  # dev
-    create_subif: '0x86cfe408'  # virl
-    create_subif_reply: '0xfda5941f'  # virl
+    create_loopback: '0x16e13d38'  # dev
+    create_loopback_reply: '0x903324db'  # dev
+    create_subif: '0xa51a5dd3'  # virl
+    create_subif_reply: '0x903324db'  # virl
     create_vhost_user_if: '0xa3438cd4'  # dev
     create_vhost_user_if_reply: '0xfda5941f'  # dev
-    create_vlan_subif: '0x70cadeda'  # virl
-    create_vlan_subif_reply: '0xfda5941f'  # virl
+    create_vlan_subif: '0xbc534dd3'  # virl
+    create_vlan_subif_reply: '0x903324db'  # virl
     gbp_bridge_domain_add: '0x70f1069c' # perf
     gbp_bridge_domain_add_reply: '0xe8d4e804' # perf
     gbp_route_domain_add: '0x355b67c0' # perf
@@ -83,7 +87,7 @@
     gre_tunnel_add_del_reply: '0x903324db'  # virl
     gpe_enable_disable: '0xeb0e943b'  # virl
     gpe_enable_disable_reply: '0xe8d4e804'  # virl
-    hw_interface_set_mtu: '0x132da1e7'  # dev
+    hw_interface_set_mtu: '0xe6c533aa'  # dev
     hw_interface_set_mtu_reply: '0xe8d4e804'  # dev
     input_acl_set_interface: '0xe09537b0'  # dev
     input_acl_set_interface_reply: '0xe8d4e804'  # dev
@@ -106,6 +110,8 @@
     ipsec_spd_add_del_reply: '0xe8d4e804'  # dev
     ipsec_spd_entry_add_del: '0x6bc6a3b5'  # dev
     ipsec_spd_entry_add_del_reply: '0x9ffac24b'  # dev
+    ipsec_tunnel_if_add_del: '0xaa539b47'  # perf
+    ipsec_tunnel_if_add_del_reply: '0xfda5941f'  # perf
     l2_interface_vlan_tag_rewrite: '0xb90be6b4'  # virl
     l2_interface_vlan_tag_rewrite_reply: '0xe8d4e804'  # virl
     l2_patch_add_del: '0x62506e63'  # perf
@@ -130,6 +136,13 @@
     lisp_locator_set_dump: '0xc79e8ab0'  # virl
     lisp_map_resolver_details: '0x60a5f5ca'  # virl
     lisp_map_resolver_dump: '0x51077d14'  # virl
+    macip_acl_add: '0x0c680ca5'  # perf
+    macip_acl_add_reply: '0xac407b0c'  # perf
+    macip_acl_details: '0xe164e69a'  # perf
+    macip_acl_dump: '0xef34fea4'  # perf
+    macip_acl_interface_add_del: '0x6a6be97c'  # perf
+    macip_acl_interface_get: '0x51077d14'  # perf
+    macip_acl_interface_get_reply: '0xaccf9b05'  # perf
     memif_create: '0x6597cdb2'  # dev
     memif_create_reply: '0xfda5941f'  # dev
     memif_details: '0x4f5a3397'  # dev
@@ -150,28 +163,43 @@
     show_threads_reply: '0xf5e0b66f'  # dev
     show_version: '0x51077d14'  # dev setup
     show_version_reply: '0xb9bcf6df'  # dev setup
-    sw_interface_add_del_address: '0x7b583179'  # dev
+    sr_localsid_add_del: '0xb30489eb'  # perf
+    sr_localsid_add_del_reply: '0xe8d4e804'
+    sr_localsids_dump: '0x51077d14'  # perf
+    sr_policies_details: '0x5087f460'  # perf
+    sr_policies_dump: '0x51077d14'  # perf
+    sr_policy_add: '0x4b6e2484'  # perf
+    sr_policy_add_reply: '0xe8d4e804'  # perf
+    sr_policy_del_reply: '0xe8d4e804'  # perf
+    sr_set_encap_source: '0xd05bb4de'  # perf
+    sr_steering_add_del: '0x28b5dcab'  # perf
+    sr_steering_add_del_reply: '0xe8d4e804'  # perf
+    sr_steering_pol_details: '0x5627d483'  # perf
+    sr_steering_pol_dump: '0x51077d14'  # perf
+    sw_interface_add_del_address: '0x43a487bd'  # dev
     sw_interface_add_del_address_reply: '0xe8d4e804'  # dev
-    sw_interface_details: '0xe4ee7eb6'  # dev setup
-    sw_interface_dump: '0x052753c5'  # dev setup
+    sw_interface_details: '0x156a9465'  # dev setup
+    sw_interface_dump: '0xe116dcdc'  # dev setup
     sw_interface_ip6nd_ra_config: '0xc3f02daa'  # dev
     sw_interface_ip6nd_ra_config_reply: '0xe8d4e804'  # dev
-    sw_interface_rx_placement_details: '0x0e9e33f4'  # perf
-    sw_interface_rx_placement_dump: '0x529cb13f'  # perf
+    sw_interface_rx_placement_details: '0x93d413ec'  # perf
+    sw_interface_rx_placement_dump: '0xd85aab0d'  # perf
     # ^^ tc01-64B-1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr
     # ^ dot1qANDl2bdmaclrnANDbaseANDmemif
-    sw_interface_set_flags: '0x555485f5'  # dev
+    sw_interface_set_flags: '0xb2dc5eb2'  # dev
     sw_interface_set_flags_reply: '0xe8d4e804'  # dev
     sw_interface_set_l2_bridge: '0x5579f809'  # dev
     sw_interface_set_l2_bridge_reply: '0xe8d4e804'  # dev
     sw_interface_set_l2_xconnect: '0x95de3988'  # dev
     sw_interface_set_l2_xconnect_reply: '0xe8d4e804'  # dev
-    sw_interface_set_rx_placement: '0x4ef4377d'  # perf
+    sw_interface_set_rx_placement: '0xe462d0d9'  # perf
     sw_interface_set_rx_placement_reply: '0xe8d4e804'  # perf
     # ^^ tc01-64B-1c-eth-l2xcbase-eth-2memif-1dcr-mrr
     # ^ l2xcfwdANDbaseANDlxcANDmemif
-    sw_interface_set_table: '0xacb25d89'  # dev
+    sw_interface_set_table: '0x2d412a82'  # dev
     sw_interface_set_table_reply: '0xe8d4e804'  # dev
+    sw_interface_set_unnumbered: '0x61e660a5'  # perf
+    sw_interface_set_unnumbered_reply: '0xe8d4e804'  # perf
     sw_interface_set_vxlan_bypass: '0xe74ca095'  # dev
     sw_interface_set_vxlan_bypass_reply: '0xe8d4e804'  # dev
     sw_interface_tap_v2_dump: '0x51077d14'  # dev

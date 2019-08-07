@@ -30,6 +30,61 @@ from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VPPUtil import VPPUtil
 
 
+class InterfaceStatusFlags(IntEnum):
+    """Interface status falgs."""
+    IF_STATUS_API_FLAG_ADMIN_UP = 1
+    IF_STATUS_API_FLAG_LINK_UP = 2
+
+
+class MtuProto(IntEnum):
+    """MTU protocol."""
+    MTU_PROTO_API_L3 = 0
+    MTU_PROTO_API_IP4 = 1
+    MTU_PROTO_API_IP6 = 2
+    MTU_PROTO_API_MPLS = 3
+    MTU_PROTO_API_N = 4
+
+
+class LinkDuplex(IntEnum):
+    """Link duplex"""
+    LINK_DUPLEX_API_UNKNOWN = 0
+    LINK_DUPLEX_API_HALF = 1
+    LINK_DUPLEX_API_FULL = 2
+
+
+class SubInterfaceFlags(IntEnum):
+    """Sub-interface flags."""
+    SUB_IF_API_FLAG_NO_TAGS = 1
+    SUB_IF_API_FLAG_ONE_TAG = 2
+    SUB_IF_API_FLAG_TWO_TAGS = 4
+    SUB_IF_API_FLAG_DOT1AD = 8
+    SUB_IF_API_FLAG_EXACT_MATCH = 16
+    SUB_IF_API_FLAG_DEFAULT = 32
+    SUB_IF_API_FLAG_OUTER_VLAN_ID_ANY = 64
+    SUB_IF_API_FLAG_INNER_VLAN_ID_ANY = 128
+    SUB_IF_API_FLAG_DOT1AH = 256
+
+
+class RxMode(IntEnum):
+    """RX mode"""
+    RX_MODE_API_UNKNOWN = 0
+    RX_MODE_API_POLLING = 1
+    RX_MODE_API_INTERRUPT = 2
+    RX_MODE_API_ADAPTIVE = 3
+    RX_MODE_API_DEFAULT = 4
+
+
+class IfType(IntEnum):
+    """Interface type"""
+    # A hw interface
+    IF_API_TYPE_HARDWARE = 0
+    # A sub-interface
+    IF_API_TYPE_SUB = 1
+    IF_API_TYPE_P2P = 2
+    IF_API_TYPE_PIPE = 3
+
+
+# pylint: disable=invalid-name
 class LinkBondLoadBalance(IntEnum):
     """Link bonding load balance."""
     L2 = 0  # pylint: disable=invalid-name
@@ -126,17 +181,18 @@ class InterfaceUtil(object):
 
         if node['type'] == NodeType.DUT:
             if state == 'up':
-                admin_up_down = 1
+                flags = InterfaceStatusFlags.IF_STATUS_API_FLAG_ADMIN_UP.value
             elif state == 'down':
-                admin_up_down = 0
+                flags = 0
             else:
                 raise ValueError('Unexpected interface state: {state}'.format(
                     state=state))
             cmd = 'sw_interface_set_flags'
             err_msg = 'Failed to set interface state on host {host}'.format(
                 host=node['host'])
-            args = dict(sw_if_index=sw_if_index,
-                        admin_up_down=admin_up_down)
+            args = dict(
+                sw_if_index=sw_if_index,
+                flags=flags)
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         elif node['type'] == NodeType.TG or node['type'] == NodeType.VM:
@@ -258,13 +314,12 @@ class InterfaceUtil(object):
             not_ready = list()
             out = InterfaceUtil.vpp_get_interface_data(node)
             for interface in out:
-                if interface.get('admin_up_down') == 1:
-                    if interface.get('link_up_down') != 1:
-                        not_ready.append(interface.get('interface_name'))
+                if interface.get('flags') == 1:
+                    not_ready.append(interface.get('interface_name'))
             if not not_ready:
                 break
             else:
-                logger.debug('Interfaces still in link-down state:\n{ifs} '
+                logger.debug('Interfaces still not in link-up state:\n{ifs} '
                              '\nWaiting...'.format(ifs=not_ready))
                 sleep(1)
         else:
@@ -312,11 +367,16 @@ class InterfaceUtil(object):
             :returns: Processed interface dump.
             :rtype: dict
             """
-            if_dump['interface_name'] = if_dump['interface_name'].rstrip('\x00')
-            if_dump['tag'] = if_dump['tag'].rstrip('\x00')
-            if_dump['l2_address'] = L2Util.bin_to_mac(if_dump['l2_address'])
-            if_dump['b_dmac'] = L2Util.bin_to_mac(if_dump['b_dmac'])
-            if_dump['b_smac'] = L2Util.bin_to_mac(if_dump['b_smac'])
+            if_dump['l2_address'] = str(if_dump['l2_address'])
+            if_dump['b_dmac'] = str(if_dump['b_dmac'])
+            if_dump['b_smac'] = str(if_dump['b_smac'])
+            if_dump['flags'] = if_dump['flags'].value
+            if_dump['type'] = if_dump['type'].value
+            if_dump['link_duplex'] = if_dump['link_duplex'].value
+            if_dump['sub_if_flags'] = if_dump['sub_if_flags'].value \
+                if hasattr(if_dump['sub_if_flags'], 'value') \
+                else int(if_dump['sub_if_flags'])
+
             return if_dump
 
         if interface is not None:
@@ -331,12 +391,15 @@ class InterfaceUtil(object):
             param = ''
 
         cmd = 'sw_interface_dump'
-        args = dict(name_filter_valid=0,
-                    name_filter='')
+        args = dict(
+            name_filter_valid=False,
+            name_filter=''
+        )
         err_msg = 'Failed to get interface dump on host {host}'.format(
             host=node['host'])
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
+        logger.debug('Received data:\n{d!r}'.format(d=details))
 
         data = list() if interface is None else dict()
         for dump in details:
@@ -724,8 +787,10 @@ class InterfaceUtil(object):
         sw_if_index = InterfaceUtil.get_interface_index(node, interface)
 
         cmd = 'create_vlan_subif'
-        args = dict(sw_if_index=sw_if_index,
-                    vlan_id=int(vlan))
+        args = dict(
+            sw_if_index=sw_if_index,
+            vlan_id=int(vlan)
+        )
         err_msg = 'Failed to create VLAN sub-interface on host {host}'.format(
             host=node['host'])
         with PapiSocketExecutor(node) as papi_exec:
@@ -930,20 +995,31 @@ class InterfaceUtil(object):
         """
         subif_types = type_subif.split()
 
+        flags = 0
+        if 'no_tags' in subif_types:
+            flags = flags | SubInterfaceFlags.SUB_IF_API_FLAG_NO_TAGS
+        if 'one_tag' in subif_types:
+            flags = flags | SubInterfaceFlags.SUB_IF_API_FLAG_ONE_TAG
+        if 'two_tags' in subif_types:
+            flags = flags | SubInterfaceFlags.SUB_IF_API_FLAG_TWO_TAGS
+        if 'dot1ad' in subif_types:
+            flags = flags | SubInterfaceFlags.SUB_IF_API_FLAG_DOT1AD
+        if 'exact_match' in subif_types:
+            flags = flags | SubInterfaceFlags.SUB_IF_API_FLAG_EXACT_MATCH
+        if 'default_sub' in subif_types:
+            flags = flags | SubInterfaceFlags.SUB_IF_API_FLAG_DEFAULT
+        if type_subif == 'default_sub':
+            flags = flags | SubInterfaceFlags.SUB_IF_API_FLAG_INNER_VLAN_ID_ANY\
+                    | SubInterfaceFlags.SUB_IF_API_FLAG_OUTER_VLAN_ID_ANY
+
         cmd = 'create_subif'
         args = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
             sub_id=int(sub_id),
-            no_tags=1 if 'no_tags' in subif_types else 0,
-            one_tag=1 if 'one_tag' in subif_types else 0,
-            two_tags=1 if 'two_tags' in subif_types else 0,
-            dot1ad=1 if 'dot1ad' in subif_types else 0,
-            exact_match=1 if 'exact_match' in subif_types else 0,
-            default_sub=1 if 'default_sub' in subif_types else 0,
-            outer_vlan_id_any=1 if type_subif == 'default_sub' else 0,
-            inner_vlan_id_any=1 if type_subif == 'default_sub' else 0,
+            sub_if_flags=flags.value if hasattr(flags, 'value') else int(flags),
             outer_vlan_id=int(outer_vlan_id) if outer_vlan_id else 0,
-            inner_vlan_id=int(inner_vlan_id) if inner_vlan_id else 0)
+            inner_vlan_id=int(inner_vlan_id) if inner_vlan_id else 0
+        )
         err_msg = 'Failed to create sub-interface on host {host}'.format(
             host=node['host'])
         with PapiSocketExecutor(node) as papi_exec:
@@ -996,7 +1072,7 @@ class InterfaceUtil(object):
         """Create loopback interface on VPP node.
 
         :param node: Node to create loopback interface on.
-        :param mac: Optional MAC address for Loopback interface.
+        :param mac: Optional MAC address for loopback interface.
         :type node: dict
         :type mac: str
         :returns: SW interface index.
@@ -1378,7 +1454,7 @@ class InterfaceUtil(object):
         cmd = 'sw_interface_set_table'
         args = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
-            is_ipv6=1 if ipv6 else 0,
+            is_ipv6=ipv6,
             vrf_id=int(table_id))
         err_msg = 'Failed to assign interface {ifc} to FIB table'.format(
             ifc=interface)
@@ -1567,8 +1643,12 @@ class InterfaceUtil(object):
         cmd = 'sw_interface_set_rx_placement'
         err_msg = "Failed to set interface RX placement to worker on host " \
                   "{host}!".format(host=node['host'])
-        args = dict(sw_if_index=sw_if_index, queue_id=queue_id,
-                    worker_id=worker_id)
+        args = dict(
+            sw_if_index=sw_if_index,
+            queue_id=queue_id,
+            worker_id=worker_id,
+            is_main=False
+        )
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
