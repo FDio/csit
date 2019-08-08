@@ -396,6 +396,20 @@
 | | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_pci}
 | | ... | vlan-strip-offload | off
 
+| Add VLAN strip offload switch off between DUTs in 3-node double link topology
+| | [Documentation]
+| | ... | Add VLAN Strip Offload switch off on PCI devices between DUTs to VPP
+| | ... | configuration file
+| | ...
+| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_1_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT1.Add DPDK Dev Parameter | ${dut1_if2_2_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_1_pci}
+| | ... | vlan-strip-offload | off
+| | Run keyword | DUT2.Add DPDK Dev Parameter | ${dut2_if1_2_pci}
+| | ... | vlan-strip-offload | off
+
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | | ...
