@@ -325,15 +325,6 @@
 | | ... | ELSE | Fail | Unsupported behaviour: ${behavior}
 | | Set interfaces in path up
 
-| Initialize L2 patch
-| | [Documentation]
-| | ... | Setup L2 patch topology by cross connecting two interfaces on
-| | ... | each DUT. Interfaces are brought up.
-| | ...
-| | Set interfaces in path up
-| | :FOR | ${dut} | IN | @{duts}
-| | | Configure L2patch | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
-
 | Initialize L2 xconnect in 2-node circular topology
 | | [Documentation]
 | | ... | Setup L2 xconnect topology by cross connecting two interfaces on
