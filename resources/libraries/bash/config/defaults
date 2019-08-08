@@ -2,13 +2,6 @@
 
 typeset -A cfg
 cfg=( # set default values in config array
-    [QEMU_INSTALL_DIR]="/opt/qemu-2.11.2"
-    [QEMU_INSTALL_VERSION]="qemu-2.11.2"
-    [QEMU_PATCH]=false
-    [QEMU_FORCE_INSTALL]=false
-    [QEMU_TARGET_LIST]=x86_64-softmmu
-    [DPDK_INSTALL_DIR]=/opt
-    [DPDK_INSTALL_VERSION]=dpdk-17.11
     [K8S_CALICO]="${SCRIPT_DIR}/../../templates/kubernetes/calico_v2.6.3.yaml"
     [K8S_CONTIV_VPP]="https://raw.githubusercontent.com/contiv/vpp/master/k8s/contiv-vpp.yaml"
     [K8S_CSIT]="${SCRIPT_DIR}/../../templates/kubernetes/csit.yaml"
