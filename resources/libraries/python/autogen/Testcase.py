@@ -67,4 +67,5 @@ class Testcase(object):
                 "cores_str": phy_cores,
                 "tc_num": "tc{num:02d}".format(num=num)
             })
-        return self.template.substitute(subst_dict)
+        # TODO: Find cases where safe_ hides a bug, without breahing http tests.
+        return self.template.safe_substitute(subst_dict)

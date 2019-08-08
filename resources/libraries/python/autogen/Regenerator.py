@@ -20,6 +20,7 @@ from os import getcwd
 import sys
 
 from .DefaultTestcase import DefaultTestcase
+from .HttpTestcase import HttpTestcase
 from resources.libraries.python.Constants import Constants
 
 
@@ -32,7 +33,7 @@ def eprint(*args, **kwargs):
 class Regenerator(object):
     """Class containing file generating methods."""
 
-    def __init__(self, testcase_class=DefaultTestcase, quiet=True):
+    def __init__(self, quiet=True):
         """Initialize Testcase class to use.
 
         TODO: See the type doc for testcase_class?
@@ -45,7 +46,6 @@ class Regenerator(object):
         :type testcase_class: subclass of DefaultTestcase accepting suite_id
         :type quiet: boolean
         """
-        self.testcase_class = testcase_class
         self.quiet = quiet
 
     def regenerate_glob(self, pattern, protocol="ip4", tc_kwargs_list=None):
@@ -160,6 +160,51 @@ class Regenerator(object):
                 num = add_testcase(
                     testcase, iface, suite_id, file_out, num, **tc_kwargs)
 
+        def add_http_testcase(
+                testcase, iface, suite_id, file_out, num, phy_cores):
+            """Add testcase to file.
+
+            :param testcase: Testcase class.
+            :param iface: Interface.
+            :param suite_id: Suite ID.
+            :param file_out: File to write testcases to.
+            :param num: Testcase number.
+            :param phy_cores: Number of cores to us in the test case.
+            :type testcase: Testcase
+            :type iface: str
+            :type suite_id: str
+            :type file_out: file
+            :type num: int
+            :type kwargs: int
+            :returns: Next testcase number.
+            :rtype: int
+            """
+            emit = True
+            # Currently no disallowed combinations.
+            if emit:
+                file_out.write(testcase.generate(
+                    num=num, frame_size=0, phy_cores=phy_cores))
+            # We bump tc number in any case, so that future enables/disables
+            # do not affect the numbering of other test cases.
+            return num + 1
+
+        def add_http_testcases(testcase, iface, suite_id, file_out):
+            """Add testcases to file.
+
+            :param testcase: Testcase class.
+            :param iface: Interface.
+            :param suite_id: Suite ID.
+            :param file_out: File to write testcases to.
+            :type testcase: Testcase
+            :type iface: str
+            :type suite_id: str
+            :type file_out: file
+            """
+            num = 1
+            for phy_cores in (1, 2, 4):
+                num = add_http_testcase(
+                    testcase, iface, suite_id, file_out, num, phy_cores)
+
         def replace_defensively(
                 whole, to_replace, replace_with, how_many, msg, in_filename):
             """Replace substrings while checking the number of occurences.
@@ -222,7 +267,7 @@ class Regenerator(object):
                     Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[suite_type],
                     1, "Exact template type doc not found.", in_filename)
                 _, suite_id = get_iface_and_suite_id(tmp_filename)
-                testcase = self.testcase_class(suite_id)
+                testcase = DefaultTestcase(suite_id)
                 for nic_name in Constants.NIC_NAME_TO_CODE.keys():
                     out_filename = replace_defensively(
                         tmp_filename, "10ge2p1x710",
@@ -246,6 +291,30 @@ class Regenerator(object):
                         add_testcases(
                             testcase, iface, suite_id, file_out, kwargs_list)
 
+        def write_http_files(in_filename, in_prolog):
+            """Using given arguments, write all generated http suites.
+
+            :param in_filename: Template filename to derive real filenames from.
+            :param in_prolog: Template content to derive real content from.
+            :type in_filename: str
+            :type in_prolog: str
+            """
+            _, suite_id = get_iface_and_suite_id(in_filename)
+            testcase = HttpTestcase(suite_id)
+            for nic_name in Constants.NIC_NAME_TO_CODE.keys():
+                out_filename = replace_defensively(
+                    in_filename, "10ge2p1x710",
+                    Constants.NIC_NAME_TO_CODE[nic_name], 1,
+                    "File name should contain NIC code once.", in_filename)
+                out_prolog = replace_defensively(
+                    in_prolog, "Intel-X710", nic_name, 2,
+                    "NIC name should appear twice (tag and variable).",
+                    in_filename)
+                iface, suite_id = get_iface_and_suite_id(out_filename)
+                with open(out_filename, "w") as file_out:
+                    file_out.write(out_prolog)
+                    add_http_testcases(testcase, iface, suite_id, file_out)
+
         if not self.quiet:
             eprint("Regenerator starts at {cwd}".format(cwd=getcwd()))
         min_frame_size = protocol_to_min_frame_size[protocol]
@@ -266,10 +335,6 @@ class Regenerator(object):
         for in_filename in glob(pattern):
             if not self.quiet:
                 eprint("Regenerating in_filename:", in_filename)
-            if not in_filename.endswith("ndrpdr.robot"):
-                eprint("Error in {fil}: non-primary suite type encountered."
-                       .format(fil=in_filename))
-                sys.exit(1)
             iface, _ = get_iface_and_suite_id(in_filename)
             if not iface.endswith("10ge2p1x710"):
                 eprint("Error in {fil}: non-primary NIC encountered."
@@ -278,7 +343,14 @@ class Regenerator(object):
             with open(in_filename, "r") as file_in:
                 in_prolog = "".join(
                     file_in.read().partition("*** Test Cases ***")[:-1])
-            write_files(in_filename, in_prolog, kwargs_list)
+            if in_filename.endswith("-ndrpdr.robot"):
+                write_files(in_filename, in_prolog, kwargs_list)
+            elif in_filename.endswith("-httpserver.robot"):
+                write_http_files(in_filename, in_prolog)
+            else:
+                eprint("Error in {fil}: non-primary suite type encountered."
+                       .format(fil=in_filename))
+                sys.exit(1)
         if not self.quiet:
             eprint("Regenerator ends.")
         eprint()  # To make autogen check output more readable.
