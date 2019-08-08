@@ -825,6 +825,10 @@ def _generate_url(base, testbed, test_name):
     elif "ipsec" in test_name:
         file_name = "ipsec"
         feature = "-base-scale"
+        if "-int-" in test_name:
+            feature = "-base-scale-int"
+        elif "tnl" in test_name:
+            feature = "-base-scale-tnl"
 
     elif "ethip4lispip" in test_name or "ethip4vxlan" in test_name:
         file_name = "ip4_tunnels"
@@ -872,6 +876,8 @@ def _generate_url(base, testbed, test_name):
         nic = "vic1227-"
     elif "vic1385" in test_name:
         nic = "vic1385-"
+    elif "x553" in test_name:
+        nic = "x553-"
     else:
         nic = ""
     anchor += nic

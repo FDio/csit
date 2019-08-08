@@ -7,4 +7,4 @@ IPv4 Tunnels
     ip4_tunnels-3n-hsw-x710-64b-base
     ip4_tunnels-3n-skx-x710-64b-base
     ip4_tunnels-3n-tsh-x520-64b-base
-    ip4_tunnels-3n-dnv-x533-64b-base
+    ip4_tunnels-3n-dnv-x553-64b-base
