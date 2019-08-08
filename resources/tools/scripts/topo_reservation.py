@@ -74,6 +74,15 @@ def main():
     via a graphical terminal, which does not allow copying of text,
     as they need less keypresses to identify the test run holding the testbed.
     Also, the listing shows timestamps, which is useful for both audiences.
+
+    This all assumes the target system accepts ssh connections.
+    If it does not, the caller probably wants to stop trying
+    to reserve this system. Therefore this script can return 3 different codes.
+    Return code 0 means the reservation was successful.
+    Return code 1 means the system is inaccessible (or similarly unsuitable).
+    Return code 2 means the system is accessible, but already reserved.
+    The reason unsuitable systems return 1 is because that is also the value
+    Python returns on encountering and unexcepted exception.
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", "--topo", required=True,
@@ -104,7 +113,7 @@ def main():
         ret, _, err = exec_cmd(tgn, "rm -r {}".format(RESERVATION_DIR))
         if ret:
             print "Cancellation unsuccessful:\n{}".format(err)
-        return ret
+        return 1
     # Before critical section, output can be outdated already.
     print "Diagnostic commands:"
     # -d and * are to supress "total <size>", see https://askubuntu.com/a/61190
@@ -117,8 +126,8 @@ def main():
     ret, _, err = exec_cmd(tgn, "mkdir '{dir}'".format(dir=RESERVATION_DIR))
     # Critical section is over.
     if ret:
-        print "Reservation unsuccessful:\n{}".format(err)
-        return ret
+        print "Already reserved by another job:\n{}".format(err)
+        return 2
     # Here the script knows it is the only owner of the testbed.
     print "Success, writing test run info to reservation dir."
     # TODO: Add optional argument to exec_cmd_no_error to print message
@@ -129,7 +138,7 @@ def main():
     if ret2:
         print "Writing test run info failed, but continuing anyway:\n{}".format(
             err)
-    return ret
+    return 0
 
 
 if __name__ == "__main__":
