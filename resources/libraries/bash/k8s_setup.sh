@@ -18,18 +18,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Include
 source ${SCRIPT_DIR}/config/defaults
-source ${SCRIPT_DIR}/shell/dpdk_utils.sh
 source ${SCRIPT_DIR}/shell/k8s_utils.sh
-
-# Read configuration
-while read line
-do
-    if echo $line | grep -F = &>/dev/null
-    then
-        varname=$(echo "$line" | cut -d '=' -f 1)
-        cfg[$varname]=$(echo "$line" | cut -d '=' -f 2-)
-    fi
-done < ${SCRIPT_DIR}/config/config
 
 trap "k8s_utils.destroy" ERR
 
@@ -44,7 +33,9 @@ case "$1" in
         # Revert any changes made to this host by 'kubeadm init'
         k8s_utils.destroy
         # Load kernel modules uio/uio_pci_generic
-        dpdk_utils.load_modules
+        sudo modprobe uio
+        sudo modprobe uio_pci_generic
+        sudo modprobe vfio_pci
         # Sets up the Kubernetes master
         k8s_utils.prepare "--pod-network-cidr=192.168.0.0/16"
         # Apply resources
