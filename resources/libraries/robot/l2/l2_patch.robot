@@ -13,7 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
-| Library | resources.libraries.python.L2Util.py
+| Library | resources.libraries.python.L2Util
 
 *** Keywords ***
 | Initialize L2 patch
