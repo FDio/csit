@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "61bc5f72_e7e52fb9",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-08T13:21:34Z",
+      "side": 1,
+      "message": "Excess pipe.",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 6
+      },
+      "revId": "ecf6bcf770b4095b042e7d2560a94d4b50a990d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
