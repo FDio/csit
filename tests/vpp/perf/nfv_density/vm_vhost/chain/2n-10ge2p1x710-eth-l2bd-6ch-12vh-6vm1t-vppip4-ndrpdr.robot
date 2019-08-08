@@ -84,9 +84,9 @@
 | | When Initialize layer interface
 | | ... | count=${nf_chains}
 | | And Initialize L2 bridge domains for multiple chains with Vhost-User
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}=
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}= | jumbo=${jumbo}
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${False} | vnf=vpp_chain_ip4
 | | Then Find NDR and PDR intervals using optimized search
 
