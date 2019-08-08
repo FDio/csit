@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "290e96cf_1477c0f9",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T06:55:33Z",
+      "side": 1,
+      "message": "@Vratko: Can actually Suite generator cover NIC here? Thanks.",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 36
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bea6f5c_72023d95",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T06:55:33Z",
+      "side": 1,
+      "message": "please add here cps|rps|tps",
+      "range": {
+        "startLine": 88,
+        "startChar": 22,
+        "endLine": 88,
+        "endChar": 25
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d995ceef_0443c4e9",
+        "filename": "resources/libraries/python/tcp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T06:55:33Z",
+      "side": 1,
+      "message": "-2019",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "acd2cb28_aaac27b7",
+        "filename": "resources/libraries/python/tcp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T06:55:33Z",
+      "side": 1,
+      "message": "Please wrap lines to max 80chars. thx",
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "10f6677b_2b7f0ba1",
+        "filename": "resources/libraries/python/tcp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T06:55:33Z",
+      "side": 1,
+      "message": "OPTIONAL: Can be simplified to one statement with conditional parameter, but fine for now.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 45
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb4ffeab_c55c190e",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T06:55:33Z",
+      "side": 1,
+      "message": "Can we please split the file into -rps -tps and -cps (i know it will be heavily same but will help to drive naming convention and possibly autogeneration), thoughts?",
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4286c218_1c6eb3d1",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T06:55:33Z",
+      "side": 1,
+      "message": "-2019",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe798533_7eef9769",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T06:55:33Z",
+      "side": 1,
+      "message": "Is it possible to execute on 2n-skx? if so lets move this to SKX and tag will be 2_NODE.....",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a49214f_6967fcb8",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T06:55:33Z",
+      "side": 1,
+      "message": "Eth-IPv4-TCP-HTTP i guess",
+      "range": {
+        "startLine": 36,
+        "startChar": 43,
+        "endLine": 36,
+        "endChar": 48
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76b05431_83bce87a",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T06:55:33Z",
+      "side": 1,
+      "message": "for HTTP request and response",
+      "range": {
+        "startLine": 36,
+        "startChar": 52,
+        "endLine": 36,
+        "endChar": 65
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87efc13c_8aeb2009",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T06:55:33Z",
+      "side": 1,
+      "message": "i was desperately looking in doc of WRK how big is the packet. is is 1518 or IMIX really?",
+      "range": {
+        "startLine": 86,
+        "startChar": 7,
+        "endLine": 86,
+        "endChar": 11
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
