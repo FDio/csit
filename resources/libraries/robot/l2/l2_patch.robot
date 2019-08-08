@@ -12,13 +12,15 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
 
 *** Keywords ***
-| Configure L2 patch
-| | [Documentation] | Setup Bidirectional L2 patch on DUT
-| | [Arguments] | ${node} | ${if1} | ${if2} |
-| | Set Interface State | ${node} | ${if1} | up
-| | Set Interface State | ${node} | ${if2} | up
-| | Vpp Setup Bidirectional L2 patch | ${node} | ${if1} | ${if2}
+| Initialize L2 patch
+| | [Documentation]
+| | ... | Setup L2 patch topology by cross connecting two interfaces on
+| | ... | each DUT. Interfaces are brought up.
+| | ...
+| | Set interfaces in path up
+| | :FOR | ${dut} | IN | @{duts}
+| | | VPP Setup Bidirectional L2 patch
+| | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
