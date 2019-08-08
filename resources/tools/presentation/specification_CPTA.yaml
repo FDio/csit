@@ -2853,7 +2853,7 @@
     - title: "3n-hsw-x710-ip4-ipsecsw-int-64b-base-scale-1t1c"
       output-file-name: "ipsecsw-int-1t1c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECSW' and 'IPSECINT' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECSW' and 'IPSECINT' and 'AES_256_GCM' and ('BASE' or 'TNL_4' or 'TNL_40' or 'TNL_1000' or 'TNL_60000') and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2861,7 +2861,7 @@
     - title: "3n-hsw-x710-ip4-ipsecsw-int-64b-base-scale-2t2c"
       output-file-name: "ipsecsw-int-2t2c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECSW' and 'IPSECINT' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECSW' and 'IPSECINT' and 'AES_256_GCM' and ('BASE' or 'TNL_4' or 'TNL_40' or 'TNL_1000' or 'TNL_60000') and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2869,7 +2869,7 @@
     - title: "3n-hsw-x710-ip4-ipsecsw-int-64b-base-scale-4t4c"
       output-file-name: "ipsecsw-int-4t4c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECSW' and 'IPSECINT' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECSW' and 'IPSECINT' and 'AES_256_GCM' and ('BASE' or 'TNL_4' or 'TNL_40' or 'TNL_1000' or 'TNL_60000') and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2878,7 +2878,7 @@
     - title: "3n-hsw-x710-ip4-ipsecsw-tnl-64b-base-scale-1t1c"
       output-file-name: "ipsecsw-tnl-1t1c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECSW' and 'IPSECTUN' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECSW' and 'IPSECTUN' and 'AES_256_GCM' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2886,7 +2886,7 @@
     - title: "3n-hsw-x710-ip4-ipsecsw-tnl-64b-base-scale-2t2c"
       output-file-name: "ipsecsw-tnl-2t2c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECSW' and 'IPSECTUN' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECSW' and 'IPSECTUN' and 'AES_256_GCM' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -2894,7 +2894,7 @@
     - title: "3n-hsw-x710-ip4-ipsecsw-tnl-64b-base-scale-4t4c"
       output-file-name: "ipsecsw-tnl-4t4c-x710-3n-hsw"
       data: "plot-performance-trending-vpp-3n-hsw"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECSW' and 'IPSECTUN' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECSW' and 'IPSECTUN' and 'AES_256_GCM' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3833,7 +3833,7 @@
     - title: "3n-skx-x710-ip4-ipsecsw-int-64b-base-scale-2t1c"
       output-file-name: "ipsecsw-int-2t1c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '2T1C' and 'IPSECSW' and 'IPSECINT' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '2T1C' and 'IPSECSW' and 'IPSECINT' and 'AES_256_GCM' and ('BASE' or 'TNL_4' or 'TNL_40' or 'TNL_1000' or 'TNL_60000') and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3841,7 +3841,7 @@
     - title: "3n-skx-x710-ip4-ipsecsw-int-64b-base-scale-4t2c"
       output-file-name: "ipsecsw-int-4t2c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '4T2C' and 'IPSECSW' and 'IPSECINT' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '4T2C' and 'IPSECSW' and 'IPSECINT' and 'AES_256_GCM' and ('BASE' or 'TNL_4' or 'TNL_40' or 'TNL_1000' or 'TNL_60000') and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3849,7 +3849,7 @@
     - title: "3n-skx-x710-ip4-ipsecsw-int-64b-base-scale-8t4c"
       output-file-name: "ipsecsw-int-8t4c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '8T4C' and 'IPSECSW' and 'IPSECINT' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '8T4C' and 'IPSECSW' and 'IPSECINT' and 'AES_256_GCM' and ('BASE' or 'TNL_4' or 'TNL_40' or 'TNL_1000' or 'TNL_60000') and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3858,7 +3858,7 @@
     - title: "3n-skx-x710-ip4-ipsecsw-tnl-64b-base-scale-2t1c"
       output-file-name: "ipsecsw-tnl-2t1c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '2T1C' and 'IPSECSW' and 'IPSECTUN' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '2T1C' and 'IPSECSW' and 'IPSECTUN' and 'AES_256_GCM' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3866,7 +3866,7 @@
     - title: "3n-skx-x710-ip4-ipsecsw-tnl-64b-base-scale-4t2c"
       output-file-name: "ipsecsw-tnl-4t2c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '4T2C' and 'IPSECSW' and 'IPSECTUN' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '4T2C' and 'IPSECSW' and 'IPSECTUN' and 'AES_256_GCM' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -3874,7 +3874,7 @@
     - title: "3n-skx-x710-ip4-ipsecsw-tnl-64b-base-scale-8t4c"
       output-file-name: "ipsecsw-tnl-8t4c-x710-3n-skx"
       data: "plot-performance-trending-vpp-3n-skx"
-      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '8T4C' and 'IPSECSW' and 'IPSECTUN' and not 'VHOST'"
+      filter: "'NIC_Intel-X710' and '64B' and 'IP4FWD' and 'MRR' and '8T4C' and 'IPSECSW' and 'IPSECTUN' and 'AES_256_GCM' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -5232,7 +5232,7 @@
     - title: "3n-dnv-x553-ip4-ipsechw-int-64b-base-scale-1t1c"
       output-file-name: "ipsechw-int-1t1c-x553-3n-dnv"
       data: "plot-performance-trending-vpp-3n-dnv"
-      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECHW' and 'IPSECINT' and not 'VHOST'"
+      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECHW' and 'IPSECINT' and 'AES_256_GCM' and ('BASE' or 'TNL_4' or 'TNL_40' or 'TNL_1000' or 'TNL_60000') and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -5240,7 +5240,7 @@
     - title: "3n-dnv-x553-ip4-ipsechw-int-64b-base-scale-2t2c"
       output-file-name: "ipsechw-int-2t2c-x553-3n-dnv"
       data: "plot-performance-trending-vpp-3n-dnv"
-      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECHW' and 'IPSECINT' and not 'VHOST'"
+      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECHW' and 'IPSECINT' and 'AES_256_GCM' and ('BASE' or 'TNL_4' or 'TNL_40' or 'TNL_1000' or 'TNL_60000') and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -5248,7 +5248,7 @@
     - title: "3n-dnv-x553-ip4-ipsechw-int-64b-base-scale-4t4c"
       output-file-name: "ipsechw-int-4t4c-x553-3n-dnv"
       data: "plot-performance-trending-vpp-3n-dnv"
-      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECHW' and 'IPSECINT' and not 'VHOST'"
+      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECHW' and 'IPSECINT' and 'AES_256_GCM' and ('BASE' or 'TNL_4' or 'TNL_40' or 'TNL_1000' or 'TNL_60000') and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -5258,7 +5258,7 @@
     - title: "3n-dnv-x553-ip4-ipsechw-tnl-64b-base-scale-1t1c"
       output-file-name: "ipsechw-tnl-1t1c-x553-3n-dnv"
       data: "plot-performance-trending-vpp-3n-dnv"
-      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECHW' and 'IPSECTUN' and not 'VHOST'"
+      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '1T1C' and 'IPSECHW' and 'IPSECTUN' and 'AES_256_GCM' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -5266,7 +5266,7 @@
     - title: "3n-dnv-x553-ip4-ipsechw-tnl-64b-base-scale-2t2c"
       output-file-name: "ipsechw-tnl-2t2c-x553-3n-dnv"
       data: "plot-performance-trending-vpp-3n-dnv"
-      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECHW' and 'IPSECTUN' and not 'VHOST'"
+      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '2T2C' and 'IPSECHW' and 'IPSECTUN' and 'AES_256_GCM' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
@@ -5274,7 +5274,7 @@
     - title: "3n-dnv-x553-ip4-ipsechw-tnl-64b-base-scale-4t4c"
       output-file-name: "ipsechw-tnl-4t4c-x553-3n-dnv"
       data: "plot-performance-trending-vpp-3n-dnv"
-      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECHW' and 'IPSECTUN' and not 'VHOST'"
+      filter: "'NIC_Intel-X553' and '64B' and 'IP4FWD' and 'MRR' and '4T4C' and 'IPSECHW' and 'IPSECTUN' and 'AES_256_GCM' and not 'VHOST'"
       parameters:
       - "result"
       layout: "plot-cpta"
