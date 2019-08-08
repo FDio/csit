@@ -553,6 +553,36 @@ function installed () {
 }
 
 
+function remove_topo () {
+
+    # Remove the argument from list of available topologies.
+    #
+    # Just a de-duplicated block of code
+    #
+    # Argument:
+    # - ${1} - The topology item to remove. Required.
+    # Variable read and re-written:
+    # - TOPOLOGIES - Array of paths to topologies, with failed cleanups removed.
+
+    set -exuo pipefail
+
+    warn "Testbed ${topo} seems unsuitable, removing from the list."
+
+    # Build new topology array.
+    #   TOPOLOGIES=("${TOPOLOGIES[@]/$topo}")
+    # does not really work, see:
+    # https://stackoverflow.com/questions/16860877/remove-an-element-from-a-bash-array
+
+    new_topologies=()
+    for item in "${TOPOLOGIES[@]}"; do
+        if [[ "${item}" != "${1}" ]]; then
+            new_topologies+=("${item}")
+        fi
+    done
+    TOPOLOGIES=("${new_topologies[@]}")
+}
+
+
 function reserve_and_cleanup_testbed () {
 
     # Reserve physical testbed, perform cleanup, register trap to unreserve.
@@ -576,7 +606,7 @@ function reserve_and_cleanup_testbed () {
 
     set -exuo pipefail
 
-    while [[ ${TOPOLOGIES[@]} ]]; do
+    while true; do
         for topo in "${TOPOLOGIES[@]}"; do
             set +e
             scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
@@ -609,38 +639,31 @@ function reserve_and_cleanup_testbed () {
                 warn "Testbed cleanup failed: ${topo}"
                 untrap_and_unreserve_testbed "Fail of unreserve after cleanup."
                 # WORKING_TOPOLOGY is now empty again.
-                # Build new topology array.
-                #   TOPOLOGIES=("${TOPOLOGIES[@]/$topo}")
-                # does not really work, see:
-                # https://stackoverflow.com/questions/16860877/remove-an-element-from-a-bash-array
-                new_topologies=()
-                for item in "${TOPOLOGIES[@]}"; do
-                    if [[ "${item}" != "${topo}" ]]; then
-                        new_topologies+=("${item}")
-                    fi
-                done
-                TOPOLOGIES=("${new_topologies[@]}")
-                break
+                remove_topo "${topo}"
+            elif [[ "${result}" != "2" ]]; then
+                # 1 or unexpected return code, testbed is probably unusable.
+                remove_topo "${topo}"
             fi
+            # Else testbed is accessible but currently reserved, moving on.
         done
 
         if [[ -n "${WORKING_TOPOLOGY-}" ]]; then
             # Exit the infinite while loop if we made a reservation.
+            warn "Reservation and cleanup successful."
             break
         fi
 
+        if [[ "${#TOPOLOGIES[@]}" == "0" ]]; then
+            die "Run out of operational testbeds!"
+        fi
+
         # Wait ~3minutes before next try.
-        sleep_time="$[ ( $RANDOM % 20 ) + 180 ]s" || {
+        sleep_time="$[ ( ${RANDOM} % 20 ) + 180 ]s" || {
             die "Sleep time calculation failed."
         }
         echo "Sleeping ${sleep_time}"
         sleep "${sleep_time}" || die "Sleep failed."
     done
-    if [[ ${TOPOLOGIES[@]} ]]; then
-        echo "Reservation and cleanup successful."
-    else
-        die "Run out of operational testbeds!"
-    fi
 }
 
 
