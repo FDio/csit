@@ -12,108 +12,18 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | Collections
-| Library | String
-| Library | resources.libraries.python.Classify.Classify
 | Library | resources.libraries.python.DpdkUtil
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPUtil
-| Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TestConfig
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.VhostUser
 | ...
-| Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/ip/ip6.robot
-| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/l2/l2_patch.robot
-| Resource | resources/libraries/robot/l2/l2_xconnect.robot
-| Resource | resources/libraries/robot/l2/tagging.robot
-| Resource | resources/libraries/robot/overlay/srv6.robot
-| Resource | resources/libraries/robot/shared/counters.robot
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| ...
 | Documentation | Performance suite keywords - configuration
 
 *** Keywords ***
-| Set interfaces in path up
-| | [Documentation]
-| | ... | *Set UP state on VPP interfaces in path on all DUT nodes and set
-| | ... | maximal MTU.*
-| | ...
-# TODO: Rework KW to set all interfaces in path UP and set MTU (including
-# software interfaces. Run KW at the start phase of VPP setup to split
-# from other "functional" configuration. This will allow modularity of this
-# library
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
-| | | ... | ELSE
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if2}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
-| | | ... | ELSE
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
-| | | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | ELSE
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
-| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if2}
-| | | Run Keyword If | '${if2_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
-| | | ... | ELSE
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
-| | | Run Keyword Unless | '${if2_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
-| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
-
-| Set single interfaces in path up
-| | [Documentation]
-| | ... | *Set UP state on single VPP interfaces in path on all DUT nodes and set
-| | ... | maximal MTU.*
-| | ...
-# TODO: Rework KW to set all interfaces in path UP and set MTU (including
-# software interfaces. Run KW at the start phase of VPP setup to split
-# from other "functional" configuration. This will allow modularity of this
-# library
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
-| | | ... | ELSE
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
-| | | ... | Variable Should Exist | ${${dut}_if1}
-| | | Run Keyword If | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ... | ELSE
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
-| | | Run Keyword Unless | '${if1_status}' == 'PASS'
-| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
-| | All VPP Interfaces Ready Wait | ${nodes}
-
 | Initialize IPSec in 3-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
@@ -124,18 +34,6 @@
 | | ... | address.
 | | ...
 | | Set interfaces in path up
-| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | ${dut2_if2_mac}= | Get Interface MAC | ${dut2} | ${dut2_if2}
-| | Set Test Variable | ${tg_if1_mac}
-| | Set Test Variable | ${tg_if2_mac}
-| | Set Test Variable | ${dut1_if1_mac}
-| | Set Test Variable | ${dut1_if2_mac}
-| | Set Test Variable | ${dut2_if1_mac}
-| | Set Test Variable | ${dut2_if2_mac}
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
 | | ... | ${dut1_if1_ip4} | 24
 | | VPP Interface Set IP Address | ${dut2} | ${dut2_if2}
@@ -198,13 +96,7 @@
 | | ...
 | | ${prefix}= | Set Variable | 64
 | | ${host_prefix}= | Set Variable | 64
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2002:1::1 | ${tg1_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2002:1::1 | ${tg_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add Ip Neighbor
 | | ... | ${dut1} | ${subif_index_1} | 2002:2::2 | ${dut2_if1_mac}
@@ -217,7 +109,7 @@
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${subif_index_1}
-| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 2002:3::1 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 2002:3::1 | ${tg_if2_mac}
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 2002:1::2 | ${prefix}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address | ${dut1} | ${subif_index_1} | 2002:2::1
@@ -246,10 +138,6 @@
 | | ... | routing for IPv6 for required number of SIDs and configure IPv6 routes
 | | ... | on both DUT nodes.
 | | ...
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip6} | ${prefix}
 | | VPP Interface Set IP Address
@@ -262,9 +150,9 @@
 | | :FOR | ${number} | IN RANGE | 2 | ${dst_addr_nr}+2
 | | | ${hexa_nr}= | Convert To Hex | ${number}
 | | | VPP Add IP Neighbor | ${dut1}
-| | | ... | ${dut1_if1} | ${tg_if1_ip6_subnet}${hexa_nr} | ${tg1_if1_mac}
+| | | ... | ${dut1_if1} | ${tg_if1_ip6_subnet}${hexa_nr} | ${tg_if1_mac}
 | | | VPP Add IP Neighbor | ${dut2}
-| | | ... | ${dut2_if2} | ${tg_if2_ip6_subnet}${hexa_nr} | ${tg1_if2_mac}
+| | | ... | ${dut2_if2} | ${tg_if2_ip6_subnet}${hexa_nr} | ${tg_if2_mac}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${dut1_if2} | ${dut2_if1_ip6} | ${dut2_if1_mac}
 | | VPP Add IP Neighbor
@@ -336,10 +224,6 @@
 | | ... | KW uses test variable rxq_count_int set by KW Add worker threads
 | | ... | and rxqueues to all DUTs
 | | ...
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | ${sock1}= | Set Variable | memif-DUT1_CNF
 | | ${sock2}= | Set Variable | memif-DUT2_CNF
 | | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock1}
@@ -352,7 +236,6 @@
 | | ... | ${rxq_count_int}
 | | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if1}
 | | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if2}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Show Memif | ${nodes['${dut}']}
 | | VPP Interface Set IP Address
@@ -377,9 +260,9 @@
 | | VPP Add IP Neighbor
 | | ... | ${dut2} | ${dut2_if1} | ${dut1_if2_ip6} | ${dut1_if2_mac}
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if1} | ${tg_if1_ip6_subnet}2 | ${tg1_if1_mac}
+| | ... | ${dut1} | ${dut1_if1} | ${tg_if1_ip6_subnet}2 | ${tg_if1_mac}
 | | VPP Add IP Neighbor
-| | ... | ${dut2} | ${dut2_if2} | ${tg_if2_ip6_subnet}2 | ${tg1_if2_mac}
+| | ... | ${dut2} | ${dut2_if2} | ${tg_if2_ip6_subnet}2 | ${tg_if2_mac}
 | | ${dut1-memif-1-if2_mac}= | Get Interface MAC | ${dut1} | memif2
 | | ${dut2-memif-1-if2_mac}= | Get Interface MAC | ${dut2} | memif2
 | | VPP Add IP Neighbor | ${dut1}
@@ -448,7 +331,6 @@
 | | ... | each DUT. Interfaces are brought up.
 | | ...
 | | Set interfaces in path up
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Configure L2patch | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
 
@@ -480,8 +362,6 @@
 | | Set interfaces in path up
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if2} | 172.16.0.1 | 24
 | | VPP Interface Set IP Address | ${dut2} | ${dut2_if1} | 172.16.0.2 | 24
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
 | | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
 | | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
@@ -541,7 +421,6 @@
 | | ...
 | | [Arguments] | ${nf_nodes}=${1}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 xconnect with Vhost-User on node | ${dut}
 | | | ... | nf_nodes=${nf_nodes}
@@ -839,18 +718,11 @@
 | | ...
 | | Set interfaces in path up
 | | ...
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | ...
 | | :FOR | ${number} | IN RANGE | 2 | ${ip_nr}+2
 | | | VPP Add IP Neighbor
-| | | ... | ${dut1} | ${dut1_if1} | 10.10.10.${number} | ${tg1_if1_mac}
+| | | ... | ${dut1} | ${dut1_if1} | 10.10.10.${number} | ${tg_if1_mac}
 | | | VPP Add IP Neighbor
-| | | ... | ${dut} | ${dut_if2} | 20.20.20.${number} | ${tg1_if2_mac}
+| | | ... | ${dut} | ${dut_if2} | 20.20.20.${number} | ${tg_if2_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
@@ -1103,8 +975,6 @@
 | | ... | 24
 | | VPP Interface Set IP Address | ${dut2} | ${dut2_if1} | 172.16.0.2
 | | ... | 24
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
 | | VPP Add IP Neighbor | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
 | | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
@@ -1256,8 +1126,6 @@
 | | | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | ${vxlan.vni}
 | | | ... | ${dut2_address} | ${vxlan.vtep}
 | | | Add interface to bridge domain | ${dut2} | ${dut2s_vxlan} | ${dut2_bd_id1}
-| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | ${dut1_gw} | ${tg_if1_mac}
 | | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | ${dut2_gw} | ${tg_if2_mac}
 | | Vpp Route Add | ${dut1} | ${dut1_route_subnet} | ${dut1_route_mask}
@@ -1479,16 +1347,12 @@
 | | ... | ${dut2_dut1_address} | ${dut2_tg_address} | ${duts_prefix}
 | | ...
 | | Set interfaces in path up
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg_if1_mac}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${dut1_if2} | ${dut2_dut1_address} | ${dut2_if1_mac}
 | | VPP Add IP Neighbor
 | | ... | ${dut2} | ${dut2_if1} | ${dut1_dut2_address} | ${dut1_if2_mac}
-| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg_if2_mac}
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
 | | ... | ${dut1_tg_address} | ${duts_prefix}
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if2}
@@ -1555,10 +1419,6 @@
 | | ... | ${dut2_dut1_address} | ${dut2_tg_address} | ${prefix}
 | | ...
 | | Set interfaces in path up
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_tg_address} | ${prefix}
 | | VPP Interface Set IP Address
@@ -1568,8 +1428,8 @@
 | | VPP Interface Set IP Address
 | | ... | ${dut2} | ${dut2_if2} | ${dut2_tg_address} | ${prefix}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg1_if1_mac}
-| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg_if2_mac}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${dut1_if2} | ${dut2_dut1_address} | ${dut2_if1_mac}
 | | VPP Add IP Neighbor
@@ -1603,10 +1463,6 @@
 | | ... | ${prefix4} | ${prefix6}
 | | ...
 | | Set interfaces in path up
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
 | | ... | ${dut1_tg_ip4_address} | ${prefix4}
 | | VPP Interface Set IP Address
@@ -1616,8 +1472,8 @@
 | | VPP Interface Set IP Address | ${dut2} | ${dut2_if2}
 | | ... | ${dut2_tg_ip4_address} | ${prefix4}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
-| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg_if2_mac}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${dut1_if2} | ${dut2_dut1_ip6_address} | ${dut2_if1_mac}
 | | VPP Add IP Neighbor
@@ -1651,10 +1507,6 @@
 | | ... | ${prefix6} | ${prefix4}
 | | ...
 | | Set interfaces in path up
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_tg_ip6_address} | ${prefix6}
 | | VPP Interface Set IP Address
@@ -1664,8 +1516,8 @@
 | | VPP Interface Set IP Address
 | | ... | ${dut2} | ${dut2_if2} | ${dut2_tg_ip6_address} | ${prefix6}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
-| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg1_if1_mac}
-| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg1_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg_if2_mac}
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${dut1_if2} | ${dut2_dut1_ip4_address} | ${dut2_if1_mac}
 | | VPP Add IP Neighbor
@@ -1699,13 +1551,6 @@
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 12.0.0.1 | 20
-| | ...
-| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Run Keyword If | '${dut2_status}' == 'PASS'
-| | ... | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | ...
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.0.0.2 | ${tg_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -1786,7 +1631,6 @@
 | | ...
 | | [Arguments] | ${count}=${1}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 xconnect with memif pairs on DUT node | ${dut} | ${count}
 | | Set interfaces in path up
@@ -1856,7 +1700,6 @@
 | | ...
 | | [Arguments] | ${nf_chain}=${1} | ${nf_nodes}=${1} | ${auto_scale}=${True}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize L2 Bridge Domain with memif pairs on DUT node | ${dut}
 | | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
@@ -1911,7 +1754,6 @@
 | | ${rxq}= | Run Keyword If | ${auto_scale} == ${True}
 | | ... | Set Variable | ${rxq_count_int}
 | | ... | ELSE | Set Variable | ${1}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if1} | ${1}
 | | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if2} | ${2}
@@ -2058,7 +1900,6 @@
 | | ...
 | | [Arguments] | ${number}=${1}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${sock}= | Set Variable | memif-${dut}_CNF
 | | | ${sid}= | Evaluate | (${number} * ${2}) - ${1}
@@ -2092,7 +1933,6 @@
 | | ...
 | | [Arguments] | ${number}=${1}
 | | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${sock}= | Set Variable | memif-${dut}_CNF
 | | | ${sid}= | Evaluate | (${number} * ${2}) - ${1}
