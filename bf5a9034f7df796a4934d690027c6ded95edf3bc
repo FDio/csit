@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "8fa9b6bd_6c436b58",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-08T09:03:54Z",
+      "side": 1,
+      "message": "I suggest to start very simple. Remove all the getters and setters and rework robot KW to put direct parameters. Stop crippling code to fit. Take an inspiration from GBP.py how the library should look like. You cannot solve the problems without reworking L2 KW in robot. \nThis lib should fully follow PAPI design so every function corresponds to what VPP expects not what CSIT does now.\n\nIf you cannot do that please let me know i will reassign the task to someone else. Thanks",
+      "revId": "bf5a9034f7df796a4934d690027c6ded95edf3bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6db2da0e_e93bcac3",
         "filename": "resources/libraries/python/Policer.py",
         "patchSetId": 10
