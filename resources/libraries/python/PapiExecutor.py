@@ -132,7 +132,7 @@ class PapiSocketExecutor(object):
     api_json_directory = None
     crc_checker_instance = None
 
-    def __init__(self, node, remote_vpp_socket="/run/vpp-api.sock"):
+    def __init__(self, node, remote_vpp_socket="/run/vpp/api.sock"):
         """Store the given arguments, declare managed variables.
 
         :param node: Node to connect to and forward unix domain socket from.
