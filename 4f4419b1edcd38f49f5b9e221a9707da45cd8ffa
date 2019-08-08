@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "008a9091_3a85a73a",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-08T15:33:10Z",
+      "side": 1,
+      "message": "\u003e it could be done\n\nI took the currently merged codebase, and hacked on it until \"tox -e autogen\" passed.\nhttps://gerrit.fd.io/r/c/csit/+/21153\nNot sure how to squash that into this Change.",
+      "parentUuid": "2304bf03_7266fd98",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 36
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4bea6f5c_72023d95",
         "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
         "patchSetId": 9
