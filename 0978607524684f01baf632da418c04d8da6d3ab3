@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "983a8355_c4805a0c",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-08T17:04:30Z",
+      "side": 1,
+      "message": "Why not self._conform_action\nso line 147 is not needed?",
+      "range": {
+        "startLine": 162,
+        "startChar": 32,
+        "endLine": 162,
+        "endChar": 46
+      },
+      "revId": "0978607524684f01baf632da418c04d8da6d3ab3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f0b6f67b_5bbea0ae",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-08T17:04:30Z",
+      "side": 1,
+      "message": "PolicerAction.DROP.value",
+      "range": {
+        "startLine": 358,
+        "startChar": 31,
+        "endLine": 358,
+        "endChar": 54
+      },
+      "revId": "0978607524684f01baf632da418c04d8da6d3ab3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
