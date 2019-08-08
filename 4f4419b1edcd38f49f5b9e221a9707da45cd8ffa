@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "ed809a50_f14f956a",
+        "filename": "resources/libraries/bash/entry/check/tc_naming.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-08-08T15:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4bea6f5c_72023d95",
+      "range": {
+        "startLine": 88,
+        "startChar": 22,
+        "endLine": 88,
+        "endChar": 25
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d995ceef_0443c4e9",
         "filename": "resources/libraries/python/tcp.py",
         "patchSetId": 9
@@ -119,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "d5e0ea0e_fa6d74f0",
+        "filename": "resources/libraries/python/tcp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-08-08T15:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d995ceef_0443c4e9",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "acd2cb28_aaac27b7",
         "filename": "resources/libraries/python/tcp.py",
         "patchSetId": 9
@@ -133,6 +181,24 @@
       "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ce7a76a_35853072",
+        "filename": "resources/libraries/python/tcp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-08-08T15:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acd2cb28_aaac27b7",
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -183,6 +249,30 @@
     },
     {
       "key": {
+        "uuid": "f0a8ef48_557527b9",
+        "filename": "resources/libraries/python/tcp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-08-08T15:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca8fc034_99d9d951",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 45
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3790c84_de962c72",
         "filename": "resources/libraries/robot/tcp/tcp_setup.robot",
         "patchSetId": 9
@@ -206,6 +296,30 @@
     },
     {
       "key": {
+        "uuid": "ac943ddc_5920cef8",
+        "filename": "resources/libraries/robot/tcp/tcp_setup.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-08-08T15:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3790c84_de962c72",
+      "range": {
+        "startLine": 30,
+        "startChar": 12,
+        "endLine": 30,
+        "endChar": 33
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cb4ffeab_c55c190e",
         "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
         "patchSetId": 9
@@ -220,6 +334,24 @@
       "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "690038ef_8f00b539",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-08-08T15:47:29Z",
+      "side": 1,
+      "message": "\u003e Can we please split the file into -rps -tps and -cps (i know it will be heavily same but will help to drive naming convention and possibly autogeneration), thoughts?\n\nDone.  I will refactor the common sections when I add QUIC perf tests for 20.01",
+      "parentUuid": "cb4ffeab_c55c190e",
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -293,6 +425,30 @@
     },
     {
       "key": {
+        "uuid": "209206c3_99894948",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-08-08T15:47:29Z",
+      "side": 1,
+      "message": "@pmikus: It is preferable to test on 40ge interfaces, so if there are no XL710\u0027s on 2n-skx, then it would be best to stay with 3n-hsw.\n\nHow overloaded is 3n-hsw testbeds compared to 2n-skx?",
+      "parentUuid": "ec802fc1_32899c5b",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5a49214f_6967fcb8",
         "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
         "patchSetId": 9
@@ -339,6 +495,54 @@
     },
     {
       "key": {
+        "uuid": "541d9158_d8776e33",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-08-08T15:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a49214f_6967fcb8",
+      "range": {
+        "startLine": 36,
+        "startChar": 43,
+        "endLine": 36,
+        "endChar": 48
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "253b2c0b_c860fb74",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-08-08T15:47:29Z",
+      "side": 1,
+      "message": "\u003e for HTTP request and response\n\nUpdated with \"for TCP Host Stack\"",
+      "parentUuid": "76b05431_83bce87a",
+      "range": {
+        "startLine": 36,
+        "startChar": 52,
+        "endLine": 36,
+        "endChar": 65
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d8e71abe_9ef4aa55",
         "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
         "patchSetId": 9
@@ -362,6 +566,30 @@
     },
     {
       "key": {
+        "uuid": "5fa2663b_29b906c2",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-08-08T15:47:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8e71abe_9ef4aa55",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 81
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "87efc13c_8aeb2009",
         "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
         "patchSetId": 9
@@ -373,6 +601,30 @@
       "writtenOn": "2019-08-08T06:55:33Z",
       "side": 1,
       "message": "i was desperately looking in doc of WRK how big is the packet. is is 1518 or IMIX really?",
+      "range": {
+        "startLine": 86,
+        "startChar": 7,
+        "endLine": 86,
+        "endChar": 11
+      },
+      "revId": "4f4419b1edcd38f49f5b9e221a9707da45cd8ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19e0b6b1_fc0ed956",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2019-08-08T15:47:29Z",
+      "side": 1,
+      "message": "\u003e i was desperately looking in doc of WRK how big is the packet. is is 1518 or IMIX really?\n\nActually it is neither.  For cps \u0026 rps tests, there is no payload, so mostly TCP connection setup messages plus a small number of HTTP request/response messages.\n\nI picked IMIX, because the packet flow is not fixed size packets.",
+      "parentUuid": "87efc13c_8aeb2009",
       "range": {
         "startLine": 86,
         "startChar": 7,
