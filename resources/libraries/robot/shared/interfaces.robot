@@ -13,25 +13,81 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.VatExecutor
 
 *** Keywords ***
-| VPP reports interfaces through VAT on '${node}'
-| | Execute Script | dump_interfaces.vat | ${node}
-| | Script Should Have Passed
+| Set interfaces in path up
+| | [Documentation]
+| | ... | *Set UP state on VPP interfaces in path on all DUT nodes and set
+| | ... | maximal MTU.*
+| | ...
+# TODO: Rework KW to set all interfaces in path UP and set MTU (including
+# software interfaces. Run KW at the start phase of VPP setup to split
+# from other "functional" configuration. This will allow modularity of this
+# library
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
+| | | ... | ELSE
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
+| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2} | up
+| | | ... | ELSE
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_1} | up
+| | | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if2_2} | up
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ... | ELSE
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | | ${if2_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if2}
+| | | Run Keyword If | '${if2_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ... | ELSE
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_1}
+| | | Run Keyword Unless | '${if2_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if2_2}
+| | All VPP Interfaces Ready Wait | ${nodes} | retries=${300}
 
-| Configure MTU on TG based on MTU on DUT
-| | [Documentation] | Type of the tg_node must be TG and dut_node must be DUT
-| | [Arguments] | ${tg_node} | ${dut_node}
-| | Append Nodes | ${tg_node} | ${dut_node}
-| | Compute Path
-| | ${tg_port} | ${tg_node}= | First Interface
-| | ${dut_port} | ${dut_node}= | Last Interface
-| | # get physical layer MTU (max. size of Ethernet frame)
-| | ${mtu}= | Get Interface MTU | ${dut_node} | ${dut_port}
-| | # Ethernet MTU is physical layer MTU minus size of Ethernet header and FCS
-| | ${eth_mtu}= | Evaluate | ${mtu} - 14 - 4
-| | Set Interface Ethernet MTU | ${tg_node} | ${tg_port} | ${eth_mtu}
+| Set single interfaces in path up
+| | [Documentation]
+| | ... | *Set UP state on single VPP interfaces in path on all DUT nodes and set
+| | ... | maximal MTU.*
+| | ...
+# TODO: Rework KW to set all interfaces in path UP and set MTU (including
+# software interfaces. Run KW at the start phase of VPP setup to split
+# from other "functional" configuration. This will allow modularity of this
+# library
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1} | up
+| | | ... | ELSE
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_1} | up
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | Set Interface State | ${nodes['${dut}']} | ${${dut}_if1_2} | up
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
+| | | ... | Variable Should Exist | ${${dut}_if1}
+| | | Run Keyword If | '${if1_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ... | ELSE
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_1}
+| | | Run Keyword Unless | '${if1_status}' == 'PASS'
+| | | ... | VPP Set Interface MTU | ${nodes['${dut}']} | ${${dut}_if1_2}
+| | All VPP Interfaces Ready Wait | ${nodes}
 
 | Get Vhost dump
 | | [Documentation] | Get vhost-user dump.
