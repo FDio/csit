@@ -128,9 +128,10 @@ class PapiSocketExecutor(object):
     """
 
     # Class cache for reuse between instances.
-    cached_vpp_instance = None
-    api_json_directory = None
-    crc_checker_instance = None
+    vpp_instance = None
+    """Takes long time to create, stores all PAPI functions and types."""
+    crc_checker = None
+    """Accesses .api.json files at creation, caching allows deleting them."""
 
     def __init__(self, node, remote_vpp_socket=Constants.SOCKSVR_PATH):
         """Store the given arguments, declare managed variables.
@@ -148,41 +149,23 @@ class PapiSocketExecutor(object):
         self._temp_dir = None
         self._ssh_control_socket = None
         self._local_vpp_socket = None
+        self.initialize_vpp_instance()
 
-    def create_crc_checker(self):
-        """Return the cached instance or create new one from directory.
+    def initialize_vpp_instance(self):
+        """Create VPP instance with bindings to API calls, store as class field.
 
-        It is assumed self.api_json_directory is set, as a class variable.
+        No-op if the instance had been stored already.
 
-        :returns: Cached or newly created instance aware of .api.json content.
-        :rtype: VppApiCrc.VppApiCrcChecker
-        """
-        cls = self.__class__
-        if cls.crc_checker_instance is None:
-            cls.crc_checker_instance = VppApiCrcChecker(cls.api_json_directory)
-        return cls.crc_checker_instance
-
-    @property
-    def vpp_instance(self):
-        """Return VPP instance with bindings to all API calls.
-
-        The returned instance is initialized for unix domain socket access,
+        The instance is initialized for unix domain socket access,
         it has initialized all the bindings, but it is not connected
-        (to local socket) yet.
+        (to a local socket) yet.
 
-        First invocation downloads .api.json files from self._node
-        into a temporary directory.
-
-        After first invocation, the result is cached, so other calls are quick.
-        Class variable is used as the cache, but this property is defined as
-        an instance method, so that _node (for api files) is known.
-
-        :returns: Initialized but not connected VPP instance.
-        :rtype: vpp_papi.VPPApiClient
+        This method downloads .api.json files from self._node
+        into a temporary directory, deletes them finally.
         """
-        cls = self.__class__
-        if cls.cached_vpp_instance is not None:
-            return cls.cached_vpp_instance
+        if self.vpp_instance:
+            return
+        cls = self.__class__  # Shorthand for setting class fields.
         tmp_dir = tempfile.mkdtemp(dir="/tmp")
         package_path = "Not set yet."
         try:
@@ -201,19 +184,19 @@ class PapiSocketExecutor(object):
             exec_cmd_no_error(node, ["bash", "-c", "'" + inner_cmd + "'"])
             scp_node(node, tmp_dir + "/papi.txz", "/tmp/papi.txz", get=True)
             run(["tar", "xf", tmp_dir + "/papi.txz", "-C", tmp_dir])
-            cls.api_json_directory = tmp_dir + "/usr/share/vpp/api"
+            api_json_directory = tmp_dir + "/usr/share/vpp/api"
             # Perform initial checks before .api.json files are gone,
-            # by accessing the property (which also creates its instance).
-            self.create_crc_checker()
+            # by creating the checker instance.
+            cls.crc_checker = VppApiCrcChecker(api_json_directory)
             # When present locally, we finally can find the installation path.
             package_path = glob.glob(tmp_dir + installed_papi_glob)[0]
             # Package path has to be one level above the vpp_papi directory.
             package_path = package_path.rsplit('/', 1)[0]
             sys.path.append(package_path)
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
-            vpp_class.apidir = cls.api_json_directory
+            vpp_class.apidir = api_json_directory
             # We need to create instance before removing from sys.path.
-            cls.cached_vpp_instance = vpp_class(
+            cls.vpp_instance = vpp_class(
                 use_socket=True, server_address="TBD", async_thread=False,
                 read_timeout=14, logger=FilteredLogger(logger, "INFO"))
             # Cannot use loglevel parameter, robot.api.logger lacks support.
@@ -222,7 +205,6 @@ class PapiSocketExecutor(object):
             shutil.rmtree(tmp_dir)
             if sys.path[-1] == package_path:
                 sys.path.pop()
-        return cls.cached_vpp_instance
 
     def __enter__(self):
         """Create a tunnel, connect VPP instance.
@@ -328,7 +310,6 @@ class PapiSocketExecutor(object):
         run(["ssh", "-S", self._ssh_control_socket, "-O", "exit", "0.0.0.0"],
             check=False)
         shutil.rmtree(self._temp_dir)
-        return
 
     def add(self, csit_papi_command, history=True, **kwargs):
         """Add next command to internal command list; return self.
@@ -357,9 +338,11 @@ class PapiSocketExecutor(object):
         :rtype: PapiSocketExecutor
         :raises RuntimeError: If unverified or conflicting CRC is encountered.
         """
+        self.crc_checker.report_initial_conflicts()
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
+        self.crc_checker.check_api_name(csit_papi_command)
         self._api_command_list.append(
             dict(api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)))
         return self
@@ -519,6 +502,7 @@ class PapiSocketExecutor(object):
             if not isinstance(reply, list):
                 reply = [reply]
             for item in reply:
+                self.crc_checker.check_api_name(item.__class__.__name__)
                 dict_item = dictize(item)
                 if "retval" in dict_item.keys():
                     # *_details messages do not contain retval.
