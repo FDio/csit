@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6976629d_c7e7bc81",
+        "filename": "resources/libraries/robot/l2/l2_patch.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-09T08:32:05Z",
+      "side": 1,
+      "message": "Veryfi jobs show and error, but somehow pass anyway, possibly due to an indirect include.\n\n[ ERROR ] Error in file \u0027/w/workspace/csit-vpp-device-master-ubuntu1804-1n-skx/resources/libraries/robot/l2/l2_patch.robot\u0027: Test library \u0027resources.libraries.python.L2Util.py\u0027 does not exist.",
+      "range": {
+        "startLine": 16,
+        "startChar": 45,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "016fb5988a63c3086b0b5b9f5ad7155c6ebef291",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
