@@ -338,7 +338,7 @@
 | | :FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${fib_table_1}= | Evaluate | ${100}+${number}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
-| | | Configure vhost interfaces for L2BD forwarding | ${dut1}
+| | | Configure vhost interfaces | ${dut1}
 | | | ... | /var/run/vpp/sock-${number}-1 | /var/run/vpp/sock-${number}-2
 | | | ... | dut1-vhost-${number}-if1 | dut1-vhost-${number}-if2
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
@@ -416,12 +416,12 @@
 | | :FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${fib_table_1}= | Evaluate | ${100}+${number}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
-| | | Configure vhost interfaces for L2BD forwarding | ${dut1}
+| | | Configure vhost interfaces | ${dut1}
 | | | ... | /var/run/vpp/sock-${number}-1 | /var/run/vpp/sock-${number}-2
 | | | ... | dut1-vhost-${number}-if1 | dut1-vhost-${number}-if2
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
 | | | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if2} | up
-| | | Configure vhost interfaces for L2BD forwarding | ${dut2}
+| | | Configure vhost interfaces | ${dut2}
 | | | ... | /var/run/vpp/sock-${number}-1 | /var/run/vpp/sock-${number}-2
 | | | ... | dut2-vhost-${number}-if1 | dut2-vhost-${number}-if2
 | | | Set Interface State | ${dut2} | ${dut2-vhost-${number}-if1} | up

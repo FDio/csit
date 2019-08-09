@@ -261,7 +261,7 @@
 | | ... | Set Global Variable | ${use_odl_client} | ${NONE}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Clear Honeycomb Log | ${node}
-| | Stop VPP Service on DUT | ${node}
+| | Stop VPP Service | ${node}
 
 | Enable Honeycomb Feature
 | | [Documentation] | Enable the specified feature in Honeycomb configuration.
@@ -322,7 +322,7 @@
 | | Append suite to Honeycomb log file | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Clear Honeycomb Log | ${node}
-| | Stop VPP Service on DUT | ${node}
+| | Stop VPP Service | ${node}
 
 | Append suite to Honeycomb log file
 | | [Documentation] | Add the contents of honeycomb.log for the current suite\

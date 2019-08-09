@@ -16,17 +16,17 @@
 | Library | resources.libraries.python.VppCounters
 
 *** Keywords ***
+| Show Vpp Errors On All DUTs
+| | [Documentation] | Show VPP errors verbose on all DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp Show Errors | ${nodes['${dut}']}
+
 | Clear interface counters on all vpp nodes in topology
 | | [Documentation] | Clear interface counters on all VPP nodes in topology
 | | [Arguments] | ${nodes}
 | | Clear Interface Counters on all DUTs | ${nodes}
-
-| Check ipv4 interface counter
-| | [Documentation] | Check that ipv4 interface counter has right value
-| | [Arguments] | ${node} | ${interface} | ${value}
-| | ${ipv4_counter}= | Vpp get ipv4 interface counter | ${node}
-| | ... | ${interface}
-| | Should Be Equal | ${ipv4_counter} | ${value}
 
 | Clear all counters on all DUTs
 | | [Documentation] | Clear runtime, interface, hardware and error counters

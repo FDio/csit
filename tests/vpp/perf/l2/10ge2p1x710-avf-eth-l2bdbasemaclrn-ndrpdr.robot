@@ -74,7 +74,8 @@
 | | And Set Max Rate And Jumbo
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize AVF interfaces
-| | And Initialize L2 bridge domain in circular topology
+| | And Initialize layer interface
+| | And Initialize L2 bridge domain
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
