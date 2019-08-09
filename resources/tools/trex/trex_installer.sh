@@ -24,6 +24,9 @@ cleanup () {
 
 trap cleanup EXIT
 
+find / -name trex_client.py
+exit 2
+
 test -d ${TREX_INSTALL_DIR} && echo "T-REX aleready installed: ${TREX_INSTALL_DIR}" && exit 0
 
 wget -P ${WORKING_DIR} ${TREX_PACKAGE_URL}
