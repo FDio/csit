@@ -17,12 +17,8 @@
 | Library | resources.libraries.python.IPsecUtil
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv6Util
-| Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.TrafficScriptExecutor
 | ...
-| Resource | resources/libraries/robot/shared/default.robot
-| ...
-| Documentation | IPsec keywords
+| Documentation | IPsec keywords.
 
 *** Keywords ***
 | Generate keys for IPSec
@@ -182,50 +178,23 @@
 | | ... | sa_id=${l_sa_id} | laddr_range=${l_ip}
 | | ... | raddr_range=${r_ip} | inbound=${FALSE}
 
-| Send IPsec Packet and verify ESP encapsulation in received packet
-| | [Documentation] | Send IPsec packet from TG to DUT. Receive IPsec packet\
-| | ... | from DUT on TG and verify ESP encapsulation.
+| Initialize IPSec in 3-node circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
+| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG and
+| | ... | DUT1-DUT2 links. Set routing for encrypted traffic on both DUT nodes
+| | ... | with prefix /8 and next hop of neighbour DUT or TG interface IPv4
+| | ... | address.
 | | ...
-| | ... | *Arguments:*
-| | ... | - node - TG node. Type: dictionary
-| | ... | - interface - TG Interface. Type: string
-| | ... | - dst_mac - Destination MAC. Type: string
-| | ... | - crypto_alg - Encrytion algorithm. Type: enum
-| | ... | - crypto_key - Encryption key. Type: string
-| | ... | - integ_alg - Integrity algorithm. Type: enum
-| | ... | - integ_key - Integrity key. Type: string
-| | ... | - l_spi - Local SPI. Type: integer
-| | ... | - r_spi - Remote SPI. Type: integer
-| | ... | - l_ip - Local IP address. Type: string
-| | ... | - r_ip - Remote IP address. Type: string
-| | ... | - l_tunnel - Local tunnel IP address (optional). Type: string
-| | ... | - r_tunnel - Remote tunnel IP address (optional). Type: string
-| | ...
-| | ... | *Example:*
-| | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
-| | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
-| | ... | \| Send IPsec Packet and verify ESP encapsulation in received packet\
-| | ... | \| ${nodes['TG']} \| eth1 \
-| | ... | \| 52:54:00:d4:d8:22 \| ${encr_alg} \| sixteenbytes_key \
-| | ... | \| ${auth_alg} \| twentybytessecretkey \| ${1001} \| ${1000} \
-| | ... | \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \| 192.168.100.3 \|
-| | ...
-| | [Arguments] | ${node} | ${interface} | ${dst_mac} | ${crypto_alg}
-| | ... | ${crypto_key} | ${integ_alg} | ${integ_key} | ${l_spi}
-| | ... | ${r_spi} | ${l_ip} | ${r_ip} | ${l_tunnel}=${None}
-| | ... | ${r_tunnel}=${None}
-| | ...
-| | ${src_mac}= | Get Interface Mac | ${node} | ${interface}
-| | ${if_name}= | Get Interface Name | ${node} | ${interface}
-| | ${args}= | Traffic Script Gen Arg | ${if_name} | ${if_name} | ${src_mac}
-| | ... | ${dst_mac} | ${l_ip} | ${r_ip}
-| | ${crypto_alg_str}= | Get Crypto Alg Scapy Name | ${crypto_alg}
-| | ${integ_alg_str}= | Get Integ Alg Scapy Name | ${integ_alg}
-| | ${args}= | Catenate | ${args} | --crypto_alg ${crypto_alg_str}
-| | ... | --crypto_key ${crypto_key} | --integ_alg ${integ_alg_str}
-| | ... | --integ_key ${integ_key} | --l_spi ${l_spi} | --r_spi ${r_spi}
-| | ${args}= | Set Variable If | "${l_tunnel}" == "${None}" | ${args}
-| | ... | ${args} --src_tun ${l_tunnel}
-| | ${args}= | Set Variable If | "${r_tunnel}" == "${None}" | ${args}
-| | ... | ${args} --dst_tun ${r_tunnel}
-| | Run Traffic Script On Node | ipsec.py | ${node} | ${args}
+| | Set interfaces in path up
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
+| | ... | ${dut1_if1_ip4} | 24
+| | VPP Interface Set IP Address | ${dut2} | ${dut2_if2}
+| | ... | ${dut2_if2_ip4} | 24
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut2} | ${dut2_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
+| | Vpp Route Add | ${dut1} | ${laddr_ip4} | 8 | gateway=${tg_if1_ip4}
+| | ... | interface=${dut1_if1}
+| | Vpp Route Add | ${dut2} | ${raddr_ip4} | 8 | gateway=${tg_if2_ip4}
+| | ... | interface=${dut2_if2}

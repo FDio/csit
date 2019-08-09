@@ -62,8 +62,9 @@
 | | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1_node} | ${subif_index_1} | ${dut2_node} | ${subif_index_2}
 | | ... | ${tag_rewrite_method}
-| | And Connect interfaces and VLAN sub-interfaces using L2XC
+| | And Configure L2XC
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${subif_index_1}
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${subif_index_2}
 | | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

@@ -67,32 +67,6 @@
 | | Set Interface State | ${dut_node} | ${dut_if} | up
 | | Add Interface To L2 BD | ${dut_node} | ${dut_if} | ${bd_id} | ${shg}
 
-| Add destination port to L2FIB
-| | [Documentation]
-| | ... | Create a static L2FIB entry for required destination port
-| | ... | on defined interface and bridge domain ID of the given VPP node.
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${dest_node} - Destination node. Type: dictionary
-| | ... | - ${dest_node_if} - Destination node interface name. Type: string
-| | ... | - ${vpp_node} - DUT node to add L2FIB entry on. Type: dictionary
-| | ... | - ${vpp_node_if} - DUT node interface name. Type: string
-| | ... | - ${bd_id} - Bridge domain ID. Type: integer
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Add destination port to L2FIB \| ${nodes['TG']} \
-| | ... | \| eth1 \| ${nodes['DUT2']} \| GigabitEthernet0/8/0 \| 3 \|
-| | ...
-| | [Arguments] | ${node} | ${dest_node_if} | ${vpp_node}
-| | ... | ${vpp_node_if} | ${bd_id}
-| | ...
-| | ${mac}= | Get Interface Mac | ${node} | ${dest_node_if}
-| | Vpp Add L2fib Entry | ${vpp_node} | ${mac} | ${vpp_node_if} | ${bd_id}
-
 | Initialize L2 bridge domain on node
 | | [Documentation]
 | | ... | Setup L2 bridge domain topology by adding two interfaces on DUT into
