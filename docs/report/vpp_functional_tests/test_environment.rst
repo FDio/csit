@@ -403,7 +403,7 @@ There is used the default startup configuration as defined in `VPP startup.conf`
       gid vpp
     }
     socksvr {
-      default
+      /run/vpp/api.sock
     }
     dpdk
     {

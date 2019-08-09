@@ -65,7 +65,7 @@ below:
       nodaemon
     }
     socksvr {
-      default
+      /run/vpp/api.sock
     }
     ip6
     {
