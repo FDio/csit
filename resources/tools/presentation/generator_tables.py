@@ -825,6 +825,10 @@ def _generate_url(base, testbed, test_name):
     elif "ipsec" in test_name:
         file_name = "ipsec"
         feature = "-base-scale"
+        if "hw-" in test_name:
+            file_name = "ipsechw"
+        elif "sw-" in test_name:
+            file_name = "ipsecsw"
 
     elif "ethip4lispip" in test_name or "ethip4vxlan" in test_name:
         file_name = "ip4_tunnels"
