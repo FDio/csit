@@ -76,6 +76,7 @@
     URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
     URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/{release}/robot-plugin.zip"
     # URL[VIRL,DNV]: "http://download.it/from/nexus"
+    URL[NEXUS,LOG]: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
     URL[NEXUS]: "https://docs.fd.io/csit"
     DIR[NEXUS]: "report/_static/archive"
 
@@ -1403,10 +1404,16 @@
 
 - type: "input"
   general:
-    file-name: "robot-plugin.zip"
-    file-format: ".zip"
-    download-path: "{job}/{build}/robot/report/*zip*/{filename}"
-    extract: "robot-plugin/output.xml"
+    file-name: "output_info.xml.gz"
+    file-format: ".gz"
+    download-path: "{job}/{build}/archives/{filename}"
+    extract: "output.xml"
+
+    # Temporary solution for functional tests
+    func-file-name: "robot-plugin.zip"
+    func-file-format: ".zip"
+    func-download-path: "{job}/{build}/robot/report/*zip*/{filename}"
+    func-extract: "robot-plugin/output.xml"
 
   builds:
 #    intel-dnv-vpp-release-1904:
