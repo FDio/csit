@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,17 +12,13 @@
 # limitations under the License.
 
 *** Settings ***
-| Variables | resources/libraries/python/topology.py
-| Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.CpuUtils
-| Library | resources.libraries.python.DUTSetup
-| Library | resources.libraries.python.TGSetup
 | Library | resources.libraries.python.DPDK.L2fwdTest
 | Library | resources.libraries.python.DPDK.L3fwdTest
 | Library | Collections
 
 *** Keywords ***
-
 | Start L2FWD on all DUTs
 | | [Documentation] | Start the l2fwd with M worker threads and rxqueues N and
 | | ... | jumbo support frames on/off on all DUTs.

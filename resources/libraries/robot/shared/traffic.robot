@@ -840,3 +840,51 @@
 | | ... | --timeout ${timeout}
 | | Run Traffic Script On Node | send_icmp_wait_for_reply.py
 | | ... | ${tg_node} | ${args}
+
+| Send IPsec Packet and verify ESP encapsulation in received packet
+| | [Documentation] | Send IPsec packet from TG to DUT. Receive IPsec packet\
+| | ... | from DUT on TG and verify ESP encapsulation.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - TG node. Type: dictionary
+| | ... | - interface - TG Interface. Type: string
+| | ... | - dst_mac - Destination MAC. Type: string
+| | ... | - crypto_alg - Encrytion algorithm. Type: enum
+| | ... | - crypto_key - Encryption key. Type: string
+| | ... | - integ_alg - Integrity algorithm. Type: enum
+| | ... | - integ_key - Integrity key. Type: string
+| | ... | - l_spi - Local SPI. Type: integer
+| | ... | - r_spi - Remote SPI. Type: integer
+| | ... | - l_ip - Local IP address. Type: string
+| | ... | - r_ip - Remote IP address. Type: string
+| | ... | - l_tunnel - Local tunnel IP address (optional). Type: string
+| | ... | - r_tunnel - Remote tunnel IP address (optional). Type: string
+| | ...
+| | ... | *Example:*
+| | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
+| | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
+| | ... | \| Send IPsec Packet and verify ESP encapsulation in received packet\
+| | ... | \| ${nodes['TG']} \| eth1 \
+| | ... | \| 52:54:00:d4:d8:22 \| ${encr_alg} \| sixteenbytes_key \
+| | ... | \| ${auth_alg} \| twentybytessecretkey \| ${1001} \| ${1000} \
+| | ... | \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \| 192.168.100.3 \|
+| | ...
+| | [Arguments] | ${node} | ${interface} | ${dst_mac} | ${crypto_alg}
+| | ... | ${crypto_key} | ${integ_alg} | ${integ_key} | ${l_spi}
+| | ... | ${r_spi} | ${l_ip} | ${r_ip} | ${l_tunnel}=${None}
+| | ... | ${r_tunnel}=${None}
+| | ...
+| | ${src_mac}= | Get Interface Mac | ${node} | ${interface}
+| | ${if_name}= | Get Interface Name | ${node} | ${interface}
+| | ${args}= | Traffic Script Gen Arg | ${if_name} | ${if_name} | ${src_mac}
+| | ... | ${dst_mac} | ${l_ip} | ${r_ip}
+| | ${crypto_alg_str}= | Get Crypto Alg Scapy Name | ${crypto_alg}
+| | ${integ_alg_str}= | Get Integ Alg Scapy Name | ${integ_alg}
+| | ${args}= | Catenate | ${args} | --crypto_alg ${crypto_alg_str}
+| | ... | --crypto_key ${crypto_key} | --integ_alg ${integ_alg_str}
+| | ... | --integ_key ${integ_key} | --l_spi ${l_spi} | --r_spi ${r_spi}
+| | ${args}= | Set Variable If | "${l_tunnel}" == "${None}" | ${args}
+| | ... | ${args} --src_tun ${l_tunnel}
+| | ${args}= | Set Variable If | "${r_tunnel}" == "${None}" | ${args}
+| | ... | ${args} --dst_tun ${r_tunnel}
+| | Run Traffic Script On Node | ipsec.py | ${node} | ${args}

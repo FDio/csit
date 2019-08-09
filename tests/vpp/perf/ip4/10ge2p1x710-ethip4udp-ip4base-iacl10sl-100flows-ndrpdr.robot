@@ -56,6 +56,7 @@
 | ${acl_apply_type}= | input
 | ${no_hit_aces_number}= | 10
 | ${flows_per_dir}= | 100
+| ${ip_nr}= | ${10}
 # starting points for non-hitting ACLs
 | ${src_ip_start}= | 30.30.30.1
 | ${dst_ip_start}= | 40.40.40.1
@@ -88,8 +89,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | ${ip_nr}= | Set Variable | 10
-| | When Initialize IPv4 routing for '${ip_nr}' addresses with IPv4 ACLs on DUT1 in circular topology
+| | When Initialize IPv4 routing with IPv4 ACLs on DUT1 in circular topology
+| | ... | ${ip_nr}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
