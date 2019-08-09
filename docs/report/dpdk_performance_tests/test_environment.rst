@@ -11,8 +11,6 @@
 
 .. include:: ../introduction/test_environment_sut_conf_1.rst
 
-.. include:: ../introduction/test_environment_sut_conf_3.rst
-
 
 DUT Settings - DPDK
 -------------------
@@ -27,7 +25,7 @@ DPDK Compile Parameters
 
 .. code-block:: bash
 
-    make install T=x86_64-native-linuxapp-gcc -j
+    make install T=<arch>-native-linuxapp-gcc -j
 
 Testpmd Startup Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,7 +36,7 @@ sending jumbo frames. Startup command template:
 
 .. code-block:: bash
 
-    testpmd -c $$CORE_MASK -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=$$CORES --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=$$RXQ --txq=$$TXQ --burst=64 --rxd=1024 --txd=1024 --disable-link-check --auto-start
+    testpmd -c $$CORE_MASK -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=$$CORES [--max-pkt-len=9000] --txqflags=0 --forward-mode=io --rxq=$$RXQ --txq=$$TXQ --burst=64 --rxd=1024 --txd=1024 --disable-link-check --auto-start
 
 L3FWD Startup Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,7 +47,7 @@ jumbo frames. Startup command template:
 
 .. code-block:: bash
 
-    l3fwd -l $$CORE_LIST -n 4 -- -P -L -p 0x3 --config='${port_config}' --enable-jumbo --max-pkt-len=9000 --eth-dest=0,${adj_mac0} --eth-dest=1,${adj_mac1} --parse-ptype
+    l3fwd -l $$CORE_LIST -n 4 -- -P -L -p 0x3 --config='${port_config}' [--enable-jumbo --max-pkt-len=9000] --eth-dest=0,${adj_mac0} --eth-dest=1,${adj_mac1} --parse-ptype
 
 
 .. include:: ../introduction/test_environment_tg.rst

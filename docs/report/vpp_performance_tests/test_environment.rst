@@ -15,10 +15,6 @@
 
 .. include:: ../introduction/test_environment_sut_conf_1.rst
 
-.. include:: ../introduction/test_environment_sut_conf_2.rst
-
-.. include:: ../introduction/test_environment_sut_conf_3.rst
-
 
 DUT Settings - VPP
 ------------------
@@ -38,7 +34,7 @@ VPP Install Parameters
 
 ::
 
-    $ dpkg -i --force-all vpp*
+    $ dpkg -i --force-all *vpp*
 
 VPP Startup Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -99,7 +95,6 @@ below:
       {
         num-rx-queues $$NUM_RX_QUEUES
       }
-      socket-mem 1024,1024
       no-tx-checksum-offload
       dev $$DEV_1
       dev $$DEV_2
