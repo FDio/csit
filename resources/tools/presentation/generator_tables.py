@@ -911,8 +911,8 @@ def _generate_url(base, testbed, test_name):
     elif "8t4c" in test_name:
         anchor += "8t4c"
 
-    return url + file_name + '-' + testbed + '-' + nic + framesize + feature + \
-           anchor + feature
+    return url + file_name + '-' + testbed + '-' + nic + framesize + \
+        feature.replace("-int", "").replace("-tnl", "") + anchor + feature
 
 
 def table_performance_trending_dashboard_html(table, input_data):
