@@ -106,8 +106,13 @@ class Constants(object):
     # Equivalent to ~0 used in vpp code
     BITWISE_NON_ZERO = 0xffffffff
 
+<<<<<<< HEAD   (e26e24 Trending: Fix ipsec)
     # Maximum number of API calls per PapiExecutor execution
     PAPI_MAX_API_BULK = 250
+=======
+    # Default path to VPP API socket.
+    SOCKSVR_PATH = "/run/vpp/api.sock"
+>>>>>>> CHANGE (a4c6a6 Bump VPP stable version: socksvr)
 
     # Mapping from NIC name to its bps limit.
     # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.

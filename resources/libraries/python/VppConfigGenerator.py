@@ -20,6 +20,7 @@ in 7 various places of CSIT code.
 
 import re
 
+from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import Topology
@@ -196,10 +197,10 @@ class VppConfigGenerator(object):
         path = ['unix', 'exec']
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_socksvr(self, socket="default"):
+    def add_socksvr(self, socket=Constants.SOCKSVR_PATH):
         """Add socksvr configuration."""
-        path = ['socksvr', socket]
-        self.add_config_item(self._nodeconfig, '', path)
+        path = ['socksvr', 'socket-name']
+        self.add_config_item(self._nodeconfig, socket, path)
 
     def add_api_segment_gid(self, value='vpp'):
         """Add API-SEGMENT gid configuration.
