@@ -106,55 +106,8 @@ environment:
 +-----------------------+----------------------------------------------+
 | Functionality         |  Description                                 |
 +=======================+==============================================+
-| ACL                   | Ingress Access Control List security for L2  |
-|                       | Bridge-Domain MAC switching, IPv4 routing,   |
-|                       | IPv6 routing.                                |
-+-----------------------+----------------------------------------------+
-| COP                   | COP address white-list and black-list        |
-|                       | filtering for IPv4 and IPv6 routing.         |
-+-----------------------+----------------------------------------------+
-| DHCP                  | Dynamic Host Control Protocol Client and     |
-|                       | Proxy for IPv4 and IPv6 routing.             |
-+-----------------------+----------------------------------------------+
-| GRE                   | Generic Routing Encapsulation Overlay        |
-|                       | Tunnels for IPv4.                            |
-+-----------------------+----------------------------------------------+
-| IPSec                 | IPSec tunnel and transport modes.            |
-+-----------------------+----------------------------------------------+
-| IPv4                  | IPv4 routing, RPF, ARP, Proxy ARP, ICMPv4.   |
-+-----------------------+----------------------------------------------+
-| IPv6                  | IPv6 routing, NS/ND, RA, ICMPv6.             |
-+-----------------------+----------------------------------------------+
-| L2BD                  | L2 Bridge-Domain switching for untagged      |
-|                       | Ethernet, dot1q and dot1ad tagged.           |
-+-----------------------+----------------------------------------------+
-| L2XC                  | L2 Cross-Connect switching for untagged      |
-|                       | Ethernet, dot1q and dot1ad tagged.           |
-+-----------------------+----------------------------------------------+
 | LISP                  | Locator/ID Separation Protocol overlay       |
 |                       | tunnels and locator/id mapping control.      |
-+-----------------------+----------------------------------------------+
-| QoS Policer Metering  | Ingress packet rate metering and marking for |
-|                       | IPv4, IPv6.                                  |
-+-----------------------+----------------------------------------------+
-| Softwire Tunnels      | IPv4-in-IPv6 softwire tunnels.               |
-+-----------------------+----------------------------------------------+
-| Tap Interface         | Baseline Linux tap interface tests.          |
-+-----------------------+----------------------------------------------+
-| IPFIX and SPAN        | Telemetry IPFIX netflow statistics and SPAN  |
-|                       | port mirroring.                              |
-+-----------------------+----------------------------------------------+
-| uRPF Source Security  | Unicast Reverse Path Forwarding security for |
-|                       | IPv4 and IPv6 routing.                       |
-+-----------------------+----------------------------------------------+
-| VLAN Tag Translation  | L2 VLAN tag translation 2to2, 2to1, 1to2,    |
-|                       | 1to1.                                        |
-+-----------------------+----------------------------------------------+
-| VRF Routing           | Multi-context VRF IPVPN routing for IPv4 and |
-|                       | IPv6.                                        |
-+-----------------------+----------------------------------------------+
-| VXLAN                 | VXLAN overlay tunneling for L2-over-IPv4 and |
-|                       | -over-IPv6.                                  |
 +-----------------------+----------------------------------------------+
 
 Functional Tests Naming

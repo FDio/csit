@@ -111,6 +111,15 @@ environment:
 +-----------------------+----------------------------------------------+
 | Functionality         |  Description                                 |
 +=======================+==============================================+
+| ACL                   | Ingress Access Control List security for L2  |
+|                       | Bridge-Domain MAC switching, IPv4 routing,   |
+|                       | IPv6 routing.                                |
++-----------------------+----------------------------------------------+
+| COP                   | COP address white-list and black-list        |
+|                       | filtering for IPv4 and IPv6 routing.         |
++-----------------------+----------------------------------------------+
+| IPSec                 | IPSec tunnel and transport modes.            |
++-----------------------+----------------------------------------------+
 | IPv4                  | IPv4 routing, ICMPv4.                        |
 +-----------------------+----------------------------------------------+
 | IPv6                  | IPv4 routing, ICMPv6.                        |
@@ -121,9 +130,19 @@ environment:
 | L2XC                  | L2 Cross-Connect switching for untagged      |
 |                       | Ethernet.                                    |
 +-----------------------+----------------------------------------------+
+| Memif Interface       | Baseline VPP memif interface tests.          |
++-----------------------+----------------------------------------------+
+| QoS Policer Metering  | Ingress packet rate metering and marking for |
+|                       | IPv4, IPv6.                                  |
++-----------------------+----------------------------------------------+
+| Tap Interface         | Baseline Linux tap interface tests.          |
++-----------------------+----------------------------------------------+
+| VLAN Tag              | L2 VLAN subinterfaces.                       |
++-----------------------+----------------------------------------------+
 | Vhost-user Interface  | Baseline VPP vhost-user interface tests.     |
 +-----------------------+----------------------------------------------+
-| Memif Interface       | Baseline VPP memif interface tests.          |
+| VXLAN                 | VXLAN overlay tunneling for L2-over-IPv4 and |
+|                       | -over-IPv6.                                  |
 +-----------------------+----------------------------------------------+
 
 Tests Naming
