@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "45740853_e0ed6b47",
+        "filename": "resources/libraries/robot/features/acl.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-09T13:41:26Z",
+      "side": 1,
+      "message": "Will you have time to move arguments from keyword names to [Arguments]?\nLines like this usually do not fit into 80 characters (neither definitions nor call sites).",
+      "range": {
+        "startLine": 233,
+        "startChar": 30,
+        "endLine": 233,
+        "endChar": 40
+      },
+      "revId": "450c85cb06a653a24f30cc3b3d129773e86d1815",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
