@@ -23,18 +23,9 @@
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.Trace
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| Resource | resources/libraries/robot/shared/counters.robot
-| Resource | resources/libraries/robot/shared/container.robot
-| Resource | resources/libraries/robot/shared/memif.robot
-| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/l2/l2_xconnect.robot
-| Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/ip/ip6.robot
-| Resource | resources/libraries/robot/l2/tagging.robot
-| Documentation | Performance suite keywords - utilities to find and verify NDR
-| ... | and PDR.
+| ...
+| Documentation
+| ... | Performance suite keywords - utilities to find and verify NDR and PDR.
 
 *** Keywords ***
 | Find NDR and PDR intervals using optimized search

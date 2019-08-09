@@ -81,7 +81,7 @@
 | | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
 | | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
-| | And Connect interfaces and VLAN sub-interfaces using L2XC
+| | And Configure L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | Then Find NDR and PDR intervals using optimized search
 
