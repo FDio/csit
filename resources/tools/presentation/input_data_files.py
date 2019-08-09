@@ -138,8 +138,12 @@ def _unzip_file(spec, build, pid, log):
     :rtype: bool
     """
 
-    data_file = spec.input["extract"]
     file_name = build["file-name"]
+    if "functional" in file_name:
+        data_file = spec.input["func-extract"]
+    else:
+        data_file = spec.input["extract"]
+
     directory = spec.environment["paths"]["DIR[WORKING,DATA]"]
     tmp_dir = join(directory, str(pid))
     try:
@@ -187,10 +191,17 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
     :rtype: bool
     """
 
+    if "functional" in job:
+        file_name = spec.input["func-file-name"]
+        download_path = spec.input["func-download-path"]
+    else:
+        file_name = spec.input["file-name"]
+        download_path = spec.input["download-path"]
+
     if job.startswith("csit-"):
-        if spec.input["file-name"].endswith(".zip"):
+        if file_name.endswith(".zip"):
             url = spec.environment["urls"]["URL[JENKINS,CSIT]"]
-        elif spec.input["file-name"].endswith(".gz"):
+        elif file_name.endswith(".gz"):
             url = spec.environment["urls"]["URL[NEXUS,LOG]"]
         else:
             log.append(("ERROR", "Not supported file format."))
@@ -201,9 +212,9 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
         url = spec.environment["urls"]["URL[VIRL,DNV]"].format(release=job[-4:])
     else:
         raise PresentationError("No url defined for the job '{}'.".format(job))
-    file_name = spec.input["file-name"]
-    full_name = spec.input["download-path"]. \
-        format(job=job, build=build["build"], filename=file_name)
+    # file_name = spec.input["file-name"]
+    full_name = download_path.format(
+        job=job, build=build["build"], filename=file_name)
     if not job.startswith("intel-dnv-"):
         url = "{0}/{1}".format(url, full_name)
     new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
