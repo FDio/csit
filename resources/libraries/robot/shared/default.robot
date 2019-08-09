@@ -43,6 +43,7 @@
 | Resource | resources/libraries/robot/ip/ip6.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/l2/l2_patch.robot
+| Resource | resources/libraries/robot/l2/l2_traffic.robot
 | Resource | resources/libraries/robot/l2/l2_xconnect.robot
 | Resource | resources/libraries/robot/l2/tagging.robot
 | Resource | resources/libraries/robot/overlay/srv6.robot
@@ -60,20 +61,6 @@
 | Resource | resources/libraries/robot/shared/vm.robot
 
 *** Keywords ***
-| Show Vpp Errors On All DUTs
-| | [Documentation] | Show VPP errors verbose on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp Show Errors | ${nodes['${dut}']}
-
-| Show Bridge Domain Data On All DUTs
-| | [Documentation] | Show Bridge Domain data on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp Get Bridge Domain Data | ${nodes['${dut}']}
-
 | Configure crypto device on all DUTs
 | | [Documentation] | Verify if Crypto QAT device virtual functions are
 | | ... | initialized on all DUTs. If parameter force_init is set to True, then
@@ -562,16 +549,3 @@
 | | Show Vpp Settings | ${nodes['DUT2']}
 | | Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
-
-| Stop VPP Service on DUT
-| | [Documentation] | Stop the VPP service on the specified node.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Stop VPP Service on DUT \| ${nodes['DUT1']} \|
-| | ...
-| | [Arguments] | ${node}
-| | Stop VPP Service | ${node}

@@ -62,7 +62,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize L2 bridge domain in circular topology
+| | When Initialize layer interface
+| | And Initialize L2 bridge domain
 | | Then Send ICMPv4 bidirectionally and verify received packets
 | | ... | ${tg} | ${tg_if1} | ${tg_if2}
 
