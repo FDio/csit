@@ -17,6 +17,7 @@ Download all data.
 
 import re
 import requests
+import logging
 
 from os import rename, mkdir
 from os.path import join
@@ -28,7 +29,7 @@ from requests import codes, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
 
 from errors import PresentationError
-from utils import execute_command
+
 
 # Chunk size used for file download
 CHUNK_SIZE = 512
@@ -39,15 +40,17 @@ SEPARATOR = "__"
 REGEX_RELEASE = re.compile(r'(\D*)(\d{4}|master)(\D*)')
 
 
-def _download_file(url, file_name, log):
+def _download_file(url, file_name, log, arch=False):
     """Download a file with input data.
 
     :param url: URL to the file to download.
     :param file_name: Name of file to download.
     :param log: List of log messages.
+    :param arch: If True, also .gz file is downloaded
     :type url: str
     :type file_name: str
     :type log: list of tuples (severity, msg)
+    :type arch: bool
     :returns: True if the download was successful, otherwise False.
     :rtype: bool
     """
@@ -57,10 +60,16 @@ def _download_file(url, file_name, log):
                                status_forcelist=(500, 502, 504)):
         """
 
-        :param retries:
-        :param backoff_factor:
-        :param status_forcelist:
-        :returns:
+        :param retries: Total number of retries to allow.
+        :param backoff_factor: A backoff factor to apply between attempts after
+            the second try.
+        :param status_forcelist: A set of integer HTTP status codes that are
+            forced to retry.
+        :type retries: int
+        :type backoff_factor: float
+        :type status_forcelist: iterable
+        :returns: Session object.
+        :rtype: requests.Session
         """
 
         retry = Retry(
@@ -96,10 +105,16 @@ def _download_file(url, file_name, log):
         log.append(("INFO", "    Downloading the file '{0}' to '{1}' ...".
                     format(url, file_name)))
 
-        with open(file_name, "wb") as file_handle:
+        dst_file_name = file_name.replace(".gz", "")
+        with open(dst_file_name, "wb") as file_handle:
             for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
                 if chunk:
                     file_handle.write(chunk)
+
+        if arch and ".gz" in file_name:
+            with open(file_name, "wb") as file_handle:
+                file_handle.write(response.raw.read())
+
         success = True
     except ConnectionError as err:
         log.append(("ERROR", "Not possible to connect to '{0}'.".format(url)))
@@ -138,8 +153,12 @@ def _unzip_file(spec, build, pid, log):
     :rtype: bool
     """
 
-    data_file = spec.input["extract"]
     file_name = build["file-name"]
+    if ".zip" in file_name:
+        data_file = spec.input["zip-extract"]
+    else:
+        data_file = spec.input["extract"]
+
     directory = spec.environment["paths"]["DIR[WORKING,DATA]"]
     tmp_dir = join(directory, str(pid))
     try:
@@ -187,42 +206,52 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
     :rtype: bool
     """
 
-    if job.startswith("csit-"):
-        if spec.input["file-name"].endswith(".zip"):
-            url = spec.environment["urls"]["URL[JENKINS,CSIT]"]
-        elif spec.input["file-name"].endswith(".gz"):
-            url = spec.environment["urls"]["URL[NEXUS,LOG]"]
-        else:
-            log.append(("ERROR", "Not supported file format."))
-            return False
-    elif job.startswith("hc2vpp-"):
-        url = spec.environment["urls"]["URL[JENKINS,HC]"]
-    elif job.startswith("intel-dnv-"):
-        url = spec.environment["urls"]["URL[VIRL,DNV]"].format(release=job[-4:])
-    else:
-        raise PresentationError("No url defined for the job '{}'.".format(job))
+    # Try to download .gz from logs.fd.io
+
     file_name = spec.input["file-name"]
-    full_name = spec.input["download-path"]. \
-        format(job=job, build=build["build"], filename=file_name)
-    if not job.startswith("intel-dnv-"):
-        url = "{0}/{1}".format(url, full_name)
+    url = "{0}/{1}".format(
+        spec.environment["urls"]["URL[NEXUS,LOG]"],
+        spec.input["download-path"].format(
+            job=job, build=build["build"], filename=file_name))
     new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
-                    "{job}{sep}{build}{sep}{name}".
-                    format(job=job, sep=SEPARATOR, build=build["build"],
-                           name=file_name))
+                    "{job}{sep}{build}{sep}{name}".format(
+                        job=job, sep=SEPARATOR, build=build["build"],
+                        name=file_name))
 
-    # Download the file from the defined source (Jenkins, logs.fd.io):
-    success, downloaded_name = _download_file(url, new_name, log)
-    if success:
-        new_name = downloaded_name
+    logging.info("Downloading {0}".format(url))
 
-    if success and new_name.endswith(".zip"):
-        if not is_zipfile(new_name):
-            success = False
+    arch = True if spec.configuration.get("archive-inputs", True) else False
+    success, downloaded_name = _download_file(url, new_name, log, arch=arch)
 
-    # If not successful, download from docs.fd.io:
     if not success:
-        log.append(("INFO", "    Trying to download from https://docs.fd.io:"))
+
+        # Try to download .gz from docs.fd.io
+
+        file_name = spec.input["file-name"]
+        url = "{0}/{1}".format(
+            spec.environment["urls"]["URL[NEXUS,DOC]"],
+            spec.input["download-path"].format(
+                job=job, build=build["build"], filename=file_name))
+        new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
+                        "{job}{sep}{build}{sep}{name}".format(
+                            job=job, sep=SEPARATOR, build=build["build"],
+                            name=file_name))
+
+        logging.info("Downloading {0}".format(url))
+
+        if spec.configuration.get("archive-inputs", True):
+            arch = True
+        success, downloaded_name = _download_file(url, new_name, log, arch=arch)
+
+    if not success:
+
+        # Try to download .zip from docs.fd.io
+
+        file_name = spec.input["zip-file-name"]
+        new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
+                        "{job}{sep}{build}{sep}{name}".format(
+                            job=job, sep=SEPARATOR, build=build["build"],
+                            name=file_name))
         release = re.search(REGEX_RELEASE, job).group(2)
         for rls in (release, "master"):
             nexus_file_name = "{job}{sep}{build}{sep}{name}". \
@@ -231,37 +260,59 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
             try:
                 rls = "rls{0}".format(int(rls))
             except ValueError:
+                # It is 'master'
                 pass
             url = "{url}/{release}/{dir}/{file}". \
-                format(url=spec.environment["urls"]["URL[NEXUS]"],
+                format(url=spec.environment["urls"]["URL[NEXUS,DOC]"],
                        release=rls,
-                       dir=spec.environment["urls"]["DIR[NEXUS]"],
+                       dir=spec.environment["urls"]["DIR[NEXUS,DOC]"],
                        file=nexus_file_name)
-            success, new_name = _download_file(url, new_name, log)
+
+            logging.info("Downloading {0}".format(url))
+
+            success, downloaded_name = _download_file(url, new_name, log)
             if success:
                 break
 
-    if success:
-        build["file-name"] = new_name
-    else:
-        return False
+    if not success:
 
-    if spec.input["file-name"].endswith(".gz"):
-        if "docs.fd.io" in url:
-            execute_command("gzip --decompress --keep --force {0}".
-                            format(new_name))
-        else:
-            rename(new_name, new_name[:-3])
-            if spec.configuration.get("archive-inputs", True):
-                execute_command("gzip --keep {0}".format(new_name[:-3]))
-        build["file-name"] = new_name[:-3]
+        # Try to download .zip from jenkins.fd.io
 
-    if new_name.endswith(".zip"):
-        if is_zipfile(new_name):
-            return _unzip_file(spec, build, pid, log)
+        file_name = spec.input["zip-file-name"]
+        download_path = spec.input["zip-download-path"]
+        if job.startswith("csit-"):
+            url = spec.environment["urls"]["URL[JENKINS,CSIT]"]
+        elif job.startswith("hc2vpp-"):
+            url = spec.environment["urls"]["URL[JENKINS,HC]"]
         else:
+            raise PresentationError(
+                "No url defined for the job '{}'.".format(job))
+
+        full_name = download_path.format(
+            job=job, build=build["build"], filename=file_name)
+        url = "{0}/{1}".format(url, full_name)
+        new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
+                        "{job}{sep}{build}{sep}{name}".
+                        format(job=job, sep=SEPARATOR, build=build["build"],
+                               name=file_name))
+
+        logging.info("Downloading {0}".format(url))
+
+        success, downloaded_name = _download_file(url, new_name, log)
+
+    if success and downloaded_name.endswith(".zip"):
+        if not is_zipfile(downloaded_name):
             log.append(("ERROR",
                         "Zip file '{0}' is corrupted.".format(new_name)))
-            return False
-    else:
-        return True
+            success = False
+
+    if success:
+        build["file-name"] = downloaded_name
+
+        if file_name.endswith(".gz"):
+            build["file-name"] = downloaded_name[:-3]
+
+        if downloaded_name.endswith(".zip"):
+            success = _unzip_file(spec, build, pid, log)
+
+    return success

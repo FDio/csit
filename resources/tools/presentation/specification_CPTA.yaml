@@ -45,8 +45,8 @@
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[NEXUS,LOG]: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
-    URL[NEXUS]: "https://docs.fd.io/csit"
-    DIR[NEXUS]: "trending/_static/archive"
+    URL[NEXUS,DOC]: "https://docs.fd.io/csit"
+    DIR[NEXUS,DOC]: "trending/_static/archive"
 
   make-dirs:
   # List the directories which are created while preparing the environment.
@@ -184,18 +184,9 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 670
+        start: 685
         end: "lastCompletedBuild"
         skip:
-          - 672
-          - 673
-          - 674
-          - 675
-          - 676
-          - 677
-          - 678
-          - 679
-          - 680
           - 688
           - 689
           - 690
@@ -249,18 +240,9 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 670
+        start: 685
         end: "lastCompletedBuild"
         skip:
-          - 672
-          - 673
-          - 674
-          - 675
-          - 676
-          - 677
-          - 678
-          - 679
-          - 680
           - 688
           - 689
           - 690
@@ -317,17 +299,9 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 420
+        start: 435
         end: "lastCompletedBuild"
         skip:
-          - 423
-          - 424
-          - 425
-          - 426
-          - 427
-          - 428
-          - 429
-          - 430
           - 440
           - 444
           - 446
@@ -383,17 +357,9 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 420
+        start: 435
         end: "lastCompletedBuild"
         skip:
-          - 423
-          - 424
-          - 425
-          - 426
-          - 427
-          - 428
-          - 429
-          - 430
           - 440
           - 444
           - 446
@@ -452,18 +418,9 @@
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 420
+        start: 435
         end: "lastCompletedBuild"
         skip:
-          - 423
-          - 424
-          - 425
-          - 426
-          - 427
-          - 428
-          - 429
-          - 430
-          - 431
           - 441
           - 444
           - 477
@@ -504,18 +461,9 @@
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 420
+        start: 435
         end: "lastCompletedBuild"
         skip:
-          - 423
-          - 424
-          - 425
-          - 426
-          - 427
-          - 428
-          - 429
-          - 430
-          - 431
           - 441
           - 444
           - 477
@@ -709,22 +657,18 @@
     # time period are used.
     time-period: 90
 
+    zip-file-name: "robot-plugin.zip"
+    zip-file-format: ".zip"
+    zip-download-path: "{job}/{build}/robot/report/*zip*/{filename}"
+    zip-extract: "robot-plugin/output.xml"
+
   builds:
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 670
+      start: 685
       end: "lastCompletedBuild"
       skip:
-        - 672
-        - 673
-        - 674
-        - 675
-        - 676
-        - 677
-        - 678
-        - 679
-        - 680
         - 688
         - 689
         - 690
@@ -778,17 +722,9 @@
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 420
+      start: 435
       end: "lastCompletedBuild"
       skip:
-        - 423
-        - 424
-        - 425
-        - 426
-        - 427
-        - 428
-        - 429
-        - 430
         - 440
         - 444
         - 446
@@ -844,18 +780,9 @@
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
-      start: 420
+      start: 435
       end: "lastCompletedBuild"
       skip:
-        - 423
-        - 424
-        - 425
-        - 426
-        - 427
-        - 428
-        - 429
-        - 430
-        - 431
         - 441
         - 444
         - 477
