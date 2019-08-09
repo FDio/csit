@@ -21,13 +21,6 @@
 | | [Arguments] | ${nodes}
 | | Clear Interface Counters on all DUTs | ${nodes}
 
-| Check ipv4 interface counter
-| | [Documentation] | Check that ipv4 interface counter has right value
-| | [Arguments] | ${node} | ${interface} | ${value}
-| | ${ipv4_counter}= | Vpp get ipv4 interface counter | ${node}
-| | ... | ${interface}
-| | Should Be Equal | ${ipv4_counter} | ${value}
-
 | Clear all counters on all DUTs
 | | [Documentation] | Clear runtime, interface, hardware and error counters
 | | ... | on all DUTs with VPP instance

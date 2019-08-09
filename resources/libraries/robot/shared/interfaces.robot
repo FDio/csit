@@ -370,3 +370,38 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize layer ip4vxlan on node | ${dut} | count=${count}
 | | Set Test Variable | ${prev_layer} | ip4vxlan
+
+| Configure vhost interfaces
+| | [Documentation]
+| | ... | Create two Vhost-User interfaces on defined VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ... | - ${sock1} - Socket path for first Vhost-User interface. Type: string
+| | ... | - ${sock2} - Socket path for second Vhost-User interface. Type: string
+| | ... | - ${vhost_if1} - Name of the first Vhost-User interface (Optional).
+| | ... | Type: string
+| | ... | - ${vhost_if2} - Name of the second Vhost-User interface (Optional).
+| | ... | Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variable:
+| | ... | - ${${vhost_if1}} - First Vhost-User interface.
+| | ... | - ${${vhost_if2}} - Second Vhost-User interface.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Configure vhost interfaces \
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \|
+| | ... | \| Configure vhost interfaces \
+| | ... | \| ${nodes['DUT2']} \| /tmp/sock1 \| /tmp/sock2 \| dut2_vhost_if1 \
+| | ... | \| dut2_vhost_if2 \|
+| | ...
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vhost_if1}=vhost_if1
+| | ... | ${vhost_if2}=vhost_if2
+| | ...
+| | ${vhost_1}= | Vpp Create Vhost User Interface | ${dut_node} | ${sock1}
+| | ${vhost_2}= | Vpp Create Vhost User Interface | ${dut_node} | ${sock2}
+| | Set Interface State | ${dut_node} | ${vhost_1} | up
+| | Set Interface State | ${dut_node} | ${vhost_2} | up
+| | Set Test Variable | ${${vhost_if1}} | ${vhost_1}
+| | Set Test Variable | ${${vhost_if2}} | ${vhost_2}
