@@ -76,8 +76,9 @@
     URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
     URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/{release}/robot-plugin.zip"
     # URL[VIRL,DNV]: "http://download.it/from/nexus"
-    URL[NEXUS]: "https://docs.fd.io/csit"
-    DIR[NEXUS]: "report/_static/archive"
+    URL[NEXUS,LOG]: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
+    URL[NEXUS,DOC]: "https://docs.fd.io/csit"
+    DIR[NEXUS,DOC]: "report/_static/archive"
 
   make-dirs:
   # List the directories which are created while preparing the environment.
@@ -1403,10 +1404,18 @@
 
 - type: "input"
   general:
-    file-name: "robot-plugin.zip"
-    file-format: ".zip"
-    download-path: "{job}/{build}/robot/report/*zip*/{filename}"
-    extract: "robot-plugin/output.xml"
+    file-name: "output_info.xml.gz"
+    file-format: ".gz"
+    arch-file-format:
+      - ".gz"
+      - ".zip"
+    download-path: "{job}/{build}/archives/{filename}"
+    extract: "output.xml"
+
+    zip-file-name: "robot-plugin.zip"
+    zip-file-format: ".zip"
+    zip-download-path: "{job}/{build}/robot/report/*zip*/{filename}"
+    zip-extract: "robot-plugin/output.xml"
 
   builds:
 #    intel-dnv-vpp-release-1904:
@@ -1631,8 +1640,8 @@
     csit-hc2vpp-verify-func-1904-ubuntu1604:
       - 4
 
-#    csit-vpp-functional-1908-ubuntu1604-virl:
-#      -
+    csit-vpp-functional-1908-ubuntu1604-virl:
+      - 19
 #    csit-vpp-functional-1908-centos7-virl:
 #      -
 #    csit-vpp-device-1908-ubuntu1804-1n-skx:
