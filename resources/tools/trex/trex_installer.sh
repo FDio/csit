@@ -24,6 +24,11 @@ cleanup () {
 
 trap cleanup EXIT
 
+find / -name "no_stats_clear_on_connect.patch"
+exit 2
+
+patch "/opt/trex-core-2.54" < "where?"
+
 test -d ${TREX_INSTALL_DIR} && echo "T-REX aleready installed: ${TREX_INSTALL_DIR}" && exit 0
 
 wget -P ${WORKING_DIR} ${TREX_PACKAGE_URL}
