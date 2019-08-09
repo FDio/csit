@@ -53,6 +53,8 @@
 | | ... | - vlan_rx - VLAN (inner) tag on RX side (Optional). Type: integer
 | | ... | - vlan_outer_rx - .1AD VLAN (outer) tag on RX side (Optional).
 | | ... | Type: integer
+| | ... | - traffic_script - Scapy Traffic script used for validation.
+| | ... | Type: string
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
@@ -68,6 +70,7 @@
 | | ... | ${rx_dst_mac} | ${encaps_tx}=${EMPTY} | ${vlan_tx}=${EMPTY}
 | | ... | ${vlan_outer_tx}=${EMPTY} | ${encaps_rx}=${EMPTY}
 | | ... | ${vlan_rx}=${EMPTY} | ${vlan_outer_rx}=${EMPTY}
+| | ... | ${traffic_script}=send_icmp_check_headers
 | | ...
 | | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_src_port}
 | | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
@@ -89,8 +92,7 @@
 | | ${args}= | Run Keyword If | '${vlan_outer_rx}' == '${EMPTY}'
 | | | ... | Set Variable | ${args}
 | | ... | ELSE | Catenate | ${args} | --vlan_outer_rx ${vlan_outer_rx}
-| | Run Traffic Script On Node | send_icmp_check_headers.py | ${tg_node} |
-| | ... | ${args}
+| | Run Traffic Script On Node | ${traffic_script}.py | ${tg_node} | ${args}
 
 | Packet transmission from port to port should fail
 | | [Documentation] | Sends packet from ip (with specified mac) to ip\
@@ -708,7 +710,6 @@
 | | ... | --outer_src_ip | ${outer_src_ip} | --outer_dst_ip | ${outer_dst_ip}
 | | Run Traffic Script On Node
 | | ... | send_icmp_check_gre_headers.py | ${tg_node} | ${args}
-
 
 | Send GRE and check received ICMPv4 header
 | | [Documentation] | Send IPv4 ICMPv4 packet encapsulated into GRE and \
