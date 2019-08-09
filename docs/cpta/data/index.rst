@@ -26,6 +26,16 @@ in the ASCII and CSV formats:
         - `ASCII format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-3n-tsh-trending.txt>`_
         - `CSV format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-3n-tsh-trending.csv>`_
 
+    - 3n-dnv
+
+        - `ASCII format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-3n-dnv-trending.txt>`_
+        - `CSV format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-3n-dnv-trending.csv>`_
+
+    - 2n-dnv
+
+        - `ASCII format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-2n-dnv-trending.txt>`_
+        - `CSV format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-2n-dnv-trending.csv>`_
+
 **DPDK**
 
     - 3n-hsw
