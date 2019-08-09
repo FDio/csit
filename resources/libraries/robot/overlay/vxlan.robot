@@ -12,19 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
-| Library  | Collections
 | Library  | resources.libraries.python.InterfaceUtil
-| Library  | resources.libraries.python.IPUtil
-| Library  | resources.libraries.python.IPv6Util
-| Library  | resources.libraries.python.L2Util
-| Library  | resources.libraries.python.NodePath
 | ...
-| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/l2/l2_xconnect.robot
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| ...
-| Documentation | VXLAN keywords
+| Documentation | VXLAN keywords.
 
 *** Keywords ***
 | Get VXLAN dump

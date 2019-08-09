@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,15 +12,13 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | Keywords for VLAN tests
-| Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/l2/l2_xconnect.robot
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
+| ...
+| Documentation | Keywords for VLAN tests
 
 *** Keywords ***
-
 | Initialize VLAN sub-interfaces in 3-node circular topology
 | | [Arguments] | ${DUT1} | ${INT1} | ${DUT2} | ${INT2} | ${SUB_ID}
 | | ... | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID} | ${TYPE_SUBIF}
@@ -119,88 +117,6 @@
 | | L2 Vlan tag rewrite | ${DUT1} | ${SUB_INT1} | ${TAG_REWRITE_METHOD}
 | | Run Keyword Unless | ${DUT2} == ${None}
 | | ... | L2 Vlan tag rewrite | ${DUT2} | ${SUB_INT2} | ${TAG_REWRITE_METHOD}
-
-| Connect interfaces and VLAN sub-interfaces using L2XC
-| | [Arguments] | ${DUT1} | ${INT1} | ${SUB_INT1} | ${DUT2}=${None}
-| | ... | ${INT2}=${None} | ${SUB_INT2}=${None}
-| | [Documentation] | Add interface and subinterface to bidirectional
-| | ... | L2-xconnect on DUTs.
-| | ...
-| | ... | *Arguments:*
-| | ... | - DUT1 - Node to add bidirectional cross-connect.
-| | ... | - INT1 - Interface to add to the cross-connect.
-| | ... | - SUB_INT1 - Sub-interface to add to the cross-connect.
-| | ... | - DUT2 - Node to add bidirectional cross-connect.
-| | ... | - INT2 - Interface to add to the cross-connect.
-| | ... | - SUB_INT2 - Sub-interface to add to the cross-connect.
-| | ...
-| | Configure L2XC | ${DUT1} | ${INT1} | ${SUB_INT1}
-| | Run Keyword Unless | ${DUT2} == ${None}
-| | ... | Configure L2XC | ${DUT2} | ${INT2} | ${SUB_INT2}
-
-| Create vlan sub-interface
-| | [Documentation] | Create VLAN sub-interface on DUT and set admin status up.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut_node - Node to add VLAN sub-intreface. Type: dictionary
-| | ... | - interface - Interface to create VLAN sub-interface. Type: string
-| | ... | - vlan_id - VLAN ID. Type: integer
-| | ...
-| | ... | *Return:*
-| | ... | - vlan_name - VLAN sub-interface name. Type: string
-| | ... | - vlan_index - VLAN sub-interface SW index. Type: integer
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Create vlan sub-interface \| ${nodes['DUT1']} \| port3 \| 100 \|
-| | ...
-| | [Arguments] | ${dut_node} | ${interface} | ${vlan_id}
-| | ...
-| | [Return] | ${vlan_name} | ${vlan_index}
-| | ...
-| | Set Interface State | ${dut_node} | ${interface} | up
-| | ${interface_name}= | Get interface name | ${dut_node} | ${interface}
-| | ${vlan_name} | ${vlan_index}= | Create Vlan Subinterface
-| | ... | ${dut_node} | ${interface_name} | ${vlan_id}
-| | Set Interface State | ${dut_node} | ${vlan_index} | up
-
-| Create tagged sub-interface
-| | [Documentation] | Create tagged sub-interface on DUT. Type of tagged \
-| | ... | sub-intreface depends on type_subif value:
-| | ... | - one_tag -> VLAN
-| | ... | - two_tags -> QinQ VLAN
-| | ... | - two_tags dot1ad - DOT1AD
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut_node - Node to add VLAN sub-intreface. Type: dictionary
-| | ... | - interface - Interface to create tagged sub-interface. Type: string
-| | ... | - subif_id - Sub-interface ID. Type: integer
-| | ... | - outer_vlan_id - VLAN (outer) ID (Optional). Type: integer
-| | ... | - inner_vlan_id - VLAN inner ID (Optional). Type: integer
-| | ... | - type_subif - Sub-interface type (Optional). Type: string
-| | ...
-| | ... | *Return:*
-| | ... | - subif_name - Sub-interface name. Type: string
-| | ... | - subif_index - Sub-interface SW index. Type: integer
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Create tagged sub-interface \| ${nodes['DUT1']} \| port1 \| 10 \
-| | ... | \| outer_vlan_id=100 \| inner_vlan_id=200 \
-| | ... | \| type_subif=two_tags dot1ad \|
-| | ...
-| | [Arguments] | ${dut_node} | ${interface} | ${subif_id}
-| | ... | ${outer_vlan_id}=${None} | ${inner_vlan_id}=${None}
-| | ... | ${type_subif}=${None}
-| | ...
-| | [Return] | ${subif_name} | ${subif_index}
-| | ...
-| | Set Interface State | ${dut_node} | ${interface} | up
-| | ${interface_name}= | Get interface name | ${dut_node} | ${interface}
-| | ${subif_name} | ${subif_index}= | Create Subinterface
-| | ... | ${dut_node} | ${interface_name} | ${subif_id}
-| | ... | outer_vlan_id=${outer_vlan_id} | inner_vlan_id=${inner_vlan_id}
-| | ... | type_subif=${type_subif}
 
 | Configure L2 tag rewrite method on interface
 | | [Documentation] | Set L2 tag rewrite on (sub-)interface on DUT

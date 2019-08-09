@@ -14,7 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.GBP
 | ...
-| Documentation | GBP keywords
+| Documentation | GBP keywords.
 
 *** Keywords ***
 | Initialize GBP routing domains on node
