@@ -45,8 +45,8 @@
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[NEXUS,LOG]: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
-    URL[NEXUS]: "https://docs.fd.io/csit"
-    DIR[NEXUS]: "trending/_static/archive"
+    URL[NEXUS,DOC]: "https://docs.fd.io/csit"
+    DIR[NEXUS,DOC]: "trending/_static/archive"
 
   make-dirs:
   # List the directories which are created while preparing the environment.
@@ -708,6 +708,11 @@
     # Number of days from now to the past. Only files generated in this
     # time period are used.
     time-period: 90
+
+    zip-file-name: "robot-plugin.zip"
+    zip-file-format: ".zip"
+    zip-download-path: "{job}/{build}/robot/report/*zip*/{filename}"
+    zip-extract: "robot-plugin/output.xml"
 
   builds:
 
