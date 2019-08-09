@@ -235,9 +235,11 @@ def archive_input_data(spec):
 
     logging.info("    Archiving the input data files ...")
 
-    extension = spec.input["file-format"]
-    data_files = get_files(spec.environment["paths"]["DIR[WORKING,DATA]"],
-                           extension=extension)
+    extension = spec.input["arch-file-format"]
+    data_files = list()
+    for ext in extension:
+        data_files.extend(get_files(
+            spec.environment["paths"]["DIR[WORKING,DATA]"], extension=ext))
     dst = spec.environment["paths"]["DIR[STATIC,ARCH]"]
     logging.info("      Destination: {0}".format(dst))
 
