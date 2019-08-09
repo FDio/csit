@@ -1351,10 +1351,16 @@
 
 - type: "input"
   general:
-    file-name: "robot-plugin.zip"
-    file-format: ".zip"
-    download-path: "{job}/{build}/robot/report/*zip*/{filename}"
-    extract: "robot-plugin/output.xml"
+    file-name: "output_info.xml.gz"
+    file-format: ".gz"
+    download-path: "{job}/{build}/archives/{filename}"
+    extract: "output.xml"
+
+    # Temporary solution for functional tests
+    func-file-name: "robot-plugin.zip"
+    func-file-format: ".zip"
+    func-download-path: "{job}/{build}/robot/report/*zip*/{filename}"
+    func-extract: "robot-plugin/output.xml"
 
   builds:
 ##    intel-dnv-vpp-release-1904:
