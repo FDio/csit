@@ -26,7 +26,7 @@
 | Library | resources.libraries.python.honeycomb.Performance
 | Suite Setup | Setup suite for Honeycomb performance tests
 | Suite Teardown | Run Keywords
-| ... | Stop VPP Service on DUT | ${node}
+| ... | Stop VPP Service | ${node}
 | ... | AND | Archive Honeycomb Logs | ${node} | perf=${True}
 | ... | AND | Stop honeycomb service on DUTs | ${node}
 | ... | AND | Cleanup Framework | ${nodes}
@@ -40,7 +40,7 @@
 | | Get CPU Info from All Nodes | ${nodes}
 | | ${cores}= | Get Length | ${node['cpuinfo']}
 | | Set Global Variable | ${cores}
-| | Stop VPP Service on DUT | ${node}
+| | Stop VPP Service | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Generate VPP Startup Configuration for Honeycomb Test on DUT | ${node}
 | | Configure Restconf binding address | ${node}
