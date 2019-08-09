@@ -123,7 +123,7 @@
 | | | ${sock1}= | Set Variable | /var/run/vpp/sock-${number}-1
 | | | ${sock2}= | Set Variable | /var/run/vpp/sock-${number}-2
 | | | ${prev_index}= | Evaluate | ${number}-1
-| | | Configure vhost interfaces for L2BD forwarding | ${nodes['${dut}']}
+| | | Configure vhost interfaces | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${dut}-vhost-${number}-if1
 | | | ... | ${dut}-vhost-${number}-if2
 | | | ${dut_xconnect_if1}= | Set Variable If | ${number}==1 | ${${dut}_if1}
@@ -175,12 +175,12 @@
 | | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
+| | Configure vhost interfaces
+| | ... | ${dut1} | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
-| | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
+| | Configure vhost interfaces
+| | ... | ${dut2} | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
@@ -244,12 +244,12 @@
 | | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
+| | Configure vhost interfaces
+| | ... | ${dut1} | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
 | | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | Configure L2XC | ${dut1} | ${subif_index_1} | ${vhost_if2}
-| | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
+| | Configure vhost interfaces
+| | ... | ${dut2} | /var/run/vpp/sock-1-1 | /var/run/vpp/sock-1-2
 | | Configure L2XC | ${dut2} | ${subif_index_2} | ${vhost_if1}
 | | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
 
