@@ -4810,7 +4810,7 @@
   - "tags"
   traces:
     hoverinfo: "x+y"
-    boxpotnls: "outliers"
+    boxpoints: "outliers"
     whiskerwidth: 0
   layout:
     title: "ipsec-tnl-3n-skx-x710-64b-2t1c-sw-ndr"
@@ -4835,7 +4835,7 @@
   - "tags"
   traces:
     hoverinfo: "x+y"
-    boxpotnls: "outliers"
+    boxpoints: "outliers"
     whiskerwidth: 0
   layout:
     title: "ipsec-tnl-3n-skx-x710-64b-2t1c-sw-pdr"
@@ -4860,7 +4860,7 @@
   - "tags"
   traces:
     hoverinfo: "x+y"
-    boxpotnls: "outliers"
+    boxpoints: "outliers"
     whiskerwidth: 0
   layout:
     title: "ipsec-tnl-3n-skx-x710-64b-4t2c-sw-ndr"
@@ -4885,7 +4885,7 @@
   - "tags"
   traces:
     hoverinfo: "x+y"
-    boxpotnls: "outliers"
+    boxpoints: "outliers"
     whiskerwidth: 0
   layout:
     title: "ipsec-tnl-3n-skx-x710-64b-4t2c-sw-pdr"
