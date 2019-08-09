@@ -4,9 +4,7 @@ Release Notes
 Changes in |csit-release|
 -------------------------
 
-#. DMM FUNCTIONAL TESTS
-
-   - Added DMM lwip integration test case.
+No changes
 
 Known Issues
 ------------
