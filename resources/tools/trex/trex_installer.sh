@@ -24,13 +24,21 @@ cleanup () {
 
 trap cleanup EXIT
 
-test -d ${TREX_INSTALL_DIR} && echo "T-REX aleready installed: ${TREX_INSTALL_DIR}" && exit 0
+if [[ -d "${TREX_INSTALL_DIR}" ]]; then
+    echo "T-REX aleready installed: ${TREX_INSTALL_DIR}"
+else
+    wget -P ${WORKING_DIR} ${TREX_PACKAGE_URL}
+    test $? -eq 0 || exit 1
+    unzip ${WORKING_DIR}/${TREX_DOWNLOAD_PACKAGE} -d ${TARGET_DIR}
+    test $? -eq 0 || exit 1
+    cd ${TREX_INSTALL_DIR}/linux_dpdk/ && ./b configure && ./b build || exit 1
+    cd ${TREX_INSTALL_DIR}/scripts/ko/src && make && make install || exit 1
+fi
 
-wget -P ${WORKING_DIR} ${TREX_PACKAGE_URL}
-test $? -eq 0 || exit 1
-
-unzip ${WORKING_DIR}/${TREX_DOWNLOAD_PACKAGE} -d ${TARGET_DIR}
-test $? -eq 0 || exit 1
-
-cd ${TREX_INSTALL_DIR}/linux_dpdk/ && ./b configure && ./b build || exit 1
-cd ${TREX_INSTALL_DIR}/scripts/ko/src && make && make install || exit 1
+dir_with_patch="/tmp/openvpp-testing/resources/patch/trex/2.54"
+pushd "/opt/trex-core-2.54"
+if patch -N < "${dir_with_patch}/no_stats_clear_on_connect.patch"; then
+    echo "Trex patched and ready."
+else
+    echo "Patch has been probably applied already."
+popd
