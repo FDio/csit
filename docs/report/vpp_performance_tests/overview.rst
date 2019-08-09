@@ -291,7 +291,7 @@ performance tested across a range of NIC drivers and NIC models:
 | IPv6 Scale            | IPv6 routing with 20k, 200k and 2M FIB       |
 |                       | entries.                                     |
 +-----------------------+----------------------------------------------+
-| IPSecHW               | IPSec encryption with AES-GCM, CBC-SHA1      |
+| IPSecHW               | IPSec encryption with AES-GCM, CBC-SHA-256   |
 |                       | ciphers, in combination with IPv4 routing.   |
 |                       | Intel QAT HW acceleration.                   |
 +-----------------------+----------------------------------------------+
@@ -299,7 +299,7 @@ performance tested across a range of NIC drivers and NIC models:
 |                       | combination with LISP-GPE overlay tunneling  |
 |                       | for IPv4-over-IPv4.                          |
 +-----------------------+----------------------------------------------+
-| IPSecSW               | IPSec encryption with AES-GCM, CBC-SHA1      |
+| IPSecSW               | IPSec encryption with AES-GCM, CBC-SHA-256   |
 |                       | ciphers, in combination with IPv4 routing.   |
 +-----------------------+----------------------------------------------+
 | K8s Containers Memif  | K8s orchestrated container VPP service chain |
@@ -307,7 +307,7 @@ performance tested across a range of NIC drivers and NIC models:
 |                       | interface.                                   |
 +-----------------------+----------------------------------------------+
 | KVM VMs vhost-user    | Virtual topologies with service              |
-|                       | chains of 1 and 2 VMs using vhost-user       |
+|                       | chains of 1 VM using vhost-user              |
 |                       | interfaces, with different VPP forwarding    |
 |                       | modes incl. L2XC, L2BD, VXLAN with L2BD,     |
 |                       | IPv4 routing.                                |

@@ -9,25 +9,7 @@ to the QEMU binary can be adjusted in `Constants.py`.
 FD.io CSIT performance lab is testing VPP vhost-user with KVM VMs using
 following environment settings:
 
-- Tests with varying QEMU virtio queue (a.k.a. vring) sizes: [vr1024]
-  1024 descriptors to optimize for packet throughput.
-- Tests with varying Linux :abbr:`CFS (Completely Fair Scheduler)`
-  settings: i) [cfs] default settings, ii) [cfsrr1] CFS RoundRobin(1)
-  policy applied to all data plane threads handling test packet path
-  including all VPP worker threads and all QEMU testpmd poll-mode
-  threads.
-- Resulting test cases are all combinations with [vr1024] and
-  [cfs,cfsrr1] settings.
-- Adjusted Linux kernel :abbr:`CFS (Completely Fair Scheduler)`
-  scheduler policy for data plane threads used in CSIT is documented in
-  `CSIT Performance Environment Tuning wiki
-  <https://wiki.fd.io/view/CSIT/csit-perf-env-tuning-ubuntu1604>`_.
-
-Testing with different CFS settings enables verifying the impact of
-making VPP and VM data plane threads less susceptible to other Linux OS
-system tasks hijacking CPU cores running those data plane threads.
-
-CSIT supports two types of VMs: 
+CSIT supports two types of VMs:
 
 - **Image-VM**: used for all functional, VPP_device, and regular
   performance tests except NFV density tests.
@@ -83,10 +65,10 @@ Example of custom init script for the kernel-VM:
   mount -t hugetlbfs -o "rw,relatime,pagesize=2M" hugetlbfs /dev/hugepages
   echo 0000:00:06.0 > /sys/bus/pci/devices/0000:00:06.0/driver/unbind
   echo 0000:00:07.0 > /sys/bus/pci/devices/0000:00:07.0/driver/unbind
-  echo uio_pci_generic > /sys/bus/pci/devices/0000:00:06.0/driver_override
-  echo uio_pci_generic > /sys/bus/pci/devices/0000:00:07.0/driver_override
-  echo 0000:00:06.0 > /sys/bus/pci/drivers/uio_pci_generic/bind
-  echo 0000:00:07.0 > /sys/bus/pci/drivers/uio_pci_generic/bind
+  echo vfio-pci > /sys/bus/pci/devices/0000:00:06.0/driver_override
+  echo vfio-pci > /sys/bus/pci/devices/0000:00:07.0/driver_override
+  echo 0000:00:06.0 > /sys/bus/pci/drivers/vfio-pci/bind
+  echo 0000:00:07.0 > /sys/bus/pci/drivers/vfio-pci/bind
   $vnf_bin
   poweroff -f
 

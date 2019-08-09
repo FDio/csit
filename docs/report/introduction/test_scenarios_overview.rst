@@ -12,18 +12,17 @@ Brief overview of test scenarios covered in this report:
 #. **VPP Performance**: VPP performance tests are executed in physical
    FD.io testbeds, focusing on VPP network data plane performance in
    NIC-to-NIC switching topologies. Tested across Intel Xeon Haswell
-   and Skylake servers, range of NICs (10GE, 25GE, 40GE) and multi-
-   thread/multi-core configurations. VPP application runs in bare-metal
+   and Skylake servers, ARM, Denverton, range of NICs (10GE, 25GE, 40GE) and
+   multi-thread/multi-core configurations. VPP application runs in bare-metal
    host user-mode handling NICs. TRex is used as a traffic generator.
 
 #. **VPP Vhostuser Performance with KVM VMs**: VPP VM service switching
    performance tests using vhostuser virtual interface for
-   interconnecting multiple Testpmd-in-VM instances. VPP vswitch
+   interconnecting multiple NF-in-VM instances. VPP vswitch
    instance runs in bare-metal user-mode handling NICs and connecting
-   over vhost-user interfaces to VM instances each running DPDK
-   Testpmd with virtio virtual interfaces. Similarly to VPP
-   Performance, tests are run across a range of configurations. TRex
-   is used as a traffic generator.
+   over vhost-user interfaces to VM instances each running VPP with virtio
+   virtual interfaces. Similarly to VPP Performance, tests are run across a
+   range of configurations. TRex is used as a traffic generator.
 
 #. **VPP Memif Performance with LXC and Docker Containers**: VPP
    Container service switching performance tests using memif virtual
@@ -49,12 +48,11 @@ Brief overview of test scenarios covered in this report:
    cover vNIC-to-vNIC vNIC-to-nestedVM-to-vNIC forwarding topologies.
    Scapy is used as a traffic generator.
 
-#. **Honeycomb Functional**: Honeycomb functional tests are executed in
-   virtual FD.io testbeds, focusing on Honeycomb management and
-   programming functionality of VPP. Tests cover a range of CRUD
-   operations executed against VPP.
-
 ..
+    #. **Honeycomb Functional**: Honeycomb functional tests are executed in
+       virtual FD.io testbeds, focusing on Honeycomb management and
+       programming functionality of VPP. Tests cover a range of CRUD
+       operations executed against VPP.
     #. **DMM Functional**: DMM functional tests are executed in virtual
        FD.io testbeds demonstrating a single server (DUT1) and single
        client (DUT2) scenario using DMM framework and Linux kernel TCP/IP
