@@ -235,6 +235,12 @@ class QemuUtils(object):
             vpp_config.add_dpdk_no_tx_checksum_offload()
         vpp_config.add_plugin('disable', 'default')
         vpp_config.add_plugin('enable', 'dpdk_plugin.so')
+        ####################
+        ##vpp_config.add_plugin('enable', 'memif_plugin.so')
+        vpp_config.add_plugin('enable', 'nsh_plugin.so')
+        ##vpp_config.add_plugin('enable', 'perfmon_plugin.so')
+        ##vpp_config.add_plugin('enable', 'quic_plugin.so')
+        ##vpp_config.add_plugin('enable', 'sctp_plugin.so')
         vpp_config.write_config(startup)
 
         # Create VPP running configuration.
