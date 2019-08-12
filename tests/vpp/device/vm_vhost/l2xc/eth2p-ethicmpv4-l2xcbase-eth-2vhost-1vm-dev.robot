@@ -73,6 +73,7 @@
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | vnf=vpp_chain_l2xc
 | | ... | pinning=${False}
+| | And | Sleep | ${3600}
 | | Then Send ICMPv4 bidirectionally and verify received packets | ${tg}
 | | ... | ${tg_if1} | ${tg_if2}
 
