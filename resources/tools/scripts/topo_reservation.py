@@ -53,22 +53,10 @@ def main():
     2. List contents of test.url file in the dir.
     3. Create reservation dir.
     4. Touch file according to -r option.
-    5. Put -u option string to file test.url
-    From these 5 steps, 1 and 2 are performed always, their RC ignored.
+    From these 4 steps, 1 and 2 are performed always, their RC ignored.
     RC of step 3 gives the overall result.
-    If the result is success, steps 4-5 are executed without any output,
+    If the result is success, step 4 is executed without any output,
     their RC is ignored.
-
-    The two files in reservation dir are there for reporting
-    which test run holds the reservation, so people can manually fix the testbed
-    if the rest run has been aborted, or otherwise failed to unregister.
-
-    The two files have different audiences.
-
-    The URL content is useful for people scheduling their test runs
-    and wondering why the reservation takes so long.
-    For them, a URL (if available) to copy and paste into browser
-    to see which test runs are blocking testbeds is the most convenient.
 
     The "run tag" as a filename is useful for admins accessing the testbed
     via a graphical terminal, which does not allow copying of text,
@@ -91,8 +79,6 @@ def main():
                         action="store_true")
     parser.add_argument("-r", "--runtag", required=False, default="Unknown",
                         help="Identifier for test run suitable as filename")
-    parser.add_argument("-u", "--url", required=False, default="Unknown",
-                        help="Identifier for test run suitable as URL")
     args = parser.parse_args()
 
     with open(args.topo, "r") as topo_file:
@@ -115,29 +101,24 @@ def main():
             print "Cancellation unsuccessful:\n{}".format(err)
         return ret
     # Before critical section, output can be outdated already.
-    print "Diagnostic commands:"
+    print("Diagnostic commands:")
     # -d and * are to supress "total <size>", see https://askubuntu.com/a/61190
     diag_cmd(tgn, "ls --full-time -cd '{dir}'/*".format(dir=RESERVATION_DIR))
-    diag_cmd(tgn, "head -1 '{dir}/run.url'".format(dir=RESERVATION_DIR))
-    print "Attempting reservation."
+    print("Attempting reservation.")
     # Entering critical section.
-    # TODO: Add optional argument to exec_cmd_no_error to make it
-    # sys.exit(ret) instead raising? We do not want to deal with stacktrace.
     ret, _, err = exec_cmd(tgn, "mkdir '{dir}'".format(dir=RESERVATION_DIR))
     # Critical section is over.
     if ret:
-        print "Already reserved by another job:\n{}".format(err)
+        print("Already reserved by another job:\n{}".format(err))
         return 2
     # Here the script knows it is the only owner of the testbed.
-    print "Success, writing test run info to reservation dir."
-    # TODO: Add optional argument to exec_cmd_no_error to print message
-    # to console instead raising? We do not want to deal with stacktrace.
+    print("Success, writing test run info to reservation dir.")
     ret2, _, err = exec_cmd(
-        tgn, "touch '{dir}/{runtag}' && ( echo '{url}' > '{dir}/run.url' )"\
-        .format(dir=RESERVATION_DIR, runtag=args.runtag, url=args.url))
+        tgn, "touch '{dir}/{runtag}'"\
+        .format(dir=RESERVATION_DIR, runtag=args.runtag))
     if ret2:
-        print "Writing test run info failed, but continuing anyway:\n{}".format(
-            err)
+        print("Writing test run info failed, but continuing anyway:\n{}".format(
+            err))
     return 0
 
 
