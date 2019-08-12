@@ -428,7 +428,7 @@
       # csit-vpp-device-1908-ubuntu1804-1n-skx:
 
     dpdk-perf-results-3n-hsw:
-
+      csit-dpdk-perf-verify-1904-3n-hsw:
         - 5   # NDRPDR sel
       # TODO: Add data
       # csit-dpdk-perf-verify-1908-3n-hsw:
