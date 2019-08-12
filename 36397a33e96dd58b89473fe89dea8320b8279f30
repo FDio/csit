@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "405da844_b488947e",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-12T13:48:09Z",
+      "side": 1,
+      "message": "2node?",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "36397a33e96dd58b89473fe89dea8320b8279f30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da0aab34_d8b71795",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-12T13:48:09Z",
+      "side": 1,
+      "message": "only CPS",
+      "range": {
+        "startLine": 31,
+        "startChar": 19,
+        "endLine": 32,
+        "endChar": 32
+      },
+      "revId": "36397a33e96dd58b89473fe89dea8320b8279f30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffe0d429_d144bc80",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-12T13:48:09Z",
+      "side": 1,
+      "message": "This line is not needed. It was lifted to setup.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "36397a33e96dd58b89473fe89dea8320b8279f30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4799ca49_7b2558b0",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-rps.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-12T13:48:09Z",
+      "side": 1,
+      "message": "2node?",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "36397a33e96dd58b89473fe89dea8320b8279f30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "192c3a84_e87b6fba",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-rps.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-12T13:48:09Z",
+      "side": 1,
+      "message": "only RPS",
+      "range": {
+        "startLine": 31,
+        "startChar": 45,
+        "endLine": 32,
+        "endChar": 32
+      },
+      "revId": "36397a33e96dd58b89473fe89dea8320b8279f30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ec618c9_8ef47132",
+        "filename": "tests/vpp/perf/tcp/2n1l-40ge2p1xl710-eth-ip4tcphttp-rps.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-12T13:48:09Z",
+      "side": 1,
+      "message": "This line is not needed anymore. It was lifted to setup",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "36397a33e96dd58b89473fe89dea8320b8279f30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
