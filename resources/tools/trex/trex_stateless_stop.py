@@ -44,16 +44,20 @@ def main():
         client.stop(ports=[0, 1])
 
         # read the stats after the test
-        stats = client.get_stats()
+        xstats0 = client.get_xstats(0)
+        xstats1 = client.get_xstats(1)
 
-        print("#####statistics (approx.)#####")
-        print(json.dumps(stats, indent=4, separators=(',', ': ')))
+        print("#####statistics port 0#####")
+        print(json.dumps(xstats0, indent=4, separators=(',', ': ')))
+        print("#####statistics port 1#####")
+        print(json.dumps(xstats1, indent=4, separators=(',', ': ')))
 
-        lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
-        lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
+        lost_a = xstats0["tx_good_packets"] - xstats1["rx_good_packets"]
+        lost_b = xstats1["tx_good_packets"] - xstats0["rx_good_packets"]
 
         print("\npackets lost from 0 --> 1:   {0} pkts".format(lost_a))
         print("packets lost from 1 --> 0:   {0} pkts".format(lost_b))
+
     except STLError as ex_error:
         print(ex_error, file=sys.stderr)
         sys.exit(1)
