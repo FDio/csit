@@ -581,6 +581,8 @@ function reserve_and_cleanup_testbed () {
 
     set -exuo pipefail
 
+    topolologies_backup=("${TOPOLOGIES[@]}")
+
     while true; do
         for topo in "${TOPOLOGIES[@]}"; do
             set +e
@@ -632,6 +634,11 @@ function reserve_and_cleanup_testbed () {
         }
         echo "Sleeping ${sleep_time}"
         sleep "${sleep_time}" || die "Sleep failed."
+
+        # In the meantime, some of inaccessible testbeds got maybe fixed.
+        # It is better to check them once again,
+        # rather than overqueueing the rest of the testbeds.
+        TOPOLOGIES=("${topologies_backup[@]}")
     done
 }
 
