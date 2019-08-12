@@ -1,0 +1,25 @@
+Without this, when we are stopping traffic started in async mode,
+connect of the stop utility would clear stats.
+With this, the stats from stop utility should describe whole trial.
+The start utility is clearing stats explicitly,
+so this patch should have no adverse effect in CSIT.
+
+TODO: Add a configuration knob for connect command
+and upstream, so that future TRex versions do not need this.
+
+diff --git a/scripts/automation/trex_control_plane/interactive/trex/common/trex_client.py b/scripts/automation/trex_control_plane/interactive/trex/common/trex_client.py
+index a7244def..686359b1 100644
+--- a/scripts/automation/trex_control_plane/interactive/trex/common/trex_client.py
++++ b/scripts/automation/trex_control_plane/interactive/trex/common/trex_client.py
+@@ -469,11 +469,6 @@ class TRexClient(object):
+         if not rc:
+             return rc
+ 
+-        rc = self._on_connect_clear_stats()
+-        if not rc:
+-            return rc
+-
+-
+         # mark the event handler as ready to process async updates
+         self.ctx.event_handler.enable()
+ 
