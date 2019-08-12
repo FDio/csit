@@ -54,6 +54,11 @@ def main():
 
         print("\npackets lost from 0 --> 1:   {0} pkts".format(lost_a))
         print("packets lost from 1 --> 0:   {0} pkts".format(lost_b))
+
+        xstats = client.get_xstats(0)
+        print("Xstats 0: {xs}".format(xs=xstats))
+        xstats = client.get_xstats(1)
+        print("Xstats 1: {xs}".format(xs=xstats))
     except STLError as ex_error:
         print(ex_error, file=sys.stderr)
         sys.exit(1)
