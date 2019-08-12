@@ -67,24 +67,6 @@ if [ ${vpp_need_install} -eq 1 ]; then
     cd ${PWDDIR}
 fi
 
-##begin to clone the nsh sfc source code
-if [ ${nsh_need_install} -eq 1 ]; then
-    sudo rm -rf ${NSH_SFC_CODE_DIR}
-    sudo mkdir -p ${NSH_SFC_CODE_DIR}
-    cd ${NSH_SFC_CODE_DIR}
-    git clone -b v${NSH_SFC_VERSION} https://gerrit.fd.io/r/nsh_sfc
-
-    #compile the nsh sfc code
-    cd ./nsh_sfc/nsh-plugin/
-    sudo rm -rf build
-    sudo ./build.sh
-
-    #after that, install the nsh sfc plugin
-    cd ./packaging/
-    sudo dpkg -i *.deb
-    cd ${PWDDIR}
-fi
-
 #check and setup the hugepages
 SYS_HUGEPAGE=$(cat /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages)
 if [ ${SYS_HUGEPAGE} -lt 1024 ]; then
