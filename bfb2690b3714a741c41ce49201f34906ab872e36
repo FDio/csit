@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "be10760c_d943e730",
+        "filename": "resources/libraries/robot/overlay/srv6.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-12T14:19:08Z",
+      "side": 1,
+      "message": "Another one, but I created https://jira.fd.io/browse/CSIT-1564\nas such conversion is a good task to give to new people.",
+      "range": {
+        "startLine": 286,
+        "startChar": 63,
+        "endLine": 286,
+        "endChar": 69
+      },
+      "revId": "bfb2690b3714a741c41ce49201f34906ab872e36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
