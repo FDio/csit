@@ -143,7 +143,9 @@ def setup_node(node, tarball, remote_tarball, results=None):
             node=host, err=exc))
         result = False
     else:
-        logger.console('Setup of node {0} done.'.format(host))
+        logger.console('Setup of node {ip} done.'.format(ip=host))
+        logger.info('Setup of {type} node {ip} done.'.format(type=node['type'],
+                                                             ip=host))
         result = True
 
     if isinstance(results, list):
