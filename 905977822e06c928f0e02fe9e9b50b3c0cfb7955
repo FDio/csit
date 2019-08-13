@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "27ed15ce_1eede646",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-13T14:18:34Z",
+      "side": 1,
+      "message": "THis is TRex specific code and must go into elif tg_instance.node[\u0027subtype\u0027] \u003d\u003d NodeSubTypeTG.TREX:",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 51
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad372ee2_f9c2e001",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-13T14:18:34Z",
+      "side": 1,
+      "message": "This code is trex secifics and must go into if self._node[\u0027type\u0027] !\u003d NodeType.TG:",
+      "range": {
+        "startLine": 515,
+        "startChar": 8,
+        "endLine": 515,
+        "endChar": 50
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c98831ef_ca5fd858",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 30
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-13T14:18:34Z",
+      "side": 1,
+      "message": "Keep in mind to sync with memif to have the same way of control.",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 63
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b95a10d1_d3c7f255",
+        "filename": "resources/tools/trex/trex_stateless_stop.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-13T14:18:34Z",
+      "side": 1,
+      "message": "I would start catching json and keyerrors as it might crash later outside try: block",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 5
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d9d098c_c3eb9255",
+        "filename": "tests/vpp/perf/nfv_density/vm_vhost/chain_dot1qip4vxlan/2n-10ge2p1x710-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm2t-testpmd-reconf.robot",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-13T14:18:34Z",
+      "side": 1,
+      "message": "What is the purpose of test? Testing added chains without running traffic through them?\n\nWhat are the initial results on PPS loss?",
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ff0689f_4216b313",
+        "filename": "tests/vpp/perf/nfv_density/vm_vhost/chain_dot1qip4vxlan/2n-10ge2p1x710-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm2t-testpmd-reconf.robot",
+        "patchSetId": 30
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-13T14:18:34Z",
+      "side": 1,
+      "message": "document + add more tags like RECONF",
+      "range": {
+        "startLine": 20,
+        "startChar": 23,
+        "endLine": 20,
+        "endChar": 28
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
