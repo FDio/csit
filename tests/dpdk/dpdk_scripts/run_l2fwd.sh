@@ -94,13 +94,13 @@ if [ "$jumbo_frames" = "yes" ]; then
         --portmask=0x3 \
         --nb-cores=${nb_cores} \
         --max-pkt-len=9000 \
-        --tx-offloads=0x7FFFFFFF \
         --forward-mode=io \
         --rxq=${queue_nums} \
         --txq=$((${nb_cores} + 1)) \
         --burst=64 \
         --rxd=1024 \
         --txd=1024 \
+        --tx-offloads=0x0 \
         --disable-link-check \
         --auto-start"
 else
