@@ -14,7 +14,9 @@
 
 """This module implements initialization and cleanup of DPDK environment."""
 
-from resources.libraries.python.ssh import SSH
+from robot.api import logger
+
+from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -104,15 +106,17 @@ class DPDKTools(object):
         """
         arch = Topology.get_node_arch(node)
 
-        ssh = SSH()
-        ssh.connect(node)
+        command = ('{fwdir}/tests/dpdk/dpdk_scripts/install_dpdk.sh {arch}'.
+                   format(fwdir=Constants.REMOTE_FW_DIR, arch=arch))
+        message = 'Install the DPDK failed!'
+        exec_cmd_no_error(node, command, timeout=600, message=message)
 
-        ret_code, _, _ = ssh.exec_command(
-            '{fwdir}/tests/dpdk/dpdk_scripts/install_dpdk.sh {arch}'.
-            format(fwdir=Constants.REMOTE_FW_DIR, arch=arch), timeout=600)
+        command = ('cat {fwdir}/download_dir/dpdk*/VERSION'.
+                   format(fwdir=Constants.REMOTE_FW_DIR))
+        message = 'Get DPDK version failed!'
+        stdout, _ = exec_cmd_no_error(node, command, message=message)
 
-        if ret_code != 0:
-            raise RuntimeError('Install the DPDK failed')
+        logger.info('DPDK Version: {version}'.format(version=stdout))
 
     @staticmethod
     def install_dpdk_test_on_all_duts(nodes):

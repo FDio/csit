@@ -280,8 +280,7 @@ class ExecutionChecker(ResultVisitor):
     REGEX_VERSION_VPP = re.compile(r"(return STDOUT Version:\s*|"
                                    r"VPP Version:\s*|VPP version:\s*)(.*)")
 
-    REGEX_VERSION_DPDK = re.compile(r"(return STDOUT testpmd)([\d\D\n]*)"
-                                    r"(RTE Version: 'DPDK )(.*)(')")
+    REGEX_VERSION_DPDK = re.compile(r"DPDK Version: (\d*.\d*)")
 
     REGEX_TCP = re.compile(r'Total\s(rps|cps|throughput):\s([0-9]*).*$')
 
@@ -422,10 +421,10 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
-        if msg.message.count("return STDOUT testpmd"):
+        if msg.message.count("DPDK Version:"):
             try:
                 self._version = str(re.search(
-                    self.REGEX_VERSION_DPDK, msg.message). group(4))
+                    self.REGEX_VERSION_DPDK, msg.message). group(1))
                 self._data["metadata"]["version"] = self._version
             except IndexError:
                 pass
@@ -944,7 +943,7 @@ class ExecutionChecker(ResultVisitor):
             self._lookup_kw_nr += 1
             self._show_run_lookup_nr = 0
             self._msg_type = "test-show-runtime"
-        elif test_kw.name.count("Start The L2fwd Test") and not self._version:
+        elif test_kw.name.count("Install Dpdk Test") and not self._version:
             self._msg_type = "dpdk-version"
         else:
             return
