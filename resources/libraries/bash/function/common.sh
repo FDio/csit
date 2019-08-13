@@ -239,6 +239,9 @@ function common_dirs () {
     TOOLS_DIR=$(readlink -e "${RESOURCES_DIR}/tools") || {
         die "Readlink failed."
     }
+    DOC_GEN_DIR=$(readlink -e "${TOOLS_DIR}/doc_gen") || {
+        die "Readlink failed."
+    }
     PYTHON_SCRIPTS_DIR=$(readlink -e "${TOOLS_DIR}/scripts") || {
         die "Readlink failed."
     }
