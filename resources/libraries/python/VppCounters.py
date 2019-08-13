@@ -165,6 +165,18 @@ class VppCounters(object):
         PapiSocketExecutor.run_cli_cmd(node, 'show hardware verbose')
 
     @staticmethod
+    def vpp_show_memory(node):
+        """Run "show memory" debug CLI command.
+
+        Currently, every flag is hardcoded, giving the longest output.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        PapiSocketExecutor.run_cli_cmd(
+            node, 'show memory verbose api-segment stats-segment main-heap')
+
+    @staticmethod
     def vpp_clear_runtime(node):
         """Run "clear runtime" CLI command.
 
@@ -318,6 +330,7 @@ class VppCounters(object):
         VppCounters.vpp_show_errors(node)
         VppCounters.vpp_show_hardware_verbose(node)
         VppCounters.vpp_show_runtime(node)
+        VppCounters.vpp_show_memory(node)
 
     @staticmethod
     def show_statistics_on_all_duts(nodes, sleeptime=5):
