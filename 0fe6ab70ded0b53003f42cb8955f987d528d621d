@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "12bc5129_2d11461a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T12:52:13Z",
+      "side": 1,
+      "message": "Previously, if",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 2
+      },
+      "revId": "0fe6ab70ded0b53003f42cb8955f987d528d621d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "15a83ba0_44827cd3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T12:52:13Z",
+      "side": 1,
+      "message": "keyword",
+      "range": {
+        "startLine": 10,
+        "startChar": 33,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "0fe6ab70ded0b53003f42cb8955f987d528d621d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "373c9040_afc321d8",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T12:52:13Z",
+      "side": 1,
+      "message": "vnf_manager.Kill All VMs",
+      "range": {
+        "startLine": 69,
+        "startChar": 33,
+        "endLine": 69,
+        "endChar": 44
+      },
+      "revId": "0fe6ab70ded0b53003f42cb8955f987d528d621d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
