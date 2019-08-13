@@ -29,3 +29,12 @@ class TLDKConstants(object):
 
     # Config files location for the TLDK test
     TLDK_TESTCONFIG = 'tests/tldk/tldk_testconfig'
+
+    # URL with TLDK git repository
+    TLDK_REPOSITORY = 'https://gerrit.fd.io/r/tldk'
+
+    # Exact filename for DPDK archive
+    DPDK_ARCHIVE = 'dpdk-16.11.1.tar.xz'
+
+    # URL with DPDK archive
+    DPDK_ARCHIVE_URL = 'http://fast.dpdk.org/rel/{0}'.format(DPDK_ARCHIVE)
