@@ -18,7 +18,7 @@
 | ... | NIC_Intel-X710 | ETH | L2PATCH | BASE | DRV_AVF
 | ...
 | Suite Setup | Setup suite single link | performance_avf
-| Suite Teardown | Tear down suite | performance
+| Suite Teardown | Tear down suite | performance | vifs
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...

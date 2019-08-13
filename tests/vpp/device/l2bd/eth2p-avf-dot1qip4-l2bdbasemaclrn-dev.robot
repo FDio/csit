@@ -18,6 +18,7 @@
 | ... | NIC_Virtual | ETH | IP4FWD | BASE | DOT1Q | IP4BASE | DRV_AVF
 | ...
 | Suite Setup | Setup suite single link | avf | scapy
+| Suite Teardown | Tear down suite | vifs
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
 | ...
