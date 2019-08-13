@@ -1455,12 +1455,12 @@ class InterfaceUtil(object):
 
     @staticmethod
     def init_avf_interface(node, ifc_key, numvfs=1, osi_layer='L2'):
-        """Init PCI device by creating VFs and bind them to vfio-pci for AVF
+        """Init PCI device by creating VIFs and bind them to vfio-pci for AVF
         driver testing on DUT.
 
         :param node: DUT node.
         :param ifc_key: Interface key from topology file.
-        :param numvfs: Number of VFs to initialize, 0 - disable the VFs.
+        :param numvfs: Number of VIFs to initialize, 0 - disable the VIFs.
         :param osi_layer: OSI Layer type to initialize TG with.
             Default value "L2" sets linux interface spoof off.
         :type node: dict
@@ -1518,7 +1518,7 @@ class InterfaceUtil(object):
             DUTSetup.pci_vf_driver_bind(node, pf_pci_addr, vf_id, uio_driver)
 
             # Add newly created ports into topology file
-            vf_ifc_name = '{pf_if_key}_vf'.format(pf_if_key=ifc_key)
+            vf_ifc_name = '{pf_if_key}_vif'.format(pf_if_key=ifc_key)
             vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
             vf_ifc_key = Topology.add_new_port(node, vf_ifc_name)
             Topology.update_interface_name(node, vf_ifc_key,

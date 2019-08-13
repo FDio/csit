@@ -45,3 +45,9 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Cleanup DPDK Environment
 | | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
+
+| Additional Suite Tear Down Action For vifs
+| | [Documentation]
+| | ... | Additional teardown for suites which uses Virtual Interfaces.
+| | ...
+| | Remove All Added VIF Ports On All DUTs From Topology | ${nodes}
