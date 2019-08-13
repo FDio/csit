@@ -18,7 +18,7 @@
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | DRV_AVF | GBP
 | ...
 | Suite Setup | Setup suite single link | performance_avf
-| Suite Teardown | Tear down suite | performance
+| Suite Teardown | Tear down suite | performance | vfs
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...

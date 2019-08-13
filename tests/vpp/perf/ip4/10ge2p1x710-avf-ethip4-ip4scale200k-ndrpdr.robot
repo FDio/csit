@@ -18,7 +18,7 @@
 | ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_200K | DRV_AVF
 | ...
 | Suite Setup | Setup suite single link | performance_avf
-| Suite Teardown | Tear down suite | performance
+| Suite Teardown | Tear down suite | performance | vfs
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
