@@ -17,7 +17,7 @@ supposed to end up here.
 """
 
 from os import environ, remove
-from os.path import basename
+from os.path import basename, join
 from tempfile import NamedTemporaryFile
 import threading
 
@@ -31,24 +31,21 @@ from resources.libraries.python.topology import NodeType
 __all__ = ["SetupFramework"]
 
 
-def pack_framework_dir():
+def pack_framework_dir(prefix):
     """Pack the testing WS into temp file, return its name.
 
+    :param prefix: a prefix to use for the tarball
+    :type prefix: str
     :returns: Tarball file name.
     :rtype: str
     :raises Exception: When failed to pack testing framework.
     """
-
     try:
-        directory = environ["TMPDIR"]
+        directory = "{0}".format(environ["TMPDIR"])
     except KeyError:
         directory = None
 
-    if directory is not None:
-        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="csit-testing-",
-                                     dir="{0}".format(directory))
-    else:
-        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="csit-testing-")
+    tmpfile = NamedTemporaryFile(suffix=".tgz", prefix=prefix, dir=directory)
     file_name = tmpfile.name
     tmpfile.close()
 
@@ -56,53 +53,62 @@ def pack_framework_dir():
          "--exclude=./tmp", "-zcf", file_name, "."],
         msg="Could not pack testing framework")
 
+    msg = 'Framework packed to {0}'.format(file_name)
+    logger.console(msg)
+    logger.trace(msg)
     return file_name
 
 
-def copy_tarball_to_node(tarball, node):
+def copy_tarball_to_node(tarball, remote_tarball, node):
     """Copy tarball file from local host to remote node.
 
     :param tarball: Path to tarball to upload.
+    :param remote_tarball: Path to tarball on remote node.
     :param node: Dictionary created from topology.
     :type tarball: str
+    :type remote_tarball: str
     :type node: dict
     :returns: nothing
     """
     host = node['host']
     logger.console('Copying tarball to {0} starts.'.format(host))
-    scp_node(node, tarball, "/tmp/")
+    scp_node(node, tarball, remote_tarball)
     logger.console('Copying tarball to {0} done.'.format(host))
 
 
-def extract_tarball_at_node(tarball, node):
+def extract_tarball_at_node(tarball, directory, node):
     """Extract tarball at given node.
 
     Extracts tarball using tar on given node to specific CSIT location.
 
     :param tarball: Path to tarball to upload.
+    :param directory: Path to framework directory
     :param node: Dictionary created from topology.
     :type tarball: str
+    :type directory: str
     :type node: dict
     :returns: nothing
     :raises RuntimeError: When failed to unpack tarball.
     """
     host = node['host']
     logger.console('Extracting tarball to {0} on {1} starts.'
-                   .format(con.REMOTE_FW_DIR, host))
+                   .format(directory, host))
     exec_cmd_no_error(
         node, "sudo rm -rf {1}; mkdir {1}; tar -zxf {0} -C {1};"
-        " rm -f {0}".format(tarball, con.REMOTE_FW_DIR),
+        " rm -f {0}".format(tarball, directory),
         message='Failed to extract {0} at node {1}'.format(tarball, host),
         timeout=30, include_reason=True)
     logger.console('Extracting tarball to {0} on {1} done.'
-                   .format(con.REMOTE_FW_DIR, host))
+                   .format(directory, host))
 
 
-def create_env_directory_at_node(node):
+def create_env_directory_at_node(directory, node):
     """Create fresh virtualenv to a directory, install pip requirements.
 
     :param node: Node to create virtualenv on.
+    :param directory: directory on node under which to create virtualenv
     :type node: dict
+    :type directory: str
     :returns: nothing
     :raises RuntimeError: When failed to setup virtualenv.
     """
@@ -113,99 +119,127 @@ def create_env_directory_at_node(node):
         node, 'cd {0} && rm -rf env'
         ' && virtualenv --system-site-packages --never-download env'
         ' && source env/bin/activate && pip install -r requirements.txt'
-        .format(con.REMOTE_FW_DIR), timeout=100, include_reason=True,
-        message="Failed install at node {host}".format(host=host))
+        .format(directory), timeout=100, include_reason=True,
+        message="Failed install at node {0}".format(host))
     logger.console('Virtualenv setup on {0} done.'.format(host))
 
 
-def setup_node(node, tarball, remote_tarball, results=None):
-    """Copy a tarball to a node and extract it.
+def run_install_command_at_node(install_cmd, directory, node, timeout=600):
+    """Run install command at given node.
 
-    :param node: A node where the tarball will be copied and extracted.
-    :param tarball: Local path of tarball to be copied.
-    :param remote_tarball: Remote path of the tarball.
-    :param results: A list where to store the result of node setup, optional.
+    Executes install_cmd at specific CSIT framework location.
+
+    :param install_cmd: Command to execute on node
+    :param directory: Path to framework directory
+    :param node: Dictionary created from topology
+    :param timeout: time to execute command in seconds
+    :type install_cmd: str
+    :type directory: str
     :type node: dict
-    :type tarball: str
-    :type remote_tarball: str
-    :type results: list
-    :returns: True - success, False - error
-    :rtype: bool
+    :type timeout: int
+    :raises RuntimeError: When failed to unpack tarball.
     """
     host = node['host']
-    try:
-        copy_tarball_to_node(tarball, node)
-        extract_tarball_at_node(remote_tarball, node)
-        if node['type'] == NodeType.TG:
-            create_env_directory_at_node(node)
-    except RuntimeError as exc:
-        logger.console("Node {node} setup failed, error: {err!r}".format(
-            node=host, err=exc))
-        result = False
-    else:
-        logger.console('Setup of node {ip} done.'.format(ip=host))
-        logger.info('Setup of {type} node {ip} done.'.format(type=node['type'],
-                                                             ip=host))
-        result = True
-
-    if isinstance(results, list):
-        results.append(result)
-    return result
+    logger.console('Execute install command in {0} on {1} starts.'
+                   .format(directory, host))
+    exec_cmd_no_error(
+        node, "cd {1} && {0}".format(install_cmd, directory),
+        message='Failed to execute install command at node {0}'.format(host),
+        timeout=timeout, include_reason=True)
+    logger.console('Executing install command on {0} done.'.format(host))
 
 
-def delete_local_tarball(tarball):
-    """Delete local tarball to prevent disk pollution.
-
-    :param tarball: Path of local tarball to delete.
-    :type tarball: str
-    :returns: nothing
-    """
-    remove(tarball)
-
-
-def delete_framework_dir(node):
+def delete_framework_dir(directory, node):
     """Delete framework directory in /tmp/ on given node.
 
     :param node: Node to delete framework directory on.
+    :param directory: Path to framework directory
     :type node: dict
+    :type directory: str
     """
     host = node['host']
     logger.console(
         'Deleting framework directory on {0} starts.'.format(host))
     exec_cmd_no_error(
-        node, 'sudo rm -rf {0}'.format(con.REMOTE_FW_DIR),
-        message="Framework delete failed at node {host}".format(host=host),
+        node, 'sudo rm -rf {0}'.format(directory),
+        message="Framework delete failed at node {0}".format(host),
         timeout=100, include_reason=True)
     logger.console(
         'Deleting framework directory on {0} done.'.format(host))
 
 
-def cleanup_node(node, results=None):
-    """Delete a tarball from a node.
+class _NodeExecutor(object):
+    """Base for test maintenance operations remote hosts.
 
-    :param node: A node where the tarball will be delete.
-    :param results: A list where to store the result of node cleanup, optional.
-    :type node: dict
-    :type results: list
-    :returns: True - success, False - error
-    :rtype: bool
+    The maintenance operations are executed on some testing topology nodes,
+    with most operations executed in parallel on all applicable hosts.
+
     """
-    host = node['host']
-    try:
-        delete_framework_dir(node)
-    except RuntimeError:
-        logger.error("Cleanup of node {0} failed.".format(host))
-        result = False
-    else:
-        logger.console('Cleanup of node {0} done.'.format(host))
-        result = True
 
-    if isinstance(results, list):
-        results.append(result)
-    return result
+    def __init__(self):
+        self.results = dict()
+
+    def _perform_on_node(self, node):
+        """Perform the given task for given node.
+
+        The actual maintenance operation shall be implemented in a subclass.
+        The result will be placed in the results dict.
+
+        :param node: a node structure
+        :type node: dict
+        """
+        raise NotImplementedError()
+
+    def _thread_run(self, key, node):
+        """Run the maintenance operations in a thread.
+
+        The result of will be placed in the results dict.
+
+        :param key: a key given to the node by the caller
+        :param node: a node structure
+        :type node: dict
+
+        """
+        try:
+            result = self._perform_on_node(node)
+        except Exception as exc:  # pylint: disable=broad-except
+            msg = 'Operation {name} failed for {key}: {exc}'.format(
+                name=type(self).__name__, key=key, exc=exc)
+            logger.console(msg)
+            logger.exception(msg)
+            result = exc
+        # this should be locked
+        self.results[key] = result
+
+    def perform(self, nodes):
+        """Perform the given task on all nodes.
+
+        :param nodes: The set of nodes on which to apply maintenance
+        :type nodes: dict
+        """
+        threads = [threading.Thread(target=self._thread_run, args=(key, node))
+                   for key, node in nodes.items()]
+
+        logger.info(
+            'Executing node setups in parallel, waiting for threads to end')
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join()
+
+    def succeeded(self):
+        """Return whether all operations returned a successful result
+
+        A result is successful if it is a true value and not an Exception.
+        :rtype: bool
+        """
+        for result in self.results.values():
+            if not result or isinstance(result, Exception):
+                return False
+        return True
 
 
-class SetupFramework(object):
+class SetupFramework(_NodeExecutor):
     """Setup suite run on topology nodes.
 
     Many VAT/CLI based tests need the scripts at remote hosts before executing
@@ -213,75 +247,144 @@ class SetupFramework(object):
     to all nodes in topology under /tmp/
     """
 
-    @staticmethod
-    def setup_framework(nodes):
+    remote_fw_dir = con.REMOTE_FW_DIR
+    remote_tmp_dir = "/tmp/"
+
+    def __init__(self):
+        super(SetupFramework, self).__init__()
+        self.local_tarball_name = None
+        self.remote_tarball_name = None
+
+    def prepare(self):
+        """Prepare for framework setup.
+
+        Base method creates a tarball of current working directory, and stores
+        its name in the local_tarball_name attribute.
+        The remote_tarball_name attribute is used as the target name on nodes.
+        """
+        self.local_tarball_name = pack_framework_dir(type(self).__name__)
+        remote = join(self.remote_tmp_dir, basename(self.local_tarball_name))
+        self.remote_tarball_name = remote
+
+    def cleanup(self):
+        """Clean up any artifacts from prepare"""
+        remove(self.local_tarball_name)
+
+    def _needs_tarball(self, node):
+        """Return whether node should have tarball prepared in remote_fw_dir.
+
+        :param node: Topology node being set up
+        :type node: Topology node
+        :returns: The tarball should be recreated on the node
+        :rtype: bool
+        """
+        # shutup pylint about not using self or node in base implementation
+        _ = self
+        _ = node
+        return True
+
+    def _needs_virtualenv(self, node):
+        """Return whether node should have virtualenv prepared in remote_fw_dir.
+
+        :param node: Topology node being set up
+        :type node: Topology node
+        :returns: A virtual env should be recreated on the node
+        :rtype: bool
+        """
+        _ = self
+        return node['type'] == NodeType.TG
+
+    def _needs_install_command(self, node):
+        """Return whether node should have a command executed in remote_fw_dir.
+
+        :param node: Topology node being set up
+        :type node: Topology node
+        :returns: A command that should be executed on the node
+        :rtype: str
+        """
+        _ = self
+        _ = node
+        return None
+
+    def _perform_on_node(self, node):
+        """Perform the setup for given node.
+
+        The actual maintenance operation shall be implemented in a subclass.
+        The result will be placed in the results dict.
+
+        :param node: a node structure
+        :type node: dict
+        """
+        host = node['host']
+        if self._needs_tarball(node):
+            copy_tarball_to_node(self.local_tarball_name,
+                                 self.remote_tarball_name,
+                                 node)
+            extract_tarball_at_node(self.remote_tarball_name,
+                                    self.remote_fw_dir,
+                                    node)
+            if self._needs_virtualenv(node):
+                create_env_directory_at_node(self.remote_fw_dir, node)
+            install_cmd = self._needs_install_command(node)
+            if install_cmd:
+                run_install_command_at_node(install_cmd,
+                                            self.remote_fw_dir,
+                                            node)
+            logger.console('Setup of node {host} done.'.format(host=host))
+            logger.info('Setup of {node_type} node {host} done.'
+                        .format(node_type=node['type'], host=host))
+        return True
+
+    @classmethod
+    def setup_framework(cls, nodes):
         """Pack the whole directory and extract in temp on each node.
 
         :param nodes: Topology nodes.
         :type nodes: dict
         :raises RuntimeError: If setup framework failed.
         """
+        instance = cls()
+        instance.prepare()
+        try:
+            instance.perform(nodes)
+        finally:
+            instance.cleanup()
 
-        tarball = pack_framework_dir()
-        msg = 'Framework packed to {0}'.format(tarball)
-        logger.console(msg)
-        logger.trace(msg)
-        remote_tarball = "/tmp/{0}".format(basename(tarball))
-
-        results = []
-        threads = []
-
-        for node in nodes.values():
-            args = node, tarball, remote_tarball, results
-            thread = threading.Thread(target=setup_node, args=args)
-            thread.start()
-            threads.append(thread)
-
-        logger.info(
-            'Executing node setups in parallel, waiting for threads to end')
-
-        for thread in threads:
-            thread.join()
-
-        logger.info('Results: {0}'.format(results))
-
-        delete_local_tarball(tarball)
-        if all(results):
+        if instance.succeeded():
             logger.console('All nodes are ready.')
         else:
             raise RuntimeError('Failed to setup framework.')
 
 
-class CleanupFramework(object):
+class CleanupFramework(_NodeExecutor):
     """Clean up suite run on topology nodes."""
 
-    @staticmethod
-    def cleanup_framework(nodes):
+    remote_fw_dir = con.REMOTE_FW_DIR
+
+    def _perform_on_node(self, node):
+        """Perform the setup for given node.
+
+        The actual maintenance operation shall be implemented in a subclass.
+        The result will be placed in the results dict.
+
+        :param node: a node structure
+        :type node: dict
+        """
+        delete_framework_dir(self.remote_fw_dir, node)
+        return True
+
+    @classmethod
+    def cleanup_framework(cls, nodes):
         """Perform cleanup on each node.
 
         :param nodes: Topology nodes.
         :type nodes: dict
         :raises RuntimeError: If cleanup framework failed.
         """
+        instance = cls()
+        instance.perform(nodes)
 
-        results = []
-        threads = []
-
-        for node in nodes.values():
-            thread = threading.Thread(target=cleanup_node,
-                                      args=(node, results))
-            thread.start()
-            threads.append(thread)
-
-        logger.info(
-            'Executing node cleanups in parallel, waiting for threads to end.')
-
-        for thread in threads:
-            thread.join()
-
-        logger.info('Results: {0}'.format(results))
-
-        if all(results):
+        if instance.succeeded():
             logger.console('All nodes cleaned up.')
         else:
-            raise RuntimeError('Failed to cleaned up framework.')
+            raise RuntimeError('Failed to clean up framework.')
