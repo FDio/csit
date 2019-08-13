@@ -13,6 +13,8 @@
 
 """Defines nodes and topology structure."""
 
+import re
+
 from collections import Counter
 
 from yaml import load
@@ -58,6 +60,7 @@ class NodeSubTypeTG(object):
     MOONGEN = 'MOONGEN'
     # IxNetwork
     IXNET = 'IXNET'
+
 
 DICT__nodes = load_topo_from_yaml()
 
@@ -139,12 +142,38 @@ class Topology(object):
         """
         port_types = ('subinterface', 'vlan_subif', 'memif', 'tap', 'vhost',
                       'loopback', 'gre_tunnel', 'vxlan_tunnel', 'eth_bond',
-                      'avf')
+                      'eth_avf')
 
         for node_data in nodes.values():
             if node_data['type'] == NodeType.DUT:
                 for ptype in port_types:
                     Topology.remove_all_ports(node_data, ptype)
+
+    @staticmethod
+    def remove_all_vf_ports(node):
+        """Remove all Virtual Function ports on DUT node.
+
+        :param node: Node to remove VF ports on.
+        :type node: dict
+        :returns: Nothing
+        """
+        reg_ex = re.compile(r'port\d+_vf\d+')
+        for if_key in list(node['interfaces']):
+            if re.match(reg_ex, if_key):
+                node['interfaces'].pop(if_key)
+
+    @staticmethod
+    def remove_all_added_vf_ports_on_all_duts_from_topology(nodes):
+        """Remove all added Virtual Function ports on all DUT nodes in
+        the topology.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        :returns: Nothing
+        """
+        for node_data in nodes.values():
+            if node_data['type'] == NodeType.DUT:
+                Topology.remove_all_ports(node_data)
 
     @staticmethod
     def update_interface_sw_if_index(node, iface_key, sw_if_index):

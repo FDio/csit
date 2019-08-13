@@ -45,3 +45,9 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Cleanup DPDK Environment
 | | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
+
+| Additional Suite Tear Down Action For avf
+| | [Documentation]
+| | ... | Additional teardown for suites which uses SRIOV AVF.
+| | ...
+| | Remove All Added VF Ports On All DUTs From Topology | ${nodes}
