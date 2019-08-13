@@ -9,5 +9,11 @@ echo 0000:00:06.0 > /sys/bus/pci/devices/0000:00:06.0/driver/unbind
 echo 0000:00:07.0 > /sys/bus/pci/devices/0000:00:07.0/driver/unbind
 echo vfio-pci > /sys/bus/pci/devices/0000:00:06.0/driver_override
 echo vfio-pci > /sys/bus/pci/devices/0000:00:07.0/driver_override
-$vnf_bin
+$vnf_bin > /tmp/stdout 2> /tmp/stderr
+echo $?
+for CORE in $(find /tmp/vpp* -name core*); do
+    echo $CORE
+done
+cat /tmp/stdout
+cat /tmp/stderr
 poweroff -f
