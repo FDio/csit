@@ -387,14 +387,12 @@ class ExecutionChecker(ResultVisitor):
         :returns: Nothing.
         """
 
-        if msg.message.count("Arguments:"):
-            message = str(msg.message).replace(' ', '').replace('\n', '').\
-                replace("'", '"').replace('b"', '"').\
-                replace("honeycom", "honeycomb")
-            message = loads(message[11:-1])
+        if msg.message.count("Setup of TG node"):
+            reg_tg_ip = re.compile(
+                r'Setup of TG node (\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}) done')
             try:
-                self._testbed = message["TG"]["host"]
-            except (KeyError, ValueError):
+                self._testbed = str(re.search(reg_tg_ip, msg.message).group(1))
+            except (KeyError, ValueError, IndexError, AttributeError):
                 pass
             finally:
                 self._data["metadata"]["testbed"] = self._testbed
