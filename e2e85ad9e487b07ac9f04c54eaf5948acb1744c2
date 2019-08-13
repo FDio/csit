@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e294937e_a889ba51",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-13T05:58:30Z",
+      "side": 1,
+      "message": "Make TRex conditional to keep API to add new TG.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 52
+      },
+      "revId": "e2e85ad9e487b07ac9f04c54eaf5948acb1744c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0225def5_13a5a521",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-13T05:58:30Z",
+      "side": 1,
+      "message": "Make Trex as conditional to keep possibility to add new TG.",
+      "range": {
+        "startLine": 514,
+        "startChar": 1,
+        "endLine": 515,
+        "endChar": 50
+      },
+      "revId": "e2e85ad9e487b07ac9f04c54eaf5948acb1744c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
