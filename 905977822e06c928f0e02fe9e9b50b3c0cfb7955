@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f2a59416_53d6a889",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T14:51:21Z",
+      "side": 1,
+      "message": "This is the trex subtype branch. Other subtypes leave at line 71.\nOr are you saying the indentation should already accomodate more subtypes, without favoring trex?",
+      "parentUuid": "27ed15ce_1eede646",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 51
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad372ee2_f9c2e001",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 30
@@ -36,6 +60,30 @@
       "writtenOn": "2019-08-13T14:18:34Z",
       "side": 1,
       "message": "This code is trex secifics and must go into if self._node[\u0027type\u0027] !\u003d NodeType.TG:",
+      "range": {
+        "startLine": 515,
+        "startChar": 8,
+        "endLine": 515,
+        "endChar": 50
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a4b76d7_a5f355d4",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T14:51:21Z",
+      "side": 1,
+      "message": "Ah, now I see I happened to delete the subtype check here, will fix.",
+      "parentUuid": "ad372ee2_f9c2e001",
       "range": {
         "startLine": 515,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "024addd7_cd34d37f",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 30
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T14:51:21Z",
+      "side": 1,
+      "message": "Ok, will add when adding memif suites (so it gets tested).",
+      "parentUuid": "c98831ef_ca5fd858",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 63
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b95a10d1_d3c7f255",
         "filename": "resources/tools/trex/trex_stateless_stop.py",
         "patchSetId": 30
@@ -82,6 +154,30 @@
       "writtenOn": "2019-08-13T14:18:34Z",
       "side": 1,
       "message": "I would start catching json and keyerrors as it might crash later outside try: block",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 5
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "66b3a7c6_50eb4e5b",
+        "filename": "resources/tools/trex/trex_stateless_stop.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T14:51:21Z",
+      "side": 1,
+      "message": "Frankly, I am not sure why the except is even here. Without it, STLError would also print (to stderr) stacktrace, instead of just class and message; also aborting here with return code 1 is the same.\nWill probably replace with a comment in future patch sets.",
+      "parentUuid": "b95a10d1_d3c7f255",
       "range": {
         "startLine": 63,
         "startChar": 0,
@@ -111,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "09ca3ff3_3c2e91cd",
+        "filename": "tests/vpp/perf/nfv_density/vm_vhost/chain_dot1qip4vxlan/2n-10ge2p1x710-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm2t-testpmd-reconf.robot",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T14:51:21Z",
+      "side": 1,
+      "message": "\u003e Testing added chains without running traffic through them?\n\nYes, as re-distributing existing traffic (or adding new flows) is more complicated.\nNot entirely sure what the realistic scenario is, but it makes sense to create VMs first, and only after some health checks redirect some flows to them.\n\n\u003e What are the initial results on PPS loss?\n\nActually, the metric is packet loss (count), or perhaps packets lost per API interaction.\nThe test does not care how long did the reconfiguration take.\n\nAnd the results are not good. With ~4 Mpps (bidirectional) offered load, ~12 M packets is lost during reconfiguration. I believe during ip4vxlan addition.\nThe first test should actually be only dot1q pop (without vxlan), but I have not found an existing suite ready to copy from.",
+      "parentUuid": "5d9d098c_c3eb9255",
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5ff0689f_4216b313",
         "filename": "tests/vpp/perf/nfv_density/vm_vhost/chain_dot1qip4vxlan/2n-10ge2p1x710-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm2t-testpmd-reconf.robot",
         "patchSetId": 30
@@ -122,6 +236,30 @@
       "writtenOn": "2019-08-13T14:18:34Z",
       "side": 1,
       "message": "document + add more tags like RECONF",
+      "range": {
+        "startLine": 20,
+        "startChar": 23,
+        "endLine": 20,
+        "endChar": 28
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "760e57c4_40ad39bb",
+        "filename": "tests/vpp/perf/nfv_density/vm_vhost/chain_dot1qip4vxlan/2n-10ge2p1x710-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm2t-testpmd-reconf.robot",
+        "patchSetId": 30
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T14:51:21Z",
+      "side": 1,
+      "message": "Yeah, will think about readable enough tags in next patch sets.",
+      "parentUuid": "5ff0689f_4216b313",
       "range": {
         "startLine": 20,
         "startChar": 23,
