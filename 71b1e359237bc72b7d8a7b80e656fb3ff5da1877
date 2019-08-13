@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3637088d_a7d0a9e8",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T15:39:21Z",
+      "side": 1,
+      "message": "Add returns and rtype (to line 190) if the method is returning something meaningful (otherwise delete).",
+      "range": {
+        "startLine": 374,
+        "startChar": 8,
+        "endLine": 374,
+        "endChar": 19
+      },
+      "revId": "71b1e359237bc72b7d8a7b80e656fb3ff5da1877",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
