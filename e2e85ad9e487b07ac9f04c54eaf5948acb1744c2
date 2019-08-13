@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0dda2285_05c2337b",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T07:53:14Z",
+      "side": 1,
+      "message": "It is conditional, in sense that other subtypes go to line 71.\nI only saved few spaces on horizontal indent.",
+      "parentUuid": "e294937e_a889ba51",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 52
+      },
+      "revId": "e2e85ad9e487b07ac9f04c54eaf5948acb1744c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0225def5_13a5a521",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 26
@@ -36,6 +60,30 @@
       "writtenOn": "2019-08-13T05:58:30Z",
       "side": 1,
       "message": "Make Trex as conditional to keep possibility to add new TG.",
+      "range": {
+        "startLine": 514,
+        "startChar": 1,
+        "endLine": 515,
+        "endChar": 50
+      },
+      "revId": "e2e85ad9e487b07ac9f04c54eaf5948acb1744c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbfc7663_de6e7ab3",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-13T07:53:14Z",
+      "side": 1,
+      "message": "It is conditional, in sense that other subtypes go to line 514.\nI only added the raise for completeness (and saved few spaces on horizontal indent).",
+      "parentUuid": "0225def5_13a5a521",
       "range": {
         "startLine": 514,
         "startChar": 1,
