@@ -22,6 +22,30 @@
       "revId": "ee0eb143ddbdb8cca3fe11e6604f0bce2e65d60f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6016289_6b3e2240",
+        "filename": "resources/libraries/robot/shared/suite_teardown.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-14T13:02:50Z",
+      "side": 1,
+      "message": "There is separate KW for VF ports because they are created/deleted per test suite (i.e. created in the test suit setup and deleted in test suite tear down) while other ports (e.g. eth_avf, bond, vhost) are created/deleted per test case.",
+      "parentUuid": "b1bd3bd3_4af625d4",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 66
+      },
+      "revId": "ee0eb143ddbdb8cca3fe11e6604f0bce2e65d60f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
