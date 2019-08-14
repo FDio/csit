@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "3c64a2b8_0b202f32",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T05:33:17Z",
+      "side": 1,
+      "message": "yes,  so we can finally add there WRK or other TGs.",
+      "parentUuid": "f2a59416_53d6a889",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 51
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad372ee2_f9c2e001",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 30
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "a7eab96a_050f9d3b",
+        "filename": "resources/libraries/robot/l2/l2_bridge_domain.robot",
+        "patchSetId": 30
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T05:33:17Z",
+      "side": 1,
+      "message": "I will align memif testcases with vhosts",
+      "parentUuid": "024addd7_cd34d37f",
+      "range": {
+        "startLine": 189,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 63
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b95a10d1_d3c7f255",
         "filename": "resources/tools/trex/trex_stateless_stop.py",
         "patchSetId": 30
@@ -190,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "f2fc9d7a_84b90e42",
+        "filename": "resources/tools/trex/trex_stateless_stop.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T05:33:17Z",
+      "side": 1,
+      "message": "I think the problem was with disconnect in past when not done properly",
+      "parentUuid": "66b3a7c6_50eb4e5b",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 5
+      },
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5d9d098c_c3eb9255",
         "filename": "tests/vpp/perf/nfv_density/vm_vhost/chain_dot1qip4vxlan/2n-10ge2p1x710-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm2t-testpmd-reconf.robot",
         "patchSetId": 30
@@ -219,6 +291,24 @@
       "side": 1,
       "message": "\u003e Testing added chains without running traffic through them?\n\nYes, as re-distributing existing traffic (or adding new flows) is more complicated.\nNot entirely sure what the realistic scenario is, but it makes sense to create VMs first, and only after some health checks redirect some flows to them.\n\n\u003e What are the initial results on PPS loss?\n\nActually, the metric is packet loss (count), or perhaps packets lost per API interaction.\nThe test does not care how long did the reconfiguration take.\n\nAnd the results are not good. With ~4 Mpps (bidirectional) offered load, ~12 M packets is lost during reconfiguration. I believe during ip4vxlan addition.\nThe first test should actually be only dot1q pop (without vxlan), but I have not found an existing suite ready to copy from.",
       "parentUuid": "5d9d098c_c3eb9255",
+      "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bac75c1_438e371a",
+        "filename": "tests/vpp/perf/nfv_density/vm_vhost/chain_dot1qip4vxlan/2n-10ge2p1x710-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm2t-testpmd-reconf.robot",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T05:33:17Z",
+      "side": 1,
+      "message": "One of the tests that after the release nobody will care and it will only hanged there making it hard to do small batch edits on top of all suites we have (like many others incl. K8S, scale vlan, iacl, scale ipsec...), but i am ok doing the traffic change would require to change traffic profile as well.",
+      "parentUuid": "09ca3ff3_3c2e91cd",
       "revId": "905977822e06c928f0e02fe9e9b50b3c0cfb7955",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
