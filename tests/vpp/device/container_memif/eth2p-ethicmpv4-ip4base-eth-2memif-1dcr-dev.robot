@@ -73,6 +73,7 @@
 | | ... | ${tg} | 10.10.10.1 | 20.20.20.1
 | | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
 | | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
+| | Fail
 
 *** Test Cases ***
 | tc01-64B-ethicmpv4-ip4base-eth-2memif-1dcr-dev
