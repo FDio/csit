@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "29b94d3b_6f8b4f54",
+        "filename": "resources/libraries/python/SFC/SetupSFCTest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T06:21:02Z",
+      "side": 1,
+      "message": "This file is useless",
+      "revId": "71b1e359237bc72b7d8a7b80e656fb3ff5da1877",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3637088d_a7d0a9e8",
         "filename": "resources/libraries/python/SetupFramework.py",
         "patchSetId": 2
@@ -18,6 +35,98 @@
         "startChar": 8,
         "endLine": 374,
         "endChar": 19
+      },
+      "revId": "71b1e359237bc72b7d8a7b80e656fb3ff5da1877",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "48a9ff7c_79978481",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T06:21:02Z",
+      "side": 1,
+      "message": "move to bash/entry",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 47
+      },
+      "revId": "71b1e359237bc72b7d8a7b80e656fb3ff5da1877",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d204c5fd_d03ee815",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T06:21:02Z",
+      "side": 1,
+      "message": "move to test not in setup.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 3
+      },
+      "revId": "71b1e359237bc72b7d8a7b80e656fb3ff5da1877",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "184e202e_3ad0cefd",
+        "filename": "resources/libraries/python/TLDK/TLDKConstants.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T06:21:02Z",
+      "side": 1,
+      "message": "CSIT-testing",
+      "range": {
+        "startLine": 22,
+        "startChar": 26,
+        "endLine": 22,
+        "endChar": 30
+      },
+      "revId": "71b1e359237bc72b7d8a7b80e656fb3ff5da1877",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08752b29_39956ca8",
+        "filename": "resources/libraries/python/TLDK/TLDKConstants.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T06:21:02Z",
+      "side": 1,
+      "message": "move to bash/entry",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 74
       },
       "revId": "71b1e359237bc72b7d8a7b80e656fb3ff5da1877",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
