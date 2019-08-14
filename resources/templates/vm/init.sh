@@ -9,5 +9,6 @@ echo 0000:00:06.0 > /sys/bus/pci/devices/0000:00:06.0/driver/unbind
 echo 0000:00:07.0 > /sys/bus/pci/devices/0000:00:07.0/driver/unbind
 echo vfio-pci > /sys/bus/pci/devices/0000:00:06.0/driver_override
 echo vfio-pci > /sys/bus/pci/devices/0000:00:07.0/driver_override
+mkdir -p /var/run/vpp
 $vnf_bin
 poweroff -f
