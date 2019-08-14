@@ -252,7 +252,7 @@ class VatTerminal(object):
                     self._tty,
                     'sudo -S {0}{1}'.format(Constants.VAT_BIN_NAME, json_text),
                     self.__VAT_PROMPT)
-            except Exception:
+            except Exception:  #pylint: disable=broad-except
                 continue
             else:
                 break
@@ -306,10 +306,9 @@ class VatTerminal(object):
                     raise RuntimeError("More instances of VPP running on node "
                                        "{0}. VAT command {1} execution failed.".
                                        format(self._node['host'], cmd))
-            else:
-                raise RuntimeError("VPP not running on node {0}. VAT command "
-                                   "{1} execution failed.".
-                                   format(self._node['host'], cmd))
+            raise RuntimeError("VPP not running on node {0}. VAT command "
+                               "{1} execution failed.".
+                               format(self._node['host'], cmd))
 
         logger.debug("VAT output: {0}".format(out))
         if self.json:

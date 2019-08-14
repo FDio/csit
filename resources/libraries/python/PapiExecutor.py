@@ -193,6 +193,7 @@ class PapiSocketExecutor(object):
             # Package path has to be one level above the vpp_papi directory.
             package_path = package_path.rsplit('/', 1)[0]
             sys.path.append(package_path)
+            # pylint: disable=import-error
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
             vpp_class.apidir = api_json_directory
             # We need to create instance before removing from sys.path.
@@ -705,7 +706,7 @@ class PapiExecutor(object):
                          "\n{apis}".format(host=self._node["host"],
                                            apis=api_data))
             raise
-        except Exception as exc:
+        except Exception as exc:  # pylint: disable=broad-except
             raise_from(RuntimeError(
                 "PAPI command(s) execution on host {host} "
                 "failed: {apis}".format(

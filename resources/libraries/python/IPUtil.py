@@ -55,7 +55,7 @@ class FibPathType(IntEnum):
 class FibPathFlags(IntEnum):
     """FIB path flags."""
     FIB_PATH_FLAG_NONE = 0
-    FIB_PATH_FLAG_RESOLVE_VIA_ATTACHED = 1
+    FIB_PATH_FLAG_RESOLVE_VIA_ATTACHED = 1  #pylint: disable=invalid-name
     FIB_PATH_FLAG_RESOLVE_VIA_HOST = 2
 
 
