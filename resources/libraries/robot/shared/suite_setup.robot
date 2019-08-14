@@ -259,4 +259,4 @@
 | | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.70.1 | 24
 | | Set Linux interface IP | ${tg} | ${intf_name} | 192.168.80.1 | 24
 | | Set Linux interface up | ${tg} | ${intf_name}
-| | Install wrk | ${tg}
+| | Check wrk | ${tg}

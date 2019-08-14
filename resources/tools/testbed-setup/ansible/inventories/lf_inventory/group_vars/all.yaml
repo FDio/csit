@@ -51,6 +51,12 @@ dpdk:
     aarch64: "arm64-armv8a"
     x86_64: "x86_64-native"
 
+# WRK settings.
+wrk:
+  target_dir: '/opt'
+  version: '4.0.2'
+  url: 'https://github.com/wg/wrk/archive'
+
 # Calibration settings.
 jitter:
   directory: '/tmp/pma_tools'
