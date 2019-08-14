@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6cf595b7_fc368878",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T09:55:06Z",
+      "side": 1,
+      "message": "Remove all this init methods",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 28
+      },
+      "revId": "ca25832a5e256203ab76028e5616e8d21fde906f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0c5af2fd_5f36a3dc",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T09:55:06Z",
+      "side": 1,
+      "message": "CS0 \u003d 0,\n\nthe rest same",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 20
+      },
+      "revId": "ca25832a5e256203ab76028e5616e8d21fde906f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa73613d_1f2b2e07",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T09:55:06Z",
+      "side": 1,
+      "message": "There should be int or str?",
+      "range": {
+        "startLine": 94,
+        "startChar": 29,
+        "endLine": 94,
+        "endChar": 34
+      },
+      "revId": "ca25832a5e256203ab76028e5616e8d21fde906f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fc4287e4_1c1fb857",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T09:55:06Z",
+      "side": 1,
+      "message": "getattr(PolicerRateType, rate_type).value \n\nand remove those ugly IFs",
+      "range": {
+        "startLine": 151,
+        "startChar": 27,
+        "endLine": 151,
+        "endChar": 54
+      },
+      "revId": "ca25832a5e256203ab76028e5616e8d21fde906f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a82b74e2_e616bc21",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T09:55:06Z",
+      "side": 1,
+      "message": "Remove and replace by gettatr (same as above)",
+      "revId": "ca25832a5e256203ab76028e5616e8d21fde906f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d1dcf85_0a6ab392",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T09:55:06Z",
+      "side": 1,
+      "message": "if violate_action_type \u003d\u003d getattr(Policer.........) same as above",
+      "range": {
+        "startLine": 333,
+        "startChar": 11,
+        "endLine": 333,
+        "endChar": 71
+      },
+      "revId": "ca25832a5e256203ab76028e5616e8d21fde906f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b203b57_724392b9",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T09:55:06Z",
+      "side": 1,
+      "message": "Do we really need this?",
+      "revId": "ca25832a5e256203ab76028e5616e8d21fde906f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a356bbb_578e73cf",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T09:55:06Z",
+      "side": 1,
+      "message": "Why is it here???????",
+      "range": {
+        "startLine": 459,
+        "startChar": 0,
+        "endLine": 630,
+        "endChar": 23
+      },
+      "revId": "ca25832a5e256203ab76028e5616e8d21fde906f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
