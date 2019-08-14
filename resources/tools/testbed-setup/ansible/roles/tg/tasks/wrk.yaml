@@ -1,0 +1,33 @@
+---
+# file: roles/tg/tasks/wrk.yaml
+
+- name: Download WRK release archive
+  get_url:
+    url: '{{ wrk.url }}/{{ wrk.version }}.tar.gz'
+    dest: '{{ wrk.target_dir }}/{{ wrk.version }}.tar.gz'
+    mode: 0644
+  register: 'linux__wrk_downloaded'
+  tags: install-wrk
+
+- name: Extract WRK release archive
+  become: yes
+  unarchive:
+    src: '{{ wrk.target_dir }}/{{ wrk.version }}.tar.gz'
+    dest: '{{ wrk.target_dir }}/wrk-{{ wrk.version }}'
+    remote_src: yes
+  when: 'linux__wrk_downloaded'
+  register: 'linux__wrk_extracted'
+  tags: install-wrk
+
+- name: Compile WRK release
+  become: yes
+  shell: 'cd {{ wrk.target_dir }}/wrk-{{ wrk.version }}; make'
+  when: 'linux__wrk_extracted'
+  register: 'linux__wrk_compiled'
+  tags: install-wrk
+
+- name: Move WRK binary
+  become: yes
+  command: 'mv {{ wrk.target_dir }}/wrk-{{ wrk.version }}/wrk /usr/local/bin/'
+  when: 'linux__wrk_compiled'
+  tags: install-wrk
