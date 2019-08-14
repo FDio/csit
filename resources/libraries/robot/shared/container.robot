@@ -217,3 +217,4 @@
 | | Configure VPP in all '${container_group}' containers
 | | Start VPP in all '${container_group}' containers
 | | Append To List | ${container_groups} | ${container_group}
+| | Save VPP PIDs
