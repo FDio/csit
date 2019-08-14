@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "159b5795_9c74e286",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 36
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-14T15:58:39Z",
+      "side": 1,
+      "message": "The numbers do not seem to be repeatable enough. Postponing the investigation to trending or report with more suites and runs.",
+      "range": {
+        "startLine": 22,
+        "startChar": 3,
+        "endLine": 22,
+        "endChar": 34
+      },
+      "revId": "c8b98533215428a0fb510744f58597b4fd998ecb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
