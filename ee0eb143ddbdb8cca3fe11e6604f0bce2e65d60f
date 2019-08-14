@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1bd3bd3_4af625d4",
+        "filename": "resources/libraries/robot/shared/suite_teardown.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-14T12:58:34Z",
+      "side": 1,
+      "message": "shouldn;t we do something more universal like remove added ports and it will check for VF and possible others. That way we do not need to add 3 KW for every interface.",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 66
+      },
+      "revId": "ee0eb143ddbdb8cca3fe11e6604f0bce2e65d60f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
