@@ -80,7 +80,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Start containers for test
 | | And Initialize L2 xconnect with memif pairs
-| | Then Find NDR and PDR intervals using optimized search
+| | Fail
+#| | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2xcbase-eth-2memif-1dcr-ndrpdr
