@@ -521,11 +521,19 @@
       - "vpp-performance-changes-2n-skx-cmp"
 
     vpp-soak-vs-ndr-2n-skx-ref:
+      csit-vpp-perf-verify-1904-2n-skx:
+        - 12  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 16  # NDRPDR sel
+        - 17  # NDRPDR sel
+        - 18  # NDRPDR sel
+        - 21  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 30  # NDRPDR sel
+        - 31  # NDRPDR sel
+        - 32  # NDRPDR sel
       # TODO: Add data
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 2  # NDRPDR sel Dry run
-        - 3  # NDRPDR sel Dry run
-        - 4  # NDRPDR sel Dry run
+      # csit-vpp-perf-verify-1908-2n-skx:
     vpp-soak-vs-ndr-2n-skx-cmp:
       csit-vpp-perf-verify-1904-2n-skx:
         - 70  # soak
