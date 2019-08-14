@@ -57,13 +57,13 @@ REGEX_LATENCY_DIST = \
 REGEX_NUM = r"(\d*\.*\d*)(\D*)"
 
 
-def install_wrk(tg_node):
-    """Install wrk on the TG node.
+def check_wrk(tg_node):
+    """Check if wrk is installed on the TG node.
 
     :param tg_node: Traffic generator node.
     :type tg_node: dict
     :raises: RuntimeError if the given node is not a TG node or if the
-    installation fails.
+        command is not availble.
     """
 
     if tg_node['type'] != NodeType.TG:
@@ -74,33 +74,10 @@ def install_wrk(tg_node):
 
     ret, _, _ = ssh.exec_command(
         "sudo -E "
-        "sh -c '{0}/resources/tools/wrk/wrk_utils.sh install false'".
-        format(Constants.REMOTE_FW_DIR), timeout=1800)
+        "sh -c '{0}/resources/tools/wrk/wrk_utils.sh check'".
+        format(Constants.REMOTE_FW_DIR))
     if int(ret) != 0:
-        raise RuntimeError('Installation of wrk on TG node failed.')
-
-
-def destroy_wrk(tg_node):
-    """Destroy wrk on the TG node.
-
-    :param tg_node: Traffic generator node.
-    :type tg_node: dict
-    :raises: RuntimeError if the given node is not a TG node or the removal of
-    wrk failed.
-    """
-
-    if tg_node['type'] != NodeType.TG:
-        raise RuntimeError('Node type is not a TG.')
-
-    ssh = SSH()
-    ssh.connect(tg_node)
-
-    ret, _, _ = ssh.exec_command(
-        "sudo -E "
-        "sh -c '{0}/resources/tools/wrk/wrk_utils.sh destroy'".
-        format(Constants.REMOTE_FW_DIR), timeout=1800)
-    if int(ret) != 0:
-        raise RuntimeError('Removal of wrk from the TG node failed.')
+        raise RuntimeError('WRK is not installed on TG node.')
 
 
 def run_wrk(tg_node, profile_name, tg_numa, test_type, warm_up=False):

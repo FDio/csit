@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,59 +14,19 @@
 
 set -x
 
-WRK_VERSION="4.0.2"
-WRK_TAR=${WRK_VERSION}".tar.gz"
-WRK_DWNLD_PATH="https://github.com/wg/wrk/archive"
-WRK_TARGET="/opt"
-WRK_INSTALL_DIR=${WRK_TARGET}/wrk-${WRK_VERSION}
+function wrk_utils.installed {
 
-function wrk_utils.install {
-    # Install wrk
+    # Check if the WRK utility is installed. Fail if not installed.
 
-    # Directory for wrk:
-    dir=${1}
-    # Force the installation:
-    force=${2:-false}
+    # Returns:
+    # - 0 - If command is installed.
+    # - 1 - If command is not installed.
 
-    # Check if wrk is installed:
-    if [ "${force}" = true ]; then
-        wrk_utils.destroy
-    else
-        which wrk
-        if [ $? -eq 0 ]; then
-            test -d ${dir}/${WRK_INSTALL_DIR} && echo "WRK already installed: ${dir}/${WRK_INSTALL_DIR}" && exit 0
-        fi
-    fi
+    set -exuo pipefail
 
-    # Install pre-requisites:
-    apt-get update
-    apt-get install build-essential libssl-dev -y
-
-    # Remove previous installation:
-    wrk_utils.destroy
-
-    # Change the directory:
-    cd ${WRK_TARGET}
-
-    # Get the specified version:
-    wget ${WRK_DWNLD_PATH}/${WRK_TAR}
-    tar xzf ${WRK_TAR}
-    rm ${WRK_TAR}
-    cd ${WRK_INSTALL_DIR}
-
-    # Build the wrk:
-    make
-
-    # Move the executable to somewhere in the PATH:
-    cp wrk /usr/local/bin
+    command -v wrk
 }
 
-function wrk_utils.destroy {
-    # Remove wrk
-
-    sudo rm /usr/local/bin/wrk || true
-    sudo rm -rf ${WRK_INSTALL_DIR} || true
-}
 
 function wrk_utils.traffic_1_url_1_core {
     # Send traffic
@@ -271,12 +231,8 @@ function wrk_utils.traffic_n_urls_m_cores {
 
 args=("$@")
 case ${1} in
-    install)
-        force=${2}
-        wrk_utils.install ${force}
-        ;;
-    destroy)
-        wrk_utils.destroy
+    check)
+        wrk_utils.installed
         ;;
     traffic_1_url_1_core)
         wrk_utils.traffic_1_url_1_core  "${args[@]:1}"
