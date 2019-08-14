@@ -111,6 +111,29 @@
     },
     {
       "key": {
+        "uuid": "8e36b3f2_92b92ea1",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-14T13:04:49Z",
+      "side": 1,
+      "message": "You can use the other way to define dicts, to avoid issues with reserved keywords.\n  args_in \u003d {\n    \"type\": policer_type,\n    ...\n  }",
+      "range": {
+        "startLine": 320,
+        "startChar": 12,
+        "endLine": 320,
+        "endChar": 16
+      },
+      "revId": "ca25832a5e256203ab76028e5616e8d21fde906f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d1dcf85_0a6ab392",
         "filename": "resources/libraries/python/Policer.py",
         "patchSetId": 12
