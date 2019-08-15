@@ -269,13 +269,13 @@ n/a          | s21-t34-sut2
 10.30.55.12  | s30-t35-sut1
 10.30.55.13  | s31-t35-sut2
 10.30.50.255 | Broadcast
-x.x.x.x      | s32-t14-sut1
-x.x.x.x      | s33-t27-sut1
-x.x.x.x      | s34-t27-tg1
-x.x.x.x      | s35-t28-sut1
-x.x.x.x      | s36-t28-tg1
-x.x.x.x      | s37-t29-sut1
-x.x.x.x      | s38-t29-tg1
+10.30.55.17  | s32-t14-sut1
+10.30.55.18  | s33-t27-sut1
+10.30.55.19  | s34-t27-tg1
+10.30.55.20  | s35-t28-sut1
+10.30.55.21  | s36-t28-tg1
+10.30.55.22  | s37-t29-sut1
+10.30.55.23  | s38-t29-tg1
 
 ### Management VLAN IP Addresses
 
@@ -344,13 +344,13 @@ Name                      | Comment
 10.32.8.11                | s29-t26-sut1
 10.32.8.12                | s30-t35-sut1
 10.32.8.13                | s31-t35-sut2
-x.x.x.x                   | s32-t14-sut1
-x.x.x.x                   | s33-t27-sut1
-x.x.x.x                   | s34-t27-tg1
-x.x.x.x                   | s35-t28-sut1
-x.x.x.x                   | s36-t28-tg1
-x.x.x.x                   | s37-t29-sut1
-x.x.x.x                   | s38-t29-tg1
+10.32.8.17                | s32-t14-sut1
+10.32.8.18                | s33-t27-sut1
+10.32.8.19                | s34-t27-tg1
+10.32.8.20                | s35-t28-sut1
+10.32.8.21                | s36-t28-tg1
+10.32.8.22                | s37-t29-sut1
+10.32.8.23                | s38-t29-tg1
 
 ## Server Specifications
 
@@ -746,8 +746,8 @@ connectivity and wiring across defined CSIT testbeds:
 - SUT [Server-Type-C1]:
     - testbedname: testbed11.
     - hostname: s32-t14-sut1.
-    - IPMI IP: x.x.x.x
-    - Host IP: x.x.x.x
+    - IPMI IP: 10.30.55.17
+    - Host IP: 10.32.8.17
     - portnames:
         - s32-t14-sut1-c2/p1 - 10GE-port1 x710-4p10GE.
         - s32-t14-sut1-c2/p2 - 10GE-port2 x710-4p10GE.
@@ -926,8 +926,8 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
 - SUT [Server-Type-C2]:
     - testbedname: testbed27.
     - hostname: s33-t27-sut1.
-    - IPMI IP: x.x.x.x
-    - Host IP: x.x.x.x
+    - IPMI IP: 10.30.55.18
+    - Host IP: 10.32.8.18
     - portnames:
         - s33-t27-sut1-c2/p1 - 10GE-port1 x710-4p10GE.
         - s33-t27-sut1-c2/p2 - 10GE-port2 x710-4p10GE.
@@ -940,8 +940,8 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
 - TG [Server-Type-C3]:
     - testbedname: testbed27.
     - hostname: s34-t27-tg1.
-    - IPMI IP: x.x.x.x
-    - Host IP: x.x.x.x
+    - IPMI IP: 10.30.55.19
+    - Host IP: 10.32.8.19
     - portnames:
         - s34-t27-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
         - s34-t27-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
@@ -954,8 +954,8 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
 - SUT [Server-Type-C2]:
     - testbedname: testbed28.
     - hostname: s35-t28-sut1.
-    - IPMI IP: x.x.x.x
-    - Host IP: x.x.x.x
+    - IPMI IP: 10.30.55.20
+    - Host IP: 10.32.8.20
     - portnames:
         - s35-t28-sut1-c2/p1 - 10GE-port1 x710-4p10GE.
         - s35-t28-sut1-c2/p2 - 10GE-port2 x710-4p10GE.
@@ -968,8 +968,8 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
 - TG [Server-Type-C3]:
     - testbedname: testbed28.
     - hostname: s36-t28-tg1.
-    - IPMI IP: x.x.x.x
-    - Host IP: x.x.x.x
+    - IPMI IP: 10.30.55.21
+    - Host IP: 10.32.8.21
     - portnames:
         - s36-t28-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
         - s36-t28-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
@@ -982,8 +982,8 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
 - SUT [Server-Type-C2]:
     - testbedname: testbed29.
     - hostname: s37-t29-sut1.
-    - IPMI IP: x.x.x.x
-    - Host IP: x.x.x.x
+    - IPMI IP: 10.30.55.22
+    - Host IP: 10.32.8.22
     - portnames:
         - s37-t29-sut1-c2/p1 - 10GE-port1 x710-4p10GE.
         - s37-t29-sut1-c2/p2 - 10GE-port2 x710-4p10GE.
@@ -996,8 +996,8 @@ Note: ServerB28 (TG) is shared between testbed26 & testbed35
 - TG [Server-Type-C3]:
     - testbedname: testbed29.
     - hostname: s38-t29-tg1.
-    - IPMI IP: x.x.x.x
-    - Host IP: x.x.x.x
+    - IPMI IP: 10.30.55.23
+    - Host IP: 10.32.8.23
     - portnames:
         - s38-t29-tg1-c2/p1 - 10GE-port1 x710-4p10GE.
         - s38-t29-tg1-c2/p2 - 10GE-port2 x710-4p10GE.
