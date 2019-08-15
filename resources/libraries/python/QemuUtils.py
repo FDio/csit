@@ -13,9 +13,6 @@
 
 """QEMU utilities library."""
 
-# Disable due to pylint bug
-# pylint: disable=no-name-in-module,import-error
-from distutils.version import StrictVersion
 import json
 from re import match
 from string import Template
@@ -159,13 +156,7 @@ class QemuUtils(object):
         self._params.add_with_value(
             'net', 'user,hostfwd=tcp::{info[port]}-:22'.format(
                 info=self._vm_info))
-        # TODO: Remove try except after fully migrated to Bionic or
-        # qemu_set_node is removed.
-        try:
-            locking = ',file.locking=off'\
-                if self.qemu_version(version='2.10') else ''
-        except AttributeError:
-            locking = ''
+        locking = ',file.locking=off'
         self._params.add_with_value(
             'drive', 'file={img},format=raw,cache=none,if=virtio{locking}'.
             format(img=self._opt.get('img'), locking=locking))
@@ -646,22 +637,18 @@ class QemuUtils(object):
             exec_cmd(self._node, 'cat {value}'.format(value=value), sudo=True)
             exec_cmd(self._node, 'rm -f {value}'.format(value=value), sudo=True)
 
-    def qemu_version(self, version=None):
-        """Return Qemu version or compare if version is higher than parameter.
+    def qemu_version(self):
+        """Return Qemu version.
 
-        :param version: Version to compare.
-        :type version: str
-        :returns: Qemu version or Boolean if version is higher than parameter.
-        :rtype: str or bool
+        :returns: Qemu version.
+        :rtype: str
         """
         command = ('{bin_path}/qemu-system-{arch} --version'.format(
             bin_path=Constants.QEMU_BIN_PATH,
             arch=self._arch))
         try:
             stdout, _ = exec_cmd_no_error(self._node, command, sudo=True)
-            ver = match(r'QEMU emulator version ([\d.]*)', stdout).group(1)
-            return StrictVersion(ver) > StrictVersion(version) \
-                if version else ver
+            return match(r'QEMU emulator version ([\d.]*)', stdout).group(1)
         except RuntimeError:
             self.qemu_kill_all()
             raise

@@ -61,8 +61,6 @@ class SearchResultType(Enum):
 
 class DropRateSearch(object):
     """Abstract class with search algorithm implementation."""
-    #TODO DropRateSearch should be refactored as part of CSIT-1378
-    #pylint: disable=too-many-instance-attributes
 
     __metaclass__ = ABCMeta
 

@@ -706,7 +706,7 @@ class PapiExecutor(object):
                          "\n{apis}".format(host=self._node["host"],
                                            apis=api_data))
             raise
-        except Exception as exc:  # pylint: disable=broad-except
+        except Exception as exc:
             raise_from(RuntimeError(
                 "PAPI command(s) execution on host {host} "
                 "failed: {apis}".format(

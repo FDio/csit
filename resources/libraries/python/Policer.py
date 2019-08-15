@@ -109,7 +109,6 @@ class PolicerClassifyTableType(Enum):
         self.string = string
 
 
-# pylint: disable=too-many-instance-attributes
 class Policer(object):
     """Policer utilities."""
 
@@ -145,7 +144,6 @@ class Policer(object):
         # create policer
         color_aware = 'color-aware' if self._color_aware else ''
 
-        # pylint: disable=no-member
         conform_action = self._conform_action.value
 
         if PolicerAction.MARK_AND_TRANSMIT == self._conform_action:
@@ -213,7 +211,7 @@ class Policer(object):
             node,
             "policer/policer_classify_add_session.vat",
             policer_index=policer_index,
-            pre_color=self._classify_precolor.value, # pylint: disable=no-member
+            pre_color=self._classify_precolor.value,
             table_index=new_table_index,
             skip_n=skip_n_vectors,
             match_n=match_n_vectors,
@@ -228,7 +226,7 @@ class Policer(object):
             node,
             "policer/policer_classify_set_interface.vat",
             sw_if_index=self._sw_if_index,
-            table_type=table_type.value, # pylint: disable=no-member
+            table_type=table_type.value,
             table_index=new_table_index)
 
         VatJsonUtil.verify_vat_retval(

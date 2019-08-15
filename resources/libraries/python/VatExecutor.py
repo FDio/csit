@@ -252,7 +252,7 @@ class VatTerminal(object):
                     self._tty,
                     'sudo -S {0}{1}'.format(Constants.VAT_BIN_NAME, json_text),
                     self.__VAT_PROMPT)
-            except Exception:  #pylint: disable=broad-except
+            except Exception:
                 continue
             else:
                 break
