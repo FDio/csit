@@ -144,8 +144,6 @@ def setup_node(node, tarball, remote_tarball, results=None):
         result = False
     else:
         logger.console('Setup of node {ip} done.'.format(ip=host))
-        logger.info('Setup of {type} node {ip} done.'.format(type=node['type'],
-                                                             ip=host))
         result = True
 
     if isinstance(results, list):
@@ -248,6 +246,9 @@ class SetupFramework(object):
         delete_local_tarball(tarball)
         if all(results):
             logger.console('All nodes are ready.')
+            for node in nodes.values():
+                logger.info('Setup of {type} node {ip} done.'.
+                            format(type=node['type'], ip=node['host']))
         else:
             raise RuntimeError('Failed to setup framework.')
 
