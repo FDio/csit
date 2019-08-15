@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "93d1f932_343005a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-15T12:13:45Z",
+      "side": 1,
+      "message": "It should recognize and pair with JIRA",
+      "parentUuid": "c40677ab_a098c03a",
+      "range": {
+        "startLine": 7,
+        "startChar": 36,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "590632ff5e77ea04cfec7a1198e8891475963f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e9cbb5f9_2d851148",
         "filename": "resources/tools/wrk/wrk_traffic_profile_parser.py",
         "patchSetId": 1
