@@ -253,7 +253,6 @@ class CpuUtils(object):
         :param nf_nodes: Number of NF nodes in chain.
         :param nf_chain: Chain number indexed from 1.
         :param nf_node: Node number indexed from 1.
-        :param vs_dtc: Amount of physical cores for vswitch dataplane.
         :param nf_dtc: Amount of physical cores for NF dataplane.
         :param nf_mtcr: NF main thread per core ratio.
         :param nf_dtcr: NF dataplane thread per core ratio.
@@ -264,7 +263,6 @@ class CpuUtils(object):
         :type nf_nodes: int
         :type nf_chain: int
         :type nf_node: int
-        :type vs_dtc: int
         :type nf_dtc: int or float
         :type nf_mtcr: int
         :type nf_dtcr: int
@@ -274,57 +272,51 @@ class CpuUtils(object):
         :raises RuntimeError: If we require more cpus than available or if
         placement is not possible due to wrong parameters.
         """
-        if nf_chain - 1 >= nf_chains:
-            raise RuntimeError("ChainID is higher than total number of chains!")
-        if nf_node - 1 >= nf_nodes:
-            raise RuntimeError("NodeID is higher than chain nodes!")
+        if not 1 <= nf_chain <= nf_chains:
+            raise RuntimeError("ChainID is out of range!")
+        if not 1 <= nf_node <= nf_nodes:
+            raise RuntimeError("NodeID is out of range!")
 
         smt_used = CpuUtils.is_smt_enabled(node['cpuinfo'])
         cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
         # CPU thread sibling offset.
         sib = len(cpu_list) / CpuUtils.NR_OF_THREADS
 
-        if not smt_used and not isinstance(nf_dtc, int):
+        dtc_is_integer = isinstance(nf_dtc, int)
+        if not smt_used and not dtc_is_integer:
             raise RuntimeError("Cannot allocate if SMT is not enabled!")
+        # TODO: Please reword the following todo if it is still relevant
         # TODO: Workaround as we are using physical core as main unit, we must
         # adjust number of physical dataplane cores in case of float for further
         # array referencing. As rounding method in Py2.7 and Py3.x differs, we
         # are using static mapping. This can be rewritten using flat arrays and
         # different logic (from Physical core unit to Logical core unit).
-        dtc = 1 if not isinstance(nf_dtc, int) else nf_dtc
+        if not dtc_is_integer:
+            nf_dtc = 1
 
-        mt_req = ((nf_chains * nf_nodes) + nf_mtcr - 1) / nf_mtcr
-        dt_req = ((nf_chains * nf_nodes) + nf_dtcr - 1) / nf_dtcr
-        cpu_req = skip_cnt + mt_req + dt_req
+        mt_req = ((nf_chains * nf_nodes) + nf_mtcr - 1) // nf_mtcr
+        dt_req = ((nf_chains * nf_nodes) + nf_dtcr - 1) // nf_dtcr
 
-        if smt_used and cpu_req > len(cpu_list) / CpuUtils.NR_OF_THREADS:
-            raise RuntimeError("Not enough CPU cores available for placement!")
-        elif not smt_used and cpu_req > len(cpu_list):
+        if (skip_cnt + mt_req + dt_req) > (sib if smt_used else len(cpu_list)):
             raise RuntimeError("Not enough CPU cores available for placement!")
 
         offset = (nf_node - 1) + (nf_chain - 1) * nf_nodes
-        try:
-            mt_odd = (offset / mt_req) & 1
-            mt_skip = skip_cnt + (offset % mt_req)
-            dt_odd = (offset / dt_req) & 1
-            dt_skip = skip_cnt + mt_req + (offset % dt_req) * dtc
-        except ZeroDivisionError:
-            raise RuntimeError("Invalid placement combination!")
-        if smt_used:
-            mt_list = [cpu for cpu in cpu_list[mt_skip+sib:mt_skip+sib + 1]] \
-                if mt_odd else [cpu for cpu in cpu_list[mt_skip:mt_skip + 1]]
-            dt_list = [cpu for cpu in cpu_list[dt_skip+sib:dt_skip+sib + dtc]] \
-                if dt_odd else [cpu for cpu in cpu_list[dt_skip:dt_skip + dtc]]
-            if isinstance(nf_dtc, int):
-                dt_list = \
-                    [cpu for cpu in cpu_list[dt_skip:dt_skip + dtc]]
-                dt_list += \
-                    [cpu for cpu in cpu_list[dt_skip+sib:dt_skip+sib + dtc]]
-        else:
-            mt_list = [cpu for cpu in cpu_list[mt_skip:mt_skip + 1]]
-            dt_list = [cpu for cpu in cpu_list[dt_skip:dt_skip + dtc]]
+        mt_skip = skip_cnt + (offset % mt_req)
+        dt_skip = skip_cnt + mt_req + (offset % dt_req) * nf_dtc
 
-        return mt_list + dt_list
+        result = cpu_list[dt_skip:dt_skip + nf_dtc]
+        if smt_used:
+            if (offset // mt_req) & 1:  # check oddness
+                mt_skip += sib
+
+            dt_skip += sib
+            if dtc_is_integer:
+                result.extend(cpu_list[dt_skip:dt_skip + nf_dtc])
+            elif (offset // dt_req) & 1:  # check oddness
+                result = cpu_list[dt_skip:dt_skip + nf_dtc]
+
+        result[0:0] = cpu_list[mt_skip:mt_skip + 1]
+        return result
 
     @staticmethod
     def get_affinity_nf(nodes, node, nf_chains=1, nf_nodes=1, nf_chain=1,
