@@ -71,23 +71,14 @@
 | | Then Measure connections per second | ${traffic_profile}
 
 *** Test Cases ***
-| tc01-IMIX-1c-eth-ip4tcphttp-wrk8u8c50con-cps
-| | [Documentation]
-| | ... | Measure number of connections per second using wrk.
-| | ...
+| tc01-1c-eth-ip4tcphttp-cps
 | | [Tags] | 1C
 | | phy_cores=${1}
 
-| tc02-IMIX-2c-eth-ip4tcphttp-wrk8u8c50con-cps
-| | [Documentation]
-| | ... | Measure number of connections per second using wrk.
-| | ...
+| tc02-2c-eth-ip4tcphttp-cps
 | | [Tags] | 2C
 | | phy_cores=${2}
 
-| tc03-IMIX-4c-eth-ip4tcphttp-wrk8u8c50con-cps
-| | [Documentation]
-| | ... | Measure number of connections per second using wrk.
-| | ...
+| tc03-4c-eth-ip4tcphttp-cps
 | | [Tags] | 4C
 | | phy_cores=${4}
