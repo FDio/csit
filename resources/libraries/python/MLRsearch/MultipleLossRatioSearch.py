@@ -17,9 +17,9 @@ import logging
 import math
 import time
 
-from AbstractSearchAlgorithm import AbstractSearchAlgorithm
-from NdrPdrResult import NdrPdrResult
-from ReceiveRateInterval import ReceiveRateInterval
+from .AbstractSearchAlgorithm import AbstractSearchAlgorithm
+from .NdrPdrResult import NdrPdrResult
+from .ReceiveRateInterval import ReceiveRateInterval
 
 
 class MultipleLossRatioSearch(AbstractSearchAlgorithm):
@@ -344,48 +344,51 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
         :rtype: ReceiveRateInterval.ReceiveRateInterval
         """
         old_lo, old_hi = old_interval.measured_low, old_interval.measured_high
+        new_lo = new_hi = None
         # Priority zero: direct replace if the target Tr is the same.
         if measurement.target_tr in (old_lo.target_tr, old_hi.target_tr):
             if measurement.target_tr == old_lo.target_tr:
-                return ReceiveRateInterval(measurement, old_hi)
+                new_lo = measurement
             else:
-                return ReceiveRateInterval(old_lo, measurement)
+                new_hi = measurement
         # Priority one: invalid lower bound allows only one type of update.
-        if old_lo.loss_fraction > packet_loss_ratio:
+        elif old_lo.loss_fraction > packet_loss_ratio:
             # We can only expand down, old bound becomes valid upper one.
             if measurement.target_tr < old_lo.target_tr:
-                return ReceiveRateInterval(measurement, old_lo)
+                new_lo, new_hi = measurement, old_lo
             else:
                 return old_interval
+
         # Lower bound is now valid.
         # Next priorities depend on target Tr.
-        if measurement.target_tr < old_lo.target_tr:
+        elif measurement.target_tr < old_lo.target_tr:
             # Lower external measurement, relevant only
             # if the new measurement has high loss rate.
             if measurement.loss_fraction > packet_loss_ratio:
                 # Returning the broader interval as old_lo
                 # would be invalid upper bound.
-                return ReceiveRateInterval(measurement, old_hi)
+                new_lo = measurement
         elif measurement.target_tr > old_hi.target_tr:
             # Upper external measurement, only relevant for invalid upper bound.
             if old_hi.loss_fraction <= packet_loss_ratio:
                 # Old upper bound becomes valid new lower bound.
-                return ReceiveRateInterval(old_hi, measurement)
+                new_lo, new_hi = old_hi, measurement
         else:
             # Internal measurement, replaced boundary
             # depends on measured loss fraction.
             if measurement.loss_fraction > packet_loss_ratio:
                 # We have found a narrow valid interval,
                 # regardless of whether old upper bound was valid.
-                return ReceiveRateInterval(old_lo, measurement)
+                new_hi = measurement
             else:
                 # In ideal world, we would not want to shrink interval
                 # if upper bound is not valid.
                 # In the real world, we want to shrink it for
                 # "invalid upper bound at maximal rate" case.
-                return ReceiveRateInterval(measurement, old_hi)
-        # Fallback, the interval is unchanged by the measurement.
-        return old_interval
+                new_lo = measurement
+
+        return ReceiveRateInterval(old_lo if new_lo is None else new_lo,
+                                   old_hi if new_hi is None else new_hi)
 
     def ndrpdr(self, state):
         """Pefrom trials for this phase. Return the new state when done.
@@ -416,6 +419,7 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
             state.duration = saved_duration
             state.width_goal = saved_width
             state.phases = saved_phases  # Not needed, but just in case.
+
         logging.info(
             "starting iterations with duration %s and relative width goal %s",
             state.duration, state.width_goal)
@@ -436,62 +440,14 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
                 state.width_goal, state.result.pdr_interval.rel_tr_width)
             # If we are hitting maximal or minimal rate, we cannot shift,
             # but we can re-measure.
-            if ndr_lo.loss_fraction > 0.0:
-                if ndr_lo.target_tr > state.minimum_transmit_rate:
-                    new_tr = max(
-                        state.minimum_transmit_rate,
-                        self.expand_down(
-                            ndr_rel_width, self.doublings, ndr_lo.target_tr))
-                    logging.info("ndr lo external %s", new_tr)
-                    state = self._measure_and_update_state(state, new_tr)
-                    continue
-                elif ndr_lo.duration < state.duration:
-                    logging.info("ndr lo minimal re-measure")
-                    state = self._measure_and_update_state(
-                        state, state.minimum_transmit_rate)
-                    continue
-            if pdr_lo.loss_fraction > state.packet_loss_ratio:
-                if pdr_lo.target_tr > state.minimum_transmit_rate:
-                    new_tr = max(
-                        state.minimum_transmit_rate,
-                        self.expand_down(
-                            pdr_rel_width, self.doublings, pdr_lo.target_tr))
-                    logging.info("pdr lo external %s", new_tr)
-                    state = self._measure_and_update_state(state, new_tr)
-                    continue
-                elif pdr_lo.duration < state.duration:
-                    logging.info("pdr lo minimal re-measure")
-                    state = self._measure_and_update_state(
-                        state, state.minimum_transmit_rate)
-                    continue
-            if ndr_hi.loss_fraction <= 0.0:
-                if ndr_hi.target_tr < state.maximum_transmit_rate:
-                    new_tr = min(
-                        state.maximum_transmit_rate,
-                        self.expand_up(
-                            ndr_rel_width, self.doublings, ndr_hi.target_tr))
-                    logging.info("ndr hi external %s", new_tr)
-                    state = self._measure_and_update_state(state, new_tr)
-                    continue
-                elif ndr_hi.duration < state.duration:
-                    logging.info("ndr hi maximal re-measure")
-                    state = self._measure_and_update_state(
-                        state, state.maximum_transmit_rate)
-                    continue
-            if pdr_hi.loss_fraction <= state.packet_loss_ratio:
-                if pdr_hi.target_tr < state.maximum_transmit_rate:
-                    new_tr = min(
-                        state.maximum_transmit_rate,
-                        self.expand_up(
-                            pdr_rel_width, self.doublings, pdr_hi.target_tr))
-                    logging.info("pdr hi external %s", new_tr)
-                    state = self._measure_and_update_state(state, new_tr)
-                    continue
-                elif pdr_hi.duration < state.duration:
-                    logging.info("ndr hi maximal re-measure")
-                    state = self._measure_and_update_state(
-                        state, state.maximum_transmit_rate)
-                    continue
+            new_tr = self._ndrpdr_loss_fraction(state,
+                                                ndr_lo, ndr_hi, pdr_lo, pdr_hi,
+                                                ndr_rel_width, pdr_rel_width)
+
+            if new_tr is not None:
+                state = self._measure_and_update_state(state, new_tr)
+                continue
+
             # If we are hitting maximum_transmit_rate,
             # it is still worth narrowing width,
             # hoping large enough loss fraction will happen.
@@ -504,43 +460,166 @@ class MultipleLossRatioSearch(AbstractSearchAlgorithm):
             if (pdr_lo.target_tr <= state.minimum_transmit_rate
                     and pdr_lo.loss_fraction > state.packet_loss_ratio):
                 pdr_rel_width = 0.0
-            if ndr_rel_width > state.width_goal:
-                # We have to narrow NDR width first, as NDR internal search
-                # can invalidate PDR (but not vice versa).
-                new_tr = self.half_step_up(ndr_rel_width, ndr_lo.target_tr)
-                logging.info("Bisecting for NDR at %s", new_tr)
+
+            new_tr = self._ndrpdr_width_goal(state, ndr_lo, pdr_lo,
+                                             ndr_rel_width, pdr_rel_width)
+
+            if new_tr is not None:
                 state = self._measure_and_update_state(state, new_tr)
                 continue
-            if pdr_rel_width > state.width_goal:
-                # PDR iternal search.
-                new_tr = self.half_step_up(pdr_rel_width, pdr_lo.target_tr)
-                logging.info("Bisecting for PDR at %s", new_tr)
-                state = self._measure_and_update_state(state, new_tr)
-                continue
+
             # We do not need to improve width, but there still might be
             # some measurements with smaller duration.
-            # We need to re-measure with full duration, possibly
-            # creating invalid bounds to resolve (thus broadening width).
-            if ndr_lo.duration < state.duration:
-                logging.info("re-measuring NDR lower bound")
-                self._measure_and_update_state(state, ndr_lo.target_tr)
+            new_tr = self._ndrpdr_duration(state,
+                                           ndr_lo, ndr_hi, pdr_lo, pdr_hi,
+                                           ndr_rel_width, pdr_rel_width)
+
+            if new_tr is not None:
+                state = self._measure_and_update_state(state, new_tr)
                 continue
-            if pdr_lo.duration < state.duration:
-                logging.info("re-measuring PDR lower bound")
-                self._measure_and_update_state(state, pdr_lo.target_tr)
-                continue
-            # Except when lower bounds have high loss fraction, in that case
-            # we do not need to re-measure _upper_ bounds.
-            if ndr_hi.duration < state.duration and ndr_rel_width > 0.0:
-                logging.info("re-measuring NDR upper bound")
-                self._measure_and_update_state(state, ndr_hi.target_tr)
-                continue
-            if pdr_hi.duration < state.duration and pdr_rel_width > 0.0:
-                logging.info("re-measuring PDR upper bound")
-                self._measure_and_update_state(state, pdr_hi.target_tr)
-                continue
+
             # Widths are narrow (or lower bound minimal), bound measurements
             # are long enough, we can return.
             logging.info("phase done")
             break
         return state
+
+    def _ndrpdr_loss_fraction(self, state, ndr_lo, ndr_hi, pdr_lo, pdr_hi,
+                              ndr_rel_width, pdr_rel_width):
+        """Perform loss_fraction-based trials within a ndrpdr phase
+
+        :param state: current state
+        :param ndr_lo: ndr interval measured low
+        :param ndr_hi: ndr interval measured high
+        :param pdr_lo: pdr interval measured low
+        :param pdr_hi: pdr interval measured high
+        :param ndr_rel_width: ndr interval relative width
+        :param pdr_rel_width: pdr interval relative width
+        :type state: ProgressState
+        :type ndr_lo: ReceiveRateMeasurement.ReceiveRateMeasurement
+        :type ndr_hi: ReceiveRateMeasurement.ReceiveRateMeasurement
+        :type pdr_lo: ReceiveRateMeasurement.ReceiveRateMeasurement
+        :type pdr_hi: ReceiveRateMeasurement.ReceiveRateMeasurement
+        :type ndr_rel_width: float
+        :type pdr_rel_width: float
+        :returns: a new transmit rate if one should be applied
+        :rtype: float
+        """
+        result = None
+        if ndr_lo.loss_fraction > 0.0:
+            if ndr_lo.target_tr > state.minimum_transmit_rate:
+                result = max(
+                    state.minimum_transmit_rate,
+                    self.expand_down(
+                        ndr_rel_width, self.doublings, ndr_lo.target_tr))
+                logging.info("ndr lo external %s", result)
+            elif ndr_lo.duration < state.duration:
+                result = state.minimum_transmit_rate
+                logging.info("ndr lo minimal re-measure")
+
+        if result is None and pdr_lo.loss_fraction > state.packet_loss_ratio:
+            if pdr_lo.target_tr > state.minimum_transmit_rate:
+                result = max(
+                    state.minimum_transmit_rate,
+                    self.expand_down(
+                        pdr_rel_width, self.doublings, pdr_lo.target_tr))
+                logging.info("pdr lo external %s", result)
+            elif pdr_lo.duration < state.duration:
+                result = state.minimum_transmit_rate
+                logging.info("pdr lo minimal re-measure")
+
+        if result is None and ndr_hi.loss_fraction <= 0.0:
+            if ndr_hi.target_tr < state.maximum_transmit_rate:
+                result = min(
+                    state.maximum_transmit_rate,
+                    self.expand_up(
+                        ndr_rel_width, self.doublings, ndr_hi.target_tr))
+                logging.info("ndr hi external %s", result)
+            elif ndr_hi.duration < state.duration:
+                result = state.maximum_transmit_rate
+                logging.info("ndr hi maximal re-measure")
+
+        if result is None and pdr_hi.loss_fraction <= state.packet_loss_ratio:
+            if pdr_hi.target_tr < state.maximum_transmit_rate:
+                result = min(
+                    state.maximum_transmit_rate,
+                    self.expand_up(
+                        pdr_rel_width, self.doublings, pdr_hi.target_tr))
+                logging.info("pdr hi external %s", result)
+            elif pdr_hi.duration < state.duration:
+                result = state.maximum_transmit_rate
+                logging.info("ndr hi maximal re-measure")
+        return result
+
+    def _ndrpdr_width_goal(self, state, ndr_lo, pdr_lo,
+                           ndr_rel_width, pdr_rel_width):
+        """Perform width_goal-based trials within a ndrpdr phase
+
+        :param state: current state
+        :param ndr_lo: ndr interval measured low
+        :param pdr_lo: pdr interval measured low
+        :param ndr_rel_width: ndr interval relative width
+        :param pdr_rel_width: pdr interval relative width
+        :type state: ProgressState
+        :type ndr_lo: ReceiveRateMeasurement.ReceiveRateMeasurement
+        :type pdr_lo: ReceiveRateMeasurement.ReceiveRateMeasurement
+        :type ndr_rel_width: float
+        :type pdr_rel_width: float
+        :returns: a new transmit rate if one should be applied
+        :rtype: float
+        Return a new transmit rate if one should be applied.
+        """
+        if ndr_rel_width > state.width_goal:
+            # We have to narrow NDR width first, as NDR internal search
+            # can invalidate PDR (but not vice versa).
+            result = self.half_step_up(ndr_rel_width, ndr_lo.target_tr)
+            logging.info("Bisecting for NDR at %s", result)
+        elif pdr_rel_width > state.width_goal:
+            # PDR iternal search.
+            result = self.half_step_up(pdr_rel_width, pdr_lo.target_tr)
+            logging.info("Bisecting for PDR at %s", result)
+        else:
+            result = None
+        return result
+
+    @staticmethod
+    def _ndrpdr_duration(state, ndr_lo, pdr_lo, ndr_hi, pdr_hi,
+                         ndr_rel_width, pdr_rel_width):
+        """Perform duration-based trials within a ndrpdr phase
+
+        :param state: current state
+        :param ndr_lo: ndr interval measured low
+        :param ndr_hi: ndr interval measured high
+        :param pdr_lo: pdr interval measured low
+        :param pdr_hi: pdr interval measured high
+        :param ndr_rel_width: ndr interval relative width
+        :param pdr_rel_width: pdr interval relative width
+        :type state: ProgressState
+        :type ndr_lo: ReceiveRateMeasurement.ReceiveRateMeasurement
+        :type ndr_hi: ReceiveRateMeasurement.ReceiveRateMeasurement
+        :type pdr_lo: ReceiveRateMeasurement.ReceiveRateMeasurement
+        :type pdr_hi: ReceiveRateMeasurement.ReceiveRateMeasurement
+        :type ndr_rel_width: float
+        :type pdr_rel_width: float
+        :returns: a new transmit rate if one should be applied
+        :rtype: float
+        """
+        # We need to re-measure with full duration, possibly
+        # creating invalid bounds to resolve (thus broadening width).
+        if ndr_lo.duration < state.duration:
+            result = ndr_lo.target_tr
+            logging.info("re-measuring NDR lower bound")
+        elif pdr_lo.duration < state.duration:
+            result = pdr_lo.target_tr
+            logging.info("re-measuring PDR lower bound")
+        # Except when lower bounds have high loss fraction, in that case
+        # we do not need to re-measure _upper_ bounds.
+        elif ndr_hi.duration < state.duration and ndr_rel_width > 0.0:
+            result = ndr_hi.target_tr
+            logging.info("re-measuring NDR upper bound")
+        elif pdr_hi.duration < state.duration and pdr_rel_width > 0.0:
+            result = pdr_hi.target_tr
+            logging.info("re-measuring PDR upper bound")
+        else:
+            result = None
+        return result
