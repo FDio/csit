@@ -37,6 +37,12 @@ class WrkTrafficProfile(object):
                         "nr-of-threads",
                         "nr-of-connections")
 
+    INTEGER_PARAMS = (("cpus", 1),
+                      ("first-cpu", 0),
+                      ("duration", 1),
+                      ("nr-of-threads", 1),
+                      ("nr-of-connections", 1))
+
     def __init__(self, profile_name):
         """Read the traffic profile from the yaml file.
 
@@ -90,12 +96,22 @@ class WrkTrafficProfile(object):
 
         logger.debug("\nValidating the wrk traffic profile '{0}'...\n".
                      format(self.profile_name))
+        if not (self._validate_mandatory_structure()
+                and self._validate_mandatory_values()
+                and self._validate_optional_values()
+                and self._validate_dependencies()):
+            self.traffic_profile = None
 
+    def _validate_mandatory_structure(self):
+        """Validate presence of mandatory parameters in trafic profile dict
+
+        :returns: whether mandatory structure is followed by the profile
+        :rtype: bool
+        """
         # Level 1: Check if the profile is a dictionary:
         if not isinstance(self.traffic_profile, dict):
             logger.error("The wrk traffic profile must be a dictionary.")
-            self.traffic_profile = None
-            return
+            return False
 
         # Level 2: Check if all mandatory parameters are present:
         is_valid = True
@@ -103,72 +119,33 @@ class WrkTrafficProfile(object):
             if self.traffic_profile.get(param, None) is None:
                 logger.error("The parameter '{0}' in mandatory.".format(param))
                 is_valid = False
-        if not is_valid:
-            self.traffic_profile = None
-            return
+        return is_valid
 
+    def _validate_mandatory_values(self):
+        """Validate that mandatory profile values satisfy their constraints
+
+        :returns: whether mandatory values are acceptable
+        :rtype: bool
+        """
         # Level 3: Mandatory params: Check if urls is a list:
         is_valid = True
         if not isinstance(self.traffic_profile["urls"], list):
             logger.error("The parameter 'urls' must be a list.")
             is_valid = False
 
-        # Level 3: Mandatory params: Check if cpus is a valid integer:
-        try:
-            cpus = int(self.traffic_profile["cpus"])
-            if cpus < 1:
-                raise ValueError
-            self.traffic_profile["cpus"] = cpus
-        except ValueError:
-            logger.error("The parameter 'cpus' must be an integer greater than "
-                         "1.")
-            is_valid = False
+        # Level 3: Mandatory params: Check if integers are not below minimum
+        for param, minimum in self.INTEGER_PARAMS:
+            if not self._validate_int_param(param, minimum):
+                is_valid = False
+        return is_valid
 
-        # Level 3: Mandatory params: Check if first-cpu is a valid integer:
-        try:
-            first_cpu = int(self.traffic_profile["first-cpu"])
-            if first_cpu < 0:
-                raise ValueError
-            self.traffic_profile["first-cpu"] = first_cpu
-        except ValueError:
-            logger.error("The parameter 'first-cpu' must be an integer greater "
-                         "than 1.")
-            is_valid = False
+    def _validate_optional_values(self):
+        """Validate values for optional parameters, if present
 
-        # Level 3: Mandatory params: Check if duration is a valid integer:
-        try:
-            duration = int(self.traffic_profile["duration"])
-            if duration < 1:
-                raise ValueError
-            self.traffic_profile["duration"] = duration
-        except ValueError:
-            logger.error("The parameter 'duration' must be an integer "
-                         "greater than 1.")
-            is_valid = False
-
-        # Level 3: Mandatory params: Check if nr-of-threads is a valid integer:
-        try:
-            nr_of_threads = int(self.traffic_profile["nr-of-threads"])
-            if nr_of_threads < 1:
-                raise ValueError
-            self.traffic_profile["nr-of-threads"] = nr_of_threads
-        except ValueError:
-            logger.error("The parameter 'nr-of-threads' must be an integer "
-                         "greater than 1.")
-            is_valid = False
-
-        # Level 3: Mandatory params: Check if nr-of-connections is a valid
-        # integer:
-        try:
-            nr_of_connections = int(self.traffic_profile["nr-of-connections"])
-            if nr_of_connections < 1:
-                raise ValueError
-            self.traffic_profile["nr-of-connections"] = nr_of_connections
-        except ValueError:
-            logger.error("The parameter 'nr-of-connections' must be an integer "
-                         "greater than 1.")
-            is_valid = False
-
+        :returns: whether present optional values are acceptable
+        :rtype: bool
+        """
+        is_valid = True
         # Level 4: Optional params: Check if script is present:
         script = self.traffic_profile.get("script", None)
         if script is not None:
@@ -177,7 +154,7 @@ class WrkTrafficProfile(object):
                 is_valid = False
             else:
                 if not isfile(script):
-                    logger.error("The file '{0}' in not present.".
+                    logger.error("The file '{0}' does not exist.".
                                  format(script))
                     is_valid = False
         else:
@@ -187,21 +164,19 @@ class WrkTrafficProfile(object):
 
         # Level 4: Optional params: Check if header is present:
         header = self.traffic_profile.get("header", None)
-        if header:
-            if not (isinstance(header, dict) or isinstance(header, str)):
-                logger.error("The parameter 'header' is not valid.")
+        if header is not None:
+            if isinstance(header, dict):
+                header = ", ".join("{0}: {1}".format(*item)
+                                   for item in header.items())
+                self.traffic_profile["header"] = header
+            elif not isinstance(header, str):
+                logger.error("The parameter 'header' type is not valid.")
                 is_valid = False
-            else:
-                if isinstance(header, dict):
-                    header_lst = list()
-                    for key, val in header.items():
-                        header_lst.append("{0}: {1}".format(key, val))
-                    if header_lst:
-                        self.traffic_profile["header"] = ", ".join(header_lst)
-                    else:
-                        logger.error("The parameter 'header' is defined but "
-                                     "empty.")
-                        is_valid = False
+
+            if not header:
+                logger.error("The parameter 'header' is defined but "
+                             "empty.")
+                is_valid = False
         else:
             self.traffic_profile["header"] = None
             logger.debug("The optional parameter 'header' is not defined. "
@@ -210,10 +185,7 @@ class WrkTrafficProfile(object):
         # Level 4: Optional params: Check if latency is present:
         latency = self.traffic_profile.get("latency", None)
         if latency is not None:
-            try:
-                latency = bool(latency)
-                self.traffic_profile["latency"] = latency
-            except ValueError:
+            if not isinstance(latency, bool):
                 logger.error("The parameter 'latency' must be boolean.")
                 is_valid = False
         else:
@@ -222,32 +194,52 @@ class WrkTrafficProfile(object):
                          "No problem.")
 
         # Level 4: Optional params: Check if timeout is present:
-        timeout = self.traffic_profile.get("timeout", None)
-        if timeout:
-            try:
-                timeout = int(timeout)
-                if timeout < 1:
-                    raise ValueError
-                self.traffic_profile["timeout"] = timeout
-            except ValueError:
-                logger.error("The parameter 'timeout' must be integer greater "
-                             "than 1.")
+        if 'timeout' in self.traffic_profile:
+            if not self._validate_int_param('timeout', 1):
                 is_valid = False
         else:
             self.traffic_profile["timeout"] = None
             logger.debug("The optional parameter 'timeout' is not defined. "
                          "No problem.")
 
-        if not is_valid:
-            self.traffic_profile = None
-            return
+        return is_valid
 
-        # Level 5: Check dependencies between parameters:
+    def _validate_dependencies(self):
+        """Validate dependencies between parameters
+
+        :returns: whether dependencies between parameters are acceptable
+        :rtype: bool
+        """
         # Level 5: Check urls and cpus:
         if self.traffic_profile["cpus"] % len(self.traffic_profile["urls"]):
-            logger.error("The number of CPUs must be a multiplication of the "
+            logger.error("The number of CPUs must be a multiple of the "
                          "number of URLs.")
-            self.traffic_profile = None
+            return False
+        return True
+
+    def _validate_int_param(self, param, minimum):
+        """Validate that an int parameter is set acceptably
+        If it is not an int already but a string, convert and store it as int.
+
+        :param param: Name of a traffic profile parameter
+        :param minimum: The minimum value for the named parameter
+        :type param: str
+        :type minimum: int
+        :returns: whether param is set to an int of at least minimum value
+        :rtype: bool
+        """
+        value = self._traffic_profile[param]
+        if isinstance(value, (str, unicode)):
+            if value.isdigit():
+                value = int(value)
+            else:
+                value = minimum - 1
+        if isinstance(value, int) and value >= minimum:
+            self.traffic_profile[param] = value
+            return True
+        logger.error("The parameter '{param}' must be an integer and "
+                     "at least {minimum}".format(param=param, minimum=minimum))
+        return False
 
     @property
     def profile_name(self):
