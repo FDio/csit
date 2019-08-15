@@ -246,6 +246,45 @@ class Regenerator(object):
                         add_testcases(
                             testcase, iface, suite_id, file_out, kwargs_list)
 
+        def write_reconfig_files(in_filename, in_prolog, kwargs_list):
+            """Using given filename and prolog, write all generated suites.
+
+            Use this for suite type reconfig, as its local template
+            is incompatible with mrr/ndrpdr/soak local template,
+            while test cases are compatible.
+
+            :param in_filename: Template filename to derive real filenames from.
+            :param in_prolog: Template content to derive real content from.
+            :param kwargs_list: List of kwargs for add_testcase.
+            :type in_filename: str
+            :type in_prolog: str
+            :type kwargs_list: list of dict
+            """
+            _, suite_id = get_iface_and_suite_id(in_filename)
+            testcase = self.testcase_class(suite_id)
+            for nic_name in Constants.NIC_NAME_TO_CODE.keys():
+                out_filename = replace_defensively(
+                    in_filename, "10ge2p1x710",
+                    Constants.NIC_NAME_TO_CODE[nic_name], 1,
+                    "File name should contain NIC code once.", in_filename)
+                out_prolog = replace_defensively(
+                    in_prolog, "Intel-X710", nic_name, 2,
+                    "NIC name should appear twice (tag and variable).",
+                    in_filename)
+                if out_prolog.count("HW_") == 2:
+                    # TODO CSIT-1481: Crypto HW should be read
+                    # from topology file instead.
+                    if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW.keys():
+                        out_prolog = replace_defensively(
+                            out_prolog, "HW_DH895xcc",
+                            Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
+                            "HW crypto name should appear.", in_filename)
+                iface, suite_id = get_iface_and_suite_id(out_filename)
+                with open(out_filename, "w") as file_out:
+                    file_out.write(out_prolog)
+                    add_testcases(
+                        testcase, iface, suite_id, file_out, kwargs_list)
+
         if not self.quiet:
             eprint("Regenerator starts at {cwd}".format(cwd=getcwd()))
         min_frame_size = protocol_to_min_frame_size[protocol]
@@ -266,10 +305,6 @@ class Regenerator(object):
         for in_filename in glob(pattern):
             if not self.quiet:
                 eprint("Regenerating in_filename:", in_filename)
-            if not in_filename.endswith("ndrpdr.robot"):
-                eprint("Error in {fil}: non-primary suite type encountered."
-                       .format(fil=in_filename))
-                sys.exit(1)
             iface, _ = get_iface_and_suite_id(in_filename)
             if not iface.endswith("10ge2p1x710"):
                 eprint("Error in {fil}: non-primary NIC encountered."
@@ -278,7 +313,14 @@ class Regenerator(object):
             with open(in_filename, "r") as file_in:
                 in_prolog = "".join(
                     file_in.read().partition("*** Test Cases ***")[:-1])
-            write_files(in_filename, in_prolog, kwargs_list)
+            if in_filename.endswith("reconf.robot"):
+                write_reconfig_files(in_filename, in_prolog, kwargs_list)
+            elif in_filename.endswith("ndrpdr.robot"):
+                write_files(in_filename, in_prolog, kwargs_list)
+            else:
+                eprint("Error in {fil}: non-primary suite type encountered."
+                       .format(fil=in_filename))
+                sys.exit(1)
         if not self.quiet:
             eprint("Regenerator ends.")
         eprint()  # To make autogen check output more readable.
