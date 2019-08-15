@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ca8f5ba2_262618ec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-15T12:29:48Z",
+      "side": 1,
+      "message": "T\n\nAnd Maciek does not like the code to be in the first line.",
+      "range": {
+        "startLine": 7,
+        "startChar": 3,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "5e21e5a8f79736686d4d00eecd0956e2d7493293",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
