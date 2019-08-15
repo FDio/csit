@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f67833b8_46f0fa50",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 39
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-15T20:02:05Z",
+      "side": 1,
+      "message": "Unless the whole lib is refactored, move indentation under Trex",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 52
+      },
+      "revId": "00d6cd96373405147e51fd5edc31f096372f3dd6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "890dfc6c_0783e3a2",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 39
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-15T20:02:05Z",
+      "side": 1,
+      "message": "Unless lib is refactored move indentation under TRex",
+      "range": {
+        "startLine": 515,
+        "startChar": 0,
+        "endLine": 515,
+        "endChar": 50
+      },
+      "revId": "00d6cd96373405147e51fd5edc31f096372f3dd6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
