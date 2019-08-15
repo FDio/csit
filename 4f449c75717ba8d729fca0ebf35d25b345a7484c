@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f20b28f6_d108a9b2",
+        "filename": "tests/vpp/perf/tcp/2n1l-10ge2p1x710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-15T20:15:24Z",
+      "side": 0,
+      "message": "Keep this part. So if someone will create different combination we do not need to change name + add to the suite",
+      "range": {
+        "startLine": 74,
+        "startChar": 30,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "4f449c75717ba8d729fca0ebf35d25b345a7484c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c0b39e6_e9534b63",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-15T20:15:24Z",
+      "side": 1,
+      "message": "staticmethod",
+      "range": {
+        "startLine": 73,
+        "startChar": 5,
+        "endLine": 73,
+        "endChar": 16
+      },
+      "revId": "33727c1522241da445e3c6d892a1b8937abceb7f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0af7cb01_81666b34",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-15T20:15:24Z",
+      "side": 1,
+      "message": "staticmethod",
+      "range": {
+        "startLine": 92,
+        "startChar": 5,
+        "endLine": 92,
+        "endChar": 16
+      },
+      "revId": "33727c1522241da445e3c6d892a1b8937abceb7f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bee4bc07_2c312ef8",
+        "filename": "tests/vpp/perf/tcp/2n1l-10ge2p1x710-eth-ip4tcphttp-cps.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-15T20:15:24Z",
+      "side": 1,
+      "message": "Packet size is missing per naming schema",
+      "revId": "33727c1522241da445e3c6d892a1b8937abceb7f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
