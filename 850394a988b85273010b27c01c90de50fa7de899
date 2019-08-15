@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ddd49f4e_09b793ae",
+        "filename": "resources/libraries/bash/entry/check/doc_verify.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-15T08:39:54Z",
+      "side": 1,
+      "message": "||\n\nJust to save few characters.",
+      "range": {
+        "startLine": 51,
+        "startChar": 25,
+        "endLine": 51,
+        "endChar": 33
+      },
+      "revId": "850394a988b85273010b27c01c90de50fa7de899",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
