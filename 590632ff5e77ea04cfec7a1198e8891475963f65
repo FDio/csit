@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c40677ab_a098c03a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-15T11:42:28Z",
+      "side": 1,
+      "message": "We do not have strict rules as VPP does [1],\nbut putting JIRA ticket code just into topic does not make Jira recognize this Change.\n\n[1] https://github.com/FDio/vpp/blob/master/.git_commit_template.txt#L30",
+      "range": {
+        "startLine": 7,
+        "startChar": 36,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "590632ff5e77ea04cfec7a1198e8891475963f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9cbb5f9_2d851148",
+        "filename": "resources/tools/wrk/wrk_traffic_profile_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-15T11:42:28Z",
+      "side": 1,
+      "message": "integer values are not below minimum",
+      "range": {
+        "startLine": 136,
+        "startChar": 43,
+        "endLine": 136,
+        "endChar": 69
+      },
+      "revId": "590632ff5e77ea04cfec7a1198e8891475963f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b9d605b3_65a031df",
+        "filename": "resources/tools/wrk/wrk_traffic_profile_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-15T11:42:28Z",
+      "side": 1,
+      "message": "Cool. I did not know generator expressions can be delimited by function call parentheses.",
+      "range": {
+        "startLine": 169,
+        "startChar": 35,
+        "endLine": 170,
+        "endChar": 61
+      },
+      "revId": "590632ff5e77ea04cfec7a1198e8891475963f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
