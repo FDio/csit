@@ -23,6 +23,7 @@ import re
 import resource
 import pandas as pd
 import logging
+import prettytable
 
 from robot.api import ExecutionResult, ResultVisitor
 from robot import errors
@@ -495,17 +496,53 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
-        if msg.message.count("Thread 0 vpp_main"):
+        if msg.message.count("Runtime:"):
             self._show_run_lookup_nr += 1
             if self._lookup_kw_nr == 1 and self._show_run_lookup_nr == 1:
                 self._data["tests"][self._test_ID]["show-run"] = str()
             if self._lookup_kw_nr > 1:
                 self._msg_type = None
             if self._show_run_lookup_nr == 1:
-                text = msg.message.replace("vat# ", "").\
-                    replace("return STDOUT ", "").replace("\n\n", "\n").\
-                    replace('\n', ' |br| ').\
-                    replace('\r', '').replace('"', "'")
+                message = str(msg.message).replace(' ', '').replace('\n', '').\
+                    replace("'", '"').replace('b"', '"').replace('u"', '"')[8:]
+                runtime = loads(message)
+                try:
+                    threads_nr = len(runtime[0]["clocks"])
+                except (IndexError, KeyError):
+                    return
+                tbl_hdr = ["Name", "Calls", "Vectors", "Suspends", "Clocks"]
+                table = [[tbl_hdr, ] for _ in range(threads_nr)]
+                for item in runtime:
+                    for idx in range(threads_nr):
+                        table[idx].append([
+                            item["name"],
+                            item["calls"][idx],
+                            item["vectors"][idx],
+                            item["suspends"][idx],
+                            item["clocks"][idx]
+                        ])
+                text = ""
+                for idx in range(threads_nr):
+                    text += "Thread {idx} ".format(idx=idx)
+                    text += "vpp_main\n" if idx == 0 else \
+                        "vpp_wk_{idx}\n".format(idx=idx-1)
+                    txt_table = None
+                    for row in table[idx]:
+                        if txt_table is None:
+                            txt_table = prettytable.PrettyTable(row)
+                        else:
+                            if any(row[1:]):
+                                txt_table.add_row(row)
+                    txt_table.align["Name"] = "l"
+                    txt_table.align["Calls"] = "r"
+                    txt_table.align["Vectors"] = "r"
+                    txt_table.align["Suspends"] = "r"
+                    txt_table.align["Clocks"] = "r"
+
+                    text += txt_table.get_string(sortby="Name") + '\n'
+
+                text = text.replace('\n', ' |br| ').replace('\r', '').\
+                    replace('"', "'")
                 try:
                     self._data["tests"][self._test_ID]["show-run"] += " |br| "
                     self._data["tests"][self._test_ID]["show-run"] += \
