@@ -46,6 +46,30 @@
       "revId": "850394a988b85273010b27c01c90de50fa7de899",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be3c8eb0_b611d27f",
+        "filename": "resources/libraries/bash/entry/check/doc_verify.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-15T10:20:25Z",
+      "side": 1,
+      "message": "Ok, it is better to avoid ambiguity, even when the shorter form works for me locally:\n\nif [[ ! \"0\" !\u003d \"0\" || \"0\" \u003d\u003d \"0\" ]]; then\n    echo \"Negated only the first sub-expression.\"\nelse\n    echo \"Negated the whole or-expression.\"\nfi",
+      "parentUuid": "fa5cdcca_46986423",
+      "range": {
+        "startLine": 51,
+        "startChar": 25,
+        "endLine": 51,
+        "endChar": 33
+      },
+      "revId": "850394a988b85273010b27c01c90de50fa7de899",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
