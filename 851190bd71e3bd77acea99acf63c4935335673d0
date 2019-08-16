@@ -211,6 +211,23 @@
       "revId": "851190bd71e3bd77acea99acf63c4935335673d0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32ed95f6_b08140cd",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-16T13:45:45Z",
+      "side": 1,
+      "message": "\u003e as it is standalone app.\n\nIf it relies heavily on Constants.py, it is not standalone enough.",
+      "revId": "851190bd71e3bd77acea99acf63c4935335673d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
