@@ -539,10 +539,9 @@ class ExecutionChecker(ResultVisitor):
                     txt_table.align["Suspends"] = "r"
                     txt_table.align["Clocks"] = "r"
 
-                    text += txt_table.get_string(sortby="Name") + '\n'
+                    text += txt_table.get_html_string(sortby="Name") + '\n'
 
-                text = text.replace('\n', ' |br| ').replace('\r', '').\
-                    replace('"', "'")
+                text = text.replace('\n', '').replace('\r', '')
                 try:
                     self._data["tests"][self._test_ID]["show-run"] += " |br| "
                     self._data["tests"][self._test_ID]["show-run"] += \
