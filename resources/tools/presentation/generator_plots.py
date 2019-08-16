@@ -61,6 +61,142 @@ def generate_plots(spec, data):
     logging.info("Done.")
 
 
+def plot_performance_name_box(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_performance_name_box
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    plot_title = plot.get("title", "")
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot_title))
+    data = input_data.filter_tests_by_name(
+        plot, params=["throughput", "parent", "tags"])
+    if data is None:
+        logging.error("No data.")
+        return
+
+    # Prepare the data for the plot
+    y_vals = dict()
+    y_tags = dict()
+    for job in data:
+        for build in job:
+            for test in build:
+                if y_vals.get(test["parent"], None) is None:
+                    y_vals[test["parent"]] = list()
+                    y_tags[test["parent"]] = test.get("tags", None)
+                try:
+                    if test["type"] in ("NDRPDR", ):
+                        if "-pdr" in plot_title.lower():
+                            y_vals[test["parent"]].\
+                                append(test["throughput"]["PDR"]["LOWER"])
+                        elif "-ndr" in plot_title.lower():
+                            y_vals[test["parent"]]. \
+                                append(test["throughput"]["NDR"]["LOWER"])
+                        else:
+                            continue
+                    elif test["type"] in ("SOAK", ):
+                        y_vals[test["parent"]].\
+                            append(test["throughput"]["LOWER"])
+                    else:
+                        continue
+                except (KeyError, TypeError):
+                    y_vals[test["parent"]].append(None)
+
+    # Sort the tests
+    order = plot.get("sort", None)
+    if order and y_tags:
+        y_sorted = OrderedDict()
+        y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
+        for tag in order:
+            logging.debug(tag)
+            for suite, tags in y_tags_l.items():
+                if "not " in tag:
+                    tag = tag.split(" ")[-1]
+                    if tag.lower() in tags:
+                        continue
+                else:
+                    if tag.lower() not in tags:
+                        continue
+                try:
+                    y_sorted[suite] = y_vals.pop(suite)
+                    y_tags_l.pop(suite)
+                    logging.debug(suite)
+                except KeyError as err:
+                    logging.error("Not found: {0}".format(repr(err)))
+                finally:
+                    break
+    else:
+        y_sorted = y_vals
+
+    # Add None to the lists with missing data
+    max_len = 0
+    nr_of_samples = list()
+    for val in y_sorted.values():
+        if len(val) > max_len:
+            max_len = len(val)
+        nr_of_samples.append(len(val))
+    for key, val in y_sorted.items():
+        if len(val) < max_len:
+            val.extend([None for _ in range(max_len - len(val))])
+
+    # Add plot traces
+    traces = list()
+    df = pd.DataFrame(y_sorted)
+    df.head()
+    y_max = list()
+    for i, col in enumerate(df.columns):
+        tst_name = re.sub(REGEX_NIC, "",
+                          col.lower().replace('-ndrpdr', '').
+                          replace('2n1l-', ''))
+        name = "{nr}. ({samples:02d} run{plural}) {name}".\
+            format(nr=(i + 1),
+                   samples=nr_of_samples[i],
+                   plural='s' if nr_of_samples[i] > 1 else '',
+                   name=tst_name)
+
+        logging.debug(name)
+        traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
+                               y=[y / 1000000 if y else None for y in df[col]],
+                               name=name,
+                               hoverinfo="x+y",
+                               boxpoints="outliers",
+                               whiskerwidth=0))
+        try:
+            val_max = max(df[col])
+        except ValueError as err:
+            logging.error(repr(err))
+            continue
+        if val_max:
+            y_max.append(int(val_max / 1000000) + 2)
+
+    try:
+        # Create plot
+        layout = deepcopy(plot["layout"])
+        if layout.get("title", None):
+            layout["title"] = "<b>Throughput:</b> {0}". \
+                format(layout["title"])
+        if y_max:
+            layout["yaxis"]["range"] = [0, max(y_max)]
+        plpl = plgo.Figure(data=traces, layout=layout)
+
+        # Export Plot
+        file_type = plot.get("output-file-type", ".html")
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], file_type))
+        ploff.plot(plpl, show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"], file_type))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(repr(err).replace("\n", " ")))
+        return
+
+
 def plot_performance_box(plot, input_data):
     """Generate the plot(s) with algorithm: plot_performance_box
     specified in the specification file.
