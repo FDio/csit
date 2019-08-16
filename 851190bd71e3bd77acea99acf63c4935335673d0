@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1aeb5588_ab20f75f",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-16T13:44:47Z",
+      "side": 1,
+      "message": "Rewritten this sentence, hinting that if users puts something else than string here (e.g. OptionString), it will probably not work as expected.",
+      "parentUuid": "e83ff085_5f205cff",
+      "range": {
+        "startLine": 46,
+        "startChar": 36,
+        "endLine": 46,
+        "endChar": 70
+      },
+      "revId": "851190bd71e3bd77acea99acf63c4935335673d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "39033594_07824119",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "97de5332_e244be78",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-16T13:44:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39033594_07824119",
+      "range": {
+        "startLine": 137,
+        "startChar": 11,
+        "endLine": 137,
+        "endChar": 18
+      },
+      "revId": "851190bd71e3bd77acea99acf63c4935335673d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ec9a23df_e4e2a92f",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2019-08-16T12:29:03Z",
       "side": 1,
       "message": "FYI dicts iterate over their keys already. Unless you modify the dict while iterating, you don\u0027t need to create a copy of the keys.",
+      "range": {
+        "startLine": 266,
+        "startChar": 46,
+        "endLine": 266,
+        "endChar": 53
+      },
+      "revId": "851190bd71e3bd77acea99acf63c4935335673d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e641034f_8b437376",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-16T13:44:47Z",
+      "side": 1,
+      "message": "I found how this happened. Originally, I had a separate variable holding the list of keys. But I had to eliminate that, in order to fit into the pylint approved number of local variables. And in this elimination I just copied, not thinking about possible pythonification.\nDone.",
+      "parentUuid": "ec9a23df_e4e2a92f",
       "range": {
         "startLine": 266,
         "startChar": 46,
@@ -105,6 +177,30 @@
       "writtenOn": "2019-08-16T13:00:23Z",
       "side": 1,
       "message": "+1 the problematic is that this whole generator should be part of /scripts not library as it is standalone app.",
+      "parentUuid": "5dc9225a_29a0e0fc",
+      "range": {
+        "startLine": 343,
+        "startChar": 16,
+        "endLine": 343,
+        "endChar": 27
+      },
+      "revId": "851190bd71e3bd77acea99acf63c4935335673d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf22748d_5d1f0b67",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-16T13:44:47Z",
+      "side": 1,
+      "message": "I agree. Exceptions are better anyway, as stack traces make it easier for people to find the piece of code around them.\nDone.",
       "parentUuid": "5dc9225a_29a0e0fc",
       "range": {
         "startLine": 343,
