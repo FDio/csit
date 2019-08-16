@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "06080007_4285fd4c",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-16T09:05:12Z",
+      "side": 1,
+      "message": "You made a mistake:\nyou should use: return cls(template_string)",
+      "parentUuid": "923a1a03_7a899a50",
+      "range": {
+        "startLine": 73,
+        "startChar": 5,
+        "endLine": 73,
+        "endChar": 16
+      },
+      "revId": "33727c1522241da445e3c6d892a1b8937abceb7f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0af7cb01_81666b34",
         "filename": "resources/libraries/python/autogen/Testcase.py",
         "patchSetId": 1
