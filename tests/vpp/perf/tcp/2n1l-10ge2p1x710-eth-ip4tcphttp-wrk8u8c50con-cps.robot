@@ -72,22 +72,13 @@
 
 *** Test Cases ***
 | tc01-IMIX-1c-eth-ip4tcphttp-wrk8u8c50con-cps
-| | [Documentation]
-| | ... | Measure number of connections per second using wrk.
-| | ...
 | | [Tags] | 1C
 | | phy_cores=${1}
 
 | tc02-IMIX-2c-eth-ip4tcphttp-wrk8u8c50con-cps
-| | [Documentation]
-| | ... | Measure number of connections per second using wrk.
-| | ...
 | | [Tags] | 2C
 | | phy_cores=${2}
 
 | tc03-IMIX-4c-eth-ip4tcphttp-wrk8u8c50con-cps
-| | [Documentation]
-| | ... | Measure number of connections per second using wrk.
-| | ...
 | | [Tags] | 4C
 | | phy_cores=${4}

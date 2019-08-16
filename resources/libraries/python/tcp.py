@@ -73,17 +73,16 @@ class TCPUtils(object):
         :type fifo_size: str
         :type private_segment_size: str
         """
-        if http_static_plugin == True:
-            cmd='http static server www-root {www_root} '\
-                'prealloc-fifos {prealloc_fifos} fifo-size {fifo_size}'\
-                ' private-segment-size {pvt_seg_size}'\
-                .format(www_root=cls.www_root_dir,
-                        prealloc_fifos=prealloc_fifos, fifo_size=fifo_size,
-                        pvt_seg_size=private_segment_size)
+        if http_static_plugin:
+            cmd = 'http static server www-root {www_root} '\
+                  'prealloc-fifos {prealloc_fifos} fifo-size {fifo_size}'\
+                  ' private-segment-size {pvt_seg_size}'\
+                  .format(www_root=cls.www_root_dir,
+                          prealloc_fifos=prealloc_fifos, fifo_size=fifo_size,
+                          pvt_seg_size=private_segment_size)
         else:
-            cmd='test http server static prealloc-fifos {prealloc_fifos} '\
-                'fifo-size {fifo_size} private-segment-size {pvt_seg_size}'\
-                .format(prealloc_fifos=prealloc_fifos, fifo_size=fifo_size,
-                        pvt_seg_size=private_segment_size)
+            cmd = 'test http server static prealloc-fifos {prealloc_fifos} '\
+                  'fifo-size {fifo_size} private-segment-size {pvt_seg_size}'\
+                  .format(prealloc_fifos=prealloc_fifos, fifo_size=fifo_size,
+                          pvt_seg_size=private_segment_size)
         PapiSocketExecutor.run_cli_cmd(node, cmd)
-

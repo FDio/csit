@@ -38,6 +38,7 @@ class Testcase(object):
         """Return string of test case code with placeholders filled.
 
         Fail if there are placeholders left unfilled.
+        It is not required for all placeholders to be present in template.
 
         :param num: Test case number. Example value: 4.
         :param frame_size: Imix string or numeric frame size. Example: 74.
@@ -68,3 +69,42 @@ class Testcase(object):
                 "tc_num": "tc{num:02d}".format(num=num)
             })
         return self.template.substitute(subst_dict)
+
+    @classmethod
+    def default(cls, suite_id):
+        """Factory method for creating "default" testcase objects.
+
+        Testcase name will contain both frame size and core count.
+        Used for most performance tests, except TCP ones.
+
+        :param suite_id: Part of suite name to distinguish from other suites.
+        :type suite_id: str
+        :returns: Instance for generating testcase text of this type.
+        :rtype: Testcase
+        """
+        template_string = r'''
+| ${tc_num}-${frame_str}-${cores_str}c-''' + suite_id + r'''
+| | [Tags] | ${frame_str} | ${cores_str}C
+| | frame_size=${frame_num} | phy_cores=${cores_num}
+'''
+        return cls(template_string)
+
+    @classmethod
+    def tcp(cls, suite_id):
+        """Factory method for creating "tcp" testcase objects.
+
+        Testcase name will contain core count, but not frame size.
+
+        :param suite_id: Part of suite name to distinguish from other suites.
+        :type suite_id: str
+        :returns: Instance for generating testcase text of this type.
+        :rtype: Testcase
+        """
+        # TODO: Choose a better frame size identifier for streamed protocols
+        # (TCP, QUIC, SCTP, ...) where DUT (not TG) decides frame size.
+        template_string = r'''
+| ${tc_num}-IMIX-${cores_str}c-''' + suite_id + r'''
+| | [Tags] | ${cores_str}C
+| | phy_cores=${cores_num}
+'''
+        return cls(template_string)
