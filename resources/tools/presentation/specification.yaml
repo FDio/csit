@@ -1276,11 +1276,11 @@
     zip-extract: "robot-plugin/output.xml"
 
   builds:
-#    intel-dnv-vpp-release-1904:
-#      - 1
-#
-#    intel-dnv-vpp-release-1901:
-#      - 1
+    intel-dnv-vpp-release-1904:
+      - 1
+
+    intel-dnv-vpp-release-1901:
+      - 1
 
     csit-vpp-perf-verify-1901-3n-hsw:
       - 35  # MRR sel
@@ -6254,7 +6254,7 @@
     title: "<b>Throughput:</b> eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-pdr"
     layout: "plot-service-density"
 
-################################################################################
+###############################################################################
 ## Plots VPP HTTP Server Performance
 #- type: "plot"
 #  title: "VPP HTTP Server Performance"
@@ -6297,6 +6297,61 @@
 #    title: "VPP HTTP Server Performance"
 #    layout:
 #      "plot-rps"
+
+################################################################################
+
+# Example plots
+
+# Packet Throughput - VPP L2 3n-skx-x710 base and scale
+- type: "plot"
+  title: "Throughput: l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Patch-Ndrpdr.64B-2t1c-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Xcbase-Ndrpdr.64B-2t1c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
+    layout: "plot-throughput"
+
+# Packet Latency - VPP L2 3n-skx-x710 base and scale
+- type: "plot"
+  title: "Latency: l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+  algorithm: "plot_latency_error_bars_name"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr-lat"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Patch-Ndrpdr.64B-2t1c-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Xcbase-Ndrpdr.64B-2t1c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "l2sw-3n-skx-x710-64b-2t1c-base_and_scale-ndr"
+    layout: "plot-latency"
+
+# Speedup - VPP L2 3n-skx-x710 base and scale
+- type: "plot"
+  title: "Speedup: l2sw-3n-skx-x710-64b-base_and_scale-ndr-tsa"
+  algorithm: "plot_throughput_speedup_analysis_name"
+  output-file: "{DIR[STATIC,VPP]}/l2sw-3n-skx-x710-64b-base_and_scale-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  include:
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Patch-Ndrpdr.64B-.t.c-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Xcbase-Ndrpdr.64B-.t.c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-.t.c-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-.t.c-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.10Ge2P1X710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "l2sw-3n-skx-x710-64b-base_and_scale-ndr"
+    layout: "plot-throughput-speedup-analysis"
 
 ################################################################################
 
