@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79da86d8_37a7503b",
+        "filename": "resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-16T12:01:57Z",
+      "side": 1,
+      "message": "elif\n\nOtherwise it is possible to enter both line 353 and line 388.",
+      "range": {
+        "startLine": 355,
+        "startChar": 8,
+        "endLine": 355,
+        "endChar": 10
+      },
+      "revId": "73944b9f4bc3f22da1cb008eadff6a8771be429b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "22918f79_110b60cf",
+        "filename": "resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-16T12:01:57Z",
+      "side": 1,
+      "message": "elif\n\nNot sure if this also leads to wrong result, but it is safer to prevent multiple branches from interfering in principle.",
+      "range": {
+        "startLine": 364,
+        "startChar": 8,
+        "endLine": 364,
+        "endChar": 10
+      },
+      "revId": "73944b9f4bc3f22da1cb008eadff6a8771be429b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb8223c3_836114d1",
+        "filename": "resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-16T12:01:57Z",
+      "side": 1,
+      "message": "This comment is not that important. You can replace 390-397 with single a return statement where you use ternary operator for each argument of ReceiveRateInterval.",
+      "range": {
+        "startLine": 391,
+        "startChar": 12,
+        "endLine": 391,
+        "endChar": 14
+      },
+      "revId": "73944b9f4bc3f22da1cb008eadff6a8771be429b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
