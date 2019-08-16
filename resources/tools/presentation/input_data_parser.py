@@ -533,15 +533,17 @@ class ExecutionChecker(ResultVisitor):
                         else:
                             if any(row[1:]):
                                 txt_table.add_row(row)
+                    txt_table.set_style(prettytable.MSWORD_FRIENDLY)
                     txt_table.align["Name"] = "l"
                     txt_table.align["Calls"] = "r"
                     txt_table.align["Vectors"] = "r"
                     txt_table.align["Suspends"] = "r"
                     txt_table.align["Clocks"] = "r"
 
-                    text += txt_table.get_html_string(sortby="Name") + '\n'
+                    text += txt_table.get_string(sortby="Name") + '\n'
 
-                text = text.replace('\n', '').replace('\r', '')
+                text = text.replace('\n', ' |br| ').replace('\r', '').\
+                    replace('"', "'")
                 try:
                     self._data["tests"][self._test_ID]["show-run"] += " |br| "
                     self._data["tests"][self._test_ID]["show-run"] += \
