@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7386563_8db81dc3",
+        "filename": "resources/tools/testbed-setup/ansible/roles/common/tasks/kernel_install.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-16T15:55:43Z",
+      "side": 1,
+      "message": "_backed_up",
+      "range": {
+        "startLine": 10,
+        "startChar": 31,
+        "endLine": 10,
+        "endChar": 40
+      },
+      "revId": "94bcde24bae76a1845bf1444f9163cb0d732148b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
