@@ -69,6 +69,30 @@
       "revId": "71be76c5d3fc1153f276bea185c8bf0d177c921a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "36382a0a_722662ee",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x710-ethip4udp-ip4base-iacl10sf-100flows-ndrpdr.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-16T08:01:26Z",
+      "side": 1,
+      "message": "I was trying to build some map of dependencies and currently it is very bad. Libraries of python/robot are huge (see previously what was in performance_setup.robot) and mixed. So for example acl.robot is depending on interfaces.robot and ipv4.robot.\nThis results into state when is hard to move KW as the dependency chain is cyclic. Not sure without proper refactor how to approach. We should first do more strict KWs and from acl.robot run only acl L1 KW. Then it might work. Cause ACL i found in other non-ACL libraries. It is mess :)\n\nMaybe my intuition is wrong but having only default.robot in tests will help us in refactor of L2 KWs??",
+      "parentUuid": "662ad33d_9cab018a",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 1
+      },
+      "revId": "71be76c5d3fc1153f276bea185c8bf0d177c921a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
