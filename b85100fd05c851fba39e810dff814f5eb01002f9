@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b6d317d5_fdfbcbc9",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-16T12:17:07Z",
+      "side": 1,
+      "message": "move to teplate_file",
+      "range": {
+        "startLine": 341,
+        "startChar": 0,
+        "endLine": 350,
+        "endChar": 56
+      },
+      "revId": "b85100fd05c851fba39e810dff814f5eb01002f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51265c1a_48b81c5c",
+        "filename": "tests/vpp/perf/nfv_density/ipsec/10ge2p1x710-ethip4ipsec10000tnlsw-l2bd-1ch-16mif-8drc1c-vppip4-aes128cbc-hmac256sha-ndrpdr.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-16T12:17:07Z",
+      "side": 1,
+      "message": "I just realize that it would be better to move this KW before CNF starts and and use the content together with CNF running template. This way you can bypass VAT.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 62
+      },
+      "revId": "b85100fd05c851fba39e810dff814f5eb01002f9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
