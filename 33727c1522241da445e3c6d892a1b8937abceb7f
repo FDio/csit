@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "923a1a03_7a899a50",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-16T09:02:50Z",
+      "side": 1,
+      "message": "\u003e In CSIT, the main use for static methods is for them to be callable as Robot keywords.\n\nNo that is not the reason. We are calling also class methods.\n\nExactly:\n\"Put differently, using static methods and class methods are ways to communicate developer intent while enforcing that intent enough to avoid most slip of the mind mistakes and bugs that would break the design.\"\n\nIn your case you do not want to interact with class then prohibit it. Self defense",
+      "parentUuid": "40217294_35ddfd9d",
+      "range": {
+        "startLine": 73,
+        "startChar": 5,
+        "endLine": 73,
+        "endChar": 16
+      },
+      "revId": "33727c1522241da445e3c6d892a1b8937abceb7f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0af7cb01_81666b34",
         "filename": "resources/libraries/python/autogen/Testcase.py",
         "patchSetId": 1
