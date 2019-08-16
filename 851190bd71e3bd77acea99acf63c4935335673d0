@@ -91,6 +91,30 @@
       "revId": "851190bd71e3bd77acea99acf63c4935335673d0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3961cc94_0b1e43c8",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-16T13:00:23Z",
+      "side": 1,
+      "message": "+1 the problematic is that this whole generator should be part of /scripts not library as it is standalone app.",
+      "parentUuid": "5dc9225a_29a0e0fc",
+      "range": {
+        "startLine": 343,
+        "startChar": 16,
+        "endLine": 343,
+        "endChar": 27
+      },
+      "revId": "851190bd71e3bd77acea99acf63c4935335673d0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
