@@ -28,6 +28,7 @@ from resources.libraries.python.ssh import exec_cmd
 
 
 RESERVATION_DIR = "/tmp/reservation_dir"
+RESERVATION_NODE = "TG"
 
 
 def diag_cmd(node, cmd):
@@ -38,9 +39,9 @@ def diag_cmd(node, cmd):
     :type ssh: dict
     :type cmd: str
     """
-    print "+", cmd
+    print('+ {cmd}'.format(cmd=cmd))
     _, stdout, _ = exec_cmd(node, cmd)
-    print stdout
+    print(stdout)
 
 
 def main():
@@ -88,37 +89,39 @@ def main():
     # we are using it, because testing shows SSH access to DUT
     # during test affects its performance (bursts of lost packets).
     try:
-        tgn = topology["TG"]
+        node = topology[RESERVATION_NODE]
     except KeyError:
-        print "Topology file does not contain 'TG' node"
+        print("Topology file does not contain '{node}' node".
+              format(node=RESERVATION_NODE))
         return 1
 
     # For system reservation we use mkdir it is an atomic operation and we can
     # store additional data (time, client_ID, ..) within reservation directory.
     if args.cancel:
-        ret, _, err = exec_cmd(tgn, "rm -r {}".format(RESERVATION_DIR))
+        ret, _, err = exec_cmd(node, "rm -r {dir}".format(dir=RESERVATION_DIR))
         if ret:
-            print "Cancellation unsuccessful:\n{}".format(err)
+            print("Cancellation unsuccessful:\n{err}".format(err=err))
         return ret
     # Before critical section, output can be outdated already.
     print("Diagnostic commands:")
     # -d and * are to supress "total <size>", see https://askubuntu.com/a/61190
-    diag_cmd(tgn, "ls --full-time -cd '{dir}'/*".format(dir=RESERVATION_DIR))
-    print("Attempting reservation.")
+    diag_cmd(node, "ls --full-time -cd '{dir}'/*".format(dir=RESERVATION_DIR))
+    print("Attempting testbed reservation.")
     # Entering critical section.
-    ret, _, err = exec_cmd(tgn, "mkdir '{dir}'".format(dir=RESERVATION_DIR))
+    ret, _, _ = exec_cmd(node, "mkdir '{dir}'".format(dir=RESERVATION_DIR))
     # Critical section is over.
     if ret:
-        print("Already reserved by another job:\n{}".format(err))
+        _, stdo, _ = exec_cmd(node, "ls '{dir}'/*".format(dir=RESERVATION_DIR))
+        print("Testbed already reserved by:\n{stdo}".format(stdo=stdo))
         return 2
     # Here the script knows it is the only owner of the testbed.
-    print("Success, writing test run info to reservation dir.")
-    ret2, _, err = exec_cmd(
-        tgn, "touch '{dir}/{runtag}'"\
+    print("Reservation success, writing additional info to reservation dir.")
+    ret, _, err = exec_cmd(
+        node, "touch '{dir}/{runtag}'"\
         .format(dir=RESERVATION_DIR, runtag=args.runtag))
-    if ret2:
-        print("Writing test run info failed, but continuing anyway:\n{}".format(
-            err))
+    if ret:
+        print("Writing test run info failed, but continuing anyway:\n{err}".
+              format(err=err))
     return 0
 
 

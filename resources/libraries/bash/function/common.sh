@@ -556,36 +556,6 @@ function installed () {
 }
 
 
-function remove_topo () {
-
-    # Remove the argument from list of available topologies.
-    #
-    # Just a de-duplicated block of code
-    #
-    # Argument:
-    # - ${1} - The topology item to remove. Required.
-    # Variable read and re-written:
-    # - TOPOLOGIES - Array of paths to topologies, with failed cleanups removed.
-
-    set -exuo pipefail
-
-    warn "Testbed ${topo} seems unsuitable, removing from the list."
-
-    # Build new topology array.
-    #   TOPOLOGIES=("${TOPOLOGIES[@]/$topo}")
-    # does not really work, see:
-    # https://stackoverflow.com/questions/16860877/remove-an-element-from-a-bash-array
-
-    new_topologies=()
-    for item in "${TOPOLOGIES[@]}"; do
-        if [[ "${item}" != "${1}" ]]; then
-            new_topologies+=("${item}")
-        fi
-    done
-    TOPOLOGIES=("${new_topologies[@]}")
-}
-
-
 function reserve_and_cleanup_testbed () {
 
     # Reserve physical testbed, perform cleanup, register trap to unreserve.
@@ -638,11 +608,6 @@ function reserve_and_cleanup_testbed () {
                 fi
                 warn "Testbed cleanup failed: ${topo}"
                 untrap_and_unreserve_testbed "Fail of unreserve after cleanup."
-                # WORKING_TOPOLOGY is now empty again.
-                remove_topo "${topo}"
-            elif [[ "${result}" != "2" ]]; then
-                # 1 or unexpected return code, testbed is probably unusable.
-                remove_topo "${topo}"
             fi
             # Else testbed is accessible but currently reserved, moving on.
         done
