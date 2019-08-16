@@ -1497,6 +1497,108 @@ class InputData(object):
                           "tags are enclosed by apostrophes.".format(cond))
             return None
 
+    def filter_tests_by_name(self, element, params=None, data_set="tests",
+                            continue_on_error=False):
+        """Filter required data from the given jobs and builds.
+
+        The output data structure is:
+
+        - job 1
+          - build 1
+            - test (or suite) 1 ID:
+              - param 1
+              - param 2
+              ...
+              - param n
+            ...
+            - test (or suite) n ID:
+            ...
+          ...
+          - build n
+        ...
+        - job n
+
+        :param element: Element which will use the filtered data.
+        :param params: Parameters which will be included in the output. If None,
+        all parameters are included.
+        :param data_set: The set of data to be filtered: tests, suites,
+        metadata.
+        :param continue_on_error: Continue if there is error while reading the
+        data. The Item will be empty then
+        :type element: pandas.Series
+        :type params: list
+        :type data_set: str
+        :type continue_on_error: bool
+        :returns: Filtered data.
+        :rtype pandas.Series
+        """
+
+        include = element.get("include", None)
+        if not include:
+            logging.warning("No tests to include, skipping the element.")
+            return None
+
+        if params is None:
+            params = element.get("parameters", None)
+            if params:
+                params.append("type")
+
+        data = pd.Series()
+        try:
+            for job, builds in element["data"].items():
+                data[job] = pd.Series()
+                for build in builds:
+                    data[job][str(build)] = pd.Series()
+                    # try:
+                    #     data_iter = self.data[job][str(build)][data_set].items()
+                    # except KeyError as err:
+                    #     if continue_on_error:
+                    #         continue
+                    #     else:
+                    #         logging.error("{err!r}".format(err=err))
+                    #         return None
+
+                    for test in include:
+                        logging.info("Include: {}".format(test))
+                        # for test_ID, test_data in data_iter:
+                        try:
+                            for test_ID in self.data[job][str(build)][data_set].keys():
+                                logging.info("  test_ID: {}".format(test_ID))
+                                if str(test).lower() == str(test_ID).lower():
+                                    test_data = self.data[job][str(build)][data_set][test_ID]
+                                    logging.info("Zhoda")
+                                    data[job][str(build)][test_ID] = pd.Series()
+                                    if params is None:
+                                        for param, val in test_data.items():
+                                            data[job][str(build)][test_ID][param] = val
+                                    else:
+                                        for param in params:
+                                            try:
+                                                data[job][str(build)][test_ID]\
+                                                    [param] = test_data[param]
+                                            except KeyError:
+                                                data[job][str(build)][test_ID]\
+                                                    [param] = "No Data"
+                                    break
+                        except KeyError as err:
+                            if continue_on_error:
+                                continue
+                            else:
+                                logging.error("{err!r}".format(err=err))
+                                return None
+            logging.info(data["csit-vpp-perf-verify-1908-3n-skx"]["2"])
+            logging.info(data["csit-vpp-perf-verify-1908-3n-skx"]["3"])
+            return data
+
+        except (KeyError, IndexError, ValueError) as err:
+            logging.error("Missing mandatory parameter in the element "
+                          "specification: {err!r}".format(err=err))
+            return None
+        except AttributeError as err:
+            logging.error("{err!r}".format(err=err))
+            return None
+
+
     @staticmethod
     def merge_data(data):
         """Merge data from more jobs and builds to a simple data structure.
