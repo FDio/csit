@@ -28,16 +28,26 @@
 
     </script>
 
+..
+    ## 3n-skx-x710
+    ### 64b-l2switching-base-scale-avf-i40e
+    10ge2p1x710-avf-eth-l2patch-ndrpdr
+    10ge2p1x710-avf-eth-l2xcbase-ndrpdr
+    10ge2p1x710-avf-eth-l2bdbasemaclrn-ndrpdr
+    10ge2p1x710-dot1q-l2bdbasemaclrn-ndrpdr
+    10ge2p1x710-eth-l2bdbasemaclrn-ndrpdr
+    10ge2p1x710-eth-l2bdscale1mmaclrn-ndrpdr
+
 3n-skx-x710
 ~~~~~~~~~~~
 
-64b-base_and_scale
-------------------
+64b-l2switching-base-scale-avf-i40e
+----------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-x710-64b-base_and_scale-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-l2switching-base-scale-avf-i40e-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +56,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-x710-64b-base_and_scale-ndr-tsa}
-            \label{fig:l2sw-3n-skx-x710-64b-base_and_scale-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-x710-64b-l2switching-base-scale-avf-i40e-ndr-tsa}
+            \label{fig:3n-skx-x710-64b-l2switching-base-scale-avf-i40e-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +67,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-x710-64b-base_and_scale-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-x710-64b-l2switching-base-scale-avf-i40e-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,92 +76,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-x710-64b-base_and_scale-pdr-tsa}
-            \label{fig:l2sw-3n-skx-x710-64b-base_and_scale-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-features
-------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-x710-64b-features-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-x710-64b-features-ndr-tsa}
-            \label{fig:l2sw-3n-skx-x710-64b-features-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-x710-64b-features-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-x710-64b-features-pdr-tsa}
-            \label{fig:l2sw-3n-skx-x710-64b-features-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-features-iacl
------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-x710-64b-features-iacl-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-x710-64b-features-iacl-ndr-tsa}
-            \label{fig:l2sw-3n-skx-x710-64b-features-iacl-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm16" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-3n-skx-x710-64b-features-iacl-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-3n-skx-x710-64b-features-iacl-pdr-tsa}
-            \label{fig:l2sw-3n-skx-x710-64b-features-iacl-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-x710-64b-l2switching-base-scale-avf-i40e-pdr-tsa}
+            \label{fig:3n-skx-x710-64b-l2switching-base-scale-avf-i40e-pdr-tsa}
     \end{figure}
