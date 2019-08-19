@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "58614ce3_66f281f4",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-19T12:56:54Z",
+      "side": 1,
+      "message": "I took a look into VPP code to get some answers.\n\n\u003e is link state ignored when setting\n\nYes, only admin state is considered when setting flags. See lines 95-97 in [1]\n\n[1] https://gerrit.fd.io/r/c/vpp/+/18361/20/src/vnet/interface_api.c",
+      "parentUuid": "7e935dcf_cb032e40",
+      "range": {
+        "startLine": 184,
+        "startChar": 64,
+        "endLine": 184,
+        "endChar": 72
+      },
+      "revId": "71be76c5d3fc1153f276bea185c8bf0d177c921a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb054a5d_f823773d",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 10
@@ -204,6 +228,30 @@
       "side": 1,
       "message": "Flag !\u003d flag combination\nIf you want to express only one option out of 8 you can use u8 and depends on code but there is just bitmask to detect which 1 is applied. (standard in registry programming). IoW look at VPP flags there is always power of 2.\n\nHere using u8 (or nibble) is weird as it can be better modeled by 2 variables of bool. But again look at VPP API bitfields are enum with shifted 1s, not combination of all bits.\n\n\u003e I believe C will pick smallest (unsigned) int type to fit all explicit values, so u8 for if_status_flags and u16 for sub_if_flags.\n\nC will pick what ever you will ask it for u8 u16 u32 or Long , double, floats. In VPP code you do see explicit types.",
       "parentUuid": "7459e378_e9c6e38e",
+      "range": {
+        "startLine": 186,
+        "startChar": 24,
+        "endLine": 186,
+        "endChar": 25
+      },
+      "revId": "71be76c5d3fc1153f276bea185c8bf0d177c921a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f4734142_ce4d1eec",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-19T12:56:54Z",
+      "side": 1,
+      "message": "\u003e Flag !\u003d flag combination\n\nAh, right. A single bit \"field\" (as a position in bit array) stands for a single flag. A combination of flags would be called bit array. While we use IntEnum to name some bit array states (those with just one bitfield nonzero), any bit array state is a valid value for VPP API, because in C each enumeration is compatible with some int type.\n\nI have not figured out a way to persuade vppapigen to cough up the actual generated .api.h file, but I believe that enums defined in .api files have somewhat configurable [2] type, with u32 [3] being the default.\n\n[2] https://github.com/FDio/vpp/blob/master/src/tools/vppapigen/vppapigen.py#L425-L440\n[3] https://github.com/FDio/vpp/blob/master/src/tools/vppapigen/vppapigen.py#L220",
+      "parentUuid": "00bab1f9_ec6064ff",
       "range": {
         "startLine": 186,
         "startChar": 24,
