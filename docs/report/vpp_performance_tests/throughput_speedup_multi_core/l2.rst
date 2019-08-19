@@ -14,18 +14,13 @@ used for the graphs comes from Phy-to-Phy 64B performance tests with VPP
 L2 Ethernet switching, including NDR throughput (zero packet loss) and
 PDR throughput (<0.5% packet loss).
 
-CSIT source code for the test cases used for above plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1901>`_.
+CSIT source code for the test cases used for plots can be found in
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/l2?h=rls1908>`_.
 
 .. toctree::
 
-    l2-3n-hsw-x520
-    l2-3n-hsw-x710
-    l2-3n-hsw-xl710
-    l2-3n-skx-x710
-    l2-3n-skx-xxv710
-    l2-2n-skx-x710
     l2-2n-skx-xxv710
-
-..
-    l2-2n-dnv-x553
+    l2-2n-skx-x710
+    l2-3n-skx-xxv710
+    l2-3n-skx-x710
+    l2-3n-hsw-xl710

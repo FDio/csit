@@ -28,16 +28,24 @@
 
     </script>
 
+..
+    ## 2n-skx-xxv710
+    ### 64b-?t?c-memif-base-i40e
+    2n1l-10ge2p1xxv710-eth-l2xcbase-eth-2memif-1dcr-ndrpdr
+    2n1l-10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr
+    2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr
+    2n1l-10ge2p1xxv710-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
+
 2n-skx-xxv710
 ~~~~~~~~~~~~~
 
-64b-2t1c-base_and_features
---------------------------
+64b-2t1c-memif-base-i40e
+------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-memif-base-i40e-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,21 +54,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat}
-            \label{fig:memif-2n-skx-xxv710-64b-2t1c-base_and_features-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-memif-base-i40e-ndr-lat}
+            \label{fig:2n-skx-xxv710-64b-2t1c-memif-base-i40e-ndr-lat}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-4t2c-base_and_features
---------------------------
+64b-4t2c-memif-base-i40e
+------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-4t2c-memif-base-i40e-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -69,6 +77,29 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat}
-            \label{fig:memif-2n-skx-xxv710-64b-4t2c-base_and_features-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-4t2c-memif-base-i40e-ndr-lat}
+            \label{fig:2n-skx-xxv710-64b-4t2c-memif-base-i40e-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-8t4c-memif-base-i40e
+------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-8t4c-memif-base-i40e-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-8t4c-memif-base-i40e-ndr-lat}
+            \label{fig:2n-skx-xxv710-64b-8t4c-memif-base-i40e-ndr-lat}
     \end{figure}
