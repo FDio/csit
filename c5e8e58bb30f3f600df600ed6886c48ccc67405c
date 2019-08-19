@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "83a137df_a7cd2d06",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-19T13:15:05Z",
+      "side": 1,
+      "message": "Majority of these are not used. Remove not used",
+      "range": {
+        "startLine": 265,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 31
+      },
+      "revId": "c5e8e58bb30f3f600df600ed6886c48ccc67405c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "69d99796_ae50939f",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-19T13:15:05Z",
+      "side": 1,
+      "message": "this is not use if i am not mistaken",
+      "range": {
+        "startLine": 286,
+        "startChar": 1,
+        "endLine": 288,
+        "endChar": 32
+      },
+      "revId": "c5e8e58bb30f3f600df600ed6886c48ccc67405c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8811f21c_6fde8087",
+        "filename": "resources/libraries/robot/features/policer.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-19T13:15:05Z",
+      "side": 1,
+      "message": "Any reason this is not param?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 40
+      },
+      "revId": "c5e8e58bb30f3f600df600ed6886c48ccc67405c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3bd5b62b_40d05f48",
+        "filename": "resources/libraries/robot/features/policer.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-19T13:15:05Z",
+      "side": 1,
+      "message": "Yyou will have to put variables here",
+      "revId": "c5e8e58bb30f3f600df600ed6886c48ccc67405c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
