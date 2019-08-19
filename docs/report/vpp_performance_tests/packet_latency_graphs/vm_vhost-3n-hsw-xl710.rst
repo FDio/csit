@@ -28,16 +28,24 @@
 
     </script>
 
+..
+    ## 3n-hsw-xl710
+    ### 64b-?t?c-vhost-base-i40e
+    10ge2p1xl710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+    10ge2p1xl710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+    10ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+    10ge2p1xl710-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr
+
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
-64b-1t1c-base-l2sw
-------------------
+64b-1t1c-vhost-base-i40e
+------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm17" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr-lat.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,21 +54,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr-lat}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr-lat}
+            \label{fig:3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr-lat}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-2t2c-base-l2sw
-------------------
+64b-2t2c-vhost-base-i40e
+------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm18" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr-lat.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-2t2c-vhost-base-i40e-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -69,21 +77,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr-lat}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-2t2c-vhost-base-i40e-ndr-lat}
+            \label{fig:3n-hsw-xl710-64b-2t2c-vhost-base-i40e-ndr-lat}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-1t1c-base_and_scale-l2sw
-----------------------------
+64b-4t4c-vhost-base-i40e
+------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm19" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-4t4c-vhost-base-i40e-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -92,121 +100,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-2t2c-base_and_scale-l2sw
-----------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm20" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-1t1c-base-vm-l2sw
----------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr-lat.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr-lat}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-1t1c-base-vm-ndr-lat}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-2t2c-base-vm-l2sw
----------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr-lat.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr-lat}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-2t2c-base-vm-ndr-lat}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-1t1c-base_and_scale-ip4
----------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm23" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
-            \label{fig:vhost-ip4-3n-hsw-xl710-64b-1t1c-base_and_scale-ndr-lat}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-2t2c-base_and_scale-ip4
----------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm24" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
-            \label{fig:vhost-ip4-3n-hsw-xl710-64b-2t2c-base_and_scale-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-4t4c-vhost-base-i40e-ndr-lat}
+            \label{fig:3n-hsw-xl710-64b-4t4c-vhost-base-i40e-ndr-lat}
     \end{figure}
