@@ -38,6 +38,7 @@
 | Library | resources.libraries.python.VPPUtil
 | ...
 | Resource | resources/libraries/robot/crypto/ipsec.robot
+| Resource | resources/libraries/robot/features/acl.robot
 | Resource | resources/libraries/robot/features/gbp.robot
 | Resource | resources/libraries/robot/features/policer.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
