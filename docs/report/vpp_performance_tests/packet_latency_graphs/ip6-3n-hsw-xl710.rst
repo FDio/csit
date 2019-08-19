@@ -28,16 +28,23 @@
 
     </script>
 
+..
+    ## 3n-hsw-xl710
+    ### 78b-?t?c-ip6routing-base-scale-i40e
+    10ge2p1xl710-dot1q-ip6base-ndrpdr
+    10ge2p1xl710-ethip6-ip6base-ndrpdr
+    10ge2p1xl710-ethip6-ip6scale2m-ndrpdr
+
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
-78b-1t1c-base
--------------
+78b-1t1c-ip6routing-base-scale-i40e
+-----------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-xl710-78b-1t1c-base-ndr-lat.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-i40e-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -54,13 +61,13 @@
 
     \clearpage
 
-78b-2t2c-base
--------------
+78b-2t2c-ip6routing-base-scale-i40e
+-----------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-3n-hsw-xl710-78b-2t2c-base-ndr-lat.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-78b-2t2c-ip6routing-base-scale-i40e-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -71,4 +78,27 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-xl710-78b-2t2c-base-ndr-lat}
             \label{fig:ip6-3n-hsw-xl710-78b-2t2c-base-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+78b-4t4c-ip6routing-base-scale-i40e
+-----------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-78b-4t4c-ip6routing-base-scale-i40e-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-xl710-78b-4t4c-base-ndr-lat}
+            \label{fig:ip6-3n-hsw-xl710-78b-4t4c-base-ndr-lat}
     \end{figure}
