@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "7e935dcf_cb032e40",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-19T11:48:33Z",
+      "side": 1,
+      "message": "s/check/set/g it is same from state perspective.",
+      "parentUuid": "8752f6d6_87c06a54",
+      "range": {
+        "startLine": 184,
+        "startChar": 64,
+        "endLine": 184,
+        "endChar": 72
+      },
+      "revId": "71be76c5d3fc1153f276bea185c8bf0d177c921a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb054a5d_f823773d",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 10
@@ -156,6 +180,30 @@
       "side": 1,
       "message": "\u003e From name it is not clear usually you noticed it\n\nPerhaps it depends on whether the code is new, or old. When speaking about 18361, I have a feeling an enum is bitfield if and only if its name ends with \"flags\". So if_status_flags (CSIT analogue at line 33) and sub_if_flags (line 55) are bitfields, other enums are not.\n\n\u003e If this is bitfield there is not \"512 possibilities\"\n\nI believe C will pick smallest (unsigned) int type to fit all explicit values, so u8 for if_status_flags and u16 for sub_if_flags.\n\n\u003e e.g. u8 is max 8 values\n\nThe u8 type fits 8 independent flags, 256 flag combinations.\nBut if only 2 flags are defined, only 4 combinations are relevant for VPP.\n\nADMIN_DOWN LINK_DOWN \u003c\u003d\u003e 0x00 \u003d\u003d 0\nADMIN_DOWN LINK_UP \u003c\u003d\u003e 0x02 \u003d\u003d IF_STATUS_API_FLAG_LINK_UP\nADMIN_UP LINK_DOWN \u003c\u003d\u003e 0x01 \u003d\u003d IF_STATUS_API_FLAG_ADMIN_UP (used in line 317)\nADMIN_UP LINK_UP \u003c\u003d\u003e 0x03 \u003d\u003d IF_STATUS_API_FLAG_LINK_UP | IF_STATUS_API_FLAG_ADMIN_UP",
       "parentUuid": "7e4346c6_89c33c22",
+      "range": {
+        "startLine": 186,
+        "startChar": 24,
+        "endLine": 186,
+        "endChar": 25
+      },
+      "revId": "71be76c5d3fc1153f276bea185c8bf0d177c921a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00bab1f9_ec6064ff",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-19T11:48:33Z",
+      "side": 1,
+      "message": "Flag !\u003d flag combination\nIf you want to express only one option out of 8 you can use u8 and depends on code but there is just bitmask to detect which 1 is applied. (standard in registry programming). IoW look at VPP flags there is always power of 2.\n\nHere using u8 (or nibble) is weird as it can be better modeled by 2 variables of bool. But again look at VPP API bitfields are enum with shifted 1s, not combination of all bits.\n\n\u003e I believe C will pick smallest (unsigned) int type to fit all explicit values, so u8 for if_status_flags and u16 for sub_if_flags.\n\nC will pick what ever you will ask it for u8 u16 u32 or Long , double, floats. In VPP code you do see explicit types.",
+      "parentUuid": "7459e378_e9c6e38e",
       "range": {
         "startLine": 186,
         "startChar": 24,
