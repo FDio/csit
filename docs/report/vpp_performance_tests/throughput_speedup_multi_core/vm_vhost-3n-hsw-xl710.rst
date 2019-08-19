@@ -28,16 +28,24 @@
 
     </script>
 
+..
+    ## 3n-hsw-xl710
+    ### 64b-vhost-base-i40e
+    10ge2p1xl710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+    10ge2p1xl710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+    10ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+    10ge2p1xl710-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr
+
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
-64b-base-l2sw
--------------
+64b-vhost-base-i40e
+------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm17" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-base-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-vhost-base-i40e-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +54,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-base-ndr-tsa}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-base-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-vhost-base-i40e-ndr-tsa}
+            \label{fig:3n-hsw-xl710-64b-vhost-base-i40e-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +65,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm18" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-base-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-vhost-base-i40e-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,135 +74,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-base-pdr-tsa}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-base-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-base_and_scale-l2sw
------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm19" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm20" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-base-vm-l2sw
-----------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-base-vm-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-base-vm-ndr-tsa}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-base-vm-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-3n-hsw-xl710-64b-base-vm-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-3n-hsw-xl710-64b-base-vm-pdr-tsa}
-            \label{fig:vhost-l2sw-3n-hsw-xl710-64b-base-vm-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-base_and_scale-ip4
-----------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm23" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-xl710-64b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
-            \label{fig:vhost-ip4-3n-hsw-xl710-64b-base_and_scale-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm24" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
-            \label{fig:vhost-ip4-3n-hsw-xl710-64b-base_and_scale-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-vhost-base-i40e-pdr-tsa}
+            \label{fig:3n-hsw-xl710-64b-vhost-base-i40e-pdr-tsa}
     \end{figure}

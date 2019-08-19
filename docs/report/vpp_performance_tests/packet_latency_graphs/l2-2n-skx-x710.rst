@@ -28,16 +28,26 @@
 
     </script>
 
+..
+    ## 2n-skx-x710
+    ### 64b-?t?c-l2switching-base-scale-avf-i40e
+    2n1l-10ge2p1x710-avf-eth-l2xcbase-ndrpdr
+    2n1l-10ge2p1x710-avf-dot1q-l2bdbasemaclrn-ndrpdr
+    2n1l-10ge2p1x710-avf-eth-l2bdbasemaclrn-ndrpdr
+    2n1l-10ge2p1x710-dot1q-l2bdbasemaclrn-ndrpdr
+    2n1l-10ge2p1x710-eth-l2bdbasemaclrn-ndrpdr
+    2n1l-10ge2p1x710-eth-l2bdscale1mmaclrn-ndrpdr
+
 2n-skx-x710
 ~~~~~~~~~~~
 
-64b-2t1c-base_and_scale
------------------------
+64b-2t1c-l2switching-base-scale-avf-i40e
+----------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm17" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,21 +56,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat}
-            \label{fig:l2sw-2n-skx-x710-64b-2t1c-base_and_scale-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-ndr-lat}
+            \label{fig:2n-skx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-ndr-lat}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-4t2c-base_and_scale
------------------------
+64b-4t2c-l2switching-base-scale-avf-i40e
+----------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm18" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-64b-4t2c-l2switching-base-scale-avf-i40e-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -69,6 +79,29 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
-            \label{fig:l2sw-2n-skx-x710-64b-4t2c-base_and_scale-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b-4t2c-l2switching-base-scale-avf-i40e-ndr-lat}
+            \label{fig:2n-skx-x710-64b-4t2c-l2switching-base-scale-avf-i40e-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-8t4c-l2switching-base-scale-avf-i40e
+----------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-64b-8t4c-l2switching-base-scale-avf-i40e-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-64b-8t4c-l2switching-base-scale-avf-i40e-ndr-lat}
+            \label{fig:2n-skx-x710-64b-8t4c-l2switching-base-scale-avf-i40e-ndr-lat}
     \end{figure}

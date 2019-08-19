@@ -15,8 +15,9 @@ SRv6, including NDR throughput (zero packet loss) and
 PDR throughput (<0.5% packet loss).
 
 CSIT source code for the test cases used for plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1901>`_.
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/srv6?h=rls1908>`_.
 
 .. toctree::
 
-    srv6-3n-hsw-x520
+    srv6-3n-skx-xxv710
+    srv6-3n-hsw-xl710
