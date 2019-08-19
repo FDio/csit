@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bc3ba3d7_b4a14dbf",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-08-19T14:22:47Z",
+      "side": 1,
+      "message": "Have removed the unused variables.",
+      "parentUuid": "83a137df_a7cd2d06",
+      "range": {
+        "startLine": 265,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 31
+      },
+      "revId": "c5e8e58bb30f3f600df600ed6886c48ccc67405c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "69d99796_ae50939f",
         "filename": "resources/libraries/python/Policer.py",
         "patchSetId": 13
@@ -36,6 +60,30 @@
       "writtenOn": "2019-08-19T13:15:05Z",
       "side": 1,
       "message": "this is not use if i am not mistaken",
+      "range": {
+        "startLine": 286,
+        "startChar": 1,
+        "endLine": 288,
+        "endChar": 32
+      },
+      "revId": "c5e8e58bb30f3f600df600ed6886c48ccc67405c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8cb827b_366ba316",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-08-19T14:22:47Z",
+      "side": 1,
+      "message": "Removed !",
+      "parentUuid": "69d99796_ae50939f",
       "range": {
         "startLine": 286,
         "startChar": 1,
