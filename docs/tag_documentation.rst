@@ -220,20 +220,33 @@ Performance Type Tags
 
     Performance tests using PLRsearch to find the critical load.
 
+.. topic:: RECONF
+
+    Performance tests aimed to measure lost packets (time) when performing
+    reconfiguration while full throughput offered load is applied.
+
 Ethernet Frame Size Tags
 ------------------------
 
+These are describing the traffic offered by Traffic Generator,
+"primary" traffic in case of asymmetric load.
+For traffic between DUTs, or for "secondary" traffic, see ${overhead} value.
+
 .. topic:: 64B
 
-    64B frames used for test.
+    64B frames used for test. Generic ethernet or IPv4.
 
 .. topic:: 78B
 
-    78B frames used for test.
+    78B frames used for test. Ipv6.
 
 .. topic:: 114B
 
-    114B frames used for test.
+    114B frames used for test. IPv4+vxlan.
+
+.. topic:: 118B
+
+    118B frames used for test. Dot1q+IPv4+vxlan.
 
 .. topic:: IMIX
 
@@ -337,35 +350,40 @@ NF Service Density Tags
 
 .. topic:: CHAIN
 
-   NF service density tests with VNF or CNF service chain topology(ies).
+    NF service density tests with VNF or CNF service chain topology(ies).
 
 .. topic:: PIPE
 
-   NF service density tests with CNF service pipeline topology(ies).
+    NF service density tests with CNF service pipeline topology(ies).
 
 .. topic:: NF_L3FWDIP4
 
-   NF service density tests with DPDK l3fwd IPv4 routing as NF workload.
+    NF service density tests with DPDK l3fwd IPv4 routing as NF workload.
 
 .. topic:: NF_VPPIP4
 
-   NF service density tests with VPP IPv4 routing as NF workload.
+    NF service density tests with VPP IPv4 routing as NF workload.
 
 .. topic:: {r}R{c}C
 
-   Service density matrix locator {r}R{c}C, {r}Row denoting number of
-   service instances, {c}Column denoting number of NFs per service
-   instance. {r}=(1,2,4,6,8,10), {c}=(1,2,4,6,8,10).
+    Service density matrix locator {r}R{c}C, {r}Row denoting number of
+    service instances, {c}Column denoting number of NFs per service
+    instance. {r}=(1,2,4,6,8,10), {c}=(1,2,4,6,8,10).
 
 .. topic:: {n}VM{t}T
 
-   Service density {n}VM{t}T, {n}Number of NF Qemu VMs, {t}Number of threads
-   per NF.
+    Service density {n}VM{t}T, {n}Number of NF Qemu VMs, {t}Number of threads
+    per NF.
 
 .. topic:: {n}DCRt}T
 
-   Service density {n}DCR{t}T, {n}Number of NF Docker containers, {t}Number of
-   threads per NF.
+    Service density {n}DCR{t}T, {n}Number of NF Docker containers, {t}Number of
+    threads per NF.
+
+.. topic:: {n}_ADDED_CHAINS
+
+    {n}Number of chains (or pipelines) added (and/or removed)
+    during RECONF test.
 
 Forwarding Mode Tags
 --------------------

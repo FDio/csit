@@ -34,31 +34,43 @@ from trex.stl.api import *
 
 
 def main():
-    """Stop traffic if any is running."""
+    """Stop traffic if any is running. Report xstats."""
     client = STLClient()
     try:
         # connect to server
         client.connect()
 
         client.acquire(force=True)
+        # TODO: Support unidirection.
         client.stop(ports=[0, 1])
 
         # read the stats after the test
-        stats = client.get_stats()
+        xstats0 = client.get_xstats(0)
+        xstats1 = client.get_xstats(1)
 
-        print("#####statistics (approx.)#####")
-        print(json.dumps(stats, indent=4, separators=(',', ': ')))
-
-        lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
-        lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
-
-        print("\npackets lost from 0 --> 1:   {0} pkts".format(lost_a))
-        print("packets lost from 1 --> 0:   {0} pkts".format(lost_b))
-    except STLError as ex_error:
-        print(ex_error, file=sys.stderr)
-        sys.exit(1)
+    # If STLError happens, let the script fail with stack trace.
     finally:
         client.disconnect()
+
+    print("##### statistics port 0 #####")
+    print(json.dumps(xstats0, indent=4, separators=(',', ': ')))
+    print("##### statistics port 1 #####")
+    print(json.dumps(xstats1, indent=4, separators=(',', ': ')))
+
+    tx_0, rx_0 = xstats0["tx_good_packets"], xstats0["rx_good_packets"]
+    tx_1, rx_1 = xstats1["tx_good_packets"], xstats1["rx_good_packets"]
+    lost_a, lost_b = tx_0 - rx_1, tx_1 - rx_0
+
+    print("\npackets lost from 0 --> 1:   {0} pkts".format(lost_a))
+    print("packets lost from 1 --> 0:   {0} pkts".format(lost_b))
+
+    total_rcvd, total_sent = rx_0 + rx_1, tx_0 + tx_1
+    total_lost = total_sent - total_rcvd
+    # TODO: Add latency.
+    print("rate='unknown', totalReceived={rec}, totalSent={sen}, "
+        "frameLoss={los}, latencyStream0(usec)=-1/-1/-1, "
+        "latencyStream1(usec)=-1/-1/-1, targetDuration='manual'".format(
+            rec=total_rcvd, sen=total_sent, los=total_lost))
 
 if __name__ == "__main__":
     main()
