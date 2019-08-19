@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "8752f6d6_87c06a54",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-19T11:06:04Z",
+      "side": 1,
+      "message": "\u003e if this function is about checking admin state\n\nIt is about setting (not checking) a state.",
+      "parentUuid": "e8d8ab22_26088118",
+      "range": {
+        "startLine": 184,
+        "startChar": 64,
+        "endLine": 184,
+        "endChar": 72
+      },
+      "revId": "71be76c5d3fc1153f276bea185c8bf0d177c921a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "bb054a5d_f823773d",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 10
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "Yes I noticed that in GBP, but unfortunately from Jakub I know that the rule of thumb does not work in VPP. Currently you have either value of enum 0,1,2,3,4... like ordered list or you have bitfield. From name it is not clear usually you noticed it as bitfield is hex 0x. It is hard for CSIT to guess but:\n1) If this is bitfield there is not \"512 possibilities\" only width of var (C style) so e.g. u8 is max 8 values\n2) If this is enum and here comes the problem!! it can be indexed from 0 or 1 (no rules in VPP today). I noticed that sometimes it is 0 as default and sometimes as \"no value\". (compiler usually does from 0).\n\nBecause of 2) i am worried that simply 0 is forgotten here and should be added as option as you cannot have nothing state. Interface must be in either of state. it cannot be in no-state.\n\nI think this is for Ole to fix and make clear. -1 as init value also does not make sense in C (it is max value in fact). So i know it is hard but some rules must be set here.\n\nEvery C coder knows that C is lower level lang. You cannot have non initialized anything :)\n\n\nSorry for long post but state is:\nADMIN_DOWN LINK_DOWN\nADMIN_DOWN LINK_UP\nADMIN_UP LINK_DOWN -\u003e this is valid state\nADMIN_UP LINK_UP -\u003e this is victory\n...having Enum with 2 state is weird ;)",
       "parentUuid": "c76a556c_5b8332f7",
+      "range": {
+        "startLine": 186,
+        "startChar": 24,
+        "endLine": 186,
+        "endChar": 25
+      },
+      "revId": "71be76c5d3fc1153f276bea185c8bf0d177c921a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7459e378_e9c6e38e",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-19T11:06:04Z",
+      "side": 1,
+      "message": "\u003e From name it is not clear usually you noticed it\n\nPerhaps it depends on whether the code is new, or old. When speaking about 18361, I have a feeling an enum is bitfield if and only if its name ends with \"flags\". So if_status_flags (CSIT analogue at line 33) and sub_if_flags (line 55) are bitfields, other enums are not.\n\n\u003e If this is bitfield there is not \"512 possibilities\"\n\nI believe C will pick smallest (unsigned) int type to fit all explicit values, so u8 for if_status_flags and u16 for sub_if_flags.\n\n\u003e e.g. u8 is max 8 values\n\nThe u8 type fits 8 independent flags, 256 flag combinations.\nBut if only 2 flags are defined, only 4 combinations are relevant for VPP.\n\nADMIN_DOWN LINK_DOWN \u003c\u003d\u003e 0x00 \u003d\u003d 0\nADMIN_DOWN LINK_UP \u003c\u003d\u003e 0x02 \u003d\u003d IF_STATUS_API_FLAG_LINK_UP\nADMIN_UP LINK_DOWN \u003c\u003d\u003e 0x01 \u003d\u003d IF_STATUS_API_FLAG_ADMIN_UP (used in line 317)\nADMIN_UP LINK_UP \u003c\u003d\u003e 0x03 \u003d\u003d IF_STATUS_API_FLAG_LINK_UP | IF_STATUS_API_FLAG_ADMIN_UP",
+      "parentUuid": "7e4346c6_89c33c22",
       "range": {
         "startLine": 186,
         "startChar": 24,
