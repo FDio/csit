@@ -1,0 +1,435 @@
+<<<<<<< HEAD   (c1f6c7 Update CRC list comments)
+=======
+Groups of tests for graphs:
+- Packet Throughput (1c), NDR, PDR
+- Packet Latency (1c, 2c, 4c), NDR
+- Speedup Multi-Core (1c, 2c, 4c), NDR, PDR
+
+Order of chapters:
+- L2 Ethernet Switching
+- IPv4 Routing
+- IPv6 Routing
+- SRv6 Routing
+- IPv4 Tunnels
+- KVM VMs vhost-user
+- LXC/DRC Container Memif
+- IPsec with IPv4 Routing
+- Virtual Topology System
+
+Order of tests:
+- The same as they are listed below.
+
+Sub-chapters titles:
+- The same as they are listed below.
+
+# L2 Ethernet Switching
+
+## 2n-skx-xxv710
+### 64b-?t?c-l2switching-base-avf
+2n1l-10ge2p1xxv710-avf-eth-l2patch-ndrpdr
+2n1l-10ge2p1xxv710-avf-eth-l2xcbase-ndrpdr
+2n1l-10ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-ndrpdr
+2n1l-10ge2p1xxv710-avf-eth-l2bdbasemaclrn-ndrpdr
+2n1l-10ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr
+
+### 64b-?t?c-l2switching-base-i40e
+2n1l-10ge2p1xxv710-eth-l2patch-ndrpdr
+2n1l-10ge2p1xxv710-dot1q-l2xcbase-ndrpdr
+2n1l-10ge2p1xxv710-eth-l2xcbase-ndrpdr
+2n1l-10ge2p1xxv710-dot1q-l2bdbasemaclrn-ndrpdr
+2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
+
+### 64b-?t?c-l2switching-base-scale-i40e
+2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
+2n1l-10ge2p1xxv710-eth-l2bdscale10kmaclrn-ndrpdr
+2n1l-10ge2p1xxv710-eth-l2bdscale100kmaclrn-ndrpdr
+2n1l-10ge2p1xxv710-eth-l2bdscale1mmaclrn-ndrpdr
+
+## 2n-skx-x710
+### 64b-?t?c-l2switching-base-scale-avf-i40e
+2n1l-10ge2p1x710-avf-eth-l2xcbase-ndrpdr
+2n1l-10ge2p1x710-avf-dot1q-l2bdbasemaclrn-ndrpdr
+2n1l-10ge2p1x710-avf-eth-l2bdbasemaclrn-ndrpdr
+2n1l-10ge2p1x710-dot1q-l2bdbasemaclrn-ndrpdr
+2n1l-10ge2p1x710-eth-l2bdbasemaclrn-ndrpdr
+2n1l-10ge2p1x710-eth-l2bdscale1mmaclrn-ndrpdr
+
+## 3n-skx-xxv710
+### 64b-?t?c-l2switching-base-avf
+10ge2p1xxv710-avf-eth-l2patch-ndrpdr
+10ge2p1xxv710-avf-eth-l2xcbase-ndrpdr
+10ge2p1xxv710-avf-eth-l2bdbasemaclrn-ndrpdr
+
+### 64b-?t?c-l2switching-base-i40e
+10ge2p1xxv710-dot1q-l2xcbase-ndrpdr
+10ge2p1xxv710-eth-l2xcbase-ndrpdr
+10ge2p1xxv710-dot1q-l2bdbasemaclrn-ndrpdr
+10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
+
+### 64b-?t?c-l2switching-base-scale-i40e
+10ge2p1xxv710-eth-l2patch-ndrpdr
+10ge2p1xxv710-eth-l2xcbase-ndrpdr
+10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
+10ge2p1xxv710-eth-l2bdscale10kmaclrn-ndrpdr
+10ge2p1xxv710-eth-l2bdscale100kmaclrn-ndrpdr
+10ge2p1xxv710-eth-l2bdscale1mmaclrn-ndrpdr
+
+###  64b-?t?c-feature-l2switching-base-i40e
+10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
+10ge2p1xxv710-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr
+10ge2p1xxv710-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr
+10ge2p1xxv710-eth-l2bdbasemaclrn-oacl50sf-10kflows-ndrpdr
+10ge2p1xxv710-eth-l2bdbasemaclrn-oacl50sl-10kflows-ndrpdr
+10ge2p1xxv710-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-ndrpdr
+
+## 3n-skx-x710
+### 64b-?t?c-l2switching-base-scale-avf-i40e
+10ge2p1x710-avf-eth-l2patch-ndrpdr
+10ge2p1x710-avf-eth-l2xcbase-ndrpdr
+10ge2p1x710-avf-eth-l2bdbasemaclrn-ndrpdr
+10ge2p1x710-dot1q-l2bdbasemaclrn-ndrpdr
+10ge2p1x710-eth-l2bdbasemaclrn-ndrpdr
+10ge2p1x710-eth-l2bdscale1mmaclrn-ndrpdr
+
+## 3n-hsw-xl710
+### 64b-?t?c-l2switching-base-scale-i40e
+10ge2p1xl710-eth-l2patch-ndrpdr
+10ge2p1xl710-dot1q-l2xcbase-ndrpdr
+10ge2p1xl710-eth-l2xcbase-ndrpdr
+10ge2p1xl710-dot1q-l2bdbasemaclrn-ndrpdr
+10ge2p1xl710-eth-l2bdbasemaclrn-ndrpdr
+10ge2p1xl710-eth-l2bdscale1mmaclrn-ndrpdr
+
+# IPv4 Routing
+
+## 2n-skx-xxv710
+### 64b-?t?c-ip4routing-base-scale-avf
+2n1l-10ge2p1xxv710-avf-dot1q-ip4base-ndrpdr
+2n1l-10ge2p1xxv710-avf-ethip4-ip4base-ndrpdr
+2n1l-10ge2p1xxv710-avf-ethip4-ip4scale20k-ndrpdr
+2n1l-10ge2p1xxv710-avf-ethip4-ip4scale200k-ndrpdr
+2n1l-10ge2p1xxv710-avf-ethip4-ip4scale2m-ndrpdr
+
+### 64b-?t?c-ip4routing-base-scale-i40e
+2n1l-10ge2p1xxv710-dot1q-ip4base-ndrpdr
+2n1l-10ge2p1xxv710-ethip4-ip4base-ndrpdr
+2n1l-10ge2p1xxv710-ethip4-ip4scale20k-ndrpdr
+2n1l-10ge2p1xxv710-ethip4-ip4scale200k-ndrpdr
+2n1l-10ge2p1xxv710-ethip4-ip4scale2m-ndrpdr
+
+### 64b-?t?c-features-ip4routing-base-i40e
+2n1l-10ge2p1xxv710-ethip4-ip4base-ndrpdr
+2n1l-10ge2p1xxv710-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr
+2n1l-10ge2p1xxv710-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr
+2n1l-10ge2p1xxv710-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr
+2n1l-10ge2p1xxv710-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr
+2n1l-10ge2p1xxv710-ethip4udp-ip4base-nat44-ndrpdr
+
+## 2n-skx-x710
+###  64b-?t?c-ip4routing-base-scale-avf-i40e
+2n1l-10ge2p1x710-avf-ethip4-ip4base-ndrpdr
+2n1l-10ge2p1x710-avf-ethip4-ip4scale2m-ndrpdr
+2n1l-10ge2p1x710-dot1q-ip4base-ndrpdr
+2n1l-10ge2p1x710-ethip4-ip4base-ndrpdr
+2n1l-10ge2p1x710-ethip4-ip4scale2m-ndrpdr
+
+## 3n-skx-xxv710
+### 64b-?t?c-ip4routing-base-scale-avf
+10ge2p1xxv710-avf-eth-ip4base-ndrpdr
+10ge2p1xxv710-avf-ethip4-ip4scale20k-ndrpdr
+10ge2p1xxv710-avf-ethip4-ip4scale200k-ndrpdr
+10ge2p1xxv710-avf-ethip4-ip4scale2m-ndrpdr
+
+### 64b-?t?c-ip4routing-base-scale-i40e
+10ge2p1xxv710-dot1q-ip4base-ndrpdr
+10ge2p1xxv710-ethip4-ip4base-ndrpdr
+10ge2p1xxv710-ethip4-ip4scale20k-ndrpdr
+10ge2p1xxv710-ethip4-ip4scale200k-ndrpdr
+10ge2p1xxv710-ethip4-ip4scale2m-ndrpdr
+
+### 64b-?t?c-feature-ip4routing-base-i40e
+10ge2p1xxv710-ethip4-ip4base-ndrpdr
+10ge2p1xxv710-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr
+10ge2p1xxv710-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr
+10ge2p1xxv710-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr
+10ge2p1xxv710-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr
+10ge2p1xxv710-ethip4udp-ip4base-nat44-ndrpdr
+
+## 3n-skx-x710
+### 64b-?t?c-ip4routing-base-scale-avf-i40e
+10ge2p1x710-avf-ethip4-ip4base-ndrpdr
+10ge2p1x710-avf-ethip4-ip4scale2m-ndrpdr
+10ge2p1x710-dot1q-ip4base-ndrpdr
+10ge2p1x710-ethip4-ip4base-ndrpdr
+10ge2p1x710-ethip4-ip4scale2m-ndrpdr
+
+## 3n-hsw-xl710
+### 64b-?t?c-ip4routing-base-scale-i40e
+10ge2p1xl710-dot1q-ip4base-ndrpdr
+10ge2p1xl710-ethip4-ip4base-ndrpdr
+10ge2p1xl710-ethip4-ip4scale2m-ndrpdr
+
+# IPv6 Routing
+
+## 2n-skx-xxv710
+### 78b-?t?c-ip6routing-base-scale-i40e
+2n1l-10ge2p1xxv710-dot1q-ip6base-ndrpdr
+2n1l-10ge2p1xxv710-ethip6-ip6base-ndrpdr
+2n1l-10ge2p1xxv710-ethip6-ip6scale20k-ndrpdr
+2n1l-10ge2p1xxv710-ethip6-ip6scale200k-ndrpdr
+2n1l-10ge2p1xxv710-ethip6-ip6scale2m-ndrpdr
+
+## 2n-skx-x710
+### 78b-?t?c-ip6routing-base-scale-i40e
+2n1l-10ge2p1x710-ethip6-ip6base-ndrpdr
+2n1l-10ge2p1x710-ethip6-ip6scale2m-ndrpdr
+
+## 3n-skx-xxv710
+### 78b-?t?c-ip6routing-base-scale-i40e
+10ge2p1xxv710-dot1q-ip6base-ndrpdr
+10ge2p1xxv710-ethip6-ip6base-ndrpdr
+10ge2p1xxv710-ethip6-ip6scale20k-ndrpdr
+10ge2p1xxv710-ethip6-ip6scale200k-ndrpdr
+10ge2p1xxv710-ethip6-ip6scale2m-ndrpdr
+
+## 3n-skx-x710
+### 78b-?t?c-ip6routing-base-scale-i40e
+10ge2p1x710-ethip6-ip6base-ndrpdr
+10ge2p1x710-ethip6-ip6scale2m-ndrpdr
+
+## 3n-hsw-xl710
+### 78b-?t?c-ip6routing-base-scale-i40e
+10ge2p1xl710-dot1q-ip6base-ndrpdr
+10ge2p1xl710-ethip6-ip6base-ndrpdr
+10ge2p1xl710-ethip6-ip6scale2m-ndrpdr
+
+# SRv6 Routing
+
+## 3n-skx-xxv710
+### 78b-?t?c-srv6-ip6routing-base-i40e
+10ge2p1xxv710-ethip6ip6-ip6base-srv6enc1sid-ndrpdr
+10ge2p1xxv710-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr
+10ge2p1xxv710-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr
+10ge2p1xxv710-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr
+10ge2p1xxv710-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr
+10ge2p1xxv710-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
+
+## 3n-hsw-xl710
+### 78b-?t?c-srv6-ip6routing-base-i40e
+10ge2p1xl710-ethip6ip6-ip6base-srv6enc1sid-ndrpdr
+10ge2p1xl710-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr
+10ge2p1xl710-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr
+10ge2p1xl710-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr
+10ge2p1xl710-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr
+10ge2p1xl710-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
+
+# IPv4 Tunnels
+
+## 3n-skx-xxv710
+### 64b-?t?c-ip4tunnel-base-scale-i40e
+10ge2p1xxv710-ethip4vxlan-l2xcbase-ndrpdr
+10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-ndrpdr
+10ge2p1xxv710-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-ndrpdr
+10ge2p1xxv710-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-ndrpdr
+
+## 3n-hsw-xl710
+### 64b-?t?c-ip4tunnel-base-i40e
+10ge2p1xl710-ethip4vxlan-l2xcbase-ndrpdr
+10ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-ndrpdr
+
+# KVM VMs vhost-user
+
+## 2n-skx-xxv710
+### 64b-?t?c-vhost-base-i40e
+2n1l-10ge2p1xxv710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+2n1l-10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+2n1l-10ge2p1xxv710-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr
+
+## 3n-skx-xxv710
+### 64b-?t?c-vhost-base-i40e
+10ge2p1xxv710-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xxv710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xxv710-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr
+
+#### 64b-?t?c-link-bonding-vhost-base-i40e
+10ge2p1xxv710-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xxv710-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xxv710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xxv710-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+
+## 3n-skx-x710
+#### 64b-?t?c-link-bonding-vhost-base-i40e
+10ge2p1x710-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1x710-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1x710-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1x710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1x710-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1x710-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+
+## 3n-hsw-xl710
+### 64b-?t?c-vhost-base-i40e
+10ge2p1xl710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xl710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+10ge2p1xl710-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr
+
+# LXC/DRC Container Memif
+
+## 2n-skx-xxv710
+### 64b-?t?c-memif-base-i40e
+2n1l-10ge2p1xxv710-eth-l2xcbase-eth-2memif-1dcr-ndrpdr
+2n1l-10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr
+2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr
+2n1l-10ge2p1xxv710-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
+
+## 3n-skx-xxv710
+### 64b-?t?c-memif-base-i40e
+10ge2p1xxv710-eth-l2xcbase-eth-2memif-1lxc-ndrpdr
+10ge2p1xxv710-eth-l2xcbase-eth-2memif-1dcr-ndrpdr
+10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr
+10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr
+10ge2p1xxv710-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
+
+# IPsec with IPv4 Routing
+
+## 3n-skx-xxv710
+### imix-?t?c-ipsec-ip4routing-base-scale-i40e
+10ge2p1xxv710-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr
+10ge2p1xxv710-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+10ge2p1xxv710-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr
+10ge2p1xxv710-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+10ge2p1xxv710-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr
+10ge2p1xxv710-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+
+## 3n-hsw-xl710
+### imix-?t?c-ipsec-ip4routing-base-scale-sw-i40e
+10ge2p1xl710-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr
+10ge2p1xl710-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+10ge2p1xl710-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr
+10ge2p1xl710-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+10ge2p1xl710-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr
+10ge2p1xl710-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+
+### imix-?t?c-ipsec-ip4routing-base-scale-hw-i40e
+10ge2p1xl710-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-ndrpdr
+10ge2p1xl710-ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+10ge2p1xl710-ethip4ipsec1000tnlhw-ip4base-int-aes256gcm-ndrpdr
+10ge2p1xl710-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
+
+# Virtual Topology System
+
+## 3n-skx-xxv710
+### 114b-?t?c-vts-l2switching-base-i40e
+10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
+10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr
+
+## 3n-hsw-xl710
+### 114b-?t?c-vts-l2switching-base-i40e
+10ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
+10ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr
+10ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
+
+# 2n-skx nfv density (1c, 2c, 4c)
+
+## nfv_density/vm_vhost/chain
+
+###  2n-skx-xxv710
+#### imix-?t?c-vhost-chains
+2n-10ge2p1xxv710-eth-l2bd-10ch-20vh-10vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-10ch-40vh-20vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-12vh-6vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-16vh-8vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-20vh-10vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-2vh-1vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-4vh-2vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-8vh-4vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-16vh-8vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-24vh-12vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-32vh-16vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-40vh-20vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-4vh-2vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-8vh-4vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-4ch-16vh-8vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-4ch-32vh-16vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-4ch-48vh-24vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-4ch-8vh-4vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-6ch-12vh-6vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-6ch-24vh-12vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-6ch-48vh-24vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-8ch-16vh-8vm1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-8ch-32vh-16vm1t-vppip4-ndrpdr
+
+## nfv_density/vm_vhost/chain_dot1qip4vxlan
+- to be added to the Report
+
+### 2n-skx-xxv710
+#### imix-?t?c-vhost-chains-dot1qip4vxlan
+2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-1ch-2vh-1vm1t-testpmd-ndrpdr
+2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd-ndrpdr
+2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-4ch-8vh-4vm1t-testpmd-ndrpdr
+2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-6ch-12vh-6vm1t-testpmd-ndrpdr
+2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-8ch-16vh-8vm1t-testpmd-ndrpdr
+2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
+
+## nfv_density/dcr_memif/chain
+
+### 2n-skx-xxv710
+#### imix-?t?c-memif-chains
+2n-10ge2p1xxv710-eth-l2bd-10ch-20mif-10dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-10ch-40mif-20dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-12mif-6dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-16mif-8dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-20mif-10dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-2mif-1dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-4mif-2dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1ch-8mif-4dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-16mif-8dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-24mif-12dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-32mif-16dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-40mif-20dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-4mif-2dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2ch-8mif-4dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-4ch-16mif-8dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-4ch-32mif-16dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-4ch-48mif-24dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-4ch-8mif-4dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-6ch-12mif-6dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-6ch-24mif-12dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-6ch-48mif-24dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-8ch-16mif-8dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-8ch-32mif-16dcr1t-vppip4-ndrpdr
+
+## nfv_density/dcr_memif/pipeline
+
+### 2n-skx-xxv710
+#### imix-?t?c-memif-pipelines
+2n-10ge2p1xxv710-eth-l2bd-10pl-20mif-10dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-10pl-20mif-20dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1pl-2mif-10dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1pl-2mif-1dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1pl-2mif-2dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1pl-2mif-4dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1pl-2mif-6dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-1pl-2mif-8dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2pl-4mif-12dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2pl-4mif-16dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2pl-4mif-20dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2pl-4mif-2dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2pl-4mif-4dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2pl-4mif-8dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-2pl-8mif-4dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-4pl-8mif-16dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-4pl-8mif-24dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-4pl-8mif-8dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-6pl-12mif-12dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-6pl-12mif-24dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-6pl-12mif-6dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-8pl-16mif-16dcr1t-vppip4-ndrpdr
+2n-10ge2p1xxv710-eth-l2bd-8pl-16mif-8dcr1t-vppip4-ndrpdr
+>>>>>>> CHANGE (33cfe1 Report: Select tests by name, specifications)
