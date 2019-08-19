@@ -111,7 +111,7 @@ class DPDKTools(object):
         message = 'Install the DPDK failed!'
         exec_cmd_no_error(node, command, timeout=600, message=message)
 
-        command = ('cat {fwdir}/download_dir/dpdk*/VERSION'.
+        command = ('cat {fwdir}/dpdk*/VERSION'.
                    format(fwdir=Constants.REMOTE_FW_DIR))
         message = 'Get DPDK version failed!'
         stdout, _ = exec_cmd_no_error(node, command, message=message)
