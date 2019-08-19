@@ -281,7 +281,7 @@ class ExecutionChecker(ResultVisitor):
     REGEX_VERSION_VPP = re.compile(r"(return STDOUT Version:\s*|"
                                    r"VPP Version:\s*|VPP version:\s*)(.*)")
 
-    REGEX_VERSION_DPDK = re.compile(r"DPDK Version: (\d*.\d*)")
+    REGEX_VERSION_DPDK = re.compile(r"(DPDK version:\s*|DPDK Version:\s*)(.*)")
 
     REGEX_TCP = re.compile(r'Total\s(rps|cps|throughput):\s([0-9]*).*$')
 
@@ -425,7 +425,7 @@ class ExecutionChecker(ResultVisitor):
         if msg.message.count("DPDK Version:"):
             try:
                 self._version = str(re.search(
-                    self.REGEX_VERSION_DPDK, msg.message). group(1))
+                    self.REGEX_VERSION_DPDK, msg.message). group(2))
                 self._data["metadata"]["version"] = self._version
             except IndexError:
                 pass
