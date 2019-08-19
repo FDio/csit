@@ -17,7 +17,7 @@
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
 | ... | VHOST | VM | VHOST_1024 | VXLAN | DOT1Q | NF_DENSITY | NF_TESTPMD
-| ... | CHAIN | 2R1C | 2VM2T
+| ... | CHAIN | 10R1C | 10VM1T
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -27,7 +27,7 @@
 | Test Template | Local Template
 | ...
 | Documentation | *RFC2544: Packet throughput L2BD test cases with Dot1Q and
-| ... | VXLANoIPv4 and 4 vhost 2 chains 2 VMs*
+| ... | VXLANoIPv4 and 20 vhosts 10 chains 10 VMs*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
@@ -56,9 +56,9 @@
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
 | ${overhead}= | ${54}
-| ${nf_dtcr}= | ${1}
-| ${nf_dtc}= | ${1}
-| ${nf_chains}= | ${2}
+| ${nf_dtcr}= | ${2}
+| ${nf_dtc}= | ${0.5}
+| ${nf_chains}= | ${10}
 | ${nf_nodes}= | ${1}
 # Traffic profile:
 | ${traffic_profile}=
@@ -99,50 +99,50 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-118B-1c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc01-118B-1c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | 118B | 1C
 | | frame_size=${118} | phy_cores=${1}
 
-| tc02-118B-2c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc02-118B-2c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | 118B | 2C
 | | frame_size=${118} | phy_cores=${2}
 
-| tc03-118B-4c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc03-118B-4c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | 118B | 4C
 | | frame_size=${118} | phy_cores=${4}
 
-| tc04-1518B-1c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc04-1518B-1c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc05-1518B-2c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc06-1518B-4c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc07-9000B-1c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc08-9000B-2c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc09-9000B-4c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc10-IMIX-1c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc11-IMIX-2c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-dot1qip4vxlan-l2bd-2ch-4vh-2vm2t-testpmd-ndrpdr
+| tc12-IMIX-4c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
