@@ -28,16 +28,23 @@
 
     </script>
 
+..
+    ## 3n-hsw-xl710
+    ### 64b-?t?c-ip4routing-base-scale-i40e
+    10ge2p1xl710-dot1q-ip4base-ndrpdr
+    10ge2p1xl710-ethip4-ip4base-ndrpdr
+    10ge2p1xl710-ethip4-ip4scale2m-ndrpdr
+
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
-64b-1t1c-base
--------------
+64b-1t1c-ip4routing-base-scale-i40e
+-----------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm41" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-xl710-64b-1t1c-base-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-i40e-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +53,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-xl710-64b-1t1c-base-ndr}
-            \label{fig:ip4-3n-hsw-xl710-64b-1t1c-base-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-i40e-ndr}
+            \label{fig:3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-i40e-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +64,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm42" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-xl710-64b-1t1c-base-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-i40e-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,49 +73,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-xl710-64b-1t1c-base-pdr}
-            \label{fig:ip4-3n-hsw-xl710-64b-1t1c-base-pdr}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-2t2c-base
--------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm43" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-xl710-64b-2t2c-base-ndr.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-xl710-64b-2t2c-base-ndr}
-            \label{fig:ip4-3n-hsw-xl710-64b-2t2c-base-ndr}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm44" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip4-3n-hsw-xl710-64b-2t2c-base-pdr.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip4-3n-hsw-xl710-64b-2t2c-base-pdr}
-            \label{fig:ip4-3n-hsw-xl710-64b-2t2c-base-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-i40e-pdr}
+            \label{fig:3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-i40e-pdr}
     \end{figure}

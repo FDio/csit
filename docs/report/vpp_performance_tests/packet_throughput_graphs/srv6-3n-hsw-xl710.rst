@@ -30,21 +30,24 @@
 
 ..
     ## 3n-hsw-xl710
-    ### 78b-?t?c-ip6routing-base-scale-i40e
-    10ge2p1xl710-dot1q-ip6base-ndrpdr
-    10ge2p1xl710-ethip6-ip6base-ndrpdr
-    10ge2p1xl710-ethip6-ip6scale2m-ndrpdr
+    ### 78b-?t?c-srv6-ip6routing-base-i40e
+    10ge2p1xl710-ethip6ip6-ip6base-srv6enc1sid-ndrpdr
+    10ge2p1xl710-ethip6srhip6-ip6base-srv6enc2sids-ndrpdr
+    10ge2p1xl710-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-ndrpdr
+    10ge2p1xl710-ethip6srhip6-ip6base-srv6proxy-dyn-ndrpdr
+    10ge2p1xl710-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr
+    10ge2p1xl710-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
 
-3n-hsw-xl710
-~~~~~~~~~~~~
+3n-hsw-x520
+~~~~~~~~~~~
 
-78b-1t1c-ip6routing-base-scale-i40e
------------------------------------
+78b-1t1c-srv6-ip6routing-base-i40e
+----------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-i40e-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x520-78b-1t1c-srv6-ip6routing-base-i40e-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -53,8 +56,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-xl710-78b-1t1c-base-ndr}
-            \label{fig:ip6-3n-hsw-xl710-78b-1t1c-base-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x520-78b-1t1c-srv6-ip6routing-base-i40e-ndr}
+            \label{fig:3n-hsw-x520-78b-1t1c-srv6-ip6routing-base-i40e-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -64,7 +67,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-i40e-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-x520-78b-1t1c-srv6-ip6routing-base-i40e-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -73,6 +76,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-3n-hsw-xl710-78b-1t1c-base-pdr}
-            \label{fig:ip6-3n-hsw-xl710-78b-1t1c-base-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-x520-78b-1t1c-srv6-ip6routing-base-i40e-pdr}
+            \label{fig:3n-hsw-x520-78b-1t1c-srv6-ip6routing-base-i40e-pdr}
     \end{figure}
