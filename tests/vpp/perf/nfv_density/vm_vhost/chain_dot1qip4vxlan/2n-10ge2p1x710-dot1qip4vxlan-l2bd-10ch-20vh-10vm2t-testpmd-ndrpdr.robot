@@ -27,7 +27,7 @@
 | Test Template | Local Template
 | ...
 | Documentation | *RFC2544: Packet throughput L2BD test cases with Dot1Q and
-| ... | VXLANoIPv4 and vhost*
+| ... | VXLANoIPv4 and 20 vhosts 10 chains 10 VMs*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
