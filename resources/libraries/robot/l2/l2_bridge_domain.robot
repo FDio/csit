@@ -591,22 +591,28 @@
 | | ${rxq}= | Run Keyword If | ${auto_scale} == ${True}
 | | ... | Set Variable | ${rxq_count_int}
 | | ... | ELSE | Set Variable | ${1}
-| | ${bd_id2}= | Evaluate | ${nf_nodes}+1
-| | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if1} | ${1}
-| | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if2}
+| | ${bd_id1}= | Evaluate | ${nf_nodes} * (${nf_chain} - 1) + ${nf_chain}
+| | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
+| | ${dut_str}= | Convert To Lowercase | ${dut}
+| | Add interface to bridge domain
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | ... | ${bd_id1}
+| | Add interface to bridge domain
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
 | | ... | ${bd_id2}
 | | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
 | | | ${sock1}= | Set Variable | memif-${dut}_CNF
 | | | ${sock2}= | Set Variable | memif-${dut}_CNF
+| | | ${bd_id1}= | Evaluate | ${nf_id} + (${nf_chain} - 1)
+| | | ${bd_id2}= | Evaluate | ${bd_id1} + 1
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
 | | | ... | ${sock1} | ${sock2} | ${nf_id} | ${dut}-memif-${nf_id}-if1
 | | | ... | ${dut}-memif-${nf_id}-if2 | ${rxq} | ${rxq}
-| | | ${bd_id2}= | Evaluate | ${nf_node}+1
-| | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-memif-${nf_id}-if1} | ${nf_node}
-| | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-memif-${nf_id}-if2} | ${bd_id2}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut}-memif-${nf_id}-if1} | ${bd_id1}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut}-memif-${nf_id}-if2} | ${bd_id2}
 
 | Initialize L2 Bridge Domain with memif pairs
 | | [Documentation]
@@ -680,9 +686,16 @@
 | | ${rxq}= | Run Keyword If | ${auto_scale} == ${True}
 | | ... | Set Variable | ${rxq_count_int}
 | | ... | ELSE | Set Variable | ${1}
+| | ${bd_id1}= | Evaluate | ${nf_nodes} * (${nf_chain} - 1) + ${nf_chain}
+| | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
 | | :FOR | ${dut} | IN | @{duts}
-| | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if1} | ${1}
-| | | Add interface to bridge domain | ${nodes['${dut}']} | ${${dut}_if2} | ${2}
+| | | ${dut_str}= | Convert To Lowercase | ${dut}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
+| | | ... | ${bd_id1}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_2}
+| | | ... | ${bd_id2}
 | | | ${nf_id_frst}= | Evaluate | (${nf_chain}-${1}) * ${nf_nodes} + ${1}
 | | | ${nf_id_last}= | Evaluate | (${nf_chain}-${1}) * ${nf_nodes} + ${nf_nodes}
 | | | ${sid_frst}= | Evaluate | ${nf_id_frst} * ${2} - ${1}
@@ -695,10 +708,10 @@
 | | | ... | memif-${dut}_CNF | mid=${nf_id_last} | sid=${sid_last}
 | | | ... | memif_if=${dut}-memif-${nf_id_last}-if2
 | | | ... | rxq=${rxq} | txq=${rxq}
-| | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-memif-${nf_id_frst}-if1} | ${1}
-| | | Add interface to bridge domain | ${nodes['${dut}']}
-| | | ... | ${${dut}-memif-${nf_id_last}-if2} | ${2}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut}-memif-${nf_id_frst}-if1} | ${bd_id1}
+| | | Add interface to bridge domain
+| | | ... | ${nodes['${dut}']} | ${${dut}-memif-${nf_id_last}-if2} | ${bd_id2}
 
 | Initialize L2 Bridge Domain for multiple pipelines with memif pairs
 | | [Documentation]
