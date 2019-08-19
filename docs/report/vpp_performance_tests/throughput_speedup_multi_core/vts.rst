@@ -3,8 +3,8 @@
 
     \clearpage
 
-VTS
-===
+Virtual Topology System
+=======================
 
 Following sections include Throughput Speedup Analysis for VPP multi-
 core multi-thread configurations with no Hyper-Threading, specifically
@@ -15,8 +15,9 @@ VM vhost-user, including NDR throughput (zero packet loss) and
 PDR throughput (<0.5% packet loss).
 
 CSIT source code for the test cases used for plots can be found in
-`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vts?h=rls1901>`_.
+`CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/vts?h=rls1908>`_.
 
 .. toctree::
 
-    vts-3n-hsw-x520
+    vts-3n-skx-xxv710
+    vts-3n-hsw-xl710
