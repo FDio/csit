@@ -96,6 +96,17 @@ class IPUtil(object):
         return str(ip_address(ip_int))
 
     @staticmethod
+    def packed(ip_addr):
+        """Convert IP address object to its packed format string
+
+        :param ip_addr: IP address to pack
+        :type ip_addr: IPv4Address or IPv6Address
+        :returns: Packed binary representation
+        :rtype: str
+        """
+        return ip_addr.packed
+
+    @staticmethod
     def vpp_get_interface_ip_addresses(node, interface, ip_version):
         """Get list of IP addresses from an interface on a VPP node.
 

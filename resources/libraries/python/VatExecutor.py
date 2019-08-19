@@ -140,7 +140,7 @@ class VatExecutor(object):
         self._script_name = vat_name
 
     def write_and_execute_script(self, node, tmp_fn, commands, timeout=300,
-                                 json_out=False):
+                                 json_out=False, history=True):
         """Write VAT commands to the script, copy it to node and execute it.
 
         :param node: VPP node.
@@ -148,17 +148,19 @@ class VatExecutor(object):
         :param commands: VAT command list.
         :param timeout: Seconds to allow the script to run.
         :param json_out: Require JSON output.
+        :param history: Add command to history
         :type node: dict
         :type tmp_fn: str
         :type commands: list
         :type timeout: int
         :type json_out: bool
+        :type history: bool
         """
         with open(tmp_fn, 'w') as tmp_f:
             tmp_f.writelines(commands)
 
         self.execute_script(tmp_fn, node, timeout=timeout, json_out=json_out,
-                            copy_on_execute=True)
+                            copy_on_execute=True, history=history)
         remove(tmp_fn)
 
     def execute_script_json_out(self, vat_name, node, timeout=120):
