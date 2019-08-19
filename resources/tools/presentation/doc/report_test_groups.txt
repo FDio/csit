@@ -1,7 +1,7 @@
 Groups of tests for graphs:
-- Packet Throughput (1c)
-- Packet Latency (1c, 2c, 4c)
-- Speedup Multi-Core (1c, 2c, 4c)
+- Packet Throughput (1c), NDR, PDR
+- Packet Latency (1c, 2c, 4c), NDR
+- Speedup Multi-Core (1c, 2c, 4c), NDR, PDR
 
 Order of chapters:
 - L2 Ethernet Switching
@@ -322,13 +322,13 @@ Sub-chapters titles:
 # Virtual Topology System
 
 ## 3n-skx-xxv710
-### 64b-?t?c-vts-l2switching-base-i40e
+### 114b-?t?c-vts-l2switching-base-i40e
 10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
 10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr
 
 ## 3n-hsw-xl710
-### 64b-?t?c-vts-l2switching-base-i40e
+### 114b-?t?c-vts-l2switching-base-i40e
 10ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
 10ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr
 10ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
