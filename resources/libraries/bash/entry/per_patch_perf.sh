@@ -68,19 +68,20 @@ for ((iter=0; iter<iterations; iter++)); do
         # but we need to clean it explicitly on subsequent iterations.
         cleanup_topo
     fi
-    select_build "build_parent" || die
-    check_download_dir || die
-    run_pybot || die
-    copy_archives || die
-    archive_parse_test_results "csit_parent/${iter}" || die
-    die_on_pybot_error || die
-    # TODO: Use less heavy way to avoid apt remove failures.
-    cleanup_topo
+    # Testing current first. Good for early failures or for API changes.
     select_build "build_current" || die
     check_download_dir || die
     run_pybot || die
     copy_archives || die
     archive_parse_test_results "csit_current/${iter}" || die
+    die_on_pybot_error || die
+    # TODO: Use less heavy way to avoid apt remove failures.
+    cleanup_topo
+    select_build "build_parent" || die
+    check_download_dir || die
+    run_pybot || die
+    copy_archives || die
+    archive_parse_test_results "csit_parent/${iter}" || die
     die_on_pybot_error || die
 done
 untrap_and_unreserve_testbed || die
