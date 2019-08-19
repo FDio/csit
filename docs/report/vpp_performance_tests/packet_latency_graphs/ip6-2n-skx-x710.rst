@@ -28,16 +28,22 @@
 
     </script>
 
+..
+    ## 2n-skx-x710
+    ### 78b-?t?c-ip6routing-base-scale-i40e
+    2n1l-10ge2p1x710-ethip6-ip6base-ndrpdr
+    2n1l-10ge2p1x710-ethip6-ip6scale2m-ndrpdr
+
 2n-skx-x710
 ~~~~~~~~~~~
 
-78b-2t1c-base_and_scale
------------------------
+78b-2t1c-ip6routing-base-scale-i40e
+-----------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,21 +52,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat}
-            \label{fig:ip6-2n-skx-x710-78b-2t1c-base_and_scale-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr-lat}
+            \label{fig:2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr-lat}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-78b-4t2c-base_and_scale
------------------------
+78b-4t2c-ip6routing-base-scale-i40e
+-----------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr-lat.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-4t2c-ip6routing-base-scale-i40e-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -69,6 +75,29 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr-lat}
-            \label{fig:ip6-2n-skx-x710-78b-4t2c-base_and_scale-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-4t2c-ip6routing-base-scale-i40e-ndr-lat}
+            \label{fig:2n-skx-x710-78b-4t2c-ip6routing-base-scale-i40e-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+78b-8t4c-ip6routing-base-scale-i40e
+-----------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-x710-78b-8t4c-ip6routing-base-scale-i40e-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-x710-78b-8t4c-ip6routing-base-scale-i40e-ndr-lat}
+            \label{fig:2n-skx-x710-78b-8t4c-ip6routing-base-scale-i40e-ndr-lat}
     \end{figure}

@@ -28,16 +28,24 @@
 
     </script>
 
+..
+    ## 2n-skx-xxv710
+    ### 64b-?t?c-vhost-base-i40e
+    2n1l-10ge2p1xxv710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+    2n1l-10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+    2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+    2n1l-10ge2p1xxv710-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr
+
 2n-skx-xxv710
 ~~~~~~~~~~~~~
 
-64b-base_and_features-l2sw
---------------------------
+64b-2t1c-vhost-base-i40e
+------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm33" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-xxv710-64b-base_and_features-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +54,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-2n-skx-xxv710-64b-base_and_features-ndr-tsa}
-            \label{fig:vhost-l2sw-2n-skx-xxv710-64b-base_and_features-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr}
+            \label{fig:2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +65,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm34" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-xxv710-64b-base_and_features-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,96 +74,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-2n-skx-xxv710-64b-base_and_features-pdr-tsa}
-            \label{fig:vhost-l2sw-2n-skx-xxv710-64b-base_and_features-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr}
+            \label{fig:2n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr}
     \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-base-vm-l2sw
-----------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm37" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-xxv710-64b-base-vm-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-2n-skx-xxv710-64b-base-vm-ndr-tsa}
-            \label{fig:vhost-l2sw-2n-skx-xxv710-64b-base-vm-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm38" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-l2sw-2n-skx-xxv710-64b-base-vm-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-l2sw-2n-skx-xxv710-64b-base-vm-pdr-tsa}
-            \label{fig:vhost-l2sw-2n-skx-xxv710-64b-base-vm-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-base_and_scale-ip4
-----------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm39" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-2n-skx-xxv710-64b-base_and_scale-ndr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-2n-skx-xxv710-64b-base_and_scale-ndr-tsa}
-            \label{fig:vhost-ip4-2n-skx-xxv710-64b-base_and_scale-ndr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm40" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/vhost-ip4-2n-skx-xxv710-64b-base_and_scale-pdr-tsa.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{vhost-ip4-2n-skx-xxv710-64b-base_and_scale-pdr-tsa}
-            \label{fig:vhost-ip4-2n-skx-xxv710-64b-base_and_scale-pdr-tsa}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
