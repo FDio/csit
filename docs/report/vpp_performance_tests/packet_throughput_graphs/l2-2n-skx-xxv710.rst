@@ -28,16 +28,38 @@
 
     </script>
 
+..
+    ## 2n-skx-xxv710
+    ### 64b-?t?c-l2switching-base-avf
+    2n1l-10ge2p1xxv710-avf-eth-l2patch-ndrpdr
+    2n1l-10ge2p1xxv710-avf-eth-l2xcbase-ndrpdr
+    2n1l-10ge2p1xxv710-avf-eth-l2bdbasemaclrn-ndrpdr
+    2n1l-10ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-ndrpdr
+    2n1l-10ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr
+
+    ### 64b-?t?c-l2switching-base-i40e
+    2n1l-10ge2p1xxv710-eth-l2patch-ndrpdr
+    2n1l-10ge2p1xxv710-dot1q-l2xcbase-ndrpdr
+    2n1l-10ge2p1xxv710-eth-l2xcbase-ndrpdr
+    2n1l-10ge2p1xxv710-dot1q-l2bdbasemaclrn-ndrpdr
+    2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
+
+    ### 64b-?t?c-l2switching-base-scale-i40e
+    2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
+    2n1l-10ge2p1xxv710-eth-l2bdscale10kmaclrn-ndrpdr
+    2n1l-10ge2p1xxv710-eth-l2bdscale100kmaclrn-ndrpdr
+    2n1l-10ge2p1xxv710-eth-l2bdscale1mmaclrn-ndrpdr
+
 2n-skx-xxv710
 ~~~~~~~~~~~~~
 
-64b-2t1c-base_and_scale
------------------------
+64b-2t1c-l2switching-base-avf
+-----------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="ifrm37" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -46,8 +68,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr}
-            \label{fig:l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr}
+            \label{fig:2n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -57,7 +79,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="ifrm38" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-skx-xxv710-64b-2t1c-l2switching-base-avf-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -66,49 +88,19 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr}
-            \label{fig:l2sw-2n-skx-xxv710-64b-2t1c-base_and_scale-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-skx-xxv710-64b-2t1c-l2switching-base-avf-pdr}
+            \label{fig:2n-skx-xxv710-64b-2t1c-l2switching-base-avf-pdr}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-4t2c-base_and_scale
------------------------
+64b-2t1c-l2switching-base-i40e
+------------------------------
 
-.. raw:: html
 
-    <center>
-    <iframe id="ifrm39" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr.html"></iframe>
-    <p><br></p>
-    </center>
 
-.. raw:: latex
 
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr}
-            \label{fig:l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-ndr}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="ifrm40" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr}
-            \label{fig:l2sw-2n-skx-xxv710-64b-4t2c-base_and_scale-pdr}
-    \end{figure}
+64b-2t1c-l2switching-base-scale-i40e
+------------------------------------
