@@ -499,6 +499,7 @@ class PapiSocketExecutor(object):
                     reply = papi_fn(**command["api_args"])
             except (AttributeError, IOError) as err:
                 raise_from(AssertionError(err_msg), err, level="INFO")
+            logger.debug("Raw reply {reply!r}".format(reply=reply))
             # *_dump commands return list of objects, convert, ordinary reply.
             if not isinstance(reply, list):
                 reply = [reply]
