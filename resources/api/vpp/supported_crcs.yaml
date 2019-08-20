@@ -96,6 +96,7 @@
     ip_neighbor_add_del: '0x7a68a3c4'  # dev
     ip_neighbor_add_del_reply: '0x1992deab'  # dev
     ip_probe_neighbor: '0x2736142d'  # virl
+    ip_probe_neighbor_reply: '0xe8d4e804'  # virl
     ip_route_add_del: '0x83e086ce'  # dev
     ip_route_add_del_reply: '0x1992deab'  # dev
     ip_source_check_interface_add_del: '0x0a60152a'  # virl
