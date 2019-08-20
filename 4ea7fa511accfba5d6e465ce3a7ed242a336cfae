@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01bd637a_7ca2d87a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-20T11:56:43Z",
+      "side": 1,
+      "message": "It has never been added, because the test has never failed before.\nNot sure how it managed to pass with missing reply CRC, we probably have some bug in current CRC checks.",
+      "range": {
+        "startLine": 13,
+        "startChar": 44,
+        "endLine": 13,
+        "endChar": 64
+      },
+      "revId": "4ea7fa511accfba5d6e465ce3a7ed242a336cfae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
