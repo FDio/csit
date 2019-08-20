@@ -17,10 +17,12 @@ Stream profile:
  - Two streams sent in directions 0 --> 1 and 1 --> 0 at the same time.
  - Packet: ETH / DOT1Q / IP /
  - Direction 0 --> 1:
+   - Destination MAC address:       ba:dc:00:ff:ee:01
    - VLAN range:                    100
    - Source IP address range:       10.10.10.1 - 10.10.10.254
    - Destination IP address range:  20.20.20.1 - 20.20.20.254
  - Direction 1 --> 0:
+   - Destination MAC address:       ba:dc:00:ff:ee:01
    - VLAN range:                    200
    - Source IP address range:       20.20.20.1 - 20.20.20.254
    - Destination IP address range:  10.10.10.1 - 10.10.10.254
@@ -65,13 +67,13 @@ class TrafficStreams(TrafficStreamsBaseClass):
         """
 
         # Direction 0 --> 1
-        base_pkt_a = (Ether() /
+        base_pkt_a = (Ether(dst='ba:dc:00:ff:ee:01') /
                       Dot1Q(vlan=self.p1_vlan_start) /
                       IP(src=self.p1_src_start_ip,
                          dst=self.p1_dst_start_ip,
                          proto=61))
         # Direction 1 --> 0
-        base_pkt_b = (Ether() /
+        base_pkt_b = (Ether(dst='ba:dc:00:ff:ee:01') /
                       Dot1Q(vlan=self.p2_vlan_start) /
                       IP(src=self.p2_src_start_ip,
                          dst=self.p2_dst_start_ip,
