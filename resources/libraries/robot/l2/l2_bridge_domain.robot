@@ -688,8 +688,8 @@
 | | ... | ELSE | Set Variable | ${1}
 | | ${bd_id1}= | Evaluate | ${nf_nodes} * (${nf_chain} - 1) + ${nf_chain}
 | | ${bd_id2}= | Evaluate | ${nf_nodes} * ${nf_chain} + ${nf_chain}
-| | ${dut_str}= | Convert To Lowercase | ${dut}
 | | :FOR | ${dut} | IN | @{duts}
+| | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | | Add interface to bridge domain
 | | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${nf_chain}_1}
 | | | ... | ${bd_id1}

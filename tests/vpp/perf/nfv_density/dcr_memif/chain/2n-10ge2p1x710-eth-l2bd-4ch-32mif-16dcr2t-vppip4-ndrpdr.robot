@@ -84,6 +84,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
+| | When Initialize layer interface
+| | ... | count=${nf_chains}
 | | And Start containers for test
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | auto_scale=${False}
 | | And Initialize L2 Bridge Domain for multiple chains with memif pairs
