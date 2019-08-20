@@ -88,7 +88,7 @@
 | | When Initialize layer interface
 | | ... | count=${nf_chains}
 | | And Initialize layer dot1q
-| | ... | count=${nf_chains} | create=${False}
+| | ... | count=${nf_chains} | vlan_per_chain={False}
 | | And Initialize layer ip4vxlan
 | | ... | count=${nf_chains}
 | | And Initialize L2 bridge domains for multiple chains with Vhost-User

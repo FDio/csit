@@ -233,6 +233,45 @@
 | | | ... | count=${count}
 | | Set Test Variable | ${prev_layer} | bond
 
+| Initialize layer dot1q on node for chain
+| | [Documentation]
+| | ... | Optionally create tag popping subinterface per chain.
+| | ... | Return interface indices for dot1q layer interfaces,
+| | ... | or Nones if subinterfaces are not created.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ... | - id - Positive index of the chain. Type: integer
+| | ... | - vlan_per_chain - Whether to create vlan subinterface for each chain.
+| | ... |     Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize layer dot1q on node for chain \| DUT1 \| 1 \| True \|
+| | ...
+| | [Arguments] | ${dut} | ${id} | ${vlan_per_chain}=${True}
+| | ...
+| | ${dut_str}= | Convert To Lowercase | ${dut}
+| | Return From Keyword If | ${id} != ${1} and not ${vlan_per_chain}
+| | ... | ${NONE} | ${NONE}
+| | ${default}= | Evaluate | ${100} + ${id} - ${1}
+| | ${if1_vlan}= | Get Variable Value | \${${dut_str}_vlan1} | ${default}
+| | ${default}= | Evaluate | ${200} + ${id} - ${1}
+| | ${if2_vlan}= | Get Variable Value | \${${dut_str}_vlan2} | ${default}
+| | ${if1_name} | ${if1_index}= | Create Vlan Subinterface
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1}
+| | ... | ${if1_vlan}
+| | ${if2_name} | ${if2_index}= | Create Vlan Subinterface
+| | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2}
+| | ... | ${if2_vlan}
+| | Set Interface State | ${nodes['${dut}']} | ${if1_index} | up
+| | Set Interface State | ${nodes['${dut}']} | ${if2_index} | up
+| | Configure L2 tag rewrite method on interfaces
+| | ... | ${nodes['${dut}']} | ${if1_index} | TAG_REWRITE_METHOD=pop-1
+| | Configure L2 tag rewrite method on interfaces
+| | ... | ${nodes['${dut}']} | ${if2_index} | TAG_REWRITE_METHOD=pop-1
+| | Return From Keyword | ${if1_index} | ${if2_index}
+
 | Initialize layer dot1q on node
 | | [Documentation]
 | | ... | Dot1q interfaces and variables to be created on all DUT's node
@@ -240,42 +279,24 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
-| | ... | - count - Number of tagged interfaces. Type: integer
-| | ... | - create - Whether to create vlan subinterface for each chain.
+| | ... | - count - Number of chains. Type: integer
+| | ... | - vlan_per_chain - Whether to create vlan subinterface for each chain.
 | | ... |     Type: boolean
+| | ... | - start - Id of first chain, allows adding chains during test.
+| | ... |     Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize layer dot1q on node \| DUT1 \| 1 \| True \|
+| | ... | \| Initialize layer dot1q on node \| DUT1 \| 3 \| True \| 2 \|
 | | ...
-| | [Arguments] | ${dut} | ${count}=${1} | ${create}=${True}
+| | [Arguments] | ${dut} | ${count}=${1} | ${vlan_per_chain}=${True}
+| | ... | ${start}=${1}
 | | ...
 | | ${dut_str}= | Convert To Lowercase | ${dut}
-| | :FOR | ${id} | IN RANGE | 1 | ${count} + 1
-| | | ${default}= | Evaluate | ${100} + ${id} - ${1}
-| | | ${if1_vlan}= | Get Variable Value | \${${dut_str}_vlan1} | ${default}
-| | | ${default}= | Evaluate | ${200} + ${id} - ${1}
-| | | ${if2_vlan}= | Get Variable Value | \${${dut_str}_vlan2} | ${default}
-| | | ${if1_name} | ${if1_index}= | Run Keyword If
-| | | ... | ${create} or ${id} == ${1}
-| | | ... | Create Vlan Subinterface
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_1}
-| | | ... | ${if1_vlan}
-| | | ${if2_name} | ${if2_index}= | Run Keyword If
-| | | ... | ${create} or ${id} == ${1}
-| | | ... | Create Vlan Subinterface
-| | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_${id}_2}
-| | | ... | ${if2_vlan}
-| | | Run Keyword If | ${create} or ${id} == ${1}
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${if1_index} | up
-| | | Run Keyword If | ${create} or ${id} == ${1}
-| | | ... | Set Interface State | ${nodes['${dut}']} | ${if2_index} | up
-| | | Run Keyword If | ${create} or ${id} == ${1}
-| | | ... | Configure L2 tag rewrite method on interfaces
-| | | ... | ${nodes['${dut}']} | ${if1_index} | TAG_REWRITE_METHOD=pop-1
-| | | Run Keyword If | ${create} or ${id} == ${1}
-| | | ... | Configure L2 tag rewrite method on interfaces
-| | | ... | ${nodes['${dut}']} | ${if2_index} | TAG_REWRITE_METHOD=pop-1
+| | :FOR | ${id} | IN RANGE | ${start} | ${count} + 1
+| | | ${if1_index} | ${if2_index}= | Initialize layer dot1q on node for chain
+| | | ... | dut=${dut} | id=${id} | vlan_per_chain=${vlan_per_chain}
+| | | # First id results in non-None indices, after that _1_ are defined.
 | | | ${if1_index}= | Set Variable If | '${if1_index}' == '${NONE}'
 | | | ... | ${${dut_str}_dot1q_1_1} | ${if1_index}
 | | | ${if2_index}= | Set Variable If | '${if2_index}' == '${NONE}'
@@ -288,16 +309,19 @@
 | | ... | Dot1q interfaces and variables to be created on all DUT's interfaces.
 | | ...
 | | ... | *Arguments:*
-| | ... | - count - Number of tagged interfaces. Type: integer
-| | ... | - create - Whether to create vlan for each chain. Type: boolean
+| | ... | - count - Number of chains. Type: integer
+| | ... | - vlan_per_chain - Whether to create vlan subinterface for each chain.
+| | ... |     Type: boolean
+| | ... | - start - Id of first chain, allows adding chains during test.
+| | ... |     Type: integer
 | | ...
-| | ... | \| Initialize layer dot1q \| 1 \| True \|
+| | ... | \| Initialize layer dot1q \| 3 \| True \| 2 \|
 | | ...
-| | [Arguments] | ${count}=${1} | ${create}=${True}
+| | [Arguments] | ${count}=${1} | ${vlan_per_chain}=${True} | ${start}=${1}
 | | ...
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize layer dot1q on node | ${dut} | count=${count}
-| | | ... | create=${create}
+| | | ... | vlan_per_chain=${vlan_per_chain} | start=${start}
 | | Set Test Variable | ${prev_layer} | dot1q
 
 | Initialize layer ip4vxlan on node
@@ -310,21 +334,23 @@
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
 | | ... | - count - Number of vxlan interfaces. Type: integer
+| | ... | - start - Id of first chain, allows adding chains during test.
+| | ... |     Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize layer ip4vxlan on node \| DUT1 \| 1 \|
+| | ... | \| Initialize layer ip4vxlan on node \| DUT1 \| 3 \| 2 \|
 | | ...
-| | [Arguments] | ${dut} | ${count}=${1}
+| | [Arguments] | ${dut} | ${count}=${1} | ${start}=${1}
 | | ...
 | | ${dut_str}= | Convert To Lowercase | ${dut}
-| | VPP Interface Set IP Address
+| | Run Keyword If | "${start}" == "1" | VPP Interface Set IP Address
 | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_1_1}
 | | ... | 172.16.0.1 | 24
-| | VPP Interface Set IP Address
+| | Run Keyword If | "${start}" == "1" | VPP Interface Set IP Address
 | | ... | ${nodes['${dut}']} | ${${dut_str}_${prev_layer}_1_2}
 | | ... | 172.26.0.1 | 24
-| | :FOR | ${id} | IN RANGE | 1 | ${count} + 1
+| | :FOR | ${id} | IN RANGE | ${start} | ${count} + 1
 | | | ${subnet}= | Evaluate | ${id} - 1
 | | | ${vni}= | Evaluate | ${id} - 1
 | | | ${ip4vxlan_1}= | Create VXLAN interface
@@ -364,13 +390,16 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - count - Number of vxlan interfaces. Type: integer
+| | ... | - start - Id of first chain, allows adding chains during test.
+| | ... |     Type: integer
 | | ...
-| | ... | \| Initialize layer ip4vxlan \| 1 \|
+| | ... | \| Initialize layer ip4vxlan \| 3 \| 2 \|
 | | ...
-| | [Arguments] | ${count}=${1}
+| | [Arguments] | ${count}=${1} | ${start}=${1}
 | | ...
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize layer ip4vxlan on node | ${dut} | count=${count}
+| | ... | start=${start}
 | | Set Test Variable | ${prev_layer} | ip4vxlan
 
 | Configure vhost interfaces
