@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cec49f9a_5102d448",
+        "filename": "docs/csit-tests-select-list.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T13:18:12Z",
+      "side": 1,
+      "message": "remove \"2n1l-\" prefix",
+      "range": {
+        "startLine": 284,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 5
+      },
+      "revId": "bb1256a7c3aa68a6c1c73ce5c52e3f1f69471978",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "320acafe_d6e61e20",
+        "filename": "docs/csit-tests-select-list.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T13:18:12Z",
+      "side": 1,
+      "message": "remove \"2n1l-\" prefix",
+      "range": {
+        "startLine": 285,
+        "startChar": 0,
+        "endLine": 285,
+        "endChar": 5
+      },
+      "revId": "bb1256a7c3aa68a6c1c73ce5c52e3f1f69471978",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2fdf644a_0a0c4c3f",
+        "filename": "docs/csit-tests-select-list.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T13:18:12Z",
+      "side": 1,
+      "message": "remove \"2n1l-\" prefix",
+      "range": {
+        "startLine": 286,
+        "startChar": 0,
+        "endLine": 286,
+        "endChar": 5
+      },
+      "revId": "bb1256a7c3aa68a6c1c73ce5c52e3f1f69471978",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ee2ef8c4_34741460",
+        "filename": "docs/csit-tests-select-list.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T13:18:12Z",
+      "side": 1,
+      "message": "remove \"2n1l-\" prefix",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 5
+      },
+      "revId": "bb1256a7c3aa68a6c1c73ce5c52e3f1f69471978",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cc102045_8ad6f66f",
+        "filename": "docs/csit-tests-select-list.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T13:18:12Z",
+      "side": 1,
+      "message": "remove \"2n1l-\" prefix",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 288,
+        "endChar": 5
+      },
+      "revId": "bb1256a7c3aa68a6c1c73ce5c52e3f1f69471978",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
