@@ -31,8 +31,8 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4. IEEE\
 | ... | 802.1Q tagging is applied on link between DUT1 and DUT2.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge\
-| ... | domain and MAC learning enabled. DUT1 and DUT2 are tested
-| ... | with ${nic_name}.\
+| ... | domain and MAC learning enabled. DUT1 and DUT2 are tested\
+| ... | with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
