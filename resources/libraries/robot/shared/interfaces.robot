@@ -252,10 +252,14 @@
 | | ...
 | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | :FOR | ${id} | IN RANGE | 1 | ${count} + 1
+| | | ${if1_vlan}= | Get Variable Value | \${${dut_str}_vlan1}
 | | | ${default}= | Evaluate | ${100} + ${id} - ${1}
-| | | ${if1_vlan}= | Get Variable Value | \${${dut_str}_vlan1} | ${default}
+| | | ${if1_vlan}= | Set Variable If | '${if1_vlan}' == '${NONE}'
+| | | ... | ${default} | ${if1_vlan}
+| | | ${if2_vlan}= | Get Variable Value | \${${dut_str}_vlan2}
 | | | ${default}= | Evaluate | ${200} + ${id} - ${1}
-| | | ${if2_vlan}= | Get Variable Value | \${${dut_str}_vlan2} | ${default}
+| | | ${if2_vlan}= | Set Variable If | '${if2_vlan}' == '${NONE}'
+| | | ... | ${default} | ${if2_vlan}
 | | | ${if1_name} | ${if1_index}= | Run Keyword If
 | | | ... | ${create} or ${id} == ${1}
 | | | ... | Create Vlan Subinterface
