@@ -32,7 +32,7 @@
 | ... | *[Enc] Packet Encapsulations:* Dot1q-IPv4 for L2 switching of IPv4. \
 | ... | IEEE 802.1Q tagging is applied on both links TG-DUT1 .
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with:\
-| ... | 2 VLAN subinterfaces (VID 200 and 300),\
+| ... | 2 VLAN subinterfaces (VID 100 and 200),\
 | ... | 1 L2 BD with the 2 VLAN subinterfaces and a BVI,\
 | ... | 1 GBP L3 RD,\
 | ... | 1 GBP L2 BD with the L2 BD,\
