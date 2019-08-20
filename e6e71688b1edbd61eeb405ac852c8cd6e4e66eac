@@ -1,0 +1,1723 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d24c0865_12ab5cbf",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "IPsec with IPv4 Routing",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 20
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41ab24c8_34a21d87",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "Virtual Topology System",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 5
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "314c2812_cfcecac3",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "We do not have \"2n-skx\" section in the report today. Are you suggesting we add one? This will increase section nesting levels from current 4 to 5, and we currently only showing 3 levels in the browsable rtd-sphinx menu on the left.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 8
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "caf780e3_79c7af94",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "## LXC/DRC Container Memif\n### 2n-skx-xxv710\n#### 64b-?t?c-memif-base-i40e",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 29
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3086aba5_2f95b52b",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-ip4routing-base-scale-i40e",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "745a3d9c_2762aa1a",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-ip4routing-base-scale-avf",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 36
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "592a1301_3852d020",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "Suggest to move the avf section above i40e (dpdk driver) section.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 47
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcef9166_0c289ead",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-features-ip4routing-base-i40e",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 32
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a33bd17_ebae2538",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-ip4routing-base-scale-avf-i40e",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4599040_2f58044c",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "2n1l-10ge2p1x710-avf-ethip4-ip4base-ndrpdr.robot\n2n1l-10ge2p1x710-avf-ethip4-ip4scale2m-ndrpdr.robot\n2n1l-10ge2p1x710-dot1q-ip4base-ndrpdr.robot\n2n1l-10ge2p1x710-ethip4-ip4base-ndrpdr.robot\n2n1l-10ge2p1x710-ethip4-ip4scale2m-ndrpdr.robot",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 45
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a4b72e8_ea57f317",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 78b-?t?c-ip6routing-base-scale-i40e",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df33c5eb_d8ad2071",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 78b-?t?c-ip6routing-base-scale-i40e",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1077b5d_9cfd9d02",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-l2switching-base-avf",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "652bb271_dde2c74d",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "2n1l-10ge2p1xxv710-avf-eth-l2patch-ndrpdr.robot\n2n1l-10ge2p1xxv710-avf-eth-l2xcbase-ndrpdr.robot\n2n1l-10ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-ndrpdr.robot\n2n1l-10ge2p1xxv710-avf-eth-l2bdbasemaclrn-ndrpdr.robot\n2n1l-10ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr.robot",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 47
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6771ae3_8eae62ea",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-l2switching-base-i40e",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 35
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a3b03029_84217c2d",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "2n1l-10ge2p1xxv710-eth-l2patch-ndrpdr.robot\n2n1l-10ge2p1xxv710-dot1q-l2xcbase-ndrpdr.robot\n2n1l-10ge2p1xxv710-eth-l2xcbase-ndrpdr.robot\n2n1l-10ge2p1xxv710-dot1q-l2bdbasemaclrn-ndrpdr.robot\n2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr.robot",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 54
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1479facf_8da3d739",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-l2switching-base-scale-i40e",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 32
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e41c8b28_9d62a835",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr.robot\n2n1l-10ge2p1xxv710-eth-l2bdscale10kmaclrn-ndrpdr.robot\n2n1l-10ge2p1xxv710-eth-l2bdscale100kmaclrn-ndrpdr.robot\n2n1l-10ge2p1xxv710-eth-l2bdscale1mmaclrn-ndrpdr.robot",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 54
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8f79ae2_db74c4d8",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-l2switching-base-scale-avf-i40e",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1814dde3_3555ff9a",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "2n1l-10ge2p1x710-avf-dot1q-l2bdbasemaclrn-ndrpdr.robot\n2n1l-10ge2p1x710-avf-eth-l2bdbasemaclrn-ndrpdr.robot\n2n1l-10ge2p1x710-avf-eth-l2xcbase-ndrpdr.robot\n2n1l-10ge2p1x710-dot1q-l2bdbasemaclrn-ndrpdr.robot\n2n1l-10ge2p1x710-eth-l2bdbasemaclrn-ndrpdr.robot\n2n1l-10ge2p1x710-eth-l2bdscale1mmaclrn-ndrpdr.robot",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 45
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85e53445_3451bd3b",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-vhost-base-i40e",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 29
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "53cc2290_999386ed",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "2n1l-10ge2p1xxv710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr.robot\n2n1l-10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr.robot\n2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr.robot\n2n1l-10ge2p1xxv710-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr.robot",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 61
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "055954d2_26c2cb28",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-memif-base-i40e",
+      "range": {
+        "startLine": 129,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 29
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba5b1906_8df41316",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "10ge2p1xxv710-eth-l2xcbase-eth-2memif-1lxc-ndrpdr.robot\n10ge2p1xxv710-eth-l2xcbase-eth-2memif-1dcr-ndrpdr.robot\n10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr.robot\n10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr.robot\n10ge2p1xxv710-ethip4-ip4base-eth-2memif-1dcr-ndrpdr.robot",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 55
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4788d279_56b394e3",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "## IPsec with IPv4 Routing",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 21
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "303369c2_074c6c0a",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### imix-?t?c-ipsec-ip4routing-base-scale-i40e",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e391dc8f_67bffab0",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "10ge2p1xxv710-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr.robot\n10ge2p1xxv710-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.robot\n10ge2p1xxv710-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr.robot\n10ge2p1xxv710-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.robot\n10ge2p1xxv710-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr.robot\n10ge2p1xxv710-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr.robot",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 64
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "288ce695_eea0cdb1",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-ip4routing-base-scale-avf",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 36
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adba7f41_ca950cf7",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-ip4routing-base-scale-i40e",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "37977a81_cd176e29",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-feature-ip4routing-base-i40e",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 32
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96a89395_c9b8dd9e",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-ip4routing-base-scale-avf-i40e",
+      "range": {
+        "startLine": 172,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da33d09f_d5800dc5",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "10ge2p1x710-avf-ethip4-ip4base-ndrpdr.robot\n10ge2p1x710-avf-ethip4-ip4scale2m-ndrpdr.robot\n10ge2p1x710-dot1q-ip4base-ndrpdr.robot\n10ge2p1x710-ethip4-ip4base-ndrpdr.robot\n10ge2p1x710-ethip4-ip4scale2m-ndrpdr.robot",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 36
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8508b43c_0b75b145",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-ip4tunnel-base-scale-i40e",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "230df41b_bb483cfa",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 78b-?t?c-ip6routing-base-scale-i40e",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0d6bbe1_0bc00a61",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 78b-?t?c-ip6routing-base-scale-i40e",
+      "range": {
+        "startLine": 198,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2333222_bd59d8b0",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "Remove from the list. Covered in full-list, not in select-list.",
+      "range": {
+        "startLine": 202,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 42
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cb96ca84_c4dd26fd",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-l2switching-base-avf",
+      "range": {
+        "startLine": 212,
+        "startChar": 0,
+        "endLine": 212,
+        "endChar": 35
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a0c9a60_f499f8fa",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-l2switching-base-i40e",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "28a441b7_92ba00fc",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "10ge2p1xxv710-dot1q-l2xcbase-ndrpdr\n10ge2p1xxv710-eth-l2xcbase-ndrpdr\n10ge2p1xxv710-dot1q-l2bdbasemaclrn-ndrpdr\n10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr",
+      "range": {
+        "startLine": 218,
+        "startChar": 0,
+        "endLine": 223,
+        "endChar": 42
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9df9d6e1_6aa0f0e2",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-l2switching-base-scale-i40e",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 32
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b34fc2db_5b04777f",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "10ge2p1xxv710-eth-l2patch-ndrpdr\n10ge2p1xxv710-eth-l2xcbase-ndrpdr\n10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr\n10ge2p1xxv710-eth-l2bdscale10kmaclrn-ndrpdr\n10ge2p1xxv710-eth-l2bdscale100kmaclrn-ndrpdr\n10ge2p1xxv710-eth-l2bdscale1mmaclrn-ndrpdr",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 41
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "697f8a6b_a6f17dc0",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-feature-l2switching-base-i40e",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 232,
+        "endChar": 38
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad579e9d_6db1bdb0",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-l2switching-base-scale-avf-i40e",
+      "range": {
+        "startLine": 241,
+        "startChar": 0,
+        "endLine": 241,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c2f4ee0_f5a260d1",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "10ge2p1x710-avf-eth-l2patch-ndrpdr\n10ge2p1x710-avf-eth-l2xcbase-ndrpdr\n10ge2p1x710-avf-eth-l2bdbasemaclrn-ndrpdr\n10ge2p1x710-dot1q-l2bdbasemaclrn-ndrpdr.robot\n10ge2p1x710-eth-l2bdbasemaclrn-ndrpdr\n10ge2p1x710-eth-l2bdscale1mmaclrn-ndrpdr",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 40
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e270aa28_153bd4a2",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 78b-?t?c-srv6-ip6routing-base-i40e",
+      "range": {
+        "startLine": 251,
+        "startChar": 0,
+        "endLine": 251,
+        "endChar": 29
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f15d931_2f72b34e",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-vhost-base-i40e",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 29
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c9009da_3621a786",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-link-bonding-vhost-base-i40e",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 34
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a3ceea5_1acd9ef6",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "10ge2p1xxv710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 73
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4357143c_5550eee2",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "## Virtual Topology System",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 6
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d1875fc_e87e6190",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-vts-l2switching-base-i40e",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 280,
+        "endChar": 29
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea80fa5e_a522029a",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 8
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e1c79b74_4c3a1efd",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### imix-?t?c-ipsec-ip4routing-base-scale-sw-i40e",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 294,
+        "endChar": 36
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16a42077_6b0712ea",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### imix-?t?c-ipsec-ip4routing-base-scale-hw-i40e",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 36
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38ceeb4a_fbc10561",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "10ge2p1xl710-ethip4ipsec1tnlhw-ip4base-int-aes256gcm-ndrpdr\n10ge2p1xl710-ethip4ipsec1tnlhw-ip4base-int-aes128cbc-hmac512sha-ndrpdr\n10ge2p1xl710-ethip4ipsec1000tnlhw-ip4base-int-aes256gcm-ndrpdr\n10ge2p1xl710-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac512sha-ndrpdr",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 306,
+        "endChar": 62
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57bdbc07_272f932f",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-ip4routing-base-scale-avf-i40e",
+      "range": {
+        "startLine": 311,
+        "startChar": 0,
+        "endLine": 311,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe446886_163a2dbe",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-ip4tunnel-base-i40e",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 29
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4a38e49_abfed5aa",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "10ge2p1xl710-ethip4vxlan-l2xcbase-ndrpdr\n10ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-ndrpdr",
+      "range": {
+        "startLine": 322,
+        "startChar": 0,
+        "endLine": 323,
+        "endChar": 40
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e17ecb1_5c1ad69e",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 78b-?t?c-ip6routing-base-scale-i40e",
+      "range": {
+        "startLine": 328,
+        "startChar": 0,
+        "endLine": 328,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e9917965_5f5ec32c",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "Remove.",
+      "range": {
+        "startLine": 333,
+        "startChar": 0,
+        "endLine": 338,
+        "endChar": 41
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f87ed5b_6f5ed96a",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-l2switching-base-avf",
+      "range": {
+        "startLine": 343,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 35
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff8c1fae_6ce8bbd2",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "10ge2p1xl710-avf-eth-l2patch-ndrpdr\n10ge2p1xl710-avf-eth-l2xcbase-ndrpdr\n10ge2p1xl710-avf-eth-l2bdbasemaclrn-ndrpdr",
+      "range": {
+        "startLine": 344,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 36
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4fc9f52b_e5678337",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-l2switching-base-scale-i40e",
+      "range": {
+        "startLine": 348,
+        "startChar": 0,
+        "endLine": 348,
+        "endChar": 30
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05d0d07b_8c72ebb5",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "10ge2p1xl710-eth-l2patch-ndrpdr.robot\n10ge2p1xl710-dot1q-l2xcbase-ndrpdr.robot\n10ge2p1xl710-eth-l2xcbase-ndrpdr.robot\n10ge2p1xl710-dot1q-l2bdbasemaclrn-ndrpdr.robot\n10ge2p1xl710-eth-l2bdbasemaclrn-ndrpdr.robot\n10ge2p1xl710-eth-l2bdscale1mmaclrn-ndrpdr.robot",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 353,
+        "endChar": 0
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a551864_53ee016c",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "Remove.",
+      "range": {
+        "startLine": 354,
+        "startChar": 0,
+        "endLine": 359,
+        "endChar": 40
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e703608_07efa3b8",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 78b-?t?c-srv6-ip6routing-base-i40e",
+      "range": {
+        "startLine": 364,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 29
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f4047cf_b270ebf4",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### 64b-?t?c-vhost-base-i40e",
+      "range": {
+        "startLine": 375,
+        "startChar": 0,
+        "endLine": 375,
+        "endChar": 29
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0d3ff2c_060c961a",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "add:\n## Virtual Topology System\n\n### 3n-hsw-xl710\n#### 64b-?t?c-vts-l2switching-base-i40e\n10ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr.robot\n10ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr.robot\n10ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr.robot",
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bec8d3c_e23e4770",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "### 2n-skx-xxv710",
+      "range": {
+        "startLine": 385,
+        "startChar": 0,
+        "endLine": 385,
+        "endChar": 25
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f601c94e_0d497086",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### imix-?t?c-vhost-chains",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 23
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67611578_2d086f7b",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "### 2n-skx-xxv710",
+      "range": {
+        "startLine": 414,
+        "startChar": 0,
+        "endLine": 414,
+        "endChar": 25
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "195587a8_204d4b2d",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### imix-?t?c-dot1qip4vxlan-vhost-chains",
+      "range": {
+        "startLine": 415,
+        "startChar": 0,
+        "endLine": 415,
+        "endChar": 33
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97fe4b1c_cdb0be30",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "### 2n-skx-xxv710",
+      "range": {
+        "startLine": 425,
+        "startChar": 0,
+        "endLine": 425,
+        "endChar": 25
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50042bf3_ed715937",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### imix-?t?c-memif-chains",
+      "range": {
+        "startLine": 426,
+        "startChar": 0,
+        "endLine": 426,
+        "endChar": 23
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1f03033c_25a21d56",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "### 2n-skx-xxv710",
+      "range": {
+        "startLine": 453,
+        "startChar": 0,
+        "endLine": 453,
+        "endChar": 25
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1839553_d5ceee93",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-20T21:34:37Z",
+      "side": 1,
+      "message": "#### imix-?t?c-memif-pipelines",
+      "range": {
+        "startLine": 454,
+        "startChar": 0,
+        "endLine": 454,
+        "endChar": 23
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
