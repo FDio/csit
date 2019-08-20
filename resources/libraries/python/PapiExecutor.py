@@ -299,6 +299,8 @@ class PapiSocketExecutor(object):
                 break
         else:
             raise RuntimeError("Failed to connect to VPP over a socket.")
+        logger.debug("Connected, message table: {tab!r}".format(
+            tab=vpp_instance.transport.message_table))
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
@@ -499,6 +501,7 @@ class PapiSocketExecutor(object):
                     reply = papi_fn(**command["api_args"])
             except (AttributeError, IOError) as err:
                 raise_from(AssertionError(err_msg), err, level="INFO")
+            logger.debug("Raw reply {reply!r}".format(reply=reply))
             # *_dump commands return list of objects, convert, ordinary reply.
             if not isinstance(reply, list):
                 reply = [reply]

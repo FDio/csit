@@ -289,8 +289,10 @@ class VppApiCrcChecker(object):
         :type api_name: str or unicode
         :raises RuntimeError: If no verified CRC for the api_name is found.
         """
+        logger.debug("Checking API name {name!r} ...".format(name=api_name))
         api_name = _str(api_name)
         if api_name in self._reported:
+            logger.debug("... already reported.")
             return
         old_expected = self._expected
         new_expected = old_expected.copy()
@@ -302,8 +304,10 @@ class VppApiCrcChecker(object):
         if new_expected:
             # Some collections recognized the message name.
             self._expected = new_expected
+            logger.debug("... recognized.")
             return
         crc = self._found.get(api_name, None)
+        logger.debug("... not recongnized, crc {crc}.".format(crc=crc))
         self._reported[api_name] = crc
         self.raise_or_log(
             RuntimeError("No active collection has API {api!r}"
