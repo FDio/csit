@@ -118,6 +118,7 @@
 | | ...
 | | Configure SR Policy | ${dut_node} | ${bsid} | ${sid_list} | mode=${mode}
 
+# FIXME: Never used?
 | Delete SR Policy on DUT
 | | [Documentation] | Delete SRv6 policy on the given DUT node.
 | | ...
