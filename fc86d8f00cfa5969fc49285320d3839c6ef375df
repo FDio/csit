@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cfebcf40_e658bb11",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:09:33Z",
+      "side": 1,
+      "message": "Suggest to remove 2c, as test results data is already presented in multi-core speedup graphs for 1c, 2c, 4c and as such is more complete. Would be good to add stdev values to hover data in multi-core speedup graphs as it\u0027s curently missing.\n\nRemoving 2c from throughput graphs will reduce their number by half, making it easier to browse.",
+      "range": {
+        "startLine": 2,
+        "startChar": 23,
+        "endLine": 2,
+        "endChar": 27
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93999285_557fb17c",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:09:33Z",
+      "side": 1,
+      "message": "Suggest to add 4c results here too, to make it complete.",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 25
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "24938271_1a11b260",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:09:33Z",
+      "side": 1,
+      "message": "Per earlier comment, pls add stdev values to hover data in multi-core speedup graphs as it\u0027s curently missing.",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 33
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
