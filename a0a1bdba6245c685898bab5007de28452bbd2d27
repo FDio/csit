@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1290736d_eeabc8af",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-21T10:39:08Z",
+      "side": 1,
+      "message": "Ok. Now I see we are setting this at [0]. Do we want to do that, though? We can skip setting it, or maybe we can set 100/200 already there.\nThis is getting to a state we need a centralized .rst document for layered setup, explaining which test variables should be set by which keywords to which values, with multiple examples.\nOr preferably simplify the logic so it can be decomposed into keyword [Documentation]s.\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-perf-verify-master-2n-skx/761/archives/log.html.gz#s1-s1-s1-s2-s1-t1-k2-k6-k1-k1-k1-k4",
+      "range": {
+        "startLine": 257,
+        "startChar": 56,
+        "endLine": 257,
+        "endChar": 65
+      },
+      "revId": "a0a1bdba6245c685898bab5007de28452bbd2d27",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
