@@ -1,0 +1,32 @@
+# container_memif
+ndrpdrAND${default_nic}ANDmemifANDbaseNOTnf_densityANDsrv6
+
+# crypto
+ndrpdrAND${default_nic}ANDipsecsw
+
+# ip4
+ndrpdrAND${default_nic}ANDip4fwdNOTipsecANDmemifANDvhostANDvxlan
+ndrpdrANDip4baseNOTdot1q
+ndrpdrANDip4baseANDdot1qNOTdrv_avf
+ndrpdrANDip4fwdANDscaleANDfib_2m
+
+# ip4_tunnels + vts
+ndrpdrAND${default_nic}ANDvxlan
+ndrpdrAND${default_nic}ANDlisp
+
+# ip6 + ip6_tunnels + srv6
+ndrpdrAND${default_nic}ANDip6fwd
+ndrpdrANDip6base
+ndrpdrANDip6fwdANDscaleANDfib_2m
+
+# l2
+ndrpdrAND${default_nic}ANDl2bdmaclrnNOTmemifANDvhostANDvxlanANDnf_density
+ndrpdrAND${default_nic}ANDl2xcfwdNOTmemifANDvhostANDvxlan
+ndrpdrAND${default_nic}ANDl2patchNOTmemifANDvhostANDvxlan
+ndrpdrANDl2bdmaclrnANDbaseNOTnf_density
+ndrpdrANDl2xcfwdANDbaseNOTdot1q
+ndrpdrANDl2bdmaclrnANDscaleANDfib_1mNOTnf_density
+
+# vm_vhost
+ndrpdrAND${default_nic}ANDvhostANDbaseNOTnf_densityANDlbond_2l
+ndrpdrANDANDvhostANDlbond_2l
