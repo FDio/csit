@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e6b2771f_78a7d633",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-08-21T15:58:26Z",
+      "side": 1,
+      "message": "I had removed most of the unused parameters. I have an query with the CLI commands, upon getting those clarified I shall fix them completely.",
+      "parentUuid": "e4bef1a7_d9f2d9ad",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 31
+      },
+      "revId": "b9106e574d6c201e7771f3926373a66cbc348dc9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "acdc0e08_947178e4",
         "filename": "resources/libraries/python/Policer.py",
         "patchSetId": 14
@@ -36,6 +60,30 @@
       "writtenOn": "2019-08-20T08:14:42Z",
       "side": 1,
       "message": "This can be inhaled by parameters",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 70
+      },
+      "revId": "b9106e574d6c201e7771f3926373a66cbc348dc9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32896e1a_4a3d6caf",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-08-21T15:58:26Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "acdc0e08_947178e4",
       "range": {
         "startLine": 271,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "e79349f7_61ba294a",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-08-21T15:58:26Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "a5817541_938ef1f6",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 41
+      },
+      "revId": "b9106e574d6c201e7771f3926373a66cbc348dc9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "204d11a3_27a9bcea",
         "filename": "resources/libraries/robot/features/policer.robot",
         "patchSetId": 14
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "1f118ae0_f4522f56",
+        "filename": "resources/libraries/robot/features/policer.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-08-21T15:58:26Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "204d11a3_27a9bcea",
+      "range": {
+        "startLine": 29,
+        "startChar": 83,
+        "endLine": 29,
+        "endChar": 84
+      },
+      "revId": "b9106e574d6c201e7771f3926373a66cbc348dc9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f391ad61_384216d5",
         "filename": "resources/libraries/robot/features/policer.robot",
         "patchSetId": 14
@@ -105,6 +201,24 @@
       "writtenOn": "2019-08-20T08:14:42Z",
       "side": 1,
       "message": "No space at the end.",
+      "revId": "b9106e574d6c201e7771f3926373a66cbc348dc9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3714fc53_f4498d98",
+        "filename": "resources/libraries/robot/features/policer.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1817
+      },
+      "writtenOn": "2019-08-21T15:58:26Z",
+      "side": 1,
+      "message": "Resolved",
+      "parentUuid": "f391ad61_384216d5",
       "revId": "b9106e574d6c201e7771f3926373a66cbc348dc9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
