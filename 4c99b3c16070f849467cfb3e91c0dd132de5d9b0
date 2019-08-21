@@ -22,6 +22,30 @@
       "revId": "4c99b3c16070f849467cfb3e91c0dd132de5d9b0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0ec164a4_ded0f9f1",
+        "filename": "resources/libraries/robot/overlay/srv6.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-21T16:00:40Z",
+      "side": 1,
+      "message": "There was more to remove, and I am not sure I got everything. In order to avoid re-checking this Change, I have put those edits into the subsequent https://gerrit.fd.io/r/c/csit/+/21437",
+      "parentUuid": "15c5e11e_82a2dde9",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 1
+      },
+      "revId": "4c99b3c16070f849467cfb3e91c0dd132de5d9b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
