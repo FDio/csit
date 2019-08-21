@@ -68,6 +68,247 @@
       "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d94cc626_1f9de75e",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:43:49Z",
+      "side": 1,
+      "message": "2n1l-10ge2p1xxv710-avf-eth-l2patch-ndrpdr\n2n1l-10ge2p1xxv710-avf-eth-l2xcbase-ndrpdr\n2n1l-10ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-ndrpdr\n2n1l-10ge2p1xxv710-avf-eth-l2bdbasemaclrn-ndrpdr\n2n1l-10ge2p1xxv710-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 54
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc06d89f_ae294387",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:43:49Z",
+      "side": 1,
+      "message": "2n1l-10ge2p1x710-avf-eth-l2xcbase-ndrpdr\n2n1l-10ge2p1x710-avf-dot1q-l2bdbasemaclrn-ndrpdr\n2n1l-10ge2p1x710-avf-eth-l2bdbasemaclrn-ndrpdr\n2n1l-10ge2p1x710-dot1q-l2bdbasemaclrn-ndrpdr\n2n1l-10ge2p1x710-eth-l2bdbasemaclrn-ndrpdr\n2n1l-10ge2p1x710-eth-l2bdscale1mmaclrn-ndrpdr",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d08da3f7_756458cc",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:43:49Z",
+      "side": 1,
+      "message": "Remove, as avf tests are not working on hsw.",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 42
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "526749be_15309987",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:43:49Z",
+      "side": 1,
+      "message": "### 64b-?t?c-ip4routing-base-scale-i40e",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 43
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "207509a9_d963e0c1",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:43:49Z",
+      "side": 1,
+      "message": "Remove, as avf tests are not working on hsw.",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 41
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9072748_a6feade4",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:43:49Z",
+      "side": 1,
+      "message": "10ge2p1xxv710-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr",
+      "range": {
+        "startLine": 256,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 56
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "168a7cc1_91ca8946",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:43:49Z",
+      "side": 1,
+      "message": "10ge2p1xxv710-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr\n\nRemoved 2lbvpplacp as they don\u0027t work with xxv710 NICs, not enough 25GE links.\nAdded untagged and dot1q baseline references, rearranged per dotq first, untagged logic.",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 73
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4ee04bf9_1973b89d",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:43:49Z",
+      "side": 1,
+      "message": "add new section to capture 2lbvpplacp tests:\n\n## 3n-skx-x710\n#### 64b-?t?c-link-bonding-vhost-base-i40e\n10ge2p1x710-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1x710-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr.robot\n10ge2p1x710-2lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr.robot\n10ge2p1x710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr\n10ge2p1x710-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr.robot\n10ge2p1x710-2lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr.robot",
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ee4d5e8_3dd5dcb8",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:43:49Z",
+      "side": 1,
+      "message": "2n1l-10ge2p1xxv710-eth-l2xcbase-eth-2memif-1dcr-ndrpdr\n2n1l-10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr\n2n1l-10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr\n2n1l-10ge2p1xxv710-ethip4-ip4base-eth-2memif-1dcr-ndrpdr",
+      "range": {
+        "startLine": 281,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 56
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7a84a7b_15d560b4",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:43:49Z",
+      "side": 1,
+      "message": "10ge2p1xl710-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-ndrpdr\n10ge2p1xl710-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr\n10ge2p1xl710-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-ndrpdr\n10ge2p1xl710-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr\n10ge2p1xl710-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-ndrpdr\n10ge2p1xl710-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-ndrpdr",
+      "range": {
+        "startLine": 307,
+        "startChar": 0,
+        "endLine": 312,
+        "endChar": 63
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "434c3cff_21e52f4f",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T13:43:49Z",
+      "side": 1,
+      "message": "### 2n-skx-xxv710\n#### imix-?t?c-vhost-chains-dot1qip4vxlan\n\n2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-1ch-2vh-1vm1t-testpmd-ndrpdr.robot\n2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd-ndrpdr.robot\n2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-4ch-8vh-4vm1t-testpmd-ndrpdr.robot\n2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-6ch-12vh-6vm1t-testpmd-ndrpdr.robot\n2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-8ch-16vh-8vm1t-testpmd-ndrpdr.robot\n2n-10ge2p1xxv710-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr.robot",
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
