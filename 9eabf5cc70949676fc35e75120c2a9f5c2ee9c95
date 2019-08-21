@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "bda5e741_8a7ec85b",
+        "filename": "docs/csit-tests-select-list-2n-skx.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-21T13:10:03Z",
+      "side": 1,
+      "message": "I see the previous TCP change is there, so should be no risk cherry-picking also the autogen update. Prepared: https://gerrit.fd.io/r/c/csit/+/21432",
+      "parentUuid": "c23138bb_28a85634",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 1
+      },
+      "revId": "9eabf5cc70949676fc35e75120c2a9f5c2ee9c95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a8ad7d6c_fb597b29",
         "filename": "docs/csit-tests-select-list-3n-hsw.md",
         "patchSetId": 3
