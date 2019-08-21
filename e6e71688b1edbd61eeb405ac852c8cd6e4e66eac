@@ -3186,6 +3186,30 @@
     },
     {
       "key": {
+        "uuid": "6b3c303d_c05480b1",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-21T11:23:15Z",
+      "side": 1,
+      "message": "Both as that\u0027s what we are doing for all other tests. But I wonder if we could improve the way we present NDR and PDR result to facilitate easier comparison.",
+      "parentUuid": "7c0454cc_eab9d5fd",
+      "range": {
+        "startLine": 385,
+        "startChar": 0,
+        "endLine": 385,
+        "endChar": 25
+      },
+      "revId": "e6e71688b1edbd61eeb405ac852c8cd6e4e66eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f601c94e_0d497086",
         "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
         "patchSetId": 2
