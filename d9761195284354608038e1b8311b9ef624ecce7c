@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "55437129_7a610e2c",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 47
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-21T11:05:08Z",
+      "side": 1,
+      "message": "Hmm, I probably wanted each function to have its own subtype support, but then changed my mind without realizing raising here becomes better again. Will fix.",
+      "parentUuid": "4aaa82b6_924df410",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 6
+      },
+      "revId": "d9761195284354608038e1b8311b9ef624ecce7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8caa31d3_f6c90c51",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 47
