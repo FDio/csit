@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4aaa82b6_924df410",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 47
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-21T09:34:10Z",
+      "side": 1,
+      "message": "Why not to raise it here?\nCurrently you need to have explicit lines in every function for raise.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 6
+      },
+      "revId": "d9761195284354608038e1b8311b9ef624ecce7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8caa31d3_f6c90c51",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 47
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-21T09:34:10Z",
+      "side": 1,
+      "message": "This is funny code.",
+      "range": {
+        "startLine": 103,
+        "startChar": 37,
+        "endLine": 103,
+        "endChar": 53
+      },
+      "revId": "d9761195284354608038e1b8311b9ef624ecce7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fe6c5b6b_0434d883",
+        "filename": "resources/libraries/robot/performance/performance_limits.robot",
+        "patchSetId": 47
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-21T09:34:10Z",
+      "side": 1,
+      "message": "TODO: Candidate for rewriting to python. This is starting to be a mess.",
+      "revId": "d9761195284354608038e1b8311b9ef624ecce7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0d6c9eed_9fbf8b5a",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 47
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-21T09:34:10Z",
+      "side": 1,
+      "message": "Please see my fix in 21405, this will not cover all cases.",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 73
+      },
+      "revId": "d9761195284354608038e1b8311b9ef624ecce7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80ba045e_7b02f5cb",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 47
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-21T09:34:10Z",
+      "side": 1,
+      "message": "I wanted to avoid \"chains\" as code is usable outside of VM/DRC world. It is rather traffic flows? or leave just interfaces here.",
+      "range": {
+        "startLine": 312,
+        "startChar": 30,
+        "endLine": 312,
+        "endChar": 36
+      },
+      "revId": "d9761195284354608038e1b8311b9ef624ecce7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "38c72316_0a0b3754",
+        "filename": "resources/tools/trex/trex_stateless_stop.py",
+        "patchSetId": 47
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-21T09:34:10Z",
+      "side": 1,
+      "message": "indent.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 8
+      },
+      "revId": "d9761195284354608038e1b8311b9ef624ecce7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ae51a34_dbd530f0",
+        "filename": "tests/vpp/perf/nfv_density/vm_vhost/chain_dot1qip4vxlan/2n-10ge2p1x710-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm2t-testpmd-reconf.robot",
+        "patchSetId": 47
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-21T09:34:10Z",
+      "side": 1,
+      "message": "in parent patches i decided to align naming here and put numbers there, optional but nice to have same.",
+      "range": {
+        "startLine": 30,
+        "startChar": 23,
+        "endLine": 30,
+        "endChar": 28
+      },
+      "revId": "d9761195284354608038e1b8311b9ef624ecce7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
