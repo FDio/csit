@@ -97,6 +97,7 @@
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${False} | vnf=testpmd_io
 | | Then Find NDR and PDR intervals using optimized search
+| | Fail
 
 *** Test Cases ***
 | tc01-118B-1c-dot1qip4vxlan-l2bd-10ch-20vh-10vm1t-testpmd-ndrpdr

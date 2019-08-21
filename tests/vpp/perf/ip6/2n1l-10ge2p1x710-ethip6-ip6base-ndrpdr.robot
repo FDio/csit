@@ -74,6 +74,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding in circular topology
 | | Then Find NDR and PDR intervals using optimized search
+| | Fail
 
 *** Test Cases ***
 | tc01-78B-1c-ethip6-ip6base-ndrpdr
