@@ -25,7 +25,7 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *RFC2544: Pkt throughput IPv4 test cases with ACL*
+| Documentation | *RFC2544: Packet throughput IPv4 test cases with ACL*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
@@ -65,6 +65,7 @@
 | ${port_step}= | ${1}
 | ${trex_stream1_subnet}= | 10.10.10.0/24
 | ${trex_stream2_subnet}= | 20.20.20.0/24
+# Traffic profile:
 | ${traffic_profile}= | trex-sl-2n-ethip4udp-10u1000p-conc
 
 *** Keywords ***
