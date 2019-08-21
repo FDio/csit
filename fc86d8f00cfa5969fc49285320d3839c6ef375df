@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "11c6fa49_a1d9e878",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfebcf40_e658bb11",
+      "range": {
+        "startLine": 2,
+        "startChar": 23,
+        "endLine": 2,
+        "endChar": 27
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93999285_557fb17c",
         "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "6845081e_a2c6ef0e",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93999285_557fb17c",
+      "range": {
+        "startLine": 3,
+        "startChar": 17,
+        "endLine": 3,
+        "endChar": 25
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24938271_1a11b260",
         "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2019-08-21T13:09:33Z",
       "side": 1,
       "message": "Per earlier comment, pls add stdev values to hover data in multi-core speedup graphs as it\u0027s curently missing.",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 33
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef1fb212_cc22de2a",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Will be added in a separate patch",
+      "parentUuid": "24938271_1a11b260",
       "range": {
         "startLine": 4,
         "startChar": 2,
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "d3b8a921_720c3a22",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d94cc626_1f9de75e",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 54
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc06d89f_ae294387",
         "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
         "patchSetId": 3
@@ -114,6 +210,30 @@
       "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60154678_bfa5fbcb",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc06d89f_ae294387",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 45
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "0f339fda_65a4a189",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d08da3f7_756458cc",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 42
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "526749be_15309987",
         "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
         "patchSetId": 3
@@ -160,6 +304,30 @@
       "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7dd3807f_786eaf48",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "526749be_15309987",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 43
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "b823a0bb_b3a51c05",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "207509a9_d963e0c1",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 41
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d9072748_a6feade4",
         "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
         "patchSetId": 3
@@ -206,6 +398,30 @@
       "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ab644bb3_4a1922b7",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9072748_a6feade4",
+      "range": {
+        "startLine": 256,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 56
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "f03b0164_e7c26b9e",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "168a7cc1_91ca8946",
+      "range": {
+        "startLine": 263,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 73
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4ee04bf9_1973b89d",
         "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
         "patchSetId": 3
@@ -246,6 +486,24 @@
       "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cca19167_ff0d854b",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ee04bf9_1973b89d",
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -272,6 +530,30 @@
     },
     {
       "key": {
+        "uuid": "998b9bc7_b75e15ee",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ee4d5e8_3dd5dcb8",
+      "range": {
+        "startLine": 281,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 56
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7a84a7b_15d560b4",
         "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
         "patchSetId": 3
@@ -295,6 +577,30 @@
     },
     {
       "key": {
+        "uuid": "ffd5a8c1_83c59c23",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7a84a7b_15d560b4",
+      "range": {
+        "startLine": 307,
+        "startChar": 0,
+        "endLine": 312,
+        "endChar": 63
+      },
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "434c3cff_21e52f4f",
         "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
         "patchSetId": 3
@@ -309,6 +615,24 @@
       "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e01e185_506d2edf",
+        "filename": "resources/tools/presentation/doc/pic/report_test_groups.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-08-21T14:03:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "434c3cff_21e52f4f",
+      "revId": "fc86d8f00cfa5969fc49285320d3839c6ef375df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
