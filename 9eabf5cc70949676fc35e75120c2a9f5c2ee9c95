@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "b160a7ce_7bb407b8",
+        "filename": "docs/csit-tests-select-list-2n-skx.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-21T11:43:04Z",
+      "side": 1,
+      "message": "Should by done by Vratko",
+      "parentUuid": "618e787c_c781b455",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 1
+      },
+      "revId": "9eabf5cc70949676fc35e75120c2a9f5c2ee9c95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8ad7d6c_fb597b29",
         "filename": "docs/csit-tests-select-list-3n-hsw.md",
         "patchSetId": 3
