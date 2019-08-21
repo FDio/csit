@@ -33,13 +33,15 @@ class CoreDumpUtil(object):
     # "TEST CASE" respectively.
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
 
-    def __init__(self):
+    def __init__(self, create=False):
         """Initialize CoreDumpUtil class."""
         # Corekeeper is configured.
         self._corekeeper_configured = False
         # Enable setting core limit for process. This can be used to prevent
         # library to further set the core limit for unwanted behavior.
         self._core_limit_enabled = True
+        # Trigger core creation even if VPP did not crash.
+        self._create = create
 
     def set_core_limit_enabled(self):
         """Enable setting of core limit for PID."""
@@ -146,7 +148,23 @@ class CoreDumpUtil(object):
             except RuntimeError:
                 # If compress was not sucessfull ignore error and skip further
                 # processing.
-                continue
+
+                # Core was not there, shold we create it?
+                if not (self.is_core_limit_enabled() and self._create):
+                    continue
+                try:
+                    pid = DUTSetup.get_vpp_pid(node)
+                    gcore_cmd = "cd {dir} && sudo gcore {pid}".format(
+                        dir=Constants.CORE_DUMP_DIR, pid=pid)
+                    exec_cmd_no_error(node, gcore_cmd, timeout=3600)
+                    # Reuse the compression command.
+                    exec_cmd_no_error(node, command, timeout=3600)
+                except RuntimeError:
+                    # Something went wrong,
+                    # but we are in a teardown, let it continue.
+                    continue
+
+            # Proceed with crashed or requested core.
 
             local_path = 'archive/{name}'.format(name=name)
             remote_path = '{dir}/{name}'.format(dir=Constants.CORE_DUMP_DIR,
