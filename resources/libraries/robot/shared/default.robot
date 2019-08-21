@@ -22,7 +22,7 @@
 | ...
 | Library | resources.libraries.python.Classify.Classify
 | Library | resources.libraries.python.CpuUtils
-| Library | resources.libraries.python.CoreDumpUtil | create=${False}
+| Library | resources.libraries.python.CoreDumpUtil | create=${True}
 | Library | resources.libraries.python.Cop
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.L2Util
