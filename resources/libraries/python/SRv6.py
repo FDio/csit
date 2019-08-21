@@ -206,27 +206,6 @@ class SRv6(object):
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def delete_sr_localsid(node, local_sid):
-        """Delete SRv6 LocalSID on the given node.
-
-        :param node: Given node to delete localSID on.
-        :param local_sid: LocalSID IPv6 address.
-        :type node: dict
-        :type local_sid: str
-        """
-        cmd = 'sr_localsid_add_del'
-        args = dict(
-            is_del=1,
-            localsid=SRv6.create_srv6_sid_object(local_sid),
-            sw_if_index=Constants.BITWISE_NON_ZERO,
-        )
-        err_msg = 'Failed to delete SR localSID {lsid} on host {host}'.format(
-            lsid=local_sid, host=node['host'])
-
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_reply(err_msg)
-
-    @staticmethod
     def show_sr_localsids(node):
         """Show SRv6 LocalSIDs on the given node.
 
@@ -261,23 +240,6 @@ class SRv6(object):
             sids=SRv6.create_srv6_sid_list(sid_list)
         )
         err_msg = 'Failed to add SR policy for BindingSID {bsid} ' \
-                  'on host {host}'.format(bsid=bsid, host=node['host'])
-
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_reply(err_msg)
-
-    @staticmethod
-    def delete_sr_policy(node, bsid):
-        """Delete SRv6 policy on the given node.
-
-        :param node: Given node to delete SRv6 policy on.
-        :param bsid: BindingSID IPv6 address.
-        :type node: dict
-        :type bsid: str
-        """
-        cmd = 'sr_policy_del'
-        args = dict(bsid_addr=IPv6Address(unicode(bsid)).packed)
-        err_msg = 'Failed to delete SR policy for BindingSID {bsid} ' \
                   'on host {host}'.format(bsid=bsid, host=node['host'])
 
         with PapiSocketExecutor(node) as papi_exec:
@@ -350,6 +312,7 @@ class SRv6(object):
 
         return sw_if_index, mask_width, prefix_addr, traffic_type
 
+    # TODO: Bring L1 names, arguments and defaults closer to PAPI ones.
     @staticmethod
     def configure_sr_steer(
             node, mode, bsid, interface=None, ip_addr=None, prefix=None):
@@ -390,48 +353,6 @@ class SRv6(object):
         )
         err_msg = 'Failed to add SRv6 steering policy for BindingSID {bsid} ' \
                   'on host {host}'.format(bsid=bsid, host=node['host'])
-
-        with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args).get_reply(err_msg)
-
-    @staticmethod
-    def delete_sr_steer(
-            node, mode, bsid, interface=None, ip_addr=None, mask=None):
-        """Delete SRv6 steering policy on the given node.
-
-        :param node: Given node to delete steering policy on.
-        :param mode: Mode of operation - L2 or L3.
-        :param bsid: BindingSID - local SID IPv6 address.
-        :param interface: Interface name (Optional, required in case of
-            L2 mode).
-        :param ip_addr: IPv4/IPv6 address (Optional, required in case of L3
-            mode).
-        :param mask: IP address mask (Optional, required in case of L3 mode).
-        :type node: dict
-        :type mode: str
-        :type bsid: str
-        :type interface: str
-        :type ip_addr: str
-        :type mask: int
-        :raises ValueError: If unsupported mode used or required parameter
-            is missing.
-        """
-        sw_if_index, mask_width, prefix_addr, traffic_type = \
-            SRv6._get_sr_steer_policy_args(node, mode, interface, ip_addr, mask)
-
-        cmd = 'sr_steering_add_del'
-        args = dict(
-            is_del=1,
-            bsid_addr=IPv6Address(unicode(bsid)).packed,
-            sr_policy_index=0,
-            table_id=0,
-            prefix_addr=prefix_addr,
-            mask_width=mask_width,
-            sw_if_index=sw_if_index,
-            traffic_type=traffic_type
-        )
-        err_msg = 'Failed to delete SRv6 steering policy for BindingSID ' \
-                  '{bsid} on host {host}'.format(bsid=bsid, host=node['host'])
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)

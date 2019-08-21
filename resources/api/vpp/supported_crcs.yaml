@@ -181,8 +181,6 @@
     sr_policies_dump: '0x51077d14'  # perf
     sr_policy_add: '0x4b6e2484'  # perf
     sr_policy_add_reply: '0xe8d4e804'  # perf
-    sr_policy_del: '0xe4133171'  # perf
-    sr_policy_del_reply: '0xe8d4e804'  # perf
     sr_set_encap_source: '0xd05bb4de'  # perf
     sr_set_encap_source_reply: '0xe8d4e804'  # perf
     sr_steering_add_del: '0x28b5dcab'  # perf
