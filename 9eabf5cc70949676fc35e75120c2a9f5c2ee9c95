@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "92452de9_c733f442",
+        "filename": "docs/csit-tests-select-list-2n-skx.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-21T11:41:47Z",
+      "side": 1,
+      "message": "2-node ip4base oacl testcases not available - add them?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 1
+      },
+      "revId": "9eabf5cc70949676fc35e75120c2a9f5c2ee9c95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "618e787c_c781b455",
+        "filename": "docs/csit-tests-select-list-2n-skx.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-21T11:41:47Z",
+      "side": 1,
+      "message": "No TC regenerator for tcp, only x710 tests available. Add regenerator for tcp?",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 1
+      },
+      "revId": "9eabf5cc70949676fc35e75120c2a9f5c2ee9c95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8ad7d6c_fb597b29",
+        "filename": "docs/csit-tests-select-list-3n-hsw.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-21T11:41:47Z",
+      "side": 1,
+      "message": "Avf tests not available on hsw at the moment.",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 1
+      },
+      "revId": "9eabf5cc70949676fc35e75120c2a9f5c2ee9c95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "549761eb_121eaf3d",
+        "filename": "docs/csit-tests-select-list-3n-hsw.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-21T11:41:47Z",
+      "side": 1,
+      "message": "## .",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 1
+      },
+      "revId": "9eabf5cc70949676fc35e75120c2a9f5c2ee9c95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e80bb5d_dc376c58",
+        "filename": "docs/csit-tests-select-list-3n-hsw.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-21T11:41:47Z",
+      "side": 1,
+      "message": "Avf tests not available on hsw at the moment.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 1
+      },
+      "revId": "9eabf5cc70949676fc35e75120c2a9f5c2ee9c95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a174cdf0_399710d9",
+        "filename": "docs/csit-tests-select-list-3n-skx.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-21T11:41:47Z",
+      "side": 1,
+      "message": "Not enough xxv710 NICs for double link, 2 link bonding available only for x710 NICs.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 1
+      },
+      "revId": "9eabf5cc70949676fc35e75120c2a9f5c2ee9c95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
