@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15c5e11e_82a2dde9",
+        "filename": "resources/libraries/robot/overlay/srv6.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-21T15:15:51Z",
+      "side": 1,
+      "message": "fgrep -R \"Delete SR Policy on DUT\" resources/* tests/*",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 1
+      },
+      "revId": "4c99b3c16070f849467cfb3e91c0dd132de5d9b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
