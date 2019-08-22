@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dc7a6f84_1ea57f76",
+        "filename": "resources/libraries/bash/function/ndrpdr-report-skx.txt",
+        "patchSetId": 14
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-22T08:34:22Z",
+      "side": 1,
+      "message": "This TS was not included in previous version. Added.",
+      "parentUuid": "eb671027_f73b655e",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "345dc2b1087364e2da86c6d1faf6193ed8623d6f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0741e02_1ca8641f",
         "filename": "resources/libraries/bash/function/ndrpdr-report-tsh.txt",
         "patchSetId": 14
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9be5ba76_4ea88797",
+        "filename": "resources/libraries/bash/function/ndrpdr-report-tsh.txt",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-22T08:34:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c0741e02_1ca8641f",
+      "range": {
+        "startLine": 7,
+        "startChar": 87,
+        "endLine": 7,
+        "endChar": 106
+      },
+      "revId": "345dc2b1087364e2da86c6d1faf6193ed8623d6f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "135778fa_750390c0",
         "filename": "resources/libraries/bash/function/ndrpdr-report-tsh.txt",
         "patchSetId": 14
@@ -59,6 +107,30 @@
       "writtenOn": "2019-08-22T07:58:05Z",
       "side": 1,
       "message": "This includes 10Ge2P1X520-Dot1Q--Ethip4Vxlan-L2Bdscale10L2Bd10Vlan10Vxlan-Ndrpdr and 10Ge2P1X520-Dot1Q--Ethip4Vxlan-L2Bdscale1Kl2Bd1Kvlan1Kvxlan-Ndrpdr, although the tags seem fine, not sure what\u0027s going on.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 73
+      },
+      "revId": "345dc2b1087364e2da86c6d1faf6193ed8623d6f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66c003bc_de07d793",
+        "filename": "resources/libraries/bash/function/ndrpdr-report-tsh.txt",
+        "patchSetId": 14
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-22T08:34:22Z",
+      "side": 1,
+      "message": "These tests were included becase of mistake on line 33:\nndrpdrAND${default_nic}ANDl2bdmaclrnANDscaleAND64bNOTmemifANDvhostANDvxlan\n\u003d\u003e\nndrpdrAND${default_nic}ANDl2bdmaclrnANDscaleAND64bNOTmemifNOTvhostNOTvxlan",
+      "parentUuid": "135778fa_750390c0",
       "range": {
         "startLine": 19,
         "startChar": 0,
