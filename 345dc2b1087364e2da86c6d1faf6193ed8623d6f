@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eb671027_f73b655e",
+        "filename": "resources/libraries/bash/function/ndrpdr-report-skx.txt",
+        "patchSetId": 14
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-08-22T07:58:05Z",
+      "side": 1,
+      "message": "10ge2p1xxv710-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr.robot was not selected, as doesn\u0027t contain the BASE tag",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "345dc2b1087364e2da86c6d1faf6193ed8623d6f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c0741e02_1ca8641f",
+        "filename": "resources/libraries/bash/function/ndrpdr-report-tsh.txt",
+        "patchSetId": 14
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-08-22T07:58:05Z",
+      "side": 1,
+      "message": "small typo, should be NOTtnl_40NOTtnl_400, with this both tnl_40 and tnl_400 are executed, seems like robot thinks it\u0027s (NOT tnl_40A NOT nl_400)",
+      "range": {
+        "startLine": 7,
+        "startChar": 87,
+        "endLine": 7,
+        "endChar": 106
+      },
+      "revId": "345dc2b1087364e2da86c6d1faf6193ed8623d6f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "135778fa_750390c0",
+        "filename": "resources/libraries/bash/function/ndrpdr-report-tsh.txt",
+        "patchSetId": 14
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 576
+      },
+      "writtenOn": "2019-08-22T07:58:05Z",
+      "side": 1,
+      "message": "This includes 10Ge2P1X520-Dot1Q--Ethip4Vxlan-L2Bdscale10L2Bd10Vlan10Vxlan-Ndrpdr and 10Ge2P1X520-Dot1Q--Ethip4Vxlan-L2Bdscale1Kl2Bd1Kvlan1Kvxlan-Ndrpdr, although the tags seem fine, not sure what\u0027s going on.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 73
+      },
+      "revId": "345dc2b1087364e2da86c6d1faf6193ed8623d6f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
