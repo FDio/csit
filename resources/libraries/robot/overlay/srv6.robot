@@ -69,21 +69,6 @@
 | | ... | out_if=${out_if} | in_if=${in_if} | src_addr=${src_addr}
 | | ... | sid_list=${sid_list}
 
-| Delete SR LocalSID on DUT
-| | [Documentation] | Delete SRv6 LocalSID on the given DUT node.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut_node - DUT node where to delete localSID on. Type: dictionary
-| | ... | - local_sid - LocalSID IPv6 address. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Delete SR LocalSID on DUT \| ${nodes['DUT1']} \| B:: \|
-| | ...
-| | [Arguments] | ${dut_node} | ${local_sid}
-| | ...
-| | Delete SR LocalSID | ${dut_node} | ${local_sid}
-
 | Show SR LocalSIDs on DUT
 | | [Documentation] | Show SRv6 LocalSIDs on the given DUT node.
 | | ...
@@ -117,21 +102,6 @@
 | | [Arguments] | ${dut_node} | ${bsid} | ${mode} | @{sid_list}
 | | ...
 | | Configure SR Policy | ${dut_node} | ${bsid} | ${sid_list} | mode=${mode}
-
-| Delete SR Policy on DUT
-| | [Documentation] | Delete SRv6 policy on the given DUT node.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut_node - DUT node where to delete SRv6 policy on. Type: dictionary
-| | ... | - bsid - BindingSID - local SID IPv6 address. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Delete SR Policy on DUT \| ${nodes['DUT1']} \| A:: \|
-| | ...
-| | [Arguments] | ${dut_node} | ${bsid}
-| | ...
-| | Delete SR Policy | ${dut_node} | ${bsid}
 
 | Show SR Policies on DUT
 | | [Documentation] | Show SRv6 policies on the given DUT node.
@@ -173,34 +143,6 @@
 | | ... | ${interface}=${None} | ${ip_addr}=${None} | ${prefix}=${None}
 | | ...
 | | Configure SR Steer | ${dut_node} | ${mode} | ${bsid}
-| | ... | interface=${interface} | ip_addr=${ip_addr} | prefix=${prefix}
-
-| Delete SR Steer on DUT
-| | [Documentation] | Delete SRv6 steering policy on the given DUT node.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut_node - DUT node where to delete SR steering policy on.
-| | ... | Type: dictionary
-| | ... | - mode - Mode of operation - L2 or L3. Type: string
-| | ... | - bsid - BindingSID - local SID IPv6 address. Type: string
-| | ... | - interface - Interface name (Optional, default value: None; required
-| | ... | in case of L2 mode). Type: string
-| | ... | - ip_addr - IPv4/IPv6 address (Optional, default value: None; required
-| | ... | in case of L3 mode). Type: string
-| | ... | - prefix - IP address prefix (Optional, default value: None; required
-| | ... | for L3 mode). Type: integer
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Delete SR Steer on DUT \| ${nodes['DUT1']} \| L2 \| B:: \
-| | ... | \| interface=GigabitEthernet0/10/0 \|
-| | ... | \| Delete SR Steer on DUT \| ${nodes['DUT1']} \| L3 \| C:: \
-| | ... | \| ip_address=2001::1 \| prefix=64 \|
-| | ...
-| | [Arguments] | ${dut_node} | ${mode} | ${bsid}
-| | ... | ${interface}=${None} | ${ip_addr}=${None} | ${prefix}=${None}
-| | ...
-| | Delete SR Steer | ${dut_node} | ${mode} | ${bsid}
 | | ... | interface=${interface} | ip_addr=${ip_addr} | prefix=${prefix}
 
 | Show SR Steering Policies on DUT
