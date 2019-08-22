@@ -28,13 +28,31 @@ from numpy import random
 # TODO: Teach FD.io CSIT to use multiple dirs in PYTHONPATH,
 # then switch to absolute imports within PLRsearch package.
 # Current usage of relative imports is just a short term workaround.
-import stat_trackers  # pylint: disable=relative-import
+from . import stat_trackers
 
 
 def try_estimate_nd(communication_pipe, scale_coeff=8.0, trace_enabled=False):
-    """Call estimate_nd but catch any exception and send traceback."""
+    """Call estimate_nd but catch any exception and send traceback.
+
+    This function does not return anything, computation result
+    is sent via the communication pipe instead.
+
+    TODO: Move scale_coeff to a field of data class
+    with constructor/factory hiding the default value,
+    and receive its instance via pipe, instead of argument.
+
+    :param communication_pipe: Endpoint for communication with parent process.
+    :param scale_coeff: Float number to tweak convergence speed with.
+    :param trace_enabled: Whether to emit trace level debugs.
+        Keeping trace disabled improves speed and saves memory.
+        Enable trace only when debugging the computation itself.
+    :type communication_pipe: multiprocessing.Connection
+    :type scale_coeff: float
+    :type trace_enabled: bool
+    :raises BaseException: Anything raised by interpreter or estimate_nd.
+    """
     try:
-        return estimate_nd(communication_pipe, scale_coeff, trace_enabled)
+        estimate_nd(communication_pipe, scale_coeff, trace_enabled)
     except BaseException:
         # Any subclass could have caused estimate_nd to stop before sending,
         # so we have to catch them all.
@@ -46,7 +64,22 @@ def try_estimate_nd(communication_pipe, scale_coeff=8.0, trace_enabled=False):
 
 
 def generate_sample(averages, covariance_matrix, dimension, scale_coeff):
-    """Generate next sample for estimate_nd"""
+    """Generate next sample for estimate_nd.
+
+    Arguments control the multivariate normal "focus".
+    Keep generating until the sample point fits into unit area.
+
+    :param averages: Coordinates of the focus center.
+    :param covariance_matrix: Matrix controlling the spread around the average.
+    :param dimension: If N is dimension, average is N vector and matrix is NxN.
+    :param scale_coeff: Coefficient to conformally multiply the spread.
+    :type averages: Indexable of N floats
+    :type covariance_matrix: Indexable of N indexables of N floats
+    :type dimension: int
+    :type scale_coeff: float
+    :returns: The generated sample point.
+    :rtype: N-tuple of float
+    """
     covariance_matrix = copy.deepcopy(covariance_matrix)
     for first in range(dimension):
         for second in range(dimension):
@@ -142,13 +175,12 @@ def estimate_nd(communication_pipe, scale_coeff=8.0, trace_enabled=False):
     In they are not enabled, trace_list will be empty.
     It is recommended to edit some lines manually to debug_list if needed.
 
-    :param communication_pipe: Pipe to comunicate with boss process.
+    :param communication_pipe: Endpoint for communication with parent process.
     :param scale_coeff: Float number to tweak convergence speed with.
     :param trace_enabled: Whether trace list should be populated at all.
-        Default: False
-    :type communication_pipe: multiprocessing.Connection (or compatible)
+    :type communication_pipe: multiprocessing.Connection
     :type scale_coeff: float
-    :type trace_enabled: boolean
+    :type trace_enabled: bool
     :raises OverflowError: If one sample dominates the rest too much.
         Or if value_logweight_function does not handle
         some part of parameter space carefully enough.
@@ -201,10 +233,9 @@ def estimate_nd(communication_pipe, scale_coeff=8.0, trace_enabled=False):
     while not communication_pipe.poll():
         if max_samples and samples >= max_samples:
             break
-        sample_point = generate_sample(param_focus_tracker.averages,
-                                       param_focus_tracker.covariance_matrix,
-                                       dimension,
-                                       scale_coeff)
+        sample_point = generate_sample(
+            param_focus_tracker.averages, param_focus_tracker.covariance_matrix,
+            dimension, scale_coeff)
         trace("sample_point", sample_point)
         samples += 1
         trace("samples", samples)
