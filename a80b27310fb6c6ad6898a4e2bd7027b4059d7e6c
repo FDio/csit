@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9cece7eb_b848d38c",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-22T06:19:28Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 187,
+        "startChar": 8,
+        "endLine": 187,
+        "endChar": 90
+      },
+      "revId": "a80b27310fb6c6ad6898a4e2bd7027b4059d7e6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9d79f41e_0e509be7",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-22T06:19:28Z",
+      "side": 1,
+      "message": "Because you are not setting it. Remove pylint disable and fix it.",
+      "range": {
+        "startLine": 209,
+        "startChar": 55,
+        "endLine": 209,
+        "endChar": 80
+      },
+      "revId": "a80b27310fb6c6ad6898a4e2bd7027b4059d7e6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "028d5d32_0ace44d7",
+        "filename": "resources/libraries/robot/features/policer.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-22T06:19:28Z",
+      "side": 1,
+      "message": "You move it as a param no?",
+      "revId": "a80b27310fb6c6ad6898a4e2bd7027b4059d7e6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "422c6972_f50d9db9",
+        "filename": "resources/libraries/robot/features/policer.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-22T06:19:28Z",
+      "side": 1,
+      "message": "You move it as a param no?",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 47
+      },
+      "revId": "a80b27310fb6c6ad6898a4e2bd7027b4059d7e6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "33845881_905d627e",
+        "filename": "resources/libraries/robot/features/policer.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-22T06:19:28Z",
+      "side": 1,
+      "message": "You need to rewrite logic of the Keyword so it does configure DUT1 and and if DUT2 is available configure DUT2 with slightly modified params. Otherwise it will not work.",
+      "revId": "a80b27310fb6c6ad6898a4e2bd7027b4059d7e6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
