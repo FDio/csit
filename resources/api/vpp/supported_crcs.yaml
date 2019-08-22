@@ -27,9 +27,9 @@
 
 # Trailing comments are optional, for tracking how to test the message.
 
-# https://logs.fd.io/production/vex-yul-rot-jenkins-1/
-# vpp-beta-merge-master-ubuntu1804/3370/archives/build-root/
-19.08-rc0~806-g4f9446444~b3370:
+# https://logs.fd.io/production/vex-yul-rot-jenkins-1
+# /vpp-beta-merge-master-ubuntu1804/3490/archives/build-root/
+20.01-rc0~85:
     acl_add_replace: '0x13bc8539'  # perf
     acl_add_replace_reply: '0xac407b0c'  # perf
     acl_dump: '0xef34fea4'  # perf teardown
@@ -181,8 +181,6 @@
     sr_policies_dump: '0x51077d14'  # perf
     sr_policy_add: '0x4b6e2484'  # perf
     sr_policy_add_reply: '0xe8d4e804'  # perf
-    sr_policy_del: '0xe4133171'  # perf
-    sr_policy_del_reply: '0xe8d4e804'  # perf
     sr_set_encap_source: '0xd05bb4de'  # perf
     sr_set_encap_source_reply: '0xe8d4e804'  # perf
     sr_steering_add_del: '0x28b5dcab'  # perf
