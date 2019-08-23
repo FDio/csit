@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9dc9c70_a2f71a5a",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-23T12:03:51Z",
+      "side": 1,
+      "message": "Hmm, I am wondering if this piece of code isn\u0027t outated:\n\nroot     29752     1  0 04:11 ?        00:00:00 /bin/bash ./t-rex-64 -i -c 7\nnobody   29793     1  0 04:11 ?        00:00:00 /usr/bin/python -m trex.scapy_server.scapy_zmq_server -s 4507\nroot     29869 29752 99 04:11 ?        00:07:04 ./_t-rex-64 -i -c 7\ntestuser 30037 29483  0 04:13 ?        00:00:00 sh -c /tmp/openvpp-testing/resources/tools/trex/trex_stateless_profile.\ntestuser 30038 30037  1 04:13 ?        00:00:00 /usr/bin/python3 /tmp/openvpp-testing/resources/tools/trex/trex_statele\n\ntestuser@...:~$ pidof t-rex; echo $?\n1\ntestuser@...:~$ sudo pidof t-rex; echo $?\n1\ntestuser@...:~$ sudo pidof t-rex-64; echo $?\n1\ntestuser@...:~$ sudo pidof _t-rex-64; echo $?\n29869\n0",
+      "revId": "96d294a3a7bc48f9b2b30e06942f231b15d9cb67",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
