@@ -75,6 +75,11 @@
 | | ... | \| Set test Variable \| \${frame_size} \| IMIX_v4_1 \|
 | | ... | \| Set Max Rate And Jumbo \|
 | | ...
+| | # Negative overhead is possible, if DUT-DUT traffic is less encapsulated
+| | # than TG-DUT traffic.
+| | # TODO: Re-check overhead values in suites with both traffics encapsulated.
+| | # TODO: Improve layered setup to detect encap/decap and update overhead.
+| | ${overhead} = | Set Variable If | ${overhead} >= 0 | ${overhead} | ${0}
 | | ${pps_limit} = | Set Variable | ${18750000.0}
 | | ${bps_limit} = | Get From Dictionary | ${NIC_NAME_TO_LIMIT} | ${nic_name}
 | | ${avg_size} = | Get Average Frame Size | ${frame_size}
