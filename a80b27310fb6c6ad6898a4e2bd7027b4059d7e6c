@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "4f5f42dc_d51fba7e",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-23T10:38:37Z",
+      "side": 1,
+      "message": "Looking at [0], this command actually succeeded...\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/3318/archives/log.html.gz#s1-s1-s1-s4-s5-t1-k2-k9-k2",
+      "range": {
+        "startLine": 190,
+        "startChar": 50,
+        "endLine": 190,
+        "endChar": 59
+      },
+      "revId": "a80b27310fb6c6ad6898a4e2bd7027b4059d7e6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7e71b5fe_a332049d",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-23T10:38:37Z",
+      "side": 1,
+      "message": "... but classify_add_del_table command failed.\n\nYou know the drill. Look at [1] to see the arguments needed, and use logger.debug for args_in if VPP keeps telling you some argument is wrong.\n\nNote that below are two more API commands that could (and probably will) fail.\n\n[1] https://github.com/FDio/vpp/blob/master/src/vnet/classify/classify.api#L18-L60",
+      "range": {
+        "startLine": 203,
+        "startChar": 50,
+        "endLine": 203,
+        "endChar": 59
+      },
+      "revId": "a80b27310fb6c6ad6898a4e2bd7027b4059d7e6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9d79f41e_0e509be7",
         "filename": "resources/libraries/python/Policer.py",
         "patchSetId": 15
