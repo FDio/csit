@@ -13,6 +13,8 @@
 
 """Performance testing traffic generator library."""
 
+import time
+
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
@@ -28,6 +30,31 @@ from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
 from .PLRsearch.PLRsearch import PLRsearch
 
 __all__ = ['TGDropRateSearchImpl', 'TrafficGenerator', 'OptimizedSearch']
+
+
+def check_subtype(node):
+    """Return supported subtype of given node, or raise an exception.
+
+    Currently only one subtype is supported,
+    but we want our code to be ready for other ones.
+
+    :param node: Topology node to check. Can be None.
+    :type node: dict or NoneType
+    :returns: Subtype detected.
+    :rtype: NodeSubTypeTG
+    :raises RuntimeError: If node is not supported, message explains how.
+    """
+    if node.get('type') is None:
+        raise RuntimeError('Node type is not defined')
+    elif node['type'] != NodeType.TG:
+        raise RuntimeError('Node type is {typ!r}, not a TG'.format(
+            typ=node['type']))
+    elif node.get('subtype') is None:
+        raise RuntimeError('TG subtype is not defined')
+    elif node['subtype'] == NodeSubTypeTG.TREX:
+        return NodeSubTypeTG.TREX
+    raise RuntimeError('TG subtype {sub!r} is not supported'.format(
+        sub=node['subtype']))
 
 
 class TGDropRateSearchImpl(DropRateSearch):
@@ -62,34 +89,23 @@ class TGDropRateSearchImpl(DropRateSearch):
         # to be able to use trex_stl-*()
         tg_instance = BuiltIn().get_library_instance(
             'resources.libraries.python.TrafficGenerator')
-
-        if tg_instance.node['subtype'] is None:
-            raise RuntimeError('TG subtype not defined')
-        elif tg_instance.node['subtype'] == NodeSubTypeTG.TREX:
+        subtype = check_subtype(tg_instance.node)
+        if subtype == NodeSubTypeTG.TREX:
             unit_rate = str(rate) + self.get_rate_type_str()
             if skip_warmup:
-                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
-                                                       unit_rate, frame_size,
-                                                       traffic_profile,
-                                                       warmup_time=0.0)
+                tg_instance.trex_stl_start_remote_exec(
+                    self.get_duration(), unit_rate, frame_size, traffic_profile,
+                    warmup_time=0.0)
             else:
-                tg_instance.trex_stl_start_remote_exec(self.get_duration(),
-                                                       unit_rate, frame_size,
-                                                       traffic_profile)
+                tg_instance.trex_stl_start_remote_exec(
+                    self.get_duration(), unit_rate, frame_size, traffic_profile)
             loss = tg_instance.get_loss()
             sent = tg_instance.get_sent()
             if self.loss_acceptance_type_is_percentage():
                 loss = (float(loss) / float(sent)) * 100
-
-            logger.trace("comparing: {} < {} {}".format(loss,
-                                                        loss_acceptance,
-                                                        loss_acceptance_type))
-            if float(loss) > float(loss_acceptance):
-                return False
-            else:
-                return True
-        else:
-            raise NotImplementedError("TG subtype not supported")
+            logger.trace("comparing: {los} < {acc} {typ}".format(
+                los=loss, acc=loss_acceptance, typ=loss_acceptance_type))
+            return float(loss) <= float(loss_acceptance)
 
     def get_latency(self):
         """Returns min/avg/max latency.
@@ -114,15 +130,20 @@ class TrafficGenerator(AbstractMeasurer):
     ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
 
     def __init__(self):
+        # TODO: Number of fields will be reduced with CSIT-1378.
+        self._node = None
+        # T-REX interface order mapping
+        self._ifaces_reordered = False
+        # Result holding fields, to be removed.
         self._result = None
         self._loss = None
         self._sent = None
         self._latency = None
         self._received = None
-        self._node = None
-        # T-REX interface order mapping
-        self._ifaces_reordered = False
-        # Parameters not given by measure().
+        # Measurement input fields, needed for async stop result.
+        self._start_time = None
+        self._rate = None
+        # Other input parameters, not knowable from measure() signature.
         self.frame_size = None
         self.traffic_profile = None
         self.warmup_time = None
@@ -199,11 +220,9 @@ class TrafficGenerator(AbstractMeasurer):
         :returns: nothing
         :raises RuntimeError: In case of issue during initialization.
         """
-        if tg_node['type'] != NodeType.TG:
-            raise RuntimeError('Node type is not a TG')
-        self._node = tg_node
-
-        if self._node['subtype'] == NodeSubTypeTG.TREX:
+        subtype = check_subtype(tg_node)
+        if subtype == NodeSubTypeTG.TREX:
+            self._node = tg_node
             exec_cmd_no_error(
                 self._node, 
                 "sh -c '{0}/resources/tools/trex/"
@@ -291,9 +310,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type osi_layer: str
         :raises RuntimeError: If node subtype is not a TREX or startup failed.
         """
-        if self._node['subtype'] != NodeSubTypeTG.TREX:
-            raise RuntimeError('Node subtype is not a TREX!')
-
+        # No need to check subtype, we know it is TREX.
         for _ in range(0, 3):
             # Kill TRex only if it is already running.
             cmd = "sh -c 'pgrep t-rex && pkill t-rex && sleep 3 || true'"
@@ -355,9 +372,7 @@ class TrafficGenerator(AbstractMeasurer):
         :rtype: bool
         :raises RuntimeError: If node type is not a TG.
         """
-        if node['type'] != NodeType.TG:
-            raise RuntimeError('Node type is not a TG')
-
+        # No need to check subtype, we know it is TREX.
         ret, _, _ = exec_cmd(node, "pidof t-rex", sudo=True)
         return bool(int(ret) == 0)
 
@@ -371,27 +386,51 @@ class TrafficGenerator(AbstractMeasurer):
         :raises RuntimeError: If node type is not a TG,
             or if TRex teardown fails.
         """
-        if node['type'] != NodeType.TG:
-            raise RuntimeError('Node type is not a TG')
-        if node['subtype'] == NodeSubTypeTG.TREX:
+        subtype = check_subtype(node)
+        if subtype == NodeSubTypeTG.TREX:
             exec_cmd_no_error(
                 node, "sh -c 'pkill t-rex && sleep 3'",
                 sudo=True, message='pkill t-rex failed')
 
-    @staticmethod
-    def trex_stl_stop_remote_exec(node):
+    def _parse_traffic_results(self, stdout):
+        """Parse stdout of scripts into fieds of self.
+
+        Block of code to reuse, by sync start, or stop after async.
+        TODO: Is the output TG subtype dependent?
+
+        :param stdout: Text containing the standard output.
+        :type stdout: str
+        """
+        # last line from console output
+        line = stdout.splitlines()[-1]
+        self._result = line
+        logger.info('TrafficGen result: {0}'.format(self._result))
+        self._received = self._result.split(', ')[1].split('=')[1]
+        self._sent = self._result.split(', ')[2].split('=')[1]
+        self._loss = self._result.split(', ')[3].split('=')[1]
+        self._latency = []
+        self._latency.append(self._result.split(', ')[4].split('=')[1])
+        self._latency.append(self._result.split(', ')[5].split('=')[1])
+
+    def trex_stl_stop_remote_exec(self, node):
         """Execute script on remote node over ssh to stop running traffic.
+
+        Internal state is updated with results.
 
         :param node: TRex generator node.
         :type node: dict
         :returns: Nothing
         :raises RuntimeError: If stop traffic script fails.
         """
+        # No need to check subtype, we know it is TREX.
         exec_cmd_no_error(
             node,
             "sh -c '{}/resources/tools/trex/"
             "trex_stateless_stop.py'".format(Constants.REMOTE_FW_DIR),
             message='TRex stateless runtime error')
+
+        self._parse_traffic_results(stdout)
+
 
     def trex_stl_start_remote_exec(
             self, duration, rate, frame_size, traffic_profile, async_call=False,
@@ -424,6 +463,7 @@ class TrafficGenerator(AbstractMeasurer):
         :type rx_port: int
         :raises RuntimeError: In case of TG driver issue.
         """
+        # No need to check subtype, we know it is TREX.
         reorder = self._ifaces_reordered  # Just to make the next line fit.
         p_0, p_1 = (rx_port, tx_port) if reorder else (tx_port, rx_port)
         # Values from Robot can introduce type unicode,
@@ -457,21 +497,16 @@ class TrafficGenerator(AbstractMeasurer):
 
         if async_call:
             #no result
+            self._start_time = time.time()
+            self._rate = float(rate[:-3]) if "pps" in rate else rate
             self._received = None
             self._sent = None
             self._loss = None
             self._latency = None
         else:
-            # last line from console output
-            line = stdout.splitlines()[-1]
-            self._result = line
-            logger.info('TrafficGen result: {0}'.format(self._result))
-            self._received = self._result.split(', ')[1].split('=')[1]
-            self._sent = self._result.split(', ')[2].split('=')[1]
-            self._loss = self._result.split(', ')[3].split('=')[1]
-            self._latency = []
-            self._latency.append(self._result.split(', ')[4].split('=')[1])
-            self._latency.append(self._result.split(', ')[5].split('=')[1])
+            self._parse_traffic_results(stdout)
+            self._start_time = None
+            self._rate = None
 
     def stop_traffic_on_tg(self):
         """Stop all traffic on TG.
@@ -479,9 +514,8 @@ class TrafficGenerator(AbstractMeasurer):
         :returns: Nothing
         :raises RuntimeError: If TG is not set.
         """
-        if self._node is None:
-            raise RuntimeError("TG is not set")
-        if self._node['subtype'] == NodeSubTypeTG.TREX:
+        subtype = check_subtype(self._node)
+        if subtype == NodeSubTypeTG.TREX:
             self.trex_stl_stop_remote_exec(self._node)
 
     def send_traffic_on_tg(
@@ -533,22 +567,11 @@ class TrafficGenerator(AbstractMeasurer):
             or if subtype is not specified.
         :raises NotImplementedError: If TG is not supported.
         """
-
-        node = self._node
-        if node is None:
-            raise RuntimeError("TG is not set")
-
-        if node['type'] != NodeType.TG:
-            raise RuntimeError('Node type is not a TG')
-
-        if node['subtype'] is None:
-            raise RuntimeError('TG subtype not defined')
-        elif node['subtype'] == NodeSubTypeTG.TREX:
+        subtype = check_subtype(self._node)
+        if subtype == NodeSubTypeTG.TREX:
             self.trex_stl_start_remote_exec(
                 duration, rate, frame_size, traffic_profile, async_call,
                 latency, warmup_time, unidirection, tx_port, rx_port)
-        else:
-            raise NotImplementedError("TG subtype not supported")
 
         return self._result
 
@@ -615,6 +638,36 @@ class TrafficGenerator(AbstractMeasurer):
         self.traffic_profile = str(traffic_profile)
         self.warmup_time = float(warmup_time)
 
+    def get_measurement_result(self, duration=None, transmit_rate=None):
+        """Return the result of last measurement as ReceiveRateMeasurement.
+
+        Separate function, as measurements can end either by time
+        or by explicit call, this is the common block at the end.
+
+        TODO: Fail on running or already reported measurement.
+
+        :param duration: Measurement duration [s] if known beforehand.
+            For explicitly stopped measurement it is estimated.
+        :param transmit_rate: Target aggregate transmit rate [pps].
+            If not given, computed assuming it was bidirectional.
+        :type duration: float or NoneType
+        :type transmit_rate: float or NoneType
+        :returns: Structure containing the result of the measurement.
+        :rtype: ReceiveRateMeasurement
+        """
+        if duration is None:
+            duration = time.time() - self._start_time
+            self._start_time = None
+        if transmit_rate is None:
+            # Assuming bi-directional traffic here.
+            transmit_rate = self._rate * 2.0
+        transmit_count = int(self.get_sent())
+        loss_count = int(self.get_loss())
+        measurement = ReceiveRateMeasurement(
+            duration, transmit_rate, transmit_count, loss_count)
+        measurement.latency = self.get_latency_int()
+        return measurement
+
     def measure(self, duration, transmit_rate):
         """Run bi-directional measurement, parse and return results.
 
@@ -630,17 +683,12 @@ class TrafficGenerator(AbstractMeasurer):
         """
         duration = float(duration)
         transmit_rate = float(transmit_rate)
-        # Trex needs target Tr per stream, but reports aggregate Tx and Dx.
+        # TG needs target Tr per stream, but reports aggregate Tx and Dx.
         unit_rate = str(transmit_rate / 2.0) + "pps"
         self.send_traffic_on_tg(
             duration, unit_rate, self.frame_size, self.traffic_profile,
             warmup_time=self.warmup_time, latency=True)
-        transmit_count = int(self.get_sent())
-        loss_count = int(self.get_loss())
-        measurement = ReceiveRateMeasurement(
-            duration, transmit_rate, transmit_count, loss_count)
-        measurement.latency = self.get_latency_int()
-        return measurement
+        return self.get_measurement_result(duration, transmit_rate)
 
 
 class OptimizedSearch(object):
