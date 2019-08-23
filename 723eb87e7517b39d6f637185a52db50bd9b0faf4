@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1eed59ab_781459d9",
+        "filename": "docs/test-selections.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-23T15:43:08Z",
+      "side": 1,
+      "message": "This version is already edited by me.\nGenerally, if a line starts with capital letter (and ends in colon or full stop), it has been added or edited.\nThe original file name was \"csit-tests-job-specification.txt\".",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 28
+      },
+      "revId": "723eb87e7517b39d6f637185a52db50bd9b0faf4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
