@@ -27,7 +27,7 @@
 | Test Template | Local Template
 | ...
 | Documentation | *RFC2544: Packet throughput L2BD test cases with Dot1Q and
-| ... | VXLANoIPv4 and 4 vhosts 2 chains 2 VMs*
+| ... | VXLANoIPv4 with ${nf_chains} instances, ${nf_nodes} VMs per instance.*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
@@ -88,7 +88,7 @@
 | | When Initialize layer interface
 | | ... | count=${nf_chains}
 | | And Initialize layer dot1q
-| | ... | count=${nf_chains} | create=${False}
+| | ... | count=${nf_chains} | vlan_per_chain=${False}
 | | And Initialize layer ip4vxlan
 | | ... | count=${nf_chains}
 | | And Initialize L2 bridge domains for multiple chains with Vhost-User
