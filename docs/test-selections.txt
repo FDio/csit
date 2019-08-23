@@ -1,0 +1,86 @@
+# Copyright (c) 2019 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# TODO: Also "Creative Commons Attribution 4.0 International License" applies?
+
+# TODO: Polish this into an official source of truth.
+# TODO: Keep updating this if plans change.
+
+# This is an output from a meeting, it has been agreed
+# to continue review process on Gerrit.
+
+
+# Tests selections differ by job type:
+- Daily and weekly (mrr and ndrpdr, vpp and dpdk) jobs for trending.
+- Report select jobs (smaller scope, multiple runs).
+- Report full jobs (big scope, single run).
+- Additional API coverage triggers:
+  - Currently tracked as comments in resources/api/vpp/supported_crcs.yaml
+- VPP perf per-patch parent-vs-current:
+  - Hardcoded in select_tags function in
+    resources/libraries/bash/function/common.sh
+- Devicetest jobs (both vpp-csit and csit-vpp):
+  - Currently no selection, every -dev test is run.
+- Virl jobs:
+  - To be removed soon.
+  - Selection is hardcoded in TEST_GROUPS variable of bootstrap.sh
+
+TODOs:
+tags selectors
+  select: https://gerrit.fd.io/r/c/csit/+/21146
+  full: https://gerrit.fd.io/r/c/csit/+/21438
+    - not finished
+  nfv_Density: https://gerrit.fd.io/r/c/csit/+/21361
+  tcp: https://gerrit.fd.io/r/c/csit/+/21456
+number of iterations per test case
+Open Jira ticket to migrate from tag expressions to suite/testcase lists...
+... or suite/testcase name regexps.
+
+
+# test suite select-list
+## nics
+  - primary: xxv710 (skx), xl710 (hsw), x553 (tsh)
+  - secondary: x710 (skx)
+## tests
+  - primary: forwarding-base, forwarding-scale, feature-spot-check
+  - secondary: forwarding-base, forwarding-scale-max
+## frame size
+  - 64B: ip4, ip4_tunnels, l2, vts, container_memif, vm_vhost
+  - 78B: ip6, ip6_tunnels, srv6
+  - imix: crypto, nfv_density
+## cores
+  - cores: 1c, 2c, 4c
+
+# test suite full-list
+## nics
+  - primary: xxv710 (skx), xl710 (hsw), x553 (tsh)
+  - secondary: x520 (hsw), x710 (skx, hsw), vic1227 (hsw), vic1385 (hsw)
+## tests
+  - primary: all tests
+  - secondary: forwarding-base, forwarding-scale-max
+## frame size
+  - 64B: ip4, ip4_tunnels, l2, vts, container_memif, vm_vhost, crypto
+  - 78B: ip6, ip6_tunnels, srv6
+  - imix: all including nfv_density
+  - 1518B: ip4, ip4_tunnels, ip6, ip6_tunnels, srv6, l2, vts, container_memif, vm_vhost, crypto
+  - 9000B: ip4, ip4_tunnels, ip6, ip6_tunnels, srv6, l2, vts, container_memif, vm_vhost, crypto
+    - no vic1227, no vic1385 due to no-support-for-9000B
+    - Maybe more exclusions due to CSIT-1532.
+## cores
+  - cores: 1c, 2c, 4c
+
+# test suite allocation per job
+- job per (directory, testbed, nic)
+- each job includes
+  - frame sizes
+  - cores
