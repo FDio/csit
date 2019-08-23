@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b39d1a7a_f1b3160f",
+        "filename": "resources/libraries/bash/function/tcp-report.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-08-23T08:03:52Z",
+      "side": 1,
+      "message": "TCP tests are not of ndrpdr type. They have they own types (-cps and -rps in filename, tags TCP_CPS and TCP_RPS), TCP tag selects them both.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 6
+      },
+      "revId": "06ec147bbb52b60aa3584736fb8672c55713c146",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
