@@ -207,8 +207,48 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
                     testcase, iface, suite_id, file_out, kwargs_list)
 
 
+def write_reconf_files(in_filename, in_prolog, kwargs_list):
+    """Using given filename and prolog, write all generated reconf suites.
+
+    Use this for suite type reconf, as its local template
+    is incompatible with mrr/ndrpdr/soak local template,
+    while test cases are compatible.
+
+    :param in_filename: Template filename to derive real filenames from.
+    :param in_prolog: Template content to derive real content from.
+    :param kwargs_list: List of kwargs for add_testcase.
+    :type in_filename: str
+    :type in_prolog: str
+    :type kwargs_list: list of dict
+    """
+    _, suite_id = get_iface_and_suite_id(in_filename)
+    testcase = Testcase.default(suite_id)
+    for nic_name in Constants.NIC_NAME_TO_CODE:
+        out_filename = replace_defensively(
+            in_filename, "10ge2p1x710",
+            Constants.NIC_NAME_TO_CODE[nic_name], 1,
+            "File name should contain NIC code once.", in_filename)
+        out_prolog = replace_defensively(
+            in_prolog, "Intel-X710", nic_name, 2,
+            "NIC name should appear twice (tag and variable).",
+            in_filename)
+        if out_prolog.count("HW_") == 2:
+            # TODO CSIT-1481: Crypto HW should be read
+            # from topology file instead.
+            if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW.keys():
+                out_prolog = replace_defensively(
+                    out_prolog, "HW_DH895xcc",
+                    Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
+                    "HW crypto name should appear.", in_filename)
+        iface, suite_id = get_iface_and_suite_id(out_filename)
+        with open(out_filename, "w") as file_out:
+            file_out.write(out_prolog)
+            add_default_testcases(
+                testcase, iface, suite_id, file_out, kwargs_list)
+
+
 def write_tcp_files(in_filename, in_prolog, kwargs_list):
-    """Using given filename and prolog, write all generated suites.
+    """Using given filename and prolog, write all generated tcp suites.
 
     :param in_filename: Template filename to derive real filenames from.
     :param in_prolog: Template content to derive real content from.
@@ -293,6 +333,8 @@ class Regenerator(object):
                     file_in.read().partition("*** Test Cases ***")[:-1])
             if in_filename.endswith("-ndrpdr.robot"):
                 write_default_files(in_filename, in_prolog, default_kwargs_list)
+            elif in_filename.endswith("-reconf.robot"):
+                write_reconf_files(in_filename, in_prolog, default_kwargs_list)
             elif in_filename[-10:] in ("-cps.robot", "-rps.robot"):
                 write_tcp_files(in_filename, in_prolog, tcp_kwargs_list)
             else:
