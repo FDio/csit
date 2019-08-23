@@ -186,16 +186,18 @@
 | | ... | *Arguments:*
 | | ... | - nf_chains - Number of chains of NFs. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
+| | ... | - start - Id of first chain, allows to add chains during test.
+| | ... |     Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Initialize L2 bridge domains for multiple chains with Vhost-User \
-| | ... | \| 1 \| 1 \|
+| | ... | \| 3 \| 1 \| 2 \|
 | | ...
-| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1}
+| | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${start}=${1}
 | | ...
 | | Set interfaces in path up
-| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains} + 1
+| | :FOR | ${nf_chain} | IN RANGE | ${start} | ${nf_chains} + 1
 | | | Initialize L2 bridge domains with Vhost-User
 | | | ... | nf_chain=${nf_chain} | nf_nodes=${nf_nodes}
 
