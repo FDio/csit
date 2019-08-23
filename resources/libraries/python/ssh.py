@@ -241,9 +241,9 @@ class SSH(object):
         if isinstance(cmd, (list, tuple)):
             cmd = OptionString(cmd)
         if cmd_input is None:
-            command = 'sudo -S {c}'.format(c=cmd)
+            command = 'sudo -E -S {c}'.format(c=cmd)
         else:
-            command = 'sudo -S {c} <<< "{i}"'.format(c=cmd, i=cmd_input)
+            command = 'sudo -E -S {c} <<< "{i}"'.format(c=cmd, i=cmd_input)
         return self.exec_command(command, timeout,
                                  log_stdout_err=log_stdout_err)
 
@@ -267,7 +267,7 @@ class SSH(object):
             .format(p=lxc_params, n=lxc_name, c=lxc_cmd)
 
         if sudo:
-            command = 'sudo -S {c}'.format(c=command)
+            command = 'sudo -E -S {c}'.format(c=command)
         return self.exec_command(command, timeout)
 
     def interactive_terminal_open(self, time_out=45):
@@ -453,8 +453,8 @@ def exec_cmd(node, cmd, timeout=600, sudo=False, disconnect=False):
         if not sudo:
             (ret_code, stdout, stderr) = ssh.exec_command(cmd, timeout=timeout)
         else:
-            (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd,
-                                                               timeout=timeout)
+            (ret_code, stdout, stderr) = ssh.exec_command_sudo(
+                cmd, timeout=timeout)
     except SSHException as err:
         logger.error(repr(err))
         return None, None, None

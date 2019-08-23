@@ -20,7 +20,7 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from .DropRateSearch import DropRateSearch
 from .Constants import Constants
-from .ssh import SSH, exec_cmd_no_error
+from .ssh import exec_cmd_no_error, exec_cmd
 from .topology import NodeType
 from .topology import NodeSubTypeTG
 from .topology import Topology
@@ -224,16 +224,12 @@ class TrafficGenerator(AbstractMeasurer):
         if subtype == NodeSubTypeTG.TREX:
             self._node = tg_node
 
-            ssh = SSH()
-            ssh.connect(self._node)
-
-            (ret, _, _) = ssh.exec_command(
-                "sudo -E sh -c '{0}/resources/tools/trex/"
+            exec_cmd_no_error(
+                self._node,
+                "sh -c '{0}/resources/tools/trex/"
                 "trex_installer.sh {1}'".format(Constants.REMOTE_FW_DIR,
                                                 Constants.TREX_INSTALL_VERSION),
-                timeout=1800)
-            if int(ret) != 0:
-                raise RuntimeError('TRex installation failed.')
+                sudo=True, timeout=1800, message='TRex installation failed.')
 
             if1_pci = Topology().get_interface_pci_addr(self._node, tg_if1)
             if2_pci = Topology().get_interface_pci_addr(self._node, tg_if2)
@@ -270,8 +266,9 @@ class TrafficGenerator(AbstractMeasurer):
                 self._ifaces_reordered = True
 
             if osi_layer == 'L2' or osi_layer == 'L3':
-                (ret, _, _) = ssh.exec_command(
-                    "sudo sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
+                exec_cmd_no_error(
+                    self._node,
+                    "sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
                     "- version: 2\n"
                     "  interfaces: [\"{0}\",\"{1}\"]\n"
                     "  port_info:\n"
@@ -284,10 +281,12 @@ class TrafficGenerator(AbstractMeasurer):
                             "0x"+if1_adj_addr.replace(":", ",0x"),
                             "0x"+if1_addr.replace(":", ",0x"),
                             "0x"+if2_adj_addr.replace(":", ",0x"),
-                            "0x"+if2_addr.replace(":", ",0x")))
+                            "0x"+if2_addr.replace(":", ",0x")),
+                    sudo=True, message='TRex config generation error')
             elif osi_layer == 'L7':
-                (ret, _, _) = ssh.exec_command(
-                    "sudo sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
+                exec_cmd_no_error(
+                    self._node,
+                    "sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
                     "- version: 2\n"
                     "  interfaces: [\"{0}\",\"{1}\"]\n"
                     "  port_info:\n"
@@ -298,11 +297,10 @@ class TrafficGenerator(AbstractMeasurer):
                     "EOF'"\
                     .format(if1_pci, if2_pci,
                             if1_addr, if1_adj_addr,
-                            if2_addr, if2_adj_addr))
+                            if2_addr, if2_adj_addr),
+                    sudo=True, message='TRex config generation error')
             else:
                 raise ValueError("Unknown Test Type")
-            if int(ret) != 0:
-                raise RuntimeError('TRex config generation error')
 
             self._startup_trex(osi_layer)
 
@@ -347,8 +345,8 @@ class TrafficGenerator(AbstractMeasurer):
                 exec_cmd_no_error(self._node, cmd, sudo=True)
             except RuntimeError:
                 cmd = "sh -c 'cat /tmp/trex.log'"
-                exec_cmd_no_error(self._node, cmd, sudo=True,
-                                  message='Get TRex logs failed!')
+                exec_cmd_no_error(
+                    self._node, cmd, sudo=True, message='Get TRex logs failed!')
                 raise RuntimeError('Start TRex failed!')
 
             # Test if TRex starts successfuly.
@@ -377,9 +375,7 @@ class TrafficGenerator(AbstractMeasurer):
         """
         # No need to check subtype, we know it is TREX.
 
-        ssh = SSH()
-        ssh.connect(node)
-        ret, _, _ = ssh.exec_command_sudo("pidof t-rex")
+        ret, _, _ = exec_cmd(node, "pidof t-rex", sudo=True)
         return bool(int(ret) == 0)
 
     @staticmethod
@@ -394,12 +390,9 @@ class TrafficGenerator(AbstractMeasurer):
         """
         subtype = check_subtype(node)
         if subtype == NodeSubTypeTG.TREX:
-            ssh = SSH()
-            ssh.connect(node)
-            (ret, _, _) = ssh.exec_command(
-                "sh -c 'sudo pkill t-rex && sleep 3'")
-            if int(ret) != 0:
-                raise RuntimeError('pkill t-rex failed')
+            exec_cmd_no_error(
+                node, "sh -c 'pkill t-rex && sleep 3'",
+                sudo=True, message='pkill t-rex failed')
 
     def _parse_traffic_results(self, stdout):
         """Parse stdout of scripts into fieds of self.
@@ -432,16 +425,11 @@ class TrafficGenerator(AbstractMeasurer):
         :raises RuntimeError: If stop traffic script fails.
         """
         # No need to check subtype, we know it is TREX.
-        ssh = SSH()
-        ssh.connect(node)
-
-        (ret, stdout, _) = ssh.exec_command(
+        stdout, _ = exec_cmd_no_error(
+            node,
             "sh -c '{}/resources/tools/trex/"
-            "trex_stateless_stop.py'".format(Constants.REMOTE_FW_DIR))
-
-        if int(ret) != 0:
-            raise RuntimeError('TRex stateless runtime error')
-
+            "trex_stateless_stop.py'".format(Constants.REMOTE_FW_DIR),
+            message='TRex stateless runtime error')
         self._parse_traffic_results(stdout)
 
     def trex_stl_start_remote_exec(
@@ -476,8 +464,6 @@ class TrafficGenerator(AbstractMeasurer):
         :raises RuntimeError: In case of TG driver issue.
         """
         # No need to check subtype, we know it is TREX.
-        ssh = SSH()
-        ssh.connect(self._node)
         reorder = self._ifaces_reordered  # Just to make the next line fit.
         p_0, p_1 = (rx_port, tx_port) if reorder else (tx_port, rx_port)
         # Values from Robot can introduce type unicode,
@@ -505,12 +491,11 @@ class TrafficGenerator(AbstractMeasurer):
             command += " --unidirection"
         command += "'"
 
-        (ret, stdout, _) = ssh.exec_command(
-            command, timeout=float(duration) + 60)
+        stdout, _ = exec_cmd_no_error(
+            self._node, command, timeout=float(duration) + 60,
+            message='TRex stateless runtime error')
 
-        if int(ret) != 0:
-            raise RuntimeError('TRex stateless runtime error')
-        elif async_call:
+        if async_call:
             #no result
             self._start_time = time.time()
             self._rate = float(rate[:-3]) if "pps" in rate else rate
