@@ -123,18 +123,6 @@
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd-ndrpdr
-| | [Tags] | 9000B | 1C
-| | frame_size=${9000} | phy_cores=${1}
-
-| tc08-9000B-2c-dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd-ndrpdr
-| | [Tags] | 9000B | 2C
-| | frame_size=${9000} | phy_cores=${2}
-
-| tc09-9000B-4c-dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd-ndrpdr
-| | [Tags] | 9000B | 4C
-| | frame_size=${9000} | phy_cores=${4}
-
 | tc10-IMIX-1c-dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}

@@ -87,18 +87,21 @@ def get_iface_and_suite_id(filename):
     return dash_split[0], dash_split[1].split(".", 1)[0]
 
 
-def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
+def add_default_testcases(
+        testcase, iface, suite_id, file_out, jumbo_fails, tc_kwargs_list):
     """Add default testcases to file.
 
     :param testcase: Testcase class.
     :param iface: Interface.
     :param suite_id: Suite ID.
     :param file_out: File to write testcases to.
+    :param jumbo_fails: If set to True, skip generating 9000B testcases.
     :param tc_kwargs_list: Key-value pairs used to construct testcases.
     :type testcase: Testcase
     :type iface: str
     :type suite_id: str
     :type file_out: file
+    :type jumbo_fails: bool
     :type tc_kwargs_list: dict
     """
     # We bump tc number in any case, so that future enables/disables
@@ -107,19 +110,17 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
         # TODO: Is there a better way to disable some combinations?
         emit = True
         if kwargs["frame_size"] == 9000:
-            if "vic1227" in iface:
-                # Not supported in HW.
+            if jumbo_fails:
+                # See comments in suite directory why.
                 emit = False
-            if "vic1385" in iface:
-                # Not supported in HW.
+            elif "vic1227" in iface or "vic1385" in iface:
+                # Neither of those two hardwares support jumbo frames.
                 emit = False
-        if "-16vm2t-" in suite_id or "-16dcr2t-" in suite_id:
-            if kwargs["phy_cores"] > 3:
-                # CSIT lab only has 28 (physical) core processors,
-                # so these test would fail when attempting to assign cores.
-                emit = False
-        if "-24vm1t-" in suite_id or "-24dcr1t-" in suite_id:
-            if kwargs["phy_cores"] > 3:
+        if kwargs["phy_cores"] > 3:
+            too_much = ("-16vm2t-" in suite_id or "-16dcr2t-" in suite_id
+                        or "-24vm1t-" in suite_id or "-24dcr1t-" in suite_id)
+            # Indentation looks weird if the expression is pasted into the if.
+            if too_much:
                 # CSIT lab only has 28 (physical) core processors,
                 # so these test would fail when attempting to assign cores.
                 emit = False
@@ -127,7 +128,7 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
             # Soak test take too long, do not risk other than tc01.
             if kwargs["phy_cores"] != 1:
                 emit = False
-            if kwargs["frame_size"] not in MIN_FRAME_SIZE_VALUES:
+            elif kwargs["frame_size"] not in MIN_FRAME_SIZE_VALUES:
                 emit = False
         if emit:
             file_out.write(testcase.generate(num=num, **kwargs))
@@ -147,14 +148,16 @@ def add_tcp_testcases(testcase, file_out, tc_kwargs_list):
         file_out.write(testcase.generate(num=num, **kwargs))
 
 
-def write_default_files(in_filename, in_prolog, kwargs_list):
+def write_default_files(in_filename, in_prolog, jumbo_fails, kwargs_list):
     """Using given filename and prolog, write all generated suites.
 
     :param in_filename: Template filename to derive real filenames from.
     :param in_prolog: Template content to derive real content from.
+    :param jumbo_fails: If set to True, skip generating 9000B testcases.
     :param kwargs_list: List of kwargs for add_default_testcase.
     :type in_filename: str
     :type in_prolog: str
+    :type jumbo_fails: bool
     :type kwargs_list: list of dict
     """
     for suite_type in Constants.PERF_TYPE_TO_KEYWORD:
@@ -204,10 +207,11 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
             with open(out_filename, "w") as file_out:
                 file_out.write(out_prolog)
                 add_default_testcases(
-                    testcase, iface, suite_id, file_out, kwargs_list)
+                    testcase, iface, suite_id, file_out, jumbo_fails,
+                    kwargs_list)
 
 
-def write_reconf_files(in_filename, in_prolog, kwargs_list):
+def write_reconf_files(in_filename, in_prolog, jumbo_fails, kwargs_list):
     """Using given filename and prolog, write all generated reconf suites.
 
     Use this for suite type reconf, as its local template
@@ -244,7 +248,7 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
         with open(out_filename, "w") as file_out:
             file_out.write(out_prolog)
             add_default_testcases(
-                testcase, iface, suite_id, file_out, kwargs_list)
+                testcase, iface, suite_id, file_out, jumbo_fails, kwargs_list)
 
 
 def write_tcp_files(in_filename, in_prolog, kwargs_list):
@@ -285,7 +289,7 @@ class Regenerator(object):
         """
         self.quiet = quiet
 
-    def regenerate_glob(self, pattern, protocol="ip4"):
+    def regenerate_glob(self, pattern, protocol="ip4", jumbo_fails=False):
         """Regenerate files matching glob pattern based on arguments.
 
         In the current working directory, find all files matching
@@ -297,8 +301,12 @@ class Regenerator(object):
 
         :param pattern: Glob pattern to select files. Example: *-ndrpdr.robot
         :param protocol: String determining minimal frame size. Default: "ip4"
+        :param jumbo_fails: If set to True, skip generating 9000B testcases.
+            Bugs affecting jumbo frames are frequent, it is not always easy
+            to construct correct logic to select which suites are afected.
         :type pattern: str
         :type protocol: str
+        :type jumbo_fails: bool
         :raises RuntimeError: If invalid source suite is encountered.
         """
         if not self.quiet:
@@ -332,9 +340,11 @@ class Regenerator(object):
                 in_prolog = "".join(
                     file_in.read().partition("*** Test Cases ***")[:-1])
             if in_filename.endswith("-ndrpdr.robot"):
-                write_default_files(in_filename, in_prolog, default_kwargs_list)
+                write_default_files(
+                    in_filename, in_prolog, jumbo_fails, default_kwargs_list)
             elif in_filename.endswith("-reconf.robot"):
-                write_reconf_files(in_filename, in_prolog, default_kwargs_list)
+                write_reconf_files(
+                    in_filename, in_prolog, jumbo_fails, default_kwargs_list)
             elif in_filename[-10:] in ("-cps.robot", "-rps.robot"):
                 write_tcp_files(in_filename, in_prolog, tcp_kwargs_list)
             else:

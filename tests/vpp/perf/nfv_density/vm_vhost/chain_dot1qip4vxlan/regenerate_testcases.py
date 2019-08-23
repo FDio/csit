@@ -15,4 +15,7 @@
 
 from resources.libraries.python.autogen.Regenerator import Regenerator
 
-Regenerator().regenerate_glob("*.robot", protocol="dot1qip4vxlan")
+Regenerator().regenerate_glob(
+        "*.robot", protocol="dot1qip4vxlan", jumbo_fails=True)
+# Not sure whether this is CSIT-1532 or something else.
+# Should be examined (and this comment updated) before merging.
