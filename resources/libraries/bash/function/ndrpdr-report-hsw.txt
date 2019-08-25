@@ -10,7 +10,7 @@
 # ndrpdrAND${default_nic}ANDip4fwdNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTfeature
 # ndrpdrAND${default_nic}ANDip4fwdANDfeatureNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTacl
 # ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDiacl
-ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDoacl
+# ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDoacl
 # ndrpdrANDip4baseNOTdot1q
 # ndrpdrANDip4baseANDdot1qNOTdrv_avf
 # ndrpdrANDip4fwdANDscaleANDfib_2m
@@ -25,12 +25,16 @@ ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDoacl
 # ndrpdrANDip6fwdANDscaleANDfib_2m
 
 # l2
-# ndrpdrAND${default_nic}ANDl2bdmaclrnNOTmemifNOTvhostNOTvxlan
+ndrpdrAND${default_nic}ANDl2bdmaclrnNOTmemifNOTvhostNOTvxlanNOTfeature
+# ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureNOTmemifNOTvhostNOTvxlanNOTaclNOTmacip
+# ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureANDiaclNOTmacip
+# ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureANDoacl
+# ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeaturemacip
 # ndrpdrAND${default_nic}ANDl2xcfwdNOTmemifNOTvhostNOTvxlan
 # ndrpdrAND${default_nic}ANDl2patchNOTmemifNOTvhostNOTvxlan
-# ndrpdrANDl2bdmaclrnANDbaseNOTmemifNOTvhostNOTvxlan
-# ndrpdrANDl2xcfwdANDbaseANDdrv_avfNOTdot1q
-# ndrpdrANDl2bdmaclrnANDscaleANDfib_1m
+ndrpdrANDl2bdmaclrnANDbaseNOTmemifNOTvhostNOTvxlan
+ndrpdrANDl2xcfwdANDbaseANDdrv_avfNOTdot1q
+ndrpdrANDl2bdmaclrnANDscaleANDfib_1m
 
 # vm_vhost
 # ndrpdrAND${default_nic}ANDvhostANDbaseNOTvts
