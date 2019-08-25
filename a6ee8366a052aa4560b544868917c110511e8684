@@ -22,6 +22,30 @@
       "revId": "a6ee8366a052aa4560b544868917c110511e8684",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d74b69d2_4c396b85",
+        "filename": "docs/csit-tests-select-list-2n-skx.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-25T20:21:59Z",
+      "side": 1,
+      "message": "These were the tests that were being added by Peter, and not present in the directory at the time of writing this list. They have been added and merged now, so \"+\"\u0027s are removed.",
+      "parentUuid": "9d5e45e5_b72e1eb7",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "a6ee8366a052aa4560b544868917c110511e8684",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
