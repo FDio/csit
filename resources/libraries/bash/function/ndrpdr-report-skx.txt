@@ -17,13 +17,13 @@
 # ndrpdrAND${default_nic}ANDipsecANDlispgpe
 
 # ip4
-ndrpdrAND${default_nic}ANDip4fwdNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTfeature
-# ndrpdrAND${default_nic}ANDip4fwdANDfeatureNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTacl
+# ndrpdrAND${default_nic}ANDip4fwdNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTfeature
+ndrpdrAND${default_nic}ANDip4fwdANDfeatureNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTacl
 # ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDiacl
 # ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDoacl
-ndrpdrANDip4baseNOTdot1q
-ndrpdrANDip4baseANDdot1qNOTdrv_avf
-ndrpdrANDip4fwdANDscaleANDfib_2m
+# ndrpdrANDip4baseNOTdot1q
+# ndrpdrANDip4baseANDdot1qNOTdrv_avf
+# ndrpdrANDip4fwdANDscaleANDfib_2m
 
 # ip4_tunnels + vts
 # ndrpdrAND${default_nic}ANDvxlan
