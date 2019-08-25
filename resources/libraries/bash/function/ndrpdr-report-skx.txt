@@ -38,8 +38,8 @@
 # ndrpdrAND${default_nic}ANDl2bdmaclrnNOTmemifNOTvhostNOTvxlanNOTfeature
 # ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureNOTmemifNOTvhostNOTvxlanNOTaclNOTmacip
 # ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureANDiaclNOTmacip
-ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureANDoacl
-# ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeaturemacip
+# ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureANDoacl
+ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeaturemacip
 # ndrpdrAND${default_nic}ANDl2xcfwdNOTmemifNOTvhostNOTvxlan
 # ndrpdrAND${default_nic}ANDl2patchNOTmemifNOTvhostNOTvxlan
 # ndrpdrANDl2bdmaclrnANDbaseNOTmemifNOTvhostNOTvxlan
