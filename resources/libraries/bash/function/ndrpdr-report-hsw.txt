@@ -9,8 +9,8 @@
 # ip4
 # ndrpdrAND${default_nic}ANDip4fwdNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTfeature
 # ndrpdrAND${default_nic}ANDip4fwdANDfeatureNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTacl
-ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDiacl
-# ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDoacl
+# ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDiacl
+ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDoacl
 # ndrpdrANDip4baseNOTdot1q
 # ndrpdrANDip4baseANDdot1qNOTdrv_avf
 # ndrpdrANDip4fwdANDscaleANDfib_2m
