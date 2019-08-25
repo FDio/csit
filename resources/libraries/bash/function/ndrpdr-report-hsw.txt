@@ -1,0 +1,40 @@
+# container_memif
+# ndrpdrAND${default_nic}ANDmemifANDbase
+
+# crypto
+# ndrpdrAND${default_nic}ANDscaleANDipsecswNOTipsectunNOThmac_sha_256NOTaes_128_gcmNOTtnl_40NOTtnl_400NOTtnl_5000NOTtnl_20000NOTtnl_40000NOTtnl_60000
+# ndrpdrAND${default_nic}ANDscaleANDipsechwANDtnl_1000NOTipsectunNOThmac_sha_256NOTaes_128_gcm
+# ndrpdrAND${default_nic}ANDbaseANDipsechwNOTipsectunNOThmac_sha_256NOTaes_128_gcm
+
+# ip4
+# ndrpdrAND${default_nic}ANDip4fwdNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTfeature
+# ndrpdrAND${default_nic}ANDip4fwdANDfeatureNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTacl
+# ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDiacl
+# ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDoacl
+# ndrpdrANDip4baseNOTdot1q
+# ndrpdrANDip4baseANDdot1qNOTdrv_avf
+# ndrpdrANDip4fwdANDscaleANDfib_2m
+
+# ip4_tunnels + vts
+# ndrpdrAND${default_nic}ANDvxlan
+# ndrpdrAND${default_nic}ANDlisp
+
+# ip6 + ip6_tunnels + srv6
+# ndrpdrAND${default_nic}ANDip6fwd
+# ndrpdrANDip6base
+# ndrpdrANDip6fwdANDscaleANDfib_2m
+
+# l2
+# ndrpdrAND${default_nic}ANDl2bdmaclrnNOTmemifNOTvhostNOTvxlanNOTfeature
+# ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureNOTmemifNOTvhostNOTvxlanNOTaclNOTmacip
+# ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureANDiaclNOTmacip
+# ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureANDoacl
+# ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeaturemacip
+# ndrpdrAND${default_nic}ANDl2xcfwdNOTmemifNOTvhostNOTvxlan
+# ndrpdrAND${default_nic}ANDl2patchNOTmemifNOTvhostNOTvxlan
+# ndrpdrANDl2bdmaclrnANDbaseNOTmemifNOTvhostNOTvxlan
+# ndrpdrANDl2xcfwdANDbaseANDdrv_avfNOTdot1q
+# ndrpdrANDl2bdmaclrnANDscaleANDfib_1m
+
+# vm_vhost
+ndrpdrAND${default_nic}ANDvhostANDbaseNOTvts
