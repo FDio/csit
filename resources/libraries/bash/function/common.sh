@@ -666,7 +666,7 @@ function run_pybot () {
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
-    pybot --dryrun "${all_options[@]}" "${GENERATED_DIR}/tests/"
+    pybot "${all_options[@]}" "${GENERATED_DIR}/tests/"
     PYBOT_EXIT_STATUS="$?"
     set -e
 
