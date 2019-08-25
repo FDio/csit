@@ -7,19 +7,22 @@
 # ndrpdrAND${default_nic}ANDbaseANDipsechwNOTipsectunNOThmac_sha_256NOTaes_128_gcm
 
 # ip4
-# ndrpdrAND${default_nic}ANDip4fwdNOTipsecNOTmemifNOTvhostNOTvxlanNOTlisp
-# ndrpdrANDip4baseNOTdot1q
-# ndrpdrANDip4baseANDdot1qNOTdrv_avf
-# ndrpdrANDip4fwdANDscaleANDfib_2m
+ndrpdrAND${default_nic}ANDip4fwdNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTfeature
+# ndrpdrAND${default_nic}ANDip4fwdANDfeatureNOTipsecNOTmemifNOTvhostNOTvxlanNOTlispNOTacl
+# ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDiacl
+# ndrpdrAND${default_nic}ANDip4fwdANDfeatureANDoacl
+ndrpdrANDip4baseNOTdot1q
+ndrpdrANDip4baseANDdot1qNOTdrv_avf
+ndrpdrANDip4fwdANDscaleANDfib_2m
 
 # ip4_tunnels + vts
-ndrpdrAND${default_nic}ANDvxlan
-ndrpdrAND${default_nic}ANDlisp
+# ndrpdrAND${default_nic}ANDvxlan
+# ndrpdrAND${default_nic}ANDlisp
 
 # ip6 + ip6_tunnels + srv6
-ndrpdrAND${default_nic}ANDip6fwd
-ndrpdrANDip6base
-ndrpdrANDip6fwdANDscaleANDfib_2m
+# ndrpdrAND${default_nic}ANDip6fwd
+# ndrpdrANDip6base
+# ndrpdrANDip6fwdANDscaleANDfib_2m
 
 # l2
 # ndrpdrAND${default_nic}ANDl2bdmaclrnNOTmemifNOTvhostNOTvxlan
