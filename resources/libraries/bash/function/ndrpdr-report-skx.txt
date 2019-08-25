@@ -39,7 +39,7 @@
 # ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureNOTmemifNOTvhostNOTvxlanNOTaclNOTmacip
 # ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureANDiaclNOTmacip
 # ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeatureANDoacl
-ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeaturemacip
+# ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeaturemacip
 # ndrpdrAND${default_nic}ANDl2xcfwdNOTmemifNOTvhostNOTvxlan
 # ndrpdrAND${default_nic}ANDl2patchNOTmemifNOTvhostNOTvxlan
 # ndrpdrANDl2bdmaclrnANDbaseNOTmemifNOTvhostNOTvxlan
@@ -47,4 +47,4 @@ ndrpdrAND${default_nic}ANDl2bdmaclrnANDfeaturemacip
 # ndrpdrANDl2bdmaclrnANDscaleANDfib_1m
 
 # vm_vhost
-# ndrpdrAND${default_nic}ANDvhostANDbaseNOTvts
+ndrpdrAND${default_nic}ANDvhostANDbaseNOTvts
