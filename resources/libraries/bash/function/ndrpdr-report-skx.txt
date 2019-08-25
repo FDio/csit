@@ -5,15 +5,15 @@
 
 # crypto
 # ndrpdrAND${default_nic}ANDipsecswANDbase
-ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_4
-ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_40
-ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_400
-ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_1000
-ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_5000
-# ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_10000
-# ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_20000
-# ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_40000
-# ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_60000
+# ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_4
+# ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_40
+# ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_400
+# ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_1000
+# ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_5000
+ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_10000
+ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_20000
+ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_40000
+ndrpdrAND${default_nic}ANDipsecswANDscaleANDtnl_60000
 # ndrpdrAND${default_nic}ANDipsecANDlispgpe
 
 # ip4
