@@ -1,7 +1,7 @@
 # dcr_memif
-ndrpdrAND${default_nic}ANDnf_densityAND64bAND*dcr1t
-ndrpdrAND${default_nic}ANDnf_densityANDimixAND*dcr1t
+mrrAND${default_nic}ANDnf_densityAND64bAND*dcr1t
+mrrAND${default_nic}ANDnf_densityANDimixAND*dcr1t
 
 # vm_vhost
-ndrpdrAND${default_nic}ANDnf_densityAND64bAND*vm1t
-ndrpdrAND${default_nic}ANDnf_densityANDimixAND*vm1t
+mrrAND${default_nic}ANDnf_densityAND64bAND*vm1t
+mrrAND${default_nic}ANDnf_densityANDimixAND*vm1t
