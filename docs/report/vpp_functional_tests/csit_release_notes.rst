@@ -8,7 +8,7 @@ Changes in |csit-release|
 
    - **Bug fixes**.
 
-#. CSIT TEST MIMGRATION
+#. CSIT TEST MIGRATION
 
    - **VPP_Device**: Continuing migration of the original FD.io CSIT VIRL
      tests to VPP-device tests for functional acceptance of VPP feature path(s)
