@@ -2184,15 +2184,15 @@
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-pdr"
   history:
     - title: "rls1901 Intel-X710"
-      data: "vpp-performance-changes-3n-skx-h1"
+      data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
     title: "rls1904 Intel-X710"
-    data: "vpp-performance-changes-3n-skx-ref"
+    data: "vpp-performance-changes-2n-skx-ref"
     nic: "NIC_Intel-X710"
   compare:
     title: "rls1908 Intel-XXV710"
-    data: "vpp-performance-changes-3n-skx-cmp"
+    data: "vpp-performance-changes-2n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
