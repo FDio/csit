@@ -30,7 +30,7 @@ results repeatability vary between the test cases.
     with RF result files csit-vpp-perf-|srelease|-\*.zip
     `archived here <../../_static/archive/>`_.
 
-3n-hsw
+2n-skx
 ~~~~~~
 
 NDR Comparison
@@ -38,32 +38,32 @@ NDR Comparison
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII 1t1c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-ndr.txt>`_
-  - `ASCII 2t2c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-ndr.txt>`_
-  - `CSV 1t1c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-ndr.csv>`_
-  - `CSV 2t2c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-ndr.csv>`_
+  - `ASCII 2t1c NDR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-ndr.txt>`_
+  - `ASCII 4t2c NDR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-ndr.txt>`_
+  - `CSV 2t1c NDR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-ndr.csv>`_
+  - `CSV 4t2c NDR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-ndr.csv>`_
 
 PDR Comparison
 ``````````````
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII 1t1c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-pdr.txt>`_
-  - `ASCII 2t2c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-pdr.txt>`_
-  - `CSV 1t1c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-pdr.csv>`_
-  - `CSV 2t2c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-pdr.csv>`_
+  - `ASCII 2t1c PDR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-pdr.txt>`_
+  - `ASCII 4t2c PDR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-pdr.txt>`_
+  - `CSV 2t1c PDR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-pdr.csv>`_
+  - `CSV 4t2c PDR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-pdr.csv>`_
 
 MRR Comparison
 ``````````````
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII 1t1c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-mrr.txt>`_
-  - `ASCII 2t2c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-mrr.txt>`_
-  - `ASCII 4t4c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-4t4c-mrr.txt>`_
-  - `CSV 1t1c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-mrr.csv>`_
-  - `CSV 2t2c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-mrr.csv>`_
-  - `CSV 4t4c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-4t4c-mrr.csv>`_
+  - `ASCII 2t1c MRR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-mrr.txt>`_
+  - `ASCII 4t2c MRR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-mrr.txt>`_
+  - `ASCII 8t4c MRR comparison <../../_static/vpp/performance-changes-2n-skx-8t4c-mrr.txt>`_
+  - `CSV 2t1c MRR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-mrr.csv>`_
+  - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-mrr.csv>`_
+  - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-2n-skx-8t4c-mrr.csv>`_
 
 3n-skx
 ~~~~~~
@@ -100,7 +100,7 @@ Comparison tables in ASCII and CSV formats:
   - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-3n-skx-4t2c-mrr.csv>`_
   - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-3n-skx-8t4c-mrr.csv>`_
 
-2n-skx
+3n-hsw
 ~~~~~~
 
 NDR Comparison
@@ -108,32 +108,32 @@ NDR Comparison
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII 2t1c NDR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-ndr.txt>`_
-  - `ASCII 4t2c NDR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-ndr.txt>`_
-  - `CSV 2t1c NDR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-ndr.csv>`_
-  - `CSV 4t2c NDR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-ndr.csv>`_
+  - `ASCII 1t1c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-ndr.txt>`_
+  - `ASCII 2t2c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-ndr.txt>`_
+  - `CSV 1t1c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-ndr.csv>`_
+  - `CSV 2t2c NDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-ndr.csv>`_
 
 PDR Comparison
 ``````````````
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII 2t1c PDR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-pdr.txt>`_
-  - `ASCII 4t2c PDR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-pdr.txt>`_
-  - `CSV 2t1c PDR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-pdr.csv>`_
-  - `CSV 4t2c PDR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-pdr.csv>`_
+  - `ASCII 1t1c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-pdr.txt>`_
+  - `ASCII 2t2c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-pdr.txt>`_
+  - `CSV 1t1c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-pdr.csv>`_
+  - `CSV 2t2c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-pdr.csv>`_
 
 MRR Comparison
 ``````````````
 
 Comparison tables in ASCII and CSV formats:
 
-  - `ASCII 2t1c MRR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-mrr.txt>`_
-  - `ASCII 4t2c MRR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-mrr.txt>`_
-  - `ASCII 8t4c MRR comparison <../../_static/vpp/performance-changes-2n-skx-8t4c-mrr.txt>`_
-  - `CSV 2t1c MRR comparison <../../_static/vpp/performance-changes-2n-skx-2t1c-mrr.csv>`_
-  - `CSV 4t2c MRR comparison <../../_static/vpp/performance-changes-2n-skx-4t2c-mrr.csv>`_
-  - `CSV 8t4c MRR comparison <../../_static/vpp/performance-changes-2n-skx-8t4c-mrr.csv>`_
+  - `ASCII 1t1c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-mrr.txt>`_
+  - `ASCII 2t2c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-mrr.txt>`_
+  - `ASCII 4t4c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-4t4c-mrr.txt>`_
+  - `CSV 1t1c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-mrr.csv>`_
+  - `CSV 2t2c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-mrr.csv>`_
+  - `CSV 4t4c MRR comparison <../../_static/vpp/performance-changes-3n-hsw-4t4c-mrr.csv>`_
 
 ..
     2n-dnv
