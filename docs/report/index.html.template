@@ -20,14 +20,14 @@ CSIT-1908
     vpp_performance_tests/packet_throughput_graphs/index
     vpp_performance_tests/throughput_speedup_multi_core/index
     vpp_performance_tests/packet_latency_graphs/index
-    vpp_performance_tests/soak_tests/index
     vpp_performance_tests/nf_service_density/index
+    vpp_performance_tests/http_server_performance/index
     vpp_performance_tests/comparisons/index
     vpp_performance_tests/throughput_trending
     vpp_performance_tests/test_environment
     vpp_performance_tests/documentation/index
 ..
-    vpp_performance_tests/http_server_performance/index
+    vpp_performance_tests/soak_tests/index
 
 .. toctree::
     :maxdepth: 2
