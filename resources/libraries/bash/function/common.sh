@@ -795,7 +795,7 @@ function select_tags () {
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
                 readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
-                    ${tfd}/ndrpdr-report-${FLAVOR}.txt) || die
+                    ${tfd}/mrr-report-${FLAVOR}.txt) || die
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
