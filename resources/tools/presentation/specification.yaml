@@ -1454,8 +1454,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -2010,17 +2010,20 @@
 # VPP Performance Changes 3n-skx 2t1c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-skx 2t1c pdr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-pdr"
   history:
-    - title: "rls1901"
+    - title: "rls1901 Intel-X710"
       data: "vpp-performance-changes-3n-skx-h1"
+      nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904"
+    title: "rls1904 Intel-X710"
     data: "vpp-performance-changes-3n-skx-ref"
+    nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908"
+    title: "rls1908 Intel-XXV710"
     data: "vpp-performance-changes-3n-skx-cmp"
+    nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
@@ -2028,21 +2031,25 @@
   - "name"
   - "parent"
   - "throughput"
+  - "tags"
 
 # VPP Performance Changes 3n-skx 4t2c pdr
 - type: "table"
   title: "VPP Performance Changes 3n-skx 4t2c pdr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-pdr"
   history:
-    - title: "rls1901"
+    - title: "rls1901 Intel-X710"
       data: "vpp-performance-changes-3n-skx-h1"
+      nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904"
+    title: "rls1904 Intel-X710"
     data: "vpp-performance-changes-3n-skx-ref"
+    nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908"
+    title: "rls1908 Intel-XXV710"
     data: "vpp-performance-changes-3n-skx-cmp"
+    nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
@@ -2050,21 +2057,25 @@
   - "name"
   - "parent"
   - "throughput"
+  - "tags"
 
 # VPP Performance Changes 3n-skx 2t1c ndr
 - type: "table"
   title: "VPP Performance Changes 3n-skx 2t1c ndr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1901 Intel-X710"
       data: "vpp-performance-changes-3n-skx-h1"
+      nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904"
+    title: "rls1904 Intel-X710"
     data: "vpp-performance-changes-3n-skx-ref"
+    nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908"
+    title: "rls1908 Intel-XXV710"
     data: "vpp-performance-changes-3n-skx-cmp"
+    nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
@@ -2072,21 +2083,25 @@
   - "name"
   - "parent"
   - "throughput"
+  - "tags"
 
 # VPP Performance Changes 3n-skx 4t2c ndr
 - type: "table"
   title: "VPP Performance Changes 3n-skx 4t2c ndr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1901 Intel-X710"
       data: "vpp-performance-changes-3n-skx-h1"
+      nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904"
+    title: "rls1904 Intel-X710"
     data: "vpp-performance-changes-3n-skx-ref"
+    nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908"
+    title: "rls1908 Intel-XXV710"
     data: "vpp-performance-changes-3n-skx-cmp"
+    nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
@@ -2094,21 +2109,25 @@
   - "name"
   - "parent"
   - "throughput"
+  - "tags"
 
 # VPP Performance Changes 2n-skx 2t1c pdr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 2t1c pdr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-pdr"
   history:
-    - title: "rls1901"
-      data: "vpp-performance-changes-2n-skx-h1"
+    - title: "rls1901 Intel-X710"
+      data: "vpp-performance-changes-3n-skx-h1"
+      nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904"
-    data: "vpp-performance-changes-2n-skx-ref"
+    title: "rls1904 Intel-X710"
+    data: "vpp-performance-changes-3n-skx-ref"
+    nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908"
-    data: "vpp-performance-changes-2n-skx-cmp"
+    title: "rls1908 Intel-XXV710"
+    data: "vpp-performance-changes-3n-skx-cmp"
+    nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
@@ -2116,21 +2135,25 @@
   - "name"
   - "parent"
   - "throughput"
+  - "tags"
 
 # VPP Performance Changes 2n-skx 4t2c pdr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 4t2c pdr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-pdr"
   history:
-    - title: "rls1901"
+    - title: "rls1901 Intel-X710"
       data: "vpp-performance-changes-2n-skx-h1"
+      nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904"
+    title: "rls1904 Intel-X710"
     data: "vpp-performance-changes-2n-skx-ref"
+    nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908"
+    title: "rls1908 Intel-XXV710"
     data: "vpp-performance-changes-2n-skx-cmp"
+    nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
@@ -2138,21 +2161,25 @@
   - "name"
   - "parent"
   - "throughput"
+  - "tags"
 
 # VPP Performance Changes 2n-skx 2t1c ndr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 2t1c ndr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1901 Intel-X710"
       data: "vpp-performance-changes-2n-skx-h1"
+      nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904"
+    title: "rls1904 Intel-X710"
     data: "vpp-performance-changes-2n-skx-ref"
+    nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908"
+    title: "rls1908 Intel-XXV710"
     data: "vpp-performance-changes-2n-skx-cmp"
+    nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
@@ -2160,21 +2187,25 @@
   - "name"
   - "parent"
   - "throughput"
+  - "tags"
 
 # VPP Performance Changes 2n-skx 4t2c ndr
 - type: "table"
   title: "VPP Performance Changes 2n-skx 4t2c ndr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-ndr"
   history:
-    - title: "rls1901"
+    - title: "rls1901 Intel-X710"
       data: "vpp-performance-changes-2n-skx-h1"
+      nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904"
+    title: "rls1904 Intel-X710"
     data: "vpp-performance-changes-2n-skx-ref"
+    nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908"
+    title: "rls1908 Intel-XXV710"
     data: "vpp-performance-changes-2n-skx-cmp"
+    nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
@@ -2182,6 +2213,7 @@
   - "name"
   - "parent"
   - "throughput"
+  - "tags"
 
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr
 - type: "table"
