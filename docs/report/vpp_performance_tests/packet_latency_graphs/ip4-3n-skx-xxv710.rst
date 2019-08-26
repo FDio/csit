@@ -60,7 +60,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-ndr-lat-lat.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -83,7 +83,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-4t2c-ip4routing-base-scale-avf-ndr-lat-lat.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-4t2c-ip4routing-base-scale-avf-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -106,7 +106,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-8t4c-ip4routing-base-scale-avf-ndr-lat-lat.html"></iframe>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-8t4c-ip4routing-base-scale-avf-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 

@@ -69,8 +69,8 @@ Additional information about graph data:
     \clearpage
 
 ..
-    2n-skx-x710-mrr
-    ~~~~~~~~~~~~~~~
+    2n-skx-xxv710-mrr
+    ~~~~~~~~~~~~~~~~~
 
     64b-2t1c-eth-l2bd
     -----------------
@@ -78,7 +78,7 @@ Additional information about graph data:
     .. raw:: html
 
         <center>
-        <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-2t1c-base-csc-mrr.html"></iframe>
+        <iframe id="ifrm01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-64b-2t1c-base-csc-mrr.html"></iframe>
         </center>
 
     .. raw:: latex
@@ -86,8 +86,8 @@ Additional information about graph data:
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-64b-2t1c-base-csc-mrr}
-                \label{fig:l2bd-2n-skx-x710-64b-2t1c-base-csc-mrr}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-64b-2t1c-base-csc-mrr}
+                \label{fig:l2bd-2n-skx-xxv710-64b-2t1c-base-csc-mrr}
         \end{figure}
 
     .. raw:: latex
@@ -100,7 +100,7 @@ Additional information about graph data:
     .. raw:: html
 
         <center>
-        <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-4t2c-base-csc-mrr.html"></iframe>
+        <iframe id="ifrm02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-64b-4t2c-base-csc-mrr.html"></iframe>
         </center>
 
     .. raw:: latex
@@ -108,8 +108,8 @@ Additional information about graph data:
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-64b-4t2c-base-csc-mrr}
-                \label{fig:l2bd-2n-skx-x710-64b-4t2c-base-csc-mrr}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-64b-4t2c-base-csc-mrr}
+                \label{fig:l2bd-2n-skx-xxv710-64b-4t2c-base-csc-mrr}
         \end{figure}
 
     .. raw:: latex
@@ -122,7 +122,7 @@ Additional information about graph data:
     .. raw:: html
 
         <center>
-        <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-8t4c-base-csc-mrr.html"></iframe>
+        <iframe id="ifrm03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-64b-8t4c-base-csc-mrr.html"></iframe>
         </center>
 
     .. raw:: latex
@@ -130,8 +130,8 @@ Additional information about graph data:
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-64b-8t4c-base-csc-mrr}
-                \label{fig:l2bd-2n-skx-x710-64b-8t4c-base-csc-mrr}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-64b-8t4c-base-csc-mrr}
+                \label{fig:l2bd-2n-skx-xxv710-64b-8t4c-base-csc-mrr}
         \end{figure}
 
     .. raw:: latex
@@ -144,7 +144,7 @@ Additional information about graph data:
     .. raw:: html
 
         <center>
-        <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-2t1c-base-csc-mrr.html"></iframe>
+        <iframe id="ifrm04" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-imix-2t1c-base-csc-mrr.html"></iframe>
         </center>
 
     .. raw:: latex
@@ -152,8 +152,8 @@ Additional information about graph data:
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-imix-2t1c-base-csc-mrr}
-                \label{fig:l2bd-2n-skx-x710-imix-2t1c-base-csc-mrr}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-imix-2t1c-base-csc-mrr}
+                \label{fig:l2bd-2n-skx-xxv710-imix-2t1c-base-csc-mrr}
         \end{figure}
 
     .. raw:: latex
@@ -166,7 +166,7 @@ Additional information about graph data:
     .. raw:: html
 
         <center>
-        <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-4t2c-base-csc-mrr.html"></iframe>
+        <iframe id="ifrm05" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-imix-4t2c-base-csc-mrr.html"></iframe>
         </center>
 
     .. raw:: latex
@@ -174,8 +174,8 @@ Additional information about graph data:
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-imix-4t2c-base-csc-mrr}
-                \label{fig:l2bd-2n-skx-x710-imix-4t2c-base-csc-mrr}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-imix-4t2c-base-csc-mrr}
+                \label{fig:l2bd-2n-skx-xxv710-imix-4t2c-base-csc-mrr}
         \end{figure}
 
     .. raw:: latex
@@ -188,7 +188,7 @@ Additional information about graph data:
     .. raw:: html
 
         <center>
-        <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-8t4c-base-csc-mrr.html"></iframe>
+        <iframe id="ifrm06" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-imix-8t4c-base-csc-mrr.html"></iframe>
         </center>
 
     .. raw:: latex
@@ -196,16 +196,16 @@ Additional information about graph data:
         \begin{figure}[H]
             \centering
                 \graphicspath{{../_build/_static/vpp/}}
-                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-imix-8t4c-base-csc-mrr}
-                \label{fig:l2bd-2n-skx-x710-imix-8t4c-base-csc-mrr}
+                \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-imix-8t4c-base-csc-mrr}
+                \label{fig:l2bd-2n-skx-xxv710-imix-8t4c-base-csc-mrr}
         \end{figure}
 
     .. raw:: latex
 
         \clearpage
 
-2n-skx-x710-ndr
-~~~~~~~~~~~~~~~
+2n-skx-xxv710-ndr
+~~~~~~~~~~~~~~~~~
 
 64b-2t1c-eth-l2bd
 -----------------
@@ -213,7 +213,7 @@ Additional information about graph data:
 .. raw:: html
 
     <center>
-    <iframe id="ifrm07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-2t1c-base-csc-ndr.html"></iframe>
+    <iframe id="ifrm07" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-64b-2t1c-base-csc-ndr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -221,8 +221,8 @@ Additional information about graph data:
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-64b-2t1c-base-csc-ndr}
-            \label{fig:l2bd-2n-skx-x710-64b-2t1c-base-csc-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-64b-2t1c-base-csc-ndr}
+            \label{fig:l2bd-2n-skx-xxv710-64b-2t1c-base-csc-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -235,7 +235,7 @@ Additional information about graph data:
 .. raw:: html
 
     <center>
-    <iframe id="ifrm08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-4t2c-base-csc-ndr.html"></iframe>
+    <iframe id="ifrm08" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-64b-4t2c-base-csc-ndr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -243,8 +243,8 @@ Additional information about graph data:
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-64b-4t2c-base-csc-ndr}
-            \label{fig:l2bd-2n-skx-x710-64b-4t2c-base-csc-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-64b-4t2c-base-csc-ndr}
+            \label{fig:l2bd-2n-skx-xxv710-64b-4t2c-base-csc-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -257,7 +257,7 @@ Additional information about graph data:
 .. raw:: html
 
     <center>
-    <iframe id="ifrm09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-8t4c-base-csc-ndr.html"></iframe>
+    <iframe id="ifrm09" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-64b-8t4c-base-csc-ndr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -265,8 +265,8 @@ Additional information about graph data:
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-64b-8t4c-base-csc-ndr}
-            \label{fig:l2bd-2n-skx-x710-64b-8t4c-base-csc-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-64b-8t4c-base-csc-ndr}
+            \label{fig:l2bd-2n-skx-xxv710-64b-8t4c-base-csc-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -279,7 +279,7 @@ imix-2t1c-eth-l2bd
 .. raw:: html
 
     <center>
-    <iframe id="ifrm10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-2t1c-base-csc-ndr.html"></iframe>
+    <iframe id="ifrm10" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-imix-2t1c-base-csc-ndr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -287,8 +287,8 @@ imix-2t1c-eth-l2bd
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-imix-2t1c-base-csc-ndr}
-            \label{fig:l2bd-2n-skx-x710-imix-2t1c-base-csc-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-imix-2t1c-base-csc-ndr}
+            \label{fig:l2bd-2n-skx-xxv710-imix-2t1c-base-csc-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -301,7 +301,7 @@ imix-4t2c-eth-l2bd
 .. raw:: html
 
     <center>
-    <iframe id="ifrm11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-4t2c-base-csc-ndr.html"></iframe>
+    <iframe id="ifrm11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-imix-4t2c-base-csc-ndr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -309,8 +309,8 @@ imix-4t2c-eth-l2bd
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-imix-4t2c-base-csc-ndr}
-            \label{fig:l2bd-2n-skx-x710-imix-4t2c-base-csc-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-imix-4t2c-base-csc-ndr}
+            \label{fig:l2bd-2n-skx-xxv710-imix-4t2c-base-csc-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -323,7 +323,7 @@ imix-8t4c-eth-l2bd
 .. raw:: html
 
     <center>
-    <iframe id="ifrm12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-8t4c-base-csc-ndr.html"></iframe>
+    <iframe id="ifrm12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-imix-8t4c-base-csc-ndr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -331,16 +331,16 @@ imix-8t4c-eth-l2bd
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-imix-8t4c-base-csc-ndr}
-            \label{fig:l2bd-2n-skx-x710-imix-8t4c-base-csc-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-imix-8t4c-base-csc-ndr}
+            \label{fig:l2bd-2n-skx-xxv710-imix-8t4c-base-csc-ndr}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-2n-skx-x710-pdr
-~~~~~~~~~~~~~~~
+2n-skx-xxv710-pdr
+~~~~~~~~~~~~~~~~~
 
 64b-2t1c-eth-l2bd
 -----------------
@@ -348,7 +348,7 @@ imix-8t4c-eth-l2bd
 .. raw:: html
 
     <center>
-    <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-2t1c-base-csc-pdr.html"></iframe>
+    <iframe id="ifrm13" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-64b-2t1c-base-csc-pdr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -356,8 +356,8 @@ imix-8t4c-eth-l2bd
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-64b-2t1c-base-csc-pdr}
-            \label{fig:l2bd-2n-skx-x710-64b-2t1c-base-csc-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-64b-2t1c-base-csc-pdr}
+            \label{fig:l2bd-2n-skx-xxv710-64b-2t1c-base-csc-pdr}
     \end{figure}
 
 .. raw:: latex
@@ -370,7 +370,7 @@ imix-8t4c-eth-l2bd
 .. raw:: html
 
     <center>
-    <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-4t2c-base-csc-pdr.html"></iframe>
+    <iframe id="ifrm14" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-64b-4t2c-base-csc-pdr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -378,8 +378,8 @@ imix-8t4c-eth-l2bd
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-64b-4t2c-base-csc-pdr}
-            \label{fig:l2bd-2n-skx-x710-64b-4t2c-base-csc-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-64b-4t2c-base-csc-pdr}
+            \label{fig:l2bd-2n-skx-xxv710-64b-4t2c-base-csc-pdr}
     \end{figure}
 
 .. raw:: latex
@@ -392,7 +392,7 @@ imix-8t4c-eth-l2bd
 .. raw:: html
 
     <center>
-    <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-64b-8t4c-base-csc-pdr.html"></iframe>
+    <iframe id="ifrm15" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-64b-8t4c-base-csc-pdr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -400,8 +400,8 @@ imix-8t4c-eth-l2bd
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-64b-8t4c-base-csc-pdr}
-            \label{fig:l2bd-2n-skx-x710-64b-8t4c-base-csc-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-64b-8t4c-base-csc-pdr}
+            \label{fig:l2bd-2n-skx-xxv710-64b-8t4c-base-csc-pdr}
     \end{figure}
 
 .. raw:: latex
@@ -414,7 +414,7 @@ imix-2t1c-eth-l2bd
 .. raw:: html
 
     <center>
-    <iframe id="ifrm16" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-2t1c-base-csc-pdr.html"></iframe>
+    <iframe id="ifrm16" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-imix-2t1c-base-csc-pdr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -422,8 +422,8 @@ imix-2t1c-eth-l2bd
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-imix-2t1c-base-csc-pdr}
-            \label{fig:l2bd-2n-skx-x710-imix-2t1c-base-csc-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-imix-2t1c-base-csc-pdr}
+            \label{fig:l2bd-2n-skx-xxv710-imix-2t1c-base-csc-pdr}
     \end{figure}
 
 .. raw:: latex
@@ -436,7 +436,7 @@ imix-4t2c-eth-l2bd
 .. raw:: html
 
     <center>
-    <iframe id="ifrm17" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-4t2c-base-csc-pdr.html"></iframe>
+    <iframe id="ifrm17" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-imix-4t2c-base-csc-pdr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -444,8 +444,8 @@ imix-4t2c-eth-l2bd
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-imix-4t2c-base-csc-pdr}
-            \label{fig:l2bd-2n-skx-x710-imix-4t2c-base-csc-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-imix-4t2c-base-csc-pdr}
+            \label{fig:l2bd-2n-skx-xxv710-imix-4t2c-base-csc-pdr}
     \end{figure}
 
 .. raw:: latex
@@ -458,7 +458,7 @@ imix-8t4c-eth-l2bd
 .. raw:: html
 
     <center>
-    <iframe id="ifrm18" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-x710-imix-8t4c-base-csc-pdr.html"></iframe>
+    <iframe id="ifrm18" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/l2bd-2n-skx-xxv710-imix-8t4c-base-csc-pdr.html"></iframe>
     </center>
 
 .. raw:: latex
@@ -466,6 +466,6 @@ imix-8t4c-eth-l2bd
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-x710-imix-8t4c-base-csc-pdr}
-            \label{fig:l2bd-2n-skx-x710-imix-8t4c-base-csc-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{l2bd-2n-skx-xxv710-imix-8t4c-base-csc-pdr}
+            \label{fig:l2bd-2n-skx-xxv710-imix-8t4c-base-csc-pdr}
     \end{figure}
