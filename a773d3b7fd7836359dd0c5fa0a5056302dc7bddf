@@ -22,6 +22,30 @@
       "revId": "a773d3b7fd7836359dd0c5fa0a5056302dc7bddf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59aeae54_27fbbd20",
+        "filename": "docs/job_specs/perf_tests_job_specs.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-08-26T12:21:14Z",
+      "side": 1,
+      "message": "OK, I forgot about those, adding the weekly jobs as follows:\n\n- Weekly tests\n  - Development cycle:\n    - Frequency: dpdk tests and vpp select-list NDR/PDR (MLRsearch) tests once a week.\n    - Times (UTC): every Sunday at 02:00.\n    - Duration: jobs are monitored to last no longer than 24hrs.\n  - Report cycle:\n    - Same as in development cycle.\n\nAnd per your comment, we should further reduce the frequency of daily MRR tests in Report cycle. Per offline live chat, proposing it to run all of them on Mon and Thu, once a day at 02:00 UTC. Updated the text accordingly.",
+      "parentUuid": "f4da1fd9_f8ebad45",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 62
+      },
+      "revId": "a773d3b7fd7836359dd0c5fa0a5056302dc7bddf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
