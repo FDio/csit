@@ -64,11 +64,11 @@ Additional information about graph data:
 .. note::
 
     Data sources for reported test results: i) `FD.io test executor vpp
-    performance job 3n-hsw`_, ii) archived FD.io jobs test result `output files
+    performance job 2n-skx`_, ii) archived FD.io jobs test result `output files
     <../../_static/archive/>`_.
 
     CSIT source code for the test cases used for plots can be found in
-    `CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/tcp?h=rls1901>`_.
+    `CSIT git repository <https://git.fd.io/csit/tree/tests/vpp/perf/tcp?h=rls1908>`_.
 
 .. raw:: latex
 
