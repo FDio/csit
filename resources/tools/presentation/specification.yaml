@@ -164,6 +164,9 @@
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
+<<<<<<< HEAD   (9ca73e Report: Modify comparison tables, add data)
+>>>>>>> CHANGE (db49a1 Report: Modify comparison tables, add data)
+=======
 >>>>>>> CHANGE (db49a1 Report: Modify comparison tables, add data)
 
     # 3n-skx
@@ -640,6 +643,9 @@
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
+<<<<<<< HEAD   (9ca73e Report: Modify comparison tables, add data)
+>>>>>>> CHANGE (db49a1 Report: Modify comparison tables, add data)
+=======
 >>>>>>> CHANGE (db49a1 Report: Modify comparison tables, add data)
     dpdk-performance-changes-3n-hsw:
       - "dpdk-performance-changes-3n-hsw-h1"
@@ -1386,6 +1392,9 @@
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
       - 11  # NDRPDR sel
+<<<<<<< HEAD   (9ca73e Report: Modify comparison tables, add data)
+>>>>>>> CHANGE (db49a1 Report: Modify comparison tables, add data)
+=======
 >>>>>>> CHANGE (db49a1 Report: Modify comparison tables, add data)
 
     csit-dpdk-perf-verify-1901-3n-skx:
