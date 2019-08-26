@@ -415,6 +415,241 @@ def table_performance_comparison(table, input_data):
     convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
 
 
+def table_performance_comparison_nic(table, input_data):
+    """Generate the table(s) with algorithm: table_performance_comparison
+    specified in the specification file.
+
+    :param table: Table to generate.
+    :param input_data: Data to process.
+    :type table: pandas.Series
+    :type input_data: InputData
+    """
+
+    logging.info("  Generating the table {0} ...".
+                 format(table.get("title", "")))
+
+    # Transform the data
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(table.get("type", ""), table.get("title", "")))
+    data = input_data.filter_data(table, continue_on_error=True)
+
+    # Prepare the header of the tables
+    try:
+        header = ["Test case", ]
+
+        if table["include-tests"] == "MRR":
+            hdr_param = "Receive Rate"
+        else:
+            hdr_param = "Throughput"
+
+        history = table.get("history", None)
+        if history:
+            for item in history:
+                header.extend(
+                    ["{0} {1} [Mpps]".format(item["title"], hdr_param),
+                     "{0} Stdev [Mpps]".format(item["title"])])
+        header.extend(
+            ["{0} {1} [Mpps]".format(table["reference"]["title"], hdr_param),
+             "{0} Stdev [Mpps]".format(table["reference"]["title"]),
+             "{0} {1} [Mpps]".format(table["compare"]["title"], hdr_param),
+             "{0} Stdev [Mpps]".format(table["compare"]["title"]),
+             "Delta [%]"])
+        header_str = ",".join(header) + "\n"
+    except (AttributeError, KeyError) as err:
+        logging.error("The model is invalid, missing parameter: {0}".
+                      format(err))
+        return
+
+    # Prepare data to the table:
+    tbl_dict = dict()
+    for job, builds in table["reference"]["data"].items():
+        for build in builds:
+            for tst_name, tst_data in data[job][str(build)].iteritems():
+                if table["reference"]["nic"] not in tst_data["tags"]:
+                    continue
+                tst_name_mod = tst_name.replace("-ndrpdrdisc", "").\
+                    replace("-ndrpdr", "").replace("-pdrdisc", "").\
+                    replace("-ndrdisc", "").replace("-pdr", "").\
+                    replace("-ndr", "").\
+                    replace("1t1c", "1c").replace("2t1c", "1c").\
+                    replace("2t2c", "2c").replace("4t2c", "2c").\
+                    replace("4t4c", "4c").replace("8t4c", "4c")
+                tst_name_mod = re.sub(REGEX_NIC, "", tst_name_mod)
+                if "across topologies" in table["title"].lower():
+                    tst_name_mod = tst_name_mod.replace("2n1l-", "")
+                if tbl_dict.get(tst_name_mod, None) is None:
+                    name = "{0}".format("-".join(tst_data["name"].
+                                                 split("-")[:-1]))
+                    if "across testbeds" in table["title"].lower() or \
+                            "across topologies" in table["title"].lower():
+                        name = name.\
+                            replace("1t1c", "1c").replace("2t1c", "1c").\
+                            replace("2t2c", "2c").replace("4t2c", "2c").\
+                            replace("4t4c", "4c").replace("8t4c", "4c")
+                    tbl_dict[tst_name_mod] = {"name": name,
+                                              "ref-data": list(),
+                                              "cmp-data": list()}
+                try:
+                    # TODO: Re-work when NDRPDRDISC tests are not used
+                    if table["include-tests"] == "MRR":
+                        tbl_dict[tst_name_mod]["ref-data"]. \
+                            append(tst_data["result"]["receive-rate"].avg)
+                    elif table["include-tests"] == "PDR":
+                        if tst_data["type"] == "PDR":
+                            tbl_dict[tst_name_mod]["ref-data"]. \
+                                append(tst_data["throughput"]["value"])
+                        elif tst_data["type"] == "NDRPDR":
+                            tbl_dict[tst_name_mod]["ref-data"].append(
+                                tst_data["throughput"]["PDR"]["LOWER"])
+                    elif table["include-tests"] == "NDR":
+                        if tst_data["type"] == "NDR":
+                            tbl_dict[tst_name_mod]["ref-data"]. \
+                                append(tst_data["throughput"]["value"])
+                        elif tst_data["type"] == "NDRPDR":
+                            tbl_dict[tst_name_mod]["ref-data"].append(
+                                tst_data["throughput"]["NDR"]["LOWER"])
+                    else:
+                        continue
+                except TypeError:
+                    pass  # No data in output.xml for this test
+
+    for job, builds in table["compare"]["data"].items():
+        for build in builds:
+            for tst_name, tst_data in data[job][str(build)].iteritems():
+                if table["compare"]["nic"] not in tst_data["tags"]:
+                    continue
+                tst_name_mod = tst_name.replace("-ndrpdrdisc", ""). \
+                    replace("-ndrpdr", "").replace("-pdrdisc", ""). \
+                    replace("-ndrdisc", "").replace("-pdr", ""). \
+                    replace("-ndr", "").\
+                    replace("1t1c", "1c").replace("2t1c", "1c").\
+                    replace("2t2c", "2c").replace("4t2c", "2c").\
+                    replace("4t4c", "4c").replace("8t4c", "4c")
+                tst_name_mod = re.sub(REGEX_NIC, "", tst_name_mod)
+                if "across topologies" in table["title"].lower():
+                    tst_name_mod = tst_name_mod.replace("2n1l-", "")
+                try:
+                    # TODO: Re-work when NDRPDRDISC tests are not used
+                    if table["include-tests"] == "MRR":
+                        tbl_dict[tst_name_mod]["cmp-data"]. \
+                            append(tst_data["result"]["receive-rate"].avg)
+                    elif table["include-tests"] == "PDR":
+                        if tst_data["type"] == "PDR":
+                            tbl_dict[tst_name_mod]["cmp-data"]. \
+                                append(tst_data["throughput"]["value"])
+                        elif tst_data["type"] == "NDRPDR":
+                            tbl_dict[tst_name_mod]["cmp-data"].append(
+                                tst_data["throughput"]["PDR"]["LOWER"])
+                    elif table["include-tests"] == "NDR":
+                        if tst_data["type"] == "NDR":
+                            tbl_dict[tst_name_mod]["cmp-data"]. \
+                                append(tst_data["throughput"]["value"])
+                        elif tst_data["type"] == "NDRPDR":
+                            tbl_dict[tst_name_mod]["cmp-data"].append(
+                                tst_data["throughput"]["NDR"]["LOWER"])
+                    else:
+                        continue
+                except KeyError:
+                    pass
+                except TypeError:
+                    tbl_dict.pop(tst_name_mod, None)
+    if history:
+        for item in history:
+            for job, builds in item["data"].items():
+                for build in builds:
+                    for tst_name, tst_data in data[job][str(build)].iteritems():
+                        if item["nic"] not in tst_data["tags"]:
+                            continue
+                        tst_name_mod = tst_name.replace("-ndrpdrdisc", ""). \
+                            replace("-ndrpdr", "").replace("-pdrdisc", ""). \
+                            replace("-ndrdisc", "").replace("-pdr", ""). \
+                            replace("-ndr", "").\
+                            replace("1t1c", "1c").replace("2t1c", "1c").\
+                            replace("2t2c", "2c").replace("4t2c", "2c").\
+                            replace("4t4c", "4c").replace("8t4c", "4c")
+                        tst_name_mod = re.sub(REGEX_NIC, "", tst_name_mod)
+                        if "across topologies" in table["title"].lower():
+                            tst_name_mod = tst_name_mod.replace("2n1l-", "")
+                        if tbl_dict.get(tst_name_mod, None) is None:
+                            continue
+                        if tbl_dict[tst_name_mod].get("history", None) is None:
+                            tbl_dict[tst_name_mod]["history"] = OrderedDict()
+                        if tbl_dict[tst_name_mod]["history"].get(item["title"],
+                                                             None) is None:
+                            tbl_dict[tst_name_mod]["history"][item["title"]] = \
+                                list()
+                        try:
+                            # TODO: Re-work when NDRPDRDISC tests are not used
+                            if table["include-tests"] == "MRR":
+                                tbl_dict[tst_name_mod]["history"][item["title"
+                                ]].append(tst_data["result"]["receive-rate"].
+                                          avg)
+                            elif table["include-tests"] == "PDR":
+                                if tst_data["type"] == "PDR":
+                                    tbl_dict[tst_name_mod]["history"][
+                                        item["title"]].\
+                                        append(tst_data["throughput"]["value"])
+                                elif tst_data["type"] == "NDRPDR":
+                                    tbl_dict[tst_name_mod]["history"][item[
+                                        "title"]].append(tst_data["throughput"][
+                                        "PDR"]["LOWER"])
+                            elif table["include-tests"] == "NDR":
+                                if tst_data["type"] == "NDR":
+                                    tbl_dict[tst_name_mod]["history"][
+                                        item["title"]].\
+                                        append(tst_data["throughput"]["value"])
+                                elif tst_data["type"] == "NDRPDR":
+                                    tbl_dict[tst_name_mod]["history"][item[
+                                        "title"]].append(tst_data["throughput"][
+                                        "NDR"]["LOWER"])
+                            else:
+                                continue
+                        except (TypeError, KeyError):
+                            pass
+
+    tbl_lst = list()
+    for tst_name in tbl_dict.keys():
+        item = [tbl_dict[tst_name]["name"], ]
+        if history:
+            if tbl_dict[tst_name].get("history", None) is not None:
+                for hist_data in tbl_dict[tst_name]["history"].values():
+                    if hist_data:
+                        item.append(round(mean(hist_data) / 1000000, 2))
+                        item.append(round(stdev(hist_data) / 1000000, 2))
+                    else:
+                        item.extend([None, None])
+            else:
+                item.extend([None, None])
+        data_t = tbl_dict[tst_name]["ref-data"]
+        if data_t:
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
+        else:
+            item.extend([None, None])
+        data_t = tbl_dict[tst_name]["cmp-data"]
+        if data_t:
+            item.append(round(mean(data_t) / 1000000, 2))
+            item.append(round(stdev(data_t) / 1000000, 2))
+        else:
+            item.extend([None, None])
+        if item[-4] is not None and item[-2] is not None and item[-4] != 0:
+            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
+        if len(item) == len(header):
+            tbl_lst.append(item)
+
+    # Sort the table according to the relative change
+    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+
+    # Generate csv tables:
+    csv_file = "{0}.csv".format(table["output-file"])
+    with open(csv_file, "w") as file_handler:
+        file_handler.write(header_str)
+        for test in tbl_lst:
+            file_handler.write(",".join([str(item) for item in test]) + "\n")
+
+    convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
+
+
 def table_nics_comparison(table, input_data):
     """Generate the table(s) with algorithm: table_nics_comparison
     specified in the specification file.
