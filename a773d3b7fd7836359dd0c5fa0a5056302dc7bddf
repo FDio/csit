@@ -46,6 +46,30 @@
       "revId": "a773d3b7fd7836359dd0c5fa0a5056302dc7bddf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ecb55db_1dccc3a8",
+        "filename": "docs/job_specs/perf_tests_job_specs.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-26T12:25:31Z",
+      "side": 1,
+      "message": "In https://gerrit.fd.io/r/c/ci-management/+/21514\nWaiting for merge",
+      "parentUuid": "59aeae54_27fbbd20",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 62
+      },
+      "revId": "a773d3b7fd7836359dd0c5fa0a5056302dc7bddf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
