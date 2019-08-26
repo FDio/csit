@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "97ef4227_4958d14f",
+        "filename": "docs/job_specs/perf_tests_job_specs.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-26T14:25:50Z",
+      "side": 1,
+      "message": "I want to introduce fully dash-boarded report as of 20.01 where data are separated and views can be done in much easier way without actually recompiling and uploading anything. Data will be fetched automatically as they come into DB.\n\nPlots will be pre-defined but custom queries are possible, so marketing does not need to ask.\n\nFurther reducing non used functions like COP (see vpp-dev) will be removed so we will save some time on execution.\nFully aligned 2n/3n tests with only IPsec running on 3n-skx/hsw, but code that can run anywhere.",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 1
+      },
+      "revId": "02a1119f8fdbed087ef74500412a2820284fcba5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
