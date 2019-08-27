@@ -22,6 +22,10 @@ Changes in |csit-release|
      1, 40, 400, 1000, 5000, 10000, 20000, 40000, 60000 tunnels. Removed DPDK
      backend dependency.
 
+   - **Hoststack TCP tests**: Added Hoststack TCP performance tests
+     using WRK to the HTTP static server plugin measuring connections
+     per second and requests per second.
+
 #. TEST FRAMEWORK
 
    - **CSIT PAPI Support**: Finished conversion of CSIT VAT L1 keywords to
