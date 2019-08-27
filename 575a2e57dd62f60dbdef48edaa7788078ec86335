@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0982630c_6d568349",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-08-27T05:51:03Z",
+      "side": 1,
+      "message": "I think this is not the same.",
+      "range": {
+        "startLine": 394,
+        "startChar": 23,
+        "endLine": 394,
+        "endChar": 36
+      },
+      "revId": "575a2e57dd62f60dbdef48edaa7788078ec86335",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
