@@ -6,6 +6,7 @@ Test Methodology
 
 .. toctree::
 
+    terminology
     methodology_vpp_forwarding_modes
     methodology_tunnel_encapsulations
     methodology_vpp_features
