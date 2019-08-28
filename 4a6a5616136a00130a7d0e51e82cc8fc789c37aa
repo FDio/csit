@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c40dccb5_e0196f27",
+        "filename": "docs/job_specs/test_full_list_3n_skx.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-28T10:31:55Z",
+      "side": 1,
+      "message": "Remove - no ipsechw tests on 3n-skx.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 1
+      },
+      "revId": "4a6a5616136a00130a7d0e51e82cc8fc789c37aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f5dd5440_ffc1773a",
+        "filename": "docs/job_specs/test_full_list_3n_skx.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-08-28T10:31:55Z",
+      "side": 1,
+      "message": "Remove - no ipsechw tests on 3n-skx.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 1
+      },
+      "revId": "4a6a5616136a00130a7d0e51e82cc8fc789c37aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
