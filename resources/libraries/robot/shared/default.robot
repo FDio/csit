@@ -52,7 +52,6 @@
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
-| Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/container.robot
 | Resource | resources/libraries/robot/shared/memif.robot
@@ -114,7 +113,7 @@
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
 | | | Run keyword | ${dut}.Add Unix Coredump
-| | | Run keyword | ${dut}.Add Socksvr
+| | | Run keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run keyword | ${dut}.Add DPDK Uio Driver
@@ -528,6 +527,7 @@
 | | ...
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Apply Config
+| | | Add New Socket | ${nodes['${dut}']} | PAPI | ${dut} | ${SOCKSVR_PATH}
 | | Save VPP PIDs
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
@@ -611,6 +611,8 @@
 | | All TGs Set Interface Default Driver | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes}
 | | Reset PAPI History On All DUTs | ${nodes}
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add New Socket | ${nodes['${dut}']} | PAPI | ${dut} | ${SOCKSVR_PATH}
 
 | Tear down functional test
 | | [Documentation] | Common test teardown for functional tests.
@@ -620,6 +622,7 @@
 | | Show PAPI History On All DUTs | ${nodes}
 | | Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
+| | Clean Sockets On All Nodes | ${nodes}
 
 | Tear down LISP functional test
 | | [Documentation] | Common test teardown for functional tests with LISP.
@@ -631,3 +634,4 @@
 | | Show Vpp Settings | ${nodes['DUT2']}
 | | Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
+| | Clean Sockets On All Nodes | ${nodes}

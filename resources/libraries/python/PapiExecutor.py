@@ -34,6 +34,7 @@ from resources.libraries.python.PythonThree import raise_from
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
+from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
 
@@ -220,7 +221,7 @@ class PapiSocketExecutor(object):
         # Parsing takes longer than connecting, prepare instance before tunnel.
         vpp_instance = self.vpp_instance
         node = self._node
-        self._temp_dir = tempfile.mkdtemp(dir="/tmp")
+        self._temp_dir = tempfile.mkdtemp(dir="/dev/shm/")
         self._local_vpp_socket = self._temp_dir + "/vpp-api.sock"
         self._ssh_control_socket = self._temp_dir + "/ssh.sock"
         ssh_socket = self._ssh_control_socket
@@ -397,7 +398,7 @@ class PapiSocketExecutor(object):
         :raises AssertionError: If retval is nonzero, parsing or ssh error.
         """
         reply = self.get_reply(err_msg=err_msg)
-        logger.info("Getting index from {reply!r}".format(reply=reply))
+        logger.trace("Getting index from {reply!r}".format(reply=reply))
         return reply["sw_if_index"]
 
     def get_details(self, err_msg="Failed to get dump details."):
@@ -418,15 +419,18 @@ class PapiSocketExecutor(object):
         return self._execute(err_msg)
 
     @staticmethod
-    def run_cli_cmd(node, cmd, log=True):
+    def run_cli_cmd(node, cmd, log=True,
+                    remote_vpp_socket=Constants.SOCKSVR_PATH):
         """Run a CLI command as cli_inband, return the "reply" field of reply.
 
         Optionally, log the field value.
 
         :param node: Node to run command on.
         :param cmd: The CLI command to be run on the node.
+        :param remote_vpp_socket: Path to remote socket to tunnel to.
         :param log: If True, the response is logged.
         :type node: dict
+        :type remote_vpp_socket: str
         :type cmd: str
         :type log: bool
         :returns: CLI output.
@@ -436,11 +440,28 @@ class PapiSocketExecutor(object):
         args = dict(cmd=cmd)
         err_msg = "Failed to run 'cli_inband {cmd}' PAPI command on host " \
                   "{host}".format(host=node['host'], cmd=cmd)
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
             reply = papi_exec.add(cli, **args).get_reply(err_msg)["reply"]
         if log:
             logger.info("{cmd}:\n{reply}".format(cmd=cmd, reply=reply))
         return reply
+
+    @staticmethod
+    def run_cli_cmd_on_all_sockets(node, cmd, log=True):
+        """Run a CLI command as cli_inband, on all sockets in topology file.
+
+        :param node: Node to run command on.
+        :param cmd: The CLI command to be run on the node.
+        :param log: If True, the response is logged.
+        :type node: dict
+        :type cmd: str
+        :type log: bool
+        """
+        for socket in Topology.get_node_sockets(
+                node, socket_type=SocketType.PAPI).values():
+            logger.debug(socket)
+            PapiSocketExecutor.run_cli_cmd(
+                node, cmd, log=log, remote_vpp_socket=socket)
 
     @staticmethod
     def dump_and_log(node, cmds):
