@@ -34,6 +34,7 @@ from resources.libraries.python.PythonThree import raise_from
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
+from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
 
@@ -220,7 +221,7 @@ class PapiSocketExecutor(object):
         # Parsing takes longer than connecting, prepare instance before tunnel.
         vpp_instance = self.vpp_instance
         node = self._node
-        self._temp_dir = tempfile.mkdtemp(dir="/tmp")
+        self._temp_dir = tempfile.mkdtemp(dir="/run/csit/")
         self._local_vpp_socket = self._temp_dir + "/vpp-api.sock"
         self._ssh_control_socket = self._temp_dir + "/ssh.sock"
         ssh_socket = self._ssh_control_socket
@@ -397,7 +398,7 @@ class PapiSocketExecutor(object):
         :raises AssertionError: If retval is nonzero, parsing or ssh error.
         """
         reply = self.get_reply(err_msg=err_msg)
-        logger.info("Getting index from {reply!r}".format(reply=reply))
+        logger.trace("Getting index from {reply!r}".format(reply=reply))
         return reply["sw_if_index"]
 
     def get_details(self, err_msg="Failed to get dump details."):
@@ -418,15 +419,18 @@ class PapiSocketExecutor(object):
         return self._execute(err_msg)
 
     @staticmethod
-    def run_cli_cmd(node, cmd, log=True):
+    def run_cli_cmd(node, cmd, log=True,
+                    remote_vpp_socket=Constants.SOCKSVR_PATH):
         """Run a CLI command as cli_inband, return the "reply" field of reply.
 
         Optionally, log the field value.
 
         :param node: Node to run command on.
         :param cmd: The CLI command to be run on the node.
+        :param remote_vpp_socket: Path to remote socket to tunnel to.
         :param log: If True, the response is logged.
         :type node: dict
+        :type remote_vpp_socket: str
         :type cmd: str
         :type log: bool
         :returns: CLI output.
@@ -436,11 +440,31 @@ class PapiSocketExecutor(object):
         args = dict(cmd=cmd)
         err_msg = "Failed to run 'cli_inband {cmd}' PAPI command on host " \
                   "{host}".format(host=node['host'], cmd=cmd)
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
             reply = papi_exec.add(cli, **args).get_reply(err_msg)["reply"]
         if log:
-            logger.info("{cmd}:\n{reply}".format(cmd=cmd, reply=reply))
+            logger.info(
+                "{cmd} ({host} - {remote_vpp_socket}):\n{reply}".
+                format(cmd=cmd, reply=reply,
+                       remote_vpp_socket=remote_vpp_socket, host=node['host']))
         return reply
+
+    @staticmethod
+    def run_cli_cmd_on_all_sockets(node, cmd, log=True):
+        """Run a CLI command as cli_inband, on all sockets in topology file.
+
+        :param node: Node to run command on.
+        :param cmd: The CLI command to be run on the node.
+        :param log: If True, the response is logged.
+        :type node: dict
+        :type cmd: str
+        :type log: bool
+        """
+        sockets = Topology.get_node_sockets(node, socket_type=SocketType.PAPI)
+        if sockets:
+            for socket in sockets.values():
+                PapiSocketExecutor.run_cli_cmd(
+                    node, cmd, log=log, remote_vpp_socket=socket)
 
     @staticmethod
     def dump_and_log(node, cmds):
@@ -607,7 +631,8 @@ class PapiExecutor(object):
             api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)))
         return self
 
-    def get_stats(self, err_msg="Failed to get statistics.", timeout=120):
+    def get_stats(self, err_msg="Failed to get statistics.", timeout=120,
+                  socket=Constants.SOCKSTAT_PATH):
         """Get VPP Stats from VPP Python API.
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
@@ -617,12 +642,12 @@ class PapiExecutor(object):
         :returns: Requested VPP statistics.
         :rtype: list of dict
         """
-
         paths = [cmd['api_args']['path'] for cmd in self._api_command_list]
         self._api_command_list = list()
 
         stdout = self._execute_papi(
-            paths, method='stats', err_msg=err_msg, timeout=timeout)
+            paths, method='stats', err_msg=err_msg, timeout=timeout,
+            socket=socket)
 
         return json.loads(stdout)
 
@@ -667,7 +692,7 @@ class PapiExecutor(object):
         return api_data_processed
 
     def _execute_papi(self, api_data, method='request', err_msg="",
-                      timeout=120):
+                      timeout=120, socket=None):
         """Execute PAPI command(s) on remote node and store the result.
 
         :param api_data: List of APIs with their arguments.
@@ -685,7 +710,6 @@ class PapiExecutor(object):
         :raises RuntimeError: If PAPI executor failed due to another reason.
         :raises AssertionError: If PAPI command(s) execution has failed.
         """
-
         if not api_data:
             raise RuntimeError("No API data provided.")
 
@@ -693,10 +717,12 @@ class PapiExecutor(object):
             if method in ("stats", "stats_request") \
             else json.dumps(self._process_api_data(api_data))
 
-        cmd = "{fw_dir}/{papi_provider} --method {method} --data '{json}'".\
-            format(
-                fw_dir=Constants.REMOTE_FW_DIR, method=method, json=json_data,
-                papi_provider=Constants.RESOURCES_PAPI_PROVIDER)
+        sock = " --socket {socket}".format(socket=socket) if socket else ""
+        cmd = (
+            "{fw_dir}/{papi_provider} --method {method} --data '{json}'{socket}"
+            .format(fw_dir=Constants.REMOTE_FW_DIR,
+                    papi_provider=Constants.RESOURCES_PAPI_PROVIDER,
+                    method=method, json=json_data, socket=sock))
         try:
             ret_code, stdout, _ = self._ssh.exec_command_sudo(
                 cmd=cmd, timeout=timeout, log_stdout_err=False)
