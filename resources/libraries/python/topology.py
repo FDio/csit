@@ -23,7 +23,7 @@ from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from robot.api.deco import keyword
 
-__all__ = ["DICT__nodes", 'Topology', 'NodeType']
+__all__ = ["DICT__nodes", 'Topology', 'NodeType', 'SocketType']
 
 
 def load_topo_from_yaml():
@@ -61,6 +61,11 @@ class NodeSubTypeTG(object):
     # IxNetwork
     IXNET = 'IXNET'
 
+class SocketType(object):
+    """Defines socket types used in topology dictionaries."""
+    # VPP PAPI
+    PAPI = 'PAPI'
+
 
 DICT__nodes = load_topo_from_yaml()
 
@@ -82,6 +87,26 @@ class Topology(object):
     does not rely on the data retrieved from nodes, this allows to call most of
     the methods without having filled active topology with internal nodes data.
     """
+
+    def add_node_item(self, node, value, path):
+        """Add item to topology node.
+
+        :param node: Topology node.
+        :param value: Value to insert.
+        :param path: Path where to insert item.
+        :type node: dict
+        :type value: str
+        :type path: list
+        """
+        if len(path) == 1:
+            node[path[0]] = value
+            return
+        if path[0] not in node:
+            node[path[0]] = {}
+        elif isinstance(node[path[0]], str):
+            node[path[0]] = {} if node[path[0]] == '' \
+                else {node[path[0]]: ''}
+        self.add_node_item(node[path[0]], value, path[1:])
 
     @staticmethod
     def add_new_port(node, ptype):
@@ -1033,3 +1058,47 @@ class Topology(object):
             return iface_key
         except KeyError:
             return None
+
+    def add_new_socket(self, node, socket_type, socket_id, socket_path):
+        """Add socket file of specific SocketType and ID to node.
+
+        :param node: Node to add socket on.
+        :param socket_type: Socket type.
+        :param socket_id: Socket id.
+        :param socket_path: Socket absolute path.
+        :type node: dict
+        :type socket_type: SocketType
+        :type socket_id: str
+        :type socket path: str
+        """
+        path = ['sockets', socket_type, socket_id]
+        self.add_node_item(node, socket_path, path)
+
+    @staticmethod
+    def get_node_sockets(node, socket_type=None):
+        """Get node socket files.
+
+        :param node: Node to get sockets from.
+        :param socket_type: Socket type or None for all sockets.
+        :type node: dict
+        :type socket_type: SocketType
+        :returns: Node sockets or None if not found.
+        :rtype: list
+        """
+        try:
+            if socket_type:
+                return node['sockets'][socket_type]
+            return node['sockets']
+        except KeyError:
+            return None
+
+    @staticmethod
+    def clean_sockets_on_all_nodes(nodes):
+        """Remove temporary socket files from topology file.
+
+        :param nodes: SUT nodes.
+        :type node: dict
+        """
+        for node in nodes.values():
+            if 'sockets' in node.keys():
+                node.pop('sockets')
