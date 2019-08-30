@@ -38,6 +38,7 @@
 | | ... | Verify VPP PID in Teardown
 | | :FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
+| | Clean Garbage On All Nodes | ${nodes}
 
 | Additional Test Tear Down Action For performance
 | | [Documentation]

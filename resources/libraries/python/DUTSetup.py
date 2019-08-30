@@ -16,7 +16,7 @@
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
+from resources.libraries.python.ssh import SSH, exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -859,3 +859,14 @@ class DUTSetup(object):
             if int(ret_code) != 0:
                 raise RuntimeError('Mount huge pages failed on {host}'.
                                    format(host=node['host']))
+
+    @staticmethod
+    def clean_garbage_on_all_nodes(nodes):
+        """Remove temporary files and leftovers from execution.
+
+        :param nodes: SUT nodes.
+        :type node: dict
+        """
+        for node in nodes.values():
+            exec_cmd(node, "rm -rf /tmp/vpp_sockets/", sudo=True)
+

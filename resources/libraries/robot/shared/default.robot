@@ -52,7 +52,6 @@
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
-| Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/container.robot
 | Resource | resources/libraries/robot/shared/memif.robot
@@ -618,7 +617,7 @@
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Show PAPI History On All DUTs | ${nodes}
-| | Vpp Show Errors On All DUTs | ${nodes}
+| | Vpp Show Errors Verbose On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
 
 | Tear down LISP functional test
@@ -629,5 +628,5 @@
 | | Show PAPI History On All DUTs | ${nodes}
 | | Show Vpp Settings | ${nodes['DUT1']}
 | | Show Vpp Settings | ${nodes['DUT2']}
-| | Vpp Show Errors On All DUTs | ${nodes}
+| | Vpp Show Errors Verbose On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
