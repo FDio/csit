@@ -21,8 +21,6 @@
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
 | ...
-| Resource | resources/libraries/robot/shared/counters.robot
-| ...
 | Documentation | Traffic keywords
 
 *** Keywords ***
