@@ -52,7 +52,6 @@
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
-| Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/container.robot
 | Resource | resources/libraries/robot/shared/memif.robot
@@ -114,7 +113,7 @@
 | | | Run keyword | ${dut}.Add Unix CLI Listen
 | | | Run keyword | ${dut}.Add Unix Nodaemon
 | | | Run keyword | ${dut}.Add Unix Coredump
-| | | Run keyword | ${dut}.Add Socksvr
+| | | Run keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
 | | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
 | | | Run keyword | ${dut}.Add DPDK Log Level | debug
 | | | Run keyword | ${dut}.Add DPDK Uio Driver
@@ -528,6 +527,7 @@
 | | ...
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Apply Config
+| | | Add New Socket | ${nodes['${dut}']} | PAPI | ${dut} | ${SOCKSVR_PATH}
 | | Save VPP PIDs
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}

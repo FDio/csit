@@ -48,7 +48,7 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
-| ${nic_name}= | Intel-X710
+| ${nic_name}= | Intel-XXV710
 | ${osi_layer}= | L2
 | ${overhead}= | ${0}
 # Traffic profile:
@@ -84,7 +84,7 @@
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2xcbase-eth-2memif-1dcr-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | tc02-64B-2c-eth-l2xcbase-eth-2memif-1dcr-ndrpdr
