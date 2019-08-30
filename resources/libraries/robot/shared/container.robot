@@ -87,8 +87,10 @@
 | | ... | Get Docker Mergeddir | ${nodes['DUT1']} | ${dut1_uuid}
 | | ... | ELSE | Set Variable | ${EMPTY}
 | | ${node_arch}= | Get Node Arch | ${nodes['${dut}']}
+| | ${name}= | Set Variable | ${dut}_${container_group}${nf_id}${dut1_uuid}
 | | ${mnt}= | Create List
 | | ... | ${root}/tmp/:/mnt/host/
+| | ... | ${root}/tmp/vpp_sockets/${name}/:/run/vpp/
 | | ... | ${root}/dev/vfio/:/dev/vfio/
 | | ... | ${root}/usr/bin/vpp:/usr/bin/vpp
 | | ... | ${root}/usr/bin/vppctl:/usr/bin/vppctl
@@ -101,11 +103,13 @@
 | | ... | nf_chain=${nf_chain} | nf_node=${nf_node}
 | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | &{cont_args}= | Create Dictionary
-| | ... | name=${dut}_${container_group}${nf_id}${dut1_uuid}
-| | ... | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
+| | ... | name=${name} | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
 | | Run Keyword If | ${pinning}
 | | ... | Set To Dictionary | ${cont_args} | cpuset_cpus=${nf_cpus}
 | | Run Keyword | ${container_group}.Construct container | &{cont_args}
+| | Add New Socket
+| | ... | ${nodes['${dut}']} | PAPI | ${name}
+| | ... | ${root}/tmp/vpp_sockets/${name}/api.sock
 
 | Construct chain of containers
 | | [Documentation] | Construct 1 chain of 1..N CNFs on selected/all DUT nodes.
