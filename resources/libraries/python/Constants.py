@@ -228,6 +228,9 @@ class Constants(object):
     #  /tmp directory is inside the DUT1 docker.
     DUT1_UUID = get_str_from_env("DUT1_UUID", "")
 
+    # Default path to VPP API Stats socket.
+    SOCKSTAT_PATH = "/run/vpp/stats.sock"
+
     # Global "kill switch" for CRC checking during runtime.
     FAIL_ON_CRC_MISMATCH = get_optimistic_bool_from_env("FAIL_ON_CRC_MISMATCH")
 
