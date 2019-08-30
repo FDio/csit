@@ -19,9 +19,11 @@
 from string import Template
 from collections import OrderedDict, Counter
 
+from robot.libraries.BuiltIn import BuiltIn
+
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
 
@@ -429,6 +431,15 @@ class ContainerEngine(object):
                          config_file=SUPERVISOR_CONF))
         self.execute('supervisorctl reload')
         self.execute('supervisorctl start vpp')
+
+        topo_instance = BuiltIn().get_library_instance(
+            'resources.libraries.python.topology.Topology')
+        topo_instance.add_new_socket(
+            self.container.node,
+            SocketType.PAPI,
+            self.container.name,
+            '{root}/tmp/vpp_sockets/{name}/api.sock'.
+            format(root=self.container.root, name=self.container.name))
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
