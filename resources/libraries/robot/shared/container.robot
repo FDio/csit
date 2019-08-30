@@ -48,37 +48,39 @@
 | | ${nf_dtc}= | Run Keyword If | ${pinning}
 | | ... | Set Variable If | ${auto_scale} | ${cpu_count_int}
 | | ... | ${nf_dtc}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
-| | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
-| | | ${dut1_uuid_length} = | Get Length | ${dut1_uuid}
-| | | ${root}= | Run Keyword If | ${dut1_uuid_length}
-| | | ... | Get Docker Mergeddir | ${nodes['DUT1']} | ${dut1_uuid}
-| | | ... | ELSE | Set Variable | ${EMPTY}
-| | | ${node_arch}= | Get Node Arch | ${nodes['${dut}']}
-| | | ${mnt}= | Create List
-| | | ... | ${root}/tmp/:/mnt/host/
-| | | ... | ${root}/dev/vfio/:/dev/vfio/
-| | | ... | ${root}/usr/bin/vpp:/usr/bin/vpp
-| | | ... | ${root}/usr/bin/vppctl:/usr/bin/vppctl
-| | | ... | ${root}/usr/lib/${node_arch}-linux-gnu/:/usr/lib/${node_arch}-linux-gnu/
-| | | ... | ${root}/usr/share/vpp/:/usr/share/vpp/
-| | | ${nf_cpus}= | Set Variable | ${None}
-| | | ${nf_cpus}= | Run Keyword If | ${pinning}
-| | | ... | Get Affinity NF | ${nodes} | ${dut}
-| | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
-| | | ... | nf_chain=${nf_chain} | nf_node=${nf_node}
-| | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
-| | | &{cont_args}= | Create Dictionary
-| | | ... | name=${dut}_${container_group}${nf_id}${dut1_uuid}
-| | | ... | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
-| | | Run Keyword If | ${pinning}
-| | | ... | Set To Dictionary | ${cont_args} | cpuset_cpus=${nf_cpus}
-| | | Run Keyword | ${container_group}.Construct container | &{cont_args}
+| | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
+| | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
+| | ${dut1_uuid_length} = | Get Length | ${dut1_uuid}
+| | ${root}= | Run Keyword If | ${dut1_uuid_length}
+| | ... | Get Docker Mergeddir | ${nodes['DUT1']} | ${dut1_uuid}
+| | ... | ELSE | Set Variable | ${EMPTY}
+| | ${node_arch}= | Get Node Arch | ${nodes['${dut}']}
+| | ${name}= | Set Variable | ${dut}_${container_group}${nf_id}${dut1_uuid}
+| | ${mnt}= | Create List
+| | ... | ${root}/tmp/:/mnt/host/
+| | ... | ${root}/tmp/vpp_sockets/${name}/:/run/vpp/
+| | ... | ${root}/dev/vfio/:/dev/vfio/
+| | ... | ${root}/usr/bin/vpp:/usr/bin/vpp
+| | ... | ${root}/usr/bin/vppctl:/usr/bin/vppctl
+| | ... | ${root}/usr/lib/${node_arch}-linux-gnu/:/usr/lib/${node_arch}-linux-gnu/
+| | ... | ${root}/usr/share/vpp/:/usr/share/vpp/
+| | ${nf_cpus}= | Set Variable | ${None}
+| | ${nf_cpus}= | Run Keyword If | ${pinning}
+| | ... | Get Affinity NF | ${nodes} | ${dut}
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
+| | ... | nf_chain=${nf_chain} | nf_node=${nf_node}
+| | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
+| | &{cont_args}= | Create Dictionary
+| | ... | name=${name} | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
+| | Run Keyword If | ${pinning}
+| | ... | Set To Dictionary | ${cont_args} | cpuset_cpus=${nf_cpus}
+| | Run Keyword | ${container_group}.Construct container | &{cont_args}
+| | Add New Socket
+| | ... | ${nodes['${dut}']} | PAPI | ${name}
+| | ... | ${root}/tmp/vpp_sockets/${name}/api.sock
 
-| Construct chain of containers on all DUTs
-| | [Documentation] | Construct 1 chain of 1..N CNFs on all DUT nodes.
+| Construct chain of containers
+| | [Documentation] | Construct 1 chain of 1..N CNFs on selected/all DUT nodes.
 | | ...
 | | ... | *Arguments:*
 | | ... | - nf_chains: Total number of chains. Type: integer
