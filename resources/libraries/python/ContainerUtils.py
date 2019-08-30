@@ -21,7 +21,7 @@ from collections import OrderedDict, Counter
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
 
@@ -430,6 +430,22 @@ class ContainerEngine(object):
         self.execute('supervisorctl reload')
         self.execute('supervisorctl start vpp')
 
+        from robot.libraries.BuiltIn import BuiltIn
+        topo_instance = BuiltIn().get_library_instance(
+            'resources.libraries.python.topology.Topology')
+        topo_instance.add_new_socket(
+            self.container.node,
+            SocketType.PAPI,
+            self.container.name,
+            '{root}/tmp/vpp_sockets/{name}/api.sock'.
+            format(root=self.container.root, name=self.container.name))
+        topo_instance.add_new_socket(
+            self.container.node,
+            SocketType.STATS,
+            self.container.name,
+            '{root}/tmp/vpp_sockets/{name}/stats.sock'.
+            format(root=self.container.root, name=self.container.name))
+
     def restart_vpp(self):
         """Restart VPP service inside a container."""
         self.execute('supervisorctl restart vpp')
@@ -449,7 +465,8 @@ class ContainerEngine(object):
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec('/tmp/running.exec')
-        vpp_config.add_socksvr()
+        vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
+        vpp_config.add_statseg_per_node_counters(value='on')
         # We will pop the first core from the list to be a main core
         vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
         # If more cores in the list, the rest will be used as workers.
@@ -499,7 +516,8 @@ class ContainerEngine(object):
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
         vpp_config.add_unix_exec('/tmp/running.exec')
-        vpp_config.add_socksvr()
+        vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
+        vpp_config.add_statseg_per_node_counters(value='on')
         vpp_config.add_plugin('disable', 'dpdk_plugin.so')
 
         # Apply configuration
