@@ -148,8 +148,12 @@
       csit-vpp-perf-verify-1908-2n-skx:
         - 29  # TCP
         - 30  # TCP
+        - 58  # TCP
+        - 59  # TCP
         - 60  # TCP
+        - 61  # TCP
         - 62  # TCP
+        - 63  # TCP
         - 64  # TCP
         - 65  # TCP
 
@@ -311,13 +315,20 @@
       # TODO: Add FULL data
       csit-vpp-perf-verify-1908-3n-hsw:
         - 24  # NDRPDR full
+        - 25  # NDRPDR full
         - 26  # NDRPDR full
         - 27  # NDRPDR full
+        - 28  # NDRPDR full
+        - 29  # NDRPDR full
+        - 32  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       # TODO: Add FULL data
       csit-vpp-perf-verify-1908-3n-skx:
         - 27  # NDRPDR full
+        - 28  # NDRPDR full
+        - 30  # NDRPDR full
+        - 31  # NDRPDR full
 
     vpp-perf-results-2n-skx:
       # TODO: Add FULL data
@@ -326,6 +337,9 @@
         - 49  # NDRPDR full
         - 50  # NDRPDR full
         - 51  # NDRPDR full
+        - 54  # NDRPDR full
+        - 55  # NDRPDR full
+        - 66  # NDRPDR full
 
     vpp-mrr-results-3n-hsw:
       csit-vpp-perf-verify-1904-3n-hsw:
@@ -1325,8 +1339,12 @@
       - 20  # NDRPDR sel
       - 21  # NDRPDR sel
       - 24  # NDRPDR full
+      - 25  # NDRPDR full
       - 26  # NDRPDR full
       - 27  # NDRPDR full
+      - 28  # NDRPDR full
+      - 29  # NDRPDR full
+      - 32  # NDRPDR full
 
     csit-vpp-perf-verify-1901-3n-skx:
       - 32  # MRR sel
@@ -1374,6 +1392,9 @@
       - 25  # NDRPDR sel
       - 26  # NDRPDR sel
       - 27  # NDRPDR full
+      - 28  # NDRPDR full
+      - 30  # NDRPDR full
+      - 31  # NDRPDR full
 
     csit-vpp-perf-verify-1901-2n-skx:
       - 22  # MRR sel
@@ -1415,10 +1436,17 @@
       - 49  # NDRPDR full
       - 50  # NDRPDR full
       - 51  # NDRPDR full
+      - 54  # NDRPDR full
+      - 55  # NDRPDR full
+      - 66  # NDRPDR full
       - 29  # TCP
       - 30  # TCP
+      - 58  # TCP
+      - 59  # TCP
       - 60  # TCP
+      - 61  # TCP
       - 62  # TCP
+      - 63  # TCP
       - 64  # TCP
       - 65  # TCP
       - 22  # NFV
