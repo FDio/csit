@@ -464,6 +464,26 @@ Encapsulation Tags
 
     All test cases with LISP-GPE.
 
+.. topic:: LISP_IP4o4
+
+    All test cases with LISP_IP4o4.
+
+.. topic:: LISPGPE_IP4o4
+
+    All test cases with LISPGPE_IP4o4.
+
+.. topic:: LISPGPE_IP6o4
+
+    All test cases with LISPGPE_IP6o4.
+
+.. topic:: LISPGEP_IP4o6
+
+    All test cases with LISPGPE_IP4o6.
+
+.. topic:: LISPGPE_IP6o6
+
+    All test cases with LISPGPE_IP6o6.
+
 .. topic:: VXLAN
 
     All test cases with Vxlan.
