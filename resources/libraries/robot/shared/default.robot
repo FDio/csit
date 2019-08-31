@@ -49,6 +49,7 @@
 | Resource | resources/libraries/robot/l2/l2_xconnect.robot
 | Resource | resources/libraries/robot/l2/tagging.robot
 | Resource | resources/libraries/robot/overlay/srv6.robot
+| Resource | resources/libraries/robot/overlay/lisp.robot
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_limits.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
