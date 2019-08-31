@@ -96,7 +96,8 @@ def main():
 
     args = TrafficScriptArg(
         ['tg_src_mac', 'tg_dst_mac', 'src_ip', 'dst_ip', 'dut_if1_mac',
-         'dut_if2_mac', 'src_rloc', 'dst_rloc'])
+         'dut_if2_mac', 'src_rloc', 'dst_rloc'],
+        ['ot_mode'])
 
     tx_src_mac = args.get_arg('tg_src_mac')
     tx_dst_mac = args.get_arg('dut_if1_mac')
@@ -108,6 +109,7 @@ def main():
     dst_rloc = args.get_arg("dst_rloc")
     tx_if = args.get_arg('tx_if')
     rx_if = args.get_arg('rx_if')
+    ot_mode = args.get_arg('ot_mode')
 
     rxq = RxQueue(rx_if)
     txq = TxQueue(tx_if)
@@ -146,9 +148,17 @@ def main():
 
     ip = ether.payload
 
-    if not isinstance(ip, ip_format):
-        raise RuntimeError(
-            "Not an IP packet received {0}".format(ip.__repr__()))
+    if ot_mode == '6to4':
+        if not isinstance(ip, IP):
+            raise RuntimeError(
+                "Not an IP packet received {0}".format(ip.__repr__()))
+    elif ot_mode == '4to6':
+        if not isinstance(ip, IPv6):
+            raise RuntimeError(
+                "Not an IP packet received {0}".format(ip.__repr__()))
+    elif not isinstance(ip, ip_format):
+            raise RuntimeError(
+                "Not an IP packet received {0}".format(ip.__repr__()))
 
     lisp = ether.getlayer(LispGPEHeader).underlayer
     if not lisp:
