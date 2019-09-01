@@ -16,6 +16,7 @@
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | BASE | VHOST | 1VM | VHOST_1024
+| ... | NF_TESTPMD
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -31,7 +32,7 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4
 | ... | routing and two static IPv4 /24 route entries. Qemu VNFs are connected \
-| ... | to VPP via vhost-user interfaces. Guest is running VPP ip4 \
+| ... | to VPP via vhost-user interfaces. Guest is running testpmd \
 | ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1 is tested \
 | ... | with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
@@ -83,7 +84,7 @@
 | | ... | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
-| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_ip4_noarp
+| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=testpmd_mac
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
