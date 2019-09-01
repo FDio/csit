@@ -14,9 +14,9 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | VHOST | 1VM | VHOST_1024 | NF_TESTPMD
+| Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
+| ... | NIC_Intel-X710 | ETH | L2XCFWD | BASE | VHOST | 1VM | VHOST_1024
+| ... | NF_VPPL2XC
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -25,18 +25,16 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *RFC2544: Pkt throughput L2BD test cases with VXLANoIPv4
-| ... | and vhost*
+| Documentation | *RFC2544: Pkt throughput L2XC test cases with vhost*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
-| ... | Eth-IPv4-VXLAN-Eth-IPv4 is applied on link between DUT1 and DUT2.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-
-| ... | domain and MAC learning enabled. Qemu VNFs are \
-| ... | connected to VPP via vhost-user interfaces. Guest is running VPP l2xc \
-| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1/DUT2 is \
-| ... | tested with ${nic_name}.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 cross-
+| ... | connect. Qemu VNFs are connected \
+| ... | to VPP via vhost-user interfaces. Guest is running VPP l2xc \
+| ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1 is tested \
+| ... | with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -47,26 +45,24 @@
 | ... | flow-group) with all packets containing Ethernet header, IPv4 header
 | ... | with IP protocol=61 and static payload. MAC addresses are matching MAC
 | ... | addresses of the TG node interfaces.
-| ... | *[Ref] Applicable standard specifications:* RFC7348.
+| ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
-| ${overhead}= | ${50}
-| ${bd_id1}= | 1
-| ${bd_id2}= | 2
+| ${overhead}= | ${0}
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
+| ${traffic_profile}= | trex-sl-2n-ethip4-ip4src254
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config.
+| | ... | [Cfg] DUT runs L2XC switching config.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
@@ -84,58 +80,57 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
-| | ... | ${bd_id1} | ${bd_id2}
+| | When Initialize L2 xconnect with Vhost-User | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
-| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_chains} | jumbo=${jumbo}
-| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=testpmd_io
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
+| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc01-64B-1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc02-64B-2c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc03-64B-4c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc04-1518B-1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc05-1518B-2c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc06-1518B-4c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc07-9000B-1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc08-9000B-2c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc09-9000B-4c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc10-IMIX-1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc11-IMIX-2c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+| tc12-IMIX-4c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}

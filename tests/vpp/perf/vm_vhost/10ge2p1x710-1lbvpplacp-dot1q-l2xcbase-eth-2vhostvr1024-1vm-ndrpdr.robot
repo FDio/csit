@@ -17,7 +17,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | DOT1Q | L2XCFWD | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
-| ... | LBOND_1L
+| ... | LBOND_1L | NF_TESTPMD
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -94,7 +94,7 @@
 | | ... | ${subid} | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
-| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
+| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=testpmd_io
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
