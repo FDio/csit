@@ -17,7 +17,7 @@
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
-| ... | LBOND_2L
+| ... | LBOND_2L | VM_TESTPMD
 | ...
 | Suite Setup | Setup suite double link | performance
 | Suite Teardown | Tear down suite | performance
@@ -37,7 +37,7 @@
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with VPP
 | ... | link bonding (mode LACP, transmit policy l34) on link between DUT1 and
 | ... | DUT2 and L2 bridge-domain with MAC learning enabled. Qemu VNFs are \
-| ... | connected to VPP via vhost-user interfaces. Guest is running VPP l2xc \
+| ... | connected to VPP via vhost-user interfaces. Guest is running testpmd \
 | ... | interconnecting vhost-user interfaces, rxd/txd=1024. DUT1/DUT2 is \
 | ... | tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
@@ -98,7 +98,7 @@
 | | ... | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
-| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=vpp_chain_l2xc
+| | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=testpmd_io
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
