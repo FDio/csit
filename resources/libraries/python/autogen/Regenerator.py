@@ -114,7 +114,8 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
                 # Not supported in HW.
                 emit = False
             if "ipsec" in suite_id:
-                # Not supported in ipsec
+                # IPsec code does not support chained buffers.
+                # Tracked by Jira ticket VPP-1207.
                 emit = False
         if "-16vm2t-" in suite_id or "-16dcr2t-" in suite_id:
             if kwargs["phy_cores"] > 3:
