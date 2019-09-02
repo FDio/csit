@@ -17,6 +17,7 @@
 
 import argparse
 import sys
+sys.exit(0)
 from platform import dist
 from yaml import load
 

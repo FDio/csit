@@ -31,7 +31,7 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
-source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
+#source "${BASH_FUNCTION_DIR}/ansible.sh" || die "Source failed."
 common_dirs || die
 check_prerequisites || die
 get_test_code "${1-}" || die
@@ -44,7 +44,7 @@ activate_virtualenv || die
 generate_tests || die
 archive_tests || die
 reserve_and_cleanup_testbed || die
-ansible_hosts "calibration" || die
+#ansible_hosts "calibration" || die
 select_tags || die
 compose_pybot_arguments || die
 run_pybot || die

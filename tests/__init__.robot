@@ -30,6 +30,7 @@
 | | ... |   DUT1 docker in case of vpp-device test. ${EMPTY} value means that
 | | ... |   /tmp directory is inside the DUT1 docker
 | | ...
+| | Fail | Testing tags. Everything gets skipped, testbed is unaffected.
 | | Ensure Global Variable | perf_trial_multiplicity | 10
 | | Ensure Global Variable | perf_trial_duration | 1
 | | Ensure Global Variable | dut1_uuid | ${EMPTY}
