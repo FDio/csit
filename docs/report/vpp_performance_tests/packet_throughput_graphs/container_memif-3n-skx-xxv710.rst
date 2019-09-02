@@ -37,11 +37,11 @@
     10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr
     10ge2p1xxv710-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
 
-Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2memif-1dcr-ndrpdr
-Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2memif-1lxc-ndrpdr
-Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr
-Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr
-Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
+    Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2memif-1lxc-ndrpdr
+    Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2memif-1dcr-ndrpdr
+    Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr
+    Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Memif-1Lxc-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr
+    Tests.Vpp.Perf.Container Memif.25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
 
 3n-skx-xxv710
 ~~~~~~~~~~~~~
