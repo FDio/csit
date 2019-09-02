@@ -4385,24 +4385,6 @@
   - "parent"
   data-start-level: 3
 
-# Honeycomb Functional Results
-- type: "file"
-  title: "Honeycomb Functional Results"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
-  output-file: "{DIR[DTR,FUNC,HC]}/honeycomb_functional_results"
-  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,FUNC,HC]}"
-  data:
-    "hc-func-results"
-  filter: "all"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
-  data-start-level: 3
-
 ################################################################################
 ###                                P L O T S                                 ###
 ################################################################################
