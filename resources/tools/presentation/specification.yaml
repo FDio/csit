@@ -175,7 +175,6 @@
     # 3n-skx
 
     plot-vpp-throughput-lat-tsa-3n-skx:
-      # TODO: Add data
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
@@ -267,7 +266,6 @@
     # NIC Comparisons
 
     vpp-nic-comparison-3n-skx:
-      # TODO: Add data
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
@@ -344,7 +342,6 @@
         - 66  # NDRPDR full
 
     vpp-perf-results-3n-tsh:
-      # TODO: Add FULL data
       csit-vpp-perf-verify-1908-3n-tsh:
         - 13  # NDRPDR sel
 
@@ -384,27 +381,7 @@
       csit-dpdk-perf-verify-1908-2n-skx:
         - 12  # NDRPDR sel
 
-    # HoneyComb Functional
-    hc-func-results:
-      csit-hc2vpp-verify-func-1904-ubuntu1604:
-        - 4
-      # TODO: Add data
-      # csit-hc2vpp-verify-func-1908-ubuntu1604:
-
-#    # NSH SFC Functional
-#    nsh-func-results:
-#      # Not used
-#      csit-nsh_sfc-verify-func-1810-ubuntu1604-virl:
-#        - 1
-
-    # DMM Functional
-    dmm-func-results:
-      csit-dmm-functional-1904-ubuntu1604-virl:
-        - 1
-      # TODO: Add data
-      # csit-dmm-functional-1908-ubuntu1604-virl:
-
-    ###########################################################################
+###########################################################################
     # Tables (more than one data set)
 
     # Performance changes
@@ -510,7 +487,6 @@
         - 23  # NDRPDR sel
         - 25  # NDRPDR sel
     vpp-performance-changes-3n-skx-cmp:
-      # TODO: Add data
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
@@ -785,7 +761,6 @@
         - 20  # NDRPDR sel
         - 21  # NDRPDR sel
     vpp-compare-testbeds-cmp:
-      # TODO: Add data
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
@@ -812,7 +787,6 @@
       - "vpp-compare-testbeds-mrr-cmp"
 
     dpdk-compare-testbeds-ref:
-      # TODO: Add data
       csit-dpdk-perf-verify-1908-3n-hsw:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -1618,8 +1592,6 @@
       - 10  # NDRPDR sel
       - 11  # NDRPDR sel
       - 12  # NDRPDR sel
-
-    # TODO: Replace
 
     csit-vpp-functional-1908-ubuntu1604-virl:
       - 64
@@ -4377,24 +4349,6 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTR,PERF,DPDK,2N,SKX]}"
   data: "dpdk-perf-results-2n-skx"
-  filter: "all"
-  parameters:
-  - "name"
-  - "doc"
-  - "level"
-  - "parent"
-  data-start-level: 3
-
-# Honeycomb Functional Results
-- type: "file"
-  title: "Honeycomb Functional Results"
-  algorithm: "file_test_results"
-  output-file-ext: ".rst"
-  output-file: "{DIR[DTR,FUNC,HC]}/honeycomb_functional_results"
-  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-  dir-tables: "{DIR[DTR,FUNC,HC]}"
-  data:
-    "hc-func-results"
   filter: "all"
   parameters:
   - "name"
