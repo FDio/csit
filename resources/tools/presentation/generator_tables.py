@@ -528,6 +528,18 @@ def table_performance_comparison_nic(table, input_data):
                 tst_name_mod = re.sub(REGEX_NIC, "", tst_name_mod)
                 if "across topologies" in table["title"].lower():
                     tst_name_mod = tst_name_mod.replace("2n1l-", "")
+                if tbl_dict.get(tst_name_mod, None) is None:
+                    name = "{0}".format("-".join(tst_data["name"].
+                                                 split("-")[:-1]))
+                    if "across testbeds" in table["title"].lower() or \
+                            "across topologies" in table["title"].lower():
+                        name = name.\
+                            replace("1t1c", "1c").replace("2t1c", "1c").\
+                            replace("2t2c", "2c").replace("4t2c", "2c").\
+                            replace("4t4c", "4c").replace("8t4c", "4c")
+                    tbl_dict[tst_name_mod] = {"name": name,
+                                              "ref-data": list(),
+                                              "cmp-data": list()}
                 try:
                     # TODO: Re-work when NDRPDRDISC tests are not used
                     if table["include-tests"] == "MRR":
@@ -549,10 +561,9 @@ def table_performance_comparison_nic(table, input_data):
                                 tst_data["throughput"]["NDR"]["LOWER"])
                     else:
                         continue
-                except KeyError:
+                except (KeyError, TypeError):
                     pass
-                except TypeError:
-                    tbl_dict.pop(tst_name_mod, None)
+
     if history:
         for item in history:
             for job, builds in item["data"].items():
@@ -634,6 +645,8 @@ def table_performance_comparison_nic(table, input_data):
             item.extend([None, None])
         if item[-4] is not None and item[-2] is not None and item[-4] != 0:
             item.append(int(relative_change(float(item[-4]), float(item[-2]))))
+        else:
+            item.append(None)
         if len(item) == len(header):
             tbl_lst.append(item)
 
