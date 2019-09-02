@@ -60,14 +60,15 @@ CSIT-1908
     vpp_functional_tests/test_environment
     vpp_functional_tests/documentation
 
-.. toctree::
-    :maxdepth: 2
-    :caption: HoneyComb Functional
+..
+    .. toctree::
+        :maxdepth: 2
+        :caption: HoneyComb Functional
 
-    honeycomb_functional_tests/overview
-    honeycomb_functional_tests/csit_release_notes
-    honeycomb_functional_tests/test_environment
-    honeycomb_functional_tests/documentation
+        honeycomb_functional_tests/overview
+        honeycomb_functional_tests/csit_release_notes
+        honeycomb_functional_tests/test_environment
+        honeycomb_functional_tests/documentation
 
 ..
     .. toctree::
@@ -98,9 +99,9 @@ CSIT-1908
     detailed_test_results/dpdk_performance_results/index
     detailed_test_results/vpp_functional_results/index
     detailed_test_results/vpp_device_results_ubuntu/index
-    detailed_test_results/honeycomb_functional_results/index
 
 ..
+    detailed_test_results/honeycomb_functional_results/index
     detailed_test_results/dmm_functional_results/index
     detailed_test_results/cot_performance_results/index
     detailed_test_results/nshsfc_functional_results/index
