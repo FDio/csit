@@ -444,7 +444,13 @@
 | | ...
 | | ${vhost_1}= | Vpp Create Vhost User Interface | ${dut_node} | ${sock1}
 | | ${vhost_2}= | Vpp Create Vhost User Interface | ${dut_node} | ${sock2}
+| | ${vhost_1_key}= | Get Interface By SW Index | ${dut_node} | ${vhost_1}
+| | ${vhost_2_key}= | Get Interface By SW Index | ${dut_node} | ${vhost_2}
+| | ${vhost_1_mac}= | Get Interface MAC | ${dut_node} | ${vhost_1_key}
+| | ${vhost_2_mac}= | Get Interface MAC | ${dut_node} | ${vhost_2_key}
 | | Set Interface State | ${dut_node} | ${vhost_1} | up
 | | Set Interface State | ${dut_node} | ${vhost_2} | up
 | | Set Test Variable | ${${vhost_if1}} | ${vhost_1}
 | | Set Test Variable | ${${vhost_if2}} | ${vhost_2}
+| | Set Test Variable | ${${vhost_if1}_mac} | ${vhost_1_mac}
+| | Set Test Variable | ${${vhost_if2}_mac} | ${vhost_2_mac}
