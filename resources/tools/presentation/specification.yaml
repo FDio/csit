@@ -172,7 +172,6 @@
     # 3n-skx
 
     plot-vpp-throughput-lat-tsa-3n-skx:
-      # TODO: Add data
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
@@ -274,7 +273,6 @@
     # NIC Comparisons
 
     vpp-nic-comparison-3n-skx:
-      # TODO: Add data
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
@@ -353,7 +351,6 @@
 <<<<<<< HEAD   (97881b Report: functional tests static content)
 =======
     vpp-perf-results-3n-tsh:
-      # TODO: Add FULL data
       csit-vpp-perf-verify-1908-3n-tsh:
         - 13  # NDRPDR sel
 
@@ -368,7 +365,7 @@
 
     vpp-mrr-results-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
-        - 71  # NFV MRR
+        - 69  # MRR sel
 
     vpp-func-results-ubuntu:
       csit-vpp-functional-1908-ubuntu1604-virl:
@@ -394,27 +391,7 @@
       csit-dpdk-perf-verify-1908-2n-skx:
         - 12  # NDRPDR sel
 
-    # HoneyComb Functional
-    hc-func-results:
-      csit-hc2vpp-verify-func-1904-ubuntu1604:
-        - 4
-      # TODO: Add data
-      # csit-hc2vpp-verify-func-1908-ubuntu1604:
-
-#    # NSH SFC Functional
-#    nsh-func-results:
-#      # Not used
-#      csit-nsh_sfc-verify-func-1810-ubuntu1604-virl:
-#        - 1
-
-    # DMM Functional
-    dmm-func-results:
-      csit-dmm-functional-1904-ubuntu1604-virl:
-        - 1
-      # TODO: Add data
-      # csit-dmm-functional-1908-ubuntu1604-virl:
-
-    ###########################################################################
+###########################################################################
     # Tables (more than one data set)
 
     # Performance changes
@@ -520,7 +497,6 @@
         - 23  # NDRPDR sel
         - 25  # NDRPDR sel
     vpp-performance-changes-3n-skx-cmp:
-      # TODO: Add data
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
@@ -795,7 +771,6 @@
         - 20  # NDRPDR sel
         - 21  # NDRPDR sel
     vpp-compare-testbeds-cmp:
-      # TODO: Add data
       csit-vpp-perf-verify-1908-3n-skx:
         - 14  # NDRPDR sel
         - 16  # NDRPDR sel
@@ -822,7 +797,6 @@
       - "vpp-compare-testbeds-mrr-cmp"
 
     dpdk-compare-testbeds-ref:
-      # TODO: Add data
       csit-dpdk-perf-verify-1908-3n-hsw:
         - 2   # NDRPDR sel
         - 3   # NDRPDR sel
@@ -1631,8 +1605,6 @@
       - 10  # NDRPDR sel
       - 11  # NDRPDR sel
       - 12  # NDRPDR sel
-
-    # TODO: Replace
 
     csit-vpp-functional-1908-ubuntu1604-virl:
       - 64
@@ -4372,6 +4344,7 @@
   - "parent"
   data-start-level: 3
 
+<<<<<<< HEAD   (537905 Report: Add data)
 # Honeycomb Functional Results
 - type: "file"
   title: "Honeycomb Functional Results"
@@ -4427,6 +4400,8 @@
   - "parent"
   data-start-level: 3
 
+=======
+>>>>>>> CHANGE (0a6708 PAL: list all sel tests in table_performance_comparison_nic)
 ################################################################################
 ###                                P L O T S                                 ###
 ################################################################################
