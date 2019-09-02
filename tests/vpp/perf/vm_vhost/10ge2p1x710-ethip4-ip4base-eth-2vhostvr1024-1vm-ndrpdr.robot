@@ -81,7 +81,7 @@
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize IPv4 forwarding with vhost in 3-node circular topology
-| | ... | nf_nodes=${nf_nodes}
+| | ... | nf_nodes=${nf_nodes} | testpmd_mac=${TRUE}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${True} | vnf=testpmd_mac
