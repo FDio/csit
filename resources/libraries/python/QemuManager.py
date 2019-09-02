@@ -18,7 +18,7 @@ from collections import OrderedDict
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.QemuUtils import QemuUtils
-from resources.libraries.python.topology import NodeType
+from resources.libraries.python.topology import NodeType, Topology
 
 __all__ = ["QemuManager"]
 
@@ -62,10 +62,16 @@ class QemuManager(object):
                 name = '{node}_{qemu_id}'.format(node=node, qemu_id=qemu_id)
                 sock1 = '/var/run/vpp/sock-{qemu_id}-1'.format(qemu_id=qemu_id)
                 sock2 = '/var/run/vpp/sock-{qemu_id}-2'.format(qemu_id=qemu_id)
-                vif1_mac = kwargs['tg_if1_mac'] if nf_node == 1 \
-                        else '52:54:00:00:{id:02x}:02'.format(id=qemu_id - 1)
-                vif2_mac = kwargs['tg_if2_mac'] if nf_node == nf_nodes \
-                        else '52:54:00:00:{id:02x}:01'.format(id=qemu_id + 1)
+                vif1_mac = Topology.get_interface_mac(node, 'vhost{idx}'.format(
+                    idx=(nf_chain - 1) * nf_nodes * 2 + nf_node * 2 - 1)) \
+                    if kwargs['vnf'] == 'testpmd_mac' \
+                    else kwargs['tg_if1_mac'] if nf_node == 1 \
+                    else '52:54:00:00:{id:02x}:02'.format(id=qemu_id - 1)
+                vif2_mac = Topology.get_interface_mac(node, 'vhost{idx}'.format(
+                    idx=(nf_chain - 1) * nf_nodes * 2 + nf_node * 2)) \
+                    if kwargs['vnf'] == 'testpmd_mac' \
+                    else kwargs['tg_if2_mac'] if nf_node == nf_nodes \
+                    else '52:54:00:00:{id:02x}:01'.format(id=qemu_id + 1)
 
                 self.machines_affinity[name] = CpuUtils.get_affinity_nf(
                     nodes=self.nodes, node=node, nf_chains=nf_chains,
