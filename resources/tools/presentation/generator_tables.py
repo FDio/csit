@@ -549,10 +549,9 @@ def table_performance_comparison_nic(table, input_data):
                                 tst_data["throughput"]["NDR"]["LOWER"])
                     else:
                         continue
-                except KeyError:
+                except (KeyError, TypeError):
                     pass
-                except TypeError:
-                    tbl_dict.pop(tst_name_mod, None)
+
     if history:
         for item in history:
             for job, builds in item["data"].items():
