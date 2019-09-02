@@ -316,7 +316,7 @@
 | | ... | \| IPv4 forwarding with Vhost-User initialized in a 2-node circular\
 | | ... | topology \| 1 \|
 | | ...
-| | [Arguments] | ${nf_nodes}=${1}
+| | [Arguments] | ${nf_nodes}=${1} | ${testpmd_mac}=${FALSE}
 | | ...
 | | Set interfaces in path up
 | | ${fib_table_1}= | Set Variable | ${101}
@@ -353,9 +353,23 @@
 | | | ... | ${dut1} | ${dut1-vhost-${number}-if1} | 1.1.1.2 | 30
 | | | VPP Interface Set IP Address
 | | | ... | ${dut1} | ${dut1-vhost-${number}-if2} | 1.1.2.2 | 30
-| | | Vpp Route Add | ${dut1} | 20.0.0.0 | 8 | gateway=1.1.1.1
+| | | Run Keyword Unless | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 8 | gateway=1.1.1.1
 | | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
-| | | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=1.1.2.1
+| | | Run Keyword Unless | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=1.1.2.1
+| | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | VPP Add IP Neighbor | ${dut1} | ${dut1-vhost-${number}-if1}
+| | | ... | 1.1.2.2 | ${dut1-vhost-${number}-if2_mac}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | VPP Add IP Neighbor | ${dut1} | ${dut1-vhost-${number}-if2}
+| | | ... | 1.1.1.2 | ${dut1-vhost-${number}-if1_mac}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 8 | gateway=1.1.2.2
+| | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=1.1.1.2
 | | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
 
 | Initialize IPv4 forwarding with vhost in 3-node circular topology
@@ -382,7 +396,7 @@
 | | ... | \| IPv4 forwarding with Vhost-User initialized in a 3-node circular\
 | | ... | topology \| 1 \|
 | | ...
-| | [Arguments] | ${nf_nodes}=${1}
+| | [Arguments] | ${nf_nodes}=${1} | ${testpmd_mac}=${FALSE}
 | | ...
 | | Set interfaces in path up
 | | ${fib_table_1}= | Set Variable | ${101}
@@ -446,13 +460,41 @@
 | | | ... | ${dut2} | ${dut2-vhost-${number}-if1} | 1.1.1.2 | 30
 | | | VPP Interface Set IP Address
 | | | ... | ${dut2} | ${dut2-vhost-${number}-if2} | 1.1.2.2 | 30
-| | | Vpp Route Add | ${dut1} | 20.0.0.0 | 8 | gateway=1.1.1.1
+| | | Run Keyword Unless | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 8 | gateway=1.1.1.1
 | | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
-| | | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=1.1.2.1
+| | | Run Keyword Unless | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=1.1.2.1
 | | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
-| | | Vpp Route Add | ${dut2} | 20.0.0.0 | 8 | gateway=1.1.1.1
+| | | Run Keyword Unless | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut2} | 20.0.0.0 | 8 | gateway=1.1.1.1
 | | | ... | interface=${dut2-vhost-${number}-if1} | vrf=${fib_table_1}
-| | | Vpp Route Add | ${dut2} | 10.0.0.0 | 8 | gateway=1.1.2.1
+| | | Run Keyword Unless | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut2} | 10.0.0.0 | 8 | gateway=1.1.2.1
+| | | ... | interface=${dut2-vhost-${number}-if2} | vrf=${fib_table_2}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | VPP Add IP Neighbor | ${dut1} | ${dut1-vhost-${number}-if1}
+| | | ... | 1.1.2.2 | ${dut1-vhost-${number}-if2_mac}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | VPP Add IP Neighbor | ${dut1} | ${dut1-vhost-${number}-if2}
+| | | ... | 1.1.1.2 | ${dut1-vhost-${number}-if1_mac}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | VPP Add IP Neighbor | ${dut2} | ${dut2-vhost-${number}-if1}
+| | | ... | 1.1.2.2 | ${dut2-vhost-${number}-if2_mac}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | VPP Add IP Neighbor | ${dut2} | ${dut2-vhost-${number}-if2}
+| | | ... | 1.1.1.2 | ${dut2-vhost-${number}-if1_mac}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut1} | 20.0.0.0 | 8 | gateway=1.1.2.2
+| | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=1.1.1.2
+| | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut2} | 20.0.0.0 | 8 | gateway=1.1.2.2
+| | | ... | interface=${dut2-vhost-${number}-if1} | vrf=${fib_table_1}
+| | | Run Keyword If | ${testpmd_mac}
+| | | ... | Vpp Route Add | ${dut2} | 10.0.0.0 | 8 | gateway=1.1.1.2
 | | | ... | interface=${dut2-vhost-${number}-if2} | vrf=${fib_table_2}
 
 | Initialize IPv4 forwarding with VLAN dot1q sub-interfaces in circular topology
