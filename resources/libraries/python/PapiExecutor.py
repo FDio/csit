@@ -166,8 +166,19 @@ class PapiSocketExecutor(object):
         if self.vpp_instance:
             return
         cls = self.__class__  # Shorthand for setting class fields.
-        tmp_dir = tempfile.mkdtemp(dir="/tmp")
+        fail_on_mismatch = Constants.CRC_MISMATCH_FAILS_TEST
+        try:
+            from robot.libraries.BuiltIn import BuiltIn
+            from_robot = BuiltIn().get_variable_value(
+                "\${crc_mismatch_fails}", None)
+            if from_robot is not None:
+                fail_on_mismatch = from_robot
+        except (ImportError, AttributeError):
+            # If robot is not installed or not running,
+            # the Constants value applies.
+            pass
         package_path = None
+        tmp_dir = tempfile.mkdtemp(dir="/tmp")
         try:
             # Pack, copy and unpack Python part of VPP installation from _node.
             # TODO: Use rsync or recursive version of ssh.scp_node instead?
@@ -187,7 +198,8 @@ class PapiSocketExecutor(object):
             api_json_directory = tmp_dir + "/usr/share/vpp/api"
             # Perform initial checks before .api.json files are gone,
             # by creating the checker instance.
-            cls.crc_checker = VppApiCrcChecker(api_json_directory)
+            cls.crc_checker = VppApiCrcChecker(
+                api_json_directory, fail_on_mismatch=fail_on_mismatch)
             # When present locally, we finally can find the installation path.
             package_path = glob.glob(tmp_dir + installed_papi_glob)[0]
             # Package path has to be one level above the vpp_papi directory.
