@@ -8,7 +8,7 @@ data plane functions supported by VPP.
 
 Currently |csit-release| implements following IPSec test cases:
 
-- AES-GCM, CBC-SHA1 ciphers, in combination with IPv4 routed-forwarding
+- AES-GCM, CBC-SHA1 ciphers, in combination with IPv4-routed forwarding
   with Intel xl710 NIC.
 - CBC-SHA1 ciphers, in combination with LISP-GPE overlay tunneling for
   IPv4-over-IPv4 with Intel xl710 NIC.

@@ -6,16 +6,16 @@ MLRsearch Tests
 Overview
 ~~~~~~~~
 
-Multiple Loss Rate search (MLRsearch) tests use new search algorithm
+Multiple Loss Rate search (MLRsearch) tests use a new search algorithm
 implemented in FD.io CSIT project. MLRsearch discovers multiple packet
-throughput rates in a single search, with each rate associated with a
+throughput rates in a single search, with each rate associated with
 different Packet Loss Ratio (PLR) criteria.
 
 Two throughput measurements used in FD.io CSIT are Non-Drop Rate (NDR,
 with zero packet loss, PLR=0) and Partial Drop Rate (PDR, with packet
 loss rate not greater than the configured non-zero PLR).
 
-MLRsearch discovers NDR and PDR in a single pass reducing required time
+MLRsearch discovers NDR and PDR in a single pass, reducing required time
 duration compared to separate binary searches for NDR and PDR. Overall
 search time is reduced even further by relying on shorter trial
 durations of intermediate steps, with only the final measurements
