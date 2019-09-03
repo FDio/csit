@@ -411,14 +411,14 @@ def table_performance_comparison(table, input_data):
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend(["Not tested", "Not tested"])
-        if item[-4] is not None and item[-2] is not None and item[-4] != 0:
+        if item[-4] != "Not tested" and item[-2] != "Not tested" and item[-4] != 0:
             item.append(int(relative_change(float(item[-4]), float(item[-2]))))
-        elif item[-4] is None or item[-2] is None or item[-4] == 0:
+        elif item[-4] == "Not tested":
             item.append("New in CSIT-1908")
         elif topo == "2n-skx" and "dot1q" in tbl_dict[tst_name]["name"]:
             item.append("See footnote [1]")
             footnote = True
-        if (len(item) == len(header)) and (item[-3] is not None):
+        if (len(item) == len(header)) and (item[-3] != "Not tested"):
             tbl_lst.append(item)
 
     # Sort the table according to the relative change
@@ -679,14 +679,14 @@ def table_performance_comparison_nic(table, input_data):
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend(["Not tested", "Not tested"])
-        if item[-4] is not None and item[-2] is not None and item[-4] != 0:
+        if item[-4] != "Not tested" and item[-2] != "Not tested" and item[-4] != 0:
             item.append(int(relative_change(float(item[-4]), float(item[-2]))))
-        elif item[-4] is None or item[-2] is None or item[-4] == 0:
+        elif item[-4] == "Not tested":
             item.append("New in CSIT-1908")
         elif topo == "2n-skx" and "dot1q" in tbl_dict[tst_name]["name"]:
             item.append("See footnote [1]")
             footnote = True
-        if (len(item) == len(header)) and (item[-3] is not None):
+        if (len(item) == len(header)) and (item[-3] != "Not tested"):
             tbl_lst.append(item)
 
     # Sort the table according to the relative change
