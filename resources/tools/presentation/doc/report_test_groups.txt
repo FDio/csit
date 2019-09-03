@@ -72,7 +72,7 @@ Sub-chapters titles:
 25ge2p1xxv710-eth-l2bdscale100kmaclrn-ndrpdr
 25ge2p1xxv710-eth-l2bdscale1mmaclrn-ndrpdr
 
-###  64b-?t?c-feature-l2switching-base-i40e
+###  64b-?t?c-features-l2switching-base-i40e
 25ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
 25ge2p1xxv710-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr
 25ge2p1xxv710-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr
@@ -97,6 +97,13 @@ Sub-chapters titles:
 40ge2p1xl710-dot1q-l2bdbasemaclrn-ndrpdr
 40ge2p1xl710-eth-l2bdbasemaclrn-ndrpdr
 40ge2p1xl710-eth-l2bdscale1mmaclrn-ndrpdr
+
+## 3n-tsh-x520
+### 64b-?t?c-l2switching-base-ixgbe
+
+### 64b-?t?c-l2switching-base-scale-ixgbe
+
+###  64b-?t?c-features-l2switching-base-ixgbe
 
 # IPv4 Routing
 
@@ -145,7 +152,7 @@ Sub-chapters titles:
 25ge2p1xxv710-ethip4-ip4scale200k-ndrpdr
 25ge2p1xxv710-ethip4-ip4scale2m-ndrpdr
 
-### 64b-?t?c-feature-ip4routing-base-i40e
+### 64b-?t?c-features-ip4routing-base-i40e
 25ge2p1xxv710-ethip4-ip4base-ndrpdr
 25ge2p1xxv710-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr
 25ge2p1xxv710-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr
@@ -166,6 +173,11 @@ Sub-chapters titles:
 40ge2p1xl710-dot1q-ip4base-ndrpdr
 40ge2p1xl710-ethip4-ip4base-ndrpdr
 40ge2p1xl710-ethip4-ip4scale2m-ndrpdr
+
+## 3n-tsh-x520
+### 64b-1t1c-ip4routing-base-scale-ixgbe
+
+### 64b-1t1c-feature-ip4routing-base-ixgbe
 
 # IPv6 Routing
 
@@ -201,6 +213,9 @@ Sub-chapters titles:
 40ge2p1xl710-ethip6-ip6base-ndrpdr
 40ge2p1xl710-ethip6-ip6scale2m-ndrpdr
 
+## 3n-tsh-x520
+### 78b-1t1c-ip6routing-base-scale-ixgbe
+
 # SRv6 Routing
 
 ## 3n-skx-xxv710
@@ -221,6 +236,9 @@ Sub-chapters titles:
 40ge2p1xl710-ethip6srhip6-ip6base-srv6proxy-masq-ndrpdr
 40ge2p1xl710-ethip6srhip6-ip6base-srv6proxy-stat-ndrpdr
 
+## 3n-tsh-x520
+### 78b-1t1c-srv6-ip6routing-base-ixgbe
+
 # IPv4 Tunnels
 
 ## 3n-skx-xxv710
@@ -234,6 +252,9 @@ Sub-chapters titles:
 ### 64b-?t?c-ip4tunnel-base-i40e
 40ge2p1xl710-ethip4vxlan-l2xcbase-ndrpdr
 40ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-ndrpdr
+
+## 3n-tsh-x520
+### 64b-1t1c-ip4tunnel-base-scale-ixgbe
 
 # KVM VMs vhost-user
 
@@ -276,6 +297,12 @@ Sub-chapters titles:
 40ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
 40ge2p1xl710-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr
 
+## 3n-tsh-x520
+### 64b-1t1c-vhost-base-ixgbe
+
+### 64b-1t1c-link-bonding-vhost-base-ixgbe
+
+
 # LXC/DRC Container Memif
 
 ## 2n-skx-xxv710
@@ -292,6 +319,9 @@ Sub-chapters titles:
 25ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr
 25ge2p1xxv710-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr
 25ge2p1xxv710-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
+
+## 3n-tsh-x520
+### 64b-1t1c-memif-base-ixgbe
 
 # IPsec with IPv4 Routing
 
@@ -319,6 +349,9 @@ Sub-chapters titles:
 40ge2p1xl710-ethip4ipsec1000tnlhw-ip4base-int-aes256gcm-ndrpdr
 40ge2p1xl710-ethip4ipsec1000tnlhw-ip4base-int-aes128cbc-hmac512sha-ndrpdr
 
+## 3n-tsh-x520
+## imix-1t1c-ipsec-ip4routing-base-scale-sw-ixgbe
+
 # Virtual Topology System
 
 ## 3n-skx-xxv710
@@ -333,12 +366,15 @@ Sub-chapters titles:
 40ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr
 40ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
 
+## 3n-tsh-x520
+### 114b-1t1c-vts-l2switching-base-ixgbe
+
 # 2n-skx nfv density (1c, 2c, 4c)
 
 ## nfv_density/vm_vhost/chain
 
 ###  2n-skx-xxv710
-#### imix-?t?c-vhost-chains
+#### imix-?t?c-vhost-chains-i40e
 2n-25ge2p1xxv710-eth-l2bd-10ch-20vh-10vm1t-vppip4-ndrpdr
 2n-25ge2p1xxv710-eth-l2bd-10ch-40vh-20vm1t-vppip4-ndrpdr
 2n-25ge2p1xxv710-eth-l2bd-1ch-12vh-6vm1t-vppip4-ndrpdr
@@ -367,7 +403,7 @@ Sub-chapters titles:
 - to be added to the Report
 
 ### 2n-skx-xxv710
-#### imix-?t?c-vhost-chains-dot1qip4vxlan
+#### imix-?t?c-vhost-chains-dot1qip4vxlan-i40e
 2n-25ge2p1xxv710-dot1qip4vxlan-l2bd-1ch-2vh-1vm1t-testpmd-ndrpdr
 2n-25ge2p1xxv710-dot1qip4vxlan-l2bd-2ch-4vh-2vm1t-testpmd-ndrpdr
 2n-25ge2p1xxv710-dot1qip4vxlan-l2bd-4ch-8vh-4vm1t-testpmd-ndrpdr
@@ -378,7 +414,7 @@ Sub-chapters titles:
 ## nfv_density/dcr_memif/chain
 
 ### 2n-skx-xxv710
-#### imix-?t?c-memif-chains
+#### imix-?t?c-memif-chains-i40e
 2n-25ge2p1xxv710-eth-l2bd-10ch-20mif-10dcr1t-vppip4-ndrpdr
 2n-25ge2p1xxv710-eth-l2bd-10ch-40mif-20dcr1t-vppip4-ndrpdr
 2n-25ge2p1xxv710-eth-l2bd-1ch-12mif-6dcr1t-vppip4-ndrpdr
@@ -406,7 +442,7 @@ Sub-chapters titles:
 ## nfv_density/dcr_memif/pipeline
 
 ### 2n-skx-xxv710
-#### imix-?t?c-memif-pipelines
+#### imix-?t?c-memif-pipelines-i40e
 2n-25ge2p1xxv710-eth-l2bd-10pl-20mif-10dcr1t-vppip4-ndrpdr
 2n-25ge2p1xxv710-eth-l2bd-10pl-20mif-20dcr1t-vppip4-ndrpdr
 2n-25ge2p1xxv710-eth-l2bd-1pl-2mif-10dcr1t-vppip4-ndrpdr
