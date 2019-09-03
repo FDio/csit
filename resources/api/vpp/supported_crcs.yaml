@@ -223,11 +223,11 @@
     sw_interface_slave_dump: '0x529cb13f'  # perf
     # ^^ see bond_*
     sw_interface_tap_v2_dump: '0x51077d14'  # dev
-    sw_interface_tap_v2_details: '0x5ee87a5f'  # dev
+    sw_interface_tap_v2_details: '0x547b146a'  # dev
     sw_interface_vhost_user_details: '0x91ff3307'  # dev
     sw_interface_vhost_user_dump: '0x51077d14'  # dev
-    tap_create_v2: '0x8fa99320'  # dev
-    tap_create_v2_reply: '0xfda5941f'  # dev
+    tap_create_v2: '0x958bfdfc'  # dev
+    tap_create_v2_reply: '0x903324db'  # dev
     vxlan_add_del_tunnel: '0x00f4bdd0'  # virl
     vxlan_add_del_tunnel_reply: '0xfda5941f'  # virl
     vxlan_tunnel_details: '0xce38e127'  # virl
