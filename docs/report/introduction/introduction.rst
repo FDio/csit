@@ -1,11 +1,11 @@
 Report Structure
 ================
 
-FD.io |csit-release| report contains system performance and functional
-testing data of |vpp-release|. `PDF version of this report`_ is
+The FD.io |csit-release| report contains system performance and functional
+testing data of |vpp-release|. A `PDF version of this report`_ is
 available for download.
 
-|csit-release| report is structured as follows:
+The |csit-release| report is structured as follows:
 
 #. INTRODUCTION: General introduction to FD.io |csit-release|.
 
@@ -24,17 +24,17 @@ available for download.
    - **Release Notes**: Changes in |csit-release|, added tests,
      environment or methodology changes, known issues.
    - **Packet Throughput**: NDR, PDR throughput graphs based on results
-     from repeated same test job executions to verify repeatibility of
+     from repeated same-test job executions to verify repeatibility of
      measurements.
    - **Speedup Multi-Core**: NDR, PDR throughput multi-core speedup
      graphs based on results from test job executions.
    - **Packet Latency**: Latency graphs based on results from test job
      executions.
-   - **Soak Tests**: Long duration soak tests are executed using PLRsearch
+   - **Soak Tests**: Long-duration soak tests are executed using PLRsearch
      algorithm.
    - **NFV Service Density**: Network Function Virtualization (NFV) service
-     density tests focus on measuring total per server throughput at varied NFV
-     service "packing" densities with vswitch providing host dataplane.
+     density tests focus on measuring total per-server throughput at varied NFV
+     service "packing" densities with vswitch providing host data plane.
    - **Comparisons**: Performance comparisons between VPP releases and
      between different testbed types.
    - **Throughput Trending**: References to continuous VPP performance
@@ -49,7 +49,7 @@ available for download.
    - **Overview**: Tested logical topologies, test coverage.
    - **Release Notes**: Changes in |csit-release|, known issues.
    - **Packet Throughput**: NDR, PDR throughput graphs based on results
-     from repeated same test job executions to verify repeatibility of
+     from repeated same-test job executions to verify repeatibility of
      measurements.
    - **Packet Latency**: Latency graphs based on results from test job
      executions.
@@ -82,7 +82,7 @@ available for download.
      and latency.
 
 #. TEST CONFIGURATION: VPP DUT configuration data based on VPP API
-   Test (VAT) Commands History auto-generated from CSIT test job
+   Test (VAT) Commands History, auto-generated from CSIT test job
    executions using RF output files as sources.
 
    - **VPP Performance NDR/PDR**: Configuration data.
@@ -101,5 +101,5 @@ available for download.
    - **Test naming**: Test naming convention.
    - **Presentation and Analytics Layer**: Description of PAL CSIT
      analytics module.
-   - **CSIT RF Tags Descriptions**: CSIT RF Tags used for test suite and
-     test case grouping and selection.
+   - **CSIT RF Tags Descriptions**: CSIT RF Tags used for test-suite and
+     test-case grouping and selection.

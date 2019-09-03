@@ -6,7 +6,7 @@ Design
 FD.io CSIT system design needs to meet continuously expanding
 requirements of FD.io projects including VPP, related sub-systems (e.g.
 plugin applications, DPDK drivers) and FD.io applications (e.g. DPDK
-applications), as well as growing number of compute platforms running
+applications), as well as a growing number of compute platforms running
 those applications. With CSIT project scope and charter including both
 FD.io continuous testing AND performance trending/comparisons, those
 evolving requirements further amplify the need for CSIT framework
@@ -16,7 +16,7 @@ Design Hierarchy
 ----------------
 
 CSIT follows a hierarchical system design with SUTs and DUTs at the
-bottom level of the hierarchy, presentation level at the top level and a
+bottom level of the hierarchy, presentation level at the top level, and a
 number of functional layers in-between. The current CSIT system design
 including CSIT framework is depicted in the figure below.
 
@@ -49,7 +49,7 @@ A brief bottom-up description is provided here:
 
 #. Level-1 libraries - Robot and Python
 
-   - Lowest level CSIT libraries abstracting underlying test environment, SUT,
+   - Lowest-level CSIT libraries abstracting underlying test environment, SUT,
      DUT and TG specifics;
    - Used commonly across multiple L2 KWs;
    - Performance and functional tests:
@@ -61,7 +61,7 @@ A brief bottom-up description is provided here:
 
      - All L1 KWs are implemented as Python libraries:
 
-       - Support for TRex only today;
+       - Currently support for TRex only;
        - CSIT IXIA drivers in progress;
 
    - Performance data plane traffic profiles:
@@ -82,11 +82,11 @@ A brief bottom-up description is provided here:
 
    - Functional data plane traffic scripts:
 
-     - Scapy specific traffic scripts;
+     - Scapy-specific traffic scripts;
 
 #. Level-2 libraries - Robot resource files:
 
-   - Higher level CSIT libraries abstracting required functions for executing
+   - Higher-level CSIT libraries abstracting required functions for executing
      tests;
    - L2 KWs are classified into the following functional categories:
 
@@ -98,7 +98,7 @@ A brief bottom-up description is provided here:
 
    - Test suites with test cases;
 
-   - Performance tests using physical testbed environment:
+   - Performance tests using a physical testbed environment:
 
      - VPP;
      - DPDK-Testpmd;
@@ -114,12 +114,12 @@ A brief bottom-up description is provided here:
 Test Lifecycle Abstraction
 --------------------------
 
-A well coded test must follow a disciplined abstraction of the test
+A well-coded test must follow a disciplined abstraction of the test
 lifecycles that includes setup, configuration, test and verification. In
-addition to improve test execution efficiency, the commmon aspects of
+addition, to improve test execution efficiency, the commmon aspects of
 test setup and configuration shared across multiple test cases should be
 done only once. Translating these high-level guidelines into the Robot
-Framework one arrives to definition of a well coded RF tests for FD.io
+Framework, one arrives to definition of a well-coded set of RF tests for FD.io
 CSIT. Anatomy of Good Tests for CSIT:
 
 #. Suite Setup - Suite startup Configuration common to all Test Cases in suite:
@@ -134,7 +134,7 @@ CSIT. Anatomy of Good Tests for CSIT:
    - prefixed with {Then} - Verification of Test execution, reading state: uses
      Verification KWs, StateReport KWs;
 
-#. Test Teardown - post Test teardown with Configuration cleanup and
+#. Test Teardown - post-Test teardown with Configuration cleanup and
    Verification common to multiple Test Cases - uses: Configuration KWs,
    Verification KWs, StateReport KWs;
 #. Suite Teardown - Suite post-test Configuration cleanup: uses Configuration

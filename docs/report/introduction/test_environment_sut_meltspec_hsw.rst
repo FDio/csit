@@ -1,9 +1,9 @@
 Spectre and Meltdown Checks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Following section displays the output of a running shell script to tell if
-system is vulnerable against the several "speculative execution" CVEs that were
-made public in 2018. Script is available on `Spectre & Meltdown Checker Github
+Following section displays sample output of a running shell script to tell if
+a system is vulnerable to the several "speculative execution" CVEs, which were
+made public in 2018. The script is available at `Spectre & Meltdown Checker Github
 <https://github.com/speed47/spectre-meltdown-checker>`_.
 
 ::

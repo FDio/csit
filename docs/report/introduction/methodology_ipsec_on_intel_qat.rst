@@ -1,7 +1,7 @@
 IPSec on Intel QAT
 ------------------
 
-VPP IPSec performance tests are using DPDK cryptodev device driver in
+VPP IPSec performance tests use the DPDK cryptodev device driver in
 combination with HW cryptodev devices - Intel QAT 8950 50G - present in
 LF FD.io physical testbeds. DPDK cryptodev can be used for all IPSec
 data plane functions supported by VPP.

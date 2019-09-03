@@ -42,5 +42,5 @@ Test cases include
 
 with stream sizes to provide reasonable test durations. The VPP Host
 Stack QUIC transport is configured to utilize the picotls encryption
-library. In the future, tests utilizing addtional encryption
+library. In future, tests utilizing additional encryption
 algorithms will be added.

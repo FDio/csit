@@ -10,15 +10,15 @@ Background
 performance and system functional tests, introduced in CSIT-1701.
 
 The naming should be intuitive for majority of the tests. Complete
-description of CSIT test naming convention is provided on
+description of CSIT test naming convention is provided on the
 `CSIT test naming wiki page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
-Below few illustrative examples of the naming usage for test suites across CSIT
-performance, functional and Honeycomb management test areas.
+Below, see a few illustrative examples of the naming usage for test suites
+across CSIT performance, functional and Honeycomb management test areas.
 
 Naming Convention
 -----------------
 
-The CSIT approach is to use tree naming convention and to encode following
+The CSIT approach is to use a tree naming convention and to encode following
 testing information into test suite and test case names:
 
 #. packet network port configuration
@@ -47,10 +47,10 @@ followed by outer-most frame header, then other stacked headers up to the
 header processed by vSwitch-VPP, then VPP forwarding function, then encap on
 vhost interface, number of vhost interfaces, number of VMs. If chained VMs
 present, they get added on the right. Test topology is expected to be
-symmetric, in other words packets enter and leave SUT through ports specified
-on the left of the test name. Here some examples to illustrate the convention
-followed by the complete legend, and tables mapping the new test filenames to
-old ones.
+symmetric; in other words, packets enter and leave SUT through ports specified
+on the left of the test name. Here are some examples to illustrate the
+convention, followed by the complete legend, and tables mapping the new test
+filenames to old ones.
 
 Naming Examples
 ---------------
@@ -116,5 +116,5 @@ topologies:
    * *mgmt-notif-int-subint-apihcnc-func* => notifications of interface and
      sub-interface events with Honeycomb NetConf Notifications, functional tests.
 
-For complete description of CSIT test naming convention please refer to `CSIT
+For complete description of CSIT test naming convention, please refer to `CSIT
 test naming wiki page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.

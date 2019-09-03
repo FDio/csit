@@ -5,7 +5,7 @@ System provisioning is done by combination of PXE boot unattented
 install and
 `Ansible <https://www.ansible.com>`_ described in `CSIT Testbed Setup`_.
 
-Below a subset of the running configuration:
+Below is a subset of the running configuration:
 
 1. Ubuntu 18.04.x LTS
 
@@ -26,9 +26,9 @@ Linux Boot Parameters
   processes
   https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt
 - **intel_pstate=disable** - [X86] Do not enable intel_pstate as the default
-  scaling driver for the supported processors. Intel P-State driver decide what
-  P-state (CPU core power state) to use based on requesting policy from the
-  cpufreq core. [X86 - Either 32-bit or 64-bit x86]
+  scaling driver for the supported processors. Intel P-State driver decides
+  which P-state (CPU core power state) to use based on requesting policy
+  from the cpufreq core. [X86 - Either 32-bit or 64-bit x86]
   https://www.kernel.org/doc/Documentation/cpu-freq/intel-pstate.txt
 - **nohz_full=<cpu number>-<cpu number>** - [KNL,BOOT] In kernels built with
   CONFIG_NO_HZ_FULL=y, set the specified list of CPUs whose tick will be stopped
@@ -40,7 +40,7 @@ Linux Boot Parameters
   kernel is an SMP kernel].
   https://www.kernel.org/doc/Documentation/timers/NO_HZ.txt
 - **rcu_nocbs** - [KNL] In kernels built with CONFIG_RCU_NOCB_CPU=y, set the
-  specified list of CPUs to be no-callback CPUs, that never queue RCU callbacks
+  specified list of CPUs to be no-callback CPUs, which never queue RCU callbacks
   (read-copy update).
   https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt
 - **numa_balancing=disable** - [KNL,X86] Disable automatic NUMA balancing.

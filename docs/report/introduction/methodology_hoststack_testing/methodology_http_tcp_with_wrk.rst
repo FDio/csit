@@ -3,11 +3,11 @@ HTTP/TCP with WRK
 
 `WRK HTTP benchmarking tool <https://github.com/wg/wrk>`_ is used for
 TCP/IP and HTTP tests of VPP Host Stack and built-in static HTTP server.
-WRK has been chosen as it is capable of generating significant TCP/IP
+WRK was chosen, because it is capable of generating significant TCP/IP
 and HTTP loads by scaling number of threads across multi-core processors.
 
 This in turn enables high scale benchmarking of the VPP Host Stack TCP/IP
-and HTTP service including HTTP TCP/IP Connections-Per-Second (CPS) and
+and HTTP service, including HTTP TCP/IP Connections-Per-Second (CPS) and
 HTTP Requests-Per-Second.
 
 The initial tests are designed as follows:

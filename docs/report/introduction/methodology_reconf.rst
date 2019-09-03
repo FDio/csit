@@ -5,7 +5,7 @@ Reconfiguration Tests
 
 .. important::
 
-    **DISCLAIMER**: Described reconf test methodology is experimental, and
+    **DISCLAIMER**: The described reconf test methodology is experimental, and
     subject to change following consultation within csit-dev, vpp-dev
     and user communities. Current test results should be treated as indicative.
 
@@ -17,7 +17,7 @@ on data plane traffic.
 While VPP takes some measures against the traffic being
 entirely stopped for a prolonged time,
 the immediate forwarding rate varies during the re-configuration,
-as some configurations steps need the active dataplane worker threads
+as some configurations steps need the active data plane worker threads
 to be stopped temporarily.
 
 As the usual methods of measuring throughput need multiple trial measurements
@@ -46,14 +46,14 @@ Currently, only increasing the scale is supported
 as the re-configuration operation. In future, scale decrease
 or other operations can be implemented.
 
-The traffic profile is not changed, so the traffic present is processed
-only by the smaller scale configuration. The added tunnels / chains
+The traffic profile is not changed, thus the traffic present is processed
+only by the smaller-scale configuration. The added tunnels / chains
 are not targetted by the traffic.
 
 For the re-configuration, the same Robot Framework and Python libraries
-are used, as were used in the initial configuration, with the exception
-of the final calls that do not interact with VPP (e.g. starting
-virtual machines) being skipped to reduce the test overall duration.
+are used as were used in the initial configuration. The exception to this
+are the final calls, which do not interact with VPP (e.g. starting
+virtual machines), being skipped to reduce the tests' overall duration.
 
 Discussion
 ~~~~~~~~~~
@@ -63,8 +63,8 @@ of individual VPP API calls, which in turn may affect
 the number of packets lost.
 
 The exact calls executed may contain unnecessary info dumps, repeated commands,
-or commands which change a value that do not need to be changed (e.g. MTU).
-Thus, implementation details are affecting the results, even if their effect
+or commands which change values that do not need to be changed (e.g. MTU).
+Thus, implementation details affect the results, even if their effect
 on the corresponding MLRsearch suite is negligible.
 
 The lower bound for NDR is the only value safe to be used when zero packets lost
