@@ -210,9 +210,9 @@ def table_performance_comparison(table, input_data):
         header = ["Test case", ]
 
         if table["include-tests"] == "MRR":
-            hdr_param = "Receive Rate"
+            hdr_param = "Rec Rate"
         else:
-            hdr_param = "Throughput"
+            hdr_param = "Thput"
 
         history = table.get("history", None)
         if history:
@@ -235,6 +235,7 @@ def table_performance_comparison(table, input_data):
     # Prepare data to the table:
     tbl_dict = dict()
     for job, builds in table["reference"]["data"].items():
+        topo = "2n-skx" if "2n-skx" in job else ""
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].iteritems():
                 tst_name_mod = tst_name.replace("-ndrpdrdisc", "").\
@@ -385,6 +386,7 @@ def table_performance_comparison(table, input_data):
                             pass
 
     tbl_lst = list()
+    footnote = False
     for tst_name in tbl_dict.keys():
         item = [tbl_dict[tst_name]["name"], ]
         if history:
@@ -394,27 +396,28 @@ def table_performance_comparison(table, input_data):
                         item.append(round(mean(hist_data) / 1000000, 2))
                         item.append(round(stdev(hist_data) / 1000000, 2))
                     else:
-                        item.extend([None, None])
+                        item.extend(["Not tested", "Not tested"])
             else:
-                item.extend([None, None])
+                item.extend(["Not tested", "Not tested"])
         data_t = tbl_dict[tst_name]["ref-data"]
         if data_t:
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
-            item.extend([None, None])
+            item.extend(["Not tested", "Not tested"])
         data_t = tbl_dict[tst_name]["cmp-data"]
         if data_t:
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
-            item.extend([None, None])
-        if "dot1q" in tbl_dict[tst_name]["name"]:
-            item.append("Changed methodology")
-        elif item[-4] is not None and item[-2] is not None and item[-4] != 0:
+            item.extend(["Not tested", "Not tested"])
+        if item[-4] is not None and item[-2] is not None and item[-4] != 0:
             item.append(int(relative_change(float(item[-4]), float(item[-2]))))
-        else:
-            item.append("n/a")
+        elif item[-4] is None or item[-2] is None or item[-4] == 0:
+            item.append("New in CSIT-1908")
+        elif topo == "2n-skx" and "dot1q" in tbl_dict[tst_name]["name"]:
+            item.append("See footnote [1]")
+            footnote = True
         if (len(item) == len(header)) and (item[-3] is not None):
             tbl_lst.append(item)
 
@@ -428,7 +431,22 @@ def table_performance_comparison(table, input_data):
         for test in tbl_lst:
             file_handler.write(",".join([str(item) for item in test]) + "\n")
 
-    convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
+    txt_file_name = "{0}.txt".format(table["output-file"])
+    convert_csv_to_pretty_txt(csv_file, txt_file_name)
+
+    if footnote:
+        with open(txt_file_name, 'a') as txt_file:
+            txt_file.writelines([
+                "Footnotes:",
+                "[1] CSIT-1908 changed test methodology of dot1q tests in "
+                "2n-skx testbeds, dot1q encapsulation is now used on both "
+                "links of SUT.",
+                "    Previously dot1q was used only on a single link with the "
+                "other link carrying untagged Ethernet frames. This change "
+                "results",
+                "    in slightly lower throughput in CSIT-1908 for these "
+                "tests. See release notes."
+            ])
 
 
 def table_performance_comparison_nic(table, input_data):
@@ -454,9 +472,9 @@ def table_performance_comparison_nic(table, input_data):
         header = ["Test case", ]
 
         if table["include-tests"] == "MRR":
-            hdr_param = "Receive Rate"
+            hdr_param = "Rec Rate"
         else:
-            hdr_param = "Throughput"
+            hdr_param = "Thput"
 
         history = table.get("history", None)
         if history:
@@ -479,6 +497,7 @@ def table_performance_comparison_nic(table, input_data):
     # Prepare data to the table:
     tbl_dict = dict()
     for job, builds in table["reference"]["data"].items():
+        topo = "2n-skx" if "2n-skx" in job else ""
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].iteritems():
                 if table["reference"]["nic"] not in tst_data["tags"]:
@@ -635,6 +654,7 @@ def table_performance_comparison_nic(table, input_data):
                             pass
 
     tbl_lst = list()
+    footnote = False
     for tst_name in tbl_dict.keys():
         item = [tbl_dict[tst_name]["name"], ]
         if history:
@@ -644,27 +664,28 @@ def table_performance_comparison_nic(table, input_data):
                         item.append(round(mean(hist_data) / 1000000, 2))
                         item.append(round(stdev(hist_data) / 1000000, 2))
                     else:
-                        item.extend([None, None])
+                        item.extend(["Not tested", "Not tested"])
             else:
-                item.extend([None, None])
+                item.extend(["Not tested", "Not tested"])
         data_t = tbl_dict[tst_name]["ref-data"]
         if data_t:
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
-            item.extend([None, None])
+            item.extend(["Not tested", "Not tested"])
         data_t = tbl_dict[tst_name]["cmp-data"]
         if data_t:
             item.append(round(mean(data_t) / 1000000, 2))
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
-            item.extend([None, None])
-        if "dot1q" in tbl_dict[tst_name]["name"]:
-            item.append("Changed methodology")
-        elif item[-4] is not None and item[-2] is not None and item[-4] != 0:
+            item.extend(["Not tested", "Not tested"])
+        if item[-4] is not None and item[-2] is not None and item[-4] != 0:
             item.append(int(relative_change(float(item[-4]), float(item[-2]))))
-        else:
-            item.append("n/a")
+        elif item[-4] is None or item[-2] is None or item[-4] == 0:
+            item.append("New in CSIT-1908")
+        elif topo == "2n-skx" and "dot1q" in tbl_dict[tst_name]["name"]:
+            item.append("See footnote [1]")
+            footnote = True
         if (len(item) == len(header)) and (item[-3] is not None):
             tbl_lst.append(item)
 
@@ -678,7 +699,22 @@ def table_performance_comparison_nic(table, input_data):
         for test in tbl_lst:
             file_handler.write(",".join([str(item) for item in test]) + "\n")
 
-    convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
+    txt_file_name = "{0}.txt".format(table["output-file"])
+    convert_csv_to_pretty_txt(csv_file, txt_file_name)
+
+    if footnote:
+        with open(txt_file_name, 'a') as txt_file:
+            txt_file.writelines([
+                "Footnotes:",
+                "[1] CSIT-1908 changed test methodology of dot1q tests in "
+                "2n-skx testbeds, dot1q encapsulation is now used on both "
+                "links of SUT.",
+                "    Previously dot1q was used only on a single link with the "
+                "other link carrying untagged Ethernet frames. This change "
+                "results",
+                "    in slightly lower throughput in CSIT-1908 for these "
+                "tests. See release notes."
+            ])
 
 
 def table_nics_comparison(table, input_data):
