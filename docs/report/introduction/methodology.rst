@@ -11,9 +11,6 @@ Test Methodology
     methodology_tunnel_encapsulations
     methodology_vpp_features
     methodology_data_plane_throughput/index
-    methodology_mlrsearch_tests
-    methodology_mrr_throughput
-    methodology_plrsearch
     methodology_packet_latency
     methodology_multi_core_speedup
     methodology_vpp_startup_settings

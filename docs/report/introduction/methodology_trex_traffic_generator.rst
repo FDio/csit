@@ -12,8 +12,8 @@ in MRR tests.
 TRex is installed and run on the TG compute node. The typical procedure
 is:
 
-- If the TRex is not already installed on TG, it is installed in the
-  suite setup phase - see `TRex intallation`_.
+- If TRex is not already installed on TG, it is installed in the
+  suite setup phase - see `TRex installation`_.
 - TRex configuration is set in its configuration file
   ::
 
@@ -31,17 +31,17 @@ is:
 Measuring Packet Loss
 ~~~~~~~~~~~~~~~~~~~~~
 
-Following sequence is followed to measure packet loss:
+Following sequence is performed to measure packet loss:
 
 - Create an instance of STLClient.
 - Connect to the client.
 - Add all streams.
 - Clear statistics.
 - Send the traffic for defined time.
-- Get the statistics.
+- Retrieve the statistics.
 
-If there is a warm-up phase required, the traffic is sent also before
-test and the statistics are ignored.
+If there is a warm-up phase required, the traffic is sent before the actual
+test and the statistics are cleared again after this phase completes.
 
 Measuring Latency
 ~~~~~~~~~~~~~~~~~
