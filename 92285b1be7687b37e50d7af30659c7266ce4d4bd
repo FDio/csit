@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa95676_4cbff726",
+        "filename": "docs/report/introduction/methodology_terminology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-03T15:31:43Z",
+      "side": 1,
+      "message": "Bytes",
+      "range": {
+        "startLine": 6,
+        "startChar": 44,
+        "endLine": 6,
+        "endChar": 49
+      },
+      "revId": "92285b1be7687b37e50d7af30659c7266ce4d4bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3a7f1cf_d157a123",
+        "filename": "docs/report/introduction/methodology_terminology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-03T15:31:43Z",
+      "side": 1,
+      "message": "System Under Test",
+      "range": {
+        "startLine": 20,
+        "startChar": 13,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "92285b1be7687b37e50d7af30659c7266ce4d4bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1db48992_39edd531",
+        "filename": "docs/report/introduction/methodology_terminology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-03T15:31:43Z",
+      "side": 1,
+      "message": "I would put the links here - very simple in rst:\n\n:rfc:`id_of_rfc`",
+      "range": {
+        "startLine": 21,
+        "startChar": 54,
+        "endLine": 21,
+        "endChar": 61
+      },
+      "revId": "92285b1be7687b37e50d7af30659c7266ce4d4bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e3ebc3e8_bb166edb",
+        "filename": "docs/report/introduction/methodology_terminology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-03T15:31:43Z",
+      "side": 1,
+      "message": "This is sort of dangerous. Any high level program language is dealing with op. div different way (due to Computer architecture and instruction set, etc.). For this reason IXIA is reporting 0.0000000000001 as 0 although it is not absolute 0. CSIT MRR is using sharp received packets (not ratio) and PLR I will let Vratko comment, but hopefully it is something better then python float div.\n\nI would maybe just put the zero packet loss?",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 49
+      },
+      "revId": "92285b1be7687b37e50d7af30659c7266ce4d4bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
