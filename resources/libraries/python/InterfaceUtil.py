@@ -1183,8 +1183,11 @@ class InterfaceUtil(object):
                     txq_size=0)
         err_msg = 'Failed to create AVF interface on host {host}'.format(
             host=node['host'])
-        with PapiSocketExecutor(node) as papi_exec:
-            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+        try:
+            with PapiSocketExecutor(node) as papi_exec:
+                sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+        except AssertionError:
+            exec_cmd(node, 'dmesg', sudo=True)
 
         InterfaceUtil.add_eth_interface(node, sw_if_index=sw_if_index,
                                         ifc_pfx='eth_avf')
