@@ -2342,15 +2342,15 @@
   algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-pdr"
   history:
-    - title: "rls1901 Intel-X710"
+    - title: "rls1901 x710"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 Intel-X710"
+    title: "rls1904 x710"
     data: "vpp-performance-changes-3n-skx-ref"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 Intel-XXV710"
+    title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
@@ -2368,15 +2368,15 @@
   algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-pdr"
   history:
-    - title: "rls1901 Intel-X710"
+    - title: "rls1901 x710"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 Intel-X710"
+    title: "rls1904 x710"
     data: "vpp-performance-changes-3n-skx-ref"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 Intel-XXV710"
+    title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
@@ -2394,15 +2394,15 @@
   algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-ndr"
   history:
-    - title: "rls1901 Intel-X710"
+    - title: "rls1901 x710"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 Intel-X710"
+    title: "rls1904 x710"
     data: "vpp-performance-changes-3n-skx-ref"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 Intel-XXV710"
+    title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
@@ -2420,15 +2420,15 @@
   algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-ndr"
   history:
-    - title: "rls1901 Intel-X710"
+    - title: "rls1901 x710"
       data: "vpp-performance-changes-3n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 Intel-X710"
+    title: "rls1904 x710"
     data: "vpp-performance-changes-3n-skx-ref"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 Intel-XXV710"
+    title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
@@ -2446,15 +2446,15 @@
   algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-pdr"
   history:
-    - title: "rls1901 Intel-X710"
+    - title: "rls1901 x710"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 Intel-X710"
+    title: "rls1904 x710"
     data: "vpp-performance-changes-2n-skx-ref"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 Intel-XXV710"
+    title: "rls1908 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
@@ -2472,15 +2472,15 @@
   algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-pdr"
   history:
-    - title: "rls1901 Intel-X710"
+    - title: "rls1901 x710"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 Intel-X710"
+    title: "rls1904 x710"
     data: "vpp-performance-changes-2n-skx-ref"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 Intel-XXV710"
+    title: "rls1908 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
@@ -2498,15 +2498,15 @@
   algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-ndr"
   history:
-    - title: "rls1901 Intel-X710"
+    - title: "rls1901 x710"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 Intel-X710"
+    title: "rls1904 x710"
     data: "vpp-performance-changes-2n-skx-ref"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 Intel-XXV710"
+    title: "rls1908 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
@@ -2524,15 +2524,15 @@
   algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-ndr"
   history:
-    - title: "rls1901 Intel-X710"
+    - title: "rls1901 x710"
       data: "vpp-performance-changes-2n-skx-h1"
       nic: "NIC_Intel-X710"
   reference:
-    title: "rls1904 Intel-X710"
+    title: "rls1904 x710"
     data: "vpp-performance-changes-2n-skx-ref"
     nic: "NIC_Intel-X710"
   compare:
-    title: "rls1908 Intel-XXV710"
+    title: "rls1908 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
@@ -2550,11 +2550,11 @@
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr"
   reference:
-    title: "3-Node Hsw Intel-xl710"
+    title: "3n-hsw xl710"
     data: "vpp-compare-testbeds-ref"
     nic: "NIC_Intel-XL710"
   compare:
-    title: "3-Node Skx Intel-xxv710"
+    title: "3n-skx xxv710"
     data: "vpp-compare-testbeds-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-compare-testbeds"
@@ -2571,11 +2571,11 @@
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr"
   reference:
-    title: "3-Node Hsw Intel-xl710"
+    title: "3n-hsw xl710"
     data: "vpp-compare-testbeds-ref"
     nic: "NIC_Intel-XL710"
   compare:
-    title: "3-Node Skx Intel-xxv710"
+    title: "3n-skx xxv710"
     data: "vpp-compare-testbeds-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-compare-testbeds"
@@ -2592,11 +2592,11 @@
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-pdr"
   reference:
-    title: "3-Node Hsw Intel-xl710"
+    title: "3n-hsw xl710"
     data: "vpp-compare-testbeds-ref"
     nic: "NIC_Intel-XL710"
   compare:
-    title: "3-Node Skx Intel-xxv710"
+    title: "3n-skx xxv710"
     data: "vpp-compare-testbeds-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-compare-testbeds"
@@ -2613,11 +2613,11 @@
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-pdr"
   reference:
-    title: "3-Node Hsw Intel-xl710"
+    title: "3n-hsw xl710"
     data: "vpp-compare-testbeds-ref"
     nic: "NIC_Intel-XL710"
   compare:
-    title: "3-Node Skx Intel-xxv710"
+    title: "3n-skx xxv710"
     data: "vpp-compare-testbeds-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-compare-testbeds"
@@ -2908,11 +2908,11 @@
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-mrr"
   reference:
-    title: "3-Node Hsw Intel-xl710"
+    title: "3n-hsw xl710"
     data: "vpp-compare-testbeds-mrr-ref"
     nic: "NIC_Intel-XL710"
   compare:
-    title: "3-Node Skx Intel-xxv710"
+    title: "3n-skx xxv710"
     data: "vpp-compare-testbeds-mrr-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-compare-testbeds-mrr"
@@ -2929,11 +2929,11 @@
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-mrr"
   reference:
-    title: "3-Node Hsw Intel-xl710"
+    title: "3n-hsw xl710"
     data: "vpp-compare-testbeds-mrr-ref"
     nic: "NIC_Intel-XL710"
   compare:
-    title: "3-Node Skx Intel-xxv710"
+    title: "3n-skx xxv710"
     data: "vpp-compare-testbeds-mrr-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-compare-testbeds-mrr"
@@ -2950,11 +2950,11 @@
   algorithm: "table_performance_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-4c-mrr"
   reference:
-    title: "3-Node Hsw Intel-xl710"
+    title: "3n-hsw xl710"
     data: "vpp-compare-testbeds-mrr-ref"
     nic: "NIC_Intel-XL710"
   compare:
-    title: "3-Node Skx Intel-xxv710"
+    title: "3n-skx xxv710"
     data: "vpp-compare-testbeds-mrr-cmp"
     nic: "NIC_Intel-XXV710"
   data: "vpp-compare-testbeds-mrr"
