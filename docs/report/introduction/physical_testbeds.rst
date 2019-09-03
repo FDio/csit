@@ -15,13 +15,13 @@ Two physical server topology types are used:
   both servers connected into a ring topology. Used for executing tests
   that require frame encapsulations supported by TG.
 
-- **3-Node Topology**: Consists of two servers acting as a Systems Under
+- **3-Node Topology**: Consists of two servers acting as Systems Under
   Test (SUTs) and one server acting as a Traffic Generator (TG), with
   all servers connected into a ring topology. Used for executing tests
-  that require frame encapsulations not supported by TG e.g. certain
-  overlay tunnel encapsulations and IPsec. Number of native Ethernet,
+  that require frame encapsulations not supported by TG, e.g. certain
+  overlay tunnel encapsulations and IPsec. Several native Ethernet,
   IPv4 and IPv6 encapsulation tests are also executed on these testbeds,
-  for comparison with 2-Node Topology.
+  for comparison with the 2-Node Topology.
 
 Current FD.io production testbeds are built with SUT servers based on
 the following processor architectures:
@@ -210,14 +210,14 @@ Cache, 2.00 GHz, 12 cores). 2n-dnv physical topology is shown below.
         :alt: testbed-2n-dnv
         :align: center
 
-SUT server have four internal 10G NIC port:
+SUT servers have four internal 10G NIC port:
 
 #. P-1: x553 copper port.
 #. P-2: x553 copper port.
 #. P-3: x553 fiber port.
 #. P-4: x553 fiber port.
 
-TG server run T-Rex software traffic generator and are populated with the
+TG servers run T-Rex software traffic generator and have populated with the
 following NIC models:
 
 #. NIC-1: x550-T2 2p10GE Intel.
