@@ -31,7 +31,7 @@ from resources.libraries.python.VPPUtil import VPPUtil
 
 
 class InterfaceStatusFlags(IntEnum):
-    """Interface status falgs."""
+    """Interface status flags."""
     IF_STATUS_API_FLAG_ADMIN_UP = 1
     IF_STATUS_API_FLAG_LINK_UP = 2
 
