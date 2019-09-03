@@ -25,7 +25,7 @@ from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
+from resources.libraries.python.ssh import SSH, exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VPPUtil import VPPUtil
 
@@ -1175,16 +1175,23 @@ class InterfaceUtil(object):
         :raises RuntimeError: If it is not possible to create AVF interface on
             the node.
         """
+        PapiSocketExecutor.run_cli_cmd(node, 'set logging class avf level debug')
+        PapiSocketExecutor.run_cli_cmd(node, 'set logging class pci level debug')
+
         cmd = 'avf_create'
         args = dict(pci_addr=InterfaceUtil.pci_to_int(vf_pci_addr),
-                    enable_elog=0,
+                    enable_elog=1,
                     rxq_num=int(num_rx_queues) if num_rx_queues else 0,
                     rxq_size=0,
                     txq_size=0)
         err_msg = 'Failed to create AVF interface on host {host}'.format(
             host=node['host'])
-        with PapiSocketExecutor(node) as papi_exec:
-            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+        try:
+            with PapiSocketExecutor(node) as papi_exec:
+                sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+        except AssertionError:
+            exec_cmd(node, 'dmesg', sudo=True)
+            raise
 
         InterfaceUtil.add_eth_interface(node, sw_if_index=sw_if_index,
                                         ifc_pfx='eth_avf')
