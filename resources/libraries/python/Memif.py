@@ -19,7 +19,6 @@ from robot.api import logger
 
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
-from resources.libraries.python.L2Util import L2Util
 
 
 class MemifRole(IntEnum):
@@ -47,8 +46,11 @@ class Memif(object):
             details = papi_exec.add("memif_dump").get_details()
 
         for memif in details:
-            memif["if_name"] = memif["if_name"].rstrip('\x00')
-            memif["hw_addr"] = L2Util.bin_to_mac(memif["hw_addr"])
+            memif["hw_addr"] = str(memif["hw_addr"])
+            memif["role"] = memif["role"].value
+            memif["mode"] = memif["mode"].value
+            memif["flags"] = memif["flags"].value \
+                if hasattr(memif["flags"], 'value') else int(memif["flags"])
 
         logger.debug("MEMIF details:\n{details}".format(details=details))
 
@@ -74,7 +76,7 @@ class Memif(object):
         err_msg = 'Failed to create memif socket on host {host}'.format(
             host=node['host'])
         args = dict(
-            is_add=int(is_add),
+            is_add=is_add,
             socket_id=int(sid),
             socket_filename=str('/tmp/' + filename)
         )
@@ -108,7 +110,8 @@ class Memif(object):
             rx_queues=int(rxq),
             tx_queues=int(txq),
             socket_id=int(sid),
-            id=int(mid)
+            id=int(mid),
+            secret=""
         )
         with PapiSocketExecutor(node) as papi_exec:
             return papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
