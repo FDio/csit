@@ -3,5 +3,5 @@
 # ndrpdrAND${default_nic}ANDnf_densityANDdockerANDpipeline
 
 # vm_vhost
-ndrpdrAND${default_nic}ANDnf_densityANDvhostANDchain
-# ndrpdrAND${default_nic}ANDnf_densityANDvhostANDpipeline
+# ndrpdrAND${default_nic}ANDnf_densityANDvhostANDchainNOTvxlan
+ndrpdrAND${default_nic}ANDnf_densityANDvhostANDchainANDvxlan
