@@ -14,6 +14,8 @@
 *** Settings ***
 | Documentation | Set global variables common to all tests.
 | Resource | resources/libraries/robot/robot_enhancements.robot
+| Variables | ${CURDIR}/../../resources/libraries/python/Constants.py
+| # ^^ tests/ is just one level, but robot runs on generated/tests/.
 | Suite Setup | Set Common Variables
 
 *** Keywords ***
@@ -33,3 +35,5 @@
 | | Ensure Global Variable | perf_trial_multiplicity | 10
 | | Ensure Global Variable | perf_trial_duration | 1
 | | Ensure Global Variable | dut1_uuid | ${EMPTY}
+| | Ensure Global Variable | crc_mismatch_fails | ${CRC_MISMATCH_FAILS_TEST}
+| | # ^^ Avoiding dangers of case insensitive Robot variable names.
