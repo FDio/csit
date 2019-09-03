@@ -44,7 +44,7 @@ and number of flows:
 - {E} - number of non-matching deny ACL entries, {E} = [1, 10, 50].
 - {F} - number of UDP flows with different tuple (src-ip4, dst-ip4,
   src-port, dst-port), {F} = [100, 10k, 100k].
-- All {E}x{F} combinations are tested per ACL type, total of 9.
+- All {E}x{F} combinations are tested per ACL type, for a total of 9.
 
 ACL MAC-IP
 ~~~~~~~~~~
@@ -65,7 +65,7 @@ entries and number of flows:
 - {E} - number of non-matching deny ACL entries, {E} = [1, 10, 50]
 - {F} - number of UDP flows with different tuple (dst-ip4, dst-mac),
   {F} = [100, 10k, 100k]
-- All {E}x{F} combinations are tested per ACL type, total of 9.
+- All {E}x{F} combinations are tested per ACL type, for a total of 9.
 
 NAT44
 ~~~~~

@@ -1,11 +1,11 @@
 Report Structure
 ================
 
-FD.io |csit-release| report contains system performance and functional
-testing data of |vpp-release|. `PDF version of this report`_ is
+The FD.io |csit-release| report contains system performance and functional
+testing data of |vpp-release|. A `PDF version of this report`_ is
 available for download.
 
-|csit-release| report is structured as follows:
+The |csit-release| report is structured as follows:
 
 #. INTRODUCTION: General introduction to FD.io |csit-release|.
 
@@ -105,7 +105,7 @@ available for download.
    - **Honeycomb Functional**: Detailed HoneyComb functional results.
 
 #. TEST CONFIGURATION: VPP DUT configuration data based on VPP API
-   Test (VAT) Commands History auto-generated from CSIT test job
+   Test (VAT) Commands History, auto-generated from CSIT test job
    executions using RF output files as sources.
 
    - **VPP Performance NDR/PDR**: Configuration data.
