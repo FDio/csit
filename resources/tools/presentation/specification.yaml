@@ -143,6 +143,15 @@
         - 20  # NDRPDR sel
         - 21  # NDRPDR sel
 
+    plot-vpp-throughput-lat-tsa-3n-hsw-vhost:
+      csit-vpp-perf-verify-1908-3n-hsw:
+        - 40  # NDRPDR sel vhost
+        - 41  # NDRPDR sel vhost
+        - 42  # NDRPDR sel vhost
+        - 43  # NDRPDR sel vhost
+        - 44  # NDRPDR sel vhost
+        - 45  # NDRPDR sel vhost
+
     plot-vpp-http-server-performance:
       csit-vpp-perf-verify-1908-2n-skx:
         - 29  # TCP
@@ -184,6 +193,12 @@
         - 26  # NDRPDR sel
         - 29  # NDRPDR sel
 
+    plot-vpp-throughput-lat-tsa-3n-skx-vhost:
+      csit-vpp-perf-verify-1908-3n-skx:
+        - 44  # NDRPDR sel vhost
+        - 45  # NDRPDR sel vhost
+        - 49  # NDRPDR sel vhost
+
     plot-dpdk-throughput-latency-3n-skx:
       csit-dpdk-perf-verify-1908-3n-skx:
         - 3   # NDRPDR sel
@@ -211,6 +226,15 @@
         - 44  # NDRPDR sel
         - 45  # NDRPDR sel
         - 46  # NDRPDR sel
+
+    plot-vpp-throughput-lat-tsa-2n-skx-vhost:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 72  # NDRPDR sel vhost
+        - 73  # NDRPDR sel vhost
+        - 74  # NDRPDR sel vhost
+        - 75  # NDRPDR sel vhost
+        - 76  # NDRPDR sel vhost
+        - 78  # NDRPDR sel vhost
 
 #    plot-vpp-soak-2n-skx:
 #      # TODO: Add data
@@ -304,7 +328,7 @@
 
     vpp-nic-comparison-2n-skx-mrr:
       csit-vpp-perf-verify-1908-2n-skx:
-        - 71  # NFV MRR
+        - 69  # MRR sel
 
     # Results
 
@@ -318,7 +342,6 @@
         - 29  # NDRPDR full
         - 32  # NDRPDR full
         - 33  # NDRPDR full
-        - 35  # NDRPDR full
         - 36  # NDRPDR full
         - 38  # NDRPDR full
 
@@ -337,7 +360,6 @@
         - 39  # NDRPDR full
         - 40  # NDRPDR full
         - 41  # NDRPDR full
-        - 43  # NDRPDR full
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
@@ -347,7 +369,7 @@
         - 51  # NDRPDR full
         - 54  # NDRPDR full
         - 55  # NDRPDR full
-        - 66  # NDRPDR full
+        - 79  # NDRPDR full vhost
 
 <<<<<<< HEAD   (97881b Report: functional tests static content)
 =======
@@ -463,6 +485,53 @@
       - "vpp-performance-changes-3n-hsw-ref"
       - "vpp-performance-changes-3n-hsw-cmp"
 
+    vpp-performance-changes-3n-hsw-h1-vhost:
+      csit-vpp-perf-verify-1901-3n-hsw:
+        - 10  # NDRPDR sel
+        - 19  # NDRPDR sel
+        - 31  # NDRPDR sel
+        - 36  # NDRPDR sel
+        - 40  # NDRPDR sel
+        - 42  # NDRPDR sel
+        - 44  # NDRPDR sel
+        - 46  # NDRPDR sel
+        - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
+        - 61  # NDRPDR LB
+        - 62  # NDRPDR LB
+        - 63  # NDRPDR LB
+        - 64  # NDRPDR LB
+        - 65  # NDRPDR LB
+        - 66  # NDRPDR LB
+        - 67  # NDRPDR LB
+        - 69  # NDRPDR LB
+        - 70  # NDRPDR LB
+        - 71  # NDRPDR LB
+    vpp-performance-changes-3n-hsw-ref-vhost:
+      csit-vpp-perf-verify-1904-3n-hsw:
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 20  # NDRPDR sel
+        - 21  # NDRPDR sel
+        - 23  # NDRPDR sel
+        - 24  # NDRPDR sel
+        - 25  # NDRPDR sel
+        - 26  # NDRPDR sel
+        - 29  # NDRPDR sel
+        - 30  # NDRPDR sel
+    vpp-performance-changes-3n-hsw-cmp-vhost:
+      csit-vpp-perf-verify-1908-3n-hsw:
+        - 40  # NDRPDR sel vhost
+        - 41  # NDRPDR sel vhost
+        - 42  # NDRPDR sel vhost
+        - 43  # NDRPDR sel vhost
+        - 44  # NDRPDR sel vhost
+        - 45  # NDRPDR sel vhost
+    vpp-performance-changes-3n-hsw-vhost:
+      - "vpp-performance-changes-3n-hsw-h1-vhost"
+      - "vpp-performance-changes-3n-hsw-ref-vhost"
+      - "vpp-performance-changes-3n-hsw-cmp-vhost"
+
     vpp-performance-changes-3n-skx-h1:
       csit-vpp-perf-verify-1901-3n-skx:
         - 18  # NDRPDR sel
@@ -514,6 +583,50 @@
       - "vpp-performance-changes-3n-skx-ref"
       - "vpp-performance-changes-3n-skx-cmp"
 
+    vpp-performance-changes-3n-skx-h1-vhost:
+      csit-vpp-perf-verify-1901-3n-skx:
+        - 18  # NDRPDR sel
+        - 19  # NDRPDR sel
+        - 20  # NDRPDR sel
+        - 28  # NDRPDR sel
+        - 31  # NDRPDR sel
+        - 33  # NDRPDR sel
+        - 36  # NDRPDR sel
+        - 38  # NDRPDR sel
+        - 47  # NDRPDR sel
+        - 48  # NDRPDR sel
+        - 54  # NDRPDR LB
+        - 57  # NDRPDR LB
+        - 58  # NDRPDR LB
+        - 59  # NDRPDR LB
+        - 60  # NDRPDR LB
+        - 63  # NDRPDR LB
+        - 64  # NDRPDR LB
+        - 65  # NDRPDR LB
+        - 66  # NDRPDR LB
+        - 67  # NDRPDR LB
+    vpp-performance-changes-3n-skx-ref-vhost:
+      csit-vpp-perf-verify-1904-3n-skx:
+        - 8   # NDRPDR sel
+        - 9   # NDRPDR sel
+        - 10  # NDRPDR sel
+        - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 16  # NDRPDR sel
+        - 21  # NDRPDR sel
+        - 23  # NDRPDR sel
+        - 25  # NDRPDR sel
+    vpp-performance-changes-3n-skx-cmp-vhost:
+      csit-vpp-perf-verify-1908-3n-skx:
+        - 44  # NDRPDR sel vhost
+        - 45  # NDRPDR sel vhost
+        - 49  # NDRPDR sel vhost
+    vpp-performance-changes-3n-skx-vhost:
+      - "vpp-performance-changes-3n-skx-h1-vhost"
+      - "vpp-performance-changes-3n-skx-ref-vhost"
+      - "vpp-performance-changes-3n-skx-cmp-vhost"
+
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1901-2n-skx:
         - 5   # NDRPDR sel
@@ -554,6 +667,43 @@
       - "vpp-performance-changes-2n-skx-h1"
       - "vpp-performance-changes-2n-skx-ref"
       - "vpp-performance-changes-2n-skx-cmp"
+
+    vpp-performance-changes-2n-skx-h1-vhost:
+      csit-vpp-perf-verify-1901-2n-skx:
+        - 5   # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 21  # NDRPDR sel
+        - 23  # NDRPDR sel
+        - 31  # NDRPDR sel
+        - 34  # NDRPDR sel
+        - 40  # NDRPDR sel
+        - 42  # NDRPDR sel
+        - 43  # NDRPDR sel
+    vpp-performance-changes-2n-skx-ref-vhost:
+      csit-vpp-perf-verify-1904-2n-skx:
+        - 12  # NDRPDR sel
+        - 14  # NDRPDR sel
+        - 16  # NDRPDR sel
+        - 17  # NDRPDR sel
+        - 18  # NDRPDR sel
+        - 21  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 30  # NDRPDR sel
+        - 31  # NDRPDR sel
+        - 32  # NDRPDR sel
+    vpp-performance-changes-2n-skx-cmp-vhost:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 72  # NDRPDR sel vhost
+        - 73  # NDRPDR sel vhost
+        - 74  # NDRPDR sel vhost
+        - 75  # NDRPDR sel vhost
+        - 76  # NDRPDR sel vhost
+        - 78  # NDRPDR sel vhost
+    vpp-performance-changes-2n-skx-vhost:
+      - "vpp-performance-changes-2n-skx-h1-vhost"
+      - "vpp-performance-changes-2n-skx-ref-vhost"
+      - "vpp-performance-changes-2n-skx-cmp-vhost"
 
 #    vpp-soak-vs-ndr-2n-skx-ref:
 #      csit-vpp-perf-verify-1904-2n-skx:
@@ -628,7 +778,7 @@
         - 11  # MRR sel
     vpp-performance-changes-2n-skx-mrr-cmp:
       csit-vpp-perf-verify-1908-2n-skx:
-        - 71  # NFV MRR
+        - 69  # MRR sel
     vpp-performance-changes-2n-skx-mrr:
       - "vpp-performance-changes-2n-skx-mrr-h1"
       - "vpp-performance-changes-2n-skx-mrr-ref"
@@ -860,7 +1010,7 @@
         - 36  # MRR sel
     vpp-compare-topologies-mrr-cmp:
       csit-vpp-perf-verify-1908-2n-skx:
-        - 71  # NFV MRR
+        - 69  # MRR sel
     vpp-compare-topologies-mrr:
       - "vpp-compare-topologies-mrr-ref"
       - "vpp-compare-topologies-mrr-cmp"
@@ -1353,6 +1503,12 @@
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
       - 21  # NDRPDR sel
+      - 40  # NDRPDR sel vhost
+      - 41  # NDRPDR sel vhost
+      - 42  # NDRPDR sel vhost
+      - 43  # NDRPDR sel vhost
+      - 44  # NDRPDR sel vhost
+      - 45  # NDRPDR sel vhost
       - 24  # NDRPDR full
       - 25  # NDRPDR full
       - 26  # NDRPDR full
@@ -1361,7 +1517,6 @@
       - 29  # NDRPDR full
       - 32  # NDRPDR full
       - 33  # NDRPDR full
-      - 35  # NDRPDR full
       - 36  # NDRPDR full
       - 38  # NDRPDR full
       - 39  # MRR sel
@@ -1412,6 +1567,9 @@
       - 25  # NDRPDR sel
       - 26  # NDRPDR sel
       - 29  # NDRPDR sel
+      - 44  # NDRPDR sel vhost
+      - 45  # NDRPDR sel vhost
+      - 49  # NDRPDR sel vhost
       - 27  # NDRPDR full
       - 28  # NDRPDR full
       - 30  # NDRPDR full
@@ -1424,7 +1582,6 @@
       - 39  # NDRPDR full
       - 40  # NDRPDR full
       - 41  # NDRPDR full
-      - 43  # NDRPDR full
       - 36  # MRR sel
 
     csit-vpp-perf-verify-1901-2n-skx:
@@ -1463,13 +1620,19 @@
       - 44  # NDRPDR sel
       - 45  # NDRPDR sel
       - 46  # NDRPDR sel
+      - 72  # NDRPDR sel vhost
+      - 73  # NDRPDR sel vhost
+      - 74  # NDRPDR sel vhost
+      - 75  # NDRPDR sel vhost
+      - 76  # NDRPDR sel vhost
+      - 78  # NDRPDR sel vhost
       - 48  # NDRPDR full
       - 49  # NDRPDR full
       - 50  # NDRPDR full
       - 51  # NDRPDR full
       - 54  # NDRPDR full
       - 55  # NDRPDR full
-      - 66  # NDRPDR full
+      - 79  # NDRPDR full vhost
       - 69  # MRR sel
       - 29  # TCP
       - 30  # TCP
@@ -7228,7 +7391,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_name_box-vhost"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7244,7 +7407,7 @@
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
   algorithm: "plot_performance_name_box"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -7258,7 +7421,7 @@
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr"
   algorithm: "plot_performance_name_box"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -7272,7 +7435,7 @@
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-pdr"
   algorithm: "plot_performance_name_box"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -7286,7 +7449,7 @@
 #  title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
 #  algorithm: "plot_performance_name_box"
 #  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
-#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+#  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
 #  include:
 #    - ""
 #  layout:
@@ -7297,7 +7460,7 @@
 #  title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
 #  algorithm: "plot_performance_name_box"
 #  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
-#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+#  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
 #  include:
 #    - ""
 #  layout:
@@ -7308,7 +7471,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   algorithm: "plot_performance_name_box"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -7323,7 +7486,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
   algorithm: "plot_performance_name_box"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -7338,7 +7501,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
   algorithm: "plot_performance_name_box"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -7354,7 +7517,7 @@
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
   algorithm: "plot_performance_name_box"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -7910,7 +8073,7 @@
   title: "Latency: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -7924,7 +8087,7 @@
   title: "Latency: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -7938,7 +8101,7 @@
 #  title: "Latency: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-ndr-lat"
 #  algorithm: "plot_latency_error_bars_name"
 #  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+#  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
 #  include:
 #    - ""
 #  layout:
@@ -7949,7 +8112,7 @@
   title: "Latency: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -7964,7 +8127,7 @@
   title: "Latency: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -8494,7 +8657,7 @@
   title: "Latency: 2n-skx-xxv710-64b-4t2c-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-4t2c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -8508,7 +8671,7 @@
   title: "Latency: 3n-hsw-xl710-64b-2t2c-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-2t2c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-2t2c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -8522,7 +8685,7 @@
 #  title: "Latency: 3n-skx-x710-64b-4t2c-link-bonding-vhost-base-i40e-ndr-lat"
 #  algorithm: "plot_latency_error_bars_name"
 #  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-4t2c-link-bonding-vhost-base-i40e-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+#  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
 #  include:
 #    - ""
 #  layout:
@@ -8533,7 +8696,7 @@
   title: "Latency: 3n-skx-xxv710-64b-4t2c-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-4t2c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -8548,7 +8711,7 @@
   title: "Latency: 3n-skx-xxv710-64b-4t2c-link-bonding-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-4t2c-link-bonding-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t2c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9078,7 +9241,7 @@
   title: "Latency: 2n-skx-xxv710-64b-8t4c-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-8t4c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9092,7 +9255,7 @@
   title: "Latency: 3n-hsw-xl710-64b-4t4c-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-4t4c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-4t4c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9106,7 +9269,7 @@
 #  title: "Latency: 3n-skx-x710-64b-8t4c-link-bonding-vhost-base-i40e-ndr-lat"
 #  algorithm: "plot_latency_error_bars_name"
 #  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-8t4c-link-bonding-vhost-base-i40e-ndr-lat"
-#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+#  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
 #  include:
 #    - ""
 #  layout:
@@ -9117,7 +9280,7 @@
   title: "Latency: 3n-skx-xxv710-64b-8t4c-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-8t4c-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -9132,7 +9295,7 @@
   title: "Latency: 3n-skx-xxv710-64b-8t4c-link-bonding-vhost-base-i40e-ndr-lat"
   algorithm: "plot_latency_error_bars_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-8t4c-link-bonding-vhost-base-i40e-ndr-lat"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-8t4c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10146,7 +10309,7 @@
   title: "Speedup: 2n-skx-xxv710-64b-vhost-base-i40e-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-vhost-base-i40e-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10160,7 +10323,7 @@
   title: "Speedup: 2n-skx-xxv710-64b-vhost-base-i40e-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-vhost-base-i40e-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-2n-skx"
+  data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10174,7 +10337,7 @@
   title: "Speedup: 3n-hsw-xl710-64b-vhost-base-i40e-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-vhost-base-i40e-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10188,7 +10351,7 @@
   title: "Speedup: 3n-hsw-xl710-64b-vhost-base-i40e-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-vhost-base-i40e-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-hsw"
+  data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10202,7 +10365,7 @@
 #  title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-i40e-ndr-tsa"
 #  algorithm: "plot_throughput_speedup_analysis_name"
 #  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-i40e-ndr-tsa"
-#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+#  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
 #  include:
 #    - ""
 #  layout:
@@ -10213,7 +10376,7 @@
 #  title: "Speedup: 3n-skx-x710-64b-link-bonding-vhost-base-i40e-pdr-tsa"
 #  algorithm: "plot_throughput_speedup_analysis_name"
 #  output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-link-bonding-vhost-base-i40e-pdr-tsa"
-#  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+#  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
 #  include:
 #    - ""
 #  layout:
@@ -10239,7 +10402,7 @@
   title: "Speedup: 3n-skx-xxv710-64b-vhost-base-i40e-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-vhost-base-i40e-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10254,7 +10417,7 @@
   title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-ndr-tsa"
   algorithm: "plot_throughput_speedup_analysis_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-ndr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
@@ -10270,7 +10433,7 @@
   title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-pdr-tsa"
   algorithm: "plot_throughput_speedup_analysis_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-pdr-tsa"
-  data: "plot-vpp-throughput-lat-tsa-3n-skx"
+  data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-.t.c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr"
