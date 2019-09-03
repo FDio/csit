@@ -415,7 +415,7 @@ def table_performance_comparison(table, input_data):
             item.append(int(relative_change(float(item[-4]), float(item[-2]))))
         else:
             item.append("n/a")
-        if (len(item) == len(header)) and (item[-5] is not None):
+        if (len(item) == len(header)) and (item[-3] is not None):
             tbl_lst.append(item)
 
     # Sort the table according to the relative change
@@ -665,7 +665,7 @@ def table_performance_comparison_nic(table, input_data):
             item.append(int(relative_change(float(item[-4]), float(item[-2]))))
         else:
             item.append("n/a")
-        if (len(item) == len(header)) and (item[-5] is not None):
+        if (len(item) == len(header)) and (item[-3] is not None):
             tbl_lst.append(item)
 
     # Sort the table according to the relative change
