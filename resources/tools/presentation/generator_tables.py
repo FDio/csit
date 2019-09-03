@@ -411,13 +411,15 @@ def table_performance_comparison(table, input_data):
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend(["Not tested", "Not tested"])
-        if item[-4] != "Not tested" and item[-2] != "Not tested" and item[-4] != 0:
-            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
+        if item[-2] == "Not tested":
+            pass
         elif item[-4] == "Not tested":
             item.append("New in CSIT-1908")
         elif topo == "2n-skx" and "dot1q" in tbl_dict[tst_name]["name"]:
             item.append("See footnote [1]")
             footnote = True
+        elif item[-4] != 0:
+            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
         if (len(item) == len(header)) and (item[-3] != "Not tested"):
             tbl_lst.append(item)
 
@@ -437,13 +439,13 @@ def table_performance_comparison(table, input_data):
     if footnote:
         with open(txt_file_name, 'a') as txt_file:
             txt_file.writelines([
-                "Footnotes:",
+                "\nFootnotes:\n",
                 "[1] CSIT-1908 changed test methodology of dot1q tests in "
                 "2n-skx testbeds, dot1q encapsulation is now used on both "
-                "links of SUT.",
+                "links of SUT.\n",
                 "    Previously dot1q was used only on a single link with the "
                 "other link carrying untagged Ethernet frames. This change "
-                "results",
+                "results\n",
                 "    in slightly lower throughput in CSIT-1908 for these "
                 "tests. See release notes."
             ])
@@ -679,13 +681,15 @@ def table_performance_comparison_nic(table, input_data):
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend(["Not tested", "Not tested"])
-        if item[-4] != "Not tested" and item[-2] != "Not tested" and item[-4] != 0:
-            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
+        if item[-2] == "Not tested":
+            pass
         elif item[-4] == "Not tested":
             item.append("New in CSIT-1908")
         elif topo == "2n-skx" and "dot1q" in tbl_dict[tst_name]["name"]:
             item.append("See footnote [1]")
             footnote = True
+        elif item[-4] != 0:
+            item.append(int(relative_change(float(item[-4]), float(item[-2]))))
         if (len(item) == len(header)) and (item[-3] != "Not tested"):
             tbl_lst.append(item)
 
@@ -705,13 +709,13 @@ def table_performance_comparison_nic(table, input_data):
     if footnote:
         with open(txt_file_name, 'a') as txt_file:
             txt_file.writelines([
-                "Footnotes:",
+                "\nFootnotes:\n",
                 "[1] CSIT-1908 changed test methodology of dot1q tests in "
                 "2n-skx testbeds, dot1q encapsulation is now used on both "
-                "links of SUT.",
+                "links of SUT.\n",
                 "    Previously dot1q was used only on a single link with the "
                 "other link carrying untagged Ethernet frames. This change "
-                "results",
+                "results\n",
                 "    in slightly lower throughput in CSIT-1908 for these "
                 "tests. See release notes."
             ])
