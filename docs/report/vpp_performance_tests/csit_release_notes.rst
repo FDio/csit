@@ -72,3 +72,18 @@ List of known issues in |csit-release| for VPP performance tests:
 | 3  | `CSIT-1499                              | AVF tests are sporadically failing on initialization of AVF interface.                                   |
 |    | <https://jira.fd.io/browse/CSIT-1499>`_ |                                                                                                          |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
+| 4  | `VPP-662                                | 9000B packets not supported by NICs VIC1227 and VIC1387.                                                 |
+|    | <https://jira.fd.io/browse/VPP-662>`_   |                                                                                                          |
++----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
+| 5  | `VPP-1677                               | IP4 NAT44 9000B packet tests are failing as no packet is transferred.                                    |
+|    | <https://jira.fd.io/browse/VPP-1677>`_  |                                                                                                          |
++----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
+| 6  | `VPP-1676                               | IP4 memif 9000B packet tests are failing as no packet is transferred.                                    |
+|    | <https://jira.fd.io/browse/VPP-1676>`_  |                                                                                                          |
++----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
+| 7  | `VPP-1675                               | IP4 IPSEC 9000B packet tests are failing as no packet is transferred.                                    |
+|    | <https://jira.fd.io/browse/VPP-1675>`_  | Reason: chained buffers are not supported.                                                               |
++----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
+| 8  | `CSIT-1593                               | IP4 AVF 9000B packet tests are failing on 3n-skx while passing on 2n-skx.                               |
+|    | <https://jira.fd.io/browse/CSIT-1593>`_  |                                                                                                         |
++----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
