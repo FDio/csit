@@ -330,6 +330,7 @@
         - 39  # NDRPDR full
         - 40  # NDRPDR full
         - 41  # NDRPDR full
+        - 43  # NDRPDR full
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
@@ -1413,6 +1414,7 @@
       - 39  # NDRPDR full
       - 40  # NDRPDR full
       - 41  # NDRPDR full
+      - 43  # NDRPDR full
       - 36  # MRR sel
 
     csit-vpp-perf-verify-1901-2n-skx:
@@ -2086,7 +2088,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2108,7 +2110,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2130,7 +2132,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2152,7 +2154,7 @@
     data: "vpp-performance-changes-3n-hsw-cmp"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2177,7 +2179,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2203,7 +2205,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2229,7 +2231,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2255,7 +2257,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2281,7 +2283,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2307,7 +2309,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2333,7 +2335,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'2T1C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2359,7 +2361,7 @@
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC')"
+  filter: "'4T2C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2542,7 +2544,7 @@
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'1T1C' and 'MRR'"
+  filter: "'1T1C' and 'MRR' and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2564,7 +2566,7 @@
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T2C' and 'MRR'"
+  filter: "'2T2C' and 'MRR' and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2586,7 +2588,7 @@
     data: "vpp-performance-changes-3n-hsw-mrr-cmp"
   data: "vpp-performance-changes-3n-hsw-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T4C' and 'MRR'"
+  filter: "'4T4C' and 'MRR' and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2608,7 +2610,7 @@
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'MRR'"
+  filter: "'2T1C' and 'MRR' and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2630,7 +2632,7 @@
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'MRR'"
+  filter: "'4T2C' and 'MRR' and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2652,7 +2654,7 @@
     data: "vpp-performance-changes-3n-skx-mrr-cmp"
   data: "vpp-performance-changes-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'8T4C' and 'MRR'"
+  filter: "'8T4C' and 'MRR' and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2674,7 +2676,7 @@
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'2T1C' and 'MRR'"
+  filter: "'2T1C' and 'MRR' and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2696,7 +2698,7 @@
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'4T2C' and 'MRR'"
+  filter: "'4T2C' and 'MRR' and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -2718,7 +2720,7 @@
     data: "vpp-performance-changes-2n-skx-mrr-cmp"
   data: "vpp-performance-changes-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
-  filter: "'8T4C' and 'MRR'"
+  filter: "'8T4C' and 'MRR' and (not 'VHOST' or 'VTS')"
   parameters:
   - "name"
   - "parent"
@@ -4462,7 +4464,7 @@
 # Plots - NF Density - VSC - MRR 64b
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-vsc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -4494,7 +4496,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-vsc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -4526,7 +4528,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-vsc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -4559,7 +4561,7 @@
 # Plots - NF Density - VSC - MRR IMIX
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-vsc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -4591,7 +4593,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-vsc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -4623,7 +4625,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-vsc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -4656,7 +4658,7 @@
 # Plots - NF Density - VSC - NDR 64b
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-vsc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -4688,7 +4690,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-vsc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -4720,7 +4722,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-vsc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -4753,7 +4755,7 @@
 # Plots - NF Density - VSC - NDR IMIX
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-vsc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -4785,7 +4787,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-vsc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -4817,7 +4819,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-vsc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -4850,7 +4852,7 @@
 # Plots - NF Density - VSC - PDR 64b
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-vsc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -4882,7 +4884,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-vsc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -4914,7 +4916,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-vsc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -4947,7 +4949,7 @@
 # Plots - NF Density - VSC - PDR IMIX
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-vsc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -4979,7 +4981,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-vsc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5011,7 +5013,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-vsc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5045,7 +5047,7 @@
 # Plots - NF Density - CSC - MRR 64b
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-csc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5077,7 +5079,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-csc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5109,7 +5111,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-csc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5142,7 +5144,7 @@
 # Plots - NF Density - CSC - MRR IMIX
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-csc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5174,7 +5176,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-csc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5206,7 +5208,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-csc-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5239,7 +5241,7 @@
 # Plots - NF Density - CSC - NDR 64b
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-csc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5271,7 +5273,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-csc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5303,7 +5305,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-csc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5336,7 +5338,7 @@
 # Plots - NF Density - CSC - NDR IMIX
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-csc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5368,7 +5370,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-csc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5400,7 +5402,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-csc-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5433,7 +5435,7 @@
 # Plots - NF Density - CSC - PDR 64b
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-csc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5465,7 +5467,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-csc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5497,7 +5499,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-csc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5530,7 +5532,7 @@
 # Plots - NF Density - CSC - PDR IMIX
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-csc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5562,7 +5564,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-csc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5594,7 +5596,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-csc-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5628,7 +5630,7 @@
 # Plots - NF Density - CSP - MRR 64b
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-csp-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5660,7 +5662,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-csp-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5692,7 +5694,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-csp-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5725,7 +5727,7 @@
 # Plots - NF Density - CSP - MRR IMIX
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-csp-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5757,7 +5759,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-csp-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5789,7 +5791,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-mrr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-csp-mrr"
   data: "plot-vpp-nfv-2n-skx-mrr"
@@ -5822,7 +5824,7 @@
 # Plots - NF Density - CSP - NDR 64b
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-csp-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5854,7 +5856,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-csp-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5886,7 +5888,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-csp-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5919,7 +5921,7 @@
 # Plots - NF Density - CSP - NDR IMIX
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-csp-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5951,7 +5953,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-csp-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -5983,7 +5985,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-ndr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-csp-ndr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -6016,7 +6018,7 @@
 # Plots - NF Density - CSP - PDR 64b
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-2t1c-base-csp-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -6048,7 +6050,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-4t2c-base-csp-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -6080,7 +6082,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-64b-8t4c-base-csp-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -6113,7 +6115,7 @@
 # Plots - NF Density - CSP - PDR IMIX
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-2t1c-base-csp-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -6145,7 +6147,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-4t2c-base-csp-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"
@@ -6177,7 +6179,7 @@
 
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}pl-{2Y}mif-{XY}dcr-vppip4-pdr"
-  algorithm: "plot_service_density_heatmap_compare"
+  algorithm: "plot_service_density_heatmap"
   output-file-type: ".html"
   output-file: "{DIR[STATIC,VPP]}/l2bd-2n-skx-xxv710-imix-8t4c-base-csp-pdr"
   data: "plot-vpp-nfv-2n-skx-ndrpdr"

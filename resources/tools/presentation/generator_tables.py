@@ -657,10 +657,12 @@ def table_performance_comparison_nic(table, input_data):
             item.append(round(stdev(data_t) / 1000000, 2))
         else:
             item.extend([None, None])
-        if item[-4] is not None and item[-2] is not None and item[-4] != 0:
+        if "dot1q" in tbl_dict[tst_name]["name"]:
+            item.append("Changed methodology")
+        elif item[-4] is not None and item[-2] is not None and item[-4] != 0:
             item.append(int(relative_change(float(item[-4]), float(item[-2]))))
         else:
-            item.append(None)
+            item.append("n/a")
         if len(item) == len(header):
             tbl_lst.append(item)
 
