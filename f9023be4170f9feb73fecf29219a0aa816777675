@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "34fa7652_2ad88f83",
+        "filename": "docs/report/introduction/terminology.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-03T06:17:27Z",
+      "side": 1,
+      "message": "I would use different structure not list (maybe rst topics).",
+      "revId": "f9023be4170f9feb73fecf29219a0aa816777675",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
