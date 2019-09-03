@@ -4,4 +4,5 @@
 
 # vm_vhost
 # ndrpdrAND${default_nic}ANDnf_densityANDvhostANDchainNOTvxlan
-ndrpdrAND${default_nic}ANDnf_densityANDvhostANDchainANDvxlan
+# ndrpdrAND${default_nic}ANDnf_densityANDvhostANDchainANDvxlan
+reconfAND${default_nic}ANDnf_densityANDvhostANDchainANDvxlan
