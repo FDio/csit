@@ -1,6 +1,6 @@
 # dcr_memif
-ndrpdrAND${default_nic}ANDnf_densityANDdockerANDchain
-# ndrpdrAND${default_nic}ANDnf_densityANDdockerANDpipeline
+# ndrpdrAND${default_nic}ANDnf_densityANDdockerANDchain
+ndrpdrAND${default_nic}ANDnf_densityANDdockerANDpipeline
 
 # vm_vhost
 # ndrpdrAND${default_nic}ANDnf_densityANDvhostANDchain
