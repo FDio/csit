@@ -30,7 +30,7 @@
 
 ..
     ## 3n-tsh-x520
-    ### 64b-?t?c-vts-l2switching-base-i40e
+    ### 64b-?t?c-vts-l2switching-base-ixgbe
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr
@@ -42,13 +42,13 @@
 3n-tsh-x520
 ~~~~~~~~~~~
 
-114b-1t1c-vts-l2switching-base-i40e
------------------------------------
+114b-1t1c-vts-l2switching-base-ixgbe
+------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-114b-1t1c-vts-l2switching-base-i40e-ndr-lat.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -57,21 +57,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-114b-1t1c-vts-l2switching-base-i40e-ndr-lat}
-            \label{fig:3n-tsh-x520-114b-1t1c-vts-l2switching-base-i40e-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-ndr-lat}
+            \label{fig:3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-ndr-lat}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-114b-2t2c-vts-l2switching-base-i40e
------------------------------------
+114b-2t2c-vts-l2switching-base-ixgbe
+------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-114b-2t2c-vts-l2switching-base-i40e-ndr-lat.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-114b-2t2c-vts-l2switching-base-ixgbe-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -80,21 +80,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-114b-2t2c-vts-l2switching-base-i40e-ndr-lat}
-            \label{fig:3n-tsh-x520-114b-2t2c-vts-l2switching-base-i40e-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-114b-2t2c-vts-l2switching-base-ixgbe-ndr-lat}
+            \label{fig:3n-tsh-x520-114b-2t2c-vts-l2switching-base-ixgbe-ndr-lat}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-114b-4t4c-vts-l2switching-base-i40e
------------------------------------
+114b-4t4c-vts-l2switching-base-ixgbe
+------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-114b-4t4c-vts-l2switching-base-i40e-ndr-lat.html"></iframe>
+    <iframe id="03" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-114b-4t4c-vts-l2switching-base-ixgbe-ndr-lat.html"></iframe>
     <p><br></p>
     </center>
 
@@ -103,6 +103,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-114b-4t4c-vts-l2switching-base-i40e-ndr-lat}
-            \label{fig:3n-tsh-x520-114b-4t4c-vts-l2switching-base-i40e-ndr-lat}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-114b-4t4c-vts-l2switching-base-ixgbe-ndr-lat}
+            \label{fig:3n-tsh-x520-114b-4t4c-vts-l2switching-base-ixgbe-ndr-lat}
     \end{figure}
