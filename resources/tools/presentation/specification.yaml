@@ -200,6 +200,9 @@
       csit-vpp-perf-verify-1908-3n-skx:
         - 44  # NDRPDR sel vhost
         - 45  # NDRPDR sel vhost
+        - 46  # NDRPDR sel vhost
+        - 47  # NDRPDR sel vhost
+        - 48  # NDRPDR sel vhost
         - 49  # NDRPDR sel vhost
 
     plot-dpdk-throughput-latency-3n-skx:
@@ -238,6 +241,8 @@
         - 75  # NDRPDR sel vhost
         - 76  # NDRPDR sel vhost
         - 78  # NDRPDR sel vhost
+        - 84  # NDRPDR sel vhost
+        - 85  # NDRPDR sel vhost
 
 #    plot-vpp-soak-2n-skx:
 #      # TODO: Add data
@@ -283,6 +288,7 @@
         - 12  # NDRPDR sel
         - 13  # NDRPDR sel
         - 14  # NDRPDR sel
+        - 15  # NDRPDR sel
 
     ###########################################################################
     # Simple tables (only one data set):
@@ -337,6 +343,7 @@
         - 33  # NDRPDR full
         - 36  # NDRPDR full
         - 38  # NDRPDR full
+        - 46  # NDRPDR full
 
     vpp-perf-results-3n-skx:
       # TODO: Add FULL data
@@ -353,6 +360,7 @@
         - 39  # NDRPDR full
         - 40  # NDRPDR full
         - 41  # NDRPDR full
+        - 50  # NDRPDR full
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
@@ -475,53 +483,6 @@
       - "vpp-performance-changes-3n-hsw-ref"
       - "vpp-performance-changes-3n-hsw-cmp"
 
-    vpp-performance-changes-3n-hsw-h1-vhost:
-      csit-vpp-perf-verify-1901-3n-hsw:
-        - 10  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 44  # NDRPDR sel
-        - 46  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 61  # NDRPDR LB
-        - 62  # NDRPDR LB
-        - 63  # NDRPDR LB
-        - 64  # NDRPDR LB
-        - 65  # NDRPDR LB
-        - 66  # NDRPDR LB
-        - 67  # NDRPDR LB
-        - 69  # NDRPDR LB
-        - 70  # NDRPDR LB
-        - 71  # NDRPDR LB
-    vpp-performance-changes-3n-hsw-ref-vhost:
-      csit-vpp-perf-verify-1904-3n-hsw:
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 24  # NDRPDR sel
-        - 25  # NDRPDR sel
-        - 26  # NDRPDR sel
-        - 29  # NDRPDR sel
-        - 30  # NDRPDR sel
-    vpp-performance-changes-3n-hsw-cmp-vhost:
-      csit-vpp-perf-verify-1908-3n-hsw:
-        - 40  # NDRPDR sel vhost
-        - 41  # NDRPDR sel vhost
-        - 42  # NDRPDR sel vhost
-        - 43  # NDRPDR sel vhost
-        - 44  # NDRPDR sel vhost
-        - 45  # NDRPDR sel vhost
-    vpp-performance-changes-3n-hsw-vhost:
-      - "vpp-performance-changes-3n-hsw-h1-vhost"
-      - "vpp-performance-changes-3n-hsw-ref-vhost"
-      - "vpp-performance-changes-3n-hsw-cmp-vhost"
-
     vpp-performance-changes-3n-skx-h1:
       csit-vpp-perf-verify-1901-3n-skx:
         - 18  # NDRPDR sel
@@ -573,50 +534,6 @@
       - "vpp-performance-changes-3n-skx-ref"
       - "vpp-performance-changes-3n-skx-cmp"
 
-    vpp-performance-changes-3n-skx-h1-vhost:
-      csit-vpp-perf-verify-1901-3n-skx:
-        - 18  # NDRPDR sel
-        - 19  # NDRPDR sel
-        - 20  # NDRPDR sel
-        - 28  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 33  # NDRPDR sel
-        - 36  # NDRPDR sel
-        - 38  # NDRPDR sel
-        - 47  # NDRPDR sel
-        - 48  # NDRPDR sel
-        - 54  # NDRPDR LB
-        - 57  # NDRPDR LB
-        - 58  # NDRPDR LB
-        - 59  # NDRPDR LB
-        - 60  # NDRPDR LB
-        - 63  # NDRPDR LB
-        - 64  # NDRPDR LB
-        - 65  # NDRPDR LB
-        - 66  # NDRPDR LB
-        - 67  # NDRPDR LB
-    vpp-performance-changes-3n-skx-ref-vhost:
-      csit-vpp-perf-verify-1904-3n-skx:
-        - 8   # NDRPDR sel
-        - 9   # NDRPDR sel
-        - 10  # NDRPDR sel
-        - 11  # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 25  # NDRPDR sel
-    vpp-performance-changes-3n-skx-cmp-vhost:
-      csit-vpp-perf-verify-1908-3n-skx:
-        - 44  # NDRPDR sel vhost
-        - 45  # NDRPDR sel vhost
-        - 49  # NDRPDR sel vhost
-    vpp-performance-changes-3n-skx-vhost:
-      - "vpp-performance-changes-3n-skx-h1-vhost"
-      - "vpp-performance-changes-3n-skx-ref-vhost"
-      - "vpp-performance-changes-3n-skx-cmp-vhost"
-
     vpp-performance-changes-2n-skx-h1:
       csit-vpp-perf-verify-1901-2n-skx:
         - 5   # NDRPDR sel
@@ -657,43 +574,6 @@
       - "vpp-performance-changes-2n-skx-h1"
       - "vpp-performance-changes-2n-skx-ref"
       - "vpp-performance-changes-2n-skx-cmp"
-
-    vpp-performance-changes-2n-skx-h1-vhost:
-      csit-vpp-perf-verify-1901-2n-skx:
-        - 5   # NDRPDR sel
-        - 12  # NDRPDR sel
-        - 13  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 23  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 34  # NDRPDR sel
-        - 40  # NDRPDR sel
-        - 42  # NDRPDR sel
-        - 43  # NDRPDR sel
-    vpp-performance-changes-2n-skx-ref-vhost:
-      csit-vpp-perf-verify-1904-2n-skx:
-        - 12  # NDRPDR sel
-        - 14  # NDRPDR sel
-        - 16  # NDRPDR sel
-        - 17  # NDRPDR sel
-        - 18  # NDRPDR sel
-        - 21  # NDRPDR sel
-        - 27  # NDRPDR sel
-        - 30  # NDRPDR sel
-        - 31  # NDRPDR sel
-        - 32  # NDRPDR sel
-    vpp-performance-changes-2n-skx-cmp-vhost:
-      csit-vpp-perf-verify-1908-2n-skx:
-        - 72  # NDRPDR sel vhost
-        - 73  # NDRPDR sel vhost
-        - 74  # NDRPDR sel vhost
-        - 75  # NDRPDR sel vhost
-        - 76  # NDRPDR sel vhost
-        - 78  # NDRPDR sel vhost
-    vpp-performance-changes-2n-skx-vhost:
-      - "vpp-performance-changes-2n-skx-h1-vhost"
-      - "vpp-performance-changes-2n-skx-ref-vhost"
-      - "vpp-performance-changes-2n-skx-cmp-vhost"
 
 #    vpp-soak-vs-ndr-2n-skx-ref:
 #      csit-vpp-perf-verify-1904-2n-skx:
@@ -1509,6 +1389,7 @@
       - 33  # NDRPDR full
       - 36  # NDRPDR full
       - 38  # NDRPDR full
+      - 46  # NDRPDR full
       - 39  # MRR sel
 
     csit-vpp-perf-verify-1901-3n-skx:
@@ -1559,6 +1440,9 @@
       - 29  # NDRPDR sel
       - 44  # NDRPDR sel vhost
       - 45  # NDRPDR sel vhost
+      - 46  # NDRPDR sel vhost
+      - 47  # NDRPDR sel vhost
+      - 48  # NDRPDR sel vhost
       - 49  # NDRPDR sel vhost
       - 27  # NDRPDR full
       - 28  # NDRPDR full
@@ -1572,6 +1456,7 @@
       - 39  # NDRPDR full
       - 40  # NDRPDR full
       - 41  # NDRPDR full
+      - 50  # NDRPDR full
       - 36  # MRR sel
 
     csit-vpp-perf-verify-1901-2n-skx:
@@ -1616,6 +1501,8 @@
       - 75  # NDRPDR sel vhost
       - 76  # NDRPDR sel vhost
       - 78  # NDRPDR sel vhost
+      - 84  # NDRPDR sel vhost
+      - 85  # NDRPDR sel vhost
       - 48  # NDRPDR full
       - 49  # NDRPDR full
       - 50  # NDRPDR full
@@ -1655,6 +1542,7 @@
       - 12  # NDRPDR sel
       - 13  # NDRPDR sel
       - 14  # NDRPDR sel
+      - 15  # NDRPDR sel
 
     csit-dpdk-perf-verify-1901-3n-hsw:
       - 13  # NDRPDR sel
@@ -1770,8 +1658,8 @@
   format:
     html:
     - full
-#    pdf:
-#    - minimal
+    pdf:
+    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -1804,10 +1692,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-ndr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -1824,10 +1712,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-ndr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -1844,10 +1732,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-pdr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -1864,10 +1752,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-pdr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -1884,10 +1772,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-2t1c-nics-mrr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -1904,10 +1792,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-4t2c-nics-mrr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -1924,10 +1812,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-3n-skx-8t4c-nics-mrr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-3n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -1944,10 +1832,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-nics-ndr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -1964,10 +1852,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-nics-ndr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -1984,10 +1872,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-nics-pdr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -2004,10 +1892,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-nics-pdr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -2024,10 +1912,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-2t1c-nics-mrr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -2044,10 +1932,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-4t2c-nics-mrr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
@@ -2064,10 +1952,10 @@
   algorithm: "table_nics_comparison"
   output-file: "{DIR[STATIC,VPP]}/performance-changes-2n-skx-8t4c-nics-mrr"
   reference:
-    title: "Intel-x710"
+    title: "x710"
     nic: "NIC_Intel-X710"
   compare:
-    title: "Intel-xxv710"
+    title: "xxv710"
     nic: "NIC_Intel-XXV710"
   data: "vpp-nic-comparison-2n-skx-mrr"
   include-tests: "MRR" # "PDR" | "NDR" | "MRR"
