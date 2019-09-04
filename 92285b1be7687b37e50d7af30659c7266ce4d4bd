@@ -91,6 +91,30 @@
       "revId": "92285b1be7687b37e50d7af30659c7266ce4d4bd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82508a02_46779c27",
+        "filename": "docs/report/introduction/methodology_terminology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-04T16:02:27Z",
+      "side": 1,
+      "message": "It is a Python float, so it is fine. We are not going to overflow packets sent counter.\n\n\u003e\u003e\u003e import sys\n\u003e\u003e\u003e a \u003d sys.maxint\n\u003e\u003e\u003e print a\n9223372036854775807\n\u003e\u003e\u003e print 1.0 / a\n1.08420217249e-19",
+      "parentUuid": "e3ebc3e8_bb166edb",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 49
+      },
+      "revId": "92285b1be7687b37e50d7af30659c7266ce4d4bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
