@@ -1,0 +1,343 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e8be1d6b_3b614362",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 1
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec2b0c0a_e68dbd24",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 113,
+        "startChar": 66,
+        "endLine": 113,
+        "endChar": 67
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dbd31d69_8c388d87",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "Is there test for this?",
+      "range": {
+        "startLine": 175,
+        "startChar": 25,
+        "endLine": 175,
+        "endChar": 46
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c53e69d1_20279ed6",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "for",
+      "range": {
+        "startLine": 176,
+        "startChar": 37,
+        "endLine": 176,
+        "endChar": 40
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a08a23d_d58a5488",
+        "filename": "resources/libraries/robot/overlay/lispgpe.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "2019",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2b38a391_d2ee04e3",
+        "filename": "resources/libraries/robot/overlay/lispgpe.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "missing } at the end",
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce7eb9a9_dca77f7d",
+        "filename": "resources/test_data/lisp/ipv4_lisp_ipv4/ipv4_lisp_ipv4.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "dut1_if1_ip4",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 18
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d42bf96b_fa29968a",
+        "filename": "resources/test_data/lisp/ipv4_lisp_ipv4/ipv4_lisp_ipv4.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "dut1_if1_ip4",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 18
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "660ca66f_2d8b7492",
+        "filename": "resources/test_data/lisp/ipv4_lisp_ipv4/ipv4_lisp_ipv4.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "why are these variables here if you do have them inside robot test file.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c77f0dc_aec34ca4",
+        "filename": "resources/test_data/lisp/ipv4_lisp_ipv4/ipv4_lisp_ipv4.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "Is this used?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 8
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fda0360_539f1f01",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lisp-ip4base-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "Why Vhost? Remove",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 1
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "837a242d_c43e6d97",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lisp-ip4base-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "Why l2 bridge?, remove",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 64
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bccaf6c_c9b1a0d7",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lisp-ip4base-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "Reduce to only default.robot",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 59
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "44fe6e96_70e70640",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lisp-ip4base-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "We do not need to test multiple times. Remove and leave only one positive test.",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 37
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "52970075_13ec06c4",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lispgpe-ip4base-dev.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:30:42Z",
+      "side": 1,
+      "message": "Same comments as for previous file applies",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 59
+      },
+      "revId": "0bcc2dc01a91c4f266eb175f3c2494ca9c8f7b49",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
