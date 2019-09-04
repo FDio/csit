@@ -26,6 +26,11 @@ Changes in |csit-release|
      using WRK to the HTTP static server plugin measuring connections
      per second and requests per second.
 
+   - **Changed methodology of dot1q 2n tests**: dot1q encapsulation is now used
+     on both links of SUT. Previously dot1q was used only on a single link with
+     the other link carrying untagged Ethernet frames. This change results in
+     slightly lower throughput in CSIT-1908 for these tests.
+
 #. TEST FRAMEWORK
 
    - **CSIT PAPI Support**: Finished conversion of CSIT VAT L1 keywords to
