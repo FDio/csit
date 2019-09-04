@@ -31,7 +31,7 @@ from resources.libraries.python.VPPUtil import VPPUtil
 
 
 class InterfaceStatusFlags(IntEnum):
-    """Interface status falgs."""
+    """Interface status flags."""
     IF_STATUS_API_FLAG_ADMIN_UP = 1
     IF_STATUS_API_FLAG_LINK_UP = 2
 
@@ -84,21 +84,23 @@ class IfType(IntEnum):
     IF_API_TYPE_PIPE = 3
 
 
-# pylint: disable=invalid-name
-class LinkBondLoadBalance(IntEnum):
-    """Link bonding load balance."""
-    L2 = 0  # pylint: disable=invalid-name
-    L34 = 1
-    L23 = 2
+class LinkBondLoadBalanceAlgo(IntEnum):
+    """Link bonding load balance algorithm."""
+    BOND_API_LB_ALGO_L2 = 0
+    BOND_API_LB_ALGO_L34 = 1
+    BOND_API_LB_ALGO_L23 = 2
+    BOND_API_LB_ALGO_RR = 3
+    BOND_API_LB_ALGO_BC = 4
+    BOND_API_LB_ALGO_AB = 5
 
 
 class LinkBondMode(IntEnum):
-    """Link bonding load balance."""
-    ROUND_ROBIN = 1
-    ACTIVE_BACKUP = 2
-    XOR = 3
-    BROADCAST = 4
-    LACP = 5
+    """Link bonding mode."""
+    BOND_API_MODE_ROUND_ROBIN = 1
+    BOND_API_MODE_ACTIVE_BACKUP = 2
+    BOND_API_MODE_XOR = 3
+    BOND_API_MODE_BROADCAST = 4
+    BOND_API_MODE_LACP = 5
 
 
 class InterfaceUtil(object):
@@ -1116,21 +1118,24 @@ class InterfaceUtil(object):
             the node.
         """
         cmd = 'bond_create'
-        args = dict(id=int(Constants.BITWISE_NON_ZERO),
-                    use_custom_mac=0 if mac is None else 1,
-                    mac_address=0 if mac is None else L2Util.mac_to_bin(mac),
-                    mode=getattr(LinkBondMode, '{md}'.format(
-                        md=mode.replace('-', '_').upper())).value,
-                    lb=0 if load_balance is None else getattr(
-                        LinkBondLoadBalance, '{lb}'.format(
-                            lb=load_balance.upper())).value)
+        args = dict(
+            id=int(Constants.BITWISE_NON_ZERO),
+            use_custom_mac=False if mac is None else True,
+            mac_address=L2Util.mac_to_bin(mac) if mac else None,
+            mode=getattr(LinkBondMode, 'BOND_API_MODE_{md}'.format(
+                md=mode.replace('-', '_').upper())).value,
+            lb=0 if load_balance is None else getattr(
+                LinkBondLoadBalanceAlgo, 'BOND_API_LB_ALGO_{lb}'.format(
+                    lb=load_balance.upper())).value,
+            numa_only=False
+        )
         err_msg = 'Failed to create bond interface on host {host}'.format(
             host=node['host'])
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
-        InterfaceUtil.add_eth_interface(node, sw_if_index=sw_if_index,
-                                        ifc_pfx='eth_bond')
+        InterfaceUtil.add_eth_interface(
+            node, sw_if_index=sw_if_index, ifc_pfx='eth_bond')
         if_key = Topology.get_interface_by_sw_index(node, sw_if_index)
 
         return if_key
@@ -1209,8 +1214,9 @@ class InterfaceUtil(object):
         args = dict(
             sw_if_index=Topology.get_interface_sw_index(node, interface),
             bond_sw_if_index=Topology.get_interface_sw_index(node, bond_if),
-            is_passive=0,
-            is_long_timeout=0)
+            is_passive=False,
+            is_long_timeout=False
+        )
         err_msg = 'Failed to enslave physical interface {ifc} to bond ' \
                   'interface {bond} on host {host}'.format(ifc=interface,
                                                            bond=bond_if,
@@ -1236,9 +1242,11 @@ class InterfaceUtil(object):
             details = papi_exec.add(cmd).get_details(err_msg)
 
         for bond in details:
-            data += ('{b}\n'.format(b=bond['interface_name'].rstrip('\x00')))
-            data += ('  mode: {m}\n'.format(m=bond['mode']).lower())
-            data += ('  load balance: {lb}\n'.format(lb=bond['lb']).lower())
+            data += ('{b}\n'.format(b=bond['interface_name']))
+            data += ('  mode: {m}\n'.format(
+                m=bond['mode'].name.replace('BOND_API_MODE_', '').lower()))
+            data += ('  load balance: {lb}\n'.format(
+                lb=bond['lb'].name.replace('BOND_API_LB_ALGO_', '').lower()))
             data += ('  number of active slaves: {n}\n'.format(
                 n=bond['active_slaves']))
             if verbose:
@@ -1267,18 +1275,6 @@ class InterfaceUtil(object):
         :returns: Bond slave interface data.
         :rtype: dict
         """
-        def process_slave_dump(slave_dump):
-            """Process slave dump.
-
-            :param slave_dump: Slave interface dump.
-            :type slave_dump: dict
-            :returns: Processed slave interface dump.
-            :rtype: dict
-            """
-            slave_dump['interface_name'] = slave_dump['interface_name'].\
-                rstrip('\x00')
-            return slave_dump
-
         cmd = 'sw_interface_slave_dump'
         args = dict(sw_if_index=Topology.get_interface_sw_index(
             node, interface))
@@ -1287,10 +1283,6 @@ class InterfaceUtil(object):
 
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
-
-        for dump in details:
-            # In-place edits.
-            process_slave_dump(dump)
 
         logger.debug('Slave data:\n{slave_data}'.format(slave_data=details))
         return details
