@@ -744,9 +744,9 @@ def table_nics_comparison(table, input_data):
         header = ["Test case", ]
 
         if table["include-tests"] == "MRR":
-            hdr_param = "Receive Rate"
+            hdr_param = "Rec Rate"
         else:
-            hdr_param = "Throughput"
+            hdr_param = "Thput"
 
         header.extend(
             ["{0} {1} [Mpps]".format(table["reference"]["title"], hdr_param),
@@ -853,9 +853,9 @@ def table_soak_vs_ndr(table, input_data):
     try:
         header = [
             "Test case",
-            "{0} Throughput [Mpps]".format(table["reference"]["title"]),
+            "{0} Thput [Mpps]".format(table["reference"]["title"]),
             "{0} Stdev [Mpps]".format(table["reference"]["title"]),
-            "{0} Throughput [Mpps]".format(table["compare"]["title"]),
+            "{0} Thput [Mpps]".format(table["compare"]["title"]),
             "{0} Stdev [Mpps]".format(table["compare"]["title"]),
             "Delta [%]", "Stdev of delta [%]"]
         header_str = ",".join(header) + "\n"
