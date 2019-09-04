@@ -30,7 +30,7 @@
 
 ..
     ## 3n-tsh-x520
-    ### 64b-?t?c-vts-l2switching-base-i40e
+    ### 64b-?t?c-vts-l2switching-base-ixgbe
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-ndrpdr
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-ndrpdr
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-ndrpdr
@@ -42,13 +42,13 @@
 3n-tsh-x520
 ~~~~~~~~~~~
 
-114b-vts-l2switching-base-i40e
------------------------------------
+114b-vts-l2switching-base-ixgbe
+-------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-114b-vts-l2switching-base-i40e-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-114b-vts-l2switching-base-ixgbe-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -57,8 +57,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-114b-vts-l2switching-base-i40e-ndr-tsa}
-            \label{fig:3n-tsh-x520-114b-vts-l2switching-base-i40e-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-114b-vts-l2switching-base-ixgbe-ndr-tsa}
+            \label{fig:3n-tsh-x520-114b-vts-l2switching-base-ixgbe-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -68,7 +68,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-114b-vts-l2switching-base-i40e-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-114b-vts-l2switching-base-ixgbe-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -77,6 +77,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-114b-vts-l2switching-base-i40e-pdr-tsa}
-            \label{fig:3n-tsh-x520-114b-vts-l2switching-base-i40e-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-114b-vts-l2switching-base-ixgbe-pdr-tsa}
+            \label{fig:3n-tsh-x520-114b-vts-l2switching-base-ixgbe-pdr-tsa}
     \end{figure}

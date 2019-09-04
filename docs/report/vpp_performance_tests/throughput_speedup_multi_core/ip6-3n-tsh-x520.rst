@@ -30,7 +30,7 @@
 
 ..
     ## 3n-tsh-x520
-    ### 78b-?t?c-ip6routing-base-scale-i40e
+    ### 78b-?t?c-ip6routing-base-scale-ixgbe
     10ge2p1x520-dot1q-ip6base-ndrpdr
     10ge2p1x520-ethip6-ip6base-ndrpdr
     10ge2p1x520-ethip6-ip6scale20k-ndrpdr
@@ -46,13 +46,13 @@
 3n-tsh-x520
 ~~~~~~~~~~~
 
-78b-ip6routing-base-scale-i40e
-------------------------------
+78b-ip6routing-base-scale-ixgbe
+-------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-78b-ip6routing-base-scale-i40e-ndr-tsa.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-78b-ip6routing-base-scale-ixgbe-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -61,8 +61,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-78b-ip6routing-base-scale-i40e-ndr-tsa}
-            \label{fig:3n-tsh-x520-78b-ip6routing-base-scale-i40e-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-78b-ip6routing-base-scale-ixgbe-ndr-tsa}
+            \label{fig:3n-tsh-x520-78b-ip6routing-base-scale-ixgbe-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -72,7 +72,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-78b-ip6routing-base-scale-i40e-pdr-tsa.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-78b-ip6routing-base-scale-ixgbe-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -81,6 +81,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-78b-ip6routing-base-scale-i40e-pdr-tsa}
-            \label{fig:3n-tsh-x520-78b-ip6routing-base-scale-i40e-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-78b-ip6routing-base-scale-ixgbe-pdr-tsa}
+            \label{fig:3n-tsh-x520-78b-ip6routing-base-scale-ixgbe-pdr-tsa}
     \end{figure}

@@ -30,7 +30,7 @@
 
 ..
     ## 3n-tsh-x520
-    ### 64b-?t?c-vhost-base-i40e
+    ### 64b-?t?c-vhost-base-ixgbe
     10ge2p1x520-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
     10ge2p1x520-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
     10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
@@ -43,7 +43,7 @@
     Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
     Tests.Vpp.Perf.Vm Vhost.10Ge2P1X520-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdr
 
-    #### 64b-?t?c-link-bonding-vhost-base-i40e
+    #### 64b-?t?c-link-bonding-vhost-base-ixgbe
     10ge2p1x520-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
     10ge2p1x520-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
     10ge2p1x520-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
@@ -61,13 +61,13 @@
 3n-tsh-x520
 ~~~~~~~~~~~
 
-64b-1t1c-vhost-base-i40e
-------------------------
+64b-1t1c-vhost-base-ixgbe
+-------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-vhost-base-i40e-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-vhost-base-ixgbe-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -76,8 +76,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-vhost-base-i40e-ndr}
-            \label{fig:3n-tsh-x520-64b-1t1c-vhost-base-i40e-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-vhost-base-ixgbe-ndr}
+            \label{fig:3n-tsh-x520-64b-1t1c-vhost-base-ixgbe-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -87,7 +87,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-vhost-base-i40e-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-vhost-base-ixgbe-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -96,21 +96,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-vhost-base-i40e-pdr}
-            \label{fig:3n-tsh-x520-64b-1t1c-vhost-base-i40e-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-vhost-base-ixgbe-pdr}
+            \label{fig:3n-tsh-x520-64b-1t1c-vhost-base-ixgbe-pdr}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-1t1c-link-bonding-vhost-base-i40e
--------------------------------------
+64b-1t1c-link-bonding-vhost-base-ixgbe
+--------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-i40e-ndr.html"></iframe>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-ixgbe-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -119,8 +119,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-i40e-ndr}
-            \label{fig:3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-i40e-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-ixgbe-ndr}
+            \label{fig:3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-ixgbe-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -130,7 +130,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-i40e-pdr.html"></iframe>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-ixgbe-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -139,6 +139,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-i40e-pdr}
-            \label{fig:3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-i40e-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-ixgbe-pdr}
+            \label{fig:3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-ixgbe-pdr}
     \end{figure}

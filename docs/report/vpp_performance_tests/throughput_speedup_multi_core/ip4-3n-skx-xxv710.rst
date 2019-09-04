@@ -43,7 +43,7 @@
     10ge2p1xxv710-ethip4-ip4scale200k-ndrpdr
     10ge2p1xxv710-ethip4-ip4scale2m-ndrpdr
 
-    ### 64b-feature-ip4routing-base-i40e
+    ### 64b-features-ip4routing-base-i40e
     10ge2p1xxv710-ethip4-ip4base-ndrpdr
     10ge2p1xxv710-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr
     10ge2p1xxv710-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr
@@ -140,13 +140,13 @@
 
     \clearpage
 
-64b-feature-ip4routing-base-i40e
+64b-features-ip4routing-base-i40e
 -------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-feature-ip4routing-base-i40e-ndr-tsa.html"></iframe>
+    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-i40e-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -155,8 +155,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-feature-ip4routing-base-i40e-ndr-tsa}
-            \label{fig:3n-skx-xxv710-64b-feature-ip4routing-base-i40e-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-i40e-ndr-tsa}
+            \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-i40e-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -166,7 +166,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-feature-ip4routing-base-i40e-pdr-tsa.html"></iframe>
+    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-ip4routing-base-i40e-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -175,6 +175,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-feature-ip4routing-base-i40e-pdr-tsa}
-            \label{fig:3n-skx-xxv710-64b-feature-ip4routing-base-i40e-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-ip4routing-base-i40e-pdr-tsa}
+            \label{fig:3n-skx-xxv710-64b-features-ip4routing-base-i40e-pdr-tsa}
     \end{figure}
