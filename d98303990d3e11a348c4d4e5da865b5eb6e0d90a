@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "356971af_b0afa40f",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:47:31Z",
+      "side": 1,
+      "message": "This will not work locally executed without generating over generator. In manual testing.\n\nUse standard way from pythonpath.",
+      "revId": "d98303990d3e11a348c4d4e5da865b5eb6e0d90a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d847f0a0_3329ecb2",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-04T08:47:31Z",
+      "side": 1,
+      "message": "Comments above",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 67
+      },
+      "revId": "d98303990d3e11a348c4d4e5da865b5eb6e0d90a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
