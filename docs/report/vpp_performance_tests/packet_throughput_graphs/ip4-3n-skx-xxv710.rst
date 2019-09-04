@@ -54,7 +54,7 @@
     Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-ethip4-ip4scale200k-ndrpdr
     Tests.Vpp.Perf.Ip4.25Ge2P1Xxv710-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-ethip4-ip4scale2m-ndrpdr
 
-    ### 64b-?t?c-feature-ip4routing-base-i40e
+    ### 64b-?t?c-features-ip4routing-base-i40e
     10ge2p1xxv710-ethip4-ip4base-ndrpdr
     10ge2p1xxv710-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr
     10ge2p1xxv710-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr
@@ -158,13 +158,13 @@
 
     \clearpage
 
-64b-2t1c-feature-ip4routing-base-i40e
+64b-2t1c-features-ip4routing-base-i40e
 -------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-feature-ip4routing-base-i40e-ndr.html"></iframe>
+    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -173,8 +173,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-feature-ip4routing-base-i40e-ndr}
-            \label{fig:3n-skx-xxv710-64b-2t1c-feature-ip4routing-base-i40e-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-ndr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -184,7 +184,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-feature-ip4routing-base-i40e-pdr.html"></iframe>
+    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -193,6 +193,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-feature-ip4routing-base-i40e-pdr}
-            \label{fig:3n-skx-xxv710-64b-2t1c-feature-ip4routing-base-i40e-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-pdr}
+            \label{fig:3n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-pdr}
     \end{figure}

@@ -49,7 +49,7 @@
     10ge2p1xxv710-eth-l2bdscale100kmaclrn-ndrpdr
     10ge2p1xxv710-eth-l2bdscale1mmaclrn-ndrpdr
 
-    ###  64b-feature-l2switching-base-i40e
+    ###  64b-features-l2switching-base-i40e
     10ge2p1xxv710-eth-l2bdbasemaclrn-ndrpdr
     10ge2p1xxv710-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr
     10ge2p1xxv710-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr
@@ -189,13 +189,13 @@
 
     \clearpage
 
-64b-feature-l2switching-base-i40e
+64b-features-l2switching-base-i40e
 --------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-feature-l2switching-base-i40e-ndr-tsa.html"></iframe>
+    <iframe id="31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-l2switching-base-i40e-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -204,8 +204,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-feature-l2switching-base-i40e-ndr-tsa}
-            \label{fig:3n-skx-xxv710-64b-feature-l2switching-base-i40e-ndr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-l2switching-base-i40e-ndr-tsa}
+            \label{fig:3n-skx-xxv710-64b-features-l2switching-base-i40e-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -215,7 +215,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-feature-l2switching-base-i40e-pdr-tsa.html"></iframe>
+    <iframe id="32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-skx-xxv710-64b-features-l2switching-base-i40e-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -224,6 +224,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-feature-l2switching-base-i40e-pdr-tsa}
-            \label{fig:3n-skx-xxv710-64b-feature-l2switching-base-i40e-pdr-tsa}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-skx-xxv710-64b-features-l2switching-base-i40e-pdr-tsa}
+            \label{fig:3n-skx-xxv710-64b-features-l2switching-base-i40e-pdr-tsa}
     \end{figure}
