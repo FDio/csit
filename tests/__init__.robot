@@ -13,7 +13,10 @@
 
 *** Settings ***
 | Documentation | Set global variables common to all tests.
+| # The two paths below assume working directory when pybot is started,
+| # but we cannot use ${CURDIR} as this file may be copied under generated/.
 | Resource | resources/libraries/robot/robot_enhancements.robot
+| Variables | resources/libraries/python/Constants.py
 | Suite Setup | Set Common Variables
 
 *** Keywords ***
@@ -33,3 +36,5 @@
 | | Ensure Global Variable | perf_trial_multiplicity | 10
 | | Ensure Global Variable | perf_trial_duration | 1
 | | Ensure Global Variable | dut1_uuid | ${EMPTY}
+| | # Avoiding dangers of case insensitive Robot variable names.
+| | Ensure Global Variable | crc_mismatch_fails | ${CRC_MISMATCH_FAILS_TEST}
