@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ea5f5a4_b306933a",
+        "filename": "docs/report/introduction/methodology_terminology.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-04T11:35:38Z",
+      "side": 1,
+      "message": "Defined in [0], with perhaps different meaning.\nI doubt L2patch would be considered DUT by RFC2285.\n\n[0] https://tools.ietf.org/html/rfc2285#section-3.1.1",
+      "range": {
+        "startLine": 14,
+        "startChar": 22,
+        "endLine": 14,
+        "endChar": 27
+      },
+      "revId": "622726926fc12522e439455ade436f6dfcc0da06",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "beb05a5f_c027af0b",
+        "filename": "docs/report/introduction/methodology_terminology.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-04T11:35:38Z",
+      "side": 1,
+      "message": "Defined in [1], with definitely different meaning.\nFor RFC 2285 it is a set of network devices. For CSIT, SUT is a complete network device, and DUT is its software part, excluding its hardware (bare metal host), IO (NICs), computational (CPUs used by OS and other processes) and virtualization environment.\n\nI think we should define new terms, at least for BMWG drafts.\n\n[1] https://tools.ietf.org/html/rfc2285#section-3.1.2",
+      "range": {
+        "startLine": 25,
+        "startChar": 22,
+        "endLine": 25,
+        "endChar": 27
+      },
+      "revId": "622726926fc12522e439455ade436f6dfcc0da06",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1aa26995_5f5a3673",
+        "filename": "docs/report/introduction/methodology_terminology.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-04T11:35:38Z",
+      "side": 1,
+      "message": "Officially it is trial measurement, but using the shortened form is fine.",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 9
+      },
+      "revId": "622726926fc12522e439455ade436f6dfcc0da06",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
