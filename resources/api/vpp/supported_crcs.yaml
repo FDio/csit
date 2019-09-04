@@ -28,8 +28,8 @@
 # Trailing comments are optional, for tracking how to test the message.
 
 # https://logs.fd.io/production/vex-yul-rot-jenkins-1
-# /vpp-beta-merge-master-ubuntu1804/3490/archives/build-root/
-20.01-rc0~85:
+# /vpp-beta-merge-master-ubuntu1804/3551/archives/build-root/
+20.01-rc0~143:
     acl_add_replace: '0x13bc8539'  # perf
     acl_add_replace_reply: '0xac407b0c'  # perf
     acl_dump: '0xef34fea4'  # perf teardown
@@ -57,8 +57,8 @@
     classify_add_del_session_reply: '0xe8d4e804'  # dev
     classify_add_del_table: '0x9bd794ae'  # dev
     classify_add_del_table_reply: '0x05486349'  # dev
-    cli_inband: '0xb1ad59b3'  # dev setup
-    cli_inband_reply: '0x6d3c80a4'  # dev setup
+    cli_inband: '0xf8377302'  # dev setup
+    cli_inband_reply: '0x05879051'  # dev setup
     cop_interface_enable_disable: '0x69d24598'  # dev
     cop_interface_enable_disable_reply: '0xe8d4e804'  # dev
     cop_whitelist_enable_disable: '0x8bb8f6dc'  # dev
@@ -172,7 +172,7 @@
     show_threads: '0x51077d14'  # dev
     show_threads_reply: '0xf5e0b66f'  # dev
     show_version: '0x51077d14'  # dev setup
-    show_version_reply: '0xb9bcf6df'  # dev setup
+    show_version_reply: '0xc919bde1'  # dev setup
     sr_localsid_add_del: '0xb30489eb'  # perf
     sr_localsid_add_del_reply: '0xe8d4e804'  # perf
     sr_localsids_details: '0x0791babc'  # perf
@@ -194,8 +194,8 @@
     sw_interface_bond_details: '0xa8ac5a5f'  # perf
     sw_interface_bond_dump: '0x51077d14'  # perf
     # ^^ see bond_*
-    sw_interface_details: '0x156a9465'  # dev setup
-    sw_interface_dump: '0xe116dcdc'  # dev setup
+    sw_interface_details: '0xe67d02b6'  # dev setup
+    sw_interface_dump: '0x4ecaa564'  # dev setup
     sw_interface_ip6nd_ra_config: '0xc3f02daa'  # dev
     sw_interface_ip6nd_ra_config_reply: '0xe8d4e804'  # dev
     sw_interface_rx_placement_details: '0x93d413ec'  # perf
