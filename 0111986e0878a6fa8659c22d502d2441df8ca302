@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3ca58106_0cd121ee",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-09-04T05:29:27Z",
+      "side": 1,
+      "message": "No todos in the report, please.",
+      "range": {
+        "startLine": 38,
+        "startChar": 58,
+        "endLine": 38,
+        "endChar": 71
+      },
+      "revId": "0111986e0878a6fa8659c22d502d2441df8ca302",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f0518d9_fbc885a2",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-09-04T05:29:27Z",
+      "side": 1,
+      "message": "Insert the picture with alt text. So the pic will not be found and alt text will be displayed while the pic is added.",
+      "range": {
+        "startLine": 238,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 43
+      },
+      "revId": "0111986e0878a6fa8659c22d502d2441df8ca302",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3736d1b1_6497dec2",
+        "filename": "docs/report/introduction/physical_testbeds.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-09-04T05:29:27Z",
+      "side": 1,
+      "message": "Insert the picture with alt text. So the pic will not be found and alt text will be displayed while the pic is added.",
+      "range": {
+        "startLine": 259,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 43
+      },
+      "revId": "0111986e0878a6fa8659c22d502d2441df8ca302",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
