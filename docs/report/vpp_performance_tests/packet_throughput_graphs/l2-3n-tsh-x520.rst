@@ -30,7 +30,7 @@
 
 ..
     ## 3n-tsh-x520
-    ### 64b-?t?c-l2switching-base-i40e
+    ### 64b-?t?c-l2switching-base-ixgbe
     10ge2p1x520-dot1q-l2xcbase-ndrpdr
     10ge2p1x520-eth-l2xcbase-ndrpdr
     10ge2p1x520-dot1q-l2bdbasemaclrn-ndrpdr
@@ -41,7 +41,7 @@
     Tests.Vpp.Perf.L2.10Ge2P1X520-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-ndrpdr
     Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-ndrpdr
 
-    ### 64b-?t?c-l2switching-base-scale-i40e
+    ### 64b-?t?c-l2switching-base-scale-ixgbe
     10ge2p1x520-eth-l2patch-ndrpdr
     10ge2p1x520-eth-l2xcbase-ndrpdr
     10ge2p1x520-eth-l2bdbasemaclrn-ndrpdr
@@ -56,7 +56,7 @@
     Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-1t1c-eth-l2bdscale100kmaclrn-ndrpdr
     Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-1t1c-eth-l2bdscale1mmaclrn-ndrpdr
 
-    ###  64b-?t?c-feature-l2switching-base-i40e
+    ###  64b-?t?c-features-l2switching-base-ixgbe
     10ge2p1x520-eth-l2bdbasemaclrn-ndrpdr
     10ge2p1x520-eth-l2bdbasemaclrn-iacl50sf-10kflows-ndrpdr
     10ge2p1x520-eth-l2bdbasemaclrn-iacl50sl-10kflows-ndrpdr
@@ -74,13 +74,13 @@
 3n-tsh-x520
 ~~~~~~~~~~~
 
-64b-1t1c-l2switching-base-i40e
-------------------------------
+64b-1t1c-l2switching-base-ixgbe
+-------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-l2switching-base-i40e-ndr.html"></iframe>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-l2switching-base-ixgbe-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -89,8 +89,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-l2switching-base-i40e-ndr}
-            \label{fig:3n-tsh-x520-64b-1t1c-l2switching-base-i40e-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-l2switching-base-ixgbe-ndr}
+            \label{fig:3n-tsh-x520-64b-1t1c-l2switching-base-ixgbe-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -100,7 +100,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-l2switching-base-i40e-pdr.html"></iframe>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-l2switching-base-ixgbe-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -109,21 +109,21 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-l2switching-base-i40e-pdr}
-            \label{fig:3n-tsh-x520-64b-1t1c-l2switching-base-i40e-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-l2switching-base-ixgbe-pdr}
+            \label{fig:3n-tsh-x520-64b-1t1c-l2switching-base-ixgbe-pdr}
     \end{figure}
 
 .. raw:: latex
 
     \clearpage
 
-64b-1t1c-l2switching-base-scale-i40e
-------------------------------------
+64b-1t1c-l2switching-base-scale-ixgbe
+-------------------------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-l2switching-base-scale-i40e-ndr.html"></iframe>
+    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-ndr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -132,51 +132,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-l2switching-base-scale-i40e-ndr}
-            \label{fig:3n-tsh-x520-64b-1t1c-l2switching-base-scale-i40e-ndr}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-.. raw:: html
-
-    <center>
-    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-l2switching-base-scale-i40e-pdr.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-l2switching-base-scale-i40e-pdr}
-            \label{fig:3n-tsh-x520-64b-1t1c-l2switching-base-scale-i40e-pdr}
-    \end{figure}
-
-.. raw:: latex
-
-    \clearpage
-
-64b-1t1c-feature-l2switching-base-i40e
---------------------------------------
-
-.. raw:: html
-
-    <center>
-    <iframe id="31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-feature-l2switching-base-i40e-ndr.html"></iframe>
-    <p><br></p>
-    </center>
-
-.. raw:: latex
-
-    \begin{figure}[H]
-        \centering
-            \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-feature-l2switching-base-i40e-ndr}
-            \label{fig:3n-tsh-x520-64b-1t1c-feature-l2switching-base-i40e-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-ndr}
+            \label{fig:3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-ndr}
     \end{figure}
 
 .. raw:: latex
@@ -186,7 +143,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-feature-l2switching-base-i40e-pdr.html"></iframe>
+    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-pdr.html"></iframe>
     <p><br></p>
     </center>
 
@@ -195,6 +152,49 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-feature-l2switching-base-i40e-pdr}
-            \label{fig:3n-tsh-x520-64b-1t1c-feature-l2switching-base-i40e-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-pdr}
+            \label{fig:3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-1t1c-features-l2switching-base-ixgbe
+---------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-ndr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-ndr}
+            \label{fig:3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-ndr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-pdr}
+            \label{fig:3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-pdr}
     \end{figure}
