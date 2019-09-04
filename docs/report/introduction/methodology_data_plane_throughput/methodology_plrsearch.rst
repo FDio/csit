@@ -21,7 +21,7 @@ Generic Algorithm
 ~~~~~~~~~~~~~~~~~
 
 Detailed description of the PLRsearch algorithm is included in the IETF
-draft `draft-vpolak-bmwg-plrsearch-01`_ that is in the process
+draft `draft-vpolak-bmwg-plrsearch-02`_ that is in the process
 of being standardized in the IETF Benchmarking Methodology Working Group (BMWG).
 
 Terms
@@ -30,6 +30,8 @@ Terms
 The rest of this page assumes the reader is familiar with the following terms
 defined in the IETF draft:
 
++ Trial Order Independent System
++ Duration Independent System
 + Target Loss Ratio
 + Critical Load
 + Offered Load regions
@@ -62,7 +64,7 @@ at offered loads not supporeted by the traffic generator.
 The implemented tests cases use bidirectional traffic.
 The algorithm stores each rate as bidirectional rate (internally,
 the algorithm is agnostic to flows and directions,
-it only cares about overall counts of packets sent and packets lost),
+it only cares about aggregate counts of packets sent and packets lost),
 but debug output from traffic generator lists unidirectional values.
 
 Measurement Delay
@@ -79,7 +81,7 @@ more time (per sample), although there is a considerable constant part
 Also, the integrator needs a fair amount of samples to reach the region
 the posterior distribution is concentrated at.
 
-And of course, speed of the integrator depends on computing power
+And of course, the speed of the integrator depends on computing power
 of the CPU the algorithm is able to use.
 
 All those timing related effects are addressed by arithmetically increasing
@@ -111,7 +113,7 @@ Both functions are not only increasing, but also convex
 (meaning the rate of increase is also increasing).
 
 Both fitting functions have several mathematically equivalent formulas,
-each can lead to an overflow or underflow in different places.
+each can lead to an overflow or underflow in different sub-terms.
 Overflows can be eliminated by using different exact formulas
 for different argument ranges.
 Underflows can be avoided by using approximate formulas
@@ -150,7 +152,9 @@ another sample is generated.
 
 The center and the covariance matrix for the biased distribution
 is based on the first and second moments of samples seen so far
-(within the computation), with the following additional features
+(within the computation). The center is used directly,
+covariance matrix is scaled up by a heurictic constant (8.0 by default).
+The following additional features are applied
 designed to avoid hyper-focused distributions.
 
 Each computation starts with the biased distribution inherited
@@ -159,15 +163,14 @@ is used in the first computation), but the overal weight of the data
 is set to the weight of the first sample of the computation.
 Also, the center is set to the first sample point.
 When additional samples come, their weight (including the importance correction)
-is compared to the weight of data seen so far (within the computation).
+is compared to sum of the weights of data seen so far (within the iteration).
 If the new sample is more than one e-fold more impactful, both weight values
 (for data so far and for the new sample) are set to (geometric) average
-of the two weights. Finally, the actual sample generator uses covariance matrix
-scaled up by a configurable factor (8.0 by default).
+of the two weights.
 
 This combination showed the best behavior, as the integrator usually follows
 two phases. First phase (where inherited biased distribution
-or single big samples are dominating) is mainly important
+or single big sample are dominating) is mainly important
 for locating the new area the posterior distribution is concentrated at.
 The second phase (dominated by whole sample population)
 is actually relevant for the critical rate estimation.
@@ -180,7 +183,8 @@ and at max_rate. Next two measurements follow MRR-like logic,
 offered load is decreased so that it would reach target loss ratio
 if offered load decrease lead to equal decrease of loss rate.
 
-The rest of measurements alternate between erf and stretch estimate average.
+The rest of measurements start directly in between
+erf and stretch estimate average.
 There is one workaround implemented, aimed at reducing the number of consequent
 zero loss measurements (per fitting function). The workaround first stores
 every measurement result which loss ratio was the targed loss ratio or higher.
@@ -195,7 +199,7 @@ with the length of consecutive zero loss results.
 
 This behavior helps the algorithm with convergence speed,
 as it does not need so many zero loss result to get near critical region.
-Using the smallest (not srained yet) of lossy loads makes it sure
+Using the smallest (not drained yet) of lossy loads makes it sure
 the new offered load is unlikely to result in big loss region.
 Draining even if the estimate is large enough helps to discard
 early measurements when loss hapened at too low offered load.
@@ -253,7 +257,7 @@ In case of offered load selection, the goal is to help the search to converge
 to the long duration estimates sooner.
 
 But even those long duration estimates could still be of poor quality.
-Even though the estimate computation is Bayesian (so it iss the best it could be
+Even though the estimate computation is Bayesian (so it is the best it could be
 within the applied assumptions), it can still of poor quality when compared
 to what a human would estimate.
 
@@ -263,7 +267,7 @@ by tweaking the time related input parameters.
 
 The most likely source of poor quality then are the assumptions.
 Most importantly, the number and the shape of fitting functions;
-but also others, such as time the assumption of independence of loss ratio.
+but also others, such as trial order independence and duration independence.
 
 The result can have poor quality in basically two ways.
 One way is related to location. Both upper and lower bounds
@@ -277,7 +281,7 @@ An estimate from a particular fitting function can be classified
 as an overestimate (or underestimate) just by looking at time evolution
 (without human examining measurement results). Overestimates
 decrease by time, underestimates increase by time (assuming
-the sustem performance stays constant).
+the system performance stays constant).
 
 Quality of the width of the estimation interval needs human evaluation,
 and is unrelated to both rate of narrowing (both good and bad estimate intervals
@@ -290,7 +294,7 @@ Graphical Examples
 The following pictures show the upper (red) and lower (blue) bound,
 as well as average of Stretch (pink) and Erf (light green) estimate,
 and offered load chosen (grey), as computed by PLRsearch,
-after each trial measurement within the 2 hour duration of a test run.
+after each trial measurement within the 30 minute duration of a test run.
 
 Both graphs are focusing on later estimates. Estimates computed from
 few initial measurements are wildly off the y-axis range shown.
@@ -299,10 +303,11 @@ The following analysis will rely on frequency of zero loss measurements
 and magnitude of loss ratio if nonzero.
 
 The offered load selection strategy used implies zero loss measurements
-can me gleamed from the graph by looking at offered load points.
-When the points leave their corresponding estimate, it means
+can be gleamed from the graph by looking at offered load points.
+When the points move up farther from lower estimate, it means
 the previous measurement had zero loss. After non-zero loss,
-the offered load starts again at the estimate curve.
+the offered load starts again right between (the previous values of)
+the estimate curves.
 
 The very big loss ratio results are visible as noticeable jumps
 of both estimates downwards. Medium and small loss ratios are much harder
@@ -325,8 +330,8 @@ especially compared to the region the estimates have travelled
 during the search. But the look at the frequency of zero loss results shows
 this is not a case of overestimation. Measurements at around the same
 offered load have higher probability of zero loss earlier
-(when performed at lower bound), but smaller probability later
-(when performed neat upper bound). That means it is the performance
+(when performed farther from upper bound), but smaller probability later
+(when performed closer to upper bound). That means it is the performance
 of the system under test that decreases (slightly) over time.
 
 With that in mind, the apparent narrowness of the interval
@@ -355,20 +360,17 @@ Vhost
 
 This test case shows what looks like a quite broad estimation interval,
 compared to other test cases with similarly looking zero loss frequencies.
+Notable features are infrequent high-loss measurement results
+causing big drops of estimates, and lack of long-term convergence.
 
-Fitting functions give fairly differing estimates.
-Erf function overestimates. Stretch function estimates look fairly precise.
+Any convergence in medium-sized intervals (during zero loss results)
+is reverted by the big loss results, as they happen quite far
+from the critical load estimates, and the two fitting functions
+extrapolate differently.
 
-Closer look at the loss distribution reveals a difference from other tests.
-The distribution consists of mostly zero loss measurements,
-partialy of medium loss measurements, and lacks small loss measurements
-the loss ratio target would imply.
-With this result composition, it is expected that the convergence
-of the two bounds is slow.
-
-In other words, human only seeing the graph would expect narrower interval,
-but human seeing the measured loss ratios agrees that the interval should be
-wider than that.
+In other words, human only seeing estimates from one fitting function
+would expect narrower end interval, but human seeing the measured loss ratios
+agrees that the interval should be wider than that.
 
 .. only:: latex
 
@@ -416,7 +418,7 @@ or is it better to have short periods of medium losses
 mixed with long periods of zero losses (as happens in Vhost test)
 with the same overall loss ratio?
 
-.. _draft-vpolak-bmwg-plrsearch-01: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-01
+.. _draft-vpolak-bmwg-plrsearch-02: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-02
 .. _plrsearch draft: https://tools.ietf.org/html/draft-vpolak-bmwg-plrsearch-00
 .. _RFC 2544: https://tools.ietf.org/html/rfc2544
 .. _Lomax distribution: https://en.wikipedia.org/wiki/Lomax_distribution
