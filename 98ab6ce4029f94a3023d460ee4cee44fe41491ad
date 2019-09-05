@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "183e9928_37b8d7cd",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-05T06:04:19Z",
+      "side": 1,
+      "message": "not sure this is correct syntax of documentation but i do not care fully",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 3
+      },
+      "revId": "98ab6ce4029f94a3023d460ee4cee44fe41491ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
