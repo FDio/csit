@@ -102,13 +102,13 @@ List of known issues in |csit-release| for VPP performance tests:
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
 | 8  | `CSIT-1591                              | All CSIT scale tests can not use PAPI due to much slower performance compared to VAT/CLI (it takes much  |
 |    | <https://jira.fd.io/browse/CSIT-1499>`_ | longer to program VPP). This needs to be addressed on the PAPI side.                                     |
-|    |                                         |                                                                                                          |
+|    +-----------------------------------------+                                                                                                          |
 |    | `VPP-1763                               |                                                                                                          |
 |    | <https://jira.fd.io/browse/VPP-1763>`_  |                                                                                                          |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
 | 9  | `CSIT-1592                              | VPP memif API does not enable memif zero-copy, resulting in different memif configuration vs. previously |
 |    | <https://jira.fd.io/browse/CSIT-1592>`_ | tested VAT/CLI where memif zero-copy was enabled by default. Needs to be fixed in VPP.                   |
-|    |                                         |                                                                                                          |
+|    +-----------------------------------------+                                                                                                          |
 |    | `VPP-1764                               |                                                                                                          |
 |    | <https://jira.fd.io/browse/VPP-1764>`_  |                                                                                                          |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
