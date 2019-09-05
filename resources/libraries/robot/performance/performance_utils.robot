@@ -35,7 +35,7 @@
 | | ... | Display findings as a formatted test message.
 | | ... | Fail if a resulting lower bound has too high loss fraction.
 | | ... | Input rates are understood as uni-directional,
-| | ... | reported result contains bi-directional rates.
+| | ... | reported result contains aggregate rates.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ...
 | | ... | TODO: Should the trial duration of the additional
@@ -58,24 +58,26 @@
 | | ... | - intermediate phases - Number of intermediate phases [1]. Type: int
 | | ... | - timeout - Fail if search duration is longer [s]. Type: float
 | | ... | - doublings - How many doublings to do when expanding [1]. Type: int
+| | ... | - unidirection - Whether the traffic is unidirectional. Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Find NDR and PDR intervals using optimized search \| \${0.005} \
-| | ... | \| \${0.005} \| \${30.0} \| \${1.0} \| \${2} \| ${600.0} \| ${2} \|
+| | ... | \| \${0.005} \| \${30.0} \| \${1.0} \| \${2} \| \${600.0} \| \${2} \
+| | ... | \| \${False} \|
 | | ...
 | | [Arguments] | ${packet_loss_ratio}=${0.005}
 | | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${30.0}
 | | ... | ${initial_trial_duration}=${1.0}
 | | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${720.0}
-| | ... | ${doublings}=${2}
+| | ... | ${doublings}=${2} | unidirection=${False}
 | | ...
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${traffic_profile} | ${20000} | ${max_rate*2}
+| | ... | ${traffic_profile} | ${10000} | ${max_rate}
 | | ... | ${packet_loss_ratio} | ${final_relative_width}
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
-| | ... | doublings=${doublings}
+| | ... | doublings=${doublings} | unidirection=${unidirection}
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
@@ -105,9 +107,8 @@
 | Find Throughput Using MLRsearch
 | | [Documentation]
 | | ... | Find and return lower bound PDR (zero PLR by default)
-| | ... | bi-directional throughput using MLRsearch algorithm.
-| | ... | Input rates are understood as uni-directional,
-| | ... | reported result contains bi-directional rates.
+| | ... | aggregate throughput using MLRsearch algorithm.
+| | ... | Input rates are understood as uni-directional.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ...
 | | ... | TODO: Should the trial duration of the additional
@@ -130,6 +131,7 @@
 | | ... | - intermediate phases - Number of intermediate phases [1]. Type: int
 | | ... | - timeout - Fail if search duration is longer [s]. Type: float
 | | ... | - doublings - How many doublings to do when expanding [1]. Type: int
+| | ... | - unidirection - Whether the traffic is unidirectional. Type: bool
 | | ...
 | | ... | *Returns:*
 | | ... | - Lower bound for bi-directional throughput at given PLR. Type: float
@@ -137,20 +139,21 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| \${throughpt}= \| Find Throughput Using MLRsearch \| \${0} \
-| | ... | \| \${0.001} \| \${10.0}\| \${1.0} \| \${1} \| ${720.0} \| ${2} \|
+| | ... | \| \${0.001} \| \${10.0}\| \${1.0} \| \${1} \| \${720.0} \| \${2} \
+| | ... | \| \${False} \|
 | | ...
 | | [Arguments] | ${packet_loss_ratio}=${0.0}
 | | ... | ${final_relative_width}=${0.001} | ${final_trial_duration}=${10.0}
 | | ... | ${initial_trial_duration}=${1.0}
 | | ... | ${number_of_intermediate_phases}=${1} | ${timeout}=${720.0}
-| | ... | ${doublings}=${2}
+| | ... | ${doublings}=${2} | ${unidirection}=${False}
 | | ...
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${traffic_profile} | ${20000} | ${max_rate*2}
+| | ... | ${traffic_profile} | ${10000} | ${max_rate}
 | | ... | ${packet_loss_ratio} | ${final_relative_width}
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
-| | ... | doublings=${doublings}
+| | ... | doublings=${doublings} | unidirection=${unidirection}
 | | Return From Keyword | ${result.pdr_interval.measured_low.transmit_rate}
 
 | Find critical load using PLRsearch
@@ -160,7 +163,7 @@
 | | ... | Display results as formatted test message.
 | | ... | Fail if computed lower bound is below minimal rate.
 | | ... | Input rates are understood as uni-directional,
-| | ... | reported result contains bi-directional rates.
+| | ... | reported result contains aggregate rates.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ... | Some inputs are read from variables to streamline suites.
 | | ...
@@ -174,21 +177,24 @@
 | | ... | *Arguments:*
 | | ... | - packet_loss_ratio - Accepted loss during search. Type: float
 | | ... | - timeout - Stop when search duration is longer [s]. Type: float
+| | ... | - unidirection - Whether the traffic is unidirectional. Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Find critical load using PLR search \| \${1e-7} \| \${120} \|
+| | ... | \| Find critical load using PLR search \| \${1e-7} \| \${120} \
+| | ... | \| \${False} \|
 | | ...
 | | [Arguments] | ${packet_loss_ratio}=${1e-7} | ${timeout}=${1800.0}
+| | ... | ${unidirection}=${False}
 | | ...
-| | ${min_rate} = | Set Variable | ${20000}
+| | ${min_rate} = | Set Variable | ${10000}
 | | ${average} | ${stdev} = | Perform soak search | ${frame_size}
-| | ... | ${traffic_profile} | ${min_rate} | ${max_rate*2}
+| | ... | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${packet_loss_ratio} | timeout=${timeout}
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
 | | Should Not Be True | ${lower} < ${min_rate}
-| | ... | Lower bound ${lower} is below bidirectional minimum ${min_rate}.
+| | ... | Lower bound ${lower} is below unidirectional minimum ${min_rate}.
 
 | Display single bound
 | | [Documentation]
@@ -196,9 +202,9 @@
 | | ... | in packet per seconds (total and per stream)
 | | ... | and Gbps total bandwidth with untagged packet.
 | | ... | Througput is calculated as:
-| | ... | Measured rate per stream * Total number of streams
+| | ... | Sum of measured rates over streams
 | | ... | Bandwidth is calculated as:
-| | ... | (Throughput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
+| | ... | (Throughput * (L2 Frame Size + IPG) * 8)
 | | ... | The given result should contain latency data as well.
 | | ...
 | | ... | *Arguments:*
@@ -224,12 +230,12 @@
 | Display result of NDRPDR search
 | | [Documentation]
 | | ... | Display result of NDR+PDR search, both quantities, both bounds,
-| | ... | in packet per seconds (total and per stream)
-| | ... | and Gbps total bandwidth with untagged packet.
+| | ... | aggregate in packet per seconds
+| | ... | and Gbps total bandwidth with untagged (TG-DUT) packets.
 | | ... | Througput is calculated as:
-| | ... | Measured rate per stream * Total number of streams
+| | ... | Sum of measured rate over streams
 | | ... | Bandwidth is calculated as:
-| | ... | (Throughput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
+| | ... | (Throughput * (L2 Frame Size + IPG) * 8)
 | | ... | The given result should contain latency data as well.
 | | ...
 | | ... | *Test (or broader scope) variables read:*
@@ -258,12 +264,12 @@
 | Display result of soak search
 | | [Documentation]
 | | ... | Display result of soak search, avg+-stdev, as upper/lower bounds,
-| | ... | in packet per seconds (total and per stream)
-| | ... | and Gbps total bandwidth with untagged packet.
+| | ... | in aggregate packets per seconds
+| | ... | and Gbps total bandwidth with untagged (TG-DUT) packets.
 | | ... | Througput is calculated as:
-| | ... | Measured rate per stream * Total number of streams
+| | ... | Sum of measured rates over streams
 | | ... | Bandwidth is calculated as:
-| | ... | (Throughput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
+| | ... | (Throughput * (L2 Frame Size + IPG) * 8)
 | | ... | TODO: Do we want to report some latency data,
 | | ... | even if not measured at the reported bounds?.
 | | ...
@@ -331,18 +337,22 @@
 | | ... | - result - Measured result data per stream [pps]. Type: NdrPdrResult
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
 | | ... | - traffic_profile - Topology profile. Type: string
+| | ... | - unidirection - Whether the traffic is unidirectional. Type: bool
 | | ...
 | | ... | *Example:*
 | | ... | \| Perform additional measurements based on NDRPDR result \
-| | ... | \| \${result} \| ${64} \| 3-node-IPv4 \|
+| | ... | \| \${result} \| \${64} \| 3-node-IPv4 \| \${False} \|
 | | ...
 | | [Arguments] | ${result} | ${framesize} | ${traffic_profile}
+| | ... | ${unidirection}=${False}
 | | ...
-| | ${duration}= | Set Variable | 2.0
+| | ${duration}= | Set Variable | ${2.0}
+| | ${nr_streams}= | Set Variable If | ${unidirection} | ${1} | ${2}
 | | ${rate_per_stream}= | Evaluate
-| | ... | ${result.ndr_interval.measured_low.target_tr} / 2.0
+| | ... | ${result.ndr_interval.measured_low.target_tr} / ${nr_streams}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
 | | ... | ${framesize} | ${traffic_profile} | fail_on_loss=${False}
+| | ... | unidirection=${unidirection}
 
 | Traffic should pass with no loss
 | | [Documentation]
@@ -357,17 +367,18 @@
 | | ... | Type: string
 | | ... | - fail_on_loss - If True, the keyword fails if loss occurred.
 | | ... | Type: boolean
+| | ... | - unidirection - Whether the traffic is unidirectional. Type: bool
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Traffic should pass with no loss \| 10 \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \|
+| | ... | \| Traffic should pass with no loss \| \${10} \| 4.0mpps \| \${64} \
+| | ... | \| 3-node-IPv4 \| \${False} \|
 | | ...
 | | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${fail_on_loss}=${True}
+| | ... | ${fail_on_loss}=${True} | ${unidirection}=${False}
 | | ...
 | | Send traffic at specified rate | ${duration} | ${rate} | ${frame_size}
-| | ... | ${traffic_profile}
+| | ... | ${traffic_profile} | unidirection=${unidirection}
 | | Run Keyword If | ${fail_on_loss} | No traffic loss occurred
 
 | Traffic should pass with maximum rate
@@ -393,8 +404,8 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Traffic should pass with maximum rate \| ${1} \| ${10.0} \
-| | ... | \| ${False} \| ${False} \| ${0} \| ${1} \|
+| | ... | \| Traffic should pass with maximum rate \| \${1} \| \${10.0} \
+| | ... | \| \${False} \| \${False} \| \${0} \| \${1} \|
 | | ...
 | | [Arguments] | ${trial_duration}=${perf_trial_duration}
 | | ... | ${fail_no_traffic}=${True} | ${subsamples}=${perf_trial_multiplicity}
@@ -430,8 +441,8 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send traffic at specified rate \| ${1.0} \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \| ${10} \| ${False} \| ${0} | ${1} \| ${False}
+| | ... | \| Send traffic at specified rate \| \${1.0} \| 4.0mpps \| \${64} \
+| | ... | \| 3-node-IPv4 \| \${10} \| \${False} \| \${0} | \${1} \| \${False}
 | | ...
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
 | | ... | ${traffic_profile} | ${subsamples}=${1} | ${unidirection}=${False}
@@ -481,8 +492,8 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Clear and show runtime counters with running traffic \| 10 \
-| | ... | \| 4.0mpps \| 64 \| 3-node-IPv4 \| ${False} \| ${0} | ${1} \|
+| | ... | \| Clear and show runtime counters with running traffic \| \${10} \
+| | ... | \| 4.0mpps \| \${64} \| 3-node-IPv4 \| \${False} \| \${0} \| \${1} \|
 | | ...
 | | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${unidirection}=${False} | ${tx_port}=${0} | ${rx_port}=${1}
@@ -518,8 +529,8 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Start Traffic on Background \| 4.0mpps \| ${False} \| ${0} \
-| | ... | \| ${1} \|
+| | ... | \| Start Traffic on Background \| 4.0mpps \| \${False} \| \${0} \
+| | ... | \| \${1} \|
 | | ...
 | | [Arguments] | ${rate} | ${unidirection}=${False} | ${tx_port}=${0}
 | | ... | ${rx_port}=${1}
