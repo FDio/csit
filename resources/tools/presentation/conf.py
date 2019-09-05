@@ -45,7 +45,7 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-report_week = '36'
+report_week = '37'
 project = u'FD.io CSIT-1908.{week}'.format(week=report_week)
 copyright = u'2019, FD.io'
 author = u'FD.io CSIT'
@@ -98,6 +98,8 @@ rst_epilog = """
 .. _FD.io test executor vpp performance job 3n-skx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-3n-skx
 .. _FD.io test executor vpp performance job 2n-skx: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-2n-skx
 .. _FD.io test executor vpp performance job 3n-tsh: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-3n-tsh
+.. _FD.io test executor vpp performance job 3n-dnv: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-3n-dnv
+.. _FD.io test executor vpp performance job 2n-dnv: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-verify-{srelease}-2n-dnv
 .. _FD.io test executor ligato performance jobs: https://jenkins.fd.io/job/csit-ligato-perf-{srelease}-all
 .. _FD.io test executor vpp functional jobs using Ubuntu: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-ubuntu1604-virl
 .. _FD.io test executor vpp functional jobs using CentOs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-{srelease}-centos7-virl
