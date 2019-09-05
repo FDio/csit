@@ -14,18 +14,14 @@
 *** Settings ***
 | Documentation | Set global variables common to all tests.
 | # The two paths below assume working directory when pybot is started,
-| # but we cannot use ${CURDIR} as this file may be copied under generated/.
-| Resource | resources/libraries/robot/robot_enhancements.robot
+| # but we cannot use \${CURDIR} as this file may be copied under generated/.
 | Variables | resources/libraries/python/Constants.py
 | Suite Setup | Set Common Variables
 
 *** Keywords ***
 | Set Common Variables
 | | [Documentation] | Set the following global variables.
-| | ...
-| | ... | While currently only MRR tests are using the values,
-| | ... | any new test might decide to use them,
-| | ... | so variable names are generic for "perf" scope.
+| | ... | For the default values, see Constants.py file.
 | | ...
 | | ... | perf_trial_multiplicity - Number of trials to execute in MRR test.
 | | ... | perf_trial_duration - Duration of one trial in MRR test.
@@ -33,8 +29,8 @@
 | | ... |   DUT1 docker in case of vpp-device test. ${EMPTY} value means that
 | | ... |   /tmp directory is inside the DUT1 docker
 | | ...
-| | Ensure Global Variable | perf_trial_multiplicity | 10
-| | Ensure Global Variable | perf_trial_duration | 1
-| | Ensure Global Variable | dut1_uuid | ${EMPTY}
-| | # Avoiding dangers of case insensitive Robot variable names.
-| | Ensure Global Variable | crc_mismatch_fails | ${CRC_MISMATCH_FAILS_TEST}
+| | # The following should work correctly even with Robot case insensitiveness.
+| | Set Global Variable | ${perf_trial_multiplicity}
+| | ... | ${PERF_TRIAL_MULTIPLICITY}
+| | Set Global Variable | ${perf_trial_duration} | ${PERF_TRIAL_DURATION}
+| | Set Global Variable | ${dut1_uuid} | ${DUT1_UUID}
