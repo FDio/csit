@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "43fbad86_24df797d",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-05T11:36:02Z",
+      "side": 1,
+      "message": "?\n\nUsing it would mean you can squash moth function together.",
+      "range": {
+        "startLine": 94,
+        "startChar": 49,
+        "endLine": 94,
+        "endChar": 62
+      },
+      "revId": "496101d8203829a224323ba7c22628a7a203c57f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fc42f34_411e1739",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-05T11:36:02Z",
+      "side": 1,
+      "message": "Why not to delete this? It is better to use best practice of programming to mark Constants and Global Values by capital letters.",
+      "revId": "496101d8203829a224323ba7c22628a7a203c57f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
