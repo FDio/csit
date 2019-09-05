@@ -423,8 +423,32 @@ def table_performance_comparison(table, input_data):
         if (len(item) == len(header)) and (item[-3] != "Not tested"):
             tbl_lst.append(item)
 
-    # Sort the table according to the relative change
-    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+    # Sort the table:
+    # 1. New in CSIT-XXXX
+    # 2. See footnote
+    # 3. Delta
+    tbl_new = list()
+    tbl_see = list()
+    tbl_delta = list()
+    for item in tbl_lst:
+        if "New in CSIT" in item[-1]:
+            tbl_new.append(item)
+        elif "See footnote" in item[-1]:
+            tbl_see.append(item)
+        else:
+            tbl_delta.append(item)
+
+    # Sort the tables:
+    tbl_new.sort(key=lambda rel: rel[0], reverse=False)
+    tbl_see.sort(key=lambda rel: rel[0], reverse=False)
+    tbl_see.sort(key=lambda rel: rel[-1], reverse=False)
+    tbl_delta.sort(key=lambda rel: rel[-1], reverse=True)
+
+    # Put the tables together:
+    tbl_lst = list()
+    tbl_lst.extend(tbl_new)
+    tbl_lst.extend(tbl_see)
+    tbl_lst.extend(tbl_delta)
 
     # Generate csv tables:
     csv_file = "{0}.csv".format(table["output-file"])
@@ -441,10 +465,10 @@ def table_performance_comparison(table, input_data):
             txt_file.writelines([
                 "\nFootnotes:\n",
                 "[1] CSIT-1908 changed test methodology of dot1q tests in "
-                "2n-skx testbeds, dot1q encapsulation is now used on both "
+                "2-node testbeds, dot1q encapsulation is now used on both "
                 "links of SUT.\n",
                 "    Previously dot1q was used only on a single link with the "
-                "other link carrying untagged Ethernet frames. This change "
+                "other link carrying untagged Ethernet frames. This changes "
                 "results\n",
                 "    in slightly lower throughput in CSIT-1908 for these "
                 "tests. See release notes."
@@ -693,8 +717,32 @@ def table_performance_comparison_nic(table, input_data):
         if (len(item) == len(header)) and (item[-3] != "Not tested"):
             tbl_lst.append(item)
 
-    # Sort the table according to the relative change
-    tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
+    # Sort the table:
+    # 1. New in CSIT-XXXX
+    # 2. See footnote
+    # 3. Delta
+    tbl_new = list()
+    tbl_see = list()
+    tbl_delta = list()
+    for item in tbl_lst:
+        if "New in CSIT" in item[-1]:
+            tbl_new.append(item)
+        elif "See footnote" in item[-1]:
+            tbl_see.append(item)
+        else:
+            tbl_delta.append(item)
+
+    # Sort the tables:
+    tbl_new.sort(key=lambda rel: rel[0], reverse=False)
+    tbl_see.sort(key=lambda rel: rel[0], reverse=False)
+    tbl_see.sort(key=lambda rel: rel[-1], reverse=False)
+    tbl_delta.sort(key=lambda rel: rel[-1], reverse=True)
+
+    # Put the tables together:
+    tbl_lst = list()
+    tbl_lst.extend(tbl_new)
+    tbl_lst.extend(tbl_see)
+    tbl_lst.extend(tbl_delta)
 
     # Generate csv tables:
     csv_file = "{0}.csv".format(table["output-file"])
@@ -711,10 +759,10 @@ def table_performance_comparison_nic(table, input_data):
             txt_file.writelines([
                 "\nFootnotes:\n",
                 "[1] CSIT-1908 changed test methodology of dot1q tests in "
-                "2n-skx testbeds, dot1q encapsulation is now used on both "
+                "2-node testbeds, dot1q encapsulation is now used on both "
                 "links of SUT.\n",
                 "    Previously dot1q was used only on a single link with the "
-                "other link carrying untagged Ethernet frames. This change "
+                "other link carrying untagged Ethernet frames. This changes "
                 "results\n",
                 "    in slightly lower throughput in CSIT-1908 for these "
                 "tests. See release notes."
