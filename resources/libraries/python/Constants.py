@@ -11,7 +11,112 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Constants used in CSIT."""
+"""Constants used in CSIT.
+
+Here, "constant" means a value that keeps its value since initialization.
+However, the value does not need to be hardcoded here,
+some values are affected by environment variables.
+
+TODO: Review env and constant names, make them matching if possible.
+"""
+
+
+import os
+
+
+def get_str_from_env(env_var_names, default_value):
+    """Attempt to read string from environment variable, return that or default.
+
+    If environment variable exists, but is empty (and default is not),
+    empty string is returned.
+
+    Several environment variable names are examined, as CSIT currently supports
+    a mix of naming convensions.
+    Here "several" means there are hardcoded prefixes to try,
+    and env_var_names itself can be single name, or a list or a tuple of names.
+
+    :param env_var_names: Base names of environment variable to attempt to read.
+    :param default_value: Value to return if the env var does not exist.
+    :type env_var_names: str, or list of str, or tuple of str
+    :type default_value: str
+    :returns: The value read, or default value.
+    :rtype: str
+    """
+    prefixes = ("FDIO_CSIT_", "CSIT_", "")
+    if not isinstance(env_var_names, (list, tuple)):
+        env_var_names = [env_var_names]
+    for name in env_var_names:
+        for prefix in prefixes:
+            value = os.environ.get(prefix + name, None)
+            if value is not None:
+                return value
+    return default_value
+
+
+def get_int_from_env(env_var_names, default_value):
+    """Attempt to read int from environment variable, return that or default.
+
+    String value is read, default is returned also if conversion fails.
+
+    :param env_var_names: Base names of environment variable to attempt to read.
+    :param default_value: Value to return if read or conversion fails.
+    :type env_var_names: str, or list of str, or tuple of str
+    :type default_value: int
+    :returns: The value read, or default value.
+    :rtype: int
+    """
+    env_str = get_str_from_env(env_var_names, "")
+    try:
+        return int(env_str)
+    except ValueError:
+        return default_value
+
+
+def get_float_from_env(env_var_names, default_value):
+    """Attempt to read float from environment variable, return that or default.
+
+    String value is read, default is returned also if conversion fails.
+
+    :param env_var_names: Base names of environment variable to attempt to read.
+    :param default_value: Value to return if read or conversion fails.
+    :type env_var_names: str, or list of str, or tuple of str
+    :type default_value: float
+    :returns: The value read, or default value.
+    :rtype: float
+    """
+    env_str = get_str_from_env(env_var_names, "")
+    try:
+        return float(env_str)
+    except ValueError:
+        return default_value
+
+
+def get_pessimistic_bool_from_env(env_var_names):
+    """Attempt to read bool from environment variable, assume False by default.
+
+    Conversion is lenient and pessimistic, only few strings are considered true.
+
+    :param env_var_names: Base names of environment variable to attempt to read.
+    :type env_var_names: str, or list of str, or tuple of str
+    :returns: The value read, or False.
+    :rtype: bool
+    """
+    env_str = get_str_from_env(env_var_names, "").lower()
+    return True if env_str in ("true", "yes", "y", "1") else False
+
+
+def get_optimistic_bool_from_env(env_var_names):
+    """Attempt to read bool from environment variable, assume True by default.
+
+    Conversion is lenient and optimistic, only few strings are considered false.
+
+    :param env_var_names: Base names of environment variable to attempt to read.
+    :type env_var_names: str, or list of str, or tuple of str
+    :returns: The value read, or True.
+    :rtype: bool
+    """
+    env_str = get_str_from_env(env_var_names, "").lower()
+    return False if env_str in ("false", "no", "n", "0") else True
 
 
 class Constants(object):
@@ -112,8 +217,19 @@ class Constants(object):
     # Default path to VPP API socket.
     SOCKSVR_PATH = "/run/vpp/api.sock"
 
+    # Number of trials to execute in MRR test.
+    PERF_TRIAL_MULTIPLICITY = get_int_from_env("PERF_TRIAL_MULTIPLICITY", 10)
+
+    # Duration of one trial in MRR test.
+    PERF_TRIAL_DURATION = get_float_from_env("PERF_TRIAL_DURATION", 1.0)
+
+    # UUID string of DUT1 /tmp volume created outside of the
+    # DUT1 docker in case of vpp-device test. ${EMPTY} value means that
+    #  /tmp directory is inside the DUT1 docker.
+    DUT1_UUID = get_str_from_env("DUT1_UUID", "")
+
     # Global "kill switch" for CRC checking during runtime.
-    CRC_MISMATCH_FAILS_TEST = True
+    FAIL_ON_CRC_MISMATCH = get_optimistic_bool_from_env("FAIL_ON_CRC_MISMATCH")
 
     # Mapping from NIC name to its bps limit.
     # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.

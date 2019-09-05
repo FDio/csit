@@ -43,8 +43,8 @@ class VppApiCrcChecker(object):
     so make sure the calling libraries have appropriate robot library scope.
     For usual testing, it means "GLOBAL" scope."""
 
-    def __init__(self, directory,
-                 fail_on_mismatch=Constants.CRC_MISMATCH_FAILS_TEST):
+    def __init__(
+            self, directory, fail_on_mismatch=Constants.FAIL_ON_CRC_MISMATCH):
         """Initialize empty state, then register known collections.
 
         This also scans directory for .api.json files

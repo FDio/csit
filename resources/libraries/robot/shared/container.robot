@@ -16,6 +16,7 @@
 | ...
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.topology.Topology
+| Variables | resources/libraries/python/Constants.py
 
 *** Keywords ***
 | Construct container on all DUTs
@@ -52,9 +53,9 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${nf_id}= | Evaluate | (${nf_chain} - ${1}) * ${nf_nodes} + ${nf_node}
 | | | ${env}= | Create List | DEBIAN_FRONTEND=noninteractive
-| | | ${dut1_uuid_length} = | Get Length | ${dut1_uuid}
+| | | ${dut1_uuid_length} = | Get Length | ${DUT1_UUID}
 | | | ${root}= | Run Keyword If | ${dut1_uuid_length}
-| | | ... | Get Docker Mergeddir | ${nodes['DUT1']} | ${dut1_uuid}
+| | | ... | Get Docker Mergeddir | ${nodes['DUT1']} | ${DUT1_UUID}
 | | | ... | ELSE | Set Variable | ${EMPTY}
 | | | ${node_arch}= | Get Node Arch | ${nodes['${dut}']}
 | | | ${mnt}= | Create List
@@ -71,7 +72,7 @@
 | | | ... | nf_chain=${nf_chain} | nf_node=${nf_node}
 | | | ... | vs_dtc=${cpu_count_int} | nf_dtc=${nf_dtc} | nf_dtcr=${nf_dtcr}
 | | | &{cont_args}= | Create Dictionary
-| | | ... | name=${dut}_${container_group}${nf_id}${dut1_uuid}
+| | | ... | name=${dut}_${container_group}${nf_id}${DUT1_UUID}
 | | | ... | node=${nodes['${dut}']} | mnt=${mnt} | env=${env}
 | | | Run Keyword If | ${pinning}
 | | | ... | Set To Dictionary | ${cont_args} | cpuset_cpus=${nf_cpus}
