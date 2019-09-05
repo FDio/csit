@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "6e82ce75_a9c5e890",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-05T11:47:54Z",
+      "side": 1,
+      "message": "Right, optimistic/pessimistic already suggests what the default value should be. Will fix.",
+      "parentUuid": "43fbad86_24df797d",
+      "range": {
+        "startLine": 94,
+        "startChar": 49,
+        "endLine": 94,
+        "endChar": 62
+      },
+      "revId": "496101d8203829a224323ba7c22628a7a203c57f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "8fc42f34_411e1739",
         "filename": "tests/__init__.robot",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2019-09-05T11:36:02Z",
       "side": 1,
       "message": "Why not to delete this? It is better to use best practice of programming to mark Constants and Global Values by capital letters.",
+      "revId": "496101d8203829a224323ba7c22628a7a203c57f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8b353039_b7daad96",
+        "filename": "tests/__init__.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-05T11:47:54Z",
+      "side": 1,
+      "message": "Right. Got confused by the \"Variable\" words, CSIT never alters the values. So no need for lower-case mutable copies. Will fix.",
+      "parentUuid": "8fc42f34_411e1739",
       "revId": "496101d8203829a224323ba7c22628a7a203c57f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
