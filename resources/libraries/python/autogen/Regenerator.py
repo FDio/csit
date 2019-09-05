@@ -162,29 +162,34 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
     :type kwargs_list: list of dict
     """
     for suite_type in Constants.PERF_TYPE_TO_KEYWORD:
-        tmp_filename = replace_defensively(
-            in_filename, "ndrpdr", suite_type, 1,
-            "File name should contain suite type once.", in_filename)
-        tmp_prolog = replace_defensively(
-            in_prolog, "ndrpdr".upper(), suite_type.upper(), 1,
-            "Suite type should appear once in uppercase (as tag).",
-            in_filename)
-        tmp_prolog = replace_defensively(
-            tmp_prolog,
-            "Find NDR and PDR intervals using optimized search",
-            Constants.PERF_TYPE_TO_KEYWORD[suite_type], 1,
-            "Main search keyword should appear once in suite.",
-            in_filename)
-        tmp_prolog = replace_defensively(
-            tmp_prolog,
-            Constants.PERF_TYPE_TO_SUITE_DOC_VER["ndrpdr"],
-            Constants.PERF_TYPE_TO_SUITE_DOC_VER[suite_type],
-            1, "Exact suite type doc not found.", in_filename)
-        tmp_prolog = replace_defensively(
-            tmp_prolog,
-            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER["ndrpdr"],
-            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[suite_type],
-            1, "Exact template type doc not found.", in_filename)
+        found = in_filename.count("loadbalancer")
+        if found != 1:
+            tmp_filename = replace_defensively(
+                in_filename, "ndrpdr", suite_type, 1,
+                "File name should contain suite type once.", in_filename)
+            tmp_prolog = replace_defensively(
+                in_prolog, "ndrpdr".upper(), suite_type.upper(), 1,
+                "Suite type should appear once in uppercase (as tag).",
+                in_filename)
+            tmp_prolog = replace_defensively(
+                tmp_prolog,
+                "Find NDR and PDR intervals using optimized search",
+                Constants.PERF_TYPE_TO_KEYWORD[suite_type], 1,
+                "Main search keyword should appear once in suite.",
+                in_filename)
+            tmp_prolog = replace_defensively(
+                tmp_prolog,
+                Constants.PERF_TYPE_TO_SUITE_DOC_VER["ndrpdr"],
+                Constants.PERF_TYPE_TO_SUITE_DOC_VER[suite_type],
+                1, "Exact suite type doc not found.", in_filename)
+            tmp_prolog = replace_defensively(
+                tmp_prolog,
+                Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER["ndrpdr"],
+                Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[suite_type],
+                1, "Exact template type doc not found.", in_filename)
+        else:
+            tmp_filename = in_filename
+            tmp_prolog = in_prolog
         _, suite_id = get_iface_and_suite_id(tmp_filename)
         testcase = Testcase.default(suite_id)
         for nic_name in Constants.NIC_NAME_TO_CODE:
@@ -341,6 +346,8 @@ class Regenerator(object):
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
             elif in_filename[-10:] in ("-cps.robot", "-rps.robot"):
                 write_tcp_files(in_filename, in_prolog, tcp_kwargs_list)
+            elif in_filename.count("loadbalancer") == 1:
+                write_default_files(in_filename, in_prolog, default_kwargs_list)
             else:
                 raise RuntimeError(
                     "Error in {fil}: non-primary suite type found.".format(

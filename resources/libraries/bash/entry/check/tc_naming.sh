@@ -66,7 +66,7 @@ r_testc_rules=(
     #'(ipsec[[:digit:]]+tnlhw|ipsec[[:digit:]]+tnlsw|'
     #'srhip6|tcp|udp|lispip6|lispip4|vxlan){0,1}'
     #'(http){0,1}-'
-    '(.*)-(dev|ndrpdr|cps|rps|reconf)$'
+    '(.*)-(dev|ndrpdr|cps|rps|reconf|mrr)$'
     )
 s_suite_rules=(
     'number of SUT nodes'
@@ -85,7 +85,7 @@ r_suite_rules=(
     #'(ipsec[[:digit:]]+tnlhw|ipsec[[:digit:]]+tnlsw|'
     #'srhip6|tcp|udp|lispip6|lispip4|vxlan){0,1}'
     #'(http){0,1}-'
-    '(.*)-(dev|ndrpdr|cps|rps|reconf)$'
+    '(.*)-(dev|ndrpdr|cps|rps|reconf|mrr)$'
     )
 
 rm -f "tc_naming.log" || die
