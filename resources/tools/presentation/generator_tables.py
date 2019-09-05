@@ -431,10 +431,11 @@ def table_performance_comparison(table, input_data):
     tbl_see = list()
     tbl_delta = list()
     for item in tbl_lst:
-        if "New in CSIT" in item[-1]:
-            tbl_new.append(item)
-        elif "See footnote" in item[-1]:
-            tbl_see.append(item)
+        if isinstance(item[-1], str):
+            if "New in CSIT" in item[-1]:
+                tbl_new.append(item)
+            elif "See footnote" in item[-1]:
+                tbl_see.append(item)
         else:
             tbl_delta.append(item)
 
@@ -725,10 +726,11 @@ def table_performance_comparison_nic(table, input_data):
     tbl_see = list()
     tbl_delta = list()
     for item in tbl_lst:
-        if "New in CSIT" in item[-1]:
-            tbl_new.append(item)
-        elif "See footnote" in item[-1]:
-            tbl_see.append(item)
+        if isinstance(item[-1], str):
+            if "New in CSIT" in item[-1]:
+                tbl_new.append(item)
+            elif "See footnote" in item[-1]:
+                tbl_see.append(item)
         else:
             tbl_delta.append(item)
 

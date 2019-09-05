@@ -502,7 +502,7 @@ class ExecutionChecker(ResultVisitor):
                 self._data["tests"][self._test_ID]["show-run"] = str()
             if self._lookup_kw_nr > 1:
                 self._msg_type = None
-            if self._show_run_lookup_nr == 1:
+            if self._show_run_lookup_nr > 0:
                 message = str(msg.message).replace(' ', '').replace('\n', '').\
                     replace("'", '"').replace('b"', '"').replace('u"', '"')[8:]
                 runtime = loads(message)
@@ -547,7 +547,8 @@ class ExecutionChecker(ResultVisitor):
                 try:
                     self._data["tests"][self._test_ID]["show-run"] += " |br| "
                     self._data["tests"][self._test_ID]["show-run"] += \
-                        "**DUT" + str(self._lookup_kw_nr) + ":** |br| " + text
+                        "**DUT" + str(self._show_run_lookup_nr) + ":** |br| " \
+                        + text
                 except KeyError:
                     pass
 
