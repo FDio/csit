@@ -1658,8 +1658,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -2422,7 +2422,7 @@
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c ndr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-ndr"
   reference:
     title: "3n-hsw xl710"
@@ -2443,7 +2443,7 @@
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c ndr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c ndr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-ndr"
   reference:
     title: "3n-hsw xl710"
@@ -2464,7 +2464,7 @@
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c pdr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c pdr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-pdr"
   reference:
     title: "3n-hsw xl710"
@@ -2485,7 +2485,7 @@
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c pdr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c pdr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-pdr"
   reference:
     title: "3n-hsw xl710"
@@ -2780,7 +2780,7 @@
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 1c mrr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-1c-mrr"
   reference:
     title: "3n-hsw xl710"
@@ -2801,7 +2801,7 @@
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 2c mrr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-2c-mrr"
   reference:
     title: "3n-hsw xl710"
@@ -2822,7 +2822,7 @@
 # VPP Comparison Across Testbeds 3n-hsw to 3n-skx 4c mrr
 - type: "table"
   title: "VPP Comparison Across Testbeds 3n-hsw to 3n-skx 4c mrr"
-  algorithm: "table_performance_comparison"
+  algorithm: "table_performance_comparison_nic"
   output-file: "{DIR[STATIC,VPP]}/performance-compare-testbeds-3n-hsw-3n-skx-4c-mrr"
   reference:
     title: "3n-hsw xl710"
