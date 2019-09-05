@@ -48,7 +48,7 @@
 ~~~~~~~~~~~~
 
 imix-ipsec-ip4routing-base-scale-sw-i40e
----------------------------------------------
+----------------------------------------
 
 .. raw:: html
 
@@ -91,7 +91,7 @@ imix-ipsec-ip4routing-base-scale-sw-i40e
     \clearpage
 
 imix-ipsec-ip4routing-base-scale-hw-i40e
----------------------------------------------
+----------------------------------------
 
 .. raw:: html
 

@@ -161,7 +161,7 @@
     \clearpage
 
 64b-features-l2switching-base-ixgbe
-----------------------------------
+-----------------------------------
 
 .. raw:: html
 
