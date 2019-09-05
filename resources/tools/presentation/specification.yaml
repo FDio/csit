@@ -89,8 +89,6 @@
   urls:
     URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
     URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
-    # URL[VIRL,DNV]: "http://10.30.51.28/download/denverton/{release}/robot-plugin.zip"
-    # URL[VIRL,DNV]: "http://download.it/from/nexus"
     URL[NEXUS,LOG]: "https://logs.fd.io/production/vex-yul-rot-jenkins-1"
     URL[NEXUS,DOC]: "https://docs.fd.io/csit"
     DIR[NEXUS,DOC]: "report/_static/archive"
@@ -4546,23 +4544,6 @@
   - "parent"
   data-start-level: 2
 
-## Container Orchestrated Performance Results 3n-hsw
-#- type: "file"
-#  title: "Container Orchestrated Performance Results 3n-hsw"
-#  algorithm: "file_test_results"
-#  output-file-ext: ".rst"
-#  output-file: "{DIR[DTR,PERF,COT,3N,HSW]}/cot_performance_results_3n_hsw"
-#  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
-#  dir-tables: "{DIR[DTR,PERF,COT,3N,HSW]}"
-#  data: "ligato-perf-results-3n-hsw"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "doc"
-#  - "level"
-#  - "parent"
-#  data-start-level: 3
-
 # DPDK Performance Results 3n-hsw
 - type: "file"
   title: "DPDK Performance Results 3n-hsw"
@@ -6948,7 +6929,72 @@
     layout: "plot-throughput"
 
 - type: "plot"
+<<<<<<< HEAD   (97c824 Report: Add DNV data)
 >>>>>>> CHANGE (d53a4d Report: ixgbe for tsh)
+=======
+  title: "Throughput: 2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Dot1Q-Ip4Base-Ndrpdr.64B-1t1c-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Base-Ndrpdr.64B-1t1c-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-1t1c-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-1t1c-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-1t1c-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Dot1Q-Ip4Base-Ndrpdr.64B-1t1c-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Base-Ndrpdr.64B-1t1c-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-1t1c-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-1t1c-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-1t1c-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-ndr"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Base-Ndrpdr.64B-1t1c-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-1t1c-ethip4udp-ip4base-nat44-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-pdr"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Base-Ndrpdr.64B-1t1c-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-1t1c-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-1t1c-ethip4udp-ip4base-nat44-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+>>>>>>> CHANGE (992198 Report: Add 2n-dnv plots and tables)
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-ip4tunnel-base-i40e-ndr"
   algorithm: "plot_performance_name_box"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-ip4tunnel-base-i40e-ndr"
@@ -7202,7 +7248,40 @@
     layout: "plot-throughput"
 
 - type: "plot"
+<<<<<<< HEAD   (97c824 Report: Add DNV data)
 >>>>>>> CHANGE (d53a4d Report: ixgbe for tsh)
+=======
+  title: "Throughput: 2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-ndr"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Dot1Q-Ip6Base-Ndrpdr.78B-1t1c-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Base-Ndrpdr.78B-1t1c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale20K-Ndrpdr.78B-1t1c-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale200K-Ndrpdr.78B-1t1c-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale2M-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-pdr"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Dot1Q-Ip6Base-Ndrpdr.78B-1t1c-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Base-Ndrpdr.78B-1t1c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale20K-Ndrpdr.78B-1t1c-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale200K-Ndrpdr.78B-1t1c-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale2M-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+>>>>>>> CHANGE (992198 Report: Add 2n-dnv plots and tables)
   title: "Throughput: 3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-ndr"
   algorithm: "plot_performance_name_box"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-ndr"
@@ -7722,7 +7801,70 @@
     layout: "plot-throughput"
 
 - type: "plot"
+<<<<<<< HEAD   (97c824 Report: Add DNV data)
 >>>>>>> CHANGE (d53a4d Report: ixgbe for tsh)
+=======
+  title: "Throughput: 2n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-ndr"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Dot1Q-L2Xcbase-Ndrpdr.64B-1t1c-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Xcbase-Ndrpdr.64B-1t1c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-pdr"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Dot1Q-L2Xcbase-Ndrpdr.64B-1t1c-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Xcbase-Ndrpdr.64B-1t1c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-ndr"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-ndr"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Patch-Ndrpdr.64B-1t1c-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Xcbase-Ndrpdr.64B-1t1c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-1t1c-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-1t1c-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-1t1c-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-ndr"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-pdr"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-pdr"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Patch-Ndrpdr.64B-1t1c-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Xcbase-Ndrpdr.64B-1t1c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdbasemaclrn-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-1t1c-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-1t1c-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-1t1c-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-pdr"
+    layout: "plot-throughput"
+
+- type: "plot"
+>>>>>>> CHANGE (992198 Report: Add 2n-dnv plots and tables)
   title: "Throughput: 3n-hsw-xl710-78b-1t1c-srv6-ip6routing-base-i40e-ndr"
   algorithm: "plot_performance_name_box"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-78b-1t1c-srv6-ip6routing-base-i40e-ndr"
@@ -12019,7 +12161,162 @@
     title: "3n-tsh-x520-114b-vts-l2switching-base-ixgbe-pdr"
     layout: "plot-throughput-speedup-analysis"
 
+<<<<<<< HEAD   (97c824 Report: Add DNV data)
 >>>>>>> CHANGE (d53a4d Report: ixgbe for tsh)
+=======
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-ndr-tsa"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Dot1Q-Ip4Base-Ndrpdr.64B-.t.c-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-.t.c-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-ndr-tsa"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-pdr-tsa"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Dot1Q-Ip4Base-Ndrpdr.64B-.t.c-dot1q-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale20K-Ndrpdr.64B-.t.c-ethip4-ip4scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale200K-Ndrpdr.64B-.t.c-ethip4-ip4scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Scale2M-Ndrpdr.64B-.t.c-ethip4-ip4scale2m-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-ip4routing-base-scale-ixgbe-pdr-tsa"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-features-ip4routing-base-ixgbe-ndr-tsa"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-features-ip4routing-base-ixgbe-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-ethip4udp-ip4base-nat44-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-features-ip4routing-base-ixgbe-ndr-tsa"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-features-ip4routing-base-ixgbe-pdr-tsa"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-features-ip4routing-base-ixgbe-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Base-Ndrpdr.64B-.t.c-ethip4-ip4base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-.t.c-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr"
+    - "Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-.t.c-ethip4udp-ip4base-nat44-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-features-ip4routing-base-ixgbe-pdr-tsa"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-ndr-tsa"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale20K-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale200K-Ndrpdr.78B-.t.c-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-ndr-tsa"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-pdr-tsa"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Dot1Q-Ip6Base-Ndrpdr.78B-.t.c-dot1q-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Base-Ndrpdr.78B-.t.c-ethip6-ip6base-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale20K-Ndrpdr.78B-.t.c-ethip6-ip6scale20k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale200K-Ndrpdr.78B-.t.c-ethip6-ip6scale200k-ndrpdr"
+    - "Tests.Vpp.Perf.Ip6.2N1L-10Ge2P1X553-Ethip6-Ip6Scale2M-Ndrpdr.78B-.t.c-ethip6-ip6scale2m-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-78b-ip6routing-base-scale-ixgbe-pdr-tsa"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-l2switching-base-ixgbe-ndr-tsa"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-l2switching-base-ixgbe-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Dot1Q-L2Xcbase-Ndrpdr.64B-.t.c-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Xcbase-Ndrpdr.64B-.t.c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-l2switching-base-ixgbe-ndr-tsa"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-l2switching-base-ixgbe-pdr-tsa"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-l2switching-base-ixgbe-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Dot1Q-L2Xcbase-Ndrpdr.64B-.t.c-dot1q-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Xcbase-Ndrpdr.64B-.t.c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-l2switching-base-ixgbe-pdr-tsa"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-l2switching-base-scale-ixgbe-ndr-tsa"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-l2switching-base-scale-ixgbe-ndr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Patch-Ndrpdr.64B-.t.c-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Xcbase-Ndrpdr.64B-.t.c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-.t.c-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-.t.c-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-l2switching-base-scale-ixgbe-ndr-tsa"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "Throughput: 2n-dnv-x553-64b-l2switching-base-scale-ixgbe-pdr-tsa"
+  algorithm: "plot_performance_name_box"
+  output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-l2switching-base-scale-ixgbe-pdr-tsa"
+  data: "plot-vpp-throughput-lat-tsa-3n-tsh"
+  include:
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Patch-Ndrpdr.64B-.t.c-eth-l2patch-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Xcbase-Ndrpdr.64B-.t.c-eth-l2xcbase-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdbasemaclrn-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale10Kmaclrn-Ndrpdr.64B-.t.c-eth-l2bdscale10kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale100Kmaclrn-Ndrpdr.64B-.t.c-eth-l2bdscale100kmaclrn-ndrpdr"
+    - "Tests.Vpp.Perf.L2.2N1L-10Ge2P1X553-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-.t.c-eth-l2bdscale1mmaclrn-ndrpdr"
+  layout:
+    title: "2n-dnv-x553-64b-l2switching-base-scale-ixgbe-pdr-tsa"
+    layout: "plot-throughput"
+
+>>>>>>> CHANGE (992198 Report: Add 2n-dnv plots and tables)
 ################################################################################
 
 # Packet Throughput - DPDK l3fwd 3n-hsw-x520

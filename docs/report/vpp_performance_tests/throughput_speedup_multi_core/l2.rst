@@ -24,3 +24,8 @@ CSIT source code for the test cases used for plots can be found in
     l2-3n-skx-xxv710
     l2-3n-skx-x710
     l2-3n-hsw-xl710
+<<<<<<< HEAD   (97c824 Report: Add DNV data)
+=======
+    l2-3n-tsh-x520
+    l2-2n-dnv-x553
+>>>>>>> CHANGE (992198 Report: Add 2n-dnv plots and tables)
