@@ -17,6 +17,7 @@
 | Resource | resources/libraries/robot/shared/container.robot
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.topology.Topology
+| Variables | resources/libraries/python/Constants.py
 | ...
 | Documentation | Test teardown keywords.
 
@@ -44,7 +45,7 @@
 | | ... | Additional teardown for tests which uses performance measurement.
 | | ...
 | | Run Keyword If Test Failed
-| | ... | Send traffic at specified rate | ${perf_trial_duration} | 10000pps
+| | ... | Send traffic at specified rate | ${PERF_TRIAL_DURATION} | 10000pps
 | | ... | ${frame_size} | ${traffic_profile} | pkt_trace=${True}
 
 | Additional Test Tear Down Action For packet_trace

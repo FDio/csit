@@ -15,6 +15,7 @@
 | Documentation | Memif interface keyword library.
 | ...
 | Library | resources.libraries.python.Memif
+| Variables | resources/libraries/python/Constants.py
 
 *** Keywords ***
 | Set up memif interfaces on DUT node
@@ -56,10 +57,10 @@
 | | ${sid_1}= | Evaluate | (${mid}*2)-1
 | | ${sid_2}= | Evaluate | (${mid}*2)
 | | ${memif_1}= | Create memif interface | ${dut_node}
-| | ... | ${filename1}${mid}${dut1_uuid}-${sid_1} | ${mid} | ${sid_1}
+| | ... | ${filename1}${mid}${DUT1_UUID}-${sid_1} | ${mid} | ${sid_1}
 | | ... | rxq=${rxq} | txq=${txq} | role=${role}
 | | ${memif_2}= | Create memif interface | ${dut_node}
-| | ... | ${filename2}${mid}${dut1_uuid}-${sid_2} | ${mid} | ${sid_2}
+| | ... | ${filename2}${mid}${DUT1_UUID}-${sid_2} | ${mid} | ${sid_2}
 | | ... | rxq=${rxq} | txq=${txq} | role=${role}
 | | Set Interface State | ${dut_node} | ${memif_1} | up
 | | Set Interface State | ${dut_node} | ${memif_2} | up
