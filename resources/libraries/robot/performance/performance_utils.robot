@@ -396,8 +396,8 @@
 | | ... | \| Traffic should pass with maximum rate \| ${1} \| ${10.0} \
 | | ... | \| ${False} \| ${False} \| ${0} \| ${1} \|
 | | ...
-| | [Arguments] | ${trial_duration}=${perf_trial_duration}
-| | ... | ${fail_no_traffic}=${True} | ${subsamples}=${perf_trial_multiplicity}
+| | [Arguments] | ${trial_duration}=${PERF_TRIAL_DURATION}
+| | ... | ${fail_no_traffic}=${True} | ${subsamples}=${PERF_TRIAL_MULTIPLICITY}
 | | ... | ${unidirection}=${False} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ...
 | | ${results} = | Send traffic at specified rate | ${trial_duration}
