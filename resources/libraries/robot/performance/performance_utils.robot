@@ -36,7 +36,7 @@
 | | ... | Display findings as a formatted test message.
 | | ... | Fail if a resulting lower bound has too high loss fraction.
 | | ... | Input rates are understood as uni-directional,
-| | ... | reported result contains bi-directional rates.
+| | ... | reported result contains aggregate rates.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ...
 | | ... | TODO: Should the trial duration of the additional
@@ -59,24 +59,27 @@
 | | ... | - intermediate phases - Number of intermediate phases [1]. Type: int
 | | ... | - timeout - Fail if search duration is longer [s]. Type: float
 | | ... | - doublings - How many doublings to do when expanding [1]. Type: int
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: int
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Find NDR and PDR intervals using optimized search \| \${0.005} \
-| | ... | \| \${0.005} \| \${30.0} \| \${1.0} \| \${2} \| ${600.0} \| ${2} \|
+| | ... | \| \${0.005} \| \${30.0} \| \${1.0} \| \${2} \| \${600.0} \| \${2} \
+| | ... | \| \${2} \|
 | | ...
 | | [Arguments] | ${packet_loss_ratio}=${0.005}
 | | ... | ${final_relative_width}=${0.005} | ${final_trial_duration}=${30.0}
 | | ... | ${initial_trial_duration}=${1.0}
 | | ... | ${number_of_intermediate_phases}=${2} | ${timeout}=${720.0}
-| | ... | ${doublings}=${2}
+| | ... | ${doublings}=${2} | ${traffic_directions}=${2}
 | | ...
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${traffic_profile} | ${20000} | ${max_rate*2}
+| | ... | ${traffic_profile} | ${10000} | ${max_rate}
 | | ... | ${packet_loss_ratio} | ${final_relative_width}
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
-| | ... | doublings=${doublings}
+| | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
 | | Display result of NDRPDR search | ${result}
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
@@ -106,9 +109,8 @@
 | Find Throughput Using MLRsearch
 | | [Documentation]
 | | ... | Find and return lower bound PDR (zero PLR by default)
-| | ... | bi-directional throughput using MLRsearch algorithm.
-| | ... | Input rates are understood as uni-directional,
-| | ... | reported result contains bi-directional rates.
+| | ... | aggregate throughput using MLRsearch algorithm.
+| | ... | Input rates are understood as uni-directional.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ...
 | | ... | TODO: Should the trial duration of the additional
@@ -131,6 +133,8 @@
 | | ... | - intermediate phases - Number of intermediate phases [1]. Type: int
 | | ... | - timeout - Fail if search duration is longer [s]. Type: float
 | | ... | - doublings - How many doublings to do when expanding [1]. Type: int
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: int
 | | ...
 | | ... | *Returns:*
 | | ... | - Lower bound for bi-directional throughput at given PLR. Type: float
@@ -138,20 +142,21 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| \${throughpt}= \| Find Throughput Using MLRsearch \| \${0} \
-| | ... | \| \${0.001} \| \${10.0}\| \${1.0} \| \${1} \| ${720.0} \| ${2} \|
+| | ... | \| \${0.001} \| \${10.0}\| \${1.0} \| \${1} \| \${720.0} \| \${2} \
+| | ... | \| \${2} \|
 | | ...
 | | [Arguments] | ${packet_loss_ratio}=${0.0}
 | | ... | ${final_relative_width}=${0.001} | ${final_trial_duration}=${10.0}
 | | ... | ${initial_trial_duration}=${1.0}
 | | ... | ${number_of_intermediate_phases}=${1} | ${timeout}=${720.0}
-| | ... | ${doublings}=${2}
+| | ... | ${doublings}=${2} | ${traffic_directions}=${2}
 | | ...
 | | ${result} = | Perform optimized ndrpdr search | ${frame_size}
-| | ... | ${traffic_profile} | ${20000} | ${max_rate*2}
+| | ... | ${traffic_profile} | ${10000} | ${max_rate}
 | | ... | ${packet_loss_ratio} | ${final_relative_width}
 | | ... | ${final_trial_duration} | ${initial_trial_duration}
 | | ... | ${number_of_intermediate_phases} | timeout=${timeout}
-| | ... | doublings=${doublings}
+| | ... | doublings=${doublings} | traffic_directions=${traffic_directions}
 | | Return From Keyword | ${result.pdr_interval.measured_low.transmit_rate}
 
 | Find critical load using PLRsearch
@@ -161,7 +166,7 @@
 | | ... | Display results as formatted test message.
 | | ... | Fail if computed lower bound is below minimal rate.
 | | ... | Input rates are understood as uni-directional,
-| | ... | reported result contains bi-directional rates.
+| | ... | reported result contains aggregate rates.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
 | | ... | Some inputs are read from variables to streamline suites.
 | | ...
@@ -175,31 +180,36 @@
 | | ... | *Arguments:*
 | | ... | - packet_loss_ratio - Accepted loss during search. Type: float
 | | ... | - timeout - Stop when search duration is longer [s]. Type: float
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: int
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Find critical load using PLR search \| \${1e-7} \| \${120} \|
+| | ... | \| Find critical load using PLR search \| \${1e-7} \| \${120} \
+| | ... | \| \${2} \|
 | | ...
 | | [Arguments] | ${packet_loss_ratio}=${1e-7} | ${timeout}=${1800.0}
+| | ... | ${traffic_directions}=${2}
 | | ...
-| | ${min_rate} = | Set Variable | ${20000}
+| | ${min_rate} = | Set Variable | ${10000}
 | | ${average} | ${stdev} = | Perform soak search | ${frame_size}
-| | ... | ${traffic_profile} | ${min_rate} | ${max_rate*2}
+| | ... | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${packet_loss_ratio} | timeout=${timeout}
+| | ... | traffic_directions=${traffic_directions}
 | | ${lower} | ${upper} = | Display result of soak search
 | | ... | ${average} | ${stdev}
 | | Should Not Be True | ${lower} < ${min_rate}
-| | ... | Lower bound ${lower} is below bidirectional minimum ${min_rate}.
+| | ... | Lower bound ${lower} is below unidirectional minimum ${min_rate}.
 
 | Display single bound
 | | [Documentation]
 | | ... | Display one bound of NDR+PDR search,
 | | ... | in packet per seconds (total and per stream)
-| | ... | and Gbps total bandwidth with untagged packet.
+| | ... | and Gbps total bandwidth (for initial packet size).
 | | ... | Througput is calculated as:
-| | ... | Measured rate per stream * Total number of streams
+| | ... | Sum of measured rates over streams
 | | ... | Bandwidth is calculated as:
-| | ... | (Throughput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
+| | ... | (Throughput * (L2 Frame Size + IPG) * 8)
 | | ... | The given result should contain latency data as well.
 | | ...
 | | ... | *Arguments:*
@@ -217,7 +227,7 @@
 | | ...
 | | ${bandwidth_total} = | Evaluate | ${rate_total} * (${frame_size}+20)*8 / 1e9
 | | Set Test Message | ${\n}${text}: ${rate_total} pps, | append=yes
-| | Set Test Message | ${bandwidth_total} Gbps (untagged) | append=yes
+| | Set Test Message | ${bandwidth_total} Gbps (initial) | append=yes
 | | Return From Keyword If | not """${latency}"""
 | | Set Test Message | ${\n}LATENCY usec [min/avg/max] per stream: ${latency}
 | | ... | append=yes
@@ -225,12 +235,12 @@
 | Display result of NDRPDR search
 | | [Documentation]
 | | ... | Display result of NDR+PDR search, both quantities, both bounds,
-| | ... | in packet per seconds (total and per stream)
-| | ... | and Gbps total bandwidth with untagged packet.
+| | ... | aggregate in packet per seconds
+| | ... | and Gbps total bandwidth (for initial packet size).
 | | ... | Througput is calculated as:
-| | ... | Measured rate per stream * Total number of streams
+| | ... | Sum of measured rate over streams
 | | ... | Bandwidth is calculated as:
-| | ... | (Throughput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
+| | ... | (Throughput * (L2 Frame Size + IPG) * 8)
 | | ... | The given result should contain latency data as well.
 | | ...
 | | ... | *Test (or broader scope) variables read:*
@@ -259,12 +269,12 @@
 | Display result of soak search
 | | [Documentation]
 | | ... | Display result of soak search, avg+-stdev, as upper/lower bounds,
-| | ... | in packet per seconds (total and per stream)
-| | ... | and Gbps total bandwidth with untagged packet.
+| | ... | in aggregate packets per seconds
+| | ... | and Gbps total bandwidth (for initial packet size).
 | | ... | Througput is calculated as:
-| | ... | Measured rate per stream * Total number of streams
+| | ... | Sum of measured rates over streams
 | | ... | Bandwidth is calculated as:
-| | ... | (Throughput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
+| | ... | (Throughput * (L2 Frame Size + IPG) * 8)
 | | ... | TODO: Do we want to report some latency data,
 | | ... | even if not measured at the reported bounds?.
 | | ...
@@ -288,8 +298,8 @@
 | | ${stdev} = | Convert To Number | ${stdev}
 | | ${lower} = | Evaluate | ${avg} - ${stdev}
 | | ${upper} = | Evaluate | ${avg} + ${stdev}
-| | Display single bound | PLRsearch lower bound: | ${lower} | ${frame_size}
-| | Display single bound | PLRsearch upper bound: | ${upper} | ${frame_size}
+| | Display single bound | PLRsearch lower bound | ${lower} | ${frame_size}
+| | Display single bound | PLRsearch upper bound | ${upper} | ${frame_size}
 | | Return From Keyword | ${lower} | ${upper}
 
 | Check NDRPDR interval validity
@@ -332,18 +342,22 @@
 | | ... | - result - Measured result data per stream [pps]. Type: NdrPdrResult
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
 | | ... | - traffic_profile - Topology profile. Type: string
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: int
 | | ...
 | | ... | *Example:*
 | | ... | \| Perform additional measurements based on NDRPDR result \
-| | ... | \| \${result} \| ${64} \| 3-node-IPv4 \|
+| | ... | \| \${result} \| \${64} \| 3-node-IPv4 \| \${2} \|
 | | ...
 | | [Arguments] | ${result} | ${framesize} | ${traffic_profile}
+| | ... | ${traffic_directions}=${2}
 | | ...
-| | ${duration}= | Set Variable | 2.0
-| | ${rate_per_stream}= | Evaluate
-| | ... | ${result.ndr_interval.measured_low.target_tr} / 2.0
+| | ${duration}= | Set Variable | ${2.0}
+| | ${rate_sum}= | Set Variable | ${result.ndr_interval.measured_low.target_tr}
+| | ${rate_per_stream}= | Evaluate | ${rate_sum} / float(${traffic_directions})
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
 | | ... | ${framesize} | ${traffic_profile} | fail_on_loss=${False}
+| | ... | traffic_directions=${traffic_directions}
 
 | Traffic should pass with no loss
 | | [Documentation]
@@ -358,17 +372,19 @@
 | | ... | Type: string
 | | ... | - fail_on_loss - If True, the keyword fails if loss occurred.
 | | ... | Type: boolean
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: int
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Traffic should pass with no loss \| 10 \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \|
+| | ... | \| Traffic should pass with no loss \| \${10} \| 4.0mpps \| \${64} \
+| | ... | \| 3-node-IPv4 \| \${2} \|
 | | ...
 | | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${fail_on_loss}=${True}
+| | ... | ${fail_on_loss}=${True} | ${traffic_directions}=${2}
 | | ...
 | | Send traffic at specified rate | ${duration} | ${rate} | ${frame_size}
-| | ... | ${traffic_profile}
+| | ... | ${traffic_profile} | traffic_directions=${traffic_directions}
 | | Run Keyword If | ${fail_on_loss} | No traffic loss occurred
 
 | Traffic should pass with maximum rate
@@ -388,22 +404,23 @@
 | | ... | - subsamples - How many trials in this measurement. Type: int
 | | ... | - trial_duration - Duration of single trial [s]. Type: float
 | | ... | - fail_no_traffic - Whether to fail on zero receive count. Type: boolean
-| | ... | - unidirection - False if traffic is bidirectional. Type: boolean
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: int
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
 | | ... | - rx_port - RX port of TG, default 1. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Traffic should pass with maximum rate \| ${1} \| ${10.0} \
-| | ... | \| ${False} \| ${False} \| ${0} \| ${1} \|
+| | ... | \| Traffic should pass with maximum rate \| \${1} \| \${10.0} \
+| | ... | \| \${False} \| \${2} \| \${0} \| \${1} \|
 | | ...
 | | [Arguments] | ${trial_duration}=${PERF_TRIAL_DURATION}
 | | ... | ${fail_no_traffic}=${True} | ${subsamples}=${PERF_TRIAL_MULTIPLICITY}
-| | ... | ${unidirection}=${False} | ${tx_port}=${0} | ${rx_port}=${1}
+| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ...
 | | ${results} = | Send traffic at specified rate | ${trial_duration}
 | | ... | ${max_rate}pps | ${frame_size} | ${traffic_profile} | ${subsamples}
-| | ... | ${unidirection} | ${tx_port} | ${rx_port}
+| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
 | | ... | append=yes
@@ -424,23 +441,24 @@
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
 | | ... | - subsamples - How many trials in this measurement. Type: int
-| | ... | - unidirection - False if traffic is bidirectional. Type: boolean
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: int
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
 | | ... | - rx_port - RX port of TG, default 1. Type: integer
 | | ... | - pkt_trace - True to enable packet trace. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send traffic at specified rate \| ${1.0} \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \| ${10} \| ${False} \| ${0} | ${1} \| ${False}
+| | ... | \| Send traffic at specified rate \| \${1.0} \| 4.0mpps \| \${64} \
+| | ... | \| 3-node-IPv4 \| \${10} \| \${2} \| \${0} | \${1} \| \${False}
 | | ...
 | | [Arguments] | ${trial_duration} | ${rate} | ${frame_size}
-| | ... | ${traffic_profile} | ${subsamples}=${1} | ${unidirection}=${False}
+| | ... | ${traffic_profile} | ${subsamples}=${1} | ${traffic_directions}=${2}
 | | ... | ${tx_port}=${0} | ${rx_port}=${1} | ${pkt_trace}=${False}
 | | ...
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${unidirection} | ${tx_port} | ${rx_port}
+| | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | Clear statistics on all DUTs | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
@@ -452,8 +470,9 @@
 | | | # The following line is skipping some default arguments,
 | | | # that is why subsequent arguments have to be named.
 | | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
-| | | ... | ${traffic_profile} | warmup_time=${0} | unidirection=${unidirection}
-| | | ... | tx_port=${tx_port} | rx_port=${rx_port}
+| | | ... | ${traffic_profile} | warmup_time=${0}
+| | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
+| | | ... | rx_port=${rx_port}
 | | | ${rx} = | Get Received
 | | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
 | | | Append To List | ${results} | ${rr}
@@ -477,22 +496,24 @@
 | | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer/string
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
 | | ... | Type: string
-| | ... | - unidirection - False if traffic is bidirectional. Type: boolean
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: int
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
 | | ... | - rx_port - RX port of TG, default 1. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Clear and show runtime counters with running traffic \| 10 \
-| | ... | \| 4.0mpps \| 64 \| 3-node-IPv4 \| ${False} \| ${0} | ${1} \|
+| | ... | \| Clear and show runtime counters with running traffic \| \${10} \
+| | ... | \| 4.0mpps \| \${64} \| 3-node-IPv4 \| \${2} \| \${0} \| \${1} \|
 | | ...
 | | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${unidirection}=${False} | ${tx_port}=${0} | ${rx_port}=${1}
+| | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ...
 | | # Duration of -1 means we will stop traffic manually.
 | | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | warmup_time=${0} | async_call=${True} | latency=${False}
-| | ... | unidirection=${unidirection} | tx_port=${tx_port} | rx_port=${rx_port}
+| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
+| | ... | rx_port=${rx_port}
 | | Run Keyword If | ${dut_stats}==${True}
 | | ... | VPP clear runtime counters on all DUTs | ${nodes}
 | | Sleep | ${duration}
@@ -514,22 +535,24 @@
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
 | | ... | *Arguments:*
 | | ... | - rate - Unidirectional rate for sending packets. Type: string
-| | ... | - unidirection - False if traffic is bidirectional. Type: boolean
+| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
+| | ... | Type: int
 | | ... | - tx_port - TX port of TG, default 0. Type: integer
 | | ... | - rx_port - RX port of TG, default 1. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Start Traffic on Background \| 4.0mpps \| ${False} \| ${0} \
-| | ... | \| ${1} \|
+| | ... | \| Start Traffic on Background \| 4.0mpps \| \${2} \| \${0} \
+| | ... | \| \${1} \|
 | | ...
-| | [Arguments] | ${rate} | ${unidirection}=${False} | ${tx_port}=${0}
+| | [Arguments] | ${rate} | ${traffic_directions}=${2} | ${tx_port}=${0}
 | | ... | ${rx_port}=${1}
 | | ...
 | | # Duration of -1 means we will stop traffic manually.
 | | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | warmup_time=${0} | async_call=${True} | latency=${False}
-| | ... | unidirection=${unidirection} | tx_port=${tx_port} | rx_port=${rx_port}
+| | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
+| | ... | rx_port=${rx_port}
 
 | Stop Running Traffic
 | | [Documentation]
