@@ -2120,6 +2120,7 @@
   compare:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
+#    data-replacement: ""
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
