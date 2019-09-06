@@ -14,6 +14,8 @@ FD.io CSIT-1908 Report history and per .[ww] revision changes are listed below.
 |                |    - soak tests                                            |
 |                |    - 2n-skx, 3n-skx and 3n-hsw, ndrpdr                     |
 |                |                                                            |
+|                | 3. Added Vhost data for 2n-skx, 3n-skx and 3n-hsw, ndrpdr  |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .36            | Initial version                                            |
 |                |                                                            |
