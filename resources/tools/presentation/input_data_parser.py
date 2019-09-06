@@ -1406,7 +1406,7 @@ class InputData(object):
             index += 1
             tag_filter = tag_filter[:index] + " in tags" + tag_filter[index:]
 
-    def filter_data(self, element, params=None, data_set="tests",
+    def filter_data(self, element, params=None, data=None, data_set="tests",
                     continue_on_error=False):
         """Filter required data from the given jobs and builds.
 
@@ -1429,13 +1429,16 @@ class InputData(object):
 
         :param element: Element which will use the filtered data.
         :param params: Parameters which will be included in the output. If None,
-        all parameters are included.
+            all parameters are included.
+        :param data: If not None, this data is used instead of data specified
+            in the element.
         :param data_set: The set of data to be filtered: tests, suites,
-        metadata.
+            metadata.
         :param continue_on_error: Continue if there is error while reading the
-        data. The Item will be empty then
+            data. The Item will be empty then
         :type element: pandas.Series
         :type params: list
+        :type data: dict
         :type data_set: str
         :type continue_on_error: bool
         :returns: Filtered data.
@@ -1457,9 +1460,10 @@ class InputData(object):
             if params:
                 params.append("type")
 
+        data_to_filter = data if data else element["data"]
         data = pd.Series()
         try:
-            for job, builds in element["data"].items():
+            for job, builds in data_to_filter.items():
                 data[job] = pd.Series()
                 for build in builds:
                     data[job][str(build)] = pd.Series()
