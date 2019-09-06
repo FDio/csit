@@ -187,6 +187,68 @@ def table_merged_details(table, input_data):
     logging.info("  Done.")
 
 
+def _tpc_modify_test_name(test_name):
+    test_name_mod = test_name.replace("-ndrpdrdisc", ""). \
+        replace("-ndrpdr", "").replace("-pdrdisc", ""). \
+        replace("-ndrdisc", "").replace("-pdr", ""). \
+        replace("-ndr", ""). \
+        replace("1t1c", "1c").replace("2t1c", "1c"). \
+        replace("2t2c", "2c").replace("4t2c", "2c"). \
+        replace("4t4c", "4c").replace("8t4c", "4c")
+    test_name_mod = re.sub(REGEX_NIC, "", test_name_mod)
+    return test_name_mod
+
+
+def _tpc_modify_displayed_test_name(test_name):
+    return test_name.replace("1t1c", "1c").replace("2t1c", "1c"). \
+        replace("2t2c", "2c").replace("4t2c", "2c"). \
+        replace("4t4c", "4c").replace("8t4c", "4c")
+
+
+def _tpc_insert_data(target, src, include_tests):
+    try:
+        if include_tests == "MRR":
+            target.append(src["result"]["receive-rate"].avg)
+        elif include_tests == "PDR":
+            target.append(src["throughput"]["PDR"]["LOWER"])
+        elif include_tests == "NDR":
+            target.append(src["throughput"]["NDR"]["LOWER"])
+    except (KeyError, TypeError):
+        pass
+
+
+def _tpc_sort_table(table):
+    # Sort the table:
+    # 1. New in CSIT-XXXX
+    # 2. See footnote
+    # 3. Delta
+    tbl_new = list()
+    tbl_see = list()
+    tbl_delta = list()
+    for item in table:
+        if isinstance(item[-1], str):
+            if "New in CSIT" in item[-1]:
+                tbl_new.append(item)
+            elif "See footnote" in item[-1]:
+                tbl_see.append(item)
+        else:
+            tbl_delta.append(item)
+
+    # Sort the tables:
+    tbl_new.sort(key=lambda rel: rel[0], reverse=False)
+    tbl_see.sort(key=lambda rel: rel[0], reverse=False)
+    tbl_see.sort(key=lambda rel: rel[-1], reverse=False)
+    tbl_delta.sort(key=lambda rel: rel[-1], reverse=True)
+
+    # Put the tables together:
+    table = list()
+    table.extend(tbl_new)
+    table.extend(tbl_see)
+    table.extend(tbl_delta)
+
+    return table
+
+
 def table_performance_comparison(table, input_data):
     """Generate the table(s) with algorithm: table_performance_comparison
     specified in the specification file.
@@ -238,13 +300,7 @@ def table_performance_comparison(table, input_data):
         topo = "2n-skx" if "2n-skx" in job else ""
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].iteritems():
-                tst_name_mod = tst_name.replace("-ndrpdrdisc", "").\
-                    replace("-ndrpdr", "").replace("-pdrdisc", "").\
-                    replace("-ndrdisc", "").replace("-pdr", "").\
-                    replace("-ndr", "").\
-                    replace("1t1c", "1c").replace("2t1c", "1c").\
-                    replace("2t2c", "2c").replace("4t2c", "2c").\
-                    replace("4t4c", "4c").replace("8t4c", "4c")
+                tst_name_mod = _tpc_modify_test_name(tst_name)
                 if "across topologies" in table["title"].lower():
                     tst_name_mod = tst_name_mod.replace("2n1l-", "")
                 if tbl_dict.get(tst_name_mod, None) is None:
@@ -254,47 +310,18 @@ def table_performance_comparison(table, input_data):
                                                           split("-")[:-1]))
                     if "across testbeds" in table["title"].lower() or \
                             "across topologies" in table["title"].lower():
-                        name = name.\
-                            replace("1t1c", "1c").replace("2t1c", "1c").\
-                            replace("2t2c", "2c").replace("4t2c", "2c").\
-                            replace("4t4c", "4c").replace("8t4c", "4c")
+                        name = _tpc_modify_displayed_test_name(name)
                     tbl_dict[tst_name_mod] = {"name": name,
                                               "ref-data": list(),
                                               "cmp-data": list()}
-                try:
-                    # TODO: Re-work when NDRPDRDISC tests are not used
-                    if table["include-tests"] == "MRR":
-                        tbl_dict[tst_name_mod]["ref-data"]. \
-                            append(tst_data["result"]["receive-rate"].avg)
-                    elif table["include-tests"] == "PDR":
-                        if tst_data["type"] == "PDR":
-                            tbl_dict[tst_name_mod]["ref-data"]. \
-                                append(tst_data["throughput"]["value"])
-                        elif tst_data["type"] == "NDRPDR":
-                            tbl_dict[tst_name_mod]["ref-data"].append(
-                                tst_data["throughput"]["PDR"]["LOWER"])
-                    elif table["include-tests"] == "NDR":
-                        if tst_data["type"] == "NDR":
-                            tbl_dict[tst_name_mod]["ref-data"]. \
-                                append(tst_data["throughput"]["value"])
-                        elif tst_data["type"] == "NDRPDR":
-                            tbl_dict[tst_name_mod]["ref-data"].append(
-                                tst_data["throughput"]["NDR"]["LOWER"])
-                    else:
-                        continue
-                except TypeError:
-                    pass  # No data in output.xml for this test
+                _tpc_insert_data(target=tbl_dict[tst_name_mod]["ref-data"],
+                                 src=tst_data,
+                                 include_tests=table["include-tests"])
 
     for job, builds in table["compare"]["data"].items():
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].iteritems():
-                tst_name_mod = tst_name.replace("-ndrpdrdisc", ""). \
-                    replace("-ndrpdr", "").replace("-pdrdisc", ""). \
-                    replace("-ndrdisc", "").replace("-pdr", ""). \
-                    replace("-ndr", "").\
-                    replace("1t1c", "1c").replace("2t1c", "1c").\
-                    replace("2t2c", "2c").replace("4t2c", "2c").\
-                    replace("4t4c", "4c").replace("8t4c", "4c")
+                tst_name_mod = _tpc_modify_test_name(tst_name)
                 if "across topologies" in table["title"].lower():
                     tst_name_mod = tst_name_mod.replace("2n1l-", "")
                 if tbl_dict.get(tst_name_mod, None) is None:
@@ -304,48 +331,48 @@ def table_performance_comparison(table, input_data):
                                                           split("-")[:-1]))
                     if "across testbeds" in table["title"].lower() or \
                             "across topologies" in table["title"].lower():
-                        name = name.\
-                            replace("1t1c", "1c").replace("2t1c", "1c").\
-                            replace("2t2c", "2c").replace("4t2c", "2c").\
-                            replace("4t4c", "4c").replace("8t4c", "4c")
+                        name = _tpc_modify_displayed_test_name(name)
                     tbl_dict[tst_name_mod] = {"name": name,
                                               "ref-data": list(),
                                               "cmp-data": list()}
-                try:
-                    # TODO: Re-work when NDRPDRDISC tests are not used
-                    if table["include-tests"] == "MRR":
-                        tbl_dict[tst_name_mod]["cmp-data"]. \
-                            append(tst_data["result"]["receive-rate"].avg)
-                    elif table["include-tests"] == "PDR":
-                        if tst_data["type"] == "PDR":
-                            tbl_dict[tst_name_mod]["cmp-data"]. \
-                                append(tst_data["throughput"]["value"])
-                        elif tst_data["type"] == "NDRPDR":
-                            tbl_dict[tst_name_mod]["cmp-data"].append(
-                                tst_data["throughput"]["PDR"]["LOWER"])
-                    elif table["include-tests"] == "NDR":
-                        if tst_data["type"] == "NDR":
-                            tbl_dict[tst_name_mod]["cmp-data"]. \
-                                append(tst_data["throughput"]["value"])
-                        elif tst_data["type"] == "NDRPDR":
-                            tbl_dict[tst_name_mod]["cmp-data"].append(
-                                tst_data["throughput"]["NDR"]["LOWER"])
-                    else:
-                        continue
-                except (KeyError, TypeError):
-                    pass
+                _tpc_insert_data(target=tbl_dict[tst_name_mod]["ref-data"],
+                                 src=tst_data,
+                                 include_tests=table["include-tests"])
+
+    replacement = table["compare"].get("data-replacement", None)
+    if replacement:
+        create_new_list = True
+        rpl_data = input_data.filter_data(
+            table, data=replacement, continue_on_error=True)
+        for job, builds in replacement.items():
+            for build in builds:
+                for tst_name, tst_data in rpl_data[job][str(build)].iteritems():
+                    tst_name_mod = _tpc_modify_test_name(tst_name)
+                    if "across topologies" in table["title"].lower():
+                        tst_name_mod = tst_name_mod.replace("2n1l-", "")
+                    if tbl_dict.get(tst_name_mod, None) is None:
+                        name = "{0}".format("-".join(tst_data["name"].
+                                                     split("-")[:-1]))
+                        if "across testbeds" in table["title"].lower() or \
+                                "across topologies" in table["title"].lower():
+                            name = _tpc_modify_displayed_test_name(name)
+                        tbl_dict[tst_name_mod] = {"name": name,
+                                                  "ref-data": list(),
+                                                  "cmp-data": list()}
+                    if create_new_list:
+                        create_new_list = False
+                        tbl_dict[tst_name_mod]["cmp-data"] = list()
+
+                    _tpc_insert_data(target=tbl_dict[tst_name_mod]["cmp-data"],
+                                     src=tst_data,
+                                     include_tests=table["include-tests"])
+
     if history:
         for item in history:
             for job, builds in item["data"].items():
                 for build in builds:
                     for tst_name, tst_data in data[job][str(build)].iteritems():
-                        tst_name_mod = tst_name.replace("-ndrpdrdisc", ""). \
-                            replace("-ndrpdr", "").replace("-pdrdisc", ""). \
-                            replace("-ndrdisc", "").replace("-pdr", ""). \
-                            replace("-ndr", "").\
-                            replace("1t1c", "1c").replace("2t1c", "1c").\
-                            replace("2t2c", "2c").replace("4t2c", "2c").\
-                            replace("4t4c", "4c").replace("8t4c", "4c")
+                        tst_name_mod = _tpc_modify_test_name(tst_name)
                         if "across topologies" in table["title"].lower():
                             tst_name_mod = tst_name_mod.replace("2n1l-", "")
                         if tbl_dict.get(tst_name_mod, None) is None:
@@ -423,33 +450,7 @@ def table_performance_comparison(table, input_data):
         if (len(item) == len(header)) and (item[-3] != "Not tested"):
             tbl_lst.append(item)
 
-    # Sort the table:
-    # 1. New in CSIT-XXXX
-    # 2. See footnote
-    # 3. Delta
-    tbl_new = list()
-    tbl_see = list()
-    tbl_delta = list()
-    for item in tbl_lst:
-        if isinstance(item[-1], str):
-            if "New in CSIT" in item[-1]:
-                tbl_new.append(item)
-            elif "See footnote" in item[-1]:
-                tbl_see.append(item)
-        else:
-            tbl_delta.append(item)
-
-    # Sort the tables:
-    tbl_new.sort(key=lambda rel: rel[0], reverse=False)
-    tbl_see.sort(key=lambda rel: rel[0], reverse=False)
-    tbl_see.sort(key=lambda rel: rel[-1], reverse=False)
-    tbl_delta.sort(key=lambda rel: rel[-1], reverse=True)
-
-    # Put the tables together:
-    tbl_lst = list()
-    tbl_lst.extend(tbl_new)
-    tbl_lst.extend(tbl_see)
-    tbl_lst.extend(tbl_delta)
+    tbl_lst = _tpc_sort_table(tbl_lst)
 
     # Generate csv tables:
     csv_file = "{0}.csv".format(table["output-file"])
@@ -529,14 +530,7 @@ def table_performance_comparison_nic(table, input_data):
             for tst_name, tst_data in data[job][str(build)].iteritems():
                 if table["reference"]["nic"] not in tst_data["tags"]:
                     continue
-                tst_name_mod = tst_name.replace("-ndrpdrdisc", "").\
-                    replace("-ndrpdr", "").replace("-pdrdisc", "").\
-                    replace("-ndrdisc", "").replace("-pdr", "").\
-                    replace("-ndr", "").\
-                    replace("1t1c", "1c").replace("2t1c", "1c").\
-                    replace("2t2c", "2c").replace("4t2c", "2c").\
-                    replace("4t4c", "4c").replace("8t4c", "4c")
-                tst_name_mod = re.sub(REGEX_NIC, "", tst_name_mod)
+                tst_name_mod = _tpc_modify_test_name(tst_name)
                 if "across topologies" in table["title"].lower():
                     tst_name_mod = tst_name_mod.replace("2n1l-", "")
                 if tbl_dict.get(tst_name_mod, None) is None:
@@ -544,50 +538,20 @@ def table_performance_comparison_nic(table, input_data):
                                                  split("-")[:-1]))
                     if "across testbeds" in table["title"].lower() or \
                             "across topologies" in table["title"].lower():
-                        name = name.\
-                            replace("1t1c", "1c").replace("2t1c", "1c").\
-                            replace("2t2c", "2c").replace("4t2c", "2c").\
-                            replace("4t4c", "4c").replace("8t4c", "4c")
+                        name = _tpc_modify_displayed_test_name(name)
                     tbl_dict[tst_name_mod] = {"name": name,
                                               "ref-data": list(),
                                               "cmp-data": list()}
-                try:
-                    # TODO: Re-work when NDRPDRDISC tests are not used
-                    if table["include-tests"] == "MRR":
-                        tbl_dict[tst_name_mod]["ref-data"]. \
-                            append(tst_data["result"]["receive-rate"].avg)
-                    elif table["include-tests"] == "PDR":
-                        if tst_data["type"] == "PDR":
-                            tbl_dict[tst_name_mod]["ref-data"]. \
-                                append(tst_data["throughput"]["value"])
-                        elif tst_data["type"] == "NDRPDR":
-                            tbl_dict[tst_name_mod]["ref-data"].append(
-                                tst_data["throughput"]["PDR"]["LOWER"])
-                    elif table["include-tests"] == "NDR":
-                        if tst_data["type"] == "NDR":
-                            tbl_dict[tst_name_mod]["ref-data"]. \
-                                append(tst_data["throughput"]["value"])
-                        elif tst_data["type"] == "NDRPDR":
-                            tbl_dict[tst_name_mod]["ref-data"].append(
-                                tst_data["throughput"]["NDR"]["LOWER"])
-                    else:
-                        continue
-                except TypeError:
-                    pass  # No data in output.xml for this test
+                _tpc_insert_data(target=tbl_dict[tst_name_mod]["ref-data"],
+                                 src=tst_data,
+                                 include_tests=table["include-tests"])
 
     for job, builds in table["compare"]["data"].items():
         for build in builds:
             for tst_name, tst_data in data[job][str(build)].iteritems():
                 if table["compare"]["nic"] not in tst_data["tags"]:
                     continue
-                tst_name_mod = tst_name.replace("-ndrpdrdisc", ""). \
-                    replace("-ndrpdr", "").replace("-pdrdisc", ""). \
-                    replace("-ndrdisc", "").replace("-pdr", ""). \
-                    replace("-ndr", "").\
-                    replace("1t1c", "1c").replace("2t1c", "1c").\
-                    replace("2t2c", "2c").replace("4t2c", "2c").\
-                    replace("4t4c", "4c").replace("8t4c", "4c")
-                tst_name_mod = re.sub(REGEX_NIC, "", tst_name_mod)
+                tst_name_mod = _tpc_modify_test_name(tst_name)
                 if "across topologies" in table["title"].lower():
                     tst_name_mod = tst_name_mod.replace("2n1l-", "")
                 if tbl_dict.get(tst_name_mod, None) is None:
@@ -595,36 +559,43 @@ def table_performance_comparison_nic(table, input_data):
                                                  split("-")[:-1]))
                     if "across testbeds" in table["title"].lower() or \
                             "across topologies" in table["title"].lower():
-                        name = name.\
-                            replace("1t1c", "1c").replace("2t1c", "1c").\
-                            replace("2t2c", "2c").replace("4t2c", "2c").\
-                            replace("4t4c", "4c").replace("8t4c", "4c")
+                        name = _tpc_modify_displayed_test_name(name)
                     tbl_dict[tst_name_mod] = {"name": name,
                                               "ref-data": list(),
                                               "cmp-data": list()}
-                try:
-                    # TODO: Re-work when NDRPDRDISC tests are not used
-                    if table["include-tests"] == "MRR":
-                        tbl_dict[tst_name_mod]["cmp-data"]. \
-                            append(tst_data["result"]["receive-rate"].avg)
-                    elif table["include-tests"] == "PDR":
-                        if tst_data["type"] == "PDR":
-                            tbl_dict[tst_name_mod]["cmp-data"]. \
-                                append(tst_data["throughput"]["value"])
-                        elif tst_data["type"] == "NDRPDR":
-                            tbl_dict[tst_name_mod]["cmp-data"].append(
-                                tst_data["throughput"]["PDR"]["LOWER"])
-                    elif table["include-tests"] == "NDR":
-                        if tst_data["type"] == "NDR":
-                            tbl_dict[tst_name_mod]["cmp-data"]. \
-                                append(tst_data["throughput"]["value"])
-                        elif tst_data["type"] == "NDRPDR":
-                            tbl_dict[tst_name_mod]["cmp-data"].append(
-                                tst_data["throughput"]["NDR"]["LOWER"])
-                    else:
+                _tpc_insert_data(target=tbl_dict[tst_name_mod]["cmp-data"],
+                                 src=tst_data,
+                                 include_tests=table["include-tests"])
+
+    replacement = table["compare"].get("data-replacement", None)
+    if replacement:
+        create_new_list = True
+        rpl_data = input_data.filter_data(
+            table, data=replacement, continue_on_error=True)
+        for job, builds in replacement.items():
+            for build in builds:
+                for tst_name, tst_data in rpl_data[job][str(build)].iteritems():
+                    if table["compare"]["nic"] not in tst_data["tags"]:
                         continue
-                except (KeyError, TypeError):
-                    pass
+                    tst_name_mod = _tpc_modify_test_name(tst_name)
+                    if "across topologies" in table["title"].lower():
+                        tst_name_mod = tst_name_mod.replace("2n1l-", "")
+                    if tbl_dict.get(tst_name_mod, None) is None:
+                        name = "{0}".format("-".join(tst_data["name"].
+                                                     split("-")[:-1]))
+                        if "across testbeds" in table["title"].lower() or \
+                                "across topologies" in table["title"].lower():
+                            name = _tpc_modify_displayed_test_name(name)
+                        tbl_dict[tst_name_mod] = {"name": name,
+                                                  "ref-data": list(),
+                                                  "cmp-data": list()}
+                    if create_new_list:
+                        create_new_list = False
+                        tbl_dict[tst_name_mod]["cmp-data"] = list()
+
+                    _tpc_insert_data(target=tbl_dict[tst_name_mod]["cmp-data"],
+                                     src=tst_data,
+                                     include_tests=table["include-tests"])
 
     if history:
         for item in history:
@@ -633,14 +604,7 @@ def table_performance_comparison_nic(table, input_data):
                     for tst_name, tst_data in data[job][str(build)].iteritems():
                         if item["nic"] not in tst_data["tags"]:
                             continue
-                        tst_name_mod = tst_name.replace("-ndrpdrdisc", ""). \
-                            replace("-ndrpdr", "").replace("-pdrdisc", ""). \
-                            replace("-ndrdisc", "").replace("-pdr", ""). \
-                            replace("-ndr", "").\
-                            replace("1t1c", "1c").replace("2t1c", "1c").\
-                            replace("2t2c", "2c").replace("4t2c", "2c").\
-                            replace("4t4c", "4c").replace("8t4c", "4c")
-                        tst_name_mod = re.sub(REGEX_NIC, "", tst_name_mod)
+                        tst_name_mod = _tpc_modify_test_name(tst_name)
                         if "across topologies" in table["title"].lower():
                             tst_name_mod = tst_name_mod.replace("2n1l-", "")
                         if tbl_dict.get(tst_name_mod, None) is None:
@@ -718,33 +682,7 @@ def table_performance_comparison_nic(table, input_data):
         if (len(item) == len(header)) and (item[-3] != "Not tested"):
             tbl_lst.append(item)
 
-    # Sort the table:
-    # 1. New in CSIT-XXXX
-    # 2. See footnote
-    # 3. Delta
-    tbl_new = list()
-    tbl_see = list()
-    tbl_delta = list()
-    for item in tbl_lst:
-        if isinstance(item[-1], str):
-            if "New in CSIT" in item[-1]:
-                tbl_new.append(item)
-            elif "See footnote" in item[-1]:
-                tbl_see.append(item)
-        else:
-            tbl_delta.append(item)
-
-    # Sort the tables:
-    tbl_new.sort(key=lambda rel: rel[0], reverse=False)
-    tbl_see.sort(key=lambda rel: rel[0], reverse=False)
-    tbl_see.sort(key=lambda rel: rel[-1], reverse=False)
-    tbl_delta.sort(key=lambda rel: rel[-1], reverse=True)
-
-    # Put the tables together:
-    tbl_lst = list()
-    tbl_lst.extend(tbl_new)
-    tbl_lst.extend(tbl_see)
-    tbl_lst.extend(tbl_delta)
+    tbl_lst = _tpc_sort_table(tbl_lst)
 
     # Generate csv tables:
     csv_file = "{0}.csv".format(table["output-file"])
