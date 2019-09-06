@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "e608063b_a221e259",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-06T09:38:48Z",
+      "side": 1,
+      "message": "Yes the whole point is that TRex (processed by our scripts) input is unidirectional, but output is aggregate (that means bidirectional, unless traffic was unidirectional).\nWhen I was creating the search algorithms, I decided to use aggregate rates both for input and output.\nAs line rate is given as unidirectional, we have to multiply somewhere.\n\nMaybe I will try the \"directions\" approach in the next patch.",
+      "parentUuid": "ab6079ce_3c42cff8",
+      "range": {
+        "startLine": 808,
+        "startChar": 1,
+        "endLine": 812,
+        "endChar": 43
+      },
+      "revId": "006dcab1e1cea9818d47ad78eef26852813714f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2a5abec7_a449c45e",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2019-09-06T08:41:30Z",
       "side": 1,
       "message": ", in case of encapsulation in between DUTs. Otherwise it is reported encapsulated.",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 5
+      },
+      "revId": "006dcab1e1cea9818d47ad78eef26852813714f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0edb1ac8_8bca4260",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-06T09:38:48Z",
+      "side": 1,
+      "message": "We have tests that have different encapsulations on TG-DUT than on DUT-DUT. And we have tests with asymmetric traffic. Let me thing about a sentence that is true for all cases.",
+      "parentUuid": "2a5abec7_a449c45e",
       "range": {
         "startLine": 235,
         "startChar": 0,
