@@ -623,20 +623,23 @@ class TrafficGenerator(AbstractMeasurer):
                 loss, loss_acceptance))
 
     def set_rate_provider_defaults(self, frame_size, traffic_profile,
-                                   warmup_time=0.0):
+                                   warmup_time=0.0, unidirection=False):
         """Store values accessed by measure().
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
             See resources/traffic_profiles/trex for implemented modules.
         :param warmup_time: Traffic duration before measurement starts [s].
+        :param unidirection: Whether to send traffic only in one direction.
         :type frame_size: str or int
         :type traffic_profile: str
         :type warmup_time: float
+        :type unidirection: bool
         """
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
         self.warmup_time = float(warmup_time)
+        self.unidirection = unidirection
 
     def get_measurement_result(self, duration=None, transmit_rate=None):
         """Return the result of last measurement as ReceiveRateMeasurement.
@@ -659,8 +662,7 @@ class TrafficGenerator(AbstractMeasurer):
             duration = time.time() - self._start_time
             self._start_time = None
         if transmit_rate is None:
-            # Assuming bi-directional traffic here.
-            transmit_rate = self._rate * 2.0
+            transmit_rate = self._rate * (1.0 if self.uinidirection else 2.0)
         transmit_count = int(self.get_sent())
         loss_count = int(self.get_loss())
         measurement = ReceiveRateMeasurement(
@@ -669,10 +671,12 @@ class TrafficGenerator(AbstractMeasurer):
         return measurement
 
     def measure(self, duration, transmit_rate):
-        """Run bi-directional measurement, parse and return results.
+        """Run trial measurement, parse and return aggregate results.
+
+        Aggregate means bidirectional, unless unidirection.
 
         :param duration: Trial duration [s].
-        :param transmit_rate: Target bidirectional transmit rate [pps].
+        :param transmit_rate: Target aggregate transmit rate [pps].
         :type duration: float
         :type transmit_rate: float
         :returns: Structure containing the result of the measurement.
@@ -684,15 +688,21 @@ class TrafficGenerator(AbstractMeasurer):
         duration = float(duration)
         transmit_rate = float(transmit_rate)
         # TG needs target Tr per stream, but reports aggregate Tx and Dx.
-        unit_rate = str(transmit_rate / 2.0) + "pps"
+        unit_rate_int = transmit_rate / (1.0 if self.unidirection else 2.0)
+        unit_rate_str = str(unit_rate_int) + "pps"
         self.send_traffic_on_tg(
-            duration, unit_rate, self.frame_size, self.traffic_profile,
-            warmup_time=self.warmup_time, latency=True)
+            duration, unit_rate_str, self.frame_size, self.traffic_profile,
+            warmup_time=self.warmup_time, latency=True,
+            unidirection=self.unidirection)
         return self.get_measurement_result(duration, transmit_rate)
 
 
 class OptimizedSearch(object):
-    """Class to be imported as Robot Library, containing a single keyword."""
+    """Class to be imported as Robot Library, containing search keywords.
+
+    Aside of setting up measurer and forwarding arguments,
+    the main business is to translate min/max rate from unidir to aggregate.
+    """
 
     @staticmethod
     def perform_optimized_ndrpdr_search(
@@ -700,15 +710,15 @@ class OptimizedSearch(object):
             maximum_transmit_rate, packet_loss_ratio=0.005,
             final_relative_width=0.005, final_trial_duration=30.0,
             initial_trial_duration=1.0, number_of_intermediate_phases=2,
-            timeout=720.0, doublings=1):
+            timeout=720.0, doublings=1, unidirection=False):
         """Setup initialized TG, perform optimized search, return intervals.
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
             See resources/traffic_profiles/trex for implemented modules.
-        :param minimum_transmit_rate: Minimal bidirectional
+        :param minimum_transmit_rate: Minimal uni-directional
             target transmit rate [pps].
-        :param maximum_transmit_rate: Maximal bidirectional
+        :param maximum_transmit_rate: Maximal uni-directional
             target transmit rate [pps].
         :param packet_loss_ratio: Fraction of packets lost, for PDR [1].
         :param final_relative_width: Final lower bound transmit rate
@@ -723,6 +733,7 @@ class OptimizedSearch(object):
         :param doublings: How many doublings to do in external search step.
             Default 1 is suitable for fairly stable tests,
             less stable tests might get better overal duration with 2 or more.
+        :param unidirection: Whether to send traffic only in one direction.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -734,16 +745,21 @@ class OptimizedSearch(object):
         :type number_of_intermediate_phases: int
         :type timeout: float
         :type doublings: int
+        :type unidirection: bool
         :returns: Structure containing narrowed down NDR and PDR intervals
             and their measurements.
         :rtype: NdrPdrResult
         :raises RuntimeError: If total duration is larger than timeout.
         """
+        directionss = 1 if unidirection else 2
+        minimum_transmit_rate *= directions
+        maximum_transmit_rate *= directions
         # we need instance of TrafficGenerator instantiated by Robot Framework
         # to be able to use trex_stl-*()
         tg_instance = BuiltIn().get_library_instance(
             'resources.libraries.python.TrafficGenerator')
-        tg_instance.set_rate_provider_defaults(frame_size, traffic_profile)
+        tg_instance.set_rate_provider_defaults(
+            frame_size, traffic_profile, unidirection=unidirection)
         algorithm = MultipleLossRatioSearch(
             measurer=tg_instance, final_trial_duration=final_trial_duration,
             final_relative_width=final_relative_width,
@@ -758,15 +774,16 @@ class OptimizedSearch(object):
     def perform_soak_search(
             frame_size, traffic_profile, minimum_transmit_rate,
             maximum_transmit_rate, plr_target=1e-7, tdpt=0.1,
-            initial_count=50, timeout=1800.0, trace_enabled=False):
+            initial_count=50, timeout=1800.0, trace_enabled=False,
+            unidirection=False):
         """Setup initialized TG, perform soak search, return avg and stdev.
 
         :param frame_size: Frame size identifier or value [B].
         :param traffic_profile: Module name as a traffic profile identifier.
             See resources/traffic_profiles/trex for implemented modules.
-        :param minimum_transmit_rate: Minimal bidirectional
+        :param minimum_transmit_rate: Minimal uni-directional
             target transmit rate [pps].
-        :param maximum_transmit_rate: Maximal bidirectional
+        :param maximum_transmit_rate: Maximal uni-directional
             target transmit rate [pps].
         :param plr_target: Fraction of packets lost to achieve [1].
         :param tdpt: Trial duration per trial.
@@ -777,6 +794,7 @@ class OptimizedSearch(object):
             This is needed because initial "search" phase of integrator
             takes significant time even without any trial results.
         :param timeout: The search will stop after this overall time [s].
+        :param unidirection: Whether to send traffic only in one direction.
         :type frame_size: str or int
         :type traffic_profile: str
         :type minimum_transmit_rate: float
@@ -784,12 +802,18 @@ class OptimizedSearch(object):
         :type plr_target: float
         :type initial_count: int
         :type timeout: float
-        :returns: Average and stdev of estimated bidirectional rate giving PLR.
+        :type unidirection: bool
+        :returns: Average and stdev of estimated aggregate rate giving PLR.
         :rtype: 2-tuple of float
         """
+        # TODO: use int "directions" instead of bool "unidirection"?
+        directionss = 1 if unidirection else 2
+        minimum_transmit_rate *= directions
+        maximum_transmit_rate *= directions
         tg_instance = BuiltIn().get_library_instance(
             'resources.libraries.python.TrafficGenerator')
-        tg_instance.set_rate_provider_defaults(frame_size, traffic_profile)
+        tg_instance.set_rate_provider_defaults(
+            frame_size, traffic_profile, unidirection=unidirection)
         algorithm = PLRsearch(
             measurer=tg_instance, trial_duration_per_trial=tdpt,
             packet_loss_ratio_target=plr_target,
