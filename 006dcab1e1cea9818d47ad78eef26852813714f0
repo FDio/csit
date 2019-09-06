@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab6079ce_3c42cff8",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-06T08:41:30Z",
+      "side": 1,
+      "message": "if not unidirection:\n            minimum_transmit_rate *\u003d 2\n            maximum_transmit_rate *\u003d 2\n\nFor now. But anyway I am thinking: The TG is returning packets and we know duration. We should report it like that no? \nDoing 2x might be not fully correct (currently in most cases it does not matter, but might in future?)\nIs TG reporting back full rate in all cases and directions?",
+      "range": {
+        "startLine": 808,
+        "startChar": 1,
+        "endLine": 812,
+        "endChar": 43
+      },
+      "revId": "006dcab1e1cea9818d47ad78eef26852813714f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a5abec7_a449c45e",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-06T08:41:30Z",
+      "side": 1,
+      "message": ", in case of encapsulation in between DUTs. Otherwise it is reported encapsulated.",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 5
+      },
+      "revId": "006dcab1e1cea9818d47ad78eef26852813714f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
