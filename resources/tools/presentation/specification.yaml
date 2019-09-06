@@ -151,12 +151,16 @@
 
     plot-vpp-throughput-lat-tsa-3n-hsw-vhost:
       csit-vpp-perf-verify-1908-3n-hsw:
-        - 40  # NDRPDR sel vhost
-        - 41  # NDRPDR sel vhost
-        - 42  # NDRPDR sel vhost
-        - 43  # NDRPDR sel vhost
-        - 44  # NDRPDR sel vhost
-        - 45  # NDRPDR sel vhost
+        - 48  # NDRPDR sel vhost
+        - 49  # NDRPDR sel vhost
+        - 52  # NDRPDR sel vhost
+        - 53  # NDRPDR sel vhost
+        - 54  # NDRPDR sel vhost
+        - 55  # NDRPDR sel vhost
+        - 56  # NDRPDR sel vhost
+        - 57  # NDRPDR sel vhost
+        - 58  # NDRPDR sel vhost
+        - 59  # NDRPDR sel vhost
 
     plot-vpp-http-server-performance:
       csit-vpp-perf-verify-1908-2n-skx:
@@ -201,12 +205,9 @@
 
     plot-vpp-throughput-lat-tsa-3n-skx-vhost:
       csit-vpp-perf-verify-1908-3n-skx:
-        - 44  # NDRPDR sel vhost
-        - 45  # NDRPDR sel vhost
-        - 46  # NDRPDR sel vhost
-        - 47  # NDRPDR sel vhost
-        - 48  # NDRPDR sel vhost
-        - 49  # NDRPDR sel vhost
+        - 52  # NDRPDR sel vhost
+        - 53  # NDRPDR sel vhost
+        - 55  # NDRPDR sel vhost
 
     plot-dpdk-throughput-latency-3n-skx:
       csit-dpdk-perf-verify-1908-3n-skx:
@@ -238,14 +239,16 @@
 
     plot-vpp-throughput-lat-tsa-2n-skx-vhost:
       csit-vpp-perf-verify-1908-2n-skx:
-        - 72  # NDRPDR sel vhost
-        - 73  # NDRPDR sel vhost
-        - 74  # NDRPDR sel vhost
-        - 75  # NDRPDR sel vhost
-        - 76  # NDRPDR sel vhost
-        - 78  # NDRPDR sel vhost
-        - 84  # NDRPDR sel vhost
-        - 85  # NDRPDR sel vhost
+        - 88  # NDRPDR sel vhost
+        - 89  # NDRPDR sel vhost
+        - 91  # NDRPDR sel vhost
+        - 92  # NDRPDR sel vhost
+        - 93  # NDRPDR sel vhost
+        - 94  # NDRPDR sel vhost
+        - 95  # NDRPDR sel vhost
+        - 96  # NDRPDR sel vhost
+        - 97  # NDRPDR sel vhost
+        - 98  # NDRPDR sel vhost
 
     plot-vpp-soak-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
@@ -380,10 +383,9 @@
         - 33  # NDRPDR full
         - 36  # NDRPDR full
         - 38  # NDRPDR full
-        - 46  # NDRPDR full
+        - 50  # NDRPDR full vhost
 
     vpp-perf-results-3n-skx:
-      # TODO: Add FULL data
       csit-vpp-perf-verify-1908-3n-skx:
         - 27  # NDRPDR full
         - 28  # NDRPDR full
@@ -397,7 +399,7 @@
         - 39  # NDRPDR full
         - 40  # NDRPDR full
         - 41  # NDRPDR full
-        - 50  # NDRPDR full
+        - 54  # NDRPDR full
 
     vpp-perf-results-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
@@ -407,7 +409,7 @@
         - 51  # NDRPDR full
         - 54  # NDRPDR full
         - 55  # NDRPDR full
-        - 79  # NDRPDR full vhost
+        - 90  # NDRPDR full vhost
 
     vpp-perf-results-3n-tsh:
       csit-vpp-perf-verify-1908-3n-tsh:
@@ -1400,12 +1402,16 @@
       - 19  # NDRPDR sel
       - 20  # NDRPDR sel
       - 21  # NDRPDR sel
-      - 40  # NDRPDR sel vhost
-      - 41  # NDRPDR sel vhost
-      - 42  # NDRPDR sel vhost
-      - 43  # NDRPDR sel vhost
-      - 44  # NDRPDR sel vhost
-      - 45  # NDRPDR sel vhost
+      - 48  # NDRPDR sel vhost
+      - 49  # NDRPDR sel vhost
+      - 52  # NDRPDR sel vhost
+      - 53  # NDRPDR sel vhost
+      - 54  # NDRPDR sel vhost
+      - 55  # NDRPDR sel vhost
+      - 56  # NDRPDR sel vhost
+      - 57  # NDRPDR sel vhost
+      - 58  # NDRPDR sel vhost
+      - 59  # NDRPDR sel vhost
       - 24  # NDRPDR full
       - 25  # NDRPDR full
       - 26  # NDRPDR full
@@ -1416,7 +1422,7 @@
       - 33  # NDRPDR full
       - 36  # NDRPDR full
       - 38  # NDRPDR full
-      - 46  # NDRPDR full
+      - 50  # NDRPDR full vhost
       - 39  # MRR sel
 
     csit-vpp-perf-verify-1901-3n-skx:
@@ -1465,12 +1471,9 @@
       - 25  # NDRPDR sel
       - 26  # NDRPDR sel
       - 29  # NDRPDR sel
-      - 44  # NDRPDR sel vhost
-      - 45  # NDRPDR sel vhost
-      - 46  # NDRPDR sel vhost
-      - 47  # NDRPDR sel vhost
-      - 48  # NDRPDR sel vhost
-      - 49  # NDRPDR sel vhost
+      - 52  # NDRPDR sel vhost
+      - 53  # NDRPDR sel vhost
+      - 55  # NDRPDR sel vhost
       - 27  # NDRPDR full
       - 28  # NDRPDR full
       - 30  # NDRPDR full
@@ -1483,7 +1486,7 @@
       - 39  # NDRPDR full
       - 40  # NDRPDR full
       - 41  # NDRPDR full
-      - 50  # NDRPDR full
+      - 54  # NDRPDR full
       - 36  # MRR sel
 
     csit-vpp-perf-verify-1901-2n-skx:
@@ -1522,21 +1525,23 @@
       - 44  # NDRPDR sel
       - 45  # NDRPDR sel
       - 46  # NDRPDR sel
-      - 72  # NDRPDR sel vhost
-      - 73  # NDRPDR sel vhost
-      - 74  # NDRPDR sel vhost
-      - 75  # NDRPDR sel vhost
-      - 76  # NDRPDR sel vhost
-      - 78  # NDRPDR sel vhost
-      - 84  # NDRPDR sel vhost
-      - 85  # NDRPDR sel vhost
+      - 88  # NDRPDR sel vhost
+      - 89  # NDRPDR sel vhost
+      - 91  # NDRPDR sel vhost
+      - 92  # NDRPDR sel vhost
+      - 93  # NDRPDR sel vhost
+      - 94  # NDRPDR sel vhost
+      - 95  # NDRPDR sel vhost
+      - 96  # NDRPDR sel vhost
+      - 97  # NDRPDR sel vhost
+      - 98  # NDRPDR sel vhost
       - 48  # NDRPDR full
       - 49  # NDRPDR full
       - 50  # NDRPDR full
       - 51  # NDRPDR full
       - 54  # NDRPDR full
       - 55  # NDRPDR full
-      - 79  # NDRPDR full vhost
+      - 90  # NDRPDR full vhost
       - 69  # MRR sel
       - 29  # TCP
       - 30  # TCP
@@ -2039,6 +2044,7 @@
   compare:
     title: "rls1908"
     data: "vpp-performance-changes-3n-hsw-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
@@ -2061,6 +2067,7 @@
   compare:
     title: "rls1908"
     data: "vpp-performance-changes-3n-hsw-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
@@ -2083,6 +2090,7 @@
   compare:
     title: "rls1908"
     data: "vpp-performance-changes-3n-hsw-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'1T1C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
@@ -2105,6 +2113,7 @@
   compare:
     title: "rls1908"
     data: "vpp-performance-changes-3n-hsw-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   data: "vpp-performance-changes-3n-hsw"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
   filter: "'2T2C' and ('NDRPDR' or 'NDRPDRDISC') and (not 'VHOST' or 'VTS')"
@@ -2129,6 +2138,7 @@
   compare:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -2155,6 +2165,7 @@
   compare:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -2181,6 +2192,7 @@
   compare:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -2207,6 +2219,7 @@
   compare:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-3n-skx-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-3n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -2233,6 +2246,7 @@
   compare:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -2259,6 +2273,7 @@
   compare:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "PDR" # "PDR" | "NDR" | "MRR"
@@ -2285,6 +2300,7 @@
   compare:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -2311,6 +2327,7 @@
   compare:
     title: "rls1908 xxv710"
     data: "vpp-performance-changes-2n-skx-cmp"
+    data-replacement: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
     nic: "NIC_Intel-XXV710"
   data: "vpp-performance-changes-2n-skx"
   include-tests: "NDR" # "PDR" | "NDR" | "MRR"
@@ -8070,7 +8087,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
-  algorithm: "plot_performance_name_box-vhost"
+  algorithm: "plot_performance_name_box"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
