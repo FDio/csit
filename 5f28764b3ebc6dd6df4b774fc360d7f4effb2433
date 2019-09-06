@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c54f48a_8a1613c9",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-06T10:06:38Z",
+      "side": 1,
+      "message": "Not sure this is a good name.\ndirectionality?\ntraf_dirs?\ntraffic_directions?",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 22
+      },
+      "revId": "5f28764b3ebc6dd6df4b774fc360d7f4effb2433",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
