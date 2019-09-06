@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0cab7c56_a67af957",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-06T04:53:41Z",
+      "side": 1,
+      "message": "Remove immediately!! And use the imports.",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 542,
+        "endChar": 38
+      },
+      "revId": "f206e0ea13e08de1b7baf9b8cecdca68af7d27a9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
