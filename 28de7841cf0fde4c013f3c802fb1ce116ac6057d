@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "3af451a6_f4f52138",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-06T10:09:03Z",
+      "side": 1,
+      "message": "Are you expecting NDRPDR to fail? \nIn fact I agree with Vratko that maintaining such non standard test cases is very hard and will not be done by CSIT team. If you put there NDRPDR you can still trigger MRR but implementation is clean. On the other hand if you will insist on MRR only, this will have an implication that those testcases will quickly fade into not working at all and will not get into CSIT report 20.01 (where we build it on NDRPDR). \n\nSee the graveyard of such approach in DMM/NSH/TLDK tests, which are broken very long time due to its non standard implementation and lack of maintenance from community.\n\nThank you for understanding.",
+      "parentUuid": "c9b8ac41_70460686",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 22
+      },
+      "revId": "28de7841cf0fde4c013f3c802fb1ce116ac6057d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6691eabf_84d44938",
         "filename": "resources/libraries/robot/lb/load_balancer.robot",
         "patchSetId": 1
