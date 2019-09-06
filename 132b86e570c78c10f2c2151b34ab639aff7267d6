@@ -22,6 +22,30 @@
       "revId": "132b86e570c78c10f2c2151b34ab639aff7267d6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a1e9ddd8_ba2252cd",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-06T16:15:02Z",
+      "side": 1,
+      "message": "Should not be a problem here (initial connection, no data in flight yet).\nSee lines 563-565 for (lack of) reconnect during the execution itself.",
+      "parentUuid": "5aeda501_e2970820",
+      "range": {
+        "startLine": 319,
+        "startChar": 1,
+        "endLine": 327,
+        "endChar": 60
+      },
+      "revId": "132b86e570c78c10f2c2151b34ab639aff7267d6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
