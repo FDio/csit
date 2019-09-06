@@ -637,12 +637,22 @@ class Specification(object):
                             if isinstance(data_set, str):
                                 element[item]["data"] = \
                                     self.configuration["data-sets"][data_set]
+                            data_set = element[item].get("data-replacement",
+                                                         None)
+                            if isinstance(data_set, str):
+                                element[item]["data-replacement"] = \
+                                    self.configuration["data-sets"][data_set]
 
                     if element.get("history", None):
                         for i in range(len(element["history"])):
                             data_set = element["history"][i].get("data", None)
                             if isinstance(data_set, str):
                                 element["history"][i]["data"] = \
+                                    self.configuration["data-sets"][data_set]
+                            data_set = element["history"][i].get(
+                                "data-replacement", None)
+                            if isinstance(data_set, str):
+                                element["history"][i]["data-replacement"] = \
                                     self.configuration["data-sets"][data_set]
 
                 except KeyError:
