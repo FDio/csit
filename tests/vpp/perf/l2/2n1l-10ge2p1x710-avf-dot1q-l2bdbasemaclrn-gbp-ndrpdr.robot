@@ -89,6 +89,7 @@
 | | And Initialize layer dot1q
 | | And Initialize GBP routing domains
 | | Then Find NDR and PDR intervals using optimized search
+| | ... | unidirection=${True}
 
 *** Test Cases ***
 | tc01-64B-1c-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr
