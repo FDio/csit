@@ -145,6 +145,30 @@
     },
     {
       "key": {
+        "uuid": "cdad7dca_bfa0db22",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-06T12:10:35Z",
+      "side": 1,
+      "message": "\u003e test results are failed.\n\nI do not see a good reason why NDRPDR should fail when MRR passes.\nSounds like VPP bug, and in that case we want the NDRPDR suite to be available, so we can verify when the bug is fixed.",
+      "parentUuid": "25100441_ae91b2c5",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 22
+      },
+      "revId": "28de7841cf0fde4c013f3c802fb1ce116ac6057d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6691eabf_84d44938",
         "filename": "resources/libraries/robot/lb/load_balancer.robot",
         "patchSetId": 1
@@ -286,6 +310,30 @@
       "side": 1,
       "message": "Load-balancer maglev mode tests the performance that load-balancer forward to services.\nso we only care the performance that max throughput from TG to DUT(MRR).\nThe destination is not making all three test types support unidirection.",
       "parentUuid": "8a8d574c_c61abcec",
+      "range": {
+        "startLine": 76,
+        "startChar": 10,
+        "endLine": 76,
+        "endChar": 30
+      },
+      "revId": "28de7841cf0fde4c013f3c802fb1ce116ac6057d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7c2ba1f_7ae1c1f4",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-mrr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-06T12:10:35Z",
+      "side": 1,
+      "message": "The current patch of the change [1] to support unidirectional traffic in mrr/ndrpdr/soak tests uses different argument and value, see [2].\n\n[1] https://gerrit.fd.io/r/c/csit/+/21830\n[2] https://gerrit.fd.io/r/c/csit/+/21849/4/tests/vpp/perf/l2/2n1l-10ge2p1x710-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr.robot",
+      "parentUuid": "64f71447_77186b54",
       "range": {
         "startLine": 76,
         "startChar": 10,
