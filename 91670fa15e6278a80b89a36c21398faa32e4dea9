@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "868a568a_d76b40f8",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-06T12:49:09Z",
+      "side": 1,
+      "message": "This is not a PAPI socket for reading stats. It is a socket for co-located program to get file descriptor for shared memory.\nCSIT currently needs ssh+bash access so it can start so-located Python utility.",
+      "range": {
+        "startLine": 446,
+        "startChar": 43,
+        "endLine": 446,
+        "endChar": 53
+      },
+      "revId": "91670fa15e6278a80b89a36c21398faa32e4dea9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
