@@ -251,8 +251,8 @@ class ExecutionChecker(ResultVisitor):
     # TODO: Remove when definitely no NDRPDRDISC tests are used:
     REGEX_RATE = re.compile(r'^[\D\d]*FINAL_RATE:\s(\d+\.\d+)\s(\w+)')
 
-    REGEX_PLR_RATE = re.compile(r'PLRsearch lower bound::\s(\d+.\d+).*\n'
-                                r'PLRsearch upper bound::\s(\d+.\d+)')
+    REGEX_PLR_RATE = re.compile(r'PLRsearch lower bound::?\s(\d+.\d+).*\n'
+                                r'PLRsearch upper bound::?\s(\d+.\d+)')
 
     REGEX_NDRPDR_RATE = re.compile(r'NDR_LOWER:\s(\d+.\d+).*\n.*\n'
                                    r'NDR_UPPER:\s(\d+.\d+).*\n'
