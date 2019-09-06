@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ffcbad4_18843219",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-06T16:43:13Z",
+      "side": 1,
+      "message": "You can remove this collection (and rename line 238) as 21425 has been merged, so CSIT does not need to support two collections at once anymore.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 13
+      },
+      "revId": "47e390f19d88e15a422ebe06d153e97bd3474ced",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
