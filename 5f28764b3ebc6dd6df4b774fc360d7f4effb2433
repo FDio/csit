@@ -22,6 +22,30 @@
       "revId": "5f28764b3ebc6dd6df4b774fc360d7f4effb2433",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "32345d32_abe737f9",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-06T10:17:11Z",
+      "side": 1,
+      "message": "traffic_directions Although modeling this into integer is sort of weird (not sure how many direction the world knows :) ) but i agree that code is more simple in this way.",
+      "parentUuid": "8c54f48a_8a1613c9",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 22
+      },
+      "revId": "5f28764b3ebc6dd6df4b774fc360d7f4effb2433",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
