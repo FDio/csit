@@ -23,3 +23,7 @@ CSIT source code for the test cases used for plots can be found in
     vm_vhost-3n-skx-xxv710
     vm_vhost-3n-skx-x710
     vm_vhost-3n-hsw-xl710
+<<<<<<< HEAD   (5c8fe4 FIX: correct crc for sw_interface_slave_details)
+=======
+    vm_vhost-3n-tsh-x520
+>>>>>>> CHANGE (4dc7d6 PAL: Add replacing of data in tables)

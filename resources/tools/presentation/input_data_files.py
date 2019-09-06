@@ -86,6 +86,7 @@ def _download_file(url, file_name, log, arch=False):
         return session
 
     success = False
+    session = None
     try:
         log.append(("INFO", "    Connecting to '{0}' ...".format(url)))
         session = requests_retry_session()
