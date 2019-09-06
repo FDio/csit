@@ -56,7 +56,7 @@ def fmt_latency(lat_min, lat_avg, lat_max):
 
 
 def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
-                 port_1, latency, async_start=False, unidirection=False):
+                 port_1, latency, async_start=False, traffic_directions=2):
     """Send traffic and measure packet loss and latency.
 
     Procedure:
@@ -83,7 +83,7 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
     :param port_1: Port 1 on the traffic generator.
     :param latency: With latency stats.
     :param async_start: Start the traffic and exit.
-    :param unidirection: Traffic is unidirectional.
+    :param traffic_directions: Bidirectional (2) or unidirectional (1) traffic.
     :type profile_file: str
     :type framesize: int or str
     :type duration: float
@@ -93,7 +93,7 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
     :type port_1: int
     :type latency: bool
     :type async_start: bool
-    :type unidirection: bool
+    :type traffic_directions: int
     """
     client = None
     total_rcvd = 0
@@ -126,17 +126,17 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
             client.set_port_attr(ports=[port_0, port_1], promiscuous=True)
         if isinstance(framesize, int):
             client.add_streams(streams[0], ports=[port_0])
-            if not unidirection:
+            if traffic_directions > 1:
                 client.add_streams(streams[1], ports=[port_1])
         elif isinstance(framesize, str):
             client.add_streams(streams[0:3], ports=[port_0])
-            if not unidirection:
+            if traffic_directions > 1:
                 client.add_streams(streams[3:6], ports=[port_1])
         if latency:
             try:
                 if isinstance(framesize, int):
                     client.add_streams(streams[2], ports=[port_0])
-                    if not unidirection:
+                    if traffic_directions > 1:
                         client.add_streams(streams[3], ports=[port_1])
                 elif isinstance(framesize, str):
                     latency = False
@@ -145,7 +145,7 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
                 print("##### FAILED to add latency streams #####")
                 latency = False
         ports = [port_0]
-        if not unidirection:
+        if traffic_directions > 1:
             ports.append(port_1)
         # Warm-up phase:
         if warmup_time > 0:
@@ -169,12 +169,12 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
             print(json.dumps(stats, indent=4, separators=(',', ': ')))
 
             lost_a = stats[port_0]["opackets"] - stats[port_1]["ipackets"]
-            if not unidirection:
+            if traffic_directions > 1:
                 lost_b = stats[port_1]["opackets"] - stats[port_0]["ipackets"]
 
             print("\npackets lost from {p_0} --> {p_1}: {v} pkts".format(
                 p_0=port_0, p_1=port_1, v=lost_a))
-            if not unidirection:
+            if traffic_directions > 1:
                 print("packets lost from {p_1} --> {p_0}: {v} pkts".format(
                     p_0=port_0, p_1=port_1, v=lost_b))
 
@@ -201,7 +201,7 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
             print(json.dumps(stats, indent=4, separators=(',', ': ')))
 
             lost_a = stats[port_0]["opackets"] - stats[port_1]["ipackets"]
-            if not unidirection:
+            if traffic_directions > 1:
                 lost_b = stats[port_1]["opackets"] - stats[port_0]["ipackets"]
 
             if latency:
@@ -209,13 +209,13 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
                     str(stats["latency"][port_0]["latency"]["total_min"]),
                     str(stats["latency"][port_0]["latency"]["average"]),
                     str(stats["latency"][port_0]["latency"]["total_max"]))
-                if not unidirection:
+                if traffic_directions > 1:
                     lat_b = fmt_latency(
                         str(stats["latency"][port_1]["latency"]["total_min"]),
                         str(stats["latency"][port_1]["latency"]["average"]),
                         str(stats["latency"][port_1]["latency"]["total_max"]))
 
-            if not unidirection:
+            if traffic_directions > 1:
                 total_sent = stats[0]["opackets"] + stats[1]["opackets"]
                 total_rcvd = stats[0]["ipackets"] + stats[1]["ipackets"]
             else:
@@ -224,7 +224,7 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
 
             print("\npackets lost from {p_0} --> {p_1}:   {v} pkts".format(
                 p_0=port_0, p_1=port_1, v=lost_a))
-            if not unidirection:
+            if traffic_directions > 1:
                 print("packets lost from {p_1} --> {p_0}:   {v} pkts".format(
                 p_0=port_0, p_1=port_1, v=lost_b))
 
@@ -287,10 +287,10 @@ def main():
                         action="store_true",
                         default=False,
                         help="Add latency stream.")
-    parser.add_argument("--unidirection",
-                        action="store_true",
-                        default=False,
-                        help="Send unidirection traffic.")
+    parser.add_argument("--traffic_directions",
+                        type=int,
+                        default=2,
+                        help="Send bi- (2) or uni- (1) directional traffic.")
 
     args = parser.parse_args()
 
@@ -308,7 +308,7 @@ def main():
                  port_1=args.port_1,
                  latency=args.latency,
                  async_start=args.async,
-                 unidirection=args.unidirection)
+                 traffic_directions=args.traffic_directions)
 
 
 if __name__ == '__main__':
