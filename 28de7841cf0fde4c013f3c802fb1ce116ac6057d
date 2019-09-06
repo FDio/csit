@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0092cf47_080a6446",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-06T09:01:31Z",
+      "side": 1,
+      "message": "It is fine that you only care about MRR results.\nBut we care about keeping autogen (and tc_naming) simple.\nYour attempt to simplify testing is actually making it harder to maintain the tests.\nIf you create ndrpdr suite, you can still keep triggering only MRR tests, without any change to autogen.",
+      "parentUuid": "1c86190b_8b5d9fa7",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 22
+      },
+      "revId": "28de7841cf0fde4c013f3c802fb1ce116ac6057d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6691eabf_84d44938",
         "filename": "resources/libraries/robot/lb/load_balancer.robot",
         "patchSetId": 1
