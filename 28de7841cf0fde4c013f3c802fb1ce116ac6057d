@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1c86190b_8b5d9fa7",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1880
+      },
+      "writtenOn": "2019-09-06T06:13:26Z",
+      "side": 1,
+      "message": "Load-balancer maglev mode tests the performance that load-balancer forward to services.\nso we only care the performance that max throughput rom TG to DUT(MRR).\nThe destination is that when the case is load-balancer type doing not NDRPDR check.\nso I think it is necessary.",
+      "parentUuid": "2bd0b883_590e366b",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 22
+      },
+      "revId": "28de7841cf0fde4c013f3c802fb1ce116ac6057d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6691eabf_84d44938",
         "filename": "resources/libraries/robot/lb/load_balancer.robot",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "28b01635_c7cfeb7e",
+        "filename": "resources/libraries/robot/lb/load_balancer.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1880
+      },
+      "writtenOn": "2019-09-06T06:13:26Z",
+      "side": 1,
+      "message": "I will keep line 45,because it is used in line54~59.\nOthers will be removed.",
+      "parentUuid": "6691eabf_84d44938",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 64
+      },
+      "revId": "28de7841cf0fde4c013f3c802fb1ce116ac6057d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "f00c1d0a_1c5b6aa2",
         "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-mrr.robot",
         "patchSetId": 1
@@ -59,6 +107,24 @@
       "writtenOn": "2019-09-06T05:24:56Z",
       "side": 1,
       "message": "Make it NDRPDR",
+      "revId": "28de7841cf0fde4c013f3c802fb1ce116ac6057d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0bcfbcdd_0962bdcd",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-mrr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880
+      },
+      "writtenOn": "2019-09-06T06:13:26Z",
+      "side": 1,
+      "message": "Load-balancer maglev mode tests the performance that load-balancer forward to services.\nso we only care the performance that max throughput from TG to DUT(MRR).\ndon\u0027t care ndrpdr performate.",
+      "parentUuid": "f00c1d0a_1c5b6aa2",
       "revId": "28de7841cf0fde4c013f3c802fb1ce116ac6057d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
@@ -100,6 +166,30 @@
       "side": 1,
       "message": "\u003e  I can make all three test types support unidirection\n\nHere is the first attempt [0]. Not tested yet, but you can start looking at it, to see if it fits here.\n\n[0] https://gerrit.fd.io/r/c/csit/+/21830",
       "parentUuid": "f0dce1f5_f0b32692",
+      "range": {
+        "startLine": 76,
+        "startChar": 10,
+        "endLine": 76,
+        "endChar": 30
+      },
+      "revId": "28de7841cf0fde4c013f3c802fb1ce116ac6057d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64f71447_77186b54",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-mrr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1880
+      },
+      "writtenOn": "2019-09-06T06:13:26Z",
+      "side": 1,
+      "message": "Load-balancer maglev mode tests the performance that load-balancer forward to services.\nso we only care the performance that max throughput from TG to DUT(MRR).\nThe destination is not making all three test types support unidirection.",
+      "parentUuid": "8a8d574c_c61abcec",
       "range": {
         "startLine": 76,
         "startChar": 10,
