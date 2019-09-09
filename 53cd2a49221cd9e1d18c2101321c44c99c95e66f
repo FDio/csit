@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7731cf0e_94f6238e",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T15:07:58Z",
+      "side": 1,
+      "message": "Not unpacked, created VPP improvement [1] for reading the right thing.\n\n[1] https://gerrit.fd.io/r/c/vpp/+/21925",
+      "range": {
+        "startLine": 600,
+        "startChar": 31,
+        "endLine": 600,
+        "endChar": 60
+      },
+      "revId": "53cd2a49221cd9e1d18c2101321c44c99c95e66f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
