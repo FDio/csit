@@ -254,9 +254,10 @@
         - 84  # NDRPDR sel vhost
         - 85  # NDRPDR sel vhost
 
-#    plot-vpp-soak-2n-skx:
-#      # TODO: Add data
-#      csit-vpp-perf-verify-1908-2n-skx:
+    plot-vpp-soak-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 83  # SOAK
+        - 86  # SOAK
 
     plot-vpp-nfv-2n-skx-ndrpdr:
       csit-vpp-perf-verify-1908-2n-skx:
@@ -636,42 +637,36 @@
       - "vpp-performance-changes-2n-skx-ref"
       - "vpp-performance-changes-2n-skx-cmp"
 
-#    vpp-soak-vs-ndr-2n-skx-ref:
-#      csit-vpp-perf-verify-1904-2n-skx:
-#        - 12  # NDRPDR sel
-#        - 14  # NDRPDR sel
-#        - 16  # NDRPDR sel
-#        - 17  # NDRPDR sel
-#        - 18  # NDRPDR sel
-#        - 21  # NDRPDR sel
-#        - 27  # NDRPDR sel
-#        - 30  # NDRPDR sel
-#        - 31  # NDRPDR sel
-#        - 32  # NDRPDR sel
-#      # TODO: Add data
-#      # csit-vpp-perf-verify-1908-2n-skx:
-#    vpp-soak-vs-ndr-2n-skx-cmp:
-#      csit-vpp-perf-verify-1904-2n-skx:
-#        - 70  # soak
-#        - 71  # soak
-#      # TODO: Add data
-#      # csit-vpp-perf-verify-1908-2n-skx:
-#    vpp-soak-vs-ndr-2n-skx:
-#      csit-vpp-perf-verify-1904-2n-skx:
-#        - 12  # NDRPDR sel
-#        - 14  # NDRPDR sel
-#        - 16  # NDRPDR sel
-#        - 17  # NDRPDR sel
-#        - 18  # NDRPDR sel
-#        - 21  # NDRPDR sel
-#        - 27  # NDRPDR sel
-#        - 30  # NDRPDR sel
-#        - 31  # NDRPDR sel
-#        - 32  # NDRPDR sel
-#        - 70  # soak
-#        - 71  # soak
-#      # TODO: Add data
-#      # csit-vpp-perf-verify-1908-2n-skx:
+    vpp-soak-vs-ndr-2n-skx-ref:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 34  # NDRPDR sel
+        - 35  # NDRPDR sel
+        - 36  # NDRPDR sel
+        - 42  # NDRPDR sel
+        - 43  # NDRPDR sel
+        - 44  # NDRPDR sel
+        - 45  # NDRPDR sel
+        - 46  # NDRPDR sel
+    vpp-soak-vs-ndr-2n-skx-cmp:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 83  # SOAK
+        - 86  # SOAK
+    vpp-soak-vs-ndr-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 26  # NDRPDR sel
+        - 27  # NDRPDR sel
+        - 34  # NDRPDR sel
+        - 35  # NDRPDR sel
+        - 36  # NDRPDR sel
+        - 42  # NDRPDR sel
+        - 43  # NDRPDR sel
+        - 44  # NDRPDR sel
+        - 45  # NDRPDR sel
+        - 46  # NDRPDR sel
+        - 83  # SOAK
+        - 86  # SOAK
 
     vpp-performance-changes-3n-hsw-mrr-h1:
       csit-vpp-perf-verify-1901-3n-hsw:
@@ -1588,6 +1583,8 @@
       - 68  # NFV
       - 70  # NFV
       - 71  # NFV MRR
+      - 83  # SOAK
+      - 86  # SOAK
 
 <<<<<<< HEAD   (97881b Report: functional tests static content)
 =======
@@ -1749,24 +1746,24 @@
 ###                               T A B L E S                                ###
 ################################################################################
 
-## VPP Soak vs NDR
-#- type: "table"
-#  title: "VPP Soak vs NDR 2n-skx"
-#  algorithm: "table_soak_vs_ndr"
-#  output-file: "{DIR[STATIC,VPP]}/soak-vs-ndr-2n-skx"
-#  reference:
-#    title: "NDR"
-#    data: "vpp-soak-vs-ndr-2n-skx-ref"
-#  compare:
-#    title: "Soak"
-#    data: "vpp-soak-vs-ndr-2n-skx-cmp"
-#  data: "vpp-soak-vs-ndr-2n-skx"
-#  include-tests: "NDR"
-#  filter: "('NDRPDR' or 'SOAK')"
-#  parameters:
-#    - "throughput"
-#    - "name"
-#    - "parent"
+# VPP Soak vs NDR
+- type: "table"
+  title: "VPP Soak vs NDR 2n-skx"
+  algorithm: "table_soak_vs_ndr"
+  output-file: "{DIR[STATIC,VPP]}/soak-vs-ndr-2n-skx"
+  reference:
+    title: "NDR"
+    data: "vpp-soak-vs-ndr-2n-skx-ref"
+  compare:
+    title: "Soak"
+    data: "vpp-soak-vs-ndr-2n-skx-cmp"
+  data: "vpp-soak-vs-ndr-2n-skx"
+  include-tests: "NDR"
+  filter: "('NDRPDR' or 'SOAK')"
+  parameters:
+    - "throughput"
+    - "name"
+    - "parent"
 
 ################################################################################
 
@@ -4709,57 +4706,59 @@
 
 ################################################################################
 
-## Soak Test (PLRsearch), boxes
-#- type: "plot"
-#  title: "VPP Critical rate: 2 Hours Soak Test (PLRsearch)"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/soak-test-1"
-#  data: "plot-vpp-soak-2n-skx"
-#  filter: "('L2BDMACLRN' or 'L2PATCH' or 'L2XCBASE') and not 'VHOST' and not 'MEMIF'"
-#  parameters:
-#    - "throughput"
-#    - "parent"
-#    - "tags"
-#  sort:
-#    - "DRV_AVF"
-#    - "DRV_AVF"
-#    - "DRV_AVF"
-#    - "L2BDMACLRN"
-#    - "L2XCBASE"
-#    - "L2PATCH"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "all"
-#    whiskerwidth: 0
-#  layout:
-#    title: "2 Hours Soak Test (PLRsearch)"
-#    layout: "plot-soak-throughput"
-#
-## Soak Test (PLRsearch), boxes
-#- type: "plot"
-#  title: "VPP Critical rate: 2 Hours Soak Test (PLRsearch)"
-#  algorithm: "plot_performance_box"
-#  output-file-type: ".html"
-#  output-file: "{DIR[STATIC,VPP]}/soak-test-2"
-#  data: "plot-vpp-soak-2n-skx"
-#  filter: "'L2BDMACLRN' and ('VHOST' or 'MEMIF') or 'IP4BASE' or 'IP6BASE'"
-#  parameters:
-#    - "throughput"
-#    - "parent"
-#    - "tags"
-#  sort:
-#    - "VHOST"
-#    - "MEMIF"
-#    - "IP4FWD"
-#    - "IP6FWD"
-#  traces:
-#    hoverinfo: "x+y"
-#    boxpoints: "all"
-#    whiskerwidth: 0
-#  layout:
-#    title: "2 Hours Soak Test (PLRsearch)"
-#    layout: "plot-soak-throughput"
+# Soak Test (PLRsearch), boxes
+- type: "plot"
+  title: "VPP Critical rate: 30 Minutes Soak Test (PLRsearch)"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/soak-test-1"
+  data: "plot-vpp-soak-2n-skx"
+  filter: "('L2BDMACLRN' or 'L2PATCH' or 'L2XCBASE') and not 'VHOST' and not 'MEMIF'"
+  parameters:
+    - "throughput"
+    - "parent"
+    - "tags"
+  sort:
+    - "DRV_AVF"
+    - "DRV_AVF"
+    - "DRV_AVF"
+    - "L2BDMACLRN"
+    - "L2XCBASE"
+    - "L2PATCH"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "all"
+    whiskerwidth: 0
+  layout:
+    title: "30 Minutes Soak Test (PLRsearch)"
+    layout: "plot-soak-throughput"
+
+# Soak Test (PLRsearch), boxes
+- type: "plot"
+  title: "VPP Critical rate: 30 Minutes Soak Test (PLRsearch)"
+  algorithm: "plot_performance_box"
+  output-file-type: ".html"
+  output-file: "{DIR[STATIC,VPP]}/soak-test-2"
+  data: "plot-vpp-soak-2n-skx"
+  filter: "'L2BDMACLRN' and ('VHOST' or 'MEMIF') or 'IP4BASE' or 'IP6BASE'"
+  parameters:
+    - "throughput"
+    - "parent"
+    - "tags"
+  sort:
+    - "VHOST"
+    - "VHOST"
+    - "MEMIF"
+    - "IP4FWD"
+    - "IP4FWD"
+    - "IP6FWD"
+  traces:
+    hoverinfo: "x+y"
+    boxpoints: "all"
+    whiskerwidth: 0
+  layout:
+    title: "30 Minutes Soak Test (PLRsearch)"
+    layout: "plot-soak-throughput"
 
 ###############################################################################
 # Plots - NF Density - VSC - MRR 64b
