@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "64ea5cb2_35c4e8f3",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T16:46:10Z",
+      "side": 1,
+      "message": "Do not trail whitespace please.",
+      "range": {
+        "startLine": 203,
+        "startChar": 79,
+        "endLine": 203,
+        "endChar": 80
+      },
+      "revId": "a3d5de6da92dc1a69240a607b041b7fa224d76ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
