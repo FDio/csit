@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "338d80e6_b150ca40",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-09T13:54:38Z",
+      "side": 1,
+      "message": "This is because of tmpfs with proper mount params instead of /tmp. Other option is /run/\nDefinitely we should move all sockets from /tmp (see vpp)",
+      "parentUuid": "1e3df955_971e59a7",
+      "range": {
+        "startLine": 224,
+        "startChar": 47,
+        "endLine": 224,
+        "endChar": 56
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56cb4149_bfcbb1b4",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 14
@@ -36,6 +60,30 @@
       "writtenOn": "2019-09-09T13:43:10Z",
       "side": 1,
       "message": "Oh, I do not think this is needed anymore, no test should rely on this output. You can delete.",
+      "range": {
+        "startLine": 401,
+        "startChar": 15,
+        "endLine": 401,
+        "endChar": 20
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "98d8706b_85bcf2ba",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-09T13:54:38Z",
+      "side": 1,
+      "message": "Whole function?",
+      "parentUuid": "56cb4149_bfcbb1b4",
       "range": {
         "startLine": 401,
         "startChar": 15,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fa9101e4_491e7286",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-09T13:54:38Z",
+      "side": 1,
+      "message": "Yeah, right now no use-case",
+      "parentUuid": "7ea5fc89_04216d8b",
+      "range": {
+        "startLine": 462,
+        "startChar": 8,
+        "endLine": 462,
+        "endChar": 11
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "2745241f_bc451757",
         "filename": "resources/libraries/python/VppCounters.py",
         "patchSetId": 14
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "89619bc0_1632797a",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-09T13:54:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2745241f_bc451757",
+      "range": {
+        "startLine": 63,
+        "startChar": 16,
+        "endLine": 63,
+        "endChar": 46
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f3b88ef0_424ea7d9",
         "filename": "resources/libraries/python/topology.py",
         "patchSetId": 14
@@ -105,6 +201,30 @@
       "writtenOn": "2019-09-09T13:43:10Z",
       "side": 1,
       "message": "Copypaste from VppConfigGenerator.add_config_item?\nShould be a standalone utility (function or staticmethod, as self is not used for anything except recursion).\n\nOr create a base class, so Topology and VppConfigGenerator are subclasses?\n\nDoes not need to be done in this Change, create a Jira ticket (or just add a TODO comment) we can assign to another team member.",
+      "range": {
+        "startLine": 92,
+        "startChar": 8,
+        "endLine": 92,
+        "endChar": 21
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8236d514_b26edb2a",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-09T13:54:38Z",
+      "side": 1,
+      "message": "Yeah, could be in later, but i want to rather avoid over-class it. This is more yaml and vpp is more cfg. not sure if they diverge in future",
+      "parentUuid": "f3b88ef0_424ea7d9",
       "range": {
         "startLine": 92,
         "startChar": 8,
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "c8362ba1_17efdcd4",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-09T13:54:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abfd074d_a49af6db",
+      "range": {
+        "startLine": 94,
+        "startChar": 43,
+        "endLine": 94,
+        "endChar": 52
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "aab3b788_3e37044d",
         "filename": "resources/libraries/robot/shared/container.robot",
         "patchSetId": 14
@@ -151,6 +295,30 @@
       "writtenOn": "2019-09-09T13:43:10Z",
       "side": 1,
       "message": "TODO: Document ${container_chain_topology} and its values.",
+      "range": {
+        "startLine": 200,
+        "startChar": 32,
+        "endLine": 200,
+        "endChar": 33
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96a3be40_ce825267",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-09T13:54:38Z",
+      "side": 1,
+      "message": "It is global. I can only add note it uses the vars.",
+      "parentUuid": "aab3b788_3e37044d",
       "range": {
         "startLine": 200,
         "startChar": 32,
