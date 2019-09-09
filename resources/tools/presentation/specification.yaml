@@ -38,7 +38,8 @@
     DIR[DTR,MRR,VPP,3N,HSW]: "{DIR[DTR]}/vpp_mrr_results_3n_hsw"
     DIR[DTR,MRR,VPP,3N,SKX]: "{DIR[DTR]}/vpp_mrr_results_3n_skx"
     DIR[DTR,MRR,VPP,2N,SKX]: "{DIR[DTR]}/vpp_mrr_results_2n_skx"
-    # DIR[DTR,MRR,VPP,2N,DNV]: "{DIR[DTR]}/vpp_mrr_results_2n_dnv"
+    DIR[DTR,MRR,VPP,3N,DNV]: "{DIR[DTR]}/vpp_mrr_results_3n_dnv"
+    DIR[DTR,MRR,VPP,2N,DNV]: "{DIR[DTR]}/vpp_mrr_results_2n_dnv"
     DIR[DTR,PERF,COT,3N,HSW]: "{DIR[DTR]}/cot_performance_results_3n_hsw"
     DIR[DTR,FUNC,VPP,UBUNTU]: "{DIR[DTR]}/vpp_functional_results_ubuntu"
     DIR[DTR,FUNC,VPP,CENTOS]: "{DIR[DTR]}/vpp_functional_results_centos"
@@ -59,7 +60,8 @@
     DIR[DTC,MRR,VPP,3N,HSW]: "{DIR[DTC]}/vpp_mrr_configuration_3n_hsw"
     DIR[DTC,MRR,VPP,3N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_3n_skx"
     DIR[DTC,MRR,VPP,2N,SKX]: "{DIR[DTC]}/vpp_mrr_configuration_2n_skx"
-    # DIR[DTC,MRR,VPP,2N,DNV]: "{DIR[DTC]}/vpp_mrr_configuration_2n_dnv"
+    DIR[DTC,MRR,VPP,3N,DNV]: "{DIR[DTC]}/vpp_mrr_configuration_3n_dnv"
+    DIR[DTC,MRR,VPP,2N,DNV]: "{DIR[DTC]}/vpp_mrr_configuration_2n_dnv"
     DIR[DTC,FUNC,VPP,UBUNTU]: "{DIR[DTC]}/vpp_functional_configuration_ubuntu"
     DIR[DTC,FUNC,VPP,CENTOS]: "{DIR[DTC]}/vpp_functional_configuration_centos"
     DIR[DTC,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTC]}/vpp_device_configuration_ubuntu"
@@ -430,6 +432,14 @@
     vpp-mrr-results-2n-skx:
       csit-vpp-perf-verify-1908-2n-skx:
         - 69  # MRR sel
+
+    vpp-mrr-results-3n-dnv:
+      csit-vpp-perf-verify-1908-3n-dnv:
+        - 17  # MRR sel
+
+    vpp-mrr-results-2n-dnv:
+      csit-vpp-perf-verify-1908-2n-dnv:
+        - 11  # MRR sel
 
     vpp-func-results-ubuntu:
       csit-vpp-functional-1908-ubuntu1604-virl:
@@ -1575,6 +1585,7 @@
       - 14  # NDRPDR sel
       - 15  # NDRPDR sel
       - 16  # NDRPDR sel
+      - 17  # MRR sel
 
     csit-vpp-perf-verify-1908-2n-dnv:
       - 1   # NDRPDR sel
@@ -1587,6 +1598,7 @@
       - 8   # NDRPDR sel
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
+      - 11  # MRR sel
 
     csit-dpdk-perf-verify-1901-3n-hsw:
       - 13  # NDRPDR sel
@@ -3193,6 +3205,44 @@
   - "parent"
   - "msg"
 
+# Detailed Test Results - VPP MRR Results 3n-dnv
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 3n-dnv"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,MRR,VPP,3N,DNV]}/vpp_mrr_results_3n_dnv"
+  columns:
+  - title: "Name"
+    data: "data name"
+  - title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "vpp-mrr-results-3n-dnv"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
+# Detailed Test Results - VPP MRR Results 2n-dnv
+- type: "table"
+  title: "Detailed Test Results - VPP MRR Results 2n-dnv"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTR,MRR,VPP,2N,DNV]}/vpp_mrr_results_2n_dnv"
+  columns:
+  - title: "Name"
+    data: "data name"
+  - title: "Status"
+    data: "data msg"
+  rows: "generated"
+  data: "vpp-mrr-results-2n-dnv"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "parent"
+  - "msg"
+
 # Test configuration - VPP MRR Test Configs 3n-hsw
 - type: "table"
   title: "Test configuration - VPP MRR Test Configs 3n-hsw"
@@ -3244,6 +3294,44 @@
     data: "data conf-history"
   rows: "generated"
   data: "vpp-mrr-results-2n-skx"
+  filter: "'MRR'"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test configuration - VPP MRR Test Configs 3n-dnv
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 3n-dnv"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,MRR,VPP,3N,DNV]}/vpp_mrr_test_configuration_3n_dnv"
+  columns:
+  - title: "Name"
+    data: "data name"
+  - title: "VPP API Test Commands History - Commands Used Per Test Case"
+    data: "data conf-history"
+  rows: "generated"
+  data: "vpp-mrr-results-3n-dnv"
+  filter: "'MRR'"
+  parameters:
+  - "parent"
+  - "name"
+  - "conf-history"
+
+# Test configuration - VPP MRR Test Configs 2n-dnv
+- type: "table"
+  title: "Test configuration - VPP MRR Test Configs 2n-dnv"
+  algorithm: "table_details"
+  output-file-ext: ".csv"
+  output-file: "{DIR[DTC,MRR,VPP,2N,DNV]}/vpp_mrr_test_configuration_2n_dnv"
+  columns:
+  - title: "Name"
+    data: "data name"
+  - title: "VPP API Test Commands History - Commands Used Per Test Case"
+    data: "data conf-history"
+  rows: "generated"
+  data: "vpp-mrr-results-2n-dnv"
   filter: "'MRR'"
   parameters:
   - "parent"
@@ -4154,6 +4242,40 @@
   - "parent"
   data-start-level: 3
 
+# VPP MRR Results 3n-dnv
+- type: "file"
+  title: "VPP MRR Results 3n-dnv"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,MRR,VPP,3N,DNV]}/vpp_mrr_results_3n_dnv"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,MRR,VPP,3N,DNV]}"
+  data: "vpp-mrr-results-3n-dnv"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
+
+# VPP MRR Results 2n-dnv
+- type: "file"
+  title: "VPP MRR Results 2n-dnv"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTR,MRR,VPP,2N,DNV]}/vpp_mrr_results_2n_dnv"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTR,MRR,VPP,2N,DNV]}"
+  data: "vpp-mrr-results-2n-dnv"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
+
 # VPP MRR Configuration 3n-hsw
 - type: "file"
   title: "VPP MRR Configuration 3n-hsw"
@@ -4197,6 +4319,23 @@
   file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
   dir-tables: "{DIR[DTC,MRR,VPP,2N,SKX]}"
   data: "vpp-mrr-results-2n-skx"
+  filter: "'MRR'"
+  parameters:
+  - "name"
+  - "doc"
+  - "level"
+  - "parent"
+  data-start-level: 3
+
+# VPP MRR Configuration 3n-dnv
+- type: "file"
+  title: "VPP MRR Configuration 3n-dnv"
+  algorithm: "file_test_results"
+  output-file-ext: ".rst"
+  output-file: "{DIR[DTC,MRR,VPP,3N,DNV]}/vpp_mrr_configuration_3n_dnv"
+  file-header: "\n.. |br| raw:: html\n\n    <br />\n\n\n.. |prein| raw:: html\n\n    <pre>\n\n\n.. |preout| raw:: html\n\n    </pre>\n\n"
+  dir-tables: "{DIR[DTC,MRR,VPP,3N,DNV]}"
+  data: "vpp-mrr-results-3n-dnv"
   filter: "'MRR'"
   parameters:
   - "name"
