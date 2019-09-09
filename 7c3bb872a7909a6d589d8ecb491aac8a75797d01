@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1e3df955_971e59a7",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T13:43:10Z",
+      "side": 1,
+      "message": "The vpp-api.sock is a unix domain socket file on robot machine. It is backed by SSH client process, it is not an access point towards shared memory in any usual way, definitely not to VPP\u0027s shared memory.",
+      "range": {
+        "startLine": 224,
+        "startChar": 47,
+        "endLine": 224,
+        "endChar": 56
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56cb4149_bfcbb1b4",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T13:43:10Z",
+      "side": 1,
+      "message": "Oh, I do not think this is needed anymore, no test should rely on this output. You can delete.",
+      "range": {
+        "startLine": 401,
+        "startChar": 15,
+        "endLine": 401,
+        "endChar": 20
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7ea5fc89_04216d8b",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T13:43:10Z",
+      "side": 1,
+      "message": "Return the list of outputs? Can be added later when a test is actually interested in doing something with them, other than just logging.",
+      "range": {
+        "startLine": 462,
+        "startChar": 8,
+        "endLine": 462,
+        "endChar": 11
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2745241f_bc451757",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T13:43:10Z",
+      "side": 1,
+      "message": "Can be moved before line 60.",
+      "range": {
+        "startLine": 63,
+        "startChar": 16,
+        "endLine": 63,
+        "endChar": 46
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3b88ef0_424ea7d9",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T13:43:10Z",
+      "side": 1,
+      "message": "Copypaste from VppConfigGenerator.add_config_item?\nShould be a standalone utility (function or staticmethod, as self is not used for anything except recursion).\n\nOr create a base class, so Topology and VppConfigGenerator are subclasses?\n\nDoes not need to be done in this Change, create a Jira ticket (or just add a TODO comment) we can assign to another team member.",
+      "range": {
+        "startLine": 92,
+        "startChar": 8,
+        "endLine": 92,
+        "endChar": 21
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abfd074d_a49af6db",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T13:43:10Z",
+      "side": 1,
+      "message": "Alright, this catches both sockets.",
+      "range": {
+        "startLine": 94,
+        "startChar": 43,
+        "endLine": 94,
+        "endChar": 52
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aab3b788_3e37044d",
+        "filename": "resources/libraries/robot/shared/container.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T13:43:10Z",
+      "side": 1,
+      "message": "TODO: Document ${container_chain_topology} and its values.",
+      "range": {
+        "startLine": 200,
+        "startChar": 32,
+        "endLine": 200,
+        "endChar": 33
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
