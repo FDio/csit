@@ -22,6 +22,30 @@
       "revId": "47e390f19d88e15a422ebe06d153e97bd3474ced",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f74303d_3807ee9a",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-09T10:11:26Z",
+      "side": 1,
+      "message": "But we need to move vpp stable build first...",
+      "parentUuid": "9ffcbad4_18843219",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 13
+      },
+      "revId": "47e390f19d88e15a422ebe06d153e97bd3474ced",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
