@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0245dc12_3ebec0d8",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T16:46:10Z",
+      "side": 1,
+      "message": "Ok, reading [0] made me agree something under \"/run\" (ending slash not needed) would be appropriate.\n\"/run/tmp\"? \"/run/fdio/csit\"?\n\n[0] http://www.h-online.com/open/news/item/Linux-distributions-to-include-run-directory-1219006.html",
+      "parentUuid": "338d80e6_b150ca40",
+      "range": {
+        "startLine": 224,
+        "startChar": 47,
+        "endLine": 224,
+        "endChar": 56
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "56cb4149_bfcbb1b4",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 14
@@ -120,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "c0c98c8c_38494091",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T16:46:10Z",
+      "side": 1,
+      "message": "Return value is used. Trace about reply is unused.\nKeep the function, but delete the line.",
+      "parentUuid": "45a5ded1_1c3d092c",
+      "range": {
+        "startLine": 401,
+        "startChar": 15,
+        "endLine": 401,
+        "endChar": 20
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7ea5fc89_04216d8b",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 14
@@ -164,6 +212,30 @@
       "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "239e5b2e_5797172c",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T16:46:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fa9101e4_491e7286",
+      "range": {
+        "startLine": 462,
+        "startChar": 8,
+        "endLine": 462,
+        "endChar": 11
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -282,6 +354,30 @@
       "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6a2967ce_fe18eb90",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T16:46:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8236d514_b26edb2a",
+      "range": {
+        "startLine": 92,
+        "startChar": 8,
+        "endLine": 92,
+        "endChar": 21
+      },
+      "revId": "7c3bb872a7909a6d589d8ecb491aac8a75797d01",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
