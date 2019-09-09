@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f07b06a7_f13f7ca9",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T15:40:15Z",
+      "side": 1,
+      "message": "These two triggers are there for a reason.",
+      "range": {
+        "startLine": 240,
+        "startChar": 0,
+        "endLine": 240,
+        "endChar": 1
+      },
+      "revId": "ccf72b55aa844f024ece29624ee2ad5ef32e19c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
