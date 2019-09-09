@@ -8,14 +8,11 @@ FD.io CSIT-1908 Report history and per .[ww] revision changes are listed below.
 +================+============================================================+
 | .37            | 1. Fixes in comparison tables.                             |
 |                |                                                            |
-|                | 2. Added data for 2n-dnv and 3n-dnv                        |
+|                | 2. Added data:                                             |
 |                |                                                            |
-|                | 3. Added data for soak tests                               |
-|                |                                                            |
-|                | 4. Added data:                                             |
-|                |                                                            |
-|                |    -                                                       |
-|                |    -                                                       |
+|                |    - 2n-dnv and 3n-dnv, ndrpdr and mrr                     |
+|                |    - soak tests                                            |
+|                |    - 2n-skx, 3n-skx and 3n-hsw, ndrpdr                     |
 |                |                                                            |
 +----------------+------------------------------------------------------------+
 | .36            | Initial version                                            |
