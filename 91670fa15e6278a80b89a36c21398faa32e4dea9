@@ -46,6 +46,30 @@
       "revId": "91670fa15e6278a80b89a36c21398faa32e4dea9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c0ec3c9_148df55a",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-09T16:46:10Z",
+      "side": 1,
+      "message": "Ack.\nNot sure why I thought this was anything else than what vpp_papi_provider.py already knows and relies on.",
+      "parentUuid": "4550bb47_3f058490",
+      "range": {
+        "startLine": 446,
+        "startChar": 43,
+        "endLine": 446,
+        "endChar": 53
+      },
+      "revId": "91670fa15e6278a80b89a36c21398faa32e4dea9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
