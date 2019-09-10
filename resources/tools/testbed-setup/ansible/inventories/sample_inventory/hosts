@@ -1,11 +1,9 @@
 all:
   children:
-    skylake: # Architecture: (options) skylake, haswell, taishan...
-      children:
-        tg:
-          hosts:
-            1.1.1.1: null #t1-tg
-        sut:
-          hosts:
-            2.2.2.2: null #t1-sut1
-            3.3.3.3: null #t1-sut2
+    tg:
+      hosts:
+        1.1.1.1: #t1-tg
+    sut:
+      hosts:
+        2.2.2.2: #t1-sut1
+        3.3.3.3: #t1-sut2

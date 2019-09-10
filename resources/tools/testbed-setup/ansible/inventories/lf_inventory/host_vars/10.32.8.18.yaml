@@ -1,0 +1,18 @@
+---
+# file: host_vars/10.32.8.18.yaml
+
+hostname: "s33-t27-sut1"
+grub:
+  isolcpus: "1-23,25-47,49-71,73-95"
+  nohz_full: "1-23,25-47,49-71,73-95"
+  rcu_nocbs: "1-23,25-47,49-71,73-95"
+sysctl:
+  kernel:
+    watchdog_cpumask: "0,24,48,72"
+  vm:
+    nr_hugepages: 65536
+    max_map_count: 20000
+
+inventory_ipmi_hostname: '10.30.55.18'
+cobbler_profile: 'ubuntu-18.04.2-server-x86_64'
+cpu_microarchitecture: "cascadelake"
