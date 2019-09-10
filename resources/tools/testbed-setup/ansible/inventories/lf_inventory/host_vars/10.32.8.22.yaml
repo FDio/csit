@@ -1,0 +1,18 @@
+---
+# file: host_vars/10.32.8.22.yaml
+
+hostname: "s37-t29-sut1"
+grub:
+  isolcpus: "1-27,29-55,57-83,85-111"
+  nohz_full: "1-27,29-55,57-83,85-111"
+  rcu_nocbs: "1-27,29-55,57-83,85-111"
+sysctl:
+  kernel:
+    watchdog_cpumask: "0,28,56,84"
+  vm:
+    nr_hugepages: 65536
+    max_map_count: 20000
+
+inventory_ipmi_hostname: '10.30.55.22'
+cobbler_profile: 'ubuntu-18.04.2-server-x86_64'
+cpu_microarchitecture: "cascadelake"

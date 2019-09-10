@@ -45,6 +45,7 @@
   file:
     path: '/etc/systemd/system/docker.service.d'
     state: 'directory'
+  tags: install-docker
 
 - name: Setup Docker http proxy
   template:
@@ -55,7 +56,7 @@
     mode: '0644'
   register: docker_register_systemd_service
   when: proxy_env is defined and proxy_env.http_proxy is defined
-  tags: copy-docker
+  tags: install-docker
 
 - name: Setup Docker https proxy
   template:
@@ -66,14 +67,14 @@
     mode: '0644'
   register: docker_register_systemd_service
   when: proxy_env is defined and proxy_env.https_proxy is defined
-  tags: copy-docker
+  tags: install-docker
 
 - name: Reload systemd daemon
   command: 'systemctl daemon-reload'
   notify: ['Restart Docker']
   when: (docker_register_systemd_service and
          docker_register_systemd_service is changed)
-  tags: restart-docker
+  tags: install-docker
 
 - name: Set specific users to docker group
   user:
@@ -82,7 +83,7 @@
     append: True
   with_items: '{{ docker_users }}'
   when: docker_users
-  tags: set-docker
+  tags: install-docker
 
 - name: Add an Apt signing key, for Kubernetes repository
   apt_key:
@@ -101,9 +102,9 @@
   apt:
     name:
       - 'kubernetes-cni=0.6.0-00'
-      - 'kubeadm={{ kubernetes.apt_package_name }}'
-      - 'kubectl={{ kubernetes.apt_package_name }}'
-      - 'kubelet={{ kubernetes.apt_package_name }}'
+      - 'kubeadm={{ kubernetes.version }}'
+      - 'kubectl={{ kubernetes.version }}'
+      - 'kubelet={{ kubernetes.version }}'
     state: 'present'
     force: yes
   tags: install-kubernetes

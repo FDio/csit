@@ -2,21 +2,28 @@
 # file: roles/tg/tasks/trex.yaml
 
 - name: Download TRex release archive
-  become: yes
   get_url:
     url: '{{ trex.url }}/v{{ trex.version }}.tar.gz'
-    dest: '{{ trex.target_dir }}/v{{ trex.version }}.tar.gz'
+    dest: '{{ trex.target_dir }}/trex-core-{{ trex.version }}.tar.gz'
     mode: 0644
   register: 'linux__trex_downloaded'
+  tags: install-trex
+
+- name: Ensure TRex directory exists
+  file:
+    path: '{{ trex.target_dir }}/trex-core-{{ trex.version }}'
+    state: 'directory'
+  register: 'linux__trex_dir_created'
   tags: install-trex
 
 - name: Extract TRex release archive
   become: yes
   unarchive:
-    src: '{{ trex.target_dir }}/v{{ trex.version }}.tar.gz'
-    dest: '{{ trex.target_dir }}/trex-core-{{ trex.version }}'
+    src: '{{ trex.target_dir }}/trex-core-{{ trex.version }}.tar.gz'
+    dest: '{{ trex.target_dir }}/'
+    creates: '{{ trex.target_dir }}/trex-core-{{ trex.version }}/linux_dpdk'
     remote_src: yes
-  when: 'linux__trex_downloaded'
+  when: 'linux__trex_dir_created'
   register: 'linux__trex_extracted'
   tags: install-trex
 

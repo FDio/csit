@@ -38,16 +38,14 @@ docker_daemon_environment_https:
 
 # Kubernetes settings.
 kubernetes:
-  channel: 'main'
   version: '1.11.0-00'
-  repository: 'deb http://apt.kubernetes.io/ kubernetes-xenial {{ kubernetes_channel }}'
-  apt_package_name: '{{ kubernetes_version }}'
+  repository: 'deb http://apt.kubernetes.io/ kubernetes-xenial main'
 
 # TRex settings.
 trex:
   target_dir: '/opt'
   version: '2.61'
-  url: 'https://github.com/cisco-system-traffic-generator/trex-core/releases'
+  url: 'https://github.com/cisco-system-traffic-generator/trex-core/archive'
 
 # DPDK settings.
 dpdk:
