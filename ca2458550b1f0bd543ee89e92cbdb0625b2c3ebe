@@ -70,6 +70,30 @@
       "revId": "ca2458550b1f0bd543ee89e92cbdb0625b2c3ebe",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fdc3a01_e4776388",
+        "filename": "resources/tools/testbed-setup/ansible/roles/tg/tasks/trex.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-10T13:07:59Z",
+      "side": 1,
+      "message": "Depends on ansible module, usually it does task if condition has changed. But there is no \u0027revert\u0027. You need to write your own revert task. In our case it is better and faster to reinstall machine to start clean.\nIn our case condition of changge is TRex version.",
+      "parentUuid": "ba9e97ba_6d8c0a28",
+      "range": {
+        "startLine": 20,
+        "startChar": 13,
+        "endLine": 20,
+        "endChar": 34
+      },
+      "revId": "ca2458550b1f0bd543ee89e92cbdb0625b2c3ebe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
