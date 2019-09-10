@@ -37,10 +37,11 @@ docker_daemon_environment_https:
   - 'NO_PROXY={{ proxy_env.no_proxy }}'
 
 # Kubernetes settings.
-kubernetes_channel: 'main'
-kubernetes_version: '1.11.0-00'
-kubernetes_repository: 'deb http://apt.kubernetes.io/ kubernetes-xenial {{ kubernetes_channel }}'
-kubernetes_apt_package_name: '{{ kubernetes_version }}'
+kubernetes:
+  channel: 'main'
+  version: '1.11.0-00'
+  repository: 'deb http://apt.kubernetes.io/ kubernetes-xenial {{ kubernetes.channel }}'
+  apt_package_name: '{{ kubernetes.version }}'
 
 # DPDK settings.
 dpdk:
