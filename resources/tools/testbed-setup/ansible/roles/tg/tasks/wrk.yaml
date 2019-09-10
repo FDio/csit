@@ -9,13 +9,21 @@
   register: 'linux__wrk_downloaded'
   tags: install-wrk
 
+- name: Ensure WRK directory exists
+  file:
+    path: '{{ wrk.target_dir }}/wrk-{{ wrk.version }}'
+    state: 'directory'
+  register: 'linux__wrk_dir_created'
+  tags: install-wrk
+
 - name: Extract WRK release archive
   become: yes
   unarchive:
     src: '{{ wrk.target_dir }}/{{ wrk.version }}.tar.gz'
-    dest: '{{ wrk.target_dir }}/wrk-{{ wrk.version }}'
+    dest: '{{ wrk.target_dir }}/'
+    creates: '{{ wrk.target_dir }}/wrk-{{ wrk.version }}/src'
     remote_src: yes
-  when: 'linux__wrk_downloaded'
+  when: 'linux__wrk_dir_created'
   register: 'linux__wrk_extracted'
   tags: install-wrk
 

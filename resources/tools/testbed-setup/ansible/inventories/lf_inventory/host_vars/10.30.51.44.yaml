@@ -10,7 +10,7 @@ sysctl:
   kernel:
     watchdog_cpumask: "0,28,56,84"
   vm:
-    nr_hugepages: 36864
+    nr_hugepages: 65536
     max_map_count: 20000
 
 inventory_ipmi_hostname: '10.30.50.41'
