@@ -105,6 +105,7 @@
 | | ... | ${encr_alg} | ${auth_alg} | ${dut1_if2_ip4} | ${dut2_if1_ip4}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR and PDR intervals using optimized search
+| | ... | traffic_directions=${1}
 
 *** Test Cases ***
 | tc01-64B-1c-ethip4ipsec1000tnlhw-ip4base-policy-aes256gcm-ndrpdr
