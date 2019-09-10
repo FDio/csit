@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a12725d_d6b07d0b",
+        "filename": "resources/tools/testbed-setup/ansible/roles/tg/tasks/trex.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-10T11:47:58Z",
+      "side": 1,
+      "message": "Version is not mentioned here, so I guess that means Ansible with this code is unable to install multiple TRex versions.",
+      "range": {
+        "startLine": 20,
+        "startChar": 13,
+        "endLine": 20,
+        "endChar": 34
+      },
+      "revId": "ca2458550b1f0bd543ee89e92cbdb0625b2c3ebe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
