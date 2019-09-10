@@ -9,9 +9,9 @@
   include_tasks: '{{ ansible_machine }}.yaml'
   tags: [ disable-turbo-boost, set-grub, install-pip ]
 
-- name: Skylake specific
-  import_tasks: skylake.yaml
-  when: cpu_microarchitecture == "skylake"
+- name: Turbo boost specific
+  import_tasks: turbo_boost.yaml
+  when: cpu_microarchitecture == "skylake" or cpu_microarchitecture == "cascadelake"
   tags: [ install-msr, disable-turbo-boost ]
 
 - name: Copy netplan network config file

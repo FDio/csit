@@ -1,8 +1,7 @@
 # SuperMicro Skylake Servers - HW and BIOS Configuration
 
-1. [Linux lscpu TODO](#linux-lscpu-todo)
-1. [Linux dmidecode pci TODO](#linux-dmidecode-pci-todo)
-1. [Linux dmidecode memory TODO](#linux-dmidecode-memory-todo)
+1. [Linux lscpu](#linux-lscpu)
+1. [Linux dmidecode](#dmidecode)
 1. [Xeon Skx Server BIOS Configuration](#xeon-skx-server-bios-configuration)
    1. [Boot Feature](#boot-feature)
    1. [CPU Configuration](#cpu-configuration)
@@ -22,14 +21,249 @@
       1. [South Bridge](#south-bridge)
    1. [PCIe/PCI/PnP Configuration](#pciepcipnp-configuration)
    1. [ACPI Settings](#acpi-settings)
-   1. [DMIDECODE](#dmidecode)
 1. [Xeon Skx Server Firmware Inventory](#xeon-skx-server-firmware-inventory)
 
-## Linux lscpu TODO
+## Linux lscpu
 
-## Linux dmidecode pci TODO
+```
+$ lscpu
+Architecture:        x86_64
+CPU op-mode(s):      32-bit, 64-bit
+Byte Order:          Little Endian
+CPU(s):              112
+On-line CPU(s) list: 0-111
+Thread(s) per core:  2
+Core(s) per socket:  28
+Socket(s):           2
+NUMA node(s):        2
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               85
+Model name:          Intel(R) Xeon(R) Platinum 8180 CPU @ 2.50GHz
+Stepping:            4
+CPU MHz:             2500.550
+BogoMIPS:            5000.00
+Virtualization:      VT-x
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            1024K
+L3 cache:            39424K
+NUMA node0 CPU(s):   0-27,56-83
+NUMA node1 CPU(s):   28-55,84-111
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca
+cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx
+pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology
+nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2
+ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt
+tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch
+cpuid_fault epb cat_l3 cdp_l3 invpcid_single pti ssbd mba ibrs ibpb stibp
+tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjustbmi1 hle avx2 smep bmi2
+erms invpcid rtm cqm mpx rdt_a avx512f avx512dq rdseed adx smap clflushopt clwb
+intel_pt avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc
+cqm_occup_llc cqm_mbm_total cqm_mbm_local dtherm ida arat pln pts pku ospke
+md_clear flush_l1d
+```
 
-## Linux dmidecode memory TODO
+### Linux dmidecode
+
+```
+  # dmidecode 3.1
+  Getting SMBIOS data from sysfs.
+  SMBIOS 3.1.1 present.
+  Table at 0x000E89C0.
+
+  Handle 0x0000, DMI type 0, 26 bytes
+  BIOS Information
+        Vendor: American Megatrends Inc.
+        Version: 2.0
+        Release Date: 11/29/2017
+        Address: 0xF0000
+        Runtime Size: 64 kB
+        ROM Size: 64 MB
+        Characteristics:
+                PCI is supported
+                BIOS is upgradeable
+                BIOS shadowing is allowed
+                Boot from CD is supported
+                Selectable boot is supported
+                BIOS ROM is socketed
+                EDD is supported
+                5.25"/1.2 MB floppy services are supported (int 13h)
+                3.5"/720 kB floppy services are supported (int 13h)
+                3.5"/2.88 MB floppy services are supported (int 13h)
+                Print screen service is supported (int 5h)
+                Serial services are supported (int 14h)
+                Printer services are supported (int 17h)
+                ACPI is supported
+                USB legacy is supported
+                BIOS boot specification is supported
+                Targeted content distribution is supported
+                UEFI is supported
+        BIOS Revision: 5.12
+
+  Handle 0x0001, DMI type 1, 27 bytes
+  System Information
+        Manufacturer: Supermicro
+        Product Name: SYS-7049GP-TRT
+        Version: 0123456789
+        Serial Number: S291427X8332242
+        UUID: 00000000-0000-0000-0000-AC1F6B8A8DB6
+        Wake-up Type: Power Switch
+        SKU Number: To be filled by O.E.M.
+        Family: To be filled by O.E.M.
+
+  Handle 0x0002, DMI type 2, 15 bytes
+  Base Board Information
+        Manufacturer: Supermicro
+        Product Name: X11DPG-QT
+        Version: 1.02
+        Serial Number: VM183S014930
+        Asset Tag: To be filled by O.E.M.
+        Features:
+                Board is a hosting board
+                Board is replaceable
+        Location In Chassis: To be filled by O.E.M.
+        Chassis Handle: 0x0003
+        Type: Motherboard
+        Contained Object Handles: 0
+
+  Handle 0x0003, DMI type 3, 22 bytes
+  Chassis Information
+        Manufacturer: Supermicro
+        Type: Other
+        Lock: Not Present
+        Version: 0123456789
+        Serial Number: C7470KH06A20167
+        Asset Tag: To be filled by O.E.M.
+        Boot-up State: Safe
+        Power Supply State: Safe
+        Thermal State: Safe
+        Security Status: None
+        OEM Information: 0x00000000
+
+  Handle 0x0050, DMI type 4, 48 bytes
+  Processor Information
+        Socket Designation: CPU1
+        Type: Central Processor
+        Family: Xeon
+        Manufacturer: Intel(R) Corporation
+        ID: 54 06 05 00 FF FB EB BF
+        Signature: Type 0, Family 6, Model 85, Stepping 4
+        Flags:
+                FPU (Floating-point unit on-chip)
+                VME (Virtual mode extension)
+                DE (Debugging extension)
+                PSE (Page size extension)
+                TSC (Time stamp counter)
+                MSR (Model specific registers)
+                PAE (Physical address extension)
+                MCE (Machine check exception)
+                CX8 (CMPXCHG8 instruction supported)
+                APIC (On-chip APIC hardware supported)
+                SEP (Fast system call)
+                MTRR (Memory type range registers)
+                PGE (Page global enable)
+                MCA (Machine check architecture)
+                CMOV (Conditional move instruction supported)
+                PAT (Page attribute table)
+                PSE-36 (36-bit page size extension)
+                CLFSH (CLFLUSH instruction supported)
+                DS (Debug store)
+                ACPI (ACPI supported)
+                MMX (MMX technology supported)
+                FXSR (FXSAVE and FXSTOR instructions supported)
+                SSE (Streaming SIMD extensions)
+                SSE2 (Streaming SIMD extensions 2)
+                SS (Self-snoop)
+                HTT (Multi-threading)
+                TM (Thermal monitor supported)
+                PBE (Pending break enabled)
+        Version: Intel(R) Xeon(R) Platinum 8180 CPU @ 2.50GHz
+        Voltage: 1.6 V
+        External Clock: 100 MHz
+        Max Speed: 4000 MHz
+        Current Speed: 2500 MHz
+        Status: Populated, Enabled
+        Upgrade: Other
+        L1 Cache Handle: 0x004D
+        L2 Cache Handle: 0x004E
+        L3 Cache Handle: 0x004F
+        Serial Number: Not Specified
+        Asset Tag: UNKNOWN
+        Part Number: Not Specified
+        Core Count: 28
+        Core Enabled: 28
+        Thread Count: 56
+        Characteristics:
+                64-bit capable
+                Multi-Core
+                Hardware Thread
+                Execute Protection
+                Enhanced Virtualization
+                Power/Performance Control
+
+
+  Handle 0x0054, DMI type 4, 48 bytes
+  Processor Information
+        Socket Designation: CPU2
+        Type: Central Processor
+        Family: Xeon
+        Manufacturer: Intel(R) Corporation
+        ID: 54 06 05 00 FF FB EB BF
+        Signature: Type 0, Family 6, Model 85, Stepping 4
+        Flags:
+                FPU (Floating-point unit on-chip)
+                VME (Virtual mode extension)
+                DE (Debugging extension)
+                PSE (Page size extension)
+                TSC (Time stamp counter)
+                MSR (Model specific registers)
+                PAE (Physical address extension)
+                MCE (Machine check exception)
+                CX8 (CMPXCHG8 instruction supported)
+                APIC (On-chip APIC hardware supported)
+                SEP (Fast system call)
+                MTRR (Memory type range registers)
+                PGE (Page global enable)
+                MCA (Machine check architecture)
+                CMOV (Conditional move instruction supported)
+                PAT (Page attribute table)
+                PSE-36 (36-bit page size extension)
+                CLFSH (CLFLUSH instruction supported)
+                DS (Debug store)
+                ACPI (ACPI supported)
+                MMX (MMX technology supported)
+                FXSR (FXSAVE and FXSTOR instructions supported)
+                SSE (Streaming SIMD extensions)
+                SSE2 (Streaming SIMD extensions 2)
+                SS (Self-snoop)
+                HTT (Multi-threading)
+                TM (Thermal monitor supported)
+                PBE (Pending break enabled)
+        Version: Intel(R) Xeon(R) Platinum 8180 CPU @ 2.50GHz
+        Voltage: 1.6 V
+        External Clock: 100 MHz
+        Max Speed: 4000 MHz
+        Current Speed: 2500 MHz
+        Status: Populated, Enabled
+        Upgrade: Other
+        L1 Cache Handle: 0x0051
+        L2 Cache Handle: 0x0052
+        L3 Cache Handle: 0x0053
+        Serial Number: Not Specified
+        Asset Tag: UNKNOWN
+        Part Number: Not Specified
+        Core Count: 28
+        Core Enabled: 28
+        Thread Count: 56
+        Characteristics:
+                64-bit capable
+                Multi-Core
+                Hardware Thread
+                Execute Protection
+                Enhanced Virtualization
+                Power/Performance Control
+```
 
 ## Xeon Skx Server BIOS Configuration
 
@@ -312,207 +546,6 @@
   |  WHEA Support                              [Enabled]               |                             |
   |  High Precision Event Timer                [Enabled]               |                             |
   |  ACPI Sleep State                          [S3 (Suspend to RAM)]   |                             |
-```
-
-### DMIDECODE
-
-```
-  # dmidecode 3.1
-  Getting SMBIOS data from sysfs.
-  SMBIOS 3.1.1 present.
-  Table at 0x000E89C0.
-
-  Handle 0x0000, DMI type 0, 26 bytes
-  BIOS Information
-        Vendor: American Megatrends Inc.
-        Version: 2.0
-        Release Date: 11/29/2017
-        Address: 0xF0000
-        Runtime Size: 64 kB
-        ROM Size: 64 MB
-        Characteristics:
-                PCI is supported
-                BIOS is upgradeable
-                BIOS shadowing is allowed
-                Boot from CD is supported
-                Selectable boot is supported
-                BIOS ROM is socketed
-                EDD is supported
-                5.25"/1.2 MB floppy services are supported (int 13h)
-                3.5"/720 kB floppy services are supported (int 13h)
-                3.5"/2.88 MB floppy services are supported (int 13h)
-                Print screen service is supported (int 5h)
-                Serial services are supported (int 14h)
-                Printer services are supported (int 17h)
-                ACPI is supported
-                USB legacy is supported
-                BIOS boot specification is supported
-                Targeted content distribution is supported
-                UEFI is supported
-        BIOS Revision: 5.12
-
-  Handle 0x0001, DMI type 1, 27 bytes
-  System Information
-        Manufacturer: Supermicro
-        Product Name: SYS-7049GP-TRT
-        Version: 0123456789
-        Serial Number: S291427X8332242
-        UUID: 00000000-0000-0000-0000-AC1F6B8A8DB6
-        Wake-up Type: Power Switch
-        SKU Number: To be filled by O.E.M.
-        Family: To be filled by O.E.M.
-
-  Handle 0x0002, DMI type 2, 15 bytes
-  Base Board Information
-        Manufacturer: Supermicro
-        Product Name: X11DPG-QT
-        Version: 1.02
-        Serial Number: VM183S014930
-        Asset Tag: To be filled by O.E.M.
-        Features:
-                Board is a hosting board
-                Board is replaceable
-        Location In Chassis: To be filled by O.E.M.
-        Chassis Handle: 0x0003
-        Type: Motherboard
-        Contained Object Handles: 0
-
-  Handle 0x0003, DMI type 3, 22 bytes
-  Chassis Information
-        Manufacturer: Supermicro
-        Type: Other
-        Lock: Not Present
-        Version: 0123456789
-        Serial Number: C7470KH06A20167
-        Asset Tag: To be filled by O.E.M.
-        Boot-up State: Safe
-        Power Supply State: Safe
-        Thermal State: Safe
-        Security Status: None
-        OEM Information: 0x00000000
-
-  Handle 0x0050, DMI type 4, 48 bytes
-  Processor Information
-        Socket Designation: CPU1
-        Type: Central Processor
-        Family: Xeon
-        Manufacturer: Intel(R) Corporation
-        ID: 54 06 05 00 FF FB EB BF
-        Signature: Type 0, Family 6, Model 85, Stepping 4
-        Flags:
-                FPU (Floating-point unit on-chip)
-                VME (Virtual mode extension)
-                DE (Debugging extension)
-                PSE (Page size extension)
-                TSC (Time stamp counter)
-                MSR (Model specific registers)
-                PAE (Physical address extension)
-                MCE (Machine check exception)
-                CX8 (CMPXCHG8 instruction supported)
-                APIC (On-chip APIC hardware supported)
-                SEP (Fast system call)
-                MTRR (Memory type range registers)
-                PGE (Page global enable)
-                MCA (Machine check architecture)
-                CMOV (Conditional move instruction supported)
-                PAT (Page attribute table)
-                PSE-36 (36-bit page size extension)
-                CLFSH (CLFLUSH instruction supported)
-                DS (Debug store)
-                ACPI (ACPI supported)
-                MMX (MMX technology supported)
-                FXSR (FXSAVE and FXSTOR instructions supported)
-                SSE (Streaming SIMD extensions)
-                SSE2 (Streaming SIMD extensions 2)
-                SS (Self-snoop)
-                HTT (Multi-threading)
-                TM (Thermal monitor supported)
-                PBE (Pending break enabled)
-        Version: Intel(R) Xeon(R) Platinum 8180 CPU @ 2.50GHz
-        Voltage: 1.6 V
-        External Clock: 100 MHz
-        Max Speed: 4000 MHz
-        Current Speed: 2500 MHz
-        Status: Populated, Enabled
-        Upgrade: Other
-        L1 Cache Handle: 0x004D
-        L2 Cache Handle: 0x004E
-        L3 Cache Handle: 0x004F
-        Serial Number: Not Specified
-        Asset Tag: UNKNOWN
-        Part Number: Not Specified
-        Core Count: 28
-        Core Enabled: 28
-        Thread Count: 56
-        Characteristics:
-                64-bit capable
-                Multi-Core
-                Hardware Thread
-                Execute Protection
-                Enhanced Virtualization
-                Power/Performance Control
-
-
-  Handle 0x0054, DMI type 4, 48 bytes
-  Processor Information
-        Socket Designation: CPU2
-        Type: Central Processor
-        Family: Xeon
-        Manufacturer: Intel(R) Corporation
-        ID: 54 06 05 00 FF FB EB BF
-        Signature: Type 0, Family 6, Model 85, Stepping 4
-        Flags:
-                FPU (Floating-point unit on-chip)
-                VME (Virtual mode extension)
-                DE (Debugging extension)
-                PSE (Page size extension)
-                TSC (Time stamp counter)
-                MSR (Model specific registers)
-                PAE (Physical address extension)
-                MCE (Machine check exception)
-                CX8 (CMPXCHG8 instruction supported)
-                APIC (On-chip APIC hardware supported)
-                SEP (Fast system call)
-                MTRR (Memory type range registers)
-                PGE (Page global enable)
-                MCA (Machine check architecture)
-                CMOV (Conditional move instruction supported)
-                PAT (Page attribute table)
-                PSE-36 (36-bit page size extension)
-                CLFSH (CLFLUSH instruction supported)
-                DS (Debug store)
-                ACPI (ACPI supported)
-                MMX (MMX technology supported)
-                FXSR (FXSAVE and FXSTOR instructions supported)
-                SSE (Streaming SIMD extensions)
-                SSE2 (Streaming SIMD extensions 2)
-                SS (Self-snoop)
-                HTT (Multi-threading)
-                TM (Thermal monitor supported)
-                PBE (Pending break enabled)
-        Version: Intel(R) Xeon(R) Platinum 8180 CPU @ 2.50GHz
-        Voltage: 1.6 V
-        External Clock: 100 MHz
-        Max Speed: 4000 MHz
-        Current Speed: 2500 MHz
-        Status: Populated, Enabled
-        Upgrade: Other
-        L1 Cache Handle: 0x0051
-        L2 Cache Handle: 0x0052
-        L3 Cache Handle: 0x0053
-        Serial Number: Not Specified
-        Asset Tag: UNKNOWN
-        Part Number: Not Specified
-        Core Count: 28
-        Core Enabled: 28
-        Thread Count: 56
-        Characteristics:
-                64-bit capable
-                Multi-Core
-                Hardware Thread
-                Execute Protection
-                Enhanced Virtualization
-                Power/Performance Control
 ```
 
 ## Xeon Skx Server Firmware Inventory

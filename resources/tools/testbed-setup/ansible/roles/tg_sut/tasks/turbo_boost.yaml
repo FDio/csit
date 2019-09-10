@@ -1,5 +1,5 @@
 ---
-# file: roles/tg_sut/tasks/skylake.yaml
+# file: roles/tg_sut/tasks/turbo_boost.yaml
 
 - name: Install msr-tools
   apt:
@@ -9,7 +9,7 @@
     install_recommends: False
   tags: install-msr
 
-- name: Disable Skylake Turbo-Boost by service
+- name: Disable Turbo-Boost by service
   copy:
     src: 'files/disable-turbo-boost.service'
     dest: '/etc/systemd/system/disable-turbo-boost.service'
@@ -18,7 +18,7 @@
     mode: '0644'
   tags: disable-turbo-boost
 
-- name: Disable Skylake Turbo-Boost by service on startup
+- name: Disable Turbo-Boost by service on startup
   service:
     name: disable-turbo-boost
     enabled: yes
