@@ -13,6 +13,9 @@ all:
         10.30.51.57: #s10-t24-tg1 - skylake
         10.30.51.60: #s16-t32-tg1 - skylake
         10.32.8.10: #s28-t26t35-tg1 - skylake
+        10.32.8.19: #s34-t27-tg1 - cascadelake
+        10.32.8.21: #s36-t28-tg1 - cascadelake
+        10.32.8.23: #s38-t29-tg1 - cascadelake
     sut:
       hosts:
         10.30.51.17: #t1-sut1 - haswell
@@ -34,7 +37,10 @@ all:
         10.32.8.11: #s29-t26-sut1 - denverton
         10.32.8.12: #s30-t35-sut1 - denverton
         10.32.8.13: #s31-t35-sut2 - denverton
-
+        10.32.8.17: #s32-t14-sut1 - cascadelake
+        10.32.8.18: #s33-t27-sut1 - cascadelake
+        10.32.8.20: #s35-t28-sut1 - cascadelake
+        10.32.8.22: #s37-t29-sut1 - cascadelake
     vpp_device:
       hosts:
         10.30.51.50: #s1-t11-sut1 - skylake
