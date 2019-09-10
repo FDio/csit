@@ -46,6 +46,30 @@
       "revId": "ba14f2b0ac026e537c79a61e800176b3404bde4d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa27d85c_72cb4cbc",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-10T12:57:30Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "3ee6ae88_fadc1ac5",
+      "range": {
+        "startLine": 231,
+        "startChar": 48,
+        "endLine": 231,
+        "endChar": 78
+      },
+      "revId": "ba14f2b0ac026e537c79a61e800176b3404bde4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
