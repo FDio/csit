@@ -5,7 +5,7 @@
   apt:
     name:
       - 'python-dev'
-      - 'python-virtualenv'
+      - 'virtualenv'
       - 'python-pip'
       - 'libpcap-dev'
       - 'cpufrequtils'
