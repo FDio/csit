@@ -7,3 +7,7 @@
 - name: Install WRK
   include_tasks: 'wrk.yaml'
   tags: install-wrk
+
+- name: Install TRex
+  include_tasks: 'trex.yaml'
+  tags: install-trex

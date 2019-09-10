@@ -92,7 +92,7 @@
 
 - name: Install kubernetes APT repository
   apt_repository:
-    repo: '{{ kubernetes_repository }}'
+    repo: '{{ kubernetes.repository }}'
     state: 'present'
     update_cache: True
   tags: install-kubernetes
@@ -101,9 +101,9 @@
   apt:
     name:
       - 'kubernetes-cni=0.6.0-00'
-      - 'kubeadm={{ kubernetes_apt_package_name }}'
-      - 'kubectl={{ kubernetes_apt_package_name }}'
-      - 'kubelet={{ kubernetes_apt_package_name }}'
+      - 'kubeadm={{ kubernetes.apt_package_name }}'
+      - 'kubectl={{ kubernetes.apt_package_name }}'
+      - 'kubelet={{ kubernetes.apt_package_name }}'
     state: 'present'
     force: yes
   tags: install-kubernetes

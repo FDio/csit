@@ -1,0 +1,33 @@
+---
+# file: roles/tg/tasks/trex.yaml
+
+- name: Download TRex release archive
+  become: yes
+  get_url:
+    url: '{{ trex.url }}/v{{ trex.version }}.tar.gz'
+    dest: '{{ trex.target_dir }}/v{{ trex.version }}.tar.gz'
+    mode: 0644
+  register: 'linux__trex_downloaded'
+  tags: install-trex
+
+- name: Extract TRex release archive
+  become: yes
+  unarchive:
+    src: '{{ trex.target_dir }}/v{{ trex.version }}.tar.gz'
+    dest: '{{ trex.target_dir }}/trex-core-{{ trex.version }}'
+    remote_src: yes
+  when: 'linux__trex_downloaded'
+  register: 'linux__trex_extracted'
+  tags: install-trex
+
+- name: Compile TRex release I
+  become: yes
+  shell: 'cd {{ trex.target_dir }}/trex-core-{{ trex.version }}/linux_dpdk/; ./b configure; ./b build'
+  when: 'linux__trex_extracted'
+  tags: install-trex
+
+- name: Compile TRex release II
+  become: yes
+  shell: 'cd {{ trex.target_dir }}/trex-core-{{ trex.version }}/scripts/ko/src; make; make install'
+  when: 'linux__trex_extracted'
+  tags: install-trex
