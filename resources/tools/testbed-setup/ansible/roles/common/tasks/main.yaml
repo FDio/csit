@@ -56,6 +56,7 @@
 
 - name: Install distribution - release - machine prerequisites
   include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
+  tags: [ install-csit-dependencies, copy-apt-sources ]
 
 - name: Set sudoers admin
   lineinfile:

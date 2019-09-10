@@ -5,6 +5,7 @@
   apt:
     name:
       - 'unzip'
+      - 'zlib1g-dev'
       - 'libssl-dev'
     state: 'present'
     install_recommends: False

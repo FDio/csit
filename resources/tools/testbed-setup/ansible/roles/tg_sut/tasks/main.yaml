@@ -3,13 +3,16 @@
 
 - name: Install distribution - release - machine prerequisites
   include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
+  tags: [ install-csit-dependencies, install-docker, install-kubernetes ]
 
 - name: Machine specifics
   include_tasks: '{{ ansible_machine }}.yaml'
+  tags: [ disable-turbo-boost, set-grub, install-pip ]
 
 - name: Skylake specific
   import_tasks: skylake.yaml
   when: cpu_microarchitecture == "skylake"
+  tags: [ install-msr, disable-turbo-boost ]
 
 - name: Copy netplan network config file
   template:

@@ -224,13 +224,6 @@ class TrafficGenerator(AbstractMeasurer):
         if subtype == NodeSubTypeTG.TREX:
             self._node = tg_node
 
-            exec_cmd_no_error(
-                self._node,
-                "sh -c '{0}/resources/tools/trex/"
-                "trex_installer.sh {1}'".format(Constants.REMOTE_FW_DIR,
-                                                Constants.TREX_INSTALL_VERSION),
-                sudo=True, timeout=1800, message='TRex installation failed.')
-
             if1_pci = Topology().get_interface_pci_addr(self._node, tg_if1)
             if2_pci = Topology().get_interface_pci_addr(self._node, tg_if2)
             if1_addr = Topology().get_interface_mac(self._node, tg_if1)
