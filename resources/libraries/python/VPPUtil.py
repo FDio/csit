@@ -161,8 +161,9 @@ class VPPUtil(object):
         :returns: VPP version.
         :rtype: str
         """
+        cmd = 'show_version'
         with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add('show_version').get_reply()
+            reply = papi_exec.add(cmd).get_reply()
         return_version = reply['version'].rstrip('\0x00')
         version = 'VPP version:      {ver}\n'.format(ver=return_version)
         if verbose:
@@ -314,8 +315,9 @@ class VPPUtil(object):
         :returns: VPP thread data.
         :rtype: list
         """
+        cmd = 'show_threads'
         with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add('show_threads').get_reply()
+            reply = papi_exec.add(cmd).get_reply()
 
         threads_data = list()
         for thread in reply["thread_data"]:
