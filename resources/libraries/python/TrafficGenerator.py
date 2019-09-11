@@ -323,7 +323,8 @@ class TrafficGenerator(AbstractMeasurer):
                 self._node, cmd, sudo=True,
                 message='Unbind PCI ports from driver failed!')
 
-            cmd = ("sh -c 'cd {dir}/scripts/ && ./trex-cfg'"
+            cmd = ("sh -c 'cd {dir}/scripts/ && ./trex-cfg "
+                   "--unbind-unused-ports'"
                    .format(dir=Constants.TREX_INSTALL_DIR))
             exec_cmd_no_error(
                 self._node, cmd, sudo=True, message='Config TRex failed!')
