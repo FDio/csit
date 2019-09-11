@@ -24,6 +24,8 @@ class Trace(object):
     def show_packet_trace_on_all_duts(nodes, maximum=None):
         """Show VPP packet trace.
 
+        Also run bunch of "show" commands to debug policer.
+
         :param nodes: Nodes from which the packet trace will be displayed.
         :param maximum: Maximum number of packet traces to be displayed.
         :type nodes: dict
@@ -32,10 +34,14 @@ class Trace(object):
         maximum = "max {count}".format(count=maximum) if maximum is not None\
             else ""
 
+        commands = [
+            "show trace {max}".format(max=maximum), "show policer",
+            "show classify policer type ip4", "show classify tables",
+            "show errors"]
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                PapiSocketExecutor.run_cli_cmd(
-                    node, cmd="show trace {max}".format(max=maximum))
+                for command in commands:
+                    PapiSocketExecutor.run_cli_cmd(node, cmd=command)
 
     @staticmethod
     def clear_packet_trace_on_all_duts(nodes):
