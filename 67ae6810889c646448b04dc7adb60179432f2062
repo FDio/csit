@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f49914ae_3e6141c6",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-11T08:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b425e157_d70da8e5",
+      "revId": "67ae6810889c646448b04dc7adb60179432f2062",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcbd91a7_1680b35a",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 3
@@ -39,6 +57,30 @@
       "revId": "67ae6810889c646448b04dc7adb60179432f2062",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9cfb231_47bf047b",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1247,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-11T08:54:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcbd91a7_1680b35a",
+      "range": {
+        "startLine": 1247,
+        "startChar": 21,
+        "endLine": 1247,
+        "endChar": 28
+      },
+      "revId": "67ae6810889c646448b04dc7adb60179432f2062",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
