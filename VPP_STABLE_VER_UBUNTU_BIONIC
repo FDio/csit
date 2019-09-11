@@ -1,1 +1,5 @@
+<<<<<<< HEAD   (e040e2 CSIT-1597 API cleanup: tap)
 20.01-rc0~159-gb736e75d5
+=======
+20.01-rc0~174-g3d1ef873d
+>>>>>>> CHANGE (f0d7ed Revert "API cleanup: tap" and bump stable_vpp)
