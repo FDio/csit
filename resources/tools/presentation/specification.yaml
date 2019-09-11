@@ -418,6 +418,7 @@
         - 55  # NDRPDR full
         - 90  # NDRPDR full vhost
         - 126 # NFV full
+        - 112 # NFV reconf full
 
     vpp-perf-results-3n-tsh:
       csit-vpp-perf-verify-1908-3n-tsh:
@@ -1578,6 +1579,17 @@
       - 70  # NFV
       - 71  # NFV MRR
       - 126 # NFV full
+      - 112 # NFV reconf full
+      - 113 # NFV reconf sel
+      - 114 # NFV reconf sel
+      - 115 # NFV reconf sel
+      - 116 # NFV reconf sel
+      - 118 # NFV reconf sel
+      - 119 # NFV reconf sel
+      - 120 # NFV reconf sel
+      - 121 # NFV reconf sel
+      - 122 # NFV reconf sel
+      - 123 # NFV reconf sel
       - 83  # SOAK
       - 86  # SOAK
 
