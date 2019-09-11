@@ -279,6 +279,19 @@
       csit-vpp-perf-verify-1908-2n-skx:
         - 71  # NFV MRR
 
+    plot-vpp-nfv-reconf-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 113 # NFV reconf sel
+        - 114 # NFV reconf sel
+        - 115 # NFV reconf sel
+        - 116 # NFV reconf sel
+        - 118 # NFV reconf sel
+        - 119 # NFV reconf sel
+        - 120 # NFV reconf sel
+        - 121 # NFV reconf sel
+        - 122 # NFV reconf sel
+        - 123 # NFV reconf sel
+
     plot-dpdk-throughput-latency-2n-skx:
       csit-dpdk-perf-verify-1908-2n-skx:
         - 2   # NDRPDR sel
@@ -417,6 +430,7 @@
         - 54  # NDRPDR full
         - 55  # NDRPDR full
         - 90  # NDRPDR full vhost
+        - 112 # NFV reconf full
 
     vpp-perf-results-3n-tsh:
       csit-vpp-perf-verify-1908-3n-tsh:
@@ -1576,6 +1590,17 @@
       - 68  # NFV
       - 70  # NFV
       - 71  # NFV MRR
+      - 112 # NFV reconf full
+      - 113 # NFV reconf sel
+      - 114 # NFV reconf sel
+      - 115 # NFV reconf sel
+      - 116 # NFV reconf sel
+      - 118 # NFV reconf sel
+      - 119 # NFV reconf sel
+      - 120 # NFV reconf sel
+      - 121 # NFV reconf sel
+      - 122 # NFV reconf sel
+      - 123 # NFV reconf sel
       - 83  # SOAK
       - 86  # SOAK
 
@@ -4649,6 +4674,55 @@
     layout: "plot-soak-throughput"
 
 ###############################################################################
+
+- type: "plot"
+  title: "NFV Implied time lost: 2n-skx-xxv710-imix-2t1c-eth-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  algorithm: "plot_service_density_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-2t1c-eth-l2bd-reconf"
+  data: "plot-vpp-nfv-reconf-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-2t1c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
+  layout:
+    title: "eth-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "NFV Implied time lost: 2n-skx-xxv710-imix-4t2c-eth-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  algorithm: "plot_service_density_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-4t2c-eth-l2bd-reconf"
+  data: "plot-vpp-nfv-reconf-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-4t2c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
+  layout:
+    title: "eth-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+    layout: "plot-throughput"
+
+- type: "plot"
+  title: "NFV Implied time lost: 2n-skx-xxv710-imix-8t4c-eth-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+  algorithm: "plot_service_density_reconf_box_name"
+  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-imix-8t4c-eth-l2bd-reconf"
+  data: "plot-vpp-nfv-reconf-2n-skx"
+  include:
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-1Ch-1Ach-2Vh-1Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-2Ch-1Ach-4Vh-2Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-2ch-1ach-4vh-2vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-4Ch-1Ach-8Vh-4Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-4ch-1ach-8vh-4vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-6Ch-1Ach-12Vh-6Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-6ch-1ach-12vh-6vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-8Ch-1Ach-16Vh-8Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-8ch-1ach-16vh-8vm1t-testpmd-reconf"
+    - "Tests.Vpp.Perf.Nfv Density.Vm Vhost.Chain Dot1Qip4Vxlan.2N-25Ge2P1Xxv710-Dot1Qip4Vxlan-L2Bd-10Ch-1Ach-20Vh-10Vm1T-Testpmd-Reconf.IMIX-8t4c-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf"
+  layout:
+    title: "eth-l2bd-{Y}ch-1ach-{2XY}vh-{XY}vm-reconf"
+    layout: "plot-throughput"
+
 # Plots - NF Density - VSC - MRR 64b
 - type: "plot"
   title: "Packet Throughput: eth-l2bd-{Y}ch-{2XY}vh-{XY}vm-vppip4-mrr"
@@ -6403,7 +6477,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-memif-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-memif-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -6417,7 +6491,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-memif-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-memif-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -6431,7 +6505,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-memif-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-memif-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6446,7 +6520,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-memif-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-memif-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6461,7 +6535,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-memif-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-memif-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -6476,7 +6550,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-memif-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-memif-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -6491,7 +6565,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-x710-64b-2t1c-ip4routing-base-scale-avf-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-x710-64b-2t1c-ip4routing-base-scale-avf-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -6506,7 +6580,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-x710-64b-2t1c-ip4routing-base-scale-avf-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-x710-64b-2t1c-ip4routing-base-scale-avf-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -6521,7 +6595,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -6535,7 +6609,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -6549,7 +6623,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -6564,7 +6638,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-ip4routing-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -6579,7 +6653,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -6595,7 +6669,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -6611,7 +6685,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -6624,7 +6698,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-ip4routing-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -6637,7 +6711,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-x710-64b-2t1c-ip4routing-base-scale-avf-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-ip4routing-base-scale-avf-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6652,7 +6726,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-x710-64b-2t1c-ip4routing-base-scale-avf-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-ip4routing-base-scale-avf-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6667,7 +6741,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6681,7 +6755,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6695,7 +6769,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6710,7 +6784,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-ip4routing-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6725,7 +6799,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6741,7 +6815,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-features-ip4routing-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6757,7 +6831,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-ip4routing-base-scale-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-ip4routing-base-scale-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -6772,7 +6846,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-ip4routing-base-scale-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-ip4routing-base-scale-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -6787,7 +6861,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-features-ip4routing-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-features-ip4routing-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -6803,7 +6877,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-features-ip4routing-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-features-ip4routing-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -6819,7 +6893,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-dnv"
   include:
@@ -6834,7 +6908,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-dnv"
   include:
@@ -6849,7 +6923,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-dnv"
   include:
@@ -6865,7 +6939,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-dnv"
   include:
@@ -6881,7 +6955,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -6896,7 +6970,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -6911,7 +6985,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -6927,7 +7001,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-features-ip4routing-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -6943,7 +7017,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-ip4tunnel-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-ip4tunnel-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -6955,7 +7029,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-ip4tunnel-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-ip4tunnel-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -6967,7 +7041,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-ip4tunnel-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-ip4tunnel-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6981,7 +7055,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-ip4tunnel-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-ip4tunnel-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -6995,7 +7069,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-ip4tunnel-base-scale-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-ip4tunnel-base-scale-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7009,7 +7083,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-ip4tunnel-base-scale-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-ip4tunnel-base-scale-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7023,7 +7097,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-ip4tunnel-base-scale-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-ip4tunnel-base-scale-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7037,7 +7111,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-ip4tunnel-base-scale-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-ip4tunnel-base-scale-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7051,7 +7125,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7064,7 +7138,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7077,7 +7151,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7092,7 +7166,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7107,7 +7181,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -7120,7 +7194,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-78b-1t1c-ip6routing-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -7133,7 +7207,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7146,7 +7220,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-78b-2t1c-ip6routing-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7159,7 +7233,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7174,7 +7248,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-2t1c-ip6routing-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7189,7 +7263,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-78b-1t1c-ip6routing-base-scale-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-78b-1t1c-ip6routing-base-scale-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7204,7 +7278,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-78b-1t1c-ip6routing-base-scale-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-78b-1t1c-ip6routing-base-scale-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7219,7 +7293,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-dnv"
   include:
@@ -7234,7 +7308,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-dnv"
   include:
@@ -7249,7 +7323,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7264,7 +7338,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-1t1c-ip6routing-base-scale-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7279,7 +7353,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -7295,7 +7369,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-sw-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -7311,7 +7385,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -7325,7 +7399,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-imix-1t1c-ipsec-ip4routing-base-scale-hw-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -7339,7 +7413,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7355,7 +7429,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-imix-2t1c-ipsec-ip4routing-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7371,7 +7445,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-imix-1t1c-ipsec-ip4routing-base-scale-sw-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-imix-1t1c-ipsec-ip4routing-base-scale-sw-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7387,7 +7461,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-imix-1t1c-ipsec-ip4routing-base-scale-sw-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-imix-1t1c-ipsec-ip4routing-base-scale-sw-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7403,7 +7477,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-imix-1t1c-ipsec-ip4routing-base-scale-sw-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-imix-1t1c-ipsec-ip4routing-base-scale-sw-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7419,7 +7493,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-imix-1t1c-ipsec-ip4routing-base-scale-sw-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-imix-1t1c-ipsec-ip4routing-base-scale-sw-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7435,7 +7509,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7451,7 +7525,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7467,7 +7541,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7481,7 +7555,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-l2switching-base-avf-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-l2switching-base-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7495,7 +7569,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-l2switching-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-l2switching-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7510,7 +7584,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-l2switching-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-l2switching-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7525,7 +7599,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-l2switching-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-l2switching-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7539,7 +7613,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-l2switching-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-l2switching-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx"
   include:
@@ -7553,7 +7627,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-l2switching-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-l2switching-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -7569,7 +7643,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-l2switching-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-l2switching-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -7585,7 +7659,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7600,7 +7674,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-l2switching-base-scale-avf-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7615,7 +7689,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-l2switching-base-avf-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7628,7 +7702,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-l2switching-base-avf-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-l2switching-base-avf-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7641,7 +7715,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-l2switching-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-l2switching-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7655,7 +7729,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-l2switching-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-l2switching-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7669,7 +7743,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-l2switching-base-scale-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-l2switching-base-scale-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7685,7 +7759,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-l2switching-base-scale-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-l2switching-base-scale-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7701,7 +7775,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-features-l2switching-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-features-l2switching-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7717,7 +7791,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-features-l2switching-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-features-l2switching-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -7733,7 +7807,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-l2switching-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-l2switching-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7747,7 +7821,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-l2switching-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-l2switching-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7761,7 +7835,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7777,7 +7851,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-l2switching-base-scale-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7793,7 +7867,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7809,7 +7883,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-features-l2switching-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -7825,7 +7899,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-dnv"
   include:
@@ -7839,7 +7913,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-dnv"
   include:
@@ -7853,7 +7927,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-dnv"
   include:
@@ -7869,7 +7943,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-dnv"
   include:
@@ -7885,7 +7959,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7899,7 +7973,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-l2switching-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7913,7 +7987,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7929,7 +8003,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-l2switching-base-scale-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7945,7 +8019,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-features-l2switching-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-features-l2switching-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7961,7 +8035,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-64b-1t1c-features-l2switching-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-64b-1t1c-features-l2switching-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -7977,7 +8051,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-78b-1t1c-srv6-ip6routing-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-78b-1t1c-srv6-ip6routing-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -7993,7 +8067,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-78b-1t1c-srv6-ip6routing-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-78b-1t1c-srv6-ip6routing-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -8009,7 +8083,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -8025,7 +8099,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-78b-2t1c-srv6-ip6routing-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -8041,7 +8115,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-78b-1t1c-srv6-ip6routing-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-78b-1t1c-srv6-ip6routing-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -8057,7 +8131,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-78b-1t1c-srv6-ip6routing-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-78b-1t1c-srv6-ip6routing-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -8073,7 +8147,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -8086,7 +8160,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-dnv-x553-78b-1t1c-srv6-ip6routing-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-dnv"
   include:
@@ -8099,7 +8173,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
   include:
@@ -8113,7 +8187,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
   include:
@@ -8127,7 +8201,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
   include:
@@ -8141,7 +8215,7 @@
 
 - type: "plot"
   title: "Throughput: 2n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-pdr"
   data: "plot-vpp-throughput-lat-tsa-2n-skx-vhost"
   include:
@@ -8155,7 +8229,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   include:
@@ -8169,7 +8243,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   include:
@@ -8183,7 +8257,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   include:
@@ -8197,7 +8271,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw-vhost"
   include:
@@ -8211,7 +8285,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8225,7 +8299,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8239,7 +8313,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8253,7 +8327,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-x710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8267,7 +8341,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8282,7 +8356,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8297,7 +8371,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8312,7 +8386,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-vhost-base-i40e-vpp-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8327,7 +8401,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8343,7 +8417,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8359,7 +8433,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8375,7 +8449,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-2t1c-link-bonding-vhost-base-i40e-vpp-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
@@ -8391,7 +8465,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-vhost-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-vhost-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -8406,7 +8480,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-vhost-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-vhost-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -8421,7 +8495,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -8437,7 +8511,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-64b-1t1c-link-bonding-vhost-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -8453,7 +8527,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -8466,7 +8540,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-hsw-xl710-114b-1t1c-vts-l2switching-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-hsw"
   include:
@@ -8479,7 +8553,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -8492,7 +8566,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-114b-2t1c-vts-l2switching-base-i40e-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-skx"
   include:
@@ -8505,7 +8579,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-ndr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-ndr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
@@ -8518,7 +8592,7 @@
 
 - type: "plot"
   title: "Throughput: 3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-pdr"
-  algorithm: "plot_performance_name_box"
+  algorithm: "plot_performance_box_name"
   output-file: "{DIR[STATIC,VPP]}/3n-tsh-x520-114b-1t1c-vts-l2switching-base-ixgbe-pdr"
   data: "plot-vpp-throughput-lat-tsa-3n-tsh"
   include:
