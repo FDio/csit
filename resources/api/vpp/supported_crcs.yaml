@@ -54,9 +54,9 @@
     bridge_domain_add_del: '0xc6360720'  # dev
     bridge_domain_add_del_reply: '0xe8d4e804'  # dev
     # bridge_domain_dump / details # honeycomb
-    classify_add_del_session: '0x85fd79f4'  # dev
+    classify_add_del_session: '0xf20879f0'  # dev
     classify_add_del_session_reply: '0xe8d4e804'  # dev
-    classify_add_del_table: '0x9bd794ae'  # dev
+    classify_add_del_table: '0x66bec737'  # dev
     classify_add_del_table_reply: '0x05486349'  # dev
     # classify_session_dump / details # honeycomb
     # classify_table_by_interface / reply # honeycomb
@@ -97,7 +97,7 @@
     # gre_tunnel_add_del / reply # unused L1 keyword: create_gre_tunnel_interface
     hw_interface_set_mtu: '0xe6746899'  # dev
     hw_interface_set_mtu_reply: '0xe8d4e804'  # dev
-    input_acl_set_interface: '0xe09537b0'  # dev
+    input_acl_set_interface: '0xde7ad708'  # dev
     input_acl_set_interface_reply: '0xe8d4e804'  # dev
     ip_address_details: '0x7002eee7'  # dev
     ip_address_dump: '0x6b7bcd0a'  # dev
@@ -251,7 +251,7 @@
     # vxlan_tunnel_dump /details # unused L2 keyword: Get VXLAN dump
     policer_add_del: '0xdfea2be8'  # dev
     policer_add_del_reply: '0xa177cef2'  # dev
-    policer_classify_set_interface: '0xe09537b0' # dev
+    policer_classify_set_interface: '0xde7ad708' # dev
     policer_classify_set_interface_reply: '0xe8d4e804' # dev
     # 4x^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
 
@@ -280,9 +280,9 @@
     bridge_domain_add_del: '0xc6360720'  # dev
     bridge_domain_add_del_reply: '0xe8d4e804'  # dev
     # bridge_domain_dump / details # honeycomb
-    classify_add_del_session: '0x85fd79f4'  # dev
+    classify_add_del_session: '0xf20879f0'  # dev
     classify_add_del_session_reply: '0xe8d4e804'  # dev
-    classify_add_del_table: '0x9bd794ae'  # dev
+    classify_add_del_table: '0x66bec737'  # dev
     classify_add_del_table_reply: '0x05486349'  # dev
     # classify_session_dump / details # honeycomb
     # classify_table_by_interface / reply # honeycomb
@@ -323,7 +323,7 @@
     # gre_tunnel_add_del / reply # unused L1 keyword: create_gre_tunnel_interface
     hw_interface_set_mtu: '0xe6746899'  # dev
     hw_interface_set_mtu_reply: '0xe8d4e804'  # dev
-    input_acl_set_interface: '0xe09537b0'  # dev
+    input_acl_set_interface: '0xde7ad708'  # dev
     input_acl_set_interface_reply: '0xe8d4e804'  # dev
     ip_address_details: '0x7002eee7'  # dev
     ip_address_dump: '0x6b7bcd0a'  # dev
@@ -477,7 +477,7 @@
     # vxlan_tunnel_dump /details # unused L2 keyword: Get VXLAN dump
     policer_add_del: '0xdfea2be8'  # dev
     policer_add_del_reply: '0xa177cef2'  # dev
-    policer_classify_set_interface: '0xe09537b0' # dev
+    policer_classify_set_interface: '0xde7ad708' # dev
     policer_classify_set_interface_reply: '0xe8d4e804' # dev
     # 4x^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
 

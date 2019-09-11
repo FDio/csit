@@ -166,7 +166,7 @@ class Classify(object):
         """Add or delete a classify table.
 
         :param node: VPP node to create classify table.
-        :param is_add: If 1 the table is added, if 0 the table is deleted.
+        :param is_add: If True the table is added, if False table is deleted.
         :param mask: ACL mask in hexstring format.
         :param match_n_vectors: Number of vectors to match (Default value = ~0).
         :param table_index: Index of the classify table. (Default value = ~0)
@@ -190,7 +190,7 @@ class Classify(object):
             This is valid only if current_data_flag is set to 1.
             (Default value = 0)
         :type node: dict
-        :type is_add: int
+        :type is_add: bool
         :type mask: str
         :type match_n_vectors: int
         :type table_index: int
@@ -210,6 +210,7 @@ class Classify(object):
         cmd = 'classify_add_del_table'
         args = dict(
             is_add=is_add,
+            del_chain=False,
             table_index=table_index,
             nbuckets=nbuckets,
             memory_size=memory_size,
@@ -240,7 +241,8 @@ class Classify(object):
         """Add or delete a classify session.
 
         :param node: VPP node to create classify session.
-        :param is_add: If 1 the session is added, if 0 the session is deleted.
+        :param is_add: If True the session is added, if False the session
+            is deleted.
         :param table_index: Index of the table to add/del the session.
         :param match: For add, match value for session, required, needs to
             include bytes in front with length of skip_n_vectors of target table
@@ -257,15 +259,14 @@ class Classify(object):
             2: Classified IP packets will be looked up from the specified ipv6
                fib table (configured by metadata as VRF id).
                Only valid for L3 input ACL node
-            3: Classified packet will be steered to source routig policy of
+            3: Classified packet will be steered to source routing policy of
                given index (in metadata).
                This is only valid for IPv6 packets redirected to a source
                routing node.
-        :param metadata: Valid only if action != 0
-            VRF id if action is 1 or 2. SR policy index if action is 3.
-            (Default value = 0)
+        :param metadata: Valid only if action != 0. VRF id if action is 1 or 2.
+            SR policy index if action is 3. (Default value = 0)
         :type node: dict
-        :type is_add: int
+        :type is_add: bool
         :type table_index: int
         :type match: str
         :type opaque_index: int
@@ -428,7 +429,7 @@ class Classify(object):
 
         return Classify._classify_add_del_table(
             node,
-            is_add=1,
+            is_add=True,
             mask=mask,
             match_n_vectors=match_n,
             skip_n_vectors=skip_n
@@ -437,8 +438,8 @@ class Classify(object):
     @staticmethod
     def vpp_configures_classify_session_l3(
             node, acl_method, table_index, skip_n, match_n, ip_version,
-            direction, address, hit_next_index=Constants.BITWISE_NON_ZERO,
-            opaque_index=Constants.BITWISE_NON_ZERO):
+            direction, address, hit_next_index=None,
+            opaque_index=Constants.BITWISE_NON_ZERO, action=0, metadata=0):
         """Configuration of classify session for IP address filtering.
 
         :param node: VPP node to setup classify session.
@@ -452,6 +453,19 @@ class Classify(object):
         :param hit_next_index: hit_next_index of new session.
             (Default value = ~0)
         :param opaque_index: opaque_index of new session. (Default value = ~0)
+        :param action: 0: No action (by default) metadata is not used.
+            1: Classified IP packets will be looked up from the specified ipv4
+               fib table (configured by metadata as VRF id).
+               Only valid for L3 input ACL node
+            2: Classified IP packets will be looked up from the specified ipv6
+               fib table (configured by metadata as VRF id).
+               Only valid for L3 input ACL node
+            3: Classified packet will be steered to source routing policy of
+               given index (in metadata).
+               This is only valid for IPv6 packets redirected to a source
+               routing node.
+        :param metadata: Valid only if action != 0. VRF id if action is 1 or 2.
+            SR policy index if action is 3. (Default value = 0)
         :type node: dict
         :type acl_method: str
         :type table_index: int
@@ -462,15 +476,17 @@ class Classify(object):
         :type address: str
         :type hit_next_index: int
         :type opaque_index: int
+        :type action: int
+        :type metadata: int
         :raises ValueError: If the parameter 'direction' has incorrect value.
         """
         match_f = dict(
             ip4=Classify._build_ip_match,
             ip6=Classify._build_ip6_match
         )
-        action = dict(
-            permit=0,
-            deny=1
+        acl_hit_next_index = dict(
+            permit=Constants.BITWISE_NON_ZERO,
+            deny=0
         )
 
         if ip_version == "ip4" or ip_version == "ip6":
@@ -497,61 +513,15 @@ class Classify(object):
 
         Classify._classify_add_del_session(
             node,
-            is_add=1,
+            is_add=True,
             table_index=table_index,
-            hit_next_index=hit_next_index,
+            hit_next_index=hit_next_index if hit_next_index is not None
+            else acl_hit_next_index[acl_method],
             opaque_index=opaque_index,
             match=match,
-            action=action[acl_method]
+            action=action,
+            metadata=metadata
         )
-
-    @staticmethod
-    def compute_classify_hex_mask(ip_version, protocol, direction):
-        """Compute classify hex mask for TCP or UDP packet matching.
-
-        :param ip_version: Version of IP protocol.
-        :param protocol: Type of protocol.
-        :param direction: Traffic direction.
-        :type ip_version: str
-        :type protocol: str
-        :type direction: str
-        :returns: Classify hex mask.
-        :rtype: str
-        :raises ValueError: If protocol is not TCP or UDP.
-        :raises ValueError: If direction is not source or destination or
-            source + destination.
-        """
-        if protocol in ('TCP', 'UDP'):
-            base_mask = Classify._compute_base_mask(ip_version)
-
-            if direction == 'source':
-                return base_mask + 'FFFF0000'
-            elif direction == 'destination':
-                return base_mask + '0000FFFF'
-            elif direction == 'source + destination':
-                return base_mask + 'FFFFFFFF'
-            else:
-                raise ValueError("Invalid direction!")
-        else:
-            raise ValueError("Invalid protocol!")
-
-    @staticmethod
-    def compute_classify_hex_value(hex_mask, source_port, destination_port):
-        """Compute classify hex value for TCP or UDP packet matching.
-
-        :param hex_mask: Classify hex mask.
-        :param source_port: Source TCP/UDP port.
-        :param destination_port: Destination TCP/UDP port.
-        :type hex_mask: str
-        :type source_port: str
-        :type destination_port: str
-        :returns: Classify hex value.
-        :rtype: str
-        """
-        source_port_hex = Classify._port_convert(source_port)
-        destination_port_hex = Classify._port_convert(destination_port)
-
-        return hex_mask[:-8] + source_port_hex + destination_port_hex
 
     @staticmethod
     def _port_convert(port):
@@ -677,7 +647,7 @@ class Classify(object):
         acls = acl_idx if isinstance(acl_idx, list) else list()
 
         Classify._acl_interface_set_acl_list(node=node,
-                                             sw_if_index=sw_if_index,
+                                             sw_if_index=int(sw_if_index),
                                              acl_type=acl_type,
                                              acls=acls)
 
