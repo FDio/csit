@@ -212,7 +212,9 @@
         - 62  # NDRPDR sel vhost
         - 63  # NDRPDR sel vhost
         - 64  # NDRPDR sel vhost
+        - 65  # NDRPDR sel vhost
         - 66  # NDRPDR sel vhost
+        - 67  # NDRPDR sel vhost
 
     plot-dpdk-throughput-latency-3n-skx:
       csit-dpdk-perf-verify-1908-3n-skx:
@@ -415,6 +417,7 @@
         - 54  # NDRPDR full
         - 55  # NDRPDR full
         - 90  # NDRPDR full vhost
+        - 126 # NFV full
 
     vpp-perf-results-3n-tsh:
       csit-vpp-perf-verify-1908-3n-tsh:
@@ -1464,7 +1467,6 @@
       - 21  # NDRPDR sel
       - 23  # NDRPDR sel
       - 25  # NDRPDR sel
-    # TODO: Add data
     csit-vpp-perf-verify-1908-3n-skx:
       - 14  # NDRPDR sel
       - 16  # NDRPDR sel
@@ -1483,7 +1485,9 @@
       - 62  # NDRPDR sel vhost
       - 63  # NDRPDR sel vhost
       - 64  # NDRPDR sel vhost
+      - 65  # NDRPDR sel vhost
       - 66  # NDRPDR sel vhost
+      - 67  # NDRPDR sel vhost
       - 27  # NDRPDR full
       - 28  # NDRPDR full
       - 30  # NDRPDR full
@@ -1523,7 +1527,6 @@
       - 30  # NDRPDR sel
       - 31  # NDRPDR sel
       - 32  # NDRPDR sel
-    # TODO: Add data
     csit-vpp-perf-verify-1908-2n-skx:
       - 26  # NDRPDR sel
       - 27  # NDRPDR sel
@@ -1574,6 +1577,7 @@
       - 68  # NFV
       - 70  # NFV
       - 71  # NFV MRR
+      - 126 # NFV full
       - 83  # SOAK
       - 86  # SOAK
 

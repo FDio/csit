@@ -335,7 +335,7 @@ def table_performance_comparison(table, input_data):
                     tbl_dict[tst_name_mod] = {"name": name,
                                               "ref-data": list(),
                                               "cmp-data": list()}
-                _tpc_insert_data(target=tbl_dict[tst_name_mod]["ref-data"],
+                _tpc_insert_data(target=tbl_dict[tst_name_mod]["cmp-data"],
                                  src=tst_data,
                                  include_tests=table["include-tests"])
 
