@@ -25,3 +25,4 @@ resources.
     vnf_service_chains
     cnf_service_chains
     cnf_service_pipelines
+    vnf_service_chains_reconf
