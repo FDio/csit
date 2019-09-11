@@ -484,7 +484,7 @@ class Topology:
         """
         try:
             if isinstance(iface_key, str):
-                return node[u"interfaces"][iface_key].get(u"vpp_sw_index")
+                return int(node[u"interfaces"][iface_key].get(u"vpp_sw_index"))
             # TODO: use only iface_key, do not use integer
             return int(iface_key)
         except (KeyError, ValueError):

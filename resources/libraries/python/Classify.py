@@ -170,7 +170,7 @@ class Classify:
         """Add or delete a classify table.
 
         :param node: VPP node to create classify table.
-        :param is_add: If 1 the table is added, if 0 the table is deleted.
+        :param is_add: If True the table is added, if False table is deleted.
         :param mask: ACL mask in hexstring format.
         :param match_n_vectors: Number of vectors to match (Default value = ~0).
         :param table_index: Index of the classify table. (Default value = ~0)
@@ -194,8 +194,8 @@ class Classify:
             This is valid only if current_data_flag is set to 1.
             (Default value = 0)
         :type node: dict
-        :type is_add: int
-        :type mask: bytes
+        :type is_add: bool
+        :type mask: str
         :type match_n_vectors: int
         :type table_index: int
         :type nbuckets: int
@@ -214,6 +214,7 @@ class Classify:
         cmd = u"classify_add_del_table"
         args = dict(
             is_add=is_add,
+            del_chain=False,
             table_index=table_index,
             nbuckets=nbuckets,
             memory_size=memory_size,
@@ -243,7 +244,8 @@ class Classify:
         """Add or delete a classify session.
 
         :param node: VPP node to create classify session.
-        :param is_add: If 1 the session is added, if 0 the session is deleted.
+        :param is_add: If True the session is added, if False the session
+            is deleted.
         :param table_index: Index of the table to add/del the session.
         :param match: For add, match value for session, required, needs to
             include bytes in front with length of skip_n_vectors of target table
@@ -260,15 +262,14 @@ class Classify:
             2: Classified IP packets will be looked up from the specified ipv6
                fib table (configured by metadata as VRF id).
                Only valid for L3 input ACL node
-            3: Classified packet will be steered to source routig policy of
+            3: Classified packet will be steered to source routing policy of
                given index (in metadata).
                This is only valid for IPv6 packets redirected to a source
                routing node.
-        :param metadata: Valid only if action != 0
-            VRF id if action is 1 or 2. SR policy index if action is 3.
-            (Default value = 0)
+        :param metadata: Valid only if action != 0. VRF id if action is 1 or 2.
+            SR policy index if action is 3. (Default value = 0)
         :type node: dict
-        :type is_add: int
+        :type is_add: bool
         :type table_index: int
         :type match: bytes
         :type opaque_index: int
@@ -426,7 +427,7 @@ class Classify:
 
         return Classify._classify_add_del_table(
             node,
-            is_add=1,
+            is_add=True,
             mask=mask,
             match_n_vectors=match_n,
             skip_n_vectors=skip_n
@@ -435,8 +436,8 @@ class Classify:
     @staticmethod
     def vpp_configures_classify_session_l3(
             node, acl_method, table_index, skip_n, match_n, ip_version,
-            direction, address, hit_next_index=Constants.BITWISE_NON_ZERO,
-            opaque_index=Constants.BITWISE_NON_ZERO):
+            direction, address, hit_next_index=None,
+            opaque_index=Constants.BITWISE_NON_ZERO, action=0, metadata=0):
         """Configuration of classify session for IP address filtering.
 
         :param node: VPP node to setup classify session.
@@ -450,6 +451,19 @@ class Classify:
         :param hit_next_index: hit_next_index of new session.
             (Default value = ~0)
         :param opaque_index: opaque_index of new session. (Default value = ~0)
+        :param action: 0: No action (by default) metadata is not used.
+            1: Classified IP packets will be looked up from the specified ipv4
+               fib table (configured by metadata as VRF id).
+               Only valid for L3 input ACL node
+            2: Classified IP packets will be looked up from the specified ipv6
+               fib table (configured by metadata as VRF id).
+               Only valid for L3 input ACL node
+            3: Classified packet will be steered to source routing policy of
+               given index (in metadata).
+               This is only valid for IPv6 packets redirected to a source
+               routing node.
+        :param metadata: Valid only if action != 0. VRF id if action is 1 or 2.
+            SR policy index if action is 3. (Default value = 0)
         :type node: dict
         :type acl_method: str
         :type table_index: int
@@ -460,15 +474,17 @@ class Classify:
         :type address: str
         :type hit_next_index: int
         :type opaque_index: int
+        :type action: int
+        :type metadata: int
         :raises ValueError: If the parameter 'direction' has incorrect value.
         """
         match_f = dict(
             ip4=Classify._build_ip_match,
             ip6=Classify._build_ip6_match
         )
-        action = dict(
-            permit=0,
-            deny=1
+        acl_hit_next_index = dict(
+            permit=Constants.BITWISE_NON_ZERO,
+            deny=0
         )
 
         if ip_version in (u"ip4", u"ip6"):
@@ -493,12 +509,14 @@ class Classify:
 
         Classify._classify_add_del_session(
             node,
-            is_add=1,
+            is_add=True,
             table_index=table_index,
-            hit_next_index=hit_next_index,
+            hit_next_index=hit_next_index if hit_next_index is not None
+            else acl_hit_next_index[acl_method],
             opaque_index=opaque_index,
             match=match,
-            action=action[acl_method]
+            action=action,
+            metadata=metadata
         )
 
     @staticmethod
