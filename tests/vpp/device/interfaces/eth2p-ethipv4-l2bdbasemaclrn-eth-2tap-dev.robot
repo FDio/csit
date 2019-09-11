@@ -16,6 +16,7 @@
 |
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | L2BD | BASE | 2TAP | DRV_VFIO_PCI
+| ... | EXPECTED_FAILING
 |
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test | namespace
