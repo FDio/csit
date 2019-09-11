@@ -136,13 +136,14 @@ def table_merged_details(table, input_data):
     # Transform the data
     logging.info("    Creating the data set for the {0} '{1}'.".
                  format(table.get("type", ""), table.get("title", "")))
-    data = input_data.filter_data(table)
+    data = input_data.filter_data(table, continue_on_error=True)
     data = input_data.merge_data(data)
     data.sort_index(inplace=True)
 
     logging.info("    Creating the data set for the {0} '{1}'.".
                  format(table.get("type", ""), table.get("title", "")))
-    suites = input_data.filter_data(table, data_set="suites")
+    suites = input_data.filter_data(
+        table, continue_on_error=True, data_set="suites")
     suites = input_data.merge_data(suites)
 
     # Prepare the header of the tables
