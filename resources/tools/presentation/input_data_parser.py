@@ -291,6 +291,9 @@ class ExecutionChecker(ResultVisitor):
     REGEX_BMRR = re.compile(r'Maximum Receive Rate trial results'
                             r' in packets per second: \[(.*)\]')
 
+    REGEX_RECONF_LOSS = re.compile(r'Packets lost due to reconfig: (\d*)')
+    REGEX_RECONF_TIME = re.compile(r'Implied time lost: (\d*.\d*)')
+
     REGEX_TC_TAG = re.compile(r'\d+[tT]\d+[cC]')
 
     REGEX_TC_NAME_OLD = re.compile(r'-\d+[tT]\d+[cC]-')
@@ -802,6 +805,7 @@ class ExecutionChecker(ResultVisitor):
             groups = re.search(self.REGEX_TC_NAME_OLD, self._test_ID)
             if not groups:
                 tag_count = 0
+                tag_tc = str()
                 for tag in test_result["tags"]:
                     groups = re.search(self.REGEX_TC_TAG, tag)
                     if groups:
@@ -830,7 +834,8 @@ class ExecutionChecker(ResultVisitor):
                                       "SOAK" in tags or
                                       "TCP" in tags or
                                       "MRR" in tags or
-                                      "BMRR" in tags):
+                                      "BMRR" in tags or
+                                      "RECONF" in tags):
             # TODO: Remove when definitely no NDRPDRDISC tests are used:
             if "NDRDISC" in tags:
                 test_result["type"] = "NDR"
@@ -847,6 +852,8 @@ class ExecutionChecker(ResultVisitor):
                 test_result["type"] = "MRR"
             elif "FRMOBL" in tags or "BMRR" in tags:
                 test_result["type"] = "BMRR"
+            elif "RECONF" in tags:
+                test_result["type"] = "RECONF"
             else:
                 test_result["status"] = "FAIL"
                 self._data["tests"][self._test_ID] = test_result
@@ -907,6 +914,18 @@ class ExecutionChecker(ResultVisitor):
                     test_result["result"]["receive-rate"] = \
                         AvgStdevMetadataFactory.from_data([
                             float(groups.group(3)) / float(groups.group(1)), ])
+
+            elif test_result["type"] == "RECONF":
+                test_result["result"] = None
+                try:
+                    grps_loss = re.search(self.REGEX_RECONF_LOSS, test.message)
+                    grps_time = re.search(self.REGEX_RECONF_TIME, test.message)
+                    test_result["result"] = {
+                        "loss": int(grps_loss.group(1)),
+                        "time": float(grps_time.group(1))
+                    }
+                except (AttributeError, IndexError, ValueError, TypeError):
+                    test_result["status"] = "FAIL"
 
         self._data["tests"][self._test_ID] = test_result
 

@@ -61,8 +61,102 @@ def generate_plots(spec, data):
     logging.info("Done.")
 
 
-def plot_performance_name_box(plot, input_data):
-    """Generate the plot(s) with algorithm: plot_performance_name_box
+def plot_service_density_reconf_box_name(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_service_density_reconf_box_name
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    plot_title = plot.get("title", "")
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot_title))
+    data = input_data.filter_tests_by_name(
+        plot, params=["result", "parent", "tags", "type"])
+    if data is None:
+        logging.error("No data.")
+        return
+
+    # Prepare the data for the plot
+    y_vals = OrderedDict()
+    for job in data:
+        for build in job:
+            for test in build:
+                if y_vals.get(test["parent"], None) is None:
+                    y_vals[test["parent"]] = list()
+                try:
+                    y_vals[test["parent"]].append(test["result"]["time"])
+                except (KeyError, TypeError):
+                    y_vals[test["parent"]].append(None)
+
+    # Add None to the lists with missing data
+    max_len = 0
+    nr_of_samples = list()
+    for val in y_vals.values():
+        if len(val) > max_len:
+            max_len = len(val)
+        nr_of_samples.append(len(val))
+    for key, val in y_vals.items():
+        if len(val) < max_len:
+            val.extend([None for _ in range(max_len - len(val))])
+
+    # Add plot traces
+    traces = list()
+    df = pd.DataFrame(y_vals)
+    df.head()
+    y_max = list()
+    for i, col in enumerate(df.columns):
+        tst_name = re.sub(REGEX_NIC, "",
+                          col.lower().replace('-ndrpdr', '').
+                          replace('2n1l-', ''))
+        name = "{nr}. ({samples:02d} run{plural}) {name}".\
+            format(nr=(i + 1),
+                   samples=nr_of_samples[i],
+                   plural='s' if nr_of_samples[i] > 1 else '',
+                   name=tst_name)
+
+        traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
+                               y=[y if y else None for y in df[col]],
+                               name=name,
+                               hoverinfo="x+y",
+                               boxpoints="outliers",
+                               whiskerwidth=0))
+        try:
+            val_max = max(df[col])
+        except ValueError as err:
+            logging.error(repr(err))
+            continue
+        if val_max:
+            y_max.append(int(val_max) + 1)
+
+    try:
+        # Create plot
+        layout = deepcopy(plot["layout"])
+        if layout.get("title", None):
+            layout["title"] = "<b>Throughput:</b> {0}". \
+                format(layout["title"])
+        if y_max:
+            layout["yaxis"]["range"] = [0, max(y_max)]
+        plpl = plgo.Figure(data=traces, layout=layout)
+
+        # Export Plot
+        file_type = plot.get("output-file-type", ".html")
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], file_type))
+        ploff.plot(plpl, show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"], file_type))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(repr(err).replace("\n", " ")))
+        return
+
+
+def plot_performance_box_name(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_performance_box_name
     specified in the specification file.
 
     :param plot: Plot to generate.
