@@ -445,7 +445,6 @@
         - 54  # NDRPDR full
         - 55  # NDRPDR full
         - 90  # NDRPDR full vhost
-        - 126 # NFV full
 
 <<<<<<< HEAD   (97881b Report: functional tests static content)
 =======
@@ -1611,7 +1610,6 @@
       - 68  # NFV
       - 70  # NFV
       - 71  # NFV MRR
-      - 126 # NFV full
       - 83  # SOAK
       - 86  # SOAK
 
