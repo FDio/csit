@@ -470,6 +470,10 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="skx"
             ;;
+        *"2n-clx"*)
+            NODENESS="2n"
+            FLAVOR="clx"
+            ;;
         *"2n-dnv"*)
             NODENESS="2n"
             FLAVOR="dnv"
@@ -802,6 +806,9 @@ function select_tags () {
             # Not enough nic_intel-xxv710 to support double link tests.
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
             ;;
+        *"2n-clx"*)
+            test_tag_array+=("!ipsechw")
+            ;;
         *"2n-dnv"*)
             test_tag_array+=("!ipsechw")
             test_tag_array+=("!memif")
@@ -906,6 +913,10 @@ function select_topology () {
         "3n_skx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_skx*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
+            ;;
+        "2n_clx")
+            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx*.yaml )
+            TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         "2n_dnv")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_dnv*.yaml )
