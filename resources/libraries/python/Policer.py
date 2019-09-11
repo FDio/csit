@@ -180,7 +180,7 @@ class Policer:
     def policer_classify_set_interface(
             node, interface, ip4_table_index=Constants.BITWISE_NON_ZERO,
             ip6_table_index=Constants.BITWISE_NON_ZERO,
-            l2_table_index=Constants.BITWISE_NON_ZERO, is_add=1):
+            l2_table_index=Constants.BITWISE_NON_ZERO, is_add=True):
         """Set/unset policer classify interface.
 
         :param node: VPP node.
@@ -192,12 +192,13 @@ class Policer:
             (Default value = ~0)
         :param l2_table_index: L2 classify table index (~0 to skip).
             (Default value = ~0)
-        :param is_add: Set if non-zero, else unset.
+        :param is_add: Set if True, else unset.
         :type node: dict
         :type interface: str or int
         :type ip4_table_index: int
         :type ip6_table_index: int
         :type l2_table_index: int
+        :type is_add: bool
         """
         if isinstance(interface, str):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
@@ -206,8 +207,8 @@ class Policer:
 
         cmd = u"policer_classify_set_interface"
         args = dict(
-            is_add=int(is_add),
-            sw_if_index=sw_if_index,
+            is_add=is_add,
+            sw_if_index=int(sw_if_index),
             ip4_table_index=int(ip4_table_index),
             ip6_table_index=int(ip6_table_index),
             l2_table_index=int(l2_table_index)
