@@ -21,7 +21,6 @@
 | Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
-| Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.Trace
 | Variables | resources/libraries/python/Constants.py
 | ...
@@ -383,9 +382,10 @@
 | | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${fail_on_loss}=${True} | ${traffic_directions}=${2}
 | | ...
-| | Send traffic at specified rate | ${duration} | ${rate} | ${frame_size}
-| | ... | ${traffic_profile} | traffic_directions=${traffic_directions}
-| | Run Keyword If | ${fail_on_loss} | No traffic loss occurred
+| | ${runs} = | Send traffic at specified rate | ${duration} | ${rate}
+| | ... | ${frame_size} | ${traffic_profile}
+| | ... | traffic_directions=${traffic_directions}
+| | Run Keyword If | ${fail_on_loss} | Fail if traffic loss occurred | ${runs}
 
 | Traffic should pass with maximum rate
 | | [Documentation]
@@ -418,20 +418,21 @@
 | | ... | ${fail_no_traffic}=${True} | ${subsamples}=${PERF_TRIAL_MULTIPLICITY}
 | | ... | ${traffic_directions}=${2} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ...
-| | ${results} = | Send traffic at specified rate | ${trial_duration}
+| | ${runs} = | Send traffic at specified rate | ${trial_duration}
 | | ... | ${max_rate}pps | ${frame_size} | ${traffic_profile} | ${subsamples}
 | | ... | ${traffic_directions} | ${tx_port} | ${rx_port}
+| | ${results} = | Extract measurement receive rates | ${runs}
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
 | | ... | append=yes
 | | # TODO: Should we also report the percentage relative to transmit rate,
 | | # so that people looking at console can decide how close to 100% it is?
-| | Run Keyword If | ${fail_no_traffic} | Fail if no traffic forwarded
+| | Run Keyword If | ${fail_no_traffic} | Fail if no traffic forwarded | ${runs}
 
 | Send traffic at specified rate
 | | [Documentation]
 | | ... | Send traffic at specified rate.
-| | ... | Return list of measured receive rates.
+| | ... | Return list of receive rate measurements.
 | | ... | The rate argument should be TRex friendly, so it should include "pps".
 | | ...
 | | ... | *Arguments:*
@@ -469,13 +470,11 @@
 | | :FOR | ${i} | IN RANGE | ${subsamples}
 | | | # The following line is skipping some default arguments,
 | | | # that is why subsequent arguments have to be named.
-| | | Send traffic on tg | ${trial_duration} | ${rate} | ${frame_size}
-| | | ... | ${traffic_profile} | warmup_time=${0}
+| | | ${measurement} = | Send traffic on tg | ${trial_duration} | ${rate}
+| | | ... | ${frame_size} | ${traffic_profile} | warmup_time=${0}
 | | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
 | | | ... | rx_port=${rx_port}
-| | | ${rx} = | Get Received
-| | | ${rr} = | Evaluate | ${rx} / ${trial_duration}
-| | | Append To List | ${results} | ${rr}
+| | | Append To List | ${results} | ${measurement}
 | | Run Keyword If | ${dut_stats}==${True} | Show event logger on all DUTs
 | | ... | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} | Show statistics on all DUTs
@@ -572,5 +571,5 @@
 | | ...
 | | ... | \${result}= \| Stop Running Traffic \|
 | | ...
-| | ${result}= | Stop traffic on tg
+| | ${result} = | Stop traffic on tg
 | | Return From Keyword | ${result}
