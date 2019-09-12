@@ -21,15 +21,17 @@ class Cop(object):
     """COP utilities."""
 
     @staticmethod
-    def cop_add_whitelist_entry(node, interface, ip_format, fib_id,
-                                default_cop=0):
+    def cop_add_whitelist_entry(
+            node, interface, ip_format, fib_id, default_cop=0):
         """Add cop whitelisted entry.
 
         :param node: Node to add COP whitelist on.
         :param interface: Interface of the node where the COP is added.
-        :param ip_format: IP format : ip4 or ip6 are valid formats.
+        :param ip_format: IP format : IP version. 'ip4' and 'ip6' are valid
+            values.
         :param fib_id: Specify the fib table ID.
-        :param default_cop: 1 => enable non-ip4, non-ip6 filtration.
+        :param default_cop: 1 => enable non-ip4, non-ip6 filtration,
+            0 => disable it.
         :type node: dict
         :type interface: str
         :type ip_format: str
@@ -37,26 +39,21 @@ class Cop(object):
         :type default_cop: int
         """
         if ip_format not in ('ip4', 'ip6'):
-            raise ValueError("Ip not in correct format!")
-        ip4 = ip6 = 0
-        if ip_format == 'ip4':
-            ip4 = 1
-        else:
-            ip6 = 1
-        sw_if_index = Topology.get_interface_sw_index(node, interface)
+            raise ValueError('IP version not in correct format')
+
         cmd = 'cop_whitelist_enable_disable'
-        err_msg = 'Failed to add COP whitelist on ifc {ifc}'\
-                  .format(ifc=interface)
-        args_in = dict(
-            sw_if_index=int(sw_if_index),
+        err_msg = 'Failed to add COP whitelist on interface {ifc} on host' \
+                  ' {host}'.format(ifc=interface, host=node['host'])
+        args = dict(
+            sw_if_index=Topology.get_interface_sw_index(node, interface),
             fib_id=int(fib_id),
-            ip4=ip4,
-            ip6=ip6,
+            ip4=True if ip_format == 'ip4' else False,
+            ip6=True if ip_format == 'ip6' else False,
             default_cop=default_cop
         )
 
         with PapiSocketExecutor(node) as papi_exec:
-            papi_exec.add(cmd, **args_in).get_reply(err_msg)
+            papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
     def cop_interface_enable_or_disable(node, interface, state):
@@ -64,31 +61,24 @@ class Cop(object):
 
         :param node: Node to add COP whitelist on.
         :param interface: Interface of the node where the COP is added.
-        :param state: disable/enable COP on the interface.
+        :param state: Enable or disable COP on the interface.
         :type node: dict
         :type interface: str
         :type state: str
         """
         state = state.lower()
         if state in ('enable', 'disable'):
-            if state == 'enable':
-                enable_disable = 1
-            else:
-                enable_disable = 0
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
-            cmd = 'cop_interface_enable_disable'
-            err_msg = 'Failed to enable or disable on {ifc}'\
-                      .format(ifc=interface)
-
-            args_in = dict(
-                sw_if_index=int(sw_if_index),
-                enable_disable=enable_disable
-            )
-
-            with PapiSocketExecutor(node) as papi_exec:
-                papi_exec.add(cmd, **args_in).get_reply(err_msg)
-
+            enable = True if state == 'enable' else False
         else:
-            raise ValueError(
-                "Possible values are 'enable' or 'disable'!"
-            )
+            raise ValueError("Possible state values are 'enable' or 'disable'")
+
+        cmd = 'cop_interface_enable_disable'
+        err_msg = 'Failed to enable/disable COP on interface {ifc} on host' \
+                  ' {host}'.format(ifc=interface, host=node['host'])
+        args = dict(
+            sw_if_index=Topology.get_interface_sw_index(node, interface),
+            enable_disable=enable
+        )
+
+        with PapiSocketExecutor(node) as papi_exec:
+            papi_exec.add(cmd, **args).get_reply(err_msg)
