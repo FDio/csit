@@ -164,6 +164,30 @@
     },
     {
       "key": {
+        "uuid": "e96b15d4_eb8c7b85",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lisp-ip4base-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T11:44:15Z",
+      "side": 1,
+      "message": "Is there a reason to keep both?",
+      "parentUuid": "e0cd5843_74cdfd14",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "78acc3f5_7ffa413c",
         "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lispgpe-ip4base-dev.robot",
         "patchSetId": 4
