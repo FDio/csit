@@ -14,13 +14,13 @@
 """Performance testing traffic generator library."""
 
 import time
+import yaml
 
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
-from .DropRateSearch import DropRateSearch
 from .Constants import Constants
-from .ssh import exec_cmd_no_error, exec_cmd
+from .ssh import exec_cmd_no_error
 from .topology import NodeType
 from .topology import NodeSubTypeTG
 from .topology import Topology
@@ -29,170 +29,74 @@ from .MLRsearch.MultipleLossRatioSearch import MultipleLossRatioSearch
 from .MLRsearch.ReceiveRateMeasurement import ReceiveRateMeasurement
 from .PLRsearch.PLRsearch import PLRsearch
 
-__all__ = ['TGDropRateSearchImpl', 'TrafficGenerator', 'OptimizedSearch']
-
-
-def check_subtype(node):
-    """Return supported subtype of given node, or raise an exception.
-
-    Currently only one subtype is supported,
-    but we want our code to be ready for other ones.
-
-    :param node: Topology node to check. Can be None.
-    :type node: dict or NoneType
-    :returns: Subtype detected.
-    :rtype: NodeSubTypeTG
-    :raises RuntimeError: If node is not supported, message explains how.
-    """
-    if node.get('type') is None:
-        raise RuntimeError('Node type is not defined')
-    elif node['type'] != NodeType.TG:
-        raise RuntimeError('Node type is {typ!r}, not a TG'.format(
-            typ=node['type']))
-    elif node.get('subtype') is None:
-        raise RuntimeError('TG subtype is not defined')
-    elif node['subtype'] == NodeSubTypeTG.TREX:
-        return NodeSubTypeTG.TREX
-    raise RuntimeError('TG subtype {sub!r} is not supported'.format(
-        sub=node['subtype']))
-
-
-class TGDropRateSearchImpl(DropRateSearch):
-    """Drop Rate Search implementation."""
-
-    def __init__(self):
-        super(TGDropRateSearchImpl, self).__init__()
-
-    def measure_loss(self, rate, frame_size, loss_acceptance,
-                     loss_acceptance_type, traffic_profile, skip_warmup=False):
-        """Runs the traffic and evaluate the measured results.
-
-        :param rate: Offered traffic load.
-        :param frame_size: Size of frame.
-        :param loss_acceptance: Permitted drop ratio or frames count.
-        :param loss_acceptance_type: Type of permitted loss.
-        :param traffic_profile: Module name as a traffic profile identifier.
-            See resources/traffic_profiles/trex for implemented modules.
-        :param skip_warmup: Start TRex without warmup traffic if true.
-        :type rate: float
-        :type frame_size: str
-        :type loss_acceptance: float
-        :type loss_acceptance_type: LossAcceptanceType
-        :type traffic_profile: str
-        :type skip_warmup: bool
-        :returns: Drop threshold exceeded? (True/False)
-        :rtype: bool
-        :raises NotImplementedError: If TG is not supported.
-        :raises RuntimeError: If TG is not specified.
-        """
-        # we need instance of TrafficGenerator instantiated by Robot Framework
-        # to be able to use trex_stl-*()
-        tg_instance = BuiltIn().get_library_instance(
-            'resources.libraries.python.TrafficGenerator')
-        subtype = check_subtype(tg_instance.node)
-        if subtype == NodeSubTypeTG.TREX:
-            unit_rate = str(rate) + self.get_rate_type_str()
-            if skip_warmup:
-                tg_instance.trex_stl_start_remote_exec(
-                    self.get_duration(), unit_rate, frame_size, traffic_profile,
-                    warmup_time=0.0)
-            else:
-                tg_instance.trex_stl_start_remote_exec(
-                    self.get_duration(), unit_rate, frame_size, traffic_profile)
-            loss = tg_instance.get_loss()
-            sent = tg_instance.get_sent()
-            if self.loss_acceptance_type_is_percentage():
-                loss = (float(loss) / float(sent)) * 100
-            logger.trace("comparing: {los} < {acc} {typ}".format(
-                los=loss, acc=loss_acceptance, typ=loss_acceptance_type))
-            return float(loss) <= float(loss_acceptance)
-        return False
-
-    def get_latency(self):
-        """Returns min/avg/max latency.
-
-        :returns: Latency stats.
-        :rtype: list
-        """
-        tg_instance = BuiltIn().get_library_instance(
-            'resources.libraries.python.TrafficGenerator')
-        return tg_instance.get_latency_int()
+__all__ = ['TrafficGenerator', 'OptimizedSearch']
 
 
 class TrafficGenerator(AbstractMeasurer):
-    """Traffic Generator.
+    """Traffic Generator for performance testing
 
-    FIXME: Describe API."""
+    A Traffic Generator instance is created in scope for test suites measuring
+    performance in a given topology. A dedicated TG node in the topology is
+    remotely controlled by this instance. The subtype of this node selects which
+    implementation of traffic generator is to be used on the node. The only
+    supported subtype at this time is TRex.
+
+    A test suite must initialize the generator instance by providing it with
+    node and interface information, including information on adjacent nodes.
+
+    Depending on the kind of testing, as denoted by the OSI layer for the suite,
+    source and destination addresses are required for configuration of the
+    generator.
+
+    Once initialized, traffic may be configured and sent by the generator,
+    provided a complete set of required parameters, such as duration, transmit
+    rate, and a traffic profile for the 'content' of the generated stream.
+
+    The traffic may be started for either synchronous or asynchronous mode;
+    in the former, the generator blocks for the required duration of the run,
+    and returns its results. When the traffic is sent asynchronously, it
+    must be stopped at a later time, and the same result will be returned then.
+    Only a single traffic run may be active at any given time.
+
+    Finally, the traffic generator should be torn down during suite cleanups.
+    """
 
     # TODO: Decrease friction between various search and rate provider APIs.
-    # TODO: Remove "trex" from lines which could work with other TGs.
 
     # Use one instance of TrafficGenerator for all tests in test suite
     ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
 
     def __init__(self):
-        # TODO: Number of fields will be reduced with CSIT-1378.
-        self._node = None
-        # T-REX interface order mapping
-        self._ifaces_reordered = False
-        # Result holding fields, to be removed.
-        self._result = None
-        self._loss = None
-        self._sent = None
-        self._latency = None
-        self._received = None
-        # Measurement input fields, needed for async stop result.
-        self._start_time = None
-        self._rate = None
-        # Other input parameters, not knowable from measure() signature.
+        self._driver = None
+        # Input parameters not available in measure(), hence need to be preset
         self.frame_size = None
         self.traffic_profile = None
         self.warmup_time = None
         self.traffic_directions = None
-        # Transient data needed for async measurements.
-        self._xstats = (None, None)
-        # TODO: Rename "xstats" to something opaque, so TRex is not privileged?
 
-    @property
-    def node(self):
-        """Getter.
+    @staticmethod
+    def get_driver(node):
+        """Return supported TrafficGeneratorDriver for given node
 
-        :returns: Traffic generator node.
-        :rtype: dict
+        At this time, only a TRex driver is supported.
+
+        :param node: Topology node to check.
+        :type node: dict
+        :returns: Driver for supported node types
+        :rtype: TrafficGeneratorDriver
+        :raises RuntimeError: If node is not supported, message explains how.
         """
-        return self._node
-
-    def get_loss(self):
-        """Return number of lost packets.
-
-        :returns: Number of lost packets.
-        :rtype: str
-        """
-        return self._loss
-
-    def get_sent(self):
-        """Return number of sent packets.
-
-        :returns: Number of sent packets.
-        :rtype: str
-        """
-        return self._sent
-
-    def get_received(self):
-        """Return number of received packets.
-
-        :returns: Number of received packets.
-        :rtype: str
-        """
-        return self._received
-
-    def get_latency_int(self):
-        """Return rounded min/avg/max latency.
-
-        :returns: Latency stats.
-        :rtype: list
-        """
-        return self._latency
+        if node.get('type') is None:
+            raise RuntimeError('Node type is not defined')
+        elif node['type'] != NodeType.TG:
+            raise RuntimeError('Node type is {typ!r}, not a TG'.format(
+                typ=node['type']))
+        elif node.get('subtype') is None:
+            raise RuntimeError('TG subtype is not defined')
+        elif node['subtype'] == NodeSubTypeTG.TREX:
+            return TrexDriver(node)
+        raise RuntimeError('TG subtype {sub!r} is not supported'.format(
+            sub=node['subtype']))
 
     def initialize_traffic_generator(
             self, tg_node, tg_if1, tg_if2, tg_if1_adj_node, tg_if1_adj_if,
@@ -200,15 +104,13 @@ class TrafficGenerator(AbstractMeasurer):
             tg_if2_dst_mac=None):
         """TG initialization.
 
-        TODO: Document why do we need (and how do we use) _ifaces_reordered.
-
         :param tg_node: Traffic generator node.
         :param tg_if1: TG - name of first interface.
         :param tg_if2: TG - name of second interface.
-        :param tg_if1_adj_node: TG if1 adjecent node.
-        :param tg_if1_adj_if: TG if1 adjecent interface.
-        :param tg_if2_adj_node: TG if2 adjecent node.
-        :param tg_if2_adj_if: TG if2 adjecent interface.
+        :param tg_if1_adj_node: TG if1 adjacent node.
+        :param tg_if1_adj_if: TG if1 adjacent interface.
+        :param tg_if2_adj_node: TG if2 adjacent node.
+        :param tg_if2_adj_if: TG if2 adjacent interface.
         :param osi_layer: 'L2', 'L3' or 'L7' - OSI Layer testing type.
         :param tg_if1_dst_mac: Interface 1 destination MAC address.
         :param tg_if2_dst_mac: Interface 2 destination MAC address.
@@ -225,317 +127,63 @@ class TrafficGenerator(AbstractMeasurer):
         :returns: nothing
         :raises RuntimeError: In case of issue during initialization.
         """
-        subtype = check_subtype(tg_node)
-        if subtype == NodeSubTypeTG.TREX:
-            self._node = tg_node
+        if self._driver is not None:
+            raise RuntimeError('Traffic Generator is already initialized')
+        self._driver = self.get_driver(tg_node)
+        links = [
+            DirectedLink(TopologyInterface(tg_node, tg_if1),
+                         TopologyInterface(tg_if1_adj_node, tg_if1_adj_if),
+                         tg_if1_dst_mac),
+            DirectedLink(TopologyInterface(tg_node, tg_if2),
+                         TopologyInterface(tg_if2_adj_node, tg_if2_adj_if),
+                         tg_if2_dst_mac)]
+        self._driver.setup(osi_layer, links)
 
-            if1_pci = Topology().get_interface_pci_addr(self._node, tg_if1)
-            if2_pci = Topology().get_interface_pci_addr(self._node, tg_if2)
-            if1_addr = Topology().get_interface_mac(self._node, tg_if1)
-            if2_addr = Topology().get_interface_mac(self._node, tg_if2)
+    def teardown_traffic_generator_if_setup(self, tg_node):
+        """Check if a traffic generator is currently set up on the node
 
-            if osi_layer == 'L2':
-                if1_adj_addr = if2_addr
-                if2_adj_addr = if1_addr
-            elif osi_layer == 'L3':
-                if1_adj_addr = Topology().get_interface_mac(tg_if1_adj_node,
-                                                            tg_if1_adj_if)
-                if2_adj_addr = Topology().get_interface_mac(tg_if2_adj_node,
-                                                            tg_if2_adj_if)
-            elif osi_layer == 'L7':
-                if1_addr = Topology().get_interface_ip4(self._node, tg_if1)
-                if2_addr = Topology().get_interface_ip4(self._node, tg_if2)
-                if1_adj_addr = Topology().get_interface_ip4(tg_if1_adj_node,
-                                                            tg_if1_adj_if)
-                if2_adj_addr = Topology().get_interface_ip4(tg_if2_adj_node,
-                                                            tg_if2_adj_if)
-            else:
-                raise ValueError("Unknown Test Type")
+        The generator may either be set up for use currently, or may be left
+        over from an unsuccessful cleanup.
 
-            # in case of switched environment we can override MAC addresses
-            if tg_if1_dst_mac is not None and tg_if2_dst_mac is not None:
-                if1_adj_addr = tg_if1_dst_mac
-                if2_adj_addr = tg_if2_dst_mac
-
-            if min(if1_pci, if2_pci) != if1_pci:
-                if1_pci, if2_pci = if2_pci, if1_pci
-                if1_addr, if2_addr = if2_addr, if1_addr
-                if1_adj_addr, if2_adj_addr = if2_adj_addr, if1_adj_addr
-                self._ifaces_reordered = True
-
-            if osi_layer == 'L2' or osi_layer == 'L3':
-                exec_cmd_no_error(
-                    self._node,
-                    "sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
-                    "- version: 2\n"
-                    "  interfaces: [\"{0}\",\"{1}\"]\n"
-                    "  port_info:\n"
-                    "      - dest_mac: [{2}]\n"
-                    "        src_mac: [{3}]\n"
-                    "      - dest_mac: [{4}]\n"
-                    "        src_mac: [{5}]\n"
-                    "EOF'"\
-                    .format(if1_pci, if2_pci,
-                            "0x"+if1_adj_addr.replace(":", ",0x"),
-                            "0x"+if1_addr.replace(":", ",0x"),
-                            "0x"+if2_adj_addr.replace(":", ",0x"),
-                            "0x"+if2_addr.replace(":", ",0x")),
-                    sudo=True, message='TRex config generation error')
-            elif osi_layer == 'L7':
-                exec_cmd_no_error(
-                    self._node,
-                    "sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
-                    "- version: 2\n"
-                    "  interfaces: [\"{0}\",\"{1}\"]\n"
-                    "  port_info:\n"
-                    "      - ip: [{2}]\n"
-                    "        default_gw: [{3}]\n"
-                    "      - ip: [{4}]\n"
-                    "        default_gw: [{5}]\n"
-                    "EOF'"\
-                    .format(if1_pci, if2_pci,
-                            if1_addr, if1_adj_addr,
-                            if2_addr, if2_adj_addr),
-                    sudo=True, message='TRex config generation error')
-            else:
-                raise ValueError("Unknown Test Type")
-
-            self._startup_trex(osi_layer)
-
-    def _startup_trex(self, osi_layer):
-        """Startup sequence for the TRex traffic generator.
-
-        :param osi_layer: 'L2', 'L3' or 'L7' - OSI Layer testing type.
-        :type osi_layer: str
-        :raises RuntimeError: If node subtype is not a TREX or startup failed.
-        """
-        # No need to check subtype, we know it is TREX.
-        for _ in range(0, 3):
-            # Kill TRex only if it is already running.
-            cmd = "sh -c 'pgrep t-rex && pkill t-rex && sleep 3 || true'"
-            exec_cmd_no_error(
-                self._node, cmd, sudo=True, message='Kill TRex failed!')
-
-            # Configure TRex.
-            ports = ''
-            for port in self._node['interfaces'].values():
-                ports += ' {pci}'.format(pci=port.get('pci_address'))
-
-            cmd = ("sh -c 'cd {dir}/scripts/ && "
-                   "./dpdk_nic_bind.py -u {ports} || true'"
-                   .format(dir=Constants.TREX_INSTALL_DIR, ports=ports))
-            exec_cmd_no_error(
-                self._node, cmd, sudo=True,
-                message='Unbind PCI ports from driver failed!')
-
-            cmd = ("sh -c 'cd {dir}/scripts/ && ./trex-cfg "
-                   "--unbind-unused-ports'"
-                   .format(dir=Constants.TREX_INSTALL_DIR))
-            exec_cmd_no_error(
-                self._node, cmd, sudo=True, message='Config TRex failed!')
-
-            # Start TRex.
-            cmd = ("sh -c 'cd {dir}/scripts/ && "
-                   "nohup ./t-rex-64 --hdrh{mode} -i -c 7 > "
-                   "/tmp/trex.log 2>&1 &' > /dev/null"
-                   .format(dir=Constants.TREX_INSTALL_DIR,
-                           mode=' --astf' if osi_layer == 'L7' else ''))
-            try:
-                exec_cmd_no_error(self._node, cmd, sudo=True)
-            except RuntimeError:
-                cmd = "sh -c 'cat /tmp/trex.log'"
-                exec_cmd_no_error(
-                    self._node, cmd, sudo=True, message='Get TRex logs failed!')
-                raise RuntimeError('Start TRex failed!')
-
-            # Test if TRex starts successfuly.
-            cmd = ("sh -c '{dir}/resources/tools/trex/trex_server_info.py'"
-                   .format(dir=Constants.REMOTE_FW_DIR))
-            try:
-                exec_cmd_no_error(
-                    self._node, cmd, sudo=True, message='Test TRex failed!',
-                    retries=20)
-            except RuntimeError:
-                continue
-            return
-        # After max retries TRex is still not responding to API critical error
-        # occurred.
-        raise RuntimeError('Start TRex failed after multiple retries!')
-
-    @staticmethod
-    def is_trex_running(node):
-        """Check if TRex is running using pidof.
-
-        :param node: Traffic generator node.
+        :param node: Node to be inspected for possibly leftover generator
         :type node: dict
-        :returns: True if TRex is running otherwise False.
-        :rtype: bool
-        :raises RuntimeError: If node type is not a TG.
+        :raises RuntimeError: If node is unsupported, or teardown fails
         """
-        # No need to check subtype, we know it is TREX.
+        if self._driver is not None and self._driver.match_node(tg_node):
+            self.teardown_traffic_generator()
+        else:
+            driver = self.get_driver(tg_node)
+            driver.teardown()
 
-        ret, _, _ = exec_cmd(node, "pidof t-rex", sudo=True)
-        return bool(int(ret) == 0)
-
-    @staticmethod
-    def teardown_traffic_generator(node):
+    def teardown_traffic_generator(self):
         """TG teardown.
 
-        :param node: Traffic generator node.
-        :type node: dict
-        :returns: nothing
-        :raises RuntimeError: If node type is not a TG,
-            or if TRex teardown fails.
+        If a driver for traffic generator was initialized, its teardown
+        shall put the node into an inactive state, ready for another
+        initialization for a different test suite. This includes terminating
+        processes and services, and potentially resetting OS-level state.
+        The current driver is destroyed as well.
+
+        :raises RuntimeError: If generator teardown fails.
         """
-        subtype = check_subtype(node)
-        if subtype == NodeSubTypeTG.TREX:
-            exec_cmd_no_error(
-                node, "sh -c 'sudo pkill t-rex && sleep 3'",
-                sudo=False, message='pkill t-rex failed')
-
-    def _parse_traffic_results(self, stdout):
-        """Parse stdout of scripts into fields of self.
-
-        Block of code to reuse, by sync start, or stop after async.
-        TODO: Is the output TG subtype dependent?
-
-        :param stdout: Text containing the standard output.
-        :type stdout: str
-        """
-        # last line from console output
-        line = stdout.splitlines()[-1]
-        self._result = line
-        logger.info('TrafficGen result: {0}'.format(self._result))
-        self._received = self._result.split(', ')[1].split('=')[1]
-        self._sent = self._result.split(', ')[2].split('=')[1]
-        self._loss = self._result.split(', ')[3].split('=')[1]
-        self._latency = []
-        self._latency.append(self._result.split(', ')[4].split('=')[1])
-        self._latency.append(self._result.split(', ')[5].split('=')[1])
-
-    def trex_stl_stop_remote_exec(self, node):
-        """Execute script on remote node over ssh to stop running traffic.
-
-        Internal state is updated with measurement results.
-
-        :param node: TRex generator node.
-        :type node: dict
-        :raises RuntimeError: If stop traffic script fails.
-        """
-        # No need to check subtype, we know it is TREX.
-        x_args = ""
-        for index, value in enumerate(self._xstats):
-            if value is not None:
-                # Nested quoting is fun.
-                value = value.replace("'", "\"")
-                x_args += " --xstat{i}='\"'\"'{v}'\"'\"'".format(
-                    i=index, v=value)
-        stdout, _ = exec_cmd_no_error(
-            node, "sh -c '{d}/resources/tools/trex/trex_stateless_stop.py{a}'"\
-            .format(d=Constants.REMOTE_FW_DIR, a=x_args),
-            message='TRex stateless runtime error')
-        self._parse_traffic_results(stdout)
-
-    def trex_stl_start_remote_exec(
-            self, duration, rate, frame_size, traffic_profile, async_call=False,
-            latency=True, warmup_time=5.0, traffic_directions=2, tx_port=0,
-            rx_port=1):
-        """Execute script on remote node over ssh to start traffic.
-
-        In sync mode, measurement results are stored internally.
-        In async mode, initial data including xstats are stored internally.
-
-        :param duration: Time expresed in seconds for how long to send traffic.
-        :param rate: Traffic rate expressed with units (pps, %)
-        :param frame_size: L2 frame size to send (without padding and IPG).
-        :param traffic_profile: Module name as a traffic profile identifier.
-            See resources/traffic_profiles/trex for implemented modules.
-        :param async_call: If enabled then don't wait for all incomming trafic.
-        :param latency: With latency measurement.
-        :param warmup_time: Warmup time period.
-        :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
-            Default: 2
-        :param tx_port: Traffic generator transmit port for first flow.
-            Default: 0
-        :param rx_port: Traffic generator receive port for first flow.
-            Default: 1
-        :type duration: float
-        :type rate: str
-        :type frame_size: str
-        :type traffic_profile: str
-        :type async_call: bool
-        :type latency: bool
-        :type warmup_time: float
-        :type traffic_directions: int
-        :type tx_port: int
-        :type rx_port: int
-        :raises RuntimeError: In case of TG driver issue.
-        """
-        # No need to check subtype, we know it is TREX.
-        reorder = self._ifaces_reordered  # Just to make the next line fit.
-        p_0, p_1 = (rx_port, tx_port) if reorder else (tx_port, rx_port)
-        # Values from Robot can introduce type unicode,
-        # we need to encode them, so that repr() does not lead with 'u'.
-        if isinstance(rate, unicode):
-            rate = rate.encode("utf-8")
-        if not isinstance(duration, (float, int)):
-            duration = float(duration)
-        if not isinstance(warmup_time, (float, int)):
-            warmup_time = float(warmup_time)
-        command = (
-            "sh -c '{tool}/resources/tools/trex/trex_stateless_profile.py"
-            " --profile {prof}/resources/traffic_profiles/trex/{traffic}.py"
-            " --duration {duration!r} --frame_size {frame_size} --rate {rate!r}"
-            " --warmup_time {warmup!r} --port_0 {p_0} --port_1 {p_1}"
-            " --traffic_directions {dirs}").format(
-                tool=Constants.REMOTE_FW_DIR, prof=Constants.REMOTE_FW_DIR,
-                traffic=traffic_profile, duration=duration,
-                frame_size=frame_size, rate=rate, warmup=warmup_time, p_0=p_0,
-                p_1=p_1, dirs=traffic_directions)
-        if async_call:
-            command += " --async_start"
-        if latency:
-            command += " --latency"
-        command += "'"
-
-        stdout, _ = exec_cmd_no_error(
-            self._node, command, timeout=float(duration) + 60,
-            message='TRex stateless runtime error')
-
-        self.traffic_directions = traffic_directions
-        if async_call:
-            #no result
-            self._start_time = time.time()
-            self._rate = float(rate[:-3]) if "pps" in rate else float(rate)
-            self._received = None
-            self._sent = None
-            self._loss = None
-            self._latency = None
-            xstats = [None, None]
-            index = 0
-            for line in stdout.splitlines():
-                if "Xstats snapshot {i}: ".format(i=index) in line:
-                    xstats[index] = line[19:]
-                    index += 1
-                if index == 2:
-                    break
-            self._xstats = tuple(xstats)
-        else:
-            self._parse_traffic_results(stdout)
-            self._start_time = None
-            self._rate = None
+        if self._driver is not None:
+            self._driver.teardown()
+            self._driver = None
 
     def stop_traffic_on_tg(self):
-        """Stop all traffic on TG.
+        """Stop all traffic on TG and return measurement results
+
+        Can only be called after a run was previously started with
+        send_traffic_on_tg with async_call set to True.
 
         :returns: Structure containing the result of the measurement.
         :rtype: ReceiveRateMeasurement
-        :raises RuntimeError: If TG is not set.
+        :raises RuntimeError: If TG is not set up and sending traffic.
         """
-        subtype = check_subtype(self._node)
-        if subtype == NodeSubTypeTG.TREX:
-            self.trex_stl_stop_remote_exec(self._node)
-        return self.get_measurement_result()
+        if self._driver is None:
+            raise RuntimeError('TrafficGenerator is uninitialized')
+        self._driver.stop()
+        return self._driver.collect()
 
     def send_traffic_on_tg(
             self, duration, rate, frame_size, traffic_profile, warmup_time=5,
@@ -543,19 +191,9 @@ class TrafficGenerator(AbstractMeasurer):
             rx_port=1):
         """Send traffic from all configured interfaces on TG.
 
-        In async mode, xstats is stored internally,
-        to enable getting correct result when stopping the traffic.
-        In both modes, stdout is returned,
-        but _parse_traffic_results only works in sync output.
-
         Note that bidirectional traffic also contains flows
         transmitted from rx_port and received in tx_port.
         But some tests use asymmetric traffic, so those arguments are relevant.
-
-        Also note that traffic generator uses DPDK driver which might
-        reorder port numbers based on wiring and PCI numbering.
-        This method handles that, so argument values are invariant,
-        but you can see swapped valued in debug logs.
 
         TODO: Is it better to have less descriptive argument names
         just to make them less probable to be viewed as misleading or confusing?
@@ -586,66 +224,78 @@ class TrafficGenerator(AbstractMeasurer):
         :type traffic_directions: int
         :type tx_port: int
         :type rx_port: int
-        :returns: TG output.
-        :rtype: str
-        :raises RuntimeError: If TG is not set, or if node is not TG,
-            or if subtype is not specified.
-        :raises NotImplementedError: If TG is not supported.
+        :raises RuntimeError: If TG is not set up or starting traffic fails
         """
-        subtype = check_subtype(self._node)
-        if subtype == NodeSubTypeTG.TREX:
-            self.trex_stl_start_remote_exec(
-                duration, rate, frame_size, traffic_profile, async_call,
-                latency, warmup_time, traffic_directions, tx_port, rx_port)
+        if self._driver is None:
+            raise RuntimeError('TrafficGenerator is uninitialized')
 
-        return self._result
+        # Values from Robot can introduce type unicode,
+        # we need to encode them, so that repr() does not lead with 'u'.
+        if isinstance(rate, unicode):
+            rate = rate.encode("utf-8")
+        if not isinstance(duration, (float, int)):
+            duration = float(duration)
+        if not isinstance(warmup_time, (float, int)):
+            warmup_time = float(warmup_time)
 
-    def no_traffic_loss_occurred(self):
+        self._driver.start(
+            duration, rate, frame_size, traffic_profile, warmup_time,
+            async_call, latency, traffic_directions, tx_port, rx_port)
+        if async_call:
+            return None
+        else:
+            return self._driver.collect()
+
+    @staticmethod
+    def fail_if_traffic_loss_occurred(measurements):
         """Fail if loss occurred in traffic run.
 
-        :returns: nothing
-        :raises Exception: If loss occured.
+        :param measurements: Results of traffic generator runs
+        :type measurements: List of ReceiveRateMeasurement
+        :raises RuntimeError: If loss occured.
         """
-        if self._loss is None:
-            raise RuntimeError('The traffic generation has not been issued')
-        if self._loss != '0':
-            raise RuntimeError('Traffic loss occurred: {0}'.format(self._loss))
+        losses = []
+        for idx, measurement in enumerate(measurements, start=1):
+            if measurement.loss_count > 0:
+                losses.append('{idx}={loss_count}'.format(
+                    idx=idx, loss_count=measurement.loss_count))
+        if losses:
+            raise RuntimeError(
+                'Traffic loss occurred in {count} out of {total} runs: {which}'
+                .format(count=len(losses), total=len(measurements),
+                        which=', '.join(losses)))
 
-    def fail_if_no_traffic_forwarded(self):
+    @staticmethod
+    def fail_if_no_traffic_forwarded(measurements):
         """Fail if no traffic forwarded.
 
-        :returns: nothing
+        :param measurements: Results of traffic generator runs
+        :type measurements: List of ReceiveRateMeasurement
         :raises Exception: If no traffic forwarded.
         """
-        if self._received is None:
-            raise RuntimeError('The traffic generation has not been issued')
-        if self._received == '0':
-            raise RuntimeError('No traffic forwarded')
+        no_traffic = []
+        for idx, measurement in enumerate(measurements, start=1):
+            if measurement.receive_count == 0:
+                no_traffic.append(str(idx))
+        if no_traffic:
+            raise RuntimeError(
+                'No traffic forwarded in {count} out of {total} runs: {which}'
+                .format(count=len(no_traffic), total=len(measurements),
+                        which=', '.join(no_traffic)))
 
-    def partial_traffic_loss_accepted(self, loss_acceptance,
-                                      loss_acceptance_type):
-        """Fail if loss is higher then accepted in traffic run.
+    @staticmethod
+    def extract_measurement_receive_rates(measurements):
+        """Extract apparent receive rates from measurements
 
-        :param loss_acceptance: Permitted drop ratio or frames count.
-        :param loss_acceptance_type: Type of permitted loss.
-        :type loss_acceptance: float
-        :type loss_acceptance_type: LossAcceptanceType
-        :returns: nothing
-        :raises Exception: If loss is above acceptance criteria.
+        Computed as a ratio of a measurement's receive count and duration.
+
+        :param measurements: Results of traffic generator runs
+        :type measurements: List of ReceiveRateMeasurement
+        :returns: list of receive rates from the measurements
+        :rtype: list of float
         """
-        if self._loss is None:
-            raise Exception('The traffic generation has not been issued')
-
-        if loss_acceptance_type == 'percentage':
-            loss = (float(self._loss) / float(self._sent)) * 100
-        elif loss_acceptance_type == 'frames':
-            loss = float(self._loss)
-        else:
-            raise Exception('Loss acceptance type not supported')
-
-        if loss > float(loss_acceptance):
-            raise Exception("Traffic loss {} above loss acceptance: {}".format(
-                loss, loss_acceptance))
+        return [float(measurement.receive_count) / measurement.duration
+                for measurement in measurements]
 
     def set_rate_provider_defaults(self, frame_size, traffic_profile,
                                    warmup_time=0.0, traffic_directions=2):
@@ -662,42 +312,18 @@ class TrafficGenerator(AbstractMeasurer):
         :type warmup_time: float
         :type traffic_directions: int
         """
+        # TODO: perhaps these parameters could be preset by other callers too
+        # and then send_traffic_on_tg arg list pruned
         self.frame_size = frame_size
         self.traffic_profile = str(traffic_profile)
         self.warmup_time = float(warmup_time)
         self.traffic_directions = traffic_directions
 
-    def get_measurement_result(self, duration=None, transmit_rate=None):
-        """Return the result of last measurement as ReceiveRateMeasurement.
-
-        Separate function, as measurements can end either by time
-        or by explicit call, this is the common block at the end.
-
-        TODO: Fail on running or already reported measurement.
-
-        :param duration: Measurement duration [s] if known beforehand.
-            For explicitly stopped measurement it is estimated.
-        :param transmit_rate: Target aggregate transmit rate [pps].
-            If not given, computed assuming it was bidirectional.
-        :type duration: float or NoneType
-        :type transmit_rate: float or NoneType
-        :returns: Structure containing the result of the measurement.
-        :rtype: ReceiveRateMeasurement
-        """
-        if duration is None:
-            duration = time.time() - self._start_time
-            self._start_time = None
-        if transmit_rate is None:
-            transmit_rate = self._rate * self.traffic_directions
-        transmit_count = int(self.get_sent())
-        loss_count = int(self.get_loss())
-        measurement = ReceiveRateMeasurement(
-            duration, transmit_rate, transmit_count, loss_count)
-        measurement.latency = self.get_latency_int()
-        return measurement
-
     def measure(self, duration, transmit_rate):
         """Run trial measurement, parse and return aggregate results.
+
+        Prior to calling this function, other traffic generator parameters
+        must be set via set_rate_provider_defaults.
 
         Aggregate means sum over traffic directions.
 
@@ -707,20 +333,21 @@ class TrafficGenerator(AbstractMeasurer):
         :type transmit_rate: float
         :returns: Structure containing the result of the measurement.
         :rtype: ReceiveRateMeasurement
-        :raises RuntimeError: If TG is not set, or if node is not TG,
-            or if subtype is not specified.
+        :raises RuntimeError: If TG or measurement is not set up.
         :raises NotImplementedError: If TG is not supported.
         """
         duration = float(duration)
         transmit_rate = float(transmit_rate)
+
         # TG needs target Tr per stream, but reports aggregate Tx and Dx.
-        unit_rate_int = transmit_rate / float(self.traffic_directions)
-        unit_rate_str = str(unit_rate_int) + "pps"
-        self.send_traffic_on_tg(
+        # TODO: this may only be true for TRex
+        # Also, do other uses of send_traffic_on_tg account for this?
+        unit_rate_one = transmit_rate / float(self.traffic_directions)
+        unit_rate_str = str(unit_rate_one) + "pps"
+        return self.send_traffic_on_tg(
             duration, unit_rate_str, self.frame_size, self.traffic_profile,
             warmup_time=self.warmup_time, latency=True,
             traffic_directions=self.traffic_directions)
-        return self.get_measurement_result(duration, transmit_rate)
 
 
 class OptimizedSearch(object):
@@ -846,3 +473,534 @@ class OptimizedSearch(object):
             trace_enabled=trace_enabled)
         result = algorithm.search(minimum_transmit_rate, maximum_transmit_rate)
         return result
+
+
+class TrafficGeneratorDriver(object):
+    """Drive a specific implementation of traffic generator
+
+    A driver is responsible both for generator setup and teardown,
+    as well as for configuring and management of traffic streams, and access
+    to the results of each traffic generator run.
+
+    """
+
+    def __init__(self, node):
+        """Initialize a driver instance to be run on a given node.
+
+        A setup method must be called in order to configure global parameters
+        for the generator, and to start any required processes or services.
+        """
+        self._node = node
+
+    def match_node(self, node):
+        """Return whether current driver is for the same node
+
+        :returns: Whether this instance is managing the specified node
+        :rtype: bool
+        """
+        return node is self._node or node['host'] == self._node['host']
+
+    def setup(self, osi_layer, links):
+        """Configure and run the traffic generator on target node
+
+        A non-empty sequence of directed links is required to inform which
+        interfaces of the node shall be used by the driver for the current
+        test suite.
+
+        Each link's source is on the TG node. The driver implementation shall
+        pick whichever parameters it requires for both links to configure,
+        including suite-lever network addressing values. The values are picked
+        based on the OSI level of the test suite being set up at the time.
+
+        If the call is successful, all required services should be running and
+        ready for service, i.e. sending generated traffic.
+
+        :param osi_layer: kind of traffic to be generated; affects addressing
+        :param links: a series of directed links from the TG to other nodes
+        :type osi_layer: str
+        :type links: list of DirectedLink
+        :raises RuntimeError: generator configuration or start failed.
+        """
+        raise NotImplementedError()
+
+    def teardown(self):
+        """Terminate and disable the traffic generator on target node.
+
+        The generator need not be actually set up on the target node.
+        Generator processes on the node shall not run, and the node shall be
+        ready to be configured again, perhaps with a different parameter set.
+
+        :raises RuntimeError: teardown failed, generator is not cleaned up
+        """
+        raise NotImplementedError()
+
+    def start(
+            self, duration, rate, frame_size, traffic_profile, warmup_time=5,
+            async_call=False, latency=True, traffic_directions=2, tx_port=0,
+            rx_port=1):
+        """Send traffic from all configured interfaces on TG.
+
+        :param duration: Duration of test traffic generation in seconds.
+        :param rate: Offered load per interface (e.g. 1%, 3gbps, 4mpps, ...).
+        :param frame_size: Frame size (L2) in Bytes.
+        :param traffic_profile: Module name as a traffic profile identifier.
+            See resources/traffic_profiles/trex for implemented modules.
+        :param warmup_time: Warmup phase in seconds.
+        :param async_call: Async mode.
+        :param latency: With latency measurement.
+        :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
+            Default: 2
+        :param tx_port: Traffic generator transmit port for first flow.
+            Default: 0
+        :param rx_port: Traffic generator receive port for first flow.
+            Default: 1
+        :type duration: float
+        :type rate: str
+        :type frame_size: str
+        :type traffic_profile: str
+        :type warmup_time: float
+        :type async_call: bool
+        :type latency: bool
+        :type traffic_directions: int
+        :type tx_port: int
+        :type rx_port: int
+        :raises RuntimeError: If TG is not set up or starting traffic fails
+        """
+        raise NotImplementedError()
+
+    def stop(self):
+        """Stop async running traffic.
+
+        :raises RuntimeError: If traffic wasn't started or stop traffic fails.
+        """
+        raise NotImplementedError()
+
+    def collect(self):
+        """Collect and clear the result of last traffic generator run.
+
+        Duration and transmit_rate in the result may be estimates.
+        List of latency data is also passed in the result, as ad-hoc attribute.
+
+        The data collection may be a separate procedure for individual drivers,
+        or the data may be immediately available with traffic stop.
+
+        The collect function must be called in order to make the driver ready
+        for another traffic run, regardless if it was asynchronous or not.
+
+        :returns: Structure containing the result of the measurement.
+        :rtype: ReceiveRateMeasurement
+        """
+        raise NotImplementedError()
+
+
+class TrexDriver(TrafficGeneratorDriver):
+    """Driver for the TRex traffic generator.
+
+    Trex uses DPDK driver which will reorder port numbers based on wiring
+    and PCI numbering. A message is issues in logs if this occurres, and
+    swapped port values will be seen in debug logs.
+
+    """
+
+    def __init__(self, node):
+        """Initialize a driver instance to be run on a given node.
+
+        A setup method must be called in order to configure global parameters
+        for the generator, and to start any required processes or services.
+        """
+        super(TrexDriver, self).__init__(node)
+        # interfaces have been reordered to use lower PCI address first
+        self._ifaces_reordered = False
+        # time when traffic run started if async, 0 if sync, None if not running
+        self._start_time = None
+        # duration of traffic run, measured by driver if async
+        self._duration = None
+        # configured transmit rate per direction
+        self._rate = None
+        # collectable results from generator after a successful run
+        self._stdout = None
+        # previous stats from TRex start used in async mode
+        self._xstats = None, None
+
+    def setup(self, osi_layer, links):
+        """Configure and run the traffic generator on target node
+
+        A non-empty sequence of directed links is required to inform which
+        interfaces of the node shall be used by the driver for the current
+        test suite.
+
+        Each link's source is on the TG node. The driver implementation shall
+        pick whichever parameters it requires for both links to configure,
+        including suite-lever network addressing values. The values are picked
+        based on the OSI level of the test suite being set up at the time.
+
+        If the call is successful, all required services should be running and
+        ready for service, i.e. sending generated traffic.
+
+        :param osi_layer: kind of traffic to be generated; affects addressing
+        :param links: a series of directed links from the TG to other nodes
+        :type osi_layer: str
+        :type links: list of DirectedLink
+        :raises RuntimeError: generator configuration or start failed.
+        """
+        if len(links) != 2:
+            raise RuntimeError('TRex requires exactly 2 links')
+
+        interfaces = [link.source.pci for link in links]
+        if interfaces[0] > interfaces[1]:
+            self._ifaces_reordered = True
+            interfaces.reverse()
+            links.reverse()
+            logger.info('TRex interfaces are reordered as: {interfaces}'.format(
+                interfaces=" ".join(interfaces)))
+        else:
+            self._ifaces_reordered = False
+
+        if osi_layer == 'L2':
+            port_info = [
+                dict(src_mac=self._format_mac(link.source.mac),
+                     dest_mac=self._format_mac(
+                         link.dest_mac or other.source.mac))
+                for link, other in zip(links, reversed(links))]
+
+        elif osi_layer == 'L3':
+            port_info = [
+                dict(src_mac=self._format_mac(link.source.mac),
+                     dest_mac=self._format_mac(link.target.mac))
+                for link in links]
+        elif osi_layer == 'L7':
+            port_info = [
+                dict(ip=[link.source.ip4], default_gw=[link.target.ip4])
+                for link in links]
+        else:
+            raise RuntimeError("Unsupported Test OSI layer")
+
+        config = [dict(version=2, interfaces=interfaces, port_info=port_info)]
+        stdin = yaml.safe_dump(config).replace("'", '"')
+        exec_cmd_no_error(self._node,
+                          "sh -c 'tee /etc/trex_cfg.yaml <<EOF\n{stdin}\nEOF'"
+                          .format(stdin=stdin),
+                          sudo=True,
+                          message='TRex config generation error')
+
+        self._startup_trex(osi_layer)
+
+    def _startup_trex(self, osi_layer):
+        """Startup sequence for the TRex traffic generator.
+
+        :param osi_layer: 'L2', 'L3' or 'L7' - OSI Layer testing type.
+        :type osi_layer: str
+        :raises RuntimeError: If node subtype is not a TREX or startup failed.
+        """
+        # No need to check subtype, we know it is TREX.
+        for _ in range(0, 3):
+            # Kill TRex only if it is already running.
+            cmd = ("sh -c 'if pid=$(pidof t-rex) ; "
+                   "then kill \"${pid}\" && sleep 3 ; fi'")
+            exec_cmd_no_error(
+                self._node, cmd, sudo=True, message='Kill TRex failed!')
+
+            # Configure TRex.
+            ports = ''
+            for port in self._node['interfaces'].values():
+                ports += ' {pci}'.format(pci=port.get('pci_address', ''))
+
+            cmd = ("sh -c 'cd {dir}/scripts/ && "
+                   "./dpdk_nic_bind.py -u {ports} || true'"
+                   .format(dir=Constants.TREX_INSTALL_DIR, ports=ports))
+            exec_cmd_no_error(
+                self._node, cmd, sudo=True,
+                message='Unbind PCI ports from driver failed!')
+
+            cmd = ("sh -c 'cd {dir}/scripts/ && ./trex-cfg "
+                   "--unbind-unused-ports'"
+                   .format(dir=Constants.TREX_INSTALL_DIR))
+            exec_cmd_no_error(
+                self._node, cmd, sudo=True, message='Config TRex failed!')
+
+            # Start TRex.
+            cmd = ("sh -c 'cd {dir}/scripts/ && "
+                   "nohup ./t-rex-64 --hdrh{mode} -i -c 7 > "
+                   "/tmp/trex.log 2>&1 & > /dev/null'"
+                   .format(dir=Constants.TREX_INSTALL_DIR,
+                           mode=' --astf' if osi_layer == 'L7' else ''))
+            try:
+                exec_cmd_no_error(self._node, cmd, sudo=True,
+                                  message='Start TRex failed!')
+            except RuntimeError:
+                cmd = "cat /tmp/trex.log"
+                exec_cmd_no_error(
+                    self._node, cmd, sudo=True, message='Get TRex logs failed!')
+                raise
+
+            # Test if TRex starts successfuly.
+            cmd = ("{dir}/resources/tools/trex/trex_server_info.py"
+                   .format(dir=Constants.REMOTE_FW_DIR))
+            try:
+                exec_cmd_no_error(
+                    self._node, cmd, sudo=True, message='Test TRex failed!',
+                    retries=20)
+            except RuntimeError:
+                continue
+            return
+        # After max retries TRex is still not responding to API critical error
+        # occurred.
+        raise RuntimeError('Start TRex failed after multiple retries!')
+
+    def teardown(self):
+        cmd = "sh -c 'if pid=$(pidof t-rex) ; then kill ${pid} && sleep 3 ; fi'"
+        message = 'Terminating t-rex failed'
+        exec_cmd_no_error(self._node, cmd, sudo=True, message=message)
+
+    def start(
+            self, duration, rate, frame_size, traffic_profile, warmup_time=5,
+            async_call=False, latency=True, traffic_directions=2, tx_port=0,
+            rx_port=1):
+        """Send traffic from all configured interfaces on TG.
+
+        In async mode, xstats is stored internally,
+        to enable getting correct result when stopping the traffic.
+        In sync mode, stdout is stored.
+
+        :param duration: Duration of test traffic generation in seconds.
+        :param rate: Offered load per interface (e.g. 1%, 3gbps, 4mpps, ...).
+        :param frame_size: Frame size (L2) in Bytes.
+        :param traffic_profile: Module name as a traffic profile identifier.
+            See resources/traffic_profiles/trex for implemented modules.
+        :param warmup_time: Warmup phase in seconds.
+        :param async_call: Async mode.
+        :param latency: With latency measurement.
+        :param traffic_directions: Traffic is bi- (2) or uni- (1) directional.
+            Default: 2
+        :param tx_port: Traffic generator transmit port for first flow.
+            Default: 0
+        :param rx_port: Traffic generator receive port for first flow.
+            Default: 1
+        :type duration: float
+        :type rate: str
+        :type frame_size: str
+        :type traffic_profile: str
+        :type warmup_time: float
+        :type async_call: bool
+        :type latency: bool
+        :type traffic_directions: int
+        :type tx_port: int
+        :type rx_port: int
+        :returns:
+        :rtype: None if async_call else ReceivedRateMeasurement
+        :raises RuntimeError: If TG is not set up or starting traffic fails
+        """
+        if self._start_time is not None:
+            raise RuntimeError('TRex generator traffic already sent')
+        self._start_time = 0
+        if self._ifaces_reordered:
+            rx_port, tx_port = tx_port, rx_port
+
+        command = (
+            "{tool}/resources/tools/trex/trex_stateless_profile.py"
+            " --profile {prof}/resources/traffic_profiles/trex/{traffic}.py"
+            " --duration {duration!r} --frame_size {frame_size} --rate {rate!r}"
+            " --warmup_time {warmup!r} --port_0 {p_0} --port_1 {p_1}"
+            " --traffic_directions {dirs}").format(
+                tool=Constants.REMOTE_FW_DIR, prof=Constants.REMOTE_FW_DIR,
+                traffic=traffic_profile, duration=duration,
+                frame_size=frame_size, rate=rate, warmup=warmup_time,
+                p_0=tx_port, p_1=rx_port, dirs=traffic_directions)
+
+        timeout = 60
+        if async_call:
+            command += " --async"
+        else:
+            timeout += duration
+        if latency:
+            command += " --latency"
+
+        stdout, _ = exec_cmd_no_error(
+            self._node, command, timeout=timeout,
+            message='TRex stateless runtime error')
+
+        self._rate = float(rate[:-3] if "pps" in rate else rate)
+        self._rate *= traffic_directions
+        self._duration = duration
+        if async_call:
+            self._start_time = time.time()
+            xstats = [None, None]
+            index = 0
+            for line in stdout.splitlines():
+                if "Xstats snapshot {i}: ".format(i=index) in line:
+                    xstats[index] = line[19:]
+                    index += 1
+                if index == 2:
+                    break
+            self._xstats = tuple(xstats)
+        else:
+            self._stdout = stdout
+
+    def stop(self):
+        """Stop async running traffic.
+
+        Output from TRex script performing the stop contains the relevant stats.
+
+        :raises RuntimeError: If traffic wasn't started or stop traffic fails.
+        """
+        if not self._start_time:
+            raise RuntimeError('TRex traffic is not started as async_call')
+
+        x_args = ""
+        for index, value in enumerate(self._xstats):
+            if value is not None:
+                # Nested quoting is fun.
+                value = value.replace("'", "\"")
+                x_args += " --xstat{i}='\"'\"'{v}'\"'\"'".format(
+                    i=index, v=value)
+
+        stdout, _ = exec_cmd_no_error(
+            self._node,
+            "{d}/resources/tools/trex/trex_stateless_stop.py{a}".format(
+                d=Constants.REMOTE_FW_DIR, a=x_args),
+            message='TRex stateless runtime error')
+
+        self._duration = time.time() - self._start_time
+        self._stdout = stdout
+        self._start_time = 0
+
+    def collect(self):
+        """Collect and clear the result of last traffic generation run.
+
+        Duration and transmit_rate are not taken from TRex output, but
+        by apparent runtime (for async mode) and input parameters.
+
+        The data is parsed off output from either the send or stop command.
+
+        The collect function must be called in order to make the driver ready
+        for another traffic run, regardless if it's sent asynchronously or not.
+
+        :returns: Structure containing the result of the measurement.
+        :rtype: ReceiveRateMeasurement
+        """
+        # last line from console output, for example:
+        # [ignored] rate='3343736.09758pps', totalReceived=3595076,
+        # totalSent=6687474, frameLoss=3092398,
+        # latencyStream0(usec)=-1/-1/-1, latencyStream1(usec)=-1/-1/-1,
+        # [ignored] targetDuration=1.0
+        if self._stdout is None:
+            raise RuntimeError('No TRex generator run to collect')
+        line = self._stdout.splitlines()[-1].strip()
+        logger.info('TrafficGen result: {0}'.format(line))
+        parts = dict(part.split('=', 1) for part in line.split(', '))
+
+        transmit_count = int(parts['totalSent'])
+        loss_count = int(parts['frameLoss'])
+
+        measurement = ReceiveRateMeasurement(
+            self._duration, self._rate, transmit_count, loss_count)
+        # TODO make latency a proper measurement attribute
+        measurement.latency = [
+            parts['latencyStream0(usec)'], parts['latencyStream1(usec)']]
+        self._stdout = None
+        self._start_time = None
+        self._duration = None
+        self._rate = None
+
+        return measurement
+
+    @staticmethod
+    def _format_mac(mac):
+        """Format mac address for TRex
+
+        :param mac: mac address in linux format
+        :type mac: str
+        :returns: mac address in TRex format
+        :rtype: str
+        """
+        return [int(part, 16) for part in mac.split(":")]
+
+
+class TopologyInterface(object):
+    """Access properties of a topology node's interface
+
+    Convenience accessor for information which may be required by individual
+    traffic generator drivers at certain times, without the need to retrieve
+    them all in advance.
+    """
+
+    def __init__(self, node, interface):
+        """Initalize topology interface property accessor
+
+        :param node: Topology node
+        :param interface: Interface key for topology node
+        :type node: dict
+        :type interface: str
+        """
+        self._node = node
+        self._interface = interface
+
+    @property
+    def pci(self):
+        """Return pci address for interface if known
+
+        :rtype: str
+        """
+        return Topology().get_interface_pci_addr(self._node, self._interface)
+
+    @property
+    def mac(self):
+        """Return mac address for interface if known
+
+        :rtype: str
+        """
+        return Topology().get_interface_mac(self._node, self._interface)
+
+    @property
+    def ip4(self):
+        """Return ipv4 address for interface if known
+
+        :rtype: str
+        """
+        return Topology().get_interface_ip4(self._node, self._interface)
+
+
+class DirectedLink(object):
+    """A link from source interface to target interface
+
+    Used to group together related interface objects, and to possibly denote
+    relevant traffic forwarding information in the direction of the link.
+    """
+
+    def __init__(self, source, target, dest_mac=None):
+        """Initialize directed link from one interface to another.
+
+        :param source: source interface
+        :param target: target interface
+        :param dest_mac: override output mac address for L2 traffic
+        :type source: TopologyInterface
+        :type target: TopologyInterface
+        :type dest_mac: str or None
+        """
+        self._source = source
+        self._target = target
+        self._dest_mac = dest_mac
+
+    @property
+    def source(self):
+        """Return source interface
+
+        :rtype: TopologyInterface
+        """
+        return self._source
+
+    @property
+    def target(self):
+        """Return target interface
+
+        :rtype: TopologyInterface
+        """
+        return self._target
+
+    @property
+    def dest_mac(self):
+        """Return output mac address for L2 traffic
+
+        :rtype: str
+        """
+        return self._dest_mac
