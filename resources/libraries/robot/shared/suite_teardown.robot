@@ -36,7 +36,7 @@
 | | [Documentation]
 | | ... | Additional teardown for suites which uses performance measurement.
 | | ...
-| | Teardown traffic generator | ${tg}
+| | Teardown traffic generator
 
 | Additional Suite Tear Down Action For dpdk
 | | [Documentation]
