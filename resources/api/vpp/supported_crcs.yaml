@@ -59,9 +59,9 @@
     classify_add_del_table_reply: '0x05486349'  # dev
     cli_inband: '0xf8377302'  # dev setup
     cli_inband_reply: '0x05879051'  # dev setup
-    cop_interface_enable_disable: '0x69d24598'  # dev
+    cop_interface_enable_disable: '0x35049db2'  # dev
     cop_interface_enable_disable_reply: '0xe8d4e804'  # dev
-    cop_whitelist_enable_disable: '0x8bb8f6dc'  # dev
+    cop_whitelist_enable_disable: '0xe89bc1f3'  # dev
     cop_whitelist_enable_disable_reply: '0xe8d4e804'  # dev
     create_loopback: '0x16e13d38'  # dev
     create_loopback_reply: '0x903324db'  # dev
@@ -265,9 +265,9 @@
     classify_add_del_table_reply: '0x05486349'  # dev
     cli_inband: '0xf8377302'  # dev setup
     cli_inband_reply: '0x05879051'  # dev setup
-    cop_interface_enable_disable: '0x69d24598'  # dev
+    cop_interface_enable_disable: '0x35049db2'  # dev
     cop_interface_enable_disable_reply: '0xe8d4e804'  # dev
-    cop_whitelist_enable_disable: '0x8bb8f6dc'  # dev
+    cop_whitelist_enable_disable: '0xe89bc1f3'  # dev
     cop_whitelist_enable_disable_reply: '0xe8d4e804'  # dev
     create_loopback: '0x42bb5d22'  # dev
     create_loopback_reply: '0x5383d31f'  # dev
