@@ -235,9 +235,8 @@
 | | ... | Additional Setup for suites which uses WRK TG.
 | | ...
 | | Iface update numa node | ${tg}
-# Make sure TRex is stopped
-| | ${running}= | Is TRex running | ${tg}
-| | Run keyword if | ${running}==${True} | Teardown traffic generator | ${tg}
+# Tear down any previous performance TG
+| | Teardown traffic generator if setup | ${tg}
 | | ${curr_driver}= | Get PCI dev driver | ${tg}
 | | ... | ${tg['interfaces']['${tg_if1}']['pci_address']}
 | | Run keyword if | '${curr_driver}'!='${None}'
