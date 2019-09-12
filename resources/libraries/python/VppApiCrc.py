@@ -267,16 +267,20 @@ class VppApiCrcChecker(object):
             return
         self._initial_conflicts_reported = True
         if self._reported:
+            reported_indented = json.dumps(
+                self._reported, indent=1, sort_keys=True, separators=[",", ":"])
             self.raise_or_log(
-                RuntimeError("Dir check found incompatible API CRCs: {rep!r}"\
-                    .format(rep=self._reported)))
+                RuntimeError("Dir check found incompatible API CRCs: {ri}"\
+                    .format(ri=reported_indented)))
         if not report_missing:
             return
         missing = {name: mapp for name, mapp in self._missing.items() if mapp}
         if missing:
+            missing_indented = json.dumps(
+                missing, indent=1, sort_keys=True, separators=[",", ":"])
             self.raise_or_log(
-                RuntimeError("Dir check found missing API CRCs: {mis!r}"\
-                    .format(mis=missing)))
+                RuntimeError("Dir check found missing API CRCs: {mi}"\
+                    .format(mi=missing_indented)))
 
     def check_api_name(self, api_name):
         """Fail if the api_name has no known CRC associated.
