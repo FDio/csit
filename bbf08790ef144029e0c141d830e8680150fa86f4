@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e44e88e_79b9c0f1",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T08:15:06Z",
+      "side": 1,
+      "message": "Is this same for LISP/LISPGPE? is only one command makes the difference, does it make sense to merge them and make the GPE parametrized?",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 44
+      },
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0cba21e1_f0b7e2e6",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T08:15:06Z",
+      "side": 1,
+      "message": "is there GPE version of this?",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 35
+      },
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e87548f5_edd6f1e6",
+        "filename": "resources/libraries/robot/overlay/lispgpe.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T08:15:06Z",
+      "side": 1,
+      "message": "Missing params documentation (vni_table, vrf_table)",
+      "range": {
+        "startLine": 138,
+        "startChar": 4,
+        "endLine": 138,
+        "endChar": 7
+      },
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "622472e1_136bb88c",
+        "filename": "resources/libraries/robot/overlay/lispgpe.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T08:15:06Z",
+      "side": 1,
+      "message": "Missing params documantaion",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 7
+      },
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff4371f8_c5ad3088",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lisp-ip4base-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T08:15:06Z",
+      "side": 1,
+      "message": "Same comments as for the other testcase applies here.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 26
+      },
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aec27675_5b5a0867",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lisp-ip4base-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T08:15:06Z",
+      "side": 1,
+      "message": "Do you need a separate file for variables? I prefer having it there.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "78acc3f5_7ffa413c",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lispgpe-ip4base-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T08:15:06Z",
+      "side": 1,
+      "message": "GPE?",
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01b38870_e9a3abd6",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lispgpe-ip4base-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T08:15:06Z",
+      "side": 1,
+      "message": "Line too long + not valid anymore. it is DUT1-TG",
+      "range": {
+        "startLine": 33,
+        "startChar": 71,
+        "endLine": 33,
+        "endChar": 82
+      },
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72da2864_5b9df3ca",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lispgpe-ip4base-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T08:15:06Z",
+      "side": 1,
+      "message": "I think in packet capture i saw only one packet in left to right direction.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 26
+      },
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "489320c8_57bbdc5c",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lispgpe-ip4base-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T08:15:06Z",
+      "side": 1,
+      "message": "Having this is fine, but why do you have extra file for variables. Pick up one method. I prefer having it here in test file.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f77aa779_f009cde0",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lispgpe-ip4base-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-12T08:15:06Z",
+      "side": 1,
+      "message": ".",
+      "range": {
+        "startLine": 61,
+        "startChar": 38,
+        "endLine": 61,
+        "endChar": 39
+      },
+      "revId": "bbf08790ef144029e0c141d830e8680150fa86f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
