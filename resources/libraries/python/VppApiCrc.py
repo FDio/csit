@@ -96,15 +96,16 @@ class VppApiCrcChecker(object):
         self._register_all()
         self._check_dir(directory)
 
-    def raise_or_log(self, exception):
-        """If fail_on_mismatch, raise, else log to console the exception.
+    def log_and_raise(self, exc_msg):
+        """Log to console, on fail_on_mismatch also raise runtime exception.
 
-        :param exception: The exception to raise or log.
-        :type exception: RuntimeError
+        :param exc_msg: The message to include in log or exception.
+        :type exception: str
+        :raises RuntimeError: With the message, if fail_on_mismatch.
         """
+        logger.console("RuntimeError:\n{m}".format(m=exc_msg))
         if self.fail_on_mismatch:
-            raise exception
-        logger.console("{exc!r}".format(exc=exception))
+            raise RuntimeError(exc_msg)
 
     def _register_collection(self, collection_name, name_to_crc_mapping):
         """Add a named (copy of) collection of CRCs.
@@ -267,16 +268,19 @@ class VppApiCrcChecker(object):
             return
         self._initial_conflicts_reported = True
         if self._reported:
-            self.raise_or_log(
-                RuntimeError("Dir check found incompatible API CRCs: {rep!r}"\
-                    .format(rep=self._reported)))
+            reported_indented = json.dumps(
+                self._reported, indent=1, sort_keys=True, separators=[",", ":"])
+            self.log_and_raise(
+                "Dir check found incompatible API CRCs:\n{ri}".format(
+                    ri=reported_indented))
         if not report_missing:
             return
         missing = {name: mapp for name, mapp in self._missing.items() if mapp}
         if missing:
-            self.raise_or_log(
-                RuntimeError("Dir check found missing API CRCs: {mis!r}"\
-                    .format(mis=missing)))
+            missing_indented = json.dumps(
+                missing, indent=1, sort_keys=True, separators=[",", ":"])
+            self.log_and_raise("Dir check found missing API CRCs:\n{mi}".format(
+                mi=missing_indented))
 
     def check_api_name(self, api_name):
         """Fail if the api_name has no known CRC associated.
@@ -305,6 +309,5 @@ class VppApiCrcChecker(object):
             return
         crc = self._found.get(api_name, None)
         self._reported[api_name] = crc
-        self.raise_or_log(
-            RuntimeError("No active collection has API {api!r}"
-                         " CRC found {crc!r}".format(api=api_name, crc=crc)))
+        self.log_and_raise("No active collection has API {api!r}"
+                           " CRC found {crc!r}".format(api=api_name, crc=crc))
