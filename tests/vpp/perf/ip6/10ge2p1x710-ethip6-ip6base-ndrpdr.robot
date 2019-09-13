@@ -26,12 +26,12 @@
 | ...
 | Documentation | *RFC2544: Pkt throughput IPv6 routing test cases*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
+| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for IPv6 routing.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6
-| ... | routing and two static IPv6 /64 route entries. DUT1 and DUT2
-| ... | tested with ${nic_name}.\
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv6\
+| ... | routing and two static IPv6 /64 route entries. DUT1 and DUT2\
+| ... | tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
