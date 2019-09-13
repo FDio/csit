@@ -1,0 +1,12 @@
+[Unit]
+Description=CSIT Initialize Docker TG
+After=network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=True
+ExecStart=/usr/local/bin/csit-initialize-docker-tg.sh start 2
+ExecStop=/usr/local/bin/csit-initialize-docker-tg.sh stop
+
+[Install]
+WantedBy=default.target
