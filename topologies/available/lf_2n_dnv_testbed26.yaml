@@ -12,8 +12,8 @@ nodes:
     subtype: TREX
     host: "10.32.8.10"
     arch: x86_64
-    port: 22
-    username: testuser
+    port: 6001
+    username: root
     password: Csit1234
     interfaces:
       port1:
