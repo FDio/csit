@@ -147,6 +147,7 @@ class TrafficGenerator(AbstractMeasurer):
         self.frame_size = None
         self.traffic_profile = None
         self.warmup_time = None
+        self.traffic_directions = None
 
     @property
     def node(self):
@@ -658,7 +659,7 @@ class TrafficGenerator(AbstractMeasurer):
             duration = time.time() - self._start_time
             self._start_time = None
         if transmit_rate is None:
-            transmit_rate = self._rate * (1.0 if self.uinidirection else 2.0)
+            transmit_rate = self._rate * self.traffic_directions
         transmit_count = int(self.get_sent())
         loss_count = int(self.get_loss())
         measurement = ReceiveRateMeasurement(
