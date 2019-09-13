@@ -12494,7 +12494,7 @@
 - type: "plot"
   title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-vpp-ndr"
   algorithm: "plot_throughput_speedup_analysis_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-.t.c-link-bonding-vhost-base-i40e-vpp-ndr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-vpp-ndr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -12504,13 +12504,13 @@
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-.t.c-link-bonding-vhost-base-i40e-vpp-ndr"
+    title: "3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-vpp-ndr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
-  title: "Speedup: 3n-skx-xxv710-64b-.t.c-link-bonding-vhost-base-i40e-vpp-pdr"
+  title: "Speedup: 3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-vpp-pdr"
   algorithm: "plot_throughput_speedup_analysis_name"
-  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-.t.c-link-bonding-vhost-base-i40e-vpp-pdr-tsa"
+  output-file: "{DIR[STATIC,VPP]}/3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-vpp-pdr-tsa"
   data: "plot-vpp-throughput-lat-tsa-3n-skx-vhost"
   include:
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
@@ -12520,7 +12520,7 @@
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
     - "Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-.t.c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr"
   layout:
-    title: "3n-skx-xxv710-64b-.t.c-link-bonding-vhost-base-i40e-vpp-pdr"
+    title: "3n-skx-xxv710-64b-link-bonding-vhost-base-i40e-vpp-pdr"
     layout: "plot-throughput-speedup-analysis"
 
 - type: "plot"
