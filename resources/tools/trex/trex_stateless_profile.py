@@ -27,17 +27,19 @@ sys.path.insert(0, "/opt/trex-core-2.61/scripts/automation/"
 from trex.stl.api import *
 
 
-def fmt_latency(lat_min, lat_avg, lat_max):
+def fmt_latency(lat_min, lat_avg, lat_max, hdrh):
     """Return formatted, rounded latency.
 
     :param lat_min: Min latency
     :param lat_avg: Average latency
     :param lat_max: Max latency
-    :type lat_min: string
-    :type lat_avg: string
-    :type lat_max: string
-    :return: Formatted and rounded output "min/avg/max"
-    :rtype: string
+    :param hdrh: Base64 encoded compressed HDRHistogram object.
+    :type lat_min: str
+    :type lat_avg: str
+    :type lat_max: str
+    :type hdrh: str
+    :return: Formatted and rounded output (hdrh unchanged) "min/avg/max/hdrh".
+    :rtype: str
     """
     try:
         t_min = int(round(float(lat_min)))
@@ -52,7 +54,7 @@ def fmt_latency(lat_min, lat_avg, lat_max):
     except ValueError:
         t_max = int(-1)
 
-    return "/".join(str(tmp) for tmp in (t_min, t_avg, t_max))
+    return "/".join(str(tmp) for tmp in (t_min, t_avg, t_max, hdrh))
 
 
 def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
@@ -100,8 +102,8 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
     total_sent = 0
     lost_a = 0
     lost_b = 0
-    lat_a = "-1/-1/-1"
-    lat_b = "-1/-1/-1"
+    lat_a = "-1/-1/-1/"
+    lat_b = "-1/-1/-1/"
 
     # Read the profile:
     try:
@@ -207,15 +209,15 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
             # Stats index is not a port number, but "pgid".
             # TODO: Find out what "pgid" means.
             if latency:
+                lat_obj = stats["latency"][0]["latency"]
                 lat_a = fmt_latency(
-                    str(stats["latency"][0]["latency"]["total_min"]),
-                    str(stats["latency"][0]["latency"]["average"]),
-                    str(stats["latency"][0]["latency"]["total_max"]))
+                    str(lat_obj["total_min"]), str(lat_obj["average"]),
+                    str(lat_obj["total_max"]), str(lat_obj["hdrh"]))
                 if traffic_directions > 1:
+                    lat_obj = stats["latency"][1]["latency"]
                     lat_b = fmt_latency(
-                        str(stats["latency"][1]["latency"]["total_min"]),
-                        str(stats["latency"][1]["latency"]["average"]),
-                        str(stats["latency"][1]["latency"]["total_max"]))
+                        str(lat_obj["total_min"]), str(lat_obj["average"]),
+                        str(lat_obj["total_max"]), str(lat_obj["hdrh"]))
 
             if traffic_directions > 1:
                 total_sent = stats[0]["opackets"] + stats[1]["opackets"]
