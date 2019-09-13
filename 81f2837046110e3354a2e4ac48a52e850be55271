@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b0548e1a_4ba10843",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-13T05:42:49Z",
+      "side": 1,
+      "message": "raise and log would be better name",
+      "range": {
+        "startLine": 273,
+        "startChar": 17,
+        "endLine": 273,
+        "endChar": 29
+      },
+      "revId": "81f2837046110e3354a2e4ac48a52e850be55271",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
