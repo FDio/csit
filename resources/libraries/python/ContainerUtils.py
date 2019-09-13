@@ -640,12 +640,10 @@ class LXC(ContainerEngine):
                         "sh -c 'mkdir -p {host_dir}'".format(host_dir=host_dir))
                 options = 'bind,create=dir' \
                     if guest_dir.endswith('/') else 'bind,create=file'
-                entry = 'lxc.mount.entry = {host_dir} '\
-                    '{guest_dir} none ' \
-                    '{options} 0 0'.format(c=self.container,
-                                           host_dir=host_dir,
-                                           guest_dir=guest_dir[1:],
-                                           options=options)
+                entry = 'lxc.mount.entry = {host_dir} {guest_dir} none ' \
+                    '{options} 0 0'.format(
+                        host_dir=host_dir, guest_dir=guest_dir[1:],
+                        options=options)
                 ret, _, _ = self.container.ssh.exec_command_sudo(
                     "sh -c 'echo \"{e}\" >> /var/lib/lxc/{c.name}/config'".
                     format(e=entry, c=self.container))
