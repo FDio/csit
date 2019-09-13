@@ -19,7 +19,9 @@
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Run Keywords
+| ... | Show Classify Tables Verbose | ${dut1}
+| ... | AND | Tear down test | packet_trace
 | ...
 | Test Template | Local Template
 | ...
@@ -64,7 +66,10 @@
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize IPv4 forwarding in circular topology
+| | API Trace On | ${dut1}
 | | And Initialize IPv4 policer 2r3c-'ca' in circular topology
+| | API Trace Save | ${dut1} | policer
+| | API Trace Dump | ${dut1} | policer
 | | Then Send packet and verify marking
 | | ... | ${tg} | ${tg_if1} | ${tg_if2} | ${tg_if1_mac} | ${dut1_if1_mac}
 | | ... | 10.10.10.2 | 20.20.20.2
