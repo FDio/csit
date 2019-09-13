@@ -396,16 +396,16 @@
     vpp-perf-results-3n-hsw:
       csit-vpp-perf-verify-1908-3n-hsw:
         - 24  # NDRPDR full
-        - 25  # NDRPDR full
-        - 26  # NDRPDR full
-        - 27  # NDRPDR full
-        - 28  # NDRPDR full
-        - 29  # NDRPDR full
-        - 32  # NDRPDR full
-        - 33  # NDRPDR full
-        - 36  # NDRPDR full
-        - 38  # NDRPDR full
-        - 50  # NDRPDR full vhost
+#        - 25  # NDRPDR full
+#        - 26  # NDRPDR full
+#        - 27  # NDRPDR full
+#        - 28  # NDRPDR full
+#        - 29  # NDRPDR full
+#        - 32  # NDRPDR full
+#        - 33  # NDRPDR full
+#        - 36  # NDRPDR full
+#        - 38  # NDRPDR full
+#        - 50  # NDRPDR full vhost
 
     vpp-perf-results-3n-skx:
       csit-vpp-perf-verify-1908-3n-skx:
