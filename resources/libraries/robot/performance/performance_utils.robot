@@ -229,7 +229,7 @@
 | | Set Test Message | ${\n}${text}: ${rate_total} pps, | append=yes
 | | Set Test Message | ${bandwidth_total} Gbps (initial) | append=yes
 | | Return From Keyword If | not """${latency}"""
-| | Set Test Message | ${\n}LATENCY usec [min/avg/max] per stream: ${latency}
+| | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
 
 | Display result of NDRPDR search
