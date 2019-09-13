@@ -22,6 +22,8 @@ from robot.api import logger
 
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.VatJsonUtil import VatJsonUtil
 
 
 class Classify(object):
@@ -458,30 +460,43 @@ class Classify(object):
         :raises ValueError: If the parameters 'ip_version' or 'direction' have
             incorrect values.
         """
-        mask_f = dict(
-            ip4=Classify._build_ip_mask,
-            ip6=Classify._build_ip6_mask
-        )
-        if ip_version == "ip4" or ip_version == "ip6":
-            ip_addr = binascii.hexlify(ip_address(unicode(ip_addr)).packed)
-        else:
-            raise ValueError("IP version {ver} is not supported.".
-                             format(ver=ip_version))
+        # mask_f = dict(
+        #     ip4=Classify._build_ip_mask,
+        #     ip6=Classify._build_ip6_mask
+        # )
+        # if ip_version == "ip4" or ip_version == "ip6":
+        #     ip_addr = binascii.hexlify(ip_address(unicode(ip_addr)).packed)
+        # else:
+        #     raise ValueError("IP version {ver} is not supported.".
+        #                      format(ver=ip_version))
+        #
+        # if direction == "src":
+        #     mask = mask_f[ip_version](src_ip=ip_addr)
+        # elif direction == "dst":
+        #     mask = mask_f[ip_version](dst_ip=ip_addr)
+        # else:
+        #     raise ValueError("Direction {dir} is not supported.".
+        #                      format(dir=direction))
+        #
+        # return Classify._classify_add_del_table(
+        #     node,
+        #     is_add=1,
+        #     mask=binascii.unhexlify(mask),
+        #     match_n_vectors=(len(mask) - 1) // 32 + 1
+        # )
 
-        if direction == "src":
-            mask = mask_f[ip_version](src_ip=ip_addr)
-        elif direction == "dst":
-            mask = mask_f[ip_version](dst_ip=ip_addr)
-        else:
-            raise ValueError("Direction {dir} is not supported.".
-                             format(dir=direction))
+        # create classify table
+        out = VatExecutor.cmd_from_template(node,
+                                            "classify_add_table.vat",
+                                            ip_version=ip_version,
+                                            direction=direction)
 
-        return Classify._classify_add_del_table(
-            node,
-            is_add=1,
-            mask=binascii.unhexlify(mask),
-            match_n_vectors=(len(mask) - 1) // 32 + 1
-        )
+        VatJsonUtil.verify_vat_retval(
+            out[0],
+            err_msg='Add classify table failed on {0}'.format(node['host']))
+
+        return out[0].get('new_table_index'), out[0].get('skip_n_vectors'),\
+            out[0].get('match_n_vectors')
 
     @staticmethod
     def vpp_creates_classify_table_l2(node, direction, mac=""):
@@ -539,7 +554,7 @@ class Classify(object):
 
     @staticmethod
     def vpp_configures_classify_session_l3(node, acl_method, table_index,
-                                           ip_version, direction, address):
+                                           ip_version, direction, address, skip_n, match_n):
         """Configuration of classify session for IP address filtering.
 
         :param node: VPP node to setup classify session.
@@ -556,27 +571,42 @@ class Classify(object):
         :type address: str
         :raises ValueError: If the parameter 'direction' has incorrect value.
         """
-        match_f = dict(
-            ip4=Classify._build_ip_match,
-            ip6=Classify._build_ip6_match
-        )
-        if direction == "src":
-            match = match_f[ip_version](src_ip=address)
-        elif direction == "dst":
-            match = match_f[ip_version](dst_ip=address)
-        else:
-            raise ValueError("Direction {dir} is not supported.".
-                             format(dir=direction))
-        action = dict(
-            permit=0,
-            deny=1
-        )
-        Classify._classify_add_del_session(
+        # match_f = dict(
+        #     ip4=Classify._build_ip_match,
+        #     ip6=Classify._build_ip6_match
+        # )
+        # if direction == "src":
+        #     match = match_f[ip_version](src_ip=address)
+        # elif direction == "dst":
+        #     match = match_f[ip_version](dst_ip=address)
+        # else:
+        #     raise ValueError("Direction {dir} is not supported.".
+        #                      format(dir=direction))
+        # action = dict(
+        #     permit=0,
+        #     deny=1
+        # )
+        # Classify._classify_add_del_session(
+        #     node,
+        #     is_add=1,
+        #     table_index=table_index,
+        #     match=binascii.unhexlify(match),
+        #     action=action[acl_method])
+
+        # create classify session
+        match = 'l3 {0} {1} {2}'.format(ip_version, direction, address)
+
+        out = VatExecutor.cmd_from_template(
             node,
-            is_add=1,
+            "classify_add_session.vat",
             table_index=table_index,
-            match=binascii.unhexlify(match),
-            action=action[acl_method])
+            skip_n=skip_n,
+            match_n=match_n,
+            match=match)
+
+        VatJsonUtil.verify_vat_retval(
+            out[0],
+            err_msg='Add classify session failed on {0}'.format(node['host']))
 
     @staticmethod
     def vpp_configures_classify_session_l2(node, acl_method, table_index,
@@ -755,6 +785,18 @@ class Classify(object):
             details = papi_exec.add(cmd, **args).get_details()
 
         return details
+
+    @staticmethod
+    def show_classify_tables_verbose(node):
+        """Show classify tables verbose.
+
+        :param node: Topology node.
+        :type node: dict
+        :returns: Classify tables verbose data.
+        :rtype: str
+        """
+        return PapiSocketExecutor.run_cli_cmd(
+            node, "show classify tables verbose")
 
     @staticmethod
     def vpp_log_plugin_acl_settings(node):
