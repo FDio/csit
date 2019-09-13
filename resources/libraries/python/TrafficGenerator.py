@@ -317,6 +317,7 @@ class TrafficGenerator(AbstractMeasurer):
                     ssh.exec_command("sh -c 'cat /tmp/trex.log'")
                     raise RuntimeError('t-rex-64 startup failed')
 
+<<<<<<< HEAD   (43de22 FIX: Start T-Rex with sudo)
                 # get TRex server info
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'sleep 3; "
@@ -329,6 +330,52 @@ class TrafficGenerator(AbstractMeasurer):
             # after max retries TRex is still not responding to API
             # critical error occurred
             raise RuntimeError('t-rex-64 startup failed')
+=======
+            # Configure TRex.
+            ports = ''
+            for port in self._node['interfaces'].values():
+                ports += ' {pci}'.format(pci=port.get('pci_address'))
+
+            cmd = ("sh -c 'cd {dir}/scripts/ && "
+                   "./dpdk_nic_bind.py -u {ports} || true'"
+                   .format(dir=Constants.TREX_INSTALL_DIR, ports=ports))
+            exec_cmd_no_error(
+                self._node, cmd, sudo=True,
+                message='Unbind PCI ports from driver failed!')
+
+            cmd = ("sh -c 'cd {dir}/scripts/ && ./trex-cfg'"
+                   .format(dir=Constants.TREX_INSTALL_DIR))
+            exec_cmd_no_error(
+                self._node, cmd, sudo=True, message='Config TRex failed!')
+
+            # Start TRex.
+            cmd = ("sh -c 'cd {dir}/scripts/ && "
+                   "nohup ./t-rex-64 {mode} --prefix $(hostname)"
+                   " -i -c 7 > /tmp/trex.log 2>&1 &' > /dev/null"
+                   .format(dir=Constants.TREX_INSTALL_DIR,
+                           mode='--astf' if osi_layer == 'L7' else ''))
+            try:
+                exec_cmd_no_error(self._node, cmd, sudo=True)
+            except RuntimeError:
+                cmd = "sh -c 'cat /tmp/trex.log'"
+                exec_cmd_no_error(self._node, cmd, sudo=True,
+                                  message='Get TRex logs failed!')
+                raise RuntimeError('Start TRex failed!')
+
+            # Test if TRex starts successfuly.
+            cmd = ("sh -c '{dir}/resources/tools/trex/trex_server_info.py'"
+                   .format(dir=Constants.REMOTE_FW_DIR))
+            try:
+                exec_cmd_no_error(
+                    self._node, cmd, sudo=True, message='Test TRex failed!',
+                    retries=20)
+            except RuntimeError:
+                continue
+            return
+        # After max retries TRex is still not responding to API critical error
+        # occurred.
+        raise RuntimeError('Start TRex failed after multiple retries!')
+>>>>>>> CHANGE (62de34 Add: Use containers for shared TG)
 
     @staticmethod
     def is_trex_running(node):
