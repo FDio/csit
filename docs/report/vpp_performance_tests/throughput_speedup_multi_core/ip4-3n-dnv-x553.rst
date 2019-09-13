@@ -66,7 +66,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-ndr.html"></iframe>
+    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -75,8 +75,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-ndr}
-            \label{fig:3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-ndr-tsa}
+            \label{fig:3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -86,7 +86,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-pdr.html"></iframe>
+    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -95,8 +95,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-pdr}
-            \label{fig:3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-pdr-tsa}
+            \label{fig:3n-dnv-x553-64b-ip4routing-base-scale-ixgbe-pdr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -109,7 +109,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-64b-features-ip4routing-base-ixgbe-ndr.html"></iframe>
+    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-64b-features-ip4routing-base-ixgbe-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -118,8 +118,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-features-ip4routing-base-ixgbe-ndr}
-            \label{fig:3n-dnv-x553-64b-features-ip4routing-base-ixgbe-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-features-ip4routing-base-ixgbe-ndr-tsa}
+            \label{fig:3n-dnv-x553-64b-features-ip4routing-base-ixgbe-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -129,7 +129,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-64b-features-ip4routing-base-ixgbe-pdr.html"></iframe>
+    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-64b-features-ip4routing-base-ixgbe-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -138,6 +138,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-features-ip4routing-base-ixgbe-pdr}
-            \label{fig:3n-dnv-x553-64b-features-ip4routing-base-ixgbe-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-64b-features-ip4routing-base-ixgbe-pdr-tsa}
+            \label{fig:3n-dnv-x553-64b-features-ip4routing-base-ixgbe-pdr-tsa}
     \end{figure}

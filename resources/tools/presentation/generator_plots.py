@@ -1792,9 +1792,9 @@ def plot_service_density_heatmap(plot, input_data):
     """
 
     REGEX_CN = re.compile(r'^(\d*)R(\d*)C$')
-    REGEX_TEST_NAME = re.compile(r'^.*-(\d+vhost|\d+memif)-'
-                                 r'(\d+chain|\d+pipe)-'
-                                 r'(\d+vm|\d+dcr|\d+drc).*$')
+    REGEX_TEST_NAME = re.compile(r'^.*-(\d+ch|\d+pl)-'
+                                 r'(\d+mif|\d+vh)-'
+                                 r'(\d+vm\d+t|\d+dcr\d+t).*$')
 
     txt_chains = list()
     txt_nodes = list()
@@ -1821,9 +1821,9 @@ def plot_service_density_heatmap(plot, input_data):
                     continue
                 groups = re.search(REGEX_TEST_NAME, test["name"])
                 if groups and len(groups.groups()) == 3:
-                    hover_name = "{vhost}-{chain}-{vm}".format(
-                        vhost=str(groups.group(1)),
-                        chain=str(groups.group(2)),
+                    hover_name = "{chain}-{vhost}-{vm}".format(
+                        chain=str(groups.group(1)),
+                        vhost=str(groups.group(2)),
                         vm=str(groups.group(3)))
                 else:
                     hover_name = ""
@@ -2076,8 +2076,8 @@ def plot_service_density_heatmap_compare(plot, input_data):
 
     REGEX_CN = re.compile(r'^(\d*)R(\d*)C$')
     REGEX_TEST_NAME = re.compile(r'^.*-(\d+ch|\d+pl)-'
-                                 r'(\d+vh|\d+mif)-'
-                                 r'(\d+vm|\d+dcr).*$')
+                                 r'(\d+mif|\d+vh)-'
+                                 r'(\d+vm\d+t|\d+dcr\d+t).*$')
     REGEX_THREADS = re.compile(r'^(\d+)(VM|DCR)(\d+)T$')
 
     txt_chains = list()
