@@ -71,7 +71,7 @@ class VppCounters(object):
                     return
 
                 runtime = []
-                runtime_non_zero = []
+                runtime_nz = []
 
                 for name in names:
                     runtime.append({'name': name})
@@ -100,18 +100,20 @@ class VppCounters(object):
 
                     if (sum(calls_th) or sum(vectors_th) or
                             sum(suspends_th) or sum(clocks_th)):
-                        runtime_non_zero.append(runtime_item)
+                        runtime_nz.append(runtime_item)
 
                 if log_zeros:
                     logger.info(
-                        "stats runtime ({host} - {socket}):\n{runtime}".format(
-                        host=node['host'], runtime=pformat(runtime),
-                        socket=socket))
+                        "stats runtime ({host} - {socket}):\n{runtime}".
+                        format(
+                            host=node['host'], runtime=pformat(runtime),
+                            socket=socket))
                 else:
                     logger.info(
-                        "stats runtime ({host} - {socket}):\n{runtime}".format(
-                        host=node['host'], runtime=pformat(runtime_non_zero),
-                        socket=socket))
+                        "stats runtime ({host} - {socket}):\n{runtime}".
+                        format(
+                            host=node['host'], runtime=pformat(runtime_nz),
+                            socket=socket))
 
     @staticmethod
     def vpp_show_runtime_counters_on_all_duts(nodes):
