@@ -51,7 +51,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -60,8 +60,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr}
-            \label{fig:3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr-tsa}
+            \label{fig:3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -71,7 +71,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -80,6 +80,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr}
-            \label{fig:3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr-tsa}
+            \label{fig:3n-dnv-x553-78b-srv6-ip6routing-base-ixgbe-pdr-tsa}
     \end{figure}

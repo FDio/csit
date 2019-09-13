@@ -5,7 +5,7 @@
 
 .. raw:: html
 
-    <script type="text/javascript"
+    <script type="text/javascript">
 
         function getDocHeight(doc) {
             doc = doc || document;
