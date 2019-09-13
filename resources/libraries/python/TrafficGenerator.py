@@ -342,8 +342,13 @@ class TrafficGenerator(AbstractMeasurer):
 
             # Start TRex.
             cmd = ("sh -c 'cd {dir}/scripts/ && "
+<<<<<<< HEAD   (89d1c9 Report: Show TSH results)
                    "nohup ./t-rex-64 {mode} -i -c 7 > "
                    "/tmp/trex.log 2>&1 &' > /dev/null"
+=======
+                   "nohup ./t-rex-64 --hdrh{mode} --prefix $(hostname)"
+                   " -i -c 7 > /tmp/trex.log 2>&1 &' > /dev/null"
+>>>>>>> CHANGE (96eaab Add: Use containers for shared TG)
                    .format(dir=Constants.TREX_INSTALL_DIR,
                            mode='--astf' if osi_layer == 'L7' else ''))
             try:
