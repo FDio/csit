@@ -65,6 +65,7 @@
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize IPv4 forwarding in circular topology
 | | And Initialize IPv4 policer 2r3c-'ca' in circular topology
+| | API Trace Dump | ${dut1}
 | | Then Send packet and verify marking
 | | ... | ${tg} | ${tg_if1} | ${tg_if2} | ${tg_if1_mac} | ${dut1_if1_mac}
 | | ... | 10.10.10.2 | 20.20.20.2
