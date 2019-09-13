@@ -1,0 +1,9 @@
+---
+# file: roles/tg/handlers/main.yaml
+
+- name: Start csit-initialize-docker-tg.service
+  systemd:
+    enabled: yes
+    state: started
+    name: csit-initialize-docker-tg.service
+  tags: start-docker-tg-service
