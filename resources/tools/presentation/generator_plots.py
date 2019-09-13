@@ -296,7 +296,7 @@ def plot_latency_error_bars_name(plot, input_data):
         for build in job:
             for test in build:
                 try:
-                    logging.debug("test['latency']: {0}\n".
+                    logging.info("test['latency']: {0}\n".
                                  format(test["latency"]))
                 except ValueError as err:
                     logging.warning(repr(err))
