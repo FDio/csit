@@ -93,6 +93,7 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add cryptodev to all DUTs | ${phy_cores}
+| | And Configure topology for IPv4 IPsec testing
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
