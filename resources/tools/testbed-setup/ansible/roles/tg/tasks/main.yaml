@@ -7,3 +7,34 @@
 - name: Install WRK
   include_tasks: 'wrk.yaml'
   tags: install-wrk
+<<<<<<< HEAD   (89d1c9 Report: Show TSH results)
+=======
+
+- name: Install TRex
+  include_tasks: 'trex.yaml'
+  tags: install-trex
+
+- name: Copy csit-initialize-docker-tg.sh
+  copy:
+   src: 'files/csit-initialize-docker-tg.sh'
+   dest: '/usr/local/bin/csit-initialize-docker-tg.sh'
+   owner: 'root'
+   group: 'root'
+   mode: '744'
+  when: docker_tg is defined
+  tags: docker-tg
+
+- name: Start csit-initialize-docker-tg.service
+  copy:
+   src: 'files/csit-initialize-docker-tg.service'
+   dest: '/etc/systemd/system/'
+   owner: 'root'
+   group: 'root'
+   mode: '644'
+  notify:
+    - 'Start csit-initialize-docker-tg.service'
+  when: docker_tg is defined
+  tags: docker-tg
+
+- meta: flush_handlers
+>>>>>>> CHANGE (96eaab Add: Use containers for shared TG)
