@@ -8,6 +8,14 @@ FD.io CSIT-1908 Report history and per .[ww] revision changes are listed below.
 +================+============================================================+
 | .38            | 1. Added data:                                             |
 |                |                                                            |
+|                |    - NFV Density, 2n-skx                                   |
+|                |    - NFV Density with reconfiguration, 2n-skx              |
+|                |    - VPP performance MRR, 3n-tsh                           |
+|                |                                                            |
+|                | 2. Added plots:                                            |
+|                |                                                            |
+|                |    - Reconfiguration of VNF Service Chains                 |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .37            | 1. Fixes in comparison tables.                             |
 |                |                                                            |
