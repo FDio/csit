@@ -757,6 +757,18 @@ class Classify(object):
         return details
 
     @staticmethod
+    def show_classify_tables_verbose(node):
+        """Show classify tables verbose.
+
+        :param node: Topology node.
+        :type node: dict
+        :returns: Classify tables verbose data.
+        :rtype: str
+        """
+        return PapiSocketExecutor.run_cli_cmd(
+            node, "show classify tables verbose")
+
+    @staticmethod
     def vpp_log_plugin_acl_settings(node):
         """Retrieve configured settings from the ACL plugin and write to robot
         log.
