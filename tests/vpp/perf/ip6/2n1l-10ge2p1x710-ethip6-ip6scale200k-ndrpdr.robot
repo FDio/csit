@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP6FWD | SCALE | FIB_200k
+| ... | NIC_Intel-X710 | ETH | IP6FWD | SCALE | FIB_200K
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -30,7 +30,7 @@
 | ... | single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for IPv6 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6 routing and\
-| ... | 2x100k static IPv6 /64 route entries. DUT1 is tested with ${nic_name}.\
+| ... | 2x100k static IPv6 /64 route entries. DUT1 is tested with ${nic_name}.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
