@@ -434,6 +434,7 @@
         - 90  # NDRPDR full vhost
         - 110 # NFV full
         - 111 # NFV full
+        - 126 # NFV full
         - 127 # NFV full
         - 112 # NFV reconf full
 
@@ -1600,6 +1601,7 @@
       - 70  # NFV
       - 110 # NFV full
       - 111 # NFV full
+      - 126 # NFV full
       - 127 # NFV full
       - 71  # NFV MRR
       - 112 # NFV reconf full
