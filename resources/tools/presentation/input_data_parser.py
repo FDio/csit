@@ -1312,23 +1312,15 @@ class InputData(object):
                             ("INFO",
                              "    The build {job}/{build} is outdated, will be "
                              "removed".format(job=job, build=build["build"])))
-                        file_name = self._cfg.input["file-name"]
-                        full_name = join(
-                            self._cfg.environment["paths"]["DIR[WORKING,DATA]"],
-                            "{job}{sep}{build}{sep}{name}".format(
-                                job=job,
-                                sep=SEPARATOR,
-                                build=build["build"],
-                                name=file_name.replace(".gz", "")))
                         try:
-                            remove(full_name)
+                            remove(build["file-name"])
                             logs.append(("INFO",
                                          "    The file {name} has been removed".
-                                         format(name=full_name)))
+                                         format(name=build["file-name"])))
                         except OSError as err:
                             logs.append(("ERROR",
                                          "Cannot remove the file '{0}': {1}".
-                                         format(full_name, repr(err))))
+                                         format(build["file-name"], repr(err))))
         logs.append(("INFO", "  Done."))
 
         for level, line in logs:
