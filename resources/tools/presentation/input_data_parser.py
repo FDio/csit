@@ -30,7 +30,6 @@ from robot import errors
 from collections import OrderedDict
 from string import replace
 from os import remove
-from os.path import join
 from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
@@ -1312,23 +1311,6 @@ class InputData(object):
                             ("INFO",
                              "    The build {job}/{build} is outdated, will be "
                              "removed".format(job=job, build=build["build"])))
-                        file_name = self._cfg.input["file-name"]
-                        full_name = join(
-                            self._cfg.environment["paths"]["DIR[WORKING,DATA]"],
-                            "{job}{sep}{build}{sep}{name}".format(
-                                job=job,
-                                sep=SEPARATOR,
-                                build=build["build"],
-                                name=file_name.replace(".gz", "")))
-                        try:
-                            remove(full_name)
-                            logs.append(("INFO",
-                                         "    The file {name} has been removed".
-                                         format(name=full_name)))
-                        except OSError as err:
-                            logs.append(("ERROR",
-                                         "Cannot remove the file '{0}': {1}".
-                                         format(full_name, repr(err))))
         logs.append(("INFO", "  Done."))
 
         for level, line in logs:
