@@ -1319,7 +1319,7 @@ class InputData(object):
                                 job=job,
                                 sep=SEPARATOR,
                                 build=build["build"],
-                                name=file_name))
+                                name=file_name.replace(".gz", "")))
                         try:
                             remove(full_name)
                             logs.append(("INFO",
