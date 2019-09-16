@@ -33,6 +33,12 @@
 Reconfiguration of VNF Service Chains
 =====================================
 
+See :ref:`reconf_tests` for methodology description of this test type.
+
+In each test, a single service chain is added, the re-configuration
+contains all the steps the initial chains got, except the last step
+(starting VMs) is skipped.
+
 Additional information about graph data:
 
 #. **Graph Title**: describes tested packet path including VNF workload
