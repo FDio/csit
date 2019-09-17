@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2c6e1ab9_57547936",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-17T11:46:43Z",
+      "side": 1,
+      "message": "One line per e-mail is enough.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 13
+      },
+      "revId": "0e3ee21dfb997392a7f143a5059cfbacf6e81bc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "14dbf029_6d865880",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-17T11:46:43Z",
+      "side": 1,
+      "message": "load",
+      "range": {
+        "startLine": 23,
+        "startChar": 19,
+        "endLine": 23,
+        "endChar": 23
+      },
+      "revId": "0e3ee21dfb997392a7f143a5059cfbacf6e81bc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "64daeac1_99c38c58",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-17T11:46:43Z",
+      "side": 1,
+      "message": "Should not be needed, because PAPI should already do this.\nIf you need this for the tests to pass, I guess VPP is the party not performing the conversion.",
+      "range": {
+        "startLine": 72,
+        "startChar": 27,
+        "endLine": 72,
+        "endChar": 32
+      },
+      "revId": "0e3ee21dfb997392a7f143a5059cfbacf6e81bc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
