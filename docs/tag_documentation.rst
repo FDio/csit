@@ -408,6 +408,10 @@ Forwarding Mode Tags
 
     VPP IPv6 routed forwarding.
 
+.. topic:: LOADBALANCER
+
+    VPP Load balancer.
+
 Underlay Tags
 -------------
 
