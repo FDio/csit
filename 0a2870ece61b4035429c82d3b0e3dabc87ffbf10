@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fca68f8e_33c4f4fc",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 27
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-17T11:08:26Z",
+      "side": 1,
+      "message": "See https://jenkins.fd.io/job/vpp-csit-verify-api-crc-master/700/console",
+      "range": {
+        "startLine": 255,
+        "startChar": 1,
+        "endLine": 255,
+        "endChar": 7
+      },
+      "revId": "0a2870ece61b4035429c82d3b0e3dabc87ffbf10",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
