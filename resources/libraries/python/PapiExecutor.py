@@ -19,6 +19,7 @@ import copy
 import glob
 import json
 import shutil
+import struct  # vpp-papi can raise struct.error
 import subprocess
 import sys
 import tempfile
@@ -94,8 +95,9 @@ class PapiSocketExecutor(object):
 
     Note: Use only with "with" statement, e.g.:
 
+        cmd = 'show_version'
         with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add('show_version').get_reply(err_msg)
+            reply = papi_exec.add(cmd).get_reply(err_msg)
 
     This class processes two classes of VPP PAPI methods:
     1. Simple request / reply: method='request'.
@@ -109,8 +111,9 @@ class PapiSocketExecutor(object):
 
     a. One request with no arguments:
 
+        cmd = 'show_version'
         with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add('show_version').get_reply(err_msg)
+            reply = papi_exec.add(cmd).get_reply(err_msg)
 
     b. Three requests with arguments, the second and the third ones are the same
        but with different arguments.
@@ -292,7 +295,7 @@ class PapiSocketExecutor(object):
         for _ in xrange(2):
             try:
                 vpp_instance.connect_sync("csit_socket")
-            except IOError as err:
+            except (IOError, struct.error) as err:
                 logger.warn("Got initial connect error {err!r}".format(err=err))
                 vpp_instance.disconnect()
             else:
@@ -418,31 +421,71 @@ class PapiSocketExecutor(object):
         return self._execute(err_msg)
 
     @staticmethod
+<<<<<<< HEAD   (df0ba2 Report: Fix Report History)
     def run_cli_cmd(node, cmd, log=True):
+=======
+    def run_cli_cmd(node, cli_cmd, log=True,
+                    remote_vpp_socket=Constants.SOCKSVR_PATH):
+>>>>>>> CHANGE (8b1bea Update CRC list and support 21997/7)
         """Run a CLI command as cli_inband, return the "reply" field of reply.
 
         Optionally, log the field value.
 
         :param node: Node to run command on.
+<<<<<<< HEAD   (df0ba2 Report: Fix Report History)
         :param cmd: The CLI command to be run on the node.
+=======
+        :param cli_cmd: The CLI command to be run on the node.
+        :param remote_vpp_socket: Path to remote socket to tunnel to.
+>>>>>>> CHANGE (8b1bea Update CRC list and support 21997/7)
         :param log: If True, the response is logged.
         :type node: dict
+<<<<<<< HEAD   (df0ba2 Report: Fix Report History)
         :type cmd: str
+=======
+        :type remote_vpp_socket: str
+        :type cli_cmd: str
+>>>>>>> CHANGE (8b1bea Update CRC list and support 21997/7)
         :type log: bool
         :returns: CLI output.
         :rtype: str
         """
-        cli = 'cli_inband'
-        args = dict(cmd=cmd)
+        cmd = 'cli_inband'
+        args = dict(cmd=cli_cmd)
         err_msg = "Failed to run 'cli_inband {cmd}' PAPI command on host " \
                   "{host}".format(host=node['host'], cmd=cmd)
+<<<<<<< HEAD   (df0ba2 Report: Fix Report History)
         with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cli, **args).get_reply(err_msg)["reply"]
+=======
+        with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)["reply"]
+>>>>>>> CHANGE (8b1bea Update CRC list and support 21997/7)
         if log:
             logger.info("{cmd}:\n{reply}".format(cmd=cmd, reply=reply))
         return reply
 
     @staticmethod
+<<<<<<< HEAD   (df0ba2 Report: Fix Report History)
+=======
+    def run_cli_cmd_on_all_sockets(node, cli_cmd, log=True):
+        """Run a CLI command as cli_inband, on all sockets in topology file.
+
+        :param node: Node to run command on.
+        :param cli_cmd: The CLI command to be run on the node.
+        :param log: If True, the response is logged.
+        :type node: dict
+        :type cli_cmd: str
+        :type log: bool
+        """
+        sockets = Topology.get_node_sockets(node, socket_type=SocketType.PAPI)
+        if sockets:
+            for socket in sockets.values():
+                PapiSocketExecutor.run_cli_cmd(
+                    node, cli_cmd, log=log, remote_vpp_socket=socket)
+
+    @staticmethod
+>>>>>>> CHANGE (8b1bea Update CRC list and support 21997/7)
     def dump_and_log(node, cmds):
         """Dump and log requested information, return None.
 
@@ -487,7 +530,7 @@ class PapiSocketExecutor(object):
             try:
                 try:
                     reply = papi_fn(**command["api_args"])
-                except IOError as err:
+                except (IOError, struct.error) as err:
                     # Ocassionally an error happens, try reconnect.
                     logger.warn("Reconnect after error: {err!r}".format(
                         err=err))
@@ -497,7 +540,7 @@ class PapiSocketExecutor(object):
                     self.vpp_instance.connect_sync("csit_socket")
                     logger.trace("Reconnected.")
                     reply = papi_fn(**command["api_args"])
-            except (AttributeError, IOError) as err:
+            except (AttributeError, IOError, struct.error) as err:
                 raise_from(AssertionError(err_msg), err, level="INFO")
             # *_dump commands return list of objects, convert, ordinary reply.
             if not isinstance(reply, list):
