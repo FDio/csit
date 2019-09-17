@@ -169,6 +169,30 @@
     },
     {
       "key": {
+        "uuid": "abf20737_dafd6a02",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1880
+      },
+      "writtenOn": "2019-09-17T06:15:45Z",
+      "side": 1,
+      "message": "\u003e test results are failed.\n\nThe reason is that run ndrpdr unidirection test case suites without “[1] https://gerrit.fd.io/r/c/csit/+/21830”.\nIt\u0027s not a VPP bug.\nI had reset this commit. Please look at \"https://gerrit.fd.io/r/c/csit/+/22077\".",
+      "parentUuid": "cdad7dca_bfa0db22",
+      "range": {
+        "startLine": 165,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 22
+      },
+      "revId": "28de7841cf0fde4c013f3c802fb1ce116ac6057d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6691eabf_84d44938",
         "filename": "resources/libraries/robot/lb/load_balancer.robot",
         "patchSetId": 1
@@ -334,6 +358,30 @@
       "side": 1,
       "message": "The current patch of the change [1] to support unidirectional traffic in mrr/ndrpdr/soak tests uses different argument and value, see [2].\n\n[1] https://gerrit.fd.io/r/c/csit/+/21830\n[2] https://gerrit.fd.io/r/c/csit/+/21849/4/tests/vpp/perf/l2/2n1l-10ge2p1x710-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr.robot",
       "parentUuid": "64f71447_77186b54",
+      "range": {
+        "startLine": 76,
+        "startChar": 10,
+        "endLine": 76,
+        "endChar": 30
+      },
+      "revId": "28de7841cf0fde4c013f3c802fb1ce116ac6057d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "39d8f688_8e67279b",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-mrr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1880
+      },
+      "writtenOn": "2019-09-17T06:15:45Z",
+      "side": 1,
+      "message": "I had change this commit. \nPlease look at \"https://gerrit.fd.io/r/c/csit/+/22077\",that using “[1] https://gerrit.fd.io/r/c/csit/+/21830”.",
+      "parentUuid": "d7c2ba1f_7ae1c1f4",
       "range": {
         "startLine": 76,
         "startChar": 10,
