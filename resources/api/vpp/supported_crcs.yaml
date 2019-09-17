@@ -232,6 +232,13 @@
     vxlan_add_del_tunnel_reply: '0xfda5941f'  # virl
     vxlan_tunnel_details: '0xce38e127'  # virl
     vxlan_tunnel_dump: '0x529cb13f'  # virl
+    # ^^ tc01-64B-1c-ethip4-loadbalancer-maglev-mrr
+    lb_conf: '0xa48c4a98'  # perf
+    lb_conf_reply: '0xe8d4e804'  # perf
+    lb_add_del_vip: '0x27f0ce5f'  # perf
+    lb_add_del_vip_reply: '0xe8d4e804'  # perf
+    lb_add_del_as: '0x9febc02f'  # perf
+    lb_add_del_as_reply: '0xe8d4e804'  # perf
 
 # TODO: Create an on-demand perf verify job with a tag expression
 # covering API calls used only in perf tests,
