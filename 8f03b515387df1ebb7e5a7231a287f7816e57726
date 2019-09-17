@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4c21f377_3ec1831d",
+        "filename": "resources/tools/presentation/specification.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 4679,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-09-17T19:56:55Z",
+      "side": 1,
+      "message": "Meaning of {X} and {Y} is not defined anywhere, so it\u0027s very hard to decode. Unlike in NFV density tests, there are no {X} and {Y} indicators in the graphs.",
+      "range": {
+        "startLine": 4679,
+        "startChar": 33,
+        "endLine": 4679,
+        "endChar": 108
+      },
+      "revId": "8f03b515387df1ebb7e5a7231a287f7816e57726",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
