@@ -1,0 +1,262 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f64162e_2f879424",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "please sort and put together with no spaces.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 65
+      },
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1f142f2_ffd34875",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "We have a special keyword in interfaces.robot for this",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 35
+      },
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8973e11_cbcd5016",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "The common keyword should be used instead.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 32
+      },
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3264c06d_17d5cc33",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 90,
+        "startChar": 34,
+        "endLine": 90,
+        "endChar": 35
+      },
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "995f437e_09b23d2a",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "not needed.",
+      "range": {
+        "startLine": 112,
+        "startChar": 4,
+        "endLine": 112,
+        "endChar": 5
+      },
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a550b506_2d9dd6cd",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "not needed. (in all occurrences)",
+      "range": {
+        "startLine": 113,
+        "startChar": 4,
+        "endLine": 113,
+        "endChar": 5
+      },
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6afea61a_0842cf0d",
+        "filename": "resources/test_data/lisp/ipv4_lisp_ipv4/ipv4_lisp_ipv4.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "there is also ip6",
+      "range": {
+        "startLine": 14,
+        "startChar": 22,
+        "endLine": 14,
+        "endChar": 37
+      },
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8406ea57_ef3f0a2e",
+        "filename": "tests/vpp/device/ip4_tunnels/lisp/eth2p-ethip4lisp-ip4base-dev.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "I would prefer TAG that also says this is ip4-ip4 lisp like: LISP_IP4o4",
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fea6a52_fef275db",
+        "filename": "tests/vpp/device/ip6_tunnels/lisp/eth2p-ethip6lispgpe-ip4base-dev.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "remove trailing spaces.",
+      "range": {
+        "startLine": 21,
+        "startChar": 40,
+        "endLine": 21,
+        "endChar": 41
+      },
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "354959a2_f386925e",
+        "filename": "tests/vpp/device/ip6_tunnels/lisp/eth2p-ethip6lispgpe-ip4base-dev.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "\\ at the and. Check other occurrences.",
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "89f3f258_02872a50",
+        "filename": "tests/vpp/device/ip6_tunnels/lisp/eth2p-ethip6lispgpe-ip6base-dev.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "\\ et the end",
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "83ad12b6_8f619c9b",
+        "filename": "tests/vpp/device/ip6_tunnels/lisp/eth2p-ethip6lispgpe-ip6base-dev.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-17T06:23:44Z",
+      "side": 1,
+      "message": "This should be packet size of sent packet (and also 110 is not true for ip6 encapsulation, it suppose to be 118 of received and 62 for sent). Please fix also other suites.",
+      "range": {
+        "startLine": 80,
+        "startChar": 7,
+        "endLine": 80,
+        "endChar": 11
+      },
+      "revId": "387350a82b374eaf5360e15dcca74858f037f0c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
