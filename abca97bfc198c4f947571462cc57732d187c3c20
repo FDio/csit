@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a822e00c_f422368a",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-09-17T20:19:18Z",
+      "side": 1,
+      "message": "It is clear how the packet loss is measured over the duration of the re-configuration test. It is unclear however what is the actual re-configuration sequence, and how many times it is applied over the duration of the test.",
+      "range": {
+        "startLine": 24,
+        "startChar": 25,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "27c352d1_6cf57663",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-09-17T20:19:18Z",
+      "side": 1,
+      "message": "The methodology is not completely clear, see previous comment.\nLooking at graphs at: https://docs.fd.io/csit/master/report/vpp_performance_tests/nf_service_density/vnf_service_chains_reconf.html#n-skx-xxv710\n\nFollowing information is unclear:\n- Implied Time Lost [s]: first graph shows 4sec or more, this is a significant outage for a single re-configuration transaction, unless the unit is [msec] or [usec] that is :). If there are more than 1 re-config transaction it should be specified. The actual sequence of commands within a re-config transaction should be specified too. \n- Test Case [Index]: \"avg pkt loss: 12.1\", if this is averaged packet count one can indeed derive the NDR rate from reported time, but with 4sec time lost, the implied NDR rate is 3pps :)\n\nBottom line, more description of the graphs themselves would be very useful!",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82c11fd0_55de1e26",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-09-17T20:19:18Z",
+      "side": 1,
+      "message": "This is a big caveat. Content of each re-configuration transaction should be fully controlled.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 51
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "df2856a3_a3090133",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-09-17T20:19:18Z",
+      "side": 1,
+      "message": "If by \"very high\" here you mean 4sec than I surely agree. But per my earlier comments this result does not look right.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 78
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
