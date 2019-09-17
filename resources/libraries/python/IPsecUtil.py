@@ -382,38 +382,38 @@ class IPsecUtil(object):
         addr_incr = 1 << (128 - 96) if src_addr.version == 6 \
             else 1 << (32 - 24)
 
-        if int(n_entries) > 10:
-            tmp_filename = '/tmp/ipsec_sad_{0}_add_del_entry.script'.\
-                format(sad_id)
-
-            with open(tmp_filename, 'w') as tmp_file:
-                for i in xrange(n_entries):
-                    integ = (
-                        'integ-alg {integ_alg} integ-key {integ_key}'.format(
-                            integ_alg=integ_alg.alg_name,
-                            integ_key=integ_key.encode('hex'))
-                        if integ_alg else '')
-                    tunnel = (
-                        'tunnel-src {laddr} tunnel-dst {raddr}'.format(
-                            laddr=src_addr + i * addr_incr,
-                            raddr=dst_addr + i * addr_incr)
-                        if tunnel_src and tunnel_dst else '')
-                    conf = (
-                        'exec ipsec sa add {sad_id} esp spi {spi} '
-                        'crypto-alg {crypto_alg} crypto-key {crypto_key} '
-                        '{integ} {tunnel}\n'.format(
-                            sad_id=sad_id + i,
-                            spi=spi + i,
-                            crypto_alg=crypto_alg.alg_name,
-                            crypto_key=crypto_key.encode('hex'),
-                            integ=integ,
-                            tunnel=tunnel))
-                    tmp_file.write(conf)
-            vat = VatExecutor()
-            vat.execute_script(tmp_filename, node, timeout=300, json_out=False,
-                               copy_on_execute=True)
-            os.remove(tmp_filename)
-            return
+#        if int(n_entries) > 10:
+#            tmp_filename = '/tmp/ipsec_sad_{0}_add_del_entry.script'.\
+#                format(sad_id)
+#
+#            with open(tmp_filename, 'w') as tmp_file:
+#                for i in xrange(n_entries):
+#                    integ = (
+#                        'integ-alg {integ_alg} integ-key {integ_key}'.format(
+#                            integ_alg=integ_alg.alg_name,
+#                            integ_key=integ_key.encode('hex'))
+#                        if integ_alg else '')
+#                    tunnel = (
+#                        'tunnel-src {laddr} tunnel-dst {raddr}'.format(
+#                            laddr=src_addr + i * addr_incr,
+#                            raddr=dst_addr + i * addr_incr)
+#                        if tunnel_src and tunnel_dst else '')
+#                    conf = (
+#                        'exec ipsec sa add {sad_id} esp spi {spi} '
+#                        'crypto-alg {crypto_alg} crypto-key {crypto_key} '
+#                        '{integ} {tunnel}\n'.format(
+#                            sad_id=sad_id + i,
+#                            spi=spi + i,
+#                            crypto_alg=crypto_alg.alg_name,
+#                            crypto_key=crypto_key.encode('hex'),
+#                            integ=integ,
+#                            tunnel=tunnel))
+#                    tmp_file.write(conf)
+#            vat = VatExecutor()
+#            vat.execute_script(tmp_filename, node, timeout=300, json_out=False,
+#                               copy_on_execute=True)
+#            os.remove(tmp_filename)
+#            return
 
         ckey = dict(
             length=len(crypto_key),
@@ -451,7 +451,7 @@ class IPsecUtil(object):
             is_add=1,
             entry=sad_entry
         )
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
             for i in xrange(n_entries):
                 args['entry']['sad_id'] = int(sad_id) + i
                 args['entry']['spi'] = int(spi) + i
@@ -492,29 +492,29 @@ class IPsecUtil(object):
         addr_incr = 1 << (128 - raddr_range) if laddr.version == 6 \
             else 1 << (32 - raddr_range)
 
-        if int(n_tunnels) > 10:
-            tmp_filename = '/tmp/ipsec_set_ip.script'
-
-            with open(tmp_filename, 'w') as tmp_file:
-                for i in xrange(n_tunnels):
-                    conf = (
-                        'exec set interface ip address {interface} '
-                        '{laddr}/{laddr_l}\n'
-                        'exec ip route add {taddr}/{taddr_l} via {raddr} '
-                        '{interface}\n'.format(
-                            interface=Topology.get_interface_name(
-                                node, interface),
-                            laddr=laddr + i * addr_incr,
-                            laddr_l=raddr_range,
-                            raddr=raddr + i * addr_incr,
-                            taddr=taddr + i,
-                            taddr_l=128 if taddr.version == 6 else 32))
-                    tmp_file.write(conf)
-            vat = VatExecutor()
-            vat.execute_script(tmp_filename, node, timeout=300, json_out=False,
-                               copy_on_execute=True)
-            os.remove(tmp_filename)
-            return
+#        if int(n_tunnels) > 10:
+#            tmp_filename = '/tmp/ipsec_set_ip.script'
+#
+#            with open(tmp_filename, 'w') as tmp_file:
+#                for i in xrange(n_tunnels):
+#                    conf = (
+#                        'exec set interface ip address {interface} '
+#                        '{laddr}/{laddr_l}\n'
+#                        'exec ip route add {taddr}/{taddr_l} via {raddr} '
+#                        '{interface}\n'.format(
+#                            interface=Topology.get_interface_name(
+#                                node, interface),
+#                            laddr=laddr + i * addr_incr,
+#                            laddr_l=raddr_range,
+#                            raddr=raddr + i * addr_incr,
+#                            taddr=taddr + i,
+#                            taddr_l=128 if taddr.version == 6 else 32))
+#                    tmp_file.write(conf)
+#            vat = VatExecutor()
+#            vat.execute_script(tmp_filename, node, timeout=300, json_out=False,
+#                               copy_on_execute=True)
+#            os.remove(tmp_filename)
+#            return
 
         cmd1 = 'sw_interface_add_del_address'
         args1 = dict(
@@ -533,7 +533,7 @@ class IPsecUtil(object):
                   'interface {ifc} on host {host}'.\
             format(ifc=interface, host=node['host'])
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
             for i in xrange(n_tunnels):
                 args1['prefix'] = IPUtil.create_prefix_object(
                     laddr + i * addr_incr, raddr_range)
@@ -701,32 +701,32 @@ class IPsecUtil(object):
         :type sa_id: int
         :type raddr_ip: string
         """
-        if int(n_entries) > 10:
-            tmp_filename = '/tmp/ipsec_spd_{0}_add_del_entry.script'.\
-                format(sa_id)
-
-            with open(tmp_filename, 'w') as tmp_file:
-                for i in xrange(n_entries):
-                    raddr_s = ip_address(unicode(raddr_ip)) + i
-                    raddr_e = ip_address(unicode(raddr_ip)) + (i + 1) - 1
-                    tunnel = (
-                        'exec ipsec policy add spd {spd_id} '
-                        'priority {priority} {direction} action protect '
-                        'sa {sa_id} remote-ip-range {raddr_s} - {raddr_e} '
-                        'local-ip-range 0.0.0.0 - 255.255.255.255\n'.
-                        format(
-                            spd_id=spd_id,
-                            priority=priority,
-                            direction='inbound' if inbound else 'outbound',
-                            sa_id=sa_id+i,
-                            raddr_s=raddr_s,
-                            raddr_e=raddr_e))
-                    tmp_file.write(tunnel)
-            VatExecutor().execute_script(
-                tmp_filename, node, timeout=300, json_out=False,
-                copy_on_execute=True)
-            os.remove(tmp_filename)
-            return
+#        if int(n_entries) > 10:
+#            tmp_filename = '/tmp/ipsec_spd_{0}_add_del_entry.script'.\
+#                format(sa_id)
+#
+#            with open(tmp_filename, 'w') as tmp_file:
+#                for i in xrange(n_entries):
+#                    raddr_s = ip_address(unicode(raddr_ip)) + i
+#                    raddr_e = ip_address(unicode(raddr_ip)) + (i + 1) - 1
+#                    tunnel = (
+#                        'exec ipsec policy add spd {spd_id} '
+#                        'priority {priority} {direction} action protect '
+#                        'sa {sa_id} remote-ip-range {raddr_s} - {raddr_e} '
+#                        'local-ip-range 0.0.0.0 - 255.255.255.255\n'.
+#                        format(
+#                            spd_id=spd_id,
+#                            priority=priority,
+#                            direction='inbound' if inbound else 'outbound',
+#                            sa_id=sa_id+i,
+#                            raddr_s=raddr_s,
+#                            raddr_e=raddr_e))
+#                    tmp_file.write(tunnel)
+#            VatExecutor().execute_script(
+#                tmp_filename, node, timeout=300, json_out=False,
+#                copy_on_execute=True)
+#            os.remove(tmp_filename)
+#            return
 
         raddr_ip = ip_address(unicode(raddr_ip))
         laddr_range = '::/0' if raddr_ip.version == 6 else '0.0.0.0/0'
@@ -759,7 +759,7 @@ class IPsecUtil(object):
             entry=spd_entry
         )
 
-        with PapiSocketExecutor(node) as papi_exec:
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
             for i in xrange(n_entries):
                 args['entry']['remote_address_start']['un'] = \
                     IPUtil.union_addr(raddr_ip + i)
@@ -812,135 +812,135 @@ class IPsecUtil(object):
         addr_incr = 1 << (128 - raddr_range) if if1_ip.version == 6 \
             else 1 << (32 - raddr_range)
 
-        if n_tunnels > 10:
-            tmp_fn1 = '/tmp/ipsec_create_tunnel_dut1.config'
-            tmp_fn2 = '/tmp/ipsec_create_tunnel_dut2.config'
-            vat = VatExecutor()
-            with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
-                tmp_f1.write(
-                    'exec create loopback interface\n'
-                    'exec set interface state loop0 up\n'
-                    'exec set interface ip address {uifc} {iaddr}/{mask}\n'
-                    .format(
-                        iaddr=if2_ip - 1,
-                        uifc=Topology.get_interface_name(
-                            nodes['DUT1'], if1_key),
-                        mask=96 if if2_ip.version == 6 else 24))
-                tmp_f2.write(
-                    'exec set interface ip address {uifc} {iaddr}/{mask}\n'
-                    .format(
-                        iaddr=if2_ip,
-                        uifc=Topology.get_interface_name(
-                            nodes['DUT2'], if2_key),
-                        mask=96 if if2_ip.version == 6 else 24))
-                for i in xrange(n_tunnels):
-                    ckey = gen_key(IPsecUtil.get_crypto_alg_key_len(
-                        crypto_alg)).encode('hex')
-                    if integ_alg:
-                        ikey = gen_key(IPsecUtil.get_integ_alg_key_len(
-                            integ_alg)).encode('hex')
-                        integ = (
-                            'integ_alg {integ_alg} '
-                            'local_integ_key {local_integ_key} '
-                            'remote_integ_key {remote_integ_key} '
-                            .format(
-                                integ_alg=integ_alg.alg_name,
-                                local_integ_key=ikey,
-                                remote_integ_key=ikey))
-                    else:
-                        integ = ''
-                    tmp_f1.write(
-                        'exec set interface ip address loop0 {laddr}/32\n'
-                        'ipsec_tunnel_if_add_del '
-                        'local_spi {local_spi} '
-                        'remote_spi {remote_spi} '
-                        'crypto_alg {crypto_alg} '
-                        'local_crypto_key {local_crypto_key} '
-                        'remote_crypto_key {remote_crypto_key} '
-                        '{integ} '
-                        'local_ip {laddr} '
-                        'remote_ip {raddr}\n'
-                        .format(
-                            local_spi=spi_1 + i,
-                            remote_spi=spi_2 + i,
-                            crypto_alg=crypto_alg.alg_name,
-                            local_crypto_key=ckey,
-                            remote_crypto_key=ckey,
-                            integ=integ,
-                            laddr=if1_ip + i * addr_incr,
-                            raddr=if2_ip))
-                    tmp_f2.write(
-                        'ipsec_tunnel_if_add_del '
-                        'local_spi {local_spi} '
-                        'remote_spi {remote_spi} '
-                        'crypto_alg {crypto_alg} '
-                        'local_crypto_key {local_crypto_key} '
-                        'remote_crypto_key {remote_crypto_key} '
-                        '{integ} '
-                        'local_ip {laddr} '
-                        'remote_ip {raddr}\n'
-                        .format(
-                            local_spi=spi_2 + i,
-                            remote_spi=spi_1 + i,
-                            crypto_alg=crypto_alg.alg_name,
-                            local_crypto_key=ckey,
-                            remote_crypto_key=ckey,
-                            integ=integ,
-                            laddr=if2_ip,
-                            raddr=if1_ip + i * addr_incr))
-            vat.execute_script(
-                tmp_fn1, nodes['DUT1'], timeout=1800, json_out=False,
-                copy_on_execute=True,
-                history=False if n_tunnels > 100 else True)
-            vat.execute_script(
-                tmp_fn2, nodes['DUT2'], timeout=1800, json_out=False,
-                copy_on_execute=True,
-                history=False if n_tunnels > 100 else True)
-            os.remove(tmp_fn1)
-            os.remove(tmp_fn2)
+#        if n_tunnels > 10:
+#            tmp_fn1 = '/tmp/ipsec_create_tunnel_dut1.config'
+#            tmp_fn2 = '/tmp/ipsec_create_tunnel_dut2.config'
+#            vat = VatExecutor()
+#            with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
+#                tmp_f1.write(
+#                    'exec create loopback interface\n'
+#                    'exec set interface state loop0 up\n'
+#                    'exec set interface ip address {uifc} {iaddr}/{mask}\n'
+#                    .format(
+#                        iaddr=if2_ip - 1,
+#                        uifc=Topology.get_interface_name(
+#                            nodes['DUT1'], if1_key),
+#                        mask=96 if if2_ip.version == 6 else 24))
+#                tmp_f2.write(
+#                    'exec set interface ip address {uifc} {iaddr}/{mask}\n'
+#                    .format(
+#                        iaddr=if2_ip,
+#                        uifc=Topology.get_interface_name(
+#                            nodes['DUT2'], if2_key),
+#                        mask=96 if if2_ip.version == 6 else 24))
+#                for i in xrange(n_tunnels):
+#                    ckey = gen_key(IPsecUtil.get_crypto_alg_key_len(
+#                        crypto_alg)).encode('hex')
+#                    if integ_alg:
+#                        ikey = gen_key(IPsecUtil.get_integ_alg_key_len(
+#                            integ_alg)).encode('hex')
+#                        integ = (
+#                            'integ_alg {integ_alg} '
+#                            'local_integ_key {local_integ_key} '
+#                            'remote_integ_key {remote_integ_key} '
+#                            .format(
+#                                integ_alg=integ_alg.alg_name,
+#                                local_integ_key=ikey,
+#                                remote_integ_key=ikey))
+#                    else:
+#                        integ = ''
+#                    tmp_f1.write(
+#                        'exec set interface ip address loop0 {laddr}/32\n'
+#                        'ipsec_tunnel_if_add_del '
+#                        'local_spi {local_spi} '
+#                        'remote_spi {remote_spi} '
+#                        'crypto_alg {crypto_alg} '
+#                        'local_crypto_key {local_crypto_key} '
+#                        'remote_crypto_key {remote_crypto_key} '
+#                        '{integ} '
+#                        'local_ip {laddr} '
+#                        'remote_ip {raddr}\n'
+#                        .format(
+#                            local_spi=spi_1 + i,
+#                            remote_spi=spi_2 + i,
+#                            crypto_alg=crypto_alg.alg_name,
+#                            local_crypto_key=ckey,
+#                            remote_crypto_key=ckey,
+#                            integ=integ,
+#                            laddr=if1_ip + i * addr_incr,
+#                            raddr=if2_ip))
+#                    tmp_f2.write(
+#                        'ipsec_tunnel_if_add_del '
+#                        'local_spi {local_spi} '
+#                        'remote_spi {remote_spi} '
+#                        'crypto_alg {crypto_alg} '
+#                        'local_crypto_key {local_crypto_key} '
+#                        'remote_crypto_key {remote_crypto_key} '
+#                        '{integ} '
+#                        'local_ip {laddr} '
+#                        'remote_ip {raddr}\n'
+#                        .format(
+#                            local_spi=spi_2 + i,
+#                            remote_spi=spi_1 + i,
+#                            crypto_alg=crypto_alg.alg_name,
+#                            local_crypto_key=ckey,
+#                            remote_crypto_key=ckey,
+#                            integ=integ,
+#                            laddr=if2_ip,
+#                            raddr=if1_ip + i * addr_incr))
+#            vat.execute_script(
+#                tmp_fn1, nodes['DUT1'], timeout=1800, json_out=False,
+#                copy_on_execute=True,
+#                history=False if n_tunnels > 100 else True)
+#            vat.execute_script(
+#                tmp_fn2, nodes['DUT2'], timeout=1800, json_out=False,
+#                copy_on_execute=True,
+#                history=False if n_tunnels > 100 else True)
+#            os.remove(tmp_fn1)
+#            os.remove(tmp_fn2)
+#
+#            with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
+#                tmp_f2.write(
+#                    'exec ip route add {raddr} via {uifc} {iaddr}\n'
+#                    .format(
+#                        raddr=ip_network(unicode(if1_ip_addr+'/8'), False),
+#                        iaddr=if2_ip - 1,
+#                        uifc=Topology.get_interface_name(
+#                            nodes['DUT2'], if2_key)))
+#                for i in xrange(n_tunnels):
+#                    tmp_f1.write(
+#                        'exec set interface unnumbered ipsec{i} use {uifc}\n'
+#                        'exec set interface state ipsec{i} up\n'
+#                        'exec ip route add {taddr}/{mask} via ipsec{i}\n'
+#                        .format(
+#                            taddr=raddr_ip2 + i,
+#                            i=i,
+#                            uifc=Topology.get_interface_name(nodes['DUT1'],
+#                                                             if1_key),
+#                            mask=128 if if2_ip.version == 6 else 32))
+#                    tmp_f2.write(
+#                        'exec set interface unnumbered ipsec{i} use {uifc}\n'
+#                        'exec set interface state ipsec{i} up\n'
+#                        'exec ip route add {taddr}/{mask} via ipsec{i}\n'
+#                        .format(
+#                            taddr=raddr_ip1 + i,
+#                            i=i,
+#                            uifc=Topology.get_interface_name(nodes['DUT2'],
+#                                                             if2_key),
+#                            mask=128 if if2_ip.version == 6 else 32))
+#            vat.execute_script(
+#                tmp_fn1, nodes['DUT1'], timeout=1800, json_out=False,
+#                copy_on_execute=True,
+#                history=False if n_tunnels > 100 else True)
+#            vat.execute_script(
+#                tmp_fn2, nodes['DUT2'], timeout=1800, json_out=False,
+#                copy_on_execute=True,
+#                history=False if n_tunnels > 100 else True)
+#            os.remove(tmp_fn1)
+#            os.remove(tmp_fn2)
+#            return
 
-            with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
-                tmp_f2.write(
-                    'exec ip route add {raddr} via {uifc} {iaddr}\n'
-                    .format(
-                        raddr=ip_network(unicode(if1_ip_addr+'/8'), False),
-                        iaddr=if2_ip - 1,
-                        uifc=Topology.get_interface_name(
-                            nodes['DUT2'], if2_key)))
-                for i in xrange(n_tunnels):
-                    tmp_f1.write(
-                        'exec set interface unnumbered ipsec{i} use {uifc}\n'
-                        'exec set interface state ipsec{i} up\n'
-                        'exec ip route add {taddr}/{mask} via ipsec{i}\n'
-                        .format(
-                            taddr=raddr_ip2 + i,
-                            i=i,
-                            uifc=Topology.get_interface_name(nodes['DUT1'],
-                                                             if1_key),
-                            mask=128 if if2_ip.version == 6 else 32))
-                    tmp_f2.write(
-                        'exec set interface unnumbered ipsec{i} use {uifc}\n'
-                        'exec set interface state ipsec{i} up\n'
-                        'exec ip route add {taddr}/{mask} via ipsec{i}\n'
-                        .format(
-                            taddr=raddr_ip1 + i,
-                            i=i,
-                            uifc=Topology.get_interface_name(nodes['DUT2'],
-                                                             if2_key),
-                            mask=128 if if2_ip.version == 6 else 32))
-            vat.execute_script(
-                tmp_fn1, nodes['DUT1'], timeout=1800, json_out=False,
-                copy_on_execute=True,
-                history=False if n_tunnels > 100 else True)
-            vat.execute_script(
-                tmp_fn2, nodes['DUT2'], timeout=1800, json_out=False,
-                copy_on_execute=True,
-                history=False if n_tunnels > 100 else True)
-            os.remove(tmp_fn1)
-            os.remove(tmp_fn2)
-            return
-
-        with PapiSocketExecutor(nodes['DUT1']) as papi_exec:
+        with PapiSocketExecutor(nodes['DUT1'], do_async=True) as papi_exec:
             # Create loopback interface on DUT1, set it to up state
             cmd1 = 'create_loopback'
             args1 = dict(mac_address=0)
@@ -1063,7 +1063,7 @@ class IPsecUtil(object):
                     add(cmd3, history=history, **args3)
             papi_exec.get_replies(err_msg)
 
-        with PapiSocketExecutor(nodes['DUT2']) as papi_exec:
+        with PapiSocketExecutor(nodes['DUT2'], do_async=True) as papi_exec:
             # Set IP address on VPP node 2 interface
             cmd1 = 'sw_interface_add_del_address'
             args1 = dict(
