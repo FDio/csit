@@ -16,6 +16,8 @@ FD.io CSIT-1908 Report history and per .[ww] revision changes are listed below.
 |                |                                                            |
 |                |    - Reconfiguration of VNF Service Chains                 |
 |                |                                                            |
+|                | 3. Added methodology for :ref: `reconf_tests`              |
+|                |                                                            |
 +----------------+------------------------------------------------------------+
 | .37            | 1. Fixes in comparison tables.                             |
 |                |                                                            |
