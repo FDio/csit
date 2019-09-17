@@ -68,6 +68,29 @@
       "revId": "0e3ee21dfb997392a7f143a5059cfbacf6e81bc5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "671a40c4_136322c8",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-17T11:49:43Z",
+      "side": 1,
+      "message": "If there will ever be other loadbalacer tests (than maglev), tag MAGLEV should also be added.\nAll added tags should be documented in docs/tag_documentation.rst",
+      "range": {
+        "startLine": 18,
+        "startChar": 37,
+        "endLine": 18,
+        "endChar": 49
+      },
+      "revId": "0e3ee21dfb997392a7f143a5059cfbacf6e81bc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
