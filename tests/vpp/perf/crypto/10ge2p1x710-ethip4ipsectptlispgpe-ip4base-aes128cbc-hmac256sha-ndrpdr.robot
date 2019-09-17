@@ -64,6 +64,11 @@
 | ${dut2_spi}= | ${1000}
 | ${dut1_spi}= | ${1001}
 | ${ESP_PROTO}= | ${50}
+| ${tg_if_ip4}= | 192.168.100.2
+| ${dut_if_ip4}= | 192.168.100.3
+| ${tg_lo_ip4}= | 192.168.3.3
+| ${dut_lo_ip4}= | 192.168.4.4
+| ${ip4_plen}= | ${24}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
 
@@ -93,6 +98,7 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add cryptodev to all DUTs | ${phy_cores}
+| | And Configure topology for IPv4 IPsec testing
 | | And Apply startup configuration on all VPP DUTs
 | | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
