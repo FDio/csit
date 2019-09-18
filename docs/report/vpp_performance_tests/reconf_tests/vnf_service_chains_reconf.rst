@@ -30,10 +30,14 @@
 
 .. _vnf_service_chains_reconf:
 
-Reconfiguration of VNF Service Chains
-=====================================
+VNF Service Chains
+==================
 
-See :ref:`reconf_tests` for methodology description of this test type.
+.. important::
+
+    **DISCLAIMER**: Presented test results should be taken with a pinch of
+    salt as they may not represent correctly the system behaviour due
+    to experimental nature of used test methodology (see :ref:`reconf_tests`).
 
 In each test, a single service chain is added, the re-configuration
 contains all the steps the initial chains got, except the last step
@@ -41,8 +45,17 @@ contains all the steps the initial chains got, except the last step
 
 Additional information about graph data:
 
-#. **Graph Title**: describes tested packet path including VNF workload
-   running in each VM.
+#. **Graph Title**: describes tested VPP packet path. Format:
+
+  - wire encapsulation ``dot1qip4vlxan``,
+  - VPP forwarding mode ``l2bd``,
+  - total number {Y} of service chains ``{Y}ch``,
+  - total number of chains being reconfigured ``1ach``,
+  - total number of vhost-user interfaces forwarding packets on VPP with {Y}
+    chains and {X} VMs per chain ``{2XY}vh`` (2 interfaces per {X} VMs per {Y}
+    chains),
+    total number {XY} of VNF VMs forwarding packets ``{XY}vm`` and finally
+  - VNF workload in VM ``testpmd``.
 
 #. **X-axis Labels**: indices of individual test suites as listed in
    Graph Legend.

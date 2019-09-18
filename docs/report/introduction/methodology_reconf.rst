@@ -1,7 +1,13 @@
 .. _reconf_tests:
 
-Reconf Tests
-^^^^^^^^^^^^
+Reconfiguration Tests
+---------------------
+
+.. important::
+
+    **DISCLAIMER**: Described reconf test methodology is experimental, and
+    subject to change following consultation within csit-dev, vpp-dev
+    and user communities. Current test results should be treated as indicative.
 
 Overview
 ~~~~~~~~
