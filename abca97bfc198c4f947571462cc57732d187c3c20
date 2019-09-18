@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "9a018a74_119879e8",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-09-18T12:48:02Z",
+      "side": 1,
+      "message": "Or just indicate, somewhere in the static content, where does the reconfig sequence start e.g. in current tests after the last sw_interface_set_rx_placement. Thoughts?",
+      "parentUuid": "eee1e4de_6c6f79eb",
+      "range": {
+        "startLine": 24,
+        "startChar": 25,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27c352d1_6cf57663",
         "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
         "patchSetId": 1
@@ -180,6 +204,30 @@
       "side": 1,
       "message": "Fix attempts are discussed at https://gerrit.fd.io/r/c/csit/+/22114",
       "parentUuid": "55a73e39_e4f153a7",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b8f8f5a_15e42b48",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-09-18T12:48:02Z",
+      "side": 1,
+      "message": "Checked: https://gerrit.fd.io/r/c/csit/+/22114/2/resources/tools/presentation/generator_plots.py\n\nIf I\u0027m reading it correctly, this will show many 0\u0027s, six for current tests, to represent O(10^6) :(",
+      "parentUuid": "4a06f0cb_e849ae24",
       "range": {
         "startLine": 29,
         "startChar": 0,
