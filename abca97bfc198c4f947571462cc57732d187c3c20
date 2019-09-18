@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "4a06f0cb_e849ae24",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-18T12:16:46Z",
+      "side": 1,
+      "message": "Fix attempts are discussed at https://gerrit.fd.io/r/c/csit/+/22114",
+      "parentUuid": "55a73e39_e4f153a7",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82c11fd0_55de1e26",
         "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
         "patchSetId": 1
