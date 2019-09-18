@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9f360b45_f354fbdd",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-09-18T11:58:27Z",
+      "side": 1,
+      "message": "re sequence of cmds/api calls: this should be specified somewhere. The configuration section is the right section.\n\nre how many times the sequence is applied: current methodology specifies only one application of reconfig sequence (in the tests 2 vhost interfaces are created as though 1vm is being added), so this should be stated clearly.\n\nre reconfig sequence summary in vnf_service_chains_reconf.rst - that\u0027s good.\n\nLink [0] doesn\u0027t separate out the reconfig sequence - is there a way to do so?",
+      "parentUuid": "1af75570_d50a8975",
+      "range": {
+        "startLine": 24,
+        "startChar": 25,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27c352d1_6cf57663",
         "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
         "patchSetId": 1
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "55a73e39_e4f153a7",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-09-18T11:58:27Z",
+      "side": 1,
+      "message": "The same applies to stdev.",
+      "parentUuid": "07b3ca4a_f4b64c95",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82c11fd0_55de1e26",
         "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
         "patchSetId": 1
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "It is controlled, we can use any keywords we want. I just did the simple thing and reused the initial keywords.\nIf we use different keywords, there will be a question of why they need to be different (and why we do not use the new keywords also for initial configuration).",
       "parentUuid": "82c11fd0_55de1e26",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 51
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1d4fc053_fcb50359",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-09-18T11:58:27Z",
+      "side": 1,
+      "message": "Using the same keywords is fine. They just have to be specified clearly, see my earlier comment.",
+      "parentUuid": "a45693f7_ea9c788a",
       "range": {
         "startLine": 59,
         "startChar": 0,
