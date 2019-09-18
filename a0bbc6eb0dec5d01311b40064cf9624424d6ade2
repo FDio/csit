@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e67be2b2_3660224a",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-18T14:28:01Z",
+      "side": 1,
+      "message": "This should not be needed, remove this line and fix other lines that use this (e.g. line 73).",
+      "range": {
+        "startLine": 16,
+        "startChar": 19,
+        "endLine": 16,
+        "endChar": 24
+      },
+      "revId": "a0bbc6eb0dec5d01311b40064cf9624424d6ade2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ad96bf96_e53c023d",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-18T14:28:01Z",
+      "side": 1,
+      "message": "kwargs",
+      "range": {
+        "startLine": 73,
+        "startChar": 44,
+        "endLine": 73,
+        "endChar": 49
+      },
+      "revId": "a0bbc6eb0dec5d01311b40064cf9624424d6ade2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
