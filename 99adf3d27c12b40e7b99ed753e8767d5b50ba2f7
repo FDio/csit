@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4987c14e_3bca37d7",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-09-18T08:32:16Z",
+      "side": 1,
+      "message": "Unclear",
+      "range": {
+        "startLine": 30,
+        "startChar": 26,
+        "endLine": 30,
+        "endChar": 48
+      },
+      "revId": "99adf3d27c12b40e7b99ed753e8767d5b50ba2f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7a7c3cf_78c9fcbb",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-09-18T08:32:16Z",
+      "side": 1,
+      "message": "Add to doc",
+      "range": {
+        "startLine": 42,
+        "startChar": 12,
+        "endLine": 42,
+        "endChar": 64
+      },
+      "revId": "99adf3d27c12b40e7b99ed753e8767d5b50ba2f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3c4d7a19_99d0d048",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-09-18T08:32:16Z",
+      "side": 1,
+      "message": "add raises: ...",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 11
+      },
+      "revId": "99adf3d27c12b40e7b99ed753e8767d5b50ba2f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
