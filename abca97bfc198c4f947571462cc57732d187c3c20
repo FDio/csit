@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "eee1e4de_6c6f79eb",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-18T12:17:11Z",
+      "side": 1,
+      "message": "\u003e separate out the reconfig sequence\n\nWe could add comments to PapiHistory, but I am not sure we want to do that (it would make the history harder to process by machines).\nIt would be safer to copy the reconfig sequence (the part after the last sw_interface_set_rx_placement) from [0] to some other place, and point the result page to that as an example of reconfig sequence (or copy to the result page directly).",
+      "parentUuid": "9f360b45_f354fbdd",
+      "range": {
+        "startLine": 24,
+        "startChar": 25,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27c352d1_6cf57663",
         "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
         "patchSetId": 1
