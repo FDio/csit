@@ -41,8 +41,17 @@ contains all the steps the initial chains got, except the last step
 
 Additional information about graph data:
 
-#. **Graph Title**: describes tested packet path including VNF workload
-   running in each VM.
+#. **Graph Title**: describes tested VPP packet path. Format:
+
+  - wire encapsulation ``dot1qip4vlxan``,
+  - VPP forwarding mode ``l2bd``,
+  - total number {Y} of service chains ``{Y}ch``,
+  - total number of chains being reconfigured ``1ach``,
+  - total number of vhost-user interfaces forwarding packets on VPP with {Y}
+    chains and {X} VMs per chain ``{2XY}vh`` (2 interfaces per {X} VMs per {Y}
+    chains),
+    total number {XY} of VNF VMs forwarding packets ``{XY}vm`` and finally
+  - VNF workload in VM.
 
 #. **X-axis Labels**: indices of individual test suites as listed in
    Graph Legend.
