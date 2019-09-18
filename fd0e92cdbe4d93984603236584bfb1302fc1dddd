@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "dd22549a_f4e080c3",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-18T12:38:47Z",
+      "side": 1,
+      "message": "Should be in traffic.robot resource file.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 0
+      },
+      "revId": "fd0e92cdbe4d93984603236584bfb1302fc1dddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5b5eecf6_f9b0166e",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-18T12:38:47Z",
+      "side": 1,
+      "message": "Should be in traffic.robot resource file.",
+      "range": {
+        "startLine": 200,
+        "startChar": 2,
+        "endLine": 200,
+        "endChar": 1
+      },
+      "revId": "fd0e92cdbe4d93984603236584bfb1302fc1dddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73b2ee82_2fb55cfb",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-18T12:38:47Z",
+      "side": 1,
+      "message": "remove pipe",
+      "range": {
+        "startLine": 227,
+        "startChar": 35,
+        "endLine": 227,
+        "endChar": 1
+      },
+      "revId": "fd0e92cdbe4d93984603236584bfb1302fc1dddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5af2868e_5285cbe2",
+        "filename": "resources/libraries/robot/overlay/lisp.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-18T12:38:47Z",
+      "side": 1,
+      "message": "Should be in traffic.robot resource file.",
+      "range": {
+        "startLine": 246,
+        "startChar": 2,
+        "endLine": 246,
+        "endChar": 1
+      },
+      "revId": "fd0e92cdbe4d93984603236584bfb1302fc1dddd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
