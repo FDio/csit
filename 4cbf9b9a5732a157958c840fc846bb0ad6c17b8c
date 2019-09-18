@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9db23eaa_ffcacb62",
+        "filename": "docs/report/vpp_performance_tests/nf_service_density/vnf_service_chains_reconf.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-09-18T11:12:50Z",
+      "side": 1,
+      "message": "- VNF workload in VM ``testpmd``.",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "4cbf9b9a5732a157958c840fc846bb0ad6c17b8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
