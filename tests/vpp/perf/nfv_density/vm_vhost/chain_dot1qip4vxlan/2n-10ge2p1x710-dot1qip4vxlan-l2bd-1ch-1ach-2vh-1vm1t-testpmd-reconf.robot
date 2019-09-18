@@ -109,6 +109,9 @@
 | | ... | start=${nf_chains+1}
 | | ${result}= | Stop Running Traffic
 | | Display Reconfig Test Message | ${result}
+| | ${new_bidirectional_throughput}= | Find Throughput Using MLRsearch
+| | Set Test Message | NDR before: ${bidirectional_throughput} bi pps | append=yes
+| | Set Test Message | NDR after: ${new_bidirectional_throughput} bi pps | append=yes
 
 *** Test Cases ***
 | tc01-118B-1c-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf
