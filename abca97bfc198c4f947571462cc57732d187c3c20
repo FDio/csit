@@ -240,6 +240,30 @@
     },
     {
       "key": {
+        "uuid": "52d3c73c_97762425",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-18T12:54:31Z",
+      "side": 1,
+      "message": "I see no other graph type attempts to insert data into legend.\nExcept implied time, people can be interested in loss count, offered load and reconfig time (and NDR decrease when we add that). Not sure what would be the best way to display all (or just some) of that.",
+      "parentUuid": "7b8f8f5a_15e42b48",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82c11fd0_55de1e26",
         "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
         "patchSetId": 1
