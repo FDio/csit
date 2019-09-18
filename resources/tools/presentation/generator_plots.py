@@ -117,7 +117,7 @@ def plot_service_density_reconf_box_name(plot, input_data):
                           col.lower().replace('-ndrpdr', '').
                           replace('2n1l-', ''))
         tst_name = "-".join(tst_name.split("-")[3:-2])
-        name = "{nr}. ({samples:02d} run{plural}, avg pkt loss: {loss:.1f}, " \
+        name = "{nr}. ({samples:02d} run{plural}, megapackets lost avg: {loss:.1f}, " \
                "stdev: {stdev:.2f}) {name}".format(
                     nr=(i + 1),
                     samples=nr_of_samples[i],
