@@ -7,4 +7,3 @@ Data Plane Throughput
     methodology_mlrsearch_tests
     methodology_mrr_throughput
     methodology_plrsearch
-    methodology_reconf
