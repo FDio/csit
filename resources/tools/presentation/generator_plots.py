@@ -117,14 +117,13 @@ def plot_service_density_reconf_box_name(plot, input_data):
                           col.lower().replace('-ndrpdr', '').
                           replace('2n1l-', ''))
         tst_name = "-".join(tst_name.split("-")[3:-2])
-        name = "{nr}. ({samples:02d} run{plural}, avg pkt loss: {loss:.1f}, " \
-               "stdev: {stdev:.2f}) {name}".format(
+        name = "{nr}. ({samples:02d} run{plural}, packets lost average: {loss:.1f}, " \
+               "{name}".format(
                     nr=(i + 1),
                     samples=nr_of_samples[i],
                     plural='s' if nr_of_samples[i] > 1 else '',
                     name=tst_name,
-                    loss=mean(loss[col]) / 1000000,
-                    stdev=stdev(loss[col]) / 1000000)
+                    loss=mean(loss[col]))
 
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=[y if y else None for y in df[col]],
