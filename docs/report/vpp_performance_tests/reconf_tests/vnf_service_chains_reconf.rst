@@ -63,8 +63,8 @@ Additional information about graph data:
 #. **Y-axis Labels**: measured Implied time loss [s] values.
 
 #. **Graph Legend**: lists X-axis indices with associated CSIT test
-   suites executed to generate graphed test results and the average value and
-   standard deviation of measured packet loss in millions of packets.
+   suites executed to generate graphed test results and the average value
+   of measured packet loss.
 
 #. **Hover Information**: lists minimum, first quartile, median,
    third quartile, and maximum. If either type of outlier is present the
