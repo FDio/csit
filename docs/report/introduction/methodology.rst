@@ -16,6 +16,7 @@ Test Methodology
     methodology_plrsearch
     methodology_packet_latency
     methodology_multi_core_speedup
+    methodology_reconf
     methodology_vpp_startup_settings
     methodology_kvm_vms_vhost_user
     methodology_lxc_drc_container_memif
