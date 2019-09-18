@@ -46,6 +46,30 @@
       "revId": "86c13fb3885ad3b30ef211249e180fe12b6bbdfd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e6091fa1_f895fe2c",
+        "filename": "resources/tools/presentation/generator_plots.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-18T10:57:59Z",
+      "side": 1,
+      "message": "In patch #2 I removed stdev to make more space.",
+      "parentUuid": "6e3b00da_80cb7b3c",
+      "range": {
+        "startLine": 120,
+        "startChar": 50,
+        "endLine": 120,
+        "endChar": 62
+      },
+      "revId": "86c13fb3885ad3b30ef211249e180fe12b6bbdfd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
