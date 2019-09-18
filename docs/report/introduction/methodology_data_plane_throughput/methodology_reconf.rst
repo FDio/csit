@@ -3,6 +3,14 @@
 Reconf Tests
 ^^^^^^^^^^^^
 
+.. important::
+
+    **DISCLAIMER**: Described reconf test methodology is experimental, and
+    subject to change following consultation within csit-dev, vpp-dev
+    and user communities. Current results should be treated as
+    experimental too, until test methodology gets fine tuned to yield
+    meaningful results.
+
 Overview
 ~~~~~~~~
 
