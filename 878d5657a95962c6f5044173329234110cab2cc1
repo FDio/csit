@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ab1adbc6_59f4283b",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-18T15:09:16Z",
+      "side": 1,
+      "message": "GPE",
+      "range": {
+        "startLine": 479,
+        "startChar": 15,
+        "endLine": 479,
+        "endChar": 18
+      },
+      "revId": "878d5657a95962c6f5044173329234110cab2cc1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
