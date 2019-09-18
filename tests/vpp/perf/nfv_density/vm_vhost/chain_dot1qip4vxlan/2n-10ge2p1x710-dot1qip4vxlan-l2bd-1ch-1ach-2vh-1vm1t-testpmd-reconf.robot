@@ -97,7 +97,7 @@
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}
 | | ... | use_tuned_cfs=${False} | auto_scale=${False} | vnf=testpmd_io
 | | ${bidirectional_throughput}= | Find Throughput Using MLRsearch
-| | ${unidirectional_throughput}= | Evaluate | ${bidirectional_throughput} / 2.0
+| | ${unidirectional_throughput}= | Evaluate | ${bidirectional_throughput} / 4.0
 | | Start Traffic on Background | ${unidirectional_throughput}pps
 | | And Initialize layer dot1q
 | | ... | count=${nf_total_chains} | vlan_per_chain=${False}
@@ -109,6 +109,9 @@
 | | ... | start=${nf_chains+1}
 | | ${result}= | Stop Running Traffic
 | | Display Reconfig Test Message | ${result}
+| | ${new_bidirectional_throughput}= | Find Throughput Using MLRsearch
+| | Set Test Message | ${\n}NDR before: ${bidirectional_throughput} bi pps | append=yes
+| | Set Test Message | ${\n}NDR after: ${new_bidirectional_throughput} bi pps | append=yes
 
 *** Test Cases ***
 | tc01-118B-1c-dot1qip4vxlan-l2bd-1ch-1ach-2vh-1vm1t-testpmd-reconf
