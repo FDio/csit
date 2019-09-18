@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8071e0a7_acfd0fa0",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-09-18T10:38:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdbe601b_ae6eb73e",
+      "range": {
+        "startLine": 10,
+        "startChar": 26,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "7d84a6c9db34c9e728dba803b12172b7fabe159d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12e345fa_717cdefa",
         "filename": "docs/report/vpp_performance_tests/nf_service_density/vnf_service_chains_reconf.rst",
         "patchSetId": 2
@@ -45,6 +69,30 @@
       "revId": "7d84a6c9db34c9e728dba803b12172b7fabe159d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4bf50ebf_bf61af49",
+        "filename": "docs/report/vpp_performance_tests/nf_service_density/vnf_service_chains_reconf.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-09-18T10:38:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12e345fa_717cdefa",
+      "range": {
+        "startLine": 39,
+        "startChar": 35,
+        "endLine": 39,
+        "endChar": 43
+      },
+      "revId": "7d84a6c9db34c9e728dba803b12172b7fabe159d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
