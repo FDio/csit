@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1af75570_d50a8975",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-18T08:53:39Z",
+      "side": 1,
+      "message": "The sequence depends on suite (currently we have only one, but we will have more later).\nMultiple application of similar sub-sequences is the same as one long super-sequence.\n\nFor the one suite implemented, the sequence is described in vnf_service_chains_reconf.rst,\nwe are adding one chain.\n\nThe exact commands are in Test Configuration section of the report, but mixed together with ndrpdr suites.\nExample: [0].\nLooking at that, reconf suite also skips rx-placement procedure for the new chain (as it happens after VMs are started).\n\n[0]  https://docs.fd.io/csit/rls1908/report/test_configuration/vpp_performance_configuration_2n_skx/vpp_performance_configuration_2n_skx.html#n-25ge2p1xxv710-dot1qip4vxlan-l2bd-10ch-1ach-20vh-10vm1t-testpmd-reconf",
+      "parentUuid": "a822e00c_f422368a",
+      "range": {
+        "startLine": 24,
+        "startChar": 25,
+        "endLine": 27,
+        "endChar": 43
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "27c352d1_6cf57663",
         "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "07b3ca4a_f4b64c95",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-18T08:53:39Z",
+      "side": 1,
+      "message": "\u003e avg pkt loss\n\nOh, I did not spot that one. The numbers look correct, but the unit is millions of packets.",
+      "parentUuid": "27c352d1_6cf57663",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "82c11fd0_55de1e26",
         "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2019-09-17T20:19:18Z",
       "side": 1,
       "message": "This is a big caveat. Content of each re-configuration transaction should be fully controlled.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 51
+      },
+      "revId": "abca97bfc198c4f947571462cc57732d187c3c20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a45693f7_ea9c788a",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_reconf.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-18T08:53:39Z",
+      "side": 1,
+      "message": "It is controlled, we can use any keywords we want. I just did the simple thing and reused the initial keywords.\nIf we use different keywords, there will be a question of why they need to be different (and why we do not use the new keywords also for initial configuration).",
+      "parentUuid": "82c11fd0_55de1e26",
       "range": {
         "startLine": 59,
         "startChar": 0,
