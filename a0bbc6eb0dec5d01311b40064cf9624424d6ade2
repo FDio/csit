@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "cbb7a89a_da74c2b3",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-19T12:18:14Z",
+      "side": 1,
+      "message": "I believe in this case VPP is not doing its due diligence. I proposed a fix [0].\nI recommend waiting for reply from VPP developers, and if [0] is merged (and CSIT sets stable VPP version to a build containing it), remove htonl from here.\n\n[0] https://gerrit.fd.io/r/c/vpp/+/22149",
+      "parentUuid": "d770f61f_a115b082",
+      "range": {
+        "startLine": 16,
+        "startChar": 19,
+        "endLine": 16,
+        "endChar": 24
+      },
+      "revId": "a0bbc6eb0dec5d01311b40064cf9624424d6ade2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad96bf96_e53c023d",
         "filename": "resources/libraries/python/LoadBalancerUtil.py",
         "patchSetId": 4
@@ -93,6 +117,30 @@
       "revId": "a0bbc6eb0dec5d01311b40064cf9624424d6ade2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e48cf9f7_8f28ec29",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-19T12:18:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0a4cfa8d_347e9d83",
+      "range": {
+        "startLine": 73,
+        "startChar": 44,
+        "endLine": 73,
+        "endChar": 49
+      },
+      "revId": "a0bbc6eb0dec5d01311b40064cf9624424d6ade2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
