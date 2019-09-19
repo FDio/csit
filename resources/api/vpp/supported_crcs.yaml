@@ -92,8 +92,8 @@
     gbp_subnet_add_del_reply: '0xe8d4e804'  # perf
     # 14x^ tc01-64B-1c-avf-dot1q-l2bdbasemaclrn-gbp-mrr
     # ^ dot1qANDdrv_avfANDgbp
-    gpe_enable_disable: '0xeb0e943b'  # virl
-    gpe_enable_disable_reply: '0xe8d4e804'  # virl
+    gpe_enable_disable: '0xeb0e943b'  # dev
+    gpe_enable_disable_reply: '0xe8d4e804'  # dev
     # gre_tunnel_add_del / reply # unused L1 keyword: create_gre_tunnel_interface
     hw_interface_set_mtu: '0xe6c533aa'  # dev
     hw_interface_set_mtu_reply: '0xe8d4e804'  # dev
@@ -134,24 +134,24 @@
     # ^^ tc01-64B-1c-avf-eth-l2patch-mrr
     # ^ l2patchANDdrv_avf
     # l2fib_add_del / reply # unused L1 keyword: vpp_add_l2fib_entry
-    lisp_add_del_adjacency: '0xf047390d'  # virl
-    lisp_add_del_adjacency_reply: '0xe8d4e804'  # virl
-    lisp_add_del_local_eid: '0xe6d00717'  # virl
-    lisp_add_del_local_eid_reply: '0xe8d4e804'  # virl
-    lisp_add_del_locator: '0x006a4240'  # virl
-    lisp_add_del_locator_reply: '0xe8d4e804'  # virl
-    lisp_add_del_locator_set: '0x06968e38'  # virl
-    lisp_add_del_locator_set_reply: '0xb6666db4'  # virl
+    lisp_add_del_adjacency: '0xf047390d'  # dev
+    lisp_add_del_adjacency_reply: '0xe8d4e804'  # dev
+    lisp_add_del_local_eid: '0xe6d00717'  # dev
+    lisp_add_del_local_eid_reply: '0xe8d4e804'  # dev
+    lisp_add_del_locator: '0x006a4240'  # dev
+    lisp_add_del_locator_reply: '0xe8d4e804'  # dev
+    lisp_add_del_locator_set: '0x06968e38'  # dev
+    lisp_add_del_locator_set_reply: '0xb6666db4'  # dev
     # lisp_add_del_map_resolver / reply # unused L2 keyword: Configure LISP map resolver address
-    lisp_add_del_remote_mapping: '0xb879c3a9'  # virl
-    lisp_add_del_remote_mapping_reply: '0xe8d4e804'  # virl
+    lisp_add_del_remote_mapping: '0xb879c3a9'  # dev
+    lisp_add_del_remote_mapping_reply: '0xe8d4e804'  # dev
     lisp_eid_table_add_del_map: '0x59e9975e'  # perf
     lisp_eid_table_add_del_map_reply: '0xe8d4e804'  # perf
     # ^^ tc01-64B-1c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr
     # ^ ipsecANDlispgpe
     # lisp_eid_table_dump / details # unused L2 keyword: LISP eid address should be set correctly to eid table
-    lisp_enable_disable: '0xeb0e943b'  # virl
-    lisp_enable_disable_reply: '0xe8d4e804'  # virl
+    lisp_enable_disable: '0xeb0e943b'  # dev
+    lisp_enable_disable_reply: '0xe8d4e804'  # dev
     # lisp_locator_set_dump / details # unused L2 keyword: LISP locator_set shpuld be configured correctly
     # lisp_map_server_dump / details # honeycomb
     # lisp_map_resolver_dump / details # unused L2 keyword: LISP map resolver address should be configured correctly
