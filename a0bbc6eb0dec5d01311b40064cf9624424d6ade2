@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d770f61f_a115b082",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1880
+      },
+      "writtenOn": "2019-09-19T02:05:39Z",
+      "side": 1,
+      "message": "I think this is necessary because the test suite will fail if line73\u0027s \u0027htonl\u0027 is deleted.\nSo VPP may not support transport.",
+      "parentUuid": "e67be2b2_3660224a",
+      "range": {
+        "startLine": 16,
+        "startChar": 19,
+        "endLine": 16,
+        "endChar": 24
+      },
+      "revId": "a0bbc6eb0dec5d01311b40064cf9624424d6ade2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad96bf96_e53c023d",
         "filename": "resources/libraries/python/LoadBalancerUtil.py",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2019-09-18T14:28:01Z",
       "side": 1,
       "message": "kwargs",
+      "range": {
+        "startLine": 73,
+        "startChar": 44,
+        "endLine": 73,
+        "endChar": 49
+      },
+      "revId": "a0bbc6eb0dec5d01311b40064cf9624424d6ade2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a4cfa8d_347e9d83",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1880
+      },
+      "writtenOn": "2019-09-19T02:05:39Z",
+      "side": 1,
+      "message": "I have modified it.",
+      "parentUuid": "ad96bf96_e53c023d",
       "range": {
         "startLine": 73,
         "startChar": 44,
