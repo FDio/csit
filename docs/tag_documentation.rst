@@ -476,7 +476,7 @@ Encapsulation Tags
 
     All test cases with LISPGPE_IP6o4.
 
-.. topic:: LISPGEP_IP4o6
+.. topic:: LISPGPE_IP4o6
 
     All test cases with LISPGPE_IP4o6.
 
