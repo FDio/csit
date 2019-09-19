@@ -44,6 +44,27 @@ def main():
         # TODO: Support unidirection.
         client.stop(ports=[0, 1])
 
+        xstats = client.ports[0].get_xstats()
+        print("reference {r!r}".format(r=xstats.reference_stats))
+        print("latest {l!r}".format(l=xstats.latest_stats))
+        print("current xstats {x!r}".format(x=xstats))
+        xdict = xstats.to_dict()
+        print("xstats dict default {xd!r}".format(xd=xdict))
+        xdict = xstats.to_dict(relative=True)
+        print("xstats dict relative {xd!r}".format(xd=xdict))
+        xtable = xstats.to_table()
+        print("xstats table {xt!r}".format(xt=xtable))
+        xstats.update_sync(client.conn.rpc)
+        print("updated xstats {x!r}".format(x=xstats))
+        print("reference {r!r}".format(r=xstats.reference_stats))
+        print("latest {l!r}".format(l=xstats.latest_stats))
+        xdict = xstats.to_dict()
+        print("xstats dict default {xd!r}".format(xd=xdict))
+        xdict = xstats.to_dict(relative=True)
+        print("xstats dict relative {xd!r}".format(xd=xdict))
+        xtable = xstats.to_table()
+        print("xstats table {xt!r}".format(xt=xtable))
+
         # read the stats after the test
         xstats0 = client.get_xstats(0)
         xstats1 = client.get_xstats(1)

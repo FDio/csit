@@ -99,6 +99,8 @@
 | | ${bidirectional_throughput}= | Find Throughput Using MLRsearch
 | | ${unidirectional_throughput}= | Evaluate | ${bidirectional_throughput} / 2.0
 | | Start Traffic on Background | ${unidirectional_throughput}pps
+| | ${result}= | Stop Running Traffic
+| | Start Traffic on Background | ${unidirectional_throughput}pps
 | | And Initialize layer dot1q
 | | ... | count=${nf_total_chains} | vlan_per_chain=${False}
 | | ... | start=${nf_chains+1}
@@ -107,6 +109,14 @@
 | | And Initialize L2 bridge domains for multiple chains with Vhost-User
 | | ... | nf_chains=${nf_total_chains} | nf_nodes=${nf_nodes}
 | | ... | start=${nf_chains+1}
+| | ${result}= | Stop Running Traffic
+| | Display Reconfig Test Message | ${result}
+| | Start Traffic on Background | ${unidirectional_throughput}pps
+| | ${result}= | Stop Running Traffic
+| | ${new_bidirectional_throughput}= | Find Throughput Using MLRsearch
+| | Set Test Message | ${\n}NDR before: ${bidirectional_throughput} bi pps | append=yes
+| | Set Test Message | ${\n}NDR after: ${new_bidirectional_throughput} bi pps | append=yes
+| | Start Traffic on Background | ${unidirectional_throughput}pps
 | | ${result}= | Stop Running Traffic
 | | Display Reconfig Test Message | ${result}
 
