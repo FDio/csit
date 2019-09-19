@@ -45,8 +45,9 @@ def main():
         client.stop(ports=[0, 1])
 
         # read the stats after the test
-        xstats0 = client.get_xstats(0)
-        xstats1 = client.get_xstats(1)
+        # Xstats move start reference on clear (instead of zeroing fields).
+        xstats0 = client.get_xstats(0).to_dict(relative=True)
+        xstats1 = client.get_xstats(1).to_dict(relative=True)
 
     # If STLError happens, let the script fail with stack trace.
     finally:
