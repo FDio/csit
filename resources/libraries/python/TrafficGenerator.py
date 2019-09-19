@@ -106,6 +106,7 @@ class TGDropRateSearchImpl(DropRateSearch):
             logger.trace("comparing: {los} < {acc} {typ}".format(
                 los=loss, acc=loss_acceptance, typ=loss_acceptance_type))
             return float(loss) <= float(loss_acceptance)
+        return False
 
     def get_latency(self):
         """Returns min/avg/max latency.
@@ -409,7 +410,7 @@ class TrafficGenerator(AbstractMeasurer):
         self._latency.append(self._result.split(', ')[4].split('=')[1])
         self._latency.append(self._result.split(', ')[5].split('=')[1])
 
-    def trex_stl_stop_remote_exec(self, node):
+    def trex_stl_stop_remote_exec(self, node, xstats):
         """Execute script on remote node over ssh to stop running traffic.
 
         Internal state is updated with results.
@@ -420,10 +421,14 @@ class TrafficGenerator(AbstractMeasurer):
         :raises RuntimeError: If stop traffic script fails.
         """
         # No need to check subtype, we know it is TREX.
+        x_args = ""
+        for index, value in enumerate(xstats):
+            if value is not None:
+                # Nested quoting is fun.
+                x_args += " --xstat{i}='\"'\"'{v}'\"'\"'".format(i=index, v=value)
         stdout, _ = exec_cmd_no_error(
-            node,
-            "sh -c '{}/resources/tools/trex/"
-            "trex_stateless_stop.py'".format(Constants.REMOTE_FW_DIR),
+            node, "sh -c '{d}/resources/tools/trex/trex_stateless_stop.py{a}'"\
+            .format(d=Constants.REMOTE_FW_DIR, a=x_args),
             message='TRex stateless runtime error')
         self._parse_traffic_results(stdout)
 
@@ -481,7 +486,7 @@ class TrafficGenerator(AbstractMeasurer):
                 frame_size=frame_size, rate=rate, warmup=warmup_time, p_0=p_0,
                 p_1=p_1, dirs=traffic_directions)
         if async_call:
-            command += " --async"
+            command += " --async_start"
         if latency:
             command += " --latency"
         command += "'"
@@ -498,12 +503,18 @@ class TrafficGenerator(AbstractMeasurer):
             self._sent = None
             self._loss = None
             self._latency = None
+            self._result = ["None", "None"]
+            index = 0
+            for line in stdout.splitlines():
+                if "Xstats snapshot {i}: ".format(i=index) in line:
+                    self._result[index] = line[19:]
+                    index += 1
         else:
             self._parse_traffic_results(stdout)
             self._start_time = None
             self._rate = None
 
-    def stop_traffic_on_tg(self):
+    def stop_traffic_on_tg(self, xstats):
         """Stop all traffic on TG.
 
         :returns: Nothing
@@ -511,7 +522,7 @@ class TrafficGenerator(AbstractMeasurer):
         """
         subtype = check_subtype(self._node)
         if subtype == NodeSubTypeTG.TREX:
-            self.trex_stl_stop_remote_exec(self._node)
+            self.trex_stl_stop_remote_exec(self._node, xstats)
 
     def send_traffic_on_tg(
             self, duration, rate, frame_size, traffic_profile, warmup_time=5,
