@@ -549,10 +549,11 @@
 | | ... | ${rx_port}=${1}
 | | ...
 | | # Duration of -1 means we will stop traffic manually.
-| | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
+| | ${xstats} = | Send traffic on tg | ${-1} | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | warmup_time=${0} | async_call=${True} | latency=${False}
 | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
 | | ... | rx_port=${rx_port}
+| | Return From Keyword | ${xstats}
 
 | Stop Running Traffic
 | | [Documentation]
@@ -566,6 +567,7 @@
 | | ...
 | | ... | \${result}= \| Stop Running Traffic \|
 | | ...
-| | Stop traffic on tg
+| | [Arguments] | ${xstats}
+| | Stop traffic on tg | ${xstats}
 | | ${result}= | Get Measurement Result
 | | Return From Keyword | ${result}
