@@ -134,24 +134,24 @@
     # ^^ tc01-64B-1c-avf-eth-l2patch-mrr
     # ^ l2patchANDdrv_avf
     # l2fib_add_del / reply # unused L1 keyword: vpp_add_l2fib_entry
-    lisp_add_del_adjacency: '0xf047390d'  # virl
-    lisp_add_del_adjacency_reply: '0xe8d4e804'  # virl
-    lisp_add_del_local_eid: '0xe6d00717'  # virl
-    lisp_add_del_local_eid_reply: '0xe8d4e804'  # virl
-    lisp_add_del_locator: '0x006a4240'  # virl
-    lisp_add_del_locator_reply: '0xe8d4e804'  # virl
-    lisp_add_del_locator_set: '0x06968e38'  # virl
-    lisp_add_del_locator_set_reply: '0xb6666db4'  # virl
+    lisp_add_del_adjacency: '0'  # virl
+    lisp_add_del_adjacency_reply: '0'  # virl
+    lisp_add_del_local_eid: '0'  # virl
+    lisp_add_del_local_eid_reply: '0'  # virl
+    lisp_add_del_locator: '0'  # virl
+    lisp_add_del_locator_reply: '0'  # virl
+    lisp_add_del_locator_set: '0'  # virl
+    lisp_add_del_locator_set_reply: '0'  # virl
     # lisp_add_del_map_resolver / reply # unused L2 keyword: Configure LISP map resolver address
-    lisp_add_del_remote_mapping: '0xb879c3a9'  # virl
-    lisp_add_del_remote_mapping_reply: '0xe8d4e804'  # virl
-    lisp_eid_table_add_del_map: '0x59e9975e'  # perf
-    lisp_eid_table_add_del_map_reply: '0xe8d4e804'  # perf
+    lisp_add_del_remote_mapping: '0'  # virl
+    lisp_add_del_remote_mapping_reply: '0'  # virl
+    lisp_eid_table_add_del_map: '0'  # perf
+    lisp_eid_table_add_del_map_reply: '0'  # perf
     # ^^ tc01-64B-1c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr
     # ^ ipsecANDlispgpe
     # lisp_eid_table_dump / details # unused L2 keyword: LISP eid address should be set correctly to eid table
-    lisp_enable_disable: '0xeb0e943b'  # virl
-    lisp_enable_disable_reply: '0xe8d4e804'  # virl
+    lisp_enable_disable: '0'  # virl
+    lisp_enable_disable_reply: '0'  # virl
     # lisp_locator_set_dump / details # unused L2 keyword: LISP locator_set shpuld be configured correctly
     # lisp_map_server_dump / details # honeycomb
     # lisp_map_resolver_dump / details # unused L2 keyword: LISP map resolver address should be configured correctly
