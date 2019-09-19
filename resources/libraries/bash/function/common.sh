@@ -239,9 +239,6 @@ function common_dirs () {
     TOOLS_DIR=$(readlink -e "${RESOURCES_DIR}/tools") || {
         die "Readlink failed."
     }
-    DOC_GEN_DIR=$(readlink -e "${TOOLS_DIR}/doc_gen") || {
-        die "Readlink failed."
-    }
     PYTHON_SCRIPTS_DIR=$(readlink -e "${TOOLS_DIR}/scripts") || {
         die "Readlink failed."
     }
@@ -470,10 +467,6 @@ function get_test_code () {
             NODENESS="3n"
             FLAVOR="skx"
             ;;
-        *"2n-clx"*)
-            NODENESS="2n"
-            FLAVOR="clx"
-            ;;
         *"2n-dnv"*)
             NODENESS="2n"
             FLAVOR="dnv"
@@ -571,6 +564,8 @@ function reserve_and_cleanup_testbed () {
     # - PYTHON_SCRIPTS_DIR - Path to directory holding the reservation script.
     # - BUILD_TAG - Any string suitable as filename, identifying
     #   test run executing this function. May be unset.
+    # - BUILD_URL - Any string suitable as URL, identifying
+    #   test run executing this function. May be unset.
     # Variables set:
     # - TOPOLOGIES - Array of paths to topologies, with failed cleanups removed.
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
@@ -581,11 +576,12 @@ function reserve_and_cleanup_testbed () {
 
     set -exuo pipefail
 
-    while true; do
+    while [[ ${TOPOLOGIES[@]} ]]; do
         for topo in "${TOPOLOGIES[@]}"; do
             set +e
             scrpt="${PYTHON_SCRIPTS_DIR}/topo_reservation.py"
             opts=("-t" "${topo}" "-r" "${BUILD_TAG:-Unknown}")
+            opts+=("-u" "${BUILD_URL:-Unknown}")
             python "${scrpt}" "${opts[@]}"
             result="$?"
             set -e
@@ -612,27 +608,39 @@ function reserve_and_cleanup_testbed () {
                 fi
                 warn "Testbed cleanup failed: ${topo}"
                 untrap_and_unreserve_testbed "Fail of unreserve after cleanup."
+                # WORKING_TOPOLOGY is now empty again.
+                # Build new topology array.
+                #   TOPOLOGIES=("${TOPOLOGIES[@]/$topo}")
+                # does not really work, see:
+                # https://stackoverflow.com/questions/16860877/remove-an-element-from-a-bash-array
+                new_topologies=()
+                for item in "${TOPOLOGIES[@]}"; do
+                    if [[ "${item}" != "${topo}" ]]; then
+                        new_topologies+=("${item}")
+                    fi
+                done
+                TOPOLOGIES=("${new_topologies[@]}")
+                break
             fi
-            # Else testbed is accessible but currently reserved, moving on.
         done
 
         if [[ -n "${WORKING_TOPOLOGY-}" ]]; then
             # Exit the infinite while loop if we made a reservation.
-            warn "Reservation and cleanup successful."
             break
         fi
 
-        if [[ "${#TOPOLOGIES[@]}" == "0" ]]; then
-            die "Run out of operational testbeds!"
-        fi
-
         # Wait ~3minutes before next try.
-        sleep_time="$[ ( ${RANDOM} % 20 ) + 180 ]s" || {
+        sleep_time="$[ ( $RANDOM % 20 ) + 180 ]s" || {
             die "Sleep time calculation failed."
         }
         echo "Sleeping ${sleep_time}"
         sleep "${sleep_time}" || die "Sleep failed."
     done
+    if [[ ${TOPOLOGIES[@]} ]]; then
+        echo "Reservation and cleanup successful."
+    else
+        die "Run out of operational testbeds!"
+    fi
 }
 
 
@@ -756,6 +764,12 @@ function select_tags () {
         *"3n-tsh"*)
             default_nic="nic_intel-x520-da2"
             ;;
+        *"3n-skx"* | *"2n-skx"*)
+            default_nic="nic_intel-xxv710"
+            ;;
+        *"3n-hsw"*)
+            default_nic="nic_intel-xl710"
+            ;;
         *)
             default_nic="nic_intel-x710"
             ;;
@@ -780,11 +794,8 @@ function select_tags () {
             if [[ -z "${TEST_TAG_STRING-}" ]]; then
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags.
-                test_tag_array=("mrrAND${default_nic}AND1cAND64bANDip4base"
-                                "mrrAND${default_nic}AND1cAND78bANDip6base"
-                                "mrrAND${default_nic}AND1cAND64bANDl2bdbase"
-                                "mrrAND${default_nic}AND1cAND64bANDl2xcbase"
-                                "!dot1q" "!drv_avf")
+                readarray -t test_tag_array <<< $(${sed_nic_sub_cmd} \
+                    ${tfd}/ndrpdr-report-${FLAVOR}.txt) || die
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
@@ -805,9 +816,6 @@ function select_tags () {
             test_tag_array+=("!ipsechw")
             # Not enough nic_intel-xxv710 to support double link tests.
             test_tag_array+=("!3_node_double_link_topoANDnic_intel-xxv710")
-            ;;
-        *"2n-clx"*)
-            test_tag_array+=("!ipsechw")
             ;;
         *"2n-dnv"*)
             test_tag_array+=("!ipsechw")
@@ -913,10 +921,6 @@ function select_topology () {
         "3n_skx")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*3n_skx*.yaml )
             TOPOLOGIES_TAGS="3_node_*_link_topo"
-            ;;
-        "2n_clx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx*.yaml )
-            TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         "2n_dnv")
             TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_dnv*.yaml )

@@ -1,0 +1,25 @@
+!nf_density
+
+!container_memif
+
+!crypto
+
+# ip4
+# ndrpdrAND${default_nic}ANDip4fwdANDbaseAND64bNOTipsecNOTmemifNOTvhostNOTvxlanNOTsrc_user_1NOTdot1qNOTsrc_user_1
+# ndrpdrANDip4fwdANDscaleANDfib_20kAND64bNOTipsecNOTmemifNOTvhostNOTvxlanNOTsrc_user_1NOTdot1qNOTsrc_user_1
+# ndrpdrANDip4fwdANDscaleANDfib_200kAND64bNOTipsecNOTmemifNOTvhostNOTvxlanNOTsrc_user_1NOTdot1qNOTsrc_user_1
+# ndrpdrANDip4fwdANDscaleANDfib_2mAND64bNOTipsecNOTmemifNOTvhostNOTvxlanNOTsrc_user_1NOTdot1qNOTsrc_user_1
+
+!ip4_tunnels
+
+!ip6
+
+!ip6_tunnels
+
+!l2
+
+!srv6
+
+!vm_vhost
+
+!vts
