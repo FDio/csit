@@ -18,9 +18,10 @@ the profile and sends the traffic. At the end, it measures the packet loss and
 latency.
 """
 
-import sys
+from __future__ import print_function  # So this can be manually pylinted.
 import argparse
 import json
+import sys
 
 sys.path.insert(0, "/opt/trex-core-2.61/scripts/automation/"
                    "trex_control_plane/interactive/")
@@ -180,6 +181,12 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
 
         # Clear the stats before injecting:
         client.clear_stats()
+        # For async stop, we need to export the current snapshot.
+        xsnap0 = client.ports[0].get_xstats().reference_stats
+        print("Xstats snapshot 0: {s!r}".format(s=xsnap0))
+        if traffic_directions > 1:
+            xsnap1 = client.ports[0].get_xstats().reference_stats
+            print("Xstats snapshot 1: {s!r}".format(s=xsnap1))
         lost_a = 0
         lost_b = 0
 
@@ -228,7 +235,7 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
                 p_0=port_0, p_1=port_1, v=lost_a))
             if traffic_directions > 1:
                 print("packets lost from {p_1} --> {p_0}:   {v} pkts".format(
-                p_0=port_0, p_1=port_1, v=lost_b))
+                    p_0=port_0, p_1=port_1, v=lost_b))
 
     except STLError as ex_error:
         print(ex_error, file=sys.stderr)
@@ -281,7 +288,7 @@ def main():
                         required=True,
                         type=int,
                         help="Port 1 on the traffic generator.")
-    parser.add_argument("--async",
+    parser.add_argument("--async_start",
                         action="store_true",
                         default=False,
                         help="Non-blocking call of the script.")
@@ -309,7 +316,7 @@ def main():
                  port_0=args.port_0,
                  port_1=args.port_1,
                  latency=args.latency,
-                 async_start=args.async,
+                 async_start=args.async_start,
                  traffic_directions=args.traffic_directions)
 
 
