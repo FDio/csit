@@ -179,7 +179,27 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
                     p_0=port_0, p_1=port_1, v=lost_b))
 
         # Clear the stats before injecting:
+        xstats = client.ports[0].get_xstats()
+        print("reference {r!r}".format(r=xstats.reference_stats))
+        print("latest {l!r}".format(l=xstats.latest_stats))
+        print("current xstats {x!r}".format(x=xstats))
+        xdict = xstats.to_dict()
+        print("xstats dict default {xd!r}".format(xd=xdict))
+        xdict = xstats.to_dict(relative=True)
+        print("xstats dict relative {xd!r}".format(xd=xdict))
+        xtable = xstats.to_table()
+        print("xstats table {xt!r}".format(xt=xtable))
         client.clear_stats()
+        xstats = client.ports[0].get_xstats()
+        print("cleared xstats {x!r}".format(x=xstats))
+        print("reference {r!r}".format(r=xstats.reference_stats))
+        print("latest {l!r}".format(l=xstats.latest_stats))
+        xdict = xstats.to_dict()
+        print("xstats dict default {xd!r}".format(xd=xdict))
+        xdict = xstats.to_dict(relative=True)
+        print("xstats dict relative {xd!r}".format(xd=xdict))
+        xtable = xstats.to_table()
+        print("xstats table {xt!r}".format(xt=xtable))
         lost_a = 0
         lost_b = 0
 
