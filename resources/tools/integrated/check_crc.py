@@ -24,12 +24,51 @@ import sys
 
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
+
 # TODO: Read FDIO_VPP_DIR environment variable, or some other input,
 # instead of using hardcoded relative path?
-
 API_DIR = op.normpath(op.join(
     op.dirname(op.abspath(__file__)), "..", "..", "..", "..",
     "build-root", "install-vpp-native", "vpp", "share", "vpp", "api"))
+
+def edit_file(error):
+    """Based on CRC mismatch detected, edit the CSIT CRC list file.
+
+    A new file with .log extension is created in the same directory.
+
+    :param error: The error raised by CRC checker.
+    :type error: RuntimeError with particularly formatted message.
+    """
+    file_name = "supported_crcs.yaml"
+    file_dir = op.normpath(op.join(
+        op.dirname(op.abspath(__file__)), "..", "..", "..",
+        "resources", "api", "vpp"))
+    file_in_path = op.join(file_dir, file_name)
+    file_out_path = op.join(file_dir, file_name + ".log")
+    # Remove prolog, epilog and intros, including outside double-quotes.
+    changes = error.message[43:-3].split('",\n "')
+    sys.stderr.write(repr(changes) + '\n')
+    len_changes = len(changes)
+    with open(file_in_path, "r") as fin, open(file_out_path, "w") as fout:
+        index = 0
+        # Remove inside double-quotes
+        message, new_crc = changes[index].split('":"')
+        sys.stderr.write("message: " + message + ", crc: " + new_crc + '\n')
+        for line in fin:
+            if message in line:
+                sys.stderr.write("Found in line: " + line)
+                # CRC is the thing between single quotes.
+                _, old_crc, _ = line.split('"')
+                line = line.replace(old_crc, new_crc)
+                sys.stderr.write("New line: " + line)
+                index += 1
+                if index >= len_changes:
+                    break
+                message, new_crc = changes[index].split('":"')
+                sys.stderr.write("message: " + message + ", crc: " + new_crc + '\n')
+            fout.write(line)
+            sys.stderr.write("Written line: " + line)
+
 CHECKER = VppApiCrcChecker(API_DIR)
 try:
     CHECKER.report_initial_conflicts(report_missing=True)
@@ -52,6 +91,7 @@ except RuntimeError as err:
         "\n"
         "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
     )
+    edit_file(err)
     sys.exit(1)
 else:
     sys.stderr.write(
