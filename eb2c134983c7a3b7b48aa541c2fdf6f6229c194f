@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f1c21f5_0c6d03ab",
+        "filename": "resources/libraries/bash/function/ndrpdr-report-skx.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-20T11:39:02Z",
+      "side": 1,
+      "message": "Well, all this stuff is commented out now ;)\nBut correct triggers for required set of avf tests are:\nndrpdrAND${default_nic}ANDip4fwdANDbaseANDdrv_avfAND64bNOTdot1q\nndrpdrAND${default_nic}ANDip4fwdANDscaleANDdrv_avfAND64bNOTdot1q\n\nIf you would like to use only 1c tests then you need to add 1c tag to triggers:\nndrpdrAND${default_nic}ANDip4fwdANDbaseANDdrv_avfAND64bAND1cNOTdot1q\nndrpdrAND${default_nic}ANDip4fwdANDscaleANDdrv_avfAND64bAND1cNOTdot1q",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 3
+      },
+      "revId": "eb2c134983c7a3b7b48aa541c2fdf6f6229c194f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
