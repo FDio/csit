@@ -43,8 +43,8 @@
 3n-dnv-x553
 ~~~~~~~~~~~
 
-64b-ip4tunnel-base-scale-ixgbe
-------------------------------
+64b-ip4tunnel-base-ixgbe
+------------------------
 
 .. raw:: html
 
