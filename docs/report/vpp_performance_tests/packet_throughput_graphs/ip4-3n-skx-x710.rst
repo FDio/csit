@@ -38,10 +38,7 @@
     10ge2p1x710-ethip4-ip4scale2m-ndrpdr
 
     Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Eth-Ip4Base-Ndrpdr.64B-2t1c-avf-eth-ip4base-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X710-Avf-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-avf-ethip4-ip4scale2m-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X710-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-dot1q-ip4base-ndrpdr
     Tests.Vpp.Perf.Ip4.10Ge2P1X710-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-ethip4-ip4base-ndrpdr
-    Tests.Vpp.Perf.Ip4.10Ge2P1X710-Ethip4-Ip4Scale2M-Ndrpdr.64B-2t1c-ethip4-ip4scale2m-ndrpdr
 
 3n-skx-x710
 ~~~~~~~~~~~

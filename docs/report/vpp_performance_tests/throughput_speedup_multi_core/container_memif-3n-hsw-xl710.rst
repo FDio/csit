@@ -29,25 +29,24 @@
     </script>
 
 ..
-    ### 64b-?t?c-ip4routing-base-scale-ixgbe
-    10ge2p1x520-dot1q-ip4base-ndrpdr
-    10ge2p1x520-ethip4-ip4base-ndrpdr
-    10ge2p1x520-ethip4-ip4scale20k-ndrpdr
-    10ge2p1x520-ethip4-ip4scale200k-ndrpdr
-    10ge2p1x520-ethip4-ip4scale2m-ndrpdr
+    ## 3n-hsw-xl710
+    ### 64b-memif-base-i40e
+    10ge2p1xl710-eth-l2xcbase-eth-2memif-1lxc-ndrpdr
+    10ge2p1xl710-eth-l2xcbase-eth-2memif-1dcr-ndrpdr
+    10ge2p1xl710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr
+    10ge2p1xl710-eth-l2bdbasemaclrn-eth-2memif-1lxc-ndrpdr
+    10ge2p1xl710-ethip4-ip4base-eth-2memif-1dcr-ndrpdr
 
-    Tests.Vpp.Perf.Ip4.2N1L-10Ge2P1X553-Ethip4-Ip4Base-Ndrpdr.64B-1t1c-ethip4-ip4base-ndrpdr
+3n-hsw-xl710
+~~~~~~~~~~~~
 
-2n-dnv-x553
-~~~~~~~~~~~
-
-64b-1t1c-ip4routing-base-ixgbe
-------------------------------
+64b-memif-base-i40e
+-------------------
 
 .. raw:: html
 
     <center>
-    <iframe id="11" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr.html"></iframe>
+    <iframe id="01" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-memif-base-i40e-ndr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -56,8 +55,8 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr}
-            \label{fig:2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-ndr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-memif-base-i40e-ndr-tsa}
+            \label{fig:3n-hsw-xl710-64b-memif-base-i40e-ndr-tsa}
     \end{figure}
 
 .. raw:: latex
@@ -67,7 +66,7 @@
 .. raw:: html
 
     <center>
-    <iframe id="12" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr.html"></iframe>
+    <iframe id="02" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-memif-base-i40e-pdr-tsa.html"></iframe>
     <p><br></p>
     </center>
 
@@ -76,6 +75,6 @@
     \begin{figure}[H]
         \centering
             \graphicspath{{../_build/_static/vpp/}}
-            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr}
-            \label{fig:2n-dnv-x553-64b-1t1c-ip4routing-base-scale-ixgbe-pdr}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-memif-base-i40e-pdr-tsa}
+            \label{fig:3n-hsw-xl710-64b-memif-base-i40e-pdr-tsa}
     \end{figure}
