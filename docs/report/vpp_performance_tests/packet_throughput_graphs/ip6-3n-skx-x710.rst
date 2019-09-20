@@ -34,9 +34,7 @@
     10ge2p1x710-ethip6-ip6base-ndrpdr
     10ge2p1x710-ethip6-ip6scale2m-ndrpdr
 
-    Tests.Vpp.Perf.Ip6.10Ge2P1X710-Dot1Q-Ip6Base-Ndrpdr.78B-2t1c-dot1q-ip6base-ndrpdr
     Tests.Vpp.Perf.Ip6.10Ge2P1X710-Ethip6-Ip6Base-Ndrpdr.78B-2t1c-ethip6-ip6base-ndrpdr
-    Tests.Vpp.Perf.Ip6.10Ge2P1X710-Ethip6-Ip6Scale2M-Ndrpdr.78B-2t1c-ethip6-ip6scale2m-ndrpdr
 
 3n-skx-x710
 ~~~~~~~~~~~
