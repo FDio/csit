@@ -259,6 +259,9 @@ class VppApiCrcChecker(object):
         Missing reporting is disabled by default, because some messages
         come from plugins that might not be enabled at runtime.
 
+        After the report, clear _reported, so that test cases report them again,
+        thus tracking which message is actually used (by which test).
+
         :param report_missing: Whether to raise on missing messages.
         :type report_missing: bool
         :raises RuntimeError: If CRC mismatch or missing messages are detected,
@@ -273,6 +276,7 @@ class VppApiCrcChecker(object):
             self.log_and_raise(
                 "Dir check found incompatible API CRCs:\n{ri}".format(
                     ri=reported_indented))
+            self._reported = dict()
         if not report_missing:
             return
         missing = {name: mapp for name, mapp in self._missing.items() if mapp}
