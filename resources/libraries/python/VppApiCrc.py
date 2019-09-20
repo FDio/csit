@@ -259,6 +259,9 @@ class VppApiCrcChecker(object):
         Missing reporting is disabled by default, because some messages
         come from plugins that might not be enabled at runtime.
 
+        After the report, clear _reported, so that test cases report them again,
+        thus tracking which message is actually used (by which test).
+
         :param report_missing: Whether to raise on missing messages.
         :type report_missing: bool
         :raises RuntimeError: If CRC mismatch or missing messages are detected,
@@ -270,6 +273,7 @@ class VppApiCrcChecker(object):
         if self._reported:
             reported_indented = json.dumps(
                 self._reported, indent=1, sort_keys=True, separators=[",", ":"])
+            self._reported = dict()
             self.log_and_raise(
                 "Dir check found incompatible API CRCs:\n{ri}".format(
                     ri=reported_indented))
@@ -283,7 +287,7 @@ class VppApiCrcChecker(object):
                 mi=missing_indented))
 
     def check_api_name(self, api_name):
-        """Fail if the api_name has no known CRC associated.
+        """Fail if the api_name has no, or different from known CRC associated.
 
         Do not fail if this particular failure has been already reported.
 
@@ -306,8 +310,19 @@ class VppApiCrcChecker(object):
         if new_expected:
             # Some collections recognized the message name.
             self._expected = new_expected
-            return
         crc = self._found.get(api_name, None)
+        matching = False
+        if crc is not None:
+            # Regardless of how many collections are remaining,
+            # verify the known CRC is on one of them.
+            for name_to_crc_mapping in self._expected.values():
+                if api_name not in name_to_crc_mapping:
+                    continue
+                if name_to_crc_mapping[api_name] == crc:
+                    matching = True
+                    break
+        if matching:
+            return
         self._reported[api_name] = crc
         self.log_and_raise("No active collection has API {api!r}"
-                           " CRC found {crc!r}".format(api=api_name, crc=crc))
+                           " with CRC {crc!r}".format(api=api_name, crc=crc))
