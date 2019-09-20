@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8fd314f9_45b8f310",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-20T17:51:55Z",
+      "side": 1,
+      "message": "See [0] after \"All nodes are ready\" and after \"tc01-46B-ethip4lisp-ip4base-dev\".\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/3765/console.log.gz",
+      "range": {
+        "startLine": 12,
+        "startChar": 13,
+        "endLine": 12,
+        "endChar": 62
+      },
+      "revId": "5fb5dc5402bc1e150b027e68dcc69617964f9263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dcef92ba_9e7f655a",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 7
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-20T17:51:55Z",
+      "side": 1,
+      "message": "I did not touch anything related to perftests, so I will not trigger these unless asked to.",
+      "range": {
+        "startLine": 262,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 33
+      },
+      "revId": "5fb5dc5402bc1e150b027e68dcc69617964f9263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
