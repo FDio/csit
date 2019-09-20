@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "9a77e3b2_0cba3404",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-20T15:29:46Z",
+      "side": 1,
+      "message": "If you want this to be merged sooner, you can prepare a separate change to remove htonl here.\nOnce that is ready, it will be safe to merge this, as we will have a fix ready (for changing stable_vpp version to a build that needs htonl removed).",
+      "parentUuid": "b163f2fd_174772ef",
+      "range": {
+        "startLine": 16,
+        "startChar": 19,
+        "endLine": 16,
+        "endChar": 24
+      },
+      "revId": "a0bbc6eb0dec5d01311b40064cf9624424d6ade2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad96bf96_e53c023d",
         "filename": "resources/libraries/python/LoadBalancerUtil.py",
         "patchSetId": 4
