@@ -39,11 +39,8 @@
     2n1l-10ge2p1x710-eth-l2bdscale1mmaclrn-ndrpdr
 
     Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Avf-Eth-L2Xcbase-Ndrpdr.64B-2t1c-avf-eth-l2xcbase-ndrpdr
-    Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Avf-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-dot1q-l2bdbasemaclrn-ndrpdr
-    Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Avf-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-avf-eth-l2bdbasemaclrn-ndrpdr
-    Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Dot1Q-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-ndrpdr
     Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Eth-L2Bdbasemaclrn-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-ndrpdr
-    Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Eth-L2Bdscale1Mmaclrn-Ndrpdr.64B-2t1c-eth-l2bdscale1mmaclrn-ndrpdr
+    Tests.Vpp.Perf.L2.2N1L-10Ge2P1X710-Eth-L2Xcbase-Ndrpdr.64B-2t1c-eth-l2xcbase-ndrpdr
 
 2n-skx-x710
 ~~~~~~~~~~~
