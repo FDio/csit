@@ -247,15 +247,15 @@ VPP Installed Packages - Ubuntu
 ::
 
     $ dpkg -l | grep vpp
-    ii  libvppinfra                           19.08-release                              amd64        Vector Packet Processing--runtime libraries
-    ii  libvppinfra-dev                       19.08-release                              amd64        Vector Packet Processing--runtime libraries
-    ii  python3-vpp-api                       19.08-release                              amd64        VPP Python3 API bindings
-    ii  vpp                                   19.08-release                              amd64        Vector Packet Processing--executables
-    ii  vpp-api-python                        19.08-release                              amd64        VPP Python API bindings
-    ii  vpp-dbg                               19.08-release                              amd64        Vector Packet Processing--debug symbols
-    ii  vpp-dev                               19.08-release                              amd64        Vector Packet Processing--development support
-    ii  vpp-plugin-core                       19.08-release                              amd64        Vector Packet Processing--runtime core plugins
-    ii  vpp-plugin-dpdk                       19.08-release                              amd64        Vector Packet Processing--runtime dpdk plugin
+    ii  libvppinfra                           19.08.1-release                            amd64        Vector Packet Processing--runtime libraries
+    ii  libvppinfra-dev                       19.08.1-release                            amd64        Vector Packet Processing--runtime libraries
+    ii  python3-vpp-api                       19.08.1-release                            amd64        VPP Python3 API bindings
+    ii  vpp                                   19.08.1-release                            amd64        Vector Packet Processing--executables
+    ii  vpp-api-python                        19.08.1-release                            amd64        VPP Python API bindings
+    ii  vpp-dbg                               19.08.1-release                            amd64        Vector Packet Processing--debug symbols
+    ii  vpp-dev                               19.08.1-release                            amd64        Vector Packet Processing--development support
+    ii  vpp-plugin-core                       19.08.1-release                            amd64        Vector Packet Processing--runtime core plugins
+    ii  vpp-plugin-dpdk                       19.08.1-release                            amd64        Vector Packet Processing--runtime dpdk plugin
 
 VPP Installed Packages - Centos
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -263,34 +263,34 @@ VPP Installed Packages - Centos
 ::
 
     $ rpm -qai *vpp*
-    vpp-api-python
-    Version     : 19.08
+    Name        : vpp-api-python
+    Version     : 19.08.1
     Release     : release
     Architecture: x86_64
-    Install Date: Wed 28 Aug 2019 01:35:57 AM EDT
+    Install Date: Thu 19 Sep 2019 08:06:16 AM EDT
     Group       : Development/Libraries
-    Size        : 195318
+    Size        : 213578
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.08-release.src.rpm
-    Build Date  : Wed 21 Aug 2019 02:30:08 PM EDT
-    Build Host  : 05ab23f629ba
+    Source RPM  : vpp-19.08.1-release.src.rpm
+    Build Date  : Wed 18 Sep 2019 02:23:59 PM EDT
+    Build Host  : be613c76bd97
     Relocations : (not relocatable)
     Summary     : VPP api python bindings
     Description :
     This package contains the python bindings for the vpp api
     Name        : vpp
-    Version     : 19.08
+    Version     : 19.08.1
     Release     : release
     Architecture: x86_64
-    Install Date: Wed 28 Aug 2019 01:35:57 AM EDT
+    Install Date: Thu 19 Sep 2019 08:06:16 AM EDT
     Group       : Unspecified
-    Size        : 2681317
+    Size        : 2674462
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.08-release.src.rpm
-    Build Date  : Wed 21 Aug 2019 02:30:08 PM EDT
-    Build Host  : 05ab23f629ba
+    Source RPM  : vpp-19.08.1-release.src.rpm
+    Build Date  : Wed 18 Sep 2019 02:23:59 PM EDT
+    Build Host  : be613c76bd97
     Relocations : (not relocatable)
     Summary     : Vector Packet Processing
     Description :
@@ -299,17 +299,17 @@ VPP Installed Packages - Centos
     vpp_api_test - vector packet engine API test tool
     vpp_json_test - vector packet engine JSON test tool
     Name        : vpp-lib
-    Version     : 19.08
+    Version     : 19.08.1
     Release     : release
     Architecture: x86_64
-    Install Date: Wed 28 Aug 2019 01:35:57 AM EDT
+    Install Date: Thu 19 Sep 2019 08:06:16 AM EDT
     Group       : System Environment/Libraries
-    Size        : 43222411
+    Size        : 43157384
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.08-release.src.rpm
-    Build Date  : Wed 21 Aug 2019 02:30:08 PM EDT
-    Build Host  : 05ab23f629ba
+    Source RPM  : vpp-19.08.1-release.src.rpm
+    Build Date  : Wed 18 Sep 2019 02:23:59 PM EDT
+    Build Host  : be613c76bd97
     Relocations : (not relocatable)
     Summary     : VPP libraries
     Description :
@@ -320,17 +320,17 @@ VPP Installed Packages - Centos
     vlib-api - binary API library
     vnet -  network stack library
     Name        : vpp-devel
-    Version     : 19.08
+    Version     : 19.08.1
     Release     : release
     Architecture: x86_64
-    Install Date: Wed 28 Aug 2019 01:35:59 AM EDT
+    Install Date: Thu 19 Sep 2019 08:06:18 AM EDT
     Group       : Development/Libraries
-    Size        : 13906969
+    Size        : 13970689
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.08-release.src.rpm
-    Build Date  : Wed 21 Aug 2019 02:30:08 PM EDT
-    Build Host  : 05ab23f629ba
+    Source RPM  : vpp-19.08.1-release.src.rpm
+    Build Date  : Wed 18 Sep 2019 02:23:59 PM EDT
+    Build Host  : be613c76bd97
     Relocations : (not relocatable)
     Summary     : VPP header files, static libraries
     Description :
@@ -343,33 +343,33 @@ VPP Installed Packages - Centos
     vpp-api
     vppinfra
     Name        : vpp-selinux-policy
-    Version     : 19.08
+    Version     : 19.08.1
     Release     : release
     Architecture: x86_64
-    Install Date: Wed 28 Aug 2019 01:35:56 AM EDT
+    Install Date: Thu 19 Sep 2019 08:06:15 AM EDT
     Group       : System Environment/Base
-    Size        : 102929
+    Size        : 103132
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.08-release.src.rpm
-    Build Date  : Wed 21 Aug 2019 02:30:08 PM EDT
-    Build Host  : 05ab23f629ba
+    Source RPM  : vpp-19.08.1-release.src.rpm
+    Build Date  : Wed 18 Sep 2019 02:23:59 PM EDT
+    Build Host  : be613c76bd97
     Relocations : (not relocatable)
     Summary     : VPP Security-Enhanced Linux (SELinux) policy
     Description :
     This package contains a tailored VPP SELinux policy
     Name        : vpp-plugins
-    Version     : 19.08
+    Version     : 19.08.1
     Release     : release
     Architecture: x86_64
-    Install Date: Wed 28 Aug 2019 01:35:59 AM EDT
+    Install Date: Thu 19 Sep 2019 08:06:17 AM EDT
     Group       : System Environment/Libraries
-    Size        : 34150451
+    Size        : 34330576
     License     : ASL 2.0
     Signature   : (none)
-    Source RPM  : vpp-19.08-release.src.rpm
-    Build Date  : Wed 21 Aug 2019 02:30:08 PM EDT
-    Build Host  : 05ab23f629ba
+    Source RPM  : vpp-19.08.1-release.src.rpm
+    Build Date  : Wed 18 Sep 2019 02:23:59 PM EDT
+    Build Host  : be613c76bd97
     Relocations : (not relocatable)
     Summary     : Vector Packet Processing--runtime plugins
     Description :
