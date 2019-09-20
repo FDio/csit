@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c0875ed5_d367573b",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-20T15:15:06Z",
+      "side": 0,
+      "message": "This is primarily used for vpp per-patch perf test.\nHaving a more complicated logic depending on TEST_CODE is fine, but should be done by refining the cases (for line 773).\nPossibly also the vpp per patch perf job shuld have its own case, and we maybe even should fail in the default case.",
+      "range": {
+        "startLine": 783,
+        "startChar": 16,
+        "endLine": 783,
+        "endChar": 30
+      },
+      "revId": "947774b2117877bc1008466d077d20c107cda062",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
