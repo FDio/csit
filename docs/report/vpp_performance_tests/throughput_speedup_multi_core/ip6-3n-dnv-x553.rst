@@ -46,8 +46,8 @@
 3n-dnv-x553
 ~~~~~~~~~~~
 
-78b-ip6routing-base-scale-ixgbe
--------------------------------
+78b-ip6routing-base-ixgbe
+-------------------------
 
 .. raw:: html
 

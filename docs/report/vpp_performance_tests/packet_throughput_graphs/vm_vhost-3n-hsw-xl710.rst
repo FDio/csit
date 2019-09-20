@@ -46,6 +46,28 @@
     Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1V-m-Vppl2Xc-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
     Tests.Vpp.Perf.Vm Vhost.40Ge2P1Xl710-Ethip4-Ip4Base-Eth-2Vhostvr1024-1Vm-Vppip4-Ndrpdr.64B-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-vppip4-ndrpdr
 
+    #### 64b-?t?c-link-bonding-vhost-base-i40e
+    10ge2p1xl710-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+    10ge2p1xl710-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+    10ge2p1xl710-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+    10ge2p1xl710-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+    10ge2p1xl710-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+    10ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdr
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdr
+
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-1Lbvpplacp-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-1t1c-1lbvpplacp-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-Dot1Q-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-1t1c-dot1q-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-Eth-L2Xcbase-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-1Lbvpplacp-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-1t1c-1lbvpplacp-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-Dot1Q-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+    Tests.Vpp.Perf.Vm Vhost.25Ge2P1Xl710-Eth-L2Bdbasemaclrn-Eth-2Vhostvr1024-1Vm-Vppl2Xc-Ndrpdr.64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-vppl2xc-ndrpdr
+
 3n-hsw-xl710
 ~~~~~~~~~~~~
 
@@ -129,4 +151,90 @@
             \graphicspath{{../_build/_static/vpp/}}
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-pdr}
             \label{fig:3n-hsw-xl710-64b-1t1c-vhost-base-i40e-vpp-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-1t1c-link-bonding-vhost-base-i40e-testpmd
+---------------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-ndr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-ndr}
+            \label{fig:3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-ndr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-pdr}
+            \label{fig:3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-pdr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-1t1c-link-bonding-vhost-base-i40e-vpp
+-----------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-vpp-ndr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-vpp-ndr}
+            \label{fig:3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-vpp-ndr}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+.. raw:: html
+
+    <center>
+    <iframe id="32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-vpp-pdr.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-vpp-pdr}
+            \label{fig:3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-vpp-pdr}
     \end{figure}
