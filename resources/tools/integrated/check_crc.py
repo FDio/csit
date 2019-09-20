@@ -24,12 +24,30 @@ import sys
 
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
+
 # TODO: Read FDIO_VPP_DIR environment variable, or some other input,
 # instead of using hardcoded relative path?
-
 API_DIR = op.normpath(op.join(
     op.dirname(op.abspath(__file__)), "..", "..", "..", "..",
     "build-root", "install-vpp-native", "vpp", "share", "vpp", "api"))
+
+def edit_file(err):
+    """Based on CRC mismatch detected, edit the CSIT CRC list file.
+
+    A new file with .log extension is created in the same directory.
+
+    :param err: The error raised by CRC checker.
+    :type err: RuntimeError with particularly formatted message.
+    """
+    file_name = "supported_crcs.yaml"
+    file_path = op.join(op.normpath(op.join(
+        op.dirname(op.abspath(__file__)), "..", "..", "..",
+        "resources", "api", "vpp")), file_name)
+    changes = err.message[40:]
+    sys.stderr.write(changes)
+    with open(file_path, "r") as file_in:
+        pass
+
 CHECKER = VppApiCrcChecker(API_DIR)
 try:
     CHECKER.report_initial_conflicts(report_missing=True)
@@ -52,6 +70,7 @@ except RuntimeError as err:
         "\n"
         "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
     )
+    edit_file(err)
     sys.exit(1)
 else:
     sys.stderr.write(
