@@ -37,6 +37,7 @@
     2n1l-10ge2p1xxv710-avf-ethip4-ip4scale200k-ndrpdr
     2n1l-10ge2p1xxv710-avf-ethip4-ip4scale2m-ndrpdr
 
+    Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Dot1Q-Ip4Base-Ndrpdr.64B-2t1c-avf-dot1q-ip4base-ndrpdr
     Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-avf-ethip4-ip4base-ndrpdr
     Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale20K-Ndrpdr.64B-2t1c-avf-ethip4-ip4scale20k-ndrpdr
     Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Avf-Ethip4-Ip4Scale200K-Ndrpdr.64B-2t1c-avf-ethip4-ip4scale200k-ndrpdr
@@ -64,10 +65,6 @@
     2n1l-10ge2p1xxv710-ethip4udp-ip4base-nat44-ndrpdr
 
     Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Ndrpdr.64B-2t1c-ethip4-ip4base-ndrpdr
-    Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Iacl50Sf-10Kflows-Ndrpdr.64B-2t1c-ethip4udp-ip4base-iacl50sf-10kflows-ndrpdr
-    Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Iacl50Sl-10Kflows-Ndrpdr.64B-2t1c-ethip4udp-ip4base-iacl50sl-10kflows-ndrpdr
-    Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Oacl50Sf-10Kflows-Ndrpdr.64B-2t1c-ethip4udp-ip4base-oacl50sf-10kflows-ndrpdr
-    Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Oacl50Sl-10Kflows-Ndrpdr.64B-2t1c-ethip4udp-ip4base-oacl50sl-10kflows-ndrpdr
     Tests.Vpp.Perf.Ip4.2N1L-25Ge2P1Xxv710-Ethip4Udp-Ip4Base-Nat44-Ndrpdr.64B-2t1c-ethip4udp-ip4base-nat44-ndrpdr
 
 2n-skx-xxv710
