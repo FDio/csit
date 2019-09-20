@@ -182,3 +182,141 @@
             \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-4t4c-vhost-base-i40e-vpp-ndr-lat}
             \label{fig:3n-hsw-xl710-64b-4t4c-vhost-base-i40e-vpp-ndr-lat}
     \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-1t1c-link-bonding-vhost-base-i40e-testpmd
+---------------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="21" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-ndr-lat}
+            \label{fig:3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-2t2c-link-bonding-vhost-base-i40e-testpmd
+---------------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="22" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-2t2c-link-bonding-vhost-base-i40e-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-2t2c-link-bonding-vhost-base-i40e-ndr-lat}
+            \label{fig:3n-hsw-xl710-64b-2t2c-link-bonding-vhost-base-i40e-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-4t4c-link-bonding-vhost-base-i40e-testpmd
+---------------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="23" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-4t4c-link-bonding-vhost-base-i40e-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-4t4c-link-bonding-vhost-base-i40e-ndr-lat}
+            \label{fig:3n-hsw-xl710-64b-4t4c-link-bonding-vhost-base-i40e-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-1t1c-link-bonding-vhost-base-i40e-vpp
+-----------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="31" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-vpp-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-vpp-ndr-lat}
+            \label{fig:3n-hsw-xl710-64b-1t1c-link-bonding-vhost-base-i40e-vpp-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-2t2c-link-bonding-vhost-base-i40e-vpp
+-----------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="32" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-2t2c-link-bonding-vhost-base-i40e-vpp-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-2t2c-link-bonding-vhost-base-i40e-vpp-ndr-lat}
+            \label{fig:3n-hsw-xl710-64b-2t2c-link-bonding-vhost-base-i40e-vpp-ndr-lat}
+    \end{figure}
+
+.. raw:: latex
+
+    \clearpage
+
+64b-4t4c-link-bonding-vhost-base-i40e-vpp
+-----------------------------------------
+
+.. raw:: html
+
+    <center>
+    <iframe id="33" onload="setIframeHeight(this.id)" width="700" frameborder="0" scrolling="no" src="../../_static/vpp/3n-hsw-xl710-64b-4t4c-link-bonding-vhost-base-i40e-vpp-ndr-lat.html"></iframe>
+    <p><br></p>
+    </center>
+
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 0cm 5cm 0cm, width=0.70\textwidth]{3n-hsw-xl710-64b-4t4c-link-bonding-vhost-base-i40e-vpp-ndr-lat}
+            \label{fig:3n-hsw-xl710-64b-4t4c-link-bonding-vhost-base-i40e-vpp-ndr-lat}
+    \end{figure}
