@@ -23,8 +23,13 @@ Requirements:
 
 Functionality:
 1. Stop any running traffic
+2. Optionally restore reference counter values.
+3. Return conter differences.
 """
 
+from __future__ import print_function  # So this can be manually pylinted.
+import argparse
+from collections import OrderedDict  # Needed to parse xstats representation.
 import sys
 import json
 
@@ -35,6 +40,13 @@ from trex.stl.api import *
 
 def main():
     """Stop traffic if any is running. Report xstats."""
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--xstat0", type=str, default="", help="Reference xstat object if any.")
+    parser.add_argument(
+        "--xstat1", type=str, default="", help="Reference xstat object if any.")
+    args = parser.parse_args()
+
     client = STLClient()
     try:
         # connect to server
@@ -44,7 +56,15 @@ def main():
         # TODO: Support unidirection.
         client.stop(ports=[0, 1])
 
-        # read the stats after the test
+        # Read the stats after the test,
+        # we need to update values before the last trial started.
+        if args.xstat0:
+            snapshot = eval(args.xstat0)
+            client.ports[0].get_xstats().reference_stats = snapshot
+        if args.xstat1:
+            snapshot = eval(args.xstat1)
+            client.ports[1].get_xstats().reference_stats = snapshot
+        # Now we can call the official method to get differences.
         xstats0 = client.get_xstats(0)
         xstats1 = client.get_xstats(1)
 
