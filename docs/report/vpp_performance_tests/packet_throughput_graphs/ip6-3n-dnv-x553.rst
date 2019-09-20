@@ -37,17 +37,13 @@
     10ge2p1x520-ethip6-ip6scale200k-ndrpdr
     10ge2p1x520-ethip6-ip6scale2m-ndrpdr
 
-    Tests.Vpp.Perf.Ip6.10Ge2P1X553-Dot1Q-Ip6Base-Ndrpdr.78B-1t1c-dot1q-ip6base-ndrpdr
     Tests.Vpp.Perf.Ip6.10Ge2P1X553-Ethip6-Ip6Base-Ndrpdr.78B-1t1c-ethip6-ip6base-ndrpdr
-    Tests.Vpp.Perf.Ip6.10Ge2P1X553-Ethip6-Ip6Scale20K-Ndrpdr.78B-1t1c-ethip6-ip6scale20k-ndrpdr
-    Tests.Vpp.Perf.Ip6.10Ge2P1X553-Ethip6-Ip6Scale200K-Ndrpdr.78B-1t1c-ethip6-ip6scale200k-ndrpdr
-    Tests.Vpp.Perf.Ip6.10Ge2P1X553-Ethip6-Ip6Scale2M-Ndrpdr.78B-1t1c-ethip6-ip6scale2m-ndrpdr
 
 3n-dnv-x553
 ~~~~~~~~~~~
 
-78b-1t1c-ip6routing-base-scale-ixgbe
-------------------------------------
+78b-1t1c-ip6routing-base-ixgbe
+------------------------------
 
 .. raw:: html
 
