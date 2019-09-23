@@ -524,7 +524,9 @@
 | Start Traffic on Background
 | | [Documentation]
 | | ... | Start traffic at specified rate then return control to Robot.
-| | ... | Useful if the test needs to do something while traffic is running.
+| | ...
+| | ... | This keyword is useful if the test needs to do something
+| | ... | while traffic is running.
 | | ... | Just a wrapper around L1 keyword.
 | | ... |
 | | ... | TODO: How to make sure the traffic is stopped on any failure?
@@ -558,14 +560,17 @@
 | | [Documentation]
 | | ... | Stop the running traffic, return measurement result.
 | | ... | For bidirectional traffic, the reported values are bi-directional.
+| | ...
 | | ... | Just a wrapper around L1 keyword.
 | | ... |
 | | ... | TODO: Tolerate if traffic was not started.
+| | ...
+| | ... | *Returns:*
+| | ... | - Measurement result. Type: ReceiveRateMeasurement
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \${result}= \| Stop Running Traffic \|
 | | ...
-| | Stop traffic on tg
-| | ${result}= | Get Measurement Result
+| | ${result}= | Stop traffic on tg
 | | Return From Keyword | ${result}
