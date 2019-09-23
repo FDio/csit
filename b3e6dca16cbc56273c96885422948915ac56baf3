@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b30473e_b52d8d36",
+        "filename": "resources/libraries/bash/entry/check/shellcheck.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-23T12:00:44Z",
+      "side": 1,
+      "message": ".xml files are currently not archived. Use .log or maybe .xls.log, or enhance ci-management code.",
+      "range": {
+        "startLine": 34,
+        "startChar": 66,
+        "endLine": 34,
+        "endChar": 70
+      },
+      "revId": "b3e6dca16cbc56273c96885422948915ac56baf3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
