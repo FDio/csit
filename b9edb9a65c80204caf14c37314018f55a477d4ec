@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fff99b34_790b50ba",
+        "filename": "docs/automating_vpp_api_flag_day.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-23T17:02:17Z",
+      "side": 1,
+      "message": "I did not edit any text beyond this. Maybe in next patch.",
+      "range": {
+        "startLine": 123,
+        "startChar": 16,
+        "endLine": 123,
+        "endChar": 17
+      },
+      "revId": "b9edb9a65c80204caf14c37314018f55a477d4ec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
