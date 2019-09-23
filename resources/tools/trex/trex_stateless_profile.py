@@ -18,9 +18,9 @@ the profile and sends the traffic. At the end, it measures the packet loss and
 latency.
 """
 
-import sys
 import argparse
 import json
+import sys
 
 sys.path.insert(0, "/opt/trex-core-2.54/scripts/automation/"
                    "trex_control_plane/interactive/")
@@ -186,7 +186,14 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
         # Choose rate and start traffic:
         client.start(ports=ports, mult=rate, duration=duration)
 
-        if not async_start:
+        if async_start:
+            # For async stop, we need to export the current snapshot.
+            xsnap0 = client.ports[0].get_xstats().reference_stats
+            print("Xstats snapshot 0: {s!r}".format(s=xsnap0))
+            if not unidirection:
+                xsnap1 = client.ports[1].get_xstats().reference_stats
+                print("Xstats snapshot 1: {s!r}".format(s=xsnap1))
+        else:
             # Block until done:
             client.wait_on_traffic(ports=ports, timeout=duration+30)
 
@@ -226,7 +233,7 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
                 p_0=port_0, p_1=port_1, v=lost_a))
             if not unidirection:
                 print("packets lost from {p_1} --> {p_0}:   {v} pkts".format(
-                p_0=port_0, p_1=port_1, v=lost_b))
+                    p_0=port_0, p_1=port_1, v=lost_b))
 
     except STLError as ex_error:
         print(ex_error, file=sys.stderr)
@@ -279,7 +286,7 @@ def main():
                         required=True,
                         type=int,
                         help="Port 1 on the traffic generator.")
-    parser.add_argument("--async",
+    parser.add_argument("--async_start",
                         action="store_true",
                         default=False,
                         help="Non-blocking call of the script.")
@@ -307,7 +314,7 @@ def main():
                  port_0=args.port_0,
                  port_1=args.port_1,
                  latency=args.latency,
-                 async_start=args.async,
+                 async_start=args.async_start,
                  unidirection=args.unidirection)
 
 
