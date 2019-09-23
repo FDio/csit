@@ -1,0 +1,325 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d6cd2de_cf66fb48",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "i really do not understand this. remove the \u003d\"\" from parameters.",
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1f53a15_1c6bec59",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "ehm ::{ip4}.format(ip4_addr) ? iow why so complicated?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 24
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2be8aa0a_e60f6663",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 68,
+        "startChar": 72,
+        "endLine": 68,
+        "endChar": 74
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46970a44_15b0fbbe",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "not needed.",
+      "range": {
+        "startLine": 80,
+        "startChar": 59,
+        "endLine": 80,
+        "endChar": 60
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1754a235_f2f4f94e",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "not needed.",
+      "range": {
+        "startLine": 134,
+        "startChar": 68,
+        "endLine": 134,
+        "endChar": 69
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ffdf9051_7526cb29",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "{type}",
+      "range": {
+        "startLine": 196,
+        "startChar": 61,
+        "endLine": 196,
+        "endChar": 63
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59105e4f_9e48b7b6",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "{host}",
+      "range": {
+        "startLine": 196,
+        "startChar": 35,
+        "endLine": 196,
+        "endChar": 37
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a6d3a72f_3bca3021",
+        "filename": "resources/libraries/robot/lb/load_balancer.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "is this needed?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 82
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da483af1_467ad306",
+        "filename": "resources/libraries/robot/lb/load_balancer.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 59
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b3ab162b_a8b007a0",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "something with LB in name.",
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b374c4b_17ba9c5d",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "\\ at end",
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50bdc651_75344e8b",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "-UDP",
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fbd19117_ce332dd9",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "i see only one",
+      "range": {
+        "startLine": 33,
+        "startChar": 20,
+        "endLine": 33,
+        "endChar": 22
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "97d74232_d6c8cf0e",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "no \\",
+      "range": {
+        "startLine": 34,
+        "startChar": 20,
+        "endLine": 34,
+        "endChar": 21
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd8169d7_25422dee",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:50:53Z",
+      "side": 1,
+      "message": "But you are running only one direction.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 44
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
