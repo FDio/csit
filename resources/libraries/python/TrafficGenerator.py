@@ -106,6 +106,7 @@ class TGDropRateSearchImpl(DropRateSearch):
             logger.trace("comparing: {los} < {acc} {typ}".format(
                 los=loss, acc=loss_acceptance, typ=loss_acceptance_type))
             return float(loss) <= float(loss_acceptance)
+        return False
 
     def get_latency(self):
         """Returns min/avg/max latency.
@@ -148,6 +149,9 @@ class TrafficGenerator(AbstractMeasurer):
         self.traffic_profile = None
         self.warmup_time = None
         self.traffic_directions = None
+        # Transient data needed for async measurements.
+        self._xstats = (None, None)
+        # TODO: Rename "xstats" to something opaque, so TRex is not privileged?
 
     @property
     def node(self):
@@ -390,7 +394,7 @@ class TrafficGenerator(AbstractMeasurer):
                 sudo=False, message='pkill t-rex failed')
 
     def _parse_traffic_results(self, stdout):
-        """Parse stdout of scripts into fieds of self.
+        """Parse stdout of scripts into fields of self.
 
         Block of code to reuse, by sync start, or stop after async.
         TODO: Is the output TG subtype dependent?
@@ -412,18 +416,23 @@ class TrafficGenerator(AbstractMeasurer):
     def trex_stl_stop_remote_exec(self, node):
         """Execute script on remote node over ssh to stop running traffic.
 
-        Internal state is updated with results.
+        Internal state is updated with measurement results.
 
         :param node: TRex generator node.
         :type node: dict
-        :returns: Nothing
         :raises RuntimeError: If stop traffic script fails.
         """
         # No need to check subtype, we know it is TREX.
+        x_args = ""
+        for index, value in enumerate(self._xstats):
+            if value is not None:
+                # Nested quoting is fun.
+                value = value.replace("'", "\"")
+                x_args += " --xstat{i}='\"'\"'{v}'\"'\"'".format(
+                    i=index, v=value)
         stdout, _ = exec_cmd_no_error(
-            node,
-            "sh -c '{}/resources/tools/trex/"
-            "trex_stateless_stop.py'".format(Constants.REMOTE_FW_DIR),
+            node, "sh -c '{d}/resources/tools/trex/trex_stateless_stop.py{a}'"\
+            .format(d=Constants.REMOTE_FW_DIR, a=x_args),
             message='TRex stateless runtime error')
         self._parse_traffic_results(stdout)
 
@@ -432,6 +441,9 @@ class TrafficGenerator(AbstractMeasurer):
             latency=True, warmup_time=5.0, traffic_directions=2, tx_port=0,
             rx_port=1):
         """Execute script on remote node over ssh to start traffic.
+
+        In sync mode, measurement results are stored internally.
+        In async mode, initial data including xstats are stored internally.
 
         :param duration: Time expresed in seconds for how long to send traffic.
         :param rate: Traffic rate expressed with units (pps, %)
@@ -481,7 +493,7 @@ class TrafficGenerator(AbstractMeasurer):
                 frame_size=frame_size, rate=rate, warmup=warmup_time, p_0=p_0,
                 p_1=p_1, dirs=traffic_directions)
         if async_call:
-            command += " --async"
+            command += " --async_start"
         if latency:
             command += " --latency"
         command += "'"
@@ -490,14 +502,24 @@ class TrafficGenerator(AbstractMeasurer):
             self._node, command, timeout=float(duration) + 60,
             message='TRex stateless runtime error')
 
+        self.traffic_directions = traffic_directions
         if async_call:
             #no result
             self._start_time = time.time()
-            self._rate = float(rate[:-3]) if "pps" in rate else rate
+            self._rate = float(rate[:-3]) if "pps" in rate else float(rate)
             self._received = None
             self._sent = None
             self._loss = None
             self._latency = None
+            xstats = [None, None]
+            index = 0
+            for line in stdout.splitlines():
+                if "Xstats snapshot {i}: ".format(i=index) in line:
+                    xstats[index] = line[19:]
+                    index += 1
+                if index == 2:
+                    break
+            self._xstats = tuple(xstats)
         else:
             self._parse_traffic_results(stdout)
             self._start_time = None
@@ -506,18 +528,25 @@ class TrafficGenerator(AbstractMeasurer):
     def stop_traffic_on_tg(self):
         """Stop all traffic on TG.
 
-        :returns: Nothing
+        :returns: Structure containing the result of the measurement.
+        :rtype: ReceiveRateMeasurement
         :raises RuntimeError: If TG is not set.
         """
         subtype = check_subtype(self._node)
         if subtype == NodeSubTypeTG.TREX:
             self.trex_stl_stop_remote_exec(self._node)
+        return self.get_measurement_result()
 
     def send_traffic_on_tg(
             self, duration, rate, frame_size, traffic_profile, warmup_time=5,
             async_call=False, latency=True, traffic_directions=2, tx_port=0,
             rx_port=1):
         """Send traffic from all configured interfaces on TG.
+
+        In async mode, xstats is stored internally,
+        to enable getting correct result when stopping the traffic.
+        In both modes, stdout is returned,
+        but _parse_traffic_results only works in sync output.
 
         Note that bidirectional traffic also contains flows
         transmitted from rx_port and received in tx_port.
