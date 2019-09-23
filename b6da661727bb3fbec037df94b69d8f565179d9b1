@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e92104f6_0d9fd633",
+        "filename": "resources/tools/trex/trex_stateless_stop.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:55:51Z",
+      "side": 1,
+      "message": "remove ...this is py3 if you want to pylint - run it with pylint3",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 74
+      },
+      "revId": "b6da661727bb3fbec037df94b69d8f565179d9b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "59736818_de357932",
+        "filename": "resources/tools/trex/trex_stateless_stop.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-23T11:55:51Z",
+      "side": 1,
+      "message": "Start consultation with trex team how to get this properly.. I do not like the idea to fool Trex back.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 67
+      },
+      "revId": "b6da661727bb3fbec037df94b69d8f565179d9b1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
