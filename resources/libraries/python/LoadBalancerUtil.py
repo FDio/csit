@@ -13,7 +13,6 @@
 
 """Loadbalancer util library."""
 
-from socket import htonl
 from ipaddress import ip_address
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
@@ -70,8 +69,8 @@ class LoadBalancerUtil(object):
             ip6_src_addr = ip_address(unicode(kwargs.pop('ip6_src_addr', \
                     'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff')))
             flow_timeout = kwargs.pop('flow_timeout', 40)
-            sticky_buckets_per_core = htonl(kwargs.pop('buckets_per_core', \
-                    1024))
+            sticky_buckets_per_core = kwargs.pop('buckets_per_core', \
+                    1024)
 
             cmd = 'lb_conf'
             err_msg = 'Failed to set lb conf on host {host}'.format(
