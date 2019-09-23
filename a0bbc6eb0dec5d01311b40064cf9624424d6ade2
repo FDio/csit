@@ -121,6 +121,30 @@
     },
     {
       "key": {
+        "uuid": "f6bfa922_deb8031d",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1880
+      },
+      "writtenOn": "2019-09-23T06:13:40Z",
+      "side": 1,
+      "message": "\u003eIf you want this to be merged sooner, you can prepare a separate change to remove htonl here.\nplease refer to [1].\n[1]:https://gerrit.fd.io/r/c/csit/+/22194",
+      "parentUuid": "9a77e3b2_0cba3404",
+      "range": {
+        "startLine": 16,
+        "startChar": 19,
+        "endLine": 16,
+        "endChar": 24
+      },
+      "revId": "a0bbc6eb0dec5d01311b40064cf9624424d6ade2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "ad96bf96_e53c023d",
         "filename": "resources/libraries/python/LoadBalancerUtil.py",
         "patchSetId": 4
