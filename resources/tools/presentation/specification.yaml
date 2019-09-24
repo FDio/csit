@@ -246,6 +246,10 @@
         - 45  # NDRPDR sel
         - 46  # NDRPDR sel
 
+    plot-vpp-lat-hdrh-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 26  # NDRPDR sel
+
     plot-vpp-throughput-lat-tsa-2n-skx-vhost:
       csit-vpp-perf-verify-1908-2n-skx:
         - 88  # NDRPDR sel vhost
@@ -1387,6 +1391,16 @@
       plot_bgcolor: "#fff"
       hoverlabel:
         namelength: -1
+
+    plot-latency-hdrh:
+      title:
+        text: ""
+        xanchor: "center"
+        x: 0.5
+        font:
+          size: 16
+      width: 700
+      height: 900
 
 - type: "static"
   src-path: "{DIR[RST]}"
