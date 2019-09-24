@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "4abefedb_9f9337e0",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-24T15:31:14Z",
+      "side": 1,
+      "message": "dot at the end of setncence. We generate docs out of it.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 52
+      },
+      "revId": "55ebefe76bf5be582ec9473e01b74f18797c7b9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "520760f3_e7b46636",
         "filename": "resources/libraries/python/LoadBalancerUtil.py",
         "patchSetId": 11
@@ -18,6 +41,86 @@
         "startChar": 30,
         "endLine": 116,
         "endChar": 35
+      },
+      "revId": "55ebefe76bf5be582ec9473e01b74f18797c7b9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f1d6806c_e5247471",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-24T15:31:14Z",
+      "side": 1,
+      "message": "\\ at the end",
+      "revId": "55ebefe76bf5be582ec9473e01b74f18797c7b9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "50e9249b_5b06df31",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-24T15:31:14Z",
+      "side": 1,
+      "message": "\\ at the end",
+      "range": {
+        "startLine": 32,
+        "startChar": 59,
+        "endLine": 32,
+        "endChar": 71
+      },
+      "revId": "55ebefe76bf5be582ec9473e01b74f18797c7b9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "556a7baf_6cca5d7e",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-24T15:31:14Z",
+      "side": 1,
+      "message": "\\ at the end. Basically like in bash you need to escape all the lines that are one paragraph. *[xyz]:* is start of new paragraph.",
+      "revId": "55ebefe76bf5be582ec9473e01b74f18797c7b9c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "76aac9da_746b10bc",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-24T15:31:14Z",
+      "side": 1,
+      "message": "\\ at the end",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 52
       },
       "revId": "55ebefe76bf5be582ec9473e01b74f18797c7b9c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
