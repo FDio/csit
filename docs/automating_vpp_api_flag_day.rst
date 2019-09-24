@@ -29,6 +29,51 @@ Eventually the detection algorithm could be extended to include
 other integration points such as "directory" structure of stats
 segment or PAPI python library dependencies.
 
+**MOTIVATION**
+
+Aside of per-release activities (release report), CSIT also provides testing
+that requires somewhat tight coupling to the latest (merged but not released)
+VPP code. Currently, the coupling is not as tight as possible.
+Instead of testing HEAD builds of VPP directly with HEAD CSIT code,
+HEAD of one project is run with somewhat older codebase of the other project.
+Definition of what is the older codebase to use is maintained by CSIT project.
+For older CSIT codebase, the project creates so-called "oper" branches.
+For older VPP codebase, CSIT master HEAD contains identifiers
+for "stable" VPP builds. Such older codebases are also used for verify jobs,
+where HEAD of the other project is replaced by the commit under review.
+
+One particular type of jobs useful for VPP development is trending jobs.
+They test latests VPP build with oper branch of CSIT,
+and analytics is applied to detect regressions in preformance.
+For this to work properly, VPP project needs a warning against breaking
+the assumptions the current oper branch makes about VPP behavior.
+In the past, the most frequent type of such breakage was API change.
+
+Earlier attempts to create a process to minimize breakage have focused
+on creating a new verify job for VPP (called api-crc job) that
+votes -1 on a change that affect CRC values for API messages CSIT uses.
+The list of messages and CRC values (multiple values are allowed)
+is maintained in CSIT repository (in oper branch).
+The process was less explicit on how should CSIT project maintain such list.
+As CSIT was not willing to support two incpompatible API messages
+by the same codebase (commit), there were unavoidable windows
+where either trenging jobs, or CSIT verify jobs were failing.
+
+Practice showed that human (or infra) errors can create two kinds of breakages.
+Either the unavoidable short window gets long, affecting a trending job run
+or two, or the api-crc job starts giving -1 to innocent changes
+because oper branch went out of sync with VPP HEAD codebase.
+This second type of failure prevents any merges to VPP for a long time
+(12 hours is the typical time, give time zone differences).
+
+The current version of this document is still being somewhat vague
+on the CSIT side of the process, but introduces a new requirement:
+The api-crc job should not give false -1, under any reasonable circumstance.
+That means, if a VPP change (nor any of its unmergent ancestor commits)
+does not affect any CRC values for messages used by CSIT,
+-1 shuld only mean "rebase is needed", and rebaseing to HEAD should result
+in +1 from the api-crc job.
+
 **VPP API FLAG DAY ALGORITHM USE CASE**
 
 The following steps describe the use case of the proposed
@@ -36,30 +81,46 @@ implementation for automating the VPP API "Flag Day" algorithm:
 
 #. A VPP patch with VPP API changes is submitted to
    gerrit for review
-#. CSIT verify job detects the VPP API change(s).
+#. The api-crc job detects the VPP API change(s).
    Note: This requires a new CSIT test described below in the
    section "CSIT VPP API CHANGE DETECTION TEST".
-#. CSIT verify job fails before starting to run any tests and
-   an email with the appropriate reason is sent to the VPP patch
-   submitter and vpp-api-dev@lists.fd.io including the VPP patch
-   information and API change(s) that were detected.
+#. The api-crc job runs in parallel with any other VPP verify job.
+   If the api-crc job fails, an email with the appropriate reason
+   is sent to the VPP patch submitter and vpp-api-dev@lists.fd.io
+   including the VPP patch information and API change(s) that were detected.
 #. The VPP patch developer and CSIT team create a CSIT JIRA ticket
    to identify the work required to support the new VPP API version.
 #. CSIT developer creates a patch to existing CSIT tests to support
    the new VPP API version and new features in the VPP patch as required.
-#. CSIT developer runs CI verification tests for the CSIT patch against
-   the VPP patch (aka "Patch-On-Patch verification).
+#. CSIT developer runs CI verification tests (without CRC checks)
+   for the CSIT patch against the VPP patch (aka "Patch-On-Patch verification").
    This process verifies support for the new VPP API, associated VPP
    features and CSIT tests.  Both developers iterate until the
    verification passes.
-#. CSIT committer updates the supported API signature(s) such that
-   all signatures included in the CSIT branch are supported by the
-   current version of the CSIT tests. See "API FLAG DAY SCENERIOS" below
-   for examples.
-#. CSIT committer merges CSIT patch and creates a new operational
-   branch in the CSIT repo.
-#. VPP developer issues a recheck on the VPP patch and a VPP
-   Committer merges the patch.
+#. CSIT developer creates a separate change, that only edits the CSIT CRC list
+   to include both stable VPP CRCs, and CRCs of the VPP change under review.
+#. CSIT committer requires proofs both CRCs are included correctly
+   (for example the api-crc job is run with overriden CSIT_REF parameter).
+#. When CSIT committer sees both CSIT changes are ready,
+   the CRC-editing change is merged to CSIT master branch
+   and cherry-picked to the latest oper branch.
+   This does not break any jobs.
+#. VPP developer issues a recheck on the VPP patch
+#. On success, VPP Committer merges the patch.
+#. VPP committer sends an e-mail to vpp-api-dev stating the support for
+   the previous CRC values will soon be removed.
+#. VPP merge jobs create and upload new VPP packages.
+   This breaks trending jobs, but both VPP and CSIT verify jobs still work.
+#. CSIT developer bumps stable vpp version in the test affecting change
+   and rechecks it still works.
+#. CSIT committer merges this change (to both master nad oper).
+   This fixes trending jobs. Both VPP and CSIT verify jobs continue to work.
+#. CSIT committer creates a patch that removes the old CRC values.
+#. CSIT committer merges that patch.
+   This breaks verify jobs for old changes in VPP.
+#. CSIT committer sends an e-mail to vpp-api-dev stating the support for
+   the previous CRC values has been removed, and rebase is needed
+   for all affected VPP changes.
 #. Recheck of existing VPP patches in gerrit may cause the "VPP
    API Incompatible Change Test" to send an email to the patch
    submitter to rebase the patch to pick up the compatible VPP API
