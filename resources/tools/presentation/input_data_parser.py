@@ -600,7 +600,7 @@ class ExecutionChecker(ResultVisitor):
             :throws IndexError: If in_str does not have enough substrings.
             :throws ValueError: If a substring does not convert to float.
             """
-            in_list = in_str.split('/')
+            in_list = in_str.split('/', 3)
 
             rval = {
                 "min": float(in_list[0]),
