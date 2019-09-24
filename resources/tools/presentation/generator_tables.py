@@ -213,7 +213,7 @@ def table_merged_details(table, input_data):
             )
             logging.info(f"      Writing file: {file_name}")
             with open(file_name, u"w") as file_handler:
-                file_handler.write(u",".join(header) + "u\n")
+                file_handler.write(u",".join(header) + u"\n")
                 for item in table_lst:
                     file_handler.write(u",".join(item) + u"\n")
 
