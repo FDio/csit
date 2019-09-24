@@ -20,6 +20,7 @@ CSIT-1908
     vpp_performance_tests/packet_throughput_graphs/index
     vpp_performance_tests/throughput_speedup_multi_core/index
     vpp_performance_tests/packet_latency_graphs/index
+    vpp_performance_tests/hdrh_packet_latency_graphs/index
     vpp_performance_tests/soak_tests/index
     vpp_performance_tests/reconf_tests/index
     vpp_performance_tests/nf_service_density/index
@@ -37,6 +38,7 @@ CSIT-1908
     dpdk_performance_tests/csit_release_notes
     dpdk_performance_tests/packet_throughput_graphs/index
     dpdk_performance_tests/packet_latency_graphs/index
+    dpdk_performance_tests/hdrh_packet_latency_graphs/index
     dpdk_performance_tests/comparisons/index
     dpdk_performance_tests/throughput_trending
     dpdk_performance_tests/test_environment
