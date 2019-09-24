@@ -472,6 +472,24 @@
     },
     {
       "key": {
+        "uuid": "b4b4ef9c_eb7617ef",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-24T11:15:47Z",
+      "side": 1,
+      "message": "The \"IPv4 routing\" part is misleading now, loadbalancer is expected to have bigger effect on performance.",
+      "parentUuid": "89d7171d_b9ce5bc2",
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "9b374c4b_17ba9c5d",
         "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
         "patchSetId": 9
@@ -671,6 +689,30 @@
       "side": 1,
       "message": "Because other loadbalancer test suites will run two directions,so traffic profile is common for all loadbalancer.",
       "parentUuid": "bd8169d7_25422dee",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 44
+      },
+      "revId": "2720b55c0fca45aad40e94c432cef4109009f738",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9bf5e0d7_d7152d36",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-maglev-ndrpdr.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-24T11:15:47Z",
+      "side": 1,
+      "message": "This block should describe the traffic actually flowing from TG. Not the traffic defined in the profile file (but then not started due to line 78).\nSo probably one flow-group with 4 flows.",
+      "parentUuid": "551ce8e9_dd285300",
       "range": {
         "startLine": 38,
         "startChar": 0,
