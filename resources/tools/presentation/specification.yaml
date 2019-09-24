@@ -246,6 +246,10 @@
         - 45  # NDRPDR sel
         - 46  # NDRPDR sel
 
+    plot-vpp-lat-hdrh-2n-skx:
+      csit-vpp-perf-verify-1908-2n-skx:
+        - 26  # NDRPDR sel
+
     plot-vpp-throughput-lat-tsa-2n-skx-vhost:
       csit-vpp-perf-verify-1908-2n-skx:
         - 88  # NDRPDR sel vhost
@@ -1388,6 +1392,15 @@
       hoverlabel:
         namelength: -1
 
+    plot-latency-hdrh:
+      title:
+        text: ""
+        xanchor: "center"
+        x: 0.5
+        font:
+          size: 16
+      width: 700
+
 - type: "static"
   src-path: "{DIR[RST]}"
   dst-path: "{DIR[WORKING,SRC]}"
@@ -1794,6 +1807,21 @@
     - full
 #    pdf:
 #    - minimal
+
+# Experimental
+#- type: "plot"
+#  title: "Latency: 2n-skx-xxv710-64b-2t1c-memif-base-i40e-ndr-lat"
+#  algorithm: "plot_latency_hdrhistogram_bar_name"
+#  output-file: "{DIR[STATIC,VPP]}/2n-skx-xxv710-64b-2t1c-memif-base-i40e-ndr-lat-hdrh"
+#  data: "plot-vpp-lat-hdrh-2n-skx"
+#  include:
+#    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Xcbase-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-eth-l2xcbase-eth-2memif-1dcr-ndrpdr"
+#    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Dot1Q-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+#    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Eth-L2Bdbasemaclrn-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-eth-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr"
+#    - "Tests.Vpp.Perf.Container Memif.2N1L-25Ge2P1Xxv710-Ethip4-Ip4Base-Eth-2Memif-1Dcr-Ndrpdr.64B-2t1c-ethip4-ip4base-eth-2memif-1dcr-ndrpdr"
+#  layout:
+#    name: "2n-skx-xxv710-64b-2t1c-memif-base-i40e-ndr"
+#    layout: "plot-latency-hdrh"
 
 ################################################################################
 ###                               T A B L E S                                ###
