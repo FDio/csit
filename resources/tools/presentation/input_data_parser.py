@@ -404,9 +404,9 @@ class ExecutionChecker(ResultVisitor):
             else:
                 self._msg_type = None
             text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          r"VAT command history:", u"", msg.message, count=1). \
-                replace(u"\n\n", u"\n").replace(u'\n', u' |br| ').\
-                replace(u'\r', u'').replace(u'"', u"'")
+                          r"VAT command history:", u"",
+                          msg.message, count=1).replace(u'\n', u' |br| ').\
+                replace(u'"', u"'")
 
             self._data[u"tests"][self._test_id][u"conf-history"] += (
                 f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
@@ -427,9 +427,8 @@ class ExecutionChecker(ResultVisitor):
                 self._msg_type = None
             text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
                           r"PAPI command history:", u"",
-                          msg.message, count=1). \
-                replace(u"\n\n", u"\n").replace(u'\n', u' |br| ').\
-                replace(u'\r', u'').replace(u'"', u"'")
+                          msg.message, count=1).replace(u'\n', u' |br| ').\
+                replace(u'"', u"'")
 
             self._data[u"tests"][self._test_id][u"conf-history"] += (
                 f" |br| **DUT{str(self._conf_history_lookup_nr)}:** {text}"
@@ -446,7 +445,8 @@ class ExecutionChecker(ResultVisitor):
         if u"show-run" not in self._data[u"tests"][self._test_id].keys():
             self._data[u"tests"][self._test_id][u"show-run"] = str()
 
-        if msg.message.count(u"stats runtime"):
+        if msg.message.count(u"stats runtime") or \
+                msg.message.count(u"Runtime"):
             host = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).
                        group(1))
             socket = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).
@@ -620,7 +620,7 @@ class ExecutionChecker(ResultVisitor):
             :throws IndexError: If in_str does not have enough substrings.
             :throws ValueError: If a substring does not convert to float.
             """
-            in_list = in_str.split('/')
+            in_list = in_str.split('/', 3)
 
             rval = {
                 u"min": float(in_list[0]),
