@@ -21,10 +21,13 @@ import logging
 from collections import OrderedDict
 from copy import deepcopy
 
+import hdrh.histogram
+import hdrh.codec
 import pandas as pd
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
 
+from plotly.subplots import make_subplots
 from plotly.exceptions import PlotlyError
 
 from pal_utils import mean, stdev
@@ -55,7 +58,8 @@ def generate_plots(spec, data):
         u"plot_lat_err_bars_name": plot_lat_err_bars_name,
         u"plot_tsa_name": plot_tsa_name,
         u"plot_http_server_perf_box": plot_http_server_perf_box,
-        u"plot_nf_heatmap": plot_nf_heatmap
+        u"plot_nf_heatmap": plot_nf_heatmap,
+        u"plot_lat_hdrh_bar_name": plot_lat_hdrh_bar_name
     }
 
     logging.info(u"Generating the plots ...")
@@ -71,6 +75,182 @@ def generate_plots(spec, data):
                 f"{repr(err)}"
             )
     logging.info(u"Done.")
+
+
+def plot_lat_hdrh_bar_name(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_lat_hdrh_bar_name
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    plot_title = plot.get(u"title", u"")
+    logging.info(
+        f"    Creating the data set for the {plot.get(u'type', u'')} "
+        f"{plot_title}."
+    )
+    data = input_data.filter_tests_by_name(
+        plot, params=[u"latency", u"parent", u"tags", u"type"])
+    if data is None or len(data[0][0]) == 0:
+        logging.error(u"No data.")
+        return
+
+    # Prepare the data for the plot
+    directions = [u"W-E", u"E-W"]
+    tests = list()
+    traces = list()
+    for idx_row, test in enumerate(data[0][0]):
+        try:
+            if test[u"type"] in (u"NDRPDR",):
+                if u"-pdr" in plot_title.lower():
+                    ttype = u"PDR"
+                elif u"-ndr" in plot_title.lower():
+                    ttype = u"NDR"
+                else:
+                    logging.warning(f"Invalid test type: {test[u'type']}")
+                    continue
+                name = re.sub(REGEX_NIC, u"", test[u"parent"].
+                              replace(u'-ndrpdr', u'').
+                              replace(u'2n1l-', u''))
+                histograms = list()
+                for idx_col, direction in enumerate(
+                        (u"direction1", u"direction2", )):
+                    try:
+                        hdr_lat = test[u"latency"][ttype][direction][u"hdrh"]
+                        # TODO: Workaround, HDRH data must be aligned to 4
+                        #       bytes, remove when not needed.
+                        hdr_lat += u"=" * (len(hdr_lat) % 4)
+                        xaxis = list()
+                        yaxis = list()
+                        hovertext = list()
+                        decoded = hdrh.histogram.HdrHistogram.decode(hdr_lat)
+                        total_count = decoded.get_total_count()
+                        for item in decoded.get_recorded_iterator():
+                            xaxis.append(item.value_iterated_to)
+                            prob = float(item.count_added_in_this_iter_step) / \
+                                   total_count * 100
+                            yaxis.append(prob)
+                            hovertext.append(
+                                f"Test: {name}<br>"
+                                f"Direction: {directions[idx_col]}<br>"
+                                f"Latency: {item.value_iterated_to}uSec<br>"
+                                f"Probability: {prob:.2f}%<br>"
+                                f"Percentile: "
+                                f"{item.percentile_level_iterated_to:.2f}"
+                            )
+                        marker_color = [COLORS[idx_row], ] * len(yaxis)
+                        marker_color[xaxis.index(
+                            decoded.get_value_at_percentile(50.0))] = u"red"
+                        marker_color[xaxis.index(
+                            decoded.get_value_at_percentile(90.0))] = u"red"
+                        marker_color[xaxis.index(
+                            decoded.get_value_at_percentile(95.0))] = u"red"
+                        histograms.append(
+                            plgo.Bar(
+                                x=xaxis,
+                                y=yaxis,
+                                showlegend=False,
+                                name=name,
+                                marker={u"color": marker_color},
+                                hovertext=hovertext,
+                                hoverinfo=u"text"
+                            )
+                        )
+                    except hdrh.codec.HdrLengthException as err:
+                        logging.warning(
+                            f"No or invalid data for HDRHistogram for the test "
+                            f"{name}\n{err}"
+                        )
+                        continue
+                if len(histograms) == 2:
+                    traces.append(histograms)
+                    tests.append(name)
+            else:
+                logging.warning(f"Invalid test type: {test[u'type']}")
+                continue
+        except (ValueError, KeyError) as err:
+            logging.warning(repr(err))
+
+    if not tests:
+        logging.warning(f"No data for {plot_title}.")
+        return
+
+    fig = make_subplots(
+        rows=len(tests),
+        cols=2,
+        specs=[
+            [{u"type": u"bar"}, {u"type": u"bar"}] for _ in range(len(tests))
+        ]
+    )
+
+    layout_axes = dict(
+        gridcolor=u"rgb(220, 220, 220)",
+        linecolor=u"rgb(220, 220, 220)",
+        linewidth=1,
+        showgrid=True,
+        showline=True,
+        showticklabels=True,
+        tickcolor=u"rgb(220, 220, 220)",
+    )
+
+    for idx_row, test in enumerate(tests):
+        for idx_col in range(2):
+            fig.add_trace(
+                traces[idx_row][idx_col],
+                row=idx_row + 1,
+                col=idx_col + 1
+            )
+            fig.update_xaxes(
+                row=idx_row + 1,
+                col=idx_col + 1,
+                **layout_axes
+            )
+            fig.update_yaxes(
+                row=idx_row + 1,
+                col=idx_col + 1,
+                **layout_axes
+            )
+
+    layout = deepcopy(plot[u"layout"])
+
+    layout[u"title"][u"text"] = \
+        f"<b>Latency:</b> {plot.get(u'graph-title', u'')}"
+    layout[u"height"] = 250 * len(tests) + 130
+
+    layout[u"annotations"][2][u"y"] = 1.06 - 0.008 * len(tests)
+    layout[u"annotations"][3][u"y"] = 1.06 - 0.008 * len(tests)
+
+    for idx, test in enumerate(tests):
+        layout[u"annotations"].append({
+            u"font": {
+                u"size": 14
+            },
+            u"showarrow": False,
+            u"text": f"<b>{test}</b>",
+            u"textangle": 0,
+            u"x": 0.5,
+            u"xanchor": u"center",
+            u"xref": u"paper",
+            u"y": 1.0 - float(idx) * 1.06 / len(tests),
+            u"yanchor": u"bottom",
+            u"yref": u"paper"
+        })
+
+    fig[u"layout"].update(layout)
+
+    # Create plot
+    file_type = plot.get(u"output-file-type", u".html")
+    logging.info(f"    Writing file {plot[u'output-file']}{file_type}.")
+    try:
+        # Export Plot
+        ploff.plot(fig, show_link=False, auto_open=False,
+                   filename=f"{plot[u'output-file']}{file_type}")
+    except PlotlyError as err:
+        logging.error(f"   Finished with error: {repr(err)}")
 
 
 def plot_nf_reconf_box_name(plot, input_data):
