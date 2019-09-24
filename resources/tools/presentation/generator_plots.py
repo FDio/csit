@@ -17,9 +17,12 @@
 
 import re
 import logging
+import hdrh.histogram
+import hdrh.codec
 import pandas as pd
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
+import plotly.express as px
 
 from plotly.exceptions import PlotlyError
 from collections import OrderedDict
@@ -59,6 +62,149 @@ def generate_plots(spec, data):
             logging.error("Probably algorithm '{alg}' is not defined: {err}".
                           format(alg=plot["algorithm"], err=repr(err)))
     logging.info("Done.")
+
+
+def plot_latency_hdrhistogram_bar_name(plot, input_data):
+    """Generate the plot(s) with algorithm: plot_latency_hdrhistogram_bar_name
+    specified in the specification file.
+
+    :param plot: Plot to generate.
+    :param input_data: Data to process.
+    :type plot: pandas.Series
+    :type input_data: InputData
+    """
+
+    # Transform the data
+    plot_title = plot.get("title", "")
+    logging.info("    Creating the data set for the {0} '{1}'.".
+                 format(plot.get("type", ""), plot_title))
+    data = input_data.filter_tests_by_name(
+        plot, params=["latency", "parent", "tags", "type"])
+    if data is None:
+        logging.error("No data.")
+        return
+
+    # Prepare the data for the plot
+    directions = ["W-E", "E-W"]
+    xaxis = "Latency [uSec]"
+    yaxis = "Count"
+    lats = pd.DataFrame(columns=[xaxis, yaxis, "test", "direction"])
+    tests = list()
+    for test in data[0][0]:
+        try:
+            if test["type"] in ("NDRPDR",):
+                if "-pdr" in plot_title.lower():
+                    ttype = "PDR"
+                elif "-ndr" in plot_title.lower():
+                    ttype = "NDR"
+                else:
+                    logging.warning("Invalid test type: {0}".
+                                    format(test["type"]))
+                    continue
+                name = re.sub(REGEX_NIC, "", test["parent"].
+                              replace('-ndrpdr', '').
+                              replace('2n1l-', ''))
+                for direction in ("direction1", "direction2"):
+                    try:
+                        logging.info(test["latency"][ttype][direction]["hdrh"])
+                        decoded = hdrh.histogram.HdrHistogram.decode(
+                            test["latency"][ttype][direction]["hdrh"])
+                        for item in decoded.get_recorded_iterator():
+                            lat = {
+                                xaxis: item.value_iterated_to,
+                                yaxis: item.count_added_in_this_iter_step,
+                                "test": name,
+                                "direction": direction
+                            }
+                            lats = lats.append(lat, ignore_index=True)
+                    except hdrh.codec.HdrLengthException as err:
+                        logging.warning(
+                            "No or invalid data for HDRHistogram for the test "
+                            "'{test}'\n{err}".format(test=name, err=repr(err)))
+                        continue
+                tests.append(name)
+            else:
+                logging.warning("Invalid test type: {0}".
+                                format(test["type"]))
+                continue
+        except (ValueError, KeyError) as err:
+            logging.warning(repr(err))
+
+    if lats.empty:
+        logging.warning("No data for '{graph}'.".
+                        format(graph=plot.get("title", "")))
+        return
+
+    fig = px.bar(lats,
+                 x=xaxis,
+                 y=yaxis,
+                 barmode="group",
+                 facet_col="direction",
+                 facet_row="test",
+                 category_orders={
+                     "direction": directions,
+                     "test": tests
+                 })
+
+    annotations = [
+        {
+            "font": {},
+            "showarrow": False,
+            "text": "Direction: E-W",
+            "x": 0.24,
+            "xanchor": "center",
+            "xref": "paper",
+            "y": 1.0,
+            "yanchor": "bottom",
+            "yref": "paper"
+        },
+        {
+            "font": {},
+            "showarrow": False,
+            "text": "Direction: W-E",
+            "x": 0.74,
+            "xanchor": "center",
+            "xref": "paper",
+            "y": 1.0,
+            "yanchor": "bottom",
+            "yref": "paper"
+        },
+    ]
+
+    for idx, test in enumerate(tests):
+        annotations.append({
+            "font": {},
+            "showarrow": False,
+            "text": test,
+            "textangle": 90,
+            "x": 0.98,
+            "xanchor": "left",
+            "xref": "paper",
+            "y": 1.0 - (2 * float(idx) + 1) / (2 * len(tests)),
+            "yanchor":u"middle",
+            "yref": "paper"
+        })
+
+    try:
+        # Create plot
+        file_type = plot.get("output-file-type", ".html")
+        logging.info("    Writing file '{0}{1}'.".
+                     format(plot["output-file"], file_type))
+
+        layout = deepcopy(plot["layout"])
+        layout["title"]["text"] = \
+            "<b>Latency:</b> {0}".format(layout.pop("name"))
+        layout["height"] = 200 * len(tests)
+        layout["annotations"] = annotations
+
+        fig["layout"].update(layout)
+
+        # Export Plot
+        ploff.plot(fig, show_link=False, auto_open=False,
+                   filename='{0}{1}'.format(plot["output-file"], file_type))
+    except PlotlyError as err:
+        logging.error("   Finished with error: {}".
+                      format(str(err).replace("\n", " ")))
 
 
 def plot_service_density_reconf_box_name(plot, input_data):
