@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ab9ad6f6_d831eb62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T13:04:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c40677ab_a098c03a",
+      "range": {
+        "startLine": 7,
+        "startChar": 36,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "590632ff5e77ea04cfec7a1198e8891475963f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e9cbb5f9_2d851148",
         "filename": "resources/tools/wrk/wrk_traffic_profile_parser.py",
         "patchSetId": 1
@@ -72,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "9ed5581d_1f285abd",
+        "filename": "resources/tools/wrk/wrk_traffic_profile_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T13:04:35Z",
+      "side": 1,
+      "message": "integers are not below minimum is 79 chars",
+      "parentUuid": "e9cbb5f9_2d851148",
+      "range": {
+        "startLine": 136,
+        "startChar": 43,
+        "endLine": 136,
+        "endChar": 69
+      },
+      "revId": "590632ff5e77ea04cfec7a1198e8891475963f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b9d605b3_65a031df",
         "filename": "resources/tools/wrk/wrk_traffic_profile_parser.py",
         "patchSetId": 1
@@ -92,6 +140,30 @@
       "revId": "590632ff5e77ea04cfec7a1198e8891475963f65",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72622c5c_6bc5106f",
+        "filename": "resources/tools/wrk/wrk_traffic_profile_parser.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T13:04:35Z",
+      "side": 1,
+      "message": "Only if they are the single value of that call, you need parentheses otherwise.",
+      "parentUuid": "b9d605b3_65a031df",
+      "range": {
+        "startLine": 169,
+        "startChar": 35,
+        "endLine": 170,
+        "endChar": 61
+      },
+      "revId": "590632ff5e77ea04cfec7a1198e8891475963f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
