@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "599de6b5_3a27756f",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-25T16:26:42Z",
+      "side": 1,
+      "message": "level\n\nAlso at line 634.",
+      "range": {
+        "startLine": 512,
+        "startChar": 24,
+        "endLine": 512,
+        "endChar": 29
+      },
+      "revId": "b0c4eeb4a72f76662fa6b14e2ac1df14c250cef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "966fac74_6067c063",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-25T16:26:42Z",
+      "side": 1,
+      "message": "Add full stop.",
+      "range": {
+        "startLine": 626,
+        "startChar": 64,
+        "endLine": 626,
+        "endChar": 65
+      },
+      "revId": "b0c4eeb4a72f76662fa6b14e2ac1df14c250cef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "51390a87_c69280d0",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-25T16:26:42Z",
+      "side": 1,
+      "message": "Useful, but it would serve better when defined in topology.py",
+      "range": {
+        "startLine": 917,
+        "startChar": 6,
+        "endLine": 917,
+        "endChar": 23
+      },
+      "revId": "b0c4eeb4a72f76662fa6b14e2ac1df14c250cef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5a2166e3_ac8fb15b",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-25T16:26:42Z",
+      "side": 1,
+      "message": "Not sure making the fields read-only like this is worth the vertical space. Can DirectedLink be just a named tuple?\nAlso, place in topology.py to make available for other modules (such as NodePath).",
+      "range": {
+        "startLine": 982,
+        "startChar": 4,
+        "endLine": 982,
+        "endChar": 13
+      },
+      "revId": "b0c4eeb4a72f76662fa6b14e2ac1df14c250cef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
