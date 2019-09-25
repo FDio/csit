@@ -103,16 +103,9 @@ List of known issues in |csit-release| for VPP performance tests:
 |    | `VPP-1763                               |                                                                                                          |
 |    | <https://jira.fd.io/browse/VPP-1763>`_  |                                                                                                          |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 9  | `CSIT-1592                              | VPP memif API does not enable memif zero-copy, resulting in different memif configuration vs. previously |
-|    | <https://jira.fd.io/browse/CSIT-1592>`_ | tested VAT/CLI where memif zero-copy was enabled by default. Needs to be fixed in VPP.                   |
-|    +-----------------------------------------+                                                                                                          |
-|    | `VPP-1764                               |                                                                                                          |
-|    | <https://jira.fd.io/browse/VPP-1764>`_  |                                                                                                          |
-+----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 10 | `VPP-1675                               | IPv4 IPSEC 9000B packet tests are failing as no packet is forwarded.                                     |
+| 9  | `VPP-1675                               | IPv4 IPSEC 9000B packet tests are failing as no packet is forwarded.                                     |
 |    | <https://jira.fd.io/browse/VPP-1675>`_  | Reason: chained buffers are not supported.                                                               |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-| 11 | `CSIT-1593                              | IPv4 AVF 9000B packet tests are failing on 3n-skx while passing on 2n-skx.                               |
+| 10 | `CSIT-1593                              | IPv4 AVF 9000B packet tests are failing on 3n-skx while passing on 2n-skx.                               |
 |    | <https://jira.fd.io/browse/CSIT-1593>`_ |                                                                                                          |
 +----+-----------------------------------------+----------------------------------------------------------------------------------------------------------+
-
