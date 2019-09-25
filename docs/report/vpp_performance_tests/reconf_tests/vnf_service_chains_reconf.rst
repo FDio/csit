@@ -33,12 +33,6 @@
 VNF Service Chains
 ==================
 
-.. important::
-
-    **DISCLAIMER**: Presented test results should be taken with a pinch of
-    salt as they may not represent correctly the system behaviour due
-    to experimental nature of used test methodology (see :ref:`reconf_tests`).
-
 In each test, a single service chain is added, the re-configuration
 contains all the steps the initial chains got, except the last step
 (starting VMs) is skipped.
