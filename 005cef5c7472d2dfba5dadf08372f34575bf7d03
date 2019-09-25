@@ -46,6 +46,30 @@
       "revId": "005cef5c7472d2dfba5dadf08372f34575bf7d03",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "82d44b7b_88145044",
+        "filename": "docs/report/introduction/methodology.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T13:03:29Z",
+      "side": 0,
+      "message": "I may be hazy on sphinx index files, but these three files were moved into the methodology_data_plane_throughput directory, and are referenced by the index there, which is on line 13 here. Do these three lines actually do anything with the generated doc?",
+      "parentUuid": "9a94e73e_0d7b9055",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 31
+      },
+      "revId": "005cef5c7472d2dfba5dadf08372f34575bf7d03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
