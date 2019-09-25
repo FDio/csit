@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "2777889d_aea23289",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-25T15:01:37Z",
+      "side": 1,
+      "message": "Done \n\nJust to mark this thread as Resolved, for people using new UI. It does not let me mark the tickbox on the previous comment once it has been published.",
+      "parentUuid": "03de2924_89b78236",
+      "range": {
+        "startLine": 346,
+        "startChar": 45,
+        "endLine": 346,
+        "endChar": 50
+      },
+      "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "05b9f75e_86bc96e9",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 7
