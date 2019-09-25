@@ -22,6 +22,30 @@
       "revId": "669d320bc64e41f879c047a39a66b8ec99bf4b1e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ffff50e_65fc8f54",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 709,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T13:03:13Z",
+      "side": 1,
+      "message": "I saw the point here was that any unexpected/coding errors are also caught here, and converted to just runtime error, so that calling code does not need to make another catch-all, and possibly keep running further code.",
+      "parentUuid": "4ec93086_daacb174",
+      "range": {
+        "startLine": 709,
+        "startChar": 34,
+        "endLine": 709,
+        "endChar": 64
+      },
+      "revId": "669d320bc64e41f879c047a39a66b8ec99bf4b1e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
