@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "03de2924_89b78236",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-25T12:39:38Z",
+      "side": 1,
+      "message": "Opened CSIT-1620, although the description is not much clearer than my previous comment.",
+      "parentUuid": "b44b9aef_40b2abd7",
+      "range": {
+        "startLine": 346,
+        "startChar": 45,
+        "endLine": 346,
+        "endChar": 50
+      },
+      "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05b9f75e_86bc96e9",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 7
@@ -187,6 +211,30 @@
       "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abb9ba29_2709a20f",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-25T12:39:38Z",
+      "side": 1,
+      "message": "The duration from the measurement result should be used as denominator, when computing receive rate.\n\nBut as the result of this keyword does not directly appear in test message, I agree that it is better to return the list of full measurement results, and let the call sites decide what they want to extract.",
+      "parentUuid": "4e68cf61_a2d9eaad",
+      "range": {
+        "startLine": 477,
+        "startChar": 36,
+        "endLine": 477,
+        "endChar": 50
+      },
+      "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
