@@ -40,7 +40,7 @@ common_dirs || die
 check_prerequisites || die
 set_perpatch_vpp_dir || die
 build_vpp_ubuntu_amd64 "CURRENT" || die
-set_aside_commit_build_artifacts || die
+set_aside_current_build_artifacts || die
 initialize_csit_dirs || die
 get_test_code "${1-}" || die
 get_test_tag_string || die
