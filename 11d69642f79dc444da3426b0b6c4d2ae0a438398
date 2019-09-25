@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "91f189cc_d5fb8829",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-25T11:43:20Z",
+      "side": 1,
+      "message": "In the past, we were using also other units. But I believe currently we are only using pps.\nWe can change the driver-agnostic API to accept rate as float (interpreted as pps per direction).\nBut that can be done in a separate Change, as that needs edits in Robot libraries, maybe even suites.",
+      "range": {
+        "startLine": 346,
+        "startChar": 45,
+        "endLine": 346,
+        "endChar": 50
+      },
+      "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05b9f75e_86bc96e9",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-25T11:43:20Z",
+      "side": 1,
+      "message": "I think _startup_trex method of TrexDriver class does not require this comment anymore.",
+      "range": {
+        "startLine": 695,
+        "startChar": 8,
+        "endLine": 695,
+        "endChar": 9
+      },
+      "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "903e758e_322202a7",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-25T11:43:20Z",
+      "side": 1,
+      "message": "This should have been renamed recently, have you rebased?",
+      "range": {
+        "startLine": 812,
+        "startChar": 25,
+        "endLine": 812,
+        "endChar": 32
+      },
+      "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5dd75ada_06d5f632",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-25T11:43:20Z",
+      "side": 1,
+      "message": "Apply extract_measurement_receive_rates?",
+      "range": {
+        "startLine": 477,
+        "startChar": 36,
+        "endLine": 477,
+        "endChar": 50
+      },
+      "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
