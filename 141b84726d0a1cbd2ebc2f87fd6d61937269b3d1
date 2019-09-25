@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d97fc06f_676b17de",
+        "filename": "docs/report/introduction/methodology_data_plane_throughput/methodology_plrsearch.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T13:03:29Z",
+      "side": 1,
+      "message": "should rather say \u0027cancelled out\u0027",
+      "range": {
+        "startLine": 368,
+        "startChar": 3,
+        "endLine": 368,
+        "endChar": 12
+      },
+      "revId": "141b84726d0a1cbd2ebc2f87fd6d61937269b3d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
