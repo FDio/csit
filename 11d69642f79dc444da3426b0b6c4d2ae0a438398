@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b44b9aef_40b2abd7",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T12:23:19Z",
+      "side": 1,
+      "message": "Shall you create that other ticket, to formulate its scope?",
+      "parentUuid": "91f189cc_d5fb8829",
+      "range": {
+        "startLine": 346,
+        "startChar": 45,
+        "endLine": 346,
+        "endChar": 50
+      },
+      "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "05b9f75e_86bc96e9",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e56047eb_8dc31f61",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T12:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05b9f75e_86bc96e9",
+      "range": {
+        "startLine": 695,
+        "startChar": 8,
+        "endLine": 695,
+        "endChar": 9
+      },
+      "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "55493af8_2ca2440c",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T12:23:19Z",
+      "side": 1,
+      "message": "I have rebased, but given the differences introduced in this patch, the conflict areas were extensive. I\u0027ve tried to re-apply the changes based on the patchset of the previous two meerged changes; I have certainly missed this piece.",
+      "parentUuid": "903e758e_322202a7",
+      "range": {
+        "startLine": 812,
+        "startChar": 25,
+        "endLine": 812,
+        "endChar": 32
+      },
+      "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5dd75ada_06d5f632",
         "filename": "resources/libraries/robot/performance/performance_utils.robot",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2019-09-25T11:43:20Z",
       "side": 1,
       "message": "Apply extract_measurement_receive_rates?",
+      "range": {
+        "startLine": 477,
+        "startChar": 36,
+        "endLine": 477,
+        "endChar": 50
+      },
+      "revId": "11d69642f79dc444da3426b0b6c4d2ae0a438398",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e68cf61_a2d9eaad",
+        "filename": "resources/libraries/robot/performance/performance_utils.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T12:23:19Z",
+      "side": 1,
+      "message": "You may notice that this keyword now returns a list of ReceiveRateMeasurement instances.\nThis is so that the list can be passed into both Fail if traffic loss occurred and Fail if no traffic forwarded.\n\nI\u0027ve only seen the original list of ratios used in the test message of Traffic should pass with maximum rate. There, I applied the new extract function to preserve the behavior. Note that that function uses the individual RRM\u0027s duration attribute as the denominator, which might differ from the value of ${trial_duration}. Should I pass trial_duration into the extract function instead?\n\nAre you aware of other uses of this keyword that also require this conversion?",
+      "parentUuid": "5dd75ada_06d5f632",
       "range": {
         "startLine": 477,
         "startChar": 36,
