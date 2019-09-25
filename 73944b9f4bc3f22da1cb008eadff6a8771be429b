@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dd67c4b2_ee7fcbea",
+        "filename": "resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T13:02:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "79da86d8_37a7503b",
+      "range": {
+        "startLine": 355,
+        "startChar": 8,
+        "endLine": 355,
+        "endChar": 10
+      },
+      "revId": "73944b9f4bc3f22da1cb008eadff6a8771be429b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "22918f79_110b60cf",
         "filename": "resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3931a6cc_385b2467",
+        "filename": "resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T13:02:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "22918f79_110b60cf",
+      "range": {
+        "startLine": 364,
+        "startChar": 8,
+        "endLine": 364,
+        "endChar": 10
+      },
+      "revId": "73944b9f4bc3f22da1cb008eadff6a8771be429b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb8223c3_836114d1",
         "filename": "resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "73944b9f4bc3f22da1cb008eadff6a8771be429b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7c6f12e3_8bc6a954",
+        "filename": "resources/libraries/python/MLRsearch/MultipleLossRatioSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-25T13:02:46Z",
+      "side": 1,
+      "message": "I am all for one-liners, but somehow find this way to be cleaner, more readable.",
+      "parentUuid": "bb8223c3_836114d1",
+      "range": {
+        "startLine": 391,
+        "startChar": 12,
+        "endLine": 391,
+        "endChar": 14
+      },
+      "revId": "73944b9f4bc3f22da1cb008eadff6a8771be429b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
