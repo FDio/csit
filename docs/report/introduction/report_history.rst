@@ -6,6 +6,12 @@ FD.io CSIT-1908 Report history and per .[ww] revision changes are listed below.
 +----------------+------------------------------------------------------------+
 | .[ww] Revision | Changes                                                    |
 +================+============================================================+
+| .40            | 1. Presented results of :ref:`vnf_service_chains_reconf`   |
+|                |    reconfiguration tests were replaced by the link to      |
+|                |    CSIT-1908.1.40 report presenting results of these tests |
+|                |    re-run on VPP 19.08.1.                                  |
+|                |                                                            |
++----------------+------------------------------------------------------------+
 | .38            | 1. Added data:                                             |
 |                |                                                            |
 |                |    - NFV Density, 2n-skx                                   |
