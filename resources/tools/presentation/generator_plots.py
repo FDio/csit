@@ -132,22 +132,13 @@ def plot_service_density_reconf_box_name(plot, input_data):
                                hoverinfo="x+y",
                                boxpoints="outliers",
                                whiskerwidth=0))
-        try:
-            val_max = max(df[col])
-        except ValueError as err:
-            logging.error(repr(err))
-            continue
-        if val_max:
-            y_max.append(int(val_max) + 1)
-
     try:
         # Create plot
         layout = deepcopy(plot["layout"])
         layout["title"] = "<b>Time Lost:</b> {0}".format(layout["title"])
         layout["yaxis"]["title"] = "<b>Implied Time Lost [s]</b>"
         layout["legend"]["font"]["size"] = 14
-        if y_max:
-            layout["yaxis"]["range"] = [0, max(y_max)]
+        layout["yaxis"].pop("range")
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
