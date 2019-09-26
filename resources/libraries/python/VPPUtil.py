@@ -112,9 +112,10 @@ class VPPUtil(object):
         :param node: Topology node.
         :type node: dict
         """
-        cmd = ('vppctl show pci 2>&1 | '
-               'fgrep -v "Connection refused" | '
-               'fgrep -v "No such file or directory"')
+        # cmd = ('vppctl show pci 2>&1 | '
+        #        'fgrep -v "Connection refused" | '
+        #        'fgrep -v "No such file or directory"')
+        cmd = ('vppctl show pci 2>&1')
         exec_cmd_no_error(
             node, cmd, sudo=True, message='VPP failed to start!', retries=120)
 
