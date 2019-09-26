@@ -39,7 +39,7 @@ class BitCountingGroup(RunGroup):
         """Create and return a new group with one more run that self.
 
         :param value: The run value to add to the group.
-        :type value: float or od AvgStdevMetadata
+        :type value: float or AvgStdevMetadata
         :returns: New group with the run added.
         :rtype: BitCountingGroup
         """
