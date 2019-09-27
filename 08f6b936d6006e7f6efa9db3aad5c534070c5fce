@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81ae13ff_5f7242f4",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 56
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-27T14:30:27Z",
+      "side": 1,
+      "message": "That is merged already. Are you adding support for a new VPP API change?\nIf yes, document in commit message which one.\nIf no, use the single collection from master HEAD.",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 7
+      },
+      "revId": "08f6b936d6006e7f6efa9db3aad5c534070c5fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a76fff61_bb30542a",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 56
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-27T14:30:27Z",
+      "side": 1,
+      "message": "Can we have a function for the 400-404 block? I see it used again at 476-480.",
+      "range": {
+        "startLine": 400,
+        "startChar": 8,
+        "endLine": 400,
+        "endChar": 10
+      },
+      "revId": "08f6b936d6006e7f6efa9db3aad5c534070c5fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "440a1a8d_7660bfbf",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 56
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-27T14:30:27Z",
+      "side": 1,
+      "message": "Is this the correct indentation level?",
+      "range": {
+        "startLine": 149,
+        "startChar": 12,
+        "endLine": 149,
+        "endChar": 14
+      },
+      "revId": "08f6b936d6006e7f6efa9db3aad5c534070c5fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eea232d2_2314b77a",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-ipolicemarkbase-dev.robot",
+        "patchSetId": 56
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-27T14:30:27Z",
+      "side": 1,
+      "message": "Already done by teardown, no?\nAlso applies to the two following suites.",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 36
+      },
+      "revId": "08f6b936d6006e7f6efa9db3aad5c534070c5fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
