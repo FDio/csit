@@ -3,7 +3,7 @@ IPSec IPv4 Routing
 
 .. toctree::
 
-    ipsecsw-3n-hsw-x710-64b-base-scale
-    ipsecsw-3n-skx-x710-64b-base-scale
-    ipsecsw-3n-tsh-x520-64b-base-scale
-    ipsechw-3n-dnv-x553-64b-base-scale
+    ipsec-3n-skx-xxv710
+    ipsec-3n-hsw-xl710
+    ipsec-3n-tsh-x520
+    ipsec-3n-dnv-x553
