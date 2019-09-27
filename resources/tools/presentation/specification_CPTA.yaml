@@ -1649,6 +1649,16 @@
 
   plots:
 
+#    - title: "3n-hsw-x520-l2sw-64b-base-scale-1t1c"
+#      output-file-name: "l2-1t1c-x520-3n-hsw"
+#      data: "plot-performance-trending-vpp-3n-hsw"
+#      include:
+#        - "Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdbasemaclrn-Mrr.64B-1t1c-eth-l2bdbasemaclrn-mrr"
+#        - "Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Xcbase-Mrr.64B-1t1c-eth-l2xcbase-mrr"
+#      parameters:
+#      - "result"
+#      layout: "plot-cpta"
+
 ################################################################################
 # NFV
 
