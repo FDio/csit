@@ -353,8 +353,15 @@ def _generate_all_charts(spec, input_data):
              f"{graph.get(u'title', u'')}."
             )
         )
-        data = input_data.filter_data(graph, continue_on_error=True)
-        if data is None:
+
+        if graph.get(u"include", None):
+            data = input_data.filter_tests_by_name(
+                graph, continue_on_error=True
+            )
+        else:
+            data = input_data.filter_data(graph, continue_on_error=True)
+
+        if data is None or data.empty:
             logging.error(u"No data.")
             return dict()
 
@@ -496,7 +503,7 @@ def _generate_all_charts(spec, input_data):
                 ])
 
             name_file = (
-                f"{spec.cpta[u'output-file']}-{graph[u'output-file-name']}"
+                f"{spec.cpta[u'output-file']}/{graph[u'output-file-name']}"
                 f"{spec.cpta[u'output-file-type']}")
 
             logs.append((u"INFO", f"    Writing the file {name_file} ..."))
@@ -611,7 +618,7 @@ def _generate_all_charts(spec, input_data):
         result = u"PASS"
         for job_name, job_data in anomaly_classifications.items():
             file_name = \
-                f"{spec.cpta[u'output-file']}-regressions-{job_name}.txt"
+                f"{spec.cpta[u'output-file']}/regressions-{job_name}.txt"
             with open(file_name, u'w') as txt_file:
                 for test_name, classification in job_data.items():
                     if classification == u"regression":
@@ -619,7 +626,7 @@ def _generate_all_charts(spec, input_data):
                     if classification in (u"regression", u"outlier"):
                         result = u"FAIL"
             file_name = \
-                f"{spec.cpta[u'output-file']}-progressions-{job_name}.txt"
+                f"{spec.cpta[u'output-file']}/progressions-{job_name}.txt"
             with open(file_name, u'w') as txt_file:
                 for test_name, classification in job_data.items():
                     if classification == u"progression":
