@@ -242,6 +242,8 @@ class Alerting(object):
         :rtype: tuple(str, str, int, int, OrderedDict)
         """
 
+        logging.info("Get compressed failed tests for: {test_set}".
+                     format(test_set=test_set))
         directory = self.configs[alert["way"]]["output-dir"]
         failed_tests = OrderedDict()
         file_path = "{0}/{1}.txt".format(directory, test_set)
@@ -300,6 +302,7 @@ class Alerting(object):
         :type alert: dict
         """
 
+        logging.info("Generating alert: {alert}".format(alert=alert["title"]))
         if alert["type"] != "failed-tests":
             raise AlertingError("Alert of type '{0}' is not implemented.".
                                 format(alert["type"]))
@@ -374,6 +377,8 @@ class Alerting(object):
             # Add list of regressions:
             file_name = "{0}/cpta-regressions-{1}.txt".\
                 format(config["output-dir"], alert["urls"][idx].split('/')[-1])
+            logging.info("Adding regressions from: {file}".
+                         format(file=file_name))
             try:
                 with open(file_name, 'r') as txt_file:
                     file_content = txt_file.read()
@@ -391,6 +396,8 @@ class Alerting(object):
             # Add list of progressions:
             file_name = "{0}/cpta-progressions-{1}.txt".\
                 format(config["output-dir"], alert["urls"][idx].split('/')[-1])
+            logging.info("Adding progressions from: {file}".
+                         format(file=file_name))
             try:
                 with open(file_name, 'r') as txt_file:
                     file_content = txt_file.read()

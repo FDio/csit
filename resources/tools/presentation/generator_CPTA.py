@@ -338,8 +338,14 @@ def _generate_all_charts(spec, input_data):
         # Transform the data
         logs.append(("INFO", "    Creating the data set for the {0} '{1}'.".
                      format(graph.get("type", ""), graph.get("title", ""))))
-        data = input_data.filter_data(graph, continue_on_error=True)
-        if data is None:
+
+        if graph.get("include", None):
+            data = input_data.filter_tests_by_name(graph,
+                                                   continue_on_error=True)
+        else:
+            data = input_data.filter_data(graph, continue_on_error=True)
+
+        if data is None or data.empty:
             logging.error("No data.")
             return
 
@@ -480,7 +486,7 @@ def _generate_all_charts(spec, input_data):
                     )
                 ])
 
-            name_file = "{0}-{1}{2}".format(spec.cpta["output-file"],
+            name_file = "{0}/{1}{2}".format(spec.cpta["output-file"],
                                             graph["output-file-name"],
                                             spec.cpta["output-file-type"])
 
@@ -593,7 +599,7 @@ def _generate_all_charts(spec, input_data):
     if anomaly_classifications:
         result = "PASS"
         for job_name, job_data in anomaly_classifications.iteritems():
-            file_name = "{0}-regressions-{1}.txt".\
+            file_name = "{0}/regressions-{1}.txt".\
                 format(spec.cpta["output-file"], job_name)
             with open(file_name, 'w') as txt_file:
                 for test_name, classification in job_data.iteritems():
@@ -602,7 +608,7 @@ def _generate_all_charts(spec, input_data):
                     if classification == "regression" or \
                             classification == "outlier":
                         result = "FAIL"
-            file_name = "{0}-progressions-{1}.txt".\
+            file_name = "{0}/progressions-{1}.txt".\
                 format(spec.cpta["output-file"], job_name)
             with open(file_name, 'w') as txt_file:
                 for test_name, classification in job_data.iteritems():
