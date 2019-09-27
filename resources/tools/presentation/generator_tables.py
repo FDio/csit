@@ -1177,13 +1177,11 @@ def table_performance_trending_dashboard(table, input_data):
     convert_csv_to_pretty_txt(file_name, txt_file_name)
 
 
-def _generate_url(base, testbed, test_name):
+def _generate_url(testbed, test_name):
     """Generate URL to a trending plot from the name of the test case.
 
-    :param base: The base part of URL common to all test cases.
     :param testbed: The testbed used for testing.
     :param test_name: The name of the test case.
-    :type base: str
     :type testbed: str
     :type test_name: str
     :returns: The URL to the plot with the trending data for the given test
@@ -1191,141 +1189,132 @@ def _generate_url(base, testbed, test_name):
     :rtype str
     """
 
-    url = base
-    file_name = ""
-    anchor = ".html#"
-    feature = ""
-
-    if "lbdpdk" in test_name or "lbvpp" in test_name:
-        file_name = "link_bonding"
-
-    elif "114b" in test_name and "vhost" in test_name:
-        file_name = "vts"
-
-    elif "testpmd" in test_name or "l3fwd" in test_name:
-        file_name = "dpdk"
-
-    elif "memif" in test_name:
-        file_name = "container_memif"
-        feature = "-base"
-
-    elif "srv6" in test_name:
-        file_name = "srv6"
-
-    elif "vhost" in test_name:
-        if "l2xcbase" in test_name or "l2bdbasemaclrn" in test_name:
-            file_name = "vm_vhost_l2"
-            if "114b" in test_name:
-                feature = ""
-            elif "l2xcbase" in test_name and "x520" in test_name:
-                feature = "-base-l2xc"
-            elif "l2bdbasemaclrn" in test_name and "x520" in test_name:
-                feature = "-base-l2bd"
-            else:
-                feature = "-base"
-        elif "ip4base" in test_name:
-            file_name = "vm_vhost_ip4"
-            feature = "-base"
-
-    elif "ipsecbasetnlsw" in test_name:
-        file_name = "ipsecsw"
-        feature = "-base-scale"
-
-    elif "ipsec" in test_name:
-        file_name = "ipsec"
-        feature = "-base-scale"
-        if "hw-" in test_name:
-            file_name = "ipsechw"
-        elif "sw-" in test_name:
-            file_name = "ipsecsw"
-        if "-int-" in test_name:
-            feature = "-base-scale-int"
-        elif "tnl" in test_name:
-            feature = "-base-scale-tnl"
-
-    elif "ethip4lispip" in test_name or "ethip4vxlan" in test_name:
-        file_name = "ip4_tunnels"
-        feature = "-base"
-
-    elif "ip4base" in test_name or "ip4scale" in test_name:
-        file_name = "ip4"
-        if "xl710" in test_name:
-            feature = "-base-scale-features"
-        elif "iacl" in test_name:
-            feature = "-features-iacl"
-        elif "oacl" in test_name:
-            feature = "-features-oacl"
-        elif "snat" in test_name or "cop" in test_name:
-            feature = "-features"
-        else:
-            feature = "-base-scale"
-
-    elif "ip6base" in test_name or "ip6scale" in test_name:
-        file_name = "ip6"
-        feature = "-base-scale"
-
-    elif "l2xcbase" in test_name or "l2xcscale" in test_name \
-            or "l2bdbasemaclrn" in test_name or "l2bdscale" in test_name \
-            or "l2dbbasemaclrn" in test_name or "l2dbscale" in test_name:
-        file_name = "l2"
-        if "macip" in test_name:
-            feature = "-features-macip"
-        elif "iacl" in test_name:
-            feature = "-features-iacl"
-        elif "oacl" in test_name:
-            feature = "-features-oacl"
-        else:
-            feature = "-base-scale"
-
     if "x520" in test_name:
-        nic = "x520-"
+        nic = "x520"
     elif "x710" in test_name:
-        nic = "x710-"
+        nic = "x710"
     elif "xl710" in test_name:
-        nic = "xl710-"
+        nic = "xl710"
     elif "xxv710" in test_name:
-        nic = "xxv710-"
+        nic = "xxv710"
     elif "vic1227" in test_name:
-        nic = "vic1227-"
+        nic = "vic1227"
     elif "vic1385" in test_name:
-        nic = "vic1385-"
+        nic = "vic1385"
     elif "x553" in test_name:
-        nic = "x553-"
+        nic = "x553"
     else:
         nic = ""
-    anchor += nic
 
     if "64b" in test_name:
-        framesize = "64b"
+        frame_size = "64b"
     elif "78b" in test_name:
-        framesize = "78b"
+        frame_size = "78b"
     elif "imix" in test_name:
-        framesize = "imix"
+        frame_size = "imix"
     elif "9000b" in test_name:
-        framesize = "9000b"
+        frame_size = "9000b"
     elif "1518b" in test_name:
-        framesize = "1518b"
+        frame_size = "1518b"
     elif "114b" in test_name:
-        framesize = "114b"
+        frame_size = "114b"
     else:
-        framesize = ""
-    anchor += framesize + '-'
+        frame_size = ""
 
-    if "1t1c" in test_name:
-        anchor += "1t1c"
-    elif "2t2c" in test_name:
-        anchor += "2t2c"
-    elif "4t4c" in test_name:
-        anchor += "4t4c"
-    elif "2t1c" in test_name:
-        anchor += "2t1c"
+    if "1t1c" in test_name or \
+        ("-1c-" in test_name and
+         testbed in ("3n-hsw", "3n-tsh", "2n-dnv", "3n-dnv")):
+        cores = "1t1c"
+    elif "2t2c" in test_name or \
+         ("-2c-" in test_name and
+          testbed in ("3n-hsw", "3n-tsh", "2n-dnv", "3n-dnv")):
+        cores = "2t2c"
+    elif "4t4c" in test_name or \
+         ("-4c-" in test_name and
+          testbed in ("3n-hsw", "3n-tsh", "2n-dnv", "3n-dnv")):
+        cores = "4t4c"
+    elif "2t1c" in test_name or \
+         ("-1c-" in test_name and
+          testbed in ("2n-skx", "3n-skx")):
+        cores = "2t1c"
     elif "4t2c" in test_name:
-        anchor += "4t2c"
+        cores = "4t2c"
     elif "8t4c" in test_name:
-        anchor += "8t4c"
+        cores = "8t4c"
+    else:
+        cores = ""
 
-    return url + file_name + '-' + testbed + '-' + nic + framesize + \
-        feature.replace("-int", "").replace("-tnl", "") + anchor + feature
+    if "testpmd" in test_name:
+        driver = "testpmd"
+    elif "l3fwd" in test_name:
+        driver = "l3fwd"
+    elif "avf" in test_name:
+        driver = "avf"
+    elif "dnv" in testbed or "tsh" in testbed:
+        driver = "ixgbe"
+    else:
+        driver = "i40e"
+
+    if "acl" in test_name or \
+            "macip" in test_name or \
+            "nat" in test_name or \
+            "policer" in test_name or \
+            "cop" in test_name:
+        bsf = "features"
+    elif "scale" in test_name:
+        bsf = "scale"
+    elif "base" in test_name:
+        bsf = "base"
+    else:
+        bsf = "base"
+
+    if "114b" in test_name and "vhost" in test_name:
+        domain = "vts"
+    elif "testpmd" in test_name or "l3fwd" in test_name:
+        domain = "dpdk"
+    elif "memif" in test_name:
+        domain = "container_memif"
+    elif "srv6" in test_name:
+        domain = "srv6"
+    elif "vhost" in test_name:
+        domain = "vhost"
+        if "vppl2xc" in test_name:
+            driver += "-vpp"
+        else:
+            driver += "-testpmd"
+        if "lbvpplacp" in test_name:
+            bsf += "-link-bonding"
+    elif "ch" in test_name and "vh" in test_name and "vm" in test_name:
+        domain = "nf_service_density_vnfc"
+    elif "ch" in test_name and "mif" in test_name and "dcr" in test_name:
+        domain = "nf_service_density_cnfc"
+    elif "pl" in test_name and "mif" in test_name and "dcr" in test_name:
+        domain = "nf_service_density_cnfp"
+    elif "ipsec" in test_name:
+        domain = "ipsec"
+        if "sw" in test_name:
+            bsf += "-sw"
+        elif "hw" in test_name:
+            bsf += "-hw"
+    elif "ethip4vxlan" in test_name:
+        domain = "ip4_tunnels"
+    elif "ip4base" in test_name or "ip4scale" in test_name:
+        domain = "ip4"
+    elif "ip6base" in test_name or "ip6scale" in test_name:
+        domain = "ip6"
+    elif "l2xcbase" in test_name or \
+            "l2xcscale" in test_name or \
+            "l2bdbasemaclrn" in test_name or \
+            "l2bdscale" in test_name or \
+            "l2patch" in test_name:
+        domain = "l2"
+    else:
+        domain = ""
+
+    file_name = "-".join((domain, testbed, nic)) + ".html#"
+    anchor_name = "-".join((frame_size, cores, bsf, driver))
+
+    return file_name + anchor_name
 
 
 def table_performance_trending_dashboard_html(table, input_data):
@@ -1390,7 +1379,7 @@ def table_performance_trending_dashboard_html(table, input_data):
             td = ET.SubElement(tr, "td", attrib=dict(align=alignment))
             # Name:
             if c_idx == 0:
-                url = _generate_url("../trending/", testbed, item)
+                url = "../trending/" + _generate_url(testbed, item)
                 ref = ET.SubElement(td, "a", attrib=dict(href=url))
                 ref.text = item
             else:
@@ -1619,7 +1608,7 @@ def table_failed_tests_html(table, input_data):
             td = ET.SubElement(tr, "td", attrib=dict(align=alignment))
             # Name:
             if c_idx == 0:
-                url = _generate_url("../trending/", testbed, item)
+                url = "../trending/" + _generate_url(testbed, item)
                 ref = ET.SubElement(td, "a", attrib=dict(href=url))
                 ref.text = item
             else:
