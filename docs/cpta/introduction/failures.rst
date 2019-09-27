@@ -13,32 +13,37 @@ Legend to the tables:
     - **Last Failure [VPP-Build-Id]**: VPP build as of last failure.
     - **Last Failure [CSIT-Job-Build-Id]**: CSIT build as of last failure.
 
-3n-hsw
+2n-skx
 ------
 
-.. include:: ../../../_build/_static/vpp/failed-tests-3n-hsw.rst
+.. include:: ../../../_build/_static/vpp/failed-tests-2n-skx.rst
 
 3n-skx
 ------
 
 .. include:: ../../../_build/_static/vpp/failed-tests-3n-skx.rst
 
-2n-skx
+3n-hsw
 ------
 
-.. include:: ../../../_build/_static/vpp/failed-tests-2n-skx.rst
+.. include:: ../../../_build/_static/vpp/failed-tests-3n-hsw.rst
 
 3n-tsh
 ------
 
 .. include:: ../../../_build/_static/vpp/failed-tests-3n-tsh.rst
 
+2n-dnv
+------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-2n-dnv.rst
+
 3n-dnv
 ------
 
 .. include:: ../../../_build/_static/vpp/failed-tests-3n-dnv.rst
 
-2n-dnv
+2n-clx
 ------
 
-.. include:: ../../../_build/_static/vpp/failed-tests-2n-dnv.rst
+.. include:: ../../../_build/_static/vpp/failed-tests-2n-clx.rst
