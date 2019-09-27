@@ -22,6 +22,30 @@
       "revId": "a73982f151c3e56c811ce7d288206e6289763a2e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9c880613_d9f8360c",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-27T16:30:51Z",
+      "side": 1,
+      "message": "Done. I\u0027ve also seen that nodes may have a host_port attribute. Would you include that in the comparison, i.e. this might be set on a TG node?",
+      "parentUuid": "bee27af0_93d60c2f",
+      "range": {
+        "startLine": 501,
+        "startChar": 37,
+        "endLine": 501,
+        "endChar": 11
+      },
+      "revId": "a73982f151c3e56c811ce7d288206e6289763a2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
