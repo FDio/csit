@@ -28,6 +28,11 @@ Legend to the tables:
 
 .. include:: ../../../_build/_static/vpp/failed-tests-2n-skx.rst
 
+2n-clx
+------
+
+.. include:: ../../../_build/_static/vpp/failed-tests-2n-clx.rst
+
 3n-tsh
 ------
 
