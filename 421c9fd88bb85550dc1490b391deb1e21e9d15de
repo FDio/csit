@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3da8756d_4588e698",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-27T17:54:36Z",
+      "side": 1,
+      "message": "Add the following line to integrate with Jira:\n\nTicket: CSIT-1378",
+      "range": {
+        "startLine": 20,
+        "startChar": 48,
+        "endLine": 20,
+        "endChar": 49
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "67cef15d_f67b68e4",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 10
@@ -13,6 +36,30 @@
       "writtenOn": "2019-09-27T17:17:50Z",
       "side": 1,
       "message": "node.get(\u0027type\u0027)",
+      "range": {
+        "startLine": 91,
+        "startChar": 13,
+        "endLine": 91,
+        "endChar": 25
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08610098_5f86619b",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-27T17:54:36Z",
+      "side": 1,
+      "message": "I prefer to store the result (already used in line 89) into a local variable, and use that, instead of accessing the dict again.\n\nAlso, this is merely copied from Base line 49. :)",
+      "parentUuid": "67cef15d_f67b68e4",
       "range": {
         "startLine": 91,
         "startChar": 13,
@@ -71,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "9e422b2d_53a0bf7f",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-27T17:54:36Z",
+      "side": 1,
+      "message": "Yeah. This is to be called from setup of unrelated suite.\n\"ensure_traffic_generator_is_torn_down\" (or a shorter variant) sounds better.",
+      "parentUuid": "7426f084_52a3c9b1",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 43
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0a96da90_39e3909e",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 10
@@ -82,6 +153,30 @@
       "writtenOn": "2019-09-27T17:17:50Z",
       "side": 1,
       "message": "i do not understand this",
+      "range": {
+        "startLine": 152,
+        "startChar": 1,
+        "endLine": 156,
+        "endChar": 29
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "68ef35a8_9c626cda",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-27T17:54:36Z",
+      "side": 1,
+      "message": "That means docstring is not explaining the usage well enough.",
+      "parentUuid": "0a96da90_39e3909e",
       "range": {
         "startLine": 152,
         "startChar": 1,
@@ -117,6 +212,30 @@
     },
     {
       "key": {
+        "uuid": "22c9819e_d9475401",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-27T17:54:36Z",
+      "side": 1,
+      "message": "\u003e the something is defined in topology file\n\nWhich somethings can we rely on? Elsewhere you want node.get(\u0027type\u0027) as if the node type could be undefined in the topology file.\n\nOr do you mean driver initialization should be done automatically (so everything works even if no suite setup initializes driver explicitly)? That would probably not work, as the initialization needs data about which interfaces to use.",
+      "parentUuid": "698daaf6_21d689a4",
+      "range": {
+        "startLine": 183,
+        "startChar": 1,
+        "endLine": 183,
+        "endChar": 32
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da7b1872_12efed0e",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 10
@@ -128,6 +247,30 @@
       "writtenOn": "2019-09-27T17:17:50Z",
       "side": 1,
       "message": "i want to keep both frames and percentage in driver (PLR/MLR can be added later but driver should support it)",
+      "range": {
+        "startLine": 297,
+        "startChar": 1,
+        "endLine": 298,
+        "endChar": 48
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f9cb423_4223f9ec",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-27T17:54:36Z",
+      "side": 1,
+      "message": "This method is called optionally in output processing (and we do not show percentages there).\n\nPercentages are still available as input arguments, at least according to lines 546 and 767 (until CSIT-1620).",
+      "parentUuid": "da7b1872_12efed0e",
       "range": {
         "startLine": 297,
         "startChar": 1,
