@@ -30,13 +30,20 @@ will be presented in the Trending.
 #### Processor Cores in Trending Graphs
 - 1c (1t1c or 2t1c),
 - 2c (2t2c or 4t2c),
-- 4c (4t4c or 8t4c), see question nr 3.
+- 4c (4t4c or 8t4c).
 
 See item nr 3 in TODO list.
 
 #### Frame Sizes
 - See [Performance Tests Job Specifications, chapter Frame Sizes]
 - See item nr 2 in TODO list.
+
+### Backward compatibility
+
+The new structure will not be backward compatible with the previous one.
+The old data and graphs will be stored and accessible on the link:
+<https://docs.fd.io/csit/master/trending-archive/>. A link to this page
+will be on the Trending web page. 
 
 ### Notes
 1. The lists of tests are based on running tests in trending jobs
@@ -60,21 +67,6 @@ See item nr 3 in TODO list.
    [Performance Tests Job Specifications, chapter Frame Sizes].
 3. Change the trending jobs to use processor cores as they are defined
    in [Performance Tests Job Specifications, chapter Processor Cores].
-   From run time point of view, consider using only 1c and 2c for some
-   test beds.
-
-### Questions
-1. If items *1, 2, 3* from *TODO* list are implemented, it will be
-   really hard to make it backward compatible. It means, the trending
-   will start again from the beginning. Is it OK?
-2. Should we add also VICs to the Trending? They are not defined in
-   [Performance Tests Job Specifications, chapter NICs]. They are listed
-   in this document.
-3. Which numbers of processor cores should be used? See point 3 in TODO
-   list.
-
- *Note:* The answers will be implemented into this note and the
- questions will be removed before merge.
 
 # Test Groups
 
