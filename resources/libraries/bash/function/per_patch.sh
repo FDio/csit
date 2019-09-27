@@ -225,10 +225,15 @@ function select_build () {
 }
 
 
-function set_aside_commit_build_artifacts () {
+function set_aside_current_build_artifacts () {
 
-    # Function is copying VPP built artifacts from actual checkout commit for
-    # further use and clean git.
+    # Function is copying VPP built artifacts from currently checked-out
+    # commit for further use and clean git.
+    # At the end, earclier commit is checked out, HEAD~ by default
+    #
+    # Arguments:
+    # - ${1} - commit identifier to checkout at the end. Optional.
+    #          Default: HEAD~
     # Variables read:
     # - VPP_DIR - Path to existing directory, parent to accessed directories.
     # Directories read:
@@ -241,6 +246,7 @@ function set_aside_commit_build_artifacts () {
 
     set -exuo pipefail
 
+    parent_id="${1:-HEAD~}"
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "build_current" || die "Remove operation failed."
     mkdir -p "build_current" || die "Directory creation failed."
@@ -250,7 +256,7 @@ function set_aside_commit_build_artifacts () {
     # Also, there usually is a copy of dpdk artifact in build-root.
     git clean -dffx "build"/ "build-root"/ || die "Git clean operation failed."
     # Finally, check out the parent commit.
-    git checkout HEAD~ || die "Git checkout operation failed."
+    git checkout "${parent_id}" || die "Git checkout operation failed."
     # Display any other leftovers.
     git status || die "Git status operation failed."
 }
@@ -274,7 +280,7 @@ function set_aside_parent_build_artifacts () {
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "build_parent" || die "Remove failed."
     mkdir -p "build_parent" || die "Directory creation operation failed."
-    mv "build-root"/*".deb" "build_parent"/ || die "Move operation failed."
+    mv "build-root"/*".deb" "build_parent"/ || true || die "Move operation failed."
 }
 
 
