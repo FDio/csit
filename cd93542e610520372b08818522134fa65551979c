@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f282f307_45122e59",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 28
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-09-27T14:30:27Z",
+      "side": 1,
+      "message": "I used \"^^\" as a shorthand for \"the two previous lines\".\nI can change that to something different, or you move your comment after the 4 lines (and use \"^^^^\" or \"4x^\").",
+      "range": {
+        "startLine": 235,
+        "startChar": 6,
+        "endLine": 235,
+        "endChar": 8
+      },
+      "revId": "cd93542e610520372b08818522134fa65551979c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
