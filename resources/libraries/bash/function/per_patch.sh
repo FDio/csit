@@ -250,7 +250,7 @@ function set_aside_current_build_artifacts () {
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "build_current" || die "Remove operation failed."
     mkdir -p "build_current" || die "Directory creation failed."
-    mv "build-root"/*".deb" "build_current"/ || die "Move operation failed."
+    mv "build-root"/*".deb" "build_current"/ || true || die "Move operation failed."
     # The previous build could have left some incompatible leftovers,
     # e.g. DPDK artifacts of different version (in build/external).
     # Also, there usually is a copy of dpdk artifact in build-root.
@@ -280,7 +280,7 @@ function set_aside_parent_build_artifacts () {
     cd "${VPP_DIR}" || die "Change directory operation failed."
     rm -rf "build_parent" || die "Remove failed."
     mkdir -p "build_parent" || die "Directory creation operation failed."
-    mv "build-root"/*".deb" "build_parent"/ || die "Move operation failed."
+    mv "build-root"/*".deb" "build_parent"/ || true || die "Move operation failed."
 }
 
 

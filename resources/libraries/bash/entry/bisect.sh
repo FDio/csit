@@ -47,9 +47,9 @@ set_perpatch_vpp_dir || die
 cd "${VPP_DIR}" || die
 git bisect start || die
 git bisect new || die
-build_vpp_ubuntu_amd64 "NEW" || die
+#build_vpp_ubuntu_amd64 "NEW" || die
 set_aside_current_build_artifacts "d991a798ff5eb6d151b6641e61fefc6315bab0ac" || die
-build_vpp_ubuntu_amd64 "OLD" || die
+#build_vpp_ubuntu_amd64 "OLD" || die
 set_aside_parent_build_artifacts || die
 initialize_csit_dirs || die
 get_test_code "${1-}" || die
@@ -58,27 +58,36 @@ set_perpatch_dut || die
 select_topology || die
 select_arch_os || die
 activate_virtualenv "${VPP_DIR}" || die
+pip install -r "${PYTHON_SCRIPTS_DIR}/perpatch_requirements.txt" || {
+    die "Perpatch Python requirements installation failed."
+}
 generate_tests || die
 archive_tests || die
-reserve_and_cleanup_testbed || die
-select_tags || die
-compose_pybot_arguments || die
-# Testing current first. Good for early failures or for API changes.
-select_build "build_current" || die
-check_download_dir || die
-run_pybot || die
-copy_archives || die
-archive_parse_test_results "csit_current" || die
-die_on_pybot_error || die
-# TODO: Use less heavy way to avoid apt remove failures.
-cleanup_topo
-select_build "build_parent" || die
-check_download_dir || die
-run_pybot || die
-untrap_and_unreserve_testbed || die
-copy_archives || die
-archive_parse_test_results "csit_parent" || die
-die_on_pybot_error || die
+#reserve_and_cleanup_testbed || die
+#select_tags || die
+#compose_pybot_arguments || die
+## Testing current first. Good for early failures or for API changes.
+#select_build "build_current" || die
+#check_download_dir || die
+#run_pybot || die
+#copy_archives || die
+#archive_parse_test_results "csit_current" || die
+target="${VPP_DIR}/csit_current"
+mkdir -p "${target}"
+echo "[1000000, 1010000]" > "${target}/results.txt"
+#die_on_pybot_error || die
+## TODO: Use less heavy way to avoid apt remove failures.
+#cleanup_topo
+#select_build "build_parent" || die
+#check_download_dir || die
+#run_pybot || die
+#untrap_and_unreserve_testbed || die
+#copy_archives || die
+#archive_parse_test_results "csit_parent" || die
+target="${VPP_DIR}/csit_parent"
+mkdir -p "${target}"
+echo "[1190000, 1200000]" > "${target}/results.txt"
+#die_on_pybot_error || die
 git bisect old | tee "git.log" || die
 iteration=0
 while true
@@ -88,16 +97,31 @@ do
         break
     fi
     let iteration+=1
-    build_vpp_ubuntu_amd64 "MIDDLE" || die
-    reserve_and_cleanup_testbed || die
-    select_tags || die
-    compose_pybot_arguments || die
-    check_download_dir || die
-    run_pybot || die
-    untrap_and_unreserve_testbed || die
-    copy_archives || die
-    archive_parse_test_results "csit_parent/${iteration}" || die
-    die_on_pybot_error || die
-    # FIXME: Jumpavg logic here.
-    git bisect old | tee "git.log" || die
+#    build_vpp_ubuntu_amd64 "MIDDLE" || die
+#    reserve_and_cleanup_testbed || die
+#    select_tags || die
+#    compose_pybot_arguments || die
+#    check_download_dir || die
+#    run_pybot || die
+#    untrap_and_unreserve_testbed || die
+#    copy_archives || die
+#    archive_parse_test_results "csit_parent/${iteration}" || die
+    target="${VPP_DIR}/csit_new"
+    mkdir -p "${target}"
+    echo | awk ' { srand('"${iteration}"'); print "[1" 100000 + 100000 * rand() ", 1" 100000 + 100000 * rand() "]" } ' > "${target}/results.txt"
+#    die_on_pybot_error || die
+    set +e
+    python "${PYTHON_SCRIPTS_DIR}/compare_bisect.py"
+    bisect_rc="${?}"
+    set -e
+    if [[ "${bisect_rc}" == "2" ]]; then
+        adjective="new"
+        cat "${target}/results.txt" >> "${VPP_DIR}/csit_current/results.txt"
+    elif [[ "${bisect_rc}" == "0" ]]; then
+        adjective="old"
+        cat "${target}/results.txt" >> "${VPP_DIR}/csit_parent/results.txt"
+    else
+        die "Unexpected return code ${bisect_rc}"
+    fi
+    git bisect "${adjective}" | tee "git.log" || die
 done
