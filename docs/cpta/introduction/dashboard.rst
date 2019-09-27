@@ -67,6 +67,24 @@ VPP worker on 8t4c
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-8t4c-2n-skx.rst
 
+2n-clx
+------
+
+VPP worker on 2t1c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-2n-clx.rst
+
+VPP worker on 4t2c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t2c-2n-clx.rst
+
+VPP worker on 8t4c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-8t4c-2n-clx.rst
+
 3n-tsh
 ------
 
