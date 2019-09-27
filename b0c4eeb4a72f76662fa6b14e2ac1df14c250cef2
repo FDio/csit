@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "dd984e50_fd69ef27",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-27T10:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "599de6b5_3a27756f",
+      "range": {
+        "startLine": 512,
+        "startChar": 24,
+        "endLine": 512,
+        "endChar": 29
+      },
+      "revId": "b0c4eeb4a72f76662fa6b14e2ac1df14c250cef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "966fac74_6067c063",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 8
@@ -45,6 +69,30 @@
       "revId": "b0c4eeb4a72f76662fa6b14e2ac1df14c250cef2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "90ddf7aa_3f472957",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-27T10:33:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "966fac74_6067c063",
+      "range": {
+        "startLine": 626,
+        "startChar": 64,
+        "endLine": 626,
+        "endChar": 65
+      },
+      "revId": "b0c4eeb4a72f76662fa6b14e2ac1df14c250cef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ba21bb98_a51dec6a",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-27T10:33:34Z",
+      "side": 1,
+      "message": "Will rather add a todo for moving the classes with any bigger refactor of topology structures. The current patchset is a large one anyway, and thinking up what Topology should look like is out of scope for now.",
+      "parentUuid": "51390a87_c69280d0",
+      "range": {
+        "startLine": 917,
+        "startChar": 6,
+        "endLine": 917,
+        "endChar": 23
+      },
+      "revId": "b0c4eeb4a72f76662fa6b14e2ac1df14c250cef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2166e3_ac8fb15b",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 8
@@ -91,6 +163,30 @@
       "revId": "b0c4eeb4a72f76662fa6b14e2ac1df14c250cef2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a5d9ce72_dc0d08aa",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-09-27T10:33:34Z",
+      "side": 1,
+      "message": "I mainly did it as a full-fledged class for the documentation. It is entirely possible that if moved to Topology in some form, it would gain more than the 3 properties. Moreover, after the move to python3, typing.Namedtuple would be a better base class for purposes of documenting the types of the objects.\n\nI shall add TODOs for this.",
+      "parentUuid": "5a2166e3_ac8fb15b",
+      "range": {
+        "startLine": 982,
+        "startChar": 4,
+        "endLine": 982,
+        "endChar": 13
+      },
+      "revId": "b0c4eeb4a72f76662fa6b14e2ac1df14c250cef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
