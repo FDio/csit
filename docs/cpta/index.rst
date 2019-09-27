@@ -28,13 +28,11 @@ analysis and anomaly detection methodology.
     trending/l2
     trending/ip4
     trending/ip6
+    trending/srv6
     trending/ip4_tunnels
-    trending/vm_vhost_l2
-    trending/vm_vhost_ip4
+    trending/vhost
     trending/container_memif
     trending/ipsec
-    trending/srv6
-    trending/link_bonding
     trending/vts
     trending/nf_service_density
     trending/dpdk

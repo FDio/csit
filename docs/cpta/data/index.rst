@@ -21,6 +21,11 @@ in the ASCII and CSV formats:
         - `ASCII format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-2n-skx-trending.txt>`_
         - `CSV format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-2n-skx-trending.csv>`_
 
+    - 2n-clx
+
+        - `ASCII format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-2n-clx-trending.txt>`_
+        - `CSV format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-2n-clx-trending.csv>`_
+
     - 3n-tsh
 
         - `ASCII format <../_static/vpp/cpta-csit-vpp-perf-mrr-daily-master-3n-tsh-trending.txt>`_
