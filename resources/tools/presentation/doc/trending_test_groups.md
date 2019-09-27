@@ -30,13 +30,20 @@ will be presented in the Trending.
 #### Processor Cores in Trending Graphs
 - 1c (1t1c or 2t1c),
 - 2c (2t2c or 4t2c),
-- 4c (4t4c or 8t4c), see question nr 3.
+- 4c (4t4c or 8t4c).
 
 See item nr 3 in TODO list.
 
 #### Frame Sizes
 - See [Performance Tests Job Specifications, chapter Frame Sizes]
 - See item nr 2 in TODO list.
+
+### Backward compatibility
+
+The new structure will not be backward compatible with the previous one.
+The old data and graphs will be stored and accessible on the link:
+<https://docs.fd.io/csit/master/trending-archive/>. A link to this page
+will be on the Trending web page.
 
 ### Notes
 1. The lists of tests are based on running tests in trending jobs
@@ -60,21 +67,6 @@ See item nr 3 in TODO list.
    [Performance Tests Job Specifications, chapter Frame Sizes].
 3. Change the trending jobs to use processor cores as they are defined
    in [Performance Tests Job Specifications, chapter Processor Cores].
-   From run time point of view, consider using only 1c and 2c for some
-   test beds.
-
-### Questions
-1. If items *1, 2, 3* from *TODO* list are implemented, it will be
-   really hard to make it backward compatible. It means, the trending
-   will start again from the beginning. Is it OK?
-2. Should we add also VICs to the Trending? They are not defined in
-   [Performance Tests Job Specifications, chapter NICs]. They are listed
-   in this document.
-3. Which numbers of processor cores should be used? See point 3 in TODO
-   list.
-
- *Note:* The answers will be implemented into this note and the
- questions will be removed before merge.
 
 # Test Groups
 
@@ -161,14 +153,6 @@ See item nr 3 in TODO list.
     40ge2p1xl710-eth-l2bdbasemaclrn-mrr
     40ge2p1xl710-eth-l2bdscale1mmaclrn-mrr
 
-### 3n-hsw-vic
-
-#### 64b-?t?c-l2switching-base-i40e
-    10Ge2P1Vic1227-eth-l2xcbase-mrr
-    10Ge2P1Vic1227-eth-l2bdbasemaclrn-mrr
-    40Ge2P1Vic1385-eth-l2xcbase-mrr
-    40Ge2P1Vic1385-eth-l2bdbasemaclrn-mrr
-
 ### 3n-tsh-x520
 
 #### 64b-?t?c-l2switching-base-ixgbe
@@ -196,42 +180,42 @@ See item nr 3 in TODO list.
 ### 2n-dnv-x553
 
 #### 64b-?t?c-l2switching-base-ixgbe
-    10ge2p1x520-dot1q-l2xcbase-mrr
-    10ge2p1x520-eth-l2xcbase-mrr
-    10ge2p1x520-dot1q-l2bdbasemaclrn-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-mrr
+    10ge2p1x553-dot1q-l2xcbase-mrr
+    10ge2p1x553-eth-l2xcbase-mrr
+    10ge2p1x553-dot1q-l2bdbasemaclrn-mrr
+    10ge2p1x553-eth-l2bdbasemaclrn-mrr
 
 #### 64b-?t?c-l2switching-base-scale-ixgbe
-    10ge2p1x520-eth-l2patch-mrr
-    10ge2p1x520-eth-l2xcbase-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-mrr
-    10ge2p1x520-eth-l2bdscale10kmaclrn-mrr
-    10ge2p1x520-eth-l2bdscale100kmaclrn-mrr
-    10ge2p1x520-eth-l2bdscale1mmaclrn-mrr
+    10ge2p1x553-eth-l2patch-mrr
+    10ge2p1x553-eth-l2xcbase-mrr
+    10ge2p1x553-eth-l2bdbasemaclrn-mrr
+    10ge2p1x553-eth-l2bdscale10kmaclrn-mrr
+    10ge2p1x553-eth-l2bdscale100kmaclrn-mrr
+    10ge2p1x553-eth-l2bdscale1mmaclrn-mrr
 
 ### 3n-dnv-x553
 
 #### 64b-?t?c-l2switching-base-ixgbe
-    10ge2p1x520-dot1q-l2xcbase-mrr
-    10ge2p1x520-eth-l2xcbase-mrr
-    10ge2p1x520-dot1q-l2bdbasemaclrn-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-mrr
+    10ge2p1x553-dot1q-l2xcbase-mrr
+    10ge2p1x553-eth-l2xcbase-mrr
+    10ge2p1x553-dot1q-l2bdbasemaclrn-mrr
+    10ge2p1x553-eth-l2bdbasemaclrn-mrr
 
 #### 64b-?t?c-l2switching-base-scale-ixgbe
-    10ge2p1x520-eth-l2patch-mrr
-    10ge2p1x520-eth-l2xcbase-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-mrr
-    10ge2p1x520-eth-l2bdscale10kmaclrn-mrr
-    10ge2p1x520-eth-l2bdscale100kmaclrn-mrr
-    10ge2p1x520-eth-l2bdscale1mmaclrn-mrr
+    10ge2p1x553-eth-l2patch-mrr
+    10ge2p1x553-eth-l2xcbase-mrr
+    10ge2p1x553-eth-l2bdbasemaclrn-mrr
+    10ge2p1x553-eth-l2bdscale10kmaclrn-mrr
+    10ge2p1x553-eth-l2bdscale100kmaclrn-mrr
+    10ge2p1x553-eth-l2bdscale1mmaclrn-mrr
 
 ####  64b-?t?c-features-l2switching-base-ixgbe
-    10ge2p1x520-eth-l2bdbasemaclrn-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-oacl50sf-10kflows-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-oacl50sl-10kflows-mrr
-    10ge2p1x520-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr
+    10ge2p1x553-eth-l2bdbasemaclrn-mrr
+    10ge2p1x553-eth-l2bdbasemaclrn-iacl50sf-10kflows-mrr
+    10ge2p1x553-eth-l2bdbasemaclrn-iacl50sl-10kflows-mrr
+    10ge2p1x553-eth-l2bdbasemaclrn-oacl50sf-10kflows-mrr
+    10ge2p1x553-eth-l2bdbasemaclrn-oacl50sl-10kflows-mrr
+    10ge2p1x553-eth-l2bdbasemaclrn-macip-iacl50sl-10kflows-mrr
 
 ### 2n-clx-xxv710
 
@@ -339,12 +323,6 @@ See item nr 3 in TODO list.
     40ge2p1xl710-ethip4-ip4base-mrr
     40ge2p1xl710-ethip4-ip4scale2m-mrr
 
-### 3n-hsw-vic
-
-#### 64b-?t?c-ip4routing-base-i40e
-    10Ge2P1Vic1227-ethip4-ip4base-mrr
-    40Ge2P1Vic1385-ethip4-ip4base-mrr
-
 ### 3n-tsh-x520
 
 #### 64b-?t?c-ip4routing-base-scale-ixgbe
@@ -365,36 +343,36 @@ See item nr 3 in TODO list.
 ### 2n-dnv-x553
 
 #### 64b-?t?c-ip4routing-base-scale-ixgbe
-    10ge2p1x520-dot1q-ip4base-mrr
-    10ge2p1x520-ethip4-ip4base-mrr
-    10ge2p1x520-ethip4-ip4scale20k-mrr
-    10ge2p1x520-ethip4-ip4scale200k-mrr
-    10ge2p1x520-ethip4-ip4scale2m-mrr
+    10ge2p1x553-dot1q-ip4base-mrr
+    10ge2p1x553-ethip4-ip4base-mrr
+    10ge2p1x553-ethip4-ip4scale20k-mrr
+    10ge2p1x553-ethip4-ip4scale200k-mrr
+    10ge2p1x553-ethip4-ip4scale2m-mrr
 
 #### 64b-?t?c-features-ip4routing-base-ixgbe
-    10ge2p1x520-ethip4-ip4base-mrr
-    10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-iacl50sl-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-oacl50sf-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-oacl50sl-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-nat44-mrr
+    10ge2p1x553-ethip4-ip4base-mrr
+    10ge2p1x553-ethip4udp-ip4base-iacl50sf-10kflows-mrr
+    10ge2p1x553-ethip4udp-ip4base-iacl50sl-10kflows-mrr
+    10ge2p1x553-ethip4udp-ip4base-oacl50sf-10kflows-mrr
+    10ge2p1x553-ethip4udp-ip4base-oacl50sl-10kflows-mrr
+    10ge2p1x553-ethip4udp-ip4base-nat44-mrr
 
 ### 3n-dnv-x553
 
 #### 64b-?t?c-ip4routing-base-scale-ixgbe
-    10ge2p1x520-dot1q-ip4base-mrr
-    10ge2p1x520-ethip4-ip4base-mrr
-    10ge2p1x520-ethip4-ip4scale20k-mrr
-    10ge2p1x520-ethip4-ip4scale200k-mrr
-    10ge2p1x520-ethip4-ip4scale2m-mrr
+    10ge2p1x553-dot1q-ip4base-mrr
+    10ge2p1x553-ethip4-ip4base-mrr
+    10ge2p1x553-ethip4-ip4scale20k-mrr
+    10ge2p1x553-ethip4-ip4scale200k-mrr
+    10ge2p1x553-ethip4-ip4scale2m-mrr
 
 #### 64b-?t?c-features-ip4routing-base-ixgbe
-    10ge2p1x520-ethip4-ip4base-mrr
-    10ge2p1x520-ethip4udp-ip4base-iacl50sf-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-iacl50sl-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-oacl50sf-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-oacl50sl-10kflows-mrr
-    10ge2p1x520-ethip4udp-ip4base-nat44-mrr
+    10ge2p1x553-ethip4-ip4base-mrr
+    10ge2p1x553-ethip4udp-ip4base-iacl50sf-10kflows-mrr
+    10ge2p1x553-ethip4udp-ip4base-iacl50sl-10kflows-mrr
+    10ge2p1x553-ethip4udp-ip4base-oacl50sf-10kflows-mrr
+    10ge2p1x553-ethip4udp-ip4base-oacl50sl-10kflows-mrr
+    10ge2p1x553-ethip4udp-ip4base-nat44-mrr
 
 ### 2n-clx-xxv710
 
@@ -468,12 +446,6 @@ See item nr 3 in TODO list.
     40ge2p1xl710-ethip6-ip6base-mrr
     40ge2p1xl710-ethip6-ip6scale2m-mrr
 
-### 3n-hsw-vic
-
-#### 78b-?t?c-ip6routing-base-i40e
-    10Ge2P1Vic1227-ethip6-ip6base-mrr
-    40Ge2P1Vic1385-ethip6-ip6base-mrr
-
 ### 3n-tsh-x520
 
 #### 78b-?t?c-ip6routing-base-scale-ixgbe
@@ -486,20 +458,20 @@ See item nr 3 in TODO list.
 ### 2n-dnv-x553
 
 #### 78b-?t?c-ip6routing-base-scale-ixgbe
-    10ge2p1x520-dot1q-ip6base-mrr
-    10ge2p1x520-ethip6-ip6base-mrr
-    10ge2p1x520-ethip6-ip6scale20k-mrr
-    10ge2p1x520-ethip6-ip6scale200k-mrr
-    10ge2p1x520-ethip6-ip6scale2m-mrr
+    10ge2p1x553-dot1q-ip6base-mrr
+    10ge2p1x553-ethip6-ip6base-mrr
+    10ge2p1x553-ethip6-ip6scale20k-mrr
+    10ge2p1x553-ethip6-ip6scale200k-mrr
+    10ge2p1x553-ethip6-ip6scale2m-mrr
 
 ### 3n-dnv-x553
 
 #### 78b-?t?c-ip6routing-base-scale-ixgbe
-    10ge2p1x520-dot1q-ip6base-mrr
-    10ge2p1x520-ethip6-ip6base-mrr
-    10ge2p1x520-ethip6-ip6scale20k-mrr
-    10ge2p1x520-ethip6-ip6scale200k-mrr
-    10ge2p1x520-ethip6-ip6scale2m-mrr
+    10ge2p1x553-dot1q-ip6base-mrr
+    10ge2p1x553-ethip6-ip6base-mrr
+    10ge2p1x553-ethip6-ip6scale20k-mrr
+    10ge2p1x553-ethip6-ip6scale200k-mrr
+    10ge2p1x553-ethip6-ip6scale2m-mrr
 
 ### 2n-clx-xxv710
 
@@ -551,12 +523,12 @@ See item nr 3 in TODO list.
 ### 3n-dnv-x553
 
 #### 78b-?t?c-srv6-ip6routing-base-ixgbe
-    10ge2p1x520-ethip6ip6-ip6base-srv6enc1sid-mrr
-    10ge2p1x520-ethip6srhip6-ip6base-srv6enc2sids-mrr
-    10ge2p1x520-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
-    10ge2p1x520-ethip6srhip6-ip6base-srv6proxy-dyn-mrr
-    10ge2p1x520-ethip6srhip6-ip6base-srv6proxy-masq-mrr
-    10ge2p1x520-ethip6srhip6-ip6base-srv6proxy-stat-mrr
+    10ge2p1x553-ethip6ip6-ip6base-srv6enc1sid-mrr
+    10ge2p1x553-ethip6srhip6-ip6base-srv6enc2sids-mrr
+    10ge2p1x553-ethip6srhip6-ip6base-srv6enc2sids-nodecaps-mrr
+    10ge2p1x553-ethip6srhip6-ip6base-srv6proxy-dyn-mrr
+    10ge2p1x553-ethip6srhip6-ip6base-srv6proxy-masq-mrr
+    10ge2p1x553-ethip6srhip6-ip6base-srv6proxy-stat-mrr
 
 ## IPv4 Tunnels
 
@@ -571,7 +543,7 @@ See item nr 3 in TODO list.
 ### 3n-hsw-xl710
 
 #### 64b-?t?c-ip4tunnel-base-i40e
-    40ge2p1xl710-ethip4vxlan-l2xcbase-mrr
+    40ge2p1xl710-ethip4vxlan-l2xcbase-mrrjaja
     40ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-mrr
 
 ### 3n-tsh-x520
@@ -585,10 +557,10 @@ See item nr 3 in TODO list.
 ### 3n-dnv-x553
 
 #### 64b-?t?c-ip4tunnel-base-scale-ixgbe
-    10ge2p1x520-ethip4vxlan-l2xcbase-mrr
-    10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-mrr
-    10ge2p1x520-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-mrr
-    10ge2p1x520-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-mrr
+    10ge2p1x553-ethip4vxlan-l2xcbase-mrr
+    10ge2p1x553-ethip4vxlan-l2bdbasemaclrn-mrr
+    10ge2p1x553-dot1q--ethip4vxlan-l2bdscale1l2bd1vlan1vxlan-mrr
+    10ge2p1x553-dot1q--ethip4vxlan-l2bdscale100l2bd100vlan100vxlan-mrr
 
 ## KVM VMs vhost-user
 
@@ -714,11 +686,11 @@ See item nr 3 in TODO list.
 ### 3n-skx-xxv710
 
 #### 64b-?t?c-memif-base-i40e
-    10ge2p1xxv710-eth-l2xcbase-eth-2memif-1lxc-mrr
-    10ge2p1xxv710-eth-l2xcbase-eth-2memif-1dcr-mrr
-    10ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr
-    10ge2p1xxv710-eth-l2bdbasemaclrn-eth-2memif-1lxc-mrr
-    10ge2p1xxv710-ethip4-ip4base-eth-2memif-1dcr-mrr
+    25ge2p1xxv710-eth-l2xcbase-eth-2memif-1lxc-mrr
+    25ge2p1xxv710-eth-l2xcbase-eth-2memif-1dcr-mrr
+    25ge2p1xxv710-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+    25ge2p1xxv710-eth-l2bdbasemaclrn-eth-2memif-1lxc-mrr
+    25ge2p1xxv710-ethip4-ip4base-eth-2memif-1dcr-mrr
 
 ### 3n-tsh-x520
 
@@ -741,7 +713,7 @@ See item nr 3 in TODO list.
 
 ### 3n-skx-xxv710
 
-#### imix-?t?c-ipsec-ip4routing-base-scale-i40e
+#### imix-?t?c-ipsec-ip4routing-base-scale-sw-i40e
     25ge2p1xxv710-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-mrr
     25ge2p1xxv710-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr
     25ge2p1xxv710-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-mrr
@@ -778,12 +750,12 @@ See item nr 3 in TODO list.
 ### 3n-dnv-x553
 
 #### imix-?t?c-ipsec-ip4routing-base-scale-sw-ixgbe
-    10ge2p1x520-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-mrr
-    10ge2p1x520-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr
-    10ge2p1x520-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-mrr
-    10ge2p1x520-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr
-    10ge2p1x520-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-mrr
-    10ge2p1x520-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr
+    10ge2p1x553-ethip4ipsec4tnlsw-ip4base-int-aes256gcm-mrr
+    10ge2p1x553-ethip4ipsec4tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr
+    10ge2p1x553-ethip4ipsec1000tnlsw-ip4base-int-aes256gcm-mrr
+    10ge2p1x553-ethip4ipsec1000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr
+    10ge2p1x553-ethip4ipsec10000tnlsw-ip4base-int-aes256gcm-mrr
+    10ge2p1x553-ethip4ipsec10000tnlsw-ip4base-int-aes128cbc-hmac512sha-mrr
 
 ## Virtual Topology System
 
@@ -797,13 +769,13 @@ See item nr 3 in TODO list.
 ### 3n-hsw-xl710
 
 #### 114b-?t?c-vts-l2switching-base-i40e
+    40ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-mrr
     40ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-mrr
     40ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-mrr
-    40ge2p1xl710-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-mrr
 
 ### 3n-tsh-x520
 
-#### 64b-?t?c-vts-l2switching-base-ixgbe
+#### 114b-?t?c-vts-l2switching-base-ixgbe
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-noacl-2vhostvr1024-1vm-mrr
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermit-2vhostvr1024-1vm-mrr
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-iacldstbase-aclpermitreflect-2vhostvr1024-1vm-mrr
@@ -923,13 +895,13 @@ See item nr 3 in TODO list.
     10ge2p1x710-eth-l2xcbase-testpmd-mrr
     10ge2p1x710-ethip4-ip4base-l3fwd-mrr
 
-### 3n-skx-xl710
+### 3n-hsw-xl710
 
 #### 64b-?t?c-testpmd-l3fwd
     40ge2p1xl710-eth-l2xcbase-testpmd-mrr
     40ge2p1xl710-ethip4-ip4base-l3fwd-mrr
 
-### 3n-skx-x710
+### 3n-hsw-x710
 
 #### 64b-?t?c-testpmd-l3fwd
     10ge2p1x710-eth-l2xcbase-testpmd-mrr
