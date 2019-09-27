@@ -117,7 +117,7 @@ def plot_service_density_reconf_box_name(plot, input_data):
                           replace('2n1l-', ''))
         tst_name = "-".join(tst_name.split("-")[3:-2])
         name = "{nr}. ({samples:02d} run{plural}, packets lost average: " \
-               "{loss:.1f}, {name}".format(
+               "{loss:.1f}) {name}".format(
                     nr=(i + 1),
                     samples=nr_of_samples[i],
                     plural='s' if nr_of_samples[i] > 1 else '',
