@@ -242,6 +242,8 @@ class Alerting(object):
         :rtype: tuple(str, str, int, int, OrderedDict)
         """
 
+        logging.info("Get compressed failed tests for: {test_set}".
+                     format(test_set=test_set))
         directory = self.configs[alert["way"]]["output-dir"]
         failed_tests = OrderedDict()
         file_path = "{0}/{1}.txt".format(directory, test_set)
@@ -282,7 +284,7 @@ class Alerting(object):
         except IOError:
             logging.error("No such file or directory: {file}".
                           format(file=file_path))
-            return None, None, None, None
+            return None, None, None, None, None
         if sort:
             sorted_failed_tests = OrderedDict()
             keys = [k for k in failed_tests.keys()]
@@ -300,6 +302,7 @@ class Alerting(object):
         :type alert: dict
         """
 
+        logging.info("Generating alert: {alert}".format(alert=alert["title"]))
         if alert["type"] != "failed-tests":
             raise AlertingError("Alert of type '{0}' is not implemented.".
                                 format(alert["type"]))
