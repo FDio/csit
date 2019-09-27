@@ -13,23 +13,23 @@ Legend to the tables:
     - **Regressions [#]**: Number of regressions detected.
     - **Progressions [#]**: Number of progressions detected.
 
-3n-hsw
+2n-skx
 ------
 
-VPP worker on 1t1c
+VPP worker on 2t1c
 ``````````````````
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c-3n-hsw.rst
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-2n-skx.rst
 
-VPP worker on 2t2c
+VPP worker on 4t2c
 ``````````````````
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c-3n-hsw.rst
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t2c-2n-skx.rst
 
-VPP worker on 4t4c
+VPP worker on 8t4c
 ``````````````````
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c-3n-hsw.rst
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-8t4c-2n-skx.rst
 
 3n-skx
 ------
@@ -49,23 +49,23 @@ VPP worker on 8t4c
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-8t4c-3n-skx.rst
 
-2n-skx
+3n-hsw
 ------
 
-VPP worker on 2t1c
+VPP worker on 1t1c
 ``````````````````
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-2n-skx.rst
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c-3n-hsw.rst
 
-VPP worker on 4t2c
+VPP worker on 2t2c
 ``````````````````
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t2c-2n-skx.rst
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c-3n-hsw.rst
 
-VPP worker on 8t4c
+VPP worker on 4t4c
 ``````````````````
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-8t4c-2n-skx.rst
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c-3n-hsw.rst
 
 3n-tsh
 ------
@@ -85,6 +85,24 @@ VPP worker on 4t4c
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c-3n-tsh.rst
 
+2n-dnv
+------
+
+VPP worker on 1t1c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c-2n-dnv.rst
+
+VPP worker on 2t2c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c-2n-dnv.rst
+
+VPP worker on 4t4c
+``````````````````
+
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c-2n-dnv.rst
+
 3n-dnv
 ------
 
@@ -103,20 +121,20 @@ VPP worker on 4t4c
 
 .. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c-3n-dnv.rst
 
-2n-dnv
+2n-clx
 ------
 
-VPP worker on 1t1c
+VPP worker on 2t1c
 ``````````````````
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-1t1c-2n-dnv.rst
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t1c-2n-clx.rst
 
-VPP worker on 2t2c
+VPP worker on 4t2c
 ``````````````````
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-2t2c-2n-dnv.rst
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t2c-2n-clx.rst
 
-VPP worker on 4t4c
+VPP worker on 8t4c
 ``````````````````
 
-.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-4t4c-2n-dnv.rst
+.. include:: ../../../_build/_static/vpp/performance-trending-dashboard-8t4c-2n-clx.rst
