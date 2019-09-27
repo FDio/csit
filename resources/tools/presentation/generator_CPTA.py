@@ -338,8 +338,14 @@ def _generate_all_charts(spec, input_data):
         # Transform the data
         logs.append(("INFO", "    Creating the data set for the {0} '{1}'.".
                      format(graph.get("type", ""), graph.get("title", ""))))
-        data = input_data.filter_data(graph, continue_on_error=True)
-        if data is None:
+
+        if graph.get("include", None):
+            data = input_data.filter_tests_by_name(graph,
+                                                   continue_on_error=True)
+        else:
+            data = input_data.filter_data(graph, continue_on_error=True)
+
+        if data is None or data.empty:
             logging.error("No data.")
             return
 
@@ -480,7 +486,7 @@ def _generate_all_charts(spec, input_data):
                     )
                 ])
 
-            name_file = "{0}-{1}{2}".format(spec.cpta["output-file"],
+            name_file = "{0}/{1}{2}".format(spec.cpta["output-file"],
                                             graph["output-file-name"],
                                             spec.cpta["output-file-type"])
 
