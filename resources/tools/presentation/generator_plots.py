@@ -127,9 +127,7 @@ def plot_service_density_reconf_box_name(plot, input_data):
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=[y if y else None for y in df[col]],
                                name=name,
-                               hoverinfo="x+y",
-                               boxpoints="outliers",
-                               whiskerwidth=0))
+                               hoverinfo="y+name"))
     try:
         # Create plot
         layout = deepcopy(plot["layout"])
@@ -226,9 +224,7 @@ def plot_performance_box_name(plot, input_data):
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=[y / 1000000 if y else None for y in df[col]],
                                name=name,
-                               hoverinfo="x+y",
-                               boxpoints="outliers",
-                               whiskerwidth=0))
+                               hoverinfo="y+name"))
         try:
             val_max = max(df[col])
         except ValueError as err:

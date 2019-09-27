@@ -1030,6 +1030,8 @@
           size: 16
       width: 700
       height: 900
+      hoverlabel:
+        namelength: -1
 
     plot-service-density:
       titlefont:
@@ -1054,10 +1056,13 @@
         ticklen: 0
         tickwidth: 0
         zeroline: False
-      autosize: True
       showlegend: False
+      paper_bgcolor: "#fff"
+      plot_bgcolor: "#fff"
       width: 700
       height: 700
+      hoverlabel:
+        namelength: -1
 
     plot-cps:
       titlefont:
@@ -1111,6 +1116,8 @@
           size: 16
       width: 700
       height: 800
+      hoverlabel:
+        namelength: -1
 
     plot-rps:
       titlefont:
@@ -1164,6 +1171,8 @@
           size: 16
       width: 700
       height: 800
+      hoverlabel:
+        namelength: -1
 
     plot-throughput:
       titlefont:
@@ -1202,8 +1211,6 @@
           size: 16
         zeroline: False
         range: [0,50]
-      boxmode: "group"
-      boxgroupgap: 0.5
       autosize: False
       margin:
         t: 50
@@ -1217,6 +1224,8 @@
           size: 16
       width: 700
       height: 900
+      hoverlabel:
+        namelength: -1
 
     plot-throughput-speedup-analysis:
       titlefont:
@@ -1771,8 +1780,8 @@
   format:
     html:
     - full
-    pdf:
-    - minimal
+#    pdf:
+#    - minimal
 
 ################################################################################
 ###                               T A B L E S                                ###
@@ -4676,7 +4685,7 @@
   - "result"
   - "name"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "y+name"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4696,7 +4705,7 @@
   - "result"
   - "name"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "y+name"
     boxpoints: "outliers"
     whiskerwidth: 0
   layout:
@@ -4726,7 +4735,7 @@
     - "L2XCBASE"
     - "L2PATCH"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "y+name"
     boxpoints: "all"
     whiskerwidth: 0
   layout:
@@ -4753,7 +4762,7 @@
     - "IP4FWD"
     - "IP6FWD"
   traces:
-    hoverinfo: "x+y"
+    hoverinfo: "y+name"
     boxpoints: "all"
     whiskerwidth: 0
   layout:
