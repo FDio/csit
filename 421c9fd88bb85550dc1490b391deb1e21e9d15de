@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "67cef15d_f67b68e4",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-27T17:17:50Z",
+      "side": 1,
+      "message": "node.get(\u0027type\u0027)",
+      "range": {
+        "startLine": 91,
+        "startChar": 13,
+        "endLine": 91,
+        "endChar": 25
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5bcfd3b8_3c52b21a",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-27T17:17:50Z",
+      "side": 1,
+      "message": "no way doing it like this. it needs to be reinitialized.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 74
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7426f084_52a3c9b1",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-27T17:17:50Z",
+      "side": 1,
+      "message": "wrong name of function (it should be initialized or something like that)",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 43
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0a96da90_39e3909e",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-27T17:17:50Z",
+      "side": 1,
+      "message": "i do not understand this",
+      "range": {
+        "startLine": 152,
+        "startChar": 1,
+        "endLine": 156,
+        "endChar": 29
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "698daaf6_21d689a4",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-27T17:17:50Z",
+      "side": 1,
+      "message": "driver cannot be none logically. It is always something and the something is defined in topology file",
+      "range": {
+        "startLine": 183,
+        "startChar": 1,
+        "endLine": 183,
+        "endChar": 32
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "da7b1872_12efed0e",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-27T17:17:50Z",
+      "side": 1,
+      "message": "i want to keep both frames and percentage in driver (PLR/MLR can be added later but driver should support it)",
+      "range": {
+        "startLine": 297,
+        "startChar": 1,
+        "endLine": 298,
+        "endChar": 48
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d222adba_1934bbe8",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-27T17:17:50Z",
+      "side": 1,
+      "message": "Use original way to kill it.",
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2680b8e8_0b5cb20a",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-09-27T17:17:50Z",
+      "side": 1,
+      "message": "remove, pointless, must be part of topology.py",
+      "range": {
+        "startLine": 920,
+        "startChar": 0,
+        "endLine": 961,
+        "endChar": 72
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
