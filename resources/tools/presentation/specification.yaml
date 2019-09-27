@@ -1054,8 +1054,10 @@
         ticklen: 0
         tickwidth: 0
         zeroline: False
-      autosize: True
+#      autosize: True
       showlegend: False
+      paper_bgcolor: "#fff"
+      plot_bgcolor: "#fff"
       width: 700
       height: 700
 
@@ -1202,8 +1204,8 @@
           size: 16
         zeroline: False
         range: [0,50]
-      boxmode: "group"
-      boxgroupgap: 0.5
+#      boxmode: "group"
+#      boxgroupgap: 0.5
       autosize: False
       margin:
         t: 50

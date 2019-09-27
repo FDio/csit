@@ -124,10 +124,14 @@ def plot_service_density_reconf_box_name(plot, input_data):
                     name=tst_name,
                     loss=mean(loss[col]))
 
+        hovertext = ("packets lost average: {loss:.1f}\n"
+                     "packets lost stdev: {stdev:.1f}".
+                     format(loss=mean(loss[col]), stdev=stdev(loss[col])))
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=[y if y else None for y in df[col]],
                                name=name,
-                               hoverinfo="x+y",
+                               hovertext=hovertext,
+                               hoverinfo="x+y+text+name",
                                boxpoints="outliers",
                                whiskerwidth=0))
     try:
@@ -227,8 +231,7 @@ def plot_performance_box_name(plot, input_data):
                                y=[y / 1000000 if y else None for y in df[col]],
                                name=name,
                                hoverinfo="x+y",
-                               boxpoints="outliers",
-                               whiskerwidth=0))
+                               whiskerwidth=0.5)) # Default
         try:
             val_max = max(df[col])
         except ValueError as err:
