@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bee27af0_93d60c2f",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-27T14:35:04Z",
+      "side": 1,
+      "message": "It can give false positive e.g. in case of docker nodes where the host value is set to ip address of the host system so different nodes will be treated as the same node. We should compare node[\u0027port\u0027] values too.",
+      "range": {
+        "startLine": 501,
+        "startChar": 37,
+        "endLine": 501,
+        "endChar": 11
+      },
+      "revId": "a73982f151c3e56c811ce7d288206e6289763a2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
