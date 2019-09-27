@@ -188,7 +188,7 @@
     # 3n-hsw
     plot-performance-trending-all-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 780
+        start: 890  # 780
         end: "lastCompletedBuild"
         skip:
           - 781
@@ -236,7 +236,7 @@
 
     plot-performance-trending-vpp-3n-hsw:
       csit-vpp-perf-mrr-daily-master:
-        start: 780
+        start: 890  # 780
         end: "lastCompletedBuild"
         skip:
           - 781
@@ -287,7 +287,7 @@
     # 3n-skx
     plot-performance-trending-all-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 530
+        start: 635  # 530
         end: "lastCompletedBuild"
         skip:
           - 531
@@ -340,7 +340,7 @@
 
     plot-performance-trending-vpp-3n-skx:
       csit-vpp-perf-mrr-daily-master-3n-skx:
-        start: 530
+        start: 635  # 530
         end: "lastCompletedBuild"
         skip:
           - 531
@@ -396,7 +396,7 @@
     # 2n-skx
     plot-performance-trending-all-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 530
+        start: 635  # 530
         end: "lastCompletedBuild"
         skip:
           - 532
@@ -435,7 +435,7 @@
 
     plot-performance-trending-vpp-2n-skx:
       csit-vpp-perf-mrr-daily-master-2n-skx:
-        start: 530
+        start: 635  # 530
         end: "lastCompletedBuild"
         skip:
           - 532
@@ -485,7 +485,7 @@
     # 3n-tsh
     plot-performance-trending-all-3n-tsh:
       csit-vpp-perf-mrr-daily-master-3n-tsh:
-        start: 55
+        start: 80  # 55
         end: "lastCompletedBuild"
         skip:
           - 61
@@ -504,7 +504,7 @@
 
     plot-performance-trending-vpp-3n-tsh:
       csit-vpp-perf-mrr-daily-master-3n-tsh:
-        start: 55
+        start: 80  # 55
         end: "lastCompletedBuild"
         skip:
           - 61
@@ -523,7 +523,7 @@
 
     plot-performance-trending-vpp-3n-dnv:
       csit-vpp-perf-mrr-daily-master-3n-dnv:
-        start: 41
+        start: 120  # 41
         end: "lastCompletedBuild"
         skip:
           - 46
@@ -565,7 +565,7 @@
 
     plot-performance-trending-vpp-2n-dnv:
       csit-vpp-perf-mrr-daily-master-2n-dnv:
-        start: 41
+        start: 120  # 41
         end: "lastCompletedBuild"
         skip:
           - 46
@@ -696,7 +696,7 @@
 
     # 3n-hsw
     csit-vpp-perf-mrr-daily-master:
-      start: 780
+      start: 890  # 780
       end: "lastCompletedBuild"
       skip:
         - 781
@@ -744,7 +744,7 @@
 
     # 3n-skx
     csit-vpp-perf-mrr-daily-master-3n-skx:
-      start: 530
+      start: 635  # 530
       end: "lastCompletedBuild"
       skip:
         - 531
@@ -797,7 +797,7 @@
 
     # 2n-skx
     csit-vpp-perf-mrr-daily-master-2n-skx:
-      start: 530
+      start: 635  # 530
       end: "lastCompletedBuild"
       skip:
         - 532
@@ -842,7 +842,7 @@
 
     # 3n-tsh
     csit-vpp-perf-mrr-daily-master-3n-tsh:
-      start: 55
+      start: 80  # 55
       end: "lastCompletedBuild"
       skip:
         - 61
@@ -861,7 +861,7 @@
 
     # 3n-dnv
     csit-vpp-perf-mrr-daily-master-3n-dnv:
-      start: 41
+      start: 120  # 41
       end: "lastCompletedBuild"
       skip:
         - 46
@@ -903,7 +903,7 @@
 
     # 2n-dnv
     csit-vpp-perf-mrr-daily-master-2n-dnv:
-      start: 41
+      start: 120  # 41
       end: "lastCompletedBuild"
       skip:
         - 46
@@ -1645,9 +1645,19 @@
   type: "cpta"
   title: "Continuous Performance Trending and Analysis"
   output-file-type: ".html"
-  output-file: "{DIR[STATIC,VPP]}/cpta"
+  output-file: "{DIR[STATIC,VPP]}"
 
   plots:
+
+#    - title: "3n-hsw-x520-l2sw-64b-base-scale-1t1c"
+#      output-file-name: "l2-1t1c-x520-3n-hsw"
+#      data: "plot-performance-trending-vpp-3n-hsw"
+#      include:
+#        - "Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Bdbasemaclrn-Mrr.64B-1t1c-eth-l2bdbasemaclrn-mrr"
+#        - "Tests.Vpp.Perf.L2.10Ge2P1X520-Eth-L2Xcbase-Mrr.64B-1t1c-eth-l2xcbase-mrr"
+#      parameters:
+#      - "result"
+#      layout: "plot-cpta"
 
 ################################################################################
 # NFV
