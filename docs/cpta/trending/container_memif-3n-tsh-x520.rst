@@ -1,17 +1,24 @@
-3n-tsh-x520-64b-base-scale
---------------------------
+64b-memif-base-i40e
+-------------------
+
+..
+    10ge2p1x520-eth-l2xcbase-eth-2memif-1lxc-mrr
+    10ge2p1x520-eth-l2xcbase-eth-2memif-1dcr-mrr
+    10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr
+    10ge2p1x520-eth-l2bdbasemaclrn-eth-2memif-1lxc-mrr
+    10ge2p1x520-ethip4-ip4base-eth-2memif-1dcr-mrr
 
 1t1c
 ````
 
 .. raw:: html
 
-    <a name="x520-64b-1t1c-base-scale"></a>
+    <a name="xxv710-64b-1t1c-base"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-tsh" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-1t1c-x520-3n-tsh.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/3n-tsh-xxv710-64b-1t1c-container-memif-l2.html"></iframe>
     <p><br></p>
     </center>
 
@@ -20,12 +27,12 @@
 
 .. raw:: html
 
-    <a name="x520-64b-2t2c-base-scale"></a>
+    <a name="xxv710-64b-2t2c-base"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-tsh" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-2t2c-x520-3n-tsh.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/3n-tsh-xxv710-64b-2t2c-container-memif-l2.html"></iframe>
     <p><br></p>
     </center>
 
@@ -34,11 +41,11 @@
 
 .. raw:: html
 
-    <a name="x520-64b-4t4c-base-scale"></a>
+    <a name="xxv710-64b-4t4c-base"></a>
     <center>
     Links to builds:
     <a href="https://packagecloud.io/app/fdio/master/search?dist=ubuntu%2Fbionic" target="_blank">vpp-ref</a>,
     <a href="https://jenkins.fd.io/view/csit/job/csit-vpp-perf-mrr-daily-master-3n-tsh" target="_blank">csit-ref</a>
-    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/cpta-ip4-4t4c-x520-3n-tsh.html"></iframe>
+    <iframe width="1100" height="800" frameborder="0" scrolling="no" src="../_static/vpp/3n-tsh-xxv710-64b-4t4c-container-memif-l2.html"></iframe>
     <p><br></p>
     </center>
