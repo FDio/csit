@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "942ce27c_06636aa2",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 56
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-30T11:42:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81ae13ff_5f7242f4",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 260,
+        "endChar": 7
+      },
+      "revId": "08f6b936d6006e7f6efa9db3aad5c534070c5fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a76fff61_bb30542a",
         "filename": "resources/libraries/python/Classify.py",
         "patchSetId": 56
@@ -36,6 +60,30 @@
       "writtenOn": "2019-09-27T14:30:27Z",
       "side": 1,
       "message": "Can we have a function for the 400-404 block? I see it used again at 476-480.",
+      "range": {
+        "startLine": 400,
+        "startChar": 8,
+        "endLine": 400,
+        "endChar": 10
+      },
+      "revId": "08f6b936d6006e7f6efa9db3aad5c534070c5fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d19d32da_2871794d",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 56
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-30T11:42:21Z",
+      "side": 1,
+      "message": "I don\u0027t think it\u0027s worth to create special function to check some of input parameters of two specific methods.\n\nIn fact, there\u0027s a high degree of similarity of \"vpp_creates_classify_table_l3\" and \"vpp_configures_classify_s\" methods but unification to one common function would lead to difficult-to-read code.",
+      "parentUuid": "a76fff61_bb30542a",
       "range": {
         "startLine": 400,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ca69cc62_6e3ab50e",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 56
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-30T11:42:21Z",
+      "side": 1,
+      "message": "Yes, it is. It works as expected and tox/pylint not complaining about wrong indentation too.",
+      "parentUuid": "440a1a8d_7660bfbf",
+      "range": {
+        "startLine": 149,
+        "startChar": 12,
+        "endLine": 149,
+        "endChar": 14
+      },
+      "revId": "08f6b936d6006e7f6efa9db3aad5c534070c5fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eea232d2_2314b77a",
         "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-ipolicemarkbase-dev.robot",
         "patchSetId": 56
@@ -82,6 +154,30 @@
       "writtenOn": "2019-09-27T14:30:27Z",
       "side": 1,
       "message": "Already done by teardown, no?\nAlso applies to the two following suites.",
+      "range": {
+        "startLine": 72,
+        "startChar": 4,
+        "endLine": 72,
+        "endChar": 36
+      },
+      "revId": "08f6b936d6006e7f6efa9db3aad5c534070c5fce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5c8dad6_25b40c2d",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-ipolicemarkbase-dev.robot",
+        "patchSetId": 56
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-09-30T11:42:21Z",
+      "side": 1,
+      "message": "Not really as the teardown will log the classify tables only if test case failed and this line of test is not reached.\n\nAnyway, this log of classify table is just temporary solution until there is implemented check of number of hits for the corresponding classify session when the traffic has passed.\n\nThe reason to check number of hits of classify session after passing the traffic is to clearly verify that expected classify table and session settings work correctly as there are false positive results possible when only packet delivery is checked - see e.g. here: https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-vpp-device-master-ubuntu1804-1n-skx/3736/archives/log.html.gz#s1-s1-s1-s4-s4-t1-k2-k11 (note hits 0 is session 0 of table 0)",
+      "parentUuid": "eea232d2_2314b77a",
       "range": {
         "startLine": 72,
         "startChar": 4,
