@@ -16,6 +16,7 @@
 import json
 import sys
 
+from resources.libraries.python import jumpavg
 from jumpavg.BitCountingGroup import BitCountingGroup
 from jumpavg.BitCountingGroupList import BitCountingGroupList
 from jumpavg.BitCountingMetadataFactory import BitCountingMetadataFactory
