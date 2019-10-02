@@ -19,6 +19,10 @@ import logging
 import csv
 import re
 
+import plotly.graph_objects as go
+import plotly.offline as ploff
+import pandas as pd
+
 from string import replace
 from collections import OrderedDict
 from numpy import nan, isnan
@@ -250,6 +254,97 @@ def _tpc_sort_table(table):
     return table
 
 
+def _tpc_genarate_html_table(data, output_file_name):
+    """Generate html table from input data with simple sorting possibility.
+
+    :param data: Input data to be included in the table. It is a list of lists.
+        Inner lists are rows in the table. The first list is the table header.
+        All inner lists must be of the same length.
+    :param output_file_name: The name (relative or full path) where the
+        generated html table is written.
+    :type data: list of lists
+    :type output_file_name: str
+    """
+
+    headers = data[0]
+    df = pd.DataFrame(data[1:], columns=headers)
+
+    df_sorted = [df.sort_values(
+        by=[key, headers[0]], ascending=[True, True]
+        if key != headers[0] else [False, True]) for key in headers]
+    df_sorted_rev = [df.sort_values(
+        by=[key, headers[0]], ascending=[False, True]
+        if key != headers[0] else [True, True]) for key in headers]
+    df_sorted.extend(df_sorted_rev)
+
+    fill_color = [["#d4e4f7" if idx % 2 else "#e9f1fb"
+                   for idx in range(len(df))]]
+    header = dict(
+        values=["<b>{item}</b>".format(item=item) for item in headers],
+        fill_color="#7eade7",
+        align=["left", "center"]
+    )
+
+    fig = go.Figure()
+
+    for table in df_sorted:
+        columns = [table.get(col) for col in headers]
+        fig.add_trace(
+            go.Table(
+                columnwidth = [30, 10],
+                header=header,
+                cells=dict(
+                    values=columns,
+                    fill_color=fill_color,
+                    align=["left", "right"]
+                )
+            )
+        )
+
+    buttons = list()
+    menu_items = ["<b>{0}</b> (ascending)".format(itm) for itm in headers]
+    menu_items_rev = ["<b>{0}</b> (descending)".format(itm) for itm in headers]
+    menu_items.extend(menu_items_rev)
+    for idx, hdr in enumerate(menu_items):
+        visible = [False, ] * len(menu_items)
+        visible[idx] = True
+        buttons.append(
+            dict(
+                label=hdr.replace(" [Mpps]", ""),
+                method="update",
+                args=[{"visible": visible}],
+            )
+        )
+
+    fig.update_layout(
+        updatemenus=[
+            go.layout.Updatemenu(
+                type="dropdown",
+                direction="down",
+                x=0.03,
+                xanchor="left",
+                y=1.045,
+                yanchor="top",
+                active=len(menu_items) - 1,
+                buttons=list(buttons)
+            )
+        ],
+        annotations=[
+            go.layout.Annotation(
+                text="<b>Sort by:</b>",
+                x=0,
+                xref="paper",
+                y=1.035,
+                yref="paper",
+                align="left",
+                showarrow=False
+            )
+        ]
+    )
+
+    ploff.plot(fig, show_link=False, auto_open=False, filename=output_file_name)
+
+
 def table_performance_comparison(table, input_data):
     """Generate the table(s) with algorithm: table_performance_comparison
     specified in the specification file.
@@ -297,6 +392,7 @@ def table_performance_comparison(table, input_data):
 
     # Prepare data to the table:
     tbl_dict = dict()
+    topo = ""
     for job, builds in table["reference"]["data"].items():
         topo = "2n-skx" if "2n-skx" in job else ""
         for build in builds:
@@ -476,6 +572,9 @@ def table_performance_comparison(table, input_data):
                 "    in slightly lower throughput in CSIT-1908 for these "
                 "tests. See release notes."
             ])
+
+    # Generate html table:
+    _tpc_genarate_html_table(tbl_lst, "{0}.html".format(table["output-file"]))
 
 
 def table_performance_comparison_nic(table, input_data):
