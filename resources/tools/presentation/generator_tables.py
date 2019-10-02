@@ -19,6 +19,10 @@ import logging
 import csv
 import re
 
+import plotly.graph_objects as go
+import plotly.offline as ploff
+import pandas as pd
+
 from string import replace
 from collections import OrderedDict
 from numpy import nan, isnan
@@ -250,6 +254,99 @@ def _tpc_sort_table(table):
     return table
 
 
+def _tpc_generate_html_table(header, data, output_file_name):
+    """Generate html table from input data with simple sorting possibility.
+
+    :param header: Table header.
+    :param data: Input data to be included in the table. It is a list of lists.
+        Inner lists are rows in the table. All inner lists must be of the same
+        length. The length of these lists must be the same as the length of the
+        header.
+    :param output_file_name: The name (relative or full path) where the
+        generated html table is written.
+    :type header: list
+    :type data: list of lists
+    :type output_file_name: str
+    """
+
+    df = pd.DataFrame(data, columns=header)
+
+    df_sorted = [df.sort_values(
+        by=[key, header[0]], ascending=[True, True]
+        if key != header[0] else [False, True]) for key in header]
+    df_sorted_rev = [df.sort_values(
+        by=[key, header[0]], ascending=[False, True]
+        if key != header[0] else [True, True]) for key in header]
+    df_sorted.extend(df_sorted_rev)
+
+    fill_color = [["#d4e4f7" if idx % 2 else "#e9f1fb"
+                   for idx in range(len(df))]]
+    table_header = dict(
+        values=["<b>{item}</b>".format(item=item) for item in header],
+        fill_color="#7eade7",
+        align=["left", "center"]
+    )
+
+    fig = go.Figure()
+
+    for table in df_sorted:
+        columns = [table.get(col) for col in header]
+        fig.add_trace(
+            go.Table(
+                columnwidth=[30, 10],
+                header=table_header,
+                cells=dict(
+                    values=columns,
+                    fill_color=fill_color,
+                    align=["left", "right"]
+                )
+            )
+        )
+
+    buttons = list()
+    menu_items = ["<b>{0}</b> (ascending)".format(itm) for itm in header]
+    menu_items_rev = ["<b>{0}</b> (descending)".format(itm) for itm in header]
+    menu_items.extend(menu_items_rev)
+    for idx, hdr in enumerate(menu_items):
+        visible = [False, ] * len(menu_items)
+        visible[idx] = True
+        buttons.append(
+            dict(
+                label=hdr.replace(" [Mpps]", ""),
+                method="update",
+                args=[{"visible": visible}],
+            )
+        )
+
+    fig.update_layout(
+        updatemenus=[
+            go.layout.Updatemenu(
+                type="dropdown",
+                direction="down",
+                x=0.03,
+                xanchor="left",
+                y=1.045,
+                yanchor="top",
+                active=len(menu_items) - 1,
+                buttons=list(buttons)
+            )
+        ],
+        annotations=[
+            go.layout.Annotation(
+                text="<b>Sort by:</b>",
+                x=0,
+                xref="paper",
+                y=1.035,
+                yref="paper",
+                align="left",
+                showarrow=False
+            )
+        ]
+    )
+
+    ploff.plot(fig, show_link=False, auto_open=False, filename=output_file_name)
+
+
 def table_performance_comparison(table, input_data):
     """Generate the table(s) with algorithm: table_performance_comparison
     specified in the specification file.
@@ -297,6 +394,7 @@ def table_performance_comparison(table, input_data):
 
     # Prepare data to the table:
     tbl_dict = dict()
+    topo = ""
     for job, builds in table["reference"]["data"].items():
         topo = "2n-skx" if "2n-skx" in job else ""
         for build in builds:
@@ -380,16 +478,16 @@ def table_performance_comparison(table, input_data):
                             continue
                         if tbl_dict[tst_name_mod].get("history", None) is None:
                             tbl_dict[tst_name_mod]["history"] = OrderedDict()
-                        if tbl_dict[tst_name_mod]["history"].get(item["title"],
-                                                             None) is None:
+                        if tbl_dict[tst_name_mod]["history"].\
+                                get(item["title"], None) is None:
                             tbl_dict[tst_name_mod]["history"][item["title"]] = \
                                 list()
                         try:
                             # TODO: Re-work when NDRPDRDISC tests are not used
                             if table["include-tests"] == "MRR":
-                                tbl_dict[tst_name_mod]["history"][item["title"
-                                ]].append(tst_data["result"]["receive-rate"].
-                                          avg)
+                                tbl_dict[tst_name_mod]["history"][item[
+                                    "title"]].append(tst_data["result"][
+                                        "receive-rate"].avg)
                             elif table["include-tests"] == "PDR":
                                 if tst_data["type"] == "PDR":
                                     tbl_dict[tst_name_mod]["history"][
@@ -398,7 +496,7 @@ def table_performance_comparison(table, input_data):
                                 elif tst_data["type"] == "NDRPDR":
                                     tbl_dict[tst_name_mod]["history"][item[
                                         "title"]].append(tst_data["throughput"][
-                                        "PDR"]["LOWER"])
+                                            "PDR"]["LOWER"])
                             elif table["include-tests"] == "NDR":
                                 if tst_data["type"] == "NDR":
                                     tbl_dict[tst_name_mod]["history"][
@@ -407,7 +505,7 @@ def table_performance_comparison(table, input_data):
                                 elif tst_data["type"] == "NDRPDR":
                                     tbl_dict[tst_name_mod]["history"][item[
                                         "title"]].append(tst_data["throughput"][
-                                        "NDR"]["LOWER"])
+                                            "NDR"]["LOWER"])
                             else:
                                 continue
                         except (TypeError, KeyError):
@@ -477,6 +575,10 @@ def table_performance_comparison(table, input_data):
                 "tests. See release notes."
             ])
 
+    # Generate html table:
+    _tpc_generate_html_table(header, tbl_lst,
+                             "{0}.html".format(table["output-file"]))
+
 
 def table_performance_comparison_nic(table, input_data):
     """Generate the table(s) with algorithm: table_performance_comparison
@@ -525,6 +627,7 @@ def table_performance_comparison_nic(table, input_data):
 
     # Prepare data to the table:
     tbl_dict = dict()
+    topo = ""
     for job, builds in table["reference"]["data"].items():
         topo = "2n-skx" if "2n-skx" in job else ""
         for build in builds:
@@ -612,16 +715,16 @@ def table_performance_comparison_nic(table, input_data):
                             continue
                         if tbl_dict[tst_name_mod].get("history", None) is None:
                             tbl_dict[tst_name_mod]["history"] = OrderedDict()
-                        if tbl_dict[tst_name_mod]["history"].get(item["title"],
-                                                             None) is None:
+                        if tbl_dict[tst_name_mod]["history"].\
+                                get(item["title"], None) is None:
                             tbl_dict[tst_name_mod]["history"][item["title"]] = \
                                 list()
                         try:
                             # TODO: Re-work when NDRPDRDISC tests are not used
                             if table["include-tests"] == "MRR":
-                                tbl_dict[tst_name_mod]["history"][item["title"
-                                ]].append(tst_data["result"]["receive-rate"].
-                                          avg)
+                                tbl_dict[tst_name_mod]["history"][item[
+                                    "title"]].append(tst_data["result"][
+                                        "receive-rate"].avg)
                             elif table["include-tests"] == "PDR":
                                 if tst_data["type"] == "PDR":
                                     tbl_dict[tst_name_mod]["history"][
@@ -630,7 +733,7 @@ def table_performance_comparison_nic(table, input_data):
                                 elif tst_data["type"] == "NDRPDR":
                                     tbl_dict[tst_name_mod]["history"][item[
                                         "title"]].append(tst_data["throughput"][
-                                        "PDR"]["LOWER"])
+                                            "PDR"]["LOWER"])
                             elif table["include-tests"] == "NDR":
                                 if tst_data["type"] == "NDR":
                                     tbl_dict[tst_name_mod]["history"][
@@ -639,7 +742,7 @@ def table_performance_comparison_nic(table, input_data):
                                 elif tst_data["type"] == "NDRPDR":
                                     tbl_dict[tst_name_mod]["history"][item[
                                         "title"]].append(tst_data["throughput"][
-                                        "NDR"]["LOWER"])
+                                            "NDR"]["LOWER"])
                             else:
                                 continue
                         except (TypeError, KeyError):
@@ -708,6 +811,10 @@ def table_performance_comparison_nic(table, input_data):
                 "    in slightly lower throughput in CSIT-1908 for these "
                 "tests. See release notes."
             ])
+
+    # Generate html table:
+    _tpc_generate_html_table(header, tbl_lst,
+                             "{0}.html".format(table["output-file"]))
 
 
 def table_nics_comparison(table, input_data):
@@ -818,6 +925,10 @@ def table_nics_comparison(table, input_data):
             file_handler.write(",".join([str(item) for item in test]) + "\n")
 
     convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
+
+    # Generate html table:
+    _tpc_generate_html_table(header, tbl_lst,
+                             "{0}.html".format(table["output-file"]))
 
 
 def table_soak_vs_ndr(table, input_data):
@@ -942,6 +1053,10 @@ def table_soak_vs_ndr(table, input_data):
 
     convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
 
+    # Generate html table:
+    _tpc_generate_html_table(header, tbl_lst,
+                             "{0}.html".format(table["output-file"]))
+
 
 def table_performance_trending_dashboard(table, input_data):
     """Generate the table(s) with algorithm:
@@ -1028,9 +1143,8 @@ def table_performance_trending_dashboard(table, input_data):
         if classification_lst:
             if isnan(rel_change_last) and isnan(rel_change_long):
                 continue
-            if (isnan(last_avg) or
-                isnan(rel_change_last) or
-                isnan(rel_change_long)):
+            if isnan(last_avg) or isnan(rel_change_last) or \
+                    isnan(rel_change_long):
                 continue
             tbl_lst.append(
                 [tbl_dict[tst_name]["name"],
@@ -1417,6 +1531,9 @@ def table_failed_tests(table, input_data):
     tbl_lst = list()
     for tst_data in tbl_dict.values():
         fails_nr = 0
+        fails_last_date = ""
+        fails_last_vpp = ""
+        fails_last_csit = ""
         for val in tst_data["data"].values():
             if val[0] == "FAIL":
                 fails_nr += 1
