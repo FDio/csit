@@ -45,6 +45,29 @@
       "revId": "5fb5dc5402bc1e150b027e68dcc69617964f9263",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e79c7363_dcde88a7",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-02T05:44:29Z",
+      "side": 1,
+      "message": "CRC check...\n(looks better and read better)",
+      "range": {
+        "startLine": 278,
+        "startChar": 17,
+        "endLine": 278,
+        "endChar": 26
+      },
+      "revId": "5fb5dc5402bc1e150b027e68dcc69617964f9263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
