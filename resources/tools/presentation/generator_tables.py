@@ -1327,14 +1327,22 @@ def table_last_failed_tests(table, input_data):
                 return
             tbl_list.append(build)
             tbl_list.append(version)
+            failed_tests = list()
+            passed = 0
+            failed = 0
             for tst_name, tst_data in data[job][build].iteritems():
                 if tst_data["status"] != "FAIL":
+                    passed += 1
                     continue
+                failed += 1
                 groups = re.search(REGEX_NIC, tst_data["parent"])
                 if not groups:
                     continue
                 nic = groups.group(0)
-                tbl_list.append("{0}-{1}".format(nic, tst_data["name"]))
+                failed_tests.append("{0}-{1}".format(nic, tst_data["name"]))
+            tbl_list.append(str(passed))
+            tbl_list.append(str(failed))
+            tbl_list.extend(failed_tests)
 
     file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
     logging.info("    Writing file: '{0}'".format(file_name))
