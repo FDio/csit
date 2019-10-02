@@ -147,6 +147,7 @@
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
 
     # 3n-skx
 
@@ -374,6 +375,7 @@
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
     vpp-performance-changes-3n-hsw:
       - "vpp-performance-changes-3n-hsw-h1"
       - "vpp-performance-changes-3n-hsw-ref"
@@ -521,6 +523,7 @@
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
         - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
     vpp-compare-testbeds-cmp:
       csit-vpp-perf-verify-1908_1-3n-skx:
         - 3   # NDRPDR sel
@@ -1034,6 +1037,7 @@
       - 10  # NDRPDR sel
       - 11  # NDRPDR sel
       - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
 
     csit-vpp-perf-verify-1901-3n-skx:
       - 32  # MRR sel
