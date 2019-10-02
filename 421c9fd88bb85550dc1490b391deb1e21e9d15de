@@ -284,6 +284,30 @@
     },
     {
       "key": {
+        "uuid": "7b1284f4_5d7b8ce5",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-02T13:51:56Z",
+      "side": 1,
+      "message": "And that is exactly why someone who is doing this refactor should first describe in rst/svg and discuss instead of coding first.\n\n- Currently the problem is that TREX subtype is misused for WRK as well as WRK is a TG subtype so we have problem to solve first. \n- WRK should use this class for proper init and deinit to avoid conflict with TREX. (containerized approach?)\n- Why WRK cannot use MRR? it is same problem domain. Run maximum load of HTTP blah blah. Give RAW results.\n\nThe above is the example how we can use modular approach and why i wanted to use all units (eg. Percentage, PPS, TPS, RPS, etc). This way we can fully abstract measurement and depends on Tg.subtype use proper parser for output.\n\nOriginal design of this class/driver assumed that driver (shell/python remote/local script) will listen to same subset of commands (run, stop, give results, configure profile) while controling HW/SW TGs of various vendors. If the output is given in same way we can extract info from measurement and use particular logic. So having not only RobotKW for TRex but also for WRK in same way. \n\nBenefits are clear having same KW for getting VPP statistics during measurement while low level TG code is abstracted.\n\n| Do we want to unify API for software generators, throwing NotImplementedError if user calls a method not supported by a particular tg_driver?\n\nyes\n\n| How should users specify which tg_driver to use, so that TRex vs WRK is decided in suite, but TRex vs Ixia is decided in topology?\n\nWe need to design first ;). There are multiple ways in my head but we should start drawing vs coding.\nEg. define Tg.subtype\u003dSW making particular RF keyword to decide which to chose, or we can pick base on traffic profile or suite variable etc.",
+      "parentUuid": "0474ea4b_56d084e6",
+      "range": {
+        "startLine": 183,
+        "startChar": 1,
+        "endLine": 183,
+        "endChar": 32
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da7b1872_12efed0e",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 10
