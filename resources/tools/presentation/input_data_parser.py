@@ -283,7 +283,7 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_VERSION_DPDK = re.compile(r"(DPDK version:\s*|DPDK Version:\s*)(.*)")
 
-    REGEX_TCP = re.compile(r'Total\s(rps|cps|throughput):\s([0-9]*).*$')
+    REGEX_TCP = re.compile(r'Total\s(rps|cps|throughput):\s(\d*).*$')
 
     REGEX_MRR = re.compile(r'MaxReceivedRate_Results\s\[pkts/(\d*)sec\]:\s'
                            r'tx\s(\d*),\srx\s(\d*)')
@@ -292,7 +292,7 @@ class ExecutionChecker(ResultVisitor):
                             r' in packets per second: \[(.*)\]')
 
     REGEX_RECONF_LOSS = re.compile(r'Packets lost due to reconfig: (\d*)')
-    REGEX_RECONF_TIME = re.compile(r'Implied time lost: (\d*.\d*)')
+    REGEX_RECONF_TIME = re.compile(r'Implied time lost: (\d*.[\de-]*)')
 
     REGEX_TC_TAG = re.compile(r'\d+[tT]\d+[cC]')
 
@@ -300,7 +300,7 @@ class ExecutionChecker(ResultVisitor):
 
     REGEX_TC_NAME_NEW = re.compile(r'-\d+[cC]-')
 
-    REGEX_TC_NUMBER = re.compile(r'tc[0-9]{2}-')
+    REGEX_TC_NUMBER = re.compile(r'tc\d{2}-')
 
     def __init__(self, metadata, mapping, ignore):
         """Initialisation.
@@ -460,7 +460,7 @@ class ExecutionChecker(ResultVisitor):
                 self._data["tests"][self._test_ID]["conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3} "
+            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
                           "VAT command history:", "", msg.message, count=1). \
                 replace("\n\n", "\n").replace('\n', ' |br| ').\
                 replace('\r', '').replace('"', "'")
@@ -482,7 +482,7 @@ class ExecutionChecker(ResultVisitor):
                 self._data["tests"][self._test_ID]["conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3} "
+            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
                           "PAPI command history:", "", msg.message, count=1). \
                 replace("\n\n", "\n").replace('\n', ' |br| ').\
                 replace('\r', '').replace('"', "'")
