@@ -118,6 +118,7 @@ PDR Comparison
 
 Comparison tables in ASCII and CSV formats:
 
+  - `HTML 1t1c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-pdr.html>`_
   - `ASCII 1t1c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-pdr.txt>`_
   - `ASCII 2t2c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-2t2c-pdr.txt>`_
   - `CSV 1t1c PDR comparison <../../_static/vpp/performance-changes-3n-hsw-1t1c-pdr.csv>`_
