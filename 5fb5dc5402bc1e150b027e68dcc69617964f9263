@@ -68,6 +68,30 @@
       "revId": "5fb5dc5402bc1e150b027e68dcc69617964f9263",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ca5ef3db_62e07c45",
+        "filename": "resources/libraries/python/VppApiCrc.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-02T08:43:23Z",
+      "side": 1,
+      "message": "This refers to the CRC check done by _check_dir, called directly from __init__. It looks at .api.json files downloaded from DUT (into a temporary directorty, hence dir check).\nThe check_api_name is a different CRC check, called by PapiExecutor when sending or receiving a message over socket.\n\nAs I need to rebase this anyway, I will think about better log messages.",
+      "parentUuid": "e79c7363_dcde88a7",
+      "range": {
+        "startLine": 278,
+        "startChar": 17,
+        "endLine": 278,
+        "endChar": 26
+      },
+      "revId": "5fb5dc5402bc1e150b027e68dcc69617964f9263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
