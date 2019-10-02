@@ -237,9 +237,9 @@ class Alerting(object):
         :type alert: dict
         :type test_set: str
         :type sort: bool
-        :returns: CSIT build number, VPP version, Number of failed tests,
-            Compressed failed tests.
-        :rtype: tuple(str, str, int, OrderedDict)
+        :returns: CSIT build number, VPP version, Number of passed tests,
+            Number of failed tests, Compressed failed tests.
+        :rtype: tuple(str, str, int, int, OrderedDict)
         """
 
         directory = self.configs[alert["way"]]["output-dir"]
@@ -254,6 +254,12 @@ class Alerting(object):
                         continue
                     if idx == 1:
                         version = line[:-1]
+                        continue
+                    if idx == 2:
+                        passed = line[:-1]
+                        continue
+                    if idx == 3:
+                        failed = line[:-1]
                         continue
                     try:
                         test = line[:-1].split('-')
@@ -283,9 +289,9 @@ class Alerting(object):
             keys.sort()
             for key in keys:
                 sorted_failed_tests[key] = failed_tests[key]
-            return build, version, idx-1, sorted_failed_tests
+            return build, version, passed, failed, sorted_failed_tests
         else:
-            return build, version, idx-1, failed_tests
+            return build, version, passed, failed, failed_tests
 
     def _generate_email_body(self, alert):
         """Create the file which is used in the generated alert.
@@ -302,7 +308,7 @@ class Alerting(object):
 
         text = ""
         for idx, test_set in enumerate(alert.get("include", [])):
-            build, version, nr, failed_tests = \
+            build, version, passed, failed, failed_tests = \
                 self._get_compressed_failed_tests(alert, test_set)
             if build is None:
                 ret_code, build_nr, _ = get_last_completed_build_number(
@@ -317,12 +323,14 @@ class Alerting(object):
                            build=build_nr)
                 continue
             text += ("\n\n{topo}-{arch}, "
-                     "{nr} tests failed, "
+                     "{failed} tests failed, "
+                     "{passed} tests passed, "
                      "CSIT build: {link}/{build}, "
                      "VPP version: {version}\n\n".
                      format(topo=test_set.split('-')[-2],
                             arch=test_set.split('-')[-1],
-                            nr=nr,
+                            failed=failed,
+                            passed=passed,
                             link=alert["urls"][idx],
                             build=build,
                             version=version))
