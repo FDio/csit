@@ -260,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "0474ea4b_56d084e6",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-02T12:57:44Z",
+      "side": 1,
+      "message": "\u003e subtype: WRK\n\nWe have few WRK tests, but they run on TG of subtype TREX. In suite setup [1], TRex is torn down, and PCI devices are bound to Linux driver (written in topology).\n\nI see several issues:\n1. Software traffic generators do not define a TG node subtype, as we see single TG node can support several TG \"apps\", depending on what is installed there.\n2. Software traffic generators do not have unified API this python module could expose. You cannot use WRK for MRR tests, you cannot (easily, with the current CSIT code) use TRex for TCP tests.\n3. This specific Change uses _driver to mean tg_driver, not pci_device_driver, creating confusion.\n\nQuestions:\n1. Do we want to unify API for software generators, throwing NotImplementedError if user calls a method not supported by a particular tg_driver?\n2. How should users specify which tg_driver to use, so that TRex vs WRK is decided in suite, but TRex vs Ixia is decided in topology?\n\n[1] https://github.com/FDio/csit/blob/37a9451377f7239365b5af778b8072d1585a2d2a/resources/libraries/robot/shared/suite_setup.robot#L233-L262",
+      "parentUuid": "598f8276_a8ddcafe",
+      "range": {
+        "startLine": 183,
+        "startChar": 1,
+        "endLine": 183,
+        "endChar": 32
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da7b1872_12efed0e",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 10
