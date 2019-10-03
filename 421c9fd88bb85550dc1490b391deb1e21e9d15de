@@ -308,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "f3ca5726_5c293dfc",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-03T10:28:20Z",
+      "side": 1,
+      "message": "\u003e first describe in rst/svg and discuss\n\nCreated [2] with my point of view.\nUsing steps listed there, my priorities are 1 and 4, Peter\u0027s priorities seem to be 2 and 7, and the current scope of this change is 1, 2 and 3.\n\n\u003e Why WRK cannot use MRR?\n\nIn [2], listed as item 2 of current issues.\n\n\u003e Percentage, PPS, TPS, RPS\n\nAdded to [2] as step 5.\n\n\u003e We need to design first\n\nAdded to [2] as a generic step 7. The point is, I believe we can merge several changes before we get to that.\n\n[2] https://gerrit.fd.io/r/c/csit/+/22506",
+      "parentUuid": "7b1284f4_5d7b8ce5",
+      "range": {
+        "startLine": 183,
+        "startChar": 1,
+        "endLine": 183,
+        "endChar": 32
+      },
+      "revId": "421c9fd88bb85550dc1490b391deb1e21e9d15de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "da7b1872_12efed0e",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 10
