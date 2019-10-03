@@ -193,7 +193,7 @@ class InterfaceUtil(object):
             err_msg = 'Failed to set interface state on host {host}'.format(
                 host=node['host'])
             args = dict(
-                sw_if_index=sw_if_index,
+                sw_if_index=int(sw_if_index),
                 flags=flags)
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
