@@ -198,7 +198,10 @@ class PapiSocketExecutor(object):
             package_path = package_path.rsplit('/', 1)[0]
             sys.path.append(package_path)
             # pylint: disable=import-error
-            from vpp_papi.vpp_papi import VPPApiClient as vpp_class
+            try:
+                from vpp_papi.vpp_papi import VPPApiClient as vpp_class
+            except ImportError:
+                from vpp_papi.vpp_papi import VPP as vpp_class
             vpp_class.apidir = api_json_directory
             # We need to create instance before removing from sys.path.
             cls.vpp_instance = vpp_class(
