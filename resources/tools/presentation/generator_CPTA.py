@@ -333,7 +333,7 @@ def _generate_all_charts(spec, input_data):
         job_name = graph["data"].keys()[0]
 
         csv_tbl = list()
-        res = list()
+        res = dict()
 
         # Transform the data
         logs.append(("INFO", "    Creating the data set for the {0} '{1}'.".
@@ -404,7 +404,7 @@ def _generate_all_charts(spec, input_data):
                                 continue
                             traces.extend(trace)
                             visible.extend([True for _ in range(len(trace))])
-                            res.append(rslt)
+                            res[test_name] = rslt
                             index += 1
                             break
                 visibility.append(visible)
@@ -431,7 +431,7 @@ def _generate_all_charts(spec, input_data):
                     index += 1
                     continue
                 traces.extend(trace)
-                res.append(rslt)
+                res[test_name] = rslt
                 index += 1
 
         if traces:
@@ -535,7 +535,7 @@ def _generate_all_charts(spec, input_data):
                 testbed
             )
 
-    anomaly_classifications = list()
+    anomaly_classifications = dict()
 
     # Create the header:
     csv_tables = dict()
@@ -554,8 +554,11 @@ def _generate_all_charts(spec, input_data):
     for chart in spec.cpta["plots"]:
         result = _generate_chart(chart)
 
-        anomaly_classifications.extend(result["results"])
         csv_tables[result["job_name"]].extend(result["csv_table"])
+
+        if anomaly_classifications.get(result["job_name"], None) is None:
+            anomaly_classifications[result["job_name"]] = dict()
+        anomaly_classifications[result["job_name"]].update(result["results"])
 
     # Write the tables:
     for job_name, csv_table in csv_tables.items():
@@ -590,10 +593,14 @@ def _generate_all_charts(spec, input_data):
     # Evaluate result:
     if anomaly_classifications:
         result = "PASS"
-        for classification in anomaly_classifications:
-            if classification == "regression" or classification == "outlier":
-                result = "FAIL"
-                break
+        for job_name, job_data in anomaly_classifications.iteritems():
+            with open("regressions-{0}.txt".format(job_name), 'w') as txt_file:
+                for test_name, classification in job_data.iteritems():
+                    if classification == "regression":
+                        txt_file.write(test_name + '\n')
+                    if classification == "regression" or \
+                            classification == "outlier":
+                        result = "FAIL"
     else:
         result = "FAIL"
 
