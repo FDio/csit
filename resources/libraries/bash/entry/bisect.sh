@@ -121,7 +121,7 @@ do
 #    echo | awk ' { srand('"${iteration}"'); print "[1" 100000 + 100000 * rand() ", 1" 100000 + 100000 * rand() "]" } ' | tee "${target}/results.txt"
 #    die_on_pybot_error || die
     set +e
-    python "${PYTHON_SCRIPTS_DIR}/compare_bisect.py"
+    python "${TOOLS_DIR}/integrated/compare_bisect.py"
     bisect_rc="${?}"
     set -e
     if [[ "${bisect_rc}" == "3" ]]; then
