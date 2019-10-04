@@ -362,10 +362,23 @@ class Alerting(object):
                     cores=params["cores"] +
                         " " * (max_len_cores - len(params["cores"])))
 
+            # Add list of regressions:
+            text += "\nRegressions (full paths):\n\n"
+            file_name = "{0}/cpta-regressions-{1}.txt".\
+                format(config["output-dir"],
+                       alert["urls"][idx].split('/')[-1])
+            with open(file_name, 'r') as txt_file:
+                file_content = txt_file.read()
+                logging.info("file_content: {}".format(file_content))
+                logging.info("Length of file_content: {}".format(len(file_content)))
+                if len(file_content):
+                    text += "\nRegressions (full paths):\n\n"
+                    text += file_content
+
         text += "\nFor detailed information visit: {url}\n".\
             format(url=alert["url-details"])
         file_name = "{0}/{1}".format(config["output-dir"],
-                                                config["output-file"])
+                                     config["output-file"])
         logging.info("Writing the file '{0}.txt' ...".format(file_name))
 
         try:
