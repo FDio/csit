@@ -1822,7 +1822,7 @@ def plot_service_density_heatmap(plot, input_data):
                                       stdev=None)
                 try:
                     if plot["include-tests"] == "MRR":
-                        result = test["result"]["receive-rate"].avg
+                        result = test["result"]["receive-rate"]  # .avg
                     elif plot["include-tests"] == "PDR":
                         result = test["throughput"]["PDR"]["LOWER"]
                     elif plot["include-tests"] == "NDR":
@@ -2110,7 +2110,7 @@ def plot_service_density_heatmap_compare(plot, input_data):
                                       stdev_c=None)
                 try:
                     if plot["include-tests"] == "MRR":
-                        result = test["result"]["receive-rate"].avg
+                        result = test["result"]["receive-rate"]  # .avg
                     elif plot["include-tests"] == "PDR":
                         result = test["throughput"]["PDR"]["LOWER"]
                     elif plot["include-tests"] == "NDR":
