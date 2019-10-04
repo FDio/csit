@@ -333,7 +333,7 @@ def _generate_all_charts(spec, input_data):
         job_name = graph["data"].keys()[0]
 
         csv_tbl = list()
-        res = list()
+        res = dict()
 
         # Transform the data
         logs.append(("INFO", "    Creating the data set for the {0} '{1}'.".
@@ -404,7 +404,7 @@ def _generate_all_charts(spec, input_data):
                                 continue
                             traces.extend(trace)
                             visible.extend([True for _ in range(len(trace))])
-                            res.append(rslt)
+                            res[test_name] = rslt
                             index += 1
                             break
                 visibility.append(visible)
@@ -431,7 +431,7 @@ def _generate_all_charts(spec, input_data):
                     index += 1
                     continue
                 traces.extend(trace)
-                res.append(rslt)
+                res[test_name] = rslt
                 index += 1
 
         if traces:
@@ -535,7 +535,7 @@ def _generate_all_charts(spec, input_data):
                 testbed
             )
 
-    anomaly_classifications = list()
+    anomaly_classifications = dict()
 
     # Create the header:
     csv_tables = dict()
@@ -554,7 +554,7 @@ def _generate_all_charts(spec, input_data):
     for chart in spec.cpta["plots"]:
         result = _generate_chart(chart)
 
-        anomaly_classifications.extend(result["results"])
+        anomaly_classifications.update(result["results"])
         csv_tables[result["job_name"]].extend(result["csv_table"])
 
     # Write the tables:
@@ -590,7 +590,7 @@ def _generate_all_charts(spec, input_data):
     # Evaluate result:
     if anomaly_classifications:
         result = "PASS"
-        for classification in anomaly_classifications:
+        for classification in anomaly_classifications.values():
             if classification == "regression" or classification == "outlier":
                 result = "FAIL"
                 break
