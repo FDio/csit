@@ -193,6 +193,7 @@ function parse_bmrr_results () {
     grep -o "${pattern}" "${in_file}" | grep -o '\[.*\]' > "${out_file}" || {
         warn "Faking test results while bisect script is debugged."
         echo "[2.0]" > "${out_file}"
+        die
     }
 }
 
