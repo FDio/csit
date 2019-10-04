@@ -333,7 +333,7 @@ def _generate_all_charts(spec, input_data):
         job_name = graph["data"].keys()[0]
 
         csv_tbl = list()
-        res = list()
+        res = dict()
 
         # Transform the data
         logs.append(("INFO", "    Creating the data set for the {0} '{1}'.".
@@ -379,22 +379,22 @@ def _generate_all_charts(spec, input_data):
             for group in groups:
                 visible = list()
                 for tag in group:
-                    for test_name, test_data in chart_data.items():
+                    for tst_name, test_data in chart_data.items():
                         if not test_data:
                             logs.append(("WARNING",
                                          "No data for the test '{0}'".
-                                         format(test_name)))
+                                         format(tst_name)))
                             continue
-                        if tag in chart_tags[test_name]:
+                        if tag in chart_tags[tst_name]:
                             message = "index: {index}, test: {test}".format(
-                                index=index, test=test_name)
-                            test_name = test_name.split('.')[-1]
+                                index=index, test=tst_name)
                             try:
                                 trace, rslt = _generate_trending_traces(
                                     test_data,
                                     job_name=job_name,
                                     build_info=build_info,
-                                    name='-'.join(test_name.split('-')[2:-1]),
+                                    name='-'.join(tst_name.split('.')[-1].
+                                                  split('-')[2:-1]),
                                     color=COLORS[index])
                             except IndexError:
                                 message = "Out of colors: {}".format(message)
@@ -404,25 +404,24 @@ def _generate_all_charts(spec, input_data):
                                 continue
                             traces.extend(trace)
                             visible.extend([True for _ in range(len(trace))])
-                            res.append(rslt)
+                            res[tst_name] = rslt
                             index += 1
                             break
                 visibility.append(visible)
         else:
-            for test_name, test_data in chart_data.items():
+            for tst_name, test_data in chart_data.items():
                 if not test_data:
                     logs.append(("WARNING", "No data for the test '{0}'".
-                                 format(test_name)))
+                                 format(tst_name)))
                     continue
                 message = "index: {index}, test: {test}".format(
-                    index=index, test=test_name)
-                test_name = test_name.split('.')[-1]
+                    index=index, test=tst_name)
                 try:
                     trace, rslt = _generate_trending_traces(
                         test_data,
                         job_name=job_name,
                         build_info=build_info,
-                        name='-'.join(test_name.split('-')[2:-1]),
+                        name='-'.join(tst_name.split('.')[-1].split('-')[2:-1]),
                         color=COLORS[index])
                 except IndexError:
                     message = "Out of colors: {}".format(message)
@@ -431,7 +430,7 @@ def _generate_all_charts(spec, input_data):
                     index += 1
                     continue
                 traces.extend(trace)
-                res.append(rslt)
+                res[tst_name] = rslt
                 index += 1
 
         if traces:
@@ -535,7 +534,7 @@ def _generate_all_charts(spec, input_data):
                 testbed
             )
 
-    anomaly_classifications = list()
+    anomaly_classifications = dict()
 
     # Create the header:
     csv_tables = dict()
@@ -554,8 +553,11 @@ def _generate_all_charts(spec, input_data):
     for chart in spec.cpta["plots"]:
         result = _generate_chart(chart)
 
-        anomaly_classifications.extend(result["results"])
         csv_tables[result["job_name"]].extend(result["csv_table"])
+
+        if anomaly_classifications.get(result["job_name"], None) is None:
+            anomaly_classifications[result["job_name"]] = dict()
+        anomaly_classifications[result["job_name"]].update(result["results"])
 
     # Write the tables:
     for job_name, csv_table in csv_tables.items():
@@ -590,10 +592,16 @@ def _generate_all_charts(spec, input_data):
     # Evaluate result:
     if anomaly_classifications:
         result = "PASS"
-        for classification in anomaly_classifications:
-            if classification == "regression" or classification == "outlier":
-                result = "FAIL"
-                break
+        for job_name, job_data in anomaly_classifications.iteritems():
+            file_name = "{0}-regressions-{1}.txt".\
+                format(spec.cpta["output-file"], job_name)
+            with open(file_name, 'w') as txt_file:
+                for test_name, classification in job_data.iteritems():
+                    if classification == "regression":
+                        txt_file.write(test_name + '\n')
+                    if classification == "regression" or \
+                            classification == "outlier":
+                        result = "FAIL"
     else:
         result = "FAIL"
 
