@@ -198,12 +198,22 @@ class PapiSocketExecutor(object):
             package_path = package_path.rsplit('/', 1)[0]
             sys.path.append(package_path)
             # pylint: disable=import-error
-            from vpp_papi.vpp_papi import VPPApiClient as vpp_class
+            try:
+                from vpp_papi.vpp_papi import VPPApiClient as vpp_class
+            except ImportError:
+                from vpp_papi.vpp_papi import VPP as vpp_class
             vpp_class.apidir = api_json_directory
             # We need to create instance before removing from sys.path.
-            cls.vpp_instance = vpp_class(
-                use_socket=True, server_address="TBD", async_thread=False,
-                read_timeout=14, logger=FilteredLogger(logger, "INFO"))
+            try:
+                cls.vpp_instance = vpp_class(
+                    use_socket=True, server_address="TBD", async_thread=False,
+                    read_timeout=14, logger=FilteredLogger(logger, "INFO"))
+            except vpp_class.VPPApiError:
+                # Old apidir convention.
+                cls.vpp_instance = vpp_class(
+                    use_socket=True, server_address="TBD", async_thread=False,
+                    read_timeout=14, logger=FilteredLogger(logger, "INFO")
+                    apidir=api_json_directory)
             # Cannot use loglevel parameter, robot.api.logger lacks support.
             # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
         finally:
