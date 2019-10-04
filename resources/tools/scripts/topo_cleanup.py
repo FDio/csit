@@ -61,7 +61,7 @@ def uninstall_package(ssh, package):
             # Try to fix interrupted installations first.
             execute_command_ssh(ssh, 'dpkg --configure -a', sudo=True)
             # Try to remove installed packages
-            execute_command_ssh(ssh, 'apt-get purge -y "{package}.*"'.format(
+            execute_command_ssh(ssh, 'apt-get purge -y "*{package}*"'.format(
                 package=package), sudo=True)
 
 def kill_process(ssh, process):
@@ -103,24 +103,32 @@ def main():
             uninstall_package(ssh, 'honeycomb')
 
             # Remove HC logs.
-            execute_command_ssh(ssh, 'rm -rf /var/log/honeycomb',
-                                sudo=True)
+            execute_command_ssh(
+                ssh, 'rm -rf /var/log/honeycomb', sudo=True)
 
             # Kill all containers.
-            execute_command_ssh(ssh, 'docker rm --force $(sudo docker ps -q)',
-                                sudo=True)
+            execute_command_ssh(
+                ssh, 'docker rm --force $(sudo docker ps -q)', sudo=True)
 
             # Destroy kubernetes.
-            execute_command_ssh(ssh, 'kubeadm reset --force',
-                                sudo=True)
+            execute_command_ssh(
+                ssh, 'kubeadm reset --force', sudo=True)
 
             # Remove corefiles leftovers.
-            execute_command_ssh(ssh, 'rm -f /tmp/*tar.lzo.lrz.xz*',
-                                sudo=True)
+            execute_command_ssh(
+                ssh, 'rm -f /tmp/*tar.lzo.lrz.xz*', sudo=True)
 
             # Remove corefiles leftovers.
-            execute_command_ssh(ssh, 'rm -f /tmp/*core*',
-                                sudo=True)
+            execute_command_ssh(
+                ssh, 'rm -f /tmp/*core*', sudo=True)
+
+            # Set interfaces in topology down.
+            for interface in topology[node]['interfaces']:
+                pci = topology[node]['interfaces'][interface]['pci_address']
+                execute_command_ssh(
+                    ssh, "ip link set "
+                    "$(basename /sys/bus/pci/devices/{pci}/net/*) down".
+                    format(pci=pci), sudo=True)
 
 
 if __name__ == "__main__":
