@@ -1030,6 +1030,8 @@
           size: 16
       width: 700
       height: 900
+      paper_bgcolor: "#fff"
+      plot_bgcolor: "#fff"
       hoverlabel:
         namelength: -1
 
@@ -1116,6 +1118,8 @@
           size: 16
       width: 700
       height: 800
+      paper_bgcolor: "#fff"
+      plot_bgcolor: "#fff"
       hoverlabel:
         namelength: -1
 
@@ -1171,6 +1175,8 @@
           size: 16
       width: 700
       height: 800
+      paper_bgcolor: "#fff"
+      plot_bgcolor: "#fff"
       hoverlabel:
         namelength: -1
 
@@ -1224,6 +1230,8 @@
           size: 16
       width: 700
       height: 900
+      paper_bgcolor: "#fff"
+      plot_bgcolor: "#fff"
       hoverlabel:
         namelength: -1
 
@@ -1286,6 +1294,8 @@
       showlegend: True
       width: 700
       height: 700
+      paper_bgcolor: "#fff"
+      plot_bgcolor: "#fff"
       hoverlabel:
         namelength: -1
       annotations: [
@@ -1373,6 +1383,8 @@
       showlegend: True
       width: 700
       height: 700
+      paper_bgcolor: "#fff"
+      plot_bgcolor: "#fff"
       hoverlabel:
         namelength: -1
 
