@@ -46,6 +46,7 @@ def execute_command_ssh(ssh, cmd, sudo=False):
 
     return ret, stdout, stdout
 
+
 def uninstall_package(ssh, package):
     """If there are packages installed, clean them up.
 
@@ -63,6 +64,7 @@ def uninstall_package(ssh, package):
             # Try to remove installed packages
             execute_command_ssh(ssh, 'apt-get purge -y "*{package}*"'.format(
                 package=package), sudo=True)
+
 
 def kill_process(ssh, process):
     """If there are running processes, kill them.
@@ -126,9 +128,9 @@ def main():
             for interface in topology[node]['interfaces']:
                 pci = topology[node]['interfaces'][interface]['pci_address']
                 execute_command_ssh(
-                    ssh, "ip link set "
-                    "$(basename /sys/bus/pci/devices/{pci}/net/*) down".
-                    format(pci=pci), sudo=True)
+                    ssh, "[[ -d {path}/{pci}/net ]] && "
+                    "sudo ip link set $(basename {path}/{pci}/net/*) down".
+                    format(pci=pci, path='/sys/bus/pci/devices'))
 
 
 if __name__ == "__main__":
