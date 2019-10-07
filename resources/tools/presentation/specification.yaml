@@ -205,6 +205,9 @@
         - 9   # NDRPDR sel
         - 10  # NDRPDR sel
         - 11  # NDRPDR sel
+        - 12  # NDRPDR sel
+        - 13  # NDRPDR sel
+        - 14  # NDRPDR sel
 
     # 3n-dnv
 
@@ -1168,6 +1171,9 @@
       - 9   # NDRPDR sel
       - 10  # NDRPDR sel
       - 11  # NDRPDR sel
+      - 12  # NDRPDR sel
+      - 13  # NDRPDR sel
+      - 14  # NDRPDR sel
 
     csit-vpp-perf-verify-1908_1-3n-dnv:
       - 4   # MRR sel
