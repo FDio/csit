@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "52c4bd8a_dc8f0a10",
+        "filename": "resources/tools/scripts/topo_cleanup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-07T14:52:45Z",
+      "side": 1,
+      "message": "fi",
+      "range": {
+        "startLine": 131,
+        "startChar": 27,
+        "endLine": 131,
+        "endChar": 31
+      },
+      "revId": "58088051c33ed41b679b402bd207838f731cbb4d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
