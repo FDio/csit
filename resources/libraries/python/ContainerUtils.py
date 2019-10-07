@@ -633,11 +633,18 @@ class LXC(ContainerEngine):
         :raises RuntimeError: If creating the container fails.
         """
         if self.container.mnt:
+            # LXC fix for tmpfs
+            # https://github.com/lxc/lxc/issues/434
+            ret, _, _ = self.container.ssh.exec_command_sudo(
+                "sh -c 'echo \"{e}\" >> /var/lib/lxc/{c.name}/config'".
+                format(e="lxc.mount.entry = tmpfs run tmpfs defaults",
+                       c=self.container))
+            if int(ret) != 0:
+                raise RuntimeError('Failed to write {c.name} config.'.
+                                   format(c=self.container))
+
             for mount in self.container.mnt:
                 host_dir, guest_dir = mount.split(':')
-                if host_dir.endswith('/'):
-                    self.container.ssh.exec_command_sudo(
-                        "sh -c 'mkdir -p {host_dir}'".format(host_dir=host_dir))
                 options = 'bind,create=dir' \
                     if guest_dir.endswith('/') else 'bind,create=file'
                 entry = 'lxc.mount.entry = {host_dir} {guest_dir} none ' \
@@ -656,8 +663,7 @@ class LXC(ContainerEngine):
             if self.container.cpuset_cpus else ''
 
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            'lxc-start --name {c.name} --daemon'.
-            format(c=self.container))
+            'lxc-start --name {c.name} --daemon'.format(c=self.container))
         if int(ret) != 0:
             raise RuntimeError('Failed to start container {c.name}.'.
                                format(c=self.container))
