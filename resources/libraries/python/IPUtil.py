@@ -578,25 +578,25 @@ class IPUtil(object):
         """
         count = kwargs.get("count", 1)
 
-        if count > 100:
-            gateway = kwargs.get("gateway", '')
-            interface = kwargs.get("interface", '')
-            vrf = kwargs.get("vrf", None)
-            multipath = kwargs.get("multipath", False)
-
-            with VatTerminal(node, json_param=False) as vat:
-                vat.vat_terminal_exec_cmd_from_template(
-                    'vpp_route_add.vat',
-                    network=network,
-                    prefix_length=prefix_len,
-                    via='via {}'.format(gateway) if gateway else '',
-                    sw_if_index='sw_if_index {}'.format(
-                        InterfaceUtil.get_interface_index(node, interface))
-                    if interface else '',
-                    vrf='vrf {}'.format(vrf) if vrf else '',
-                    count='count {}'.format(count) if count else '',
-                    multipath='multipath' if multipath else '')
-            return
+#        if count > 100:
+#            gateway = kwargs.get("gateway", '')
+#            interface = kwargs.get("interface", '')
+#            vrf = kwargs.get("vrf", None)
+#            multipath = kwargs.get("multipath", False)
+#
+#            with VatTerminal(node, json_param=False) as vat:
+#                vat.vat_terminal_exec_cmd_from_template(
+#                    'vpp_route_add.vat',
+#                    network=network,
+#                    prefix_length=prefix_len,
+#                    via='via {}'.format(gateway) if gateway else '',
+#                    sw_if_index='sw_if_index {}'.format(
+#                        InterfaceUtil.get_interface_index(node, interface))
+#                    if interface else '',
+#                    vrf='vrf {}'.format(vrf) if vrf else '',
+#                    count='count {}'.format(count) if count else '',
+#                    multipath='multipath' if multipath else '')
+#            return
 
         net_addr = ip_address(unicode(network))
         cmd = 'ip_route_add_del'
@@ -608,11 +608,11 @@ class IPUtil(object):
 
         err_msg = 'Failed to add route(s) on host {host}'.format(
             host=node['host'])
-        with PapiSocketExecutor(node) as papi_exec:
-            for i in xrange(kwargs.get('count', 1)):
+        with PapiSocketExecutor(node, do_async=True) as papi_exec:
+            for i in xrange(count):
                 args['route'] = IPUtil.compose_vpp_route_structure(
                     node, net_addr + i, prefix_len, **kwargs)
-                history = False if 1 < i < kwargs.get('count', 1) else True
+                history = False if 1 < i < count else True
                 papi_exec.add(cmd, history=history, **args)
             papi_exec.get_replies(err_msg)
 
