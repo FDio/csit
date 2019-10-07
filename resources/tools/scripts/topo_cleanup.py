@@ -126,9 +126,9 @@ def main():
             for interface in topology[node]['interfaces']:
                 pci = topology[node]['interfaces'][interface]['pci_address']
                 execute_command_ssh(
-                    ssh, "ip link set "
-                    "$(basename /sys/bus/pci/devices/{pci}/net/*) down".
-                    format(pci=pci), sudo=True)
+                    ssh, "if [ -d /sys/bus/pci/devices/{pci}/net ]; then\ "
+                    "ip link set $(basename /sys/bus/pci/devices/{pci}/net/*) "
+                    "down; done".format(pci=pci), sudo=True)
 
 
 if __name__ == "__main__":
