@@ -18,6 +18,7 @@ import binascii
 import copy
 import glob
 import json
+import os
 import shutil
 import struct  # vpp-papi can raise struct.error
 import subprocess
@@ -198,12 +199,22 @@ class PapiSocketExecutor(object):
             package_path = package_path.rsplit('/', 1)[0]
             sys.path.append(package_path)
             # pylint: disable=import-error
-            from vpp_papi.vpp_papi import VPPApiClient as vpp_class
+            try:
+                from vpp_papi.vpp_papi import VPPApiClient as vpp_class
+            except ImportError:
+                from vpp_papi.vpp_papi import VPP as vpp_class
             vpp_class.apidir = api_json_directory
             # We need to create instance before removing from sys.path.
-            cls.vpp_instance = vpp_class(
-                use_socket=True, server_address="TBD", async_thread=False,
-                read_timeout=14, logger=FilteredLogger(logger, "INFO"))
+            try:
+                cls.vpp_instance = vpp_class(
+                    use_socket=True, server_address="TBD", async_thread=False,
+                    read_timeout=14, logger=FilteredLogger(logger, "INFO"))
+            except vpp_class.VPPApiError:
+                # Old apidir convention.
+                os.environ['VPP_API_DIR'] = api_json_directory
+                cls.vpp_instance = vpp_class(
+                    use_socket=True, server_address="TBD", async_thread=False,
+                    read_timeout=14, logger=FilteredLogger(logger, "INFO"))
             # Cannot use loglevel parameter, robot.api.logger lacks support.
             # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
         finally:
@@ -298,7 +309,10 @@ class PapiSocketExecutor(object):
                 vpp_instance.connect_sync("csit_socket")
             except (IOError, struct.error) as err:
                 logger.warn("Got initial connect error {err!r}".format(err=err))
-                vpp_instance.disconnect()
+                try:
+                    vpp_instance.disconnect()
+                except self.vpp_instance.VPPApiError:
+                    pass
             else:
                 break
         else:
@@ -311,7 +325,10 @@ class PapiSocketExecutor(object):
         Also remove the local sockets by deleting the temporary directory.
         Arguments related to possible exception are entirely ignored.
         """
-        self.vpp_instance.disconnect()
+        try:
+            self.vpp_instance.disconnect()
+        except self.vpp_instance.VPPApiError:
+            pass
         run(["ssh", "-S", self._ssh_control_socket, "-O", "exit", "0.0.0.0"],
             check=False)
         shutil.rmtree(self._temp_dir)
