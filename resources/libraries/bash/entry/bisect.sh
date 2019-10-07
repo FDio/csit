@@ -47,11 +47,20 @@ set_perpatch_vpp_dir || die
 cd "${VPP_DIR}" || die
 git bisect start || die
 trap "git bisect reset" EXIT RETURN
-#git checkout "1afa7afffad6e296a97556aa4c9482f4cd544074"
+
+# Important commits affecting behavior.
+# v19.08-rc0-225 19542299d3f4095acda802b73b8a71a2f208cdf2:
+#  - VPPApiClient was called VPP before.
+#  - Also, apidir is not a class field, not read from os.environ[].
+# v19.08-rc0-667 7b8a30d08bffcb8c6fe7faa8d7f7dc557e175770:
+#  - "make pkg-verify" does not work before.
+
+# 19.08 release notes
+git checkout "7cd982d007f9073a301aed5b44d8806bfddd5891"
 git bisect new || die
 build_vpp_ubuntu_amd64 "NEW" || die
-#set_aside_current_build_artifacts "d991a798ff5eb6d151b6641e61fefc6315bab0ac" || die
-set_aside_current_build_artifacts "b28a81e2ce7c3e780dbf94a13d2ba6f7895918fe" || die
+# 19.04 release notes
+set_aside_current_build_artifacts "1f8eeb7cb90b51c8682818bb0d68cc121f08b481" || die
 build_vpp_ubuntu_amd64 "OLD" || die
 set_aside_parent_build_artifacts || die
 initialize_csit_dirs || die
