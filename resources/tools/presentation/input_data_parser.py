@@ -436,61 +436,76 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
-        if msg.message.count("Runtime:"):
-            self._show_run_lookup_nr += 1
-            if self._lookup_kw_nr == 1 and self._show_run_lookup_nr == 1:
-                self._data["tests"][self._test_ID]["show-run"] = str()
-            if self._lookup_kw_nr > 1:
-                self._msg_type = None
-            if self._show_run_lookup_nr > 0:
-                message = str(msg.message).replace(' ', '').replace('\n', '').\
-                    replace("'", '"').replace('b"', '"').replace('u"', '"')[8:]
-                runtime = loads(message)
-                try:
-                    threads_nr = len(runtime[0]["clocks"])
-                except (IndexError, KeyError):
-                    return
-                tbl_hdr = ["Name", "Calls", "Vectors", "Suspends", "Clocks"]
-                table = [[tbl_hdr, ] for _ in range(threads_nr)]
-                for item in runtime:
-                    for idx in range(threads_nr):
-                        table[idx].append([
-                            item["name"],
-                            item["calls"][idx],
-                            item["vectors"][idx],
-                            item["suspends"][idx],
-                            item["clocks"][idx]
-                        ])
-                text = ""
+        if not "show-run" in self._data["tests"][self._test_ID].keys():
+            self._data["tests"][self._test_ID]["show-run"] = str()
+
+        if msg.message.count("stats runtime"):
+            host = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).\
+                       group(1))
+            socket = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).\
+                         group(2))
+            message = str(msg.message).replace(' ', '').replace('\n', '').\
+                replace("'", '"').replace('b"', '"').replace('u"', '"').\
+                split(":",1)[1]
+            runtime = loads(message)
+            try:
+                threads_nr = len(runtime[0]["clocks"])
+            except (IndexError, KeyError):
+                return
+            tbl_hdr = ["Name", "Calls", "Vectors", "Suspends", "Clocks",
+                       "Vectors/Calls"]
+            table = [[tbl_hdr, ] for _ in range(threads_nr)]
+            for item in runtime:
                 for idx in range(threads_nr):
-                    text += "Thread {idx} ".format(idx=idx)
-                    text += "vpp_main\n" if idx == 0 else \
-                        "vpp_wk_{idx}\n".format(idx=idx-1)
-                    txt_table = None
-                    for row in table[idx]:
-                        if txt_table is None:
-                            txt_table = prettytable.PrettyTable(row)
-                        else:
-                            if any(row[1:]):
-                                txt_table.add_row(row)
-                    txt_table.set_style(prettytable.MSWORD_FRIENDLY)
-                    txt_table.align["Name"] = "l"
-                    txt_table.align["Calls"] = "r"
-                    txt_table.align["Vectors"] = "r"
-                    txt_table.align["Suspends"] = "r"
-                    txt_table.align["Clocks"] = "r"
+                    name = format(item["name"])
+                    calls = format(item["calls"][idx])
+                    vectors = format(item["vectors"][idx])
+                    suspends = format(item["suspends"][idx])
+                    if item["vectors"][idx] > 0:
+                        clocks = format(
+                            item["clocks"][idx]/item["vectors"][idx], ".2e")
+                    elif item["calls"][idx] > 0:
+                        clocks = format(
+                            item["clocks"][idx]/item["calls"][idx], ".2e")
+                    elif item["suspends"][idx] > 0:
+                        clocks = format(
+                            item["clocks"][idx]/item["suspends"][idx], ".2e")
+                    else:
+                        clocks = 0
+                    if item["calls"][idx] > 0:
+                        vectors_call = format(
+                            item["vectors"][idx]/item["calls"][idx], ".2f")
+                    else:
+                        vectors_call = format(0, ".2f")
+                    table[idx].append([
+                        name, calls, vectors, suspends, clocks, vectors_call
+                    ])
+            text = ""
+            for idx in range(threads_nr):
+                text += "Thread {idx} ".format(idx=idx)
+                text += "vpp_main\n" if idx == 0 else \
+                    "vpp_wk_{idx}\n".format(idx=idx-1)
+                txt_table = None
+                for row in table[idx]:
+                    if txt_table is None:
+                        txt_table = prettytable.PrettyTable(row)
+                    else:
+                        if any(row[1:]):
+                            txt_table.add_row(row)
+                txt_table.set_style(prettytable.MSWORD_FRIENDLY)
+                txt_table.align["Name"] = "l"
+                txt_table.align["Calls"] = "r"
+                txt_table.align["Vectors"] = "r"
+                txt_table.align["Suspends"] = "r"
+                txt_table.align["Clocks"] = "r"
+                txt_table.align["Vectors/Calls"] = "r"
 
-                    text += txt_table.get_string(sortby="Name") + '\n'
-
-                text = text.replace('\n', ' |br| ').replace('\r', '').\
-                    replace('"', "'")
-                try:
-                    self._data["tests"][self._test_ID]["show-run"] += " |br| "
-                    self._data["tests"][self._test_ID]["show-run"] += \
-                        "**DUT" + str(self._show_run_lookup_nr) + ":** |br| " \
-                        + text
-                except KeyError:
-                    pass
+                text += txt_table.get_string(sortby="Name") + '\n'
+            text = (" \n **DUT: {host}/{socket}** \n {text}".
+                    format(host=host, socket=socket, text=text))
+            text = text.replace('\n', ' |br| ').replace('\r', '').\
+                replace('"', "'")
+            self._data["tests"][self._test_ID]["show-run"] += text
 
     def _get_ndrpdr_throughput(self, msg):
         """Get NDR_LOWER, NDR_UPPER, PDR_LOWER and PDR_UPPER from the test
