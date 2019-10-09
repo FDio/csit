@@ -46,6 +46,15 @@
 
 - meta: flush_handlers
 
+- name: Copy netplan network config file
+  template:
+    src: 'files/netplan_config'
+    dest: '/etc/netplan/01-netcfg.yaml'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
+  tags: copy-interface-file
+
 - name: Add permanent proxy settings
   lineinfile:
     path: '/etc/environment'
