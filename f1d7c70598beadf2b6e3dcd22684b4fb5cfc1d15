@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fc50681a_fdd1cd63",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-09T08:38:54Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 499,
+        "startChar": 0,
+        "endLine": 507,
+        "endChar": 43
+      },
+      "revId": "f1d7c70598beadf2b6e3dcd22684b4fb5cfc1d15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "075dbdd2_5408e939",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-09T08:38:54Z",
+      "side": 1,
+      "message": "Thanks to sockets registered during reboot of VPP in topology you are able to remove this and modify the main function used for this to accept -s socket/path parameter to ask any socket if VPP is UP\n\nSo remove and implement in main function",
+      "range": {
+        "startLine": 631,
+        "startChar": 0,
+        "endLine": 654,
+        "endChar": 35
+      },
+      "revId": "f1d7c70598beadf2b6e3dcd22684b4fb5cfc1d15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f30eca14_e3ed7232",
+        "filename": "resources/libraries/robot/shared/test_teardown.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-09T08:38:54Z",
+      "side": 1,
+      "message": "remove this. Currently code is capturing those during runtime.",
+      "revId": "f1d7c70598beadf2b6e3dcd22684b4fb5cfc1d15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
