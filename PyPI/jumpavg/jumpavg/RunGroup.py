@@ -15,7 +15,7 @@
 
 
 class RunGroup(object):
-    """Effectively a named touple of data and metadata.
+    """Effectively a named tuple of data and metadata.
 
     TODO: This feels like an abstract class.
     Most uses assume restrictions on metadata type.
