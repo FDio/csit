@@ -62,3 +62,94 @@
 | | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | as_addr=192.168.60.77
 | | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | as_addr=192.168.60.78
 | | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | as_addr=192.168.60.79
+
+| Initialize loadbalancer l3dsr
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node
+| | ... | circular topology. Get the interface MAC addresses and setup ARP on
+| | ... | all VPP interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG
+| | ... | links.
+| | ...
+| | Set interfaces in path up
+| | ...
+| | ${fib_table}= | Set Variable | ${0}
+| | Add Fib Table | ${dut1} | ${fib_table}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table}
+| | ...
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
+| | ... | 192.168.50.72 | 24
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if2}
+| | ... | 192.168.60.73 | 24
+| | ...
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.74 | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.75 | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.76 | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.77 | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.78 | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.79 | ${tg_if2_mac}
+| | ...
+| | Vpp Route Add | ${dut1} | 192.168.60.0 | 24 | interface=${dut1_if2}
+| | ...
+| | Vpp Lb Conf | ${dut1} | ip4_src_addr=192.168.60.73 | buckets_per_core=${128}
+| | Vpp Lb Add Del Vip | ${dut1} | vip_addr=90.1.2.1 | encap=${2} | dscp=${7}
+| | ... | new_len=${1024}
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | as_addr=192.168.60.74
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | as_addr=192.168.60.75
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | as_addr=192.168.60.76
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | as_addr=192.168.60.77
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | as_addr=192.168.60.78
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | as_addr=192.168.60.79
+
+| Initialize loadbalancer nat4
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node
+| | ... | circular topology. Get the interface MAC addresses and setup ARP on
+| | ... | all VPP interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG
+| | ... | links.
+| | ...
+| | Set interfaces in path up
+| | ...
+| | ${fib_table}= | Set Variable | ${0}
+| | Add Fib Table | ${dut1} | ${fib_table}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table}
+| | ...
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
+| | ... | 192.168.50.72 | 24
+| | VPP Interface Set IP Address | ${dut1} | ${dut1_if2}
+| | ... | 192.168.60.73 | 24
+| | ...
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 192.168.50.74 | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 192.168.50.75 | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 192.168.50.76 | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 192.168.50.77 | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 192.168.50.78 | ${tg_if1_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 192.168.50.79 | ${tg_if1_mac}
+| | ...
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.74 | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.75 | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.76 | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.77 | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.78 | ${tg_if2_mac}
+| | VPP Add IP Neighbor | ${dut1} | ${dut1_if2} | 192.168.60.79 | ${tg_if2_mac}
+| | ...
+| | Vpp Route Add | ${dut1} | 192.168.50.0 | 24 | interface=${dut1_if1}
+| | Vpp Route Add | ${dut1} | 192.168.60.0 | 24 | interface=${dut1_if2}
+| | ...
+| | Vpp Lb Conf | ${dut1} | ip4_src_addr=192.168.60.73 | buckets_per_core=${128}
+| | Vpp Lb Add Del Vip | ${dut1} | vip_addr=90.1.2.1 | encap=${3} | protocol=${17}
+| | ... | port=${20000} | target_port=${3307} | new_len=${1024}
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | protocol=${17}
+| | ... | port=${20000} | as_addr=192.168.60.74
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | protocol=${17}
+| | ... | port=${20000} | as_addr=192.168.60.75
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | protocol=${17}
+| | ... | port=${20000} | as_addr=192.168.60.76
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | protocol=${17}
+| | ... | port=${20000} | as_addr=192.168.60.77
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | protocol=${17}
+| | ... | port=${20000} | as_addr=192.168.60.78
+| | Vpp Lb Add Del As | ${dut1} | vip_addr=90.1.2.1 | protocol=${17}
+| | ... | port=${20000} | as_addr=192.168.60.79
+| | Vpp Lb Add Del Intf Nat4 | ${dut1} | interface=${dut1_if2}
