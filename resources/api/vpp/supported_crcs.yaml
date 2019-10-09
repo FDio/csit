@@ -30,6 +30,7 @@
 # Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 # https://logs.fd.io/production/vex-yul-rot-jenkins-1
+<<<<<<< HEAD   (def93e Trending: Send alerts when regression occurs)
 # /vpp-beta-merge-master-ubuntu1804/3624/archives/build-root/
 20.01-rc0~210:
     acl_add_replace: '0x13bc8539'  # perf
@@ -258,6 +259,10 @@
 
 # https://gerrit.fd.io/r/c/vpp/+/21490
 21490/2:
+=======
+# /vpp-beta-merge-master-ubuntu1804/3788/archives/build-root/
+20.01-rc0~375:
+>>>>>>> CHANGE (ddf4a2 Update of VPP_STABLE_VER files)
     acl_add_replace: '0x13bc8539'  # perf
     acl_add_replace_reply: '0xac407b0c'  # perf
     acl_details: '0xf89d7a88'  # perf teardown
