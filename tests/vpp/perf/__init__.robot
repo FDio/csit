@@ -29,7 +29,8 @@
 | ... | AND | Update All Interface Data on All Nodes | ${nodes}
 | ... | skip_tg=${True} | numa_node=${True}
 | ...
-| Suite Teardown | Cleanup Framework | ${nodes}
+| Suite Teardown | Run Keywords | Cleanup Framework | ${nodes}
+| ... | AND | Fail | Just to prevent perpatch from vasting time testing parent.
 
 *** Keywords ***
 | Setup Global Variables
