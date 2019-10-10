@@ -12,3 +12,5 @@
       tags: docker
     - role: vpp_device
       tags: vpp_device
+    - role: cleanup
+      tags: cleanup

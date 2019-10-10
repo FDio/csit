@@ -28,8 +28,7 @@ function ansible_hosts () {
     set -exuo pipefail
 
     if ! installed sshpass; then
-        sudo apt-get update -y || die "apt-get update failed!"
-        sudo apt-get install -y sshpass || die "Install sshpass failed!"
+        die "Please install sshpass!"
     fi
 
     if ! installed ansible-playbook; then

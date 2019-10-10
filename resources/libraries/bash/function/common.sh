@@ -604,7 +604,7 @@ function reserve_and_cleanup_testbed () {
                 }
                 # Cleanup check.
                 set +e
-                cleanup_topo
+                ansible_hosts "cleanup"
                 result="$?"
                 set -e
                 if [[ "${result}" == "0" ]]; then
@@ -1040,7 +1040,7 @@ function untrap_and_unreserve_testbed () {
         set -eu
         warn "Testbed looks unreserved already. Trap removal failed before?"
     else
-        cleanup_topo || true
+        ansible_hosts "cleanup" || true
         python "${PYTHON_SCRIPTS_DIR}/topo_reservation.py" -c -t "${wt}" || {
             die "${1:-FAILED TO UNRESERVE, FIX MANUALLY.}" 2
         }

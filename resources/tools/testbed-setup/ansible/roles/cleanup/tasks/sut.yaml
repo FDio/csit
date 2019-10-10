@@ -1,0 +1,52 @@
+---
+# file: roles/cleanup/tasks/sut.yaml
+
+- name: Kill processes - qemu
+  import_tasks: kill_process.yaml
+  vars:
+    process: "qemu"
+  tags: kill-process
+
+- name: Kill processes - l3fwd
+  import_tasks: kill_process.yaml
+  vars:
+    process: "l3fwd"
+  tags: kill-process
+
+- name: Kill processes - testpmd
+  import_tasks: kill_process.yaml
+  vars:
+    process: "testpmd"
+  tags: kill-process
+
+- name: Remove file or dir - HoneyComb logs
+  file:
+    state: absent
+    path: "/var/log/honeycomb"
+  tags: remove-file-dir
+
+- name: Remove file or dir - Core zip file
+  file:
+    state: absent
+    path: "/tmp/*tar.lzo.lrz.xz*"
+  tags: remove-file-dir
+
+- name: Remove file or dir - Core dump file
+  file:
+    state: absent
+    path: "/tmp/*core*"
+  tags: remove-file-dir
+
+- name: Kill containers - Remove all containers
+  import_tasks: kill_containers.yaml
+  tags: kill-containers
+
+- name: Kubernetes - Reset
+  raw: 'kubeadm reset --force'
+  tags: kill-kubernetes
+
+- name: Remove packages - Remove VPP
+  import_tasks: remove_package.yaml
+  vars:
+    package: "*vpp*"
+  tags: remove-package
