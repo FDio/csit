@@ -408,9 +408,17 @@ Forwarding Mode Tags
 
     VPP IPv6 routed forwarding.
 
-.. topic:: LOADBALANCER
+.. topic:: LOADBALANCER_MAGLEV
 
-    VPP Load balancer.
+    VPP Load balancer maglev mode.
+
+.. topic:: LOADBALANCER_L3DSR
+
+    VPP Load balancer l3dsr mode.
+
+.. topic:: LOADBALANCER_NAT4
+
+    VPP Load balancer nat4 mode.
 
 Underlay Tags
 -------------
