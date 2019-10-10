@@ -334,6 +334,15 @@ class Alerting(object):
                             link=alert["urls"][idx],
                             build=build,
                             version=version))
+            regression_hdr = ("\n\n{topo}-{arch}, "
+                              "CSIT build: {link}/{build}, "
+                              "VPP version: {version}\n\n"
+                              .format(topo=test_set.split('-')[-2],
+                                      arch=test_set.split('-')[-1],
+                                      link=alert["urls"][idx],
+                                      build=build,
+                                      version=version
+                                      ))
             max_len_name = 0
             max_len_nics = 0
             max_len_framesizes = 0
@@ -364,16 +373,37 @@ class Alerting(object):
 
             # Add list of regressions:
             file_name = "{0}/cpta-regressions-{1}.txt".\
-                format(config["output-dir"],
-                       alert["urls"][idx].split('/')[-1])
+                format(config["output-dir"], alert["urls"][idx].split('/')[-1])
             try:
                 with open(file_name, 'r') as txt_file:
                     file_content = txt_file.read()
-                    if file_content:
-                        text += "\nRegressions (full paths):\n\n"
-                        text += file_content
-            except IOError:
-                pass
+                    reg_file_name = "{dir}/trending-regressions.txt". \
+                        format(dir=config["output-dir"])
+                    with open(reg_file_name, 'a+') as reg_file:
+                        reg_file.write(regression_hdr)
+                        if file_content:
+                            reg_file.write(file_content)
+                        else:
+                            reg_file.write("No regressions")
+            except IOError as err:
+                logging.warning(repr(err))
+
+            # Add list of progressions:
+            file_name = "{0}/cpta-progressions-{1}.txt".\
+                format(config["output-dir"], alert["urls"][idx].split('/')[-1])
+            try:
+                with open(file_name, 'r') as txt_file:
+                    file_content = txt_file.read()
+                    pro_file_name = "{dir}/trending-progressions.txt". \
+                        format(dir=config["output-dir"])
+                    with open(pro_file_name, 'a+') as pro_file:
+                        pro_file.write(regression_hdr)
+                        if file_content:
+                            pro_file.write(file_content)
+                        else:
+                            pro_file.write("No progressions")
+            except IOError as err:
+                logging.warning(repr(err))
 
         text += "\nFor detailed information visit: {url}\n".\
             format(url=alert["url-details"])

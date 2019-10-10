@@ -602,6 +602,12 @@ def _generate_all_charts(spec, input_data):
                     if classification == "regression" or \
                             classification == "outlier":
                         result = "FAIL"
+            file_name = "{0}-progressions-{1}.txt".\
+                format(spec.cpta["output-file"], job_name)
+            with open(file_name, 'w') as txt_file:
+                for test_name, classification in job_data.iteritems():
+                    if classification == "progression":
+                        txt_file.write(test_name + '\n')
     else:
         result = "FAIL"
 
