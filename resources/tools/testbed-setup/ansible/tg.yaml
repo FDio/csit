@@ -12,5 +12,7 @@
       tags: tg
     - role: tg_sut
       tags: tg_sut
+    - role: cleanup
+      tags: cleanup
     - role: calibration
       tags: calibration

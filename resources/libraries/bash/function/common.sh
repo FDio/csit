@@ -604,7 +604,7 @@ function reserve_and_cleanup_testbed () {
                 }
                 # Cleanup check.
                 set +e
-                cleanup_topo
+                ansible_hosts "cleanup"
                 result="$?"
                 set -e
                 if [[ "${result}" == "0" ]]; then

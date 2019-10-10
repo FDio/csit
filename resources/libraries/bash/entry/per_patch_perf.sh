@@ -58,6 +58,7 @@ activate_virtualenv "${VPP_DIR}" || die
 generate_tests || die
 archive_tests || die
 reserve_and_cleanup_testbed || die
+ansible_hosts "cleanup" || die
 select_tags || die
 compose_pybot_arguments || die
 # Support for interleaved measurements is kept for future.
