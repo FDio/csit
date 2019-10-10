@@ -334,6 +334,15 @@ class Alerting(object):
                             link=alert["urls"][idx],
                             build=build,
                             version=version))
+            regression_hdr = ("\n\n{topo}-{arch}, "
+                              "CSIT build: {link}/{build}, "
+                              "VPP version: {version}\n\n"
+                              .format(topo=test_set.split('-')[-2],
+                                      arch=test_set.split('-')[-1],
+                                      link=alert["urls"][idx],
+                                      build=build,
+                                      version=version
+                                      ))
             max_len_name = 0
             max_len_nics = 0
             max_len_framesizes = 0
@@ -372,6 +381,15 @@ class Alerting(object):
                     if file_content:
                         text += "\nRegressions (full paths):\n\n"
                         text += file_content
+                        reg_file_name = "{dir}/trending-regressions.txt".\
+                            format(dir=config["output-dir"])
+                        with open(reg_file_name, 'a+') as reg_file:
+                            reg_file.write(regression_hdr)
+                            reg_file.write(file_content)
+                    else:
+                        with open(reg_file_name, 'a+') as reg_file:
+                            reg_file.write(regression_hdr)
+                            reg_file.write("No regressions")
             except IOError:
                 pass
 
