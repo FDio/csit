@@ -1,0 +1,28 @@
+---
+# file: roles/cleanup/tasks/kill_containers.yaml
+
+- name: Kill container - Get running Docker containers
+  shell: "docker ps -aq"
+  register: running_containers
+  changed_when: no
+  tags: kill-containers
+
+- name: Kill container - Remove all Docker containers
+  docker_container:
+    name: "{{ item }}"
+    state: absent
+  with_items: "{{ running_containers.stdout_lines }}"
+  tags: kill-containers
+
+- name: Kill container - Get running LXC containers
+  shell: "lxc-ls"
+  register: running_containers
+  changed_when: no
+  tags: kill-containers
+
+- name: Kill container - Remove all LXC containers
+  lxc_container:
+    name: '{{ item }}'
+    state: absent
+  with_items: "{{ running_containers.stdout_lines }}"
+  tags: kill-containers

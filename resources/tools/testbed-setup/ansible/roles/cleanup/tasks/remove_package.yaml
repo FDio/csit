@@ -1,0 +1,29 @@
+---
+# file: roles/cleanup/tasks/remove_package.yaml
+
+- name: Remove package - Fix corrupted apt
+  shell: 'dpkg --configure -a'
+  when: ansible_distribution|lower == 'ubuntu'
+  tags: remove-package
+
+- name: Remove package - Check if {{ package }} is installed
+  shell: >
+    "dpkg-query -W -f='${Status}' {{ package }} | grep 'install ok installed'"
+  register: package_is_installed
+  failed_when: no
+  changed_when: no
+  when: ansible_distribution|lower == 'ubuntu'
+  tags: remove-package
+
+- name: Remove package - {{ package }}
+  apt:
+    name: '{{ package }}'
+    force: yes
+    purge: yes
+    state: absent
+  when: >
+    package is defined and
+    package != '' and
+    package_is_installed.rc == 0 and
+    ansible_distribution|lower == 'ubuntu'
+  tags: remove-package
