@@ -14,5 +14,7 @@
       tags: docker
     - role: performance_tuning
       tags: performance_tuning
+    - role: cleanup
+      tags: cleanup
     - role: calibration
       tags: calibration
