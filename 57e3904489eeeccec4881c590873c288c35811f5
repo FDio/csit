@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bf488473_87684c59",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-10T09:07:45Z",
+      "side": 1,
+      "message": "Pre-agreement is to use version from Ubuntu18.04-LTS currently 3.6.8 ( 3.6.9 contains just some URL bug fixing which is minor to scope of this work, we will upgrade later ) \n\nUbuntu 20.04 will by my best guess contains 3.8.x, but due to regular CSIT schedule it will take us longer time to upgrade so no need to jump there yet. I think 3.6-\u003e3.8 will be minor to 2.7-\u003e3.6\n\nCentOS7 in Fd.io is on 1810 which contains py3.6. So we are good to go with 3.6.x branch.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 103
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a8bd6c40_6aa959cb",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-10T09:07:45Z",
+      "side": 1,
+      "message": "What about the other libs? Do we want to upgrade?",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 49
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c18c9bbd_680e1e9a",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-10T09:07:45Z",
+      "side": 1,
+      "message": "Already done on all TB, need to check Docker images first. We need to either change default python interpreter or use python3 as binary/shebang",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 72
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb6fb375_806bdb8b",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-10T09:07:45Z",
+      "side": 1,
+      "message": "i will do",
+      "range": {
+        "startLine": 112,
+        "startChar": 3,
+        "endLine": 112,
+        "endChar": 24
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0dbd1b53_57f01776",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-10T09:07:45Z",
+      "side": 1,
+      "message": "done",
+      "range": {
+        "startLine": 113,
+        "startChar": 3,
+        "endLine": 113,
+        "endChar": 26
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "35eb1150_834e47cb",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-10T09:07:45Z",
+      "side": 1,
+      "message": "i do not care about them it is pain",
+      "range": {
+        "startLine": 114,
+        "startChar": 3,
+        "endLine": 114,
+        "endChar": 38
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dd9caa2c_76e2ebd5",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-10T09:07:45Z",
+      "side": 1,
+      "message": "you forget about pip upgrade to pip3",
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
