@@ -163,6 +163,52 @@
     },
     {
       "key": {
+        "uuid": "6dfb6f44_b1d32271",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-10T10:25:15Z",
+      "side": 1,
+      "message": "Does this mean oper branch will still contain Python 2 code to be used for trending and vpp-csit jobs during the freeze?\nAlso, the freeze probably means no API chanegs in VPP can get CSIT support.",
+      "range": {
+        "startLine": 116,
+        "startChar": 3,
+        "endLine": 116,
+        "endChar": 9
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "584046c3_d12869f8",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-10T10:25:15Z",
+      "side": 1,
+      "message": "We will need to do the edits in the bash scripts to switch the interpreter, e.g. for pybot and for tox, that will affect which one is used in verify jobs.",
+      "range": {
+        "startLine": 118,
+        "startChar": 3,
+        "endLine": 118,
+        "endChar": 4
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd9caa2c_76e2ebd5",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 1
