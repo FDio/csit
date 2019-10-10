@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "4d0748a3_832b7c04",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-10T10:25:15Z",
+      "side": 1,
+      "message": "If centos can handle it, I vote for 3.6.8.",
+      "parentUuid": "bf488473_87684c59",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 103
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8bd6c40_6aa959cb",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 1
