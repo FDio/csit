@@ -15,7 +15,7 @@
 
 from socket import htonl
 from ipaddress import ip_address
-from resources.libraries.python.topology import NodeType
+from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 class LoadBalancerUtil(object):
@@ -168,6 +168,37 @@ class LoadBalancerUtil(object):
                         as_address={'un': {'ip4': as_addr}, 'af': 0},
                         is_del=is_del,
                         is_flush=is_flush)
+
+            with PapiSocketExecutor(node) as papi_exec:
+                papi_exec.add(cmd, **args).get_reply(err_msg)
+        else:
+            raise ValueError('Node {host} has unknown NodeType: "{type}"'
+                             .format(host=node['host'], type=node['type']))
+
+    @staticmethod
+    def vpp_lb_add_del_intf_nat4(node, **kwargs):
+        """Enable/disable NAT4 feature on the interface.
+
+        :param node: Node where the interface is.
+        :param kwargs: Optional key-value arguments:
+
+            is_add: true if add, false if delete. (bool)
+            interface: software index of the interface. (int)
+
+        :type node: dict
+        :type kwargs: dict
+        :returns: Nothing.
+        :raises ValueError: If the node has an unknown node type.
+        """
+        if node['type'] == NodeType.DUT:
+            cmd = 'lb_add_del_intf_nat4'
+            err_msg = 'Failed to add interface nat4 on host {host}'.format(
+                host=node['host'])
+
+            is_add = kwargs.pop('is_add', True)
+            interface = kwargs.pop('interface', 0)
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+            args = dict(is_add=is_add, sw_if_index=sw_if_index)
 
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
