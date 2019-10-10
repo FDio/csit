@@ -10,3 +10,5 @@
       tags: common
     - role: vpp_device
       tags: vpp_device
+    - role: cleanup
+      tags: cleanup
