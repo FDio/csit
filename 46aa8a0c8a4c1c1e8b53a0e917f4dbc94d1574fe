@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "01a3c9a7_67ee7f42",
+        "filename": "resources/tools/testbed-setup/ansible/roles/cleanup/tasks/tg.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-10T16:28:24Z",
+      "side": 1,
+      "message": "Also attempt to kill wrk?",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "46aa8a0c8a4c1c1e8b53a0e917f4dbc94d1574fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
