@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "7b9c0889_f973372d",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-11T11:35:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d0748a3_832b7c04",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 103
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a8bd6c40_6aa959cb",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 1
@@ -60,6 +84,30 @@
       "writtenOn": "2019-10-10T09:07:45Z",
       "side": 1,
       "message": "What about the other libs? Do we want to upgrade?",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 49
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57156bcc_ce40c09a",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-11T11:35:33Z",
+      "side": 1,
+      "message": "I would check and update also other libraries.\nThere is listed only pypcap as it is mandatory update to by able to migrate from Python 2 to Python 3.",
+      "parentUuid": "a8bd6c40_6aa959cb",
       "range": {
         "startLine": 109,
         "startChar": 0,
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "abc596b9_bbf6b7c6",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-11T11:35:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c18c9bbd_680e1e9a",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 72
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "eb6fb375_806bdb8b",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 1
@@ -115,6 +187,30 @@
       "revId": "57e3904489eeeccec4881c590873c288c35811f5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "19b772eb_9a97011b",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-11T11:35:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eb6fb375_806bdb8b",
+      "range": {
+        "startLine": 112,
+        "startChar": 3,
+        "endLine": 112,
+        "endChar": 24
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -141,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "0b4f85d1_5cd46af7",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-11T11:35:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0dbd1b53_57f01776",
+      "range": {
+        "startLine": 113,
+        "startChar": 3,
+        "endLine": 113,
+        "endChar": 26
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "35eb1150_834e47cb",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 1
@@ -161,6 +281,30 @@
       "revId": "57e3904489eeeccec4881c590873c288c35811f5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9a913c0a_947e9074",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-11T11:35:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "35eb1150_834e47cb",
+      "range": {
+        "startLine": 114,
+        "startChar": 3,
+        "endLine": 114,
+        "endChar": 38
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -187,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "b16e5710_4235ecca",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-11T11:35:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "81ee4e76_507e0c86",
+      "range": {
+        "startLine": 115,
+        "startChar": 3,
+        "endLine": 115,
+        "endChar": 58
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6dfb6f44_b1d32271",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 1
@@ -198,6 +366,30 @@
       "writtenOn": "2019-10-10T10:25:15Z",
       "side": 1,
       "message": "Does this mean oper branch will still contain Python 2 code to be used for trending and vpp-csit jobs during the freeze?\nAlso, the freeze probably means no API chanegs in VPP can get CSIT support.",
+      "range": {
+        "startLine": 116,
+        "startChar": 3,
+        "endLine": 116,
+        "endChar": 9
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "06d4cf94_311afc7d",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-11T11:35:33Z",
+      "side": 1,
+      "message": "Yes, until we finish Python migration the csit operational branch used for trending and vpp-csit jobs will use Python 2.\nRE API changes in VPP - yes, we won\u0027t implement API changes in CSIT during Python migration. We should inform vpp-dev community in advance when migration time table is agreed.",
+      "parentUuid": "6dfb6f44_b1d32271",
       "range": {
         "startLine": 116,
         "startChar": 3,
@@ -257,6 +449,30 @@
     },
     {
       "key": {
+        "uuid": "7039e11f_4559cb0c",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-11T11:35:33Z",
+      "side": 1,
+      "message": "Changes in bash scripts are included in the plan - see Required CSIT code changes.\n\nI prefer the soft switch too - it will keep vpp-csit verify jobs fully functional until Python migration is finished in CSIT master (CSIT operational branch will still use Python 2).\nAs soon as the migration is finished and fully tested we will create new csit operational branch based on Python 3 implementation. Then we can change default interpreter settings on all CSIT systems.",
+      "parentUuid": "2c102ff0_552799fa",
+      "range": {
+        "startLine": 118,
+        "startChar": 3,
+        "endLine": 118,
+        "endChar": 4
+      },
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dd9caa2c_76e2ebd5",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 1
@@ -268,6 +484,24 @@
       "writtenOn": "2019-10-10T09:07:45Z",
       "side": 1,
       "message": "you forget about pip upgrade to pip3",
+      "revId": "57e3904489eeeccec4881c590873c288c35811f5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "56f96805_8c77c89f",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-11T11:35:33Z",
+      "side": 1,
+      "message": "The pip3 installation is treated as part of Python 3 installation I guess. But we can mention it here if needed.",
+      "parentUuid": "dd9caa2c_76e2ebd5",
       "revId": "57e3904489eeeccec4881c590873c288c35811f5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
