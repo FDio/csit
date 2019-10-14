@@ -1,40 +1,41 @@
 ---
 # file: roles/tg/tasks/trex.yaml
 
-- name: Download TRex release archive
+- name: T-Rex Install - Get Release Archive
   get_url:
-    url: '{{ trex.url }}/v{{ trex.version }}.tar.gz'
+    url: 'https://github.com/cisco-system-traffic-generator/trex-core/archive/v{{ trex.version }}.tar.gz'
     dest: '{{ trex.target_dir }}/trex-core-{{ trex.version }}.tar.gz'
     mode: 0644
-  register: 'linux__trex_downloaded'
+  register: trex_downloaded
   tags: install-trex
 
-- name: Ensure TRex directory exists
+- name: T-Rex Install - Ensure Directory Exists
   file:
     path: '{{ trex.target_dir }}/trex-core-{{ trex.version }}'
     state: 'directory'
-  register: 'linux__trex_dir_created'
+  register: trex_dir_created
   tags: install-trex
 
-- name: Extract TRex release archive
-  become: yes
+- name: T-Rex Install - Extract Release Archive
   unarchive:
+    remote_src: true
     src: '{{ trex.target_dir }}/trex-core-{{ trex.version }}.tar.gz'
     dest: '{{ trex.target_dir }}/'
-    creates: '{{ trex.target_dir }}/trex-core-{{ trex.version }}/linux_dpdk'
-    remote_src: yes
-  when: 'linux__trex_dir_created'
-  register: 'linux__trex_extracted'
+    creates: '{{ trex.target_dir }}/trex-core-{{ trex.version }}/linux_dpdk/'
+  when: trex_dir_created
+  register: trex_extracted
   tags: install-trex
 
-- name: Compile TRex release I
-  become: yes
-  shell: 'cd {{ trex.target_dir }}/trex-core-{{ trex.version }}/linux_dpdk/; ./b configure; ./b build'
-  when: 'linux__trex_extracted'
+- name: T-Rex Install - Compile Release I
+  command: './b configure; ./b build'
+  args:
+    chdir: '{{ trex.target_dir }}/trex-core-{{ trex.version }}/linux_dpdk/'
+  when: trex_extracted
   tags: install-trex
 
-- name: Compile TRex release II
-  become: yes
-  shell: 'cd {{ trex.target_dir }}/trex-core-{{ trex.version }}/scripts/ko/src; make; make install'
-  when: 'linux__trex_extracted'
+- name: T-Rex Install - Compile Release II
+  command: 'make; make install'
+  args:
+    chdir: '{{ trex.target_dir }}/trex-core-{{ trex.version }}/scripts/ko/src'
+  when: trex_extracted
   tags: install-trex

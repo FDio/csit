@@ -64,22 +64,22 @@ nodes:
         driver: i40e
         link: link6
         model: Intel-XXV710
-#      port7:
-#        # s34-t27-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
-#        mac_address: "?"
-#        pci_address: "0000:5e:00.0"
-#        ip4_address: "172.16.70.2"
-#        driver: mlx5_core
-#        link: link7
-#        model: Mellanox-CX556A
-#      port8:
-#        # s34-t27-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
-#        mac_address: "?"
-#        pci_address: "0000:5e:00.1"
-#        ip4_address: "172.16.70.1"
-#        driver: mlx5_core
-#        link: link8
-#        model: Mellanox-CX556A
+      port7:
+        # s34-t27-tg1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "ec:0d:9a:8c:c6:a6"
+        pci_address: "0000:5e:00.0"
+        ip4_address: "172.16.70.2"
+        driver: mlx5_core
+        link: link7
+        model: Mellanox-CX556A
+      port8:
+        # s34-t27-tg1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "ec:0d:9a:8c:c6:a7"
+        pci_address: "0000:5e:00.1"
+        ip4_address: "172.16.70.1"
+        driver: mlx5_core
+        link: link8
+        model: Mellanox-CX556A
   DUT1:
     type: DUT
     host: "10.32.8.18"
@@ -142,19 +142,19 @@ nodes:
         driver: i40e
         link: link6
         model: Intel-XXV710
-#      port7:
-#        # s33-t27-sut1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
-#        mac_address: "?"
-#        pci_address: "0000:5e:00.0"
-#        ip4_address: "172.16.70.2"
-#        driver: mlx5_core
-#        link: link7
-#        model: Mellanox-CX556A
-#      port8:
-#        # s33-t27-sut1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
-#        mac_address: "?"
-#        pci_address: "0000:5e:00.1"
-#        ip4_address: "172.16.70.1"
-#        driver: mlx5_core
-#        link: link8
-#        model: Mellanox-CX556A
+      port7:
+        # s33-t27-sut1-c9/p1 - 100GE-port1 ConnectX5-2p100GE.
+        mac_address: "ec:0d:9a:8c:c6:96"
+        pci_address: "0000:5e:00.0"
+        ip4_address: "172.16.70.2"
+        driver: mlx5_core
+        link: link7
+        model: Mellanox-CX556A
+      port8:
+        # s33-t27-sut1-c9/p2 - 100GE-port2 ConnectX5-2p100GE.
+        mac_address: "ec:0d:9a:8c:c6:96"
+        pci_address: "0000:5e:00.1"
+        ip4_address: "172.16.70.1"
+        driver: mlx5_core
+        link: link8
+        model: Mellanox-CX556A

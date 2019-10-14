@@ -88,4 +88,8 @@
     - 'Reboot server'
   tags: copy-grub
 
+- name: Mellanox Install - Driver
+  import_tasks: mellanox.yaml
+  tags: mellanox-install
+
 - meta: flush_handlers

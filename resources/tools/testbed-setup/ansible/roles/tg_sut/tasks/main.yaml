@@ -11,7 +11,9 @@
 
 - name: Turbo boost specific
   import_tasks: turbo_boost.yaml
-  when: cpu_microarchitecture == "skylake" or cpu_microarchitecture == "cascadelake"
+  when: >
+    cpu_microarchitecture == "skylake" or
+    cpu_microarchitecture == "cascadelake"
   tags: [ install-msr, disable-turbo-boost ]
 
 - name: Copy netplan network config file
