@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "564e53e3_3599d549",
+        "filename": "resources/libraries/robot/lb/load_balancer.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-14T11:00:17Z",
+      "side": 1,
+      "message": "Maybe common parts can be moved to some function",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 79
+      },
+      "revId": "5295d53146aced73791eb09d8fb3d50bc4291688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3db9e4dc_7b1a841a",
+        "filename": "resources/libraries/robot/lb/load_balancer.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-14T11:00:17Z",
+      "side": 1,
+      "message": "Line too long",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 1
+      },
+      "revId": "5295d53146aced73791eb09d8fb3d50bc4291688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4f1dfe2_cd54c9b1",
+        "filename": "tests/vpp/perf/lb/2n1l-10ge2p1x710-ethip4-loadbalancer-nat4-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-14T11:00:17Z",
+      "side": 1,
+      "message": "I am missing separate tags for MAGLEV / NAT4 / L3DSR so we can call particular suite.",
+      "range": {
+        "startLine": 18,
+        "startChar": 37,
+        "endLine": 18,
+        "endChar": 49
+      },
+      "revId": "5295d53146aced73791eb09d8fb3d50bc4291688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
