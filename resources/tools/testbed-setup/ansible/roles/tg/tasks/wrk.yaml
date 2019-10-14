@@ -1,41 +1,40 @@
 ---
 # file: roles/tg/tasks/wrk.yaml
 
-- name: Download WRK release archive
+- name: WRK Install - Get Release Archive
   get_url:
-    url: '{{ wrk.url }}/{{ wrk.version }}.tar.gz'
+    url: 'https://github.com/wg/wrk/archive/{{ wrk.version }}.tar.gz'
     dest: '{{ wrk.target_dir }}/{{ wrk.version }}.tar.gz'
     mode: 0644
-  register: 'linux__wrk_downloaded'
+  register: wrk_downloaded
   tags: install-wrk
 
-- name: Ensure WRK directory exists
+- name: WRK Install - Ensure Directory Exists
   file:
     path: '{{ wrk.target_dir }}/wrk-{{ wrk.version }}'
     state: 'directory'
-  register: 'linux__wrk_dir_created'
+  register: wrk_dir_created
   tags: install-wrk
 
-- name: Extract WRK release archive
-  become: yes
+- name: WRK Install - Extract Release Archive
   unarchive:
+    remote_src: true
     src: '{{ wrk.target_dir }}/{{ wrk.version }}.tar.gz'
     dest: '{{ wrk.target_dir }}/'
     creates: '{{ wrk.target_dir }}/wrk-{{ wrk.version }}/src'
-    remote_src: yes
-  when: 'linux__wrk_dir_created'
-  register: 'linux__wrk_extracted'
+  when: wrk_dir_created
+  register: wrk_extracted
   tags: install-wrk
 
-- name: Compile WRK release
-  become: yes
-  shell: 'cd {{ wrk.target_dir }}/wrk-{{ wrk.version }}; make'
-  when: 'linux__wrk_extracted'
-  register: 'linux__wrk_compiled'
+- name: WRK Install - Compile Release
+  command: 'make'
+  args:
+    chdir: '{{ wrk.target_dir }}/wrk-{{ wrk.version }}'
+  when: wrk_extracted
+  register: wrk_compiled
   tags: install-wrk
 
-- name: Move WRK binary
-  become: yes
+- name: WRK Install - Move Binary
   command: 'mv {{ wrk.target_dir }}/wrk-{{ wrk.version }}/wrk /usr/local/bin/'
-  when: 'linux__wrk_compiled'
+  when: wrk_compiled
   tags: install-wrk

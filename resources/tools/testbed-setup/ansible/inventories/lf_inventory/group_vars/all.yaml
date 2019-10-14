@@ -8,7 +8,7 @@ provision_enabled: False
 # name_servers_search is used in /etc/hosts file on target machine.
 name_servers_search: 'linuxfoundation.org'
 # name_servers is used in /etc/netplan/01-netcfg.yaml
-name_servers: "199.204.44.24, 199.204.47.54"
+name_servers: "1.1.1.1, 8.8.8.8"
 
 # Proxy settings: Uncomment and fill the proper values. These variables will be
 # set globally by writing into /etc/environment file on target machine.
@@ -45,7 +45,6 @@ kubernetes:
 trex:
   target_dir: '/opt'
   version: '2.61'
-  url: 'https://github.com/cisco-system-traffic-generator/trex-core/archive'
 
 # DPDK settings.
 dpdk:
@@ -60,10 +59,13 @@ dpdk:
 wrk:
   target_dir: '/opt'
   version: '4.0.2'
-  url: 'https://github.com/wg/wrk/archive'
 
 # Calibration settings.
 jitter:
   directory: '/tmp/pma_tools'
   core: 7
   iterations: 30
+
+# Mellanox OFED settings.
+mellanox:
+  version: '4.6-1.0.1.1'
