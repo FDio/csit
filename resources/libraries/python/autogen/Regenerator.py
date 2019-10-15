@@ -328,7 +328,8 @@ class Regenerator(object):
             if not self.quiet:
                 eprint("Regenerating in_filename:", in_filename)
             iface, _ = get_iface_and_suite_id(in_filename)
-            if not iface.endswith("10ge2p1x710"):
+            if not (iface.endswith("10ge2p1x710" and
+                    iface.endswith(100ge2p1cx556a)):
                 raise RuntimeError(
                     "Error in {fil}: non-primary NIC found.".format(
                         fil=in_filename))
