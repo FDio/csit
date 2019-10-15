@@ -4,7 +4,7 @@
 - name: Install CSIT dependencies
   apt:
     name:
-      - 'cpufrequtils'
+      - 'libmnl-dev'
       - 'libnuma-dev'
       - 'libpcap-dev'
       - 'libssl-dev'
