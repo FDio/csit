@@ -125,6 +125,25 @@ class InterfaceUtil(object):
                 int(pci[2], 16) << 24 | int(pci[3], 16) << 29)
 
     @staticmethod
+    def pci_to_eth(node, pci_str):
+        """Convert PCI address to Linux ethernet name.
+
+        :param pci_str: PCI address.
+        :type pci_str: str
+        :returns: Ethernet name.
+        :rtype: str
+        """
+        cmd = ('basename /sys/bus/pci/devices/{pci_str}/net/*'.
+               format(pci_str=pci_str))
+        try:
+            stdout, _ = exec_cmd_no_error(node, cmd)
+        except RuntimeError:
+            raise RuntimeError("Cannot convert {pci_str} to ethernet name!".
+                               format(pci_str=pci_str))
+
+        return stdout.strip()
+
+    @staticmethod
     def get_interface_index(node, interface):
         """Get interface sw_if_index from topology file.
 
@@ -1170,7 +1189,7 @@ class InterfaceUtil(object):
         """Create AVF interface on VPP node.
 
         :param node: DUT node from topology.
-        :param vf_pci_addr: Virtual Function PCI address.
+        :param vf_pci_addr: PCI address binded to i40evf driver.
         :param num_rx_queues: Number of RX queues.
         :type node: dict
         :type vf_pci_addr: str
@@ -1191,8 +1210,40 @@ class InterfaceUtil(object):
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
-        InterfaceUtil.add_eth_interface(node, sw_if_index=sw_if_index,
-                                        ifc_pfx='eth_avf')
+        InterfaceUtil.add_eth_interface(
+            node, sw_if_index=sw_if_index, ifc_pfx='eth_avf')
+        if_key = Topology.get_interface_by_sw_index(node, sw_if_index)
+
+        return if_key
+
+    @staticmethod
+    def vpp_create_rdma_interface(node, pci_addr, num_rx_queues=None):
+        """Create RDMA interface on VPP node.
+
+        :param node: DUT node from topology.
+        :param pci_addr: PCI address binded to rdma-core driver.
+        :param num_rx_queues: Number of RX queues.
+        :type node: dict
+        :type pci_addr: str
+        :type num_rx_queues: int
+        :returns: Interface key (name) in topology.
+        :rtype: str
+        :raises RuntimeError: If it is not possible to create RDMA interface on
+            the node.
+        """
+        cmd = 'rdma_create'
+        args = dict(name=InterfaceUtil.pci_to_eth(node, pci_addr),
+                    host_if=InterfaceUtil.pci_to_eth(node, pci_addr),
+                    rxq_num=int(num_rx_queues) if num_rx_queues else 0,
+                    rxq_size=0,
+                    txq_size=0)
+        err_msg = 'Failed to create RDMA interface on host {host}'.format(
+            host=node['host'])
+        with PapiSocketExecutor(node) as papi_exec:
+            sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
+
+        InterfaceUtil.add_eth_interface(
+            node, sw_if_index=sw_if_index, ifc_pfx='eth_rdma')
         if_key = Topology.get_interface_by_sw_index(node, sw_if_index)
 
         return if_key
