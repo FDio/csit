@@ -173,12 +173,49 @@
 | | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_eth_vf_if1_mac}
 | | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_eth_vf_if2_mac}
 
-| Initialize AVF interfaces
+| Initialize layer rdma on node
 | | [Documentation]
-| | ... | Initialize AVF interfaces on each DUT. Interfaces are brought up.
+| | ... | Initialize rdma interfaces on DUT. Interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize layer rdma on node \| DUT1 \|
+| | ...
+| | [Arguments] | ${dut}
+| | ...
+| | ${dut_str}= | Convert To Lowercase | ${dut}
+| | ${if1_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if1}
+| | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
+| | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
+| | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
+| | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | ... | ${${dut}_if1}
+| | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | ... | ${${dut}_if2}
+| | ${dut_eth_if1}= | VPP Create Rdma Interface | ${nodes['${dut}']}
+| | ... | ${if1_pci} | ${rxq_count_int}
+| | ${dut_eth_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_eth_if1}
+| | ${dut_eth_if2}= | VPP Create Rdma Interface | ${nodes['${dut}']}
+| | ... | ${if2_pci} | ${rxq_count_int}
+| | ${dut_eth_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_eth_if2}
+| | Set Test Variable | ${${dut_str}_if1} | ${dut_eth_if1}
+| | Set Test Variable | ${${dut_str}_if2} | ${dut_eth_if2}
+| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_eth_if1_mac}
+| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_eth_if2_mac}
+
+| Initialize interfaces
+| | [Documentation]
+| | ... | Initialize interfaces on each DUT. Interfaces are brought up.
+| | ...
+| | [Arguments] | ${type}
 | | ...
 | | :FOR | ${dut} | IN | @{duts}
-| | | Initialize layer avf on node | ${dut}
+| | | Initialize layer '${type}' on node | ${dut}
 | | Set Test Variable | ${prev_layer} | vf
 | | Set interfaces in path up
 
