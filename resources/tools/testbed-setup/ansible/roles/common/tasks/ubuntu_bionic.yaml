@@ -18,6 +18,7 @@
       - 'socat'
       - 'qemu-system'
       - 'build-essential'
+      - 'gdb'
     state: 'present'
     cache_valid_time: 3600
     install_recommends: False

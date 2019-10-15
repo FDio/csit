@@ -119,8 +119,8 @@ class CoreDumpUtil(object):
                 self.enable_coredump_limit(node, vpp_pid)
 
     def get_core_files_on_all_nodes(self, nodes, disable_on_success=True):
-        """Compress all core files into single file and remove the original
-        core files on all nodes.
+        """Process all core files and remove the original core files on al
+        nodes.
 
         :param nodes: Nodes in the topology.
         :param disable_on_success: If True, disable setting of core limit by
@@ -129,16 +129,13 @@ class CoreDumpUtil(object):
         :type disable_on_success: bool
         """
         for node in nodes.values():
-            uuid = str(time()).replace('.', '')
-            name = '{uuid}.tar.lzo.lrz.xz'.format(uuid=uuid)
-
-            command = ('[ -e {dir}/*.core ] && cd {dir} && '
-                       'sudo tar c *.core | '
-                       'lzop -1 | '
-                       'lrzip -n -T -p 1 -w 5 | '
-                       'xz -9e > {name} && '
-                       'sudo rm -f *.core'
-                       .format(dir=Constants.CORE_DUMP_DIR, name=name))
+            command = ('for f in {dir}/*.core; do '
+                       'sudo gdb /usr/bin/vpp ${{f}} '
+                       '--eval-command="set pagination off" '
+                       '--eval-command="thread apply all bt" '
+                       '--eval-command="quit"; '
+                       'sudo rm -f ${{f}}; done'
+                       .format(dir=Constants.CORE_DUMP_DIR))
             try:
                 exec_cmd_no_error(node, command, timeout=3600)
                 if disable_on_success:
@@ -147,14 +144,3 @@ class CoreDumpUtil(object):
                 # If compress was not sucessfull ignore error and skip further
                 # processing.
                 continue
-
-            local_path = 'archive/{name}'.format(name=name)
-            remote_path = '{dir}/{name}'.format(dir=Constants.CORE_DUMP_DIR,
-                                                name=name)
-            try:
-                scp_node(node, local_path, remote_path, get=True, timeout=3600)
-                command = 'rm -f {dir}/{name}'\
-                           .format(dir=Constants.CORE_DUMP_DIR, name=name)
-                exec_cmd_no_error(node, command, sudo=True)
-            except RuntimeError:
-                pass
