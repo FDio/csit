@@ -234,7 +234,6 @@ class Constants(object):
     # Mapping from NIC name to its bps limit.
     # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.
     NIC_NAME_TO_LIMIT = {
-        # TODO: Explain why ~40Gbps NICs are using ~25Gbps limit.
         "Cisco-VIC-1227": 10000000000,
         "Cisco-VIC-1385": 24500000000,
         "Intel-X520-DA2": 10000000000,
@@ -242,6 +241,7 @@ class Constants(object):
         "Intel-X710": 10000000000,
         "Intel-XL710": 24500000000,
         "Intel-XXV710": 24500000000,
+        "Mellanox-CX556A": 100000000000,
         "virtual": 100000000,
     }
 
@@ -254,6 +254,7 @@ class Constants(object):
         "Intel-X710": "10ge2p1x710",
         "Intel-XL710": "40ge2p1xl710",
         "Intel-XXV710": "25ge2p1xxv710",
+        "Mellanox-CX556A": "100ge2p1cx556a",
     }
 
     # TODO CSIT-1481: Crypto HW should be read from topology file instead.
