@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "e338c191_6cff790a",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-16T13:16:19Z",
+      "side": 1,
+      "message": "Not sure how you come to this but it is not enough. Please keep this list as minimum:\n\npip3 install \\\n     aenum\u003d\u003d2.1.2 \\\n     docopt\u003d\u003d0.6.2 \\\n     ecdsa\u003d\u003d0.13 \\\n     ipaddress\u003d\u003d1.0.16 \\\n     paramiko\u003d\u003d1.16.0 \\\n     pexpect\u003d\u003d4.6.0 \\\n     pycrypto\u003d\u003d2.6.1 \\\n     pykwalify\u003d\u003d1.5.0 \\\n     pypcap\u003d\u003d1.2.3 \\\n     python-dateutil\u003d\u003d2.4.2 \\\n     PyYAML\u003d\u003d3.11 \\\n     requests\u003d\u003d2.9.1 \\\n     robotframework\u003d\u003d3.0.0 \\\n     scapy\u003d\u003d2.4.3 \\\n     scp\u003d\u003d0.10.2 \\\n     six\u003d\u003d1.12.0 \\\n     dill\u003d\u003d0.2.8.2 \\\n     numpy\u003d\u003d1.14.5\n\nso:\n- enum34 (no py3 alternative)\n- robotframework -\u003e 3.0.0 (2.9.3 cannot be installed via pip3)\n- pypcap 1.2.3 works\n- scapy -\u003e 2.4.3 (previous cannot be installed via pip3)\n\nI suggest also remove \n- pykwalify (was used in virl)\n- python-dateutil is direct dependency of pykwalify so please check if we need it\n- docopt is for what ??? please consider remove in favor of ArgumentParser",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 24,
+        "endChar": 54
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8c490b0_d7a377fc",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 2
