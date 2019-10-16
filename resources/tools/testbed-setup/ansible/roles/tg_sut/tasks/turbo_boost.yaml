@@ -1,25 +1,33 @@
 ---
 # file: roles/tg_sut/tasks/turbo_boost.yaml
 
-- name: Install msr-tools
+- name: Turbo boost - Install msr-tools
   apt:
     name:
       - 'msr-tools'
     state: 'present'
+    cache_valid_time: 3600
     install_recommends: False
-  tags: install-msr
+  tags: turbo-boost
 
-- name: Disable Turbo-Boost by service
+- name: Turbo boost - Load msr by default
+  lineinfile:
+    path: '/etc/modules'
+    state: 'present'
+    line: 'msr'
+  tags: turbo-boost
+
+- name: Turbo boost - Custom startup service hook
   copy:
     src: 'files/disable-turbo-boost.service'
     dest: '/etc/systemd/system/disable-turbo-boost.service'
     owner: 'root'
     group: 'root'
     mode: '0644'
-  tags: disable-turbo-boost
+  tags: turbo-boost
 
-- name: Disable Turbo-Boost by service on startup
+- name: Turbo boost - Custom startup service hook enable
   service:
-    name: disable-turbo-boost
+    name: 'disable-turbo-boost'
     enabled: yes
-  tags: disable-turbo-boost
+  tags: turbo-boost

@@ -4,20 +4,11 @@
 - name: Install CSIT dependencies
   apt:
     name:
-      - 'python-dev'
-      - 'virtualenv'
-      - 'python-pip'
-      - 'libpcap-dev'
-      - 'cpufrequtils'
-      - 'cgroup-bin'
-      - 'zlib1g-dev'
       - 'apt-transport-https'
       - 'ca-certificates'
       - 'software-properties-common'
-      - 'libnuma-dev'
-      - 'lzop'
-      - 'lrzip'
     state: 'present'
+    cache_valid_time: 3600
     install_recommends: False
   tags: install-csit-dependencies
 

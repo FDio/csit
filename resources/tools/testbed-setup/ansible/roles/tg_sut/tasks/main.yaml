@@ -7,14 +7,14 @@
 
 - name: Machine specifics
   include_tasks: '{{ ansible_machine }}.yaml'
-  tags: [ disable-turbo-boost, set-grub, install-pip ]
+  tags: set-grub
 
-- name: Turbo boost specific
+- name: Turbo boost
   import_tasks: turbo_boost.yaml
   when: >
     cpu_microarchitecture == "skylake" or
     cpu_microarchitecture == "cascadelake"
-  tags: [ install-msr, disable-turbo-boost ]
+  tags: turbo-boost
 
 - name: Copy CSIT sysctl file
   template:
@@ -48,12 +48,6 @@
     name: 'ondemand'
     enabled: 'no'
   tags: set-ondemand
-
-- name: Install VPP PIP requirements
-  pip:
-    name:
-      - 'aenum==2.1.2'
-  tags: install-pip
 
 - name: Load vfio-pci by default
   lineinfile:

@@ -67,6 +67,36 @@
   include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
   tags: [ install-csit-dependencies, copy-apt-sources ]
 
+- name: Install CSIT PIP requirements
+  pip:
+    name:
+      - 'docopt==0.6.2'
+      - 'ecdsa==0.13'
+      - 'enum34==1.1.2'
+      - 'ipaddress==1.0.16'
+      - 'paramiko==1.16.0'
+      - 'pexpect==4.6.0'
+      - 'pycrypto==2.6.1'
+      - 'pykwalify==1.5.0'
+      - 'pypcap==1.1.5'
+      - 'python-dateutil==2.4.2'
+      - 'PyYAML==3.11'
+      - 'requests==2.9.1'
+      - 'robotframework==2.9.2'
+      - 'scapy==2.3.1'
+      - 'scp==0.10.2'
+      - 'six==1.12.0'
+      - 'dill==0.2.8.2'
+      - 'numpy==1.14.5'
+      - 'aenum==2.1.2'
+  tags: install-pip
+
+- name: Install CSIT PIP requirements - SciPy workaround
+  pip:
+    name:
+      - 'scipy==1.1.0'
+  tags: install-pip
+
 - name: Set sudoers admin
   lineinfile:
     path: '/etc/sudoers'
