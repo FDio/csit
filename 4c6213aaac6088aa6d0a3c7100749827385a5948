@@ -142,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "4807738b_3089de09",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-16T17:35:02Z",
+      "side": 1,
+      "message": "Also, we should be careful about string literals. I recommend u\"\" for new str and b\"\" for bytes, with bare \"\" becoming a style error.",
+      "parentUuid": "4d8da292_4952a552",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 22
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4d9c761e_9c9dbdfc",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 2
