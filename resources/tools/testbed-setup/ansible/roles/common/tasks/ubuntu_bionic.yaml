@@ -10,14 +10,23 @@
 - name: Install CSIT dependencies
   apt:
     name:
-      - 'python-apt'
-      - 'python-setuptools'
-      - 'git'
-      - 'crudini'
-      - 'expect'
-      - 'socat'
-      - 'qemu-system'
+      - 'autoconf'
       - 'build-essential'
+      - 'dkms'
+      - 'python-all'
+      - 'python-apt'
+      - 'python-cffi'
+      - 'python-cffi-backend'
+      - 'python-pip'
+      - 'python-setuptools'
+      - 'python3-all'
+      - 'python3-apt'
+      - 'python3-cffi'
+      - 'python3-cffi-backend'
+      - 'python3-pip'
+      - 'python3-setuptools'
+      - 'qemu-system'
+      - 'socat'
     state: 'present'
     cache_valid_time: 3600
     install_recommends: False
