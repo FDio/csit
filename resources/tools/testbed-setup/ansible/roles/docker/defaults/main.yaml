@@ -1,0 +1,27 @@
+# Version options.
+docker_edition: 'ce'
+docker_version: '19.03.3'
+docker_apt_package: '5:{{ docker_version }}~3-0~{{ ansible_distribution | lower }}-{{ ansible_distribution_release }}'
+docker_apt_package_state: present
+
+# Service options.
+docker_service_state: started
+docker_service_enabled: true
+docker_restart_handler_state: restarted
+
+# Used only for Debian/Ubuntu. Switch 'stable' to 'edge' if needed.
+docker_apt_release_channel: 'edge'
+docker_apt_repository: 'deb https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}'
+docker_apt_repository_state: present
+
+# A list of users who will be added to the docker group.
+docker_users:
+  - 'testuser'
+
+# Proxy settings.
+docker_daemon_environment_http:
+  - 'HTTP_PROXY={{ proxy_env.http_proxy }}'
+  - 'NO_PROXY={{ proxy_env.no_proxy }}'
+docker_daemon_environment_https:
+  - 'HTTPS_PROXY={{ proxy_env.https_proxy }}'
+  - 'NO_PROXY={{ proxy_env.no_proxy }}'

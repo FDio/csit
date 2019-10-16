@@ -8,5 +8,7 @@
   roles:
     - role: common
       tags: common
+    - role: docker
+      tags: docker
     - role: vpp_device
       tags: vpp_device

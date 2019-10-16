@@ -1,5 +1,5 @@
 ---
-# file: roles/tg_sut/tasks/turbo_boost.yaml
+# file: roles/performance_tuning/tasks/turbo_boost.yaml
 
 - name: Turbo boost - Install msr-tools
   apt:

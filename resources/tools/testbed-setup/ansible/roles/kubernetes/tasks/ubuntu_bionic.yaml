@@ -1,0 +1,37 @@
+---
+# file: roles/kubernetes/tasks/ubuntu_bionic.yaml
+
+- name: Kubernetes repository - Dependencies
+  apt:
+    name:
+      - 'apt-transport-https'
+      - 'ca-certificates'
+      - 'software-properties-common'
+    state: 'present'
+    cache_valid_time: 3600
+    install_recommends: False
+  tags: install-kubernetes
+
+- name: Kubernetes repository - Add an Apt signing key
+  apt_key:
+    url: 'https://packages.cloud.google.com/apt/doc/apt-key.gpg'
+    state: 'present'
+  tags: install-kubernetes
+
+- name: Kubernetes repository - Install APT repository
+  apt_repository:
+    repo: '{{ kubernetes_apt_repository }}'
+    state: '{{ kubernetes_apt_repository_state }}'
+    update_cache: True
+  tags: install-kubernetes
+
+- name: Kubernetes - Install
+  apt:
+    name:
+      - 'kubernetes-cni=0.6.0-00'
+      - 'kubeadm={{ kubernetes_version }}'
+      - 'kubectl={{ kubernetes_version }}'
+      - 'kubelet={{ kubernetes_version }}'
+    state: '{{ kubernetes_apt_package_state }}'
+    force: True
+  tags: install-kubernetes
