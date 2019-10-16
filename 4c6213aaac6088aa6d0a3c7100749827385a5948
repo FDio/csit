@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "2f76df48_5f4e128c",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-16T16:07:55Z",
+      "side": 1,
+      "message": "\u003e aenum\u003d\u003d2.1.2\n\u003e enum34 (no py3 alternative)\n\nIn VPP they went through Python3 process, and this [2] is what they landed on. For 3.6 it means we need neither aenum nor enum34, as the standard package enum works.\n\n[2] https://github.com/FDio/vpp/blob/master/src/vpp-api/python/vpp_papi/vpp_serializer.py#L21-L30",
+      "parentUuid": "e338c191_6cff790a",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 24,
+        "endChar": 54
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8c490b0_d7a377fc",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 2
