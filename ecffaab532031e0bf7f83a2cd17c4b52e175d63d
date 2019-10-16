@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7ad51ad9_88b47edc",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst-random100000.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-16T12:17:32Z",
+      "side": 1,
+      "message": "what about seed-ing it, so it is more use-case friendly?",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 5
+      },
+      "revId": "ecffaab532031e0bf7f83a2cd17c4b52e175d63d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "b1fcd0b4_4217c1a4",
         "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale2m-ndrpdr.robot",
         "patchSetId": 1
@@ -13,6 +36,30 @@
       "writtenOn": "2019-10-16T12:00:52Z",
       "side": 1,
       "message": "Changing profile without changing suite name will create an artificial regression in trending.\nI prefer changing the suite name, although I am not sure what is the best new name.",
+      "range": {
+        "startLine": 53,
+        "startChar": 48,
+        "endLine": 53,
+        "endChar": 55
+      },
+      "revId": "ecffaab532031e0bf7f83a2cd17c4b52e175d63d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9294e0b6_390f766d",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale2m-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-16T12:17:32Z",
+      "side": 1,
+      "message": "Unless clear, we need to make a copy of the suite with different name so that we can directly compare the impact.",
+      "parentUuid": "b1fcd0b4_4217c1a4",
       "range": {
         "startLine": 53,
         "startChar": 48,
