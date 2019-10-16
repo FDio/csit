@@ -22,20 +22,6 @@ name_servers: "1.1.1.1, 8.8.8.8"
 #  no_proxy: localhost,127.0.0.1,{{ ansible_default_ipv4.address }}
 #  NO_PROXY: localhost,127.0.0.1,{{ ansible_default_ipv4.address }}
 
-# Docker settings.
-docker_edition: 'ce'
-docker_channel: 'edge'
-docker_version: '18.05.0'
-docker_users: ['testuser']
-docker_repository: 'deb https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} {{ docker_channel }}'
-docker_apt_package_name: '{{ docker_version }}~{{ docker_edition }}~3-0~{{ ansible_distribution | lower }}'
-docker_daemon_environment_http:
-  - 'HTTP_PROXY={{ proxy_env.http_proxy }}'
-  - 'NO_PROXY={{ proxy_env.no_proxy }}'
-docker_daemon_environment_https:
-  - 'HTTPS_PROXY={{ proxy_env.https_proxy }}'
-  - 'NO_PROXY={{ proxy_env.no_proxy }}'
-
 # Kubernetes settings.
 kubernetes:
   version: '1.11.0-00'

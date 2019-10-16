@@ -1,0 +1,45 @@
+---
+# file: roles/tg_sut/tasks/ubuntu_bionic.yaml
+
+- name: Install CSIT dependencies
+  apt:
+    name:
+      - 'apt-transport-https'
+      - 'ca-certificates'
+      - 'software-properties-common'
+    state: 'present'
+    cache_valid_time: 3600
+    install_recommends: False
+  tags: install-csit-dependencies
+
+- name: Add an Apt signing key, for Kubernetes repository
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: 'present'
+  tags: install-kubernetes
+
+- name: Install kubernetes APT repository
+  apt_repository:
+    repo: '{{ kubernetes.repository }}'
+    state: 'present'
+    update_cache: True
+  tags: install-kubernetes
+
+- name: Install Kubernetes
+  apt:
+    name:
+      - 'kubernetes-cni=0.6.0-00'
+      - 'kubeadm={{ kubernetes.version }}'
+      - 'kubectl={{ kubernetes.version }}'
+      - 'kubelet={{ kubernetes.version }}'
+    state: 'present'
+    force: yes
+  tags: install-kubernetes
+
+- name: Apply kubelet parameter
+  lineinfile:
+    path: '/etc/default/kubelet'
+    state: 'present'
+    regexp: '^KUBELET_EXTRA_ARGS=*'
+    line: 'KUBELET_EXTRA_ARGS=--feature-gates HugePages=false'
+  tags: install-kubernetes

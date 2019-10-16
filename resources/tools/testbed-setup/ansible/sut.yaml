@@ -10,7 +10,9 @@
       tags: common
     - role: sut
       tags: sut
-    - role: tg_sut
-      tags: tg_sut
+    - role: docker
+      tags: docker
+    - role: performance_tuning
+      tags: performance_tuning
     - role: calibration
       tags: calibration

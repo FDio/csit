@@ -1,12 +1,6 @@
 ---
 # file roles/tg_sut/handlers/main.yaml
 
-- name: Restart Docker
-  service:
-    name: 'docker'
-    state: 'restarted'
-  tags: restart-docker
-
 - name: Reboot server
   reboot:
     reboot_timeout: 3600
