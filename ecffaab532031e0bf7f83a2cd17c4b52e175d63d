@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b1fcd0b4_4217c1a4",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale2m-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-16T12:00:52Z",
+      "side": 1,
+      "message": "Changing profile without changing suite name will create an artificial regression in trending.\nI prefer changing the suite name, although I am not sure what is the best new name.",
+      "range": {
+        "startLine": 53,
+        "startChar": 48,
+        "endLine": 53,
+        "endChar": 55
+      },
+      "revId": "ecffaab532031e0bf7f83a2cd17c4b52e175d63d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
