@@ -1,5 +1,5 @@
 ---
-# file: roles/tg_sut/tasks/aarch64.yaml
+# file: roles/performance_tuning/tasks/aarch64.yaml
 
 - name: Configure {{ ansible_machine }} kernel parameters
   lineinfile:

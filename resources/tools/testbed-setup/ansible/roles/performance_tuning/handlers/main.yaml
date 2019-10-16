@@ -1,11 +1,5 @@
 ---
-# file roles/tg_sut/handlers/main.yaml
-
-- name: Restart Docker
-  service:
-    name: 'docker'
-    state: 'restarted'
-  tags: restart-docker
+# file roles/performance_tuning/handlers/main.yaml
 
 - name: Reboot server
   reboot:
