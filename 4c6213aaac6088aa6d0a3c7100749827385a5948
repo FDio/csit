@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5570387f_4f5b55e4",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-16T16:20:48Z",
+      "side": 1,
+      "message": "Nice so (?) + sorting and maybe pip freeze:\n\npip3 install \\\n     ecdsa\u003d\u003d0.13 \\\n     ipaddress\u003d\u003d1.0.16 \\\n     paramiko\u003d\u003d1.16.0 \\\n     pexpect\u003d\u003d4.6.0 \\\n     pycrypto\u003d\u003d2.6.1 \\\n     pypcap\u003d\u003d1.2.3 \\\n     PyYAML\u003d\u003d3.11 \\\n     requests\u003d\u003d2.9.1 \\\n     robotframework\u003d\u003d3.0.0 \\\n     scapy\u003d\u003d2.4.3 \\\n     scp\u003d\u003d0.10.2 \\\n     six\u003d\u003d1.12.0 \\\n     dill\u003d\u003d0.2.8.2 \\\n     numpy\u003d\u003d1.14.5",
+      "parentUuid": "2f76df48_5f4e128c",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 24,
+        "endChar": 54
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8c490b0_d7a377fc",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 2
