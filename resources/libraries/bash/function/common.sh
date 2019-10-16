@@ -761,9 +761,9 @@ function select_tags () {
         # Automatic prefixing for VPP jobs to limit the NIC used and
         # traffic evaluation to MRR.
         if [[ "${TEST_TAG_STRING-}" == *"nic_"* ]]; then
-            prefix="${prefix}mrrAND"
+            prefix="${prefix}"
         else
-            prefix="${prefix}mrrAND${DEFAULT_NIC}AND"
+            prefix="${prefix}${DEFAULT_NIC}AND"
         fi
     fi
     for tag in "${test_tag_array[@]}"; do
