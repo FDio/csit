@@ -76,22 +76,22 @@
     create_vlan_subif: '0xaf34ac8b'  # dev
     create_vlan_subif_reply: '0x5383d31f'  # dev
     # dhcp_proxy_dump / details # honeycomb
-    gbp_bridge_domain_add: '0x70f1069c'  # perf
-    gbp_bridge_domain_add_reply: '0xe8d4e804'  # perf
-    gbp_contract_add_del: '0x5b63d90a'  # perf
-    gbp_contract_add_del_reply: '0x1992deab'  # perf
-    gbp_endpoint_add: '0xf0efa120'  # perf
-    gbp_endpoint_add_reply: '0x1dd3ff3e'  # perf
-    gbp_endpoint_group_add: '0x1031b376'  # perf
-    gbp_endpoint_group_add_reply: '0xe8d4e804'  # perf
-    gbp_ext_itf_add_del: '0x6995e85f'  # perf
-    gbp_ext_itf_add_del_reply: '0xe8d4e804'  # perf
-    gbp_route_domain_add: '0x1560adc7'  # perf
-    gbp_route_domain_add_reply: '0xe8d4e804'  # perf
-    gbp_subnet_add_del: '0xf42b9430'  # perf
-    gbp_subnet_add_del_reply: '0xe8d4e804'  # perf
-    # 14x^ tc01-64B-1c-avf-dot1q-l2bdbasemaclrn-gbp-mrr
-    # ^ dot1qANDdrv_avfANDgbp
+#    gbp_bridge_domain_add: '0x70f1069c'  # perf
+#    gbp_bridge_domain_add_reply: '0xe8d4e804'  # perf
+#    gbp_contract_add_del: '0x5b63d90a'  # perf
+#    gbp_contract_add_del_reply: '0x1992deab'  # perf
+#    gbp_endpoint_add: '0xf0efa120'  # perf
+#    gbp_endpoint_add_reply: '0x1dd3ff3e'  # perf
+#    gbp_endpoint_group_add: '0x1031b376'  # perf
+#    gbp_endpoint_group_add_reply: '0xe8d4e804'  # perf
+#    gbp_ext_itf_add_del: '0x6995e85f'  # perf
+#    gbp_ext_itf_add_del_reply: '0xe8d4e804'  # perf
+#    gbp_route_domain_add: '0x1560adc7'  # perf
+#    gbp_route_domain_add_reply: '0xe8d4e804'  # perf
+#    gbp_subnet_add_del: '0xf42b9430'  # perf
+#    gbp_subnet_add_del_reply: '0xe8d4e804'  # perf
+#    # 14x^ tc01-64B-1c-avf-dot1q-l2bdbasemaclrn-gbp-mrr
+#    # ^ dot1qANDdrv_avfANDgbp
     gpe_enable_disable: '0xeb0e943b'  # virl
     gpe_enable_disable_reply: '0xe8d4e804'  # virl
     # gre_tunnel_add_del / reply # unused L1 keyword: create_gre_tunnel_interface
@@ -134,24 +134,35 @@
     # ^^ tc01-64B-1c-avf-eth-l2patch-mrr
     # ^ l2patchANDdrv_avf
     # l2fib_add_del / reply # unused L1 keyword: vpp_add_l2fib_entry
-    lisp_add_del_adjacency: '0xf047390d'  # virl
-    lisp_add_del_adjacency_reply: '0xe8d4e804'  # virl
-    lisp_add_del_local_eid: '0xe6d00717'  # virl
-    lisp_add_del_local_eid_reply: '0xe8d4e804'  # virl
-    lisp_add_del_locator: '0x006a4240'  # virl
-    lisp_add_del_locator_reply: '0xe8d4e804'  # virl
-    lisp_add_del_locator_set: '0x06968e38'  # virl
-    lisp_add_del_locator_set_reply: '0xb6666db4'  # virl
+    lb_conf: '0x22ddb739'  # perf
+    lb_conf_reply: '0xe8d4e804'  # perf
+    lb_add_del_vip: '0xd15b7ddc'  # perf
+    lb_add_del_vip_reply: '0xe8d4e804'  # perf
+    lb_add_del_as: '0x78628987'  # perf
+    lb_add_del_as_reply: '0xe8d4e804'  # perf
+    # 6x^ tc01-64B-1c-ethip4-loadbalancer-maglev
+    lb_add_del_intf_nat4: '0x47d6e753' # perf
+    lb_add_del_intf_nat4_reply: '0xe8d4e804' # perf
+    # ^^ tc01-64B-1c-ethip4-loadbalancer-nat4
+    # ^^ loadbalancer-nat4
+    lisp_add_del_adjacency: '0xf047390d'  # dev
+    lisp_add_del_adjacency_reply: '0xe8d4e804'  # dev
+    lisp_add_del_local_eid: '0xe6d00717'  # dev
+    lisp_add_del_local_eid_reply: '0xe8d4e804'  # dev
+    lisp_add_del_locator: '0x006a4240'  # dev
+    lisp_add_del_locator_reply: '0xe8d4e804'  # dev
+    lisp_add_del_locator_set: '0x06968e38'  # dev
+    lisp_add_del_locator_set_reply: '0xb6666db4'  # dev
     # lisp_add_del_map_resolver / reply # unused L2 keyword: Configure LISP map resolver address
-    lisp_add_del_remote_mapping: '0xb879c3a9'  # virl
-    lisp_add_del_remote_mapping_reply: '0xe8d4e804'  # virl
+    lisp_add_del_remote_mapping: '0xb879c3a9'  # dev
+    lisp_add_del_remote_mapping_reply: '0xe8d4e804'  # dev
     lisp_eid_table_add_del_map: '0x59e9975e'  # perf
     lisp_eid_table_add_del_map_reply: '0xe8d4e804'  # perf
     # ^^ tc01-64B-1c-ethip4ipsectptlispgpe-ip4base-aes128cbc-hmac256sha-ndrpdr
     # ^ ipsecANDlispgpe
     # lisp_eid_table_dump / details # unused L2 keyword: LISP eid address should be set correctly to eid table
-    lisp_enable_disable: '0xeb0e943b'  # virl
-    lisp_enable_disable_reply: '0xe8d4e804'  # virl
+    lisp_enable_disable: '0xeb0e943b'  # dev
+    lisp_enable_disable_reply: '0xe8d4e804'  # dev
     # lisp_locator_set_dump / details # unused L2 keyword: LISP locator_set shpuld be configured correctly
     # lisp_map_server_dump / details # honeycomb
     # lisp_map_resolver_dump / details # unused L2 keyword: LISP map resolver address should be configured correctly
@@ -179,6 +190,11 @@
     nat_show_config_reply: '0x006a0786'  # perf teardown
     # 6x^ tc01-64B-1c-ethip4udp-ip4base-nat44-mrr
     # ^ nat44NOTscaleNOTsrc_user_1
+    policer_add_del: '0xdfea2be8'  # dev
+    policer_add_del_reply: '0xa177cef2'  # dev
+    policer_classify_set_interface: '0xe09537b0' # dev
+    policer_classify_set_interface_reply: '0xe8d4e804' # dev
+    # 4x^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
     # show_lisp_map_register_state / reply # honeycomb
     # show_lisp_map_request_mode / reply # honeycomb
     # show_lisp_pitr / reply # honeycomb
@@ -249,20 +265,8 @@
     vxlan_add_del_tunnel_reply: '0xfda5941f'  # dev
     # vxlan_gpe_tunnel_dump / details # honeycomb
     # vxlan_tunnel_dump /details # unused L2 keyword: Get VXLAN dump
-    policer_add_del: '0xdfea2be8'  # dev
-    policer_add_del_reply: '0xa177cef2'  # dev
-    policer_classify_set_interface: '0xe09537b0' # dev
-    policer_classify_set_interface_reply: '0xe8d4e804' # dev
-    # 4x^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
-    # ^^ tc01-64B-1c-ethip4-loadbalancer-maglev/l3dsr/nat4-mrr
-    lb_conf: '0x22ddb739'  # perf
-    lb_conf_reply: '0xe8d4e804'  # perf
-    lb_add_del_vip: '0xd15b7ddc'  # perf
-    lb_add_del_vip_reply: '0xe8d4e804'  # perf
-    lb_add_del_as: '0x78628987'  # perf
-    lb_add_del_as_reply: '0xe8d4e804'  # perf
-    lb_add_del_intf_nat4: '0x47d6e753' # perf
-    lb_add_del_intf_nat4_reply: '0xe8d4e804' # perf
+# Please keep alphabetic order.
+# Use bash command "env LC_COLLATE=C sort -u" if not clear.
 
 
 # Hint to see the currently used command messages:
