@@ -71,6 +71,75 @@
     },
     {
       "key": {
+        "uuid": "4d9c761e_9c9dbdfc",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-16T09:23:33Z",
+      "side": 1,
+      "message": "- Python 3.6.8 installed on images\n- PIP3 missing",
+      "range": {
+        "startLine": 99,
+        "startChar": 1,
+        "endLine": 99,
+        "endChar": 49
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2beed291_272f6b0e",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-16T09:23:33Z",
+      "side": 1,
+      "message": "- Python 3.6.8 installed on testbeds\n- PIP3 missing",
+      "range": {
+        "startLine": 100,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 41
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3ff94f85_1abacfbe",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-16T09:23:33Z",
+      "side": 1,
+      "message": "- Python 3.6.8 installed on testbeds\n- PIP3 missing",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 13
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "47509820_660da9ae",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 2
