@@ -83,9 +83,7 @@ function build_vpp_ubuntu_amd64 () {
     # - die - Print to stderr and exit, defined in common.sh
 
     cd "${VPP_DIR}" || die "Change directory command failed."
-    echo 'Building using "make build-root/vagrant/build.sh"'
-    build-root/vagrant/"build.sh" || die "Vagrant VPP build script failed."
-    echo "*******************************************************************"
+    make UNATTENDED=y install-ext-deps install-dep pkg-deb
     echo "* VPP ${1-} BUILD SUCCESSFULLY COMPLETED" || {
         die "Argument not found."
     }
