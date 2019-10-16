@@ -31,6 +31,14 @@ source "${BASH_FUNCTION_DIR}/common.sh" || {
     exit 1
 }
 source "${BASH_FUNCTION_DIR}/gather.sh" || die "Source failed."
+# Test
+set +e
+command -v pip3
+python3 --version
+dpkg -l | grep python
+dpkg -l | grep pip
+set -e
+#
 common_dirs || die
 check_prerequisites || die
 get_test_code "${1-}" || die
