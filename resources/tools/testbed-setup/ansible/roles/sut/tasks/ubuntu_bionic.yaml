@@ -4,7 +4,6 @@
 - name: Install CSIT dependencies
   apt:
     name:
-      - 'cpufrequtils'
       - 'gdb'
       - 'libglib2.0-dev'
       - 'libmbedcrypto1'

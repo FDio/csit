@@ -1,9 +1,9 @@
 ---
-# file: roles/tg_sut/tasks/main.yaml
+# file: roles/performance_tuning/tasks/main.yaml
 
 - name: Install distribution - release - machine prerequisites
   include_tasks: '{{ ansible_distribution|lower }}_{{ ansible_distribution_release }}.yaml'
-  tags: [ install-csit-dependencies, install-docker, install-kubernetes ]
+  tags: install-csit-dependencies
 
 - name: Machine specifics
   include_tasks: '{{ ansible_machine }}.yaml'
