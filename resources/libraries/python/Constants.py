@@ -85,6 +85,18 @@ class Constants(object):
     # Core dump directory
     CORE_DUMP_DIR = '/tmp'
 
+    # Equivalent to ~0 used in vpp code
+    BITWISE_NON_ZERO = 0xffffffff
+
+    # Maximum number of API calls per PapiExecutor execution
+    PAPI_MAX_API_BULK = 250
+
+    # Default path to VPP API socket.
+    SOCKSVR_PATH = "/run/vpp/api.sock"
+
+    # Global "kill switch" for CRC checking during runtime.
+    FAIL_ON_CRC_MISMATCH = False
+
     # Mapping from NIC name to its bps limit.
     # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.
     NIC_NAME_TO_LIMIT = {

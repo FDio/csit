@@ -43,8 +43,8 @@ common_dirs || die
 set_perpatch_vpp_dir || die
 build_vpp_ubuntu_amd64 "CURRENT" || die
 set_aside_commit_build_artifacts || die
-build_vpp_ubuntu_amd64 "PARENT" || die
-set_aside_parent_build_artifacts || die
+#build_vpp_ubuntu_amd64 "PARENT" || die
+#set_aside_parent_build_artifacts || die
 ## Replace previous 4 lines with this to speed up testing.
 #download_builds "REPLACE_WITH_URL" || die
 initialize_csit_dirs || die
@@ -58,24 +58,24 @@ select_tags || die
 compose_pybot_arguments || die
 generate_tests || die
 archive_tests || die
-iterations=8
-for ((iter=0; iter<iterations; iter++)); do
-    # TODO: Use less heavy way to avoid apt remove falilures.
-    # Also, reserve_testbed has already called cleanup once.
-    cleanup_topo
-    select_build "build_parent" || die
-    check_download_dir || die
-    run_pybot || die
-    copy_archives || die
-    archive_parse_test_results "csit_parent/${iter}" || die
-    die_on_pybot_error || die
-    cleanup_topo
+#iterations=8
+#for ((iter=0; iter<iterations; iter++)); do
+#    # TODO: Use less heavy way to avoid apt remove falilures.
+#    # Also, reserve_testbed has already called cleanup once.
+#    cleanup_topo
+#    select_build "build_parent" || die
+#    check_download_dir || die
+#    run_pybot || die
+#    copy_archives || die
+#    archive_parse_test_results "csit_parent/${iter}" || die
+#    die_on_pybot_error || die
+#    cleanup_topo
     select_build "build_current" || die
     check_download_dir || die
     run_pybot || die
-    copy_archives || die
-    archive_parse_test_results "csit_current/${iter}" || die
-    die_on_pybot_error || die
-done
+#    copy_archives || die
+#    archive_parse_test_results "csit_current/${iter}" || die
+#    die_on_pybot_error || die
+#done
 untrap_and_unreserve_testbed || die
-compare_test_results  # The error code becomes this script's error code.
+#compare_test_results  # The error code becomes this script's error code.
