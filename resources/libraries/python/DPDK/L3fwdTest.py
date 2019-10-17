@@ -15,7 +15,7 @@
 This module exists to provide the l3fwd test for DPDK on topology nodes.
 """
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -64,19 +64,16 @@ class L3fwdTest(object):
                         format(port=port, queue=queue, core=list_cores[index])
                     index += 1
 
-            ssh = SSH()
-            ssh.connect(dut_node)
-
             cmd = '{fwdir}/tests/dpdk/dpdk_scripts/run_l3fwd.sh ' \
                   '"{lcores}" "{ports}" {mac1} {mac2} {jumbo}'.\
                   format(fwdir=Constants.REMOTE_FW_DIR, lcores=lcores_list,
                          ports=port_config.rstrip(','), mac1=adj_mac0,
                          mac2=adj_mac1, jumbo='yes' if jumbo_frames else 'no')
 
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
-            if ret_code != 0:
-                raise Exception('Failed to execute l3fwd test at node {name}'
-                                .format(name=dut_node['host']))
+            message = 'Failed to execute l3fwd test at node {name}'.format(
+                name=dut_node['host'])
+            exec_cmd_no_error(
+                dut_node, cmd, sudo=True, timeout=600, message=message)
 
     @staticmethod
     def get_adj_mac(nodes_info, dut_node, dut_if1, dut_if2):
@@ -127,15 +124,10 @@ class L3fwdTest(object):
         """
         arch = Topology.get_node_arch(node)
 
-        ssh = SSH()
-        ssh.connect(node)
-
-        ret_code, _, _ = ssh.exec_command(
+        cmd = (
             '{fwdir}/tests/dpdk/dpdk_scripts/patch_l3fwd.sh {arch} '
-            '{fwdir}/tests/dpdk/dpdk_scripts/{patch}'.
-            format(fwdir=Constants.REMOTE_FW_DIR, arch=arch, patch=patch),
-            timeout=600)
+            '{fwdir}/tests/dpdk/dpdk_scripts/{patch}'.format(
+                fwdir=Constants.REMOTE_FW_DIR, arch=arch, patch=patch))
 
-        if ret_code != 0:
-            raise RuntimeError('Patch of l3fwd failed.')
-
+        message = 'Patch of l3fwd failed.'
+        exec_cmd_no_error(node, cmd, timeout=600, message=message)

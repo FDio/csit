@@ -27,7 +27,7 @@ from enum import Enum, unique
 
 from robot.api import logger
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error, scp_node
 from resources.libraries.python.HTTPRequest import HTTPRequest
 from resources.libraries.python.Constants import Constants as Const
 
@@ -422,18 +422,11 @@ class HoneycombUtil(object):
         :type node: dict
         :type suite_name: str
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-
-        ssh.exec_command(
-            "echo '{separator}' >> /tmp/honeycomb.log".format(separator="="*80))
-        ssh.exec_command(
-            "echo 'Log for suite: {suite}' >> /tmp/honeycomb.log".format(
-                suite=suite_name))
-        ssh.exec_command(
-            "cat {hc_log} >> /tmp/honeycomb.log".format(
-                hc_log=Const.REMOTE_HC_LOG))
+        hc_log = Const.REMOTE_HC_LOG
+        cmd = ("( echo '{separator}' ; echo Log for suite: '{suite}' ; "
+               "cat {hc_log} ) >> /tmp/honeycomb.log".format(
+                   separator="=" * 80, suite=suite_name, hc_log=hc_log))
+        exec_cmd_no_error(node, cmd)
 
     @staticmethod
     def append_odl_log(node, odl_name, suite_name):
@@ -447,18 +440,11 @@ class HoneycombUtil(object):
         :type odl_name: str
         :type suite_name: str
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-
-        ssh.exec_command(
-            "echo '{separator}' >> /tmp/karaf.log".format(separator="="*80))
-        ssh.exec_command(
-            "echo 'Log for suite: {suite}' >> /tmp/karaf.log".format(
-                suite=suite_name))
-        ssh.exec_command(
-            "cat /tmp/karaf_{odl_name}/data/log/karaf.log >> /tmp/karaf.log"
-            .format(odl_name=odl_name))
+        cmd = ("( echo '{separator}' ; echo Log for suite: '{suite}' ; "
+               "cat /tmp/karaf_{odl_name}/data/log/karaf.log ) "
+               ">> /tmp/karaf.log".format(
+                   separator="=" * 80, suite=suite_name, odl_name=odl_name))
+        exec_cmd_no_error(node, cmd)
 
     @staticmethod
     def clear_honeycomb_log(node):
@@ -467,11 +453,8 @@ class HoneycombUtil(object):
         :param node: Honeycomb node.
         :type node: dict
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-
-        ssh.exec_command("sudo rm {hc_log}".format(hc_log=Const.REMOTE_HC_LOG))
+        cmd = "rm -f {hc_log}".format(hc_log=Const.REMOTE_HC_LOG)
+        exec_cmd(node, cmd, sudo=True)
 
     @staticmethod
     def archive_honeycomb_log(node, perf=False):
@@ -482,20 +465,13 @@ class HoneycombUtil(object):
         :type node: dict
         :type perf: bool
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-
         if not perf:
             cmd = "cp /tmp/honeycomb.log /scratch/"
-            ssh.exec_command_sudo(cmd, timeout=60)
+            exec_cmd_no_error(node, cmd, sudo=True, timeout=60)
         else:
-            ssh.scp(
-                ".",
-                "/tmp/honeycomb.log",
-                get=True,
-                timeout=60)
-            ssh.exec_command("rm /tmp/honeycomb.log")
+            scp_node(node, ".", "/tmp/honeycomb.log", get=True, timeout=60)
+            cmd = "rm /tmp/honeycomb.log"
+            exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def archive_odl_log(node):
@@ -504,9 +480,5 @@ class HoneycombUtil(object):
         :param node: Honeycomb node.
         :type node: dict
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-
         cmd = "cp /tmp/karaf.log /scratch/"
-        ssh.exec_command_sudo(cmd, timeout=60)
+        exec_cmd_no_error(node, cmd, sudo=True, timeout=60)
