@@ -20,8 +20,7 @@ import time
 import os
 import glob
 
-from resources.libraries.python.ssh import SSH
-from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error, scp_node
 from resources.libraries.python.DMM.DMMConstants import DMMConstants as con
 from resources.libraries.python.topology import Topology
 
@@ -271,15 +270,13 @@ class SingleCliSer(object):
         :param dut_node: Node to artifact the logs of.
         :type dut_node: dict
         """
-        ssh = SSH()
-        ssh.connect(dut_node)
-        ssh.scp(".", '/var/log/nStack/*.log',
-                get=True, timeout=60, wildcard=True)
+        scp_node(dut_node, ".", '/var/log/nStack/*.log',
+                 get=True, timeout=60, wildcard=True)
 
         (ret, _, _) = exec_cmd(dut_node, 'ls -l /var/log/app*.log')
         if ret == 0:
-            ssh.scp(".", '/var/log/app*.log',
-                    get=True, timeout=60, wildcard=True)
+            scp_node(dut_node, ".", '/var/log/app*.log',
+                     get=True, timeout=60, wildcard=True)
 
         exec_cmd(dut_node, 'rm -rf /var/log/nStack/*.log', sudo=True)
         exec_cmd(dut_node, 'rm -rf /var/log/app*.log', sudo=True)

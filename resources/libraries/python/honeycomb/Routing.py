@@ -23,7 +23,7 @@ from resources.libraries.python.honeycomb.HoneycombUtil \
     import HoneycombUtil as HcUtil
 from resources.libraries.python.honeycomb.HoneycombUtil \
     import DataRepresentation
-from resources.libraries.python.VatExecutor import VatTerminal
+from resources.libraries.python.VatExecutor import VatExecutor
 
 
 class RoutingKeywords(object):
@@ -199,9 +199,8 @@ class RoutingKeywords(object):
          :param node: VPP node.
          :type node: dict
          """
-
-        with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd("ip_fib_dump")
+        fmp_fn = '/tmp/ip_table_dump'
+        VatExecutor().write_and_execute_script(node, fmp_fn, ["ip_table_dump"])
 
     @staticmethod
     def configure_interface_slaac(node, interface, slaac_data=None):

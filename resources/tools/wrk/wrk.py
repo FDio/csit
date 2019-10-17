@@ -21,7 +21,7 @@ from time import sleep
 
 from robot.api import logger
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.Constants import Constants
@@ -69,15 +69,10 @@ def check_wrk(tg_node):
     if tg_node['type'] != NodeType.TG:
         raise RuntimeError('Node type is not a TG.')
 
-    ssh = SSH()
-    ssh.connect(tg_node)
-
-    ret, _, _ = ssh.exec_command(
-        "sudo -E "
-        "sh -c '{0}/resources/tools/wrk/wrk_utils.sh installed'".
-        format(Constants.REMOTE_FW_DIR))
-    if int(ret) != 0:
-        raise RuntimeError('WRK is not installed on TG node.')
+    cmd = "{fw_dir}/resources/tools/wrk/wrk_utils.sh installed".format(
+        fw_dir=Constants.REMOTE_FW_DIR)
+    exec_cmd_no_error(tg_node, cmd, sudo=True,
+                      message='WRK is not installed on TG node.')
 
 
 def run_wrk(tg_node, profile_name, tg_numa, test_type, warm_up=False):
@@ -159,25 +154,17 @@ def run_wrk(tg_node, profile_name, tg_numa, test_type, warm_up=False):
             warm_up_params = deepcopy(params)
             warm_up_params[5] = "10s"
 
-    args = " ".join(params)
-
-    ssh = SSH()
-    ssh.connect(tg_node)
-
     if warm_up:
-        warm_up_args = " ".join(warm_up_params)
-        ret, _, _ = ssh.exec_command(
-            "{0}/resources/tools/wrk/wrk_utils.sh {1}".
-            format(Constants.REMOTE_FW_DIR, warm_up_args), timeout=1800)
-        if int(ret) != 0:
-            raise RuntimeError('wrk runtime error.')
+        cmd = "{fw_dir}/resources/tools/wrk/wrk_utils.sh {params}".format(
+            fw_dir=Constants.REMOTE_FW_DIR, params=" ".join(warm_up_params))
+        exec_cmd_no_error(tg_node, cmd, timeout=1800,
+                          message='wrk runtime error.')
         sleep(60)
 
-    ret, stdout, _ = ssh.exec_command(
-        "{0}/resources/tools/wrk/wrk_utils.sh {1}".
-        format(Constants.REMOTE_FW_DIR, args), timeout=1800)
-    if int(ret) != 0:
-        raise RuntimeError('wrk runtime error.')
+    cmd = "{fw_dir}/resources/tools/wrk/wrk_utils.sh {params}".format(
+        fw_dir=Constants.REMOTE_FW_DIR, params=" ".join(params))
+    stdout, _ = exec_cmd_no_error(tg_node, cmd, timeout=1800,
+                                  message='wrk runtime error.')
 
     stats = _parse_wrk_output(stdout)
 
