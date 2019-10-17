@@ -16,65 +16,37 @@
 """This script provides cleanup routines on all DUTs."""
 
 import argparse
-import sys
 from platform import dist
 from yaml import load
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd
 
 
-def execute_command_ssh(ssh, cmd, sudo=False):
-    """Execute a command over ssh channel, and print outputs.
-
-    :param ssh: SSH() object connected to a node.
-    :param cmd: Command line to execute on remote node.
-    :param sudo: Run command with sudo privilege level..
-    :type ssh: SSH() object
-    :type cmd: str
-    :type sudo: bool
-    :returns return_code, stdout, stderr
-    :rtype: tuple(int, str, str)
-    """
-    if sudo:
-        ret, stdout, stderr = ssh.exec_command_sudo(cmd, timeout=60)
-    else:
-        ret, stdout, stderr = ssh.exec_command(cmd, timeout=60)
-
-    print 'Executing: {cmd}'.format(cmd=cmd)
-    print '({ret}) {stdout} {stderr}'.format(ret=ret, stdout=stdout,
-                                             stderr=stderr)
-
-    return ret, stdout, stdout
-
-
-def uninstall_package(ssh, package):
+def uninstall_package(node, package):
     """If there are packages installed, clean them up.
 
-    :param ssh: SSH() object connected to a node.
+    :param node: Topology node
     :param package: Package name.
-    :type ssh: SSH() object
+    :type node: dict
     :type package: str
     """
     if dist()[0] == 'Ubuntu':
-        ret, _, _ = ssh.exec_command("dpkg -l | grep {package}".format(
-            package=package))
-        if ret == 0:
-            # Try to fix interrupted installations first.
-            execute_command_ssh(ssh, 'dpkg --configure -a', sudo=True)
-            # Try to remove installed packages
-            execute_command_ssh(ssh, 'apt-get purge -y "*{package}*"'.format(
-                package=package), sudo=True)
+        cmd = ("dpkg -l | grep {package} && "
+               "{{ dpkg --configure -a; "
+               "apt-get purge -y '*{package}*' ; }}"
+               .format(package=package))
+        exec_cmd(node, cmd, sudo=True)
 
 
-def kill_process(ssh, process):
+def kill_process(node, process):
     """If there are running processes, kill them.
 
-    :param ssh: SSH() object connected to a node.
+    :param node: Topology node
     :param process: Process name.
-    :type ssh: SSH() object
+    :type node: dict
     :type process: str
     """
-    execute_command_ssh(ssh, 'killall -v -s 9 {process}'.format(
+    exec_cmd(node, 'killall -v -s 9 {process}'.format(
         process=process), sudo=True)
 
 
@@ -89,49 +61,43 @@ def main():
 
     topology = load(open(topology_file).read())['nodes']
 
-    ssh = SSH()
-    for node in topology:
-        if topology[node]['type'] == "DUT":
-            print "###TI host: {}".format(topology[node]['host'])
-            ssh.connect(topology[node])
+    for node in topology.values():
+        if node['type'] == "DUT":
+            print "###TI host: {}".format(node['host'])
 
             # Kill processes.
-            kill_process(ssh, 'qemu')
-            kill_process(ssh, 'l3fwd')
-            kill_process(ssh, 'testpmd')
+            kill_process(node, 'qemu')
+            kill_process(node, 'l3fwd')
+            kill_process(node, 'testpmd')
 
             # Uninstall packages
-            uninstall_package(ssh, 'vpp')
-            uninstall_package(ssh, 'honeycomb')
+            uninstall_package(node, 'vpp')
+            uninstall_package(node, 'honeycomb')
 
             # Remove HC logs.
-            execute_command_ssh(
-                ssh, 'rm -rf /var/log/honeycomb', sudo=True)
+            exec_cmd(node, 'rm -rf /var/log/honeycomb', sudo=True)
 
             # Kill all containers.
-            execute_command_ssh(
-                ssh, 'docker rm --force $(sudo docker ps -q)', sudo=True)
+            exec_cmd(
+                node, 'docker ps -q | xargs -r docker rm --force', sudo=True)
 
             # Destroy kubernetes.
-            execute_command_ssh(
-                ssh, 'kubeadm reset --force', sudo=True)
+            exec_cmd(node, 'kubeadm reset --force', sudo=True)
 
             # Remove corefiles leftovers.
-            execute_command_ssh(
-                ssh, 'rm -f /tmp/*tar.lzo.lrz.xz*', sudo=True)
+            exec_cmd(node, 'rm -f /tmp/*tar.lzo.lrz.xz*', sudo=True)
 
             # Remove corefiles leftovers.
-            execute_command_ssh(
-                ssh, 'rm -f /tmp/*core*', sudo=True)
+            exec_cmd(node, 'rm -f /tmp/*core*', sudo=True)
 
             # Set interfaces in topology down.
-            for interface in topology[node]['interfaces']:
-                pci = topology[node]['interfaces'][interface]['pci_address']
-                execute_command_ssh(
-                    ssh, "[[ -d {path}/{pci}/net ]] && "
+            for interface in node['interfaces'].values():
+                pci = interface['pci_address']
+                exec_cmd(
+                    node, "[[ -d {path}/{pci}/net ]] && "
                     "sudo ip link set $(basename {path}/{pci}/net/*) down".
                     format(pci=pci, path='/sys/bus/pci/devices'))
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

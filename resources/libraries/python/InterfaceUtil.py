@@ -25,7 +25,7 @@ from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VPPUtil import VPPUtil
 
@@ -503,25 +503,16 @@ class InterfaceUtil(object):
         if old_driver == driver:
             return
 
-        ssh = SSH()
-        ssh.connect(node)
-
         # Unbind from current driver
         if old_driver is not None:
             cmd = 'sh -c "echo {0} > /sys/bus/pci/drivers/{1}/unbind"'\
                 .format(pci_addr, old_driver)
-            (ret_code, _, _) = ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                raise RuntimeError("'{0}' failed on '{1}'"
-                                   .format(cmd, node['host']))
+            exec_cmd_no_error(node, cmd, sudo=True)
 
         # Bind to the new driver
         cmd = 'sh -c "echo {0} > /sys/bus/pci/drivers/{1}/bind"'\
             .format(pci_addr, driver)
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
-        if int(ret_code) != 0:
-            raise RuntimeError("'{0}' failed on '{1}'"
-                               .format(cmd, node['host']))
+        exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def tg_get_interface_driver(node, pci_addr):
@@ -554,14 +545,8 @@ class InterfaceUtil(object):
         :type node: dict
         :raises RuntimeError: If setting of udev rules fails.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         cmd = 'rm -f {0}'.format(InterfaceUtil.__UDEV_IF_RULES_FILE)
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
-        if int(ret_code) != 0:
-            raise RuntimeError("'{0}' failed on '{1}'"
-                               .format(cmd, node['host']))
+        exec_cmd_no_error(node, cmd, sudo=True)
 
         for interface in node['interfaces'].values():
             rule = 'SUBSYSTEM==\\"net\\", ACTION==\\"add\\", ATTR{address}' + \
@@ -569,13 +554,10 @@ class InterfaceUtil(object):
                    interface['name'] + '\\"'
             cmd = 'sh -c "echo \'{0}\' >> {1}"'.format(
                 rule, InterfaceUtil.__UDEV_IF_RULES_FILE)
-            (ret_code, _, _) = ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                raise RuntimeError("'{0}' failed on '{1}'"
-                                   .format(cmd, node['host']))
+            exec_cmd_no_error(node, cmd, sudo=True)
 
         cmd = '/etc/init.d/udev restart'
-        ssh.exec_command_sudo(cmd)
+        exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def tg_set_interfaces_default_driver(node):
@@ -683,15 +665,11 @@ class InterfaceUtil(object):
         InterfaceUtil.tg_set_interfaces_default_driver(node)
 
         # Get interface names
-        ssh = SSH()
-        ssh.connect(node)
-
         cmd = ('for dev in `ls /sys/class/net/`; do echo "\\"`cat '
                '/sys/class/net/$dev/address`\\": \\"$dev\\""; done;')
+        message = 'Get interface name and MAC failed'
+        stdout, _ = exec_cmd_no_error(node, cmd, message=message)
 
-        (ret_code, stdout, _) = ssh.exec_command(cmd)
-        if int(ret_code) != 0:
-            raise RuntimeError('Get interface name and MAC failed')
         tmp = "{" + stdout.rstrip().replace('\n', ',') + "}"
         interfaces = JsonParser().parse_data(tmp)
         for interface in node['interfaces'].values():
@@ -712,34 +690,24 @@ class InterfaceUtil(object):
         :param node: Node from topology.
         :type node: dict
         :returns: Nothing.
-        :raises ValueError: If numa node ia less than 0.
-        :raises RuntimeError: If update of numa node failes.
+        :raises ValueError: If numa node is less than 0 with multiple cpus.
+        :raises RuntimeError: If reading or update of numa node fails.
         """
-        ssh = SSH()
         for if_key in Topology.get_node_interfaces(node):
             if_pci = Topology.get_interface_pci_addr(node, if_key)
-            ssh.connect(node)
-            cmd = "cat /sys/bus/pci/devices/{}/numa_node".format(if_pci)
-            for _ in range(3):
-                (ret, out, _) = ssh.exec_command(cmd)
-                if ret == 0:
-                    try:
-                        numa_node = int(out)
-                        if numa_node < 0:
-                            if CpuUtils.cpu_node_count(node) == 1:
-                                numa_node = 0
-                            else:
-                                raise ValueError
-                    except ValueError:
-                        logger.trace('Reading numa location failed for: {0}'
-                                     .format(if_pci))
-                    else:
-                        Topology.set_interface_numa_node(node, if_key,
-                                                         numa_node)
-                        break
-            else:
-                raise RuntimeError('Update numa node failed for: {0}'
-                                   .format(if_pci))
+            cmd = 'grep "[0-9]" /sys/bus/pci/devices/{pci}/numa_node'.format(
+                pci=if_pci)
+            message = 'Reading numa location failed for: {pci}'.format(
+                pci=if_pci)
+            stdout, _ = exec_cmd_no_error(node, cmd, retries=2, message=message)
+            numa_node = int(stdout)
+            if numa_node < 0:
+                if CpuUtils.cpu_node_count(node) == 1:
+                    numa_node = 0
+                else:
+                    raise ValueError('Negative numa node {numa} for: {pci}'
+                                     .format(numa=numa_node, pci=if_pci))
+            Topology.set_interface_numa_node(node, if_key, numa_node)
 
     @staticmethod
     def update_all_numa_nodes(nodes, skip_tg=False):

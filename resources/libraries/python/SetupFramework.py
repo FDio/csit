@@ -90,10 +90,12 @@ def extract_tarball_at_node(tarball, node):
     logger.console('Extracting tarball to {0} on {1} starts.'
                    .format(con.REMOTE_FW_DIR, host))
     exec_cmd_no_error(
-        node, "sudo rm -rf {1}; mkdir {1}; tar -zxf {0} -C {1};"
-        " rm -f {0}".format(tarball, con.REMOTE_FW_DIR),
+        node,
+        cmd="sudo rm -rf {1}; mkdir {1}; tar -zxf {0} -C {1};"
+            " rm -f {0}".format(tarball, con.REMOTE_FW_DIR),
         message='Failed to extract {0} at node {1}'.format(tarball, host),
-        timeout=30, include_reason=True)
+        timeout=30,
+        include_reason=True)
     logger.console('Extracting tarball to {0} on {1} done.'
                    .format(con.REMOTE_FW_DIR, host))
 
@@ -112,9 +114,11 @@ def create_env_directory_at_node(node):
     exec_cmd_no_error(
         node, 'cd {0} && rm -rf env'
         ' && virtualenv --system-site-packages --never-download env'
-        ' && source env/bin/activate && pip install -r requirements.txt'
-        .format(con.REMOTE_FW_DIR), timeout=100, include_reason=True,
-        message="Failed install at node {host}".format(host=host))
+        ' && VIRTUAL_ENV_DISABLE_PROMPT=1 source env/bin/activate'
+        ' && pip install -r requirements.txt'
+        .format(con.REMOTE_FW_DIR), timeout=100,
+        message="Failed install at node {host}".format(host=host),
+        include_reason=True)
     logger.console('Virtualenv setup on {0} done.'.format(host))
 
 
@@ -171,9 +175,11 @@ def delete_framework_dir(node):
     logger.console(
         'Deleting framework directory on {0} starts.'.format(host))
     exec_cmd_no_error(
-        node, 'sudo rm -rf {0}'.format(con.REMOTE_FW_DIR),
+        node,
+        'sudo rm -rf {0}'.format(con.REMOTE_FW_DIR),
         message="Framework delete failed at node {host}".format(host=host),
-        timeout=100, include_reason=True)
+        timeout=100,
+        include_reason=True)
     logger.console(
         'Deleting framework directory on {0} done.'.format(host))
 

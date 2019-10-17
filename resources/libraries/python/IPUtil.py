@@ -23,7 +23,7 @@ from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatTerminal
+from resources.libraries.python.VatExecutor import VatExecutor
 
 
 # from vpp/src/vnet/vnet/mpls/mpls_types.h
@@ -583,19 +583,19 @@ class IPUtil(object):
             interface = kwargs.get("interface", '')
             vrf = kwargs.get("vrf", None)
             multipath = kwargs.get("multipath", False)
-
-            with VatTerminal(node, json_param=False) as vat:
-                vat.vat_terminal_exec_cmd_from_template(
-                    'vpp_route_add.vat',
-                    network=network,
-                    prefix_length=prefix_len,
-                    via='via {}'.format(gateway) if gateway else '',
-                    sw_if_index='sw_if_index {}'.format(
-                        InterfaceUtil.get_interface_index(node, interface))
-                    if interface else '',
-                    vrf='vrf {}'.format(vrf) if vrf else '',
-                    count='count {}'.format(count) if count else '',
-                    multipath='multipath' if multipath else '')
+            tmp_fn = '/tmp/vpp_route_add.config'
+            cmd = ('ip_route_add_del {network}/{prefix_len} '
+                   '{vrf} {count} {multipath} {via} {sw_if_index}'.format(
+                       network=network,
+                       prefix_len=prefix_len,
+                       via='via {}'.format(gateway) if gateway else '',
+                       sw_if_index='sw_if_index {}'.format(
+                           InterfaceUtil.get_interface_index(node, interface))
+                       if interface else '',
+                       vrf='vrf {}'.format(vrf) if vrf else '',
+                       count='count {}'.format(count) if count else '',
+                       multipath='multipath' if multipath else ''))
+            VatExecutor().write_and_execute_script(node, tmp_fn, [cmd])
             return
 
         net_addr = ip_address(unicode(network))

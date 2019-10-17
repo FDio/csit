@@ -16,61 +16,25 @@
 """This script provides copy and installation of VPP build deb packages.
    As destinations are used all DUT nodes from the topology file."""
 
-import sys
 import argparse
 from yaml import load
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error, scp_node
 
 
-def ssh_no_error(ssh, cmd, sudo=False):
-    """Execute a command over ssh channel, and log and exit if the command
-    fails.
+def uninstall_package(node, package):
+    """If there are packages installed, clean them up.
 
-    :param ssh: SSH() object connected to a node.
-    :param cmd: Command line to execute on remote node.
-    :type ssh: SSH() object
-    :type cmd: str
-    :return: stdout from the SSH command.
-    :rtype: str
+    :param node: Topology node
+    :param package: Package name.
+    :type node: dict
+    :type package: str
     """
-
-    if sudo:
-        ret, stdo, stde = ssh.exec_command_sudo(cmd, timeout=60)
-    else:
-        ret, stdo, stde = ssh.exec_command(cmd, timeout=60)
-
-    if ret != 0:
-        print 'Command execution failed: "{}"'.format(cmd)
-        print 'stdout: {0}'.format(stdo)
-        print 'stderr: {0}'.format(stde)
-        raise RuntimeError('Unexpected ssh command failure')
-
-    return stdo
-
-
-def ssh_ignore_error(ssh, cmd, sudo=False):
-    """Execute a command over ssh channel, ignore errors.
-
-    :param ssh: SSH() object connected to a node.
-    :param cmd: Command line to execute on remote node.
-    :type ssh: SSH() object
-    :type cmd: str
-    :return: stdout from the SSH command.
-    :rtype: str
-    """
-
-    if sudo:
-        ret, stdo, stde = ssh.exec_command_sudo(cmd)
-    else:
-        ret, stdo, stde = ssh.exec_command(cmd)
-
-    if ret != 0:
-        print 'Command execution failed: "{}"'.format(cmd)
-        print 'stdout: {0}'.format(stdo)
-        print 'stderr: {0}'.format(stde)
-
-    return stdo
+    cmd = ("dpkg -l | grep {package} && "
+           "(dpkg --configure -a; "
+           "apt-get purge -y '{package}.*'"
+           .format(package=package))
+    exec_cmd_no_error(node, cmd, sudo=True)
 
 
 def main():
@@ -95,77 +59,51 @@ def main():
     cancel_installation = args.cancel
     honeycomb = args.honeycomb
 
-    work_file = open(topology_file)
-    topology = load(work_file.read())['nodes']
+    with open(topology_file) as work_file:
+        topology = load(work_file.read())['nodes']
 
-    def fix_interrupted(package):
-        """If there are interrupted installations, clean them up."""
-
-        cmd = "dpkg -l | grep {0}".format(package)
-        ret, _, _ = ssh.exec_command(cmd)
-        if ret == 0:
-            # Try to fix interrupted installations
-            cmd = 'dpkg --configure -a'
-            stdout = ssh_no_error(ssh, cmd, sudo=True)
-            print "###TI {}".format(stdout)
-            # Try to remove installed packages
-            cmd = 'apt-get purge -y "{0}.*"'.format(package)
-            stdout = ssh_no_error(ssh, cmd, sudo=True)
-            print "###TI {}".format(stdout)
-
-    ssh = SSH()
-    for node in topology:
-        if topology[node]['type'] == "DUT":
-            print "###TI host: {}".format(topology[node]['host'])
-            ssh.connect(topology[node])
+    for node in topology.values():
+        if node['type'] == "DUT":
 
             if cancel_installation:
                 # Remove installation directory on DUT
                 cmd = "rm -r {}".format(install_dir)
-                stdout = ssh_ignore_error(ssh, cmd)
-                print "###TI {}".format(stdout)
+                exec_cmd(node, cmd)
 
                 if honeycomb:
-                    fix_interrupted("honeycomb")
+                    uninstall_package(node, "honeycomb")
                     # remove HC logs
                     cmd = "rm -rf /var/log/honeycomb"
-                    stdout = ssh_ignore_error(ssh, cmd, sudo=True)
-                    print "###TI {}".format(stdout)
-                fix_interrupted("vpp")
+                    exec_cmd(node, cmd, sudo=True)
+                uninstall_package(node, "vpp")
 
             else:
                 # Create installation directory on DUT
                 cmd = "rm -r {0}; mkdir {0}".format(install_dir)
-                stdout = ssh_no_error(ssh, cmd)
-                print "###TI {}".format(stdout)
+                exec_cmd(node, cmd)
 
+                need_packages = True
                 if honeycomb:
-                    smd = "ls ~/honeycomb | grep .deb"
-                    stdout = ssh_ignore_error(ssh, smd)
+                    cmd = "ls ~/honeycomb | grep .deb"
+                    stdout, _ = exec_cmd_no_error(node, cmd)
                     if "honeycomb" in stdout:
                         # If custom honeycomb packages exist, use them
                         cmd = "cp ~/honeycomb/*.deb {0}".format(install_dir)
-                        stdout = ssh_no_error(ssh, cmd)
-                        print "###TI {}".format(stdout)
-                    else:
-                        # Copy packages from local path to installation dir
-                        for deb in packages:
-                            print "###TI scp: {}".format(deb)
-                            ssh.scp(local_path=deb, remote_path=install_dir)
-                else:
+                        exec_cmd_no_error(node, cmd)
+                        need_packages = False
+                if need_packages:
                     # Copy packages from local path to installation dir
                     for deb in packages:
-                        print "###TI scp: {}".format(deb)
-                        ssh.scp(local_path=deb, remote_path=install_dir)
-
+                        scp_node(node, local_path=deb,
+                                 remote_path=install_dir)
                 if honeycomb:
-                    fix_interrupted("honeycomb")
-                fix_interrupted("vpp")
+                    uninstall_package(node, "honeycomb")
+                uninstall_package(node, "vpp")
 
                 # Installation of deb packages
                 cmd = "dpkg -i --force-all {}/*.deb".format(install_dir)
-                stdout = ssh_no_error(ssh, cmd, sudo=True)
-                print "###TI {}".format(stdout)
+                exec_cmd_no_error(node, cmd, sudo=True)
+
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
