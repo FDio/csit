@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -17,7 +17,7 @@
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -44,20 +44,17 @@ class DPDKTools:
         if dut_node[u"type"] == NodeType.DUT:
             pci_address1 = Topology.get_interface_pci_addr(dut_node, dut_if1)
             pci_address2 = Topology.get_interface_pci_addr(dut_node, dut_if2)
-
-            ssh = SSH()
-            ssh.connect(dut_node)
-
             arch = Topology.get_node_arch(dut_node)
+
             cmd = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
                 f"/init_dpdk.sh {pci_address1} {pci_address2} {arch}"
 
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
-            if ret_code != 0:
-                raise RuntimeError(
-                    f"Failed to bind the interfaces to igb_uio at node "
-                    f"{dut_node['host']}"
-                )
+            message = (
+                u"Failed to bind the interfaces to igb_uio at node"
+                f"{dut_node[u'host']}"
+            )
+            exec_cmd_no_error(
+                dut_node, cmd, sudo=True, timeout=600, message=message)
 
     @staticmethod
     def cleanup_dpdk_environment(dut_node, dut_if1, dut_if2):
@@ -79,18 +76,13 @@ class DPDKTools:
             pci_address2 = Topology.get_interface_pci_addr(dut_node, dut_if2)
             if2_driver = Topology.get_interface_driver(dut_node, dut_if2)
 
-            ssh = SSH()
-            ssh.connect(dut_node)
-
             cmd = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
                 f"/cleanup_dpdk.sh {if1_driver} {pci_address1} {if2_driver} " \
                 f"{pci_address2}"
 
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=1200)
-            if ret_code != 0:
-                raise RuntimeError(
-                    f"Failed to cleanup the dpdk at node {dut_node[u'host']}"
-                )
+            message = f"Failed to cleanup the dpdk at node {dut_node[u'host']}"
+            exec_cmd_no_error(
+                dut_node, cmd, sudo=True, timeout=1200, message=message)
 
     @staticmethod
     def install_dpdk_test(node):
