@@ -12,7 +12,7 @@
 # limitations under the License.
 
 """Linux scheduler util library"""
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 __all__ = ["SchedUtils"]
@@ -29,27 +29,13 @@ class SchedUtils(object):
         :type node: dict
         :raises RuntimeError: Failed to retrieve PID for VPP worker threads.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
-        cmd = "cat /proc/`pidof vpp`/task/*/stat | grep -i vpp_wk"\
-            " | awk '{print $1}'"
-
-        for _ in range(3):
-            (ret, out, _) = ssh.exec_command_sudo(cmd)
-            if ret == 0:
-                try:
-                    if not out:
-                        raise ValueError
-                except ValueError:
-                    print 'Reading VPP worker thread PID failed.'
-                else:
-                    for pid in out.split("\n"):
-                        if pid and pid[0] != '#':
-                            SchedUtils.set_proc_scheduling_rr(node, int(pid))
-                    break
-        else:
-            raise RuntimeError('Failed to retrieve PID for VPP worker threads.')
+        cmd = ("grep -i vpp_wk /proc/$(pidof vpp)/task/*/stat "
+               "| grep -o '^[0-9]*'")
+        message = 'Failed to retrieve PIDs for VPP worker threads.'
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=True, retries=2, message=message)
+        for pid in stdout.split():
+            SchedUtils.set_proc_scheduling_rr(node, int(pid))
 
     @staticmethod
     def set_proc_scheduling_rr(node, pid, priority=1):
@@ -65,20 +51,15 @@ class SchedUtils(object):
         :raises ValueError: Parameters out of allowed ranges.
         :raises RuntimeError: Failed to set policy for PID.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         if pid < 1:
-            raise ValueError("SCHED_RR: PID must be higher then 1.")
-
-        if 1 <= priority <= 99:
-            cmd = "chrt -r -p {0} {1}".format(priority, pid)
-            (ret, _, _) = ssh.exec_command_sudo(cmd)
-            if ret != 0:
-                raise RuntimeError("SCHED_RR: Failed to set policy "\
-                    "for PID {0}.".format(pid))
-        else:
+            raise ValueError("SCHED_RR: PID must be at least 1.")
+        if not 1 <= priority <= 99:
             raise ValueError("SCHED_RR: Priority must be in range 1-99.")
+
+        cmd = "chrt -r -p {priority} {pid}".format(priority=priority, pid=pid)
+        message = "SCHED_RR: Failed to set policy for PID {pid}.".format(
+            pid=pid)
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     @staticmethod
     def set_proc_scheduling_other(node, pid):
@@ -91,14 +72,10 @@ class SchedUtils(object):
         :raises ValueError: Parameters out of allowed ranges.
         :raises RuntimeError: Failed to set policy for PID.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         if pid < 1:
-            raise ValueError("SCHED_OTHER: PID must be higher then 1.")
+            raise ValueError("SCHED_OTHER: PID must be at least 1.")
 
-        cmd = "chrt -o -p 0 {1}".format(pid)
-        (ret, _, _) = ssh.exec_command_sudo(cmd)
-        if ret != 0:
-            raise RuntimeError("SCHED_OTHER: Failed to set policy "\
-                    "for PID {0}.".format(pid))
+        cmd = "chrt -o -p 0 {pid}".format(pid=pid)
+        message = "SCHED_OTHER: Failed to set policy for PID {pid}.".format(
+            pid=pid)
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)

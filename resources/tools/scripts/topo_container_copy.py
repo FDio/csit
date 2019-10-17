@@ -16,64 +16,10 @@
 """This script provides copy and load of Docker container images.
    As destinations are used all DUT nodes from the topology file."""
 
-import sys
 import argparse
 from yaml import load
 
-from resources.libraries.python.ssh import SSH
-
-
-def ssh_no_error(ssh, cmd, sudo=False):
-    """Execute a command over ssh channel, and log and exit if the command
-    fails.
-
-    :param ssh: SSH() object connected to a node.
-    :param cmd: Command line to execute on remote node.
-    :param sudo: Run command with sudo privileges.
-    :type ssh: SSH() object
-    :type cmd: str
-    :type sudo: bool
-    :returns: stdout from the SSH command.
-    :rtype: str
-    :raises RuntimeError: In case of unexpected ssh command failure
-    """
-    if sudo:
-        ret, stdo, stde = ssh.exec_command_sudo(cmd, timeout=60)
-    else:
-        ret, stdo, stde = ssh.exec_command(cmd, timeout=60)
-
-    if ret != 0:
-        print('Command execution failed: "{}"'.format(cmd))
-        print('stdout: {0}'.format(stdo))
-        print('stderr: {0}'.format(stde))
-        raise RuntimeError('Unexpected ssh command failure')
-
-    return stdo
-
-
-def ssh_ignore_error(ssh, cmd, sudo=False):
-    """Execute a command over ssh channel, ignore errors.
-
-    :param ssh: SSH() object connected to a node.
-    :param cmd: Command line to execute on remote node.
-    :param sudo: Run command with sudo privileges.
-    :type ssh: SSH() object
-    :type cmd: str
-    :type sudo: bool
-    :returns: stdout from the SSH command.
-    :rtype: str
-    """
-    if sudo:
-        ret, stdo, stde = ssh.exec_command_sudo(cmd)
-    else:
-        ret, stdo, stde = ssh.exec_command(cmd)
-
-    if ret != 0:
-        print('Command execution failed: "{}"'.format(cmd))
-        print('stdout: {0}'.format(stdo))
-        print('stderr: {0}'.format(stde))
-
-    return stdo
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error, scp_node
 
 
 def main():
@@ -97,41 +43,31 @@ def main():
     work_file = open(topology_file)
     topology = load(work_file.read())['nodes']
 
-    ssh = SSH()
-    for node in topology:
-        if topology[node]['type'] == "DUT":
-            print("###TI host: {host}".format(host=topology[node]['host']))
-            ssh.connect(topology[node])
-
+    for node in topology.values():
+        if node['type'] == "DUT":
             if cancel_all:
                 # Remove destination directory on DUT
-                cmd = "rm -r {directory}".format(directory=directory)
-                stdout = ssh_ignore_error(ssh, cmd)
-                print("###TI {stdout}".format(stdout=stdout))
-
+                cmd = "rm -fr {directory}".format(directory=directory)
+                exec_cmd(node, cmd)
             else:
                 # Create installation directory on DUT
-                cmd = "rm -r {directory}; mkdir {directory}"\
+                cmd = "rm -rf {directory}; mkdir {directory}"\
                     .format(directory=directory)
-                stdout = ssh_no_error(ssh, cmd)
-                print("###TI {stdout}".format(stdout=stdout))
+                exec_cmd_no_error(node, cmd)
 
                 # Copy images from local path to destination dir
                 for image in images:
-                    print("###TI scp: {}".format(image))
-                    ssh.scp(local_path=image, remote_path=directory)
+                    scp_node(node, local_path=image, remote_path=directory)
 
                 # Load image to Docker.
                 cmd = "for f in {directory}/*.tar.gz; do "\
-                    "sudo docker load -i $f; done".format(directory=directory)
-                stdout = ssh_no_error(ssh, cmd)
-                print("###TI {}".format(stdout))
+                    "docker load -i $f; done".format(directory=directory)
+                exec_cmd_no_error(node, cmd, sudo=True)
 
                 # Remove <none> images from Docker.
-                cmd = "docker rmi $(sudo docker images -f 'dangling=true' -q)"
-                stdout = ssh_ignore_error(ssh, cmd, sudo=True)
-                print("###TI {}".format(stdout))
+                cmd = "docker images -f dangling=true -q | xargs -r docker rmi"
+                exec_cmd(node, cmd, sudo=True)
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()
