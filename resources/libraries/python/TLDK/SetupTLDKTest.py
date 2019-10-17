@@ -26,7 +26,7 @@ import os
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error, scp_node
 from resources.libraries.python.TLDK.TLDKConstants import TLDKConstants as con
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.TLDK.gen_pcap import gen_all_pcap
@@ -81,10 +81,7 @@ def copy_tarball_to_node(tarball, node):
     :returns: nothing.
     """
     logger.console('Copying tarball to {0}'.format(node['host']))
-    ssh = SSH()
-    ssh.connect(node)
-
-    ssh.scp(tarball, "/tmp/")
+    scp_node(node, tarball, "/tmp/")
 
 
 def extract_tarball_at_node(tarball, node):
@@ -102,16 +99,11 @@ def extract_tarball_at_node(tarball, node):
     """
     logger.console('Extracting tarball to {0} on {1}'.format(
         con.REMOTE_FW_DIR, node['host']))
-    ssh = SSH()
-    ssh.connect(node)
-
     cmd = 'sudo rm -rf {1}; mkdir {1} ; tar -zxf {0} -C {1}; ' \
         'rm -f {0}'.format(tarball, con.REMOTE_FW_DIR)
-    (ret_code, _, stderr) = ssh.exec_command(cmd, timeout=30)
-    if ret_code != 0:
-        logger.error('Unpack error: {0}'.format(stderr))
-        raise RuntimeError('Failed to unpack {0} at node {1}'.format(
-            tarball, node['host']))
+    message = 'Failed to unpack {0} at node {1}'.format(
+        tarball, node['host'])
+    exec_cmd_no_error(node, cmd, timeout=30, message=message)
 
 
 def create_env_directory_at_node(node):
@@ -125,18 +117,14 @@ def create_env_directory_at_node(node):
     """
     logger.console('Extracting virtualenv, installing requirements.txt '
                    'on {0}'.format(node['host']))
-    ssh = SSH()
-    ssh.connect(node)
-    (ret_code, stdout, stderr) = ssh.exec_command(
+    cmd = (
         'cd {0} && rm -rf env && '
         'virtualenv --system-site-packages --never-download env && '
         '. env/bin/activate && pip install -r requirements.txt'
-        .format(con.REMOTE_FW_DIR), timeout=100)
-    if ret_code != 0:
-        logger.error('Virtualenv creation error: {0}'.format(stdout + stderr))
-        raise RuntimeError('Virtualenv setup failed')
-    else:
-        logger.console('Virtualenv created on {0}'.format(node['host']))
+        .format(con.REMOTE_FW_DIR))
+    message = 'Virtualenv setup failed'
+    exec_cmd_no_error(node, cmd, timeout=100, message=message)
+    logger.console('Virtualenv created on {0}'.format(node['host']))
 
 def install_tldk_test(node):
     """Prepare the TLDK test envrionment.
@@ -152,18 +140,13 @@ def install_tldk_test(node):
     logger.console('Install the TLDK on {0} ({1})'.format(node['host'],
                                                           arch))
 
-    ssh = SSH()
-    ssh.connect(node)
-
-    (ret_code, _, stderr) = ssh.exec_command(
+    cmd = (
         'cd {0}/{1} && ./install_tldk.sh {2}'
-        .format(con.REMOTE_FW_DIR, con.TLDK_SCRIPTS, arch), timeout=600)
+        .format(con.REMOTE_FW_DIR, con.TLDK_SCRIPTS, arch))
 
-    if ret_code != 0:
-        logger.error('Install the TLDK error: {0}'.format(stderr))
-        raise RuntimeError('Install the TLDK failed')
-    else:
-        logger.console('Install the TLDK on {0} success!'.format(node['host']))
+    message = 'Install the TLDK failed'
+    exec_cmd_no_error(node, cmd, timeout=600, message=message)
+    logger.console('Install the TLDK on {0} success!'.format(node['host']))
 
 def setup_node(args):
     """Run all set-up methods for a node.

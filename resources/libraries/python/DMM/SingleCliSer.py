@@ -20,8 +20,7 @@ import time
 import os
 import glob
 
-from resources.libraries.python.ssh import SSH
-from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error, scp_node
 from resources.libraries.python.DMM.DMMConstants import DMMConstants as con
 from resources.libraries.python.topology import Topology
 
@@ -221,10 +220,10 @@ class SingleCliSer:
         failed = 0
         path = '{0}/*'.format(con.DMM_RUN_SCRIPTS)
         files = [os.path.basename(x) for x in glob.glob(path)]
-        print "list of files : {0}".format(files)
+        print("list of files : {0}".format(files))
 
         for name in files:
-            print("file name : {}").format(name)
+            print("file name : {}".format(name))
             total += 1
             SingleCliSer.setup_dmm_dut(dut1_node, dut2_node, dut1_if_name,
                                        dut2_if_name, name, dut1_ip, dut2_ip,
@@ -240,8 +239,8 @@ class SingleCliSer:
 
             SingleCliSer.print_dmm_log(dut1_node, dut2_node, name)
             SingleCliSer.cleanup_dmm_dut(dut1_node, dut2_node, name)
-            print("TOTAL :{} PASSED : {} FAILED: {}").format\
-                (total, passed, failed)
+            print("TOTAL :{} PASSED : {} FAILED: {}".format
+                  (total, passed, failed))
 
         return total, passed
 
@@ -271,15 +270,13 @@ class SingleCliSer:
         :param dut_node: Node to artifact the logs of.
         :type dut_node: dict
         """
-        ssh = SSH()
-        ssh.connect(dut_node)
-        ssh.scp(".", '/var/log/nStack/*.log',
-                get=True, timeout=60, wildcard=True)
+        scp_node(dut_node, ".", '/var/log/nStack/*.log',
+                 get=True, timeout=60, wildcard=True)
 
         (ret, _, _) = exec_cmd(dut_node, 'ls -l /var/log/app*.log')
         if ret == 0:
-            ssh.scp(".", '/var/log/app*.log',
-                    get=True, timeout=60, wildcard=True)
+            scp_node(dut_node, ".", '/var/log/app*.log',
+                     get=True, timeout=60, wildcard=True)
 
         exec_cmd(dut_node, 'rm -rf /var/log/nStack/*.log', sudo=True)
         exec_cmd(dut_node, 'rm -rf /var/log/app*.log', sudo=True)

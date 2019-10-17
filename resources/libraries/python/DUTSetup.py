@@ -16,7 +16,7 @@
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -163,36 +163,18 @@ class DUTSetup:
         :param node: DUT node.
         :type node: dict
         :returns: PID
-        :rtype: int
+        :rtype: int or list of int
         :raises RuntimeError: If it is not possible to get the PID.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
-        retval = None
-        for i in range(3):
-            logger.trace(f"Try {i}: Get VPP PID")
-            ret_code, stdout, stderr = ssh.exec_command(u"pidof vpp")
-
-            if int(ret_code):
-                raise RuntimeError(
-                    f"Not possible to get PID of VPP process on node: "
-                    f"{node[u'host']}\n {stdout + stderr}"
-                )
-
-            pid_list = stdout.split()
-            if len(pid_list) == 1:
-                retval = int(stdout)
-            elif not pid_list:
-                logger.debug(f"No VPP PID found on node {node[u'host']}")
-                continue
-            else:
-                logger.debug(
-                    f"More then one VPP PID found on node {node[u'host']}"
-                )
-                retval = [int(pid) for pid in pid_list]
-
-        return retval
+        cmd = u'pidof vpp | grep .'
+        message = f"Failed to get PID of VPP process on node: {node[u'host']}"
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, retries=2, message=message, include_reason=True)
+        pid_list = stdout.split()
+        if len(pid_list) == 1:
+            return int(stdout)
+        logger.debug(f"More than one VPP PID found on node {node[u'host']}")
+        return [int(pid) for pid in pid_list]
 
     @staticmethod
     def get_vpp_pids(nodes):
@@ -501,41 +483,12 @@ class DUTSetup:
         :raises RuntimeError: If it is not possible to get the interface driver
             information from the node.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
-        for i in range(3):
-            logger.trace(f"Try number {i}: Get PCI device driver")
-
-            cmd = f"lspci -vmmks {pci_addr}"
-            ret_code, stdout, _ = ssh.exec_command(cmd)
-            if int(ret_code):
-                raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
-
-            for line in stdout.splitlines():
-                if not line:
-                    continue
-                name = None
-                value = None
-                try:
-                    name, value = line.split(u"\t", 1)
-                except ValueError:
-                    if name == u"Driver:":
-                        return None
-                if name == u"Driver:":
-                    return value
-
-            if i < 2:
-                logger.trace(
-                    f"Driver for PCI device {pci_addr} not found, "
-                    f"executing pci rescan and retrying"
-                )
-                cmd = u"sh -c \"echo 1 > /sys/bus/pci/rescan\""
-                ret_code, _, _ = ssh.exec_command_sudo(cmd)
-                if int(ret_code) != 0:
-                    raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
-
-        return None
+        cmd = (
+            f'lspci -vmmks {pci_addr} | grep Driver: '
+            u'|| {{ echo 1 > /sys/bus/pci/rescan ; false ; }}'
+        )
+        stdout, _ = exec_cmd_no_error(node, cmd, sudo=True, retries=2)
+        return stdout.split(u":", 1)[-1].strip() or None
 
     @staticmethod
     def verify_kernel_module(node, module, force_load=False):
@@ -713,23 +666,11 @@ class DUTSetup:
         :rtype: int
         :raises RuntimeError: If reading failed for three times.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
-        for _ in range(3):
-            ret_code, stdout, _ = ssh.exec_command_sudo(
-                u"grep Hugepagesize /proc/meminfo | awk '{ print $2 }'"
-            )
-            if ret_code == 0:
-                try:
-                    huge_size = int(stdout)
-                except ValueError:
-                    logger.trace(u"Reading huge page size information failed")
-                else:
-                    break
-        else:
-            raise RuntimeError(u"Getting huge page size information failed.")
-        return huge_size
+        cmd = u"sed -n '/Hugepagesize/s/[^0-9]//gp' /proc/meminfo | grep ."
+        message = u"Getting huge page size information failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=True, retries=2, message=message)
+        return int(stdout)
 
     @staticmethod
     def get_huge_page_free(node, huge_size):
@@ -744,24 +685,14 @@ class DUTSetup:
         :raises RuntimeError: If reading failed for three times.
         """
         # TODO: add numa aware option
-        ssh = SSH()
-        ssh.connect(node)
-
-        for _ in range(3):
-            ret_code, stdout, _ = ssh.exec_command_sudo(
-                f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"
-                f"free_hugepages"
-            )
-            if ret_code == 0:
-                try:
-                    huge_free = int(stdout)
-                except ValueError:
-                    logger.trace(u"Reading free huge pages information failed")
-                else:
-                    break
-        else:
-            raise RuntimeError(u"Getting free huge pages information failed.")
-        return huge_free
+        cmd = (
+            u"grep '[0-9]' "
+            f"/sys/kernel/mm/hugepages/hugepages-{huge_size}kB/free_hugepages"
+        )
+        message = u"Getting free huge pages information failed"
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=True, retries=2, message=message)
+        return int(stdout)
 
     @staticmethod
     def get_huge_page_total(node, huge_size):
@@ -776,29 +707,81 @@ class DUTSetup:
         :raises RuntimeError: If reading failed for three times.
         """
         # TODO: add numa aware option
-        ssh = SSH()
-        ssh.connect(node)
+        cmd = (
+            u"grep '[0-9]' "
+            f"/sys/kernel/mm/hugepages/hugepages-{huge_size}kB/nr_hugepages"
+        )
+        message = u"Getting total huge pages information failed."
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, sudo=True, retries=2, message=message)
+        return int(stdout)
 
-        for _ in range(3):
-            ret_code, stdout, _ = ssh.exec_command_sudo(
-                f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"
-                f"nr_hugepages"
-            )
-            if ret_code == 0:
-                try:
-                    huge_total = int(stdout)
-                except ValueError:
-                    logger.trace(u"Reading total huge pages information failed")
-                else:
-                    break
-        else:
-            raise RuntimeError(u"Getting total huge pages information failed.")
-        return huge_total
+    @staticmethod
+    def has_huge_page_mounted(node, huge_mnt):
+        """Return whether a mount point for huge pages exists on node.
+
+        :param node: Node in the topology
+        :param huge_mnt: HugePage mount point
+        :type node: dict
+        :type huge_mnt: str
+        :returns: whether there is hugepagefs mounted at mount point
+        :rtype: bool
+        :raises RuntimeError: remote command execution failed
+        """
+        cmd = f"grep -e '{huge_mnt}.*hugetlbfs' /proc/mounts"
+        ret_code, _, _ = exec_cmd(node, cmd)
+        return ret_code == 0
+
+    @staticmethod
+    def create_huge_page_mount(node, huge_mnt):
+        """Return whether a mount point for huge pages exists on node.
+
+        :param node: Node in the topology
+        :param huge_mnt: HugePage mount point
+        :type node: dict
+        :type huge_mnt: str
+        :raises RuntimeError: remote command execution failed
+        """
+        # TODO why is 2048 hardcoded here
+        cmd = (
+            f"mkdir -p '{huge_mnt}' && "
+            f"mount -t hugetlbfs -o pagesize=2048k none '{huge_mnt}'"
+        )
+        message = f"Mount huge pages failed on {node[u'host']}"
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
+
+    @staticmethod
+    def set_huge_page_max_map_count(node, max_map_count):
+        """Set maximum number of memory map areas a process may have on node.
+
+        :param node: Node in the topology
+        :param max_map_count: Max number of memory map areas
+        :type node: dict
+        :type max_map_count: int
+        :raises RuntimeError: remote command execution failed
+        """
+        cmd = f"echo '{max_map_count}' | tee /proc/sys/vm/max_map_count"
+        message = f"Set map count failed on {node[u'host']}"
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
+
+    @staticmethod
+    def set_huge_page_count(node, page_count):
+        """Set hugepage count on node.
+
+        :param node: Node in the topology
+        :param page_count: HugePage count
+        :type node: dict
+        :type page_count: int
+        :raises RuntimeError: remote command execution failed
+        """
+        cmd = f"echo '{page_count}' | tee /proc/sys/vm/nr_hugepages"
+        message = f"Set huge page count failed on {node[u'host']}"
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     @staticmethod
     def check_huge_page(node, huge_mnt, mem_size, allocate=False):
         """Check if there is enough HugePages in system. If allocate is set to
-        true, try to allocate more HugePages.
+        true and there isn't enough currently, try to allocate more HugePages.
 
         :param node: Node in the topology.
         :param huge_mnt: HugePage mount point.
@@ -811,69 +794,28 @@ class DUTSetup:
         :raises RuntimeError: Mounting hugetlbfs failed or not enough HugePages
             or increasing map count failed.
         """
-        # TODO: split function into smaller parts.
-        ssh = SSH()
-        ssh.connect(node)
-
         # Get huge pages information
         huge_size = DUTSetup.get_huge_page_size(node)
         huge_free = DUTSetup.get_huge_page_free(node, huge_size)
         huge_total = DUTSetup.get_huge_page_total(node, huge_size)
 
-        # Check if memory requested is available on
+        # Check if memory requested is available on host
         mem_size = int(mem_size)
         if (mem_size * 1024) > (huge_free * huge_size):
             # If we want to allocate hugepage dynamically
             if allocate:
                 mem_needed = (mem_size * 1024) - (huge_free * huge_size)
                 huge_to_allocate = ((mem_needed // huge_size) * 2) + huge_total
-                max_map_count = huge_to_allocate*4
-                # Increase maximum number of memory map areas a process may have
-                ret_code, _, _ = ssh.exec_command_sudo(
-                    f"echo \"{max_map_count}\" | "
-                    f"sudo tee /proc/sys/vm/max_map_count"
-                )
-                if int(ret_code) != 0:
-                    raise RuntimeError(
-                        f"Increase map count failed on {node[u'host']}"
-                    )
-                # Increase hugepage count
-                ret_code, _, _ = ssh.exec_command_sudo(
-                    f"echo \"{huge_to_allocate}\" | "
-                    f"sudo tee /proc/sys/vm/nr_hugepages"
-                )
-                if int(ret_code) != 0:
-                    raise RuntimeError(
-                        f"Mount huge pages failed on {node[u'host']}"
-                    )
-            # If we do not want to allocate dynamically end with error
+                max_map_count = huge_to_allocate * 4
+                DUTSetup.set_huge_page_max_map_count(node, max_map_count)
+                DUTSetup.set_huge_page_count(node, huge_to_allocate)
+            # If we do not want to allocate dynamicaly end with error
             else:
                 raise RuntimeError(
                     f"Not enough free huge pages: {huge_free}, "
                     f"{huge_free * huge_size} MB"
                 )
-        # Check if huge pages mount point exist
-        has_huge_mnt = False
-        ret_code, stdout, _ = ssh.exec_command(u"cat /proc/mounts")
-        if int(ret_code) == 0:
-            for line in stdout.splitlines():
-                # Try to find something like:
-                # none /mnt/huge hugetlbfs rw,realtime,pagesize=2048k 0 0
-                mount = line.split()
-                if mount[2] == u"hugetlbfs" and mount[1] == huge_mnt:
-                    has_huge_mnt = True
-                    break
-        # If huge page mount point not exist create one
-        if not has_huge_mnt:
-            ret_code, _, _ = ssh.exec_command_sudo(f"mkdir -p {huge_mnt}")
-            if int(ret_code) != 0:
-                raise RuntimeError(
-                    f"Create mount dir failed on {node[u'host']}"
-                )
-            ret_code, _, _ = ssh.exec_command_sudo(
-                f"mount -t hugetlbfs -o pagesize=2048k none {huge_mnt}"
-            )
-            if int(ret_code) != 0:
-                raise RuntimeError(
-                    f"Mount huge pages failed on {node[u'host']}"
-                )
+
+        # If huge page mount point does not exist create one
+        if not DUTSetup.has_huge_page_mounted(node, huge_mnt):
+            DUTSetup.create_huge_page_mount(node, huge_mnt)
