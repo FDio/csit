@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -21,7 +21,7 @@ from time import sleep
 
 from robot.api import logger
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.CpuUtils import CpuUtils
 from resources.libraries.python.Constants import Constants
@@ -69,15 +69,12 @@ def check_wrk(tg_node):
     if tg_node[u"type"] != NodeType.TG:
         raise RuntimeError(u"Node type is not a TG.")
 
-    ssh = SSH()
-    ssh.connect(tg_node)
-
-    ret, _, _ = ssh.exec_command(
-        f"sudo -E sh -c '{Constants.REMOTE_FW_DIR}/resources/tools/"
-        f"wrk/wrk_utils.sh installed'"
+    cmd = (
+        f"{Constants.REMOTE_FW_DIR}/resources/tools/"
+        u"wrk/wrk_utils.sh installed"
     )
-    if int(ret) != 0:
-        raise RuntimeError(u"WRK is not installed on TG node.")
+    exec_cmd_no_error(tg_node, cmd, sudo=True,
+                      message=u'WRK is not installed on TG node.')
 
 
 def run_wrk(tg_node, profile_name, tg_numa, test_type, warm_up=False):
@@ -158,27 +155,22 @@ def run_wrk(tg_node, profile_name, tg_numa, test_type, warm_up=False):
             warm_up_params = deepcopy(params)
             warm_up_params[5] = u"10s"
 
-    args = u" ".join(params)
-
-    ssh = SSH()
-    ssh.connect(tg_node)
-
     if warm_up:
-        warm_up_args = u" ".join(warm_up_params)
-        ret, _, _ = ssh.exec_command(
+        warm_up_params = u" ".join(warm_up_params)
+        cmd = (
             f"{Constants.REMOTE_FW_DIR}/resources/tools/wrk/wrk_utils.sh "
-            f"{warm_up_args}", timeout=1800
+            f"{warm_up_params}"
         )
-        if int(ret) != 0:
-            raise RuntimeError(u"wrk runtime error.")
+        exec_cmd_no_error(tg_node, cmd, timeout=1800,
+                          message=u'wrk runtime error.')
         sleep(60)
 
-    ret, stdout, _ = ssh.exec_command(
-        f"{Constants.REMOTE_FW_DIR}/resources/tools/wrk/wrk_utils.sh {args}",
-        timeout=1800
+    params = u" ".join(params)
+    cmd = (
+        f"{Constants.REMOTE_FW_DIR}/resources/tools/wrk/wrk_utils.sh {params}"
     )
-    if int(ret) != 0:
-        raise RuntimeError('wrk runtime error.')
+    stdout, _ = exec_cmd_no_error(tg_node, cmd, timeout=1800,
+                                  message=u'wrk runtime error.')
 
     stats = _parse_wrk_output(stdout)
 

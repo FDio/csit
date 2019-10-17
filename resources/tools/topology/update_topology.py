@@ -1,5 +1,5 @@
 #!/usr/bin/env python2.7
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -25,7 +25,7 @@ from argparse import ArgumentParser
 
 import yaml
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 def load_topology(args):
@@ -48,27 +48,6 @@ def load_topology(args):
     return data
 
 
-def ssh_no_error(ssh, cmd):
-    """Execute a command over ssh channel, and log and exit if the command
-    fails.
-
-    :param ssh: SSH() object connected to a node.
-    :param cmd: Command line to execute on remote node.
-    :type ssh: SSH() object
-    :type cmd: str
-    :return: stdout from the SSH command.
-    :rtype: str
-    """
-    ret, stdo, stde = ssh.exec_command(cmd)
-    if ret != 0:
-        print(f"Command execution failed: '{cmd}'")
-        print(f"stdout: {stdo}")
-        print(f"stderr: {stde}")
-        raise RuntimeError(u"Unexpected ssh command failure")
-
-    return stdo
-
-
 def update_mac_addresses_for_node(node):
     """For given node loop over all ports with PCI address and look for its MAC
     address.
@@ -88,11 +67,6 @@ def update_mac_addresses_for_node(node):
                 f"exiting"
             )
 
-        ssh = SSH()
-        ssh.connect(node)
-
-        # TODO: make following SSH commands into one-liner to save on SSH opers
-
         # First unbind from current driver
         drvr_dir_path = f"/sys/bus/pci/devices/{port[u'pci_address']}/driver"
         cmd = f'''\
@@ -101,16 +75,20 @@ def update_mac_addresses_for_node(node):
             else
                 true Do not have to do anything, port already unbound ;
             fi'''
-        ssh_no_error(ssh, cmd)
+        message = f"Unbind failed on host {node[u'host']}"
+        exec_cmd_no_error(node, cmd, message=message)
 
         # Then bind to the 'driver' from topology for given port
         cmd = f"echo {port[u'pci_address']} | " \
             f"sudo tee /sys/bus/pci/drivers/{port[u'driver']}/bind"
-        ssh_no_error(ssh, cmd)
+        message = f"Bind failed on host {node[u'host']}"
+        exec_cmd_no_error(node, cmd, message=message)
 
         # Then extract the mac address and store it in the topology
         cmd = f"cat /sys/bus/pci/devices/{port['pci_address']}/net/*/address"
-        mac = ssh_no_error(ssh, cmd).strip()
+        message = f"Extract MAC failed on host {node[u'host']}"
+        mac, _ = exec_cmd_no_error(node, cmd, message=message)
+        mac = mac.strip()
         pattern = re.compile(u"^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$")
         if not pattern.match(mac):
             raise RuntimeError(

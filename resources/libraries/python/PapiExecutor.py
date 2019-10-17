@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -32,7 +32,7 @@ from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.FilteredLogger import FilteredLogger
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (
-    SSH, SSHTimeout, exec_cmd_no_error, scp_node)
+    SSHTimeout, exec_cmd, exec_cmd_no_error, scp_node, disconnect_node)
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
@@ -608,20 +608,14 @@ class PapiExecutor:
         # The list of PAPI commands to be executed on the node.
         self._api_command_list = list()
 
-        self._ssh = SSH()
-
     def __enter__(self):
-        try:
-            self._ssh.connect(self._node)
-        except IOError:
-            raise RuntimeError(
-                f"Cannot open SSH connection to host {self._node[u'host']} "
-                f"to execute PAPI command(s)"
-            )
+        message = (f"Cannot open SSH connection to host {self._node[u'host']} "
+                   u"to execute PAPI command(s)")
+        exec_cmd_no_error(self._node, 'true', message=message)
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        self._ssh.disconnect(self._node)
+        disconnect_node(self._node)
 
     def add(self, csit_papi_command=u"vpp-stats", history=True, **kwargs):
         """Add next command to internal command list; return self.
@@ -751,9 +745,9 @@ class PapiExecutor:
         cmd = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_PAPI_PROVIDER}" \
             f" --method {method} --data '{json_data}'{sock}"
         try:
-            ret_code, stdout, _ = self._ssh.exec_command_sudo(
-                cmd=cmd, timeout=timeout, log_stdout_err=False
-            )
+            ret_code, stdout, _ = exec_cmd(
+                self._node, cmd, timeout=timeout, sudo=True,
+                log_stdout_err=False)
         # TODO: Fail on non-empty stderr?
         except SSHTimeout:
             logger.error(

@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,7 +16,7 @@ This module exists to provide the l3fwd test for DPDK on topology nodes.
 """
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -65,19 +65,16 @@ class L3fwdTest:
                     port_config += f"({port}, {queue}, {list_cores[index]}),"
                     index += 1
 
-            ssh = SSH()
-            ssh.connect(dut_node)
-
             cmd = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
                 f"/run_l3fwd.sh \"{lcores_list}\" " \
                 f"\"{port_config.rstrip(u',')}\" " \
                 f"{adj_mac0} {adj_mac1} {u'yes' if jumbo_frames else u'no'}"
 
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=1800)
-            if ret_code != 0:
-                raise Exception(
-                    f"Failed to execute l3fwd test at node {dut_node[u'host']}"
-                )
+            message = (
+                f"Failed to execute l3fwd test at node {dut_node[u'host']}"
+            )
+            exec_cmd_no_error(
+                dut_node, cmd, sudo=True, timeout=1800, message=message)
 
     @staticmethod
     def get_adj_mac(nodes_info, dut_node, dut_if1, dut_if2):
@@ -130,14 +127,10 @@ class L3fwdTest:
         """
         arch = Topology.get_node_arch(node)
 
-        ssh = SSH()
-        ssh.connect(node)
-
-        ret_code, _, _ = ssh.exec_command(
+        cmd = (
             f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts/patch_l3fwd.sh "
-            f"{arch} {Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts/{patch}",
-            timeout=600
+            f"{arch} {Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts/{patch}"
         )
 
-        if ret_code != 0:
-            raise RuntimeError(u"Patch of l3fwd failed.")
+        message = u'Patch of l3fwd failed.'
+        exec_cmd_no_error(node, cmd, timeout=600, message=message)
