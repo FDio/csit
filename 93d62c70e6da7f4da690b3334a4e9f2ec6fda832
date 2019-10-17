@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6fc9b2c_36d86a9e",
+        "filename": "resources/api/vpp/supported_crcs.yaml",
+        "patchSetId": 13
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-17T12:35:56Z",
+      "side": 1,
+      "message": "Accidental paste, messes up the yaml structure.",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 300,
+        "endChar": 4
+      },
+      "revId": "93d62c70e6da7f4da690b3334a4e9f2ec6fda832",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
