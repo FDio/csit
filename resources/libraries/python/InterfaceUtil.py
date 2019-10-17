@@ -25,7 +25,7 @@ from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.parsers.JsonParser import JsonParser
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VPPUtil import VPPUtil
 
@@ -503,22 +503,15 @@ class InterfaceUtil:
         if old_driver == driver:
             return
 
-        ssh = SSH()
-        ssh.connect(node)
-
         # Unbind from current driver
         if old_driver is not None:
             cmd = f"sh -c \"echo {pci_addr} > " \
                 f"/sys/bus/pci/drivers/{old_driver}/unbind\""
-            ret_code, _, _ = ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
+            exec_cmd_no_error(node, cmd, sudo=True)
 
         # Bind to the new driver
         cmd = f"sh -c \"echo {pci_addr} > /sys/bus/pci/drivers/{driver}/bind\""
-        ret_code, _, _ = ssh.exec_command_sudo(cmd)
-        if int(ret_code) != 0:
-            raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
+        exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def tg_get_interface_driver(node, pci_addr):
@@ -551,13 +544,8 @@ class InterfaceUtil:
         :type node: dict
         :raises RuntimeError: If setting of udev rules fails.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         cmd = f"rm -f {InterfaceUtil.__UDEV_IF_RULES_FILE}"
-        ret_code, _, _ = ssh.exec_command_sudo(cmd)
-        if int(ret_code) != 0:
-            raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
+        exec_cmd_no_error(node, cmd, sudo=True)
 
         for interface in node[u"interfaces"].values():
             rule = u'SUBSYSTEM==\\"net\\", ACTION==\\"add\\", ATTR{address}' + \
@@ -565,13 +553,10 @@ class InterfaceUtil:
                    interface[u"name"] + u'\\"'
             cmd = f"sh -c \"echo '{rule}'\" >> " \
                 f"{InterfaceUtil.__UDEV_IF_RULES_FILE}'"
-
-            ret_code, _, _ = ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
+            exec_cmd_no_error(node, cmd, sudo=True)
 
         cmd = u"/etc/init.d/udev restart"
-        ssh.exec_command_sudo(cmd)
+        exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def tg_set_interfaces_default_driver(node):
@@ -681,15 +666,11 @@ class InterfaceUtil:
         InterfaceUtil.tg_set_interfaces_default_driver(node)
 
         # Get interface names
-        ssh = SSH()
-        ssh.connect(node)
-
         cmd = u'for dev in `ls /sys/class/net/`; do echo "\\"`cat ' \
               u'/sys/class/net/$dev/address`\\": \\"$dev\\""; done;'
 
-        ret_code, stdout, _ = ssh.exec_command(cmd)
-        if int(ret_code) != 0:
-            raise RuntimeError(u"Get interface name and MAC failed")
+        message = u'Get interface name and MAC failed'
+        stdout, _ = exec_cmd_no_error(node, cmd, message=message)
         tmp = u"{" + stdout.rstrip().replace(u"\n", u",") + u"}"
 
         interfaces = JsonParser().parse_data(tmp)
@@ -711,38 +692,22 @@ class InterfaceUtil:
         :param node: Node from topology.
         :type node: dict
         :returns: Nothing.
-        :raises ValueError: If numa node ia less than 0.
-        :raises RuntimeError: If update of numa node failed.
+        :raises ValueError: If numa node is less than 0 with multiple cpus.
+        :raises RuntimeError: If reading or update of numa node fails.
         """
-        def check_cpu_node_count(node_n, val):
-            val = int(val)
-            if val < 0:
-                if CpuUtils.cpu_node_count(node_n) == 1:
-                    val = 0
-                else:
-                    raise ValueError
-            return val
-        ssh = SSH()
         for if_key in Topology.get_node_interfaces(node):
             if_pci = Topology.get_interface_pci_addr(node, if_key)
-            ssh.connect(node)
-            cmd = f"cat /sys/bus/pci/devices/{if_pci}/numa_node"
-            for _ in range(3):
-                ret, out, _ = ssh.exec_command(cmd)
-                if ret == 0:
-                    try:
-                        numa_node = check_cpu_node_count(node, out)
-                    except ValueError:
-                        logger.trace(
-                            f"Reading numa location failed for: {if_pci}"
-                        )
-                    else:
-                        Topology.set_interface_numa_node(
-                            node, if_key, numa_node
-                        )
-                        break
-            else:
-                raise RuntimeError(f"Update numa node failed for: {if_pci}")
+            message = f'Reading numa location failed for: {if_pci}'
+            cmd = f'grep "[0-9]" /sys/bus/pci/devices/{if_pci}/numa_node'
+            stdout, _ = exec_cmd_no_error(node, cmd, retries=2, message=message)
+            numa_node = int(stdout)
+            if numa_node < 0:
+                if CpuUtils.cpu_node_count(node) == 1:
+                    numa_node = 0
+                else:
+                    raise ValueError('Negative numa node {numa} for: {pci}'
+                                     .format(numa=numa_node, pci=if_pci))
+            Topology.set_interface_numa_node(node, if_key, numa_node)
 
     @staticmethod
     def update_all_numa_nodes(nodes, skip_tg=False):

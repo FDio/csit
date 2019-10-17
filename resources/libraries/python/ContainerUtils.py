@@ -23,7 +23,7 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
@@ -715,35 +715,24 @@ class ContainerEngine:
         :type name: str
         :raises RuntimeError: If applying cgroup settings via cgset failed.
         """
-        ret, _, _ = self.container.ssh.exec_command_sudo(
-            u"cgset -r cpuset.cpu_exclusive=0 /"
-        )
-        if int(ret) != 0:
-            raise RuntimeError(u"Failed to apply cgroup settings.")
+        node = self.container.node
+        message = u"Failed to apply cgroup settings."
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(
-            u"cgset -r cpuset.mem_exclusive=0 /"
-        )
-        if int(ret) != 0:
-            raise RuntimeError(u"Failed to apply cgroup settings.")
+        cmd = u"cgset -r cpuset.cpu_exclusive=0 /"
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(
-            f"cgcreate -g cpuset:/{name}"
-        )
-        if int(ret) != 0:
-            raise RuntimeError(u"Failed to copy cgroup settings from root.")
+        cmd = u"cgset -r cpuset.mem_exclusive=0 /"
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(
-            f"cgset -r cpuset.cpu_exclusive=0 /{name}"
-        )
-        if int(ret) != 0:
-            raise RuntimeError(u"Failed to apply cgroup settings.")
+        root_message = u"Failed to copy cgroup settings from root."
+        cmd = f"cgcreate -g cpuset:/{name}"
+        exec_cmd_no_error(node, cmd, sudo=True, message=root_message)
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(
-            f"cgset -r cpuset.mem_exclusive=0 /{name}"
-        )
-        if int(ret) != 0:
-            raise RuntimeError(u"Failed to apply cgroup settings.")
+        cmd = f"cgset -r cpuset.cpu_exclusive=0 /{name}"
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
+
+        cmd = f"cgset -r cpuset.mem_exclusive=0 /{name}"
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
 
 class LXC(ContainerEngine):
@@ -766,8 +755,9 @@ class LXC(ContainerEngine):
             else:
                 return
 
+        node = self.container.node
         target_arch = u"arm64" \
-            if Topology.get_node_arch(self.container.node) == u"aarch64" \
+            if Topology.get_node_arch(node) == u"aarch64" \
             else u"amd64"
 
         image = self.container.image if self.container.image \
@@ -776,9 +766,8 @@ class LXC(ContainerEngine):
         cmd = f"lxc-create -t download --name {self.container.name} " \
             f"-- {image} --no-validate"
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
-        if int(ret) != 0:
-            raise RuntimeError(u"Failed to create container.")
+        message = u'Failed to create container.'
+        exec_cmd_no_error(node, cmd, sudo=True, timeout=1800, message=message)
 
         self._configure_cgroup(u"lxc")
 
@@ -791,18 +780,17 @@ class LXC(ContainerEngine):
 
         :raises RuntimeError: If creating the container fails.
         """
+        node = self.container.node
         if self.container.mnt:
             # LXC fix for tmpfs
             # https://github.com/lxc/lxc/issues/434
             mnt_e = u"lxc.mount.entry = tmpfs run tmpfs defaults"
-            ret, _, _ = self.container.ssh.exec_command_sudo(
+            cmd = (
                 f"sh -c \"echo '{mnt_e}' >> "
                 f"/var/lib/lxc/{self.container.name}/config\""
             )
-            if int(ret) != 0:
-                raise RuntimeError(
-                    f"Failed to write {self.container.name} config."
-                )
+            message = f"Failed to write {self.container.name} config."
+            exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
             for mount in self.container.mnt:
                 host_dir, guest_dir = mount.split(u":")
@@ -810,45 +798,35 @@ class LXC(ContainerEngine):
                     else u"bind,create=file"
                 entry = f"lxc.mount.entry = {host_dir} {guest_dir[1:]} " \
                     f"none {options} 0 0"
-                self.container.ssh.exec_command_sudo(
-                    f"sh -c \"mkdir -p {host_dir}\""
-                )
-                ret, _, _ = self.container.ssh.exec_command_sudo(
+                cmd = f"sh -c 'mkdir -p {host_dir}'"
+                exec_cmd_no_error(node, cmd, sudo=True, message=message)
+                cmd = (
                     f"sh -c \"echo '{entry}' "
                     f">> /var/lib/lxc/{self.container.name}/config\""
                 )
-                if int(ret) != 0:
-                    raise RuntimeError(
-                        f"Failed to write {self.container.name} config."
-                    )
+                exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
         cpuset_cpus = u",".join(
             f"{cpu!s}" for cpu in self.container.cpuset_cpus) \
             if self.container.cpuset_cpus else u""
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(
-            f"lxc-start --name {self.container.name} --daemon"
-        )
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to start container {self.container.name}."
-            )
+        cmd = f"lxc-start --name {self.container.name} --daemon"
+        message = f"Failed to start container {self.container.name}."
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
         self._lxc_wait(u"RUNNING")
 
         # Workaround for LXC to be able to allocate all cpus including isolated.
-        ret, _, _ = self.container.ssh.exec_command_sudo(
-            u"cgset --copy-from / lxc/"
-        )
-        if int(ret) != 0:
-            raise RuntimeError(u"Failed to copy cgroup to LXC")
+        cmd = u"cgset --copy-from / lxc/"
+        message = f"Failed to copy cgroup to LXC {self.container.name}"
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(
+        cmd = (
             f"lxc-cgroup --name {self.container.name} cpuset.cpus {cpuset_cpus}"
         )
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to set cpuset.cpus to container {self.container.name}."
-            )
+        message = (
+            f"Failed to set cpuset.cpus to container {self.container.name}."
+        )
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     def execute(self, command):
         """Start a process inside a running container.
@@ -867,11 +845,11 @@ class LXC(ContainerEngine):
         cmd = f"lxc-attach {env} --name {self.container.name} " \
             f"-- /bin/sh -c '{command}'"
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=180)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to run command inside container {self.container.name}."
-            )
+        message = (
+            f"Failed to run command inside container {self.container.name}."
+        )
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, timeout=180, message=message)
 
     def stop(self):
         """Stop a container.
@@ -879,12 +857,9 @@ class LXC(ContainerEngine):
         :raises RuntimeError: If stopping the container failed.
         """
         cmd = f"lxc-stop --name {self.container.name}"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to stop container {self.container.name}."
-            )
+        message = f"Failed to stop container {self.container.name}."
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
         self._lxc_wait(u"STOPPED|FROZEN")
 
     def destroy(self):
@@ -893,12 +868,9 @@ class LXC(ContainerEngine):
         :raises RuntimeError: If destroying container failed.
         """
         cmd = f"lxc-destroy --force --name {self.container.name}"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to destroy container {self.container.name}."
-            )
+        message = f"Failed to destroy container {self.container.name}."
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     def info(self):
         """Query and shows information about a container.
@@ -906,12 +878,9 @@ class LXC(ContainerEngine):
         :raises RuntimeError: If getting info about a container failed.
         """
         cmd = f"lxc-info --name {self.container.name}"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to get info about container {self.container.name}."
-            )
+        message = f"Failed to get info about container {self.container.name}."
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     def system_info(self):
         """Check the current kernel for LXC support.
@@ -919,10 +888,9 @@ class LXC(ContainerEngine):
         :raises RuntimeError: If checking LXC support failed.
         """
         cmd = u"lxc-checkconfig"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(u"Failed to check LXC support.")
+        message = u"Failed to check LXC support."
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     def is_container_running(self):
         """Check if container is running on node.
@@ -932,12 +900,9 @@ class LXC(ContainerEngine):
         :raises RuntimeError: If getting info about a container failed.
         """
         cmd = f"lxc-info --no-humanize --state --name {self.container.name}"
-
-        ret, stdout, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to get info about container {self.container.name}."
-            )
+        message = f"Failed to get info about container {self.container.name}."
+        node = self.container.node
+        stdout, _ = exec_cmd_no_error(node, cmd, sudo=True, message=message)
         return u"RUNNING" in stdout
 
     def is_container_present(self):
@@ -948,8 +913,7 @@ class LXC(ContainerEngine):
         :raises RuntimeError: If getting info about a container failed.
         """
         cmd = f"lxc-info --no-humanize --name {self.container.name}"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
+        ret, _, _ = exec_cmd(self.container.node, cmd, sudo=True)
         return not ret
 
     def _lxc_wait(self, state):
@@ -960,13 +924,12 @@ class LXC(ContainerEngine):
         :raises RuntimeError: If waiting for state of a container failed.
         """
         cmd = f"lxc-wait --name {self.container.name} --state '{state}'"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to wait for state '{state}' "
-                f"of container {self.container.name}."
-            )
+        message = (
+            f"Failed to wait for state '{state}' "
+            f"of container {self.container.name}."
+        )
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
 
 class Docker(ContainerEngine):
@@ -994,12 +957,9 @@ class Docker(ContainerEngine):
             setattr(self.container, u"image", img)
 
         cmd = f"docker pull {self.container.image}"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to create container {self.container.name}."
-            )
+        message = f"Failed to create container {self.container.name}."
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, timeout=1800, message=message)
 
         if self.container.cpuset_cpus:
             self._configure_cgroup(u"docker")
@@ -1040,11 +1000,9 @@ class Docker(ContainerEngine):
             f"{env} {volume} --name {self.container.name} " \
             f"{self.container.image} {command}"
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to create container {self.container.name}"
-            )
+        message = f"Failed to create container {self.container.name}"
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
         self.info()
 
@@ -1061,11 +1019,11 @@ class Docker(ContainerEngine):
         cmd = f"docker exec --interactive {self.container.name} " \
             f"/bin/sh -c '{command}'"
 
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=180)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to execute command in container {self.container.name}."
-            )
+        message = (
+            f"Failed to execute command in container {self.container.name}."
+        )
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, timeout=180, message=message)
 
     def stop(self):
         """Stop running container.
@@ -1073,12 +1031,9 @@ class Docker(ContainerEngine):
         :raises RuntimeError: If stopping a container failed.
         """
         cmd = f"docker stop {self.container.name}"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to stop container {self.container.name}."
-            )
+        message = f"Failed to stop container {self.container.name}."
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     def destroy(self):
         """Remove a container.
@@ -1086,36 +1041,29 @@ class Docker(ContainerEngine):
         :raises RuntimeError: If removing a container failed.
         """
         cmd = f"docker rm --force {self.container.name}"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to destroy container {self.container.name}."
-            )
+        message = f"Failed to destroy container {self.container.name}."
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     def info(self):
-        """Return low-level information on Docker objects.
+        """Log low-level information on Docker objects.
 
         :raises RuntimeError: If getting info about a container failed.
         """
         cmd = f"docker inspect {self.container.name}"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to get info about container {self.container.name}."
-            )
+        message = f"Failed to get info about container {self.container.name}."
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     def system_info(self):
-        """Display the docker system-wide information.
+        """Log the docker system-wide information.
 
         :raises RuntimeError: If displaying system information failed.
         """
         cmd = u"docker system info"
-
-        ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(u"Failed to get system info.")
+        message = u"Failed to get system info."
+        node = self.container.node
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     def is_container_present(self):
         """Check if container is present on node.
@@ -1126,11 +1074,9 @@ class Docker(ContainerEngine):
         """
         cmd = f"docker ps --all --quiet --filter name={self.container.name}"
 
-        ret, stdout, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to get info about container {self.container.name}."
-            )
+        message = f"Failed to get info about container {self.container.name}."
+        node = self.container.node
+        stdout, _ = exec_cmd_no_error(node, cmd, sudo=True, message=message)
         return bool(stdout)
 
     def is_container_running(self):
@@ -1141,12 +1087,9 @@ class Docker(ContainerEngine):
         :raises RuntimeError: If getting info about a container failed.
         """
         cmd = f"docker ps --quiet --filter name={self.container.name}"
-
-        ret, stdout, _ = self.container.ssh.exec_command_sudo(cmd)
-        if int(ret) != 0:
-            raise RuntimeError(
-                f"Failed to get info about container {self.container.name}."
-            )
+        message = f"Failed to get info about container {self.container.name}."
+        node = self.container.node
+        stdout, _ = exec_cmd_no_error(node, cmd, sudo=True, message=message)
         return bool(stdout)
 
 
@@ -1179,9 +1122,6 @@ class Container:
             self.__dict__[attr]
         except KeyError:
             # Creating new attribute
-            if attr == u"node":
-                self.__dict__[u"ssh"] = SSH()
-                self.__dict__[u"ssh"].connect(value)
             self.__dict__[attr] = value
         else:
             # Updating attribute base of type

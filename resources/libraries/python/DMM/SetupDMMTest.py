@@ -25,7 +25,7 @@ from os.path import basename
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.DMM.DMMConstants import DMMConstants as con
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.TLDK.SetupTLDKTest import copy_tarball_to_node,\
@@ -73,16 +73,12 @@ def extract_tarball_at_node(tarball, node):
     """
     logger.console('Extracting tarball to {0} on {1}'.format(
         con.REMOTE_FW_DIR, node['host']))
-    ssh = SSH()
-    ssh.connect(node)
 
     cmd = 'sudo rm -rf {1}; mkdir {1} ; tar -zxf {0} -C {1}; ' \
           'rm -f {0};'.format(tarball, con.REMOTE_FW_DIR)
-    (ret_code, _, stderr) = ssh.exec_command(cmd, timeout=30)
-    if ret_code != 0:
-        logger.error('Unpack error: {0}'.format(stderr))
-        raise RuntimeError('Failed to unpack {0} at node {1}'.format(
-            tarball, node['host']))
+    message = 'Failed to unpack {0} at node {1}'.format(
+        tarball, node['host'])
+    exec_cmd_no_error(node, cmd, timeout=30, message=message)
 
 def install_dmm_test(node):
     """Prepare the DMM test envrionment.
@@ -97,18 +93,12 @@ def install_dmm_test(node):
     arch = Topology.get_node_arch(node)
     logger.console('Install DMM on {0} ({1})'.format(node['host'], arch))
 
-    ssh = SSH()
-    ssh.connect(node)
-    (ret_code, _, stderr) = ssh.exec_command(
-        'cd {0}/{1} && ./install_prereq.sh {2} 2>&1 | tee '
-        'log_install_prereq.txt'
-        .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS, arch), timeout=600)
-
-    if ret_code != 0:
-        logger.error('Install DMM error: {0}'.format(stderr))
-        raise RuntimeError('Install prereq failed')
-    else:
-        logger.console('Install DMM on {0} success!'.format(node['host']))
+    cmd = ('cd {0}/{1} && ./install_prereq.sh {2} 2>&1 | tee '
+           'log_install_prereq.txt'.format(
+               con.REMOTE_FW_DIR, con.DMM_SCRIPTS, arch))
+    message = 'Install DMM prereq failed'
+    exec_cmd_no_error(node, cmd, timeout=600, message=message)
+    logger.console('Install DMM on {0} success!'.format(node['host']))
 
 def setup_node(args):
     """Run all set-up methods for a node.
