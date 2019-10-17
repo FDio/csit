@@ -36,7 +36,7 @@ def diag_cmd(node, cmd):
 
     :param node: Node object as parsed from topology file to execute cmd on.
     :param cmd: Command to execute.
-    :type ssh: dict
+    :type node: dict
     :type cmd: str
     """
     print('+ {cmd}'.format(cmd=cmd))

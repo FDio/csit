@@ -22,7 +22,7 @@ from scapy.layers.inet6 import IPv6
 
 from robot.libraries.BuiltIn import BuiltIn
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.TLDK.TLDKConstants import TLDKConstants as con
 from resources.libraries.python.topology import Topology
 
@@ -76,8 +76,6 @@ class UdpTest(object):
         :raises RuntimeError: If failed to execute udpfwd test on the dut node.
         """
         pci_address = Topology.get_interface_pci_addr(dut_node, dut_if)
-        ssh = SSH()
-        ssh.connect(dut_node)
         if is_ipv4:
             cmd = 'cd {0}/{4} && ./run_tldk.sh {0}/{5}/{2}_rx.pcap ' \
                 '{0}/{5}/{2}_tx.pcap {1} {0}/{5}/{2}_fe.cfg ' \
@@ -91,10 +89,9 @@ class UdpTest(object):
                 .format(con.REMOTE_FW_DIR, pci_address, file_prefix, \
                 dest_ip, con.TLDK_SCRIPTS, con.TLDK_TESTCONFIG)
 
-        (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
-        if ret_code != 0:
-            raise RuntimeError('Failed to execute udpfwd test at node {0}'
-                               .format(dut_node['host']))
+        message = 'Failed to execute udpfwd test at node {0}'.format(
+            dut_node['host'])
+        exec_cmd_no_error(dut_node, cmd, timeout=600, message=message)
 
     @staticmethod
     def get_the_test_result(dut_node, file_prefix):
@@ -111,15 +108,11 @@ class UdpTest(object):
         :rtype: str
         :raises RuntimeError: If failed to get the test result.
         """
-        ssh = SSH()
-        ssh.connect(dut_node)
         cmd = 'cd {0}; sudo /usr/sbin/tcpdump -nnnn -vvv -r ./{2}/{1}_tx.pcap' \
               ' | grep \'udp sum ok\' | wc -l' \
             .format(con.REMOTE_FW_DIR, file_prefix, con.TLDK_TESTCONFIG)
-
-        (ret_code, stdout, _) = ssh.exec_command(cmd, timeout=100)
-        if ret_code != 0:
-            raise RuntimeError('Failed to get test result at node {0}'
-                               .format(dut_node['host']))
-
+        message = 'Failed to get test result at node {0}'.format(
+            dut_node['host'])
+        stdout, _ = exec_cmd_no_error(dut_node, cmd, timeout=100,
+                                      message=message)
         return stdout

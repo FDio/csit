@@ -14,24 +14,13 @@
 """Traffic script executor library."""
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd
 
 __all__ = ['TrafficScriptExecutor']
 
 
 class TrafficScriptExecutor(object):
     """Traffic script executor utilities."""
-
-    @staticmethod
-    def _escape(string):
-        """Escape quotation mark and dollar mark for shell command.
-
-        :param string: String to escape.
-        :type string: str
-        :returns: Escaped string.
-        :rtype: str
-        """
-        return string.replace('"', '\\"').replace("$", "\\$")
 
     @staticmethod
     def run_traffic_script_on_node(script_file_name, node, script_args,
@@ -53,18 +42,16 @@ class TrafficScriptExecutor(object):
         :raises RuntimeError: ARP reply timeout.
         :raises RuntimeError: Traffic script execution failed.
         """
-        ssh = SSH()
-        ssh.connect(node)
-        cmd = ("cd {}; " +
-               "virtualenv --system-site-packages --never-download env && " +
-               "export PYTHONPATH=${{PWD}}; " +
-               ". ${{PWD}}/env/bin/activate; " +
-               "resources/traffic_scripts/{} {}") \
-                  .format(Constants.REMOTE_FW_DIR, script_file_name,
-                          script_args)
-        ret_code, stdout, stderr = ssh.exec_command_sudo(
-            'sh -c "{cmd}"'.format(cmd=TrafficScriptExecutor._escape(cmd)),
-            timeout=timeout)
+        cmd = ("set -exu; cd {fw_dir}; "
+               "virtualenv --system-site-packages --never-download env && "
+               "export PYTHONPATH=${{PWD}}; "
+               "VIRTUAL_ENV_DISABLE_PROMPT=1 source ${{PWD}}/env/bin/activate; "
+               "resources/traffic_scripts/{script_file_name} {script_args}"
+               .format(fw_dir=Constants.REMOTE_FW_DIR,
+                       script_file_name=script_file_name,
+                       script_args=script_args))
+        ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=timeout,
+                                            sudo=True)
         if ret_code != 0:
             if "RuntimeError: ICMP echo Rx timeout" in stderr:
                 raise RuntimeError("ICMP echo Rx timeout")
