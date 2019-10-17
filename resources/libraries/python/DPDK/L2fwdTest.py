@@ -15,7 +15,7 @@
 DUT nodes.
 """
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.topology import NodeType, Topology
 
@@ -43,9 +43,6 @@ class L2fwdTest(object):
         :raises RuntimeError: If the script "run_l2fwd.sh" fails.
         """
         if dut_node['type'] == NodeType.DUT:
-            ssh = SSH()
-            ssh.connect(dut_node)
-
             arch = Topology.get_node_arch(dut_node)
             jumbo = 'yes' if jumbo_frames else 'no'
             cmd = '{fwdir}/tests/dpdk/dpdk_scripts/run_l2fwd.sh {cpu_cores} ' \
@@ -54,7 +51,7 @@ class L2fwdTest(object):
                          nb_cores=nb_cores, queues=queue_nums,
                          jumbo=jumbo, arch=arch)
 
-            ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
-            if ret_code != 0:
-                raise RuntimeError('Failed to execute l2fwd test at node '
-                                   '{name}'.format(name=dut_node['host']))
+            message = 'Failed to execute l2fwd test at node {name}'.format(
+                name=dut_node['host'])
+            exec_cmd_no_error(
+                dut_node, cmd, timeout=600, sudo=True, message=message)

@@ -93,7 +93,7 @@ def extract_tarball_at_node(tarball, node):
         node, "sudo rm -rf {1}; mkdir {1}; tar -zxf {0} -C {1};"
         " rm -f {0}".format(tarball, con.REMOTE_FW_DIR),
         message='Failed to extract {0} at node {1}'.format(tarball, host),
-        timeout=30, include_reason=True)
+        timeout=30)
     logger.console('Extracting tarball to {0} on {1} done.'
                    .format(con.REMOTE_FW_DIR, host))
 
@@ -113,7 +113,7 @@ def create_env_directory_at_node(node):
         node, 'cd {0} && rm -rf env'
         ' && virtualenv --system-site-packages --never-download env'
         ' && source env/bin/activate && pip install -r requirements.txt'
-        .format(con.REMOTE_FW_DIR), timeout=100, include_reason=True,
+        .format(con.REMOTE_FW_DIR), timeout=100,
         message="Failed install at node {host}".format(host=host))
     logger.console('Virtualenv setup on {0} done.'.format(host))
 
@@ -173,7 +173,7 @@ def delete_framework_dir(node):
     exec_cmd_no_error(
         node, 'sudo rm -rf {0}'.format(con.REMOTE_FW_DIR),
         message="Framework delete failed at node {host}".format(host=host),
-        timeout=100, include_reason=True)
+        timeout=100)
     logger.console(
         'Deleting framework directory on {0} done.'.format(host))
 

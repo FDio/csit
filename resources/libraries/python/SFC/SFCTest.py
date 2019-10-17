@@ -16,7 +16,7 @@ This module implements functionality which configure and start
 the NSH SFC functional test.
 """
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.Constants import Constants as con
 from resources.libraries.python.topology import Topology
 
@@ -49,9 +49,6 @@ class SFCTest(object):
         vpp_intf_name1 = Topology.get_interface_name(dut_node, dut_if1)
         vpp_intf_name2 = Topology.get_interface_name(dut_node, dut_if2)
 
-        ssh = SSH()
-        ssh.connect(dut_node)
-
         if testtype == "Classifier":
             exec_shell = "set_sfc_classifier.sh"
         elif testtype == "Proxy Inbound":
@@ -64,8 +61,6 @@ class SFCTest(object):
         cmd = 'cd {0}/tests/nsh_sfc/sfc_scripts/ && sudo ./{1} {2} {3} {4} ' \
               '{5}'.format(con.REMOTE_FW_DIR, exec_shell, vpp_intf_name1,
                            vpp_intf_name2, if1_adj_mac, if2_adj_mac)
-
-        (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
-        if ret_code != 0:
-            raise RuntimeError('Failed to execute SFC setup script ' \
-                 '{0} at node {1}'.format(exec_shell, dut_node['host']))
+        message = 'Failed to execute SFC setup script {0} at node {1}'.format(
+            exec_shell, dut_node['host'])
+        exec_cmd_no_error(dut_node, cmd, timeout=600, message=message)

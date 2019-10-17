@@ -26,7 +26,7 @@ from resources.libraries.python.Constants import Constants as Const
 from resources.libraries.python.honeycomb.HoneycombUtil import HoneycombError
 from resources.libraries.python.honeycomb.HoneycombUtil \
     import HoneycombUtil as HcUtil
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 
 
@@ -62,17 +62,15 @@ class HoneycombSetup(object):
 
         HoneycombSetup.print_environment(nodes)
 
-        cmd = "sudo service honeycomb start"
+        cmd = "service honeycomb start"
 
         for node in nodes:
             if node['type'] == NodeType.DUT:
                 logger.console(
                     "\n(re)Starting Honeycomb service on node {0}".format(
                         node["host"]))
-                ssh = SSH()
-                ssh.connect(node)
-                (ret_code, _, _) = ssh.exec_command_sudo(cmd)
-                if int(ret_code) != 0:
+                ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
+                if ret_code != 0:
                     raise HoneycombError('Node {0} failed to start Honeycomb.'.
                                          format(node['host']))
                 else:
@@ -93,7 +91,7 @@ class HoneycombSetup(object):
         :raises HoneycombError: If Honeycomb failed to stop.
         """
 
-        cmd = "sudo service honeycomb stop"
+        cmd = "service honeycomb stop"
         errors = []
 
         for node in nodes:
@@ -101,10 +99,8 @@ class HoneycombSetup(object):
                 logger.console(
                     "\nShutting down Honeycomb service on node {0}".format(
                         node["host"]))
-                ssh = SSH()
-                ssh.connect(node)
-                (ret_code, _, _) = ssh.exec_command_sudo(cmd)
-                if int(ret_code) != 0:
+                ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
+                if ret_code != 0:
                     errors.append(node['host'])
                 else:
                     logger.info("Stopping the Honeycomb service on node {0} is "
@@ -129,11 +125,9 @@ class HoneycombSetup(object):
         logger.console(
             "\n(re)Starting Honeycomb service on node {0}".format(node["host"]))
 
-        cmd = "sudo service honeycomb restart"
+        cmd = "service honeycomb restart"
 
-        ssh = SSH()
-        ssh.connect(node)
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
         if int(ret_code) != 0:
             raise HoneycombError('Node {0} failed to restart Honeycomb.'.
                                  format(node['host']))
@@ -159,10 +153,6 @@ class HoneycombSetup(object):
         :raises HoneycombError: If the Honeycomb process IP cannot be found,
             or if timeout or number of retries is exceeded.
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-
         count = 0
         start = time()
         while time() - start < timeout and count < retries:
@@ -196,7 +186,7 @@ class HoneycombSetup(object):
                 sleep(interval)
                 continue
         else:
-            _, vpp_status, _ = ssh.exec_command("sudo service vpp status")
+            _, vpp_status, _ = exec_cmd(node, "service vpp status", sudo=True)
             raise HoneycombError(
                 "Timeout or max retries exceeded. Status of VPP:\n"
                 "{vpp_status}".format(vpp_status=vpp_status))
@@ -214,10 +204,7 @@ class HoneycombSetup(object):
         :rtype: bool
         """
         cmd = "pgrep honeycomb"
-
-        ssh = SSH()
-        ssh.connect(node)
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
         if ret_code == 0:
             raise HoneycombError('Honeycomb on node {0} is still '
                                  'running.'.format(node['host']),
@@ -249,9 +236,7 @@ class HoneycombSetup(object):
         path = "{0}/config/restconf.json".format(Const.REMOTE_HC_DIR)
         command = "sed -i {0} {1}".format(argument, path)
 
-        ssh = SSH()
-        ssh.connect(node)
-        (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+        ret_code, _, stderr = exec_cmd(node, command, sudo=True)
         if ret_code != 0:
             raise HoneycombError("Failed to modify configuration on "
                                  "node {0}, {1}".format(node, stderr))
@@ -274,9 +259,7 @@ class HoneycombSetup(object):
         path = "{0}/config/jvpp.json".format(Const.REMOTE_HC_DIR)
         command = "sed -i {0} {1}".format(argument, path)
 
-        ssh = SSH()
-        ssh.connect(node)
-        (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+        ret_code, _, stderr = exec_cmd(node, command, sudo=True)
         if ret_code != 0:
             raise HoneycombError("Failed to modify configuration on "
                                  "node {0}, {1}".format(node, stderr))
@@ -308,9 +291,7 @@ class HoneycombSetup(object):
                 logger.info("Checking node {} ...".format(node['host']))
                 for cmd in cmds:
                     logger.info("Command: {}".format(cmd))
-                    ssh = SSH()
-                    ssh.connect(node)
-                    ssh.exec_command_sudo(cmd)
+                    exec_cmd(node, cmd, sudo=True)
 
     @staticmethod
     def print_ports(node):
@@ -327,9 +308,7 @@ class HoneycombSetup(object):
         logger.info("Checking node {} ...".format(node['host']))
         for cmd in cmds:
             logger.info("Command: {}".format(cmd))
-            ssh = SSH()
-            ssh.connect(node)
-            ssh.exec_command_sudo(cmd)
+            exec_cmd(node, cmd, sudo=True)
 
     @staticmethod
     def configure_log_level(node, level):
@@ -348,9 +327,7 @@ class HoneycombSetup(object):
         path = "{0}/config/logback.xml".format(Const.REMOTE_HC_DIR)
         command = "sed -i {0} {1}".format(argument, path)
 
-        ssh = SSH()
-        ssh.connect(node)
-        (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+        ret_code, _, stderr = exec_cmd(node, command, sudo=True)
         if ret_code != 0:
             raise HoneycombError("Failed to modify configuration on "
                                  "node {0}, {1}".format(node, stderr))
@@ -387,9 +364,6 @@ class HoneycombSetup(object):
                     "io.fd.honeycomb.northbound.bgp.extension.LinkstateModule"]
         }
 
-        ssh = SSH()
-        ssh.connect(node)
-
         if feature in disabled_features.keys():
             # for every module, uncomment by replacing the entire line
             for item in disabled_features[feature]:
@@ -402,7 +376,7 @@ class HoneycombSetup(object):
                     .format(Const.REMOTE_HC_DIR)
                 command = "sed -i {0} {1}".format(argument, path)
 
-                (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+                ret_code, _, stderr = exec_cmd(node, command, sudo=True)
                 if ret_code != 0:
                     raise HoneycombError("Failed to modify configuration on "
                                          "node {0}, {1}".format(node, stderr))
@@ -420,11 +394,7 @@ class HoneycombSetup(object):
         :param node: Honeycomb node
         :type node: dict
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-        (_, stdout, _) = ssh.exec_command_sudo(
-            "ls /usr/share/java | grep ^jvpp-*")
+        _, stdout, _ = exec_cmd(node, "ls /usr/share/java | grep ^jvpp-*")
 
         files = stdout.split("\n")[:-1]
         for item in files:
@@ -438,11 +408,11 @@ class HoneycombSetup(object):
 
             directory = "{0}/lib/io/fd/vpp/{1}/{2}".format(
                 Const.REMOTE_HC_DIR, artifact_id, version)
-            cmd = "sudo mkdir -p {0}; " \
-                  "sudo cp /usr/share/java/{1} {0}/{2}-{3}.jar".format(
+            cmd = "mkdir -p {0}; " \
+                  "cp /usr/share/java/{1} {0}/{2}-{3}.jar".format(
                       directory, item, artifact_id, version)
 
-            (ret_code, _, stderr) = ssh.exec_command(cmd)
+            ret_code, _, stderr = exec_cmd(node, cmd, sudo=True)
             if ret_code != 0:
                 raise HoneycombError("Failed to copy JVPP libraries on "
                                      "node {0}, {1}".format(node, stderr))
@@ -461,16 +431,12 @@ class HoneycombSetup(object):
         :type dst_path: str
         :raises HoneycombError: If the operation fails.
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-
-        cmd = "sudo rm -rf {dst}/*karaf_{odl_name} && " \
+        cmd = "rm -rf {dst}/*karaf_{odl_name} && " \
               "cp -r {src}/*karaf_{odl_name}* {dst}".format(
                   src=src_path, odl_name=odl_name, dst=dst_path)
 
-        ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=180)
-        if int(ret_code) != 0:
+        ret_code, _, _ = exec_cmd(node, cmd, timeout=180, sudo=True)
+        if ret_code != 0:
             raise HoneycombError(
                 "Failed to copy ODL client on node {0}".format(node["host"]))
 
@@ -489,13 +455,10 @@ class HoneycombSetup(object):
         """
 
         logger.console("\nStarting ODL client ...")
-        ssh = SSH()
-        ssh.connect(node)
-
         cmd = "{path}/*karaf*/bin/start clean".format(path=path)
-        ret_code, _, _ = ssh.exec_command_sudo(cmd)
+        ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
 
-        if int(ret_code) != 0:
+        if ret_code != 0:
             raise HoneycombError('Node {0} failed to start ODL.'.
                                  format(node['host']))
         else:
@@ -513,10 +476,6 @@ class HoneycombSetup(object):
         :type path: str
         :type features: list
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-
         auth = "-u karaf -p karaf"
 
         cmd = "{path}/*karaf*/bin/client {auth} feature:install " \
@@ -526,9 +485,8 @@ class HoneycombSetup(object):
         for feature in features:
             cmd += " {0}".format(feature)
 
-        ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=250)
-
-        if int(ret_code) != 0:
+        ret_code, _, _ = exec_cmd(node, cmd, timeout=250, sudo=True)
+        if ret_code != 0:
             raise HoneycombError("Feature install did not succeed.")
 
     @staticmethod
@@ -587,9 +545,7 @@ class HoneycombSetup(object):
             raise HoneycombError("ODL client is still running.")
         except HTTPRequestError:
             logger.debug("Connection refused, checking process state....")
-            ssh = SSH()
-            ssh.connect(node)
-            ret_code, _, _ = ssh.exec_command(cmd)
+            ret_code, _, _ = exec_cmd(node, cmd)
             if ret_code == 0:
                 raise HoneycombError("ODL client is still running.")
 
@@ -641,19 +597,12 @@ class HoneycombSetup(object):
         :type path: str
         :raises HoneycombError: If ODL client fails to stop.
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-
         cmd = "{0}/*karaf*/bin/stop".format(path)
-
-        ssh = SSH()
-        ssh.connect(node)
-        ret_code, _, _ = ssh.exec_command_sudo(cmd)
+        ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
         if int(ret_code) != 0:
             logger.debug("ODL Client refused to shut down.")
             cmd = "pkill -f 'karaf'"
-            (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+            ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
             if int(ret_code) != 0:
                 raise HoneycombError('Node {0} failed to stop ODL.'.
                                      format(node['host']))
@@ -672,14 +621,10 @@ class HoneycombSetup(object):
         :type mac_address: str
         :raises RuntimeError: If the operation fails.
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-        ret_code, _, _ = ssh.exec_command_sudo("arp -s {0} {1}".format(
-            ip_address, mac_address))
-
-        if ret_code != 0:
-            raise RuntimeError("Failed to configure static ARP adddress.")
+        cmd = "arp -s {ip} {mac}".format(ip=ip_address, mac=mac_address)
+        message = "Failed to configure static ARP adddress."
+        # TODO all other functions in this module raise HoneycombError
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
 
 class HoneycombStartupConfig(object):
@@ -712,7 +657,6 @@ class HoneycombStartupConfig(object):
         self.numa = ""
 
         self.config = ""
-        self.ssh = SSH()
 
     def apply_config(self, node):
         """Generate configuration file /opt/honeycomb/honeycomb on the specified
@@ -722,8 +666,7 @@ class HoneycombStartupConfig(object):
         :type node: dict
         """
 
-        self.ssh.connect(node)
-        _, filename, _ = self.ssh.exec_command("ls /opt/honeycomb | grep .jar")
+        filename, _ = exec_cmd_no_error(node, "ls /opt/honeycomb | grep .jar")
 
         java_call = self.java_call.format(scheduler=self.scheduler,
                                           affinity=self.core_affinity,
@@ -732,12 +675,11 @@ class HoneycombStartupConfig(object):
         self.config = self.template.format(java_call=java_call,
                                            jar_filename=filename)
 
-        self.ssh.connect(node)
         cmd = "echo '{config}' > /tmp/honeycomb " \
               "&& chmod +x /tmp/honeycomb " \
               "&& sudo mv -f /tmp/honeycomb /opt/honeycomb".\
             format(config=self.config)
-        self.ssh.exec_command(cmd)
+        exec_cmd_no_error(node, cmd)
 
     def set_cpu_scheduler(self, scheduler="FIFO"):
         """Use alternate CPU scheduler.
