@@ -14,3 +14,9 @@
 """
 __init__ file for "jumpavg" Python package.
 """
+
+from .AvgStdevStats import AvgStdevStats
+from .BitCountingStats import BitCountingStats
+from .BitCountingGroup import BitCountingGroup
+from .BitCountingGroupList import BitCountingGroupList
+from .classify import classify
