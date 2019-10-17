@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f39e7080_32898a05",
+        "filename": "resources/tools/testbed-setup/ansible/roles/performance_tuning/files/irqbalance",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-17T11:28:22Z",
+      "side": 1,
+      "message": "Remove trailing whitespace please.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 1
+      },
+      "revId": "d3e0654a57aa958aaef1906e4a759e521655a86b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
