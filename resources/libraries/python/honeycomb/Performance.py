@@ -13,7 +13,7 @@
 
 """Implementation of keywords for testing Honeycomb performance."""
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error, scp_node
 from resources.libraries.python.Constants import Constants as Const
 from resources.libraries.python.honeycomb.HoneycombUtil import HoneycombError
 
@@ -43,9 +43,7 @@ class Performance(object):
         path = "{0}/config/netconf.json".format(Const.REMOTE_HC_DIR)
         command = "sed -i {0} {1}".format(argument, path)
 
-        ssh = SSH()
-        ssh.connect(node)
-        (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+        ret_code, _, stderr = exec_cmd(node, command, sudo=True)
         if ret_code != 0:
             raise HoneycombError("Failed to modify configuration on "
                                  "node {0}, {1}".format(node, stderr))
@@ -81,9 +79,7 @@ class Performance(object):
         for key, value in kwargs.items():
             arguments += "--{0} {1} ".format(key, value)
 
-        ssh = SSH()
-        ssh.connect(node)
-        ssh.scp(path, "/tmp")
+        scp_node(node, path, "/tmp")
 
         # Use alternate scheduler, Ubuntu's default can't load-balance
         # over isolcpus
@@ -97,9 +93,11 @@ class Performance(object):
             script=script,
             args=arguments)
 
-        ret_code, stdout, _ = ssh.exec_command_sudo(cmd, timeout=600)
+        ret_code, stdout, _ = exec_cmd(node, cmd, timeout=600, sudo=True)
 
-        ssh.exec_command("sudo pkill python ; rm /tmp/{0}".format(script))
+        cmd = "pkill python ; rm /tmp/{0}".format(script)
+        exec_cmd(node, cmd, sudo=True)
+
         if ret_code != 0:
             raise HoneycombError("Traffic script failed to execute.")
         for line in stdout.splitlines():
@@ -123,7 +121,4 @@ class Performance(object):
         cmd2 = """awk '{print $1" "$2" "$39}'"""
 
         cmd = "{0} | {1}".format(cmd1, cmd2)
-
-        ssh = SSH()
-        ssh.connect(node)
-        ssh.exec_command(cmd)
+        exec_cmd_no_error(node, cmd)

@@ -17,7 +17,7 @@ from robot.api import logger
 
 from resources.libraries.python.Constants import Constants as Const
 from resources.libraries.python.honeycomb.HoneycombUtil import HoneycombError
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd
 from resources.libraries.python.topology import NodeType
 
 
@@ -43,9 +43,7 @@ class HcPersistence(object):
         cmd = "rm -rf {}/*".format(Const.REMOTE_HC_PERSIST)
         for node in nodes:
             if node['type'] == NodeType.DUT:
-                ssh = SSH()
-                ssh.connect(node)
-                (ret_code, _, stderr) = ssh.exec_command_sudo(cmd)
+                ret_code, _, stderr = exec_cmd(node, cmd, sudo=True)
                 if ret_code != 0:
                     if "No such file or directory" not in stderr:
                         raise HoneycombError('Could not clear persisted '
@@ -77,9 +75,7 @@ class HcPersistence(object):
         path = "{0}/config/data.json".format(Const.REMOTE_HC_PERSIST)
         command = "sed -i {0} {1}".format(argument, path)
 
-        ssh = SSH()
-        ssh.connect(node)
-        (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+        ret_code, _, stderr = exec_cmd(node, command, sudo=True)
         if ret_code != 0:
             raise HoneycombError("Failed to modify persistence file on node"
                                  " {0}, {1}".format(node, stderr))
@@ -97,10 +93,8 @@ class HcPersistence(object):
             "cat {0}/context/data.json".format(Const.REMOTE_HC_PERSIST),
         ]
 
-        ssh = SSH()
-        ssh.connect(node)
         for command in commands:
-            (_, _, _) = ssh.exec_command_sudo(command)
+            exec_cmd(node, command, sudo=True)
 
     @staticmethod
     def configure_persistence(node, state):
@@ -134,9 +128,7 @@ class HcPersistence(object):
             path = "{0}/config/honeycomb.json".format(Const.REMOTE_HC_DIR)
             command = "sed -i {0} {1}".format(argument, path)
 
-            ssh = SSH()
-            ssh.connect(node)
-            (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+            ret_code, _, stderr = exec_cmd(node, command, sudo=True)
             if ret_code != 0:
                 raise HoneycombError("Failed to modify configuration on "
                                      "node {0}, {1}".format(node, stderr))
