@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,7 +14,7 @@
 """Dpdk Utilities Library."""
 
 from resources.libraries.python.OptionString import OptionString
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error, disconnect_node
 
 
 class DpdkUtil:
@@ -118,7 +118,8 @@ class DpdkUtil:
         cmd_options.extend(DpdkUtil.get_eal_options(**kwargs))
         cmd_options.add(u"--")
         cmd_options.extend(DpdkUtil.get_pmd_options(**kwargs))
-        exec_cmd_no_error(node, cmd_options, sudo=True, disconnect=True)
+        exec_cmd_no_error(node, cmd_options, sudo=True)
+        disconnect_node(node)
 
     @staticmethod
     def dpdk_testpmd_stop(node):
@@ -128,5 +129,6 @@ class DpdkUtil:
         :type node: dict
         :returns: nothing
         """
-        cmd = u"/stop-testpmd.sh"  # Completed string, simple one.
-        exec_cmd_no_error(node, cmd, sudo=True, disconnect=True)
+        cmd = u"/stop-testpmd.sh"
+        exec_cmd_no_error(node, cmd, sudo=True)
+        disconnect_node(node)

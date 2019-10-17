@@ -24,7 +24,7 @@ from resources.libraries.python.IPAddress import IPAddress
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatTerminal
+from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.Namespaces import Namespaces
 
 
@@ -623,25 +623,26 @@ class IPUtil:
         count = kwargs.get(u"count", 1)
 
         if count > 100:
-            gateway = kwargs.get(u"gateway", '')
-            interface = kwargs.get(u"interface", '')
-            vrf = kwargs.get(u"vrf", None)
-            multipath = kwargs.get(u"multipath", False)
+            gateway = kwargs.get(u"gateway")
+            gateway = f"via {gateway}" if gateway else u""
 
-            with VatTerminal(node, json_param=False) as vat:
+            interface = kwargs.get(u"interface")
+            if interface:
+                sw_if_index = InterfaceUtil.get_interface_index(node, interface)
+                sw_if_index = f"sw_if_index {sw_if_index}"
+            else:
+                sw_if_index = u""
 
-                vat.vat_terminal_exec_cmd_from_template(
-                    u"vpp_route_add.vat",
-                    network=network,
-                    prefix_length=prefix_len,
-                    via=f"via {gateway}" if gateway else u"",
-                    sw_if_index=f"sw_if_index "
-                    f"{InterfaceUtil.get_interface_index(node, interface)}"
-                    if interface else u"",
-                    vrf=f"vrf {vrf}" if vrf else u"",
-                    count=f"count {count}" if count else u"",
-                    multipath=u"multipath" if multipath else u""
-                )
+            vrf = kwargs.get(u"vrf")
+            vrf = f"vrf {vrf}" if vrf else u""
+            multipath = u"multipath" if kwargs.get(u"multipath", False) else u""
+
+            tmp_fn = u"/tmp/vpp_route_add.config"
+            cmd = (
+                f"ip_route_add_del {network}/{prefix_len} "
+                f"{vrf} count {count} {multipath} {gateway} {sw_if_index}"
+            )
+            VatExecutor().write_and_execute_script(node, tmp_fn, [cmd])
             return
 
         net_addr = ip_address(network)

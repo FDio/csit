@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,24 +14,13 @@
 """Traffic script executor library."""
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd
 
 __all__ = [u"TrafficScriptExecutor"]
 
 
 class TrafficScriptExecutor:
     """Traffic script executor utilities."""
-
-    @staticmethod
-    def _escape(string):
-        """Escape quotation mark and dollar mark for shell command.
-
-        :param string: String to escape.
-        :type string: str
-        :returns: Escaped string.
-        :rtype: str
-        """
-        return string.replace(u'"', u'\\"').replace(u"$", u"\\$")
 
     @staticmethod
     def run_traffic_script_on_node(
@@ -53,15 +42,13 @@ class TrafficScriptExecutor:
         :raises RuntimeError: ARP reply timeout.
         :raises RuntimeError: Traffic script execution failed.
         """
-        ssh = SSH()
-        ssh.connect(node)
         cmd = f"cd {Constants.REMOTE_FW_DIR}; virtualenv -p $(which python3) " \
             f"--system-site-packages --never-download env && " \
             f"export PYTHONPATH=${{PWD}}; . ${{PWD}}/env/bin/activate; " \
             f"resources/traffic_scripts/{script_file_name} {script_args}"
 
-        ret_code, stdout, stderr = ssh.exec_command_sudo(
-            f'sh -c "{TrafficScriptExecutor._escape(cmd)}"', timeout=timeout
+        ret_code, stdout, stderr = exec_cmd(
+            node, cmd, timeout=timeout, sudo=True
         )
         if ret_code != 0:
             if u"RuntimeError: ICMP echo Rx timeout" in stderr:

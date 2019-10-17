@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -126,7 +126,8 @@ def create_env_directory_at_node(node):
     )
     cmd = f"cd {con.REMOTE_FW_DIR} && rm -rf env && virtualenv " \
         f"-p $(which python3) --system-site-packages --never-download env " \
-        f"&& source env/bin/activate && pip3 install -r requirements.txt"
+        f"&& VIRTUAL_ENV_DISABLE_PROMPT=1 source env/bin/activate " \
+        f"&& pip3 install -r requirements.txt"
     exec_cmd_no_error(
         node, cmd, timeout=100, include_reason=True,
         message=f"Failed install at node {node[u'type']} host {node[u'host']}, "

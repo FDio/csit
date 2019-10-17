@@ -1,4 +1,4 @@
-# Copyright (c) 2019 Cisco and/or its affiliates.
+# Copyright (c) 2020 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,13 +13,12 @@
 
 """Library to control Kubernetes kubectl."""
 
-from functools import reduce
 from io import open
 from time import sleep
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.CpuUtils import CpuUtils
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
@@ -81,17 +80,10 @@ class KubernetesUtils:
         :type node: dict
         :raises RuntimeError: If Kubernetes setup failed on node.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         cmd = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}/" \
             f"k8s_setup.sh deploy_calico"
-        ret_code, _, _ = ssh.exec_command(cmd, timeout=240)
-        if int(ret_code) != 0:
-            raise RuntimeError(
-                "Failed to setup Kubernetes on {node[u'host']}."
-            )
-
+        message = f"Failed to setup Kubernetes on {node[u'host']}."
+        exec_cmd_no_error(node, cmd, timeout=240, message=message)
         KubernetesUtils.wait_for_kubernetes_pods_on_node(
             node, nspace=u"kube-system"
         )
@@ -115,17 +107,11 @@ class KubernetesUtils:
         :type node: dict
         :raises RuntimeError: If destroying Kubernetes failed.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         cmd = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}/" \
             f"k8s_setup.sh destroy"
 
-        ret_code, _, _ = ssh.exec_command(cmd, timeout=120)
-        if int(ret_code) != 0:
-            raise RuntimeError(
-                f"Failed to destroy Kubernetes on {node[u'host']}."
-            )
+        message = "Failed to destroy Kubernetes on {node[u'host']}."
+        exec_cmd_no_error(node, cmd, timeout=120, message=message)
 
     @staticmethod
     def destroy_kubernetes_on_all_duts(nodes):
@@ -150,23 +136,20 @@ class KubernetesUtils:
         :type kwargs: dict
         :raises RuntimeError: If applying Kubernetes template failed.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         fqn_file = f"{Constants.RESOURCES_TPL_K8S}/{yaml_file}"
         with open(fqn_file, 'r') as src_file:
             stream = src_file.read()
-            data = reduce(
-                lambda a, kv: a.replace(*kv), list(kwargs.items()), stream
-            )
-            cmd = f"cat <<EOF | kubectl apply -f - \n{data}\nEOF"
+        for before, after in kwargs.items():
+            # TODO: perhaps templates could be written for str.format()
+            stream = stream.replace(before, after)
 
-            ret_code, _, _ = ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                raise RuntimeError(
-                    f"Failed to apply Kubernetes template {yaml_file} "
-                    f"on {node[u'host']}."
-                )
+        cmd = u'kubectl apply -f -'
+        message = (
+            f"Failed to apply Kubernetes template {yaml_file} "
+            f"on {node[u'host']}."
+        )
+        exec_cmd_no_error(
+            node, cmd, timeout=120, sudo=True, message=message, stdin=stream)
 
     @staticmethod
     def apply_kubernetes_resource_on_all_duts(nodes, yaml_file, **kwargs):
@@ -199,20 +182,13 @@ class KubernetesUtils:
         :param kwargs: dict
         :raises RuntimeError: If creating Kubernetes ConfigMap failed.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         nspace = f"-n {nspace}" if nspace else u""
         from_file = u" ".join(
             f"--from-file={key}={kwargs[key]} " for key in kwargs
         )
         cmd = f"kubectl create {nspace} configmap {name} {from_file}"
-
-        ret_code, _, _ = ssh.exec_command_sudo(cmd)
-        if int(ret_code) != 0:
-            raise RuntimeError(
-                f"Failed to create Kubernetes ConfigMap on {node[u'host']}."
-            )
+        message = f"Failed to create Kubernetes ConfigMap on {node[u'host']}."
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     @staticmethod
     def create_kubernetes_cm_from_file_on_all_duts(
@@ -250,27 +226,18 @@ class KubernetesUtils:
         :raises RuntimeError: If retrieving or deleting Kubernetes resource
             failed.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         name = f"{name}" if name else u"--all"
         nspace = f"-n {nspace}" if nspace else u""
-        cmd = f"kubectl delete {nspace} {rtype} {name}"
 
-        ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=120)
-        if int(ret_code) != 0:
-            raise RuntimeError(
-                f"Failed to delete Kubernetes resources on {node[u'host']}."
-            )
+        cmd = f"kubectl delete {nspace} {rtype} {name}"
+        message = f"Failed to delete Kubernetes resources on {node[u'host']}."
+        exec_cmd_no_error(node, cmd, timeout=120, sudo=True, message=message)
 
         cmd = f"kubectl get {nspace} pods --no-headers"
+        message = f"Failed to retrieve Kubernetes resources on {node[u'host']}."
         for _ in range(MAX_RETRY):
-            ret_code, stdout, stderr = ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                raise RuntimeError(
-                    f"Failed to retrieve Kubernetes resources "
-                    f"on {node[u'host']}."
-                )
+            stdout, stderr = exec_cmd_no_error(
+                node, cmd, sudo=True, message=message)
             if name == u"--all":
                 ready = False
                 for line in stderr.splitlines():
@@ -327,13 +294,9 @@ class KubernetesUtils:
         :type node: dict
         :type nspace: str
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         nspace = f"-n {nspace}" if nspace else u""
         cmd = f"kubectl describe {nspace} all"
-
-        ssh.exec_command_sudo(cmd)
+        exec_cmd(node, cmd, sudo=True)
 
     @staticmethod
     def describe_kubernetes_resource_on_all_duts(nodes, nspace):
@@ -359,20 +322,19 @@ class KubernetesUtils:
         :type node: dict
         :type nspace: str
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         nspace = f"-n {nspace}" if nspace else u""
-        cmd = f"for p in $(kubectl get pods {nspace} " \
-            f"-o jsonpath='{{.items[*].metadata.name}}'); do echo $p; " \
-            f"kubectl logs {nspace} $p; done"
+        cmd = (
+            f"kubectl get pods {nspace} -o jsonpath="
+            f"'{{.items[*].metadata.name}}' "
+            f"| xargs -rtn1 kubectl logs {nspace}"
+        )
+        exec_cmd(node, cmd)
 
-        ssh.exec_command(cmd)
-
-        cmd = f"kubectl exec {nspace} etcdv3 -- etcdctl " \
+        cmd = (
+            f"kubectl exec {nspace} etcdv3 -- etcdctl "
             f"--endpoints \"localhost:22379\" get \"/\" --prefix=true"
-
-        ssh.exec_command(cmd)
+        )
+        exec_cmd(node, cmd)
 
     @staticmethod
     def get_kubernetes_logs_on_all_duts(nodes, nspace):
@@ -397,22 +359,17 @@ class KubernetesUtils:
         :type nspace: str
         :raises RuntimeError: If Kubernetes PODs are not in Running state.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         nspace = f"-n {nspace}" if nspace else u"--all-namespaces"
         cmd = f"kubectl get {nspace} pods --no-headers"
 
         for _ in range(MAX_RETRY):
-            ret_code, stdout, _ = ssh.exec_command_sudo(cmd)
-            if int(ret_code) == 0:
+            ret_code, stdout, _ = exec_cmd(node, cmd, sudo=True)
+            if ret_code == 0:
                 ready = False
                 for line in stdout.splitlines():
                     try:
                         state = line.split()[1].split(u"/")
-                        ready = bool(
-                            u"Running" in line and state == state[::-1]
-                        )
+                        ready = u"Running" in line and state == state[::-1]
                         if not ready:
                             break
                     except (ValueError, IndexError):
@@ -445,13 +402,9 @@ class KubernetesUtils:
         :param node: DUT node.
         :type node: dict
         """
-        ssh = SSH()
-        ssh.connect(node)
-
         cmd = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_LIB_SH}/" \
             f"k8s_setup.sh affinity_non_vpp"
-
-        ssh.exec_command(cmd)
+        exec_cmd(node, cmd)
 
     @staticmethod
     def set_kubernetes_pods_affinity_on_all_duts(nodes):

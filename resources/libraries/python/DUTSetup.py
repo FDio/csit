@@ -17,7 +17,7 @@ from time import sleep
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.ssh import SSH, exec_cmd, exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -215,34 +215,17 @@ class DUTSetup:
         :type node: dict
         :type process: str
         :returns: PID
-        :rtype: int
+        :rtype: int or list of int
         :raises RuntimeError: If it is not possible to get the PID.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
-        retval = None
-        for i in range(3):
-            logger.trace(f"Try {i}: Get {process} PID")
-            ret_code, stdout, stderr = ssh.exec_command(f"pidof {process}")
-
-            if int(ret_code):
-                raise RuntimeError(
-                    f"Not possible to get PID of {process} process on node: "
-                    f"{node[u'host']}\n {stdout + stderr}"
-                )
-
-            pid_list = stdout.split()
-            if len(pid_list) == 1:
-                return [int(stdout)]
-            if not pid_list:
-                logger.debug(f"No {process} PID found on node {node[u'host']}")
-                continue
-            logger.debug(f"More than one {process} PID found " \
-                         f"on node {node[u'host']}")
-            retval = [int(pid) for pid in pid_list]
-
-        return retval
+        cmd = u'pidof vpp | grep .'
+        message = f"Failed to get PID of VPP process on node: {node[u'host']}"
+        stdout, _ = exec_cmd_no_error(
+            node, cmd, retries=2, message=message, include_reason=True)
+        pid_list = stdout.split()
+        if len(pid_list) > 1:
+            logger.debug(f"More than one VPP PID found on node {node[u'host']}")
+        return [int(pid) for pid in pid_list]
 
     @staticmethod
     def get_vpp_pids(nodes):
@@ -551,41 +534,12 @@ class DUTSetup:
         :raises RuntimeError: If it is not possible to get the interface driver
             information from the node.
         """
-        ssh = SSH()
-        ssh.connect(node)
-
-        for i in range(3):
-            logger.trace(f"Try number {i}: Get PCI device driver")
-
-            cmd = f"lspci -vmmks {pci_addr}"
-            ret_code, stdout, _ = ssh.exec_command(cmd)
-            if int(ret_code):
-                raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
-
-            for line in stdout.splitlines():
-                if not line:
-                    continue
-                name = None
-                value = None
-                try:
-                    name, value = line.split(u"\t", 1)
-                except ValueError:
-                    if name == u"Driver:":
-                        return None
-                if name == u"Driver:":
-                    return value
-
-            if i < 2:
-                logger.trace(
-                    f"Driver for PCI device {pci_addr} not found, "
-                    f"executing pci rescan and retrying"
-                )
-                cmd = u"sh -c \"echo 1 > /sys/bus/pci/rescan\""
-                ret_code, _, _ = ssh.exec_command_sudo(cmd)
-                if int(ret_code) != 0:
-                    raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
-
-        return None
+        cmd = (
+            f'lspci -vmmks {pci_addr} | grep Driver: '
+            f'|| {{ echo 1 > /sys/bus/pci/rescan ; false ; }}'
+        )
+        stdout, _ = exec_cmd_no_error(node, cmd, sudo=True, retries=2)
+        return stdout.split(u":", 1)[-1].strip() or None
 
     @staticmethod
     def verify_kernel_module(node, module, force_load=False):
@@ -783,10 +737,24 @@ class DUTSetup:
             logger.trace(u"Reading huge pages information failed!")
 
     @staticmethod
+    def set_huge_page_count(node, page_count):
+        """Set hugepage count on node.
+
+        :param node: Node in the topology
+        :param page_count: HugePage count
+        :type node: dict
+        :type page_count: int
+        :raises RuntimeError: remote command execution failed
+        """
+        cmd = f"echo '{page_count}' | tee /proc/sys/vm/nr_hugepages"
+        message = f"Set huge page count failed on {node[u'host']}"
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
+
+    @staticmethod
     def check_huge_page(
             node, huge_mnt, mem_size, hugesize=2048, allocate=False):
         """Check if there is enough HugePages in system. If allocate is set to
-        true, try to allocate more HugePages.
+        true and there isn't enough currently, try to allocate more HugePages.
 
         :param node: Node in the topology.
         :param huge_mnt: HugePage mount point.
@@ -811,7 +779,7 @@ class DUTSetup:
             huge_available = hugepages[u"nr_overcommit_hugepages"] - \
                 hugepages[u"surplus_hugepages"]
         else:
-            # Fallbacking to free_hugepages which were used before to detect.
+            # Falling back to free_hugepages which were used before to detect.
             huge_available = hugepages[u"free_hugepages"]
 
         if ((mem_size * 1024) // hugesize) > huge_available:
@@ -847,5 +815,5 @@ class DUTSetup:
             # If we do not want to allocate dynamically end with error.
             else:
                 raise RuntimeError(
-                    f"Not enough availablehuge pages: {huge_available}!"
+                    f"Not enough available huge pages: {huge_available}!"
                 )

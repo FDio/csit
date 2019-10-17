@@ -54,5 +54,4 @@ class L2fwdTest:
                 f"{rxq_size} {txq_size}"
 
             message = f"Failed to execute l2fwd test at node {node['host']}"
-
             exec_cmd_no_error(node, command, timeout=1800, message=message)
