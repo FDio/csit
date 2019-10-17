@@ -18,6 +18,7 @@ from resources.libraries.python.HTTPRequest import HTTPCodes
 from resources.libraries.python.honeycomb.HoneycombSetup import HoneycombError
 from resources.libraries.python.honeycomb.HoneycombUtil \
     import HoneycombUtil as HcUtil
+from resources.libraries.python.ssh import exec_cmd
 
 
 class BGPKeywords(object):
@@ -350,8 +351,6 @@ class BGPKeywords(object):
         :raises HoneycombError: If modifying the configuration fails.
         """
 
-        from resources.libraries.python.ssh import SSH
-
         config = {
             '\\"bgp-binding-address\\"': '\\"{0}\\"'.format(ip_address),
             '\\"bgp-port\\"': port,
@@ -366,9 +365,7 @@ class BGPKeywords(object):
             argument = '"/{0}/c\\ {1}"'.format(find, replace)
             command = "sed -i {0} {1}".format(argument, path)
 
-            ssh = SSH()
-            ssh.connect(node)
-            (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+            ret_code, _, stderr = exec_cmd(node, command, sudo=True)
             if ret_code != 0:
                 raise HoneycombError("Failed to modify configuration on "
                                      "node {0}, {1}".format(node, stderr))

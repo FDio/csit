@@ -13,13 +13,11 @@
 
 """Core dump library."""
 
-from time import time
-
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.LimitUtil import LimitUtil
 from resources.libraries.python.SysctlUtil import SysctlUtil
-from resources.libraries.python.ssh import exec_cmd_no_error, scp_node
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 
 __all__ = ["CoreDumpUtil"]
@@ -119,7 +117,7 @@ class CoreDumpUtil(object):
                 self.enable_coredump_limit(node, vpp_pid)
 
     def get_core_files_on_all_nodes(self, nodes, disable_on_success=True):
-        """Process all core files and remove the original core files on al
+        """Process all core files and remove the original core files on all
         nodes.
 
         :param nodes: Nodes in the topology.

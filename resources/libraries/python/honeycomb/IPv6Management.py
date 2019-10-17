@@ -15,14 +15,11 @@
 using IPv6.
 """
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 class IPv6Management(object):
     """Utilities for managing IPv6 contol-plane interfaces."""
-
-    def __init__(self):
-        pass
 
     @staticmethod
     def get_interface_name_by_mac(node, mac):
@@ -42,15 +39,10 @@ class IPv6Management(object):
             "awk -F '/' '{print $5}'"
         ])
 
-        ssh = SSH()
-        ssh.connect(node)
-        ret_code, stdout, _ = ssh.exec_command(cmd)
-
-        if ret_code == 0:
-            return stdout.strip()
-        else:
-            raise RuntimeError("No interface found using the specified MAC "
-                               "address.")
+        message = "No interface found using the specified MAC address."
+        # TODO: other modules in this package raise HoneycombError
+        stdout, _ = exec_cmd_no_error(node, cmd, message=message)
+        return stdout.strip()
 
     @staticmethod
     def clear_interface_configuration(node, interface):
@@ -65,15 +57,12 @@ class IPv6Management(object):
          """
 
         cmd = " && ".join([
-            "sudo ip addr flush dev {interface}".format(interface=interface),
-            "sudo ip link set dev {interface} down".format(interface=interface)
+            "ip addr flush dev {interface}".format(interface=interface),
+            "ip link set dev {interface} down".format(interface=interface)
         ])
 
-        ssh = SSH()
-        ssh.connect(node)
-        ret_code, _, _ = ssh.exec_command(cmd)
-        if ret_code != 0:
-            raise RuntimeError("Could not clear interface configuration.")
+        message = "Could not clear interface configuration."
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     @staticmethod
     def set_management_interface_address(node, interface, address, prefix):
@@ -89,33 +78,23 @@ class IPv6Management(object):
         :type prefix: int
         :raises RuntimeError: If the configuration fails.
         """
-
-        ssh = SSH()
-        ssh.connect(node)
-
         # Enable IPv6 for only the specified interface
-        cmd = "sudo sysctl net.ipv6.conf.{0}.disable_ipv6=0".format(interface)
-
-        ret_code, _, _ = ssh.exec_command(cmd)
-        if ret_code != 0:
-            raise RuntimeError("Could not enable IPv6 on interface.")
+        cmd = "sysctl net.ipv6.conf.{0}.disable_ipv6=0".format(interface)
+        message = "Could not enable IPv6 on interface."
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
         # Configure IPv6 address on the interface
-        cmd = "sudo ip address add {address}/{prefix} dev {interface}".format(
+        cmd = "ip address add {address}/{prefix} dev {interface}".format(
             interface=interface,
             address=address,
             prefix=prefix)
-
-        ret_code, _, _ = ssh.exec_command(cmd)
-        if ret_code != 0:
-            raise RuntimeError("Could not configure IP address on interface.")
+        message = "Could not configure IP address on interface."
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
         # Set the interface up
-        cmd = "sudo ip link set {interface} up".format(interface=interface)
-
-        ret_code, _, _ = ssh.exec_command(cmd)
-        if ret_code != 0:
-            raise RuntimeError("Could not change the interface to 'up' state.")
+        cmd = "ip link set {interface} up".format(interface=interface)
+        message = "Could not change the interface to 'up' state."
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)
 
     @staticmethod
     def configure_control_interface_tunnel(node, src_port, dst_ip, dst_port):
@@ -139,9 +118,5 @@ class IPv6Management(object):
                   src_port=src_port,
                   dst_ip=dst_ip,
                   dst_port=dst_port)
-
-        ssh = SSH()
-        ssh.connect(node)
-        ret_code, _, _ = ssh.exec_command_sudo(cmd)
-        if ret_code != 0:
-            raise RuntimeError("Could not configure tunnel.")
+        message = "Could not configure tunnel."
+        exec_cmd_no_error(node, cmd, sudo=True, message=message)

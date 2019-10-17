@@ -14,7 +14,7 @@
 """Dpdk Utilities Library."""
 
 from resources.libraries.python.OptionString import OptionString
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error, disconnect_node
 
 
 class DpdkUtil(object):
@@ -112,7 +112,8 @@ class DpdkUtil(object):
         cmd_options.extend(DpdkUtil.get_eal_options(**kwargs))
         cmd_options.add('--')
         cmd_options.extend(DpdkUtil.get_pmd_options(**kwargs))
-        exec_cmd_no_error(node, cmd_options, sudo=True, disconnect=True)
+        exec_cmd_no_error(node, cmd_options, sudo=True)
+        disconnect_node(node)
 
     @staticmethod
     def dpdk_testpmd_stop(node):
@@ -123,4 +124,5 @@ class DpdkUtil(object):
         :returns: nothing
         """
         cmd = "/stop-testpmd.sh"  # Completed string, simpler than OptionString.
-        exec_cmd_no_error(node, cmd, sudo=True, disconnect=True)
+        exec_cmd_no_error(node, cmd, sudo=True)
+        disconnect_node(node)
