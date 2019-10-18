@@ -70,6 +70,30 @@
       "revId": "54bfb21a5a065b327a1cec70feeb7d2af46f499f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f91fbd73_4f1f26d6",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-18T15:08:51Z",
+      "side": 1,
+      "message": "sounds like v2.0 candidate. it could help in various cases like avf or \"Ensure that interface is ready for driver before vpp starts\" but i need to think more what will be part of pre- and post- phase.",
+      "parentUuid": "6ed9901d_81f2eeb9",
+      "range": {
+        "startLine": 153,
+        "startChar": 19,
+        "endLine": 153,
+        "endChar": 27
+      },
+      "revId": "54bfb21a5a065b327a1cec70feeb7d2af46f499f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
