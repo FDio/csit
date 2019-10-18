@@ -81,7 +81,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer interface
+| | When Initialize layer driver | vfio-pci
+| | And Initialize layer interface
 | | ... | count=${nf_chains}
 | | And Initialize L2 bridge domains for multiple chains with Vhost-User
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}

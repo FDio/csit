@@ -66,7 +66,8 @@
 | | | Run keyword | ${dut}.Add session local endpoints table buckets | 2500000
 | | | Run keyword | ${dut}.Add session local endpoints table memory | 3g
 | | Apply startup configuration on all VPP DUTs
-| | When Set up HTTP server with parameters on the VPP node
+| | When Initialize layer driver | vfio-pci
+| | And Set up HTTP server with parameters on the VPP node
 | | ... | ${http_static_plugin} | 31000 | 64 | 4000m
 | | Then Measure connections per second | ${traffic_profile}
 

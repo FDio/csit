@@ -81,6 +81,7 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
+| | When Initialize layer driver | vfio-pci
 | | And Set interfaces in path up
 | | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}

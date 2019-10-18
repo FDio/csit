@@ -77,7 +77,8 @@
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize NAT44 in circular topology
+| | When Initialize layer driver | vfio-pci
+| | And Initialize NAT44 in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

@@ -448,7 +448,7 @@ class PapiSocketExecutor(object):
         if log:
             logger.info(
                 "{cmd} ({host} - {remote_vpp_socket}):\n{reply}".
-                format(cmd=cmd, reply=reply,
+                format(cmd=cmd, reply=reply.encode('utf-8').strip(),
                        remote_vpp_socket=remote_vpp_socket, host=node['host']))
         return reply
 

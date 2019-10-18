@@ -71,10 +71,9 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 patch
+| | When Initialize layer driver | vfio-pci
+| | And Initialize L2 patch
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

@@ -95,6 +95,7 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
+| | When Initialize layer driver | vfio-pci
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
 | | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}

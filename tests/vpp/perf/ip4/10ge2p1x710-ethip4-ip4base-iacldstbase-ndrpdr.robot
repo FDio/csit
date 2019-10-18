@@ -74,7 +74,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv4 forwarding in circular topology
+| | When Initialize layer driver | vfio-pci
+| | And Initialize IPv4 forwarding in circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst | 255.255.255.0
 | | And Vpp Configures Classify Session L3
