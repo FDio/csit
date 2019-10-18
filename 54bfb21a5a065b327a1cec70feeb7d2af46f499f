@@ -142,6 +142,30 @@
       "revId": "54bfb21a5a065b327a1cec70feeb7d2af46f499f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd3cff05_9e1108c6",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-18T15:47:44Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7155d35_3012cfa3",
+      "range": {
+        "startLine": 153,
+        "startChar": 19,
+        "endLine": 153,
+        "endChar": 27
+      },
+      "revId": "54bfb21a5a065b327a1cec70feeb7d2af46f499f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
