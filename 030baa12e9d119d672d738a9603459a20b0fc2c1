@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1b98d4b6_5ba76de7",
+        "filename": "tests/vpp/device/container_memif/eth2p-ethicmpv4-ip4base-eth-2memif-1dcr-dev.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-18T15:36:06Z",
+      "side": 1,
+      "message": "One copy is enough.",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 46,
+        "endChar": 16
+      },
+      "revId": "030baa12e9d119d672d738a9603459a20b0fc2c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
