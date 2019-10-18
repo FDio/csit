@@ -80,7 +80,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv4 forwarding with vhost in 2-node circular topology
+| | When Initialize layer driver | vfio-pci
+| | And Initialize IPv4 forwarding with vhost in 2-node circular topology
 | | ... | nf_nodes=${nf_nodes} | testpmd_mac=${TRUE}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}

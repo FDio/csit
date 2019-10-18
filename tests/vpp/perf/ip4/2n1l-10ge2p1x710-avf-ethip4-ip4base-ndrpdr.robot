@@ -73,7 +73,7 @@
 | | And Add DPDK no PCI to all DUTs
 | | And Set Max Rate And Jumbo
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize AVF interfaces
+| | When Initialize layer driver | avf
 | | And Initialize IPv4 forwarding in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 

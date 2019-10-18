@@ -77,7 +77,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize LISP IPv4 over IPv6 forwarding in 3-node circular topology
+| | When Initialize layer driver | vfio-pci
+| | And Initialize LISP IPv4 over IPv6 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4o6} | ${dut1_to_tg_ip4o6} | ${dut2_to_dut1_ip4o6}
 | | ... | ${dut2_to_tg_ip4o6} | ${tg_prefix4o6} | ${dut_prefix4o6}
 | | And Configure LISP topology in 3-node circular topology

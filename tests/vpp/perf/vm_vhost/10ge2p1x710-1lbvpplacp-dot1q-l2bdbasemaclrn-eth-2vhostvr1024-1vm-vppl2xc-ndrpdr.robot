@@ -92,7 +92,8 @@
 | | And Add VLAN Strip Offload switch off between DUTs in 3-node single link topology
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VLAN with VPP link bonding in a 3-node circular topology
+| | When Initialize layer driver | vfio-pci
+| | And Initialize L2 bridge domains with Vhost-User and VLAN with VPP link bonding in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${subid}
 | | ... | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
 | | And Configure chains of NFs connected via vhost-user

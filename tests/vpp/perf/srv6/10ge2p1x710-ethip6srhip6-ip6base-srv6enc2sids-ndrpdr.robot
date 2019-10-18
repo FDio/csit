@@ -98,9 +98,10 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv6 forwarding over SRv6 with encapsulation with '2' x SID 'with' decapsulation in 3-node circular topology
+| | When Initialize layer driver | vfio-pci
+| | And Initialize IPv6 forwarding over SRv6 with encapsulation with '2' x SID 'with' decapsulation in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

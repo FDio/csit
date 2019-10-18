@@ -79,7 +79,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domain with VLAN and VXLANoIPv4 in 3-node circular topology
+| | When Initialize layer driver | vfio-pci
+| | And Initialize L2 bridge domain with VLAN and VXLANoIPv4 in 3-node circular topology
 | | ... | vxlan_count=${vxlan_count}
 | | Then Find NDR and PDR intervals using optimized search
 

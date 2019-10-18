@@ -86,7 +86,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Start containers for test
+| | When Initialize layer driver | vfio-pci
+| | And Start containers for test
 | | And Initialize L2 Bridge Domain with memif pairs and VLAN in circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | Then Find NDR and PDR intervals using optimized search

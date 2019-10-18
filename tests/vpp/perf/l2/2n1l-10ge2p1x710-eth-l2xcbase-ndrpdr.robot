@@ -72,12 +72,13 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
+| | When Initialize layer driver | vfio-pci
 | | And Initialize L2 xconnect in 2-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
 | tc01-64B-1c-eth-l2xcbase-ndrpdr
-| | [Tags] | 64B | 1C
+| | [Tags] | 64B | 1C | THIS
 | | frame_size=${64} | phy_cores=${1}
 
 | tc02-64B-2c-eth-l2xcbase-ndrpdr

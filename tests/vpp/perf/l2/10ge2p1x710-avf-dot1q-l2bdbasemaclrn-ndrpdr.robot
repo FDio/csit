@@ -80,7 +80,7 @@
 | | And Add DPDK no PCI to all DUTs
 | | And Set Max Rate And Jumbo
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize AVF interfaces
+| | When Initialize layer driver | vfio-pci
 | | And Initialize L2 bridge domains with VLAN dot1q sub-interfaces in circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | Then Find NDR and PDR intervals using optimized search

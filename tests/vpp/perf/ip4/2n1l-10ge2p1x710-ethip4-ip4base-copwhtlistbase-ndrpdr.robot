@@ -74,7 +74,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv4 forwarding in circular topology
+| | When Initialize layer driver | vfio-pci
+| | And Initialize IPv4 forwarding in circular topology
 | | And Add Fib Table | ${dut1} | 1
 | | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1

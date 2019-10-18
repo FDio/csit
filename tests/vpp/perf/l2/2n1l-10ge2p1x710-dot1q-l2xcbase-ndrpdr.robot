@@ -77,7 +77,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize VLAN dot1q sub-interfaces in circular topology
+| | When Initialize layer driver | vfio-pci
+| | And Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_if2} | SUB_ID=${subid}
 | | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
