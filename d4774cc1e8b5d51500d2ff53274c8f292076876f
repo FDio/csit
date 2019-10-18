@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d1538ff2_72d1962d",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale2m-seeded-random-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-18T13:40:34Z",
+      "side": 1,
+      "message": "\u003e\u003e csit-verify-tox-master/2709/ : FAILURE\n\n\u003e + lines\u003d66\n\nAutogen checker requires the testcase names to match the suite name, see [0].\nIn this case, I prefer ip4scale2m-random-ndrpdr as I do not expect a non-seeded suite in foreseeable future.\n\n\u003e + warn \u0027Unspecified run-time error occurred!\u0027\n\nA mistake in the autogen checker, fix: [1].\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-verify-tox-master/2709/archives/autogen.log.gz\n[1] https://gerrit.fd.io/r/c/csit/+/22839",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 38
+      },
+      "revId": "d4774cc1e8b5d51500d2ff53274c8f292076876f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
