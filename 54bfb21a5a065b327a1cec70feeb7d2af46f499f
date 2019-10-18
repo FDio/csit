@@ -46,6 +46,30 @@
       "revId": "54bfb21a5a065b327a1cec70feeb7d2af46f499f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ed9901d_81f2eeb9",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-18T14:51:48Z",
+      "side": 1,
+      "message": "If you want to have a solution common to various different driver activation procedures, what you can do is to create both Initialize_layer_driver_before_VPP_start and Initialize_layer_driver_after_VPP_start (or similar).\nThen the suite structure will be uniform, while the specific driver keywords will have ops and no-ops in different places, according to their needs.",
+      "parentUuid": "ce09c007_5041dbf8",
+      "range": {
+        "startLine": 153,
+        "startChar": 19,
+        "endLine": 153,
+        "endChar": 27
+      },
+      "revId": "54bfb21a5a065b327a1cec70feeb7d2af46f499f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
