@@ -39,6 +39,8 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | vfio-pci
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 
 *** Keywords ***
@@ -60,7 +62,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize IPv4 forwarding in circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize IPv4 forwarding in circular topology
 | | ... | remote_host1_ip=192.168.0.1 | remote_host2_ip=192.168.0.2
 | | Then Send IPv4 ping packet and verify headers
 | | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if2}

@@ -38,6 +38,8 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | vfio-pci
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 | ${cir}= | ${100}
 | ${eir}= | ${150}
@@ -64,16 +66,12 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize IPv4 forwarding in circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize IPv4 forwarding in circular topology
 | | And Initialize IPv4 policer 2r3c-'ca' in circular topology
 | | Then Send packet and verify marking
 | | ... | ${tg} | ${tg_if1} | ${tg_if2} | ${tg_if1_mac} | ${dut1_if1_mac}
 | | ... | 10.10.10.2 | 20.20.20.2
-# TODO: Add check of number of hits of the classify session after traffic
-# Until there is implemented check of number of hits of the classify session
-# after passing the traffic log the show classify tables verbose to allow visual
-# check of hit number when needed.
-| | And Show Classify Tables Verbose | ${dut1}
 
 *** Test Cases ***
 | tc01-64B-ethip4-ip4base-ipolicemarkbase-dev

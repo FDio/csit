@@ -40,6 +40,8 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | vfio-pci
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 # Container
 | ${container_engine}= | Docker
@@ -65,7 +67,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Start containers for test | auto_scale=${False} | pinning=${False}
+| | When Initialize layer driver | ${nic_driver}
+| | And Start containers for test | auto_scale=${False} | pinning=${False}
 | | And Initialize L2 xconnect with memif pairs
 | | Then Send ICMPv4 bidirectionally and verify received packets
 | | ... | ${tg} | ${tg_if1} | ${tg_if2}

@@ -46,6 +46,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 # LISP overhead
 | ${overhead}= | 48
 # Traffic profile:

@@ -40,6 +40,8 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | vfio-pci
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${50}
 
 *** Keywords ***
@@ -61,7 +63,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer interface
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Initialize layer ip4vxlan
 | | And Initialize L2 bridge domain
 | | Then Send VXLAN encapsulated packet and verify received packet

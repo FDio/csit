@@ -49,6 +49,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | avf_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | avf
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${1000000}
 # Traffic profile:

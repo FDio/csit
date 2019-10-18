@@ -51,6 +51,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${4}
 | ${subid}= | 10
 | ${tag_rewrite}= | pop-1

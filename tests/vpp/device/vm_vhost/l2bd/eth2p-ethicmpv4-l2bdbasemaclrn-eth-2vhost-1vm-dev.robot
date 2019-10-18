@@ -43,6 +43,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | vfio-pci
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
 | ${nf_dtc} | ${1}
@@ -70,7 +71,8 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize layer interface
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | ... | count=${nf_chains}
 | | And Initialize L2 bridge domains with Vhost-User | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
