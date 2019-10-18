@@ -22,6 +22,30 @@
       "revId": "54bfb21a5a065b327a1cec70feeb7d2af46f499f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce09c007_5041dbf8",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-18T14:44:24Z",
+      "side": 1,
+      "message": "I wanted to be correct in the naming using the proper names so in future we will not be surprised. If you insist on DPDK i can easily do sed s/vfio-pci/dpdk/g but i do not know what cames in future\n\nAlso i need now one change to move this as ${nic_driver}\u003d | vfio-pci",
+      "parentUuid": "b2bb246c_eb2a3d09",
+      "range": {
+        "startLine": 153,
+        "startChar": 19,
+        "endLine": 153,
+        "endChar": 27
+      },
+      "revId": "54bfb21a5a065b327a1cec70feeb7d2af46f499f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
