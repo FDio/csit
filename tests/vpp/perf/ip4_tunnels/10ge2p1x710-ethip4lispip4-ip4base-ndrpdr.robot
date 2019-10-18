@@ -51,6 +51,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${8}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src253
@@ -77,7 +78,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize LISP IPv4 forwarding in 3-node circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
 | | And Configure LISP topology in 3-node circular topology

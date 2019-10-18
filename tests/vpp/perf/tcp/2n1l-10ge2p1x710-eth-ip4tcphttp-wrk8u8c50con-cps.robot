@@ -41,6 +41,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | http_static_plugin.so
 | ... | hs_apps_plugin.so
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${traffic_profile}= | wrk-sf-2n-ethip4tcphttp-8u8c50con-cps
 | ${http_static_plugin}= | ${false}
 
@@ -66,7 +67,8 @@
 | | | Run keyword | ${dut}.Add session local endpoints table buckets | 2500000
 | | | Run keyword | ${dut}.Add session local endpoints table memory | 3g
 | | Apply startup configuration on all VPP DUTs
-| | When Set up HTTP server with parameters on the VPP node
+| | When Initialize layer driver | vfio-pci
+| | And Set up HTTP server with parameters on the VPP node
 | | ... | ${http_static_plugin} | 31000 | 64 | 4000m
 | | Then Measure connections per second | ${traffic_profile}
 

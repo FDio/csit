@@ -49,6 +49,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${osi_layer}= | L3
 | ${overhead}= | ${0}
 # Traffic profile:
@@ -78,7 +79,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Start containers for test
+| | When Initialize layer driver | ${nic_driver}
+| | And Start containers for test
 | | And Initialize IPv4 routing with memif pairs
 | | Then Find NDR and PDR intervals using optimized search
 

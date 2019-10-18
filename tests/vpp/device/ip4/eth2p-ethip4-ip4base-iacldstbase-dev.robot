@@ -39,6 +39,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 
 *** Keywords ***
@@ -61,7 +62,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize IPv4 forwarding in circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize IPv4 forwarding in circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst | 255.255.255.255
 | | And Vpp Configures Classify Session L3
@@ -73,11 +75,6 @@
 | | ... | ${tg} | 10.10.10.2 | 20.20.20.2
 | | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
 | | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
-# TODO: Add check of number of hits of the classify session after traffic
-# Until there is implemented check of number of hits of the classify session
-# after passing the traffic log the show classify tables verbose to allow visual
-# check of hit number when needed.
-| | And Show Classify Tables Verbose | ${dut1}
 
 *** Test Cases ***
 | tc01-64B-ethip4-ip4base-iacldstbase-dev

@@ -52,6 +52,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
@@ -84,7 +85,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer interface
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | ... | count=${nf_chains}
 | | And Start containers for test
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | auto_scale=${False}

@@ -49,6 +49,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | acl_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 # ACL test setup
 | ${acl_action}= | permit
@@ -90,7 +91,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPv4 routing with IPv4 ACLs on DUT1 in circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize IPv4 routing with IPv4 ACLs on DUT1 in circular topology
 | | ... | ${ip_nr}
 | | Then Find NDR and PDR intervals using optimized search
 

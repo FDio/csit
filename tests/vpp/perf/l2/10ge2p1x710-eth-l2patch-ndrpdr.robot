@@ -47,6 +47,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4src254
@@ -71,10 +72,9 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Add DPDK dev default RXD to all DUTs | 2048
-| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 patch
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize L2 patch
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

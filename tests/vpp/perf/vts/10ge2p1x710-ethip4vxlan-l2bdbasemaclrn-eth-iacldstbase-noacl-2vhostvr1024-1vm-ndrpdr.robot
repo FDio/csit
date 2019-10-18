@@ -54,6 +54,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${50}
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
@@ -92,7 +93,8 @@
 | | &{vxlan2} = | Create Dictionary | vni=0 | vtep=172.27.0.2
 | | @{dut1_vxlans} = | Create List | ${vxlan1}
 | | @{dut2_vxlans} = | Create List | ${vxlan2}
-| | Set interfaces in path up
+| | When Initialize layer driver | ${nic_driver}
+| | And Set interfaces in path up
 | | When Init L2 bridge domains with single DUT with Vhost-User and VXLANoIPv4 in 3-node circular topology
 | | ... | 172.16.0.1 | 16 | 172.26.0.1 | 16 | 172.16.0.2 | 172.26.0.2
 | | ... | ${dut1_vxlans} | ${dut2_vxlans} | 172.17.0.0 | 16 | 172.27.0.0 | 16
