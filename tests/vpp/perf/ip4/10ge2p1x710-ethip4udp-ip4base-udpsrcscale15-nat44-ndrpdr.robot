@@ -51,6 +51,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | nat_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4udp-1u15p
@@ -77,7 +78,8 @@
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize NAT44 in circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize NAT44 in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

@@ -40,6 +40,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 
 *** Keywords ***
@@ -62,7 +63,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize L2 xconnect in 2-node circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize L2 xconnect in 2-node circular topology
 | | Then Send ICMPv4 bidirectionally and verify received packets
 | | ... | ${tg} | ${tg_if1} | ${tg_if2}
 

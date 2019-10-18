@@ -50,6 +50,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | avf_plugin.so
 | ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | avf
 | ${overhead}= | ${4}
 | ${subid}= | 10
 | ${tag_rewrite}= | pop-1
@@ -80,7 +81,7 @@
 | | And Add DPDK no PCI to all DUTs
 | | And Set Max Rate And Jumbo
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize AVF interfaces
+| | When Initialize layer driver | ${nic_driver}
 | | And Initialize L2 bridge domains with VLAN dot1q sub-interfaces in circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
 | | Then Find NDR and PDR intervals using optimized search

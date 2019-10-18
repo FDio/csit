@@ -47,6 +47,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-2n-ethip6-ip6src253
@@ -72,6 +73,7 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
+| | When Initialize layer driver | ${nic_driver}
 | | And Initialize IPv6 forwarding in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 

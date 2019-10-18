@@ -56,6 +56,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | lacp_plugin.so
 | ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${4}
 | ${subid}= | 10
 | ${tag_rewrite}= | pop-1
@@ -91,7 +92,8 @@
 | | And Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
+| | When Initialize layer driver | vfio-pci
+| | And Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
 | | ... | ${subid} | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | jumbo=${jumbo}

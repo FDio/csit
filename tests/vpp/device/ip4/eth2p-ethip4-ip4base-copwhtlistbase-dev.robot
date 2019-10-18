@@ -39,6 +39,8 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | vfio-pci
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 
 *** Keywords ***
@@ -60,7 +62,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize IPv4 forwarding in circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize IPv4 forwarding in circular topology
 | | And Add Fib Table | ${dut1} | 1
 | | And Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | vrf=1 | local=${TRUE}
 | | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1

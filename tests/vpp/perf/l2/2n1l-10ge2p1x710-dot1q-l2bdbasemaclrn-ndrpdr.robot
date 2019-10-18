@@ -51,6 +51,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${4}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-dot1qip4-vlan1ip4src254ip4dst254
@@ -76,6 +77,7 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
+| | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize layer dot1q
 | | And Initialize L2 bridge domain
