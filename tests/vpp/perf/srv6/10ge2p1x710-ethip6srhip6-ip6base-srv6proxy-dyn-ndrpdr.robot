@@ -53,6 +53,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so | srv6ad_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 # outer IPv6 header + SRH with 3 SIDs: 40+(8+3*16)B
 | ${overhead}= | ${96}
 # SIDs
@@ -111,10 +112,11 @@
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
-| | Set Max Rate And Jumbo And Handle Multi Seg
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
+| | When Initialize layer driver | vfio-pci
 | | And Start containers for test | nf_chains=${1} | nf_nodes=${1}
-| | When Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'dynamic_proxy' behaviour in 3-node circular topology
+| | And Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'dynamic_proxy' behaviour in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***

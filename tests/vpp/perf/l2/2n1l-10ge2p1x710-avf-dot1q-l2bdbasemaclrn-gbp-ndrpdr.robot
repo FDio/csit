@@ -59,6 +59,7 @@
 | ... | acl_plugin.so
 | ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | avf
 | ${overhead}= | ${4}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-dot1qip4-vlan1ip4src254ip4dst254-bvi
@@ -84,7 +85,7 @@
 | | And Add DPDK no PCI to all DUTs
 | | And Set Max Rate And Jumbo
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize AVF interfaces
+| | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize layer dot1q
 | | And Initialize GBP routing domains

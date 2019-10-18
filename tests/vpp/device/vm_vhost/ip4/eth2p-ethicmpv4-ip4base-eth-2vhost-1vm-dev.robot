@@ -41,6 +41,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | vfio-pci
 | ${nf_chains}= | ${1}
 | ${nf_nodes}= | ${1}
 | ${nf_dtc} | ${1}
@@ -68,7 +69,8 @@
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
 | | And Add PCI devices to all DUTs
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize IPv4 forwarding with vhost in 2-node circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize IPv4 forwarding with vhost in 2-node circular topology
 | | ... | nf_nodes=${nf_nodes}
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
