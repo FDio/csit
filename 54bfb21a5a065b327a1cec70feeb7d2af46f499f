@@ -118,6 +118,30 @@
       "revId": "54bfb21a5a065b327a1cec70feeb7d2af46f499f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e7155d35_3012cfa3",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-18T15:34:38Z",
+      "side": 1,
+      "message": "I put somewhat TODO: so i can work after MLX insertion next week maybe. Together with converting the rest of suites to at least interface layer (maybe later we can swap all remaining VXLAN and VLAN suites to full layer).",
+      "parentUuid": "8f089602_cc55bd3c",
+      "range": {
+        "startLine": 153,
+        "startChar": 19,
+        "endLine": 153,
+        "endChar": 27
+      },
+      "revId": "54bfb21a5a065b327a1cec70feeb7d2af46f499f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
