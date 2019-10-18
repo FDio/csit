@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2bb246c_eb2a3d09",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-18T14:32:19Z",
+      "side": 1,
+      "message": "I think \"dpdk\" is a better name for this \"driver\", as it relies on the \"dpdk\" section of startup.conf, for VPP to do whatever it is configured there. The choice between vfio-pci and igb_uio happens on an earlier layer (before VPP is started).",
+      "range": {
+        "startLine": 153,
+        "startChar": 19,
+        "endLine": 153,
+        "endChar": 27
+      },
+      "revId": "54bfb21a5a065b327a1cec70feeb7d2af46f499f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
