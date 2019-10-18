@@ -60,7 +60,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize IPv6 forwarding in circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize IPv6 forwarding in circular topology
 | | ... | remote_host1_ip=3ffe:5f::1 | remote_host2_ip=3ffe:5f::2
 | | Then Send IPv6 echo request packet and verify headers
 | | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if2}

@@ -39,6 +39,8 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | vfio-pci
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${58}
 | ${tg_spi}= | ${1000}
 | ${dut_spi}= | ${1001}
@@ -74,7 +76,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Configure topology for IPv6 IPsec testing
+| | When Initialize layer driver | ${nic_driver}
+| | And Configure topology for IPv6 IPsec testing
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Configure manual keyed connection for IPSec
 | | ... | ${dut1} | ${dut1_if1} | ${encr_alg} | ${encr_key} | ${auth_alg}

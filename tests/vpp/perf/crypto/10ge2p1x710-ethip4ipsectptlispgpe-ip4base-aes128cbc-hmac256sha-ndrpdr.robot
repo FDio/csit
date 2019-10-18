@@ -60,6 +60,7 @@
 | ${osi_layer}= | L3
 | ${crypto_type}= | HW_DH895xcc
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${58}
 | ${dut2_spi}= | ${1000}
 | ${dut1_spi}= | ${1001}
@@ -98,10 +99,10 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add cryptodev to all DUTs | ${phy_cores}
-| | And Configure topology for IPv4 IPsec testing
 | | And Apply startup configuration on all VPP DUTs
-| | When Generate keys for IPSec | ${encr_alg} | ${auth_alg}
-| | When Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find NDR and PDR intervals using optimized search
 

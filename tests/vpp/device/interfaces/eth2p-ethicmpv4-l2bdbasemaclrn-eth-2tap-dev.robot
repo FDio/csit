@@ -41,6 +41,8 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | vfio-pci
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
 | ${bid_TAP}= | tapBr
 
@@ -63,7 +65,8 @@
 | | And Add PCI devices to all DUTs
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Set interfaces in path up
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | ${int1}= | And Add Tap Interface | ${dut1} | tap0
 | | ${int2}= | And Add Tap Interface | ${dut1} | tap1
 | | And Set Interface State | ${dut1} | ${int1} | up

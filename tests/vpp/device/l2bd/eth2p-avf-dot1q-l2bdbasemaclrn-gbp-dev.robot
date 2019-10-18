@@ -49,6 +49,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | avf_plugin.so | gbp_plugin.so
 | ... | acl_plugin.so
 | ${nic_name}= | virtual
+| ${nic_driver}= | avf
 | ${overhead}= | ${4}
 
 *** Keywords ***
@@ -72,7 +73,7 @@
 | | And Add DPDK no PCI to all DUTs
 | | And Set Max Rate And Jumbo
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
-| | When Initialize AVF interfaces
+| | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize layer dot1q
 | | And Initialize GBP routing domains

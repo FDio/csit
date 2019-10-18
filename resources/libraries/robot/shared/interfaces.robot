@@ -138,9 +138,36 @@
 | | Set Test Variable | ${prev_layer} | if
 | | Set interfaces in path up
 
+| Initialize layer driver
+| | [Documentation]
+| | ... | Initialize driver based interfaces on each DUT. Interfaces are
+| | ... | brought up.
+| | ...
+| | [Arguments] | ${driver}
+| | ...
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run Keyword | Initialize layer ${driver} on node | ${dut}
+| | Set Test Variable | ${prev_layer} | vf
+| | Set interfaces in path up
+
+| Initialize layer vfio-pci on node
+| | [Documentation]
+| | ... | Initialize vfio-pci interfaces on DUT.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize layer vfio-pci on node \| DUT1 \|
+| | ...
+| | [Arguments] | ${dut}
+| | ...
+| | No operation
+
 | Initialize layer avf on node
 | | [Documentation]
-| | ... | Initialize AVF interfaces on DUT. Interfaces are brought up.
+| | ... | Initialize AVF interfaces on DUT.
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
@@ -172,15 +199,6 @@
 | | Set Test Variable | ${${dut_str}_if2} | ${dut_eth_vf_if2}
 | | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_eth_vf_if1_mac}
 | | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_eth_vf_if2_mac}
-
-| Initialize AVF interfaces
-| | [Documentation]
-| | ... | Initialize AVF interfaces on each DUT. Interfaces are brought up.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
-| | | Initialize layer avf on node | ${dut}
-| | Set Test Variable | ${prev_layer} | vf
-| | Set interfaces in path up
 
 | Initialize layer bonding on node
 | | [Documentation]

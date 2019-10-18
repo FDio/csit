@@ -55,6 +55,7 @@
 | ${osi_layer}= | L3
 | ${crypto_type}= | HW_DH895xcc
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | vfio-pci
 | ${overhead}= | ${58}
 | ${tg_if1_ip4}= | 192.168.10.2
 | ${dut1_if1_ip4}= | 192.168.10.1
@@ -96,7 +97,8 @@
 | | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Add cryptodev to all DUTs | ${phy_cores}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize IPSec in 3-node circular topology
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${nodes} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${auth_alg} | ${dut1_if2_ip4} | ${dut2_if1_ip4}

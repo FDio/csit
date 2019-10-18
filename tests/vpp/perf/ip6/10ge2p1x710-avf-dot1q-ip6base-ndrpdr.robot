@@ -51,6 +51,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | avf_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
+| ${nic_driver}= | avf
 | ${overhead}= | ${4}
 | ${subid}= | 10
 | ${tag_rewrite}= | pop-1
