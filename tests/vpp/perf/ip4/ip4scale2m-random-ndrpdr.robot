@@ -50,7 +50,7 @@
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${1000000}
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4-ip4dst-seeded-random${rts_per_flow}
+| ${traffic_profile}= | trex-sl-2n-ethip4-ip4dst-random${rts_per_flow}
 
 *** Keywords ***
 | Local Template
