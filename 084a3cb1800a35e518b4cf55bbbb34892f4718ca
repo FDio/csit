@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a5da9654_d33b22fc",
+        "filename": "tests/vpp/perf/l2/2n1l-100ge2p1cx556a-rdma-eth-l2xcbase-ndrpdr.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-19T05:24:37Z",
+      "side": 1,
+      "message": "We need to rework these in order to unify suites for various drivers and also to be able to remove dpdk_plugin entirely\n\ndpdk_plugin is mandatory now due to DPDK sections in default startup conf and also RXQ / no-mulitseg / and few others. To be able to introduce pre-initialize layer driver we need to remove RXQ from L72 create new KW \"Pre-initialize layer driver | ${nic_driver}\" and put all DPDK sections into it. Then Apply Startup can be called.\n\nThis way we can fully automate AVF/RDMA suite generator just by altering nic_driver/nic_name",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 51
+      },
+      "revId": "084a3cb1800a35e518b4cf55bbbb34892f4718ca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
