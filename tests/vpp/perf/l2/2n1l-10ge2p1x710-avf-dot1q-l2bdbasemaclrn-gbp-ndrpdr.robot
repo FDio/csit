@@ -15,10 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | DRV_AVF | GBP
+| ... | NIC_Intel-X710 | DOT1Q | L2BDMACLRN | BASE | AVF | GBP
 | ...
 | Suite Setup | Setup suite single link | performance_avf
-| Suite Teardown | Tear down suite | performance | vifs
+| Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
@@ -55,11 +55,11 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | avf_plugin.so | gbp_plugin.so
-| ... | acl_plugin.so
+| @{plugins_to_enable}= | avf_plugin.so | gbp_plugin.so | acl_plugin.so
 | ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | avf
+| ${qat_name}= | ${None}
 | ${overhead}= | ${4}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-dot1qip4-vlan1ip4src254ip4dst254-bvi
@@ -81,11 +81,11 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add DPDK no PCI to all DUTs
-| | And Set Max Rate And Jumbo
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
+| | When Apply startup configuration on all VPP DUTs
+| | And Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize layer dot1q
 | | And Initialize GBP routing domains
