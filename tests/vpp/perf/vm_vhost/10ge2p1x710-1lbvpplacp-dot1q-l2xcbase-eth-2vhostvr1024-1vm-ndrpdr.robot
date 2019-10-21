@@ -17,7 +17,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | DOT1Q | L2XCFWD | BASE | VHOST | 1VM
 | ... | VHOST_1024 | LBOND | LBOND_VPP | LBOND_MODE_LACP | LBOND_LB_L34
-| ... | LBOND_1L | NF_TESTPMD
+| ... | LBOND_1L | NF_TESTPMD | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -53,9 +53,10 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | lacp_plugin.so
-| ${osi_layer}= | L2
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${osi_layer}= | L2
 | ${overhead}= | ${4}
 | ${subid}= | 10
 | ${tag_rewrite}= | pop-1
@@ -86,12 +87,13 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Add VLAN Strip Offload switch off between DUTs in 3-node single link topology
-| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | vfio-pci
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Initialize L2 xconnect with Vhost-User and VLAN with VPP link bonding in 3-node circular topology
 | | ... | ${subid} | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
 | | And Configure chains of NFs connected via vhost-user

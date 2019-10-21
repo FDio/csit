@@ -605,6 +605,16 @@ Interface Tags
     devices. In essence, today this driver can be used only with Intel
     XL710 / X710 / XXV710 adapters.
 
+.. topic:: DRV_VFIO_PCI
+
+    All test cases which uses vfio-pci device driver. It supports variety of NIC
+    adapters.
+
+.. topic:: DRV_RDMA_CORE
+
+    All test cases which uses rdma-core device driver. It supports Mellanox
+    NIC adapters.
+
 Feature Tags
 ------------
 

@@ -17,7 +17,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDR
 | ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-X710 | TNL_1000
-| ... | AES_128_GCM | AES
+| ... | AES_128_GCM | AES | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance | ipsechw
 | Suite Teardown | Tear down suite | performance
@@ -53,10 +53,10 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
-| ${osi_layer}= | L3
 | ${crypto_type}= | HW_DH895xcc
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${osi_layer}= | L3
 | ${overhead}= | ${54}
 | ${tg_if1_ip4}= | 192.168.10.2
 | ${dut1_if1_ip4}= | 192.168.10.1
@@ -93,14 +93,14 @@
 | | ${auth_alg}= | Set Variable | ${NONE}
 | | ${ipsec_proto}= | IPsec Proto ESP
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Add cryptodev to all DUTs | ${phy_cores}
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
 | | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
-| | When Initialize layer driver | ${nic_driver}
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${nodes} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}

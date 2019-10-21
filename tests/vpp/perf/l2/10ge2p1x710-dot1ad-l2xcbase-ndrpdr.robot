@@ -16,7 +16,7 @@
 | Resource | resources/libraries/robot/l2/tagging.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | L2XCFWD | BASE | DOT1AD
+| ... | NIC_Intel-X710 | L2XCFWD | BASE | DOT1AD | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -49,9 +49,10 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
-| ${osi_layer}= | L2
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${osi_layer}= | L2
 | ${overhead}= | ${8}
 | ${subid}= | 10
 | ${outer_vlan_id}= | 100
@@ -78,12 +79,12 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Apply startup configuration on all VPP DUTs
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
+| | And Apply Startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
-| | And Set interfaces in path up
+| | And Initialize layer interface
 | | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
