@@ -55,11 +55,11 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | avf_plugin.so | gbp_plugin.so
-| ... | acl_plugin.so
+| @{plugins_to_enable}= | avf_plugin.so | gbp_plugin.so | acl_plugin.so
 | ${osi_layer}= | L2
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | avf
+| ${qat_name}= | ${None}
 | ${overhead}= | ${4}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-dot1qip4-vlan1ip4src254ip4dst254-bvi
@@ -81,11 +81,11 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add DPDK no PCI to all DUTs
-| | And Set Max Rate And Jumbo
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
+| | When Apply startup configuration on all VPP DUTs
+| | And Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize layer dot1q
 | | And Initialize GBP routing domains
@@ -97,7 +97,7 @@
 | | frame_size=${64} | phy_cores=${1}
 
 | tc02-64B-2c-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr
-| | [Tags] | 64B | 2C
+| | [Tags] | 64B | 2C | THIS
 | | frame_size=${64} | phy_cores=${2}
 
 | tc03-64B-4c-avf-dot1q-l2bdbasemaclrn-gbp-ndrpdr
