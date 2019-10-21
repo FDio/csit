@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP6FWD | SCALE | FIB_2M
+| ... | NIC_Intel-X710 | ETH | IP6FWD | SCALE | FIB_2M | VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -47,9 +47,10 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
-| ${osi_layer}= | L3
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${osi_layer}= | L3
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${1000000}
 # Traffic profile:
@@ -72,11 +73,12 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Initialize IPv6 forwarding with scaling in circular topology
 | | ... | ${rts_per_flow}
 | | Then Find NDR and PDR intervals using optimized search
