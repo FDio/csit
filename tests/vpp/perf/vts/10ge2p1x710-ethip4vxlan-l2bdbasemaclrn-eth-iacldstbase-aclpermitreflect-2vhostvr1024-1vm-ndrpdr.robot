@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | VHOST | VM | VHOST_1024 | VTS | ACL_PERMIT_REFLECT
+| ... | VHOST | VM | VHOST_1024 | VTS | ACL_PERMIT_REFLECT | VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -52,9 +52,10 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | acl_plugin.so
-| ${osi_layer}= | L3
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${osi_layer}= | L3
 | ${overhead}= | ${50}
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
@@ -85,16 +86,16 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | &{vxlan1} = | Create Dictionary | vni=0 | vtep=172.17.0.2
 | | &{vxlan2} = | Create Dictionary | vni=0 | vtep=172.27.0.2
 | | @{dut1_vxlans} = | Create List | ${vxlan1}
 | | @{dut2_vxlans} = | Create List | ${vxlan2}
-| | When Initialize layer driver | ${nic_driver}
-| | And Set interfaces in path up
 | | When Init L2 bridge domains with single DUT with Vhost-User and VXLANoIPv4 in 3-node circular topology
 | | ... | 172.16.0.1 | 16 | 172.26.0.1 | 16 | 172.16.0.2 | 172.26.0.2
 | | ... | ${dut1_vxlans} | ${dut2_vxlans} | 172.17.0.0 | 16 | 172.27.0.0 | 16
