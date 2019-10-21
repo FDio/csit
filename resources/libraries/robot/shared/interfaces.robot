@@ -136,19 +136,70 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize layer interface on node | ${dut} | count=${count}
 | | Set Test Variable | ${prev_layer} | if
-| | Set interfaces in path up
+
+| Pre-initialize layer driver
+| | [Documentation]
+| | ... | Pre-initialize driver based interfaces on each DUT.
+| | ...
+| | ... | *Arguments:*
+| | ... | - driver - NIC driver used in test [vfio-pci|avf|rdma-core].
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Pre-initialize layer driver \| vfio-pci \|
+| | ...
+| | [Arguments] | ${driver}
+| | ...
+| | Run Keyword | Pre-initialize layer ${driver} on all DUTs
+
+| Pre-initialize layer vfio-pci on all DUTs
+| | [Documentation]
+| | ... | Pre-configure vfio-pci driver by adding related sections to startup
+| | ... | config on all DUTs.
+| | ...
+| | Add DPDK pci devices to all DUTs
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run Keyword | ${dut}.Add DPDK No Tx Checksum Offload
+| | | Run Keyword | ${dut}.Add DPDK Log Level | debug
+| | | Run Keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
+| | | Run Keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
+| | | Run Keyword If | not ${jumbo}
+| | | ... | ${dut}.Add DPDK No Multi Seg
+| | | Run Keyword If | ${rxd_count_int}
+| | | ... | ${dut}.Add DPDK Dev Default RXD | ${rxd_count_int}
+| | | Run Keyword If | ${txd_count_int}
+| | | ... | ${dut}.Add DPDK Dev Default TXD | ${txd_count_int}
+| | | Run Keyword If | ${crypto_type}
+| | | ... | ${dut}.Add DPDK Cryptodev | ${thr_count_int}
+
+| Pre-initialize layer avf on all DUTs
+| | [Documentation]
+| | ... | Pre-configure avf driver. Currently no operation.
+| | ...
+| | No operation
+
+| Pre-initialize layer rdma-core on all DUTs
+| | [Documentation]
+| | ... | Pre-configure rdma-core driver. Currently no operation.
+| | ...
+| | No operation
 
 | Initialize layer driver
 | | [Documentation]
 | | ... | Initialize driver based interfaces on each DUT. Interfaces are
 | | ... | brought up.
 | | ...
+| | ... | *Arguments:*
+| | ... | - driver - NIC driver used in test [vfio-pci|avf|rdma-core].
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize layer driver \| vfio-pci \|
+| | ...
 | | [Arguments] | ${driver}
 | | ...
-# TODO: Introduce the Pre- Initialize layer driver for preparing driver before
-# VPP starts and then Post- Initialize layer driver for preparing interfaces
-# after VPP starts. This way we can control actions needed for proper handling
-# of various driver-based interfaces in VPP.
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run Keyword | Initialize layer ${driver} on node | ${dut}
 | | Set Test Variable | ${prev_layer} | vf
@@ -167,7 +218,9 @@
 | | ...
 | | [Arguments] | ${dut}
 | | ...
-| | No operation
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run Keyword If | ${qat_name}
+| | | ... | VPP IPsec Select Backend | ${dut} | ${ipsec_proto} | index=${1}
 
 | Initialize layer avf on node
 | | [Documentation]
@@ -191,18 +244,53 @@
 | | ... | ${${dut}_if1_vf0}
 | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
 | | ... | ${${dut}_if2_vf0}
-| | ${dut_eth_vf_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
+| | ${dut_new_if1}= | VPP Create AVF Interface | ${nodes['${dut}']}
 | | ... | ${if1_pci} | ${rxq_count_int}
-| | ${dut_eth_vf_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_eth_vf_if1}
-| | ${dut_eth_vf_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
+| | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_new_if1}
+| | ${dut_new_if2}= | VPP Create AVF Interface | ${nodes['${dut}']}
 | | ... | ${if2_pci} | ${rxq_count_int}
-| | ${dut_eth_vf_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
-| | ... | ${dut_eth_vf_if2}
-| | Set Test Variable | ${${dut_str}_if1} | ${dut_eth_vf_if1}
-| | Set Test Variable | ${${dut_str}_if2} | ${dut_eth_vf_if2}
-| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_eth_vf_if1_mac}
-| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_eth_vf_if2_mac}
+| | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_new_if2}
+| | Set Test Variable | ${${dut_str}_if1} | ${dut_new_if1}
+| | Set Test Variable | ${${dut_str}_if2} | ${dut_new_if2}
+| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_new_if1_mac}
+| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_new_if2_mac}
+
+| Initialize layer rdma-core on node
+| | [Documentation]
+| | ... | Initialize rdma-core (MLX) interfaces on DUT.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut - DUT node. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize layer rdma-core on node \| DUT1 \|
+| | ...
+| | [Arguments] | ${dut}
+| | ...
+| | ${dut_str}= | Convert To Lowercase | ${dut}
+| | ${if1_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if1}
+| | ${if2_vlan}= | Get Interface Vlan | ${nodes['${dut}']} | ${${dut}_if2}
+| | Set Test Variable | ${${dut_str}_vlan1} | ${if1_vlan}
+| | Set Test Variable | ${${dut_str}_vlan2} | ${if2_vlan}
+| | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | ... | ${${dut}_if1}
+| | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
+| | ... | ${${dut}_if2}
+| | ${dut_new_if1}= | VPP Create Rdma Interface | ${nodes['${dut}']}
+| | ... | ${if1_pci} | ${rxq_count_int}
+| | ${dut_new_if1_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_new_if1}
+| | ${dut_new_if2}= | VPP Create Rdma Interface | ${nodes['${dut}']}
+| | ... | ${if2_pci} | ${rxq_count_int}
+| | ${dut_new_if2_mac}= | Get Interface MAC | ${nodes['${dut}']}
+| | ... | ${dut_new_if2}
+| | Set Test Variable | ${${dut_str}_if1} | ${dut_eth_if1}
+| | Set Test Variable | ${${dut_str}_if2} | ${dut_eth_if2}
+| | Set Test Variable | ${${dut_str}_if1_mac} | ${dut_eth_if1_mac}
+| | Set Test Variable | ${${dut_str}_if2_mac} | ${dut_eth_if2_mac}
 
 | Initialize layer bonding on node
 | | [Documentation]
