@@ -13,13 +13,11 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/crypto/ipsec.robot
-| Resource | resources/libraries/robot/overlay/lispgpe.robot
 | ...
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | IP4FWD
 | ... | LISPGPE | IPSEC | IPSECHW | IPSECTRAN | ENCAP | IP4UNRLAY | IP4OVRLAY
-| ... | NIC_Intel-X710 | AES_128_CBC | HMAC_SHA_256 | HMAC | AES
+| ... | NIC_Intel-X710 | AES_128_CBC | HMAC_SHA_256 | HMAC | AES | VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -57,10 +55,10 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
-| ${osi_layer}= | L3
 | ${crypto_type}= | HW_DH895xcc
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${osi_layer}= | L3
 | ${overhead}= | ${58}
 | ${dut2_spi}= | ${1000}
 | ${dut1_spi}= | ${1001}
@@ -95,12 +93,12 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA 256 128
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Add cryptodev to all DUTs | ${phy_cores}
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
