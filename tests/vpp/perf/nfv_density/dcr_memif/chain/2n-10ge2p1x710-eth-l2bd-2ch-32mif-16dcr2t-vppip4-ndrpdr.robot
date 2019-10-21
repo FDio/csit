@@ -51,9 +51,10 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
-| ${osi_layer}= | L3
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${osi_layer}= | L3
 | ${overhead}= | ${0}
 | ${nf_dtcr}= | ${1}
 | ${nf_dtc}= | ${1}
@@ -82,9 +83,9 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
