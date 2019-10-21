@@ -51,9 +51,10 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
-| ${osi_layer}= | L3
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${osi_layer}= | L3
 | ${overhead}= | ${54}
 | ${nf_dtcr}= | ${2}
 | ${nf_dtc}= | ${0.5}
@@ -82,9 +83,9 @@
 | | Set Test Variable | \${frame_size}
 | | ...
 | | ${nf_total_chains}= | Evaluate | ${nf_chains} + ${nf_added_chains}
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface

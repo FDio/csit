@@ -19,7 +19,7 @@
 | Resource | resources/libraries/robot/tcp/tcp_setup.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
-| ... | HTTP | TCP | TCP_CPS | NIC_Intel-X710
+| ... | HTTP | TCP | TCP_CPS | NIC_Intel-X710 | VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | wrk
 | Suite Teardown | Tear down suite
@@ -40,6 +40,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | http_static_plugin.so
 | ... | hs_apps_plugin.so
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
 | ${traffic_profile}= | wrk-sf-2n-ethip4tcphttp-8u8c50con-cps
@@ -49,8 +50,9 @@
 | Local template
 | | [Arguments] | ${phy_cores} | ${rxq}=${None}
 | | ...
-| | Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | Add PCI devices to all DUTs
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | :FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
@@ -66,8 +68,9 @@
 | | | Run keyword | ${dut}.Add session v4 halfopen table memory | 3g
 | | | Run keyword | ${dut}.Add session local endpoints table buckets | 2500000
 | | | Run keyword | ${dut}.Add session local endpoints table memory | 3g
-| | Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | vfio-pci
+| | And Apply startup configuration on all VPP DUTs
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Set up HTTP server with parameters on the VPP node
 | | ... | ${http_static_plugin} | 31000 | 64 | 4000m
 | | Then Measure connections per second | ${traffic_profile}

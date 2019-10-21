@@ -95,28 +95,3 @@
 | | ... | ${pps_limit} | ${rate}
 | | Set Test Variable | \${jumbo}
 | | Set Test Variable | \${max_rate}
-
-| Set Max Rate And Jumbo And Handle Multi Seg
-| | [Documentation]
-| | ... | This keyword starts with Get Max Rate And Jumbo keyword,
-| | ... | then adds correct multi seg VPP configuration.
-| | ...
-| | ... | See Documentation of Set Max Rate And Jumbo for more details.
-| | ...
-| | ... | *Test (or broader scope) variables read:*
-| | ... |   - nic_name - Name of bottleneck NIC. Type: string
-| | ... |   - overhead - Overhead in bytes. Default: 0. Type: integer
-| | ... |   - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
-| | ...
-| | ... | *Test variables set:*
-| | ... |   - max_rate - Calculated unidirectional maximal transmit rate [pps].
-| | ... |     Type: float
-| | ... |   - jumbo - Jumbo boolean, true if jumbo packet support
-| | ... |     has to be enabled. Type: boolean
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Set Max Rate And Jumbo And Handle Multi Seg \|
-| | ...
-| | Set Max Rate And Jumbo
-| | Run Keyword If | not ${jumbo} | Add no multi seg to all DUTs
