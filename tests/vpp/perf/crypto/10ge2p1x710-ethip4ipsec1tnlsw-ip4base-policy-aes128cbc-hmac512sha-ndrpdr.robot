@@ -17,7 +17,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1
 | ... | IP4FWD | IPSEC | IPSECSW | IPSECTUN | NIC_Intel-X710 | BASE
-| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES
+| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -53,9 +53,10 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
-| ${osi_layer}= | L3
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${osi_layer}= | L3
 | ${overhead}= | ${58}
 | ${tg_if1_ip4}= | 192.168.10.2
 | ${dut1_if1_ip4}= | 192.168.10.1
@@ -81,10 +82,7 @@
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
 | | ... | - phy_cores - Number of physical cores. Type: integer
-| | ... | - search_type - NDR or PDR. Type: string
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ... | - min_rate - Min rate for binary search, default value: ${50000}.
-| | ... | Type: integer
 | | ...
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | | ...
@@ -94,11 +92,12 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA 512 256
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${nodes} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
