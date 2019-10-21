@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2BDMACLRN | SCALE | L2BD_100 | DOT1Q | VLAN_100
-| ... | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY | VXLAN_100
+| ... | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY | VXLAN_100 | VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -49,9 +49,10 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
-| ${osi_layer}= | L2
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${osi_layer}= | L2
 | ${overhead}= | ${50}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-dot1qip4-vlan100ip4src254ip4dst254
@@ -76,11 +77,12 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Initialize L2 bridge domain with VLAN and VXLANoIPv4 in 3-node circular topology
 | | ... | vxlan_count=${vxlan_count}
 | | Then Find NDR and PDR intervals using optimized search
