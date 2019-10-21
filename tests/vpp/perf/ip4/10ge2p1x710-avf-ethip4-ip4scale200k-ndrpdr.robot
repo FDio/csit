@@ -15,10 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_200K | DRV_AVF
+| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_200K | AVF
 | ...
 | Suite Setup | Setup suite single link | performance_avf
-| Suite Teardown | Tear down suite | performance | vifs
+| Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
@@ -45,10 +45,11 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | avf_plugin.so
-| ${osi_layer}= | L3
+| @{plugins_to_enable}= | avf_plugin.so
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | avf
+| ${osi_layer}= | L3
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${100000}
 # Traffic profile:
