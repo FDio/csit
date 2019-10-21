@@ -131,6 +131,7 @@ class VPPUtil(object):
         :type node: dict
         :raises RuntimeError: If VPP service fails to start.
         """
+        return  # DEBUG
         VPPUtil.verify_vpp_installed(node)
         try:
             # Verify responsivness of vppctl.
