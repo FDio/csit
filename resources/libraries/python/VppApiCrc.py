@@ -36,7 +36,7 @@ class VppApiCrcChecker(object):
     """Holder of data related to tracking VPP API CRCs.
 
     Both message names and crc hexa strings are tracked as
-    ordinary Python2 (bytes) str, so _str() is used when input is
+    ordinary Python2 (bytes) string, so _str() is used when input is
     possibly unicode or otherwise not safe.
 
     Each instance of this class starts with same default state,
@@ -67,14 +67,14 @@ class VppApiCrcChecker(object):
         Order of addition reflects the order colections should be queried.
         If an incompatible CRC is found, affected collections are removed.
         A CRC that would remove all does not, added to _reported instead,
-        while causing a failure in single test."""
+        while causing a failure in single test (if fail_on_mismatch)."""
 
         self._missing = dict()
         """Mapping from collection name to mapping from API name to CRC string.
 
         Starts the same as _expected, but each time an encountered api,crc pair
-        fits the expectation, the pair is removed from this mapping.
-        Ideally, the active mappings will become empty.
+        fits the expectation, the pair is removed from all collections
+        within this mapping. Ideally, the active mappings will become empty.
         If not, it is an error, VPP removed or renamed a message CSIT needs."""
 
         self._found = dict()
@@ -114,11 +114,12 @@ class VppApiCrcChecker(object):
         :param name_to_crc_mapping: Mapping from API names to CRCs.
         :type collection_name: str or unicode
         :type name_to_crc_mapping: dict from str/unicode to str/unicode
+        :raises RuntimeError: If the name of a collection is registered already.
         """
         collection_name = _str(collection_name)
         if collection_name in self._expected:
-            raise RuntimeError("Collection {cl!r} already registered.".format(
-                cl=collection_name))
+            raise RuntimeError("Collection {cn!r} already registered.".format(
+                cn=collection_name))
         mapping = {_str(k): _str(v) for k, v in name_to_crc_mapping.items()}
         self._expected[collection_name] = mapping
         self._missing[collection_name] = mapping.copy()
@@ -173,6 +174,8 @@ class VppApiCrcChecker(object):
     def _process_crc(self, api_name, crc):
         """Compare API to verified collections, update class state.
 
+        Here, API stands for (message name, CRC) pair.
+
         Conflict is NOT when a collection does not recognize the API.
         Such APIs are merely added to _found for later reporting.
         Conflict is when a collection recognizes the API under a different CRC.
@@ -225,7 +228,7 @@ class VppApiCrcChecker(object):
         """Parse every .api.json found under directory, remember conflicts.
 
         As several collections are supported, each conflict invalidates
-        one of them, failure happens only when no collections would be left.
+        some of them, failure happens only when no collections would be left.
         In that case, set of collections just before the failure is preserved,
         the _reported mapping is filled with conflicting APIs.
         The _found mapping is filled with discovered api names and crcs.
@@ -259,6 +262,9 @@ class VppApiCrcChecker(object):
         Missing reporting is disabled by default, because some messages
         come from plugins that might not be enabled at runtime.
 
+        After the report, clear _reported, so that test cases report them again,
+        thus tracking which message is actually used (by which test).
+
         :param report_missing: Whether to raise on missing messages.
         :type report_missing: bool
         :raises RuntimeError: If CRC mismatch or missing messages are detected,
@@ -270,8 +276,9 @@ class VppApiCrcChecker(object):
         if self._reported:
             reported_indented = json.dumps(
                 self._reported, indent=1, sort_keys=True, separators=[",", ":"])
+            self._reported = dict()
             self.log_and_raise(
-                "Dir check found incompatible API CRCs:\n{ri}".format(
+                "Incompatible API CRCs found in .api.json files:\n{ri}".format(
                     ri=reported_indented))
         if not report_missing:
             return
@@ -279,15 +286,16 @@ class VppApiCrcChecker(object):
         if missing:
             missing_indented = json.dumps(
                 missing, indent=1, sort_keys=True, separators=[",", ":"])
-            self.log_and_raise("Dir check found missing API CRCs:\n{mi}".format(
+            self.log_and_raise("API CRCs missing from .api.json:\n{mi}".format(
                 mi=missing_indented))
 
     def check_api_name(self, api_name):
-        """Fail if the api_name has no known CRC associated.
+        """Fail if the api_name has no, or different from known CRC associated.
 
         Do not fail if this particular failure has been already reported.
 
-        Intended use: Call everytime an API call is queued or response received.
+        Intended use: Call during test (not in initialization),
+        everytime an API call is queued or response received.
 
         :param api_name: VPP API messagee name to check.
         :type api_name: str or unicode
@@ -306,8 +314,19 @@ class VppApiCrcChecker(object):
         if new_expected:
             # Some collections recognized the message name.
             self._expected = new_expected
-            return
         crc = self._found.get(api_name, None)
+        matching = False
+        if crc is not None:
+            # Regardless of how many collections are remaining,
+            # verify the known CRC is on one of them.
+            for name_to_crc_mapping in self._expected.values():
+                if api_name not in name_to_crc_mapping:
+                    continue
+                if name_to_crc_mapping[api_name] == crc:
+                    matching = True
+                    break
+        if matching:
+            return
         self._reported[api_name] = crc
-        self.log_and_raise("No active collection has API {api!r}"
-                           " CRC found {crc!r}".format(api=api_name, crc=crc))
+        self.log_and_raise("No active collection contains API {api!r}"
+                           " with CRC {crc!r}".format(api=api_name, crc=crc))
