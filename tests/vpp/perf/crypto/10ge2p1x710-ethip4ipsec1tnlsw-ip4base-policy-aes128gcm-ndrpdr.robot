@@ -81,10 +81,7 @@
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
 | | ... | - phy_cores - Number of physical cores. Type: integer
-| | ... | - search_type - NDR or PDR. Type: string
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ... | - min_rate - Min rate for binary search, default value: ${50000}.
-| | ... | Type: integer
 | | ...
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | | ...

@@ -123,9 +123,6 @@
 | | | Run keyword | ${dut}.Add Unix Nodaemon
 | | | Run keyword | ${dut}.Add Unix Coredump
 | | | Run keyword | ${dut}.Add Socksvr | ${SOCKSVR_PATH}
-| | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
-| | | Run keyword | ${dut}.Add DPDK Log Level | debug
-| | | Run keyword | ${dut}.Add DPDK Uio Driver
 | | | Run keyword | ${dut}.Add Heapsize | 4G
 | | | Run keyword | ${dut}.Add Statseg size | 4G
 | | | Run keyword | ${dut}.Add Statseg Per Node Counters | on
@@ -135,10 +132,10 @@
 | | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
 | | | Run keyword | ${dut}.Add IP Heap Size | 4G
 
-| Add worker threads and rxqueues to all DUTs
-| | [Documentation] | Setup worker threads and rxqueues in vpp startup
-| | ... | configuration on all DUTs. Based on the SMT configuration of DUT if
-| | ... | enabled keyword will automatically map also the sibling logical cores.
+| Add worker threads to all DUTs
+| | [Documentation] | Setup worker threads in vpp startup configuration on all
+| | ... | DUTs. Based on the SMT configuration of DUT if enabled keyword will
+| | ... | automatically map also the sibling logical cores.
 | | ... | Keyword will automatically set the appropriate test TAGs in format
 | | ... | mTnC, where m=logical_core_count and n=physical_core_count.
 | | ...
@@ -148,12 +145,15 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Add worker threads and rxqueues to all DUTs \| ${1} \| ${1} \|
+| | ... | \| Add worker threads to all DUTs \| ${1} \| ${1} \|
 | | ...
-| | [Arguments] | ${phy_cores} | ${rx_queues}=${None}
+| | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${rxd}=${None}
+| | ... | ${txd}=${None}
 | | ...
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
+| | ${rxd_count_int}= | Set variable | ${rxd}
+| | ${txd_count_int}= | Set variable | ${txd}
 | | :FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
@@ -189,10 +189,6 @@
 | | | ... | ${dut}.Add CPU Main Core | ${cpu_main}
 | | | Run keyword if | ${cpu_count_int} > 0
 | | | ... | ${dut}.Add CPU Corelist Workers | ${cpu_wt}
-| | | Run keyword
-| | | ... | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
-# For now there is no way to easily predict the number of buffers. Statically
-# doing maximum amount of buffers allowed by DPDK.
 | | | Run keyword if | ${smt_used}
 | | | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${215040} | ELSE
 | | | ... | Run keyword | ${dut}.Add Buffers Per Numa | ${107520}
@@ -203,73 +199,10 @@
 | | Set Test Variable | ${thr_count_int}
 | | Set Test Variable | ${cpu_count_int}
 | | Set Test Variable | ${rxq_count_int}
+| | Set Test Variable | ${rxd_count_int}
+| | Set Test Variable | ${txd_count_int}
 
-| Create Kubernetes VSWITCH startup config on all DUTs
-| | [Documentation] | Create base startup configuration of VSWITCH in Kubernetes
-| | ... | deploy to all DUTs.
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${jumbo} - Jumbo packet. Type: boolean
-| | ... | - ${phy_cores} - Physical cores. Type: integer
-| | ... | - ${rxq} - RX queues. Type: integer
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Create Kubernetes VSWITCH startup config on all DUTs \| ${True} \
-| | ... | \| ${1} \| ${1}
-| | ...
-| | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${jumbo}=${False}
-| | ...
-| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
-| | ${thr_count_int} | Convert to Integer | ${phy_cores}
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
-| | | ... | ${${dut}_if1} | ${${dut}_if2}
-| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
-| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
-| | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
-| | | ${thr_count_int}= | Run keyword if | ${smt_used}
-| | | ... | Evaluate | int(${cpu_count_int}*2)
-| | | ... | ELSE | Set variable | ${thr_count_int}
-| | | ${rxq_count_int}= | Run keyword if | ${rx_queues}
-| | | ... | Set variable | ${rx_queues}
-| | | ... | ELSE | Evaluate | int(${thr_count_int}/2)
-| | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
-| | | ... | Set variable | ${1}
-| | | ... | ELSE | Set variable | ${rxq_count_int}
-| | | ${config}= | Run keyword | Create Kubernetes VSWITCH startup config
-| | | ... | node=${nodes['${dut}']} | phy_cores=${phy_cores}
-| | | ... | cpu_node=${numa} | jumbo=${jumbo} | rxq_count_int=${rxq_count_int}
-| | | ... | buffers_per_numa=${215040}
-| | | ... | filename=/tmp/vswitch.conf | if1=${if1_pci} | if2=${if2_pci}
-| | | Run keyword if | ${thr_count_int} > 1
-| | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
-| | | Set Tags | ${thr_count_int}T${cpu_count_int}C
-| | Set Test Variable | ${smt_used}
-| | Set Test Variable | ${thr_count_int}
-| | Set Test Variable | ${cpu_count_int}
-| | Set Test Variable | ${rxq_count_int}
-
-| Create Kubernetes VNF'${i}' startup config on all DUTs
-| | [Documentation] | Create base startup configuration of VNF in Kubernetes
-| | ... | deploy to all DUTs.
-| | ...
-| | ${i_int}= | Convert To Integer | ${i}
-| | ${cpu_skip}= | Evaluate | ${vswitch_cpus}+${system_cpus}
-| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
-| | ... | ${dut1_if1} | ${dut1_if2}
-| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
-| | ... | ${dut2_if1} | ${dut2_if2}
-| | ${config}= | Run keyword | Create Kubernetes VNF startup config
-| | ... | node=${dut1} | phy_cores=${vnf_cpus} | cpu_node=${dut1_numa}
-| | ... | cpu_skip=${cpu_skip} | filename=/tmp/vnf${i}.conf
-| | ... | i=${i_int}
-| | ${config}= | Run keyword | Create Kubernetes VNF startup config
-| | ... | node=${dut2} | phy_cores=${vnf_cpus} | cpu_node=${dut2_numa}
-| | ... | cpu_skip=${cpu_skip} | filename=/tmp/vnf${i}.conf
-| | ... | i=${i_int}
-
-| Add PCI devices to all DUTs
+| Add DPDK pci devices to all DUTs
 | | [Documentation]
 | | ... | Add PCI devices to VPP configuration file.
 | | ...
@@ -312,90 +245,11 @@
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | Set Test Variable | ${${dut}_if2_2_pci} | ${if2_2_pci}
 
-| Add single PCI device to all DUTs
-| | [Documentation]
-| | ... | Add single (first) PCI device on DUT1 and single (last) PCI device on
-| | ... | DUT2 to VPP configuration file.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
-| | | Run keyword | ${dut}.Add DPDK Dev | ${if1_pci}
-| | | Set Test Variable | ${${dut}_if1_pci} | ${if1_pci}
-
-| Add no multi seg to all DUTs
-| | [Documentation] | Add No Multi Seg to VPP startup configuration to all DUTs.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add DPDK No Multi Seg
-
 | Add DPDK no PCI to all DUTs
 | | [Documentation] | Add DPDK no-pci to VPP startup configuration to all DUTs.
 | | ...
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK no PCI
-
-| Add DPDK dev default RXD to all DUTs
-| | [Documentation] | Add DPDK num-rx-desc to VPP startup configuration to all
-| | ... | DUTs.
-| | ...
-| | ... | *Arguments:*
-| | ... | - rxd - Number of RX descriptors. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Add DPDK dev default RXD to all DUTs \| ${rxd} \|
-| | ...
-| | [Arguments] | ${rxd}
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add DPDK Dev Default RXD | ${rxd}
-
-| Add DPDK dev default TXD to all DUTs
-| | [Documentation] | Add DPDK num-tx-desc to VPP startup configuration to all
-| | ... | DUTs.
-| | ...
-| | ... | *Arguments:*
-| | ... | - txd - Number of TX descriptors. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Add DPDK dev default TXD to all DUTs \| ${txd} \|
-| | ...
-| | [Arguments] | ${txd}
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add DPDK Dev Default TXD | ${txd}
-
-| Add DPDK Uio Driver on all DUTs
-| | [Documentation] | Add DPDK uio driver to VPP startup configuration on all
-| | ... | DUTs.
-| | ...
-| | ... | *Arguments:*
-| | ... | - uio_driver - Required uio driver. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Add DPDK Uio Driver on all DUTs \| igb_uio \|
-| | ...
-| | [Arguments] | ${uio_driver}
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add DPDK Uio Driver | ${uio_driver}
-
-| Add VLAN strip offload switch off
-| | [Documentation]
-| | ... | Add VLAN Strip Offload switch off on all PCI devices.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${dut_str}= | Convert To Lowercase | ${dut}
-| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
-| | | ... | ${${dut_str}_if1}
-| | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']}
-| | | ... | ${${dut_str}_if2}
-| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${if1_pci}
-| | | ... | vlan-strip-offload | off
-| | | Run keyword | ${dut}.Add DPDK Dev Parameter | ${if2_pci}
-| | | ... | vlan-strip-offload | off
 
 | Add VLAN strip offload switch off between DUTs in 3-node single link topology
 | | [Documentation]
@@ -426,55 +280,6 @@
 | | ...
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add NAT
-
-| Add cryptodev to all DUTs
-| | [Documentation] | Add Cryptodev to VPP startup configuration to all DUTs.
-| | ...
-| | ... | *Arguments:*
-| | ... | - count - Number of QAT devices. Type: integer
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Add cryptodev to all DUTs \| ${4} \|
-| | ...
-| | [Arguments] | ${count}
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
-| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
-| | | ${thr_count_int}= | Run keyword if | ${smt_used}
-| | | ... | Evaluate | int(${count}*2)
-| | | ... | ELSE | Set variable | ${count}
-| | | Run keyword | ${dut}.Add DPDK Cryptodev | ${thr_count_int}
-
-| Add DPDK SW cryptodev on DUTs in 3-node single-link circular topology
-| | [Documentation] | Add required number of SW crypto devices of given type
-| | ... | to VPP startup configuration on all DUTs in 3-node single-link
-| | ... | circular topology.
-| | ...
-| | ... | *Arguments:*
-| | ... | - sw_pmd_type - PMD type of SW crypto device. Type: string
-| | ... | - count - Number of SW crypto devices. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Add DPDK SW cryptodev on DUTs in 3-node single-link circular\
-| | ... | topology \| aesni-mb \| ${2} \|
-| | ...
-| | [Arguments] | ${sw_pmd_type} | ${count}
-| | ${smt_used}= | Is SMT enabled | ${nodes['DUT1']['cpuinfo']}
-| | ${thr_count_int}= | Run keyword if | ${smt_used}
-| | ... | Evaluate | int(${count}*2)
-| | ... | ELSE | Set variable | ${count}
-| | ${socket_id}= | Get Interface Numa Node | ${nodes['DUT1']} | ${dut1_if2}
-| | Run keyword | DUT1.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
-| | ... | ${thr_count_int}
-| | ${smt_used}= | Is SMT enabled | ${nodes['DUT2']['cpuinfo']}
-| | ${thr_count_int}= | Run keyword if | ${smt_used}
-| | ... | Evaluate | int(${count}*2)
-| | ... | ELSE | Set variable | ${count}
-| | ${socket_id}= | Get Interface Numa Node | ${nodes['DUT2']} | ${dut2_if1}
-| | Run keyword | DUT2.Add DPDK SW Cryptodev | ${sw_pmd_type} | ${socket_id}
-| | ... | ${thr_count_int}
 
 | Write startup configuration on all VPP DUTs
 | | [Documentation] | Write VPP startup configuration without restarting VPP.
@@ -532,6 +337,7 @@
 | | Run Keyword And Return If | '${rc}'=='FAIL' | Log | ${err_msg}
 | | ... | console=yes | level=WARN
 
+# TODO: Cleanup when VIRL is gone.
 | Set up functional test
 | | [Documentation] | Common test setup for functional tests.
 | | ...
@@ -547,6 +353,7 @@
 | | | Add New Socket | ${nodes['${dut}']} | PAPI | ${dut} | ${SOCKSVR_PATH}
 | | | Add New Socket | ${nodes['${dut}']} | STATS | ${dut} | ${SOCKSTAT_PATH}
 
+# TODO: Cleanup when VIRL is gone.
 | Tear down functional test
 | | [Documentation] | Common test teardown for functional tests.
 | | ...
@@ -557,14 +364,69 @@
 | | Verify VPP PID in Teardown
 | | Clean Sockets On All Nodes | ${nodes}
 
-| Tear down LISP functional test
-| | [Documentation] | Common test teardown for functional tests with LISP.
+# TODO: Cleanup when ligato is gone.
+| Create Kubernetes VSWITCH startup config on all DUTs
+| | [Documentation] | Create base startup configuration of VSWITCH in Kubernetes
+| | ... | deploy to all DUTs.
 | | ...
-| | Remove All Added Ports On All DUTs From Topology | ${nodes}
-| | Show Packet Trace on All DUTs | ${nodes}
-| | Show PAPI History On All DUTs | ${nodes}
-| | Show Vpp Settings | ${nodes['DUT1']}
-| | Show Vpp Settings | ${nodes['DUT2']}
-| | Vpp Show Errors On All DUTs | ${nodes}
-| | Verify VPP PID in Teardown
-| | Clean Sockets On All Nodes | ${nodes}
+| | ... | *Arguments:*
+| | ... | - ${jumbo} - Jumbo packet. Type: boolean
+| | ... | - ${phy_cores} - Physical cores. Type: integer
+| | ... | - ${rxq} - RX queues. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Create Kubernetes VSWITCH startup config on all DUTs \| ${True} \
+| | ... | \| ${1} \| ${1}
+| | ...
+| | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${jumbo}=${False}
+| | ...
+| | ${cpu_count_int} | Convert to Integer | ${phy_cores}
+| | ${thr_count_int} | Convert to Integer | ${phy_cores}
+| | :FOR | ${dut} | IN | @{duts}
+| | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
+| | | ... | ${${dut}_if1} | ${${dut}_if2}
+| | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
+| | | ${if1_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if1}
+| | | ${if2_pci}= | Get Interface PCI Addr | ${nodes['${dut}']} | ${${dut}_if2}
+| | | ${thr_count_int}= | Run keyword if | ${smt_used}
+| | | ... | Evaluate | int(${cpu_count_int}*2)
+| | | ... | ELSE | Set variable | ${thr_count_int}
+| | | ${rxq_count_int}= | Run keyword if | ${rx_queues}
+| | | ... | Set variable | ${rx_queues}
+| | | ... | ELSE | Evaluate | int(${thr_count_int}/2)
+| | | ${rxq_count_int}= | Run keyword if | ${rxq_count_int} == 0
+| | | ... | Set variable | ${1}
+| | | ... | ELSE | Set variable | ${rxq_count_int}
+| | | ${config}= | Run keyword | Create Kubernetes VSWITCH startup config
+| | | ... | node=${nodes['${dut}']} | phy_cores=${phy_cores}
+| | | ... | cpu_node=${numa} | jumbo=${jumbo} | rxq_count_int=${rxq_count_int}
+| | | ... | buffers_per_numa=${215040}
+| | | ... | filename=/tmp/vswitch.conf | if1=${if1_pci} | if2=${if2_pci}
+| | | Run keyword if | ${thr_count_int} > 1
+| | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
+| | | Set Tags | ${thr_count_int}T${cpu_count_int}C
+| | Set Test Variable | ${smt_used}
+| | Set Test Variable | ${thr_count_int}
+| | Set Test Variable | ${cpu_count_int}
+| | Set Test Variable | ${rxq_count_int}
+
+# TODO: Cleanup when ligato is gone.
+| Create Kubernetes VNF'${i}' startup config on all DUTs
+| | [Documentation] | Create base startup configuration of VNF in Kubernetes
+| | ... | deploy to all DUTs.
+| | ...
+| | ${i_int}= | Convert To Integer | ${i}
+| | ${cpu_skip}= | Evaluate | ${vswitch_cpus}+${system_cpus}
+| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
+| | ... | ${dut2_if1} | ${dut2_if2}
+| | ${config}= | Run keyword | Create Kubernetes VNF startup config
+| | ... | node=${dut1} | phy_cores=${vnf_cpus} | cpu_node=${dut1_numa}
+| | ... | cpu_skip=${cpu_skip} | filename=/tmp/vnf${i}.conf
+| | ... | i=${i_int}
+| | ${config}= | Run keyword | Create Kubernetes VNF startup config
+| | ... | node=${dut2} | phy_cores=${vnf_cpus} | cpu_node=${dut2_numa}
+| | ... | cpu_skip=${cpu_skip} | filename=/tmp/vnf${i}.conf
+| | ... | i=${i_int}

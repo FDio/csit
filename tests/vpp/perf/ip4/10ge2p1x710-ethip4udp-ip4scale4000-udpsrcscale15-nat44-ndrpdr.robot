@@ -13,12 +13,10 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| Resource | resources/libraries/robot/ip/nat.robot
-| Resource | resources/libraries/robot/shared/traffic.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | NAT44 | SRC_USER_4000
-| ... | SCALE
+| ... | SCALE | VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -59,7 +57,7 @@
 
 *** Keywords ***
 | Local Template
-| | [Documentation] | FIXME.
+| | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
@@ -74,12 +72,12 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Add NAT to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
+| | When Apply startup configuration on all VPP DUTs
+| | And Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Initialize NAT44 in circular topology
 | | Then Find NDR and PDR intervals using optimized search
 
