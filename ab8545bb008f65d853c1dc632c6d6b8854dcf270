@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f6fd769f_87f83a0d",
+        "filename": "resources/libraries/robot/shared/default.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-21T11:18:46Z",
+      "side": 1,
+      "message": "Document also rxd and txd.\nExplain what happens for None (default), as that is not a number.",
+      "range": {
+        "startLine": 144,
+        "startChar": 57,
+        "endLine": 144,
+        "endChar": 58
+      },
+      "revId": "ab8545bb008f65d853c1dc632c6d6b8854dcf270",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "784fceb7_289374e4",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-21T11:18:46Z",
+      "side": 1,
+      "message": "Explain this has to be run before startup.conf is finalized.",
+      "range": {
+        "startLine": 142,
+        "startChar": 10,
+        "endLine": 142,
+        "endChar": 14
+      },
+      "revId": "ab8545bb008f65d853c1dc632c6d6b8854dcf270",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9b634761_561412f3",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-21T11:18:46Z",
+      "side": 1,
+      "message": "Add pre-init and init for all of them.",
+      "range": {
+        "startLine": 145,
+        "startChar": 46,
+        "endLine": 145,
+        "endChar": 68
+      },
+      "revId": "ab8545bb008f65d853c1dc632c6d6b8854dcf270",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
