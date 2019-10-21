@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | SRv6 | IP6FWD | FEATURE | SRv6_PROXY
-| ... | SRv6_PROXY_MASQ | MEMIF | LXC
+| ... | SRv6_PROXY_MASQ | MEMIF | LXC | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -51,10 +51,10 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so | srv6am_plugin.so
-| ${osi_layer}= | L3
+| ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
-# outer IPv6 header + SRH with 3 SIDs: 40+(8+3*16)B
+| ${osi_layer}= | L3
 | ${overhead}= | ${96}
 # SIDs
 | ${dut1_sid1}= | 2002:1::
@@ -110,11 +110,12 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | vfio-pci
+| | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Start containers for test | nf_chains=${1} | nf_nodes=${1}
 | | And Initialize IPv6 forwarding over SRv6 with endpoint to SR-unaware Service Function via 'masquerading' behaviour in 3-node circular topology
 | | Then Find NDR and PDR intervals using optimized search

@@ -16,7 +16,7 @@
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | IP4FWD | IPSEC | IPSECSW | IPSECTUN | IP4BASE
-| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES
+| ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
@@ -38,6 +38,7 @@
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
 | ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
+| ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci
 | ${overhead}= | ${54}
@@ -70,11 +71,12 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA 512 256
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Configure topology for IPv4 IPsec testing
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Configure manual keyed connection for IPSec
