@@ -14,11 +14,10 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
-# import additional Lisp settings from resource file
 | Variables | resources/test_data/lisp/lisp.py
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | IP4FWD | LISPGPE_IP6o4
+| ... | NIC_Virtual | IP4FWD | LISPGPE_IP6o4 | VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
@@ -44,6 +43,7 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
+| ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci
 | ${overhead}= | ${54}
@@ -64,11 +64,12 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Configure topology for IPv6 LISPoIP4 testing
 | | And Vpp All RA Suppress Link Layer | ${nodes}
 | | And Configure LISP in 2-node circular topology
