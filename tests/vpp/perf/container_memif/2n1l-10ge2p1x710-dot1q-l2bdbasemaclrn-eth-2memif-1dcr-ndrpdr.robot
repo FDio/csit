@@ -54,6 +54,7 @@
 | @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
+| ${qat_name}= | ${None}
 | ${osi_layer}= | L2
 | ${overhead}= | ${4}
 | ${subid}= | 10
@@ -83,11 +84,12 @@
 | | ...
 | | Set Test Variable | \${frame_size}
 | | ...
-| | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg
-| | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
+| | Given Set Max Rate And Jumbo
+| | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
+| | And Pre-initialize layer driver | ${nic_driver}
+| | When Apply startup configuration on all VPP DUTs
+| | And Initialize layer driver | ${nic_driver}
+| | And Initialize layer interface
 | | And Start containers for test
 | | And Initialize L2 Bridge Domain with memif pairs and VLAN in circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
@@ -99,7 +101,7 @@
 | | frame_size=${64} | phy_cores=${1}
 
 | tc02-64B-2c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr
-| | [Tags] | 64B | 2C
+| | [Tags] | 64B | 2C | THIS
 | | frame_size=${64} | phy_cores=${2}
 
 | tc03-64B-4c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-ndrpdr

@@ -136,19 +136,57 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Initialize layer interface on node | ${dut} | count=${count}
 | | Set Test Variable | ${prev_layer} | if
-| | Set interfaces in path up
+
+| Pre-initialize layer driver
+| | [Documentation]
+| | ... | Pre-initialize driver based interfaces on each DUT.
+| | ...
+| | ... | *Arguments:*
+| | ... | - driver - NIC driver used in test [vfio-pci|avf|rdma-core].
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Pre-initialize layer driver \| vfio-pci \|
+| | ...
+| | [Arguments] | ${driver}
+| | ...
+| | Run Keyword | Pre-initialize layer ${driver} on all DUTs
+
+| Pre-initialize layer vfio-pci on all DUTs
+| | [Documentation]
+| | ... | Add DPDK driver related sections to startup config on all DUTs.
+| | ...
+| | Add DPDK pci devices to all DUTs
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK No Tx Checksum Offload
+| | | Run keyword | ${dut}.Add DPDK Log Level | debug
+| | | Run keyword | ${dut}.Add DPDK Uio Driver | vfio-pci
+| | | Run keyword | ${dut}.Add DPDK Dev Default RXQ | ${rxq_count_int}
+| | | Run Keyword if | not ${jumbo}
+| | | ... | ${dut}.Add DPDK No Multi Seg
+| | | Run keyword if | ${rxd_count_int}
+| | | ... | ${dut}.Add DPDK Dev Default RXD | ${rxd_count_int}
+| | | Run keyword if | ${txd_count_int}
+| | | ... | ${dut}.Add DPDK Dev Default TXD | ${txd_count_int}
+| | | Run keyword if | ${qat_name}
+| | | ... | ${dut}.Add DPDK Cryptodev | ${thr_count_int}
 
 | Initialize layer driver
 | | [Documentation]
 | | ... | Initialize driver based interfaces on each DUT. Interfaces are
 | | ... | brought up.
 | | ...
+| | ... | *Arguments:*
+| | ... | - driver - NIC driver used in test [vfio-pci|avf|rdma-core].
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize layer driver \| vfio-pci \|
+| | ...
 | | [Arguments] | ${driver}
 | | ...
-# TODO: Introduce the Pre- Initialize layer driver for preparing driver before
-# VPP starts and then Post- Initialize layer driver for preparing interfaces
-# after VPP starts. This way we can control actions needed for proper handling
-# of various driver-based interfaces in VPP.
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run Keyword | Initialize layer ${driver} on node | ${dut}
 | | Set Test Variable | ${prev_layer} | vf
