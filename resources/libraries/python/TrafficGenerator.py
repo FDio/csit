@@ -484,10 +484,10 @@ class TrafficGenerator(AbstractMeasurer):
         # we need to encode them, so that repr() does not lead with 'u'.
         if isinstance(rate, unicode):
             rate = rate.encode("utf-8")
-        if isinstance(duration, unicode):
-            duration = duration.encode("utf-8")
-        if isinstance(warmup_time, unicode):
-            warmup_time = warmup_time.encode("utf-8")
+        if not isinstance(duration, (float, int)):
+            duration = float(duration)
+        if not isinstance(warmup_time, (float, int)):
+            warmup_time = float(warmup_time)
         command = (
             "sh -c '{tool}/resources/tools/trex/trex_stateless_profile.py"
             " --profile {prof}/resources/traffic_profiles/trex/{traffic}.py"

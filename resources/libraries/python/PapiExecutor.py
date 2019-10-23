@@ -15,9 +15,11 @@
 """
 
 import binascii
+import copy
 import glob
 import json
 import shutil
+import struct  # vpp-papi can raise struct.error
 import subprocess
 import sys
 import tempfile
@@ -33,6 +35,7 @@ from resources.libraries.python.PythonThree import raise_from
 from resources.libraries.python.PapiHistory import PapiHistory
 from resources.libraries.python.ssh import (
     SSH, SSHTimeout, exec_cmd_no_error, scp_node)
+from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 
 
@@ -93,8 +96,9 @@ class PapiSocketExecutor(object):
 
     Note: Use only with "with" statement, e.g.:
 
+        cmd = 'show_version'
         with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add('show_version').get_reply(err_msg)
+            reply = papi_exec.add(cmd).get_reply(err_msg)
 
     This class processes two classes of VPP PAPI methods:
     1. Simple request / reply: method='request'.
@@ -108,8 +112,9 @@ class PapiSocketExecutor(object):
 
     a. One request with no arguments:
 
+        cmd = 'show_version'
         with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add('show_version').get_reply(err_msg)
+            reply = papi_exec.add(cmd).get_reply(err_msg)
 
     b. Three requests with arguments, the second and the third ones are the same
        but with different arguments.
@@ -127,11 +132,12 @@ class PapiSocketExecutor(object):
     """
 
     # Class cache for reuse between instances.
-    cached_vpp_instance = None
-    api_json_directory = None
-    crc_checker_instance = None
+    vpp_instance = None
+    """Takes long time to create, stores all PAPI functions and types."""
+    crc_checker = None
+    """Accesses .api.json files at creation, caching allows deleting them."""
 
-    def __init__(self, node, remote_vpp_socket="/run/vpp-api.sock"):
+    def __init__(self, node, remote_vpp_socket=Constants.SOCKSVR_PATH):
         """Store the given arguments, declare managed variables.
 
         :param node: Node to connect to and forward unix domain socket from.
@@ -147,43 +153,25 @@ class PapiSocketExecutor(object):
         self._temp_dir = None
         self._ssh_control_socket = None
         self._local_vpp_socket = None
+        self.initialize_vpp_instance()
 
-    def create_crc_checker(self):
-        """Return the cached instance or create new one from directory.
+    def initialize_vpp_instance(self):
+        """Create VPP instance with bindings to API calls, store as class field.
 
-        It is assumed self.api_json_directory is set, as a class variable.
+        No-op if the instance had been stored already.
 
-        :returns: Cached or newly created instance aware of .api.json content.
-        :rtype: VppApiCrc.VppApiCrcChecker
-        """
-        cls = self.__class__
-        if cls.crc_checker_instance is None:
-            cls.crc_checker_instance = VppApiCrcChecker(cls.api_json_directory)
-        return cls.crc_checker_instance
-
-    @property
-    def vpp_instance(self):
-        """Return VPP instance with bindings to all API calls.
-
-        The returned instance is initialized for unix domain socket access,
+        The instance is initialized for unix domain socket access,
         it has initialized all the bindings, but it is not connected
-        (to local socket) yet.
+        (to a local socket) yet.
 
-        First invocation downloads .api.json files from self._node
-        into a temporary directory.
-
-        After first invocation, the result is cached, so other calls are quick.
-        Class variable is used as the cache, but this property is defined as
-        an instance method, so that _node (for api files) is known.
-
-        :returns: Initialized but not connected VPP instance.
-        :rtype: vpp_papi.VPPApiClient
+        This method downloads .api.json files from self._node
+        into a temporary directory, deletes them finally.
         """
-        cls = self.__class__
-        if cls.cached_vpp_instance is not None:
-            return cls.cached_vpp_instance
+        if self.vpp_instance:
+            return
+        cls = self.__class__  # Shorthand for setting class fields.
+        package_path = None
         tmp_dir = tempfile.mkdtemp(dir="/tmp")
-        package_path = "Not set yet."
         try:
             # Pack, copy and unpack Python part of VPP installation from _node.
             # TODO: Use rsync or recursive version of ssh.scp_node instead?
@@ -200,19 +188,20 @@ class PapiSocketExecutor(object):
             exec_cmd_no_error(node, ["bash", "-c", "'" + inner_cmd + "'"])
             scp_node(node, tmp_dir + "/papi.txz", "/tmp/papi.txz", get=True)
             run(["tar", "xf", tmp_dir + "/papi.txz", "-C", tmp_dir])
-            cls.api_json_directory = tmp_dir + "/usr/share/vpp/api"
+            api_json_directory = tmp_dir + "/usr/share/vpp/api"
             # Perform initial checks before .api.json files are gone,
-            # by accessing the property (which also creates its instance).
-            self.create_crc_checker()
+            # by creating the checker instance.
+            cls.crc_checker = VppApiCrcChecker(api_json_directory)
             # When present locally, we finally can find the installation path.
             package_path = glob.glob(tmp_dir + installed_papi_glob)[0]
             # Package path has to be one level above the vpp_papi directory.
             package_path = package_path.rsplit('/', 1)[0]
             sys.path.append(package_path)
+            # pylint: disable=import-error
             from vpp_papi.vpp_papi import VPPApiClient as vpp_class
-            vpp_class.apidir = cls.api_json_directory
+            vpp_class.apidir = api_json_directory
             # We need to create instance before removing from sys.path.
-            cls.cached_vpp_instance = vpp_class(
+            cls.vpp_instance = vpp_class(
                 use_socket=True, server_address="TBD", async_thread=False,
                 read_timeout=14, logger=FilteredLogger(logger, "INFO"))
             # Cannot use loglevel parameter, robot.api.logger lacks support.
@@ -221,7 +210,6 @@ class PapiSocketExecutor(object):
             shutil.rmtree(tmp_dir)
             if sys.path[-1] == package_path:
                 sys.path.pop()
-        return cls.cached_vpp_instance
 
     def __enter__(self):
         """Create a tunnel, connect VPP instance.
@@ -308,7 +296,7 @@ class PapiSocketExecutor(object):
         for _ in xrange(2):
             try:
                 vpp_instance.connect_sync("csit_socket")
-            except IOError as err:
+            except (IOError, struct.error) as err:
                 logger.warn("Got initial connect error {err!r}".format(err=err))
                 vpp_instance.disconnect()
             else:
@@ -327,14 +315,15 @@ class PapiSocketExecutor(object):
         run(["ssh", "-S", self._ssh_control_socket, "-O", "exit", "0.0.0.0"],
             check=False)
         shutil.rmtree(self._temp_dir)
-        return
 
     def add(self, csit_papi_command, history=True, **kwargs):
         """Add next command to internal command list; return self.
 
+        Unless disabled, new entry to papi history is also added at this point.
         The argument name 'csit_papi_command' must be unique enough as it cannot
         be repeated in kwargs.
-        Unless disabled, new entry to papi history is also added at this point.
+        The kwargs dict is deep-copied, so it is safe to use the original
+        with partial modifications for subsequent commands.
 
         Any pending conflicts from .api.json processing are raised.
         Then the command name is checked for known CRCs.
@@ -354,11 +343,13 @@ class PapiSocketExecutor(object):
         :rtype: PapiSocketExecutor
         :raises RuntimeError: If unverified or conflicting CRC is encountered.
         """
+        self.crc_checker.report_initial_conflicts()
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
+        self.crc_checker.check_api_name(csit_papi_command)
         self._api_command_list.append(
-            dict(api_name=csit_papi_command, api_args=kwargs))
+            dict(api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)))
         return self
 
     def get_replies(self, err_msg="Failed to get replies."):
@@ -410,7 +401,7 @@ class PapiSocketExecutor(object):
         :raises AssertionError: If retval is nonzero, parsing or ssh error.
         """
         reply = self.get_reply(err_msg=err_msg)
-        logger.info("Getting index from {reply!r}".format(reply=reply))
+        logger.trace("Getting index from {reply!r}".format(reply=reply))
         return reply["sw_if_index"]
 
     def get_details(self, err_msg="Failed to get dump details."):
@@ -431,29 +422,52 @@ class PapiSocketExecutor(object):
         return self._execute(err_msg)
 
     @staticmethod
-    def run_cli_cmd(node, cmd, log=True):
+    def run_cli_cmd(node, cli_cmd, log=True,
+                    remote_vpp_socket=Constants.SOCKSVR_PATH):
         """Run a CLI command as cli_inband, return the "reply" field of reply.
 
         Optionally, log the field value.
 
         :param node: Node to run command on.
-        :param cmd: The CLI command to be run on the node.
+        :param cli_cmd: The CLI command to be run on the node.
+        :param remote_vpp_socket: Path to remote socket to tunnel to.
         :param log: If True, the response is logged.
         :type node: dict
-        :type cmd: str
+        :type remote_vpp_socket: str
+        :type cli_cmd: str
         :type log: bool
         :returns: CLI output.
         :rtype: str
         """
-        cli = 'cli_inband'
-        args = dict(cmd=cmd)
+        cmd = 'cli_inband'
+        args = dict(cmd=cli_cmd)
         err_msg = "Failed to run 'cli_inband {cmd}' PAPI command on host " \
-                  "{host}".format(host=node['host'], cmd=cmd)
-        with PapiSocketExecutor(node) as papi_exec:
-            reply = papi_exec.add(cli, **args).get_reply(err_msg)["reply"]
+                  "{host}".format(host=node['host'], cmd=cli_cmd)
+        with PapiSocketExecutor(node, remote_vpp_socket) as papi_exec:
+            reply = papi_exec.add(cmd, **args).get_reply(err_msg)["reply"]
         if log:
-            logger.info("{cmd}:\n{reply}".format(cmd=cmd, reply=reply))
+            logger.info(
+                "{cmd} ({host} - {remote_vpp_socket}):\n{reply}".
+                format(cmd=cmd, reply=reply,
+                       remote_vpp_socket=remote_vpp_socket, host=node['host']))
         return reply
+
+    @staticmethod
+    def run_cli_cmd_on_all_sockets(node, cli_cmd, log=True):
+        """Run a CLI command as cli_inband, on all sockets in topology file.
+
+        :param node: Node to run command on.
+        :param cli_cmd: The CLI command to be run on the node.
+        :param log: If True, the response is logged.
+        :type node: dict
+        :type cli_cmd: str
+        :type log: bool
+        """
+        sockets = Topology.get_node_sockets(node, socket_type=SocketType.PAPI)
+        if sockets:
+            for socket in sockets.values():
+                PapiSocketExecutor.run_cli_cmd(
+                    node, cli_cmd, log=log, remote_vpp_socket=socket)
 
     @staticmethod
     def dump_and_log(node, cmds):
@@ -500,7 +514,7 @@ class PapiSocketExecutor(object):
             try:
                 try:
                     reply = papi_fn(**command["api_args"])
-                except IOError as err:
+                except (IOError, struct.error) as err:
                     # Ocassionally an error happens, try reconnect.
                     logger.warn("Reconnect after error: {err!r}".format(
                         err=err))
@@ -510,12 +524,13 @@ class PapiSocketExecutor(object):
                     self.vpp_instance.connect_sync("csit_socket")
                     logger.trace("Reconnected.")
                     reply = papi_fn(**command["api_args"])
-            except (AttributeError, IOError) as err:
+            except (AttributeError, IOError, struct.error) as err:
                 raise_from(AssertionError(err_msg), err, level="INFO")
             # *_dump commands return list of objects, convert, ordinary reply.
             if not isinstance(reply, list):
                 reply = [reply]
             for item in reply:
+                self.crc_checker.check_api_name(item.__class__.__name__)
                 dict_item = dictize(item)
                 if "retval" in dict_item.keys():
                     # *_details messages do not contain retval.
@@ -600,6 +615,8 @@ class PapiExecutor(object):
 
         The argument name 'csit_papi_command' must be unique enough as it cannot
         be repeated in kwargs.
+        The kwargs dict is deep-copied, so it is safe to use the original
+        with partial modifications for subsequent commands.
 
         :param csit_papi_command: VPP API command.
         :param history: Enable/disable adding command to PAPI command history.
@@ -613,11 +630,12 @@ class PapiExecutor(object):
         if history:
             PapiHistory.add_to_papi_history(
                 self._node, csit_papi_command, **kwargs)
-        self._api_command_list.append(dict(api_name=csit_papi_command,
-                                           api_args=kwargs))
+        self._api_command_list.append(dict(
+            api_name=csit_papi_command, api_args=copy.deepcopy(kwargs)))
         return self
 
-    def get_stats(self, err_msg="Failed to get statistics.", timeout=120):
+    def get_stats(self, err_msg="Failed to get statistics.", timeout=120,
+                  socket=Constants.SOCKSTAT_PATH):
         """Get VPP Stats from VPP Python API.
 
         :param err_msg: The message used if the PAPI command(s) execution fails.
@@ -627,12 +645,12 @@ class PapiExecutor(object):
         :returns: Requested VPP statistics.
         :rtype: list of dict
         """
-
         paths = [cmd['api_args']['path'] for cmd in self._api_command_list]
         self._api_command_list = list()
 
         stdout = self._execute_papi(
-            paths, method='stats', err_msg=err_msg, timeout=timeout)
+            paths, method='stats', err_msg=err_msg, timeout=timeout,
+            socket=socket)
 
         return json.loads(stdout)
 
@@ -677,7 +695,7 @@ class PapiExecutor(object):
         return api_data_processed
 
     def _execute_papi(self, api_data, method='request', err_msg="",
-                      timeout=120):
+                      timeout=120, socket=None):
         """Execute PAPI command(s) on remote node and store the result.
 
         :param api_data: List of APIs with their arguments.
@@ -695,7 +713,6 @@ class PapiExecutor(object):
         :raises RuntimeError: If PAPI executor failed due to another reason.
         :raises AssertionError: If PAPI command(s) execution has failed.
         """
-
         if not api_data:
             raise RuntimeError("No API data provided.")
 
@@ -703,10 +720,12 @@ class PapiExecutor(object):
             if method in ("stats", "stats_request") \
             else json.dumps(self._process_api_data(api_data))
 
-        cmd = "{fw_dir}/{papi_provider} --method {method} --data '{json}'".\
-            format(
-                fw_dir=Constants.REMOTE_FW_DIR, method=method, json=json_data,
-                papi_provider=Constants.RESOURCES_PAPI_PROVIDER)
+        sock = " --socket {socket}".format(socket=socket) if socket else ""
+        cmd = (
+            "{fw_dir}/{papi_provider} --method {method} --data '{json}'{socket}"
+            .format(fw_dir=Constants.REMOTE_FW_DIR,
+                    papi_provider=Constants.RESOURCES_PAPI_PROVIDER,
+                    method=method, json=json_data, socket=sock))
         try:
             ret_code, stdout, _ = self._ssh.exec_command_sudo(
                 cmd=cmd, timeout=timeout, log_stdout_err=False)

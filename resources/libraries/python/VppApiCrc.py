@@ -19,6 +19,7 @@ import yaml
 
 from robot.api import logger
 
+from resources.libraries.python.Constants import Constants
 
 def _str(text):
     """Convert from possible unicode without interpreting as number.
@@ -42,7 +43,8 @@ class VppApiCrcChecker(object):
     so make sure the calling libraries have appropriate robot library scope.
     For usual testing, it means "GLOBAL" scope."""
 
-    def __init__(self, directory):
+    def __init__(
+            self, directory, fail_on_mismatch=Constants.FAIL_ON_CRC_MISMATCH):
         """Initialize empty state, then register known collections.
 
         This also scans directory for .api.json files
@@ -50,6 +52,11 @@ class VppApiCrcChecker(object):
 
         :param directory: Root directory of the search for .api.json files.
         :type directory: str
+        """
+
+        self.fail_on_mismatch = fail_on_mismatch
+        """If True, mismatch leads to test failure, by raising exception.
+        If False, the mismatch is logged, but the test is allowed to continue.
         """
 
         self._expected = dict()
@@ -88,6 +95,16 @@ class VppApiCrcChecker(object):
         self._initial_conflicts_reported = False
         self._register_all()
         self._check_dir(directory)
+
+    def raise_or_log(self, exception):
+        """If fail_on_mismatch, raise, else log to console the exception.
+
+        :param exception: The exception to raise or log.
+        :type exception: RuntimeError
+        """
+        if self.fail_on_mismatch:
+            raise exception
+        logger.console("{exc!r}".format(exc=exception))
 
     def _register_collection(self, collection_name, name_to_crc_mapping):
         """Add a named (copy of) collection of CRCs.
@@ -243,20 +260,23 @@ class VppApiCrcChecker(object):
 
         :param report_missing: Whether to raise on missing messages.
         :type report_missing: bool
-        :raises RuntimeError: If CRC mismatch or missing messages are detected.
+        :raises RuntimeError: If CRC mismatch or missing messages are detected,
+            and fail_on_mismatch is True.
         """
         if self._initial_conflicts_reported:
             return
         self._initial_conflicts_reported = True
         if self._reported:
-            raise RuntimeError("Dir check found incompatible API CRCs: {rep!r}"\
-                .format(rep=self._reported))
+            self.raise_or_log(
+                RuntimeError("Dir check found incompatible API CRCs: {rep!r}"\
+                    .format(rep=self._reported)))
         if not report_missing:
             return
         missing = {name: mapp for name, mapp in self._missing.items() if mapp}
         if missing:
-            raise RuntimeError("Dir check found missing API CRCs: {mis!r}"\
-                .format(mis=missing))
+            self.raise_or_log(
+                RuntimeError("Dir check found missing API CRCs: {mis!r}"\
+                    .format(mis=missing)))
 
     def check_api_name(self, api_name):
         """Fail if the api_name has no known CRC associated.
@@ -285,6 +305,6 @@ class VppApiCrcChecker(object):
             return
         crc = self._found.get(api_name, None)
         self._reported[api_name] = crc
-        # Disabled temporarily during CRC mismatch.
-        #raise RuntimeError("No active collection has API {api!r}"
-        #                   " CRC found {crc!r}".format(api=api_name, crc=crc))
+        self.raise_or_log(
+            RuntimeError("No active collection has API {api!r}"
+                         " CRC found {crc!r}".format(api=api_name, crc=crc)))

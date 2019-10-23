@@ -306,10 +306,9 @@ class VatTerminal(object):
                     raise RuntimeError("More instances of VPP running on node "
                                        "{0}. VAT command {1} execution failed.".
                                        format(self._node['host'], cmd))
-            else:
-                raise RuntimeError("VPP not running on node {0}. VAT command "
-                                   "{1} execution failed.".
-                                   format(self._node['host'], cmd))
+            raise RuntimeError("VPP not running on node {0}. VAT command "
+                               "{1} execution failed.".
+                               format(self._node['host'], cmd))
 
         logger.debug("VAT output: {0}".format(out))
         if self.json:

@@ -17,6 +17,7 @@
 | Resource | resources/libraries/robot/shared/container.robot
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.topology.Topology
+| Variables | resources/libraries/python/Constants.py
 | ...
 | Documentation | Test teardown keywords.
 
@@ -38,13 +39,14 @@
 | | ... | Verify VPP PID in Teardown
 | | :FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
+| | Clean Sockets On All Nodes | ${nodes}
 
 | Additional Test Tear Down Action For performance
 | | [Documentation]
 | | ... | Additional teardown for tests which uses performance measurement.
 | | ...
 | | Run Keyword If Test Failed
-| | ... | Send traffic at specified rate | ${perf_trial_duration} | 10000pps
+| | ... | Send traffic at specified rate | ${PERF_TRIAL_DURATION} | 10000pps
 | | ... | ${frame_size} | ${traffic_profile} | pkt_trace=${True}
 
 | Additional Test Tear Down Action For packet_trace
@@ -108,6 +110,13 @@
 | | ... | Vpp Log Macip Acl Settings | ${dut1}
 | | Run Keyword If Test Failed
 | | ... | Vpp Log Macip Acl Interface Assignment | ${dut1}
+
+| Additional Test Tear Down Action For classify
+| | [Documentation]
+| | ... | Additional teardown for tests which uses classify tables.
+| | ...
+| | Run Keyword If Test Failed
+| | ... | Show Classify Tables Verbose on all DUTs | ${nodes}
 
 | Additional Test Tear Down Action For srv6
 | | [Documentation]

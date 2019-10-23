@@ -19,7 +19,7 @@
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Tear down test | packet_trace | classify
 | ...
 | Test Template | Local Template
 | ...
@@ -41,6 +41,7 @@
 | ${overhead}= | ${0}
 | ${cir}= | ${100}
 | ${eir}= | ${150}
+| ${dscp}= | AF22
 
 *** Keywords ***
 | Local Template
@@ -68,6 +69,11 @@
 | | Then Send packet and verify marking
 | | ... | ${tg} | ${tg_if1} | ${tg_if2} | ${tg_if1_mac} | ${dut1_if1_mac}
 | | ... | 2001:1::2 | 2001:2::2
+# TODO: Add check of number of hits of the classify session after traffic
+# Until there is implemented check of number of hits of the classify session
+# after passing the traffic log the show classify tables verbose to allow visual
+# check of hit number when needed.
+| | And Show Classify Tables Verbose | ${dut1}
 
 *** Test Cases ***
 | tc01-78B-ethip6-ip6base-ipolicemarkbase-dev

@@ -43,8 +43,9 @@ class Memif(object):
         :returns: List of memif interfaces extracted from Papi response.
         :rtype: list
         """
+        cmd = "memif_dump"
         with PapiSocketExecutor(node) as papi_exec:
-            details = papi_exec.add("memif_dump").get_details()
+            details = papi_exec.add(cmd).get_details()
 
         for memif in details:
             memif["if_name"] = memif["if_name"].rstrip('\x00')

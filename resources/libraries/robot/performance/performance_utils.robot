@@ -23,6 +23,7 @@
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.Trace
+| Variables | resources/libraries/python/Constants.py
 | ...
 | Documentation
 | ... | Performance suite keywords - utilities to find and verify NDR and PDR.
@@ -396,8 +397,8 @@
 | | ... | \| Traffic should pass with maximum rate \| ${1} \| ${10.0} \
 | | ... | \| ${False} \| ${False} \| ${0} \| ${1} \|
 | | ...
-| | [Arguments] | ${trial_duration}=${perf_trial_duration}
-| | ... | ${fail_no_traffic}=${True} | ${subsamples}=${perf_trial_multiplicity}
+| | [Arguments] | ${trial_duration}=${PERF_TRIAL_DURATION}
+| | ... | ${fail_no_traffic}=${True} | ${subsamples}=${PERF_TRIAL_MULTIPLICITY}
 | | ... | ${unidirection}=${False} | ${tx_port}=${0} | ${rx_port}=${1}
 | | ...
 | | ${results} = | Send traffic at specified rate | ${trial_duration}
@@ -440,7 +441,8 @@
 | | Clear and show runtime counters with running traffic | ${trial_duration}
 | | ... | ${rate} | ${frame_size} | ${traffic_profile}
 | | ... | ${unidirection} | ${tx_port} | ${rx_port}
-| | Run Keyword If | ${dut_stats}==${True} | Clear all counters on all DUTs
+| | Run Keyword If | ${dut_stats}==${True}
+| | ... | Clear statistics on all DUTs | ${nodes}
 | | Run Keyword If | ${dut_stats}==${True} and ${pkt_trace}==${True}
 | | ... | VPP Enable Traces On All DUTs | ${nodes} | fail_on_error=${False}
 | | Run Keyword If | ${dut_stats}==${True}
@@ -492,10 +494,10 @@
 | | ... | warmup_time=${0} | async_call=${True} | latency=${False}
 | | ... | unidirection=${unidirection} | tx_port=${tx_port} | rx_port=${rx_port}
 | | Run Keyword If | ${dut_stats}==${True}
-| | ... | Clear runtime counters on all DUTs | ${nodes}
+| | ... | VPP clear runtime counters on all DUTs | ${nodes}
 | | Sleep | ${duration}
 | | Run Keyword If | ${dut_stats}==${True}
-| | ... | Show runtime counters on all DUTs | ${nodes}
+| | ... | VPP show runtime counters on all DUTs | ${nodes}
 | | Stop traffic on tg
 
 | Start Traffic on Background

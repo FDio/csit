@@ -32,7 +32,7 @@ from resources.libraries.python.VPPUtil import VPPUtil
 
 class LinkBondLoadBalance(IntEnum):
     """Link bonding load balance."""
-    L2 = 0
+    L2 = 0  # pylint: disable=invalid-name
     L34 = 1
     L23 = 2
 
