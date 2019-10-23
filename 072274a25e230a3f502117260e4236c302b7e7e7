@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "75cb3452_b78d77a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-23T16:59:34Z",
+      "side": 1,
+      "message": "It is still needed for SetupFramework, as the functions there are running in a non-main thread, and [0] says:\n\"Messages logged by non-main threads using the normal logging methods from programmatic logging APIs are silently ignored.\"\n\n(The rest of [0] suggests exceptions are also not guaranteed to make it into the log, but it happened to work in testing, at least on the currently used Robotframework version.)\n\n[0] http://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#communication-when-using-threads",
+      "range": {
+        "startLine": 20,
+        "startChar": 9,
+        "endLine": 20,
+        "endChar": 23
+      },
+      "revId": "072274a25e230a3f502117260e4236c302b7e7e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
