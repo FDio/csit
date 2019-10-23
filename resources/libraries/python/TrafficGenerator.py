@@ -300,16 +300,16 @@ class TrafficGenerator(AbstractMeasurer):
 
                 # start TRex
                 if test_type == 'L2' or test_type == 'L3':
-                    (ret, _, _) = ssh.exec_command(
+                    (ret, _, _) = ssh.exec_command_sudo(
                         "sh -c 'cd {0}/scripts/ && "
                         "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /tmp/trex.log "
-                        "2>&1 &' > /dev/null"\
+                        "2>&1 &' > /dev/null"
                         .format(Constants.TREX_INSTALL_DIR))
                 elif test_type == 'L7':
-                    (ret, _, _) = ssh.exec_command(
+                    (ret, _, _) = ssh.exec_command_sudo(
                         "sh -c 'cd {0}/scripts/ && "
                         "sudo nohup ./t-rex-64 --astf -i -c 7 --iom 0 > "
-                        "/tmp/trex.log 2>&1 &' > /dev/null"\
+                        "/tmp/trex.log 2>&1 &' > /dev/null"
                         .format(Constants.TREX_INSTALL_DIR))
                 else:
                     raise ValueError("Unknown Test Type")
@@ -320,7 +320,7 @@ class TrafficGenerator(AbstractMeasurer):
                 # get TRex server info
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'sleep 3; "
-                    "{0}/resources/tools/trex/trex_server_info.py'"\
+                    "{0}/resources/tools/trex/trex_server_info.py'"
                     .format(Constants.REMOTE_FW_DIR),
                     timeout=120)
                 if int(ret) == 0:
