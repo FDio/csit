@@ -1,0 +1,8 @@
+Verified+1: fd.io JJB <jobbuilder@projectrotterdam.info>
+Code-Review+1: Jan Gelety <jgelety@cisco.com>
+Code-Review+2: Vratko Polak <vrpolak@cisco.com>
+Submitted-by: Vratko Polak <vrpolak@cisco.com>
+Submitted-at: Wed, 23 Oct 2019 14:41:11 +0000
+Reviewed-on: https://gerrit.fd.io/r/c/csit/+/22152
+Project: csit
+Branch: refs/heads/master
