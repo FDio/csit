@@ -293,16 +293,12 @@ class PapiSocketExecutor(object):
         vpp_instance.transport.server_address = self._local_vpp_socket
         # It seems we can get read error even if every preceding check passed.
         # Single retry seems to help.
-        for _ in xrange(2):
-            try:
-                vpp_instance.connect_sync("csit_socket")
-            except (IOError, struct.error) as err:
-                logger.warn("Got initial connect error {err!r}".format(err=err))
-                vpp_instance.disconnect()
-            else:
-                break
-        else:
-            raise RuntimeError("Failed to connect to VPP over a socket.")
+        try:
+            vpp_instance.connect_sync("csit_socket")
+        except (IOError, struct.error) as err:
+            logger.warn("Got initial connect error {err!r}".format(err=err))
+            vpp_instance.disconnect()
+            raise
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
