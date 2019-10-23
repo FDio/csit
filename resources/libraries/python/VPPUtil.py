@@ -131,12 +131,13 @@ class VPPUtil(object):
         :type node: dict
         :raises RuntimeError: If VPP service fails to start.
         """
+#        return  # DEBUG
         VPPUtil.verify_vpp_installed(node)
         try:
             # Verify responsivness of vppctl.
             VPPUtil.verify_vpp_started(node)
             # Verify responsivness of PAPI.
-            VPPUtil.show_log(node)
+#            VPPUtil.show_log(node)
             VPPUtil.vpp_show_version(node)
         finally:
             DUTSetup.get_service_logs(node, Constants.VPP_UNIT)
