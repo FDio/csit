@@ -22,6 +22,30 @@
       "revId": "76417acdd64572abeb173f87fbd12bf0a3162d9b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "30be47bf_d13d391a",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-23T15:39:55Z",
+      "side": 1,
+      "message": "Not sure i will follow. I had plan to test this today but none perf or device jobs are working due to ssh. i will try tommorow.",
+      "parentUuid": "01fdd3e6_57a23908",
+      "range": {
+        "startLine": 222,
+        "startChar": 23,
+        "endLine": 222,
+        "endChar": 37
+      },
+      "revId": "76417acdd64572abeb173f87fbd12bf0a3162d9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
