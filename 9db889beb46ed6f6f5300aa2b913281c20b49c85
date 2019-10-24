@@ -118,6 +118,30 @@
       "revId": "9db889beb46ed6f6f5300aa2b913281c20b49c85",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9ddbb776_7f9249f9",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-24T14:51:22Z",
+      "side": 1,
+      "message": "\u003e This keywords does not initialize anything, because nothing (relevant) is running yet. This keyword is preparing configuration for VPP\n\nNow, but we still need to inhale AVF and RDMA driver pinning there. AVF is now on suite level which is bad cause it is ruining design (but requires modification to TRex). So it is not only put to VPP but alzo initialize for usage. So in future i need to make sure Driver is initialized (loading module, pinning PCI to driver, etc. similar to QAT) --curently somewhat automatic but i can imagine how fragile it is (see cleanup AVF re-init problem).",
+      "parentUuid": "f2249e73_627bde7a",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 140,
+        "endChar": 16
+      },
+      "revId": "9db889beb46ed6f6f5300aa2b913281c20b49c85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
