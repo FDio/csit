@@ -94,6 +94,30 @@
       "revId": "9db889beb46ed6f6f5300aa2b913281c20b49c85",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f2249e73_627bde7a",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-24T14:26:12Z",
+      "side": 1,
+      "message": "\u003e All layers here are initialize\n\nKeywords should be named by what they do, not just to be similar to other keywords in the same library.\nThis keywords does not initialize anything, because nothing (relevant) is running yet. This keyword is preparing configuration for VPP, or doing similar things that need to be done before VPP is (re)started. In this sense, \"Apply startup configuration on all VPP DUTs\" is not just onother layer of configuration/initialization, it is the step dividing initialization from configuration.\n\nHere are examples of the possible suite parts:\n\n| | Pre-initialize layer driver | ${nic_driver}\n| | Apply startup configuration on all VPP DUTs\n| | Initialize layer driver | ${nic_driver}\n\n| | Pre-configure layer driver | ${nic_driver}\n| | Apply startup configuration on all VPP DUTs\n| | Initialize layer driver | ${nic_driver}\n\n| | Configure layer driver | ${nic_driver}\n| | Apply startup configuration on all VPP DUTs\n| | Initialize layer driver | ${nic_driver}",
+      "parentUuid": "d5a45373_8cbccb05",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 140,
+        "endChar": 16
+      },
+      "revId": "9db889beb46ed6f6f5300aa2b913281c20b49c85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
