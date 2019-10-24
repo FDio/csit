@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4a1017be_bd74cfff",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-24T14:10:27Z",
+      "side": 1,
+      "message": "Sudo is here, but I maybe the installation folder is now readable only with sudo?",
+      "range": {
+        "startLine": 305,
+        "startChar": 25,
+        "endLine": 305,
+        "endChar": 29
+      },
+      "revId": "c475c56b3125b6214ed02e5c1335661ef191ebda",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
