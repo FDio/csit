@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e360a2d4_f8199993",
+        "filename": "tests/vpp/perf/l2/2n1l-100ge2p1cx556a-rdma-eth-l2xcbase-ndrpdr.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-24T15:57:14Z",
+      "side": 1,
+      "message": "${crypto_type}\u003d | ${None}",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 3
+      },
+      "revId": "0cfaa22f7f0830cc1c61dce858382e9b706f0ea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a66ef6ca_dae10f45",
+        "filename": "tests/vpp/perf/l2/2n1l-100ge2p1cx556a-rdma-eth-l2xcbase-ndrpdr.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-24T15:57:14Z",
+      "side": 1,
+      "message": "-rdma-",
+      "range": {
+        "startLine": 83,
+        "startChar": 13,
+        "endLine": 83,
+        "endChar": 14
+      },
+      "revId": "0cfaa22f7f0830cc1c61dce858382e9b706f0ea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
