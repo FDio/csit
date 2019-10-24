@@ -22,6 +22,30 @@
       "revId": "9db889beb46ed6f6f5300aa2b913281c20b49c85",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "96a2ddea_9f8583ed",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-24T13:28:33Z",
+      "side": 1,
+      "message": "yeah but then in suite it looks weird that Initialize driver has no Pre-initialize but Pre-configure. Consider.",
+      "parentUuid": "830ec3b9_fe8bf205",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 140,
+        "endChar": 16
+      },
+      "revId": "9db889beb46ed6f6f5300aa2b913281c20b49c85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
