@@ -142,6 +142,53 @@
       "revId": "9db889beb46ed6f6f5300aa2b913281c20b49c85",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7f690a2e_d4336611",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-24T16:08:56Z",
+      "side": 1,
+      "message": "Are you expecting additions in the future, and pre-initialize becoming a better verb then than pre-configure?\nThen update lines 158, 178 and 184.",
+      "parentUuid": "9ddbb776_7f9249f9",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 140,
+        "endChar": 16
+      },
+      "revId": "9db889beb46ed6f6f5300aa2b913281c20b49c85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa73b74c_2a84d8f3",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-24T16:08:56Z",
+      "side": 1,
+      "message": "_new_?\nOr even better, leave implementation empty and add it in https://gerrit.fd.io/r/c/csit/+/22729",
+      "range": {
+        "startLine": 288,
+        "startChar": 49,
+        "endLine": 288,
+        "endChar": 54
+      },
+      "revId": "9db889beb46ed6f6f5300aa2b913281c20b49c85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
