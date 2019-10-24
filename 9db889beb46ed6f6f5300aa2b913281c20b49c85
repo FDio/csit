@@ -70,6 +70,30 @@
       "revId": "9db889beb46ed6f6f5300aa2b913281c20b49c85",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d5a45373_8cbccb05",
+        "filename": "resources/libraries/robot/shared/interfaces.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-24T14:13:57Z",
+      "side": 1,
+      "message": "All layers here are initialize expect vhost which is obsolete (i guess). I will maybe change it later, but still this layer is layer for initialize also linux part (which is less important, but should be refactored together with TG code) once TG node will work properly with this layer the Suite Setup | performance_avf won\u0027t be needed.",
+      "parentUuid": "49ec9721_3e3849bc",
+      "range": {
+        "startLine": 140,
+        "startChar": 2,
+        "endLine": 140,
+        "endChar": 16
+      },
+      "revId": "9db889beb46ed6f6f5300aa2b913281c20b49c85",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
