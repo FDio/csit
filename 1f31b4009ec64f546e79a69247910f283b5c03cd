@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6baa2069_d3857390",
+        "filename": "resources/tools/presentation/doc/trending_test_groups.md",
+        "patchSetId": 28
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-25T12:07:13Z",
+      "side": 1,
+      "message": "Remove space.",
+      "range": {
+        "startLine": 46,
+        "startChar": 33,
+        "endLine": 46,
+        "endChar": 34
+      },
+      "revId": "1f31b4009ec64f546e79a69247910f283b5c03cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
