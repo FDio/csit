@@ -232,8 +232,7 @@ class Constants(object):
     FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env("FAIL_ON_CRC_MISMATCH")
 
     # Mapping from NIC name to its bps limit.
-    # TODO: Implement logic to lower limits to TG NIC or software. Or PCI.
-    NIC_NAME_TO_LIMIT = {
+    NIC_NAME_TO_BPS_LIMIT = {
         "Cisco-VIC-1227": 10000000000,
         "Cisco-VIC-1385": 24500000000,
         "Intel-X520-DA2": 10000000000,
@@ -245,7 +244,20 @@ class Constants(object):
         "virtual": 100000000,
     }
 
-    # Suite file names use somewhat more rich (less readable) codes for NICs.
+    # Mapping from NIC name to its pps limit.
+    NIC_NAME_TO_PPS_LIMIT = {
+        "Cisco-VIC-1227": 14880952,
+        "Cisco-VIC-1385": 18750000,
+        "Intel-X520-DA2": 14880952,
+        "Intel-X553": 14880952,
+        "Intel-X710": 14880952,
+        "Intel-XL710": 18750000,
+        "Intel-XXV710": 18750000,
+        "Mellanox-CX556A": 60000000, #148809523,
+        "virtual": 14880952,
+    }
+
+    # Suite file names use codes for NICs.
     NIC_NAME_TO_CODE = {
         "Cisco-VIC-1227": "10ge2p1vic1227",
         "Cisco-VIC-1385": "40ge2p1vic1385",
@@ -293,3 +305,4 @@ class Constants(object):
         "ndrpdr": '''Measure NDR and PDR values using MLRsearch algorithm.\\''',
         "soak": '''Estimate critical rate using PLRsearch algorithm.\\''',
     }
+
