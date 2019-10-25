@@ -80,8 +80,10 @@
 | | # TODO: Re-check overhead values in suites with both traffics encapsulated.
 | | # TODO: Improve layered setup to detect encap/decap and update overhead.
 | | ${overhead} = | Set Variable If | ${overhead} >= 0 | ${overhead} | ${0}
-| | ${pps_limit} = | Set Variable | ${18750000.0}
-| | ${bps_limit} = | Get From Dictionary | ${NIC_NAME_TO_LIMIT} | ${nic_name}
+| | ${pps_limit} = | Get From Dictionary
+| | ... | ${NIC_NAME_TO_PPS_LIMIT} | ${nic_name}
+| | ${bps_limit} = | Get From Dictionary
+| | ... | ${NIC_NAME_TO_BPS_LIMIT} | ${nic_name}
 | | ${avg_size} = | Get Average Frame Size | ${frame_size}
 | | ${max_size} = | Set Variable If | '${frame_size}' == 'IMIX_v4_1'
 | | ... | ${1518} | ${frame_size}
