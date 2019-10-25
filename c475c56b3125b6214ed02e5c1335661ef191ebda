@@ -46,6 +46,30 @@
       "revId": "c475c56b3125b6214ed02e5c1335661ef191ebda",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a2752f6_b172410e",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-25T08:09:48Z",
+      "side": 1,
+      "message": "New code is\nsudo -E -S sh -c \u0027cd /opt/trex-core-2.61/scripts/ \u0026\u0026 nohup ./t-rex-64 --hdrh -i -c 7 \u003e /tmp/trex.log 2\u003e\u00261 \u0026\u0027 \u003e /dev/null\n\nbut\nsh -c \u0027cd /opt/trex-core-2.35/scripts/ \u0026\u0026 sudo nohup ./t-rex-64 -i -c 7 --iom 0 \u003e /tmp/trex.log 2\u003e\u00261 \u0026\u0027 \u003e /dev/nullis\nis used in rls1904\n\nThe current one creates /tmp/trex.log as root but the re-creation of this file is rejected in rls1904 as testuser is used there for this step:\ntestuser@t1-tg1:/tmp/openvpp-testing$ sh -c \u0027cd /opt/trex-core-2.35/scripts/ \u0026\u0026 sudo nohup ./t-rex-64 -i -c 7 --iom 0 \u003e /tmp/trex.log 2\u003e\u00261 \u0026\u0027 \u003e /dev/null\nsh: 1: cannot create /tmp/trex.log: Permission denied\ntestuser@t1-tg1:/tmp/openvpp-testing$ echo $?\n0\n\nWe need to run whole command sequence in sudo mode in rls1904 too.",
+      "parentUuid": "c302bd07_fd95f058",
+      "range": {
+        "startLine": 305,
+        "startChar": 25,
+        "endLine": 305,
+        "endChar": 29
+      },
+      "revId": "c475c56b3125b6214ed02e5c1335661ef191ebda",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
