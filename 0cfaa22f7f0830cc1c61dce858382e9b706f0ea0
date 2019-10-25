@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "efa59f5f_8c18bab1",
+        "filename": "tests/vpp/perf/l2/2n1l-100ge2p1cx556a-rdma-eth-l2xcbase-ndrpdr.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-25T07:19:36Z",
+      "side": 1,
+      "message": "thanks, but not sure about next steps. I prefer to remove this file entirely and start working on Suite Gen. I will merge the other modification that are not harmful",
+      "parentUuid": "e360a2d4_f8199993",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 3
+      },
+      "revId": "0cfaa22f7f0830cc1c61dce858382e9b706f0ea0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a66ef6ca_dae10f45",
         "filename": "tests/vpp/perf/l2/2n1l-100ge2p1cx556a-rdma-eth-l2xcbase-ndrpdr.robot",
         "patchSetId": 10
