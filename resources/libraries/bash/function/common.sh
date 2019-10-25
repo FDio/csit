@@ -756,6 +756,12 @@ function select_tags () {
         *"3n-tsh"*)
             default_nic="nic_intel-x520-da2"
             ;;
+        *"3n-skx"* | *"2n-skx"* | *"2n-clx"*)
+            default_nic="nic_intel-xxv710"
+            ;;
+        *"3n-hsw"*)
+            default_nic="nic_intel-xl710"
+            ;;
         *)
             default_nic="nic_intel-x710"
             ;;
