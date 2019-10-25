@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b6750cdc_76c4be6d",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-25T08:43:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86d410da_d023f97a",
+      "range": {
+        "startLine": 13,
+        "startChar": 58,
+        "endLine": 13,
+        "endChar": 64
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e338c191_6cff790a",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 2
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "e40793fa_8f64bd9c",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-25T08:43:28Z",
+      "side": 1,
+      "message": "Proposed package versions added to the document.",
+      "parentUuid": "5570387f_4f5b55e4",
+      "range": {
+        "startLine": 17,
+        "startChar": 1,
+        "endLine": 24,
+        "endChar": 54
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a8c490b0_d7a377fc",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 2
@@ -116,6 +164,30 @@
       "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "713c1bb8_9b26d1e8",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-25T08:43:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a8c490b0_d7a377fc",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -166,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "6cf8c78a_e6a50184",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-25T08:43:28Z",
+      "side": 1,
+      "message": "\u003e Should we do also:\n`str` \u003d\u003e `bytes`\n?\n\nNot generally, only if bytes type really required - added.\n\n\u003e Also, we should be careful about string literals. I recommend u\"\" for new str and b\"\" for bytes, with bare \"\" becoming a style error.\n\nAgree. Aded.",
+      "parentUuid": "4807738b_3089de09",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 22
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "4d9c761e_9c9dbdfc",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 2
@@ -186,6 +282,30 @@
       "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1136a77c_2b0bef92",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-25T08:43:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4d9c761e_9c9dbdfc",
+      "range": {
+        "startLine": 99,
+        "startChar": 1,
+        "endLine": 99,
+        "endChar": 49
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -259,6 +379,30 @@
     },
     {
       "key": {
+        "uuid": "18bcaf83_b1c524f2",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-25T08:43:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3ff94f85_1abacfbe",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 13
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47509820_660da9ae",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 2
@@ -282,6 +426,30 @@
     },
     {
       "key": {
+        "uuid": "e349ea56_89a85326",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-25T08:43:28Z",
+      "side": 1,
+      "message": "I would not allow adding any new code during the freeze as it would lead to a lot of rebases during the migration that could be source of issues.",
+      "parentUuid": "47509820_660da9ae",
+      "range": {
+        "startLine": 104,
+        "startChar": 58,
+        "endLine": 104,
+        "endChar": 63
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a6ba1cd7_9faa3693",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 2
@@ -293,6 +461,30 @@
       "writtenOn": "2019-10-14T15:01:15Z",
       "side": 1,
       "message": "Oper (we will remember the particular date) of something entirely different?",
+      "range": {
+        "startLine": 106,
+        "startChar": 13,
+        "endLine": 106,
+        "endChar": 27
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7313dfa_59812cb1",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-25T08:43:28Z",
+      "side": 1,
+      "message": "I vote for special back up branch as we use to do cherry-picks to existing oper branches. This special back up branch will be deleted after successful migration.",
+      "parentUuid": "a6ba1cd7_9faa3693",
       "range": {
         "startLine": 106,
         "startChar": 13,
