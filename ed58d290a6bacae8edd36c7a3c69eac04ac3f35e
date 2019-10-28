@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad84e447_129ffe74",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-28T15:29:28Z",
+      "side": 1,
+      "message": "not for mellanox",
+      "range": {
+        "startLine": 281,
+        "startChar": 28,
+        "endLine": 281,
+        "endChar": 38
+      },
+      "revId": "ed58d290a6bacae8edd36c7a3c69eac04ac3f35e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
