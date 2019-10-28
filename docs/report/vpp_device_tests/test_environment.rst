@@ -252,8 +252,8 @@ including those required by DUT/TG.
     # Override access to PCI bus by attaching a filesystem mount to the
     # container.
     dcr_stc_params+="--mount type=tmpfs,destination=/sys/bus/pci/devices "
-    # Mount vfio to be able to bind to see binded interfaces. We cannot use
-    # --device=/dev/vfio as this does not see newly binded interfaces.
+    # Mount vfio to be able to bind to see bound interfaces. We cannot use
+    # --device=/dev/vfio as this does not see newly bound interfaces.
     dcr_stc_params+="--volume /dev/vfio:/dev/vfio "
     # Mount docker.sock to be able to use docker deamon of the host.
     dcr_stc_params+="--volume /var/run/docker.sock:/var/run/docker.sock "
