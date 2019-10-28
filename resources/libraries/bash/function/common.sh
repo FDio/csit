@@ -288,6 +288,8 @@ function compose_pybot_arguments () {
             EXPANDED_TAGS+=("--include" "${TOPOLOGIES_TAGS}AND${tag}")
         fi
     done
+    # DEBUG override.
+#    EXPANDED_TAGS+=("--test" "tc01-64B-1c-eth-l2xcbase-eth-2memif-1dcr-mrr")
 }
 
 
@@ -805,19 +807,18 @@ function select_tags () {
             test_tag_array+=("!ipsechw")
             ;;
         *"2n-dnv"*)
-            test_tag_array+=("!ipsechw")
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
-            test_tag_array+=("!drv_avf")
+#            test_tag_array+=("!ipsechw")
+#            test_tag_array+=("!memif")
+#            test_tag_array+=("!srv6_proxy")
+#            test_tag_array+=("!vhost")
+#            test_tag_array+=("!vts")
+#            test_tag_array+=("!drv_avf")
             ;;
         *"3n-dnv"*)
-            test_tag_array+=("!memif")
-            test_tag_array+=("!srv6_proxy")
-            test_tag_array+=("!vhost")
-            test_tag_array+=("!vts")
-            test_tag_array+=("!drv_avf")
+#            test_tag_array+=("!srv6_proxy")
+#            test_tag_array+=("!vhost")
+#            test_tag_array+=("!vts")
+#            test_tag_array+=("!drv_avf")
             ;;
         *"3n-tsh"*)
             # 3n-tsh only has x520 NICs which don't work with AVF
