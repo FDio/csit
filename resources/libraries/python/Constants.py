@@ -269,6 +269,39 @@ class Constants(object):
         "Mellanox-CX556A": "100ge2p1cx556a",
     }
 
+    # Not each driver is supported by each NIC.
+    NIC_NAME_TO_DRIVER = {
+        "Cisco-VIC-1227": ["vfio-pci"],
+        "Cisco-VIC-1385": ["vfio-pci"],
+        "Intel-X520-DA2": ["vfio-pci"],
+        "Intel-X553": ["vfio-pci"],
+        "Intel-X710": ["vfio-pci", "avf"],
+        "Intel-XL710": ["vfio-pci", "avf"],
+        "Intel-XXV710": ["vfio-pci", "avf"],
+        "Mellanox-CX556A": ["vfio-pci", "rdma-core"],
+    }
+
+    # Each driver needs different prugin to work.
+    NIC_DRIVER_TO_PLUGINS = {
+        "vfio-pci": "dpdk-plugin.so",
+        "avf": "avf_plugin.so",
+        "rdma-core": "rdma_plugin.so",
+    }
+
+    # Tags to differentiate tests for different NIC driver.
+    NIC_DRIVER_TO_TAG = {
+        "vfio-pci": "DRV_VFIO_PCI",
+        "avf": "DRV_AVF",
+        "rdma-core": "DRV_RDMA_CORE",
+    }
+
+    # Suite names have to be different, add prefix.
+    NIC_DRIVER_TO_SUITE_PREFIX = {
+        "vfio-pci": "",
+        "avf": "avf-",
+        "rdma-core": "rdma-",
+    }
+
     # TODO CSIT-1481: Crypto HW should be read from topology file instead.
     NIC_NAME_TO_CRYPTO_HW = {
         "Intel-X553": "HW_C3xxx",
