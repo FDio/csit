@@ -450,6 +450,30 @@
     },
     {
       "key": {
+        "uuid": "9590c500_d2a7c214",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-28T17:47:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e349ea56_89a85326",
+      "range": {
+        "startLine": 104,
+        "startChar": 58,
+        "endLine": 104,
+        "endChar": 63
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a6ba1cd7_9faa3693",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 2
@@ -485,6 +509,30 @@
       "side": 1,
       "message": "I vote for special back up branch as we use to do cherry-picks to existing oper branches. This special back up branch will be deleted after successful migration.",
       "parentUuid": "a6ba1cd7_9faa3693",
+      "range": {
+        "startLine": 106,
+        "startChar": 13,
+        "endLine": 106,
+        "endChar": 27
+      },
+      "revId": "4c6213aaac6088aa6d0a3c7100749827385a5948",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eea80e24_c2c1c002",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-28T17:47:34Z",
+      "side": 1,
+      "message": "Ok. I guess when master is working on Python 3, we will look at the diff between the special branch and latest oper, and cherry-pick (with conversion) any fixes there to master (before creating new oper branch based on master).",
+      "parentUuid": "c7313dfa_59812cb1",
       "range": {
         "startLine": 106,
         "startChar": 13,
