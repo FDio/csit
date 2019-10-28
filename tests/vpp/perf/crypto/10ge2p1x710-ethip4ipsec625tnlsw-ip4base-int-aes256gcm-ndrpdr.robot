@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_40
-| ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
-| ... | AES_128_GCM | AES | DRV_VFIO_PCI
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_625
+| ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | BASE
+| ... | AES_256_GCM | AES | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
@@ -67,15 +67,15 @@
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
-| ${n_tunnels}= | ${40}
+| ${n_tunnels}= | ${625}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Cfg] DUT runs IPSec tunneling AES_128_GCM config.
-| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
+| | ... | [Cfg] DUT runs IPSec tunneling AES_256_GCM config.\
+| | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.\
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
 | | ... | *Arguments:*
@@ -89,8 +89,8 @@
 | | Set Test Variable | \${frame_size}
 | | ...
 | | # These are enums (not strings) so they cannot be in Variables table.
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Set Variable | ${NONE}
+| | ${encr_alg} = | Crypto Alg AES GCM 256
+| | ${auth_alg} = | Set Variable | ${NONE}
 | | ${ipsec_proto} = | IPsec Proto ESP
 | | ...
 | | Given Set Max Rate And Jumbo
@@ -107,38 +107,38 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsec40tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc01-64B-1c-ethip4ipsec625tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsec40tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc02-64B-2c-ethip4ipsec625tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsec40tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc03-64B-4c-ethip4ipsec625tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsec40tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc04-1518B-1c-ethip4ipsec625tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsec40tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc05-1518B-2c-ethip4ipsec625tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsec40tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc06-1518B-4c-ethip4ipsec625tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsec40tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc10-IMIX-1c-ethip4ipsec625tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsec40tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc11-IMIX-2c-ethip4ipsec625tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsec40tnlsw-ip4base-int-aes128gcm-ndrpdr
+| tc12-IMIX-4c-ethip4ipsec625tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}

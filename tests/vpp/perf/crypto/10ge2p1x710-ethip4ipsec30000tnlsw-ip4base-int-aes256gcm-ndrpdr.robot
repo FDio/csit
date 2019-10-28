@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/crypto/ipsec.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_1000
-| ... | IP4FWD | IPSEC | IPSECSW | IPSECTUN | NIC_Intel-X710 | SCALE
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR | TNL_30000
+| ... | IP4FWD | IPSEC | IPSECSW | IPSECINT | NIC_Intel-X710 | SCALE
 | ... | AES_256_GCM | AES | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | performance
@@ -26,7 +26,7 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *IPv4 IPsec tunnel mode performance test suite.*
+| Documentation | *RFC2544: Pkt throughput IPv4 IPsec tunnel mode.*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
@@ -61,13 +61,13 @@
 | ${tg_if1_ip4}= | 192.168.10.2
 | ${dut1_if1_ip4}= | 192.168.10.1
 | ${dut1_if2_ip4}= | 100.0.0.1
-| ${dut2_if1_ip4}= | 100.0.0.2
+| ${dut2_if1_ip4}= | 200.0.0.2
 | ${dut2_if2_ip4}= | 192.168.20.1
 | ${tg_if2_ip4}= | 192.168.20.2
 | ${raddr_ip4}= | 20.0.0.0
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${24}
-| ${n_tunnels}= | ${1000}
+| ${n_tunnels}= | ${30000}
 # Traffic profile:
 | ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
@@ -82,10 +82,7 @@
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
 | | ... | - phy_cores - Number of physical cores. Type: integer
-| | ... | - search_type - NDR or PDR. Type: string
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ... | - min_rate - Min rate for binary search, default value: ${50000}.
-| | ... | Type: integer
 | | ...
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
 | | ...
@@ -94,7 +91,6 @@
 | | # These are enums (not strings) so they cannot be in Variables table.
 | | ${encr_alg}= | Crypto Alg AES GCM 256
 | | ${auth_alg}= | Set Variable | ${NONE}
-| | ${ipsec_proto}= | IPsec Proto ESP
 | | ...
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
@@ -103,45 +99,45 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize IPSec in 3-node circular topology
-| | And VPP IPsec Add Multiple Tunnels
-| | ... | ${nodes} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
-| | ... | ${encr_alg} | ${auth_alg} | ${dut1_if2_ip4} | ${dut2_if1_ip4}
+| | And VPP IPsec Create Tunnel Interfaces
+| | ... | ${nodes} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${dut1_if2}
+| | ... | ${dut2_if1} | ${n_tunnels} | ${encr_alg} | ${auth_alg}
 | | ... | ${laddr_ip4} | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-ndrpdr
+| tc01-64B-1c-ethip4ipsec30000tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-ndrpdr
+| tc02-64B-2c-ethip4ipsec30000tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-ndrpdr
+| tc03-64B-4c-ethip4ipsec30000tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-ndrpdr
+| tc04-1518B-1c-ethip4ipsec30000tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-ndrpdr
+| tc05-1518B-2c-ethip4ipsec30000tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-ndrpdr
+| tc06-1518B-4c-ethip4ipsec30000tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-ndrpdr
+| tc10-IMIX-1c-ethip4ipsec30000tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-ndrpdr
+| tc11-IMIX-2c-ethip4ipsec30000tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4ipsec1000tnlsw-ip4base-policy-aes256gcm-ndrpdr
+| tc12-IMIX-4c-ethip4ipsec30000tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
