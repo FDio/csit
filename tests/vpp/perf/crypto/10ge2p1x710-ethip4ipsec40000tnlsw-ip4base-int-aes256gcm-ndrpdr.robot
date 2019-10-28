@@ -142,3 +142,19 @@
 | tc12-IMIX-4c-ethip4ipsec40000tnlsw-ip4base-int-aes256gcm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
+
+| tc13-64B-6c-ethip4ipsec40000tnlsw-ip4base-int-aes256gcm-ndrpdr
+| | [Tags] | 64B | 6C
+| | frame_size=${64} | phy_cores=${6}
+
+| tc14-64B-8c-ethip4ipsec40000tnlsw-ip4base-int-aes256gcm-ndrpdr
+| | [Tags] | 64B | 8C
+| | frame_size=${64} | phy_cores=${8}
+
+| tc15-IMIX-6c-ethip4ipsec40000tnlsw-ip4base-int-aes256gcm-ndrpdr
+| | [Tags] | 64B | 6C
+| | frame_size=IMIX_v4_1 | phy_cores=${6}
+
+| tc16-IMIX-8c-ethip4ipsec40000tnlsw-ip4base-int-aes256gcm-ndrpdr
+| | [Tags] | 64B | 8C
+| | frame_size=IMIX_v4_1 | phy_cores=${8}
