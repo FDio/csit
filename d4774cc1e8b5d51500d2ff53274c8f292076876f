@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "35f01d4c_dc5f2805",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst-seeded-random100000.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-10-28T20:22:48Z",
+      "side": 1,
+      "message": "Isn\u0027t this limiting the number of unique addresses to 10k? If so, shouldn\u0027t this be set to 100k, so all FIB content is covered?",
+      "range": {
+        "startLine": 73,
+        "startChar": 61,
+        "endLine": 73,
+        "endChar": 66
+      },
+      "revId": "d4774cc1e8b5d51500d2ff53274c8f292076876f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d1538ff2_72d1962d",
         "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale2m-seeded-random-ndrpdr.robot",
         "patchSetId": 1
@@ -13,6 +36,29 @@
       "writtenOn": "2019-10-18T13:40:34Z",
       "side": 1,
       "message": "\u003e\u003e csit-verify-tox-master/2709/ : FAILURE\n\n\u003e + lines\u003d66\n\nAutogen checker requires the testcase names to match the suite name, see [0].\nIn this case, I prefer ip4scale2m-random-ndrpdr as I do not expect a non-seeded suite in foreseeable future.\n\n\u003e + warn \u0027Unspecified run-time error occurred!\u0027\n\nA mistake in the autogen checker, fix: [1].\n\n[0] https://logs.fd.io/production/vex-yul-rot-jenkins-1/csit-verify-tox-master/2709/archives/autogen.log.gz\n[1] https://gerrit.fd.io/r/c/csit/+/22839",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 38
+      },
+      "revId": "d4774cc1e8b5d51500d2ff53274c8f292076876f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ef2a9d11_41da1a01",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale2m-seeded-random-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2019-10-28T20:22:48Z",
+      "side": 1,
+      "message": "Can you think about shorter name for the suite name e.g. \"2n1l-10ge2p1x710-ethip4-ip4scale2m-rdm-ndrpdr.robot\"?\nAnd then reflect it in test case names per Vratko\u0027s comment?",
       "range": {
         "startLine": 82,
         "startChar": 21,
