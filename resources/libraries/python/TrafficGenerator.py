@@ -406,12 +406,12 @@ class TrafficGenerator(AbstractMeasurer):
         line = stdout.splitlines()[-1]
         self._result = line
         logger.info('TrafficGen result: {0}'.format(self._result))
-        self._received = self._result.split(', ')[1].split('=')[1]
-        self._sent = self._result.split(', ')[2].split('=')[1]
-        self._loss = self._result.split(', ')[3].split('=')[1]
+        self._received = self._result.split(', ')[1].split('=', 1)[1]
+        self._sent = self._result.split(', ')[2].split('=', 1)[1]
+        self._loss = self._result.split(', ')[3].split('=', 1)[1]
         self._latency = []
-        self._latency.append(self._result.split(', ')[4].split('=')[1])
-        self._latency.append(self._result.split(', ')[5].split('=')[1])
+        self._latency.append(self._result.split(', ')[4].split('=', 1)[1])
+        self._latency.append(self._result.split(', ')[5].split('=', 1)[1])
 
     def trex_stl_stop_remote_exec(self, node):
         """Execute script on remote node over ssh to stop running traffic.
