@@ -69,6 +69,30 @@
       "revId": "cd9eb17ef2288fd22281e2ef6875337f1848e24f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8788ef81_8d602242",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-10-29T12:27:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07f0e3e7_07f5c88f",
+      "range": {
+        "startLine": 98,
+        "startChar": 21,
+        "endLine": 98,
+        "endChar": 27
+      },
+      "revId": "cd9eb17ef2288fd22281e2ef6875337f1848e24f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
