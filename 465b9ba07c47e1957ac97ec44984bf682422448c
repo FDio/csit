@@ -22,6 +22,30 @@
       "revId": "465b9ba07c47e1957ac97ec44984bf682422448c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f979c073_a28c1e69",
+        "filename": "tests/vpp/perf/ip6/2n1l-10ge2p1x710-avf-ethip6-ip6base-ndrpdr.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-29T06:52:16Z",
+      "side": 0,
+      "message": "there are 2 options:\n1) Split\n2) Introduce dummy performance_rdma\n\nIn suite generator please keep in mind that this can be in future altered as i still want to implement full test isolation in terms of initialize SRIOV for i40e and rdma_core. I migtht be able to remove suffix entirely if i will use predefined static MACs.",
+      "parentUuid": "eb774841_a3aba1d4",
+      "range": {
+        "startLine": 20,
+        "startChar": 42,
+        "endLine": 20,
+        "endChar": 57
+      },
+      "revId": "465b9ba07c47e1957ac97ec44984bf682422448c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
