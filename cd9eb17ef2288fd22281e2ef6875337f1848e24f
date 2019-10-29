@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "747f8b83_b7a6e21e",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-10-29T12:33:32Z",
+      "side": 1,
+      "message": "we are doing system-installed packages with preference of install if not there, but not via apt-get as apt-get has usually older version and versioning is dependent on Ubuntu. Sometimes it is not even 1:1 so I would avoid apt-get if possible.\n\nIf anything needed we should manage over PIP unless VPP (or other packaged SW) needs apt package.",
+      "parentUuid": "c050547e_60ec4f9a",
+      "range": {
+        "startLine": 54,
+        "startChar": 22,
+        "endLine": 54,
+        "endChar": 40
+      },
+      "revId": "cd9eb17ef2288fd22281e2ef6875337f1848e24f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07f0e3e7_07f5c88f",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 3
