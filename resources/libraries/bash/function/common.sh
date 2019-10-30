@@ -915,7 +915,12 @@ function select_topology () {
             TOPOLOGIES_TAGS="3_node_*_link_topo"
             ;;
         "2n_clx")
-            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx*.yaml )
+#            TOPOLOGIES=( "${TOPOLOGIES_DIR}"/*2n_clx*.yaml )
+            TOPOLOGIES=(
+                "${TOPOLOGIES_DIR}"/lf_2n_clx_testbed27.yaml
+                "${TOPOLOGIES_DIR}"/lf_2n_clx_testbed28.yaml
+                # 29 does not have Mellanox cards.
+            )
             TOPOLOGIES_TAGS="2_node_*_link_topo"
             ;;
         "2n_dnv")
