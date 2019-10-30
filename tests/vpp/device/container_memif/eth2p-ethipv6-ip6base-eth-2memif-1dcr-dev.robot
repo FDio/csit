@@ -27,15 +27,15 @@
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
 | ... | single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6-ICMPv6 for IPv6 routing on \
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for IPv6 routing on \
 | ... | both links.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6 routing and \
 | ... | two static IPv6 /64 route entries. Container is connected to VPP via \
 | ... | Memif interface. Container is running same VPP version as running on \
 | ... | DUT.
-| ... | *[Ver] TG verification:* Test ICMPv6 Echo Request packets are sent in \
-| ... | one direction by TG on links to DUT1 and via container; on receive TG \
-| ... | verifies packets for correctness and their IPv6 src-addr, dst-addr and \
+| ... | *[Ver] TG verification:* Test IPv6 packets are sent in one direction \
+| ... | by TG on links to DUT1 and via container; on receive TG verifies \
+| ... | packets for correctness and their IPv6 src-addr, dst-addr and \
 | ... | MAC addresses.
 | ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
 
@@ -52,7 +52,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send ICMPv6 Echo Reqs in both directions between two\
+| | ... | [Ver] Make TG send IPv6 packets in both directions between two\
 | | ... | of its interfaces to be routed by DUT to and from docker; verify\
 | | ... | all packets are received.
 | | ...
@@ -108,6 +108,6 @@
 | | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
 
 *** Test Cases ***
-| tc01-78B-ethicmpv6-ip6base-eth-2memif-1dcr-dev
+| tc01-78B-ethipv6-ip6base-eth-2memif-1dcr-dev
 | | [Tags] | 78B
 | | frame_size=${78} | phy_cores=${0}

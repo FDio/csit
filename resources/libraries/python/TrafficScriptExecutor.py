@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -68,6 +68,8 @@ class TrafficScriptExecutor(object):
         if ret_code != 0:
             if "RuntimeError: ICMP echo Rx timeout" in stderr:
                 raise RuntimeError("ICMP echo Rx timeout")
+            elif "RuntimeError: IP packet Rx timeout" in stderr:
+                raise RuntimeError("IP packet Rx timeout")
             elif "RuntimeError: DHCP REQUEST Rx timeout" in stderr:
                 raise RuntimeError("DHCP REQUEST Rx timeout")
             elif "RuntimeError: DHCP DISCOVER Rx timeout" in stderr:
