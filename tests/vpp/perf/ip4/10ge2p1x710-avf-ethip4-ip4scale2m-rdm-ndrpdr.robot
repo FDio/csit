@@ -82,51 +82,51 @@
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc01-64B-1c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc02-64B-2c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc03-64B-4c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc04-1518B-1c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc05-1518B-2c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc06-1518B-4c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc07-9000B-1c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc08-9000B-2c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc09-9000B-4c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc10-IMIX-1c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc11-IMIX-2c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-avf-ethip4-ip4scale2m-random-ndrpdr
+| tc12-IMIX-4c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
 
