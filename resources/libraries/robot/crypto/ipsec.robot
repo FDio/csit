@@ -49,17 +49,12 @@
 | Configure path for IPSec test
 | | [Documentation] | Setup path for IPsec testing TG<-->DUT1.
 | | ...
-| | ... | _NOTE:_ This KW sets following test case variable:
-| | ... | - dut_lo - DUT loopback interface. Type: string
-| | ...
 | | ... | *Example:*
 | | ... | \| Configure path for IPSec test \|
 | | ...
-| | ${dut1_lo1}= | Vpp Create Loopback | ${dut1}
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_lo1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | Vpp Node Interfaces Ready Wait | ${dut1}
-| | Set Test Variable | ${dut1_lo1}
 
 | Configure topology for IPv4 IPsec testing
 | | [Documentation] | Setup topology for IPv4 IPsec testing.
@@ -75,18 +70,20 @@
 | | ...
 | | Configure path for IPSec test
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | ${dut_if_ip4} | ${ip4_plen}
+| | ... | ${dut1} | ${dut1_if1} | ${dut_if1_ip4} | ${ip4_plen}
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_lo1} | ${dut_lo_ip4} | ${ip4_plen}
+| | ... | ${dut1} | ${dut1_if2} | ${dut_if2_ip4} | ${ip4_plen}
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if1} | ${tg_if_ip4} | ${tg_if1_mac}
+| | ... | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${dut1_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
 | | Vpp Route Add
-| | ... | ${dut1} | ${tg_lo_ip4} | ${ip4_plen} | gateway=${tg_if_ip4}
+| | ... | ${dut1} | ${tg_host_ip4} | ${ip4_plen} | gateway=${tg_if1_ip4}
 | | ... | interface=${dut1_if1}
-| | Set Test Variable | ${dut_tun_ip} | ${dut_if_ip4}
-| | Set Test Variable | ${dut_src_ip} | ${dut_lo_ip4}
-| | Set Test Variable | ${tg_tun_ip} | ${tg_if_ip4}
-| | Set Test Variable | ${tg_src_ip} | ${tg_lo_ip4}
+| | Set Test Variable | ${dut_tun_ip} | ${dut_if1_ip4}
+| | Set Test Variable | ${tg_tun_ip} | ${tg_if1_ip4}
+| | Set Test Variable | ${tg_src_ip} | ${tg_host_ip4}
+| | Set Test Variable | ${tg_dst_ip} | ${tg_if2_ip4}
 
 | Configure topology for IPv6 IPsec testing
 | | [Documentation] | Setup topology fo IPv6 IPsec testing.
@@ -102,19 +99,21 @@
 | | ...
 | | Configure path for IPSec test
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_if1} | ${dut_if_ip6} | ${ip6_plen}
+| | ... | ${dut1} | ${dut1_if1} | ${dut_if1_ip6} | ${ip6_plen}
 | | VPP Interface Set IP Address
-| | ... | ${dut1} | ${dut1_lo1} | ${dut_lo_ip6} | ${ip6_plen}
+| | ... | ${dut1} | ${dut1_if2} | ${dut_if2_ip6} | ${ip6_plen}
 | | VPP Add IP Neighbor
-| | ... | ${dut1} | ${dut1_if1} | ${tg_if_ip6} | ${tg_if1_mac}
+| | ... | ${dut1} | ${dut1_if1} | ${tg_if1_ip6} | ${tg_if1_mac}
+| | VPP Add IP Neighbor
+| | ... | ${dut1} | ${dut1_if2} | ${tg_if2_ip6} | ${tg_if2_mac}
 | | Vpp All RA Suppress Link Layer | ${nodes}
 | | Vpp Route Add
-| | ... | ${dut1} | ${tg_lo_ip6} | ${ip6_plen_rt} | gateway=${tg_if_ip6}
+| | ... | ${dut1} | ${tg_host_ip6} | ${ip6_plen_rt} | gateway=${tg_if1_ip6}
 | | ... | interface=${dut1_if1}
-| | Set Test Variable | ${dut_tun_ip} | ${dut_if_ip6}
-| | Set Test Variable | ${dut_src_ip} | ${dut_lo_ip6}
-| | Set Test Variable | ${tg_tun_ip} | ${tg_if_ip6}
-| | Set Test Variable | ${tg_src_ip} | ${tg_lo_ip6}
+| | Set Test Variable | ${dut_tun_ip} | ${dut_if1_ip6}
+| | Set Test Variable | ${tg_tun_ip} | ${tg_if1_ip6}
+| | Set Test Variable | ${tg_src_ip} | ${tg_host_ip6}
+| | Set Test Variable | ${tg_dst_ip} | ${tg_if2_ip6}
 
 | Configure manual keyed connection for IPSec
 | | [Documentation] | Setup IPsec manual keyed connection on VPP node.

@@ -45,10 +45,11 @@
 | ${tg_spi}= | ${1000}
 | ${dut_spi}= | ${1001}
 | ${ESP_PROTO}= | ${50}
-| ${tg_if_ip6}= | 3ffe:5f::1
-| ${dut_if_ip6}= | 3ffe:5f::2
-| ${tg_lo_ip6}= | 3ffe:60::3
-| ${dut_lo_ip6}= | 3ffe:60::4
+|| ${tg_if1_ip6}= | 3ffe:5f::1
+| ${tg_if2_ip6}= | 3ffe:60::4
+| ${dut_if1_ip6}= | 3ffe:5f::2
+| ${dut_if1_ip6}= | 3ffe:60::3
+| ${tg_host_ip6}= | 3ffe:61::3
 | ${ip6_plen}= | ${64}
 | ${ip6_plen_rt}= | ${128}
 
