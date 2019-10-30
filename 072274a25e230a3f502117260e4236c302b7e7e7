@@ -22,6 +22,30 @@
       "revId": "072274a25e230a3f502117260e4236c302b7e7e7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "13285b1a_843272a8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-10-30T15:55:18Z",
+      "side": 1,
+      "message": "Ok, I have put it back. I wondered if perhaps the fact that paramiko also uses threads, and doesn\u0027t block for command execution, to have some parallel version of executing commands. That would allow the main code to remain in the main thread, and get logged all the way through. Alas, that would be more complex than worth.",
+      "parentUuid": "75cb3452_b78d77a6",
+      "range": {
+        "startLine": 20,
+        "startChar": 9,
+        "endLine": 20,
+        "endChar": 23
+      },
+      "revId": "072274a25e230a3f502117260e4236c302b7e7e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
