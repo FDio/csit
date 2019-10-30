@@ -66,18 +66,10 @@
 | | And Initialize layer interface
 | | And Initialize IPv4 forwarding in circular topology
 | | ... | remote_host1_ip=192.168.0.1 | remote_host2_ip=192.168.0.2
-| | Then Send IPv4 ping packet and verify headers
-| | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if2}
-| | ... | 10.10.10.2 | 20.20.20.1 | ${dut1_if1_mac} | ${0}
-| | Then Send IPv4 ping packet and verify headers
-| | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if1}
-| | ... | 10.10.10.2 | 10.10.10.1 | ${dut1_if1_mac} | ${0}
-| | Then Send IPv4 ping packet and verify headers
-| | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
-| | ... | 10.10.10.2 | 20.20.20.2 | ${dut1_if1_mac} | ${1}
-| | Then Send IPv4 ping packet and verify headers
-| | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
-| | ... | 192.168.0.1 | 192.168.0.2 | ${dut1_if1_mac} | ${1}
+| | Then Send packet and verify headers
+| | ... | ${tg} | 192.168.0.1 | 192.168.0.2
+| | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
+| | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
 
 *** Test Cases ***
 | tc01-64B-ethicmpv4-ip4base-dev
