@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | L2XCFWD | BASE | ICMP | DRV_VFIO_PCI
+| ... | NIC_Virtual | ETH | L2XCFWD | BASE | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
@@ -27,11 +27,11 @@
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for L2 switching of \
-| ... | IPv4. Both apply to all links.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of  IPv4.\
+| ... | Both apply to all links.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 cross-connect \
 | ... | switching.
-| ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets \
+| ... | *[Ver] TG verification:* Test IPv4 packets  with IP protocol=61 \
 | ... | are sent in both directions by TG on links to DUT1; on receive TG \
 | ... | verifies packets for correctness and their IPv4 src-addr, \
 | ... | dst-addr and MAC addresses.
@@ -47,7 +47,7 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send ICMPv4 Echo Reqs in both directions between two\
+| | ... | [Ver] Make TG send IPv4 packets in both directions between two\
 | | ... | of its interfaces to be switched by DUT to and from docker; verify\
 | | ... | all packets are received.
 | | ...
@@ -67,10 +67,10 @@
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
 | | And Initialize L2 xconnect in 2-node circular topology
-| | Then Send ICMPv4 bidirectionally and verify received packets
+| | Then Send IPv4 bidirectionally and verify received packets
 | | ... | ${tg} | ${tg_if1} | ${tg_if2}
 
 *** Test Cases ***
-| tc01-64B-ethicmpv4-l2xcbase-dev
+| tc01-64B-ethipv4-l2xcbase-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

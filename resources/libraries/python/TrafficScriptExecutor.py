@@ -68,6 +68,8 @@ class TrafficScriptExecutor(object):
         if ret_code != 0:
             if "RuntimeError: ICMP echo Rx timeout" in stderr:
                 raise RuntimeError("ICMP echo Rx timeout")
+            elif "RuntimeError: IP packet Rx timeout" in stderr:
+                raise RuntimeError("IP packet Rx timeout")
             elif "RuntimeError: DHCP REQUEST Rx timeout" in stderr:
                 raise RuntimeError("DHCP REQUEST Rx timeout")
             elif "RuntimeError: DHCP DISCOVER Rx timeout" in stderr:

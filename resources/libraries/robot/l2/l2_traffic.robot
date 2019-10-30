@@ -18,8 +18,8 @@
 | ... | through L2 network.
 
 *** Keywords ***
-| Send ICMP packet and verify received packet
-| | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to \
+| Send IP packet and verify received packet
+| | [Documentation] | Send IPv4/IPv6 echo request from source interface to \
 | | ... | destination interface. Packet can be set with Dot1q or
 | | ... | Dot1ad tag(s) when required.
 | | ...
@@ -46,47 +46,35 @@
 | | ...
 | | ... | _NOTE:_ Default IP is IPv4
 | | ...
-| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \
+| | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
-| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \
+| | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=100 \|
-| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \
+| | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1ad \| vlan1=110 \
 | | ... | \| vlan2=220 \|
-| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \
+| | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \
 | | ... | \| encaps_rx=Dot1q \|
-| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \
+| | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \
 | | ... | \| encaps_rx=Dot1q \| vlan1_rx=120 \|
 | | ...
-| | [Arguments] | ${tg_node} | ${src_int} | ${dst_int}
-| | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2 | ${encaps}=${EMPTY}
-| | ... | ${vlan1}=${EMPTY} | ${vlan2}=${EMPTY} | ${encaps_rx}=${EMPTY}
-| | ... | ${vlan1_rx}=${EMPTY} | ${vlan2_rx}=${EMPTY}
+| | [Arguments] | ${tg_node} | ${tx_src_port} | ${rx_dst_port}
+| | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2
+| | ... | ${tx_dst_mac}=${dut1_if1_mac} | ${rx_src_mac}=${dut1_if2_mac}
+| | ... | ${encaps}=${EMPTY} | ${vlan1}=${EMPTY} | ${vlan2}=${EMPTY}
+| | ... | ${encaps_rx}=${EMPTY} | ${vlan1_rx}=${EMPTY} | ${vlan2_rx}=${EMPTY}
 | | ...
-| | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
-| | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
-| | ${src_int_name}= | Get interface name | ${tg_node} | ${src_int}
-| | ${dst_int_name}= | Get interface name | ${tg_node} | ${dst_int}
-| | ${args}= | Traffic Script Gen Arg | ${dst_int_name} | ${src_int_name}
-| | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
-| | ${args}= | Run Keyword If | '${encaps}' == '${EMPTY}'
-| | | ... | Set Variable | ${args}
-| | ... | ELSE | Catenate | ${args} | --encaps ${encaps} | --vlan1 ${vlan1}
-| | ${args}= | Run Keyword If | '${vlan2}' == '${EMPTY}'
-| | | ... | Set Variable | ${args}
-| | ... | ELSE | Catenate | ${args} | --vlan2 ${vlan2}
-| | ${args}= | Run Keyword If | '${encaps_rx}' == '${EMPTY}'
-| | | ... | Set Variable | ${args}
-| | ... | ELSE | Catenate | ${args} | --encaps_rx ${encaps_rx}
-| | ${args}= | Run Keyword If | '${vlan1_rx}' == '${EMPTY}'
-| | | ... | Set Variable | ${args}
-| | ... | ELSE | Catenate | ${args} | --vlan1_rx ${vlan1_rx}
-| | ${args}= | Run Keyword If | '${vlan2_rx}' == '${EMPTY}'
-| | | ... | Set Variable | ${args}
-| | ... | ELSE | Catenate | ${args} | --vlan2_rx ${vlan2_rx}
-| | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
+| | ${tx_src_mac}= | Get Interface Mac | ${tg_node} | ${tx_src_port}
+| | ${rx_dst_mac}= | Get Interface Mac | ${tg_node} | ${rx_dst_port}
+| | Then Send packet and verify headers
+| | ... | ${tg} | 192.168.0.1 | 192.168.0.2
+| | ... | ${tx_src_port} | ${tx_src_mac} | ${tx_dst_mac}
+| | ... | ${rx_dst_port} | ${dut1_if2_mac} | ${rx_dst_mac}
+| | ... | encaps_tx=${encaps} | vlan_tx=${vlan1} | vlan_outer_tx=${vlan2}
+| | ... | encaps_rx=${encaps_rx} | vlan_rx=${vlan1_rx}
+| | ... | vlan_outer_rx=${vlan2_rx}
 
 | ICMP packet transmission should fail
 | | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to
@@ -121,10 +109,10 @@
 | | ${dst_int_name}= | Get interface name | ${tg_node} | ${dst_int}
 | | ${args}= | Traffic Script Gen Arg | ${dst_int_name} | ${src_int_name}
 | | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
-| | Run Keyword And Expect Error | ICMP echo Rx timeout |
+| | Run Keyword And Expect Error | IP echo Rx timeout |
 | | ... | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
-| Send ICMPv4 bidirectionally and verify received packets
+| Send IPv4 bidirectionally and verify received packets
 | | [Documentation] | Send ICMPv4 echo request from both directions,
 | | ... | from interface1 to interface2 and from interface2 to interface1.
 | | ...
@@ -148,12 +136,12 @@
 | | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=192.168.100.1 |
 | | ... | ${dst_ip}=192.168.100.2
 | | ...
-| | Send ICMP packet and verify received packet
+| | Send IP packet and verify received packet
 | | ... | ${tg_node} | ${int1} | ${int2} | ${src_ip} | ${dst_ip}
-| | Send ICMP packet and verify received packet
+| | Send Send packet and verify headers
 | | ... | ${tg_node} | ${int2} | ${int1} | ${dst_ip} | ${src_ip}
 
-| Send ICMPv6 bidirectionally and verify received packets
+| Send IPv6 bidirectionally and verify received packets
 | | [Documentation] | Send ICMPv6 echo request from both directions,
 | | ... | from interface1 to interface2 and from interface2 to interface1.
 | | ...
@@ -177,7 +165,7 @@
 | | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=3ffe:63::1 |
 | | ... | ${dst_ip}=3ffe:63::2
 | | ...
-| | Send ICMP packet and verify received packet
+| | Send IP packet and verify received packet
 | | ... | ${tg_node} | ${int1} | ${int2} | ${src_ip} | ${dst_ip}
-| | Send ICMP packet and verify received packet
+| | Send IP packet and verify received packet
 | | ... | ${tg_node} | ${int2} | ${int1} | ${dst_ip} | ${src_ip}
