@@ -27,13 +27,13 @@
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
 | ... | between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for L2 switching of
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of
 | ... | IPv4.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2
 | ... | bridge-domain (L2BD) MAC learning enabled; Split Horizon Groups (SHG)
 | ... | are set depending on test case; Namespaces (NM)
 | ... | are set on DUT1 with attached linux-TAP.
-| ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets
+| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61
 | ... | are sent by TG on link to DUT1; On receipt TG verifies packets
 | ... | for correctness and their IPv4 src-addr, dst-addr, and MAC addresses.
 | ... | *[Ref] Applicable standard specifications:*
@@ -78,10 +78,10 @@
 | | And Add interface to bridge domain | ${dut1} | ${dut1_if1} | 20 | 0
 | | And Add interface to bridge domain | ${dut1} | ${int2} | 19 | 0
 | | And Add interface to bridge domain | ${dut1} | ${dut1_if2} | 19 | 0
-| | Then Send ICMP packet and verify received packet
+| | Then Send IP packet and verify received packet
 | | ... | ${tg} | ${tg_if1} | ${tg_if2}
 
 *** Test Cases ***
-| tc01-64B-ethicmpv4-l2bdbasemaclrn-eth-2tap-dev
+| tc01-64B-ethipv4-l2bdbasemaclrn-eth-2tap-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

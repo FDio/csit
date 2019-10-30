@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Traffic script that sends an IP ICMPv4/ICMPv6 packet from one interface
+"""Traffic script that sends an IP IPv4/IPv6 packet from one interface
 to the other. Source and destination IP addresses and source and destination
 MAC addresses are checked in received packet.
 """
@@ -22,7 +22,7 @@ import sys
 import ipaddress
 from robot.api import logger
 from scapy.layers.inet import IP
-from scapy.layers.inet6 import IPv6, ICMPv6EchoRequest, ICMPv6ND_NS
+from scapy.layers.inet6 import IPv6, ICMPv6ND_NS
 from scapy.layers.l2 import Ether, Dot1Q
 
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
@@ -46,7 +46,7 @@ def valid_ipv6(ip):
 
 
 def main():
-    """Send IP ICMP packet from one traffic generator interface to the other."""
+    """Send IP/IPv6 packet from one traffic generator interface to the other."""
     args = TrafficScriptArg(
         ['tg_src_mac', 'tg_dst_mac', 'src_ip', 'dst_ip', 'dut_if1_mac',
          'dut_if2_mac'],
@@ -97,8 +97,9 @@ def main():
             ether = rxq.recv(2, ignore=sent_packets)
         else:
             ether = rxq.recv(2)
+
         if ether is None:
-            raise RuntimeError('ICMP echo Rx timeout')
+            raise RuntimeError('IP packet Rx timeout')
 
         if ether.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS

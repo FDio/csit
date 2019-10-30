@@ -27,15 +27,14 @@
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
 | ... | VM and single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6-ICMPv6 for IPv6 routing on \
-| ... | both links.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for IPv6 routing on both links.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6 routing and \
 | ... | two static IPv6 /64 route entries. Qemu Guest is connected to VPP via \
 | ... | vhost-user interfaces. Guest is running VPP ip6 interconnecting \
 | ... | vhost-user interfaces.
-| ... | *[Ver] TG verification:* Test ICMPv6 Echo Request packets are sent in \
-| ... | one direction by TG on links to DUT1; on receive TG verifies packets \
-| ... | for correctness and their IPv6 src-addr, dst-addr and MAC addresses.
+| ... | *[Ver] TG verification:* Test IPv6 packets are sent in one direction \
+| ... | by TG on links to DUT1; on receive TG verifies packets for correctness \
+| ... | and their IPv6 src-addr, dst-addr and MAC addresses.
 | ... | *[Ref] Applicable standard specifications:* RFC2460, RFC4443, RFC4861
 
 *** Variables ***
@@ -86,6 +85,6 @@
 
 
 *** Test Cases ***
-| tc01-64B-ethicmpv6-ip6base-eth-2vhost-1vm-dev
+| tc01-64B-ethipv6-ip6base-eth-2vhost-1vm-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}
