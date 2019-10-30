@@ -1199,6 +1199,9 @@ class InterfaceUtil(object):
         :raises RuntimeError: If it is not possible to create AVF interface on
             the node.
         """
+        PapiSocketExecutor.run_cli_cmd(
+            node, 'set logging class avf level debug')
+
         cmd = 'avf_create'
         args = dict(pci_addr=InterfaceUtil.pci_to_int(vf_pci_addr),
                     enable_elog=0,
