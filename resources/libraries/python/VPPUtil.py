@@ -259,10 +259,10 @@ class VPPUtil(object):
                 VPPUtil.vpp_enable_traces_on_dut(node, fail_on_error)
 
     @staticmethod
-    def vpp_enable_elog_traces_on_dut(node):
-        """Enable API/CLI/Barrier traces on the DUT node.
+    def vpp_enable_elog_traces(node):
+        """Enable API/CLI/Barrier traces on the specified topology node.
 
-        :param node: DUT node to set up.
+        :param node: Topology node.
         :type node: dict
         """
         PapiSocketExecutor.run_cli_cmd(node, "elog trace api cli barrier")
@@ -276,13 +276,13 @@ class VPPUtil(object):
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                VPPUtil.vpp_enable_elog_traces_on_dut(node)
+                VPPUtil.vpp_enable_elog_traces(node)
 
     @staticmethod
-    def show_event_logger_on_dut(node):
-        """Show event logger on the DUT node.
+    def show_event_logger(node):
+        """Show event logger on the specified topology node.
 
-        :param node: DUT node to show traces on.
+        :param node: Topology node.
         :type node: dict
         """
         PapiSocketExecutor.run_cli_cmd(node, "show event-logger")
@@ -296,18 +296,29 @@ class VPPUtil(object):
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                VPPUtil.show_event_logger_on_dut(node)
+                VPPUtil.show_event_logger(node)
 
     @staticmethod
     def show_log(node):
-        """Show log on the specified topology node.
+        """Show logging on the specified topology node.
 
         :param node: Topology node.
         :type node: dict
-        :returns: VPP log data.
+        :returns: VPP logging data.
         :rtype: list
         """
-        return PapiSocketExecutor.run_cli_cmd(node, "show log")
+        PapiSocketExecutor.run_cli_cmd(node, "show logging")
+
+    @staticmethod
+    def show_log_on_all_duts(nodes):
+        """Show logging on all DUTs in the given topology.
+
+        :param nodes: Nodes in the topology.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VPPUtil.show_log(node)
 
     @staticmethod
     def vpp_show_threads(node):
@@ -331,6 +342,6 @@ class VPPUtil(object):
                 thread_data.append(item)
             threads_data.append(thread_data)
 
-        logger.info("show threads:\n{threads}".format(threads=threads_data))
+        logger.trace("show threads:\n{threads}".format(threads=threads_data))
 
         return threads_data
