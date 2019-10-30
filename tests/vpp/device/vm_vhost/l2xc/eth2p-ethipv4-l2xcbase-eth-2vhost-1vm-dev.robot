@@ -15,46 +15,50 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | IP4FWD | BASE | MEMIF | DOCKER | DRV_VFIO_PCI
+| ... | NIC_Virtual | ETH | L2XCFWD | BASE | ICMP | VHOST | 1VM | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | container
+| Test Teardown | Tear down test | packet_trace | vhost
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *IPv4 routing test cases with memif interface*
+| Documentation | *L2 cross-connect test cases with vhost user interface*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
-| ... | single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for IPv4 routing on \
-| ... | both links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and \
-| ... | two static IPv4 /24 route entries. Container is connected to VPP via \
-| ... | Memif interface. Container is running same VPP version as running on \
-| ... | DUT.
+| ... | VM and single links between nodes.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for L2 switching of \
+| ... | IPv4.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 cross-connect \
+| ... | (L2XC) switching. Qemu Guest is connected to VPP via vhost-user \
+| ... | interfaces. Guest is configured with VPP l2 cross-connect \
+| ... | interconnecting vhost-user interfaces.
 | ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets are sent in \
-| ... | one direction by TG on links to DUT1 and via container; on receive TG \
-| ... | verifies packets for correctness and their IPv4 src-addr, dst-addr and \
-| ... | MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC791, RFC826, RFC792
+| ... | both directions by TG on links to DUT1 via VM; on receive TG verifies \
+| ... | packets for correctness and their IPv4 src-addr, dst-addr and MAC \
+| ... | addresses.
+| ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
-# Container
-| ${container_engine}= | Docker
-| ${container_chain_topology}= | chain_functional
+| ${nf_chains}= | ${1}
+| ${nf_nodes}= | ${1}
+| ${nf_dtc} | ${1}
+| ${nf_dtcr} | ${1}
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send ICMPv4 Echo Reqs in both directions between two\
-| | ... | of its interfaces to be routed by DUT to and from docker; verify\
-| | ... | all packets are received.
+| | ... | [Top] TG=DUT=VM. [Enc] Eth-IPv4-ICMPv4. [Cfg] On DUT configure \
+| | ... | two L2 cross-connects (L2XC), each with one untagged interface \
+| | ... | to TG and untagged i/f to local VM over vhost-user. [Ver] Make \
+| | ... | TG send ICMPv4 Echo Reqs in both directions between two of its \
+| | ... | i/fs to be switched by DUT to and from VM; verify all packets \
+| | ... | are received. [Ref]
 | | ...
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
@@ -71,14 +75,14 @@
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Start containers for test | auto_scale=${False} | pinning=${False}
-| | And Initialize IPv4 routing with memif pairs
-| | Then Send packet and verify headers
-| | ... | ${tg} | 10.10.10.1 | 20.20.20.1
-| | ... | ${tg_if1} | ${tg_if1_mac} | ${dut1_if1_mac}
-| | ... | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
+| | And Initialize L2 xconnect with Vhost-User | nf_nodes=${nf_nodes}
+| | And Configure chains of NFs connected via vhost-user
+| | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | vnf=vpp_chain_l2xc
+| | ... | pinning=${False}
+| | Then Send IPv4 bidirectionally and verify received packets | ${tg}
+| | ... | ${tg_if1} | ${tg_if2}
 
 *** Test Cases ***
-| tc01-64B-ethicmpv4-ip4base-eth-2memif-1dcr-dev
+| tc01-64B-ethipv4-l2xcbase-eth-2vhost-1vm-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

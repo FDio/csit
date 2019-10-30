@@ -68,7 +68,7 @@
 | | And Initialize layer interface
 | | And Initialize layer dot1q
 | | And Initialize L2 bridge domain
-| | Then Send ICMPv4 bidirectionally and verify received packets
+| | Then Send IPv4 bidirectionally and verify received packets
 | | ... | ${tg} | ${tg_if1} | ${tg_if2}
 
 *** Test Cases ***

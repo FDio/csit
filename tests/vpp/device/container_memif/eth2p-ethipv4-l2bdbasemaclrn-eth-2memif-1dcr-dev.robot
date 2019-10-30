@@ -72,10 +72,10 @@
 | | And Initialize layer interface
 | | And Start containers for test | auto_scale=${False} | pinning=${False}
 | | And Initialize L2 Bridge Domain with memif pairs | auto_scale=${False}
-| | Then Send ICMPv4 bidirectionally and verify received packets
+| | Then Send IPv4 bidirectionally and verify received packets
 | | ... | ${tg} | ${tg_if1} | ${tg_if2}
 
 *** Test Cases ***
-| tc01-64B-ethicmpv4-l2bdbasemaclrn-eth-2memif-1dcr-dev
+| tc01-64B-ethipv4-l2bdbasemaclrn-eth-2memif-1dcr-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

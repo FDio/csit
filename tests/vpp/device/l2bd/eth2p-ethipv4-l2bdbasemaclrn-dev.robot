@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | IP6FWD | BASE | IP6BASE | DRV_VFIO_PCI
+| ... | NIC_Virtual | ETH | L2BDMACLRN | BASE | ICMP | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
@@ -23,18 +23,19 @@
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *IPv6 routing test cases*
+| Documentation | *L2 bridge-domain test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv6-ICMPv6 for IPv6 routing on \
-| ... | both links.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv6 routing and \
-| ... | two static IPv6 /64 route entries.
-| ... | *[Ver] TG verification:* Test ICMPv6 Echo Request packets are sent in \
-| ... | one direction by TG on links to DUT1; on receive TG verifies packets \
-| ... | for correctness and their IPv6 src-addr, dst-addr and MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* RFC2460, RFC4443, RFC4861
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for L2 switching of \
+| ... | IPv4. Both apply to all links.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge-domain \
+| ... | switching.
+| ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets \
+| ... | are sent in both directions by TG on links to DUT1; on receive TG \
+| ... | verifies packets for correctness and their IPv4 src-addr, \
+| ... | dst-addr and MAC addresses.
+| ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so
@@ -46,8 +47,9 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send ICMPv6 Echo Req routed over DUT1 interfaces;\
-| | ... | Make TG verify ICMPv6 Echo Reply is correct.
+| | ... | [Ver] Make TG send ICMPv4 Echo Reqs in both directions between two\
+| | ... | of its interfaces to be switched by DUT to and from docker; verify\
+| | ... | all packets are received.
 | | ...
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
@@ -64,22 +66,11 @@
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize IPv6 forwarding in circular topology
-| | ... | remote_host1_ip=3ffe:5f::1 | remote_host2_ip=3ffe:5f::2
-| | Then Send IPv6 echo request packet and verify headers
-| | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if2}
-| | ... | 2001:1::2 | 2001:2::1 | ${dut1_if1_mac} | ${0}
-| | Then Send IPv6 echo request packet and verify headers
-| | ... | ${tg} | ${tg_if1} | ${dut1} | ${dut1_if1}
-| | ... | 2001:1::2 | 2001:1::1 | ${dut1_if1_mac} | ${0}
-| | Then Send IPv6 echo request packet and verify headers
-| | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
-| | ... | 2001:1::2 | 2001:2::2 | ${dut1_if1_mac} | ${1} | ${dut1_if2_mac}
-| | Then Send IPv6 echo request packet and verify headers
-| | ... | ${tg} | ${tg_if1} | ${tg} | ${tg_if2}
-| | ... | 3ffe:5f::1 | 3ffe:5f::2 | ${dut1_if1_mac} | ${1} | ${dut1_if2_mac}
+| | And Initialize L2 bridge domain
+| | Then Send IPv4 bidirectionally and verify received packets
+| | ... | ${tg} | ${tg_if1} | ${tg_if2}
 
 *** Test Cases ***
-| tc01-78B-ethicmpv6-ip6base-dev
-| | [Tags] | 78B
-| | frame_size=${78} | phy_cores=${0}
+| tc01-64B-ethipv4-l2bdbasemaclrn-dev
+| | [Tags] | 64B
+| | frame_size=${64} | phy_cores=${0}
