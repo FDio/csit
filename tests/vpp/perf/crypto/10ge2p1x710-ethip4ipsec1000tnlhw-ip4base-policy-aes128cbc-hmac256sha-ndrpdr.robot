@@ -99,8 +99,6 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And VPP IPsec Select Backend | ${dut1} | ${ipsec_proto} | index=${1}
-| | And VPP IPsec Select Backend | ${dut2} | ${ipsec_proto} | index=${1}
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${nodes} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
