@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "405a1d5a_27985fa4",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 789,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-30T17:19:25Z",
+      "side": 1,
+      "message": "These are still needed for vpp perf per-patch test selection.",
+      "range": {
+        "startLine": 789,
+        "startChar": 0,
+        "endLine": 789,
+        "endChar": 1
+      },
+      "revId": "66e940590c0659f643e77dbb94d4de03580a4ac4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
