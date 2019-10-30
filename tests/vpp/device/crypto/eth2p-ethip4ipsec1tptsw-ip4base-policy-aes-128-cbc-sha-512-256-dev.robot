@@ -45,10 +45,11 @@
 | ${tg_spi}= | ${1000}
 | ${dut_spi}= | ${1001}
 | ${ESP_PROTO}= | ${50}
-| ${tg_if_ip4}= | 192.168.100.2
-| ${dut_if_ip4}= | 192.168.100.3
-| ${tg_lo_ip4}= | 192.168.3.3
-| ${dut_lo_ip4}= | 192.168.4.4
+| ${tg_if1_ip4}= | 192.168.100.2
+| ${tg_if2_ip4}= | 192.168.4.4
+| ${dut_if1_ip4}= | 192.168.100.3
+| ${dut_if2_ip4}= | 192.168.4.3
+| ${tg_host_ip4}= | 192.168.3.3
 | ${ip4_plen}= | ${24}
 
 *** Keywords ***
@@ -83,9 +84,9 @@
 | | ... | ${dut1} | ${dut1_if1} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
 | | Then Send IPsec Packet and verify ESP encapsulation in received packet
-| | ... | ${tg} | ${tg_if1} | ${dut1_if1_mac}
+| | ... | ${tg} | ${tg_if1} | ${tg_if2} | ${dut1_if1_mac} | ${dut1_if2_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
-| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
+| | ... | ${dut_spi} | ${tg_src_ip} | ${tg_dst_ip}
 
 *** Test Cases ***
 | tc01-110B-ethip4ipsec1tptsw-ip4base-policy-aes-128-cbc-sha-512-256-dev
