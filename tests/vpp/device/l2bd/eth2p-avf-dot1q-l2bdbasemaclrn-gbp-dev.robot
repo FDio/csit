@@ -55,9 +55,9 @@
 *** Keywords ***
 | Local template
 | | [Documentation]
-| | ... | [Ver] Make TG send ICMPv4 Echo Reqs in both directions between two\
-| | ... | of its interfaces to be switched by DUT to and from docker; verify\
-| | ... | all packets are received.
+| | ... | [Ver] Make TG send IPv4 packet in one direction between two\
+| | ... | of its interfaces to be switched by DUT to and from docker.\
+| | ... | Make TG verify IPv6 packet is correct.
 | | ...
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).

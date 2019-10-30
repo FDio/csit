@@ -46,7 +46,7 @@ def valid_ipv6(ip):
 
 
 def main():
-    """Send IP ICMP packet from one traffic generator interface to the other."""
+    """Send IP/IPv6 packet from one traffic generator interface to the other."""
     args = TrafficScriptArg(
         ['tg_src_mac', 'tg_dst_mac', 'src_ip', 'dst_ip', 'dut_if1_mac',
          'dut_if2_mac'],
@@ -97,8 +97,9 @@ def main():
             ether = rxq.recv(2, ignore=sent_packets)
         else:
             ether = rxq.recv(2)
+
         if ether is None:
-            raise RuntimeError('ICMP echo Rx timeout')
+            raise RuntimeError('IP packet Rx timeout')
 
         if ether.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS

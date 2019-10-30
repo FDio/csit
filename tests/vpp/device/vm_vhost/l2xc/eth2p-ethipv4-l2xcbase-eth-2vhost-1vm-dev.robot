@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | L2XCFWD | BASE | ICMP | VHOST | 1VM | DRV_VFIO_PCI
+| ... | NIC_Virtual | ETH | L2XCFWD | BASE | VHOST | 1VM | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
@@ -27,16 +27,15 @@
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
 | ... | VM and single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for L2 switching of \
-| ... | IPv4.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 cross-connect \
 | ... | (L2XC) switching. Qemu Guest is connected to VPP via vhost-user \
 | ... | interfaces. Guest is configured with VPP l2 cross-connect \
 | ... | interconnecting vhost-user interfaces.
-| ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets are sent in \
-| ... | both directions by TG on links to DUT1 via VM; on receive TG verifies \
-| ... | packets for correctness and their IPv4 src-addr, dst-addr and MAC \
-| ... | addresses.
+| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61 are \
+| ... | sent in both directions by TG on links to DUT1 via VM; on receive TG \
+| ... | verifies packets for correctness and their IPv4 src-addr, dst-addr \
+| ... | and MAC addresses.
 | ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
@@ -53,10 +52,10 @@
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Top] TG=DUT=VM. [Enc] Eth-IPv4-ICMPv4. [Cfg] On DUT configure \
+| | ... | [Top] TG=DUT=VM. [Enc] Eth-IPv4. [Cfg] On DUT configure \
 | | ... | two L2 cross-connects (L2XC), each with one untagged interface \
 | | ... | to TG and untagged i/f to local VM over vhost-user. [Ver] Make \
-| | ... | TG send ICMPv4 Echo Reqs in both directions between two of its \
+| | ... | TG send IPv4 packets in both directions between two of its \
 | | ... | i/fs to be switched by DUT to and from VM; verify all packets \
 | | ... | are received. [Ref]
 | | ...
@@ -79,10 +78,10 @@
 | | And Configure chains of NFs connected via vhost-user
 | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | vnf=vpp_chain_l2xc
 | | ... | pinning=${False}
-| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg}
+| | Then Send IPv4 bidirectionally and verify received packets | ${tg}
 | | ... | ${tg_if1} | ${tg_if2}
 
 *** Test Cases ***
-| tc01-64B-ethicmpv4-l2xcbase-eth-2vhost-1vm-dev
+| tc01-64B-ethipv4-l2xcbase-eth-2vhost-1vm-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}

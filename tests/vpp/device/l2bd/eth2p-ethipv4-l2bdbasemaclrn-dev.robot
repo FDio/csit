@@ -15,42 +15,39 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | L2XCFWD | BASE | MEMIF | DOCKER | DRV_VFIO_PCI
+| ... | NIC_Virtual | ETH | L2BDMACLRN | BASE | DRV_VFIO_PCI
 | ...
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace | container
+| Test Teardown | Tear down test | packet_trace
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *L2 cross-connect test cases with memif interface*
+| Documentation | *L2 bridge-domain test cases*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
-| ... | single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for L2 switching of IPv4.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 cross-connect \
-| ... | (L2XC) switching. Container is connected to VPP via Memif interface. \
-| ... | Container is running same VPP version as running on DUT.
-| ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets \
-| ... | are sent in both directions by TG on links to DUT1 and via container; \
-| ... | on receive TG verifies packets for correctness and their IPv4 \
-| ... | src-addr, dst-addr and MAC addresses.
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
+| ... | with single links between nodes.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.\
+| ... | Both apply to all links.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge-domain \
+| ... | switching.
+| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61 \
+| ... | are sent in both directions by TG on links to DUT1; on receive TG \
+| ... | verifies packets for correctness and their IPv4 src-addr, \
+| ... | dst-addr and MAC addresses.
 | ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
 | ${nic_driver}= | vfio-pci
 | ${overhead}= | ${0}
-# Container
-| ${container_engine}= | Docker
-| ${container_chain_topology}= | chain_functional
 
 *** Keywords ***
 | Local Template
 | | [Documentation]
-| | ... | [Ver] Make TG send ICMPv4 Echo Reqs in both directions between two\
+| | ... | [Ver] Make TG send IPv4 packets in both directions between two\
 | | ... | of its interfaces to be switched by DUT to and from docker; verify\
 | | ... | all packets are received.
 | | ...
@@ -69,12 +66,11 @@
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Start containers for test | auto_scale=${False} | pinning=${False}
-| | And Initialize L2 xconnect with memif pairs
-| | Then Send ICMPv4 bidirectionally and verify received packets
+| | And Initialize L2 bridge domain
+| | Then Send IPv4 bidirectionally and verify received packets
 | | ... | ${tg} | ${tg_if1} | ${tg_if2}
 
 *** Test Cases ***
-| tc01-64B-ethicmpv4-l2xcbase-eth-2memif-1dcr-dev
+| tc01-64B-ethipv4-l2bdbasemaclrn-dev
 | | [Tags] | 64B
 | | frame_size=${64} | phy_cores=${0}
