@@ -40,7 +40,7 @@
 | | ... | - tx_src_port - Interface of TG-if1. Type: string
 | | ... | - tx_src_mac - MAC address of TG-if1. Type: string
 | | ... | - tx_dst_mac - MAC address of DUT-if1. Type: string
-| | ... | - rx_port - Interface of TG-if1. Type: string
+| | ... | - rx_dst_port - Interface of TG-if1. Type: string
 | | ... | - rx_src_mac - MAC address of DUT1-if2. Type: string
 | | ... | - rx_dst_mac - MAC address of TG-if2. Type: string
 | | ... | - encaps_tx - Expected encapsulation on TX side: Dot1q or Dot1ad
@@ -66,14 +66,14 @@
 | | ... | \| eth3 \| 08:00:27:4d:ca:7a \| 08:00:27:7d:fd:10 \|
 | | ...
 | | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_src_port}
-| | ... | ${tx_src_mac} | ${tx_dst_mac} | ${rx_port} | ${rx_src_mac}
+| | ... | ${tx_src_mac} | ${tx_dst_mac} | ${rx_dst_port} | ${rx_src_mac}
 | | ... | ${rx_dst_mac} | ${encaps_tx}=${EMPTY} | ${vlan_tx}=${EMPTY}
 | | ... | ${vlan_outer_tx}=${EMPTY} | ${encaps_rx}=${EMPTY}
 | | ... | ${vlan_rx}=${EMPTY} | ${vlan_outer_rx}=${EMPTY}
-| | ... | ${traffic_script}=send_icmp_check_headers
+| | ... | ${traffic_script}=send_ip_check_headers
 | | ...
 | | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_src_port}
-| | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
+| | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_dst_port}
 | | ${args}= | Catenate | --tg_src_mac ${tx_src_mac}
 | | ... | --tg_dst_mac ${rx_dst_mac} | --dut_if1_mac ${tx_dst_mac}
 | | ... | --dut_if2_mac ${rx_src_mac} | --src_ip ${src_ip} | --dst_ip ${dst_ip}
@@ -133,8 +133,8 @@
 | | ... | --tg_dst_mac ${rx_dst_mac} | --dut_if1_mac ${tx_dst_mac}
 | | ... | --dut_if2_mac ${rx_src_mac} | --src_ip ${src_ip} | --dst_ip ${dst_ip}
 | | ... | --tx_if ${tx_port_name} | --rx_if ${rx_port_name}
-| | Run Keyword And Expect Error | ICMP echo Rx timeout |
-| | ... | Run Traffic Script On Node | send_icmp_check_headers.py
+| | Run Keyword And Expect Error | IP packet Rx timeout |
+| | ... | Run Traffic Script On Node | send_ip_check_headers.py
 | | ... | ${tg_node} | ${args}
 
 | Send packet and verify ARP request
@@ -845,8 +845,12 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - TG node. Type: dictionary
-| | ... | - interface - TG Interface. Type: string
-| | ... | - dst_mac - Destination MAC. Type: string
+| | ... | - tx_interface - TG Interface 1. Type: string
+| | ... | - rx_interface - TG Interface 2. Type: string
+| | ... | - tx_dst_mac - Destination MAC for TX interface / DUT interface 1 MAC.
+| | ... | Type: string
+| | ... | - rx_src_mac - Source MAC for RX interface / DUT interface 2 MAC.
+| | ... | Type: string
 | | ... | - crypto_alg - Encrytion algorithm. Type: enum
 | | ... | - crypto_key - Encryption key. Type: string
 | | ... | - integ_alg - Integrity algorithm. Type: enum
@@ -862,20 +866,25 @@
 | | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
 | | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
 | | ... | \| Send IPsec Packet and verify ESP encapsulation in received packet\
-| | ... | \| ${nodes['TG']} \| eth1 \
-| | ... | \| 52:54:00:d4:d8:22 \| ${encr_alg} \| sixteenbytes_key \
-| | ... | \| ${auth_alg} \| twentybytessecretkey \| ${1001} \| ${1000} \
-| | ... | \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \| 192.168.100.3 \|
+| | ... | \| ${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:3e \| ${encr_alg} \
+| | ... | \| sixteenbytes_key \| ${auth_alg} \| twentybytessecretkey \
+| | ... | \| ${1001} \| ${1000} \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \
+| | ... | \| 192.168.100.3 \|
 | | ...
-| | [Arguments] | ${node} | ${interface} | ${dst_mac} | ${crypto_alg}
-| | ... | ${crypto_key} | ${integ_alg} | ${integ_key} | ${l_spi}
-| | ... | ${r_spi} | ${l_ip} | ${r_ip} | ${l_tunnel}=${None}
-| | ... | ${r_tunnel}=${None}
+| | [Arguments] | ${node} | ${tx_interface} | ${rx_interface} | ${tx_dst_mac}
+| | ... | ${rx_src_mac} | ${crypto_alg} | ${crypto_key} | ${integ_alg}
+| | ... | ${integ_key} | ${l_spi} | ${r_spi} | ${l_ip} | ${r_ip}
+| | ... | ${l_tunnel}=${None} | ${r_tunnel}=${None}
 | | ...
-| | ${src_mac}= | Get Interface Mac | ${node} | ${interface}
-| | ${if_name}= | Get Interface Name | ${node} | ${interface}
-| | ${args}= | Traffic Script Gen Arg | ${if_name} | ${if_name} | ${src_mac}
-| | ... | ${dst_mac} | ${l_ip} | ${r_ip}
+| | ${tx_src_mac}= | Get Interface Mac | ${node} | ${tx_interface}
+| | ${tx_if_name}= | Get Interface Name | ${node} | ${tx_interface}
+| | ${rx_dst_mac}= | Get Interface Mac | ${node} | ${tx_interface}
+| | ${rx_if_name}= | Get Interface Name | ${node} | ${rx_interface}
+| | ${args}= | Catenate | --rx_if ${rx_if_name} | --tx_if ${tx_if_name}
+| | ... | --tx_src_mac ${tx_src_mac} | --tx_dst_mac ${tx_dst_mac}
+| | ... | --rx_src_mac ${rx_src_mac} | --rx_dst_mac ${rx_dst_mac}
+| | ... | --src_ip ${l_ip} | --dst_ip ${r_ip}
 | | ${crypto_alg_str}= | Get Crypto Alg Scapy Name | ${crypto_alg}
 | | ${integ_alg_str}= | Get Integ Alg Scapy Name | ${integ_alg}
 | | ${args}= | Catenate | ${args} | --crypto_alg ${crypto_alg_str}

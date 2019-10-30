@@ -15,34 +15,38 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | IP4FWD | BASE | DOT1Q | IP4BASE | DRV_AVF
+| ... | NIC_Virtual | ETH | L2BDMACLRN | BASE | MEMIF | DOCKER | DRV_VFIO_PCI
 | ...
-| Suite Setup | Setup suite single link | avf | scapy
-| Suite Teardown | Tear down suite
+| Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
-| Test Teardown | Tear down test | packet_trace
+| Test Teardown | Tear down test | packet_trace | container
 | ...
 | Test Template | Local Template
 | ...
-| Documentation | *IPv4 routing with IEEE 802.1Q test cases*
+| Documentation | *L2 bridge-domain test cases with memif interface*
 | ...
-| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with\
-| ... | single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing. IEEE 802.1Q\
-| ... | tagging is applied on links between TG-DUT1.
-| ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and\
-| ... | two static IPv4 /30 route entries. DUT1 is tested with ${nic_name}.
-| ... | *[Ver] TG verification:* Test IPv4 packets are sent in one direction \
-| ... | by TG on link to DUT1; on receive TG verifies packets for correctness \
-| ... | and drops as applicable.
-| ... | *[Ref] Applicable standard specifications:* IEEE 802.1q.
+| ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
+| ... | with single links between nodes.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of  IPv4.\
+| ... | Both apply to all links.
+| ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge-domain \
+| ... | switching. Container is connected to VPP via Memif interface. \
+| ... | Container is running same VPP version as running on DUT.
+| ... | *[Ver] TG verification:* Test IPv4 packets with IP protocol=61\
+| ... | are sent in both directions by TG on links to DUT1 and via container; \
+| ... | on receive TG verifies packets for correctness and their IPv4 \
+| ... | src-addr, dst-addr and MAC addresses.
+| ... | *[Ref] Applicable standard specifications:* RFC792
 
 *** Variables ***
-| @{plugins_to_enable}= | avf_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | virtual
-| ${nic_driver}= | avf
-| ${overhead}= | ${4}
+| ${nic_driver}= | vfio-pci
+| ${overhead}= | ${0}
+# Container
+| ${container_engine}= | Docker
+| ${container_chain_topology}= | chain_functional
 
 *** Keywords ***
 | Local Template
@@ -66,12 +70,12 @@
 | | And Apply startup configuration on all VPP DUTs | with_trace=${True}
 | | When Initialize layer driver | ${nic_driver}
 | | And Initialize layer interface
-| | And Initialize layer dot1q
-| | And Initialize L2 bridge domain
+| | And Start containers for test | auto_scale=${False} | pinning=${False}
+| | And Initialize L2 Bridge Domain with memif pairs | auto_scale=${False}
 | | Then Send IPv4 bidirectionally and verify received packets
 | | ... | ${tg} | ${tg_if1} | ${tg_if2}
 
 *** Test Cases ***
-| tc01-68B-avf-dot1qip4-l2bdbasemaclrn-dev
-| | [Tags] | 68B
-| | frame_size=${68} | phy_cores=${0}
+| tc01-64B-ethipv4-l2bdbasemaclrn-eth-2memif-1dcr-dev
+| | [Tags] | 64B
+| | frame_size=${64} | phy_cores=${0}
