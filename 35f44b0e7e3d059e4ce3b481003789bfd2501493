@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a031511_a50ead86",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-31T18:50:36Z",
+      "side": 1,
+      "message": "I am thinking about adding a voting tox checker specifically for this line, so tox prevents accidental merges, while WiP changes can trigger perf verify jobs as they wish.",
+      "range": {
+        "startLine": 232,
+        "startChar": 27,
+        "endLine": 232,
+        "endChar": 32
+      },
+      "revId": "35f44b0e7e3d059e4ce3b481003789bfd2501493",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "eb7d0712_526fa40e",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-31T18:50:36Z",
+      "side": 1,
+      "message": "You can add comma here. Python does not mind, and Gerrit will show smaller difference on later edits.\nI wonder if it is worth adding to code style guidelines.",
+      "range": {
+        "startLine": 332,
+        "startChar": 54,
+        "endLine": 332,
+        "endChar": 55
+      },
+      "revId": "35f44b0e7e3d059e4ce3b481003789bfd2501493",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "737ac84e_9b3c8e26",
+        "filename": "tests/vpp/perf/crypto/10ge2p1x710-ethip4ipsec15000tnlsw-ip4base-int-aes256gcm-ndrpdr.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-10-31T18:50:36Z",
+      "side": 1,
+      "message": "I am thinking on how autogen can support creating TNL_n suites from TNL_1 ones (and some lists in Constants).\nI think n!\u003d1 should have SCALE here. I am still not sure whether n\u003d\u003d1 is more useful to be tagged as SCALE or BASE.",
+      "range": {
+        "startLine": 19,
+        "startChar": 63,
+        "endLine": 19,
+        "endChar": 67
+      },
+      "revId": "35f44b0e7e3d059e4ce3b481003789bfd2501493",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
