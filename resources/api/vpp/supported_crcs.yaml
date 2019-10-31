@@ -436,6 +436,8 @@
     policer_classify_set_interface: '0xde7ad708' # dev
     policer_classify_set_interface_reply: '0xe8d4e804' # dev
     # 4x^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
+    rdma_create: '0x541ffa8e' # perf
+    rdma_create_reply: '0xfda5941f' # perf
     # show_lisp_map_register_state / reply # honeycomb
     # show_lisp_map_request_mode / reply # honeycomb
     # show_lisp_pitr / reply # honeycomb
@@ -504,6 +506,8 @@
     tap_create_v2_reply: '0xfda5941f'  # dev
     vxlan_add_del_tunnel: '0x00f4bdd0'  # dev
     vxlan_add_del_tunnel_reply: '0xfda5941f'  # dev
+    # vxlan_gpe_tunnel_dump / details # honeycomb
+    # vxlan_tunnel_dump /details # unused L2 keyword: Get VXLAN dump
 
 
 # Hint to see the currently used command messages:
