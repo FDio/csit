@@ -59,7 +59,7 @@ class TrafficScriptExecutor(object):
                "virtualenv --system-site-packages --never-download env && " +
                "export PYTHONPATH=${{PWD}}; " +
                ". ${{PWD}}/env/bin/activate; " +
-               "resources/traffic_scripts/{} {}") \
+               "GPL/traffic_scripts/{} {}") \
                   .format(Constants.REMOTE_FW_DIR, script_file_name,
                           script_args)
         ret_code, stdout, stderr = ssh.exec_command_sudo(
