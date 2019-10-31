@@ -129,4 +129,3 @@
 | tc12-IMIX-4c-avf-ethip4-ip4scale2m-rdm-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
-
