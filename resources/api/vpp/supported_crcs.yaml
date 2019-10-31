@@ -141,8 +141,8 @@
     lb_add_del_as_reply: '0xe8d4e804'  # perf
     # 6x^ tc01-64B-1c-ethip4-loadbalancer-maglev
     # ^ 2n: loadbalancer
-    lb_add_del_intf_nat4: '0x47d6e753' # perf
-    lb_add_del_intf_nat4_reply: '0xe8d4e804' # perf
+    lb_add_del_intf_nat4: '0x47d6e753'  # perf
+    lb_add_del_intf_nat4_reply: '0xe8d4e804'  # perf
     # ^^ tc01-64B-1c-ethip4-loadbalancer-nat4
     # ^^ loadbalancer-nat4
     lisp_add_del_adjacency: '0xf047390d'  # dev
@@ -192,11 +192,11 @@
     # ^ nat44NOTscaleNOTsrc_user_1
     policer_add_del: '0xdfea2be8'  # dev
     policer_add_del_reply: '0xa177cef2'  # dev
-    policer_classify_set_interface: '0xe09537b0' # dev
-    policer_classify_set_interface_reply: '0xe8d4e804' # dev
+    policer_classify_set_interface: '0xe09537b0'  # dev
+    policer_classify_set_interface_reply: '0xe8d4e804'  # dev
     # 4x^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
-    rdma_create: '0x541ffa8e' # perf
-    rdma_create_reply: '0xfda5941f' # perf
+    rdma_create: '0x541ffa8e'  # perf
+    rdma_create_reply: '0xfda5941f'  # perf
     # show_lisp_map_register_state / reply # honeycomb
     # show_lisp_map_request_mode / reply # honeycomb
     # show_lisp_pitr / reply # honeycomb
@@ -382,8 +382,8 @@
     lb_add_del_as_reply: '0xe8d4e804'  # perf
     # 6x^ tc01-64B-1c-ethip4-loadbalancer-maglev
     # ^ 2n: loadbalancer
-    lb_add_del_intf_nat4: '0x47d6e753' # perf
-    lb_add_del_intf_nat4_reply: '0xe8d4e804' # perf
+    lb_add_del_intf_nat4: '0x47d6e753'  # perf
+    lb_add_del_intf_nat4_reply: '0xe8d4e804'  # perf
     # ^^ tc01-64B-1c-ethip4-loadbalancer-nat4
     # ^^ loadbalancer-nat4
     lisp_add_del_adjacency: '0xf047390d'  # dev
@@ -433,11 +433,11 @@
     # ^ nat44NOTscaleNOTsrc_user_1
     policer_add_del: '0xdfea2be8'  # dev
     policer_add_del_reply: '0xa177cef2'  # dev
-    policer_classify_set_interface: '0xde7ad708' # dev
-    policer_classify_set_interface_reply: '0xe8d4e804' # dev
+    policer_classify_set_interface: '0xde7ad708'  # dev
+    policer_classify_set_interface_reply: '0xe8d4e804'  # dev
     # 4x^ tc01-64B-ethip4-ip4base-ipolicemarkbase-dev
-    rdma_create: '0x541ffa8e' # perf
-    rdma_create_reply: '0xfda5941f' # perf
+    rdma_create: '0x541ffa8e'  # perf
+    rdma_create_reply: '0xfda5941f'  # perf
     # show_lisp_map_register_state / reply # honeycomb
     # show_lisp_map_request_mode / reply # honeycomb
     # show_lisp_pitr / reply # honeycomb
