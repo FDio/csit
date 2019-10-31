@@ -58,9 +58,9 @@ class TrafficScriptExecutor(object):
         cmd = ("cd {}; " +
                "virtualenv --system-site-packages --never-download env && " +
                "export PYTHONPATH=${{PWD}}; " +
-               ". ${{PWD}}/env/bin/activate; " +
-               "resources/traffic_scripts/{} {}") \
-                  .format(Constants.REMOTE_FW_DIR, script_file_name,
+               ". ${{PWD}}/env/bin/activate; cd GPL; " +
+               "python -m traffic_scripts.{} {}") \
+                  .format(Constants.REMOTE_FW_DIR, script_file_name[:-3],
                           script_args)
         ret_code, stdout, stderr = ssh.exec_command_sudo(
             'sh -c "{cmd}"'.format(cmd=TrafficScriptExecutor._escape(cmd)),
