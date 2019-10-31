@@ -1189,7 +1189,7 @@ class InterfaceUtil(object):
         """Create AVF interface on VPP node.
 
         :param node: DUT node from topology.
-        :param vf_pci_addr: PCI address binded to i40evf driver.
+        :param vf_pci_addr: PCI address bound to i40evf driver.
         :param num_rx_queues: Number of RX queues.
         :type node: dict
         :type vf_pci_addr: str
@@ -1224,7 +1224,7 @@ class InterfaceUtil(object):
         """Create RDMA interface on VPP node.
 
         :param node: DUT node from topology.
-        :param pci_addr: PCI address binded to rdma-core driver.
+        :param pci_addr: PCI address bound to rdma-core driver.
         :param num_rx_queues: Number of RX queues.
         :type node: dict
         :type pci_addr: str
