@@ -55,13 +55,13 @@ class TrafficScriptExecutor(object):
         """
         ssh = SSH()
         ssh.connect(node)
+        module_name = script_file_name[:-3].replace('/', '.')
         cmd = ("cd {}; " +
                "virtualenv --system-site-packages --never-download env && " +
                "export PYTHONPATH=${{PWD}}; " +
-               ". ${{PWD}}/env/bin/activate; " +
-               "resources/traffic_scripts/{} {}") \
-                  .format(Constants.REMOTE_FW_DIR, script_file_name,
-                          script_args)
+               ". ${{PWD}}/env/bin/activate; cd GPL; " +
+               "python -m traffic_scripts.{} {}") \
+                  .format(Constants.REMOTE_FW_DIR, module_name, script_args)
         ret_code, stdout, stderr = ssh.exec_command_sudo(
             'sh -c "{cmd}"'.format(cmd=TrafficScriptExecutor._escape(cmd)),
             timeout=timeout)

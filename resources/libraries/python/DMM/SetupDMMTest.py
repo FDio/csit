@@ -28,10 +28,34 @@ from robot.libraries.BuiltIn import BuiltIn
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.DMM.DMMConstants import DMMConstants as con
 from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.TLDK.SetupTLDKTest import copy_tarball_to_node,\
-     delete_local_tarball
 
 __all__ = ["SetupDMMTest"]
+
+
+def copy_tarball_to_node(tarball, node):
+    """Copy tarball file from local host to remote node.
+
+    :param tarball: Path to tarball to upload.
+    :param node: Dictionary created from topology.
+    :type tarball: str
+    :type node: dict
+    :returns: nothing.
+    """
+    logger.console('Copying tarball to {0}'.format(node['host']))
+    ssh = SSH()
+    ssh.connect(node)
+
+    ssh.scp(tarball, "/tmp/")
+
+
+def delete_local_tarball(tarball):
+    """Delete local tarball to prevent disk pollution.
+
+    :param tarball: Path to tarball to upload.
+    :type tarball: str
+    :returns: nothing.
+    """
+    call(split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
 
 
 def pack_framework_dir():
@@ -57,6 +81,7 @@ def pack_framework_dir():
         raise RuntimeError("Could not pack testing framework.")
 
     return file_name
+
 
 def extract_tarball_at_node(tarball, node):
     """Extract tarball at given node.
@@ -84,6 +109,7 @@ def extract_tarball_at_node(tarball, node):
         raise RuntimeError('Failed to unpack {0} at node {1}'.format(
             tarball, node['host']))
 
+
 def install_dmm_test(node):
     """Prepare the DMM test envrionment.
     Raise errors when failed.
@@ -109,6 +135,7 @@ def install_dmm_test(node):
         raise RuntimeError('Install prereq failed')
     else:
         logger.console('Install DMM on {0} success!'.format(node['host']))
+
 
 def setup_node(args):
     """Run all set-up methods for a node.
@@ -138,6 +165,7 @@ def setup_node(args):
     else:
         logger.console('Setup of node {0} done'.format(node['host']))
         return True
+
 
 class SetupDMMTest(object):
     """Setup suite run on topology nodes.

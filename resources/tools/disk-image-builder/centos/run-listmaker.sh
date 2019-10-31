@@ -133,8 +133,6 @@ git
 trousers
 strongswan-5.7.2-1.el7.x86_64 http://mirror.math.princeton.edu/pub/epel/7/x86_64/Packages/s/
 python-cffi
-#RPM_WANTLIST_TLDK
-tcpdump
 #RPM_WANTLIST_VPP
 elfutils-libelf
 elfutils-libelf-devel
