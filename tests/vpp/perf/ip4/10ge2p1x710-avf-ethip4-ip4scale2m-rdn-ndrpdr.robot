@@ -8,17 +8,17 @@
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the s10ge2p1x710-ethip4-ip4scale2m-rdm-ndrpdr.robotpecific language governing permissions and
+# See the License for the specific language governing permissions and
 # limitations under the License.
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_2M
+| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_2M | DRV_AVF
 | ...
-| Suite Setup | Setup suite single link | performance
-| Suite Teardown | Tear down suite | performance
+| Suite Setup | Setup suite single link | performance_avf
+| Suite Teardown | Tear down suite | performance | vifs
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
@@ -31,7 +31,7 @@
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv4\
 | ... | routing and 2x1M static IPv4 /32 route entries. DUT1 and DUT2 tested\
-| ... | with ${nic_name}.
+| ... | with ${nic_name} with VF enabled.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -45,14 +45,14 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | avf_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
-| ${nic_driver}= | vfio-pci
+| ${nic_driver}= | avf
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${1000000}
-# Traffic profile:10ge2p1x710-ethip4-ip4scale2m-rdm-ndrpdr.robot
-| ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst-rdm${rts_per_flow}
+# Traffic profile:
+| ${traffic_profile}= | trex-sl-3n-ethip4-ip4dst-rdn${rts_per_flow}
 
 *** Keywords ***
 | Local Template
@@ -62,7 +62,7 @@
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
 | | ...
-| | ... | *Arguments:*10ge2p1x710-ethip4-ip4scale2m-rdm-ndrpdr.robot
+| | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
 | | ... | - phy_cores - Number of physical cores. Type: integer
@@ -73,59 +73,59 @@
 | | Set Test Variable | \${frame_size}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add PCI devices to all DUTs
-| | And Set Max Rate And Jumbo And Handle Multi Seg10ge2p1x710-ethip4-ip4scale2m-rdm-ndrpdr.robot
+| | And Add DPDK no PCI to all DUTs
+| | And Set Max Rate And Jumbo
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
-| | And Initialize IPv4 forwarding with scaling in circular topology10ge2p1x710-ethip4-ip4scale2m-rdm-ndrpdr.robot
-| | ... | ${rts_per_flow}10ge2p1x710-ethip4-ip4scale2m-rdm-ndrpdr.robot
+| | And Initialize IPv4 forwarding with scaling in circular topology
+| | ... | ${rts_per_flow}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc01-64B-1c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc02-64B-2c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc03-64B-4c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc04-1518B-1c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc05-1518B-2c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc06-1518B-4c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc07-9000B-1c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc08-9000B-2c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc09-9000B-4c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc10-IMIX-1c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc11-IMIX-2c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-ethip4-ip4scale2m-rdm-ndrpdr
+| tc12-IMIX-4c-avf-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}

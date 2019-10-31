@@ -15,10 +15,10 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_2M | DRV_AVF
+| ... | NIC_Intel-X710 | ETH | IP4FWD | SCALE | FIB_2M
 | ...
-| Suite Setup | Setup suite single link | performance_avf
-| Suite Teardown | Tear down suite | performance | vifs
+| Suite Setup | Setup suite single link | performance
+| Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance
 | ...
@@ -30,8 +30,7 @@
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with IPv4 routing and\
-| ... | 2x1M static IPv4 /32 route entries. DUT1 is tested with ${nic_name}\
-| ... | with VF enabled.
+| ... | 2x1M static IPv4 /32 route entries. DUT1 is tested with ${nic_name}.\
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance and throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -45,14 +44,14 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | avf_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so
 | ${osi_layer}= | L3
 | ${nic_name}= | Intel-X710
-| ${nic_driver}= | avf
 | ${overhead}= | ${0}
 | ${rts_per_flow}= | ${1000000}
+
 # Traffic profile:
-| ${traffic_profile}= | trex-sl-2n-ethip4-ip4dst-rdm${rts_per_flow}
+| ${traffic_profile}= | trex-sl-2n-ethip4-ip4dst-rdn${rts_per_flow}
 
 *** Keywords ***
 | Local Template
@@ -73,59 +72,58 @@
 | | Set Test Variable | \${frame_size}
 | | ...
 | | Given Add worker threads and rxqueues to all DUTs | ${phy_cores} | ${rxq}
-| | And Add DPDK no PCI to all DUTs
-| | And Set Max Rate And Jumbo
+| | And Add PCI devices to all DUTs
+| | And Set Max Rate And Jumbo And Handle Multi Seg
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize layer driver | ${nic_driver}
-| | And Initialize IPv4 forwarding with scaling in circular topology
+| | When Initialize IPv4 forwarding with scaling in circular topology
 | | ... | ${rts_per_flow}
 | | Then Find NDR and PDR intervals using optimized search
 
 *** Test Cases ***
-| tc01-64B-1c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc01-64B-1c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 64B | 1C
 | | frame_size=${64} | phy_cores=${1}
 
-| tc02-64B-2c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc02-64B-2c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 64B | 2C
 | | frame_size=${64} | phy_cores=${2}
 
-| tc03-64B-4c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc03-64B-4c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 64B | 4C
 | | frame_size=${64} | phy_cores=${4}
 
-| tc04-1518B-1c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc04-1518B-1c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 1518B | 1C
 | | frame_size=${1518} | phy_cores=${1}
 
-| tc05-1518B-2c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc05-1518B-2c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 1518B | 2C
 | | frame_size=${1518} | phy_cores=${2}
 
-| tc06-1518B-4c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc06-1518B-4c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 1518B | 4C
 | | frame_size=${1518} | phy_cores=${4}
 
-| tc07-9000B-1c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc07-9000B-1c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 9000B | 1C
 | | frame_size=${9000} | phy_cores=${1}
 
-| tc08-9000B-2c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc08-9000B-2c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 9000B | 2C
 | | frame_size=${9000} | phy_cores=${2}
 
-| tc09-9000B-4c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc09-9000B-4c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | 9000B | 4C
 | | frame_size=${9000} | phy_cores=${4}
 
-| tc10-IMIX-1c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc10-IMIX-1c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | IMIX | 1C
 | | frame_size=IMIX_v4_1 | phy_cores=${1}
 
-| tc11-IMIX-2c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc11-IMIX-2c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | IMIX | 2C
 | | frame_size=IMIX_v4_1 | phy_cores=${2}
 
-| tc12-IMIX-4c-avf-ethip4-ip4scale2m-rdm-ndrpdr
+| tc12-IMIX-4c-ethip4-ip4scale2m-rdn-ndrpdr
 | | [Tags] | IMIX | 4C
 | | frame_size=IMIX_v4_1 | phy_cores=${4}
