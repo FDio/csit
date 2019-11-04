@@ -111,8 +111,9 @@ def create_env_directory_at_node(node):
                    .format(host))
     exec_cmd_no_error(
         node, 'cd {0} && rm -rf env'
-        ' && virtualenv --system-site-packages --never-download env'
-        ' && source env/bin/activate && pip install -r requirements.txt'
+        ' && virtualenv -p $(which python3) '
+        '--system-site-packages --never-download env'
+        ' && source env/bin/activate && pip3 install -r requirements.txt'
         .format(con.REMOTE_FW_DIR), timeout=100, include_reason=True,
         message="Failed install at node {host}".format(host=host))
     logger.console('Virtualenv setup on {0} done.'.format(host))
