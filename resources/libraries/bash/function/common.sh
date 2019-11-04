@@ -113,16 +113,16 @@ function activate_virtualenv () {
     env_dir="${root_path}/env"
     req_path=${2-$CSIT_DIR/requirements.txt}
     rm -rf "${env_dir}" || die "Failed to clean previous virtualenv."
-    pip install --upgrade virtualenv || {
+    pip3 install --upgrade virtualenv || {
         die "Virtualenv package install failed."
     }
-    virtualenv "${env_dir}" || {
-        die "Virtualenv creation failed."
+    virtualenv -p $(which python3) "${env_dir}" || {
+        die "Virtualenv creation for $(which python) failed."
     }
     set +u
     source "${env_dir}/bin/activate" || die "Virtualenv activation failed."
     set -u
-    pip install --upgrade -r "${req_path}" || {
+    pip3 install --upgrade -r "${req_path}" || {
         die "Requirements installation failed."
     }
     # Most CSIT Python scripts assume PYTHONPATH is set and exported.
@@ -646,7 +646,8 @@ function run_pybot () {
 
     pushd "${CSIT_DIR}" || die "Change directory operation failed."
     set +e
-    pybot "${all_options[@]}" "${GENERATED_DIR}/tests/"
+    python -V
+    robot "${all_options[@]}" "${GENERATED_DIR}/tests/"
     PYBOT_EXIT_STATUS="$?"
     set -e
 
