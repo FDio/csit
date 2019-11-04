@@ -230,6 +230,7 @@ class Constants(object):
 
     # Global "kill switch" for CRC checking during runtime.
     FAIL_ON_CRC_MISMATCH = get_pessimistic_bool_from_env("FAIL_ON_CRC_MISMATCH")
+    FAIL_ON_CRC_MISMATCH = False
 
     # Mapping from NIC name to its bps limit.
     NIC_NAME_TO_BPS_LIMIT = {
