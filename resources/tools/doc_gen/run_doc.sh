@@ -33,8 +33,6 @@ virtualenv ${WORKING_DIR}/env
 
 # Install CSIT requirements:
 pip install -r ../../../requirements.txt
-# Install Sphinx:
-pip install -r ${WORKING_DIR}/requirements.txt
 
 export PYTHONPATH=`pwd`
 
