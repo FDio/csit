@@ -282,7 +282,7 @@ class Alerting(object):
         except IOError:
             logging.error("No such file or directory: {file}".
                           format(file=file_path))
-            return None, None, None, None
+            return None, None, None, None, None
         if sort:
             sorted_failed_tests = OrderedDict()
             keys = [k for k in failed_tests.keys()]
