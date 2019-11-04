@@ -1,8 +1,6 @@
 ---
 # file: lf_inventory/group_vars/all.yaml
 
-# General variables
-ansible_python_interpreter: '/usr/bin/python2.7'
 # provision via cobbler
 provision_enabled: False
 # name_servers_search is used in /etc/hosts file on target machine.

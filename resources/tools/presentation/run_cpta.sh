@@ -16,11 +16,11 @@ sudo apt-get -y install libxml2 libxml2-dev libxslt-dev build-essential \
 mkdir ${DIR[WORKING]}
 
 # Create virtual environment
-virtualenv ${DIR[WORKING]}/env
-. ${DIR[WORKING]}/env/bin/activate
+virtualenv -p $(which python3) ${DIR[WORKING]}/env
+source ${DIR[WORKING]}/env/bin/activate
 
 # Install python dependencies:
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 export PYTHONPATH=`pwd`
 
