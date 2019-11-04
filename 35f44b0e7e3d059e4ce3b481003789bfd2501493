@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7714937f_8c62ca11",
+        "filename": "resources/libraries/python/Constants.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-04T15:46:53Z",
+      "side": 1,
+      "message": "https://gerrit.fd.io/r/c/csit/+/23220",
+      "parentUuid": "1a031511_a50ead86",
+      "range": {
+        "startLine": 232,
+        "startChar": 27,
+        "endLine": 232,
+        "endChar": 32
+      },
+      "revId": "35f44b0e7e3d059e4ce3b481003789bfd2501493",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "eb7d0712_526fa40e",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 6
