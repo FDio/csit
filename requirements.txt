@@ -1,57 +1,79 @@
 # DISCLAIMER: BEFORE EDITING THIS FILE!
 #
-# This file has two closely related consequences.
-# The common part is that this file defines
-# the content of virtual Python environment
-# used when Robot tests are running.
-# The difference is in which machine the environment is created on.
-# For the Jenkins executor machines,
-# editing this file has no surprising consequences.
+# This file has two closely related consequences. The common part is that this
+# file defines the content of virtual Python environment used when Robot tests
+# are running.
 #
-# But the environment is also being created
-# on virtual machines created by VIRL, which do have specific restrictions.
-# Complete package and setting snapshot (for both VIRL and Physical Testbed),
-# with network being limited in case of VIRL to local only.
-# This implies pip currently being set to site-packages only
-# for both VIRL and Physical Testbed.
-# So if the "virl image" applied on the machine
+# But the virtual environment is also being created on containerized
+# environment created by either Nomad cluster (Jenkins, vpp_device) or during
+# execution on SUT machines, which might have specific restrictions.
+#
+# Complete package and setting snapshot (for all container images),
+# with network being limited to local only. This implies pip currently being
+# set to site-packages only. So if the "container image" applied on the machine
 # does not reflect the edits, some installations might fail.
-# Even if the failure may not directly impact execution,
-# this leads into inconsistency between installed environment
-# and the code base which may lead into fatal error or uncaught exceptions.
+# Even if the failure may not directly impact execution, this leads into
+# inconsistency between installed environment and the code base which may lead
+# into fatal error or uncaught exceptions.
 #
-# The "virl image" is built from files such as
-# resources/tools/disk-image-builder/ubuntu/lists/ubuntu-16.04.1_2017-10-21_2.0/pip-requirements.txt
-# but the build is not automated,
-# the new "virl image" has to be built and applied manually
-# before your edit can pass.
-# This also means, incompatible virl images
-# would make existing tests fail until your edit is merged.
-#
-# TODO: Automate the virtualenv download and distribution
-#   on all types of testbeds prior the test execution.
-# TODO: Figure out a way to verify edits to this file automatically.
-
-# TODO: Split into directly needed packages and their dependencies.
-aenum==2.1.2
-docopt==0.6.2  # for pykwalify
-ecdsa==0.13
-enum34==1.1.2
-ipaddress==1.0.16
-paramiko==1.16.0
-pexpect==4.6.0
+# CSIT Core dependencies
+ecdsa==0.13.3
+paramiko==2.6.0
 pycrypto==2.6.1
-pykwalify==1.5.0
-pypcap==1.1.5
-python-dateutil==2.4.2  # for pykwalify
-PyYAML==3.11
-requests==2.9.1
-robotframework==2.9.2
-scapy==2.3.1
-scp==0.10.2
-six==1.12.0  # for python-dateutil
+pypcap==1.2.3
+PyYAML==5.1.1
+requests==2.22.0
+robotframework==3.1.2
+scapy==2.4.3
+scp==0.13.2
 
-# The following is only there for PLRsearch.
+# Bootstraping dependencies
+ansible==2.7.8
+
+# PLRsearch dependencies
 dill==0.2.8.2
-numpy==1.14.5
+numpy==1.17.3
 scipy==1.1.0
+
+# PAL/DOC dependencies
+hdrhistogram==0.6.1
+pandas==0.25.3
+plotly==4.1.1
+PTable==0.9.2
+Sphinx==2.2.1
+sphinx-rtd-theme==0.4.0
+sphinxcontrib-programoutput==0.15
+sphinxcontrib-robotdoc==0.11.0
+
+# PIP freeze dependencies
+alabaster==0.7.12
+Babel==2.7.0
+bcrypt==3.1.7
+certifi==2019.9.11
+cffi==1.13.2
+chardet==3.0.4
+cryptography==2.8
+docutils==0.15.2
+future==0.18.2
+idna==2.8
+imagesize==1.1.0
+Jinja2==2.10.3
+MarkupSafe==1.1.1
+packaging==19.2
+pbr==5.4.3
+pycparser==2.19
+Pygments==2.4.2
+PyNaCl==1.3.0
+pyparsing==2.4.4
+python-dateutil==2.8.1
+pytz==2019.3
+retrying==1.3.3
+six==1.13.0
+snowballstemmer==2.0.0
+sphinxcontrib-applehelp==1.0.1
+sphinxcontrib-devhelp==1.0.1
+sphinxcontrib-htmlhelp==1.0.2
+sphinxcontrib-jsmath==1.0.1
+sphinxcontrib-qthelp==1.0.2
+sphinxcontrib-serializinghtml==1.1.3
+urllib3==1.25.6

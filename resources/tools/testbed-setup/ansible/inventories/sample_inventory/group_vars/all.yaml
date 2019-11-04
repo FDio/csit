@@ -1,8 +1,8 @@
 ---
 # file: group_vars/all.yaml
 
-# General variables
-ansible_python_interpreter: '/usr/bin/python2.7'
+# Ansible interpreter (for PIP)
+ansible_python_interpreter: 'python3'
 # provision via cobbler
 provision_enabled: True
 # name_servers_search is used in /etc/hosts file on target machine.
