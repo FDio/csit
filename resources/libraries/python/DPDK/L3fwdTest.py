@@ -15,9 +15,9 @@
 This module exists to provide the l3fwd test for DPDK on topology nodes.
 """
 
-from resources.libraries.python.ssh import SSH
-from resources.libraries.python.Constants import Constants
-from resources.libraries.python.topology import NodeType, Topology
+from ..ssh import SSH
+from ..Constants import Constants
+from ..topology import NodeType, Topology
 
 
 class L3fwdTest(object):
@@ -60,14 +60,14 @@ class L3fwdTest(object):
             for port in range(0, 2):
                 for queue in range(0, int(queue_nums)):
                     index = 0 if nb_cores == 1 else index
-                    port_config += '({port}, {queue}, {core}),'.\
+                    port_config += f'({port}, {queue}, {core}),'.\
                         format(port=port, queue=queue, core=list_cores[index])
                     index += 1
 
             ssh = SSH()
             ssh.connect(dut_node)
 
-            cmd = '{fwdir}/tests/dpdk/dpdk_scripts/run_l3fwd.sh ' \
+            cmd = f'{fwdir}/tests/dpdk/dpdk_scripts/run_l3fwd.sh ' \
                   '"{lcores}" "{ports}" {mac1} {mac2} {jumbo}'.\
                   format(fwdir=Constants.REMOTE_FW_DIR, lcores=lcores_list,
                          ports=port_config.rstrip(','), mac1=adj_mac0,
@@ -75,7 +75,7 @@ class L3fwdTest(object):
 
             ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
             if ret_code != 0:
-                raise Exception('Failed to execute l3fwd test at node {name}'
+                raise Exception(f'Failed to execute l3fwd test at node {name}'
                                 .format(name=dut_node['host']))
 
     @staticmethod
@@ -131,7 +131,7 @@ class L3fwdTest(object):
         ssh.connect(node)
 
         ret_code, _, _ = ssh.exec_command(
-            '{fwdir}/tests/dpdk/dpdk_scripts/patch_l3fwd.sh {arch} '
+            f'{fwdir}/tests/dpdk/dpdk_scripts/patch_l3fwd.sh {arch} '
             '{fwdir}/tests/dpdk/dpdk_scripts/{patch}'.
             format(fwdir=Constants.REMOTE_FW_DIR, arch=arch, patch=patch),
             timeout=600)

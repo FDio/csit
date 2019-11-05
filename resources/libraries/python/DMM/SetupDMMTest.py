@@ -25,11 +25,12 @@ from os.path import basename
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
-from resources.libraries.python.ssh import SSH
-from resources.libraries.python.DMM.DMMConstants import DMMConstants as con
-from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.TLDK.SetupTLDKTest import copy_tarball_to_node,\
+from ..ssh import SSH
+from .DMMConstants import DMMConstants as con
+from ..topology import NodeType, Topology
+from ..TLDK.SetupTLDKTest import copy_tarball_to_node,\
      delete_local_tarball
+
 
 __all__ = ["SetupDMMTest"]
 
@@ -40,12 +41,12 @@ def pack_framework_dir():
     :rtype: str
     :raises RuntimeError: If pack the testing framework failed.
     """
-    tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="DMM-testing-")
+    tmpfile = NamedTemporaryFile(suffix=b'.tgz', prefix=b'DMM-testing-')
     file_name = tmpfile.name
     tmpfile.close()
 
     proc = Popen(
-        split("tar --exclude-vcs --exclude=./tmp --exclude=dmm_depends.tar.gz"
+        split(f"tar --exclude-vcs --exclude=./tmp --exclude=dmm_depends.tar.gz"
               " -zcf {0} .".format(file_name)), stdout=PIPE, stderr=PIPE)
     (stdout, stderr) = proc.communicate()
 
@@ -71,17 +72,17 @@ def extract_tarball_at_node(tarball, node):
     :return: nothing
     :raises RuntimeError: If extract tarball failed.
     """
-    logger.console('Extracting tarball to {0} on {1}'.format(
+    logger.console(f'Extracting tarball to {0} on {1}'.format(
         con.REMOTE_FW_DIR, node['host']))
     ssh = SSH()
     ssh.connect(node)
 
-    cmd = 'sudo rm -rf {1}; mkdir {1} ; tar -zxf {0} -C {1}; ' \
+    cmd = f'sudo rm -rf {1}; mkdir {1} ; tar -zxf {0} -C {1}; ' \
           'rm -f {0};'.format(tarball, con.REMOTE_FW_DIR)
     (ret_code, _, stderr) = ssh.exec_command(cmd, timeout=30)
     if ret_code != 0:
-        logger.error('Unpack error: {0}'.format(stderr))
-        raise RuntimeError('Failed to unpack {0} at node {1}'.format(
+        logger.error(f'Unpack error: {0}'.format(stderr))
+        raise RuntimeError(f'Failed to unpack {0} at node {1}'.format(
             tarball, node['host']))
 
 def install_dmm_test(node):
@@ -95,20 +96,20 @@ def install_dmm_test(node):
     """
 
     arch = Topology.get_node_arch(node)
-    logger.console('Install DMM on {0} ({1})'.format(node['host'], arch))
+    logger.console(f'Install DMM on {0} ({1})'.format(node['host'], arch))
 
     ssh = SSH()
     ssh.connect(node)
     (ret_code, _, stderr) = ssh.exec_command(
-        'cd {0}/{1} && ./install_prereq.sh {2} 2>&1 | tee '
+        f'cd {0}/{1} && ./install_prereq.sh {2} 2>&1 | tee '
         'log_install_prereq.txt'
         .format(con.REMOTE_FW_DIR, con.DMM_SCRIPTS, arch), timeout=600)
 
     if ret_code != 0:
-        logger.error('Install DMM error: {0}'.format(stderr))
+        logger.error(f'Install DMM error: {0}'.format(stderr))
         raise RuntimeError('Install prereq failed')
     else:
-        logger.console('Install DMM on {0} success!'.format(node['host']))
+        logger.console(f'Install DMM on {0} success!'.format(node['host']))
 
 def setup_node(args):
     """Run all set-up methods for a node.
@@ -133,10 +134,10 @@ def setup_node(args):
             extract_tarball_at_node(remote_tarball, node)
             install_dmm_test(node)
     except RuntimeError as exc:
-        logger.error("Node setup failed, error:'{0}'".format(exc.message))
+        logger.error(f"Node setup failed, error:'{0}'".format(exc.message))
         return False
     else:
-        logger.console('Setup of node {0} done'.format(node['host']))
+        logger.console(f'Setup of node {0} done'.format(node['host']))
         return True
 
 class SetupDMMTest(object):
@@ -152,14 +153,14 @@ class SetupDMMTest(object):
         """Pack the whole directory and extract in temp on each node."""
 
         tarball = pack_framework_dir()
-        msg = 'Framework packed to {0}'.format(tarball)
+        msg = f'Framework packed to {0}'.format(tarball)
         logger.console(msg)
         logger.trace(msg)
-        remote_tarball = "/tmp/{0}".format(basename(tarball))
+        remote_tarball = f"/tmp/{0}".format(basename(tarball))
 
         # Turn off logging since we use multiprocessing.
         log_level = BuiltIn().set_log_level('NONE')
-        params = ((tarball, remote_tarball, node) for node in nodes.values())
+        params = ((tarball, remote_tarball, node) for node in list(nodes.values()))
         pool = Pool(processes=len(nodes))
         result = pool.map_async(setup_node, params)
         pool.close()

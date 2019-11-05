@@ -13,11 +13,10 @@
 
 """Keywords to manipulate BGP configuration using Honeycomb REST API."""
 
-from resources.libraries.python.Constants import Constants as Const
-from resources.libraries.python.HTTPRequest import HTTPCodes
-from resources.libraries.python.honeycomb.HoneycombSetup import HoneycombError
-from resources.libraries.python.honeycomb.HoneycombUtil \
-    import HoneycombUtil as HcUtil
+from ..Constants import Constants as Const
+from ..HTTPRequest import HTTPCodes
+from .HoneycombSetup import HoneycombError
+from .HoneycombUtil import HoneycombUtil as HcUtil
 
 
 class BGPKeywords(object):
@@ -55,7 +54,7 @@ class BGPKeywords(object):
                 put_honeycomb_data(node, "config_bgp_peer", data, path)
         if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
-                "The configuration of BGP peer was not successful. "
+                f"The configuration of BGP peer was not successful. "
                 "Status code: {0}.".format(status_code))
         return resp
 
@@ -83,7 +82,7 @@ class BGPKeywords(object):
                 put_honeycomb_data(node, "config_bgp_route", data, path)
         if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
-                "The configuration of BGP route was not successful. "
+                f"The configuration of BGP route was not successful. "
                 "Status code: {0}.".format(status_code))
         return resp
 
@@ -102,7 +101,7 @@ class BGPKeywords(object):
             get_honeycomb_data(node, "config_bgp_peer")
         if status_code != HTTPCodes.OK:
             raise HoneycombError(
-                "Not possible to get configuration information about BGP."
+                f"Not possible to get configuration information about BGP."
                 " Status code: {0}.".format(status_code))
         return resp
 
@@ -121,7 +120,7 @@ class BGPKeywords(object):
         :raises HoneycombError: If the status code in response is not 200 = OK.
         """
 
-        path = "bgp-openconfig-extensions:neighbors/" \
+        path = f"bgp-openconfig-extensions:neighbors/" \
                "neighbor/{0}".format(address)
         if datastore != "operational":
             url = "config_bgp_peer"
@@ -132,7 +131,7 @@ class BGPKeywords(object):
             get_honeycomb_data(node, url, path)
         if status_code != HTTPCodes.OK:
             raise HoneycombError(
-                "Not possible to get configuration information about the BGP"
+                f"Not possible to get configuration information about the BGP"
                 " peer. Status code: {0}.".format(status_code))
         return resp
 
@@ -150,8 +149,8 @@ class BGPKeywords(object):
         :rtype: bytearray
         """
 
-        path = "bgp-openconfig-extensions:neighbors/neighbor/{address}".format(
-            address=address)
+        path = f"bgp-openconfig-extensions:neighbors/neighbor/{address}".\
+            format(address=address)
         return BGPKeywords._configure_bgp_peer(node, path, data)
 
     @staticmethod
@@ -166,8 +165,8 @@ class BGPKeywords(object):
         :rtype: bytearray
         """
 
-        path = "bgp-openconfig-extensions:neighbors/neighbor/{address}".format(
-            address=address)
+        path = f"bgp-openconfig-extensions:neighbors/neighbor/{address}".\
+            format(address=address)
         return BGPKeywords._configure_bgp_peer(node, path)
 
     @staticmethod
@@ -194,12 +193,12 @@ class BGPKeywords(object):
         route_address = route_address.replace("/", "%2F")
 
         if ip_version.lower() == "ipv4":
-            path = "{0}/tables/bgp-types:ipv4-address-family/" \
+            path = f"{0}/tables/bgp-types:ipv4-address-family/" \
                    "bgp-types:unicast-subsequent-address-family/" \
                    "bgp-inet:ipv4-routes/ipv4-route/{1}/{2}" \
                 .format(peer_address, route_address, index)
         else:
-            path = "{0}/tables/bgp-types:ipv6-address-family/" \
+            path = f"{0}/tables/bgp-types:ipv6-address-family/" \
                    "bgp-types:unicast-subsequent-address-family/" \
                    "bgp-inet:ipv6-routes/ipv6-route/{1}/{2}" \
                 .format(peer_address, route_address, index)
@@ -228,12 +227,12 @@ class BGPKeywords(object):
         route_address = route_address.replace("/", "%2F")
 
         if ip_version.lower() == "ipv4":
-            path = "{0}/tables/bgp-types:ipv4-address-family/" \
+            path = f"{0}/tables/bgp-types:ipv4-address-family/" \
                    "bgp-types:unicast-subsequent-address-family/" \
                    "bgp-inet:ipv4-routes/ipv4-route/{1}/{2}" \
                 .format(peer_address, route_address, index)
         else:
-            path = "{0}/tables/bgp-types:ipv6-address-family/" \
+            path = f"{0}/tables/bgp-types:ipv6-address-family/" \
                    "bgp-types:unicast-subsequent-address-family/" \
                    "bgp-inet:ipv6-routes/ipv6-route/{1}/{2}" \
                 .format(peer_address, route_address, index)
@@ -241,7 +240,7 @@ class BGPKeywords(object):
             get_honeycomb_data(node, "config_bgp_route", path)
         if status_code != HTTPCodes.OK:
             raise HoneycombError(
-                "Not possible to get configuration information about the BGP"
+                f"Not possible to get configuration information about the BGP"
                 " route. Status code: {0}.".format(status_code))
 
         return resp
@@ -262,18 +261,18 @@ class BGPKeywords(object):
         """
 
         if ip_version.lower() == "ipv4":
-            path = "{0}/tables/bgp-types:ipv4-address-family/" \
+            path = f"{0}/tables/bgp-types:ipv4-address-family/" \
                    "bgp-types:unicast-subsequent-address-family/" \
                    "bgp-inet:ipv4-routes".format(peer_address)
         else:
-            path = "{0}/tables/bgp-types:ipv6-address-family/" \
+            path = f"{0}/tables/bgp-types:ipv6-address-family/" \
                    "bgp-types:unicast-subsequent-address-family/" \
                    "bgp-inet:ipv6-routes".format(peer_address)
         status_code, resp = HcUtil. \
             get_honeycomb_data(node, "config_bgp_route", path)
         if status_code != HTTPCodes.OK:
             raise HoneycombError(
-                "Not possible to get configuration information about BGP"
+                f"Not possible to get configuration information about BGP"
                 " routes. Status code: {0}.".format(status_code))
 
         return resp
@@ -299,12 +298,12 @@ class BGPKeywords(object):
         route_address = route_address.replace("/", "%2F")
 
         if ip_version.lower() == "ipv4":
-            path = "{0}/tables/bgp-types:ipv4-address-family/" \
+            path = f"{0}/tables/bgp-types:ipv4-address-family/" \
                    "bgp-types:unicast-subsequent-address-family/" \
                    "bgp-inet:ipv4-routes/ipv4-route/{1}/{2}" \
                 .format(peer_address, route_address, index)
         else:
-            path = "{0}/tables/bgp-types:ipv6-address-family/" \
+            path = f"{0}/tables/bgp-types:ipv6-address-family/" \
                    "bgp-types:unicast-subsequent-address-family/" \
                    "bgp-inet:ipv6-routes/ipv6-route/{1}/{2}" \
                 .format(peer_address, route_address, index)
@@ -329,7 +328,7 @@ class BGPKeywords(object):
 
         if status_code != HTTPCodes.OK:
             raise HoneycombError(
-                "Not possible to get operational data from BGP local RIB."
+                f"Not possible to get operational data from BGP local RIB."
                 " Status code: {0}.".format(status_code))
 
         return resp
@@ -353,24 +352,24 @@ class BGPKeywords(object):
         from resources.libraries.python.ssh import SSH
 
         config = {
-            '\\"bgp-binding-address\\"': '\\"{0}\\"'.format(ip_address),
+            f'\\"bgp-binding-address\\"': '\\"{0}\\"'.format(ip_address),
             '\\"bgp-port\\"': port,
             '\\"bgp-as-number\\"': as_number}
 
-        path = "{0}/config/bgp.json".format(Const.REMOTE_HC_DIR)
+        path = f"{0}/config/bgp.json".format(Const.REMOTE_HC_DIR)
 
-        for key, value in config.items():
+        for key, value in list(config.items()):
             find = key
-            replace = '"{0}": "{1}",'.format(key, value)
+            replace = f'"{0}": "{1}",'.format(key, value)
 
-            argument = '"/{0}/c\\ {1}"'.format(find, replace)
-            command = "sed -i {0} {1}".format(argument, path)
+            argument = f'"/{0}/c\\ {1}"'.format(find, replace)
+            command = f"sed -i {0} {1}".format(argument, path)
 
             ssh = SSH()
             ssh.connect(node)
             (ret_code, _, stderr) = ssh.exec_command_sudo(command)
             if ret_code != 0:
-                raise HoneycombError("Failed to modify configuration on "
+                raise HoneycombError(f"Failed to modify configuration on "
                                      "node {0}, {1}".format(node, stderr))
 
     @staticmethod
@@ -392,5 +391,5 @@ class BGPKeywords(object):
         for item in ref:
             if item not in data:
                 raise HoneycombError(
-                    "RIB entry {0} not found in operational data {1}."
+                    f"RIB entry {0} not found in operational data {1}."
                     .format(item, data))

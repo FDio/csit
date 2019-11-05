@@ -16,12 +16,10 @@ Honeycomb REST API."""
 
 from robot.api import logger
 
-from resources.libraries.python.HTTPRequest import HTTPCodes
-from resources.libraries.python.honeycomb.HoneycombSetup import HoneycombError
-from resources.libraries.python.honeycomb.HoneycombUtil \
-    import DataRepresentation
-from resources.libraries.python.honeycomb.HoneycombUtil \
-    import HoneycombUtil as HcUtil
+from ..HTTPRequest import HTTPCodes
+from .HoneycombSetup import HoneycombError
+from .HoneycombUtil import DataRepresentation
+from .HoneycombUtil import HoneycombUtil as HcUtil
 
 
 class FibKeywords(object):
@@ -63,7 +61,7 @@ class FibKeywords(object):
                 logger.debug("data does not exist in path.")
             else:
                 raise HoneycombError(
-                    "The configuration of FIB table was not successful. "
+                    f"The configuration of FIB table was not successful. "
                     "Status code: {0}.".format(status_code))
         return resp
 
@@ -84,13 +82,13 @@ class FibKeywords(object):
             "vpp-fib-table-management:table": [
                 {
                     "table-id": vrf,
-                    "address-family": "vpp-fib-table-management:{0}"
+                    "address-family": f"vpp-fib-table-management:{0}"
                                       .format(ip_version),
-                    "name": "{0}-VRF:{1}".format(ip_version, vrf)
+                    "name": f"{0}-VRF:{1}".format(ip_version, vrf)
                 }
             ]
         }
-        path = "/table/{0}/vpp-fib-table-management:{1}".format(vrf, ip_version)
+        path = f"/table/{0}/vpp-fib-table-management:{1}".format(vrf, ip_version)
         return FibKeywords._set_fib_table_properties(node, path, full_data)
 
     @staticmethod
@@ -107,7 +105,7 @@ class FibKeywords(object):
         :rtype: bytearray
         """
 
-        path = "/table/{0}/vpp-fib-table-management:{1}".format(vrf, ip_version)
+        path = f"/table/{0}/vpp-fib-table-management:{1}".format(vrf, ip_version)
         return FibKeywords._set_fib_table_properties(node, path)
 
     @staticmethod
@@ -125,13 +123,13 @@ class FibKeywords(object):
         :raises HoneycombError: If the operation fails.
         """
 
-        path = "/table/{0}/vpp-fib-table-management:{1}".format(vrf, ip_version)
+        path = f"/table/{0}/vpp-fib-table-management:{1}".format(vrf, ip_version)
         status_code, resp = HcUtil. \
             get_honeycomb_data(node, "oper_fib_table", path)
 
         if status_code != HTTPCodes.OK:
             raise HoneycombError(
-                "Not possible to get operational information about the "
+                f"Not possible to get operational information about the "
                 "FIB tables. Status code: {0}.".format(status_code))
 
         data = resp['vpp-fib-table-management:table'][0]

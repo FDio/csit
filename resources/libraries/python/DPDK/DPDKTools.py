@@ -16,9 +16,9 @@
 
 from robot.api import logger
 
-from resources.libraries.python.ssh import SSH, exec_cmd_no_error
-from resources.libraries.python.Constants import Constants
-from resources.libraries.python.topology import NodeType, Topology
+from ..ssh import SSH, exec_cmd_no_error
+from ..Constants import Constants
+from ..topology import NodeType, Topology
 
 
 class DPDKTools(object):
@@ -49,7 +49,7 @@ class DPDKTools(object):
             ssh.connect(dut_node)
 
             arch = Topology.get_node_arch(dut_node)
-            cmd = '{fwdir}/tests/dpdk/dpdk_scripts/init_dpdk.sh '\
+            cmd = f'{fwdir}/tests/dpdk/dpdk_scripts/init_dpdk.sh '\
                   '{pci1} {pci2} {arch}'.format(fwdir=Constants.REMOTE_FW_DIR,
                                                 pci1=pci_address1,
                                                 pci2=pci_address2,
@@ -57,7 +57,7 @@ class DPDKTools(object):
 
             ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
             if ret_code != 0:
-                raise RuntimeError('Failed to bind the interfaces to igb_uio '
+                raise RuntimeError(f'Failed to bind the interfaces to igb_uio '
                                    'at node {name}'.\
                                     format(name=dut_node['host']))
 
@@ -84,14 +84,14 @@ class DPDKTools(object):
             ssh = SSH()
             ssh.connect(dut_node)
 
-            cmd = '{fwdir}/tests/dpdk/dpdk_scripts/cleanup_dpdk.sh ' \
+            cmd = f'{fwdir}/tests/dpdk/dpdk_scripts/cleanup_dpdk.sh ' \
                   '{drv1} {pci1} {drv2} {pci2}'.\
                   format(fwdir=Constants.REMOTE_FW_DIR, drv1=if1_driver,
                          pci1=pci_address1, drv2=if2_driver, pci2=pci_address2)
 
             ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
             if ret_code != 0:
-                raise RuntimeError('Failed to cleanup the dpdk at node {name}'.
+                raise RuntimeError(f'Failed to cleanup the dpdk at node {name}'.
                                    format(name=dut_node['host']))
 
     @staticmethod
@@ -106,17 +106,17 @@ class DPDKTools(object):
         """
         arch = Topology.get_node_arch(node)
 
-        command = ('{fwdir}/tests/dpdk/dpdk_scripts/install_dpdk.sh {arch}'.
+        command = (f'{fwdir}/tests/dpdk/dpdk_scripts/install_dpdk.sh {arch}'.
                    format(fwdir=Constants.REMOTE_FW_DIR, arch=arch))
         message = 'Install the DPDK failed!'
         exec_cmd_no_error(node, command, timeout=600, message=message)
 
-        command = ('cat {fwdir}/dpdk*/VERSION'.
+        command = (f'cat {fwdir}/dpdk*/VERSION'.
                    format(fwdir=Constants.REMOTE_FW_DIR))
         message = 'Get DPDK version failed!'
         stdout, _ = exec_cmd_no_error(node, command, message=message)
 
-        logger.info('DPDK Version: {version}'.format(version=stdout))
+        logger.info(f'DPDK Version: {version}'.format(version=stdout))
 
     @staticmethod
     def install_dpdk_test_on_all_duts(nodes):
@@ -127,6 +127,6 @@ class DPDKTools(object):
         :type nodes: dict
         :returns: nothing
         """
-        for node in nodes.values():
+        for node in list(nodes.values()):
             if node['type'] == NodeType.DUT:
                 DPDKTools.install_dpdk_test(node)

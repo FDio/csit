@@ -13,12 +13,10 @@
 
 """Keywords to manipulate NAT configuration using Honeycomb REST API."""
 
-from resources.libraries.python.HTTPRequest import HTTPCodes
-from resources.libraries.python.honeycomb.HoneycombSetup import HoneycombError
-from resources.libraries.python.honeycomb.HoneycombUtil \
-    import DataRepresentation
-from resources.libraries.python.honeycomb.HoneycombUtil \
-    import HoneycombUtil as HcUtil
+from ..HTTPRequest import HTTPCodes
+from .HoneycombSetup import HoneycombError
+from .HoneycombUtil import DataRepresentation
+from .HoneycombUtil import HoneycombUtil as HcUtil
 
 
 class DHCPRelayKeywords(object):
@@ -73,7 +71,7 @@ class DHCPRelayKeywords(object):
         :rtype: bytearray
         """
 
-        path = "/relay/vpp-fib-table-management:{0}/{1}".format(ip_version,
+        path = f"/relay/vpp-fib-table-management:{0}/{1}".format(ip_version,
                                                                 entry_id)
 
         return DHCPRelayKeywords._set_dhcp_relay_properties(node, path, data)
@@ -105,6 +103,6 @@ class DHCPRelayKeywords(object):
 
         if status_code != HTTPCodes.OK:
             raise HoneycombError(
-                "Could not retrieve DHCP relay configuration. "
+                f"Could not retrieve DHCP relay configuration. "
                 "Status code: {0}.".format(status_code))
         return resp

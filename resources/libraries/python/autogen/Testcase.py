@@ -55,7 +55,7 @@ class Testcase(object):
                 "frame_num": "${%d}" % fsize,
                 "frame_str": "%dB" % fsize
             }
-        except ValueError:  # Assuming an IMIX string.
+        except ValueError as e:  # Assuming an IMIX string.
             subst_dict = {
                 "frame_num": str(frame_size),
                 "frame_str": "IMIX"
@@ -64,9 +64,9 @@ class Testcase(object):
         cores_num = int(cores_str)
         subst_dict.update(
             {
-                "cores_num": "${%d}" % cores_num,
+                f"cores_num": "${%d}" % cores_num,
                 "cores_str": phy_cores,
-                "tc_num": "tc{num:02d}".format(num=num)
+                f"tc_num": "tc{num:02d}".format(num=num)
             })
         return self.template.substitute(subst_dict)
 

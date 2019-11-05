@@ -20,10 +20,10 @@ import time
 import os
 import glob
 
-from resources.libraries.python.ssh import SSH
-from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
-from resources.libraries.python.DMM.DMMConstants import DMMConstants as con
-from resources.libraries.python.topology import Topology
+from ..ssh import SSH
+from ..ssh import exec_cmd, exec_cmd_no_error
+from .DMMConstants import DMMConstants as con
+from ..topology import Topology
 
 class SingleCliSer(object):
     """Test DMM with single client-server topology."""
@@ -42,12 +42,12 @@ class SingleCliSer(object):
         :type ip_addr: str
         :type ip4_prefix: int
         """
-        cmd = 'sudo ip -4 addr flush dev {}'.format(ifname)
+        cmd = f'sudo ip -4 addr flush dev {}'.format(ifname)
         exec_cmd_no_error(dut_node, cmd)
-        cmd = 'sudo ip addr add {}/{} dev {}'\
+        cmd = f'sudo ip addr add {}/{} dev {}'\
             .format(ip_addr, ip4_prefix, ifname)
         exec_cmd_no_error(dut_node, cmd)
-        cmd = 'sudo ip link set {0} up'.format(ifname)
+        cmd = f'sudo ip link set {0} up'.format(ifname)
         exec_cmd_no_error(dut_node, cmd)
 
     @staticmethod
@@ -77,12 +77,12 @@ class SingleCliSer(object):
                                                dut1_ip, prefix_len)
         SingleCliSer.set_dmm_interface_address(dut2_node, dut2_if_name,
                                                dut2_ip, prefix_len)
-        cmd = 'cd {0}/{1} && ./{2} setup 0 {3} {4} {5}'\
+        cmd = f'cd {0}/{1} && ./{2} setup 0 {3} {4} {5}'\
             .format(con.REMOTE_FW_DIR, con.DMM_RUN_SCRIPTS, script_name,
                     dut1_if_name, dut1_ip, dut2_ip)
         exec_cmd(dut1_node, cmd)
 
-        cmd = 'cd {0}/{1} && ./{2} setup 1 {3} {4} {5}'\
+        cmd = f'cd {0}/{1} && ./{2} setup 1 {3} {4} {5}'\
             .format(con.REMOTE_FW_DIR, con.DMM_RUN_SCRIPTS, script_name,
                     dut2_if_name, dut1_ip, dut2_ip)
         exec_cmd(dut2_node, cmd)
@@ -108,17 +108,17 @@ class SingleCliSer(object):
         :type dut1_ip: str
         :type dut2_ip: str
         """
-        cmd = 'cd {0}/{1} && ./{2} run 0 {3} {4} {5} ' \
+        cmd = f'cd {0}/{1} && ./{2} run 0 {3} {4} {5} ' \
             .format(con.REMOTE_FW_DIR, con.DMM_RUN_SCRIPTS, script_name,
                     dut1_if_name, dut1_ip, dut2_ip)
-        cmd += '2>&1 | tee log_{0}.txt &'.format(script_name)
+        cmd += f'2>&1 | tee log_{0}.txt &'.format(script_name)
         exec_cmd(dut1_node, cmd)
         time.sleep(10)
 
-        cmd = 'cd {0}/{1} && ./{2} run 1 {3} {4} {5} ' \
+        cmd = f'cd {0}/{1} && ./{2} run 1 {3} {4} {5} ' \
             .format(con.REMOTE_FW_DIR, con.DMM_RUN_SCRIPTS, script_name,
                     dut2_if_name, dut1_ip, dut2_ip)
-        cmd += '2>&1 | tee log_{0}.txt'.format(script_name)
+        cmd += f'2>&1 | tee log_{0}.txt'.format(script_name)
         exec_cmd(dut2_node, cmd)
 
     @staticmethod
@@ -135,11 +135,11 @@ class SingleCliSer(object):
         :returns: test result PASS/FAIL.
         :rtype: str
         """
-        cmd = 'cd {0}/{1} && ./{2} verify 0' \
+        cmd = f'cd {0}/{1} && ./{2} verify 0' \
             .format(con.REMOTE_FW_DIR, con.DMM_RUN_SCRIPTS, script_name)
         (_, stdout_ser, _) = exec_cmd(dut1_node, cmd)
 
-        cmd = 'cd {0}/{1} && ./{2} verify 1' \
+        cmd = f'cd {0}/{1} && ./{2} verify 1' \
             .format(con.REMOTE_FW_DIR, con.DMM_RUN_SCRIPTS, script_name)
         (_, stdout_cli, _) = exec_cmd(dut2_node, cmd)
 
@@ -161,17 +161,17 @@ class SingleCliSer(object):
         :type dut2_node: dict
         :type script_name: str
         """
-        cmd = 'cd {0}/{1} && ./{2} log 0'\
+        cmd = f'cd {0}/{1} && ./{2} log 0'\
             .format(con.REMOTE_FW_DIR, con.DMM_RUN_SCRIPTS, script_name)
         exec_cmd(dut1_node, cmd)
 
-        cmd = 'cd {0}/{1} && ./{2} log 1'\
+        cmd = f'cd {0}/{1} && ./{2} log 1'\
             .format(con.REMOTE_FW_DIR, con.DMM_RUN_SCRIPTS, script_name)
         exec_cmd(dut2_node, cmd)
-        cmd = 'mv /var/log/nStack/running.log /var/log/nStack/{0}_ser.log'\
+        cmd = f'mv /var/log/nStack/running.log /var/log/nStack/{0}_ser.log'\
             .format(script_name)
         exec_cmd(dut1_node, cmd, sudo=True)
-        cmd = 'mv /var/log/nStack/running.log /var/log/nStack/{0}_cli.log'\
+        cmd = f'mv /var/log/nStack/running.log /var/log/nStack/{0}_cli.log'\
             .format(script_name)
         exec_cmd(dut2_node, cmd, sudo=True)
 
@@ -187,7 +187,7 @@ class SingleCliSer(object):
         :type dut2_node: dict
         :type script_name: str
         """
-        cmd = 'cd {0}/{1} && ./{2} cleanup 0'\
+        cmd = f'cd {0}/{1} && ./{2} cleanup 0'\
             .format(con.REMOTE_FW_DIR, con.DMM_RUN_SCRIPTS, script_name)
         exec_cmd(dut1_node, cmd)
         exec_cmd(dut2_node, cmd)
@@ -219,12 +219,12 @@ class SingleCliSer(object):
         passed = 0
         total = 0
         failed = 0
-        path = '{0}/*'.format(con.DMM_RUN_SCRIPTS)
+        path = f'{0}/*'.format(con.DMM_RUN_SCRIPTS)
         files = [os.path.basename(x) for x in glob.glob(path)]
-        print "list of files : {0}".format(files)
+        print("list of files : {0}".format(files))
 
         for name in files:
-            print("file name : {}").format(name)
+            print(("file name : {}").format(name))
             total += 1
             SingleCliSer.setup_dmm_dut(dut1_node, dut2_node, dut1_if_name,
                                        dut2_if_name, name, dut1_ip, dut2_ip,
@@ -240,8 +240,8 @@ class SingleCliSer(object):
 
             SingleCliSer.print_dmm_log(dut1_node, dut2_node, name)
             SingleCliSer.cleanup_dmm_dut(dut1_node, dut2_node, name)
-            print("TOTAL :{} PASSED : {} FAILED: {}").format\
-                (total, passed, failed)
+            print(("TOTAL :{} PASSED : {} FAILED: {}").format\
+                (total, passed, failed))
 
         return total, passed
 
@@ -258,7 +258,7 @@ class SingleCliSer(object):
         :rtype: str
         """
         mac = Topology.get_interface_mac(dut_node, dut_interface)
-        cmd = 'ifconfig -a | grep {0}'.format(mac)
+        cmd = f'ifconfig -a | grep {0}'.format(mac)
         (stdout, _) = exec_cmd_no_error(dut_node, cmd)
         interface_name = stdout.split(' ', 1)[0]
         return interface_name
