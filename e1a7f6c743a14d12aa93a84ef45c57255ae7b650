@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90307b14_a9c2c38a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst-rnd10000.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-06T16:59:17Z",
+      "side": 1,
+      "message": "10000?",
+      "range": {
+        "startLine": 73,
+        "startChar": 61,
+        "endLine": 73,
+        "endChar": 65
+      },
+      "revId": "e1a7f6c743a14d12aa93a84ef45c57255ae7b650",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "63913a9e_2768bf15",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst-rnd100000.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-06T16:59:17Z",
+      "side": 1,
+      "message": "Not random!",
+      "range": {
+        "startLine": 69,
+        "startChar": 35,
+        "endLine": 69,
+        "endChar": 38
+      },
+      "revId": "e1a7f6c743a14d12aa93a84ef45c57255ae7b650",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9ca8115_e49fce38",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst-rnd1000000.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-06T16:59:17Z",
+      "side": 1,
+      "message": "1000000?",
+      "range": {
+        "startLine": 73,
+        "startChar": 61,
+        "endLine": 73,
+        "endChar": 67
+      },
+      "revId": "e1a7f6c743a14d12aa93a84ef45c57255ae7b650",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3364498b_1fb985bf",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-avf-ethip4-ip4scale200k-rnd-ndrpdr.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-06T16:59:17Z",
+      "side": 1,
+      "message": "It is safer to remove -avf- suites from this change and rely on [0] to add them soon.\nFor example if this and [0] get merged as is (without rebase between), it will cause the tox job start giving -1 until -avf- suites are removed from repo.\n\n[0] https://gerrit.fd.io/r/c/csit/+/23033",
+      "range": {
+        "startLine": 18,
+        "startChar": 59,
+        "endLine": 18,
+        "endChar": 66
+      },
+      "revId": "e1a7f6c743a14d12aa93a84ef45c57255ae7b650",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
