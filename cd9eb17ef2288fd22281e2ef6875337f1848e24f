@@ -97,6 +97,23 @@
     },
     {
       "key": {
+        "uuid": "c16c34d6_765cb8a8",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1822
+      },
+      "writtenOn": "2019-11-06T07:27:30Z",
+      "side": 1,
+      "message": "- \u0027basestring\u0027 \u003d\u003e \u0027str\u0027 - basestring abstract type was removed in python3. Use str instead",
+      "revId": "cd9eb17ef2288fd22281e2ef6875337f1848e24f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "07f0e3e7_07f5c88f",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 3
