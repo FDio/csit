@@ -24,16 +24,15 @@ from string import ascii_letters
 from trex.stl.api import *
 
 
-class TrafficStreamsBaseClass:
+class TrafficStreamsBaseClass(object):
     """Base class for stream profiles for T-rex traffic generator."""
-
     STREAM_TABLE = {
-        u"IMIX_v4": [
+        "IMIX_v4": [
             {u"size": 60, u"pps": 28, u"isg": 0},
             {u"size": 590, u"pps": 20, u"isg": 0.1},
             {u"size": 1514, u"pps": 4, u"isg": 0.2}
         ],
-        'IMIX_v4_1': [
+        "IMIX_v4_1": [
             {u"size": 64, u"pps": 28, u"isg": 0},
             {u"size": 570, u"pps": 16, u"isg": 0.1},
             {u"size": 1518, u"pps": 4, u"isg": 0.2}
@@ -125,52 +124,49 @@ class TrafficStreamsBaseClass:
 
             # Direction 0 --> 1
             pkt_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1
-            )
+                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1)
             # Direction 1 --> 0
             pkt_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2
-            )
+                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2)
 
             # Packets for latency measurement:
             # Direction 0 --> 1
             pkt_lat_a = STLPktBuilder(
-                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1
-            )
+                pkt=base_pkt_a / self._gen_payload(payload_len), vm=vm1)
             # Direction 1 --> 0
             pkt_lat_b = STLPktBuilder(
-                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2
-            )
+                pkt=base_pkt_b / self._gen_payload(payload_len), vm=vm2)
 
             # Create the streams:
             # Direction 0 --> 1
-            stream1 = STLStream(packet=pkt_a, mode=STLTXCont(pps=9000))
+            stream1 = STLStream(\
+                packet=pkt_a, mode=STLTXCont(pps=9000))
             # Direction 1 --> 0
             # second traffic stream with a phase of 10ns (inter-stream gap)
-            stream2 = STLStream(packet=pkt_b, isg=10.0,
-                                mode=STLTXCont(pps=9000))
+            stream2 = STLStream(\
+                packet=pkt_b, isg=10.0,
+                mode=STLTXCont(pps=9000))
 
             # Streams for latency measurement:
             # Direction 0 --> 1
-            lat_stream1 = STLStream(
-                packet=pkt_lat_a, flow_stats=STLFlowLatencyStats(pg_id=0),
-                mode=STLTXCont(pps=9000)
-            )
+            lat_stream1 = STLStream(\
+                packet=pkt_lat_a,
+                flow_stats=STLFlowLatencyStats(pg_id=0),
+                mode=STLTXCont(pps=9000))
             # Direction 1 --> 0
             # second traffic stream with a phase of 10ns (inter-stream gap)
             lat_stream2 = STLStream(
                 packet=pkt_lat_b, isg=10.0,
                 flow_stats=STLFlowLatencyStats(pg_id=1),
-                mode=STLTXCont(pps=9000)
-            )
+                mode=STLTXCont(pps=9000))
 
             return [stream1, stream2, lat_stream1, lat_stream2]
 
         # Frame size is defined as a string, e.g.IMIX_v4_1:
         elif isinstance(self.framesize, str):
 
-            stream1 = list()
-            stream2 = list()
+            stream1 = []
+            stream2 = []
 
             for stream in self.STREAM_TABLE[self.framesize]:
                 payload_len_a = max(0, stream[u"size"] - len(base_pkt_a) - 4)
@@ -185,13 +181,13 @@ class TrafficStreamsBaseClass:
 
                 # Create the streams:
                 stream1.append(STLStream(
-                    packet=pkt_a, isg=stream[u"isg"],
-                    mode=STLTXCont(pps=stream[u"pps"]))
-                )
-                stream2.append(STLStream(
-                    packet=pkt_b, isg=stream[u"isg"],
-                    mode=STLTXCont(pps=stream[u"pps"]))
-                )
+                                    packet=pkt_a,
+                                    isg=stream[u"isg"],
+                                    mode=STLTXCont(pps=stream[u"pps"])))
+                stream2.append(STLStream(\
+                                    packet=pkt_b,
+                                    isg=stream[u"isg"],
+                                    mode=STLTXCont(pps=stream[u"pps"])))
             streams = list()
             streams.extend(stream1)
             streams.extend(stream2)

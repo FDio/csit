@@ -36,16 +36,16 @@ class TrafficStreams(TrafficStreamsBaseClass):
     """Stream profile."""
 
     def __init__(self):
-        """Initialization and setting of streams' parameters."""
+        """Initialization and setting of streams" parameters."""
 
         super(TrafficStreamsBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        self.p1_src_ip = '20.0.0.0'
-        self.p1_dst_ip = '12.0.0.2'
+        self.p1_src_ip = u"20.0.0.0"
+        self.p1_dst_ip = u"12.0.0.2"
 
-        self.p2_src_ip = '12.0.0.2'
-        self.p2_dst_ip = '200.0.0.0'
+        self.p2_src_ip = u"12.0.0.2"
+        self.p2_dst_ip = u"200.0.0.0"
 
         # UDP ports used in packet headers.
         self.p1_src_udp_port = 1024
