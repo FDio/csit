@@ -576,6 +576,7 @@ function reserve_and_cleanup_testbed () {
     # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
     # Functions called:
     # - die - Print to stderr and exit.
+    # - ansible_hosts - Perform an action using ansible, see ansible.sh
     # Traps registered:
     # - EXIT - Calls cancel_all for ${WORKING_TOPOLOGY}.
 
@@ -1031,6 +1032,7 @@ function untrap_and_unreserve_testbed () {
     # - EXIT - Failure to untrap is reported, but ignored otherwise.
     # Functions called:
     # - die - Print to stderr and exit.
+    # - ansible_hosts - Perform an action using ansible, see ansible.sh
 
     set -xo pipefail
     set +eu  # We do not want to exit early in a "teardown" function.
