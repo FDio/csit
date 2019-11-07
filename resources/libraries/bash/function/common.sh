@@ -759,7 +759,7 @@ function select_tags () {
         *"3n-skx"* | *"2n-skx"* | *"2n-clx"*)
             default_nic="nic_intel-xxv710"
             ;;
-        *"3n-hsw"*)
+        *"3n-hsw"* | *"mrr-daily-master")
             default_nic="nic_intel-xl710"
             ;;
         *)
