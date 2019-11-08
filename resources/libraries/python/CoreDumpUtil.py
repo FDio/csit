@@ -105,6 +105,17 @@ class CoreDumpUtil:
             LimitUtil.set_pid_limit(node, pid, u"core", u"unlimited")
             LimitUtil.get_pid_limit(node, pid)
 
+    def enable_coredump_limit_vpp(self, node):
+        """Enable coredump for VPP PID by setting no core limits on DUT
+        if setting of core limit by this library is enabled.
+
+        :param node: DUT Node in the topology.
+        :type node: dict
+        """
+        if node['type'] == NodeType.DUT and self.is_core_limit_enabled():
+            vpp_pid = DUTSetup.get_vpp_pid(node)
+            self.enable_coredump_limit(node, vpp_pid)
+
     def enable_coredump_limit_vpp_on_all_duts(self, nodes):
         """Enable coredump for all VPP PIDs by setting no core limits on all
         DUTs if setting of core limit by this library is enabled.
@@ -113,9 +124,7 @@ class CoreDumpUtil:
         :type nodes: dict
         """
         for node in nodes.values():
-            if node[u"type"] == NodeType.DUT and self.is_core_limit_enabled():
-                vpp_pid = DUTSetup.get_vpp_pid(node)
-                self.enable_coredump_limit(node, vpp_pid)
+            self.enable_coredump_limit_vpp(node)
 
     def get_core_files_on_all_nodes(self, nodes, disable_on_success=True):
         """Process all core files and remove the original core files on all
@@ -128,17 +137,19 @@ class CoreDumpUtil:
         :type disable_on_success: bool
         """
         for node in nodes.values():
-            command = (
-                f"for f in {Constants.CORE_DUMP_DIR}/*.core; do sudo gdb"
-                f" /usr/bin/vpp ${{f}} -ex 'source -v {Constants.REMOTE_FW_DIR}"
-                f"/resources/tools/scripts/gdb-commands' -ex quit;"
-                f" sudo rm -f ${{f}}; done"
-            )
-            try:
-                exec_cmd_no_error(node, command, timeout=3600)
-                if disable_on_success:
-                    self.set_core_limit_disabled()
-            except RuntimeError:
-                # If compress was not successful ignore error and skip further
-                # processing.
-                continue
+            if node['type'] == NodeType.DUT:
+                command = (
+                    f"for f in {Constants.CORE_DUMP_DIR}/*.core; do "
+                    f"sudo gdb /usr/bin/vpp ${{f}} "
+                    f"-ex 'source -v {Constants.REMOTE_FW_DIR}"
+                    f"/resources/tools/scripts/gdb-commands' -ex quit; "
+                    f"sudo rm -f ${{f}}; done"
+                )
+                try:
+                    exec_cmd_no_error(node, command, timeout=3600)
+                    if disable_on_success:
+                        self.set_core_limit_disabled()
+                except RuntimeError:
+                    # If compress was not successful ignore error and skip further
+                    # processing.
+                    continue
