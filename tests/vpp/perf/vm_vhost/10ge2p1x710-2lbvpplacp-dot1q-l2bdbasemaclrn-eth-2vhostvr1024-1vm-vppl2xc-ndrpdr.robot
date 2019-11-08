@@ -96,7 +96,6 @@
 | | And Add VLAN Strip Offload switch off between DUTs in 3-node double link topology
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize layer driver | ${nic_driver}
-| | And Initialize layer interface
 | | And Initialize L2 bridge domains with Vhost-User and VLAN with VPP link bonding in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${subid}
 | | ... | ${tag_rewrite} | ${bond_mode} | ${lb_mode}
