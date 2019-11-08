@@ -46,6 +46,30 @@
       "revId": "79e0a4b84dc5d86c91eb36a167772c46a8ba1957",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b228631_8c3069ec",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-08T10:17:33Z",
+      "side": 1,
+      "message": "Decided to use \"set -x\" anyway, just for consistency sake (line 891), in future we might do something else than just dying.",
+      "parentUuid": "328a9d96_90a22420",
+      "range": {
+        "startLine": 881,
+        "startChar": 12,
+        "endLine": 881,
+        "endChar": 18
+      },
+      "revId": "79e0a4b84dc5d86c91eb36a167772c46a8ba1957",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
