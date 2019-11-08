@@ -106,6 +106,17 @@ class CoreDumpUtil(object):
             LimitUtil.set_pid_limit(node, pid, 'core', 'unlimited')
             LimitUtil.get_pid_limit(node, pid)
 
+    def enable_coredump_limit_vpp(self, node):
+        """Enable coredump for VPP PID by setting no core limits on DUT
+        if setting of core limit by this library is enabled.
+
+        :param node: DUT Node in the topology.
+        :type node: dict
+        """
+        if node['type'] == NodeType.DUT and self.is_core_limit_enabled():
+            vpp_pid = DUTSetup.get_vpp_pid(node)
+            self.enable_coredump_limit(node, vpp_pid)
+
     def enable_coredump_limit_vpp_on_all_duts(self, nodes):
         """Enable coredump for all VPP PIDs by setting no core limits on all
         DUTs if setting of core limit by this library is enabled.
@@ -129,18 +140,19 @@ class CoreDumpUtil(object):
         :type disable_on_success: bool
         """
         for node in nodes.values():
-            command = ('for f in {dir}/*.core; do '
-                       'sudo gdb /usr/bin/vpp ${{f}} '
-                       '--eval-command="set pagination off" '
-                       '--eval-command="thread apply all bt" '
-                       '--eval-command="quit"; '
-                       'sudo rm -f ${{f}}; done'
-                       .format(dir=Constants.CORE_DUMP_DIR))
-            try:
-                exec_cmd_no_error(node, command, timeout=3600)
-                if disable_on_success:
-                    self.set_core_limit_disabled()
-            except RuntimeError:
-                # If compress was not sucessfull ignore error and skip further
-                # processing.
-                continue
+            if node['type'] == NodeType.DUT:
+                command = ('for f in {dir}/*.core; do '
+                           'sudo gdb /usr/bin/vpp ${{f}} '
+                           '--eval-command="set pagination off" '
+                           '--eval-command="thread apply all bt" '
+                           '--eval-command="quit"; '
+                           'sudo rm -f ${{f}}; done'
+                           .format(dir=Constants.CORE_DUMP_DIR))
+                try:
+                    exec_cmd_no_error(node, command, timeout=3600)
+                    if disable_on_success:
+                        self.set_core_limit_disabled()
+                except RuntimeError:
+                    # If processing was not successful ignore error and skip
+                    # further processing.
+                    continue
