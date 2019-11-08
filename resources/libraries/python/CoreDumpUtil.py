@@ -129,18 +129,19 @@ class CoreDumpUtil(object):
         :type disable_on_success: bool
         """
         for node in nodes.values():
-            command = ('for f in {dir}/*.core; do '
-                       'sudo gdb /usr/bin/vpp ${{f}} '
-                       '--eval-command="set pagination off" '
-                       '--eval-command="thread apply all bt" '
-                       '--eval-command="quit"; '
-                       'sudo rm -f ${{f}}; done'
-                       .format(dir=Constants.CORE_DUMP_DIR))
-            try:
-                exec_cmd_no_error(node, command, timeout=3600)
-                if disable_on_success:
-                    self.set_core_limit_disabled()
-            except RuntimeError:
-                # If compress was not sucessfull ignore error and skip further
-                # processing.
-                continue
+            if node['type'] == NodeType.DUT:
+                command = ('for f in {dir}/*.core; do '
+                           'sudo gdb /usr/bin/vpp ${{f}} '
+                           '--eval-command="set pagination off" '
+                           '--eval-command="thread apply all bt" '
+                           '--eval-command="quit"; '
+                           'sudo rm -f ${{f}}; done'
+                           .format(dir=Constants.CORE_DUMP_DIR))
+                try:
+                    exec_cmd_no_error(node, command, timeout=3600)
+                    if disable_on_success:
+                        self.set_core_limit_disabled()
+                except RuntimeError:
+                    # If compress was not sucessfull ignore error and skip further
+                    # processing.
+                    continue
