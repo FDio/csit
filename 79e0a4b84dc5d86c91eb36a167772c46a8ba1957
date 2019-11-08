@@ -22,6 +22,30 @@
       "revId": "79e0a4b84dc5d86c91eb36a167772c46a8ba1957",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "328a9d96_90a22420",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-08T10:14:12Z",
+      "side": 1,
+      "message": "Ah, this was supposed to be \"set -x\", but we do not really need to re-enable -x just for two warns and a die.\nNext patch coming up shortly.",
+      "parentUuid": "d5f4446d_24ba2724",
+      "range": {
+        "startLine": 881,
+        "startChar": 12,
+        "endLine": 881,
+        "endChar": 18
+      },
+      "revId": "79e0a4b84dc5d86c91eb36a167772c46a8ba1957",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
