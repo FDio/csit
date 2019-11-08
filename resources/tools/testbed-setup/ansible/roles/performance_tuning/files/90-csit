@@ -15,7 +15,7 @@ vm.max_map_count={{ sysctl.vm.max_map_count }}
 
 # hugetlb_shm_group contains group id that is allowed to create sysv
 # shared memory segment using hugetlb page.
-vm.hugetlb_shm_group=0
+vm.hugetlb_shm_group=1000
 
 # this control is used to define how aggressive the kernel will swap
 # memory pages.  higher values will increase agressiveness, lower values
