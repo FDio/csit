@@ -515,8 +515,8 @@ function get_test_tag_string () {
             *"device"*)
                 # On parsing error, ${trigger} stays empty.
                 trigger="$(echo "${GERRIT_EVENT_COMMENT_TEXT}" \
-                    | grep -oE '(devicetest$|devicetest[[:space:]].+$)')" \
-                    || true
+                    | grep -oE '(devicetest$|devicetest[[:space:]].+$)' \
+                    || true)"
                 # Set test tags as string.
                 TEST_TAG_STRING="${trigger#$"devicetest"}"
                 ;;
@@ -876,6 +876,12 @@ function select_tags () {
         if [[ "${tag}" == "!"* ]]; then
             # Exclude tags are not prefixed.
             TAGS+=("${tag}")
+        elif [[ "${tag}" == " "* || "${tag}" == *"perftest"* ]]; then
+            # Badly formed tag expressions can trigger way too much tests.
+            set -x
+            warn "The following tag expression hints at bad trigger: ${tag}"
+            warn "Possible cause: Multiple triggers in a single comment."
+            die "Aborting to avoid triggering too many tests."
         elif [[ "${tag}" != "" && "${tag}" != "#"* ]]; then
             # Empty and comment lines are skipped.
             # Other lines are normal tags, they are to be prefixed.
