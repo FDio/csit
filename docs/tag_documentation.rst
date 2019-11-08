@@ -662,6 +662,10 @@ Feature Tags
 
     ACL plugin configured and tested in stateful mode (permit+reflect action).
 
+.. topic:: IACE_LIST
+
+    ACL plugin configured and tested with list of ACEs on interface input path.
+
 .. topic:: ACL1
 
     ACL plugin configured and tested with 1 not-hitting ACE.

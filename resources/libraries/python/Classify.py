@@ -704,7 +704,8 @@ class Classify(object):
         acl_rules = list()
         for rule in rules.split(", "):
             acl_rule = dict()
-            acl_rule["is_permit"] = 1 if "permit" in rule else 0
+            acl_rule["is_permit"] = 2 if "permit+reflect" in rule else 1 if \
+                                    "permit" in rule else 0
             acl_rule["is_ipv6"] = 1 if "ipv6" in rule else 0
 
             groups = re.search(reg_ex_src_ip, rule)
