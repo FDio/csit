@@ -61,8 +61,8 @@
     # classify_session_dump / details # honeycomb
     # classify_table_by_interface / reply # honeycomb
     # classify_table_info / reply # honeycomb
-    cli_inband: '0xf8377302'  # dev setup
-    cli_inband_reply: '0x05879051'  # dev setup
+    cli_inband: '0xb1ad59b3'  # dev setup
+    cli_inband_reply: '0x6d3c80a4'  # dev setup
     cop_interface_enable_disable: '0x5501adee'  # dev
     cop_interface_enable_disable_reply: '0xe8d4e804'  # dev
     cop_whitelist_enable_disable: '0xdebe13ea'  # dev
@@ -95,13 +95,13 @@
     gpe_enable_disable: '0xeb0e943b'  # dev
     gpe_enable_disable_reply: '0xe8d4e804'  # dev
     # gre_tunnel_add_del / reply # unused L1 keyword: create_gre_tunnel_interface
-    hw_interface_set_mtu: '0xe6746899'  # dev
+    hw_interface_set_mtu: '0xe6c533aa'  # dev
     hw_interface_set_mtu_reply: '0xe8d4e804'  # dev
     input_acl_set_interface: '0xe09537b0'  # dev
     input_acl_set_interface_reply: '0xe8d4e804'  # dev
     ip_address_details: '0x7002eee7'  # dev
     ip_address_dump: '0x6b7bcd0a'  # dev
-    ip_neighbor_add_del: '0x029dad44'  # dev
+    ip_neighbor_add_del: '0x7a68a3c4'  # dev
     ip_neighbor_add_del_reply: '0x1992deab'  # dev
     # ip_probe_neighbor / reply # unused L1 keyword vpp_ip_probe
     ip_route_add_del: '0x5ceee41c'  # dev
@@ -206,7 +206,7 @@
     show_threads: '0x51077d14'  # dev
     show_threads_reply: '0xf5e0b66f'  # dev
     show_version: '0x51077d14'  # dev setup
-    show_version_reply: '0xc919bde1'  # dev setup
+    show_version_reply: '0xb9bcf6df'  # dev setup
     sr_localsid_add_del: '0xb30489eb'  # perf
     sr_localsid_add_del_reply: '0xe8d4e804'  # perf
     sr_localsids_details: '0x0791babc'  # perf teardown
@@ -223,13 +223,13 @@
     sr_steering_pol_dump: '0x51077d14'  # perf teardown
     # 14x^ tc01-78B-1c-ethip6ip6-ip6base-srv6enc1sid-mrr
     # ^ srv6_1sid
-    sw_interface_add_del_address: '0x5803d5c4'  # dev
+    sw_interface_add_del_address: '0x43a487bd'  # dev
     sw_interface_add_del_address_reply: '0xe8d4e804'  # dev
     sw_interface_bond_details: '0xf5ef2106'  # perf
     sw_interface_bond_dump: '0x51077d14'  # perf
     # ^^ see bond_*
-    sw_interface_details: '0x17b69fa2'  # dev setup
-    sw_interface_dump: '0xaa610c27'  # dev setup
+    sw_interface_details: '0x156a9465'  # dev setup
+    sw_interface_dump: '0xe116dcdc'  # dev setup
     # sw_interface_get_table / reply # honeycomb
     sw_interface_ip6nd_ra_config: '0xc3f02daa'  # dev
     sw_interface_ip6nd_ra_config_reply: '0xe8d4e804'  # dev
@@ -237,7 +237,7 @@
     sw_interface_rx_placement_dump: '0xf9e6675e'  # perf
     # ^^ tc01-64B-1c-dot1q-l2bdbasemaclrn-eth-2memif-1dcr-mrr
     # ^ dot1qANDl2bdmaclrnANDbaseANDmemif
-    sw_interface_set_flags: '0x6a2b491a'  # dev
+    sw_interface_set_flags: '0xb2dc5eb2'  # dev
     sw_interface_set_flags_reply: '0xe8d4e804'  # dev
     sw_interface_set_l2_bridge: '0x5579f809'  # dev
     sw_interface_set_l2_bridge_reply: '0xe8d4e804'  # dev
