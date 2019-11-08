@@ -10,7 +10,6 @@
       - 'libmbedtls10'
       - 'libmbedx509-0'
       - 'libnuma-dev'
-      - 'libpcap-dev'
       - 'libpixman-1-dev'
       - 'libtool'
       - 'lxc'
