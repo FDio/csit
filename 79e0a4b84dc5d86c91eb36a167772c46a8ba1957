@@ -94,6 +94,30 @@
       "revId": "79e0a4b84dc5d86c91eb36a167772c46a8ba1957",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d008c700_286c31d4",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-08T12:48:07Z",
+      "side": 1,
+      "message": "865 switches off printing commands to execute. Patch 6 switches it back on here (as line 891 does if this branch is not entered).",
+      "parentUuid": "5d6ecba6_a9057678",
+      "range": {
+        "startLine": 881,
+        "startChar": 12,
+        "endLine": 881,
+        "endChar": 18
+      },
+      "revId": "79e0a4b84dc5d86c91eb36a167772c46a8ba1957",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
     }
   ]
 }
