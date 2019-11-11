@@ -79,8 +79,6 @@ rst_epilog = """
 .. _VIRL ubuntu images lists: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/ubuntu/lists/?h={release}
 .. _VIRL centos images lists: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/centos/lists/?h={release}
 .. _VIRL nested: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/nested/?h={release}
-.. _CSIT Honeycomb Functional Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.func.honeycomb.html
-.. _CSIT Honeycomb Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.perf.honeycomb.html
 .. _CSIT DPDK Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.dpdk.perf.html
 .. _CSIT VPP Functional Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.func.html
 .. _CSIT VPP Performance Tests Documentation: https://docs.fd.io/csit/{release}/doc/tests.vpp.perf.html

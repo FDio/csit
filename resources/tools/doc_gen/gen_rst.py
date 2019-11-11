@@ -95,7 +95,6 @@ def create_file_name(path, start):
     """Create the name of rst file.
 
     Example:
-    resources.libraries.python.honeycomb.rst
     tests.perf.rst
 
     :param path: Path to a module to be documented.
