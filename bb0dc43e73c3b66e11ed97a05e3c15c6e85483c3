@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a7ac8b7_82998d47",
+        "filename": "resources/tools/presentation/specification.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-11T18:03:19Z",
+      "side": 1,
+      "message": "References using \"hc\" instead of \"honeycomb\" should also be removed:\n+ This line.\n+ 302-303 in input_data_files.py\n+ conf.py:106\n+ 5 hc2vpp lines in doc/pal_lld.rst\n+ gather.sh:48-49\n+ 4 HC_ tags in tag_documentation.rst\n+ 4 mentions of in docs/report/csit_framework_documentation/csit_test_naming.rst",
+      "range": {
+        "startLine": 85,
+        "startChar": 16,
+        "endLine": 85,
+        "endChar": 18
+      },
+      "revId": "bb0dc43e73c3b66e11ed97a05e3c15c6e85483c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
