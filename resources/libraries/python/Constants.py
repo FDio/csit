@@ -187,21 +187,6 @@ class Constants(object):
     # TRex install directory
     TREX_INSTALL_DIR = '/opt/trex-core-2.61'
 
-    # Honeycomb directory location at topology nodes:
-    REMOTE_HC_DIR = '/opt/honeycomb'
-
-    # Honeycomb persistence files location
-    REMOTE_HC_PERSIST = '/var/lib/honeycomb/persist'
-
-    # Honeycomb log file location
-    REMOTE_HC_LOG = '/var/log/honeycomb/honeycomb.log'
-
-    # Honeycomb templates location
-    RESOURCES_TPL_HC = 'resources/templates/honeycomb'
-
-    # ODL Client Restconf listener port
-    ODL_PORT = 8181
-
     # Sysctl kernel.core_pattern
     KERNEL_CORE_PATTERN = '/tmp/%p-%u-%g-%s-%t-%h-%e.core'
 
