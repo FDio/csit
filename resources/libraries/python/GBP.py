@@ -299,17 +299,19 @@ class GBP(object):
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
     @staticmethod
-    def gbp_contract_add_del(node, sclass, dclass, acl_index=0):
+    def gbp_contract_add_del(node, sclass, dclass, acl_index=0, scope=0):
         """Add GBP contract.
 
         :param node: Node to add GBP contract on.
         :param sclass: Source CLASS.
         :param dclass: Destination CLASS.
         :param acl_index: Index of ACL rule.
+        :param acl_index: GBP contract scope.
         :type node: dict
         :type sclass: int
         :type dclass: int
         :type acl_index: int
+        :type scope: int
         """
         cmd = 'gbp_contract_add_del'
         err_msg = 'Failed to add GBP contract on {node}!'\
@@ -330,6 +332,7 @@ class GBP(object):
             is_add=1,
             contract=dict(
                 acl_index=acl_index,
+                scope=scope,
                 sclass=sclass,
                 dclass=dclass,
                 n_rules=len(rules),
