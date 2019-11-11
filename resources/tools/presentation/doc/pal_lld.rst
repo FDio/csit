@@ -169,9 +169,7 @@ The structure of the section "Environment" is as follows (example):
         DIR[DTR]: "{DIR[WORKING,SRC]}/detailed_test_results"
         DIR[DTR,PERF,DPDK]: "{DIR[DTR]}/dpdk_performance_results"
         DIR[DTR,PERF,VPP]: "{DIR[DTR]}/vpp_performance_results"
-        DIR[DTR,PERF,HC]: "{DIR[DTR]}/honeycomb_performance_results"
         DIR[DTR,FUNC,VPP]: "{DIR[DTR]}/vpp_functional_results"
-        DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
         DIR[DTR,FUNC,NSHSFC]: "{DIR[DTR]}/nshsfc_functional_results"
         DIR[DTR,PERF,VPP,IMPRV]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
 
