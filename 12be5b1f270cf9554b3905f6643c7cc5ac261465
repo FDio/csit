@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c45af6ad_fc8b980f",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-11T15:50:27Z",
+      "side": 1,
+      "message": "inhale directly by import..it is same repo",
+      "parentUuid": "9130fe54_068845a7",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 3
+      },
+      "revId": "12be5b1f270cf9554b3905f6643c7cc5ac261465",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e22d54d8_e95f4a84",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 4
