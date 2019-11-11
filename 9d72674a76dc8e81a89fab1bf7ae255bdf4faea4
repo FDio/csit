@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56752112_5af4f3b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-11T13:07:55Z",
+      "side": 1,
+      "message": "See https://gerrit.fd.io/r/c/csit/+/22871/20/tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4udp-ip4base-nat44-ndrpdr.robot#b79",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 16
+      },
+      "revId": "9d72674a76dc8e81a89fab1bf7ae255bdf4faea4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
