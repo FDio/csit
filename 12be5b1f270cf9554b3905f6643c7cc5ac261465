@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "d3050f73_07092f6b",
+        "filename": "docs/csit_python2_to_python3_migration.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-11T18:11:05Z",
+      "side": 1,
+      "message": "\u003e it is same repo\n\nMy first attempt has added PAL as a module to resources package (so relative import is possible). As a consequence PAL become visible to pylint, and ~500 violations appeared, making the tox job to vote -1.\nPerhaps some tricky way using symlinks is possible, but I think it is better to migrate most of PAL first, and then decide.",
+      "parentUuid": "c45af6ad_fc8b980f",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 3
+      },
+      "revId": "12be5b1f270cf9554b3905f6643c7cc5ac261465",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e22d54d8_e95f4a84",
         "filename": "docs/csit_python2_to_python3_migration.md",
         "patchSetId": 4
