@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d9d5de4f_be633633",
+        "filename": "resources/libraries/robot/l2/l2_traffic.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-11T10:21:29Z",
+      "side": 1,
+      "message": "i would fix the years everywhere.",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "c16009b0a16257ed83a75641190607a71748b0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "58d71f22_7accb39e",
+        "filename": "resources/libraries/robot/l2/l2_traffic.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-11T10:21:29Z",
+      "side": 1,
+      "message": "ip",
+      "range": {
+        "startLine": 115,
+        "startChar": 27,
+        "endLine": 115,
+        "endChar": 34
+      },
+      "revId": "c16009b0a16257ed83a75641190607a71748b0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f8043897_c88e692f",
+        "filename": "resources/libraries/robot/l2/l2_traffic.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-11T10:21:29Z",
+      "side": 1,
+      "message": "ip",
+      "range": {
+        "startLine": 144,
+        "startChar": 27,
+        "endLine": 144,
+        "endChar": 34
+      },
+      "revId": "c16009b0a16257ed83a75641190607a71748b0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "edf81dbc_6c704d81",
+        "filename": "resources/libraries/robot/l2/l2_traffic.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-11T10:21:29Z",
+      "side": 1,
+      "message": "ip",
+      "range": {
+        "startLine": 161,
+        "startChar": 18,
+        "endLine": 161,
+        "endChar": 25
+      },
+      "revId": "c16009b0a16257ed83a75641190607a71748b0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07b8dd10_d29523f7",
+        "filename": "resources/traffic_scripts/send_ip_check_headers.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-11T10:21:29Z",
+      "side": 1,
+      "message": "ip",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 1
+      },
+      "revId": "c16009b0a16257ed83a75641190607a71748b0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cd3e9ce9_b69fc9d5",
+        "filename": "resources/traffic_scripts/send_ip_check_headers.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-11T10:21:29Z",
+      "side": 1,
+      "message": "needed?",
+      "range": {
+        "startLine": 25,
+        "startChar": 37,
+        "endLine": 25,
+        "endChar": 54
+      },
+      "revId": "c16009b0a16257ed83a75641190607a71748b0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb17c5d9_ce5c97ba",
+        "filename": "tests/vpp/device/ip6/eth2p-ethipv6-ip6base-dev.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-11T10:21:29Z",
+      "side": 1,
+      "message": "packet",
+      "range": {
+        "startLine": 49,
+        "startChar": 34,
+        "endLine": 49,
+        "endChar": 40
+      },
+      "revId": "c16009b0a16257ed83a75641190607a71748b0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "644a89d1_f1b7dbf1",
+        "filename": "tests/vpp/device/l2bd/eth2p-avf-dot1q-l2bdbasemaclrn-gbp-dev.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-11T10:21:29Z",
+      "side": 1,
+      "message": "this is not ip6",
+      "range": {
+        "startLine": 60,
+        "startChar": 25,
+        "endLine": 60,
+        "endChar": 30
+      },
+      "revId": "c16009b0a16257ed83a75641190607a71748b0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87e0e694_23f69d0f",
+        "filename": "tests/vpp/device/vm_vhost/l2xc/eth2p-ethipv4-l2xcbase-eth-2vhost-1vm-dev.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-11T10:21:29Z",
+      "side": 1,
+      "message": "I am little bit puzzled why L2xc/L2bd has different KW then IP4/Ip6, but ok for now",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 31
+      },
+      "revId": "c16009b0a16257ed83a75641190607a71748b0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
