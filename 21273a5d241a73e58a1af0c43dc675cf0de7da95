@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6691809e_a8007194",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-11T17:40:11Z",
+      "side": 1,
+      "message": "This code is never executed.\nThe code in Base does retry if there was no exception, but transport is still not active.",
+      "range": {
+        "startLine": 194,
+        "startChar": 12,
+        "endLine": 194,
+        "endChar": 22
+      },
+      "revId": "21273a5d241a73e58a1af0c43dc675cf0de7da95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
