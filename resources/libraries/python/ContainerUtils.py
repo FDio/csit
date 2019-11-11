@@ -398,6 +398,7 @@ class ContainerEngine(object):
             self.execute('sleep 3; apt-get update')
             self.execute('apt-get install -y supervisor')
         self.execute('echo "{config}" > {config_file} && '
+                     'unlink /tmp/supervisor.sock && '
                      'supervisord -c {config_file}'.
                      format(
                          config='[unix_http_server]\n'
@@ -411,9 +412,9 @@ class ContainerEngine(object):
                          'pidfile = /tmp/supervisord.pid\n'
                          'identifier = supervisor\n'
                          'directory = /tmp\n'
-                         'logfile=/tmp/supervisord.log\n'
-                         'loglevel=debug\n'
-                         'nodaemon=false\n\n',
+                         'logfile = /tmp/supervisord.log\n'
+                         'loglevel = debug\n'
+                         'nodaemon = false\n\n',
                          config_file=SUPERVISOR_CONF))
 
     def start_vpp(self):
@@ -421,11 +422,11 @@ class ContainerEngine(object):
         self.execute('echo "{config}" >> {config_file}'.
                      format(
                          config='[program:vpp]\n'
-                         'command=/usr/bin/vpp -c /etc/vpp/startup.conf\n'
-                         'autostart=false\n'
-                         'autorestart=false\n'
-                         'redirect_stderr=true\n'
-                         'priority=1',
+                         'command = /usr/bin/vpp -c /etc/vpp/startup.conf\n'
+                         'autostart = false\n'
+                         'autorestart = false\n'
+                         'redirect_stderr = true\n'
+                         'priority = 1',
                          config_file=SUPERVISOR_CONF))
         self.execute('supervisorctl reload')
         self.execute('supervisorctl start vpp')

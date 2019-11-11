@@ -33,8 +33,7 @@ class DUTSetup(object):
         :type service: str
         """
         if DUTSetup.running_in_container(node):
-            command = ('echo $(< /var/log/supervisord.log);'
-                       'echo $(< /tmp/*supervisor*.log)')
+            command = ('echo $(< /tmp/*supervisor*.log)')
         else:
             command = ('journalctl --no-pager --unit={name} '
                        '--since="$(echo `systemctl show -p '
