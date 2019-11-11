@@ -55,6 +55,13 @@ class GBPExtItfFlags(IntEnum):
 
 
 class GBPRuleAction(IntEnum):
+    """GBP Hash Mode."""
+    GBP_API_HASH_MODE_SRC_IP = 1
+    GBP_API_HASH_MODE_DST_IP = 2
+    GBP_API_HASH_MODE_SYMETRIC = 3
+
+
+class GBPHasnMode(IntEnum):
     """GBP Rule Action."""
     GBP_API_RULE_PERMIT = 1
     GBP_API_RULE_DENY = 2
@@ -125,8 +132,8 @@ class GBP(object):
 
         args_in = dict(
             bd=dict(
-                flags=getattr(GBPBridgeDomainFlags,
-                              'GBP_BD_API_FLAG_NONE').value,
+                flags=getattr(
+                    GBPBridgeDomainFlags, 'GBP_BD_API_FLAG_NONE').value,
                 bvi_sw_if_index=bvi_sw_if_index,
                 uu_fwd_sw_if_index=uu_fwd_sw_if_index,
                 bm_flood_sw_if_index=bm_flood_sw_if_index,
@@ -213,8 +220,8 @@ class GBP(object):
                 n_ips=len(ips),
                 mac=L2Util.mac_to_bin(mac_addr),
                 sclass=sclass,
-                flags=getattr(GBPEndpointFlags,
-                              'GBP_API_ENDPOINT_FLAG_EXTERNAL').value,
+                flags=getattr(
+                    GBPEndpointFlags, 'GBP_API_ENDPOINT_FLAG_EXTERNAL').value,
                 tun=dict(
                     src=tun_src,
                     dst=tun_dst
@@ -248,8 +255,7 @@ class GBP(object):
                 sw_if_index=sw_if_index,
                 bd_id=bd_id,
                 rd_id=rd_id,
-                flags=getattr(GBPExtItfFlags,
-                              'GBP_API_EXT_ITF_F_NONE').value
+                flags=getattr(GBPExtItfFlags, 'GBP_API_EXT_ITF_F_NONE').value
             )
         )
 
@@ -282,8 +288,7 @@ class GBP(object):
         args_in = dict(
             is_add=1,
             subnet=dict(
-                type=getattr(GBPSubnetType,
-                             'GBP_API_SUBNET_L3_OUT').value,
+                type=getattr(GBPSubnetType, 'GBP_API_SUBNET_L3_OUT').value,
                 sw_if_index=sw_if_index,
                 sclass=sclass,
                 prefix=dict(
@@ -299,27 +304,30 @@ class GBP(object):
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
     @staticmethod
-    def gbp_contract_add_del(node, sclass, dclass, acl_index=0):
+    def gbp_contract_add_del(node, sclass, dclass, acl_index=0, hash_mode=None):
         """Add GBP contract.
 
         :param node: Node to add GBP contract on.
         :param sclass: Source CLASS.
         :param dclass: Destination CLASS.
         :param acl_index: Index of ACL rule.
+        :param hash_mode: GBP hash mode.
         :type node: dict
         :type sclass: int
         :type dclass: int
         :type acl_index: int
+        :type hash_mode: int
         """
         cmd = 'gbp_contract_add_del'
         err_msg = 'Failed to add GBP contract on {node}!'\
                   .format(node=node['host'])
 
+        hash_mode = 'GBP_API_HASH_MODE_SRC_IP' if hash_mode is None \
+            else hash_mode
         rule_permit = dict(
-            action=getattr(GBPRuleAction,
-                           'GBP_API_RULE_PERMIT').value,
+            action=getattr(GBPRuleAction, 'GBP_API_RULE_PERMIT').value,
             nh_set=dict(
-                hash_mode=list(),
+                hash_mode=getattr(GBPHasnMode, hash_mode).value,
                 n_nhs=8,
                 nhs=[dict()]*8,
             )
