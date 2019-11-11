@@ -188,27 +188,57 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
         _, suite_id = get_iface_and_suite_id(tmp_filename)
         testcase = Testcase.default(suite_id)
         for nic_name in Constants.NIC_NAME_TO_CODE:
-            out_filename = replace_defensively(
+            tmp2_filename = replace_defensively(
                 tmp_filename, "10ge2p1x710",
                 Constants.NIC_NAME_TO_CODE[nic_name], 1,
                 "File name should contain NIC code once.", in_filename)
-            out_prolog = replace_defensively(
+            tmp2_prolog = replace_defensively(
                 tmp_prolog, "Intel-X710", nic_name, 2,
                 "NIC name should appear twice (tag and variable).",
                 in_filename)
-            if out_prolog.count("HW_") == 2:
+            if tmp2_prolog.count("HW_") == 2:
                 # TODO CSIT-1481: Crypto HW should be read
                 # from topology file instead.
                 if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW:
-                    out_prolog = replace_defensively(
-                        out_prolog, "HW_DH895xcc",
+                    tmp2_prolog = replace_defensively(
+                        tmp2_prolog, "HW_DH895xcc",
                         Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
                         "HW crypto name should appear.", in_filename)
-            iface, suite_id = get_iface_and_suite_id(out_filename)
-            with open(out_filename, "w") as file_out:
-                file_out.write(out_prolog)
-                add_default_testcases(
-                    testcase, iface, suite_id, file_out, kwargs_list)
+            iface, old_suite_id = get_iface_and_suite_id(tmp2_filename)
+            if "DPDK" in in_prolog or "K8S" in in_prolog:
+                # TODO: Support K8S, or remove them altogether.
+                with open(tmp2_filename, "w") as file_out:
+                    file_out.write(tmp2_prolog)
+                    add_default_testcases(
+                        testcase, iface, old_suite_id, file_out, kwargs_list)
+                return
+            for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+                out_filename = replace_defensively(
+                    tmp2_filename, old_suite_id,
+                    Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
+                    1, "Error adding driver prefix.", in_filename)
+                out_prolog = replace_defensively(
+                    tmp2_prolog, "vfio-pci", driver, 1,
+                    "Driver name should appear once.", in_filename)
+                out_prolog = replace_defensively(
+                    out_prolog, Constants.NIC_DRIVER_TO_TAG["vfio-pci"],
+                    Constants.NIC_DRIVER_TO_TAG[driver], 1,
+                    "Driver tag should appear once.", in_filename)
+                out_prolog = replace_defensively(
+                    out_prolog, Constants.NIC_DRIVER_TO_PLUGINS["vfio-pci"],
+                    Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+                    "Driver plugin should appear once.", in_filename)
+                out_prolog = replace_defensively(
+                    out_prolog, Constants.NIC_DRIVER_TO_SETUP_ARG["vfio-pci"],
+                    Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
+                    "Perf setup argument should appear once.", in_filename)
+                iface, suite_id = get_iface_and_suite_id(out_filename)
+                # TODO: Reorder loops so suite_id is finalized sooner.
+                testcase = Testcase.default(suite_id)
+                with open(out_filename, "w") as file_out:
+                    file_out.write(out_prolog)
+                    add_default_testcases(
+                        testcase, iface, suite_id, file_out, kwargs_list)
 
 
 def write_reconf_files(in_filename, in_prolog, kwargs_list):
@@ -228,31 +258,57 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
     _, suite_id = get_iface_and_suite_id(in_filename)
     testcase = Testcase.default(suite_id)
     for nic_name in Constants.NIC_NAME_TO_CODE:
-        out_filename = replace_defensively(
+        tmp_filename = replace_defensively(
             in_filename, "10ge2p1x710",
             Constants.NIC_NAME_TO_CODE[nic_name], 1,
             "File name should contain NIC code once.", in_filename)
-        out_prolog = replace_defensively(
+        tmp_prolog = replace_defensively(
             in_prolog, "Intel-X710", nic_name, 2,
             "NIC name should appear twice (tag and variable).",
             in_filename)
-        if out_prolog.count("HW_") == 2:
+        if tmp_prolog.count("HW_") == 2:
             # TODO CSIT-1481: Crypto HW should be read
             # from topology file instead.
             if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW.keys():
-                out_prolog = replace_defensively(
-                    out_prolog, "HW_DH895xcc",
+                tmp_prolog = replace_defensively(
+                    tmp_prolog, "HW_DH895xcc",
                     Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
                     "HW crypto name should appear.", in_filename)
-        iface, suite_id = get_iface_and_suite_id(out_filename)
-        with open(out_filename, "w") as file_out:
-            file_out.write(out_prolog)
-            add_default_testcases(
-                testcase, iface, suite_id, file_out, kwargs_list)
+        iface, old_suite_id = get_iface_and_suite_id(tmp_filename)
+        # TODO: Any exceptions like DPDK and K8S?
+        for driver in Constants.NIC_NAME_TO_DRIVER[nic_name]:
+            out_filename = replace_defensively(
+                tmp_filename, old_suite_id,
+                Constants.NIC_DRIVER_TO_SUITE_PREFIX[driver] + old_suite_id,
+                1, "Error adding driver prefix.", in_filename)
+            out_prolog = replace_defensively(
+                tmp_prolog, "vfio-pci", driver, 1,
+                "Driver name should appear once.", in_filename)
+            out_prolog = replace_defensively(
+                out_prolog, Constants.NIC_DRIVER_TO_TAG["vfio-pci"],
+                Constants.NIC_DRIVER_TO_TAG[driver], 1,
+                "Driver tag should appear once.", in_filename)
+            out_prolog = replace_defensively(
+                out_prolog, Constants.NIC_DRIVER_TO_PLUGINS["vfio-pci"],
+                Constants.NIC_DRIVER_TO_PLUGINS[driver], 1,
+                "Driver plugin should appear once.", in_filename)
+            out_prolog = replace_defensively(
+                out_prolog, Constants.NIC_DRIVER_TO_SETUP_ARG["vfio-pci"],
+                Constants.NIC_DRIVER_TO_SETUP_ARG[driver], 1,
+                "Perf setup argument should appear once.", in_filename)
+            iface, suite_id = get_iface_and_suite_id(out_filename)
+            # TODO: Reorder loops so suite_id is finalized sooner.
+            testcase = Testcase.default(suite_id)
+            with open(out_filename, "w") as file_out:
+                file_out.write(out_prolog)
+                add_default_testcases(
+                    testcase, iface, suite_id, file_out, kwargs_list)
 
 
 def write_tcp_files(in_filename, in_prolog, kwargs_list):
     """Using given filename and prolog, write all generated tcp suites.
+
+    TODO: Suport drivers.
 
     :param in_filename: Template filename to derive real filenames from.
     :param in_prolog: Template content to derive real content from.
@@ -293,9 +349,9 @@ class Regenerator(object):
         """Regenerate files matching glob pattern based on arguments.
 
         In the current working directory, find all files matching
-        the glob pattern. Use testcase template according to suffix
-        to regenerate test cases, autonumbering them,
-        taking arguments from list.
+        the glob pattern. Use testcase template to regenerate test cases
+        according to suffix, governed by protocol, autonumbering them.
+        Also generate suites for other NICs and drivers.
 
         Log-like prints are emited to sys.stderr.
 
@@ -324,6 +380,8 @@ class Regenerator(object):
             {"frame_size": "IMIX_v4_1", "phy_cores": 4}
         ]
         tcp_kwargs_list = [{"phy_cores": i, "frame_size": 0} for i in (1, 2, 4)]
+        forbidden = [v for v in Constants.NIC_DRIVER_TO_SUITE_PREFIX.values()
+                     if v]
         for in_filename in glob(pattern):
             if not self.quiet:
                 eprint("Regenerating in_filename:", in_filename)
@@ -332,6 +390,11 @@ class Regenerator(object):
                 raise RuntimeError(
                     "Error in {fil}: non-primary NIC found.".format(
                         fil=in_filename))
+            for prefix in forbidden:
+                if prefix in in_filename:
+                    raise RuntimeError(
+                        "Error in {fil}: non-primary driver found.".format(
+                            fil=in_filename))
             with open(in_filename, "r") as file_in:
                 in_prolog = "".join(
                     file_in.read().partition("*** Test Cases ***")[:-1])
