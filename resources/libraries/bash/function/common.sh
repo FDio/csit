@@ -182,19 +182,6 @@ function check_prerequisites () {
     fi
 }
 
-function cleanup_topo () {
-
-    # Variables read:
-    # - WORKING_TOPOLOGY - Path to topology yaml file of the reserved testbed.
-    # - PYTHON_SCRIPTS_DIR - Path to directory holding the reservation script.
-
-    set -exuo pipefail
-
-    python "${PYTHON_SCRIPTS_DIR}/topo_cleanup.py" -t "${WORKING_TOPOLOGY}"
-    # Not using "|| die" as some callers might want to ignore errors,
-    # e.g. in teardowns, such as unreserve.
-}
-
 
 function common_dirs () {
 
