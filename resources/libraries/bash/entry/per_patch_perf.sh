@@ -68,7 +68,7 @@ for ((iter=0; iter<iterations; iter++)); do
     if ((iter)); then
         # Function reserve_and_cleanup_testbed has already cleaned it once,
         # but we need to clean it explicitly on subsequent iterations.
-        cleanup_topo
+        ansible_hosts "cleanup" || die
     fi
     # Testing current first. Good for early failures or for API changes.
     select_build "build_current" || die
@@ -78,7 +78,7 @@ for ((iter=0; iter<iterations; iter++)); do
     archive_parse_test_results "csit_current/${iter}" || die
     die_on_pybot_error || die
     # TODO: Use less heavy way to avoid apt remove failures.
-    cleanup_topo
+    ansible_hosts "cleanup" || die
     select_build "build_parent" || die
     check_download_dir || die
     run_pybot || die
