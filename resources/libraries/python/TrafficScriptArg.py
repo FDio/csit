@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -37,18 +37,18 @@ class TrafficScriptArg(object):
 
     def __init__(self, more_args=None, opt_args=None):
         parser = argparse.ArgumentParser()
-        parser.add_argument("--tx_if", help="interface that sends traffic")
-        parser.add_argument("--rx_if", help="interface that receives traffic")
+        parser.add_argument(u"--tx_if", help=u"interface that sends traffic")
+        parser.add_argument(u"--rx_if", help=u"interface that receives traffic")
 
         if more_args is not None:
             for arg in more_args:
-                arg_name = '--{0}'.format(arg)
+                arg_name = f"--{arg}"
                 parser.add_argument(arg_name)
 
         if opt_args is not None:
             for arg in opt_args:
-                arg_name = '--{0}'.format(arg)
-                parser.add_argument(arg_name, nargs='?', default='')
+                arg_name = f"--{arg}"
+                parser.add_argument(arg_name, nargs=u"?", default=u"")
 
         self._parser = parser
         self._args = vars(parser.parse_args())
@@ -63,6 +63,6 @@ class TrafficScriptArg(object):
         """
         arg_val = self._args.get(arg_name)
         if arg_val is None:
-            raise Exception("Argument '{0}' not found".format(arg_name))
+            raise Exception(f"Argument '{arg_name}' not found")
 
         return arg_val
