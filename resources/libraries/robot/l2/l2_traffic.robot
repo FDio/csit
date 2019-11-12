@@ -22,9 +22,9 @@
 | | [Documentation] | Send IPv4/IPv6 packet from source interface to \
 | | ... | destination interface. Packet can be set with Dot1q or
 | | ... | Dot1ad tag(s) when required.
-| | ...
+| |
 | | ... | *Arguments:*
-| | ...
+| |
 | | ... | - tg_node - TG node. Type: dictionary
 | | ... | - src_int - Source interface. Type: string
 | | ... | - dst_int - Destination interface. Type: string
@@ -37,15 +37,15 @@
 | | ... | (Optional). Type: string
 | | ... | - vlan1_rx - VLAN (outer) tag on RX side (Optional). Type: integer
 | | ... | - vlan2_rx - VLAN inner tag on RX side (Optional). Type: integer
-| | ...
+| |
 | | ... | *Return:*
-| | ...
+| |
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | _NOTE:_ Default IP is IPv4
-| | ...
+| |
 | | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
 | | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
@@ -59,12 +59,12 @@
 | | ... | \| Send IP packet and verify received packet \| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \
 | | ... | \| encaps_rx=Dot1q \| vlan1_rx=120 \|
-| | ...
+| |
 | | [Arguments] | ${tg_node} | ${tx_src_port} | ${rx_dst_port}
 | | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2
 | | ... | ${encaps}=${EMPTY} | ${vlan1}=${EMPTY} | ${vlan2}=${EMPTY}
 | | ... | ${encaps_rx}=${EMPTY} | ${vlan1_rx}=${EMPTY} | ${vlan2_rx}=${EMPTY}
-| | ...
+| |
 | | ${tx_src_mac}= | Get Interface Mac | ${tg_node} | ${tx_src_port}
 | | ${rx_dst_mac}= | Get Interface Mac | ${tg_node} | ${rx_dst_port}
 | | Then Send packet and verify headers
@@ -75,66 +75,30 @@
 | | ... | encaps_rx=${encaps_rx} | vlan_rx=${vlan1_rx}
 | | ... | vlan_outer_rx=${vlan2_rx}
 
-| ICMP packet transmission should fail
-| | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to
-| | ... | destination interface and expect failure with
-| | ... | ICMP echo Rx timeout error message.
-| | ...
-| | ... | *Arguments:*
-| | ...
-| | ... | - tg_node - TG node. Type: dictionary
-| | ... | - src_int - Source interface. Type: string
-| | ... | - dst_int - Destination interface. Type: string
-| | ... | - src_ip - Source IP address (Optional). Type: string
-| | ... | - dst_ip - Destination IP address (Optional). Type: string
-| | ...
-| | ... | *Return:*
-| | ...
-| | ... | - No value returned
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | _NOTE:_ Default IP is IPv4
-| | ...
-| | ... | \| ICMP packet transmission should fail\| ${nodes['TG']} \
-| | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
-| | ...
-| | [Arguments] | ${tg_node} | ${src_int} | ${dst_int} |
-| | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2
-| | ...
-| | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
-| | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
-| | ${src_int_name}= | Get interface name | ${tg_node} | ${src_int}
-| | ${dst_int_name}= | Get interface name | ${tg_node} | ${dst_int}
-| | ${args}= | Traffic Script Gen Arg | ${dst_int_name} | ${src_int_name}
-| | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
-| | Run Keyword And Expect Error | IP echo Rx timeout |
-| | ... | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
-
 | Send IPv4 bidirectionally and verify received packets
 | | [Documentation] | Send IPv4 packets from both directions,
 | | ... | from interface1 to interface2 and from interface2 to interface1.
-| | ...
+| |
 | | ... | *Arguments:*
-| | ...
+| |
 | | ... | - tg_node - TG node. Type: dictionary
 | | ... | - src_int - Source interface. Type: string
 | | ... | - dst_int - Destination interface. Type: string
 | | ... | - src_ip - Source IP address (Optional). Type: string
 | | ... | - dst_ip - Destination IP address (Optional). Type: string
-| | ...
+| |
 | | ... | *Return:*
-| | ...
+| |
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Send IPv4 bidirectionally and verify received packets \
 | | ... | \| ${nodes['TG']} \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
-| | ...
+| |
 | | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=192.168.100.1 |
 | | ... | ${dst_ip}=192.168.100.2
-| | ...
+| |
 | | Send IP packet and verify received packet
 | | ... | ${tg_node} | ${int1} | ${int2} | ${src_ip} | ${dst_ip}
 | | Send IP packet and verify received packet
@@ -143,27 +107,27 @@
 | Send IPv6 bidirectionally and verify received packets
 | | [Documentation] | Send IPv6 packets from both directions,
 | | ... | from interface1 to interface2 and from interface2 to interface1.
-| | ...
+| |
 | | ... | *Arguments:*
-| | ...
+| |
 | | ... | - tg_node - TG node. Type: dictionary
 | | ... | - src_int - Source interface. Type: string
 | | ... | - dst_int - Destination interface. Type: string
 | | ... | - src_ip - Source IP address (Optional). Type: string
 | | ... | - dst_ip - Destination IP address (Optional). Type: string
-| | ...
+| |
 | | ... | *Return:*
-| | ...
+| |
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Send IPv6 bidirectionally and verify received packets \
 | | ... | \| ${nodes['TG']} \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
-| | ...
+| |
 | | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=3ffe:63::1 |
 | | ... | ${dst_ip}=3ffe:63::2
-| | ...
+| |
 | | Send IP packet and verify received packet
 | | ... | ${tg_node} | ${int1} | ${int2} | ${src_ip} | ${dst_ip}
 | | Send IP packet and verify received packet

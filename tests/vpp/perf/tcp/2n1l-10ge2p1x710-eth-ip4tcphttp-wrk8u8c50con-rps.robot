@@ -17,19 +17,19 @@
 | Resource | resources/libraries/robot/wrk/wrk_utils.robot
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/tcp/tcp_setup.robot
-| ...
+|
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | ... | HTTP | TCP | TCP_RPS | NIC_Intel-X710 | DRV_VFIO_PCI
-| ...
+|
 | Suite Setup | Setup suite single link | wrk
 | Suite Teardown | Tear down suite
 | Test Setup | Setup test
 | Test Teardown | Tear down test
-| ...
+|
 | Test Template | Local template
-| ...
+|
 | Documentation | *HTTP requests per seconds.*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG-DUT-TG 2-node topology
 | ... | with single link between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-TCP-HTTP for TCP Host Stack
@@ -49,7 +49,7 @@
 *** Keywords ***
 | Local template
 | | [Arguments] | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}

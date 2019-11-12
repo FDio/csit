@@ -13,17 +13,17 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP4FWD | BASE | IP4BASE | 1TAP | NAMESPACE
 | ... | DRV_VFIO_PCI
-| ...
+|
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test | namespace
 | Test Teardown | Tear down test | packet_trace | namespace
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *Tap Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
 | ... | between nodes.
@@ -60,16 +60,16 @@
 | | ... | namespace.
 | | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is\
 | | ... | received on TG.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}

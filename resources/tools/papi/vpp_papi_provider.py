@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 # Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,14 +34,13 @@ VPP-stats:
 """
 
 import argparse
-import binascii
 import json
 import os
 import sys
 
 
 # Client name
-CLIENT_NAME = 'csit_papi'
+CLIENT_NAME = u"csit_papi"
 
 
 # Sphinx creates auto-generated documentation by importing the python source
@@ -50,7 +49,7 @@ CLIENT_NAME = 'csit_papi'
 # the whole vpp api if the user only wishes to generate the test documentation.
 
 try:
-    do_import = False if os.getenv("NO_VPP_PAPI") == "1" else True
+    do_import = bool(not os.getenv(u"NO_VPP_PAPI") == u"1")
 except KeyError:
     do_import = True
 
@@ -61,9 +60,9 @@ if do_import:
     # TODO: Find a better way to import papi modules.
 
     modules_path = None
-    for root, dirs, files in os.walk('/usr/lib'):
+    for root, dirs, files in os.walk(u"/usr/lib"):
         for name in files:
-            if name == 'vpp_papi.py':
+            if name == u"vpp_papi.py":
                 modules_path = os.path.split(root)[0]
                 break
     if modules_path:
@@ -71,7 +70,7 @@ if do_import:
         from vpp_papi import VPP
         from vpp_papi.vpp_stats import VPPStats
     else:
-        raise RuntimeError('vpp_papi module not found')
+        raise RuntimeError(u"vpp_papi module not found")
 
 
 def _convert_reply(api_r):
@@ -89,7 +88,7 @@ def _convert_reply(api_r):
     :returns: Processed API reply / a part of API reply.
     :rtype: dict
     """
-    unwanted_fields = ['count', 'index', 'context']
+    unwanted_fields = [u"count", u"index", u"context"]
 
     def process_value(val):
         """Process value.
@@ -100,29 +99,31 @@ def _convert_reply(api_r):
         :rtype: dict or str or int
         """
         if isinstance(val, dict):
-            for val_k, val_v in val.iteritems():
+            for val_k, val_v in val.items():
                 val[str(val_k)] = process_value(val_v)
             return val
         elif isinstance(val, list):
             for idx, val_l in enumerate(val):
                 val[idx] = process_value(val_l)
             return val
-        elif hasattr(val, '__int__'):
+        elif isinstance(val, bytes):
+            val.hex()
+        elif hasattr(val, u"__int__"):
             return int(val)
-        elif hasattr(val, '__str__'):
-            return binascii.hexlify(str(val))
+        elif hasattr(val, "__str__"):
+            return str(val).encode(encoding=u"utf-8").hex()
         # Next handles parameters not supporting preferred integer or string
         # representation to get it logged
-        elif hasattr(val, '__repr__'):
+        elif hasattr(val, u"__repr__"):
             return repr(val)
         else:
             return val
 
     reply_dict = dict()
-    reply_key = repr(api_r).split('(')[0]
+    reply_key = repr(api_r).split(u"(")[0]
     reply_value = dict()
     for item in dir(api_r):
-        if not item.startswith('_') and item not in unwanted_fields:
+        if not item.startswith(u"_") and item not in unwanted_fields:
             reply_value[item] = process_value(getattr(api_r, item))
     reply_dict[reply_key] = reply_value
     return reply_dict
@@ -141,7 +142,7 @@ def process_json_request(args):
     try:
         vpp = VPP()
     except Exception as err:
-        raise RuntimeError('PAPI init failed:\n{err}'.format(err=repr(err)))
+        raise RuntimeError(f"PAPI init failed:\n{err!r}")
 
     reply = list()
 
@@ -154,15 +155,15 @@ def process_json_request(args):
         :rtype: dict or str or int
         """
         if isinstance(val, dict):
-            for val_k, val_v in val.iteritems():
+            for val_k, val_v in val.items():
                 val[str(val_k)] = process_value(val_v)
             return val
         elif isinstance(val, list):
             for idx, val_l in enumerate(val):
                 val[idx] = process_value(val_l)
             return val
-        elif isinstance(val, unicode):
-            return binascii.unhexlify(val)
+        elif isinstance(val, str):
+            return bytes.fromhex(val).decode(encoding=u"utf-8")
         elif isinstance(val, int):
             return val
         else:
@@ -171,8 +172,8 @@ def process_json_request(args):
     json_data = json.loads(args.data)
     vpp.connect(CLIENT_NAME)
     for data in json_data:
-        api_name = data['api_name']
-        api_args_unicode = data['api_args']
+        api_name = data[u"api_name"]
+        api_args_unicode = data[u"api_args"]
         api_reply = dict(api_name=api_name)
         api_args = dict()
         for a_k, a_v in api_args_unicode.items():
@@ -188,20 +189,18 @@ def process_json_request(args):
             else:
                 converted_reply = _convert_reply(rep)
 
-            api_reply['api_reply'] = converted_reply
+            api_reply[u"api_reply"] = converted_reply
             reply.append(api_reply)
         except (AttributeError, ValueError) as err:
             vpp.disconnect()
-            raise RuntimeError('PAPI command {api}({args}) input error:\n{err}'.
-                               format(api=api_name,
-                                      args=api_args,
-                                      err=repr(err)))
+            raise RuntimeError(
+                f"PAPI command {api_name}({api_args}) input error:\n{err!r}"
+            )
         except Exception as err:
             vpp.disconnect()
-            raise RuntimeError('PAPI command {api}({args}) error:\n{exc}'.
-                               format(api=api_name,
-                                      args=api_args,
-                                      exc=repr(err)))
+            raise RuntimeError(
+                f"PAPI command {api_name}({api_args}) error:\n{err!r}"
+            )
     vpp.disconnect()
 
     return json.dumps(reply)
@@ -220,7 +219,7 @@ def process_stats(args):
     try:
         stats = VPPStats(args.socket)
     except Exception as err:
-        raise RuntimeError('PAPI init failed:\n{err}'.format(err=repr(err)))
+        raise RuntimeError(f"PAPI init failed:\n{err!r}")
 
     json_data = json.loads(args.data)
 
@@ -234,8 +233,7 @@ def process_stats(args):
     try:
         return json.dumps(reply)
     except UnicodeDecodeError as err:
-        raise RuntimeError('PAPI reply {reply} error:\n{exc}'.format(
-            reply=reply, exc=repr(err)))
+        raise RuntimeError(f"PAPI reply {reply} error:\n{err!r}")
 
 
 def process_stats_request(args):
@@ -251,16 +249,15 @@ def process_stats_request(args):
     try:
         stats = VPPStats(args.socket)
     except Exception as err:
-        raise RuntimeError('PAPI init failed:\n{err}'.format(err=repr(err)))
+        raise RuntimeError(f"PAPI init failed:\n{err!r}")
 
     try:
         json_data = json.loads(args.data)
     except ValueError as err:
-        raise RuntimeError('Input json string is invalid:\n{err}'.
-                           format(err=repr(err)))
+        raise RuntimeError(f"Input json string is invalid:\n{err!r}")
 
-    papi_fn = getattr(stats, json_data["api_name"])
-    reply = papi_fn(**json_data.get("api_args", {}))
+    papi_fn = getattr(stats, json_data[u"api_name"])
+    reply = papi_fn(**json_data.get(u"api_args", {}))
 
     return json.dumps(reply)
 
@@ -279,32 +276,35 @@ def main():
 
     parser = argparse.ArgumentParser(
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        description=__doc__)
-    parser.add_argument("-m", "--method",
-                        required=True,
-                        choices=[str(key) for key in process_request.keys()],
-                        help="Specifies the VPP API methods: 1. request - "
-                             "simple request / reply; 2. dump - dump function;"
-                             "3. stats - VPP statistics.")
-    parser.add_argument("-d", "--data",
-                        required=True,
-                        help="If the method is 'request' or 'dump', data is a "
-                             "JSON string (list) containing API name(s) and "
-                             "its/their input argument(s). "
-                             "If the method is 'stats', data is a JSON string "
-                             "containing the list of path(s) to the required "
-                             "data.")
-    parser.add_argument("-s", "--socket",
-                        default="/var/run/vpp/stats.sock",
-                        help="A file descriptor over the VPP stats Unix domain "
-                             "socket. It is used only if method=='stats'.")
+        description=__doc__
+    )
+    parser.add_argument(
+        u"-m", u"--method", required=True,
+        choices=[str(key) for key in process_request.keys()],
+        help=u"Specifies the VPP API methods: "
+             u"1. request - simple request / reply; "
+             u"2. dump - dump function;"
+             u"3. stats - VPP statistics."
+    )
+    parser.add_argument(
+        u"-d", u"--data", required=True,
+        help=u"If the method is 'request' or 'dump', data is a JSON string "
+             u"(list) containing API name(s) and its/their input argument(s). "
+             u"If the method is 'stats', data is a JSON string containing t"
+             u"he list of path(s) to the required data."
+    )
+    parser.add_argument(
+        u"-s", u"--socket", default=u"/var/run/vpp/stats.sock",
+        help=u"A file descriptor over the VPP stats Unix domain socket. "
+             u"It is used only if method=='stats'."
+    )
 
     args = parser.parse_args()
 
     return process_request[args.method](args)
 
 
-if __name__ == '__main__':
+if __name__ == u"__main__":
     sys.stdout.write(main())
     sys.stdout.flush()
     sys.exit(0)
