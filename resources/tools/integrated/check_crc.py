@@ -27,38 +27,41 @@ from resources.libraries.python.VppApiCrc import VppApiCrcChecker
 # TODO: Read FDIO_VPP_DIR environment variable, or some other input,
 # instead of using hardcoded relative path?
 
-API_DIR = op.normpath(op.join(
-    op.dirname(op.abspath(__file__)), "..", "..", "..", "..",
-    "build-root", "install-vpp-native", "vpp", "share", "vpp", "api"))
+API_DIR = op.normpath(
+    op.join(
+        op.dirname(op.abspath(__file__)), u"..", u"..", u"..", u"..",
+        u"build-root", u"install-vpp-native", u"vpp", u"share", u"vpp", u"api"
+    )
+)
 CHECKER = VppApiCrcChecker(API_DIR)
 try:
     CHECKER.report_initial_conflicts(report_missing=True)
 except RuntimeError as err:
-    sys.stderr.write("{err!r}\n".format(err=err))
+    sys.stderr.write(f"{err!r}\n")
     sys.stderr.write(
-        "\n"
-        "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
-        "\n"
-        "VPP CSIT API CHECK FAIL!\n"
-        "\n"
-        "This means the patch under test has missing messages,\n"
-        "or messages with unexpected CRCs compared to what CSIT needs.\n"
-        "Either this Change and/or its ancestors were editing .api files,\n"
-        "or your chain is not rebased upon the recent enough VPP codebase.\n"
-        "\n"
-        "Please rebase the patch to see if that fixes the problem.\n"
-        "If that fails email csit-dev@lists.fd.io for a new\n"
-        "operational branch supporting the api changes.\n"
-        "\n"
-        "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
+        u"\n"
+        u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
+        u"\n"
+        u"VPP CSIT API CHECK FAIL!\n"
+        u"\n"
+        u"This means the patch under test has missing messages,\n"
+        u"or messages with unexpected CRCs compared to what CSIT needs.\n"
+        u"Either this Change and/or its ancestors were editing .api files,\n"
+        u"or your chain is not rebased upon the recent enough VPP codebase.\n"
+        u"\n"
+        u"Please rebase the patch to see if that fixes the problem.\n"
+        u"If that fails email csit-dev@lists.fd.io for a new\n"
+        u"operational branch supporting the api changes.\n"
+        u"\n"
+        u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
     )
     sys.exit(1)
 else:
     sys.stderr.write(
-        "\n"
-        "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
-        "\n"
-        "VPP CSIT API CHECK PASS!\n"
-        "\n"
-        "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
+        u"\n"
+        u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
+        u"\n"
+        u"VPP CSIT API CHECK PASS!\n"
+        u"\n"
+        u"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
     )

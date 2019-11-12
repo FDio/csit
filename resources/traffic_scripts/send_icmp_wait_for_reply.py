@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
 # Copyright (c) 2016 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,54 +18,14 @@
 import sys
 import ipaddress
 
-from scapy.all import Ether
 from scapy.layers.inet import ICMP, IP
-from scapy.layers.inet6 import IPv6, ICMPv6EchoRequest, ICMPv6ND_NS
+from scapy.layers.inet6 import IPv6, ICMPv6EchoRequest, ICMPv6EchoReply,\
+    ICMPv6ND_NS
+from scapy.layers.l2 import Ether
+from scapy.packet import Raw
 
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
-
-
-def is_icmp_reply(pkt, ipformat):
-    """Return True if pkt is echo reply, else return False. If exception occurs
-    return False.
-
-    :param pkt: Packet.
-    :param ipformat: Dictionary of names to distinguish IPv4 and IPv6.
-    :type pkt: dict
-    :type ipformat: dict
-    :rtype: bool
-    """
-    # pylint: disable=bare-except
-    try:
-        if pkt[ipformat['IPType']][ipformat['ICMP_rep']].type == \
-                ipformat['Type']:
-            return True
-        else:
-            return False
-    except: # pylint: disable=bare-except
-        return False
-
-
-def address_check(request, reply, ipformat):
-    """Compare request packet source address with reply destination address
-    and vice versa. If exception occurs return False.
-
-    :param request: Sent packet containing request.
-    :param reply: Received packet containing reply.
-    :param ipformat: Dictionary of names to distinguish IPv4 and IPv6.
-    :type request: dict
-    :type reply: dict
-    :type ipformat: dict
-    :rtype: bool
-    """
-    # pylint: disable=bare-except
-    try:
-        r_src = reply[ipformat['IPType']].src == request[ipformat['IPType']].dst
-        r_dst = reply[ipformat['IPType']].dst == request[ipformat['IPType']].src
-        return r_src and r_dst
-    except: # pylint: disable=bare-except
-        return False
 
 
 def valid_ipv4(ip):
@@ -77,7 +38,7 @@ def valid_ipv4(ip):
     :rtype: bool
     """
     try:
-        ipaddress.IPv4Address(unicode(ip))
+        ipaddress.IPv4Address(ip)
         return True
     except (AttributeError, ipaddress.AddressValueError):
         return False
@@ -93,7 +54,7 @@ def valid_ipv6(ip):
     :rtype: bool
     """
     try:
-        ipaddress.IPv6Address(unicode(ip))
+        ipaddress.IPv6Address(ip)
         return True
     except (AttributeError, ipaddress.AddressValueError):
         return False
@@ -102,16 +63,17 @@ def valid_ipv6(ip):
 def main():
     """Send ICMP echo request and wait for ICMP echo reply. It ignores all other
     packets."""
-    args = TrafficScriptArg(['dst_mac', 'src_mac', 'dst_ip', 'src_ip',
-                             'timeout'])
+    args = TrafficScriptArg(
+        [u"dst_mac", u"src_mac", u"dst_ip", u"src_ip", u"timeout"]
+    )
 
-    dst_mac = args.get_arg('dst_mac')
-    src_mac = args.get_arg('src_mac')
-    dst_ip = args.get_arg('dst_ip')
-    src_ip = args.get_arg('src_ip')
-    tx_if = args.get_arg('tx_if')
-    rx_if = args.get_arg('rx_if')
-    timeout = int(args.get_arg('timeout'))
+    dst_mac = args.get_arg(u"dst_mac")
+    src_mac = args.get_arg(u"src_mac")
+    dst_ip = args.get_arg(u"dst_ip")
+    src_ip = args.get_arg(u"src_ip")
+    tx_if = args.get_arg(u"tx_if")
+    rx_if = args.get_arg(u"rx_if")
+    timeout = int(args.get_arg(u"timeout"))
     wait_step = 1
 
     rxq = RxQueue(rx_if)
@@ -120,21 +82,26 @@ def main():
 
     # Create empty ip ICMP packet
     if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
-        icmp_request = (Ether(src=src_mac, dst=dst_mac) /
-                        IP(src=src_ip, dst=dst_ip) /
-                        ICMP())
-        ip_format = {'IPType': 'IP', 'ICMP_req': 'ICMP',
-                     'ICMP_rep': 'ICMP', 'Type': 0}
+        ip_layer = IP
+        icmp_req = ICMP
+        icmp_resp = ICMP
+        icmp_type = 0  # echo-reply
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
-        icmp_request = (Ether(src=src_mac, dst=dst_mac) /
-                        IPv6(src=src_ip, dst=dst_ip) /
-                        ICMPv6EchoRequest())
-        ip_format = {'IPType': 'IPv6', 'ICMP_req': 'ICMPv6 Echo Request',
-                     'ICMP_rep': 'ICMPv6 Echo Reply', 'Type': 129}
+        ip_layer = IP
+        icmp_req = ICMPv6EchoRequest
+        icmp_resp = ICMPv6EchoReply
+        icmp_type = 0  # Echo Reply
     else:
-        raise ValueError("IP not in correct format")
+        raise ValueError(u"IP not in correct format")
+
+    icmp_request = (
+            Ether(src=src_mac, dst=dst_mac) /
+            ip_layer(src=src_ip, dst=dst_ip) /
+            icmp_req()
+    )
 
     # Send created packet on the interface
+    icmp_request /= Raw()
     sent_packets.append(icmp_request)
     txq.send(icmp_request)
 
@@ -144,7 +111,7 @@ def main():
             if icmp_reply is None:
                 timeout -= wait_step
                 if timeout < 0:
-                    raise RuntimeError("ICMP echo Rx timeout")
+                    raise RuntimeError(u"ICMP echo Rx timeout")
 
             elif icmp_reply.haslayer(ICMPv6ND_NS):
                 # read another packet in the queue in case of ICMPv6ND_NS packet
@@ -153,16 +120,17 @@ def main():
                 # otherwise process the current packet
                 break
 
-        if is_icmp_reply(icmp_reply, ip_format):
-            if address_check(icmp_request, icmp_reply, ip_format):
+        if icmp_reply[ip_layer][icmp_resp].type == icmp_type:
+            if icmp_reply[ip_layer].src == dst_ip and \
+                    icmp_reply[ip_layer].dst == src_ip:
                 break
     else:
-        raise RuntimeError("Max packet count limit reached")
+        raise RuntimeError(u"Max packet count limit reached")
 
-    print "ICMP echo reply received."
+    print(u"ICMP echo reply received.")
 
     sys.exit(0)
 
 
-if __name__ == "__main__":
+if __name__ == u"__main__":
     main()
