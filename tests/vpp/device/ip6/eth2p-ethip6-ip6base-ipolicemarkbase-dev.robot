@@ -13,18 +13,18 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP6FWD | FEATURE | POLICE_MARK | DRV_VFIO_PCI
-| ...
+|
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | classify
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *IPv4 policer test cases*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv6 on all links.
@@ -50,18 +50,18 @@
 | | [Documentation]
 | | ... | [Ver] Test packet is sent from TG on the first link to DUT1. \
 | | ... | Packet is received on TG on the second link from DUT1.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
 | | Set Test Variable | \${cb} | ${frame_size}
 | | Set Test Variable | \${eb} | ${frame_size}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}

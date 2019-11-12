@@ -20,7 +20,7 @@ from resources.libraries.python.topology import Topology
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.L2Util import L2Util
 
-class LispUtil(object):
+class LispUtil:
     """Implements keywords for Lisp tests."""
 
     def __init__(self):

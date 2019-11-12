@@ -15,7 +15,6 @@
 
 from pprint import pformat
 from socket import AF_INET, inet_pton
-
 from enum import IntEnum
 
 from robot.api import logger
@@ -37,7 +36,7 @@ class NATConfigFlags(IntEnum):
     NAT_IS_EXT_HOST_VALID = 0x80
 
 
-class NATUtil(object):
+class NATUtil:
     """This class defines the methods to set NAT."""
 
     def __init__(self):
@@ -54,28 +53,29 @@ class NATUtil(object):
         :type int_in: str
         :type int_out: str
         """
-
-        cmd = 'nat44_interface_add_del_feature'
+        cmd = u"nat44_interface_add_del_feature"
 
         int_in_idx = InterfaceUtil.get_sw_if_index(node, int_in)
-        err_msg = 'Failed to set inside interface {int} for NAT44 on host ' \
-                  '{host}'.format(int=int_in, host=node['host'])
+        err_msg = f"Failed to set inside interface {int_in} for NAT44 " \
+            f"on host {node[u'host']}"
         args_in = dict(
             sw_if_index=int_in_idx,
             is_add=1,
-            flags=getattr(NATConfigFlags, "NAT_IS_INSIDE").value
+            flags=getattr(NATConfigFlags, u"NAT_IS_INSIDE").value
         )
+
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
         int_out_idx = InterfaceUtil.get_sw_if_index(node, int_out)
-        err_msg = 'Failed to set outside interface {int} for NAT44 on host ' \
-                  '{host}'.format(int=int_out, host=node['host'])
+        err_msg = f"Failed to set outside interface {int_out} for NAT44 " \
+            f"on host {node[u'host']}"
         args_in = dict(
             sw_if_index=int_out_idx,
             is_add=1,
-            flags=getattr(NATConfigFlags, "NAT_IS_OUTSIDE").value
+            flags=getattr(NATConfigFlags, u"NAT_IS_OUTSIDE").value
         )
+
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
@@ -94,10 +94,9 @@ class NATUtil(object):
         :type ip_out: str
         :type subnet_out: str or int
         """
-
-        cmd = 'nat_det_add_del_map'
-        err_msg = 'Failed to set deterministic behaviour of NAT on host ' \
-                  '{host}'.format(host=node['host'])
+        cmd = u"nat_det_add_del_map"
+        err_msg = f"Failed to set deterministic behaviour of NAT " \
+            f"on host {node[u'host']}"
         args_in = dict(
             is_add=True,
             in_addr=inet_pton(AF_INET, str(ip_in)),
@@ -105,6 +104,7 @@ class NATUtil(object):
             out_addr=inet_pton(AF_INET, str(ip_out)),
             out_plen=int(subnet_out)
         )
+
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args_in).get_reply(err_msg)
 
@@ -127,22 +127,22 @@ class NATUtil(object):
         :param node: DUT node.
         :type node: dict
         """
+        cmd = u"nat_show_config"
+        err_msg = f"Failed to get NAT configuration on host {node[u'host']}"
 
-        cmd = 'nat_show_config'
-        err_msg = 'Failed to get NAT configuration on host {host}'.\
-            format(host=node['host'])
         with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd).get_reply(err_msg)
-        logger.debug("NAT Configuration:\n{reply}".format(reply=pformat(reply)))
+
+        logger.debug(f"NAT Configuration:\n{pformat(reply)}")
 
         cmds = [
-            "nat_worker_dump",
-            "nat44_interface_addr_dump",
-            "nat44_address_dump",
-            "nat44_static_mapping_dump",
-            "nat44_user_dump",
-            "nat44_interface_dump",
-            "nat44_user_session_dump",
-            "nat_det_map_dump"
+            u"nat_worker_dump",
+            u"nat44_interface_addr_dump",
+            u"nat44_address_dump",
+            u"nat44_static_mapping_dump",
+            u"nat44_user_dump",
+            u"nat44_interface_dump",
+            u"nat44_user_session_dump",
+            u"nat_det_map_dump"
         ]
         PapiSocketExecutor.dump_and_log(node, cmds)
