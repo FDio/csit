@@ -13,20 +13,20 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Variables | resources/test_data/lisp/lisp.py
-| ...
+|
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | IP4FWD | LISPGPE_IP6o4 | DRV_VFIO_PCI
-| ...
+|
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *ip4-lispgpe-ip6 encapsulation test cases*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG(if1)-DUT1-TG(if2) 2-node\
 | ... | circular topology with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-LISPGPE-IPv6-ICMPv6\
@@ -54,16 +54,16 @@
 | Local Template
 | | [Documentation]
 | | ... | [Cfg] On DUT1 configure LISPGPE\
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}

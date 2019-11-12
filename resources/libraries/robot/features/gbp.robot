@@ -13,26 +13,26 @@
 
 *** Settings ***
 | Library | resources.libraries.python.GBP
-| ...
+|
 | Documentation | GBP keywords.
 
 *** Keywords ***
 | Initialize GBP routing domains on node
 | | [Documentation]
 | | ... | Initialize GBP routing domains on node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
 | | ... | - count - Number of baseline interface variables. Type: integer
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Initialize GBP routing domains on node \| DUT1 \| 1 \|
-| | ...
+| |
 | | [Arguments] | ${dut} | ${count}=${1}
-| | ...
+| |
 | | ${dut_str}= | Convert To Lowercase | ${dut}
-| | :FOR | ${id} | IN RANGE | 1 | ${count} + 1
+| | FOR | ${id} | IN RANGE | 1 | ${count} + 1
 | | | ${hexa_id}= | Convert To Hex | ${id} | length=2 | lowercase=yes
 | | | ${dut_lo}= | VPP Create Loopback | ${nodes['${dut}']}
 | | | ... | mac=ba:dc:00:ff:ee:${hexa_id}
@@ -80,20 +80,22 @@
 | | | ... | ${nodes['${dut}']} | ${200} | ${300} | acl_index=${0}
 | | | GBP Contract Add Del
 | | | ... | ${nodes['${dut}']} | ${300} | ${200} | acl_index=${0}
+| | END
 
 | Initialize GBP routing domains
 | | [Documentation]
 | | ... | Initialize GBP routing domains on all DUTs.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - count - Number of GBP routing domains. Type: integer
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Initialize GBP routing domains \| 1 \|
-| | ...
+| |
 | | [Arguments] | ${count}=${1}
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
+| |
+| | FOR | ${dut} | IN | @{duts}
 | | | Initialize GBP routing domains on node | ${dut} | count=${count}
+| | END
 | | Set interfaces in path up
