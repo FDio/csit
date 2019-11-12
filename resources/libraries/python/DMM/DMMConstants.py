@@ -13,7 +13,7 @@
 
 """This file defines the constants variables for the DMM test."""
 
-class DMMConstants(object):
+class DMMConstants:
     """Define the directory path for the DMM test."""
 
     # DMM testing directory location at topology nodes
