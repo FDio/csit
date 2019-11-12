@@ -8,5 +8,4 @@ CSIT-1908
     vpp_performance_tests/index
     dpdk_performance_tests/index
     vpp_device_tests/index
-    vpp_functional_tests/index
     csit_framework_documentation/index

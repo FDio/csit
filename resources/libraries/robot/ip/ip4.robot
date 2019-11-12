@@ -14,7 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPUtil
-| ...
+|
 | Documentation | IPv4 keywords
 
 *** Keywords ***
@@ -26,25 +26,25 @@
 | | ... | links. In case of 3-node topology setup IPv4 adresses with /30 prefix
 | | ... | on DUT1-DUT2 link and set routing on both DUT nodes with prefix /24
 | | ... | and next hop of neighbour DUT interface IPv4 address.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - remote_host1_ip - IP address of remote host1 (Optional).
 | | ... | Type: string
 | | ... | - remote_host2_ip - IP address of remote host2 (Optional).
 | | ... | Type: string
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Initialize IPv4 forwarding in circular topology \
 | | ... | \| 192.168.0.1 \| 192.168.0.2 \|
-| | ...
+| |
 | | [Arguments] | ${remote_host1_ip}=${NONE} | ${remote_host2_ip}=${NONE}
-| | ...
+| |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
-| | ...
+| |
 | | Set interfaces in path up
-| | ...
+| |
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
@@ -59,7 +59,7 @@
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
 | | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 20.20.20.2 | ${tg_if2_mac}
-| | ...
+| |
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
 | | ... | 10.10.10.1 | 24
 | | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -70,14 +70,14 @@
 | | ... | 1.1.1.2 | 30
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2}
 | | ... | 20.20.20.1 | 24
-| | ...
+| |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=1.1.1.2
 | | ... | interface=${dut1_if2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=1.1.1.1
 | | ... | interface=${dut2_if1}
-| | ...
+| |
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 32
 | | ... | gateway=10.10.10.2 | interface=${dut1_if1}
@@ -97,25 +97,25 @@
 | | [Documentation]
 | | ... | Custom setup of IPv4 topology with scalability of ip routes on all
 | | ... | DUT nodes in 2-node / 3-node circular topology
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - count - IP route count. Type: integer
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Initialize IPv4 forwarding with scaling in 3-node circular \
 | | ... | topology \| 100000 \|
-| | ...
+| |
 | | [Arguments] | ${count}
-| | ...
+| |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
-| | ...
+| |
 | | Set interfaces in path up
-| | ...
+| |
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
@@ -154,18 +154,19 @@
 | | ... | Create pairs of Memif interfaces on all defined VPP nodes. Put each
 | | ... | Memif interface to separate IPv4 VRF with one physical or
 | | ... | virtual interface to create a chain accross DUT node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - count - Number of memif pairs (containers). Type: integer
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Initialize IPv4 routing with memif pairs \| ${1} \|
-| | ...
+| |
 | | [Arguments] | ${count}=${1}
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
+| |
+| | FOR | ${dut} | IN | @{duts}
 | | | Initialize IPv4 routing with memif pairs on DUT node | ${dut} | ${count}
+| | END
 | | Set interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 | | VPP round robin RX placement on all DUTs | ${nodes} | prefix=memif
@@ -175,28 +176,28 @@
 | | ... | Create pairs of Memif interfaces on DUT node. Put each Memif interface
 | | ... | to separate IPv4 VRF with one physical or virtual interface
 | | ... | to create a chain accross DUT node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: dictionary
 | | ... | - count - Number of memif pairs (containers). Type: integer
-| | ...
+| |
 | | ... | *Note:*
 | | ... | Socket paths for Memif are defined in following format:
 | | ... | - /tmp/memif-\${dut}_CNF\${number}-\${sid}
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Initialize IPv4 routing with memif pairs on DUT node \
 | | ... | \| ${dut} \| ${1} \|
-| | ...
+| |
 | | [Arguments] | ${dut} | ${count}
-| | ...
+| |
 | | ${dut_index}= | Get Index From List | ${duts} | ${dut}
 | | ${last_dut_index}= | Evaluate | ${duts_count} - ${1}
-| | ...
+| |
 | | ${tg_if1_net}= | Set Variable | 10.10.10.0
 | | ${tg_if2_net}= | Set Variable | 20.20.20.0
-| | ...
+| |
 | | ${fib_table_1}= | Set Variable | ${10}
 | | Run Keyword If | ${fib_table_1} > ${0}
 | | ... | Add Fib Table | ${nodes['${dut}']} | ${fib_table_1}
@@ -220,7 +221,7 @@
 | | ... | ${${prev_node}_${prev_if}}
 | | VPP Add IP Neighbor
 | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ${ip_net_if1}.1 | ${prev_if_mac}
-| | ...
+| |
 | | ${fib_table_2}= | Evaluate | ${fib_table_1} + ${count}
 | | Add Fib Table | ${nodes['${dut}']} | ${fib_table_2}
 | | ${ip_base_if2}= | Evaluate | ${ip_base_if1} + ${1}
@@ -243,10 +244,10 @@
 | | ... | ${${next_node}_${next_if}}
 | | VPP Add IP Neighbor
 | | ... | ${nodes['${dut}']} | ${${dut}_if2} | ${ip_net_if2}.2 | ${next_if_mac}
-| | ...
+| |
 | | ${fib_table_1}= | Evaluate | ${fib_table_1} - ${1}
 | | ${ip_base_start}= | Set Variable | ${31}
-| | :FOR | ${number} | IN RANGE | 1 | ${count+${1}}
+| | FOR | ${number} | IN RANGE | 1 | ${count+${1}}
 | | | ${sock1}= | Set Variable | memif-${dut}_CNF
 | | | ${sock2}= | Set Variable | memif-${dut}_CNF
 | | | Set up memif interfaces on DUT node | ${nodes['${dut}']}
@@ -291,6 +292,7 @@
 | | | ... | ${memif1} | ${ip_net_memif2}.1 | ${memif_if2_mac}
 | | | VPP Add IP Neighbor | ${nodes['${dut}']}
 | | | ... | ${memif2} | ${ip_net_memif1}.1 | ${memif_if1_mac}
+| | END
 
 | Initialize IPv4 forwarding with vhost in 2-node circular topology
 | | [Documentation]
@@ -302,24 +304,24 @@
 | | ... | DUT-TG links. Set routing on DUT nodes in all FIB tables with prefix
 | | ... | /8 and next hop of neighbour IPv4 address. Setup ARP on all VPP
 | | ... | interfaces.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - nf_nodes - Number of guest VMs. Type: integer
 | | ... | - testpmd_mac - Switch for testpmd_mac test configuration.
 | | ... | Type: boolean
-| | ...
+| |
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
 | | ... | - /var/run/vpp/sock-${VM_ID}-1
 | | ... | - /var/run/vpp/sock-${VM_ID}-2
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| IPv4 forwarding with Vhost-User initialized in a 2-node circular\
 | | ... | topology \| 1 \|
-| | ...
+| |
 | | [Arguments] | ${nf_nodes}=${1} | ${testpmd_mac}=${FALSE}
-| | ...
+| |
 | | Set interfaces in path up
 | | ${fib_table_1}= | Set Variable | ${101}
 | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${nf_nodes}
@@ -337,7 +339,7 @@
 | | ... | interface=${dut1_if1} | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut1} | 20.0.0.0 | 8 | gateway=200.0.0.2
 | | ... | interface=${dut1_if2} | vrf=${fib_table_2}
-| | :FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
+| | FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${fib_table_1}= | Evaluate | ${100}+${number}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
 | | | Configure vhost interfaces | ${dut1}
@@ -373,6 +375,7 @@
 | | | Run Keyword If | ${testpmd_mac}
 | | | ... | Vpp Route Add | ${dut1} | 10.0.0.0 | 8 | gateway=1.1.1.2
 | | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
+| | END
 
 | Initialize IPv4 forwarding with vhost in 3-node circular topology
 | | [Documentation]
@@ -384,22 +387,22 @@
 | | ... | DUT-TG links and /30 prefix on DUT1-DUT2 link. Set routing on all DUT
 | | ... | nodes in all FIB tables with prefix /8 and next hop of neighbour IPv4
 | | ... | address. Setup ARP on all VPP interfaces.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - nf_nodes - Number of guest VMs. Type: integer
-| | ...
+| |
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
 | | ... | - /var/run/vpp/sock-\${VM_ID}-1
 | | ... | - /var/run/vpp/sock-\${VM_ID}-2
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| IPv4 forwarding with Vhost-User initialized in a 3-node circular\
 | | ... | topology \| 1 \|
-| | ...
+| |
 | | [Arguments] | ${nf_nodes}=${1} | ${testpmd_mac}=${FALSE}
-| | ...
+| |
 | | Set interfaces in path up
 | | ${fib_table_1}= | Set Variable | ${101}
 | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${nf_nodes}
@@ -429,7 +432,7 @@
 | | ... | interface=${dut2_if1} | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut2} | 20.0.0.0 | 8 | gateway=200.0.0.2
 | | ... | interface=${dut2_if2} | vrf=${fib_table_2}
-| | :FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
+| | FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${fib_table_1}= | Evaluate | ${100}+${number}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
 | | | Configure vhost interfaces | ${dut1}
@@ -498,6 +501,7 @@
 | | | Run Keyword If | ${testpmd_mac}
 | | | ... | Vpp Route Add | ${dut2} | 10.0.0.0 | 8 | gateway=1.1.1.2
 | | | ... | interface=${dut2-vhost-${number}-if2} | vrf=${fib_table_2}
+| | END
 
 | Initialize IPv4 forwarding with VLAN dot1q sub-interfaces in circular topology
 | | [Documentation]
@@ -510,7 +514,7 @@
 | | ... | with /30 prefix on VLAN and set routing on both DUT nodes with prefix
 | | ... | /30. Set next hop of neighbour DUT interface IPv4 address. All
 | | ... | interfaces are brought up.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - tg_if1_net - TG interface 1 IP subnet used by traffic generator.
 | | ... | Type: integer
@@ -518,25 +522,25 @@
 | | ... | Type: integer
 | | ... | - subid - ID of the sub-interface to be created. Type: string
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
-| | ...
+| |
 | | ... | _NOTE:_ This KW uses following test case variables:
 | | ... | - dut1 - DUT1 node.
 | | ... | - dut2 - DUT2 node.
 | | ... | - dut1_if2 - DUT1 interface towards DUT2.
 | | ... | - dut2_if1 - DUT2 interface towards DUT1.
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Initialize IPv4 forwarding with VLAN dot1q sub-interfaces\
 | | ... | in circular topology \| 10.10.10.0 \| 20.20.20.0 \| 10 \| pop-1 \|
-| | ...
+| |
 | | [Arguments] | ${tg_if1_net} | ${tg_if2_net} | ${subid} | ${tag_rewrite}
-| | ...
+| |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
-| | ...
+| |
 | | Set interfaces in path up
-| | ...
+| |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
@@ -547,7 +551,7 @@
 | | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
 | | ... | ELSE | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
-| | ...
+| |
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
