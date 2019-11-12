@@ -17,7 +17,7 @@
 | Library  | resources.libraries.python.DUTSetup
 | Library  | resources.libraries.python.TrafficGenerator
 | Library  | resources.libraries.python.topology.Topology
-| ...
+|
 | Documentation | L2 keywords to set up wrk and to measure performance
 | ... | parameters using wrk.
 
@@ -25,17 +25,17 @@
 | Measure throughput
 | | [Documentation]
 | | ... | Measure throughput using wrk.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ${profile} - The name of the wrk traffic profile defining the
 | | ... | traffic. Type: string
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Measure throughput \| wrk-bw-1url-1core-50con \|
-| | ...
+| |
 | | [Arguments] | ${profile}
-| | ...
+| |
 | | ${tg_numa}= | Get interfaces numa node | ${tg} | ${tg_if1} | ${tg_if2}
 | | ${output}= | Run wrk | ${tg} | ${profile} | ${tg_numa} | bw
 | | Set test message | ${output}
@@ -43,17 +43,17 @@
 | Measure requests per second
 | | [Documentation]
 | | ... | Measure number of requests per second using wrk.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ${profile} - The name of the wrk traffic profile defining the
 | | ... | traffic. Type: string
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Measure requests per second \| wrk-bw-1url-1core-50con \|
-| | ...
+| |
 | | [Arguments] | ${profile}
-| | ...
+| |
 | | ${tg_numa}= | Get interfaces numa node | ${tg} | ${tg_if1} | ${tg_if2}
 | | ${output}= | Run wrk | ${tg} | ${profile} | ${tg_numa} | rps
 | | Set test message | ${output}
@@ -61,17 +61,17 @@
 | Measure connections per second
 | | [Documentation]
 | | ... | Measure number of connections per second using wrk.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ${profile} - The name of the wrk traffic profile defining the
 | | ... | traffic. Type: string
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Measure connections per second \| wrk-bw-1url-1core-50con \|
-| | ...
+| |
 | | [Arguments] | ${profile}
-| | ...
+| |
 | | ${tg_numa}= | Get interfaces numa node | ${tg} | ${tg_if1} | ${tg_if2}
 | | ${output}= | Run wrk | ${tg} | ${profile} | ${tg_numa} | cps
 | | Set test message | ${output}

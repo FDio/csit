@@ -15,9 +15,9 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.tcp.TCPUtils
-| ...
+|
 | Resource | resources/libraries/robot/ip/ip4.robot
-| ...
+|
 | Documentation | L2 keywords to set up VPP to test tcp.
 
 *** Keywords ***
@@ -25,7 +25,7 @@
 | | [Documentation]
 | | ... | Configure IP address on the port, set it up and start HTTP server on
 | | ... | the VPP.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - http_static_plugin - Use the HTTP static plugin http server.
 | | ... | Type: boolean
@@ -34,15 +34,15 @@
 | | ... | - fifo_size - FIFO size in kB. Type: string
 | | ... | - private_segment_size - Private segment size. Number + unit.
 | | ... | Type: string
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Set up HTTP server with paramters on the VPP node \| ${true}\
 | | ... | \| 400 \| 4096 \| 2g \|
-| | ...
+| |
 | | [Arguments] | ${http_static_plugin} | ${prealloc_fifos} | ${fifo_size}
 | | ... | ${private_segment_size}
-| | ...
+| |
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.10.2 | 24
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 192.168.20.2 | 24

@@ -13,20 +13,20 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP6FWD | BASE | DOT1Q | IP6BASE | DRV_VFIO_PCI
-| ...
+|
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *RFC2544: Pkt throughput IPv6 routing with IEEE 802.1Q test
 | ... | cases*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for IPv6 routing. IEEE 802.1Q\
@@ -68,17 +68,17 @@
 | | ... | [Cfg] Each DUT runs IPv6 routing with VLAN and uses ${phy_cores}\
 | | ... | physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
