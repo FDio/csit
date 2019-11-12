@@ -22,23 +22,23 @@
 | Start L2FWD on all DUTs
 | | [Documentation] | Start the l2fwd with M worker threads and rxqueues N and
 | | ... | jumbo support frames on/off on all DUTs.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - phy_cores - Number of physical cores to use. Type: integer
 | | ... | - rx_queues - Number of RX queues. Type: integer
 | | ... | - jumbo_frames - Jumbo frames on/off: boolean
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Start L2FWD on all DUTs \| ${1} \| ${1} \| ${False} \|
-| | ...
+| |
 | | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${jumbo_frames}=${False}
-| | ...
+| |
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
 | | ${dp_cores}= | Evaluate | ${cpu_count_int}+1
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
 | | | ... | ${${dut}_if1} | ${${dut}_if2}
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
@@ -58,27 +58,28 @@
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
+| | END
 
 | Start L3FWD on all DUTs
 | | [Documentation] | Start the l3fwd with M worker threads and rxqueues N and
 | | ... | jumbo support frames on/off on all DUTs.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - phy_cores - Number of physical cores to use. Type: integer
 | | ... | - rx_queues - Number of RX queues. Type: integer
 | | ... | - jumbo_frames - Jumbo frames on/off: boolean
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Start L3FWD on all DUTs \| ${1} \| ${1} \| ${False} \|
-| | ...
+| |
 | | [Arguments] | ${phy_cores} | ${rx_queues}=${None} | ${jumbo_frames}=${False}
-| | ...
+| |
 | | ${cpu_count_int} | Convert to Integer | ${phy_cores}
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
 | | ${dp_cores}= | Evaluate | ${cpu_count_int}+1
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | ${numa}= | Get interfaces numa node | ${nodes['${dut}']}
 | | | ... | ${${dut}_if1} | ${${dut}_if2}
 | | | ${smt_used}= | Is SMT enabled | ${nodes['${dut}']['cpuinfo']}
@@ -99,3 +100,4 @@
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
+| | END
