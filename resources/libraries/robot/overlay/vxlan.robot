@@ -13,19 +13,19 @@
 
 *** Settings ***
 | Library  | resources.libraries.python.InterfaceUtil
-| ...
+|
 | Documentation | VXLAN keywords.
 
 *** Keywords ***
 | Get VXLAN dump
 | | [Documentation] | Get VXLAN dump.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - node - DUT node data. Type: dictionary
 | | ... | - interface - Interface on the VPP node (Optional). Type: string
-| | ...
+| |
 | | [Arguments] | ${dut_node} | ${interface}=${None}
-| | ...
+| |
 | | [Return] | ${vxlan_dump}
-| | ...
+| |
 | | ${vxlan_dump}= | VXLAN Dump | ${dut_node} | ${interface}

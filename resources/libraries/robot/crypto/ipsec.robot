@@ -17,28 +17,28 @@
 | Library | resources.libraries.python.IPsecUtil
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv6Util
-| ...
+|
 | Documentation | IPsec keywords.
 
 *** Keywords ***
 | Generate keys for IPSec
 | | [Documentation] | Generate keys for IPsec.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - crypto_alg - Encryption algorithm. Type: enum
 | | ... | - integ_alg - Integrity algorithm. Type: enum
-| | ...
+| |
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - encr_key - Encryption key. Type: string
 | | ... | - auth_key - Integrity key. Type: string
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
 | | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
 | | ... | \| Generate keys for IPSec \| ${encr_alg} \| ${auth_alg} \|
-| | ...
+| |
 | | [Arguments] | ${crypto_alg} | ${integ_alg}
-| | ...
+| |
 | | ${encr_key_len}= | Get Crypto Alg Key Len | ${crypto_alg}
 | | ${encr_key}= | Generate Random String | ${encr_key_len}
 | | ${auth_key_len}= | Get Integ Alg Key Len | ${integ_alg}
@@ -48,26 +48,26 @@
 
 | Configure path for IPSec test
 | | [Documentation] | Setup path for IPsec testing TG<-->DUT1.
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Configure path for IPSec test \|
-| | ...
+| |
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | Vpp Node Interfaces Ready Wait | ${dut1}
 
 | Configure topology for IPv4 IPsec testing
 | | [Documentation] | Setup topology for IPv4 IPsec testing.
-| | ...
+| |
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - dut_tun_ip - DUT tunnel IP address. Type: string
 | | ... | - dut_src_ip - DUT source IP address. Type: string
 | | ... | - tg_tun_ip - TG tunnel IP address. Type: string
 | | ... | - tg_src_ip - TG source IP address. Type: string
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Configure topology for IPv4 IPsec testing \|
-| | ...
+| |
 | | Configure path for IPSec test
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut_if1_ip4} | ${ip4_plen}
@@ -87,16 +87,16 @@
 
 | Configure topology for IPv6 IPsec testing
 | | [Documentation] | Setup topology fo IPv6 IPsec testing.
-| | ...
+| |
 | | ... | _NOTE:_ This KW sets following test case variable:
 | | ... | - dut_tun_ip - DUT tunnel IP address. Type: string
 | | ... | - dut_src_ip - DUT source IP address. Type: string
 | | ... | - tg_tun_ip - TG tunnel IP address. Type: string
 | | ... | - tg_src_ip - TG source IP address. Type: string
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Configure topology for IPv6 IPsec testing \|
-| | ...
+| |
 | | Configure path for IPSec test
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut_if1_ip6} | ${ip6_plen}
@@ -117,7 +117,7 @@
 
 | Configure manual keyed connection for IPSec
 | | [Documentation] | Setup IPsec manual keyed connection on VPP node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - node - VPP node to setup IPsec on. Type: dictionary
 | | ... | - interface - Interface to enable IPsec on. Type: string
@@ -131,11 +131,11 @@
 | | ... | - r_ip - Remote IP address. Type: string
 | | ... | - l_tunnel - Local tunnel IP address (optional). Type: string
 | | ... | - r_tunnel - Remote tunnel IP address (optional). Type: string
-| | ...
+| |
 | | ... | _NOTE:_ This KW sets following test case variables:
 | | ... | - l_sa_id
 | | ... | - r_sa_id
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
 | | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
@@ -143,12 +143,12 @@
 | | ... | \| GigabitEthernet0/8/0 \| ${encr_alg} \| sixteenbytes_key \
 | | ... | \| ${auth_alg} \| twentybytessecretkey \| ${1000} \| ${1001} \
 | | ... | \| 192.168.4.4 \| 192.168.3.3 \| 192.168.100.3 \| 192.168.100.2 \|
-| | ...
+| |
 | | [Arguments] | ${node} | ${interface} | ${crypto_alg} | ${crypto_key}
 | | ... | ${integ_alg} | ${integ_key} | ${l_spi} | ${r_spi} | ${l_ip}
 | | ... | ${r_ip} | ${l_tunnel}=${None} | ${r_tunnel}=${None}
 | | ... | ${is_ipv6}=${FALSE}
-| | ...
+| |
 | | Set Test Variable | ${l_sa_id} | ${10}
 | | Set Test Variable | ${r_sa_id} | ${20}
 | | ${spd_id}= | Set Variable | ${1}
@@ -185,7 +185,7 @@
 | | ... | DUT1-DUT2 links. Set routing for encrypted traffic on both DUT nodes
 | | ... | with prefix /8 and next hop of neighbour DUT or TG interface IPv4
 | | ... | address.
-| | ...
+| |
 | | Set interfaces in path up
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
 | | ... | ${dut1_if1_ip4} | 24
