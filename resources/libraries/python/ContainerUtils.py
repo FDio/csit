@@ -27,7 +27,7 @@ from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
 __all__ = ["ContainerManager", "ContainerEngine", "LXC", "Docker", "Container"]
 
-SUPERVISOR_CONF = '/etc/supervisord.conf'
+SUPERVISOR_CONF = '/etc/supervisor/supervisord.conf'
 
 
 class ContainerManager(object):
@@ -397,29 +397,29 @@ class ContainerEngine(object):
         if isinstance(self, LXC):
             self.execute('sleep 3; apt-get update')
             self.execute('apt-get install -y supervisor')
-        self.execute('echo "{config}" > {config_file} && '
-                     'unlink /tmp/supervisor.sock && '
-                     'supervisord -c {config_file}'.
-                     format(
-                         config='[unix_http_server]\n'
-                         'file  = /tmp/supervisor.sock\n\n'
-                         '[rpcinterface:supervisor]\n'
-                         'supervisor.rpcinterface_factory = '
-                         'supervisor.rpcinterface:make_main_rpcinterface\n\n'
-                         '[supervisorctl]\n'
-                         'serverurl = unix:///tmp/supervisor.sock\n\n'
-                         '[supervisord]\n'
-                         'pidfile = /tmp/supervisord.pid\n'
-                         'identifier = supervisor\n'
-                         'directory = /tmp\n'
-                         'logfile = /tmp/supervisord.log\n'
-                         'loglevel = debug\n'
-                         'nodaemon = false\n\n',
-                         config_file=SUPERVISOR_CONF))
+            self.execute('echo "{config}" > {config_file} && '
+                         'supervisord -c {config_file}'.
+                         format(
+                             config='[unix_http_server]\n'
+                             'file  = /tmp/supervisor.sock\n\n'
+                             '[rpcinterface:supervisor]\n'
+                             'supervisor.rpcinterface_factory = supervisor.'
+                             'rpcinterface:make_main_rpcinterface\n\n'
+                             '[supervisorctl]\n'
+                             'serverurl = unix:///tmp/supervisor.sock\n\n'
+                             '[supervisord]\n'
+                             'pidfile = /tmp/supervisord.pid\n'
+                             'identifier = supervisor\n'
+                             'directory = /tmp\n'
+                             'logfile = /tmp/supervisord.log\n'
+                             'loglevel = debug\n'
+                             'nodaemon = false\n\n',
+                             config_file=SUPERVISOR_CONF))
 
     def start_vpp(self):
         """Start VPP inside a container."""
-        self.execute('echo "{config}" >> {config_file}'.
+        self.execute('echo "{config}" >> {config_file} && '
+                     'supervisorctl reload'.
                      format(
                          config='[program:vpp]\n'
                          'command = /usr/bin/vpp -c /etc/vpp/startup.conf\n'
@@ -428,7 +428,6 @@ class ContainerEngine(object):
                          'redirect_stderr = true\n'
                          'priority = 1',
                          config_file=SUPERVISOR_CONF))
-        self.execute('supervisorctl reload')
         self.execute('supervisorctl start vpp')
 
         from robot.libraries.BuiltIn import BuiltIn
