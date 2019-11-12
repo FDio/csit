@@ -72,15 +72,12 @@ A brief bottom-up description is provided here:
    - Test suites with test cases;
    - Functional tests using VIRL environment:
      - VPP;
-     - Honeycomb;
-     - NSH_SFC;
      - DMM;
      - TLDK;
    - Performance tests using physical testbed environment:
      - VPP;
      - DPDK-Testpmd;
      - DPDK-L3Fwd;
-     - Honeycomb;
      - VPP Container K8s orchestrated topologies;
    - Tools:
      - Documentation generator;
@@ -100,14 +97,8 @@ A brief bottom-up description is provided here:
     ├── dpdk
     │   ├── dpdk_scripts            # DPDK helper scripts
     │   └── perf                    # DPDK performance tests
-    ├── honeycomb
-    │   ├── func                    # Honeycomb functional VIRL tests
-    │   └── perf                    # Honeycomb functional performance tests
     ├── kubernetes
     │   └── perf                    # VPP K8S orchestration performance tests
-    ├── nsh_sfc
-    │   ├── func                    # NSH_SFC functional tests
-    │   └── sfc_scripts             # NSH_SFC helper scripts
     ├── tldk
     │   ├── func                    # TLDK functional VIRL tests
     │   ├── tldk_scripts            # TLDK helper scripts
@@ -163,7 +154,6 @@ resources
 │   │   └── wrk
 │   └── traffic_scripts             # Functional tests traffic profiles
 │       ├── dhcp
-│       ├── honeycomb
 │       └── lisp
 └── topologies                      # Linux Foundation topology files
     ├── available

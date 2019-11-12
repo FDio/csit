@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -103,7 +103,7 @@ class NodePath(object):
         """
         nodes = self._nodes
         if len(nodes) < 2:
-            raise RuntimeError('Not enough nodes to compute path')
+            raise RuntimeError(u"Not enough nodes to compute path")
 
         for idx in range(0, len(nodes) - 1):
             topo = Topology()
@@ -111,12 +111,14 @@ class NodePath(object):
             node2 = nodes[idx + 1]
             n1_list = self._nodes_filter[idx]
             n2_list = self._nodes_filter[idx + 1]
-            links = topo.get_active_connecting_links(node1, node2,
-                                                     filter_list_node1=n1_list,
-                                                     filter_list_node2=n2_list)
+            links = topo.get_active_connecting_links(
+                node1, node2, filter_list_node1=n1_list,
+                filter_list_node2=n2_list
+            )
             if not links:
-                raise RuntimeError('No link between {0} and {1}'.format(
-                    node1['host'], node2['host']))
+                raise RuntimeError(
+                    f"No link between {node1[u'host']} and {node2[u'host']}"
+                )
 
             if always_same_link:
                 l_set = set(links).intersection(self._links)
@@ -124,8 +126,9 @@ class NodePath(object):
                 l_set = set(links).difference(self._links)
                 if not l_set:
                     raise RuntimeError(
-                        'No free link between {0} and {1}, all links already '
-                        'used'.format(node1['host'], node2['host']))
+                        f"No free link between {node1[u'host']} and "
+                        f"{node2[u'host']}, all links already used"
+                    )
 
             if not l_set:
                 link = links.pop()
@@ -162,7 +165,7 @@ class NodePath(object):
         .. note:: Call compute_path before.
         """
         if not self._path:
-            raise RuntimeError('No path for topology')
+            raise RuntimeError(u"No path for topology")
         return self._path[0]
 
     def last_interface(self):
@@ -174,7 +177,7 @@ class NodePath(object):
         .. note:: Call compute_path before.
         """
         if not self._path:
-            raise RuntimeError('No path for topology')
+            raise RuntimeError(u"No path for topology")
         return self._path[-1]
 
     def first_ingress_interface(self):
@@ -186,7 +189,7 @@ class NodePath(object):
         .. note:: Call compute_path before.
         """
         if not self._path:
-            raise RuntimeError('No path for topology')
+            raise RuntimeError(u"No path for topology")
         return self._path[1]
 
     def last_egress_interface(self):
@@ -198,5 +201,5 @@ class NodePath(object):
         .. note:: Call compute_path before.
         """
         if not self._path:
-            raise RuntimeError('No path for topology')
+            raise RuntimeError(u"No path for topology")
         return self._path[-2]

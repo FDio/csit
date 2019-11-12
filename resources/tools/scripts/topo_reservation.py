@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 # Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,15 +20,15 @@ simultaneous use of nodes listed in topology file.
 As source of truth, TG node from the topology file is used.
 """
 
-import sys
 import argparse
+import sys
 import yaml
 
 from resources.libraries.python.ssh import exec_cmd
 
 
-RESERVATION_DIR = "/tmp/reservation_dir"
-RESERVATION_NODE = "TG"
+RESERVATION_DIR = u"/tmp/reservation_dir"
+RESERVATION_NODE = u"TG"
 
 
 def diag_cmd(node, cmd):
@@ -36,10 +36,10 @@ def diag_cmd(node, cmd):
 
     :param node: Node object as parsed from topology file to execute cmd on.
     :param cmd: Command to execute.
-    :type ssh: dict
+    :type node: dict
     :type cmd: str
     """
-    print('+ {cmd}'.format(cmd=cmd))
+    print(f"+ {cmd}")
     _, stdout, _ = exec_cmd(node, cmd)
     print(stdout)
 
@@ -74,16 +74,18 @@ def main():
     Python returns on encountering and unexcepted exception.
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument("-t", "--topo", required=True,
-                        help="Topology file")
-    parser.add_argument("-c", "--cancel", help="Cancel reservation",
-                        action="store_true")
-    parser.add_argument("-r", "--runtag", required=False, default="Unknown",
-                        help="Identifier for test run suitable as filename")
+    parser.add_argument(u"-t", u"--topo", required=True, help=u"Topology file")
+    parser.add_argument(
+        u"-c", u"--cancel", help=u"Cancel reservation", action=u"store_true"
+    )
+    parser.add_argument(
+        u"-r", u"--runtag", required=False, default=u"Unknown",
+        help=u"Identifier for test run suitable as filename"
+    )
     args = parser.parse_args()
 
     with open(args.topo, "r") as topo_file:
-        topology = yaml.load(topo_file.read())['nodes']
+        topology = yaml.load(topo_file.read())[u"nodes"]
 
     # Even if TG is not guaranteed to be a Linux host,
     # we are using it, because testing shows SSH access to DUT
@@ -91,39 +93,36 @@ def main():
     try:
         node = topology[RESERVATION_NODE]
     except KeyError:
-        print("Topology file does not contain '{node}' node".
-              format(node=RESERVATION_NODE))
+        print(f"Topology file does not contain '{RESERVATION_NODE}' node")
         return 1
 
     # For system reservation we use mkdir it is an atomic operation and we can
     # store additional data (time, client_ID, ..) within reservation directory.
     if args.cancel:
-        ret, _, err = exec_cmd(node, "rm -r {dir}".format(dir=RESERVATION_DIR))
+        ret, _, err = exec_cmd(node, f"rm -r {RESERVATION_DIR}")
         if ret:
-            print("Cancellation unsuccessful:\n{err}".format(err=err))
+            print(f"Cancellation unsuccessful:\n{err!r}")
         return ret
     # Before critical section, output can be outdated already.
-    print("Diagnostic commands:")
-    # -d and * are to supress "total <size>", see https://askubuntu.com/a/61190
-    diag_cmd(node, "ls --full-time -cd '{dir}'/*".format(dir=RESERVATION_DIR))
-    print("Attempting testbed reservation.")
+    print(u"Diagnostic commands:")
+    # -d and * are to suppress "total <size>", see https://askubuntu.com/a/61190
+    diag_cmd(node, f"ls --full-time -cd '{RESERVATION_DIR}'/*")
+    print(u"Attempting testbed reservation.")
     # Entering critical section.
-    ret, _, _ = exec_cmd(node, "mkdir '{dir}'".format(dir=RESERVATION_DIR))
+    ret, _, _ = exec_cmd(node, f"mkdir '{RESERVATION_DIR}'")
     # Critical section is over.
     if ret:
-        _, stdo, _ = exec_cmd(node, "ls '{dir}'/*".format(dir=RESERVATION_DIR))
-        print("Testbed already reserved by:\n{stdo}".format(stdo=stdo))
+        _, stdo, _ = exec_cmd(node, f"ls '{RESERVATION_DIR}'/*")
+        print(f"Testbed already reserved by:\n{stdo}")
         return 2
     # Here the script knows it is the only owner of the testbed.
-    print("Reservation success, writing additional info to reservation dir.")
+    print(u"Reservation success, writing additional info to reservation dir.")
     ret, _, err = exec_cmd(
-        node, "touch '{dir}/{runtag}'"\
-        .format(dir=RESERVATION_DIR, runtag=args.runtag))
+        node, f"touch '{RESERVATION_DIR}/{args.runtag}'")
     if ret:
-        print("Writing test run info failed, but continuing anyway:\n{err}".
-              format(err=err))
+        print(f"Writing test run info failed, but continuing anyway:\n{err!r}")
     return 0
 
 
-if __name__ == "__main__":
+if __name__ == u"__main__":
     sys.exit(main())
