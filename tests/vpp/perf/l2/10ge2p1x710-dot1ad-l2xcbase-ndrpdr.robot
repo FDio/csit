@@ -14,19 +14,19 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/l2/tagging.robot
-| ...
+|
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | L2XCFWD | BASE | DOT1AD | DRV_VFIO_PCI
-| ...
+|
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *RFC2544: Pkt throughput L2XC with 802.1ad test cases*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 xconnect.
@@ -55,8 +55,8 @@
 | ${osi_layer}= | L2
 | ${overhead}= | ${8}
 | ${subid}= | 10
-| ${outer_vlan_id}= | 100
-| ${inner_vlan_id}= | 200
+| ${outer_vlan_id}= |
+| ${inner_vlan_id}= |
 | ${type_subif}= | two_tags
 | ${tag_rewrite}= | pop-2
 # Traffic profile:
@@ -68,17 +68,17 @@
 | | ... | [Cfg] DUT runs L2XC forwarding config.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
