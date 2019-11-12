@@ -20,7 +20,7 @@
 | | [Documentation]
 | | ... | Setup L2 patch topology by cross connecting two interfaces on
 | | ... | each DUT. Interfaces are brought up.
-| | ...
+| |
 | | Set interfaces in path up
 | | :FOR | ${dut} | IN | @{duts}
 | | | VPP Setup Bidirectional L2 patch

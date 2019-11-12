@@ -19,17 +19,17 @@
 | | [Documentation]
 | | ... | Configure MACIP ACL with required number of not-hitting permit ACEs
 | | ... | plus two hitting ACEs for both traffic directions.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node. Type: dictionary
 | | ... | - dut_if1 - DUT node interface1 name (Optional). Type: string
 | | ... | - dut_if2 - DUT node interface2 name (Optional). Type: string
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure MACIP ACLs \| ${nodes['DUT1']} \| GigabitEthernet0/7/0 \
 | | ... | \| GigabitEthernet0/8/0 \|
-| | ...
+| |
 | | ... | _NOTE:_ This KW uses following test case variables:
 | | ... | - src_ip_start - Source IP address start. Type: string
 | | ... | - ip_step - IP address step. Type: string
@@ -52,23 +52,23 @@
 | | ... | Type: string
 | | ... | - tg_mac_mask - MAC address mask for traffic streams.
 | | ... | 00:00:00:00:00:00 is a wildcard mask. Type: string
-| | ...
+| |
 | | [Arguments] | ${dut} | ${dut_if1}=${NONE} | ${dut_if2}=${NONE}
-| | ...
+| |
 | | ${src_ip_int} = | IP To Int | ${src_ip_start}
 | | ${src_ip_int} = | Evaluate | ${src_ip_int} - ${ip_step}
-| | ...
+| |
 | | ${ip_limit} = | Set Variable | 255.255.255.255
 | | ${ip_limit_int} = | IP To Int | ${ip_limit}
-| | ...
+| |
 | | ${src_mac_int} = | Mac To Int | ${src_mac_start}
 | | ${src_mac_int} = | Evaluate | ${src_mac_int} - ${src_mac_step}
-| | ...
+| |
 | | ${mac_limit} = | Set Variable | ff:ff:ff:ff:ff:ff
 | | ${mac_limit_int} = | Mac To Int | ${mac_limit}
-| | ...
+| |
 | | ${acl}= | Set Variable | ipv4 permit
-| | :FOR | ${nr} | IN RANGE | 0 | ${no_hit_aces_number}
+| | FOR | ${nr} | IN RANGE | 0 | ${no_hit_aces_number}
 | | | ${src_ip_int} = | Evaluate | ${src_ip_int} + ${ip_step}
 | | | ${src_mac_int} = | Evaluate | ${src_mac_int} + ${src_mac_step}
 | | | ${ipv4_limit_reached}= | Set Variable If
@@ -90,6 +90,7 @@
 | | | ${acl}= | Catenate | ${acl} | ip ${src_ip}/32
 | | | ... | mac ${src_mac} | mask ${src_mac_mask},
 | | | Exit For Loop If | '${ipv4_limit_reached}' == '${TRUE}' or '${mac_limit_reached}' == '${TRUE}'
+| | END
 | | ${acl0}= | Catenate | ${acl}
 | | ... | ipv4 ${acl_action} ip ${tg_stream1_subnet} mac ${tg_stream1_mac}
 | | ... | mask ${tg_mac_mask}
@@ -109,17 +110,17 @@
 | | [Documentation]
 | | ... | Configure ACL with required number of not-hitting permit ACEs plus two
 | | ... | hitting ACEs for both traffic directions.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node. Type: dictionary
 | | ... | - dut_if1 - DUT node interface1 name (Optional). Type: string
 | | ... | - dut_if2 - DUT node interface2 name (Optional). Type: string
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure IPv4 ACLs \| ${nodes['DUT1']} \| GigabitEthernet0/7/0 \
 | | ... | \| GigabitEthernet0/8/0 \|
-| | ...
+| |
 | | ... | _NOTE:_ This KW uses following test case variables:
 | | ... | - src_ip_start - Source IP address start. Type: string
 | | ... | - dst_ip_start - Destination IP address start. Type: string
@@ -137,7 +138,7 @@
 | | ... | Type: string
 | | ... | - trex_stream2_subnet - IP subnet used by T-Rex in direction 1->0.
 | | ... | Type: string
-| | ...
+| |
 | | [Arguments] | ${dut} | ${dut_if1}=${NONE} | ${dut_if2}=${NONE}
 | | ${src_ip_int} = | Evaluate
 | | ... | int(ipaddress.ip_address(unicode($src_ip_start))) - $ip_step
@@ -152,7 +153,7 @@
 | | ${dport}= | Evaluate | $dport_start - $port_step
 | | ${port_limit}= | Set Variable | ${65535}
 | | ${acl}= | Set Variable | ipv4 permit
-| | :FOR | ${nr} | IN RANGE | 0 | ${no_hit_aces_number}
+| | FOR | ${nr} | IN RANGE | 0 | ${no_hit_aces_number}
 | | | ${src_ip_int} = | Evaluate | $src_ip_int + $ip_step
 | | | ${dst_ip_int} = | Evaluate | $dst_ip_int + $ip_step
 | | | ${sport}= | Evaluate | $sport + $port_step
@@ -184,6 +185,7 @@
 | | | ... | sport ${sport} | dport ${dport},
 | | | Exit For Loop If
 | | | ... | $ipv4_limit_reached is True or $udp_limit_reached is True
+| | END
 | | ${acl}= | Catenate | ${acl}
 | | ... | ipv4 ${acl_action} src ${trex_stream1_subnet},
 | | ... | ipv4 ${acl_action} src ${trex_stream2_subnet}
@@ -203,28 +205,29 @@
 | Configure ACLs on a single interface
 | | [Documentation]
 | | ... | Configure ACL
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut - DUT node. Type: string
 | | ... | - dut_if - DUT node interface name. Type: string
 | | ... | - acl_apply_type - To what path apply the ACL - input or output.
 | | ... | - acl_action - Action for the rule - deny, permit, permit+reflect.
 | | ... | - subnets - Subnets to apply the specific ACL. Type: list
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure ACLs on a single interface \| ${nodes['DUT1']}
 | | ... | \| ... \| GigabitEthernet0/7/0 \| input \| permit | 0.0.0.0/0
-| | ...
+| |
 | | [Arguments] | ${dut} | ${dut_if} | ${acl_apply_type} | ${acl_action}
 | | ... | @{subnets}
 | | Set Test variable | ${acl} | ${EMPTY}
-| | :FOR | ${subnet} | IN | @{subnets}
+| | FOR | ${subnet} | IN | @{subnets}
 | | | ${acl} = | Run Keyword If | '${acl}' == '${EMPTY}'
 | | | ... | Set Variable | ipv4 ${acl_action} src ${subnet}
 | | | ... | ELSE
 | | | ... | Catenate | SEPARATOR=", " | ${acl}
 | | | ... | ipv4 ${acl_action} src ${subnet}
+| | END
 | | Add Replace Acl Multi Entries | ${dut} | rules=${acl}
 | | @{acl_list} = | Create List | ${0}
 | | Set Acl List For Interface | ${dut} | ${dut_if} | ${acl_apply_type}
@@ -239,17 +242,17 @@
 | | ... | on DUT1-DUT2 link and set routing on both DUT nodes with prefix /24
 | | ... | and next hop of neighbour DUT interface IPv4 address.
 | | ... | Apply required ACL rules to DUT1 interfaces.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ip_nr - Number of IPs to be used. Type: integer
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Initialize IPv4 routing fwith IPv4 ACLs on DUT1 \
 | | ... | in 3-node circular topology \|
-| | ...
+| |
 | | [Arguments] | ${ip_nr}=${1}
-| | ...
+| |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -258,21 +261,22 @@
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
-| | ...
+| |
 | | Set interfaces in path up
-| | ...
-| | :FOR | ${number} | IN RANGE | 2 | ${ip_nr}+2
+| |
+| | FOR | ${number} | IN RANGE | 2 | ${ip_nr}+2
 | | | VPP Add IP Neighbor
 | | | ... | ${dut1} | ${dut1_if1} | 10.10.10.${number} | ${tg_if1_mac}
 | | | VPP Add IP Neighbor
 | | | ... | ${dut} | ${dut_if2} | 20.20.20.${number} | ${tg_if2_mac}
+| | END
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut1} | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut2} | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
-| | ...
+| |
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | 10.10.10.1 | 24
 | | VPP Interface Set IP Address
@@ -283,12 +287,12 @@
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address
 | | ... | ${dut2} | ${dut2_if1} | 1.1.1.2 | 30
-| | ...
+| |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | gateway=1.1.1.2
 | | ... | interface=${dut1_if2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | gateway=1.1.1.1
 | | ... | interface=${dut2_if1}
-| | ...
+| |
 | | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
