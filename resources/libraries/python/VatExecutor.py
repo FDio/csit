@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,16 +14,17 @@
 """VAT executor library."""
 
 import json
+
 from os import remove
 
 from paramiko.ssh_exception import SSHException
 from robot.api import logger
 
-from resources.libraries.python.ssh import SSH, SSHTimeout
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.PapiHistory import PapiHistory
+from resources.libraries.python.ssh import SSH, SSHTimeout
 
-__all__ = ['VatExecutor']
+__all__ = [u"VatExecutor"]
 
 
 def cleanup_vat_json_output(json_output, vat_name=None):
@@ -40,14 +41,13 @@ def cleanup_vat_json_output(json_output, vat_name=None):
     """
 
     retval = json_output
-    clutter = ['vat#', 'dump_interface_table error: Misc']
+    clutter = [u"vat#", u"dump_interface_table error: Misc"]
     if vat_name:
-        remote_file_path = '{0}/{1}/{2}'.format(Constants.REMOTE_FW_DIR,
-                                                Constants.RESOURCES_TPL_VAT,
-                                                vat_name)
-        clutter.append("{0}(2):".format(remote_file_path))
+        remote_file_path = f"{Constants.REMOTE_FW_DIR}/" \
+            f"{Constants.RESOURCES_TPL_VAT}/{vat_name}"
+        clutter.append(f"{remote_file_path}(2):")
     for garbage in clutter:
-        retval = retval.replace(garbage, '')
+        retval = retval.replace(garbage, u"")
     return retval
 
 
@@ -60,12 +60,13 @@ def get_vpp_pid(node):
         running on the DUT node.
     :rtype: int or list
     """
+    # pylint: disable=import-outside-toplevel
     import resources.libraries.python.DUTSetup as PidLib
     pid = PidLib.DUTSetup.get_vpp_pid(node)
     return pid
 
 
-class VatExecutor(object):
+class VatExecutor:
     """Contains methods for executing VAT commands on DUTs."""
     def __init__(self):
         self._stdout = None
@@ -73,8 +74,9 @@ class VatExecutor(object):
         self._ret_code = None
         self._script_name = None
 
-    def execute_script(self, vat_name, node, timeout=120, json_out=True,
-                       copy_on_execute=False, history=True):
+    def execute_script(
+            self, vat_name, node, timeout=120, json_out=True,
+            copy_on_execute=False, history=True):
         """Execute VAT script on remote node, and store the result. There is an
         option to copy script from local host to remote host before execution.
         Path is defined automatically.
@@ -102,45 +104,44 @@ class VatExecutor(object):
         try:
             ssh.connect(node)
         except:
-            raise SSHException("Cannot open SSH connection to execute VAT "
-                               "command(s) from vat script {name}"
-                               .format(name=vat_name))
+            raise SSHException(
+                f"Cannot open SSH connection to execute VAT command(s) "
+                f"from vat script {vat_name}"
+            )
 
         if copy_on_execute:
             ssh.scp(vat_name, vat_name)
             remote_file_path = vat_name
             if history:
-                with open(vat_name, 'r') as vat_file:
+                with open(vat_name, "r") as vat_file:
                     for line in vat_file:
-                        PapiHistory.add_to_papi_history(node,
-                                                        line.replace('\n', ''),
-                                                        papi=False)
+                        PapiHistory.add_to_papi_history(
+                            node, line.replace(u"\n", u""), papi=False
+                        )
         else:
-            remote_file_path = '{0}/{1}/{2}'.format(Constants.REMOTE_FW_DIR,
-                                                    Constants.RESOURCES_TPL_VAT,
-                                                    vat_name)
+            remote_file_path = f"{Constants.REMOTE_FW_DIR}/" \
+                f"{Constants.RESOURCES_TPL_VAT}/{vat_name}"
 
-        cmd = "{vat_bin} {json} in {vat_path} script".format(
-            vat_bin=Constants.VAT_BIN_NAME,
-            json="json" if json_out is True else "",
-            vat_path=remote_file_path)
-
+        cmd = f"{Constants.VAT_BIN_NAME}" \
+            f"{u' json' if json_out is True else u''} " \
+            f"in {remote_file_path} script"
         try:
-            ret_code, stdout, stderr = ssh.exec_command_sudo(cmd=cmd,
-                                                             timeout=timeout)
+            ret_code, stdout, stderr = ssh.exec_command_sudo(
+                cmd=cmd, timeout=timeout
+            )
         except SSHTimeout:
-            logger.error("VAT script execution timeout: {0}".format(cmd))
+            logger.error(f"VAT script execution timeout: {cmd}")
             raise
-        except:
-            raise RuntimeError("VAT script execution failed: {0}".format(cmd))
+        except Exception:
+            raise RuntimeError(f"VAT script execution failed: {cmd}")
 
         self._ret_code = ret_code
         self._stdout = stdout
         self._stderr = stderr
         self._script_name = vat_name
 
-    def write_and_execute_script(self, node, tmp_fn, commands, timeout=300,
-                                 json_out=False):
+    def write_and_execute_script(
+            self, node, tmp_fn, commands, timeout=300, json_out=False):
         """Write VAT commands to the script, copy it to node and execute it.
 
         :param node: VPP node.
@@ -154,11 +155,13 @@ class VatExecutor(object):
         :type timeout: int
         :type json_out: bool
         """
-        with open(tmp_fn, 'w') as tmp_f:
+        with open(tmp_fn, "w") as tmp_f:
             tmp_f.writelines(commands)
 
-        self.execute_script(tmp_fn, node, timeout=timeout, json_out=json_out,
-                            copy_on_execute=True)
+        self.execute_script(
+            tmp_fn, node, timeout=timeout, json_out=json_out,
+            copy_on_execute=True
+        )
         remove(tmp_fn)
 
     def execute_script_json_out(self, vat_name, node, timeout=120):
@@ -181,21 +184,23 @@ class VatExecutor(object):
         """Read return code from last executed script and raise exception if the
         script didn't fail."""
         if self._ret_code is None:
-            raise Exception("First execute the script!")
+            raise Exception(u"First execute the script!")
         if self._ret_code == 0:
             raise AssertionError(
-                "VAT Script execution passed, but failure was expected: {cmd}"
-                .format(cmd=self._script_name))
+                f"VAT Script execution passed, but failure was expected: "
+                f"{self._script_name}"
+            )
 
     def script_should_have_passed(self):
         """Read return code from last executed script and raise exception if the
         script failed."""
         if self._ret_code is None:
-            raise Exception("First execute the script!")
+            raise Exception(u"First execute the script!")
         if self._ret_code != 0:
             raise AssertionError(
-                "VAT Script execution failed, but success was expected: {cmd}"
-                .format(cmd=self._script_name))
+                f"VAT Script execution failed, but success was expected: "
+                f"{self._script_name}"
+            )
 
     def get_script_stdout(self):
         """Returns value of stdout from last executed script."""
@@ -212,15 +217,17 @@ class VatExecutor(object):
 
         :param node: Node in topology on witch the script is executed.
         :param vat_template_file: Template file of VAT script.
+        :param json_param: Require JSON mode.
         :param vat_args: Arguments to the template file.
         :returns: List of JSON objects returned by VAT.
         """
         with VatTerminal(node, json_param=json_param) as vat:
-            return vat.vat_terminal_exec_cmd_from_template(vat_template_file,
-                                                           **vat_args)
+            return vat.vat_terminal_exec_cmd_from_template(
+                vat_template_file, **vat_args
+            )
 
 
-class VatTerminal(object):
+class VatTerminal:
     """VAT interactive terminal.
 
     :param node: Node to open VAT terminal on.
@@ -231,11 +238,11 @@ class VatTerminal(object):
 
     """
 
-    __VAT_PROMPT = ("vat# ", )
-    __LINUX_PROMPT = (":~# ", ":~$ ", "~]$ ", "~]# ")
+    __VAT_PROMPT = (u"vat# ", )
+    __LINUX_PROMPT = (u":~# ", u":~$ ", u"~]$ ", u"~]# ")
 
     def __init__(self, node, json_param=True):
-        json_text = ' json' if json_param else ''
+        json_text = u" json" if json_param else u""
         self.json = json_param
         self._node = node
         self._ssh = SSH()
@@ -243,15 +250,16 @@ class VatTerminal(object):
         try:
             self._tty = self._ssh.interactive_terminal_open()
         except Exception:
-            raise RuntimeError("Cannot open interactive terminal on node {0}".
-                               format(self._node))
+            raise RuntimeError(
+                f"Cannot open interactive terminal on node {self._node}"
+            )
 
         for _ in range(3):
             try:
                 self._ssh.interactive_terminal_exec_command(
-                    self._tty,
-                    'sudo -S {0}{1}'.format(Constants.VAT_BIN_NAME, json_text),
-                    self.__VAT_PROMPT)
+                    self._tty, f"sudo -S {Constants.VAT_BIN_NAME}{json_text}",
+                    self.__VAT_PROMPT
+                )
             except Exception:
                 continue
             else:
@@ -260,16 +268,17 @@ class VatTerminal(object):
             vpp_pid = get_vpp_pid(self._node)
             if vpp_pid:
                 if isinstance(vpp_pid, int):
-                    logger.trace("VPP running on node {0}".
-                                 format(self._node['host']))
+                    logger.trace(f"VPP running on node {self._node[u'host']}")
                 else:
-                    logger.error("More instances of VPP running on node {0}.".
-                                 format(self._node['host']))
+                    logger.error(
+                        f"More instances of VPP running "
+                        f"on node {self._node[u'host']}."
+                    )
             else:
-                logger.error("VPP not running on node {0}.".
-                             format(self._node['host']))
-            raise RuntimeError("Failed to open VAT console on node {0}".
-                               format(self._node['host']))
+                logger.error(f"VPP not running on node {self._node[u'host']}.")
+            raise RuntimeError(
+                f"Failed to open VAT console on node {self._node[u'host']}"
+            )
 
         self._exec_failure = False
         self.vat_stdout = None
@@ -289,36 +298,37 @@ class VatTerminal(object):
             None if not in JSON mode.
         """
         PapiHistory.add_to_papi_history(self._node, cmd, papi=False)
-        logger.debug("Executing command in VAT terminal: {0}".format(cmd))
+        logger.debug(f"Executing command in VAT terminal: {cmd}")
         try:
-            out = self._ssh.interactive_terminal_exec_command(self._tty, cmd,
-                                                              self.__VAT_PROMPT)
+            out = self._ssh.interactive_terminal_exec_command(
+                self._tty, cmd, self.__VAT_PROMPT
+            )
             self.vat_stdout = out
         except Exception:
             self._exec_failure = True
             vpp_pid = get_vpp_pid(self._node)
             if vpp_pid:
                 if isinstance(vpp_pid, int):
-                    raise RuntimeError("VPP running on node {0} but VAT command"
-                                       " {1} execution failed.".
-                                       format(self._node['host'], cmd))
+                    msg = f"VPP running on node {self._node[u'host']} " \
+                        f"but VAT command {cmd} execution failed."
                 else:
-                    raise RuntimeError("More instances of VPP running on node "
-                                       "{0}. VAT command {1} execution failed.".
-                                       format(self._node['host'], cmd))
-            raise RuntimeError("VPP not running on node {0}. VAT command "
-                               "{1} execution failed.".
-                               format(self._node['host'], cmd))
+                    msg = f"More instances of VPP running on node " \
+                        f"{self._node[u'host']}. VAT command {cmd} " \
+                        f"execution failed."
+            else:
+                msg = f"VPP not running on node {self._node[u'host']}. " \
+                    f"VAT command {cmd} execution failed."
+            raise RuntimeError(msg)
 
-        logger.debug("VAT output: {0}".format(out))
+        logger.debug(f"VAT output: {out}")
         if self.json:
-            obj_start = out.find('{')
-            obj_end = out.rfind('}')
-            array_start = out.find('[')
-            array_end = out.rfind(']')
+            obj_start = out.find(u"{")
+            obj_end = out.rfind(u"}")
+            array_start = out.find(u"[")
+            array_end = out.rfind(u"]")
 
             if obj_start == -1 and array_start == -1:
-                raise RuntimeError("VAT command {0}: no JSON data.".format(cmd))
+                raise RuntimeError(f"VAT command {cmd}: no JSON data.")
 
             if obj_start < array_start or array_start == -1:
                 start = obj_start
@@ -329,36 +339,44 @@ class VatTerminal(object):
             out = out[start:end]
             json_out = json.loads(out)
             return json_out
-        else:
-            return None
+
+        return None
 
     def vat_terminal_close(self):
         """Close VAT terminal."""
         # interactive terminal is dead, we only need to close session
         if not self._exec_failure:
             try:
-                self._ssh.interactive_terminal_exec_command(self._tty,
-                                                            'quit',
-                                                            self.__LINUX_PROMPT)
+                self._ssh.interactive_terminal_exec_command(
+                    self._tty, u"quit", self.__LINUX_PROMPT
+                )
             except Exception:
                 vpp_pid = get_vpp_pid(self._node)
                 if vpp_pid:
                     if isinstance(vpp_pid, int):
-                        logger.trace("VPP running on node {0}.".
-                                     format(self._node['host']))
+                        logger.trace(
+                            f"VPP running on node {self._node[u'host']}."
+                        )
                     else:
-                        logger.error("More instances of VPP running on node "
-                                     "{0}.".format(self._node['host']))
+                        logger.error(
+                            f"More instances of VPP running "
+                            f"on node {self._node[u'host']}."
+                        )
                 else:
-                    logger.error("VPP not running on node {0}.".
-                                 format(self._node['host']))
-                raise RuntimeError("Failed to close VAT console on node {0}".
-                                   format(self._node['host']))
+                    logger.error(
+                        f"VPP not running on node {self._node[u'host']}."
+                    )
+                raise RuntimeError(
+                    f"Failed to close VAT console "
+                    f"on node {self._node[u'host']}"
+                )
         try:
             self._ssh.interactive_terminal_close(self._tty)
-        except:
-            raise RuntimeError("Cannot close interactive terminal on node {0}".
-                               format(self._node['host']))
+        except Exception:
+            raise RuntimeError(
+                f"Cannot close interactive terminal "
+                f"on node {self._node[u'host']}"
+            )
 
     def vat_terminal_exec_cmd_from_template(self, vat_template_file, **args):
         """Execute VAT script from a file.
@@ -367,12 +385,12 @@ class VatTerminal(object):
         :param args: Dictionary of parameters for VAT script.
         :returns: List of JSON objects returned by VAT.
         """
-        file_path = '{}/{}'.format(Constants.RESOURCES_TPL_VAT,
-                                   vat_template_file)
-        with open(file_path, 'r') as template_file:
+        file_path = f"{Constants.RESOURCES_TPL_VAT}/{vat_template_file}"
+
+        with open(file_path, "r") as template_file:
             cmd_template = template_file.readlines()
-        ret = []
+        ret = list()
         for line_tmpl in cmd_template:
             vat_cmd = line_tmpl.format(**args)
-            ret.append(self.vat_terminal_exec_cmd(vat_cmd.replace('\n', '')))
+            ret.append(self.vat_terminal_exec_cmd(vat_cmd.replace(u"\n", u"")))
         return ret

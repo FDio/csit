@@ -14,25 +14,29 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
+|
 | Library | resources.libraries.python.SetupFramework
 | Library | resources.libraries.python.SetupFramework.CleanupFramework
 | Library | resources.libraries.python.DPDK.DPDKTools
+|
 | Suite Setup | Run Keywords | Setup performance global Variables
 | ...         | AND          | Setup Framework | ${nodes}
 | ...         | AND          | Install DPDK test on all DUTs | ${nodes}
 | ...         | AND          | Get CPU Info from All Nodes | ${nodes}
 | ...         | AND          | Update All Numa Nodes
 | ...                        | ${nodes} | skip_tg=${True}
+|
 | Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
 | Setup performance global Variables
 | | [Documentation]
 | | ... | Setup suite Variables. Variables are used across performance testing.
-| | ...
+| |
 | | ... | _NOTE:_ This KW sets following suite variables:
 | | ... | - pkt_trace - Switch to enable packet trace for test
 | | ... | - dut_stats - Switch to enable DUT statistics
-| | ...
+| |
 | | Set Global Variable | ${pkt_trace} | ${False}
 | | Set Global Variable | ${dut_stats} | ${False}
+| | Set Global Variable | ${nodes}

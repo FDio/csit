@@ -17,13 +17,13 @@ from ipaddress import ip_address
 from robot.api import logger
 
 from resources.libraries.python.Constants import Constants
-from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 
 
-class Tap(object):
+class Tap:
     """Tap utilities."""
 
     @staticmethod
@@ -34,35 +34,34 @@ class Tap(object):
         :param tap_name: Tap interface name for linux tap.
         :param mac: Optional MAC address for VPP tap.
         :type node: dict
-        :type tap_name: str or unicode
+        :type tap_name: str
         :type mac: str
         :returns: Returns a interface index.
         :rtype: int
         """
-        if isinstance(tap_name, unicode):
-            tap_name = str(tap_name)
-        cmd = 'tap_create_v2'
+        cmd = u"tap_create_v2"
         args = dict(
             id=Constants.BITWISE_NON_ZERO,
             use_random_mac=0 if mac else 1,
-            mac_address=L2Util.mac_to_bin(mac) if mac else 6 * b'\x00',
-            host_namespace=64 * b'\x00',
-            host_mac_addr=6 * b'\x00',
+            mac_address=L2Util.mac_to_bin(mac) if mac else 6 * b"\0",
+            host_namespace=64 * b"\0",
+            host_mac_addr=6 * b"\0",
             host_if_name_set=1,
-            host_if_name=tap_name + (64 - len(tap_name)) * b'\x00',
-            host_bridge=64 * b'\x00',
-            host_ip4_addr=4 * b'\x00',
-            host_ip6_addr=16 * b'\x00',
-            host_ip4_gw=4 * b'\x00',
-            host_ip6_gw=16 * b'\x00'
+            host_if_name=tap_name.encode(encoding=u"utf-8") +
+            (64 - len(tap_name)) * b"\0",
+            host_bridge=64 * b"\0",
+            host_ip4_addr=4 * b"\0",
+            host_ip6_addr=16 * b"\0",
+            host_ip4_gw=4 * b"\0",
+            host_ip6_gw=16 * b"\0"
         )
-        err_msg = 'Failed to create tap interface {tap} on host {host}'.format(
-            tap=tap_name, host=node['host'])
+        err_msg = f"Failed to create tap interface {tap_name} " \
+            f"on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
-        if_key = Topology.add_new_port(node, 'tap')
+        if_key = Topology.add_new_port(node, u"tap")
         Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
         Topology.update_interface_name(node, if_key, tap_name)
         if mac is None:
@@ -84,7 +83,7 @@ class Tap(object):
         :returns: VPP tap interface dev_name.
         :rtype: str
         """
-        return Tap.tap_dump(node, host_if_name).get('dev_name')
+        return Tap.tap_dump(node, host_if_name).get(u"dev_name")
 
     @staticmethod
     def vpp_get_tap_interface_mac(node, interface_name):
@@ -120,19 +119,17 @@ class Tap(object):
             :returns: Processed tap interface dump.
             :rtype: dict
             """
-            tap_dump['dev_name'] = tap_dump['dev_name'].rstrip('\x00')
-            tap_dump['host_if_name'] = tap_dump['host_if_name'].rstrip('\x00')
-            tap_dump['host_namespace'] = \
-                tap_dump['host_namespace'].rstrip('\x00')
-            tap_dump['host_mac_addr'] = \
-                L2Util.bin_to_mac(tap_dump['host_mac_addr'])
-            tap_dump['host_ip4_addr'] = ip_address(tap_dump['host_ip4_addr'])
-            tap_dump['host_ip6_addr'] = ip_address(tap_dump['host_ip6_addr'])
+            tap_dump[u"host_mac_addr"] = L2Util.bin_to_mac(
+                tap_dump[u"host_mac_addr"]
+            )
+            tap_dump[u"host_ip4_addr"] = ip_address(tap_dump[u"host_ip4_addr"])
+            tap_dump[u"host_ip6_addr"] = ip_address(tap_dump[u"host_ip6_addr"])
+
             return tap_dump
 
-        cmd = 'sw_interface_tap_v2_dump'
-        err_msg = 'Failed to get TAP dump on host {host}'.format(
-            host=node['host'])
+        cmd = u"sw_interface_tap_v2_dump"
+        err_msg = f"Failed to get TAP dump on host {node[u'host']}"
+
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd).get_details(err_msg)
 
@@ -140,9 +137,9 @@ class Tap(object):
         for dump in details:
             if name is None:
                 data.append(process_tap_dump(dump))
-            elif dump.get('host_if_name').rstrip('\x00') == name:
+            elif dump.get(u"host_if_name") == name:
                 data = process_tap_dump(dump)
                 break
 
-        logger.debug('TAP data:\n{tap_data}'.format(tap_data=data))
+        logger.debug(f"TAP data:\n{data}")
         return data
