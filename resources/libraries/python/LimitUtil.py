@@ -15,7 +15,7 @@
 
 from resources.libraries.python.ssh import exec_cmd_no_error
 
-__all__ = ["LimitUtil"]
+__all__ = [u"LimitUtil"]
 
 
 class LimitUtil(object):
@@ -30,10 +30,8 @@ class LimitUtil(object):
         :type node: dict
         :type pid: int
         """
-        command = 'prlimit --noheadings --pid={pid}'.format(pid=pid)
-
-        message = 'Node {host} failed to run: {command}'.\
-            format(host=node['host'], command=command)
+        command = f"prlimit --noheadings --pid={pid}"
+        message = f"Node {node[u'host']} failed to run: {command}"
 
         exec_cmd_no_error(node, command, sudo=True, message=message)
 
@@ -50,11 +48,8 @@ class LimitUtil(object):
         :type resource: str
         :type limit: str
         """
-        command = 'prlimit --{resource}={limit} --pid={pid}'.format(
-            resource=resource, limit=limit, pid=pid)
-
-        message = 'Node {host} failed to run: {command}'.\
-            format(host=node['host'], command=command)
+        command = f"prlimit --{resource}={limit} --pid={pid}"
+        message = f"Node {node[u'host']} failed to run: {command}"
 
         exec_cmd_no_error(node, command, sudo=True, message=message)
 
