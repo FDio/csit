@@ -13,6 +13,7 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.VhostUser
 
 *** Keywords ***
 | Set interfaces in path up
