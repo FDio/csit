@@ -26,15 +26,16 @@ Logger.console() is not supported.
 import logging
 
 _LEVELS = {
-    "TRACE": logging.DEBUG // 2,
-    "DEBUG": logging.DEBUG,
-    "INFO": logging.INFO,
-    "HTML": logging.INFO,
-    "WARN": logging.WARN,
-    "ERROR": logging.ERROR,
-    "CRITICAL": logging.CRITICAL,
-    "NONE": logging.CRITICAL,
+    u"TRACE": logging.DEBUG // 2,
+    u"DEBUG": logging.DEBUG,
+    u"INFO": logging.INFO,
+    u"HTML": logging.INFO,
+    u"WARN": logging.WARN,
+    u"ERROR": logging.ERROR,
+    u"CRITICAL": logging.CRITICAL,
+    u"NONE": logging.CRITICAL,
 }
+
 
 class FilteredLogger(object):
     """Instances of this class have the similar API to robot.api.logger.
@@ -57,7 +58,7 @@ class FilteredLogger(object):
         self.logger_module = logger_module
         self.min_level_num = _LEVELS[min_level.upper()]
 
-    def write(self, message, farg=None, level="INFO"):
+    def write(self, message, farg=None, level=u"INFO"):
         """Forwards the message to logger if min_level is reached.
 
         Formatting using '%' operator is used when farg argument is suplied.
@@ -76,20 +77,20 @@ class FilteredLogger(object):
 
     def trace(self, message, farg=None):
         """Forward the message using the ``TRACE`` level."""
-        self.write(message, farg=farg, level="TRACE")
+        self.write(message, farg=farg, level=u"TRACE")
 
     def debug(self, message, farg=None):
         """Forward the message using the ``DEBUG`` level."""
-        self.write(message, farg=farg, level="DEBUG")
+        self.write(message, farg=farg, level=u"DEBUG")
 
     def info(self, message, farg=None):
         """Forward the message using the ``INFO`` level."""
-        self.write(message, farg=farg, level="INFO")
+        self.write(message, farg=farg, level=u"INFO")
 
     def warn(self, message, farg=None):
         """Forward the message using the ``WARN`` level."""
-        self.write(message, farg=farg, level="WARN")
+        self.write(message, farg=farg, level=u"WARN")
 
     def error(self, message, farg=None):
         """Forward the message using the ``ERROR`` level."""
-        self.write(message, farg=farg, level="ERROR")
+        self.write(message, farg=farg, level=u"ERROR")
