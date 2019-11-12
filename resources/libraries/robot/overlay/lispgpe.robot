@@ -25,7 +25,7 @@
 *** Keywords ***
 | Configure LISP GPE topology in 3-node circular topology
 | | [Documentation] | Configure LISP GPE topology in 3-node circular topology.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut1_node - DUT1 node. Type: dictionary
 | | ... | - dut1_if - DUT1 node interface. Type: string
@@ -38,23 +38,23 @@
 | | ... | - dut2_eid - DUT2 node eid address. Type: dictionary
 | | ... | - dut1_static_adjacency - DUT1 static adjacency. Type: dictionary
 | | ... | - dut2_static_adjacency - DUT2 static adjacency. Type: dictionary
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Configure LISP GPE topology in 3-node circular topology \| ${dut1_node} \| ${interface_name} \
 | | ... | \| None \| ${dut2_node} \| ${interface_name} \| None \
 | | ... | \| ${locator_set} \| ${dut1_eid} \| ${dut2_eid} \
 | | ... | \| ${dut1_static_adjacency} \| ${dut2_static_adjacency} \|
-| | ...
+| |
 | | [Arguments]
 | | ... | ${dut1_node} | ${dut1_if} | ${dut1_int_index}
 | | ... | ${dut2_node} | ${dut2_if} | ${dut2_int_index}
 | | ... | ${locator_set} | ${dut1_eid} | ${dut2_eid}
 | | ... | ${dut1_static_adjacency} | ${dut2_static_adjacency}
 | | ... | ${vni_table}=0 | ${vrf_table}=0
-| | ...
+| |
 # DUT1 settings:
 | | ${dut1_int_index}= | Run Keyword If | ${dut1_int_index} is None
 | | | ... | Get Interface Sw Index | ${dut1_node} | ${dut1_if}
@@ -89,7 +89,7 @@
 | | ... | ${dut1_static_adjacency['prefix']}
 | | ... | ${dut1_static_adjacency['seid']}
 | | ... | ${dut1_static_adjacency['prefix']}
-| | ...
+| |
 # DUT2 settings:
 | | ${dut2_int_index}= | Run Keyword If | ${dut2_int_index} is None
 | | | ... | Get Interface Sw Index | ${dut2_node} | ${dut2_if}

@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,7 +16,7 @@
 from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 
 
-class Namespaces(object):
+class Namespaces:
     """Linux namespace utilities."""
     def __init__(self):
         self._namespaces = []
@@ -29,7 +29,8 @@ class Namespaces(object):
         :type node: dict
         :type namespace_name: str
         """
-        cmd = ('ip netns add {0}'.format(namespace_name))
+        cmd = f"ip netns add {namespace_name}"
+
         exec_cmd_no_error(node, cmd, sudo=True)
         self._namespaces.append(namespace_name)
 
@@ -45,17 +46,19 @@ class Namespaces(object):
         :type interface: str
         :raises RuntimeError: Interface could not be attached.
         """
-        cmd = 'ip link set {0} netns {1}'.format(interface, namespace)
-        (ret_code, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
+        cmd = f"ip link set {interface} netns {namespace}"
+
+        ret_code, _, stderr = exec_cmd(node, cmd, timeout=5, sudo=True)
+        if ret_code != 0:
+            raise RuntimeError(f"Could not attach interface, reason:\n{stderr}")
+
+        cmd = f"ip netns exec {namespace} ip link set {interface} up"
+
+        ret_code, _, stderr = exec_cmd(node, cmd, timeout=5, sudo=True)
         if ret_code != 0:
             raise RuntimeError(
-                'Could not attach interface, reason:{}'.format(stderr))
-        cmd = 'ip netns exec {} ip link set {} up'.format(
-            namespace, interface)
-        (ret_code, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
-        if ret_code != 0:
-            raise RuntimeError(
-                'Could not set interface state, reason:{}'.format(stderr))
+                f"Could not set interface state, reason:\n{stderr}"
+            )
 
     @staticmethod
     def create_bridge_for_int_in_namespace(
@@ -71,14 +74,15 @@ class Namespaces(object):
         :type bridge_name: str
         :type interfaces: list
         """
-        cmd = 'ip netns exec {} brctl addbr {}'.format(namespace, bridge_name)
+        cmd = f"ip netns exec {namespace} brctl addbr {bridge_name}"
         exec_cmd_no_error(node, cmd, sudo=True)
+
         for interface in interfaces:
-            cmd = 'ip netns exec {} brctl addif {} {}'.format(
-                namespace, bridge_name, interface)
+            cmd = f"ip netns exec {namespace} brctl addif {bridge_name} " \
+                f"{interface}"
             exec_cmd_no_error(node, cmd, sudo=True)
-        cmd = 'ip netns exec {} ip link set dev {} up'.format(
-            namespace, bridge_name)
+
+        cmd = f"ip netns exec {namespace} ip link set dev {bridge_name} up"
         exec_cmd_no_error(node, cmd, sudo=True)
 
     def clean_up_namespaces(self, node):
@@ -89,8 +93,8 @@ class Namespaces(object):
         :raises RuntimeError: Namespaces could not be cleaned properly.
         """
         for namespace in self._namespaces:
-            print "Cleaning namespace {}".format(namespace)
-            cmd = 'ip netns delete {}'.format(namespace)
-            (ret_code, _, _) = exec_cmd(node, cmd, timeout=5, sudo=True)
+            print(f"Cleaning namespace {namespace}")
+            cmd = f"ip netns delete {namespace}"
+            ret_code, _, _ = exec_cmd(node, cmd, timeout=5, sudo=True)
             if ret_code != 0:
-                raise RuntimeError('Could not delete namespace')
+                raise RuntimeError(u"Could not delete namespace")

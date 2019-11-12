@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.NodePath
-| ...
+|
 | Documentation | IPv6 keywords
 
 *** Keywords ***
@@ -28,25 +28,25 @@
 | | ... | links. In case of 3-node topology setup IPv6 adresses with /64 prefix
 | | ... | on DUT1-DUT2 link and set routing on both DUT nodes with prefix /64
 | | ... | and next hop of neighbour DUT interface IPv4 address.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - remote_host1_ip - IP address of remote host1 (Optional).
 | | ... | Type: string
 | | ... | - remote_host2_ip - IP address of remote host2 (Optional).
 | | ... | Type: string
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Initialize IPv6 forwarding in circular topology \
 | | ... | \| 3ffe:5f::1 \| 3ffe:5f::2 \|
-| | ...
+| |
 | | [Arguments] | ${remote_host1_ip}=${NONE} | ${remote_host2_ip}=${NONE}
-| | ...
+| |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
-| | ...
+| |
 | | Set interfaces in path up
-| | ...
+| |
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
@@ -61,23 +61,23 @@
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
 | | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 2001:2::2 | ${tg_if2_mac}
-| | ...
+| |
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 2001:1::1 | 64
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address | ${dut1} | ${dut1_if2} | 2001:3::1 | 64
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address | ${dut2} | ${dut2_if1} | 2001:3::2 | 64
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 2001:2::1 | 64
-| | ...
+| |
 | | Vpp All Ra Suppress Link Layer | ${nodes}
-| | ...
+| |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=2001:3::2
 | | ... | interface=${dut1_if2}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 2001:1::0 | 64 | gateway=2001:3::1
 | | ... | interface=${dut2_if1}
-| | ...
+| |
 | | Run Keyword Unless | '${remote_host1_ip}' == '${NONE}'
 | | ... | Vpp Route Add | ${dut1} | ${remote_host1_ip} | 128
 | | ... | gateway=2001:1::2 | interface=${dut1_if1}
@@ -97,25 +97,25 @@
 | | [Documentation]
 | | ... | Custom setup of IPv6 topology with scalability of ip routes on all
 | | ... | DUT nodes in 2-node / 3-node circular topology
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - count - IP route count. Type: integer
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Initialize IPv6 forwarding with scaling in circular \
 | | ... | topology \| 100000 \|
-| | ...
+| |
 | | [Arguments] | ${count}
-| | ...
+| |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
-| | ...
+| |
 | | Set interfaces in path up
-| | ...
+| |
 | | ${prefix}= | Set Variable | 64
 | | ${host_prefix}= | Set Variable | 128
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 2001:3::1 | ${prefix}
@@ -162,22 +162,22 @@
 | | ... | DUT-TG links. Set routing on DUT nodes in all FIB tables with \
 | | ... | prefix /64 and next hop of neighbour IPv6 address. Setup neighbours \
 | | ... | on all VPP interfaces.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - nf_nodes - Number of guest VMs. Type: integer
-| | ...
+| |
 | | ... | *Note:*
 | | ... | Socket paths for VM are defined in following format:
 | | ... | - /var/run/vpp/sock-${VM_ID}-1
 | | ... | - /var/run/vpp/sock-${VM_ID}-2
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| IPv6 forwarding with Vhost-User initialized in a 2-node circular\
 | | ... | topology \| 1 \|
-| | ...
+| |
 | | [Arguments] | ${nf_nodes}=${1}
-| | ...
+| |
 | | Vpp All Ra Suppress Link Layer | ${nodes}
 | | Set interfaces in path up
 | | ${prefix}= | Set Variable | 64
@@ -199,7 +199,7 @@
 | | ... | interface=${dut1_if1} | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut1} | 2001:2::0 | 64 | gateway=2001:200::2
 | | ... | interface=${dut1_if2} | vrf=${fib_table_2}
-| | :FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
+| | FOR | ${number} | IN RANGE | 1 | ${nf_nodes}+1
 | | | ${fib_table_1}= | Evaluate | ${100}+${number}
 | | | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
 | | | Configure vhost interfaces | ${dut1}
@@ -221,6 +221,7 @@
 | | | ... | interface=${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
 | | | Vpp Route Add | ${dut1} | 2001:1::0 | 64 | gateway=1:2::1
 | | | ... | interface=${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
+| | END
 
 | Initialize IPv6 forwarding with VLAN dot1q sub-interfaces in circular topology
 | | [Documentation]
@@ -233,7 +234,7 @@
 | | ... | with /64 prefix on VLAN and set routing on both DUT nodes with prefix
 | | ... | /64. Set next hop of neighbour DUT interface IPv6 address. All
 | | ... | interfaces are brought up.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - tg_if1_net - TG interface 1 IPv6 subnet used by traffic generator.
 | | ... | Type: integer
@@ -241,25 +242,25 @@
 | | ... | Type: integer
 | | ... | - subid - ID of the sub-interface to be created. Type: string
 | | ... | - tag_rewrite - Method of tag rewrite. Type: string
-| | ...
+| |
 | | ... | _NOTE:_ This KW uses following test case variables:
 | | ... | - dut1 - DUT1 node.
 | | ... | - dut2 - DUT2 node.
 | | ... | - dut1_if2 - DUT1 interface towards DUT2.
 | | ... | - dut2_if1 - DUT2 interface towards DUT1.
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Initialize IPv6 forwarding with VLAN dot1q sub-interfaces\
 | | ... | in circular topology \| 2001:1::0 \| 2001:2::0 \| 10 \| pop-1 \|
-| | ...
+| |
 | | [Arguments] | ${tg_if1_net} | ${tg_if2_net} | ${subid} | ${tag_rewrite}
-| | ...
+| |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
-| | ...
+| |
 | | Set interfaces in path up
-| | ...
+| |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Initialize VLAN dot1q sub-interfaces in circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
@@ -270,7 +271,7 @@
 | | ... | ${subif_index_1} | ${dut2} | ${subif_index_2} | ${tag_rewrite}
 | | ... | ELSE | Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | TAG_REWRITE_METHOD=${tag_rewrite}
-| | ...
+| |
 | | ${prefix}= | Set Variable | 64
 | | ${host_prefix}= | Set Variable | 64
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 2002:1::1 | ${tg_if1_mac}

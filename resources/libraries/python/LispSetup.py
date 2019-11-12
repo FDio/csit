@@ -15,15 +15,13 @@
 
 from ipaddress import ip_address
 
-from resources.libraries.python.topology import NodeType
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.L2Util import L2Util
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.topology import NodeType
 
-class LispStatus(object):
+
+class LispStatus:
     """Class for lisp API."""
-
-    def __init__(self):
-        pass
 
     @staticmethod
     def vpp_lisp_enable_disable(node, state):
@@ -34,25 +32,21 @@ class LispStatus(object):
         :type node: dict
         :type state: str
         """
+        args = dict(is_en=0 if state == u"disable" else 1)
 
-        args = dict(is_en=0 if state == 'disable' else 1)
-
-        cmd = 'lisp_enable_disable'
-        err_msg = "Failed to set LISP status on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_enable_disable"
+        err_msg = f"Failed to set LISP status on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispRemoteMapping(object):
+class LispRemoteMapping:
     """Class for lisp remote mapping API."""
 
-    def __init__(self):
-        pass
-
     @staticmethod
-    def vpp_add_lisp_remote_mapping(node, vni, deid, deid_prefix, seid,
-                                    seid_prefix, rloc, is_mac=False):
+    def vpp_add_lisp_remote_mapping(
+            node, vni, deid, deid_prefix, seid, seid_prefix, rloc,
+            is_mac=False):
         """Add lisp remote mapping on the VPP node in topology.
 
         :param node: VPP node.
@@ -72,11 +66,10 @@ class LispRemoteMapping(object):
         :type rloc: str
         :type is_mac: bool
         """
-
         if not is_mac:
-            eid_type = 0 if ip_address(unicode(deid)).version == 4 else 1
-            eid_packed = ip_address(unicode(deid)).packed
-            seid_packed = ip_address(unicode(seid)).packed
+            eid_type = 0 if ip_address(deid).version == 4 else 1
+            eid_packed = ip_address(deid).packed
+            seid_packed = ip_address(seid).packed
             eid_len = deid_prefix
             seid_len = seid_prefix
         else:
@@ -86,30 +79,35 @@ class LispRemoteMapping(object):
             eid_len = 0
             seid_len = 0
 
-        rlocs = [dict(is_ip4=1 if ip_address(unicode(rloc)).version == 4 else 0,
-                      addr=ip_address(unicode(rloc)).packed)]
+        rlocs = [
+            dict(
+                is_ip4=1 if ip_address(rloc).version == 4 else 0,
+                addr=ip_address(rloc).packed
+            )
+        ]
 
-        args = dict(is_add=1,
-                    is_src_dst=1,
-                    vni=int(vni),
-                    eid_type=eid_type,
-                    eid=eid_packed,
-                    eid_len=eid_len,
-                    seid=seid_packed,
-                    seid_len=seid_len,
-                    rloc_num=1,
-                    rlocs=rlocs)
+        args = dict(
+            is_add=1,
+            is_src_dst=1,
+            vni=int(vni),
+            eid_type=eid_type,
+            eid=eid_packed,
+            eid_len=eid_len,
+            seid=seid_packed,
+            seid_len=seid_len,
+            rloc_num=1,
+            rlocs=rlocs
+        )
 
-        cmd = 'lisp_add_del_remote_mapping'
-        err_msg = "Failed to add remote mapping on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_remote_mapping"
+        err_msg = f"Failed to add remote mapping on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_del_lisp_remote_mapping(node, vni, deid, deid_prefix, seid,
-                                    seid_prefix, rloc):
+    def vpp_del_lisp_remote_mapping(
+            node, vni, deid, deid_prefix, seid, seid_prefix, rloc):
         """Delete lisp remote mapping on the VPP node in topology.
 
         :param node: VPP node.
@@ -127,14 +125,13 @@ class LispRemoteMapping(object):
         :type seid_prefix: int
         :type rloc: str
         """
-
         # used only with IPs
         is_mac = False
 
         if not is_mac:
-            eid_type = 0 if ip_address(unicode(deid)).version == 4 else 1
-            eid_packed = ip_address(unicode(deid)).packed
-            seid_packed = ip_address(unicode(seid)).packed
+            eid_type = 0 if ip_address(deid).version == 4 else 1
+            eid_packed = ip_address(deid).packed
+            seid_packed = ip_address(seid).packed
             eid_len = deid_prefix
             seid_len = seid_prefix
         else:
@@ -144,36 +141,38 @@ class LispRemoteMapping(object):
             eid_len = 0
             seid_len = 0
 
-        rlocs = [dict(is_ip4=1 if ip_address(unicode(rloc)).version == 4 else 0,
-                      addr=ip_address(unicode(rloc)).packed)]
+        rlocs = [
+            dict(
+                is_ip4=1 if ip_address(str(rloc)).version == 4 else 0,
+                addr=ip_address(str(rloc)).packed
+            )
+        ]
 
-        args = dict(is_add=0,
-                    is_src_dst=1,
-                    vni=int(vni),
-                    eid_type=eid_type,
-                    eid=eid_packed,
-                    eid_len=eid_len,
-                    seid=seid_packed,
-                    seid_len=seid_len,
-                    rloc_num=1,
-                    rlocs=rlocs)
+        args = dict(
+            is_add=0,
+            is_src_dst=1,
+            vni=int(vni),
+            eid_type=eid_type,
+            eid=eid_packed,
+            eid_len=eid_len,
+            seid=seid_packed,
+            seid_len=seid_len,
+            rloc_num=1,
+            rlocs=rlocs
+        )
 
-        cmd = 'lisp_add_del_remote_mapping'
-        err_msg = "Failed to delete remote mapping on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_remote_mapping"
+        err_msg = f"Failed to delete remote mapping on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispAdjacency(object):
+class LispAdjacency:
     """Class for lisp adjacency API."""
 
-    def __init__(self):
-        pass
-
     @staticmethod
-    def vpp_add_lisp_adjacency(node, vni, deid, deid_prefix, seid,
-                               seid_prefix, is_mac=False):
+    def vpp_add_lisp_adjacency(
+            node, vni, deid, deid_prefix, seid, seid_prefix, is_mac=False):
         """Add lisp adjacency on the VPP node in topology.
 
         :param node: VPP node.
@@ -191,11 +190,10 @@ class LispAdjacency(object):
         :type seid_prefix: int
         :type is_mac: bool
         """
-
         if not is_mac:
-            eid_type = 0 if ip_address(unicode(deid)).version == 4 else 1
-            reid = ip_address(unicode(deid)).packed
-            leid = ip_address(unicode(seid)).packed
+            eid_type = 0 if ip_address(deid).version == 4 else 1
+            reid = ip_address(deid).packed
+            leid = ip_address(seid).packed
             reid_len = deid_prefix
             leid_len = seid_prefix
         else:
@@ -205,24 +203,25 @@ class LispAdjacency(object):
             reid_len = 0
             leid_len = 0
 
-        args = dict(is_add=1,
-                    vni=int(vni),
-                    eid_type=eid_type,
-                    reid=reid,
-                    reid_len=reid_len,
-                    leid=leid,
-                    leid_len=leid_len)
+        args = dict(
+            is_add=1,
+            vni=int(vni),
+            eid_type=eid_type,
+            reid=reid,
+            reid_len=reid_len,
+            leid=leid,
+            leid_len=leid_len
+        )
 
-        cmd = 'lisp_add_del_adjacency'
-        err_msg = "Failed to add lisp adjacency on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_adjacency"
+        err_msg = f"Failed to add lisp adjacency on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_del_lisp_adjacency(node, vni, deid, deid_prefix, seid,
-                               seid_prefix):
+    def vpp_del_lisp_adjacency(
+            node, vni, deid, deid_prefix, seid, seid_prefix):
         """Delete lisp adjacency on the VPP node in topology.
 
         :param node: VPP node.
@@ -238,14 +237,13 @@ class LispAdjacency(object):
         :type seid: str
         :type seid_prefix: int
         """
-
         # used only with IPs
         is_mac = False
 
         if not is_mac:
-            eid_type = 0 if ip_address(unicode(deid)).version == 4 else 1
-            reid = ip_address(unicode(deid)).packed
-            leid = ip_address(unicode(seid)).packed
+            eid_type = 0 if ip_address(deid).version == 4 else 1
+            reid = ip_address(deid).packed
+            leid = ip_address(seid).packed
             reid_len = deid_prefix
             leid_len = seid_prefix
         else:
@@ -255,26 +253,24 @@ class LispAdjacency(object):
             reid_len = 0
             leid_len = 0
 
-        args = dict(is_add=0,
-                    vni=int(vni),
-                    eid_type=eid_type,
-                    reid=reid,
-                    reid_len=reid_len,
-                    leid=leid,
-                    leid_len=leid_len)
+        args = dict(
+            is_add=0,
+            vni=int(vni),
+            eid_type=eid_type,
+            reid=reid,
+            reid_len=reid_len,
+            leid=leid,
+            leid_len=leid_len
+        )
 
-        cmd = 'lisp_add_del_adjacency'
-        err_msg = "Failed to delete lisp adjacency on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_adjacency"
+        err_msg = f"Failed to delete lisp adjacency on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispGpeStatus(object):
+class LispGpeStatus:
     """Clas for LISP GPE status manipulation."""
-
-    def __init__(self):
-        pass
 
     @staticmethod
     def vpp_lisp_gpe_enable_disable(node, state):
@@ -285,44 +281,34 @@ class LispGpeStatus(object):
         :type node: dict
         :type state: str
         """
+        args = dict(is_en=0 if state == u"disable" else 1)
 
-        args = dict(is_en=0 if state == 'disable' else 1)
-
-        cmd = 'gpe_enable_disable'
-        err_msg = "Failed to set LISP GPE status on host {host}".format(
-            host=node['host'])
+        cmd = u"gpe_enable_disable"
+        err_msg = f"Failed to set LISP GPE status on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispGpeForwardEntry(object):
+class LispGpeForwardEntry:
     """The functionality needed for these methods is not implemented in VPP
     (VAT). Bug https://jira.fd.io/browse/VPP-334 was open to cover this issue.
 
     TODO: Implement when VPP-334 is fixed.
     """
 
-    def __init__(self):
-        pass
-
     @staticmethod
     def add_lisp_gpe_forward_entry(node, *args):
         """Not implemented"""
         # TODO: Implement when VPP-334 is fixed.
-        pass
 
     @staticmethod
     def del_lisp_gpe_forward_entry(node, *args):
         """Not implemented"""
         # TODO: Implement when VPP-334 is fixed.
-        pass
 
 
-class LispMapResolver(object):
+class LispMapResolver:
     """Class for Lisp map resolver API."""
-
-    def __init__(self):
-        pass
 
     @staticmethod
     def vpp_add_map_resolver(node, map_resolver_ip):
@@ -333,15 +319,14 @@ class LispMapResolver(object):
         :type node: dict
         :type map_resolver_ip: str
         """
+        args = dict(
+            is_add=1,
+            is_ipv6=0 if ip_address(map_resolver_ip).version == 4 else 1,
+            ip_address=ip_address(map_resolver_ip).packed
+        )
 
-        args = dict(is_add=1,
-                    is_ipv6=0 if ip_address(unicode(map_resolver_ip)).version \
-                                 == 4 else 1,
-                    ip_address=ip_address(unicode(map_resolver_ip)).packed)
-
-        cmd = 'lisp_add_del_map_resolver'
-        err_msg = "Failed to add map resolver on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_map_resolver"
+        err_msg = f"Failed to add map resolver on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -355,28 +340,24 @@ class LispMapResolver(object):
         :type node: dict
         :type map_resolver_ip: str
         """
+        args = dict(
+            is_add=0,
+            is_ipv6=0 if ip_address(map_resolver_ip).version == 4 else 1,
+            ip_address=ip_address(map_resolver_ip).packed
+        )
 
-        args = dict(is_add=0,
-                    is_ipv6=0 if ip_address(unicode(map_resolver_ip)).version \
-                                 == 4 else 1,
-                    ip_address=ip_address(unicode(map_resolver_ip)).packed)
-
-        cmd = 'lisp_add_del_map_resolver'
-        err_msg = "Failed to delete map resolver on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_map_resolver"
+        err_msg = f"Failed to delete map resolver on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispLocalEid(object):
+class LispLocalEid:
     """Class for Lisp local eid API."""
 
-    def __init__(self):
-        pass
-
     @staticmethod
-    def vpp_add_lisp_local_eid(node, locator_set_name, vni, eid,
-                               prefix_len=None):
+    def vpp_add_lisp_local_eid(
+            node, locator_set_name, vni, eid, prefix_len=None):
         """Set lisp eid address on the VPP node in topology.
 
         :param node: VPP node.
@@ -390,31 +371,31 @@ class LispLocalEid(object):
         :type eid: str
         :type prefix_len: int
         """
-
         if prefix_len:
-            eid_type = 0 if ip_address(unicode(eid)).version == 4 else 1
-            eid_packed = ip_address(unicode(eid)).packed
+            eid_type = 0 if ip_address(eid).version == 4 else 1
+            eid_packed = ip_address(eid).packed
         else:
             eid_type = 2
             eid_packed = L2Util.mac_to_bin(eid)
 
-        args = dict(is_add=1,
-                    eid_type=eid_type,
-                    eid=eid_packed,
-                    prefix_len=prefix_len,
-                    locator_set_name=locator_set_name,
-                    vni=int(vni))
+        args = dict(
+            is_add=1,
+            eid_type=eid_type,
+            eid=eid_packed,
+            prefix_len=prefix_len,
+            locator_set_name=locator_set_name,
+            vni=int(vni)
+        )
 
-        cmd = 'lisp_add_del_local_eid'
-        err_msg = "Failed to add local eid on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_local_eid"
+        err_msg = f"Failed to add local eid on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
     @staticmethod
-    def vpp_del_lisp_local_eid(node, locator_set_name, vni, eid,
-                               prefix_len=None):
+    def vpp_del_lisp_local_eid(
+            node, locator_set_name, vni, eid, prefix_len=None):
         """Set lisp eid addres on the VPP node in topology.
 
         :param node: VPP node.
@@ -428,33 +409,30 @@ class LispLocalEid(object):
         :type eid: str
         :type prefix_len: int
         """
-
         if prefix_len:
-            eid_type = 0 if ip_address(unicode(eid)).version == 4 else 1
-            eid_packed = ip_address(unicode(eid)).packed
+            eid_type = 0 if ip_address(eid).version == 4 else 1
+            eid_packed = ip_address(eid).packed
         else:
             eid_type = 2
             eid_packed = L2Util.mac_to_bin(eid)
 
-        args = dict(is_add=0,
-                    eid_type=eid_type,
-                    eid=eid_packed,
-                    prefix_len=prefix_len,
-                    locator_set_name=locator_set_name,
-                    vni=int(vni))
+        args = dict(
+            is_add=0,
+            eid_type=eid_type,
+            eid=eid_packed,
+            prefix_len=prefix_len,
+            locator_set_name=locator_set_name,
+            vni=int(vni)
+        )
 
-        cmd = 'lisp_add_del_local_eid'
-        err_msg = "Failed to delete local eid on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_local_eid"
+        err_msg = f"Failed to delete local eid on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispLocator(object):
+class LispLocator:
     """Class for the Lisp Locator API."""
-
-    def __init__(self):
-        pass
 
     @staticmethod
     def vpp_add_lisp_locator(node, locator_name, sw_if_index, priority, weight):
@@ -472,15 +450,16 @@ class LispLocator(object):
         :type weight: int
         """
 
-        args = dict(is_add=1,
-                    locator_set_name=locator_name,
-                    sw_if_index=sw_if_index,
-                    priority=priority,
-                    weight=weight)
+        args = dict(
+            is_add=1,
+            locator_set_name=locator_name,
+            sw_if_index=sw_if_index,
+            priority=priority,
+            weight=weight
+        )
 
-        cmd = 'lisp_add_del_locator'
-        err_msg = "Failed to add locator on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_locator"
+        err_msg = f"Failed to add locator on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -500,25 +479,22 @@ class LispLocator(object):
         :type priority: int
         :type weight: int
         """
+        args = dict(
+            is_add=0,
+            locator_set_name=locator_name,
+            sw_if_index=sw_if_index,
+            priority=priority,
+            weight=weight
+        )
 
-        args = dict(is_add=0,
-                    locator_set_name=locator_name,
-                    sw_if_index=sw_if_index,
-                    priority=priority,
-                    weight=weight)
-
-        cmd = 'lisp_add_del_locator'
-        err_msg = "Failed to delete locator on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_locator"
+        err_msg = f"Failed to delete locator on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispLocatorSet(object):
+class LispLocatorSet:
     """Class for Lisp Locator Set API."""
-
-    def __init__(self):
-        pass
 
     @staticmethod
     def vpp_add_lisp_locator_set(node, name):
@@ -529,15 +505,15 @@ class LispLocatorSet(object):
         :type node: dict
         :type name: str
         """
+        args = dict(
+            is_add=1,
+            locator_set_name=name,
+            locator_num=0,
+            locators=[]
+        )
 
-        args = dict(is_add=1,
-                    locator_set_name=name,
-                    locator_num=0,
-                    locators=[])
-
-        cmd = 'lisp_add_del_locator_set'
-        err_msg = "Failed to add locator set on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_locator_set"
+        err_msg = f"Failed to add locator set on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -551,24 +527,21 @@ class LispLocatorSet(object):
         :type node: dict
         :type name: str
         """
+        args = dict(
+            is_add=0,
+            locator_set_name=name,
+            locator_num=0,
+            locators=[]
+        )
 
-        args = dict(is_add=0,
-                    locator_set_name=name,
-                    locator_num=0,
-                    locators=[])
-
-        cmd = 'lisp_add_del_locator_set'
-        err_msg = "Failed to delete locator set on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_add_del_locator_set"
+        err_msg = f"Failed to delete locator set on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispSetup(object):
+class LispSetup:
     """Lisp setup in topology."""
-
-    def __init__(self):
-        pass
 
     @staticmethod
     def vpp_set_lisp_locator_set(node, locator_set_list):
@@ -580,25 +553,22 @@ class LispSetup(object):
         :type locator_set_list: list
         """
 
-        if node['type'] != NodeType.DUT:
-            raise ValueError('Node is not DUT')
+        if node[u"type"] != NodeType.DUT:
+            raise ValueError(u"Node is not DUT")
 
         lisp_locator = LispLocator()
         lisp_locator_set = LispLocatorSet()
         for locator_set in locator_set_list:
-            locator_set_name = locator_set.get('locator-set')
-            locator_list = locator_set.get('locator')
-            lisp_locator_set.vpp_add_lisp_locator_set(node,
-                                                      locator_set_name)
+            locator_set_name = locator_set.get(u"locator-set")
+            locator_list = locator_set.get(u"locator")
+            lisp_locator_set.vpp_add_lisp_locator_set(node, locator_set_name)
             for locator in locator_list:
-                sw_if_index = locator.get('locator-index')
-                priority = locator.get('priority')
-                weight = locator.get('weight')
-                lisp_locator.vpp_add_lisp_locator(node,
-                                                  locator_set_name,
-                                                  sw_if_index,
-                                                  priority,
-                                                  weight)
+                sw_if_index = locator.get(u"locator-index")
+                priority = locator.get(u"priority")
+                weight = locator.get(u"weight")
+                lisp_locator.vpp_add_lisp_locator(
+                    node, locator_set_name, sw_if_index, priority, weight
+                )
 
     @staticmethod
     def vpp_unset_lisp_locator_set(node, locator_set_list):
@@ -609,27 +579,23 @@ class LispSetup(object):
         :type node: dict
         :type locator_set_list: list
         """
-
-        if node['type'] != NodeType.DUT:
-            raise ValueError('Lisp locator set, node is not DUT')
+        if node[u"type"] != NodeType.DUT:
+            raise ValueError(u"Lisp locator set, node is not DUT")
 
         lisp_locator = LispLocator()
         lisp_locator_set = LispLocatorSet()
         for locator_set in locator_set_list:
-            locator_set_name = locator_set.get('locator-set')
-            locator_list = locator_set.get('locator')
+            locator_set_name = locator_set.get(u"locator-set")
+            locator_list = locator_set.get(u"locator")
             for locator in locator_list:
-                sw_if_index = locator.get('locator-index')
-                priority = locator.get('priority')
-                weight = locator.get('weight')
-                lisp_locator.vpp_del_lisp_locator(node,
-                                                  locator_set_name,
-                                                  sw_if_index,
-                                                  priority,
-                                                  weight)
+                sw_if_index = locator.get(u"locator-index")
+                priority = locator.get(u"priority")
+                weight = locator.get(u"weight")
+                lisp_locator.vpp_del_lisp_locator(
+                    node, locator_set_name, sw_if_index, priority, weight
+                )
 
-            lisp_locator_set.vpp_del_lisp_locator_set(node,
-                                                      locator_set_name)
+            lisp_locator_set.vpp_del_lisp_locator_set(node, locator_set_name)
 
     @staticmethod
     def vpp_set_lisp_eid_table(node, eid_table):
@@ -640,23 +606,20 @@ class LispSetup(object):
         :type node: dict
         :type eid_table: dict
         """
-
-        if node['type'] != NodeType.DUT:
-            raise ValueError('Node is not DUT')
+        if node[u"type"] != NodeType.DUT:
+            raise ValueError(u"Node is not DUT")
 
         lisp_locator_set = LispLocatorSet()
         lisp_eid = LispLocalEid()
         for eid in eid_table:
-            vni = eid.get('vni')
-            eid_address = eid.get('eid')
-            eid_prefix_len = eid.get('eid-prefix-len')
-            locator_set_name = eid.get('locator-set')
+            vni = eid.get(u"vni")
+            eid_address = eid.get(u"eid")
+            eid_prefix_len = eid.get(u"eid-prefix-len")
+            locator_set_name = eid.get(u"locator-set")
             lisp_locator_set.vpp_add_lisp_locator_set(node, locator_set_name)
-            lisp_eid.vpp_add_lisp_local_eid(node,
-                                            locator_set_name,
-                                            vni,
-                                            eid_address,
-                                            eid_prefix_len)
+            lisp_eid.vpp_add_lisp_local_eid(
+                node, locator_set_name, vni, eid_address, eid_prefix_len
+            )
 
     @staticmethod
     def vpp_unset_lisp_eid_table(node, eid_table):
@@ -667,26 +630,23 @@ class LispSetup(object):
         :type node: dict
         :type eid_table: dict
         """
-
-        if node['type'] != NodeType.DUT:
-            raise ValueError('Node is not DUT')
+        if node[u"type"] != NodeType.DUT:
+            raise ValueError(u"Node is not DUT")
 
         locator_set_list = []
         lisp_locator_set = LispLocatorSet()
         lisp_eid = LispLocalEid()
         for eid in eid_table:
-            vni = eid.get('vni')
-            eid_address = eid.get('eid')
-            eid_prefix_len = eid.get('eid-prefix-len')
-            locator_set_name = eid.get('locator-set')
+            vni = eid.get(u"vni")
+            eid_address = eid.get(u"eid")
+            eid_prefix_len = eid.get(u"eid-prefix-len")
+            locator_set_name = eid.get(u"locator-set")
             if locator_set_name not in locator_set_list:
                 locator_set_list.append(locator_set_name)
 
-            lisp_eid.vpp_del_lisp_local_eid(node,
-                                            locator_set_name,
-                                            vni,
-                                            eid_address,
-                                            eid_prefix_len)
+            lisp_eid.vpp_del_lisp_local_eid(
+                node, locator_set_name, vni, eid_address, eid_prefix_len
+            )
 
         for locator_set_name in locator_set_list:
             lisp_locator_set.vpp_del_lisp_locator_set(node, locator_set_name)
@@ -700,10 +660,9 @@ class LispSetup(object):
         :type node: dict
         :type map_resolver: dict
         """
-
         lisp_map_res = LispMapResolver()
         for map_ip in map_resolver:
-            lisp_map_res.vpp_add_map_resolver(node, map_ip.get('map resolver'))
+            lisp_map_res.vpp_add_map_resolver(node, map_ip.get(u"map resolver"))
 
     @staticmethod
     def vpp_unset_lisp_map_resolver(node, map_resolver):
@@ -714,12 +673,11 @@ class LispSetup(object):
         :type node: dict
         :type map_resolver: dict
         """
-
         lisp_map_res = LispMapResolver()
         for map_ip in map_resolver:
-            lisp_map_res.vpp_del_map_resolver(node, map_ip.get('map resolver'))
+            lisp_map_res.vpp_del_map_resolver(node, map_ip.get(u"map resolver"))
 
-class LispEidTableMap(object):
+class LispEidTableMap:
     """
     Class for EID table map.
     """
@@ -738,7 +696,6 @@ class LispEidTableMap(object):
         :type bd_id: int
         :type vrf: int
         """
-
         # adding default mapping vni=0, vrf=0 needs to be skipped
         skip = False
 
@@ -752,14 +709,15 @@ class LispEidTableMap(object):
             if (int(vrf) == 0) and (int(vni) == 0):
                 skip = True
 
-        args = dict(is_add=1,
-                    vni=int(vni),
-                    dp_table=int(dp_table),
-                    is_l2=is_l2)
+        args = dict(
+            is_add=1,
+            vni=int(vni),
+            dp_table=int(dp_table),
+            is_l2=is_l2
+        )
 
-        cmd = 'lisp_eid_table_add_del_map'
-        err_msg = "Failed to add eid table map on host {host}".format(
-            host=node['host'])
+        cmd = u"lisp_eid_table_add_del_map"
+        err_msg = f"Failed to add eid table map on host {node[u'host']}"
 
         if not skip:
             with PapiSocketExecutor(node) as papi_exec:
