@@ -14,13 +14,16 @@
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
+|
 | Library | resources.libraries.python.SetupFramework
 | Library | resources.libraries.python.SetupFramework.CleanupFramework
+|
 | Suite Setup | Run Keywords | Setup Functional Global Variables
 | ... | AND | Setup Framework | ${nodes}
 | ... | AND | Install Vpp On All Duts | ${nodes} | ${VPP_PKG_DIR}
 | ... | AND | Verify Vpp On All Duts | ${nodes}
 | ... | AND | Update All Interface Data On All Nodes | ${nodes}
+|
 | Suite Teardown | Cleanup Framework | ${nodes}
 
 *** Keywords ***
@@ -30,5 +33,5 @@
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
 | | ... | - vpp_pkg_dir - Path to directory where VPP packages are stored.
-| | ...
+| |
 | | Set Global Variable | ${VPP_PKG_DIR} | /scratch/vpp/
