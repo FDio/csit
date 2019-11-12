@@ -957,7 +957,7 @@ function select_vpp_device_tags () {
                 # If nothing is specified, we will run pre-selected tests by
                 # following tags. Items of array will be concatenated by OR
                 # in Robot Framework.
-                test_tag_array=()
+                test_tag_array=(u"TEST")
             else
                 # If trigger contains tags, split them into array.
                 test_tag_array=(${TEST_TAG_STRING//:/ })
