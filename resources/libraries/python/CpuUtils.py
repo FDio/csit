@@ -71,17 +71,17 @@ class CpuUtils(object):
         :param nodes: DICT__nodes from Topology.DICT__nodes.
         :type nodes: dict
         :raises RuntimeError: If an ssh command retrieving cpu information
-                              fails.
+            fails.
         """
         for node in nodes.values():
-            stdout, _ = exec_cmd_no_error(node, 'uname -m')
-            node['arch'] = stdout.strip()
-            stdout, _ = exec_cmd_no_error(node, 'lscpu -p')
-            node['cpuinfo'] = list()
-            for line in stdout.split("\n"):
-                if line and line[0] != "#":
-                    node['cpuinfo'].append([CpuUtils.__str2int(x) for x in
-                                            line.split(",")])
+            stdout, _ = exec_cmd_no_error(node, u"uname -m")
+            node[u"arch"] = stdout.strip()
+            stdout, _ = exec_cmd_no_error(node, u"lscpu -p")
+            node[u"cpuinfo"] = list()
+            for line in stdout.split(u"\n"):
+                if line and line[0] != u"#":
+                    node[u"cpuinfo"].append([CpuUtils.__str2int(x) for x in
+                                            line.split(u",")])
 
     @staticmethod
     def cpu_node_count(node):
@@ -93,11 +93,11 @@ class CpuUtils(object):
         :rtype: int
         :raises RuntimeError: If node cpuinfo is not available.
         """
-        cpu_info = node.get("cpuinfo")
+        cpu_info = node.get(u"cpuinfo")
         if cpu_info is not None:
-            return node["cpuinfo"][-1][3] + 1
+            return node[u"cpuinfo"][-1][3] + 1
         else:
-            raise RuntimeError("Node cpuinfo not available.")
+            raise RuntimeError(u"Node cpuinfo not available.")
 
     @staticmethod
     def cpu_list_per_node(node, cpu_node, smt_used=False):
@@ -115,13 +115,13 @@ class CpuUtils(object):
             or if SMT is not enabled.
         """
         cpu_node = int(cpu_node)
-        cpu_info = node.get("cpuinfo")
+        cpu_info = node.get(u"cpuinfo")
         if cpu_info is None:
-            raise RuntimeError("Node cpuinfo not available.")
+            raise RuntimeError(u"Node cpuinfo not available.")
 
         smt_enabled = CpuUtils.is_smt_enabled(cpu_info)
         if not smt_enabled and smt_used:
-            raise RuntimeError("SMT is not enabled.")
+            raise RuntimeError(u"SMT is not enabled.")
 
         cpu_list = []
         for cpu in cpu_info:
@@ -138,8 +138,8 @@ class CpuUtils(object):
         return cpu_list
 
     @staticmethod
-    def cpu_slice_of_list_per_node(node, cpu_node, skip_cnt=0, cpu_cnt=0,
-                                   smt_used=False):
+    def cpu_slice_of_list_per_node(
+            node, cpu_node, skip_cnt=0, cpu_cnt=0, smt_used=False):
         """Return string of node related list of CPU numbers.
 
         :param node: Node dictionary with cpuinfo.
@@ -160,7 +160,7 @@ class CpuUtils(object):
 
         cpu_list_len = len(cpu_list)
         if cpu_cnt + skip_cnt > cpu_list_len:
-            raise RuntimeError("cpu_cnt + skip_cnt > length(cpu list).")
+            raise RuntimeError(u"cpu_cnt + skip_cnt > length(cpu list).")
 
         if cpu_cnt == 0:
             cpu_cnt = cpu_list_len - skip_cnt
@@ -178,8 +178,8 @@ class CpuUtils(object):
         return cpu_list
 
     @staticmethod
-    def cpu_list_per_node_str(node, cpu_node, skip_cnt=0, cpu_cnt=0, sep=",",
-                              smt_used=False):
+    def cpu_list_per_node_str(
+            node, cpu_node, skip_cnt=0, cpu_cnt=0, sep=u",", smt_used=False):
         """Return string of node related list of CPU numbers.
 
         :param node: Node dictionary with cpuinfo.
@@ -197,15 +197,15 @@ class CpuUtils(object):
         :returns: Cpu numbers related to numa from argument.
         :rtype: str
         """
-        cpu_list = CpuUtils.cpu_slice_of_list_per_node(node, cpu_node,
-                                                       skip_cnt=skip_cnt,
-                                                       cpu_cnt=cpu_cnt,
-                                                       smt_used=smt_used)
+        cpu_list = CpuUtils.cpu_slice_of_list_per_node(
+            node, cpu_node, skip_cnt=skip_cnt, cpu_cnt=cpu_cnt,
+            smt_used=smt_used
+        )
         return sep.join(str(cpu) for cpu in cpu_list)
 
     @staticmethod
-    def cpu_range_per_node_str(node, cpu_node, skip_cnt=0, cpu_cnt=0, sep="-",
-                               smt_used=False):
+    def cpu_range_per_node_str(
+            node, cpu_node, skip_cnt=0, cpu_cnt=0, sep=u"-", smt_used=False):
         """Return string of node related range of CPU numbers, e.g. 0-4.
 
         :param node: Node dictionary with cpuinfo.
@@ -223,27 +223,25 @@ class CpuUtils(object):
         :returns: String of node related range of CPU numbers.
         :rtype: str
         """
-        cpu_list = CpuUtils.cpu_slice_of_list_per_node(node, cpu_node,
-                                                       skip_cnt=skip_cnt,
-                                                       cpu_cnt=cpu_cnt,
-                                                       smt_used=smt_used)
+        cpu_list = CpuUtils.cpu_slice_of_list_per_node(
+            node, cpu_node, skip_cnt=skip_cnt, cpu_cnt=cpu_cnt,
+            smt_used=smt_used
+        )
         if smt_used:
             cpu_list_len = len(cpu_list)
             cpu_list_0 = cpu_list[:cpu_list_len / CpuUtils.NR_OF_THREADS]
             cpu_list_1 = cpu_list[cpu_list_len / CpuUtils.NR_OF_THREADS:]
-            cpu_range = "{}{}{},{}{}{}".format(cpu_list_0[0], sep,
-                                               cpu_list_0[-1],
-                                               cpu_list_1[0], sep,
-                                               cpu_list_1[-1])
+            cpu_range = f"{cpu_list_0[0]}{sep}{cpu_list_0[-1]}," \
+                f"{cpu_list_1[0]}{sep}{cpu_list_1[-1]}"
         else:
-            cpu_range = "{}{}{}".format(cpu_list[0], sep, cpu_list[-1])
+            cpu_range = f"{cpu_list[0]}{sep}{cpu_list[-1]}"
 
         return cpu_range
 
     @staticmethod
-    def cpu_slice_of_list_for_nf(node, cpu_node, nf_chains=1, nf_nodes=1,
-                                 nf_chain=1, nf_node=1, nf_dtc=1, nf_mtcr=2,
-                                 nf_dtcr=1, skip_cnt=0):
+    def cpu_slice_of_list_for_nf(
+            node, cpu_node, nf_chains=1, nf_nodes=1, nf_chain=1, nf_node=1,
+            nf_dtc=1, nf_mtcr=2, nf_dtcr=1, skip_cnt=0):
         """Return list of DUT node related list of CPU numbers. The main
         computing unit is physical core count.
 
@@ -255,7 +253,7 @@ class CpuUtils(object):
         :param nf_node: Node number indexed from 1.
         :param nf_dtc: Amount of physical cores for NF dataplane.
         :param nf_mtcr: NF main thread per core ratio.
-        :param nf_dtcr: NF dataplane thread per core ratio.
+        :param nf_dtcr: NF data plane thread per core ratio.
         :param skip_cnt: Skip first "skip_cnt" CPUs.
         :type node: dict
         :param cpu_node: int.
@@ -273,9 +271,9 @@ class CpuUtils(object):
         placement is not possible due to wrong parameters.
         """
         if not 1 <= nf_chain <= nf_chains:
-            raise RuntimeError("ChainID is out of range!")
+            raise RuntimeError(u"ChainID is out of range!")
         if not 1 <= nf_node <= nf_nodes:
-            raise RuntimeError("NodeID is out of range!")
+            raise RuntimeError(u"NodeID is out of range!")
 
         smt_used = CpuUtils.is_smt_enabled(node['cpuinfo'])
         cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
@@ -284,7 +282,7 @@ class CpuUtils(object):
 
         dtc_is_integer = isinstance(nf_dtc, int)
         if not smt_used and not dtc_is_integer:
-            raise RuntimeError("Cannot allocate if SMT is not enabled!")
+            raise RuntimeError(u"Cannot allocate if SMT is not enabled!")
         # TODO: Please reword the following todo if it is still relevant
         # TODO: Workaround as we are using physical core as main unit, we must
         # adjust number of physical dataplane cores in case of float for further
@@ -298,7 +296,7 @@ class CpuUtils(object):
         dt_req = ((nf_chains * nf_nodes) + nf_dtcr - 1) // nf_dtcr
 
         if (skip_cnt + mt_req + dt_req) > (sib if smt_used else len(cpu_list)):
-            raise RuntimeError("Not enough CPU cores available for placement!")
+            raise RuntimeError(u"Not enough CPU cores available for placement!")
 
         offset = (nf_node - 1) + (nf_chain - 1) * nf_nodes
         mt_skip = skip_cnt + (offset % mt_req)
@@ -319,8 +317,9 @@ class CpuUtils(object):
         return result
 
     @staticmethod
-    def get_affinity_nf(nodes, node, nf_chains=1, nf_nodes=1, nf_chain=1,
-                        nf_node=1, vs_dtc=1, nf_dtc=1, nf_mtcr=2, nf_dtcr=1):
+    def get_affinity_nf(
+            nodes, node, nf_chains=1, nf_nodes=1, nf_chain=1, nf_node=1,
+            vs_dtc=1, nf_dtc=1, nf_mtcr=2, nf_dtcr=1):
 
         """Get affinity of NF (network function). Result will be used to compute
         the amount of CPUs and also affinity.
@@ -331,10 +330,10 @@ class CpuUtils(object):
         :param nf_nodes: Number of NF nodes in chain.
         :param nf_chain: Chain number indexed from 1.
         :param nf_node: Node number indexed from 1.
-        :param vs_dtc: Amount of physical cores for vswitch dataplane.
-        :param nf_dtc: Amount of physical cores for NF dataplane.
+        :param vs_dtc: Amount of physical cores for vswitch data plane.
+        :param nf_dtc: Amount of physical cores for NF data plane.
         :param nf_mtcr: NF main thread per core ratio.
-        :param nf_dtcr: NF dataplane thread per core ratio.
+        :param nf_dtcr: NF data plane thread per core ratio.
         :type nodes: dict
         :type node: dict
         :type nf_chains: int
@@ -350,11 +349,9 @@ class CpuUtils(object):
         """
         skip_cnt = Constants.CPU_CNT_SYSTEM + Constants.CPU_CNT_MAIN + vs_dtc
 
-        interface_list = []
-        interface_list.append(
-            BuiltIn().get_variable_value('${{{node}_if1}}'.format(node=node)))
-        interface_list.append(
-            BuiltIn().get_variable_value('${{{node}_if2}}'.format(node=node)))
+        interface_list = list()
+        interface_list.append(BuiltIn().get_variable_value(f"${{{node}_if1}}"))
+        interface_list.append(BuiltIn().get_variable_value(f"${{{node}_if2}}"))
 
         cpu_node = Topology.get_interfaces_numa_node(
             nodes[node], *interface_list)
@@ -362,5 +359,6 @@ class CpuUtils(object):
         return CpuUtils.cpu_slice_of_list_for_nf(
             node=nodes[node], cpu_node=cpu_node, nf_chains=nf_chains,
             nf_nodes=nf_nodes, nf_chain=nf_chain, nf_node=nf_node,
-            nf_mtcr=nf_mtcr, nf_dtcr=nf_dtcr, nf_dtc=nf_dtc, skip_cnt=skip_cnt)
+            nf_mtcr=nf_mtcr, nf_dtcr=nf_dtcr, nf_dtc=nf_dtc, skip_cnt=skip_cnt
+        )
 

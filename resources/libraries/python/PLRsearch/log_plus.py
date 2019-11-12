@@ -24,7 +24,7 @@ functions of this module use None as -inf.
 
 TODO: Figure out a more performant way of handling -inf.
 
-The functions handle the common task of adding or substracting
+The functions handle the common task of adding or subtracting
 two numbers where both operands and the result is given in logarithm form.
 There are conditionals to make sure overflow does not happen (if possible)
 during the computation."""
@@ -33,7 +33,7 @@ import math
 
 
 def log_plus(first, second):
-    """Return logarithm of the sum of two exponentials.
+    """Return logarithm of the sum of two exponents.
 
     Basically math.log(math.exp(first) + math.exp(second))
     which avoids overflow and uses None as math.log(0.0).
@@ -59,7 +59,7 @@ def log_plus(first, second):
 
 
 def log_minus(first, second):
-    """Return logarithm of the difference of two exponentials.
+    """Return logarithm of the difference of two exponents.
 
     Basically math.log(math.exp(first) - math.exp(second))
     which avoids overflow and uses None as math.log(0.0).
@@ -77,14 +77,14 @@ def log_minus(first, second):
     """
 
     if first is None:
-        raise RuntimeError("log_minus: does not suport None first")
+        raise RuntimeError(u"log_minus: does not support None first")
     if second is None:
         return first
     if second >= first:
-        raise RuntimeError("log_minus: first has to be bigger than second")
+        raise RuntimeError(u"log_minus: first has to be bigger than second")
     factor = -math.expm1(second - first)
     if factor <= 0.0:
-        raise RuntimeError("log_minus: non-positive number to log")
+        raise RuntimeError(u"log_minus: non-positive number to log")
     else:
         return first + math.log(factor)
 

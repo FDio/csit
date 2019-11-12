@@ -42,18 +42,18 @@ class Memif(object):
         :returns: List of memif interfaces extracted from Papi response.
         :rtype: list
         """
-        cmd = "memif_dump"
+        cmd = u"memif_dump"
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd).get_details()
 
         for memif in details:
-            memif["hw_addr"] = str(memif["hw_addr"])
-            memif["role"] = memif["role"].value
-            memif["mode"] = memif["mode"].value
-            memif["flags"] = memif["flags"].value \
-                if hasattr(memif["flags"], 'value') else int(memif["flags"])
+            memif[u"hw_addr"] = str(memif[u"hw_addr"])
+            memif[u"role"] = memif[u"role"].value
+            memif[u"mode"] = memif[u"mode"].value
+            memif[u"flags"] = memif[u"flags"].value \
+                if hasattr(memif[u"flags"], u"value") else int(memif[u"flags"])
 
-        logger.debug("MEMIF details:\n{details}".format(details=details))
+        logger.debug(f"MEMIF details:\n{details}")
 
         return details
 
@@ -73,13 +73,12 @@ class Memif(object):
             includes only retval.
         :rtype: dict
         """
-        cmd = 'memif_socket_filename_add_del'
-        err_msg = 'Failed to create memif socket on host {host}'.format(
-            host=node['host'])
+        cmd = u"memif_socket_filename_add_del"
+        err_msg = f"Failed to create memif socket on host {node[u'host']}"
         args = dict(
             is_add=is_add,
             socket_id=int(sid),
-            socket_filename=str('/tmp/' + filename)
+            socket_filename=str(u"/tmp/" + filename)
         )
         with PapiSocketExecutor(node) as papi_exec:
             return papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -103,17 +102,17 @@ class Memif(object):
         :returns: sw_if_index
         :rtype: int
         """
-        cmd = 'memif_create'
-        err_msg = 'Failed to create memif interface on host {host}'.format(
-            host=node['host'])
+        cmd = u"memif_create"
+        err_msg = f"Failed to create memif interface on host {node[u'host']}"
         args = dict(
             role=role,
             rx_queues=int(rxq),
             tx_queues=int(txq),
             socket_id=int(sid),
             id=int(mid),
-            secret=""
+            secret=u""
         )
+
         with PapiSocketExecutor(node) as papi_exec:
             return papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
@@ -148,10 +147,11 @@ class Memif(object):
 
         # Create memif
         sw_if_index = Memif._memif_create(
-            node, mid, sid, rxq=rxq, txq=txq, role=role)
+            node, mid, sid, rxq=rxq, txq=txq, role=role
+        )
 
         # Update Topology
-        if_key = Topology.add_new_port(node, 'memif')
+        if_key = Topology.add_new_port(node, u"memif")
         Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
 
         ifc_name = Memif.vpp_get_memif_interface_name(node, sw_if_index)
@@ -160,7 +160,9 @@ class Memif(object):
         ifc_mac = Memif.vpp_get_memif_interface_mac(node, sw_if_index)
         Topology.update_interface_mac_address(node, if_key, ifc_mac)
 
-        Topology.update_interface_memif_socket(node, if_key, '/tmp/' + filename)
+        Topology.update_interface_memif_socket(
+            node, if_key, u"/tmp/" + filename
+        )
         Topology.update_interface_memif_id(node, if_key, mid)
         Topology.update_interface_memif_role(node, if_key, str(role))
 
@@ -184,7 +186,7 @@ class Memif(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 Memif.show_memif(node)
 
     @staticmethod
@@ -202,8 +204,8 @@ class Memif(object):
         details = Memif._memif_details(node)
 
         for memif in details:
-            if memif["sw_if_index"] == sw_if_index:
-                return memif["if_name"]
+            if memif[u"sw_if_index"] == sw_if_index:
+                return memif[u"if_name"]
         return None
 
     @staticmethod
@@ -221,6 +223,6 @@ class Memif(object):
         details = Memif._memif_details(node)
 
         for memif in details:
-            if memif["sw_if_index"] == sw_if_index:
-                return memif["hw_addr"]
+            if memif[u"sw_if_index"] == sw_if_index:
+                return memif[u"hw_addr"]
         return None

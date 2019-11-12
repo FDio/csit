@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -43,12 +43,12 @@ class ReceiveRateMeasurement(object):
 
     def __str__(self):
         """Return string reporting input and loss fraction."""
-        return "d={dur!s},Tr={rate!s},Df={frac!s}".format(
+        return f"d={dur!s},Tr={rate!s},Df={frac!s}".format(
             dur=self.duration, rate=self.target_tr, frac=self.loss_fraction)
 
     def __repr__(self):
         """Return string evaluable as a constructor call."""
-        return ("ReceiveRateMeasurement(duration={dur!r},target_tr={rate!r}"
-                ",transmit_count={trans!r},loss_count={loss!r})".format(
-                    dur=self.duration, rate=self.target_tr,
-                    trans=self.transmit_count, loss=self.loss_count))
+        return (f"ReceiveRateMeasurement(duration={self.duration!r},"
+                f"target_tr={self.target_tr!r},"
+                f"transmit_count={self.transmit_count!r},"
+                f"loss_count={self.loss_count!r})")
