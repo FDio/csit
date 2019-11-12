@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -33,8 +33,8 @@ class VatJsonUtil(object):
         :returns: List representation of MAC address.
         :rtype: list
         """
-        list_mac = []
-        for num in mac_address.split(":"):
+        list_mac = list()
+        for num in mac_address.split(u":"):
             list_mac.append(int(num, 16))
         return list_mac
 
@@ -52,26 +52,29 @@ class VatJsonUtil(object):
         :returns: Interface from JSON.
         :rtype: dict
         """
-        interface_dict = {}
+        interface_dict = dict()
         list_mac_address = VatJsonUtil._convert_mac_to_number_list(mac_address)
-        logger.trace("MAC address {0} converted to list {1}."
-                     .format(mac_address, list_mac_address))
+        logger.trace(
+            f"MAC address {mac_address} converted to list {list_mac_address}."
+        )
         for interface in interfaces_list:
             # TODO: create vat json integrity checking and move there
-            if "l2_address" not in interface:
+            if u"l2_address" not in interface:
                 raise KeyError(
-                    "key l2_address not found in interface dict."
-                    "Probably input list is not parsed from correct VAT "
-                    "json output.")
-            if "l2_address_length" not in interface:
+                    u"key l2_address not found in interface dict."
+                    u"Probably input list is not parsed from correct VAT "
+                    u"json output."
+                )
+            if u"l2_address_length" not in interface:
                 raise KeyError(
-                    "key l2_address_length not found in interface "
-                    "dict. Probably input list is not parsed from correct "
-                    "VAT json output.")
-            mac_from_json = interface["l2_address"][:6]
+                    u"key l2_address_length not found in interface "
+                    u"dict. Probably input list is not parsed from correct "
+                    u"VAT json output."
+                )
+            mac_from_json = interface[u"l2_address"][:6]
             if mac_from_json == list_mac_address:
-                if interface["l2_address_length"] != 6:
-                    raise ValueError("l2_address_length value is not 6.")
+                if interface[u"l2_address_length"] != 6:
+                    raise ValueError(u"l2_address_length value is not 6.")
                 interface_dict = interface
                 break
         return interface_dict
@@ -90,18 +93,18 @@ class VatJsonUtil(object):
         :type interface_dump_json: str
         """
         interface_list = JsonParser().parse_data(interface_dump_json)
-        for ifc in node['interfaces'].values():
-            if_mac = ifc['mac_address']
+        for ifc in node[u"interfaces"].values():
+            if_mac = ifc[u"mac_address"]
             interface_dict = VatJsonUtil.get_vpp_interface_by_mac(
-                interface_list, if_mac)
+                interface_list, if_mac
+            )
             if not interface_dict:
-                logger.trace('Interface {0} not found by MAC {1}'
-                             .format(ifc, if_mac))
-                ifc['vpp_sw_index'] = None
+                logger.trace(f"Interface {ifc} not found by MAC {if_mac}")
+                ifc[u"vpp_sw_index"] = None
                 continue
-            ifc['name'] = interface_dict["interface_name"]
-            ifc['vpp_sw_index'] = interface_dict["sw_if_index"]
-            ifc['mtu'] = interface_dict["mtu"]
+            ifc[u"name"] = interface_dict[u"interface_name"]
+            ifc[u"vpp_sw_index"] = interface_dict[u"sw_if_index"]
+            ifc[u"mtu"] = interface_dict[u"mtu"]
 
     @staticmethod
     def get_interface_sw_index_from_json(interface_dump_json, interface_name):
@@ -120,15 +123,16 @@ class VatJsonUtil(object):
         interface_list = JsonParser().parse_data(interface_dump_json)
         for interface in interface_list:
             try:
-                if interface['interface_name'] == interface_name:
-                    index = interface['sw_if_index']
-                    logger.debug('Interface with name {} has sw_if_index {}.'
-                                 .format(interface_name, index))
+                if interface[u"interface_name"] == interface_name:
+                    index = interface[u"sw_if_index"]
+                    logger.debug(
+                        f"Interface with name {interface_name} "
+                        f"has sw_if_index {index}."
+                    )
                     return index
             except KeyError:
                 pass
-        raise ValueError('Interface with name {} not found.'
-                         .format(interface_name))
+        raise ValueError(f"Interface with name {interface_name} not found.")
 
     @staticmethod
     def get_interface_name_from_json(interface_dump_json, sw_if_index):
@@ -147,16 +151,16 @@ class VatJsonUtil(object):
         interface_list = JsonParser().parse_data(interface_dump_json)
         for interface in interface_list:
             try:
-                if interface['sw_if_index'] == sw_if_index:
-                    interface_name = interface['interface_name']
-                    logger.debug('Interface with sw_if_index {idx} has name'
-                                 ' {name}.'.format(idx=sw_if_index,
-                                                   name=interface_name))
+                if interface[u"sw_if_index"] == sw_if_index:
+                    interface_name = interface[u"interface_name"]
+                    logger.debug(
+                        f"Interface with sw_if_index {sw_if_index} "
+                        f"has name {interface_name}."
+                    )
                     return interface_name
             except KeyError:
                 pass
-        raise ValueError('Interface with sw_if_index {} not found.'
-                         .format(sw_if_index))
+        raise ValueError(f"Interface with sw_if_index {sw_if_index} not found.")
 
     @staticmethod
     def get_interface_mac_from_json(interface_dump_json, sw_if_index):
@@ -175,22 +179,23 @@ class VatJsonUtil(object):
         interface_list = JsonParser().parse_data(interface_dump_json)
         for interface in interface_list:
             try:
-                if interface['sw_if_index'] == sw_if_index:
-                    mac_from_json = interface['l2_address'][:6] \
-                        if 'l2_address' in interface.keys() else ''
-                    mac_address = ':'.join('{:02x}'.format(item)
-                                           for item in mac_from_json)
-                    logger.debug('Interface with sw_if_index {idx} has MAC'
-                                 ' address {addr}.'.format(idx=sw_if_index,
-                                                           addr=mac_address))
+                if interface[u"sw_if_index"] == sw_if_index:
+                    mac_from_json = interface[u"l2_address"][:6] \
+                        if u"l2_address" in list(interface.keys()) else u""
+                    mac_address = u":".join(
+                        f"{item:02x}" for item in mac_from_json
+                    )
+                    logger.debug(
+                        f"Interface with sw_if_index {sw_if_index} "
+                        f"has MAC address {mac_address}."
+                    )
                     return mac_address
             except KeyError:
                 pass
-        raise ValueError('Interface with sw_if_index {idx} not found.'
-                         .format(idx=sw_if_index))
+        raise ValueError(f"Interface with sw_if_index {sw_if_index} not found.")
 
     @staticmethod
-    def verify_vat_retval(vat_out, exp_retval=0, err_msg='VAT cmd failed'):
+    def verify_vat_retval(vat_out, exp_retval=0, err_msg=u"VAT cmd failed"):
         """Verify return value of VAT command.
 
         VAT command JSON output should be object (dict in python) or array. We
@@ -207,7 +212,7 @@ class VatJsonUtil(object):
         :raises RuntimeError: If VAT command return value is incorrect.
         """
         if isinstance(vat_out, dict):
-            retval = vat_out.get('retval')
+            retval = vat_out.get(u"retval")
             if retval is not None:
                 if retval != exp_retval:
                     raise RuntimeError(err_msg)
