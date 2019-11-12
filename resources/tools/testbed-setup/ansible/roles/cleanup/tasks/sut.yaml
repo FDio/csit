@@ -19,12 +19,6 @@
     process: "testpmd"
   tags: kill-process
 
-- name: Remove file or dir - HoneyComb logs
-  file:
-    state: absent
-    path: "/var/log/honeycomb"
-  tags: remove-file-dir
-
 - name: Remove file or dir - Core zip file
   file:
     state: absent
