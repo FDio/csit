@@ -77,7 +77,6 @@ CSIT-1908
     detailed_test_results/vpp_performance_results/index
     detailed_test_results/vpp_mrr_results/index
     detailed_test_results/dpdk_performance_results/index
-    detailed_test_results/vpp_functional_results/index
     detailed_test_results/vpp_device_results_ubuntu/index
 
 ..
@@ -89,7 +88,6 @@ CSIT-1908
 
     test_configuration/vpp_performance_configuration/index
     test_configuration/vpp_mrr_configuration/index
-    test_configuration/vpp_functional_configuration/index
     test_configuration/vpp_device_configuration_ubuntu/index
 
 .. toctree::

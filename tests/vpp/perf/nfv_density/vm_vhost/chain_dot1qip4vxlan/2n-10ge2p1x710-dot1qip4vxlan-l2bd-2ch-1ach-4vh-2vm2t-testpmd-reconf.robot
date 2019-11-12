@@ -13,22 +13,22 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | RECONF
 | ... | NIC_Intel-X710 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
 | ... | VHOST | VM | VHOST_1024 | VXLAN | DOT1Q | NF_DENSITY | NF_TESTPMD
 | ... | CHAIN | 2R1C | 1_ADDED_CHAIN | 2VM2T
-| ...
+|
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance | vhost
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *RFC2544: Packet loss L2BD test cases with Dot1Q and
 | ... | VXLANoIPv4 with ${nf_chains} instances, ${nf_nodes} VMs per instance.*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Dot1q-IPv4-UDP-VXLAN-Eth-IPv4 for L2\
@@ -71,17 +71,17 @@
 | | ... | [Cfg] DUT runs Dot1Q-IP4-Vxlan L2BD switching config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure packet loss during reconfig at NDR load.\
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
 | | ... | - phy_cores - Number of worker threads to be used. Type: integer
 | | ... | - rxq - Number of Rx queues to be used. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | ${nf_total_chains}= | Evaluate | ${nf_chains} + ${nf_added_chains}
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}

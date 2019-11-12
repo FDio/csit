@@ -16,10 +16,10 @@
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.ssh import SSH
 
-__all__ = ['TrafficScriptExecutor']
+__all__ = [u"TrafficScriptExecutor"]
 
 
-class TrafficScriptExecutor(object):
+class TrafficScriptExecutor:
     """Traffic script executor utilities."""
 
     @staticmethod
@@ -31,11 +31,11 @@ class TrafficScriptExecutor(object):
         :returns: Escaped string.
         :rtype: str
         """
-        return string.replace('"', '\\"').replace("$", "\\$")
+        return string.replace(u'"', u'\\"').replace(u"$", u"\\$")
 
     @staticmethod
-    def run_traffic_script_on_node(script_file_name, node, script_args,
-                                   timeout=60):
+    def run_traffic_script_on_node(
+            script_file_name, node, script_args, timeout=60):
         """Run traffic script on the TG node.
 
         :param script_file_name: Traffic script name.
@@ -55,33 +55,32 @@ class TrafficScriptExecutor(object):
         """
         ssh = SSH()
         ssh.connect(node)
-        cmd = ("cd {}; " +
-               "virtualenv --system-site-packages --never-download env && " +
-               "export PYTHONPATH=${{PWD}}; " +
-               ". ${{PWD}}/env/bin/activate; " +
-               "resources/traffic_scripts/{} {}") \
-                  .format(Constants.REMOTE_FW_DIR, script_file_name,
-                          script_args)
+        cmd = f"cd {Constants.REMOTE_FW_DIR}; virtualenv -p $(which python3) " \
+            f"--system-site-packages --never-download env && " \
+            f"export PYTHONPATH=${{PWD}}; . ${{PWD}}/env/bin/activate; " \
+            f"resources/traffic_scripts/{script_file_name} {script_args}"
+
         ret_code, stdout, stderr = ssh.exec_command_sudo(
-            'sh -c "{cmd}"'.format(cmd=TrafficScriptExecutor._escape(cmd)),
-            timeout=timeout)
+            f'sh -c "{TrafficScriptExecutor._escape(cmd)}"', timeout=timeout
+        )
         if ret_code != 0:
-            if "RuntimeError: ICMP echo Rx timeout" in stderr:
-                raise RuntimeError("ICMP echo Rx timeout")
-            elif "RuntimeError: IP packet Rx timeout" in stderr:
-                raise RuntimeError("IP packet Rx timeout")
-            elif "RuntimeError: DHCP REQUEST Rx timeout" in stderr:
-                raise RuntimeError("DHCP REQUEST Rx timeout")
-            elif "RuntimeError: DHCP DISCOVER Rx timeout" in stderr:
-                raise RuntimeError("DHCP DISCOVER Rx timeout")
-            elif "RuntimeError: TCP/UDP Rx timeout" in stderr:
-                raise RuntimeError("TCP/UDP Rx timeout")
-            elif "Error occurred: ARP reply timeout" in stdout:
-                raise RuntimeError("ARP reply timeout")
-            elif "RuntimeError: ESP packet Rx timeout" in stderr:
-                raise RuntimeError("ESP packet Rx timeout")
+            if u"RuntimeError: ICMP echo Rx timeout" in stderr:
+                msg = "ICMP echo Rx timeout"
+            elif u"RuntimeError: IP packet Rx timeout" in stderr:
+                msg = u"IP packet Rx timeout"
+            elif u"RuntimeError: DHCP REQUEST Rx timeout" in stderr:
+                msg = u"DHCP REQUEST Rx timeout"
+            elif u"RuntimeError: DHCP DISCOVER Rx timeout" in stderr:
+                msg = u"DHCP DISCOVER Rx timeout"
+            elif u"RuntimeError: TCP/UDP Rx timeout" in stderr:
+                msg = u"TCP/UDP Rx timeout"
+            elif u"Error occurred: ARP reply timeout" in stdout:
+                msg = u"ARP reply timeout"
+            elif u"RuntimeError: ESP packet Rx timeout" in stderr:
+                msg = u"ESP packet Rx timeout"
             else:
-                raise RuntimeError("Traffic script execution failed")
+                msg = u"Traffic script execution failed"
+            raise RuntimeError(msg)
 
     @staticmethod
     def traffic_script_gen_arg(rx_if, tx_if, src_mac, dst_mac, src_ip, dst_ip):
@@ -102,7 +101,6 @@ class TrafficScriptExecutor(object):
         :returns: Traffic script arguments string.
         :rtype: str
         """
-        args = ('--rx_if {0} --tx_if {1} --src_mac {2} --dst_mac {3} --src_ip'
-                ' {4} --dst_ip {5}').format(rx_if, tx_if, src_mac, dst_mac,
-                                            src_ip, dst_ip)
+        args = f"--rx_if {rx_if} --tx_if {tx_if} --src_mac {src_mac} " \
+            f"--dst_mac {dst_mac} --src_ip {src_ip} --dst_ip {dst_ip}"
         return args
