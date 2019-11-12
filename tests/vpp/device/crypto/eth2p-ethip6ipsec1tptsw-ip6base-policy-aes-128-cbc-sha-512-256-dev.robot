@@ -13,19 +13,19 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | IP6FWD | IPSEC | IPSECSW | IPSECTPT | IP6BASE
 | ... | AES_128_CBC | HMAC_SHA_512 | HMAC | AES | DRV_VFIO_PCI
-| ...
+
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *IPv6 IPsec transport mode test suite.*
-| ...
+|
 | ... | *[Top] Network topologies:* TG-DUT1 2-node topology with one link\
 | ... | between nodes.
 | ... | *[Cfg] DUT configuration:* On DUT1 create loopback interface, configure
@@ -59,20 +59,20 @@
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
 | | ... | algorithm AES_128_CBC and integrity algorithm HMAC_SHA_512 in\
 | | ... | transport mode.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | # These are enums (not strings) so they cannot be in Variables table.
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA 512 256
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
