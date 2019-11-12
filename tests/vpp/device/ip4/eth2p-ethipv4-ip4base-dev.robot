@@ -13,16 +13,16 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
-| ... | NIC_Virtual | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI
-| ...
+| ... | NIC_Virtual | ETH | IP4FWD | BASE | IP4BASE | DRV_VFIO_PCI | TEST
+|
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *IPv4 routing test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology \
@@ -48,16 +48,16 @@
 | | [Documentation]
 | | ... | [Ver] Make TG send IPv4 packet routed over DUT1 interfaces.\
 | | ... | Make TG verify IPv4 packet is correct.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}

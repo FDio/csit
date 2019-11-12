@@ -13,7 +13,7 @@
 
 *** Settings ***
 | Documentation | Keywords related to linux containers
-| ...
+|
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.topology.Topology
 | Variables | resources/libraries/python/Constants.py
@@ -21,7 +21,7 @@
 *** Keywords ***
 | Construct container on all DUTs
 | | [Documentation] | Construct 1 CNF of specific technology on all DUT nodes.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - nf_chains: Total number of chains (Optional). Type: integer, default
 | | ... | value: ${1}
@@ -30,27 +30,28 @@
 | | ... | - nf_chain: Chain ID (Optional). Type: integer, default value: ${1}
 | | ... | - nf_node: Node ID (Optional). Type: integer, default value: ${1}
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
-| | ... |   network function as DUT, otherwise use single physical core for
-| | ... |   every network function. Type: boolean
+| | ... | network function as DUT, otherwise use single physical core for
+| | ... | every network function. Type: boolean
 | | ... | - pinning: Set True if CPU pinning should be done on starting
-| | ... |   containers. Type: boolean, default value: ${False}
-| | ...
+| | ... | containers. Type: boolean, default value: ${False}
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Construct container on all DUTs \| 1 \| 1 \| 1 \| 1 \| ${True} \|
-| | ...
+| |
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${nf_chain}=${1}
 | | ... | ${nf_node}=${1} | ${auto_scale}=${True} | ${pinning}=${True}
-| | ...
+| |
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword | Construct container on DUT | ${dut}
 | | | ... | ${nf_chains} | ${nf_nodes} | ${nf_chain}
 | | | ... | ${nf_node} | ${auto_scale} | ${pinning}
+| | END
 
 | Construct container on DUT
 | | [Documentation] | Construct 1 CNF of specific technology on specific DUT.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut: DUT node to construct the CNF on. Type: string
 | | ... | - nf_chains: Total number of chains (Optional). Type: integer, default
@@ -60,20 +61,20 @@
 | | ... | - nf_chain: Chain ID (Optional). Type: integer, default value: ${1}
 | | ... | - nf_node: Node ID (Optional). Type: integer, default value: ${1}
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
-| | ... |   network function as DUT, otherwise use single physical core for
-| | ... |   every network function. Type: boolean
+| | ... | network function as DUT, otherwise use single physical core for
+| | ... | every network function. Type: boolean
 | | ... | - pinning: Set True if CPU pinning should be done on starting
-| | ... |   containers. Type: boolean, default value: ${False}
-| | ...
+| | ... | containers. Type: boolean, default value: ${False}
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Construct container on DUT \| DUT1 \| 1 \| 1 \| 1 \| 1 \|
 | | ... | \| ${True} \|
-| | ...
+| |
 | | [Arguments] | ${dut}
 | | ... | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${nf_chain}=${1}
 | | ... | ${nf_node}=${1} | ${auto_scale}=${True} | ${pinning}=${True}
-| | ...
+| |
 | | ${nf_dtcr_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${nf_dtcr}
 | | ${nf_dtcr}= | Run Keyword If | '${nf_dtcr_status}' == 'PASS'
@@ -112,27 +113,27 @@
 
 | Construct chain of containers
 | | [Documentation] | Construct 1 chain of 1..N CNFs on selected/all DUT nodes.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut: DUT node to start the containers on. Run on all nodes if None.
-| | ... |   Type: string or None
+| | ... | Type: string or None
 | | ... | - nf_chains: Total number of chains. Type: integer
 | | ... | - nf_nodes: Total number of nodes per chain. Type: integer
 | | ... | - nf_chain: Chain ID. Type: integer
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
-| | ... |   network function as DUT, otherwise use single physical core for
-| | ... |   every network function. Type: boolean
+| | ... | network function as DUT, otherwise use single physical core for
+| | ... | every network function. Type: boolean
 | | ... | - pinning: Set True if CPU pinning should be done on starting
-| | ... |   containers. Type: boolean, default value: ${False}
-| | ...
+| | ... | containers. Type: boolean, default value: ${False}
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Construct chain of containers \| 1 \| 1 \| 1 \| ${True} \|
-| | ...
+| |
 | | [Arguments] | ${dut}=${None} | ${nf_chains}=${1} | ${nf_nodes}=${1}
 | | ... | ${nf_chain}=${1} | ${auto_scale}=${True} | ${pinning}=${True}
-| | ...
-| | :FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
+| |
+| | FOR | ${nf_node} | IN RANGE | 1 | ${nf_nodes}+1
 | | | Run Keyword If | '${dut}' == '${None}'
 | | | ... | Construct container on all DUTs
 | | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | nf_chain=${nf_chain}
@@ -141,68 +142,70 @@
 | | | ... | Construct container on DUT | ${dut}
 | | | ... | nf_chains=${nf_chains} | nf_nodes=${nf_nodes} | nf_chain=${nf_chain}
 | | | ... | nf_node=${nf_node} | auto_scale=${auto_scale} | pinning=${pinning}
+| | END
 
 | Construct chains of containers
 | | [Documentation] | Construct 1..N chains of 1..N CNFs on selected/all DUT
 | | ... | nodes.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut: DUT node to start the containers on. Run on all nodes if None.
-| | ... |   Type: string or None
+| | ... | Type: string or None
 | | ... | - nf_chains: Total number of chains (Optional). Type: integer, default
-| | ... |   value: ${1}
+| | ... | value: ${1}
 | | ... | - nf_nodes: Total number of nodes per chain (Optional). Type: integer,
-| | ... |   default value: ${1}
+| | ... | default value: ${1}
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
-| | ... |   network function as DUT, otherwise use single physical core for
-| | ... |   every network function. Type: boolean
+| | ... | network function as DUT, otherwise use single physical core for
+| | ... | every network function. Type: boolean
 | | ... | - pinning: Set True if CPU pinning should be done on starting
-| | ... |   containers. Type: boolean, default value: ${True}
-| | ...
+| | ... | containers. Type: boolean, default value: ${True}
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Construct chains of containers \| 1 \| 1 \|
-| | ...
+| |
 | | [Arguments] | ${dut}=${None} | ${nf_chains}=${1} | ${nf_nodes}=${1}
 | | ... | ${auto_scale}=${True} | ${pinning}=${True}
-| | ...
-| | :FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
+| |
+| | FOR | ${nf_chain} | IN RANGE | 1 | ${nf_chains}+1
 | | | Construct chain of containers
 | | | ... | dut=${dut} | nf_chains=${nf_chains} | nf_nodes=${nf_nodes}
 | | | ... | nf_chain=${nf_chain} | auto_scale=${auto_scale} | pinning=${pinning}
+| | END
 
 | Acquire all '${group}' containers
 | | [Documentation] | Acquire all container(s) in specific container group on
 | | ... | all DUT nodes.
-| | ...
+| |
 | | Run Keyword | ${group}.Acquire all containers
 
 | Create all '${group}' containers
 | | [Documentation] | Create/deploy all container(s) in specific container group
 | | ... | on all DUT nodes.
-| | ...
+| |
 | | Run Keyword | ${group}.Create all containers
 
 | Start VPP in all '${group}' containers
 | | [Documentation] | Start VPP on all container(s) in specific container
 | | ... | group on all DUT nodes.
-| | ...
+| |
 | | Run Keyword | ${group}.Start VPP In All Containers
 
 | Restart VPP in all '${group}' containers
 | | [Documentation] | Restart VPP on all container(s) in specific container
 | | ... | group on all DUT nodes.
-| | ...
+| |
 | | Run Keyword | ${group}.Restart VPP In All Containers
 
 | Configure VPP in all '${group}' containers
 | | [Documentation] | Configure VPP on all container(s) in specific container
 | | ... | group on all DUT nodes.
-| | ...
+| |
 | | ... | *Test (or broader scope) variables read:*
-| | ... |   - container_chain_topology - Topology type used for configuring CNF
-| | ... |     (VPP) in container. Type: string
-| | ...
+| | ... | - container_chain_topology - Topology type used for configuring CNF
+| | ... | (VPP) in container. Type: string
+| |
 | | ${dut1_if2} = | Get Variable Value | \${dut1_if2} | ${None}
 | | ${dut2_if2} = | Get Variable Value | \${dut2_if2} | ${None}
 | | Run Keyword If | '${container_chain_topology}' == 'chain_ip4'
@@ -227,37 +230,37 @@
 | Stop all '${group}' containers
 | | [Documentation] | Stop all container(s) in specific container group on all
 | | ... | DUT nodes.
-| | ...
+| |
 | | Run Keyword | ${group}.Stop all containers
 
 | Destroy all '${group}' containers
 | | [Documentation] | Destroy all container(s) in specific container group on
 | | ... | all DUT nodes.
-| | ...
+| |
 | | Run Keyword | ${group}.Destroy all containers
 
 | Start containers for test
 | | [Documentation]
 | | ... | Start containers for test.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut: DUT node to start the containers on. Run on all nodes if None.
-| | ... |   Type: string or None
+| | ... | Type: string or None
 | | ... | - nf_chains: Total number of chains. Type: integer
 | | ... | - nf_nodes: Total number of nodes per chain. Type: integer
 | | ... | - auto_scale - If True, use same amount of Dataplane threads for
-| | ... |   network function as DUT, otherwise use single physical core for
-| | ... |   every network function. Type: boolean
+| | ... | network function as DUT, otherwise use single physical core for
+| | ... | every network function. Type: boolean
 | | ... | - pinning: Set True if CPU pinning should be done on starting
-| | ... |   containers. Type: boolean, default value: ${False}
-| | ...
+| | ... | containers. Type: boolean, default value: ${False}
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Start containers for test \| 1 \| 1 \|
-| | ...
+| |
 | | [Arguments] | ${dut}=${None} | ${nf_chains}=${1} | ${nf_nodes}=${1}
 | | ... | ${auto_scale}=${True} | ${pinning}=${True}
-| | ...
+| |
 | | Set Test Variable | @{container_groups} | @{EMPTY}
 | | Set Test Variable | ${container_group} | CNF
 | | Set Test Variable | ${nf_nodes}

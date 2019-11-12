@@ -13,20 +13,20 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP4FWD | FEATURE | ACL | ACL_STATEFUL
 | ... | IACL | ACL50 | 10K_FLOWS | DRV_VFIO_PCI
-| ...
+|
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
-| Test Teardown | Tear down test | performance | acl
-| ...
+| Test Teardown | Tear down test | performance |
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *RFC2544: Packet throughput IPv4 test cases with ACL*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology\
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-UDP for IPv4 routing.
@@ -56,7 +56,7 @@
 | ${acl_action}= | permit+reflect
 | ${acl_apply_type}= | input
 | ${no_hit_aces_number}= | 50
-| ${flows_per_dir}= | 10k
+| ${flows_per_dir}= |
 | ${ip_nr}= | ${10}
 # starting points for non-hitting ACLs
 | ${src_ip_start}= | 30.30.30.1
@@ -72,22 +72,22 @@
 
 *** Keywords ***
 | Local Template
-| | ...
+| |
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
