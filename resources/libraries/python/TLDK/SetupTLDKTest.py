@@ -206,7 +206,7 @@ def delete_local_tarball(tarball):
     call(split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
 
 
-class SetupTLDKTest(object):
+class SetupTLDKTest:
     """Setup suite run on topology nodes.
 
     Many VAT/CLI based tests need the scripts at remote hosts before executing

@@ -19,7 +19,7 @@ from resources.libraries.python.ssh import SSH
 __all__ = ['TrafficScriptExecutor']
 
 
-class TrafficScriptExecutor(object):
+class TrafficScriptExecutor:
     """Traffic script executor utilities."""
 
     @staticmethod
