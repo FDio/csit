@@ -13,21 +13,21 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | SRv6 | IP6FWD | FEATURE | SRv6_PROXY
 | ... | SRv6_PROXY_STAT | MEMIF | LXC | DRV_VFIO_PCI
-| ...
+|
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance | srv6 | container
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *Packet throughput Segment routing over IPv6 dataplane with\
 | ... | Static SRv6 proxy test cases*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv6-SRH-IPv6 on DUT1-DUT2 and\
@@ -99,17 +99,17 @@
 | | ... | direction and one SR behaviour (function) - End - for other direction.
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
-| | ... |   Type: integer, string
+| | ... | Type: integer, string
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}

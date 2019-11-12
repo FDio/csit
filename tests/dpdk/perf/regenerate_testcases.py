@@ -17,4 +17,4 @@ from resources.libraries.python.autogen.Regenerator import Regenerator
 
 # Do not match __init__.robot
 # Match -ndrpdr or future types.
-Regenerator().regenerate_glob("*r.robot")
+Regenerator().regenerate_glob(u"*r.robot")

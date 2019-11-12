@@ -44,6 +44,7 @@ def hack(value_list):
     ret = tmp[3*eight:-eight]
     return tmp # ret
 
+
 iteration = -1
 parent_iterations = list()
 current_iterations = list()
@@ -52,23 +53,25 @@ while 1:
     iteration += 1
     parent_lines = list()
     current_lines = list()
-    filename = "csit_parent/{iter}/results.txt".format(iter=iteration)
+    filename = f"csit_parent/{iteration}/results.txt"
     try:
         with open(filename) as parent_file:
             parent_lines = parent_file.readlines()
     except IOError:
         break
     num_lines = len(parent_lines)
-    filename = "csit_current/{iter}/results.txt".format(iter=iteration)
+    filename = f"csit_current/{iteration}/results.txt"
     with open(filename) as current_file:
         current_lines = current_file.readlines()
     if num_lines != len(current_lines):
-        print "Number of tests does not match within iteration", iteration
+        print(f"Number of tests does not match within iteration {iteration}")
         sys.exit(1)
     if num_tests is None:
         num_tests = num_lines
     elif num_tests != num_lines:
-        print "Number of tests does not match previous at iteration", iteration
+        print(
+            f"Number of tests does not match previous at iteration {iteration}"
+        )
         sys.exit(1)
     parent_iterations.append(parent_lines)
     current_iterations.append(current_lines)
@@ -80,13 +83,13 @@ for test_index in range(num_tests):
     current_values = list()
     for iteration_index in range(len(parent_iterations)):
         parent_values.extend(
-            json.loads(parent_iterations[iteration_index][test_index]))
+            json.loads(parent_iterations[iteration_index][test_index])
+        )
         current_values.extend(
-            json.loads(current_iterations[iteration_index][test_index]))
-    print "Time-ordered MRR values for parent build: {p}".format(
-        p=parent_values)
-    print "Time-ordered MRR values for current build: {c}".format(
-        c=current_values)
+            json.loads(current_iterations[iteration_index][test_index])
+        )
+    print(f"Time-ordered MRR values for parent build: {parent_values}")
+    print(f"Time-ordered MRR values for current build: {current_values}")
     parent_values = hack(parent_values)
     current_values = hack(current_values)
     parent_max = BitCountingMetadataFactory.find_max_value(parent_values)
@@ -97,35 +100,27 @@ for test_index in range(num_tests):
     current_factory = BitCountingMetadataFactory(val_max, parent_stats.avg)
     current_stats = current_factory.from_data(current_values)
     both_stats = factory.from_data(parent_values + current_values)
-    print "Value-ordered MRR values for parent build: {p}".format(
-        p=parent_values)
-    print "Value-ordered MRR values for current build: {c}".format(
-        c=current_values)
+    print(f"Value-ordered MRR values for parent build: {parent_values}")
+    print(f"Value-ordered MRR values for current build: {current_values}")
     difference = (current_stats.avg - parent_stats.avg) / parent_stats.avg
-    print "Difference of averages relative to parent: {d}%".format(
-        d=100 * difference)
-    print "Jumpavg representation of parent group: {p}".format(
-        p=parent_stats)
-    print "Jumpavg representation of current group: {c}".format(
-        c=current_stats)
-    print "Jumpavg representation of both as one group: {b}".format(
-        b=both_stats)
+    print(f"Difference of averages relative to parent: {100 * difference}%")
+    print(f"Jumpavg representation of parent group: {parent_stats}")
+    print(f"Jumpavg representation of current group: {current_stats}")
+    print(f"Jumpavg representation of both as one group: {both_stats}")
     bits = parent_stats.bits + current_stats.bits - both_stats.bits
-    compared = "longer" if bits >= 0 else "shorter"
-    print "Separate groups are {cmp} than single group by {bit} bits".format(
-        cmp=compared, bit=abs(bits))
+    compared = u"longer" if bits >= 0 else u"shorter"
+    print(
+        f"Separate groups are {compared} than single group by {abs(bits)} bits"
+    )
     classified_list = classifier.classify([parent_stats, current_stats])
     if len(classified_list) < 2:
-        print "Test test_index {test_index}: normal (no anomaly)".format(
-            test_index=test_index)
+        print(f"Test test_index {test_index}: normal (no anomaly)")
         continue
     anomaly = classified_list[1].metadata.classification
-    if anomaly == "regression":
-        print "Test test_index {test_index}: anomaly regression".format(
-            test_index=test_index)
+    if anomaly == u"regression":
+        print(f"Test test_index {test_index}: anomaly regression")
         exit_code = 1
         continue
-    print "Test test_index {test_index}: anomaly {anomaly}".format(
-        test_index=test_index, anomaly=anomaly)
-print "Exit code {code}".format(code=exit_code)
+    print(f"Test test_index {test_index}: anomaly {anomaly}")
+print(f"Exit code {exit_code}")
 sys.exit(exit_code)
