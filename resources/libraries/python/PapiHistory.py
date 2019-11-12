@@ -17,7 +17,7 @@ from robot.api import logger
 
 from resources.libraries.python.topology import NodeType, DICT__nodes
 
-__all__ = ["DICT__DUTS_PAPI_HISTORY", "PapiHistory"]
+__all__ = [u"DICT__DUTS_PAPI_HISTORY", u"PapiHistory"]
 
 
 DICT__DUTS_PAPI_HISTORY = dict()
@@ -34,7 +34,7 @@ class PapiHistory(object):
         :param node: DUT node to reset PAPI command history for.
         :type node: dict
         """
-        DICT__DUTS_PAPI_HISTORY[node['host']] = list()
+        DICT__DUTS_PAPI_HISTORY[node[u"host"]] = list()
 
     @staticmethod
     def reset_papi_history_on_all_duts(nodes):
@@ -44,7 +44,7 @@ class PapiHistory(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 PapiHistory.reset_papi_history(node)
 
     @staticmethod
@@ -85,16 +85,15 @@ class PapiHistory(object):
         """
         if papi:
             args = list()
-            for key, val in kwargs.iteritems():
-                args.append("{key}={val!r}".format(key=key, val=val))
-            item = "{cmd}({args})".format(cmd=csit_papi_command,
-                                          args=",".join(args))
+            for key, val in kwargs.items():
+                args.append(f"{key}={val!r}")
+            item = f"{csit_papi_command}({u','.join(args)})"
         else:
             # This else part is here to store VAT commands.
             # VAT history is not used.
             # TODO: Remove when VatExecutor is completely removed.
-            item = "{cmd}".format(cmd=csit_papi_command)
-        DICT__DUTS_PAPI_HISTORY[node['host']].append(item)
+            item = f"{csit_papi_command}"
+        DICT__DUTS_PAPI_HISTORY[node[u"host"]].append(item)
 
     @staticmethod
     def show_papi_history(node):
@@ -103,12 +102,11 @@ class PapiHistory(object):
         :param node: DUT node to show PAPI command history for.
         :type node: dict
         """
-        history_list = DICT__DUTS_PAPI_HISTORY[node['host']]
+        history_list = DICT__DUTS_PAPI_HISTORY[node[u"host"]]
         if not history_list:
-            history_list = ("No PAPI command executed", )
-        logger.info(
-            "{0} PAPI command history:\n{1}\n".format(
-                node['host'], "\n".join(history_list)))
+            history_list = (u"No PAPI command executed", )
+        history = u'\n'.join(history_list)
+        logger.info(f"{node[u'host']} PAPI command history:\n{history}\n")
 
     @staticmethod
     def show_papi_history_on_all_duts(nodes):
@@ -118,7 +116,7 @@ class PapiHistory(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 PapiHistory.show_papi_history(node)
 
 

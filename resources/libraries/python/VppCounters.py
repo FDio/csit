@@ -16,8 +16,9 @@
 from pprint import pformat
 
 from robot.api import logger
-from resources.libraries.python.PapiExecutor import PapiExecutor
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+
+from resources.libraries.python.PapiExecutor import PapiExecutor, \
+    PapiSocketExecutor
 from resources.libraries.python.topology import Topology, SocketType, NodeType
 
 
@@ -34,8 +35,7 @@ class VppCounters(object):
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
-            node, 'show errors')
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(node, u"show errors")
 
     @staticmethod
     def vpp_show_errors_on_all_duts(nodes):
@@ -45,7 +45,7 @@ class VppCounters(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 VppCounters.vpp_show_errors(node)
 
     @staticmethod
@@ -57,46 +57,46 @@ class VppCounters(object):
         :type node: dict
         :type log_zeros: bool
         """
-        args = dict(path='^/sys/node')
+        args = dict(path=u"^/sys/node")
         sockets = Topology.get_node_sockets(node, socket_type=SocketType.STATS)
         if sockets:
             for socket in sockets.values():
                 with PapiExecutor(node) as papi_exec:
-                    stats = papi_exec.add("vpp-stats", **args).\
+                    stats = papi_exec.add(u"vpp-stats", **args).\
                         get_stats(socket=socket)[0]
 
-                names = stats['/sys/node/names']
+                names = stats[u"/sys/node/names"]
 
                 if not names:
                     return
 
-                runtime = []
-                runtime_nz = []
+                runtime = list()
+                runtime_nz = list()
 
                 for name in names:
-                    runtime.append({'name': name})
+                    runtime.append({u"name": name})
 
                 for idx, runtime_item in enumerate(runtime):
 
                     calls_th = []
-                    for thread in stats['/sys/node/calls']:
+                    for thread in stats[u"/sys/node/calls"]:
                         calls_th.append(thread[idx])
-                    runtime_item["calls"] = calls_th
+                    runtime_item[u"calls"] = calls_th
 
                     vectors_th = []
-                    for thread in stats['/sys/node/vectors']:
+                    for thread in stats[u"/sys/node/vectors"]:
                         vectors_th.append(thread[idx])
-                    runtime_item["vectors"] = vectors_th
+                    runtime_item[u"vectors"] = vectors_th
 
                     suspends_th = []
-                    for thread in stats['/sys/node/suspends']:
+                    for thread in stats[u"/sys/node/suspends"]:
                         suspends_th.append(thread[idx])
-                    runtime_item["suspends"] = suspends_th
+                    runtime_item[u"suspends"] = suspends_th
 
                     clocks_th = []
-                    for thread in stats['/sys/node/clocks']:
+                    for thread in stats[u"/sys/node/clocks"]:
                         clocks_th.append(thread[idx])
-                    runtime_item["clocks"] = clocks_th
+                    runtime_item[u"clocks"] = clocks_th
 
                     if (sum(calls_th) or sum(vectors_th) or
                             sum(suspends_th) or sum(clocks_th)):
@@ -104,16 +104,14 @@ class VppCounters(object):
 
                 if log_zeros:
                     logger.info(
-                        "stats runtime ({host} - {socket}):\n{runtime}".
-                        format(
-                            host=node['host'], runtime=pformat(runtime),
-                            socket=socket))
+                        f"stats runtime ({node[u'host']} - {socket}):\n"
+                        f"{pformat(runtime)}"
+                    )
                 else:
                     logger.info(
-                        "stats runtime ({host} - {socket}):\n{runtime}".
-                        format(
-                            host=node['host'], runtime=pformat(runtime_nz),
-                            socket=socket))
+                        f"stats runtime ({node[u'host']} - {socket}):\n"
+                        f"{pformat(runtime_nz)}"
+                    )
 
     @staticmethod
     def vpp_show_runtime_counters_on_all_duts(nodes):
@@ -123,7 +121,7 @@ class VppCounters(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 VppCounters.vpp_show_runtime(node)
 
     @staticmethod
@@ -134,7 +132,8 @@ class VppCounters(object):
         :type node: dict
         """
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(
-            node, 'show hardware verbose')
+            node, u"show hardware verbose"
+        )
 
     @staticmethod
     def vpp_show_memory(node):
@@ -146,7 +145,8 @@ class VppCounters(object):
         :type node: dict
         """
         PapiSocketExecutor.run_cli_cmd(
-            node, 'show memory verbose api-segment stats-segment main-heap')
+            node, u"show memory verbose api-segment stats-segment main-heap"
+        )
 
     @staticmethod
     def vpp_clear_runtime(node):
@@ -156,7 +156,8 @@ class VppCounters(object):
         :type node: dict
         """
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(
-            node, 'clear runtime', log=False)
+            node, u"clear runtime", log=False
+        )
 
     @staticmethod
     def vpp_clear_runtime_counters_on_all_duts(nodes):
@@ -166,7 +167,7 @@ class VppCounters(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 VppCounters.vpp_clear_runtime(node)
 
     @staticmethod
@@ -179,7 +180,8 @@ class VppCounters(object):
         :rtype: dict
         """
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(
-            node, 'clear hardware', log=False)
+            node, u"clear hardware", log=False
+        )
 
     @staticmethod
     def vpp_clear_hardware_counters_on_all_duts(nodes):
@@ -189,7 +191,7 @@ class VppCounters(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 VppCounters.vpp_clear_hardware_counters(node)
 
     @staticmethod
@@ -200,7 +202,8 @@ class VppCounters(object):
         :type node: dict
         """
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(
-            node, 'clear errors', log=False)
+            node, u"clear errors", log=False
+        )
 
     @staticmethod
     def vpp_clear_error_counters_on_all_duts(nodes):
@@ -210,7 +213,7 @@ class VppCounters(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 VppCounters.vpp_clear_errors_counters(node)
 
     @staticmethod
@@ -233,7 +236,7 @@ class VppCounters(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 VppCounters.show_vpp_statistics(node)
 
     @staticmethod
@@ -255,5 +258,5 @@ class VppCounters(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 VppCounters.clear_vpp_statistics(node)

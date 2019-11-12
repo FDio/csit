@@ -83,16 +83,6 @@ available for download.
    - **Documentation**: Pointers to CSIT source code documentation for
      VPP functional tests.
 
-#. HONEYCOMB FUNCTIONAL: Honeycomb functional tests executed in
-   virtual FD.io testbeds.
-
-   - **Overview**: Tested virtual topologies, test coverage and naming
-     specifics;
-   - **Release Notes**: Changes in |csit-release|, known issues.
-   - **Test Environment**: Functional test environment configuration.
-   - **Documentation**: Pointers to CSIT source code documentation for
-     Honeycomb functional tests.
-
 #. DETAILED RESULTS: Detailed result tables auto-generated from CSIT
    test job executions using RF (Robot Framework) output files as
    sources.

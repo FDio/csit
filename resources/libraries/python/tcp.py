@@ -11,27 +11,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""TCP util library.
-"""
+"""TCP util library."""
 
-from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
 
 class TCPUtils(object):
-    """Implementation of the TCP utilities.
-    """
-    www_root_dir = '{rmt_fw_dir}/{wrk_www}'\
-        .format(rmt_fw_dir=Constants.REMOTE_FW_DIR,
-                wrk_www=Constants.RESOURCES_TP_WRK_WWW)
+    """Implementation of the TCP utilities."""
+
+    www_root_dir = f"{Constants.REMOTE_FW_DIR}/{Constants.RESOURCES_TP_WRK_WWW}"
 
     def __init__(self):
         pass
 
     @classmethod
-    def start_vpp_http_server_params(cls, node, http_static_plugin,
-                                     prealloc_fifos, fifo_size,
-                                     private_segment_size):
+    def start_vpp_http_server_params(
+            cls, node, http_static_plugin, prealloc_fifos, fifo_size,
+            private_segment_size):
         """Start the test HTTP server internal application or
            the HTTP static server plugin internal applicatoin on the given node.
 
@@ -73,16 +70,11 @@ class TCPUtils(object):
         :type fifo_size: str
         :type private_segment_size: str
         """
-        if http_static_plugin:
-            cmd = 'http static server www-root {www_root} '\
-                  'prealloc-fifos {prealloc_fifos} fifo-size {fifo_size}'\
-                  ' private-segment-size {pvt_seg_size}'\
-                  .format(www_root=cls.www_root_dir,
-                          prealloc_fifos=prealloc_fifos, fifo_size=fifo_size,
-                          pvt_seg_size=private_segment_size)
-        else:
-            cmd = 'test http server static prealloc-fifos {prealloc_fifos} '\
-                  'fifo-size {fifo_size} private-segment-size {pvt_seg_size}'\
-                  .format(prealloc_fifos=prealloc_fifos, fifo_size=fifo_size,
-                          pvt_seg_size=private_segment_size)
+        cmd = f"http static server www-root {cls.www_root_dir} " \
+            f"prealloc-fifos {prealloc_fifos} fifo-size {fifo_size} " \
+            f"private-segment-size {private_segment_size}" \
+            if http_static_plugin \
+            else f"test http server static prealloc-fifos {prealloc_fifos} " \
+            f"fifo-size {fifo_size} private-segment-size {private_segment_size}"
+
         PapiSocketExecutor.run_cli_cmd(node, cmd)

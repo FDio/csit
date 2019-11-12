@@ -21,19 +21,19 @@
 | | [Documentation]
 | | ... | Framesize can be either integer in case of a single packet
 | | ... | in stream, or set of packets in case of IMIX type or simmilar.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize. Type: integer or string
-| | ...
+| |
 | | ... | *Returns:*
 | | ... | Average frame size. Type: float
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Get Average Frame Size \| IMIX_v4_1 \|
-| | ...
+| |
 | | [Arguments] | ${frame_size}
-| | ...
+| |
 | | Return From Keyword If | '${frame_size}' == 'IMIX_v4_1' | ${353.83333}
 | | ${frame_size} = | Convert To Number | ${frame_size}
 | | Return From Keyword | ${frame_size}
@@ -50,31 +50,31 @@
 | | ... | whitelisted NIC names.
 | | ... | The mapping is hardcoded in nic_limits.yaml
 | | ... | TODO: Make the mapping from NIC names case insensistive.
-| | ...
+| |
 | | ... | TODO: Make pps limit also definable per NIC.
-| | ...
+| |
 | | ... | This keyword computes maximal unidirectional transmit rate
 | | ... | and jumbo boolean (some suites need that for configuration decisions).
 | | ... | To streamline suite autogeneration, both input and output values
 | | ... | are communicated as test (or broader scope) variables,
 | | ... | instead of explicit arguments and return values.
-| | ...
+| |
 | | ... | *Test (or broader scope) variables read:*
-| | ... |   - nic_name - Name of bottleneck NIC. Type: string
-| | ... |   - overhead - Overhead in bytes. Default: 0. Type: integer
-| | ... |   - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
-| | ...
+| | ... | - nic_name - Name of bottleneck NIC. Type: string
+| | ... | - overhead - Overhead in bytes. Default: 0. Type: integer
+| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
+| |
 | | ... | *Test variables set:*
-| | ... |   - max_rate - Calculated unidirectional maximal transmit rate [pps].
-| | ... |     Type: float
-| | ... |   - jumbo - Jumbo boolean, true if jumbo packet support
-| | ... |     has to be enabled. Type: boolean
-| | ...
+| | ... | - max_rate - Calculated unidirectional maximal transmit rate [pps].
+| | ... | Type: float
+| | ... | - jumbo - Jumbo boolean, true if jumbo packet support has to be
+| | ... | enabled. Type: boolean
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Set test Variable \| \${frame_size} \| IMIX_v4_1 \|
 | | ... | \| Set Max Rate And Jumbo \|
-| | ...
+| |
 | | # Negative overhead is possible, if DUT-DUT traffic is less encapsulated
 | | # than TG-DUT traffic.
 | | # TODO: Re-check overhead values in suites with both traffics encapsulated.
