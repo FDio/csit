@@ -52,7 +52,7 @@ class SRv6PolicySteeringTypes(IntEnum):
     SR_STEER_IPV6 = 6
 
 
-class SRv6(object):
+class SRv6:
     """SRv6 class."""
 
     def __init__(self):

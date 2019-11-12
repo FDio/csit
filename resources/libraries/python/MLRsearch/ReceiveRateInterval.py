@@ -15,11 +15,10 @@
 
 import math
 
-from resources.libraries.python.MLRsearch.ReceiveRateMeasurement \
-    import ReceiveRateMeasurement
+from .ReceiveRateMeasurement import ReceiveRateMeasurement
 
 
-class ReceiveRateInterval(object):
+class ReceiveRateInterval:
     """Structure defining two Rr measurements, and their relation."""
 
     def __init__(self, measured_low, measured_high):
@@ -33,11 +32,15 @@ class ReceiveRateInterval(object):
         # TODO: Type checking is not very pythonic,
         # perhaps users can fix wrong usage without it?
         if not isinstance(measured_low, ReceiveRateMeasurement):
-            raise TypeError("measured_low is not a ReceiveRateMeasurement: "
-                            "{low!r}".format(low=measured_low))
+            raise TypeError(
+                f"measured_low is not a ReceiveRateMeasurement: "
+                f"{measured_low!r}"
+            )
         if not isinstance(measured_high, ReceiveRateMeasurement):
-            raise TypeError("measured_high is not a ReceiveRateMeasurement: "
-                            "{high!r}".format(high=measured_high))
+            raise TypeError(
+                f"measured_high is not a ReceiveRateMeasurement: "
+                f"{measured_high!r}"
+            )
         self.measured_low = measured_low
         self.measured_high = measured_high
         # Declare secondary quantities to appease pylint.
@@ -51,9 +54,11 @@ class ReceiveRateInterval(object):
         """Sort bounds by target Tr, compute secondary quantities."""
         if self.measured_low.target_tr > self.measured_high.target_tr:
             self.measured_low, self.measured_high = (
-                self.measured_high, self.measured_low)
+                self.measured_high, self.measured_low
+            )
         self.abs_tr_width = (
-            self.measured_high.target_tr - self.measured_low.target_tr)
+            self.measured_high.target_tr - self.measured_low.target_tr
+        )
         self.rel_tr_width = self.abs_tr_width / self.measured_high.target_tr
 
     def width_in_goals(self, relative_width_goal):
@@ -75,11 +80,9 @@ class ReceiveRateInterval(object):
 
     def __str__(self):
         """Return string as half-open interval."""
-        return "[{low!s};{high!s})".format(
-            low=self.measured_low, high=self.measured_high)
+        return f"[{self.measured_low!s};{self.measured_high!s})"
 
     def __repr__(self):
         """Return string evaluable as a constructor call."""
-        return ("ReceiveRateInterval(measured_low={low!r}"
-                ",measured_high={high!r})".format(
-                    low=self.measured_low, high=self.measured_high))
+        return f"ReceiveRateInterval(measured_low={self.measured_low!r}," \
+            f"measured_high={self.measured_high!r})"

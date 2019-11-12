@@ -19,7 +19,7 @@ from resources.libraries.python.topology import NodeType
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.L2Util import L2Util
 
-class LispStatus(object):
+class LispStatus:
     """Class for lisp API."""
 
     def __init__(self):
@@ -44,7 +44,7 @@ class LispStatus(object):
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispRemoteMapping(object):
+class LispRemoteMapping:
     """Class for lisp remote mapping API."""
 
     def __init__(self):
@@ -165,7 +165,7 @@ class LispRemoteMapping(object):
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispAdjacency(object):
+class LispAdjacency:
     """Class for lisp adjacency API."""
 
     def __init__(self):
@@ -270,7 +270,7 @@ class LispAdjacency(object):
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispGpeStatus(object):
+class LispGpeStatus:
     """Clas for LISP GPE status manipulation."""
 
     def __init__(self):
@@ -295,7 +295,7 @@ class LispGpeStatus(object):
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispGpeForwardEntry(object):
+class LispGpeForwardEntry:
     """The functionality needed for these methods is not implemented in VPP
     (VAT). Bug https://jira.fd.io/browse/VPP-334 was open to cover this issue.
 
@@ -318,7 +318,7 @@ class LispGpeForwardEntry(object):
         pass
 
 
-class LispMapResolver(object):
+class LispMapResolver:
     """Class for Lisp map resolver API."""
 
     def __init__(self):
@@ -368,7 +368,7 @@ class LispMapResolver(object):
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispLocalEid(object):
+class LispLocalEid:
     """Class for Lisp local eid API."""
 
     def __init__(self):
@@ -450,7 +450,7 @@ class LispLocalEid(object):
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispLocator(object):
+class LispLocator:
     """Class for the Lisp Locator API."""
 
     def __init__(self):
@@ -514,7 +514,7 @@ class LispLocator(object):
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispLocatorSet(object):
+class LispLocatorSet:
     """Class for Lisp Locator Set API."""
 
     def __init__(self):
@@ -564,7 +564,7 @@ class LispLocatorSet(object):
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
-class LispSetup(object):
+class LispSetup:
     """Lisp setup in topology."""
 
     def __init__(self):
@@ -719,7 +719,7 @@ class LispSetup(object):
         for map_ip in map_resolver:
             lisp_map_res.vpp_del_map_resolver(node, map_ip.get('map resolver'))
 
-class LispEidTableMap(object):
+class LispEidTableMap:
     """
     Class for EID table map.
     """

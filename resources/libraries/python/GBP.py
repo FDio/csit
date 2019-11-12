@@ -14,6 +14,7 @@
 """GBP utilities library."""
 
 from enum import IntEnum
+
 from ipaddress import ip_address
 
 from resources.libraries.python.IPUtil import IPUtil
@@ -68,7 +69,7 @@ class GBPHashMode(IntEnum):
     GBP_API_HASH_MODE_SYMETRIC = 3
 
 
-class GBP(object):
+class GBP:
     """GBP utilities."""
 
     @staticmethod
@@ -90,9 +91,8 @@ class GBP(object):
         :type ip4_uu_sw_if_index: int
         :type ip6_uu_sw_if_index: int
         """
-        cmd = 'gbp_route_domain_add'
-        err_msg = 'Failed to add GBP route domain on {node}!'\
-                  .format(node=node['host'])
+        cmd = u"gbp_route_domain_add"
+        err_msg = f"Failed to add GBP route domain on {node[u'host']}!"
 
         args_in = dict(
             rd=dict(
@@ -126,14 +126,14 @@ class GBP(object):
         :type uu_fwd_sw_if_index: int
         :type bm_flood_sw_if_index: int
         """
-        cmd = 'gbp_bridge_domain_add'
-        err_msg = 'Failed to add GBP bridge domain on {node}!'\
-                  .format(node=node['host'])
+        cmd = u"gbp_bridge_domain_add"
+        err_msg = f"Failed to add GBP bridge domain on {node[u'host']}!"
 
         args_in = dict(
             bd=dict(
                 flags=getattr(
-                    GBPBridgeDomainFlags, 'GBP_BD_API_FLAG_NONE').value,
+                    GBPBridgeDomainFlags, u"GBP_BD_API_FLAG_NONE"
+                ).value,
                 bvi_sw_if_index=bvi_sw_if_index,
                 uu_fwd_sw_if_index=uu_fwd_sw_if_index,
                 bm_flood_sw_if_index=bm_flood_sw_if_index,
@@ -166,9 +166,8 @@ class GBP(object):
         :type uplink_sw_if_index: int
         :type remote_ep_timeout: int
         """
-        cmd = 'gbp_endpoint_group_add'
-        err_msg = 'Failed to add GBP endpoint group on {node}!'\
-                  .format(node=node['host'])
+        cmd = u"gbp_endpoint_group_add"
+        err_msg = f"Failed to add GBP endpoint group on {node[u'host']}!"
 
         args_in = dict(
             epg=dict(
@@ -201,17 +200,13 @@ class GBP(object):
         :type mac_addr: str
         :type sclass: int
         """
-        cmd = 'gbp_endpoint_add'
-        err_msg = 'Failed to add GBP endpoint on {node}!'\
-                  .format(node=node['host'])
+        cmd = u"gbp_endpoint_add"
+        err_msg = f"Failed to add GBP endpoint on {node[u'host']}!"
 
         ips = list()
-        ips.append(IPUtil.create_ip_address_object(
-            ip_address(unicode(ip_addr))))
-        tun_src = IPUtil.create_ip_address_object(
-            ip_address(unicode('0.0.0.0')))
-        tun_dst = IPUtil.create_ip_address_object(
-            ip_address(unicode('0.0.0.0')))
+        ips.append(IPUtil.create_ip_address_object(ip_address(ip_addr)))
+        tun_src = IPUtil.create_ip_address_object(ip_address(u"0.0.0.0"))
+        tun_dst = IPUtil.create_ip_address_object(ip_address(u"0.0.0.0"))
 
         args_in = dict(
             endpoint=dict(
@@ -221,7 +216,8 @@ class GBP(object):
                 mac=L2Util.mac_to_bin(mac_addr),
                 sclass=sclass,
                 flags=getattr(
-                    GBPEndpointFlags, 'GBP_API_ENDPOINT_FLAG_EXTERNAL').value,
+                    GBPEndpointFlags, u"GBP_API_ENDPOINT_FLAG_EXTERNAL"
+                ).value,
                 tun=dict(
                     src=tun_src,
                     dst=tun_dst
@@ -245,9 +241,8 @@ class GBP(object):
         :type bd_id: int
         :type rd_id: int
         """
-        cmd = 'gbp_ext_itf_add_del'
-        err_msg = 'Failed to add external GBP interface on {node}!'\
-                  .format(node=node['host'])
+        cmd = u"gbp_ext_itf_add_del"
+        err_msg = u"Failed to add external GBP interface on {node[u'host']}!"
 
         args_in = dict(
             is_add=1,
@@ -255,7 +250,7 @@ class GBP(object):
                 sw_if_index=sw_if_index,
                 bd_id=bd_id,
                 rd_id=rd_id,
-                flags=getattr(GBPExtItfFlags, 'GBP_API_EXT_ITF_F_NONE').value
+                flags=getattr(GBPExtItfFlags, u"GBP_API_EXT_ITF_F_NONE").value
             )
         )
 
@@ -281,19 +276,19 @@ class GBP(object):
         :type rd_id: int
         :type sw_if_index: int
         """
-        cmd = 'gbp_subnet_add_del'
-        err_msg = 'Failed to add GBP subnet on {node}!'\
-                  .format(node=node['host'])
+        cmd = u"gbp_subnet_add_del"
+        err_msg = f"Failed to add GBP subnet on {node[u'host']}!"
 
         args_in = dict(
             is_add=1,
             subnet=dict(
-                type=getattr(GBPSubnetType, 'GBP_API_SUBNET_L3_OUT').value,
+                type=getattr(GBPSubnetType, u"GBP_API_SUBNET_L3_OUT").value,
                 sw_if_index=sw_if_index,
                 sclass=sclass,
                 prefix=dict(
                     address=IPUtil.create_ip_address_object(
-                        ip_address(unicode(address))),
+                        ip_address(address)
+                    ),
                     len=int(subnet_length)
                 ),
                 rd_id=rd_id
@@ -318,14 +313,13 @@ class GBP(object):
         :type acl_index: int
         :type hash_mode: str
         """
-        cmd = 'gbp_contract_add_del'
-        err_msg = 'Failed to add GBP contract on {node}!'\
-                  .format(node=node['host'])
+        cmd = u"gbp_contract_add_del"
+        err_msg = f"Failed to add GBP contract on {node[u'host']}!"
 
-        hash_mode = 'GBP_API_HASH_MODE_SRC_IP' if hash_mode is None \
+        hash_mode = u"GBP_API_HASH_MODE_SRC_IP" if hash_mode is None \
             else hash_mode
         rule_permit = dict(
-            action=getattr(GBPRuleAction, 'GBP_API_RULE_PERMIT').value,
+            action=getattr(GBPRuleAction, u"GBP_API_RULE_PERMIT").value,
             nh_set=dict(
                 hash_mode=getattr(GBPHashMode, hash_mode).value,
                 n_nhs=8,
