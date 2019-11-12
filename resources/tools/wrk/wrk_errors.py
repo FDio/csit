@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -29,7 +29,7 @@ class WrkError(Exception):
      - relevant data if there are any collected (optional parameter details).
     """
 
-    def __init__(self, msg, details=''):
+    def __init__(self, msg, details=u""):
         """Sets the exception message and the level.
 
         :param msg: Short description of the encountered problem.
