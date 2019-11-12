@@ -24,7 +24,7 @@ import logging
 from errors import PresentationError
 
 
-class Environment(object):
+class Environment:
     """Setting of the environment:
     - set environment variables,
     - create directories.

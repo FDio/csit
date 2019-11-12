@@ -15,7 +15,7 @@
 """This file defines the constants variables for the TLDK test."""
 
 
-class TLDKConstants(object):
+class TLDKConstants:
     """Define the directory path for the TLDK test."""
 
     # TLDK testing directory location at topology nodes
