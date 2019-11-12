@@ -21,7 +21,7 @@
 | Test Setup | Set up functional test
 | Test Teardown | Tear down functional test
 | Documentation | *L2 cross-connect with QinQ test cases*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology with
 | ... | single links between nodes.
 | ... | *[Enc] Packet encapsulations:* Eth-dot1ad-IPv4-ICMPv4 on DUT1-DUT2,

@@ -14,7 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.Classify
 | Library | resources.libraries.python.Policer
-| ...
+|
 | Documentation | Policer keywords
 
 *** Keywords ***
@@ -23,7 +23,7 @@
 | | ... | Setup of 2r3c color-aware or color-blind policer with dst IPv4 match
 | | ... | on all DUT nodes in 2-node / 3-node circular topology. Policer is
 | | ... | applied on links TG - DUTx.
-| | ...
+| |
 | | ${policer_index}= | Policer Set Configuration | ${dut1} | policer1 | ${cir}
 | | ... | ${eir} | ${cb} | ${eb} | pps | Closest | 2R3C_RFC_2698 | Transmit
 | | ... | Mark_and_Transmit | Transmit | ${t} | exceed_dscp=${dscp}
@@ -35,7 +35,7 @@
 | | ... | hit_next_index=${policer_index} | opaque_index=${pre_color}
 | | Policer Classify Set Interface | ${dut1} | ${dut1_if1}
 | | ... | ip4_table_index=${table_idx}
-| | ...
+| |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -44,7 +44,7 @@
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
-| | ...
+| |
 | | ${policer_index}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Policer Set Configuration | ${dut} | policer2 | ${cir}
 | | ... | ${eir} | ${cb} | ${eb} | pps | Closest | 2R3C_RFC_2698 | Transmit
@@ -65,7 +65,7 @@
 | | ... | Setup of 2r3c color-aware or color-blind policer with dst IPv6 match
 | | ... | on all DUT nodes in 2-node / 3-node circular topology. Policer is
 | | ... | applied on links TG - DUTx.
-| | ...
+| |
 | | ${policer_index}= | Policer Set Configuration | ${dut1} | policer1 | ${cir}
 | | ... | ${eir} | ${cb} | ${eb} | pps | Closest | 2R3C_RFC_2698 | Transmit
 | | ... | Mark_and_Transmit | Transmit | ${t} | exceed_dscp=${dscp}
@@ -77,7 +77,7 @@
 | | ... | hit_next_index=${policer_index} | opaque_index=${pre_color}
 | | Policer Classify Set Interface | ${dut1} | ${dut1_if1}
 | | ... | ip6_table_index=${table_idx}
-| | ...
+| |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
 | | ${dut}= | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -86,7 +86,7 @@
 | | ${dut_if2}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
-| | ...
+| |
 | | ${policer_index}= | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Policer Set Configuration | ${dut} | policer2 | ${cir}
 | | ... | ${eir} | ${cb} | ${eb} | pps | Closest | 2R3C_RFC_2698 | Transmit
@@ -105,16 +105,17 @@
 
 | Show Classify Tables Verbose on all DUTs
 | | [Documentation] | Show classify tables verbose on all DUT nodes in topology.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - nodes - Topology. Type: dictionary
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Show Classify Tables Verbose on all DUTs \| ${nodes} \|
-| | ...
+| |
 | | [Arguments] | ${nodes}
-| | ...
+| |
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Show Classify Tables Verbose | ${nodes['${dut}']}
+| | END
