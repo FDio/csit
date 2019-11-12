@@ -13,19 +13,19 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
 | ... | NIC_Intel-X710 | ETH | IP6FWD | FEATURE | IACLDST | DRV_VFIO_PCI
-| ...
+|
 | Suite Setup | Setup suite single link | performance
 | Suite Teardown | Tear down suite | performance
 | Test Setup | Setup test
 | Test Teardown | Tear down test | performance | classify
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *RFC2544: Pkt throughput IPv6 iAcl whitelist test cases*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv6 for IPv6 routing.
@@ -61,17 +61,17 @@
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with
 | | ... | ${phy_cores} phy core(s).
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer or string (IMIX_v4_1).
 | | ... | Type: integer, string
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}
@@ -82,14 +82,14 @@
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:0
 | | And Vpp Configures Classify Session L3
-| | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 | dst
+| | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 |
 | | ... | 2001:2::0
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1} | ${dut1_if1} | ip6 | ${table_idx}
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut2} | ip6 | dst | ffff:ffff:ffff:ffff:ffff:ffff:ffff:0
 | | And Vpp Configures Classify Session L3
-| | ... | ${dut2} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 | dst
+| | ... | ${dut2} | permit | ${table_idx} | ${skip_n} | ${match_n} | ip6 |
 | | ... | 2001:1::0
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip6 | ${table_idx}

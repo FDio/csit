@@ -16,21 +16,24 @@
 
 """Library to manipulate Containers."""
 
-from string import Template
 from collections import OrderedDict, Counter
+from io import open
+from string import Template
 
-from resources.libraries.python.ssh import SSH
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import Topology, SocketType
 from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
 
 
-__all__ = ["ContainerManager", "ContainerEngine", "LXC", "Docker", "Container"]
+__all__ = [
+    u"ContainerManager", u"ContainerEngine", u"LXC", u"Docker", u"Container"
+]
 
-SUPERVISOR_CONF = '/etc/supervisor/supervisord.conf'
+SUPERVISOR_CONF = u"/etc/supervisor/supervisord.conf"
 
 
-class ContainerManager(object):
+class ContainerManager:
     """Container lifecycle management class."""
 
     def __init__(self, engine):
@@ -43,8 +46,7 @@ class ContainerManager(object):
         try:
             self.engine = globals()[engine]()
         except KeyError:
-            raise NotImplementedError('{engine} is not implemented.'.
-                                      format(engine=engine))
+            raise NotImplementedError(f"{engine} is not implemented.")
         self.containers = OrderedDict()
 
     def get_container_by_name(self, name):
@@ -59,8 +61,7 @@ class ContainerManager(object):
         try:
             return self.containers[name]
         except KeyError:
-            raise RuntimeError('Failed to get container with name: {name}'.
-                               format(name=name))
+            raise RuntimeError(f"Failed to get container with name: {name}")
 
     def construct_container(self, **kwargs):
         """Construct container object on node with specified parameters.
@@ -75,11 +76,13 @@ class ContainerManager(object):
             setattr(self.engine.container, key, kwargs[key])
 
         # Set additional environmental variables
-        setattr(self.engine.container, 'env',
-                'MICROSERVICE_LABEL={label}'.format(label=kwargs['name']))
+        setattr(
+            self.engine.container, u"env",
+            f"MICROSERVICE_LABEL={kwargs[u'name']}"
+        )
 
         # Store container instance
-        self.containers[kwargs['name']] = self.engine.container
+        self.containers[kwargs[u"name"]] = self.engine.container
 
     def construct_containers(self, **kwargs):
         """Construct 1..N container(s) on node with specified name.
@@ -90,10 +93,10 @@ class ContainerManager(object):
         :param kwargs: Named parameters.
         :param kwargs: dict
         """
-        name = kwargs['name']
-        for i in range(kwargs['count']):
+        name = kwargs[u"name"]
+        for i in range(kwargs[u"count"]):
             # Name will contain ordinal suffix
-            kwargs['name'] = ''.join([name, str(i+1)])
+            kwargs[u"name"] = u"".join([name, str(i+1)])
             # Create container
             self.construct_container(i=i, **kwargs)
 
@@ -163,9 +166,15 @@ class ContainerManager(object):
         :param kwargs: dict
         """
         # Count number of DUTs based on node's host information
-        dut_cnt = len(Counter([self.containers[container].node['host']
-                               for container in self.containers]))
-        mod = len(self.containers)/dut_cnt
+        dut_cnt = len(
+            Counter(
+                [
+                    self.containers[container].node[u"host"]
+                    for container in self.containers
+                ]
+            )
+        )
+        mod = len(self.containers) / dut_cnt
 
         for i, container in enumerate(self.containers):
             mid1 = i % mod + 1
@@ -173,36 +182,37 @@ class ContainerManager(object):
             sid1 = i % mod * 2 + 1
             sid2 = i % mod * 2 + 2
             self.engine.container = self.containers[container]
-            guest_dir = self.engine.container.mnt[0].split(':')[1]
+            guest_dir = self.engine.container.mnt[0].split(u":")[1]
 
-            if chain_topology == 'chain':
-                self._configure_vpp_chain_l2xc(mid1=mid1, mid2=mid2,
-                                               sid1=sid1, sid2=sid2,
-                                               guest_dir=guest_dir,
-                                               **kwargs)
-            elif chain_topology == 'cross_horiz':
-                self._configure_vpp_cross_horiz(mid1=mid1, mid2=mid2,
-                                                sid1=sid1, sid2=sid2,
-                                                guest_dir=guest_dir,
-                                                **kwargs)
-            elif chain_topology == 'chain_functional':
-                self._configure_vpp_chain_functional(mid1=mid1, mid2=mid2,
-                                                     sid1=sid1, sid2=sid2,
-                                                     guest_dir=guest_dir,
-                                                     **kwargs)
-            elif chain_topology == 'chain_ip4':
-                self._configure_vpp_chain_ip4(mid1=mid1, mid2=mid2,
-                                              sid1=sid1, sid2=sid2,
-                                              guest_dir=guest_dir,
-                                              **kwargs)
-            elif chain_topology == 'pipeline_ip4':
-                self._configure_vpp_pipeline_ip4(mid1=mid1, mid2=mid2,
-                                                 sid1=sid1, sid2=sid2,
-                                                 guest_dir=guest_dir,
-                                                 **kwargs)
+            if chain_topology == u"chain":
+                self._configure_vpp_chain_l2xc(
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    guest_dir=guest_dir, **kwargs
+                )
+            elif chain_topology == u"cross_horiz":
+                self._configure_vpp_cross_horiz(
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    guest_dir=guest_dir, **kwargs
+                )
+            elif chain_topology == u"chain_functional":
+                self._configure_vpp_chain_functional(
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    guest_dir=guest_dir, **kwargs
+                )
+            elif chain_topology == u"chain_ip4":
+                self._configure_vpp_chain_ip4(
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    guest_dir=guest_dir, **kwargs
+                )
+            elif chain_topology == u"pipeline_ip4":
+                self._configure_vpp_pipeline_ip4(
+                    mid1=mid1, mid2=mid2, sid1=sid1, sid2=sid2,
+                    guest_dir=guest_dir, **kwargs
+                )
             else:
-                raise RuntimeError('Container topology {name} not implemented'.
-                                   format(name=chain_topology))
+                raise RuntimeError(
+                    f"Container topology {chain_topology} not implemented"
+                )
 
     def _configure_vpp_chain_l2xc(self, **kwargs):
         """Configure VPP in chain topology with l2xc.
@@ -212,13 +222,14 @@ class ContainerManager(object):
         """
         self.engine.create_vpp_startup_config()
         self.engine.create_vpp_exec_config(
-            'memif_create_chain_l2xc.exec',
-            mid1=kwargs['mid1'], mid2=kwargs['mid2'],
-            sid1=kwargs['sid1'], sid2=kwargs['sid2'],
-            socket1='{guest_dir}/memif-{c.name}-{sid1}'.
-            format(c=self.engine.container, **kwargs),
-            socket2='{guest_dir}/memif-{c.name}-{sid2}'.
-            format(c=self.engine.container, **kwargs))
+            u"memif_create_chain_l2xc.exec",
+            mid1=kwargs[u"mid1"], mid2=kwargs[u"mid2"],
+            sid1=kwargs[u"sid1"], sid2=kwargs[u"sid2"],
+            socket1=f"{kwargs[u'guest_dir']}/memif-"
+            f"{self.engine.container.name}-{kwargs[u'sid1']}",
+            socket2=f"{kwargs[u'guest_dir']}/memif-"
+            f"{self.engine.container.name}-{kwargs[u'sid2']}"
+        )
 
     def _configure_vpp_cross_horiz(self, **kwargs):
         """Configure VPP in cross horizontal topology (single memif).
@@ -226,22 +237,23 @@ class ContainerManager(object):
         :param kwargs: Named parameters.
         :param kwargs: dict
         """
-        if 'DUT1' in self.engine.container.name:
+        if u"DUT1" in self.engine.container.name:
             if_pci = Topology.get_interface_pci_addr(
-                self.engine.container.node, kwargs['dut1_if'])
+                self.engine.container.node, kwargs[u"dut1_if"])
             if_name = Topology.get_interface_name(
-                self.engine.container.node, kwargs['dut1_if'])
-        if 'DUT2' in self.engine.container.name:
+                self.engine.container.node, kwargs[u"dut1_if"])
+        if u"DUT2" in self.engine.container.name:
             if_pci = Topology.get_interface_pci_addr(
-                self.engine.container.node, kwargs['dut2_if'])
+                self.engine.container.node, kwargs[u"dut2_if"])
             if_name = Topology.get_interface_name(
-                self.engine.container.node, kwargs['dut2_if'])
+                self.engine.container.node, kwargs[u"dut2_if"])
         self.engine.create_vpp_startup_config_dpdk_dev(if_pci)
         self.engine.create_vpp_exec_config(
-            'memif_create_cross_horizon.exec',
-            mid1=kwargs['mid1'], sid1=kwargs['sid1'], if_name=if_name,
-            socket1='{guest_dir}/memif-{c.name}-{sid1}'.
-            format(c=self.engine.container, **kwargs))
+            u"memif_create_cross_horizon.exec",
+            mid1=kwargs[u"mid1"], sid1=kwargs[u"sid1"], if_name=if_name,
+            socket1=f"{kwargs[u'guest_dir']}/memif-"
+            f"{self.engine.container.name}-{kwargs[u'sid1']}"
+        )
 
     def _configure_vpp_chain_functional(self, **kwargs):
         """Configure VPP in chain topology with l2xc (functional).
@@ -251,14 +263,15 @@ class ContainerManager(object):
         """
         self.engine.create_vpp_startup_config_func_dev()
         self.engine.create_vpp_exec_config(
-            'memif_create_chain_functional.exec',
-            mid1=kwargs['mid1'], mid2=kwargs['mid2'],
-            sid1=kwargs['sid1'], sid2=kwargs['sid2'],
-            socket1='{guest_dir}/memif-{c.name}-{sid1}'.
-            format(c=self.engine.container, **kwargs),
-            socket2='{guest_dir}/memif-{c.name}-{sid2}'.
-            format(c=self.engine.container, **kwargs),
-            rx_mode='interrupt')
+            u"memif_create_chain_functional.exec",
+            mid1=kwargs[u"mid1"], mid2=kwargs[u"mid2"],
+            sid1=kwargs[u"sid1"], sid2=kwargs[u"sid2"],
+            socket1=f"{kwargs[u'guest_dir']}/memif-"
+            f"{self.engine.container.name}-{kwargs[u'sid1']}",
+            socket2=f"{kwargs[u'guest_dir']}/memif-"
+            f"{self.engine.container.name}-{kwargs[u'sid2']}",
+            rx_mode=u"interrupt"
+        )
 
     def _configure_vpp_chain_ip4(self, **kwargs):
         """Configure VPP in chain topology with ip4.
@@ -268,23 +281,24 @@ class ContainerManager(object):
         """
         self.engine.create_vpp_startup_config()
 
-        vif1_mac = kwargs['tg_if1_mac'] \
-            if (kwargs['mid1'] - 1) % kwargs['nodes'] + 1 == 1 \
-            else '52:54:00:00:{0:02X}:02'.format(kwargs['mid1'] - 1)
-        vif2_mac = kwargs['tg_if2_mac'] \
-            if (kwargs['mid2'] - 1) % kwargs['nodes'] + 1 == kwargs['nodes'] \
-            else '52:54:00:00:{0:02X}:01'.format(kwargs['mid2'] + 1)
+        vif1_mac = kwargs[u"tg_if1_mac"] \
+            if (kwargs[u"mid1"] - 1) % kwargs[u"nodes"] + 1 == 1 \
+            else f"52:54:00:00:{(kwargs[u'mid1'] - 1):02X}:02"
+        vif2_mac = kwargs[u"tg_if2_mac"] \
+            if (kwargs[u"mid2"] - 1) % kwargs[u"nodes"] + 1 == kwargs[u"nodes"]\
+            else f"52:54:00:00:{(kwargs['mid2'] + 1):02X}:01"
         self.engine.create_vpp_exec_config(
-            'memif_create_chain_ip4.exec',
-            mid1=kwargs['mid1'], mid2=kwargs['mid2'],
-            sid1=kwargs['sid1'], sid2=kwargs['sid2'],
-            socket1='{guest_dir}/memif-{c.name}-{sid1}'.
-            format(c=self.engine.container, **kwargs),
-            socket2='{guest_dir}/memif-{c.name}-{sid2}'.
-            format(c=self.engine.container, **kwargs),
-            mac1='52:54:00:00:{0:02X}:01'.format(kwargs['mid1']),
-            mac2='52:54:00:00:{0:02X}:02'.format(kwargs['mid2']),
-            vif1_mac=vif1_mac, vif2_mac=vif2_mac)
+            u"memif_create_chain_ip4.exec",
+            mid1=kwargs[u"mid1"], mid2=kwargs[u"mid2"],
+            sid1=kwargs[u"sid1"], sid2=kwargs[u"sid2"],
+            socket1=f"{kwargs[u'guest_dir']}/memif-"
+            f"{self.engine.container.name}-{kwargs[u'sid1']}",
+            socket2=f"{kwargs[u'guest_dir']}/memif-"
+            f"{self.engine.container.name}-{kwargs[u'sid2']}",
+            mac1=f"52:54:00:00:{kwargs[u'mid1']:02X}:01",
+            mac2=f"52:54:00:00:{kwargs[u'mid2']:02X}:02",
+            vif1_mac=vif1_mac, vif2_mac=vif2_mac
+        )
 
     def _configure_vpp_pipeline_ip4(self, **kwargs):
         """Configure VPP in pipeline topology with ip4.
@@ -293,40 +307,36 @@ class ContainerManager(object):
         :param kwargs: dict
         """
         self.engine.create_vpp_startup_config()
-        node = (kwargs['mid1'] - 1) % kwargs['nodes'] + 1
-        mid1 = kwargs['mid1']
-        mid2 = kwargs['mid2']
-        role1 = 'master'
-        role2 = 'master' \
-            if node == kwargs['nodes'] or node == kwargs['nodes'] and node == 1\
-            else 'slave'
-        kwargs['mid2'] = kwargs['mid2'] \
-            if node == kwargs['nodes'] or node == kwargs['nodes'] and node == 1\
-            else kwargs['mid2'] + 1
-        vif1_mac = kwargs['tg_if1_mac'] \
-            if (kwargs['mid1'] - 1) % kwargs['nodes'] + 1 == 1 \
-            else '52:54:00:00:{0:02X}:02'.format(kwargs['mid1'] - 1)
-        vif2_mac = kwargs['tg_if2_mac'] \
-            if (kwargs['mid2'] - 1) % kwargs['nodes'] + 1 == kwargs['nodes'] \
-            else '52:54:00:00:{0:02X}:01'.format(kwargs['mid2'] + 1)
-        socket1 = '{guest_dir}/memif-{c.name}-{sid1}'.\
-            format(c=self.engine.container, **kwargs) \
-            if node == 1 else '{guest_dir}/memif-pipe-{mid1}'.\
-            format(c=self.engine.container, **kwargs)
-        socket2 = '{guest_dir}/memif-{c.name}-{sid2}'.\
-            format(c=self.engine.container, **kwargs) \
-            if node == 1 and kwargs['nodes'] == 1 or node == kwargs['nodes'] \
-            else '{guest_dir}/memif-pipe-{mid2}'.\
-            format(c=self.engine.container, **kwargs)
+        node = (kwargs[u"mid1"] - 1) % kwargs[u"nodes"] + 1
+        mid1 = kwargs[u"mid1"]
+        mid2 = kwargs[u"mid2"]
+        role1 = u"master"
+        role2 = u"master" if node == kwargs[u"nodes"] or node == 1 else u"slave"
+        kwargs[u"mid2"] = kwargs[u"mid2"] \
+            if node == kwargs[u"nodes"] or node == 1 else kwargs[u"mid2"] + 1
+        vif1_mac = kwargs[u"tg_if1_mac"] \
+            if (kwargs[u"mid1"] - 1) % kwargs[u"nodes"] + 1 == 1 \
+            else f"52:54:00:00:{(kwargs[u'mid1'] - 1):02X}:02"
+        vif2_mac = kwargs[u"tg_if2_mac"] \
+            if (kwargs[u"mid2"] - 1) % kwargs[u"nodes"] + 1 == kwargs[u"nodes"]\
+            else f"52:54:00:00:{(kwargs[u'mid2'] + 1):02X}:01"
+        socket1 = f"{kwargs[u'guest_dir']}/memif-{self.engine.container.name}-"\
+            f"{kwargs[u'sid1']}" if node == 1 \
+            else f"{kwargs[u'guest_dir']}/memif-pipe-{kwargs[u'mid1']}"
+        socket2 = f"{kwargs[u'guest_dir']}/memif-{self.engine.container.name}-"\
+            f"{kwargs[u'sid2']}" \
+            if node == 1 and kwargs[u"nodes"] == 1 or node == kwargs[u"nodes"] \
+            else f"{kwargs[u'guest_dir']}/memif-pipe-{kwargs[u'mid2']}"
 
         self.engine.create_vpp_exec_config(
-            'memif_create_pipeline_ip4.exec',
-            mid1=kwargs['mid1'], mid2=kwargs['mid2'],
-            sid1=kwargs['sid1'], sid2=kwargs['sid2'],
+            u"memif_create_pipeline_ip4.exec",
+            mid1=kwargs[u"mid1"], mid2=kwargs[u"mid2"],
+            sid1=kwargs[u"sid1"], sid2=kwargs[u"sid2"],
             socket1=socket1, socket2=socket2, role1=role1, role2=role2,
-            mac1='52:54:00:00:{0:02X}:01'.format(mid1),
-            mac2='52:54:00:00:{0:02X}:02'.format(mid2),
-            vif1_mac=vif1_mac, vif2_mac=vif2_mac)
+            mac1=f"52:54:00:00:{mid1:02X}:01",
+            mac2=f"52:54:00:00:{mid2:02X}:02",
+            vif1_mac=vif1_mac, vif2_mac=vif2_mac
+        )
 
     def stop_all_containers(self):
         """Stop all containers."""
@@ -341,7 +351,7 @@ class ContainerManager(object):
             self.engine.destroy()
 
 
-class ContainerEngine(object):
+class ContainerEngine:
     """Abstract class for container engine."""
 
     def __init__(self):
@@ -395,61 +405,66 @@ class ContainerEngine(object):
     def install_supervisor(self):
         """Install supervisord inside a container."""
         if isinstance(self, LXC):
-            self.execute('sleep 3; apt-get update')
-            self.execute('apt-get install -y supervisor')
-            self.execute('echo "{config}" > {config_file} && '
-                         'supervisord -c {config_file}'.
-                         format(
-                             config='[unix_http_server]\n'
-                             'file  = /tmp/supervisor.sock\n\n'
-                             '[rpcinterface:supervisor]\n'
-                             'supervisor.rpcinterface_factory = supervisor.'
-                             'rpcinterface:make_main_rpcinterface\n\n'
-                             '[supervisorctl]\n'
-                             'serverurl = unix:///tmp/supervisor.sock\n\n'
-                             '[supervisord]\n'
-                             'pidfile = /tmp/supervisord.pid\n'
-                             'identifier = supervisor\n'
-                             'directory = /tmp\n'
-                             'logfile = /tmp/supervisord.log\n'
-                             'loglevel = debug\n'
-                             'nodaemon = false\n\n',
-                             config_file=SUPERVISOR_CONF))
+            self.execute(u"sleep 3; apt-get update")
+            self.execute(u"apt-get install -y supervisor")
+            config = \
+                u"[unix_http_server]\n" \
+                u"file  = /tmp/supervisor.sock\n\n" \
+                u"[rpcinterface:supervisor]\n" \
+                u"supervisor.rpcinterface_factory = " \
+                u"supervisor.rpcinterface:make_main_rpcinterface\n\n" \
+                u"[supervisorctl]\n" \
+                u"serverurl = unix:///tmp/supervisor.sock\n\n" \
+                u"[supervisord]\n" \
+                u"pidfile = /tmp/supervisord.pid\n" \
+                u"identifier = supervisor\n" \
+                u"directory = /tmp\n" \
+                u"logfile = /tmp/supervisord.log\n" \
+                u"loglevel = debug\n" \
+                u"nodaemon = false\n\n"
+            self.execute(
+                f"echo \"{config}\" > {SUPERVISOR_CONF} && "
+                f"supervisord -c {SUPERVISOR_CONF}"
+            )
 
     def start_vpp(self):
         """Start VPP inside a container."""
-        self.execute('echo "{config}" >> {config_file} && '
-                     'supervisorctl reload'.
-                     format(
-                         config='[program:vpp]\n'
-                         'command = /usr/bin/vpp -c /etc/vpp/startup.conf\n'
-                         'autostart = false\n'
-                         'autorestart = false\n'
-                         'redirect_stderr = true\n'
-                         'priority = 1',
-                         config_file=SUPERVISOR_CONF))
-        self.execute('supervisorctl start vpp')
+
+        config = \
+            u"[program:vpp]\n" \
+            u"command = /usr/bin/vpp -c /etc/vpp/startup.conf\n" \
+            u"autostart = false\n" \
+            u"autorestart = false\n" \
+            u"redirect_stderr = true\n" \
+            u"priority = 1"
+        self.execute(
+            f"echo \"{config}\" >> {SUPERVISOR_CONF} && supervisorctl reload"
+        )
+        self.execute(u"supervisorctl start vpp")
 
         from robot.libraries.BuiltIn import BuiltIn
         topo_instance = BuiltIn().get_library_instance(
-            'resources.libraries.python.topology.Topology')
+            u"resources.libraries.python.topology.Topology"
+        )
         topo_instance.add_new_socket(
             self.container.node,
             SocketType.PAPI,
             self.container.name,
-            '{root}/tmp/vpp_sockets/{name}/api.sock'.
-            format(root=self.container.root, name=self.container.name))
+            f"{self.container.root}/tmp/vpp_sockets/{self.container.name}/"
+            f"api.sock"
+        )
         topo_instance.add_new_socket(
             self.container.node,
             SocketType.STATS,
             self.container.name,
-            '{root}/tmp/vpp_sockets/{name}/stats.sock'.
-            format(root=self.container.root, name=self.container.name))
+            f"{self.container.root}/tmp/vpp_sockets/{self.container.name}/"
+            f"stats.sock"
+        )
 
     def restart_vpp(self):
         """Restart VPP service inside a container."""
-        self.execute('supervisorctl restart vpp')
-        self.execute('cat /tmp/supervisord.log')
+        self.execute(u"supervisorctl restart vpp")
+        self.execute(u"cat /tmp/supervisord.log")
 
     def create_base_vpp_startup_config(self):
         """Create base startup configuration of VPP on container.
@@ -464,14 +479,14 @@ class ContainerEngine(object):
         vpp_config.set_node(self.container.node)
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
-        vpp_config.add_unix_exec('/tmp/running.exec')
+        vpp_config.add_unix_exec(u"/tmp/running.exec")
         vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
-        vpp_config.add_statseg_per_node_counters(value='on')
+        vpp_config.add_statseg_per_node_counters(value=u"on")
         # We will pop the first core from the list to be a main core
         vpp_config.add_cpu_main_core(str(cpuset_cpus.pop(0)))
         # If more cores in the list, the rest will be used as workers.
         if cpuset_cpus:
-            corelist_workers = ','.join(str(cpu) for cpu in cpuset_cpus)
+            corelist_workers = u",".join(str(cpu) for cpu in cpuset_cpus)
             vpp_config.add_cpu_corelist_workers(corelist_workers)
 
         return vpp_config
@@ -480,12 +495,14 @@ class ContainerEngine(object):
         """Create startup configuration of VPP without DPDK on container.
         """
         vpp_config = self.create_base_vpp_startup_config()
-        vpp_config.add_plugin('disable', 'dpdk_plugin.so')
+        vpp_config.add_plugin(u"disable", [u"dpdk_plugin.so"])
 
         # Apply configuration
-        self.execute('mkdir -p /etc/vpp/')
-        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
-                     .format(config=vpp_config.get_config_str()))
+        self.execute(u"mkdir -p /etc/vpp/")
+        self.execute(
+            f"echo \"{vpp_config.get_config_str()}\" | "
+            f"tee /etc/vpp/startup.conf"
+        )
 
     def create_vpp_startup_config_dpdk_dev(self, *devices):
         """Create startup configuration of VPP with DPDK on container.
@@ -496,15 +513,17 @@ class ContainerEngine(object):
         vpp_config = self.create_base_vpp_startup_config()
         vpp_config.add_dpdk_dev(*devices)
         vpp_config.add_dpdk_no_tx_checksum_offload()
-        vpp_config.add_dpdk_log_level('debug')
-        vpp_config.add_plugin('disable', 'default')
-        vpp_config.add_plugin('enable', 'dpdk_plugin.so')
-        vpp_config.add_plugin('enable', 'memif_plugin.so')
+        vpp_config.add_dpdk_log_level(u"debug")
+        vpp_config.add_plugin(u"disable", [u"default"])
+        vpp_config.add_plugin(u"enable", [u"dpdk_plugin.so"])
+        vpp_config.add_plugin(u"enable", [u"memif_plugin.so"])
 
         # Apply configuration
-        self.execute('mkdir -p /etc/vpp/')
-        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
-                     .format(config=vpp_config.get_config_str()))
+        self.execute(u"mkdir -p /etc/vpp/")
+        self.execute(
+            f"echo \"{vpp_config.get_config_str()}\" | "
+            f"tee /etc/vpp/startup.conf"
+        )
 
     def create_vpp_startup_config_func_dev(self):
         """Create startup configuration of VPP on container for functional
@@ -515,15 +534,17 @@ class ContainerEngine(object):
         vpp_config.set_node(self.container.node)
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_nodaemon()
-        vpp_config.add_unix_exec('/tmp/running.exec')
+        vpp_config.add_unix_exec(u"/tmp/running.exec")
         vpp_config.add_socksvr(socket=Constants.SOCKSVR_PATH)
-        vpp_config.add_statseg_per_node_counters(value='on')
-        vpp_config.add_plugin('disable', 'dpdk_plugin.so')
+        vpp_config.add_statseg_per_node_counters(value=u"on")
+        vpp_config.add_plugin(u"disable", [u"dpdk_plugin.so"])
 
         # Apply configuration
-        self.execute('mkdir -p /etc/vpp/')
-        self.execute('echo "{config}" | tee /etc/vpp/startup.conf'
-                     .format(config=vpp_config.get_config_str()))
+        self.execute(u"mkdir -p /etc/vpp/")
+        self.execute(
+            f"echo \"{vpp_config.get_config_str()}\" | "
+            f"tee /etc/vpp/startup.conf"
+        )
 
     def create_vpp_exec_config(self, template_file, **kwargs):
         """Create VPP exec configuration on container.
@@ -533,15 +554,16 @@ class ContainerEngine(object):
         :type template_file: str
         :type kwargs: dict
         """
-        running = '/tmp/running.exec'
+        running = u"/tmp/running.exec"
 
-        template = '{res}/{tpl}'.format(
-            res=Constants.RESOURCES_TPL_CONTAINER, tpl=template_file)
+        template = f"{Constants.RESOURCES_TPL_CONTAINER}/{template_file}"
 
-        with open(template, 'r') as src_file:
+        with open(template, "r") as src_file:
             src = Template(src_file.read())
-            self.execute('echo "{out}" > {running}'.format(
-                out=src.safe_substitute(**kwargs), running=running))
+            self.execute(
+                u"echo \"{out}\" > {running}".format(
+                    out=src.safe_substitute(**kwargs), running=running)
+            )
 
     def is_container_running(self):
         """Check if container is running."""
@@ -566,29 +588,34 @@ class ContainerEngine(object):
         :raises RuntimeError: If applying cgroup settings via cgset failed.
         """
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            'cgset -r cpuset.cpu_exclusive=0 /')
+            u"cgset -r cpuset.cpu_exclusive=0 /"
+        )
         if int(ret) != 0:
-            raise RuntimeError('Failed to apply cgroup settings.')
+            raise RuntimeError(u"Failed to apply cgroup settings.")
 
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            'cgset -r cpuset.mem_exclusive=0 /')
+            u"cgset -r cpuset.mem_exclusive=0 /"
+        )
         if int(ret) != 0:
-            raise RuntimeError('Failed to apply cgroup settings.')
+            raise RuntimeError(u"Failed to apply cgroup settings.")
 
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            'cgcreate -g cpuset:/{name}'.format(name=name))
+            f"cgcreate -g cpuset:/{name}"
+        )
         if int(ret) != 0:
-            raise RuntimeError('Failed to copy cgroup settings from root.')
+            raise RuntimeError(u"Failed to copy cgroup settings from root.")
 
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            'cgset -r cpuset.cpu_exclusive=0 /{name}'.format(name=name))
+            f"cgset -r cpuset.cpu_exclusive=0 /{name}"
+        )
         if int(ret) != 0:
-            raise RuntimeError('Failed to apply cgroup settings.')
+            raise RuntimeError(u"Failed to apply cgroup settings.")
 
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            'cgset -r cpuset.mem_exclusive=0 /{name}'.format(name=name))
+            f"cgset -r cpuset.mem_exclusive=0 /{name}"
+        )
         if int(ret) != 0:
-            raise RuntimeError('Failed to apply cgroup settings.')
+            raise RuntimeError(u"Failed to apply cgroup settings.")
 
 
 class LXC(ContainerEngine):
@@ -611,21 +638,21 @@ class LXC(ContainerEngine):
             else:
                 return
 
-        target_arch = 'arm64' \
-            if Topology.get_node_arch(self.container.node) == 'aarch64' \
-            else 'amd64'
+        target_arch = u"arm64" \
+            if Topology.get_node_arch(self.container.node) == u"aarch64" \
+            else u"amd64"
 
-        image = self.container.image if self.container.image else\
-            "-d ubuntu -r bionic -a {arch}".format(arch=target_arch)
+        image = self.container.image if self.container.image \
+            else f"-d ubuntu -r bionic -a {target_arch}"
 
-        cmd = 'lxc-create -t download --name {c.name} -- {image} '\
-            '--no-validate'.format(c=self.container, image=image)
+        cmd = f"lxc-create -t download --name {self.container.name} " \
+            f"-- {image} --no-validate"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
         if int(ret) != 0:
-            raise RuntimeError('Failed to create container.')
+            raise RuntimeError(u"Failed to create container.")
 
-        self._configure_cgroup('lxc')
+        self._configure_cgroup(u"lxc")
 
     def create(self):
         """Create/deploy an application inside a container on system.
@@ -635,54 +662,61 @@ class LXC(ContainerEngine):
         if self.container.mnt:
             # LXC fix for tmpfs
             # https://github.com/lxc/lxc/issues/434
+            mnt_e = u"lxc.mount.entry = tmpfs run tmpfs defaults"
             ret, _, _ = self.container.ssh.exec_command_sudo(
-                "sh -c 'echo \"{e}\" >> /var/lib/lxc/{c.name}/config'".
-                format(e="lxc.mount.entry = tmpfs run tmpfs defaults",
-                       c=self.container))
+                f"sh -c \"echo '{mnt_e}' >> "
+                f"/var/lib/lxc/{self.container.name}/config\""
+            )
             if int(ret) != 0:
-                raise RuntimeError('Failed to write {c.name} config.'.
-                                   format(c=self.container))
+                raise RuntimeError(
+                    f"Failed to write {self.container.name} config."
+                )
 
             for mount in self.container.mnt:
-                host_dir, guest_dir = mount.split(':')
-                options = 'bind,create=dir' \
-                    if guest_dir.endswith('/') else 'bind,create=file'
-                entry = 'lxc.mount.entry = {host_dir} {guest_dir} none ' \
-                    '{options} 0 0'.format(
-                        host_dir=host_dir, guest_dir=guest_dir[1:],
-                        options=options)
+                host_dir, guest_dir = mount.split(u":")
+                options = u"bind,create=dir" if guest_dir.endswith(u"/") \
+                    else u"bind,create=file"
+                entry = f"lxc.mount.entry = {host_dir} {guest_dir[1:]} " \
+                    f"none {options} 0 0"
                 self.container.ssh.exec_command_sudo(
-                    "sh -c 'mkdir -p {host_dir}'".format(host_dir=host_dir))
+                    f"sh -c \"mkdir -p {host_dir}\""
+                )
                 ret, _, _ = self.container.ssh.exec_command_sudo(
-                    "sh -c 'echo \"{e}\" >> /var/lib/lxc/{c.name}/config'".
-                    format(e=entry, c=self.container))
+                    f"sh -c \"echo '{entry}' "
+                    f">> /var/lib/lxc/{self.container.name}/config\""
+                )
                 if int(ret) != 0:
-                    raise RuntimeError('Failed to write {c.name} config.'
-                                       .format(c=self.container))
+                    raise RuntimeError(
+                        f"Failed to write {self.container.name} config."
+                    )
 
-        cpuset_cpus = '{0}'.format(
-            ','.join('%s' % cpu for cpu in self.container.cpuset_cpus))\
-            if self.container.cpuset_cpus else ''
+        cpuset_cpus = u",".join(
+            f"{cpu!s}" for cpu in self.container.cpuset_cpus) \
+            if self.container.cpuset_cpus else u""
 
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            'lxc-start --name {c.name} --daemon'.format(c=self.container))
+            f"lxc-start --name {self.container.name} --daemon"
+        )
         if int(ret) != 0:
-            raise RuntimeError('Failed to start container {c.name}.'.
-                               format(c=self.container))
-        self._lxc_wait('RUNNING')
+            raise RuntimeError(
+                f"Failed to start container {self.container.name}."
+            )
+        self._lxc_wait(u"RUNNING")
 
         # Workaround for LXC to be able to allocate all cpus including isolated.
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            'cgset --copy-from / lxc/')
+            u"cgset --copy-from / lxc/"
+        )
         if int(ret) != 0:
-            raise RuntimeError('Failed to copy cgroup to LXC')
+            raise RuntimeError(u"Failed to copy cgroup to LXC")
 
         ret, _, _ = self.container.ssh.exec_command_sudo(
-            'lxc-cgroup --name {c.name} cpuset.cpus {cpus}'.
-            format(c=self.container, cpus=cpuset_cpus))
+            f"lxc-cgroup --name {self.c.name} cpuset.cpus {cpuset_cpus}"
+        )
         if int(ret) != 0:
-            raise RuntimeError('Failed to set cpuset.cpus to container '
-                               '{c.name}.'.format(c=self.container))
+            raise RuntimeError(
+                f"Failed to set cpuset.cpus to container {self.container.name}."
+            )
 
     def execute(self, command):
         """Start a process inside a running container.
@@ -694,65 +728,69 @@ class LXC(ContainerEngine):
         :type command: str
         :raises RuntimeError: If running the command failed.
         """
-        env = '--keep-env {0}'.format(
-            ' '.join('--set-var %s' % env for env in self.container.env))\
-            if self.container.env else ''
+        env = u"--keep-env " + u" ".join(
+            f"--set-var {env!s}" for env in self.container.env) \
+            if self.container.env else u""
 
-        cmd = "lxc-attach {env} --name {c.name} -- /bin/sh -c '{command}; "\
-            "exit $?'".format(env=env, c=self.container, command=command)
+        cmd = f"lxc-attach {env} --name {self.container.name} " \
+            f"-- /bin/sh -c \"{command}; exit $?\""
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=180)
         if int(ret) != 0:
-            raise RuntimeError('Failed to run command inside container '
-                               '{c.name}.'.format(c=self.container))
+            raise RuntimeError(
+                f"Failed to run command inside container {self.container.name}."
+            )
 
     def stop(self):
         """Stop a container.
 
         :raises RuntimeError: If stopping the container failed.
         """
-        cmd = 'lxc-stop --name {c.name}'.format(c=self.container)
+        cmd = f"lxc-stop --name {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to stop container {c.name}.'
-                               .format(c=self.container))
-        self._lxc_wait('STOPPED|FROZEN')
+            raise RuntimeError(
+                f"Failed to stop container {self.container.name}."
+            )
+        self._lxc_wait(u"STOPPED|FROZEN")
 
     def destroy(self):
         """Destroy a container.
 
         :raises RuntimeError: If destroying container failed.
         """
-        cmd = 'lxc-destroy --force --name {c.name}'.format(c=self.container)
+        cmd = f"lxc-destroy --force --name {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to destroy container {c.name}.'
-                               .format(c=self.container))
+            raise RuntimeError(
+                f"Failed to destroy container {self.container.name}."
+            )
 
     def info(self):
         """Query and shows information about a container.
 
         :raises RuntimeError: If getting info about a container failed.
         """
-        cmd = 'lxc-info --name {c.name}'.format(c=self.container)
+        cmd = f"lxc-info --name {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to get info about container {c.name}.'
-                               .format(c=self.container))
+            raise RuntimeError(
+                f"Failed to get info about container {self.container.name}."
+            )
 
     def system_info(self):
         """Check the current kernel for LXC support.
 
         :raises RuntimeError: If checking LXC support failed.
         """
-        cmd = 'lxc-checkconfig'
+        cmd = u"lxc-checkconfig"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to check LXC support.')
+            raise RuntimeError(u"Failed to check LXC support.")
 
     def is_container_running(self):
         """Check if container is running on node.
@@ -761,14 +799,14 @@ class LXC(ContainerEngine):
         :rtype: bool
         :raises RuntimeError: If getting info about a container failed.
         """
-        cmd = 'lxc-info --no-humanize --state --name {c.name}'\
-            .format(c=self.container)
+        cmd = f"lxc-info --no-humanize --state --name {self.container.name}"
 
         ret, stdout, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to get info about container {c.name}.'
-                               .format(c=self.container))
-        return True if 'RUNNING' in stdout else False
+            raise RuntimeError(
+                f"Failed to get info about container {self.container.name}."
+            )
+        return True if u"RUNNING" in stdout else False
 
     def is_container_present(self):
         """Check if container is existing on node.
@@ -777,7 +815,7 @@ class LXC(ContainerEngine):
         :rtype: bool
         :raises RuntimeError: If getting info about a container failed.
         """
-        cmd = 'lxc-info --no-humanize --name {c.name}'.format(c=self.container)
+        cmd = f"lxc-info --no-humanize --name {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         return False if int(ret) else True
@@ -789,13 +827,14 @@ class LXC(ContainerEngine):
         :type state: str
         :raises RuntimeError: If waiting for state of a container failed.
         """
-        cmd = 'lxc-wait --name {c.name} --state "{s}"'\
-            .format(c=self.container, s=state)
+        cmd = f"lxc-wait --name {self.container.name} --state '{state}'"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to wait for state "{s}" of container '
-                               '{c.name}.'.format(s=state, c=self.container))
+            raise RuntimeError(
+                f"Failed to wait for state '{state}' "
+                f"of container {self.container.name}."
+            )
 
 
 class Docker(ContainerEngine):
@@ -818,61 +857,58 @@ class Docker(ContainerEngine):
 
         if not self.container.image:
             img = Constants.DOCKER_SUT_IMAGE_UBUNTU_ARM \
-                if Topology.get_node_arch(self.container.node) == 'aarch64' \
+                if Topology.get_node_arch(self.container.node) == u"aarch64" \
                 else Constants.DOCKER_SUT_IMAGE_UBUNTU
-            setattr(self.container, 'image', img)
+            setattr(self.container, u"image", img)
 
-        cmd = 'docker pull {image}'.format(image=self.container.image)
+        cmd = f"docker pull {self.container.image}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=1800)
         if int(ret) != 0:
-            raise RuntimeError('Failed to create container {c.name}.'
-                               .format(c=self.container))
+            raise RuntimeError(
+                f"Failed to create container {self.container.name}."
+            )
 
         if self.container.cpuset_cpus:
-            self._configure_cgroup('docker')
+            self._configure_cgroup(u"docker")
 
     def create(self):
         """Create/deploy container.
 
         :raises RuntimeError: If creating a container failed.
         """
-        cpuset_cpus = '--cpuset-cpus={0}'.format(
-            ','.join('%s' % cpu for cpu in self.container.cpuset_cpus))\
-            if self.container.cpuset_cpus else ''
+        cpuset_cpus = u"--cpuset-cpus=" + u",".join(
+            f"{cpu!s}" for cpu in self.container.cpuset_cpus) \
+            if self.container.cpuset_cpus else u""
 
-        cpuset_mems = '--cpuset-mems={0}'.format(self.container.cpuset_mems)\
-            if self.container.cpuset_mems is not None else ''
+        cpuset_mems = f"--cpuset-mems={self.container.cpuset_mems}" \
+            if self.container.cpuset_mems is not None else u""
         # Temporary workaround - disabling due to bug in memif
-        cpuset_mems = ''
+        cpuset_mems = u""
 
-        env = '{0}'.format(
-            ' '.join('--env %s' % env for env in self.container.env))\
-            if self.container.env else ''
+        env = u" ".join(f"--env {env!s}" for env in self.container.env) \
+            if self.container.env else u""
 
-        command = '{0}'.format(self.container.command)\
-            if self.container.command else ''
+        command = str(self.container.command) if self.container.command else u""
 
-        publish = '{0}'.format(
-            ' '.join('--publish %s' % var for var in self.container.publish))\
-            if self.container.publish else ''
+        publish = u" ".join(
+            f"--publish  {var!s}" for var in self.container.publish
+        ) if self.container.publish else u""
 
-        volume = '{0}'.format(
-            ' '.join('--volume %s' % mnt for mnt in self.container.mnt))\
-            if self.container.mnt else ''
+        volume = u" ".join(
+            f"--volume {mnt!s}" for mnt in self.container.mnt) \
+            if self.container.mnt else u""
 
-        cmd = 'docker run '\
-            '--privileged --detach --interactive --tty --rm '\
-            '--cgroup-parent docker {cpuset_cpus} {cpuset_mems} {publish} '\
-            '{env} {volume} --name {container.name} {container.image} '\
-            '{command}'.format(cpuset_cpus=cpuset_cpus, cpuset_mems=cpuset_mems,
-                               container=self.container, command=command,
-                               env=env, publish=publish, volume=volume)
+        cmd = f"docker run --privileged --detach --interactive --tty --rm " \
+            f"--cgroup-parent docker {cpuset_cpus} {cpuset_mems} {publish} " \
+            f"{env} {volume} --name {self.container.name} " \
+            f"{self.container.image} {command}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to create container {c.name}'
-                               .format(c=self.container))
+            raise RuntimeError(
+                f"Failed to create container {self.container.name}"
+            )
 
         self.info()
 
@@ -886,60 +922,64 @@ class Docker(ContainerEngine):
         :type command: str
         :raises RuntimeError: If running the command in a container failed.
         """
-        cmd = "docker exec --interactive {c.name} /bin/sh -c '{command}; "\
-            "exit $?'".format(c=self.container, command=command)
+        cmd = f"docker exec --interactive {self.container.name} " \
+            f"/bin/sh -c \"{command}; exit $?\""
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd, timeout=180)
         if int(ret) != 0:
-            raise RuntimeError('Failed to execute command in container '
-                               '{c.name}.'.format(c=self.container))
+            raise RuntimeError(
+                f"Failed to execute command in container {self.container.name}."
+            )
 
     def stop(self):
         """Stop running container.
 
         :raises RuntimeError: If stopping a container failed.
         """
-        cmd = 'docker stop {c.name}'.format(c=self.container)
+        cmd = f"docker stop {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to stop container {c.name}.'
-                               .format(c=self.container))
+            raise RuntimeError(
+                f"Failed to stop container {self.container.name}."
+            )
 
     def destroy(self):
         """Remove a container.
 
         :raises RuntimeError: If removing a container failed.
         """
-        cmd = 'docker rm --force {c.name}'.format(c=self.container)
+        cmd = f"docker rm --force {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to destroy container {c.name}.'
-                               .format(c=self.container))
+            raise RuntimeError(
+                f"Failed to destroy container {self.container.name}."
+            )
 
     def info(self):
         """Return low-level information on Docker objects.
 
         :raises RuntimeError: If getting info about a container failed.
         """
-        cmd = 'docker inspect {c.name}'.format(c=self.container)
+        cmd = f"docker inspect {self.container.name}"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to get info about container {c.name}.'
-                               .format(c=self.container))
+            raise RuntimeError(
+                f"Failed to get info about container {self.container.name}."
+            )
 
     def system_info(self):
         """Display the docker system-wide information.
 
         :raises RuntimeError: If displaying system information failed.
         """
-        cmd = 'docker system info'
+        cmd = u"docker system info"
 
         ret, _, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to get system info.')
+            raise RuntimeError(u"Failed to get system info.")
 
     def is_container_present(self):
         """Check if container is present on node.
@@ -948,13 +988,13 @@ class Docker(ContainerEngine):
         :rtype: bool
         :raises RuntimeError: If getting info about a container failed.
         """
-        cmd = 'docker ps --all --quiet --filter name={c.name}'\
-            .format(c=self.container)
+        cmd = f"docker ps --all --quiet --filter name={self.container.name}"
 
         ret, stdout, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to get info about container {c.name}.'
-                               .format(c=self.container))
+            raise RuntimeError(
+                f"Failed to get info about container {self.container.name}."
+            )
         return True if stdout else False
 
     def is_container_running(self):
@@ -964,17 +1004,17 @@ class Docker(ContainerEngine):
         :rtype: bool
         :raises RuntimeError: If getting info about a container failed.
         """
-        cmd = 'docker ps --quiet --filter name={c.name}'\
-            .format(c=self.container)
+        cmd = f"docker ps --quiet --filter name={self.container.name}"
 
         ret, stdout, _ = self.container.ssh.exec_command_sudo(cmd)
         if int(ret) != 0:
-            raise RuntimeError('Failed to get info about container {c.name}.'
-                               .format(c=self.container))
+            raise RuntimeError(
+                f"Failed to get info about container {self.container.name}."
+            )
         return True if stdout else False
 
 
-class Container(object):
+class Container:
     """Container class."""
 
     def __init__(self):
@@ -1007,9 +1047,9 @@ class Container(object):
             self.__dict__[attr]
         except KeyError:
             # Creating new attribute
-            if attr == 'node':
-                self.__dict__['ssh'] = SSH()
-                self.__dict__['ssh'].connect(value)
+            if attr == u"node":
+                self.__dict__[u"ssh"] = SSH()
+                self.__dict__[u"ssh"].connect(value)
             self.__dict__[attr] = value
         else:
             # Updating attribute base of type
