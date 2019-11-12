@@ -34,13 +34,13 @@ from robot.api import logger
 
 from resources.libraries.python.OptionString import OptionString
 
-__all__ = ["run"]
+__all__ = [u"run"]
 
 
-MESSAGE_TEMPLATE = "Command {com} ended with RC {ret} and output:\n{out}"
+MESSAGE_TEMPLATE = u"Command {com} ended with RC {ret} and output:\n{out}"
 
 
-def run(command, msg="", check=True, log=False, console=False):
+def run(command, msg=u"", check=True, log=False, console=False):
     """Wrapper around subprocess.check_output that can tolerates nonzero RCs.
 
     Stderr is redirected to stdout, so it is part of output
@@ -73,24 +73,24 @@ def run(command, msg="", check=True, log=False, console=False):
     """
     if isinstance(command, OptionString):
         command = command.parts
-    if not hasattr(command, "__iter__"):
+    if not hasattr(command, u"__iter__"):
         # Strings are indexable, but turning into iterator is not supported.
-        raise TypeError("Command {cmd!r} is not an iterable.".format(
-            cmd=command))
+        raise TypeError(f"Command {command!r} is not an iterable.")
     ret_code = 0
-    output = ""
+    output = u""
     try:
         output = subprocess.check_output(command, stderr=subprocess.STDOUT)
     except subprocess.CalledProcessError as err:
         output = err.output
         ret_code = err.returncode
         if check:
-            raise RuntimeError(MESSAGE_TEMPLATE.format(
-                com=err.cmd, ret=ret_code, out=output))
+            raise RuntimeError(
+                MESSAGE_TEMPLATE.format(com=err.cmd, ret=ret_code, out=output)
+            )
     if log:
         message = MESSAGE_TEMPLATE.format(com=command, ret=ret_code, out=output)
         if msg:
-            message = msg + ": " + message
+            message = msg + u": " + message
         if console:
             logger.console(message)
         else:

@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -32,19 +32,16 @@ class DUTSetup(object):
         :type node: dict
         :type service: str
         """
-        if DUTSetup.running_in_container(node):
-            command = ('echo $(< /tmp/*supervisor*.log)')
-        else:
-            command = ('journalctl --no-pager --unit={name} '
-                       '--since="$(echo `systemctl show -p '
-                       'ActiveEnterTimestamp {name}` | '
-                       'awk \'{{print $2 $3}}\')"'.
-                       format(name=service))
-        message = 'Node {host} failed to get logs from unit {name}'.\
-            format(host=node['host'], name=service)
+        command = u"echo $(< /tmp/*supervisor*.log)"\
+            if DUTSetup.running_in_container(node) \
+            else f"journalctl --no-pager --unit={service} " \
+            f"--since='$(echo `systemctl show -p ActiveEnterTimestamp " \
+            f"{service}` | awk \'{{print $2 $3}}\')'"
+        message = f"Node {node[u'host']} failed to get logs from unit {service}"
 
-        exec_cmd_no_error(node, command, timeout=30, sudo=True,
-                          message=message)
+        exec_cmd_no_error(
+            node, command, timeout=30, sudo=True, message=message
+        )
 
     @staticmethod
     def get_service_logs_on_all_duts(nodes, service):
@@ -56,7 +53,7 @@ class DUTSetup(object):
         :type service: str
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 DUTSetup.get_service_logs(node, service)
 
     @staticmethod
@@ -68,15 +65,14 @@ class DUTSetup(object):
         :type node: dict
         :type service: str
         """
-        if DUTSetup.running_in_container(node):
-            command = 'supervisorctl restart {name}'.format(name=service)
-        else:
-            command = 'service {name} restart'.format(name=service)
-        message = 'Node {host} failed to restart service {name}'.\
-            format(host=node['host'], name=service)
+        command = f"supervisorctl restart {service}" \
+            if DUTSetup.running_in_container(node) \
+            else f"service {service} restart"
+        message = f"Node {node[u'host']} failed to restart service {service}"
 
         exec_cmd_no_error(
-            node, command, timeout=180, sudo=True, message=message)
+            node, command, timeout=180, sudo=True, message=message
+        )
 
         DUTSetup.get_service_logs(node, service)
 
@@ -84,13 +80,13 @@ class DUTSetup(object):
     def restart_service_on_all_duts(nodes, service):
         """Restart the named service on all DUTs.
 
-        :param node: Nodes in the topology.
+        :param nodes: Nodes in the topology.
         :param service: Service unit name.
-        :type node: dict
+        :type nodes: dict
         :type service: str
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 DUTSetup.restart_service(node, service)
 
     @staticmethod
@@ -103,15 +99,14 @@ class DUTSetup(object):
         :type service: str
         """
         # TODO: change command to start once all parent function updated.
-        if DUTSetup.running_in_container(node):
-            command = 'supervisorctl restart {name}'.format(name=service)
-        else:
-            command = 'service {name} restart'.format(name=service)
-        message = 'Node {host} failed to start service {name}'.\
-            format(host=node['host'], name=service)
+        command = f"supervisorctl restart {service}" \
+            if DUTSetup.running_in_container(node) \
+            else f"service {service} restart"
+        message = f"Node {node[u'host']} failed to start service {service}"
 
         exec_cmd_no_error(
-            node, command, timeout=180, sudo=True, message=message)
+            node, command, timeout=180, sudo=True, message=message
+        )
 
         DUTSetup.get_service_logs(node, service)
 
@@ -119,13 +114,13 @@ class DUTSetup(object):
     def start_service_on_all_duts(nodes, service):
         """Start up the named service on all DUTs.
 
-        :param node: Nodes in the topology.
+        :param nodes: Nodes in the topology.
         :param service: Service unit name.
-        :type node: dict
+        :type nodes: dict
         :type service: str
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 DUTSetup.start_service(node, service)
 
     @staticmethod
@@ -137,15 +132,14 @@ class DUTSetup(object):
         :type node: dict
         :type service: str
         """
-        if DUTSetup.running_in_container(node):
-            command = 'supervisorctl stop {name}'.format(name=service)
-        else:
-            command = 'service {name} stop'.format(name=service)
-        message = 'Node {host} failed to stop service {name}'.\
-            format(host=node['host'], name=service)
+        command = f"supervisorctl stop {service}" \
+            if DUTSetup.running_in_container(node) \
+            else f"service {service} stop"
+        message = f"Node {node[u'host']} failed to stop service {service}"
 
         exec_cmd_no_error(
-            node, command, timeout=180, sudo=True, message=message)
+            node, command, timeout=180, sudo=True, message=message
+        )
 
         DUTSetup.get_service_logs(node, service)
 
@@ -153,13 +147,13 @@ class DUTSetup(object):
     def stop_service_on_all_duts(nodes, service):
         """Stop the named service on all DUTs.
 
-        :param node: Nodes in the topology.
+        :param nodes: Nodes in the topology.
         :param service: Service unit name.
-        :type node: dict
+        :type nodes: dict
         :type service: str
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 DUTSetup.stop_service(node, service)
 
     @staticmethod
@@ -176,24 +170,25 @@ class DUTSetup(object):
         ssh.connect(node)
 
         for i in range(3):
-            logger.trace('Try {}: Get VPP PID'.format(i))
-            ret_code, stdout, stderr = ssh.exec_command('pidof vpp')
+            logger.trace(f"Try {i}: Get VPP PID")
+            ret_code, stdout, stderr = ssh.exec_command(u"pidof vpp")
 
             if int(ret_code):
-                raise RuntimeError('Not possible to get PID of VPP process '
-                                   'on node: {0}\n {1}'.
-                                   format(node['host'], stdout + stderr))
+                raise RuntimeError(
+                    f"Not possible to get PID of VPP process on node: "
+                    f"{node[u'host']}\n {stdout + stderr}"
+                )
 
             pid_list = stdout.split()
             if len(pid_list) == 1:
                 return int(stdout)
             elif not pid_list:
-                logger.debug("No VPP PID found on node {0}".
-                             format(node['host']))
+                logger.debug(f"No VPP PID found on node {node[u'host']}")
                 continue
             else:
-                logger.debug("More then one VPP PID found on node {0}".
-                             format(node['host']))
+                logger.debug(
+                    f"More then one VPP PID found on node {node[u'host']}"
+                )
                 return [int(pid) for pid in pid_list]
 
         return None
@@ -209,8 +204,8 @@ class DUTSetup(object):
         """
         pids = dict()
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
-                pids[node['host']] = DUTSetup.get_vpp_pid(node)
+            if node[u"type"] == NodeType.DUT:
+                pids[node[u"host"]] = DUTSetup.get_vpp_pid(node)
         return pids
 
     @staticmethod
@@ -239,8 +234,9 @@ class DUTSetup(object):
                 # QAT is not initialized and we want to initialize with numvfs
                 DUTSetup.crypto_device_init(node, crypto_type, numvfs)
             else:
-                raise RuntimeError('QAT device failed to create VFs on {host}'.
-                                   format(host=node['host']))
+                raise RuntimeError(
+                    f"QAT device failed to create VFs on {node[u'host']}"
+                )
 
     @staticmethod
     def crypto_device_init(node, crypto_type, numvfs):
@@ -255,15 +251,16 @@ class DUTSetup(object):
         :returns: nothing
         :raises RuntimeError: If failed to stop VPP or QAT failed to initialize.
         """
-        if crypto_type == "HW_DH895xcc":
-            kernel_mod = "qat_dh895xcc"
-            kernel_drv = "dh895xcc"
-        elif crypto_type == "HW_C3xxx":
-            kernel_mod = "qat_c3xxx"
-            kernel_drv = "c3xxx"
+        if crypto_type == u"HW_DH895xcc":
+            kernel_mod = u"qat_dh895xcc"
+            kernel_drv = u"dh895xcc"
+        elif crypto_type == u"HW_C3xxx":
+            kernel_mod = u"qat_c3xxx"
+            kernel_drv = u"c3xxx"
         else:
-            raise RuntimeError('Unsupported crypto device type on {host}'.
-                               format(host=node['host']))
+            raise RuntimeError(
+                f"Unsupported crypto device type on {node[u'host']}"
+            )
 
         pci_addr = Topology.get_cryptodev(node)
 
@@ -274,7 +271,8 @@ class DUTSetup(object):
         DUTSetup.stop_service(node, Constants.VPP_UNIT)
 
         current_driver = DUTSetup.get_pci_dev_driver(
-            node, pci_addr.replace(':', r'\:'))
+            node, pci_addr.replace(u":", r"\:")
+        )
         if current_driver is not None:
             DUTSetup.pci_driver_unbind(node, pci_addr)
 
@@ -299,13 +297,13 @@ class DUTSetup(object):
         :rtype: int
         :raises RuntimeError: If failed to get Virtual Function PCI address.
         """
-        command = "sh -c "\
-            "'basename $(readlink /sys/bus/pci/devices/{pci}/virtfn{vf_id})'".\
-            format(pci=pf_pci_addr, vf_id=vf_id)
-        message = 'Failed to get virtual function PCI address.'
+        command = f"sh -c 'basename $(readlink " \
+            f"/sys/bus/pci/devices/{pf_pci_addr}/virtfn{vf_id})'"
+        message = u"Failed to get virtual function PCI address."
 
-        stdout, _ = exec_cmd_no_error(node, command, timeout=30, sudo=True,
-                                      message=message)
+        stdout, _ = exec_cmd_no_error(
+            node, command, timeout=30, sudo=True, message=message
+        )
 
         return stdout.strip()
 
@@ -321,19 +319,20 @@ class DUTSetup(object):
         :rtype: int
         :raises RuntimeError: If PCI device is not SR-IOV capable.
         """
-        command = 'cat /sys/bus/pci/devices/{pci}/sriov_numvfs'.\
-            format(pci=pf_pci_addr.replace(':', r'\:'))
-        message = 'PCI device {pci} is not a SR-IOV device.'.\
-            format(pci=pf_pci_addr)
+        pci = pf_pci_addr.replace(u":", r"\:")
+        command = f"cat /sys/bus/pci/devices/{pci}/sriov_numvfs"
+        message = f"PCI device {pf_pci_addr} is not a SR-IOV device."
 
         for _ in range(3):
-            stdout, _ = exec_cmd_no_error(node, command, timeout=30, sudo=True,
-                                          message=message)
+            stdout, _ = exec_cmd_no_error(
+                node, command, timeout=30, sudo=True, message=message
+            )
             try:
                 sriov_numvfs = int(stdout)
             except ValueError:
-                logger.trace('Reading sriov_numvfs info failed on {host}'.
-                             format(host=node['host']))
+                logger.trace(
+                    f"Reading sriov_numvfs info failed on {node[u'host']}"
+                )
             else:
                 return sriov_numvfs
 
@@ -350,14 +349,15 @@ class DUTSetup(object):
         :type numvfs: int
         :raises RuntimeError: Failed to create VFs on PCI.
         """
-        command = "sh -c "\
-            "'echo {num} | tee /sys/bus/pci/devices/{pci}/sriov_numvfs'".\
-            format(num=numvfs, pci=pf_pci_addr.replace(':', r'\:'))
-        message = 'Failed to create {num} VFs on {pci} device on {host}'.\
-            format(num=numvfs, pci=pf_pci_addr, host=node['host'])
+        pci = pf_pci_addr.replace(u":", r"\:")
+        command = f"sh -c 'echo {numvfs} | " \
+            f"tee /sys/bus/pci/devices/{pci}/sriov_numvfs'"
+        message = f"Failed to create {numvfs} VFs on {pf_pci_addr} device " \
+            f"on {node[u'host']}"
 
-        exec_cmd_no_error(node, command, timeout=120, sudo=True,
-                          message=message)
+        exec_cmd_no_error(
+            node, command, timeout=120, sudo=True, message=message
+        )
 
     @staticmethod
     def pci_driver_unbind(node, pci_addr):
@@ -369,14 +369,14 @@ class DUTSetup(object):
         :type pci_addr: str
         :raises RuntimeError: If PCI device unbind failed.
         """
-        command = "sh -c "\
-            "'echo {pci} | tee /sys/bus/pci/devices/{pcie}/driver/unbind'".\
-            format(pci=pci_addr, pcie=pci_addr.replace(':', r'\:'))
-        message = 'Failed to unbind PCI device {pci} on {host}'.\
-            format(pci=pci_addr, host=node['host'])
+        pci = pci_addr.replace(u":", r"\:")
+        command = f"sh -c 'echo {pci_addr} | " \
+            f"tee /sys/bus/pci/devices/{pci}/driver/unbind'"
+        message = f"Failed to unbind PCI device {pci_addr} on {node[u'host']}"
 
-        exec_cmd_no_error(node, command, timeout=120, sudo=True,
-                          message=message)
+        exec_cmd_no_error(
+            node, command, timeout=120, sudo=True, message=message
+        )
 
     @staticmethod
     def pci_driver_bind(node, pci_addr, driver):
@@ -390,29 +390,29 @@ class DUTSetup(object):
         :type driver: str
         :raises RuntimeError: If PCI device bind failed.
         """
-        message = 'Failed to bind PCI device {pci} to {driver} on host {host}'.\
-            format(pci=pci_addr, driver=driver, host=node['host'])
+        message = f"Failed to bind PCI device {pci_addr} to {driver} " \
+            f"on host {node[u'host']}"
+        pci = pci_addr.replace(u":", r"\:")
+        command = f"sh -c 'echo {driver} | " \
+            f"tee /sys/bus/pci/devices/{pci}/driver_override'"
 
-        command = "sh -c "\
-            "'echo {driver} | tee /sys/bus/pci/devices/{pci}/driver_override'".\
-            format(driver=driver, pci=pci_addr.replace(':', r'\:'))
+        exec_cmd_no_error(
+            node, command, timeout=120, sudo=True, message=message
+        )
 
-        exec_cmd_no_error(node, command, timeout=120, sudo=True,
-                          message=message)
+        command = f"sh -c 'echo {pci_addr} | " \
+            f"tee /sys/bus/pci/drivers/{driver}/bind'"
 
-        command = "sh -c "\
-            "'echo {pci} | tee /sys/bus/pci/drivers/{driver}/bind'".\
-            format(pci=pci_addr, driver=driver)
+        exec_cmd_no_error(
+            node, command, timeout=120, sudo=True, message=message
+        )
 
-        exec_cmd_no_error(node, command, timeout=120, sudo=True,
-                          message=message)
+        command = f"sh -c 'echo  | " \
+            f"tee /sys/bus/pci/devices/{pci}/driver_override'"
 
-        command = "sh -c "\
-            "'echo  | tee /sys/bus/pci/devices/{pci}/driver_override'".\
-            format(pci=pci_addr.replace(':', r'\:'))
-
-        exec_cmd_no_error(node, command, timeout=120, sudo=True,
-                          message=message)
+        exec_cmd_no_error(
+            node, command, timeout=120, sudo=True, message=message
+        )
 
     @staticmethod
     def pci_vf_driver_unbind(node, pf_pci_addr, vf_id):
@@ -427,18 +427,15 @@ class DUTSetup(object):
         :raises RuntimeError: If Virtual Function unbind failed.
         """
         vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
-        vf_path = "/sys/bus/pci/devices/{pf_pci_addr}/virtfn{vf_id}".\
-            format(pf_pci_addr=pf_pci_addr.replace(':', r'\:'), vf_id=vf_id)
+        pf_pci = pf_pci_addr.replace(u":", r"\:")
+        vf_path = f"/sys/bus/pci/devices/{pf_pci}/virtfn{vf_id}"
 
-        command = "sh -c "\
-            "'echo {vf_pci_addr} | tee {vf_path}/driver/unbind'".\
-            format(vf_pci_addr=vf_pci_addr, vf_path=vf_path)
+        command = f"sh -c 'echo {vf_pci_addr} | tee {vf_path}/driver/unbind'"
+        message = f"Failed to unbind VF {vf_pci_addr} on {node[u'host']}"
 
-        message = 'Failed to unbind VF {vf_pci_addr} to on {host}'.\
-            format(vf_pci_addr=vf_pci_addr, host=node['host'])
-
-        exec_cmd_no_error(node, command, timeout=120, sudo=True,
-                          message=message)
+        exec_cmd_no_error(
+            node, command, timeout=120, sudo=True, message=message
+        )
 
     @staticmethod
     def pci_vf_driver_bind(node, pf_pci_addr, vf_id, driver):
@@ -455,32 +452,29 @@ class DUTSetup(object):
         :raises RuntimeError: If PCI device bind failed.
         """
         vf_pci_addr = DUTSetup.get_virtfn_pci_addr(node, pf_pci_addr, vf_id)
-        vf_path = "/sys/bus/pci/devices/{pf_pci_addr}/virtfn{vf_id}".\
-            format(pf_pci_addr=pf_pci_addr.replace(':', r'\:'), vf_id=vf_id)
+        pf_pci = pf_pci_addr.replace(':', r'\:')
+        vf_path = f"/sys/bus/pci/devices/{pf_pci}/virtfn{vf_id}"
 
-        message = 'Failed to bind VF {vf_pci_addr} to {driver} on {host}'.\
-            format(vf_pci_addr=vf_pci_addr, driver=driver, host=node['host'])
+        message = f"Failed to bind VF {vf_pci_addr} to {driver} " \
+            f"on {node[u'host']}"
+        command = f"sh -c 'echo {driver} | tee {vf_path}/driver_override'"
 
-        command = "sh -c "\
-            "'echo {driver} | tee {vf_path}/driver_override'".\
-            format(driver=driver, vf_path=vf_path)
+        exec_cmd_no_error(
+            node, command, timeout=120, sudo=True, message=message
+        )
 
-        exec_cmd_no_error(node, command, timeout=120, sudo=True,
-                          message=message)
+        command = f"sh -c 'echo {vf_pci_addr} | " \
+            f"tee /sys/bus/pci/drivers/{driver}/bind'"
 
-        command = "sh -c "\
-            "'echo {vf_pci_addr} | tee /sys/bus/pci/drivers/{driver}/bind'".\
-            format(vf_pci_addr=vf_pci_addr, driver=driver)
+        exec_cmd_no_error(
+            node, command, timeout=120, sudo=True, message=message
+        )
 
-        exec_cmd_no_error(node, command, timeout=120, sudo=True,
-                          message=message)
+        command = f"sh -c 'echo  | tee {vf_path}/driver_override'"
 
-        command = "sh -c "\
-            "'echo  | tee {vf_path}/driver_override'".\
-            format(vf_path=vf_path)
-
-        exec_cmd_no_error(node, command, timeout=120, sudo=True,
-                          message=message)
+        exec_cmd_no_error(
+            node, command, timeout=120, sudo=True, message=message
+        )
 
     @staticmethod
     def get_pci_dev_driver(node, pci_addr):
@@ -510,13 +504,12 @@ class DUTSetup(object):
         ssh.connect(node)
 
         for i in range(3):
-            logger.trace('Try number {0}: Get PCI device driver'.format(i))
+            logger.trace(f"Try number {i}: Get PCI device driver")
 
-            cmd = 'lspci -vmmks {0}'.format(pci_addr)
+            cmd = f"lspci -vmmks {pci_addr}"
             ret_code, stdout, _ = ssh.exec_command(cmd)
             if int(ret_code):
-                raise RuntimeError("'{0}' failed on '{1}'"
-                                   .format(cmd, node['host']))
+                raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
 
             for line in stdout.splitlines():
                 if not line:
@@ -524,21 +517,22 @@ class DUTSetup(object):
                 name = None
                 value = None
                 try:
-                    name, value = line.split("\t", 1)
+                    name, value = line.split(u"\t", 1)
                 except ValueError:
-                    if name == "Driver:":
+                    if name == u"Driver:":
                         return None
-                if name == 'Driver:':
+                if name == u"Driver:":
                     return value
 
             if i < 2:
-                logger.trace('Driver for PCI device {} not found, executing '
-                             'pci rescan and retrying'.format(pci_addr))
-                cmd = 'sh -c "echo 1 > /sys/bus/pci/rescan"'
+                logger.trace(
+                    f"Driver for PCI device {pci_addr} not found, "
+                    f"executing pci rescan and retrying"
+                )
+                cmd = u"sh -c 'echo 1 > /sys/bus/pci/rescan'"
                 ret_code, _, _ = ssh.exec_command_sudo(cmd)
                 if int(ret_code) != 0:
-                    raise RuntimeError("'{0}' failed on '{1}'"
-                                       .format(cmd, node['host']))
+                    raise RuntimeError(f"'{cmd}' failed on '{node[u'host']}'")
 
         return None
 
@@ -555,13 +549,14 @@ class DUTSetup(object):
         :type force_load: bool
         :raises RuntimeError: If module is not loaded or failed to load.
         """
-        command = 'grep -w {module} /proc/modules'.format(module=module)
-        message = 'Kernel module {module} is not loaded on host {host}'.\
-            format(module=module, host=node['host'])
+        command = f"grep -w {module} /proc/modules"
+        message = f"Kernel module {module} is not loaded " \
+            f"on host {node[u'host']}"
 
         try:
-            exec_cmd_no_error(node, command, timeout=30, sudo=False,
-                              message=message)
+            exec_cmd_no_error(
+                node, command, timeout=30, sudo=False, message=message
+            )
         except RuntimeError:
             if force_load:
                 # Module is not loaded and we want to load it
@@ -574,15 +569,15 @@ class DUTSetup(object):
         """Verify if kernel module is loaded on all DUTs. If parameter force
         load is set to True, then try to load the modules.
 
-        :param node: DUT nodes.
+        :param nodes: DUT nodes.
         :param module: Module to verify.
         :param force_load: If True then try to load module.
-        :type node: dict
+        :type nodes: dict
         :type module: str
         :type force_load: bool
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 DUTSetup.verify_kernel_module(node, module, force_load)
 
     @staticmethod
@@ -590,11 +585,11 @@ class DUTSetup(object):
         """Verify if uio driver kernel module is loaded on all DUTs. If module
         is not present it will try to load it.
 
-        :param node: DUT nodes.
-        :type node: dict
+        :param nodes: DUT nodes.
+        :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 uio_driver = Topology.get_uio_driver(node)
                 DUTSetup.verify_kernel_module(node, uio_driver, force_load=True)
 
@@ -609,9 +604,8 @@ class DUTSetup(object):
         :returns: nothing
         :raises RuntimeError: If loading failed.
         """
-        command = 'modprobe {module}'.format(module=module)
-        message = 'Failed to load {module} on host {host}'.\
-            format(module=module, host=node['host'])
+        command = f"modprobe {module}"
+        message = f"Failed to load {module} on host {node[u'host']}"
 
         exec_cmd_no_error(node, command, timeout=30, sudo=True, message=message)
 
@@ -627,31 +621,36 @@ class DUTSetup(object):
         :raises RuntimeError: If failed to remove or install VPP.
         """
         for node in nodes.values():
-            message = 'Failed to install VPP on host {host}!'.\
-                format(host=node['host'])
-            if node['type'] == NodeType.DUT:
-                command = 'ln -s /dev/null /etc/sysctl.d/80-vpp.conf || true'
+            message = f"Failed to install VPP on host {node[u'host']}!"
+            if node[u"type"] == NodeType.DUT:
+                command = u"ln -s /dev/null /etc/sysctl.d/80-vpp.conf || true"
                 exec_cmd_no_error(node, command, sudo=True)
 
-                command = '. /etc/lsb-release; echo "${DISTRIB_ID}"'
+                command = u". /etc/lsb-release; echo '${DISTRIB_ID}'"
                 stdout, _ = exec_cmd_no_error(node, command)
 
-                if stdout.strip() == 'Ubuntu':
-                    exec_cmd_no_error(node, 'apt-get purge -y "*vpp*" || true',
-                                      timeout=120, sudo=True)
-                    exec_cmd_no_error(node, 'dpkg -i --force-all {dir}*.deb'.
-                                      format(dir=vpp_pkg_dir), timeout=120,
-                                      sudo=True, message=message)
-                    exec_cmd_no_error(node, 'dpkg -l | grep vpp', sudo=True)
+                if stdout.strip() == u"Ubuntu":
+                    exec_cmd_no_error(
+                        node, u"apt-get purge -y '*vpp*' || true",
+                        timeout=120, sudo=True
+                    )
+                    exec_cmd_no_error(
+                        node, f"dpkg -i --force-all {vpp_pkg_dir}*.deb",
+                        timeout=120, sudo=True, message=message
+                    )
+                    exec_cmd_no_error(node, u"dpkg -l | grep vpp", sudo=True)
                     if DUTSetup.running_in_container(node):
                         DUTSetup.restart_service(node, Constants.VPP_UNIT)
                 else:
-                    exec_cmd_no_error(node, 'yum -y remove "*vpp*" || true',
-                                      timeout=120, sudo=True)
-                    exec_cmd_no_error(node, 'rpm -ivh {dir}*.rpm'.
-                                      format(dir=vpp_pkg_dir), timeout=120,
-                                      sudo=True, message=message)
-                    exec_cmd_no_error(node, 'rpm -qai *vpp*', sudo=True)
+                    exec_cmd_no_error(
+                        node, u"yum -y remove '*vpp*' || true",
+                        timeout=120, sudo=True
+                    )
+                    exec_cmd_no_error(
+                        node, f"rpm -ivh {vpp_pkg_dir}*.rpm",
+                        timeout=120, sudo=True, message=message
+                    )
+                    exec_cmd_no_error(node, u"rpm -qai *vpp*", sudo=True)
                     DUTSetup.restart_service(node, Constants.VPP_UNIT)
 
     @staticmethod
@@ -661,14 +660,15 @@ class DUTSetup(object):
         :param node: Topology node.
         :type node: dict
         :returns: True if running in docker container, false if not or failed
-        to detect.
+            to detect.
         :rtype: bool
         """
-        command = "fgrep docker /proc/1/cgroup"
-        message = 'Failed to get cgroup settings.'
+        command = u"fgrep docker /proc/1/cgroup"
+        message = u"Failed to get cgroup settings."
         try:
-            exec_cmd_no_error(node, command, timeout=30, sudo=False,
-                              message=message)
+            exec_cmd_no_error(
+                node, command, timeout=30, sudo=False, message=message
+            )
         except RuntimeError:
             return False
         return True
@@ -685,10 +685,9 @@ class DUTSetup(object):
         :rtype: str
         :raises RuntimeError: If getting output failed.
         """
-        command = "docker inspect --format='"\
-            "{{{{.GraphDriver.Data.MergedDir}}}}' {uuid}".format(uuid=uuid)
-        message = 'Failed to get directory of {uuid} on host {host}'.\
-            format(uuid=uuid, host=node['host'])
+        command = f"docker inspect " \
+            f"--format='{{{{.GraphDriver.Data.MergedDir}}}}' {uuid}"
+        message = f"Failed to get directory of {uuid} on host {node['uhost']}"
 
         stdout, _ = exec_cmd_no_error(node, command, sudo=True, message=message)
         return stdout.strip()
@@ -708,16 +707,17 @@ class DUTSetup(object):
 
         for _ in range(3):
             ret_code, stdout, _ = ssh.exec_command_sudo(
-                "grep Hugepagesize /proc/meminfo | awk '{ print $2 }'")
+                u"grep Hugepagesize /proc/meminfo | awk '{ print $2 }'"
+            )
             if ret_code == 0:
                 try:
                     huge_size = int(stdout)
                 except ValueError:
-                    logger.trace('Reading huge page size information failed')
+                    logger.trace(u"Reading huge page size information failed")
                 else:
                     break
         else:
-            raise RuntimeError('Getting huge page size information failed.')
+            raise RuntimeError(u"Getting huge page size information failed.")
         return huge_size
 
     @staticmethod
@@ -738,17 +738,18 @@ class DUTSetup(object):
 
         for _ in range(3):
             ret_code, stdout, _ = ssh.exec_command_sudo(
-                'cat /sys/kernel/mm/hugepages/hugepages-{0}kB/free_hugepages'.
-                format(huge_size))
+                f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"
+                f"free_hugepages"
+            )
             if ret_code == 0:
                 try:
                     huge_free = int(stdout)
                 except ValueError:
-                    logger.trace('Reading free huge pages information failed')
+                    logger.trace(u"Reading free huge pages information failed")
                 else:
                     break
         else:
-            raise RuntimeError('Getting free huge pages information failed.')
+            raise RuntimeError(u"Getting free huge pages information failed.")
         return huge_free
 
     @staticmethod
@@ -759,7 +760,6 @@ class DUTSetup(object):
         :param huge_size: Size of hugepages.
         :type node: dict
         :type huge_size: int
-
         :returns: Total number of huge pages in system.
         :rtype: int
         :raises RuntimeError: If reading failed for three times.
@@ -770,17 +770,18 @@ class DUTSetup(object):
 
         for _ in range(3):
             ret_code, stdout, _ = ssh.exec_command_sudo(
-                'cat /sys/kernel/mm/hugepages/hugepages-{0}kB/nr_hugepages'.
-                format(huge_size))
+                f"cat /sys/kernel/mm/hugepages/hugepages-{huge_size}kB/"
+                f"nr_hugepages"
+            )
             if ret_code == 0:
                 try:
                     huge_total = int(stdout)
                 except ValueError:
-                    logger.trace('Reading total huge pages information failed')
+                    logger.trace(u"Reading total huge pages information failed")
                 else:
                     break
         else:
-            raise RuntimeError('Getting total huge pages information failed.')
+            raise RuntimeError(u"Getting total huge pages information failed.")
         return huge_total
 
     @staticmethod
@@ -796,9 +797,8 @@ class DUTSetup(object):
         :type huge_mnt: str
         :type mem_size: str
         :type allocate: bool
-
         :raises RuntimeError: Mounting hugetlbfs failed or not enough HugePages
-        or increasing map count failed.
+            or increasing map count failed.
         """
         # TODO: split function into smaller parts.
         ssh = SSH()
@@ -809,7 +809,8 @@ class DUTSetup(object):
         huge_free = DUTSetup.get_huge_page_free(node, huge_size)
         huge_total = DUTSetup.get_huge_page_total(node, huge_size)
 
-        # Check if memory reqested is available on host
+        # Check if memory requested is available on
+        mem_size = int(mem_size)
         if (mem_size * 1024) > (huge_free * huge_size):
             # If we want to allocate hugepage dynamically
             if allocate:
@@ -818,43 +819,50 @@ class DUTSetup(object):
                 max_map_count = huge_to_allocate*4
                 # Increase maximum number of memory map areas a process may have
                 ret_code, _, _ = ssh.exec_command_sudo(
-                    'echo "{0}" | sudo tee /proc/sys/vm/max_map_count'.
-                    format(max_map_count))
+                    f"echo '{max_map_count}' | "
+                    f"sudo tee /proc/sys/vm/max_map_count"
+                )
                 if int(ret_code) != 0:
-                    raise RuntimeError('Increase map count failed on {host}'.
-                                       format(host=node['host']))
+                    raise RuntimeError(
+                        f"Increase map count failed on {node[u'host']}"
+                    )
                 # Increase hugepage count
                 ret_code, _, _ = ssh.exec_command_sudo(
-                    'echo "{0}" | sudo tee /proc/sys/vm/nr_hugepages'.
-                    format(huge_to_allocate))
+                    f"echo '{huge_to_allocate}' | "
+                    f"sudo tee /proc/sys/vm/nr_hugepages"
+                )
                 if int(ret_code) != 0:
-                    raise RuntimeError('Mount huge pages failed on {host}'.
-                                       format(host=node['host']))
-            # If we do not want to allocate dynamicaly end with error
+                    raise RuntimeError(
+                        f"Mount huge pages failed on {node[u'host']}"
+                    )
+            # If we do not want to allocate dynamically end with error
             else:
-                raise RuntimeError('Not enough free huge pages: {0}, {1} MB'.
-                                   format(huge_free, huge_free * huge_size))
+                raise RuntimeError(
+                    f"Not enough free huge pages: {huge_free}, "
+                    f"{huge_free * huge_size} MB"
+                )
         # Check if huge pages mount point exist
         has_huge_mnt = False
-        ret_code, stdout, _ = ssh.exec_command('cat /proc/mounts')
+        ret_code, stdout, _ = ssh.exec_command(u"cat /proc/mounts")
         if int(ret_code) == 0:
             for line in stdout.splitlines():
                 # Try to find something like:
-                # none /mnt/huge hugetlbfs rw,relatime,pagesize=2048k 0 0
+                # none /mnt/huge hugetlbfs rw,realtime,pagesize=2048k 0 0
                 mount = line.split()
-                if mount[2] == 'hugetlbfs' and mount[1] == huge_mnt:
+                if mount[2] == u"hugetlbfs" and mount[1] == huge_mnt:
                     has_huge_mnt = True
                     break
         # If huge page mount point not exist create one
         if not has_huge_mnt:
-            ret_code, _, _ = ssh.exec_command_sudo(
-                'mkdir -p {mnt}'.format(mnt=huge_mnt))
+            ret_code, _, _ = ssh.exec_command_sudo(f"mkdir -p {huge_mnt}")
             if int(ret_code) != 0:
-                raise RuntimeError('Create mount dir failed on {host}'.
-                                   format(host=node['host']))
+                raise RuntimeError(
+                    f"Create mount dir failed on {node[u'host']}"
+                )
             ret_code, _, _ = ssh.exec_command_sudo(
-                'mount -t hugetlbfs -o pagesize=2048k none {mnt}'.
-                format(mnt=huge_mnt))
+                f"mount -t hugetlbfs -o pagesize=2048k none {huge_mnt}"
+            )
             if int(ret_code) != 0:
-                raise RuntimeError('Mount huge pages failed on {host}'.
-                                   format(host=node['host']))
+                raise RuntimeError(
+                    f"Mount huge pages failed on {node[u'host']}"
+                )

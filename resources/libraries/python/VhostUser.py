@@ -33,15 +33,15 @@ class VhostUser(object):
             response.
         :rtype: list
         """
-        cmd = "sw_interface_vhost_user_dump"
+        cmd = u"sw_interface_vhost_user_dump"
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd).get_details()
 
         for vhost in details:
-            vhost["interface_name"] = vhost["interface_name"].rstrip('\x00')
-            vhost["sock_filename"] = vhost["sock_filename"].rstrip('\x00')
+            vhost[u"interface_name"] = vhost[u"interface_name"].rstrip(b'\0')
+            vhost[u"sock_filename"] = vhost[u"sock_filename"].rstrip(b'\0')
 
-        logger.debug("VhostUser details:\n{details}".format(details=details))
+        logger.debug(f"VhostUser details:\n{details}")
 
         return details
 
@@ -56,9 +56,9 @@ class VhostUser(object):
         :returns: SW interface index.
         :rtype: int
         """
-        cmd = 'create_vhost_user_if'
-        err_msg = 'Failed to create Vhost-user interface on host {host}'.format(
-            host=node['host'])
+        cmd = u"create_vhost_user_if"
+        err_msg = f"Failed to create Vhost-user interface " \
+            f"on host {node[u'host']}"
         args = dict(
             sock_filename=str(socket)
         )
@@ -66,7 +66,7 @@ class VhostUser(object):
             sw_if_index = papi_exec.add(cmd, **args).get_sw_if_index(err_msg)
 
         # Update the Topology:
-        if_key = Topology.add_new_port(node, 'vhost')
+        if_key = Topology.add_new_port(node, u"vhost")
         Topology.update_interface_sw_if_index(node, if_key, sw_if_index)
 
         ifc_name = InterfaceUtil.vpp_get_interface_name(node, sw_if_index)
@@ -90,9 +90,9 @@ class VhostUser(object):
         :returns: Interface name or None if not found.
         :rtype: str
         """
-        for interface in node['interfaces'].values():
-            if interface.get('socket') == socket:
-                return interface.get('name')
+        for interface in node[u"interfaces"].values():
+            if interface.get(u"socket") == socket:
+                return interface.get(u"name")
         return None
 
     @staticmethod
@@ -127,5 +127,41 @@ class VhostUser(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT:
+            if node[u"type"] == NodeType.DUT:
                 VhostUser.vpp_show_vhost(node)
+
+    @staticmethod
+    def vhost_user_dump(node):
+        """Get vhost-user data for the given node.
+
+        :param node: VPP node to get interface data from.
+        :type node: dict
+        :returns: List of dictionaries with all vhost-user interfaces.
+        :rtype: list
+        """
+
+        def process_vhost_dump(vhost_dump):
+            """Process vhost dump.
+
+            :param vhost_dump: Vhost interface dump.
+            :type vhost_dump: dict
+            :returns: Processed vhost interface dump.
+            :rtype: dict
+            """
+            vhost_dump[u"interface_name"] = \
+                vhost_dump[u"interface_name"].rstrip(b'\0')
+            vhost_dump[u"sock_filename"] = \
+                vhost_dump[u"sock_filename"].rstrip(b'\0')
+            return vhost_dump
+
+        cmd = u"sw_interface_vhost_user_dump"
+        err_msg = f"Failed to get vhost-user dump on host {node['host']}"
+        with PapiSocketExecutor(node) as papi_exec:
+            details = papi_exec.add(cmd).get_details(err_msg)
+
+        for dump in details:
+            # In-place edits.
+            process_vhost_dump(dump)
+
+        logger.debug(f"Vhost-user details:\n{details}")
+        return

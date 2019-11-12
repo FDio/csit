@@ -28,7 +28,7 @@ from resources.libraries.python.ssh import exec_cmd_no_error, scp_node
 from resources.libraries.python.LocalExecution import run
 from resources.libraries.python.topology import NodeType
 
-__all__ = ["SetupFramework"]
+__all__ = [u"SetupFramework"]
 
 
 def pack_framework_dir():
@@ -40,21 +40,22 @@ def pack_framework_dir():
     """
 
     try:
-        directory = environ["TMPDIR"]
+        directory = environ[u"TMPDIR"]
     except KeyError:
         directory = None
 
     if directory is not None:
-        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="csit-testing-",
-                                     dir="{0}".format(directory))
+        tmpfile = NamedTemporaryFile(
+            suffix=u".tgz", prefix=u"csit-testing-", dir=f"{directory}"
+        )
     else:
-        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="csit-testing-")
+        tmpfile = NamedTemporaryFile(suffix=u".tgz", prefix=u"csit-testing-")
     file_name = tmpfile.name
     tmpfile.close()
 
-    run(["tar", "--sparse", "--exclude-vcs", "--exclude=output*.xml",
-         "--exclude=./tmp", "-zcf", file_name, "."],
-        msg="Could not pack testing framework")
+    run([u"tar", u"--sparse", u"--exclude-vcs", u"--exclude=output*.xml",
+         u"--exclude=./tmp", u"-zcf", file_name, u"."],
+        msg=u"Could not pack testing framework")
 
     return file_name
 
@@ -68,10 +69,10 @@ def copy_tarball_to_node(tarball, node):
     :type node: dict
     :returns: nothing
     """
-    host = node['host']
-    logger.console('Copying tarball to {0} starts.'.format(host))
-    scp_node(node, tarball, "/tmp/")
-    logger.console('Copying tarball to {0} done.'.format(host))
+    host = node[u"host"]
+    logger.console(f"Copying tarball to {host} starts.")
+    scp_node(node, tarball, u"/tmp/")
+    logger.console(f"Copying tarball to {host} done.")
 
 
 def extract_tarball_at_node(tarball, node):
@@ -86,16 +87,17 @@ def extract_tarball_at_node(tarball, node):
     :returns: nothing
     :raises RuntimeError: When failed to unpack tarball.
     """
-    host = node['host']
-    logger.console('Extracting tarball to {0} on {1} starts.'
-                   .format(con.REMOTE_FW_DIR, host))
+    host = node[u"host"]
+    logger.console(
+        f"Extracting tarball to {con.REMOTE_FW_DIR} on {host} starts."
+    )
+    cmd = f"sudo rm -rf {con.REMOTE_FW_DIR}; mkdir {con.REMOTE_FW_DIR}; " \
+        f"tar -zxf {tarball} -C {con.REMOTE_FW_DIR}; rm -f {tarball}"
     exec_cmd_no_error(
-        node, "sudo rm -rf {1}; mkdir {1}; tar -zxf {0} -C {1};"
-        " rm -f {0}".format(tarball, con.REMOTE_FW_DIR),
-        message='Failed to extract {0} at node {1}'.format(tarball, host),
-        timeout=30, include_reason=True)
-    logger.console('Extracting tarball to {0} on {1} done.'
-                   .format(con.REMOTE_FW_DIR, host))
+        node, cmd, message=f"Failed to extract {tarball} at node {host}",
+        timeout=30, include_reason=True
+    )
+    logger.console(f"Extracting tarball to {con.REMOTE_FW_DIR} on {host} done.")
 
 
 def create_env_directory_at_node(node):
@@ -106,17 +108,18 @@ def create_env_directory_at_node(node):
     :returns: nothing
     :raises RuntimeError: When failed to setup virtualenv.
     """
-    host = node['host']
-    logger.console('Virtualenv setup including requirements.txt on {0} starts.'
-                   .format(host))
+    host = node[u"host"]
+    logger.console(
+        f"Virtualenv setup including requirements.txt on {host} starts."
+    )
+    cmd = f"cd {con.REMOTE_FW_DIR} && rm -rf env && virtualenv " \
+        f"-p $(which python3) --system-site-packages --never-download env " \
+        f"&& source env/bin/activate && pip3 install -r requirements.txt"
     exec_cmd_no_error(
-        node, 'cd {0} && rm -rf env'
-        ' && virtualenv -p $(which python3) '
-        '--system-site-packages --never-download env'
-        ' && source env/bin/activate && pip3 install -r requirements.txt'
-        .format(con.REMOTE_FW_DIR), timeout=100, include_reason=True,
-        message="Failed install at node {host}".format(host=host))
-    logger.console('Virtualenv setup on {0} done.'.format(host))
+        node, cmd, timeout=100, include_reason=True,
+        message=f"Failed install at node {host}"
+    )
+    logger.console(f"Virtualenv setup on {host} done.")
 
 
 def setup_node(node, tarball, remote_tarball, results=None):
@@ -133,18 +136,17 @@ def setup_node(node, tarball, remote_tarball, results=None):
     :returns: True - success, False - error
     :rtype: bool
     """
-    host = node['host']
+    host = node[u"host"]
     try:
         copy_tarball_to_node(tarball, node)
         extract_tarball_at_node(remote_tarball, node)
-        if node['type'] == NodeType.TG:
+        if node[u"type"] == NodeType.TG:
             create_env_directory_at_node(node)
     except RuntimeError as exc:
-        logger.console("Node {node} setup failed, error: {err!r}".format(
-            node=host, err=exc))
+        logger.console(f"Node {host} setup failed, error: {exc!r}")
         result = False
     else:
-        logger.console('Setup of node {ip} done.'.format(ip=host))
+        logger.console(f"Setup of node {host} done.")
         result = True
 
     if isinstance(results, list):
@@ -168,15 +170,14 @@ def delete_framework_dir(node):
     :param node: Node to delete framework directory on.
     :type node: dict
     """
-    host = node['host']
-    logger.console(
-        'Deleting framework directory on {0} starts.'.format(host))
+    host = node[u"host"]
+    logger.console(f"Deleting framework directory on {host} starts.")
     exec_cmd_no_error(
-        node, 'sudo rm -rf {0}'.format(con.REMOTE_FW_DIR),
-        message="Framework delete failed at node {host}".format(host=host),
-        timeout=100, include_reason=True)
-    logger.console(
-        'Deleting framework directory on {0} done.'.format(host))
+        node, f"sudo rm -rf {con.REMOTE_FW_DIR}",
+        message=f"Framework delete failed at node {host}",
+        timeout=100, include_reason=True
+    )
+    logger.console(f"Deleting framework directory on {host} done.")
 
 
 def cleanup_node(node, results=None):
@@ -189,14 +190,14 @@ def cleanup_node(node, results=None):
     :returns: True - success, False - error
     :rtype: bool
     """
-    host = node['host']
+    host = node[u"host"]
     try:
         delete_framework_dir(node)
     except RuntimeError:
-        logger.error("Cleanup of node {0} failed.".format(host))
+        logger.error(f"Cleanup of node {host} failed.")
         result = False
     else:
-        logger.console('Cleanup of node {0} done.'.format(host))
+        logger.console(f"Cleanup of node {host} done.")
         result = True
 
     if isinstance(results, list):
@@ -222,10 +223,10 @@ class SetupFramework(object):
         """
 
         tarball = pack_framework_dir()
-        msg = 'Framework packed to {0}'.format(tarball)
+        msg = f"Framework packed to {tarball}"
         logger.console(msg)
         logger.trace(msg)
-        remote_tarball = "/tmp/{0}".format(basename(tarball))
+        remote_tarball = f"/tmp/{tarball}"
 
         results = []
         threads = []
@@ -237,21 +238,23 @@ class SetupFramework(object):
             threads.append(thread)
 
         logger.info(
-            'Executing node setups in parallel, waiting for threads to end')
+            f"Executing node setups in parallel, waiting for threads to end"
+        )
 
         for thread in threads:
             thread.join()
 
-        logger.info('Results: {0}'.format(results))
+        logger.info(f"Results: {results}")
 
         delete_local_tarball(tarball)
         if all(results):
-            logger.console('All nodes are ready.')
+            logger.console(u"All nodes are ready.")
             for node in nodes.values():
-                logger.info('Setup of {type} node {ip} done.'.
-                            format(type=node['type'], ip=node['host']))
+                logger.info(
+                    f"Setup of {node[u'type']} node {node[u'host']} done."
+                )
         else:
-            raise RuntimeError('Failed to setup framework.')
+            raise RuntimeError(u"Failed to setup framework.")
 
 
 class CleanupFramework(object):
@@ -276,14 +279,15 @@ class CleanupFramework(object):
             threads.append(thread)
 
         logger.info(
-            'Executing node cleanups in parallel, waiting for threads to end.')
+            u"Executing node cleanups in parallel, waiting for threads to end."
+        )
 
         for thread in threads:
             thread.join()
 
-        logger.info('Results: {0}'.format(results))
+        logger.info(f"Results: {results}")
 
         if all(results):
-            logger.console('All nodes cleaned up.')
+            logger.console(u"All nodes cleaned up.")
         else:
-            raise RuntimeError('Failed to cleaned up framework.')
+            raise RuntimeError(u"Failed to cleaned up framework.")

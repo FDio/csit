@@ -14,31 +14,34 @@
 """QEMU utilities library."""
 
 import json
+
 from re import match
 from string import Template
 from time import sleep
 
 from robot.api import logger
+
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DpdkUtil import DpdkUtil
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.OptionString import OptionString
-from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
-from resources.libraries.python.VPPUtil import VPPUtil
 from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.VppConfigGenerator import VppConfigGenerator
+from resources.libraries.python.VPPUtil import VPPUtil
 
-__all__ = ["QemuUtils"]
+__all__ = [u"QemuUtils"]
 
 
 class QemuUtils(object):
     """QEMU utilities."""
 
     # Use one instance of class per tests.
-    ROBOT_LIBRARY_SCOPE = 'TEST CASE'
+    ROBOT_LIBRARY_SCOPE = u"TEST CASE"
 
-    def __init__(self, node, qemu_id=1, smp=1, mem=512, vnf=None,
-                 img=Constants.QEMU_VM_IMAGE):
+    def __init__(
+            self, node, qemu_id=1, smp=1, mem=512, vnf=None,
+            img=Constants.QEMU_VM_IMAGE):
         """Initialize QemuUtil class.
 
         :param node: Node to run QEMU on.
@@ -57,138 +60,143 @@ class QemuUtils(object):
         self._vhost_id = 0
         self._node = node
         self._arch = Topology.get_node_arch(self._node)
-        dpdk_target = 'arm64-armv8a' if self._arch == 'aarch64' \
-            else 'x86_64-native'
-        self._testpmd_path = '{path}/{dpdk_target}-linuxapp-gcc/app'\
-            .format(path=Constants.QEMU_VM_DPDK, dpdk_target=dpdk_target)
+        dpdk_target = u"arm64-armv8a" if self._arch == u"aarch64" \
+            else u"x86_64-native"
+        self._testpmd_path = f"{Constants.QEMU_VM_DPDK}/" \
+            f"{dpdk_target}-linuxapp-gcc/app"
         self._vm_info = {
-            'host': node['host'],
-            'type': NodeType.VM,
-            'port': 10021 + qemu_id,
-            'serial': 4555 + qemu_id,
-            'username': 'cisco',
-            'password': 'cisco',
-            'interfaces': {},
+            u"host": node[u"host"],
+            u"type": NodeType.VM,
+            u"port": 10021 + qemu_id,
+            u"serial": 4555 + qemu_id,
+            u"username": 'cisco',
+            u"password": 'cisco',
+            u"interfaces": {},
         }
-        if node['port'] != 22:
-            self._vm_info['host_port'] = node['port']
-            self._vm_info['host_username'] = node['username']
-            self._vm_info['host_password'] = node['password']
+        if node[u"port"] != 22:
+            self._vm_info[u"host_port"] = node[u"port"]
+            self._vm_info[u"host_username"] = node[u"username"]
+            self._vm_info[u"host_password"] = node[u"password"]
         # Input Options.
         self._opt = dict()
-        self._opt['qemu_id'] = qemu_id
-        self._opt['mem'] = int(mem)
-        self._opt['smp'] = int(smp)
-        self._opt['img'] = img
-        self._opt['vnf'] = vnf
+        self._opt[u"qemu_id"] = qemu_id
+        self._opt[u"mem"] = int(mem)
+        self._opt[u"smp"] = int(smp)
+        self._opt[u"img"] = img
+        self._opt[u"vnf"] = vnf
         # Temporary files.
         self._temp = dict()
-        self._temp['pidfile'] = '/var/run/qemu_{id}.pid'.format(id=qemu_id)
+        self._temp[u"pidfile"] = f"/var/run/qemu_{qemu_id}.pid"
         if img == Constants.QEMU_VM_IMAGE:
-            self._opt['vm_type'] = 'nestedvm'
-            self._temp['qmp'] = '/var/run/qmp_{id}.sock'.format(id=qemu_id)
-            self._temp['qga'] = '/var/run/qga_{id}.sock'.format(id=qemu_id)
+            self._opt[u"vm_type"] = u"nestedvm"
+            self._temp[u"qmp"] = f"/var/run/qmp_{qemu_id}.sock"
+            self._temp[u"qga"] = f"/var/run/qga_{qemu_id}.sock"
         elif img == Constants.QEMU_VM_KERNEL:
-            self._opt['img'], _ = exec_cmd_no_error(
-                node,
-                'ls -1 {img}* | tail -1'.format(img=Constants.QEMU_VM_KERNEL),
-                message='Qemu Kernel VM image not found!')
-            self._opt['vm_type'] = 'kernelvm'
-            self._temp['log'] = '/tmp/serial_{id}.log'.format(id=qemu_id)
-            self._temp['ini'] = '/etc/vm_init_{id}.conf'.format(id=qemu_id)
-            self._opt['initrd'], _ = exec_cmd_no_error(
-                node,
-                'ls -1 {initrd}* | tail -1'.format(
-                    initrd=Constants.QEMU_VM_KERNEL_INITRD),
-                message='Qemu Kernel initrd image not found!')
+            self._opt[u"img"], _ = exec_cmd_no_error(
+                node, f"ls -1 {Constants.QEMU_VM_KERNEL}* | tail -1",
+                message=u"Qemu Kernel VM image not found!"
+            )
+            self._opt[u"vm_type"] = u"kernelvm"
+            self._temp[u"log"] = f"/tmp/serial_{qemu_id}.log"
+            self._temp[u"ini"] = f"/etc/vm_init_{qemu_id}.conf"
+            self._opt[u"initrd"], _ = exec_cmd_no_error(
+                node, f"ls -1 {Constants.QEMU_VM_KERNEL_INITRD}* | tail -1",
+                message=u"Qemu Kernel initrd image not found!"
+            )
         else:
-            raise RuntimeError('QEMU: Unknown VM image option: {}'.format(img))
+            raise RuntimeError(f"QEMU: Unknown VM image option: {img}")
         # Computed parameters for QEMU command line.
-        self._params = OptionString(prefix='-')
+        self._params = OptionString(prefix=u"-")
         self.add_params()
 
     def add_params(self):
         """Set QEMU command line parameters."""
         self.add_default_params()
-        if self._opt.get('vm_type', '') == 'nestedvm':
+        if self._opt.get(u"vm_type", u"") == u"nestedvm":
             self.add_nestedvm_params()
-        elif self._opt.get('vm_type', '') == 'kernelvm':
+        elif self._opt.get(u"vm_type", u"") == u"kernelvm":
             self.add_kernelvm_params()
         else:
-            raise RuntimeError('QEMU: Unsupported VM type!')
+            raise RuntimeError(u"QEMU: Unsupported VM type!")
 
     def add_default_params(self):
         """Set default QEMU command line parameters."""
-        self._params.add('daemonize')
-        self._params.add('nodefaults')
-        self._params.add_with_value('name', 'vnf{qemu},debug-threads=on'.format(
-            qemu=self._opt.get('qemu_id')))
-        self._params.add('no-user-config')
-        self._params.add_with_value('monitor', 'none')
-        self._params.add_with_value('display', 'none')
-        self._params.add_with_value('vga', 'none')
-        self._params.add('enable-kvm')
-        self._params.add_with_value('pidfile', self._temp.get('pidfile'))
-        self._params.add_with_value('cpu', 'host')
+        self._params.add(u"daemonize")
+        self._params.add(u"nodefaults")
+        self._params.add_with_value(
+            u"name", f"vnf{self._opt.get(u'qemu_id')},debug-threads=on"
+        )
+        self._params.add(u"no-user-config")
+        self._params.add_with_value(u"monitor", u"none")
+        self._params.add_with_value(u"display", u"none")
+        self._params.add_with_value(u"vga", u"none")
+        self._params.add(u"enable-kvm")
+        self._params.add_with_value(u"pidfile", self._temp.get(u"pidfile"))
+        self._params.add_with_value(u"cpu", u"host")
 
-        if self._arch == 'aarch64':
-            machine_args = 'virt,accel=kvm,usb=off,mem-merge=off,gic-version=3'
+        if self._arch == u"aarch64":
+            machine_args = u"virt,accel=kvm,usb=off,mem-merge=off,gic-version=3"
         else:
-            machine_args = 'pc,accel=kvm,usb=off,mem-merge=off'
+            machine_args = u"pc,accel=kvm,usb=off,mem-merge=off"
+        self._params.add_with_value(u"machine", machine_args)
         self._params.add_with_value(
-            'machine', machine_args)
+            u"smp", f"{self._opt.get(u'smp')},sockets=1,"
+            f"cores={self._opt.get(u'smp')},threads=1"
+        )
         self._params.add_with_value(
-            'smp', '{smp},sockets=1,cores={smp},threads=1'.format(
-                smp=self._opt.get('smp')))
-        self._params.add_with_value(
-            'object', 'memory-backend-file,id=mem,size={mem}M,'
-            'mem-path=/dev/hugepages,share=on'.format(mem=self._opt.get('mem')))
-        self._params.add_with_value(
-            'm', '{mem}M'.format(mem=self._opt.get('mem')))
-        self._params.add_with_value('numa', 'node,memdev=mem')
-        self._params.add_with_value('balloon', 'none')
+            u"object", f"memory-backend-file,id=mem,"
+            f"size={self._opt.get(u'mem')}M,mem-path=/dev/hugepages,share=on"
+        )
+        self._params.add_with_value(u"m", f"{self._opt.get(u'mem')}M")
+        self._params.add_with_value(u"numa", u"node,memdev=mem")
+        self._params.add_with_value(u"balloon", u"none")
 
     def add_nestedvm_params(self):
         """Set NestedVM QEMU parameters."""
         self._params.add_with_value(
-            'net', 'nic,macaddr=52:54:00:00:{qemu:02x}:ff'.format(
-                qemu=self._opt.get('qemu_id')))
+            u"net",
+            f"nic,macaddr=52:54:00:00:{self._opt.get(u'qemu_id'):02x}:ff"
+        )
         self._params.add_with_value(
-            'net', 'user,hostfwd=tcp::{info[port]}-:22'.format(
-                info=self._vm_info))
-        locking = ',file.locking=off'
+            u"net", f"user,hostfwd=tcp::{self._vm_info[u'port']}-:22"
+        )
+        locking = u",file.locking=off"
         self._params.add_with_value(
-            'drive', 'file={img},format=raw,cache=none,if=virtio{locking}'.
-            format(img=self._opt.get('img'), locking=locking))
+            u"drive", f"file={self._opt.get(u'img')},"
+            f"format=raw,cache=none,if=virtio{locking}"
+        )
         self._params.add_with_value(
-            'qmp', 'unix:{qmp},server,nowait'.format(qmp=self._temp.get('qmp')))
+            u"qmp", f"unix:{self._temp.get(u'qmp')},server,nowait"
+        )
         self._params.add_with_value(
-            'chardev', 'socket,host=127.0.0.1,port={info[serial]},'
-            'id=gnc0,server,nowait'.format(info=self._vm_info))
-        self._params.add_with_value('device', 'isa-serial,chardev=gnc0')
+            u"chardev", f"socket,host=127.0.0.1,"
+            f"port={self._vm_info[u'serial']},id=gnc0,server,nowait")
+        self._params.add_with_value(u"device", u"isa-serial,chardev=gnc0")
         self._params.add_with_value(
-            'chardev', 'socket,path={qga},server,nowait,id=qga0'.format(
-                qga=self._temp.get('qga')))
-        self._params.add_with_value('device', 'isa-serial,chardev=qga0')
+            u"chardev", f"socket,path={self._temp.get(u'qga')},"
+            f"server,nowait,id=qga0"
+        )
+        self._params.add_with_value(u"device", u"isa-serial,chardev=qga0")
 
     def add_kernelvm_params(self):
         """Set KernelVM QEMU parameters."""
-        console = 'ttyAMA0' if self._arch == 'aarch64' else 'ttyS0'
-        self._params.add_with_value('serial', 'file:{log}'.format(
-            log=self._temp.get('log')))
+        console = u"ttyAMA0" if self._arch == u"aarch64" else u"ttyS0"
         self._params.add_with_value(
-            'fsdev', 'local,id=root9p,path=/,security_model=none')
+            u"serial", f"file:{self._temp.get(u'log')}"
+        )
         self._params.add_with_value(
-            'device', 'virtio-9p-pci,fsdev=root9p,mount_tag=virtioroot')
+            u"fsdev", u"local,id=root9p,path=/,security_model=none"
+        )
         self._params.add_with_value(
-            'kernel', '{img}'.format(img=self._opt.get('img')))
+            u"device", u"virtio-9p-pci,fsdev=root9p,mount_tag=virtioroot"
+        )
+        self._params.add_with_value(u"kernel", f"{self._opt.get(u'img')}")
+        self._params.add_with_value(u"initrd", f"{self._opt.get(u'initrd')}")
         self._params.add_with_value(
-            'initrd', '{initrd}'.format(initrd=self._opt.get('initrd')))
-        self._params.add_with_value(
-            'append', '"ro rootfstype=9p rootflags=trans=virtio '
-                      'root=virtioroot console={console} tsc=reliable '
-                      'hugepages=256 init={init} fastboot"'.format(
-                          console=console, init=self._temp.get('ini')))
+            u"append", f"'ro rootfstype=9p rootflags=trans=virtio "
+            f"root=virtioroot console={console} tsc=reliable hugepages=256 "
+            f"init={self._temp.get(u'ini')} fastboot'"
+        )
 
     def create_kernelvm_config_vpp(self, **kwargs):
         """Create QEMU VPP config files.
@@ -197,15 +205,12 @@ class QemuUtils(object):
             file.
         :type kwargs: dict
         """
-        startup = ('/etc/vpp/vm_startup_{id}.conf'.
-                   format(id=self._opt.get('qemu_id')))
-        running = ('/etc/vpp/vm_running_{id}.exec'.
-                   format(id=self._opt.get('qemu_id')))
+        startup = f"/etc/vpp/vm_startup_{self._opt.get(u'qemu_id')}.conf"
+        running = f"/etc/vpp/vm_running_{self._opt.get(u'qemu_id')}.exec"
 
-        self._temp['startup'] = startup
-        self._temp['running'] = running
-        self._opt['vnf_bin'] = ('/usr/bin/vpp -c {startup}'.
-                                format(startup=startup))
+        self._temp[u"startup"] = startup
+        self._temp[u"running"] = running
+        self._opt[u"vnf_bin"] = f"/usr/bin/vpp -c {startup}"
 
         # Create VPP startup configuration.
         vpp_config = VppConfigGenerator()
@@ -214,31 +219,29 @@ class QemuUtils(object):
         vpp_config.add_unix_cli_listen()
         vpp_config.add_unix_exec(running)
         vpp_config.add_socksvr()
-        vpp_config.add_cpu_main_core('0')
-        if self._opt.get('smp') > 1:
-            vpp_config.add_cpu_corelist_workers('1-{smp}'.format(
-                smp=self._opt.get('smp')-1))
-        vpp_config.add_dpdk_dev('0000:00:06.0', '0000:00:07.0')
-        vpp_config.add_dpdk_dev_default_rxq(kwargs['queues'])
-        vpp_config.add_dpdk_log_level('debug')
-        if not kwargs['jumbo_frames']:
+        vpp_config.add_cpu_main_core(u"0")
+        if self._opt.get(u"smp") > 1:
+            vpp_config.add_cpu_corelist_workers(f"1-{self._opt.get(u'smp')-1}")
+        vpp_config.add_dpdk_dev(u"0000:00:06.0", u"0000:00:07.0")
+        vpp_config.add_dpdk_dev_default_rxq(kwargs[u"queues"])
+        vpp_config.add_dpdk_log_level(u"debug")
+        if not kwargs[u"jumbo_frames"]:
             vpp_config.add_dpdk_no_multi_seg()
             vpp_config.add_dpdk_no_tx_checksum_offload()
-        vpp_config.add_plugin('disable', 'default')
-        vpp_config.add_plugin('enable', 'dpdk_plugin.so')
+        vpp_config.add_plugin(u"disable", [u"default"])
+        vpp_config.add_plugin(u"enable", [u"dpdk_plugin.so"])
         vpp_config.write_config(startup)
 
         # Create VPP running configuration.
-        template = '{res}/{tpl}.exec'.format(res=Constants.RESOURCES_TPL_VM,
-                                             tpl=self._opt.get('vnf'))
-        exec_cmd_no_error(self._node, 'rm -f {running}'.format(running=running),
-                          sudo=True)
+        template = f"{Constants.RESOURCES_TPL_VM}/{self._opt.get(u'vnf')}.exec"
+        exec_cmd_no_error(self._node, f"rm -f {running}", sudo=True)
 
         with open(template, 'r') as src_file:
             src = Template(src_file.read())
             exec_cmd_no_error(
-                self._node, "echo '{out}' | sudo tee {running}".format(
-                    out=src.safe_substitute(**kwargs), running=running))
+                self._node, f"echo '{src.safe_substitute(**kwargs)}' | "
+                f"sudo tee {running}"
+            )
 
     def create_kernelvm_config_testpmd_io(self, **kwargs):
         """Create QEMU testpmd-io command line.
@@ -247,19 +250,18 @@ class QemuUtils(object):
         :type kwargs: dict
         """
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
-            eal_corelist='0-{smp}'.format(smp=self._opt.get('smp') - 1),
+            eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
             eal_driver=False,
             eal_in_memory=True,
             pmd_num_mbufs=16384,
-            pmd_rxq=kwargs['queues'],
-            pmd_txq=kwargs['queues'],
+            pmd_rxq=kwargs[u"queues"],
+            pmd_txq=kwargs[u"queues"],
             pmd_tx_offloads='0x0',
             pmd_disable_hw_vlan=False,
-            pmd_nb_cores=str(self._opt.get('smp') - 1))
+            pmd_nb_cores=str(self._opt.get(u"smp") - 1)
+        )
 
-        self._opt['vnf_bin'] = ('{testpmd_path}/{testpmd_cmd}'.
-                                format(testpmd_path=self._testpmd_path,
-                                       testpmd_cmd=testpmd_cmd))
+        self._opt[u"vnf_bin"] = f"{self._testpmd_path}/{testpmd_cmd}"
 
     def create_kernelvm_config_testpmd_mac(self, **kwargs):
         """Create QEMU testpmd-mac command line.
@@ -268,22 +270,21 @@ class QemuUtils(object):
         :type kwargs: dict
         """
         testpmd_cmd = DpdkUtil.get_testpmd_cmdline(
-            eal_corelist='0-{smp}'.format(smp=self._opt.get('smp') - 1),
+            eal_corelist=f"0-{self._opt.get(u'smp') - 1}",
             eal_driver=False,
             eal_in_memory=True,
             pmd_num_mbufs=16384,
-            pmd_fwd_mode='mac',
-            pmd_eth_peer_0='0,{mac}'.format(mac=kwargs['vif1_mac']),
-            pmd_eth_peer_1='1,{mac}'.format(mac=kwargs['vif2_mac']),
-            pmd_rxq=kwargs['queues'],
-            pmd_txq=kwargs['queues'],
-            pmd_tx_offloads='0x0',
+            pmd_fwd_mode=u"mac",
+            pmd_eth_peer_0=f"0,{kwargs[u'vif1_mac']}",
+            pmd_eth_peer_1=f"1,{kwargs[u'vif2_mac']}",
+            pmd_rxq=kwargs[u"queues"],
+            pmd_txq=kwargs[u"queues"],
+            pmd_tx_offloads=u"0x0",
             pmd_disable_hw_vlan=False,
-            pmd_nb_cores=str(self._opt.get('smp') - 1))
+            pmd_nb_cores=str(self._opt.get(u"smp") - 1)
+        )
 
-        self._opt['vnf_bin'] = ('{testpmd_path}/{testpmd_cmd}'.
-                                format(testpmd_path=self._testpmd_path,
-                                       testpmd_cmd=testpmd_cmd))
+        self._opt[u"vnf_bin"] = f"{self._testpmd_path}/{testpmd_cmd}"
 
     def create_kernelvm_init(self, **kwargs):
         """Create QEMU init script.
@@ -291,18 +292,17 @@ class QemuUtils(object):
         :param kwargs: Key-value pairs to replace content of init startup file.
         :type kwargs: dict
         """
-        template = '{res}/init.sh'.format(res=Constants.RESOURCES_TPL_VM)
-        init = self._temp.get('ini')
-        exec_cmd_no_error(
-            self._node, 'rm -f {init}'.format(init=init), sudo=True)
+        template = f"{Constants.RESOURCES_TPL_VM}/init.sh"
+        init = self._temp.get(u"ini")
+        exec_cmd_no_error(self._node, f"rm -f {init}", sudo=True)
 
         with open(template, 'r') as src_file:
             src = Template(src_file.read())
             exec_cmd_no_error(
-                self._node, "echo '{out}' | sudo tee {init}".format(
-                    out=src.safe_substitute(**kwargs), init=init))
-            exec_cmd_no_error(
-                self._node, "chmod +x {init}".format(init=init), sudo=True)
+                self._node, f"echo '{src.safe_substitute(**kwargs)}' | "
+                f"sudo tee {init}"
+            )
+            exec_cmd_no_error(self._node, f"chmod +x {init}", sudo=True)
 
     def configure_kernelvm_vnf(self, **kwargs):
         """Create KernelVM VNF configurations.
@@ -310,15 +310,15 @@ class QemuUtils(object):
         :param kwargs: Key-value pairs for templating configs.
         :type kwargs: dict
         """
-        if 'vpp' in self._opt.get('vnf'):
+        if u"vpp" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_vpp(**kwargs)
-        elif 'testpmd_io' in self._opt.get('vnf'):
+        elif u"testpmd_io" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_testpmd_io(**kwargs)
-        elif 'testpmd_mac' in self._opt.get('vnf'):
+        elif u"testpmd_mac" in self._opt.get(u"vnf"):
             self.create_kernelvm_config_testpmd_mac(**kwargs)
         else:
-            raise RuntimeError('QEMU: Unsupported VNF!')
-        self.create_kernelvm_init(vnf_bin=self._opt['vnf_bin'])
+            raise RuntimeError(u"QEMU: Unsupported VNF!")
+        self.create_kernelvm_init(vnf_bin=self._opt[u"vnf_bin"])
 
     def get_qemu_pids(self):
         """Get QEMU CPU pids.
@@ -326,9 +326,9 @@ class QemuUtils(object):
         :returns: List of QEMU CPU pids.
         :rtype: list of str
         """
-        command = ("grep -rwl 'CPU' /proc/$(sudo cat {pidfile})/task/*/comm ".
-                   format(pidfile=self._temp.get('pidfile')))
-        command += (r"| xargs dirname | sed -e 's/\/.*\///g' | uniq")
+        command = f"grep -rwl 'CPU' /proc/$(sudo cat " \
+            f"{self._temp.get(u'pidfile')})/task/*/comm "
+        command += r"| xargs dirname | sed -e 's/\/.*\///g' | uniq"
 
         stdout, _ = exec_cmd_no_error(self._node, command)
         return stdout.splitlines()
@@ -349,19 +349,19 @@ class QemuUtils(object):
                     sleep(1)
                     continue
                 for qemu_cpu, host_cpu in zip(qemu_cpus, host_cpus):
-                    command = ('taskset -pc {host_cpu} {thread}'.
-                               format(host_cpu=host_cpu, thread=qemu_cpu))
-                    message = ('QEMU: Set affinity failed on {host}!'.
-                               format(host=self._node['host']))
-                    exec_cmd_no_error(self._node, command, sudo=True,
-                                      message=message)
+                    command = f"taskset -pc {host_cpu} {qemu_cpu}"
+                    message = f"QEMU: Set affinity failed " \
+                        f"on {self._node[u'host']}!"
+                    exec_cmd_no_error(
+                        self._node, command, sudo=True, message=message
+                    )
                 break
             except (RuntimeError, ValueError):
                 self.qemu_kill_all()
                 raise
         else:
             self.qemu_kill_all()
-            raise RuntimeError('Failed to set Qemu threads affinity!')
+            raise RuntimeError(u"Failed to set Qemu threads affinity!")
 
     def qemu_set_scheduler_policy(self):
         """Set scheduler policy to SCHED_RR with priority 1 for all Qemu CPU
@@ -373,18 +373,18 @@ class QemuUtils(object):
             qemu_cpus = self.get_qemu_pids()
 
             for qemu_cpu in qemu_cpus:
-                command = ('chrt -r -p 1 {thread}'.
-                           format(thread=qemu_cpu))
-                message = ('QEMU: Set SCHED_RR failed on {host}'.
-                           format(host=self._node['host']))
-                exec_cmd_no_error(self._node, command, sudo=True,
-                                  message=message)
+                command = f"chrt -r -p 1 {qemu_cpu}"
+                message = f"QEMU: Set SCHED_RR failed on {self._node[u'host']}"
+                exec_cmd_no_error(
+                    self._node, command, sudo=True,message=message
+                )
         except (RuntimeError, ValueError):
             self.qemu_kill_all()
             raise
 
-    def qemu_add_vhost_user_if(self, socket, server=True, jumbo_frames=False,
-                               queue_size=None, queues=1):
+    def qemu_add_vhost_user_if(
+            self, socket, server=True, jumbo_frames=False, queue_size=None,
+            queues=1):
         """Add Vhost-user interface.
 
         :param socket: Path of the unix socket.
@@ -400,30 +400,29 @@ class QemuUtils(object):
         """
         self._vhost_id += 1
         self._params.add_with_value(
-            'chardev', 'socket,id=char{vhost},path={socket}{server}'.format(
-                vhost=self._vhost_id, socket=socket,
-                server=',server' if server is True else ''))
+            u"chardev", f"socket,id=char{self._vhost_id},"
+            f"path={socket}{u',server' if server is True else u''}"
+        )
         self._params.add_with_value(
-            'netdev', 'vhost-user,id=vhost{vhost},chardev=char{vhost},'
-            'queues={queues}'.format(vhost=self._vhost_id, queues=queues))
-        mac = ('52:54:00:00:{qemu:02x}:{vhost:02x}'.
-               format(qemu=self._opt.get('qemu_id'), vhost=self._vhost_id))
-        queue_size = ('rx_queue_size={queue_size},tx_queue_size={queue_size}'.
-                      format(queue_size=queue_size)) if queue_size else ''
-        mbuf = 'on,host_mtu=9200'
+            u"netdev", f"vhost-user,id=vhost{self._vhost_id},"
+            f"chardev=char{self._vhost_id},queues={queues}"
+        )
+        mac = f"52:54:00:00:{self._opt.get(u'qemu_id'):02x}:" \
+            f"{self._vhost_id:02x}"
+        queue_size = f"rx_queue_size={queue_size},tx_queue_size={queue_size}" \
+            if queue_size else u""
+        mbuf = u"on,host_mtu=9200"
         self._params.add_with_value(
-            'device', 'virtio-net-pci,netdev=vhost{vhost},mac={mac},'
-            'addr={addr}.0,mq=on,vectors={vectors},csum=off,gso=off,'
-            'guest_tso4=off,guest_tso6=off,guest_ecn=off,mrg_rxbuf={mbuf},'
-            '{queue_size}'.format(
-                addr=self._vhost_id+5, vhost=self._vhost_id, mac=mac,
-                mbuf=mbuf if jumbo_frames else 'off', queue_size=queue_size,
-                vectors=(2 * queues + 2)))
+            u"device", f"virtio-net-pci,netdev=vhost{self._vhost_id},mac={mac},"
+            f"addr={self._vhost_id+5}.0,mq=on,vectors={2 * queues + 2},"
+            f"csum=off,gso=off,guest_tso4=off,guest_tso6=off,guest_ecn=off,"
+            f"mrg_rxbuf={mbuf if jumbo_frames else u'off'},{queue_size}"
+        )
 
         # Add interface MAC and socket to the node dict.
-        if_data = {'mac_address': mac, 'socket': socket}
-        if_name = 'vhost{vhost}'.format(vhost=self._vhost_id)
-        self._vm_info['interfaces'][if_name] = if_data
+        if_data = {u"mac_address": mac, u"socket": socket}
+        if_name = f"vhost{self._vhost_id}"
+        self._vm_info[u"interfaces"][if_name] = if_data
         # Add socket to temporary file list.
         self._temp[if_name] = socket
 

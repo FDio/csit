@@ -16,6 +16,7 @@
 import re
 
 from enum import IntEnum
+
 from ipaddress import ip_address
 
 from resources.libraries.python.Constants import Constants
@@ -55,7 +56,7 @@ class FibPathType(IntEnum):
 class FibPathFlags(IntEnum):
     """FIB path flags."""
     FIB_PATH_FLAG_NONE = 0
-    FIB_PATH_FLAG_RESOLVE_VIA_ATTACHED = 1  #pylint: disable=invalid-name
+    FIB_PATH_FLAG_RESOLVE_VIA_ATTACHED = 1  # pylint: disable=invalid-name
     FIB_PATH_FLAG_RESOLVE_VIA_HOST = 2
 
 
@@ -81,7 +82,7 @@ class IPUtil(object):
         :returns: Integer representation of IP address.
         :rtype: int
         """
-        return int(ip_address(unicode(ip_str)))
+        return int(ip_address(ip_str))
 
     @staticmethod
     def int_to_ip(ip_int):
@@ -115,13 +116,14 @@ class IPUtil(object):
         if not sw_if_index:
             return list()
 
-        is_ipv6 = 1 if ip_version == 'ipv6' else 0
+        is_ipv6 = 1 if ip_version == u"ipv6" else 0
 
-        cmd = 'ip_address_dump'
-        args = dict(sw_if_index=sw_if_index,
-                    is_ipv6=is_ipv6)
-        err_msg = 'Failed to get L2FIB dump on host {host}'.format(
-            host=node['host'])
+        cmd = u"ip_address_dump"
+        args = dict(
+            sw_if_index=sw_if_index,
+            is_ipv6=is_ipv6
+        )
+        err_msg = f"Failed to get L2FIB dump on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)
@@ -138,11 +140,10 @@ class IPUtil(object):
         :param node: VPP node.
         :type node: dict
         """
-
-        PapiSocketExecutor.run_cli_cmd(node, 'show ip fib')
-        PapiSocketExecutor.run_cli_cmd(node, 'show ip fib summary')
-        PapiSocketExecutor.run_cli_cmd(node, 'show ip6 fib')
-        PapiSocketExecutor.run_cli_cmd(node, 'show ip6 fib summary')
+        PapiSocketExecutor.run_cli_cmd(node, u"show ip fib")
+        PapiSocketExecutor.run_cli_cmd(node, u"show ip fib summary")
+        PapiSocketExecutor.run_cli_cmd(node, u"show ip6 fib")
+        PapiSocketExecutor.run_cli_cmd(node, u"show ip6 fib summary")
 
     @staticmethod
     def vpp_get_ip_tables_prefix(node, address):
@@ -153,13 +154,12 @@ class IPUtil(object):
         :type node: dict
         :type address: str
         """
-        addr = ip_address(unicode(address))
+        addr = ip_address(address)
+        ip_ver = u"ip6" if addr.version == 6 else u"ip"
 
         PapiSocketExecutor.run_cli_cmd(
-            node, 'show {ip_ver} fib {addr}/{addr_len}'.format(
-                ip_ver='ip6' if addr.version == 6 else 'ip',
-                addr=addr,
-                addr_len=addr.max_prefixlen))
+            node, f"show {ip_ver} fib {addr}/{addr.max_prefixlen}"
+        )
 
     @staticmethod
     def get_interface_vrf_table(node, interface, ip_version='ipv4'):
@@ -176,18 +176,17 @@ class IPUtil(object):
         """
         sw_if_index = InterfaceUtil.get_interface_index(node, interface)
 
-        cmd = 'sw_interface_get_table'
+        cmd = u"sw_interface_get_table"
         args = dict(
             sw_if_index=sw_if_index,
-            is_ipv6=True if ip_version == 'ipv6' else False
+            is_ipv6=True if ip_version == u"ipv6" else False
         )
-        err_msg = 'Failed to get VRF id assigned to interface {ifc}'.format(
-            ifc=interface)
+        err_msg = f"Failed to get VRF id assigned to interface {interface}"
 
         with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
-        return reply['vrf_id']
+        return reply[u"vrf_id"]
 
     @staticmethod
     def vpp_ip_source_check_setup(node, if_name):
@@ -198,14 +197,13 @@ class IPUtil(object):
         :type node: dict
         :type if_name: str
         """
-        cmd = 'ip_source_check_interface_add_del'
+        cmd = u"ip_source_check_interface_add_del"
         args = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, if_name),
             is_add=1,
             loose=0
         )
-        err_msg = 'Failed to enable source check on interface {ifc}'.format(
-            ifc=if_name)
+        err_msg = f"Failed to enable source check on interface {if_name}"
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
@@ -220,12 +218,12 @@ class IPUtil(object):
         :type interface: str
         :type addr: str
         """
-        cmd = 'ip_probe_neighbor'
+        cmd = u"ip_probe_neighbor"
         args = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
-            dst=str(addr))
-        err_msg = 'VPP ip probe {dev} {ip} failed on {h}'.format(
-            dev=interface, ip=addr, h=node['host'])
+            dst=str(addr)
+        )
+        err_msg = f"VPP ip probe {interface} {addr} failed on {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -239,16 +237,15 @@ class IPUtil(object):
         :type ip1: str
         :type ip2: str
         """
-        addr1 = ip_address(unicode(ip1))
-        addr2 = ip_address(unicode(ip2))
+        addr1 = ip_address(ip1)
+        addr2 = ip_address(ip2)
 
         if addr1 != addr2:
-            raise AssertionError('IP addresses are not equal: {0} != {1}'.
-                                 format(ip1, ip2))
+            raise AssertionError(f"IP addresses are not equal: {ip1} != {ip2}")
 
     @staticmethod
-    def setup_network_namespace(node, namespace_name, interface_name,
-                                ip_addr, prefix):
+    def setup_network_namespace(
+            node, namespace_name, interface_name, ip_addr, prefix):
         """Setup namespace on given node and attach interface and IP to
         this namespace. Applicable also on TG node.
 
@@ -263,19 +260,18 @@ class IPUtil(object):
         :type ip_addr: str
         :type prefix: int
         """
-        cmd = ('ip netns add {0}'.format(namespace_name))
+        cmd = f"ip netns add {namespace_name}"
         exec_cmd_no_error(node, cmd, sudo=True)
 
-        cmd = ('ip link set dev {0} up netns {1}'.format(interface_name,
-                                                         namespace_name))
+        cmd = f"ip link set dev {interface_name} up netns {namespace_name}"
         exec_cmd_no_error(node, cmd, sudo=True)
 
-        cmd = ('ip netns exec {0} ip addr add {1}/{2} dev {3}'.format(
-            namespace_name, ip_addr, prefix, interface_name))
+        cmd = f"ip netns exec {namespace_name} ip addr add {ip_addr}/{prefix}" \
+            f" dev {interface_name}"
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def linux_enable_forwarding(node, ip_ver='ipv4'):
+    def linux_enable_forwarding(node, ip_ver=u"ipv4"):
         """Enable forwarding on a Linux node, e.g. VM.
 
         :param node: VPP node.
@@ -283,7 +279,7 @@ class IPUtil(object):
         :type node: dict
         :type ip_ver: str
         """
-        cmd = 'sysctl -w net.{0}.ip_forward=1'.format(ip_ver)
+        cmd = f"sysctl -w net.{ip_ver}.ip_forward=1"
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
@@ -298,15 +294,16 @@ class IPUtil(object):
         :rtype: str
         :raises RuntimeError: If cannot get the information about interfaces.
         """
-        regex_intf_info = r"pci@" \
-                          r"([0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}.[0-9a-f])\s*" \
-                          r"([a-zA-Z0-9]*)\s*network"
+        regex_intf_info = \
+            r"pci@([0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}.[0-9a-f])\s" \
+            r"*([a-zA-Z0-9]*)\s*network"
 
-        cmd = "lshw -class network -businfo"
+        cmd = u"lshw -class network -businfo"
         ret_code, stdout, stderr = exec_cmd(node, cmd, timeout=30, sudo=True)
         if ret_code != 0:
-            raise RuntimeError('Could not get information about interfaces:\n'
-                               '{err}'.format(err=stderr))
+            raise RuntimeError(
+                f"Could not get information about interfaces:\n{stderr}"
+            )
 
         for line in stdout.splitlines()[2:]:
             try:
@@ -326,12 +323,12 @@ class IPUtil(object):
         :type interface: str
         :raises RuntimeError: If the interface could not be set up.
         """
-        cmd = "ip link set {0} up".format(interface)
+        cmd = f"ip link set {interface} up"
         exec_cmd_no_error(node, cmd, timeout=30, sudo=True)
 
     @staticmethod
-    def set_linux_interface_ip(node, interface, ip_addr, prefix,
-                               namespace=None):
+    def set_linux_interface_ip(
+            node, interface, ip_addr, prefix, namespace=None):
         """Set IP address to interface in linux.
 
         :param node: VPP/TG node.
@@ -347,11 +344,10 @@ class IPUtil(object):
         :raises RuntimeError: IP could not be set.
         """
         if namespace is not None:
-            cmd = 'ip netns exec {ns} ip addr add {ip}/{p} dev {dev}'.format(
-                ns=namespace, ip=ip_addr, p=prefix, dev=interface)
+            cmd = f"ip netns exec {namespace} ip addr add {ip_addr}/{prefix}" \
+                f" dev {interface}"
         else:
-            cmd = 'ip addr add {ip}/{p} dev {dev}'.format(
-                ip=ip_addr, p=prefix, dev=interface)
+            cmd = f"ip addr add {ip_addr}/{prefix} dev {interface}"
 
         exec_cmd_no_error(node, cmd, timeout=5, sudo=True)
 
@@ -371,15 +367,16 @@ class IPUtil(object):
         :type namespace: str
         """
         if namespace is not None:
-            cmd = 'ip netns exec {} ip route add {}/{} via {}'.format(
-                namespace, ip_addr, prefix, gateway)
+            cmd = f"ip netns exec {namespace} ip route add {ip_addr}/{prefix}" \
+                f" via {gateway}"
         else:
-            cmd = 'ip route add {}/{} via {}'.format(ip_addr, prefix, gateway)
+            cmd = f"ip route add {ip_addr}/{prefix} via {gateway}"
+
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def vpp_interface_set_ip_address(node, interface, address,
-                                     prefix_length=None):
+    def vpp_interface_set_ip_address(
+            node, interface, address, prefix_length=None):
         """Set IP address to VPP interface.
 
         :param node: VPP node.
@@ -391,9 +388,9 @@ class IPUtil(object):
         :type address: str
         :type prefix_length: int
         """
-        ip_addr = ip_address(unicode(address))
+        ip_addr = ip_address(address)
 
-        cmd = 'sw_interface_add_del_address'
+        cmd = u"sw_interface_add_del_address"
         args = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
             is_add=True,
@@ -401,10 +398,11 @@ class IPUtil(object):
             prefix=IPUtil.create_prefix_object(
                 ip_addr,
                 prefix_length if prefix_length else 128
-                if ip_addr.version == 6 else 32)
+                if ip_addr.version == 6 else 32
+            )
         )
-        err_msg = 'Failed to add IP address on interface {ifc}'.format(
-            ifc=interface)
+        err_msg = f"Failed to add IP address on interface {interface}"
+
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
@@ -421,19 +419,20 @@ class IPUtil(object):
         :type ip_addr: str
         :type mac_address: str
         """
-        dst_ip = ip_address(unicode(ip_addr))
+        dst_ip = ip_address(ip_addr)
 
         neighbor = dict(
             sw_if_index=Topology.get_interface_sw_index(node, iface_key),
             flags=0,
             mac_address=str(mac_address),
-            ip_address=str(dst_ip))
-        cmd = 'ip_neighbor_add_del'
+            ip_address=str(dst_ip)
+        )
+        cmd = u"ip_neighbor_add_del"
         args = dict(
             is_add=1,
             neighbor=neighbor)
-        err_msg = 'Failed to add IP neighbor on interface {ifc}'.format(
-            ifc=iface_key)
+        err_msg = f"Failed to add IP neighbor on interface {iface_key}"
+
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
@@ -460,9 +459,11 @@ class IPUtil(object):
         """
         return dict(
             af=getattr(
-                AddressFamily, 'ADDRESS_IP6' if ip_addr.version == 6
-                else 'ADDRESS_IP4').value,
-            un=IPUtil.union_addr(ip_addr))
+                AddressFamily, u"ADDRESS_IP6" if ip_addr.version == 6
+                else u"ADDRESS_IP4"
+            ).value,
+            un=IPUtil.union_addr(ip_addr)
+        )
 
     @staticmethod
     def create_prefix_object(ip_addr, addr_len):
@@ -508,36 +509,37 @@ class IPUtil(object):
         :returns: route parameter basic structure
         :rtype: dict
         """
-        interface = kwargs.get('interface', '')
-        gateway = kwargs.get('gateway', '')
+        interface = kwargs.get(u"interface", u"")
+        gateway = kwargs.get(u"gateway", u"")
 
-        net_addr = ip_address(unicode(network))
+        net_addr = ip_address(network)
 
         prefix = IPUtil.create_prefix_object(net_addr, prefix_len)
 
         paths = list()
         n_hop = dict(
-            address=IPUtil.union_addr(ip_address(unicode(gateway))) if gateway
-            else 0,
+            address=IPUtil.union_addr(ip_address(gateway)) if gateway else 0,
             via_label=MPLS_LABEL_INVALID,
             obj_id=Constants.BITWISE_NON_ZERO
         )
         path = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface)
             if interface else Constants.BITWISE_NON_ZERO,
-            table_id=int(kwargs.get('lookup_vrf', 0)),
+            table_id=int(kwargs.get(u"lookup_vrf", 0)),
             rpf_id=Constants.BITWISE_NON_ZERO,
-            weight=int(kwargs.get('weight', 1)),
+            weight=int(kwargs.get(u"weight", 1)),
             preference=1,
             type=getattr(
-                FibPathType, 'FIB_PATH_TYPE_LOCAL'
-                if kwargs.get('local', False)
-                else 'FIB_PATH_TYPE_NORMAL').value,
-            flags=getattr(FibPathFlags, 'FIB_PATH_FLAG_NONE').value,
+                FibPathType, u"FIB_PATH_TYPE_LOCAL"
+                if kwargs.get(u"local", False)
+                else u"FIB_PATH_TYPE_NORMAL"
+            ).value,
+            flags=getattr(FibPathFlags, u"FIB_PATH_FLAG_NONE").value,
             proto=getattr(
-                FibPathNhProto, 'FIB_PATH_NH_PROTO_IP6'
+                FibPathNhProto, u"FIB_PATH_NH_PROTO_IP6"
                 if net_addr.version == 6
-                else 'FIB_PATH_NH_PROTO_IP4').value,
+                else u"FIB_PATH_NH_PROTO_IP4"
+            ).value,
             nh=n_hop,
             n_labels=0,
             label_stack=list(0 for _ in range(16))
@@ -545,7 +547,7 @@ class IPUtil(object):
         paths.append(path)
 
         route = dict(
-            table_id=int(kwargs.get('vrf', 0)),
+            table_id=int(kwargs.get(u"vrf", 0)),
             prefix=prefix,
             n_paths=len(paths),
             paths=paths
@@ -576,43 +578,45 @@ class IPUtil(object):
         :type prefix_len: int
         :type kwargs: dict
         """
-        count = kwargs.get("count", 1)
+        count = kwargs.get(u"count", 1)
 
         if count > 100:
-            gateway = kwargs.get("gateway", '')
-            interface = kwargs.get("interface", '')
-            vrf = kwargs.get("vrf", None)
-            multipath = kwargs.get("multipath", False)
+            gateway = kwargs.get(u"gateway", '')
+            interface = kwargs.get(u"interface", '')
+            vrf = kwargs.get(u"vrf", None)
+            multipath = kwargs.get(u"multipath", False)
 
             with VatTerminal(node, json_param=False) as vat:
+
                 vat.vat_terminal_exec_cmd_from_template(
-                    'vpp_route_add.vat',
+                    u"vpp_route_add.vat",
                     network=network,
                     prefix_length=prefix_len,
-                    via='via {}'.format(gateway) if gateway else '',
-                    sw_if_index='sw_if_index {}'.format(
-                        InterfaceUtil.get_interface_index(node, interface))
-                    if interface else '',
-                    vrf='vrf {}'.format(vrf) if vrf else '',
-                    count='count {}'.format(count) if count else '',
-                    multipath='multipath' if multipath else '')
+                    via=f"via {gateway}" if gateway else u"",
+                    sw_if_index=f"sw_if_index "
+                    f"{InterfaceUtil.get_interface_index(node, interface)}"
+                    if interface else u"",
+                    vrf=f"vrf {vrf}" if vrf else u"",
+                    count=f"count {count}" if count else u"",
+                    multipath=u"multipath" if multipath else u""
+                )
             return
 
-        net_addr = ip_address(unicode(network))
-        cmd = 'ip_route_add_del'
+        net_addr = ip_address(network)
+        cmd = u"ip_route_add_del"
         args = dict(
             is_add=1,
-            is_multipath=int(kwargs.get('multipath', False)),
+            is_multipath=int(kwargs.get(u"multipath", False)),
             route=None
         )
+        err_msg = f"Failed to add route(s) on host {node[u'host']}"
 
-        err_msg = 'Failed to add route(s) on host {host}'.format(
-            host=node['host'])
         with PapiSocketExecutor(node) as papi_exec:
-            for i in xrange(kwargs.get('count', 1)):
-                args['route'] = IPUtil.compose_vpp_route_structure(
-                    node, net_addr + i, prefix_len, **kwargs)
-                history = False if 1 < i < kwargs.get('count', 1) else True
+            for i in range(kwargs.get(u"count", 1)):
+                args[u"route"] = IPUtil.compose_vpp_route_structure(
+                    node, net_addr + i, prefix_len, **kwargs
+                )
+                history = False if 1 < i < kwargs.get(u"count", 1) else True
                 papi_exec.add(cmd, history=history, **args)
             papi_exec.get_replies(err_msg)
 
@@ -625,14 +629,14 @@ class IPUtil(object):
         :type node: dict
         :type interface: str
         """
-        cmd = 'sw_interface_add_del_address'
+        cmd = u"sw_interface_add_del_address"
         args = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
             is_add=False,
             del_all=True
         )
-        err_msg = 'Failed to flush IP address on interface {ifc}'.format(
-            ifc=interface)
+        err_msg = f"Failed to flush IP address on interface {interface}"
+
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
 
@@ -647,14 +651,16 @@ class IPUtil(object):
         :type table_id: int
         :type ipv6: bool
         """
-        cmd = 'ip_table_add_del'
+        cmd = u"ip_table_add_del"
         table = dict(
             table_id=int(table_id),
-            is_ip6=int(ipv6))
+            is_ip6=int(ipv6)
+        )
         args = dict(
             table=table,
-            is_add=1)
-        err_msg = 'Failed to add FIB table on host {host}'.format(
-            host=node['host'])
+            is_add=1
+        )
+        err_msg = f"Failed to add FIB table on host {node[u'host']}"
+
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
