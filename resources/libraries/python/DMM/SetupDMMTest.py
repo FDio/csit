@@ -139,7 +139,7 @@ def setup_node(args):
         logger.console('Setup of node {0} done'.format(node['host']))
         return True
 
-class SetupDMMTest(object):
+class SetupDMMTest:
     """Setup suite run on topology nodes.
 
     Many VAT/CLI based tests need the scripts at remote hosts before executing
