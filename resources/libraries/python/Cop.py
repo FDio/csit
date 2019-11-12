@@ -17,7 +17,7 @@ from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 
 
-class Cop(object):
+class Cop:
     """COP utilities."""
 
     @staticmethod
@@ -38,17 +38,17 @@ class Cop(object):
         :type default_cop: int
         :raises ValueError: If parameter 'ip_version' has incorrect value.
         """
-        if ip_version not in ('ip4', 'ip6'):
-            raise ValueError('IP version is not in correct format')
+        if ip_version not in (u"ip4", u"ip6"):
+            raise ValueError(u"IP version is not in correct format")
 
-        cmd = 'cop_whitelist_enable_disable'
-        err_msg = 'Failed to add COP whitelist on interface {ifc} on host' \
-                  ' {host}'.format(ifc=interface, host=node['host'])
+        cmd = u"cop_whitelist_enable_disable"
+        err_msg = f"Failed to add COP whitelist on interface {interface} " \
+            f"on host {node[u'host']}"
         args = dict(
             sw_if_index=Topology.get_interface_sw_index(node, interface),
             fib_id=int(fib_id),
-            ip4=True if ip_version == 'ip4' else False,
-            ip6=True if ip_version == 'ip6' else False,
+            ip4=bool(ip_version == u"ip4"),
+            ip6=bool(ip_version == u"ip6"),
             default_cop=default_cop
         )
 
@@ -68,14 +68,14 @@ class Cop(object):
         :raises ValueError: If parameter 'state' has incorrect value.
         """
         state = state.lower()
-        if state in ('enable', 'disable'):
-            enable = True if state == 'enable' else False
+        if state in (u"enable", u"disable"):
+            enable = bool(state == u"enable")
         else:
-            raise ValueError("Possible state values are 'enable' or 'disable'")
+            raise ValueError(u"Possible state values are 'enable' or 'disable'")
 
-        cmd = 'cop_interface_enable_disable'
-        err_msg = 'Failed to enable/disable COP on interface {ifc} on host' \
-                  ' {host}'.format(ifc=interface, host=node['host'])
+        cmd = u"cop_interface_enable_disable"
+        err_msg = f"Failed to enable/disable COP on interface {interface} " \
+            f"on host {node[u'host']}"
         args = dict(
             sw_if_index=Topology.get_interface_sw_index(node, interface),
             enable_disable=enable

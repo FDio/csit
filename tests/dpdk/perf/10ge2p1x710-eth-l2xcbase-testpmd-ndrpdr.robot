@@ -15,15 +15,15 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/dpdk/default.robot
 | Library | resources.libraries.python.DPDK.DPDKTools
-| ...
+|
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | PERFTEST | NDRPDR | 1NUMA
 | ... | NIC_Intel-X710 | DPDK | ETH | L2XCFWD | BASE
-| ...
+|
 | Suite Setup | Setup suite single link | performance | dpdk
 | Suite Teardown | Tear down suite | performance | dpdk
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *Raw results L2 routing test cases*
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
@@ -55,11 +55,11 @@
 | | ... | [Cfg] DUT runs L2 frame forwarding config.\
 | | ... | Each DUT uses ${phy_cores} physical core(s) for worker threads.
 | | ... | [Ver] Measure NDR and PDR values using MLRsearch algorithm.\
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | Set Max Rate And Jumbo
 | | Given Start L2FWD on all DUTs | ${phy_cores} | ${rxq} | ${jumbo}
 | | Then Find NDR and PDR intervals using optimized search
