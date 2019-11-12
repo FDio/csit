@@ -15,7 +15,6 @@ CSIT Description
 #. Identified existing FD.io project dependencies and interactions:
 
     - vpp - Vector Packet Processing.
-    - honeycomb - Honeycomb Agent for management plane testing.
     - ci-management - Management repo for Jenkins Job Builder, script and
       management related to the Jenkins CI configuration.
 
