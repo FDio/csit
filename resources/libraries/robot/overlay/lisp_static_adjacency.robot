@@ -18,15 +18,15 @@
 | Library  | resources.libraries.python.LispSetup.LispLocalEid
 | Library  | resources.libraries.python.LispSetup.LispLocatorSet
 | Library  | resources.libraries.python.LispSetup.LispRemoteMapping
-| ...
+|
 | Resource | resources/libraries/robot/overlay/lisp_api.robot
-| ...
+|
 | Documentation | Lisp static adjacency suite keywords
 
 *** Keywords ***
 | Configure LISP topology in 3-node circular topology
 | | [Documentation] | Set up Lisp static adjacency topology.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut1_node - DUT1 node. Type: dictionary
 | | ... | - dut1_int_name - DUT1 node interface name. Type: string
@@ -39,17 +39,17 @@
 | | ... | - dut2_eid - Dut2 node eid address. Type: dictionary
 | | ... | - dut1_static_adjacency - Dut1 static adjacency. Type: dictionary
 | | ... | - dut2_static_adjacency - Dut2 static address. Type: dictionary
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Configure LISP topology in 3-node circular topology \
 | | ... | \| ${dut1_node} \| ${interface_name} \| None \
 | | ... | \| ${dut2_node} \| ${interface_name} \| None \
 | | ... | \| ${locator_set} \| ${dut1_eid} \| ${dut2_eid} \
 | | ... | \| ${dut1_static_adjacency} \| ${dut2_static_adjacency} \|
-| | ...
+| |
 | | [Arguments] | ${dut1_node} | ${dut1_int_name} | ${dut1_int_index}
 | | ... | ${dut2_node} | ${dut2_int_name} | ${dut2_int_index}
 | | ... | ${locator_set} | ${dut1_eid} | ${dut2_eid}
@@ -99,7 +99,7 @@
 
 | Change LISP Configuration
 | | [Documentation] | Change configuration of the Lisp protocol.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut1_node - DUT1 node. Type: dictionary
 | | ... | - dut2_node - DUT2 node. Type: dictionary
@@ -118,16 +118,16 @@
 | | ... | Type: dictionary
 | | ... | - new_dut1_static_adjacency - New DUT1 static adjacency.
 | | ... | Type: dictionary
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Change LISP Configuration \| ${dut1_node} \| ${dut2_node} \
 | | ... | \| ${dut1_to_dut2} \| ${dut2_to_dut1} | "08:00:27:20:e0:0d" \
 | | ... | \| "08:00:27:b1:94:b1" \| "6.3.0.1" \| "6.3.0.20" \| "24" \
 | | ... | \| ${old_dut1_static_adjacency} \| ${new_dut1_static_adjacency} \|
-| | ...
+| |
 | | [Arguments] | ${dut1_node} | ${dut2_node} | ${dut1_to_dut2}
 | | ... | ${dut2_to_dut1} | ${dut1_to_dut2_mac} | ${dut2_to_dut1_mac}
 | | ... | ${new_dut1_ip} | ${new_dut2_ip} | ${prefix}

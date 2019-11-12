@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,18 +18,17 @@
 import sys
 import logging
 
+from ipaddress import ip_address
 # pylint: disable=no-name-in-module
 # pylint: disable=import-error
-logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-
-from scapy.all import Ether
+logging.getLogger(u"scapy.runtime").setLevel(logging.ERROR)
 from scapy.layers.inet import IP
 from scapy.layers.inet6 import IPv6, ICMPv6ND_NS
 from scapy.layers.ipsec import SecurityAssociation, ESP
-from ipaddress import ip_address
+from scapy.layers.l2 import Ether
 
-from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
+from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 
 def check_ipsec(pkt_recv, ip_layer, dst_tun, src_ip, dst_ip, sa_in):
@@ -50,37 +49,39 @@ def check_ipsec(pkt_recv, ip_layer, dst_tun, src_ip, dst_ip, sa_in):
     :raises RuntimeError: If received packet is invalid.
     """
     if not pkt_recv.haslayer(ip_layer):
-        raise RuntimeError('Not an {ip} packet received: {pkt}'.format(
-            ip=ip_layer.name, pkt=pkt_recv.__repr__()))
+        raise RuntimeError(
+            f"Not an {ip_layer.name} packet received: {pkt_recv!r}"
+        )
 
     if pkt_recv[ip_layer.name].dst != dst_tun:
         raise RuntimeError(
-            'Received packet has invalid destination address: {rec_ip} '
-            'should be: {exp_ip}'.format(
-                rec_ip=pkt_recv[ip_layer.name].dst, exp_ip=dst_tun))
+            f"Received packet has invalid destination address: "
+            f"{pkt_recv[ip_layer.name].dst} should be: {dst_tun}"
+        )
 
     if not pkt_recv.haslayer(ESP):
-        raise RuntimeError(
-            'Not an ESP packet received: {pkt}'.format(pkt=pkt_recv.__repr__()))
+        raise RuntimeError(f"Not an ESP packet received: {pkt_recv!r}")
 
     ip_pkt = pkt_recv[ip_layer]
     d_pkt = sa_in.decrypt(ip_pkt)
 
     if d_pkt[ip_layer].dst != dst_ip:
         raise RuntimeError(
-            'Decrypted packet has invalid destination address: {rec_ip} '
-            'should be: {exp_ip}'.format(
-                rec_ip=d_pkt[ip_layer].dst, exp_ip=dst_ip))
+            f"Decrypted packet has invalid destination address: "
+            f"{d_pkt[ip_layer].dst} should be: {dst_ip}"
+        )
 
     if d_pkt[ip_layer].src != src_ip:
         raise RuntimeError(
-            'Decrypted packet has invalid source address: {rec_ip} should be: '
-            '{exp_ip}'.format(rec_ip=d_pkt[ip_layer].src, exp_ip=src_ip))
+            f"Decrypted packet has invalid source address: "
+            f"{d_pkt[ip_layer].src} should be: {src_ip}"
+        )
 
     if ip_layer == IP and d_pkt[ip_layer.name].proto != 61:
         raise RuntimeError(
-            'Decrypted packet has invalid IP protocol: {rec_proto} '
-            'should be: 61'.format(rec_proto=d_pkt[ip_layer.name].proto))
+            f"Decrypted packet has invalid IP protocol: "
+            f"{d_pkt[ip_layer.name].proto} should be: 61"
+        )
 
 
 def check_ip(pkt_recv, ip_layer, src_ip, dst_ip):
@@ -97,25 +98,27 @@ def check_ip(pkt_recv, ip_layer, src_ip, dst_ip):
     :raises RuntimeError: If received packet is invalid.
     """
     if not pkt_recv.haslayer(ip_layer):
-        raise RuntimeError('Not an {ip} packet received: {pkt}'.format(
-            ip=ip_layer.name, pkt=pkt_recv.__repr__()))
+        raise RuntimeError(
+            f"Not an {ip_layer.name} packet received: {pkt_recv!r}"
+        )
 
     if pkt_recv[ip_layer.name].dst != dst_ip:
         raise RuntimeError(
-            'Received packet has invalid destination address: {rec_ip} '
-            'should be: {exp_ip}'.format(
-                rec_ip=pkt_recv[ip_layer.name].dst, exp_ip=dst_ip))
+            f"Received packet has invalid destination address: "
+            f"{pkt_recv[ip_layer.name].dst} should be: {dst_ip}"
+        )
 
     if pkt_recv[ip_layer.name].src != src_ip:
         raise RuntimeError(
-            'Received packet has invalid destination address: {rec_ip} '
-            'should be: {exp_ip}'.format(
-                rec_ip=pkt_recv[ip_layer.name].dst, exp_ip=src_ip))
+            f"Received packet has invalid destination address: "
+            f"{pkt_recv[ip_layer.name].dst} should be: {src_ip}"
+        )
 
     if ip_layer == IP and pkt_recv[ip_layer.name].proto != 61:
         raise RuntimeError(
-            'Received packet has invalid IP protocol: {rec_proto} '
-            'should be: 61'.format(rec_proto=pkt_recv[ip_layer.name].proto))
+            f"Received packet has invalid IP protocol: "
+            f"{pkt_recv[ip_layer.name].proto} should be: 61"
+        )
 
 
 # pylint: disable=too-many-locals
@@ -124,33 +127,35 @@ def main():
     """Send and receive IPsec packet."""
 
     args = TrafficScriptArg(
-        ['tx_src_mac', 'tx_dst_mac', 'rx_src_mac', 'rx_dst_mac', 'src_ip',
-         'dst_ip','crypto_alg', 'crypto_key', 'integ_alg', 'integ_key',
-         'l_spi', 'r_spi'],
-        ['src_tun', 'dst_tun']
+        [
+            u"tx_src_mac", u"tx_dst_mac", u"rx_src_mac", u"rx_dst_mac",
+            u"src_ip", u"dst_ip", u"crypto_alg", u"crypto_key", u"integ_alg",
+            u"integ_key", u"l_spi", u"r_spi"
+        ],
+        [u"src_tun", u"dst_tun"]
     )
 
-    tx_txq = TxQueue(args.get_arg('tx_if'))
-    tx_rxq = RxQueue(args.get_arg('tx_if'))
-    rx_txq = TxQueue(args.get_arg('rx_if'))
-    rx_rxq = RxQueue(args.get_arg('rx_if'))
+    tx_txq = TxQueue(args.get_arg(u"tx_if"))
+    tx_rxq = RxQueue(args.get_arg(u"tx_if"))
+    rx_txq = TxQueue(args.get_arg(u"rx_if"))
+    rx_rxq = RxQueue(args.get_arg(u"rx_if"))
 
-    tx_src_mac = args.get_arg('tx_src_mac')
-    tx_dst_mac = args.get_arg('tx_dst_mac')
-    rx_src_mac = args.get_arg('rx_src_mac')
-    rx_dst_mac = args.get_arg('rx_dst_mac')
-    src_ip = args.get_arg('src_ip')
-    dst_ip = args.get_arg('dst_ip')
-    crypto_alg = args.get_arg('crypto_alg')
-    crypto_key = args.get_arg('crypto_key')
-    integ_alg = args.get_arg('integ_alg')
-    integ_key = args.get_arg('integ_key')
-    l_spi = int(args.get_arg('l_spi'))
-    r_spi = int(args.get_arg('r_spi'))
-    src_tun = args.get_arg('src_tun')
-    dst_tun = args.get_arg('dst_tun')
+    tx_src_mac = args.get_arg(u"tx_src_mac")
+    tx_dst_mac = args.get_arg(u"tx_dst_mac")
+    rx_src_mac = args.get_arg(u"rx_src_mac")
+    rx_dst_mac = args.get_arg(u"rx_dst_mac")
+    src_ip = args.get_arg(u"src_ip")
+    dst_ip = args.get_arg(u"dst_ip")
+    crypto_alg = args.get_arg(u"crypto_alg")
+    crypto_key = args.get_arg(u"crypto_key")
+    integ_alg = args.get_arg(u"integ_alg")
+    integ_key = args.get_arg(u"integ_key")
+    l_spi = int(args.get_arg(u"l_spi"))
+    r_spi = int(args.get_arg(u"r_spi"))
+    src_tun = args.get_arg(u"src_tun")
+    dst_tun = args.get_arg(u"dst_tun")
 
-    if ip_address(unicode(src_ip)).version == 6:
+    if ip_address(src_ip).version == 6:
         ip_layer = IPv6
     else:
         ip_layer = IP
@@ -163,17 +168,19 @@ def main():
     if not (src_tun and dst_tun):
         src_tun = src_ip
 
-    sa_in = SecurityAssociation(ESP, spi=r_spi, crypt_algo=crypto_alg,
-                                crypt_key=crypto_key, auth_algo=integ_alg,
-                                auth_key=integ_key, tunnel_header=tunnel_in)
+    sa_in = SecurityAssociation(
+        ESP, spi=r_spi, crypt_algo=crypto_alg, crypt_key=crypto_key,
+        auth_algo=integ_alg, auth_key=integ_key, tunnel_header=tunnel_in
+    )
 
-    sa_out = SecurityAssociation(ESP, spi=l_spi, crypt_algo=crypto_alg,
-                                 crypt_key=crypto_key, auth_algo=integ_alg,
-                                 auth_key=integ_key, tunnel_header=tunnel_out)
+    sa_out = SecurityAssociation(
+        ESP, spi=l_spi, crypt_algo=crypto_alg, crypt_key=crypto_key,
+        auth_algo=integ_alg, auth_key=integ_key, tunnel_header=tunnel_out
+    )
 
     ip_pkt = ip_layer(src=src_ip, dst=dst_ip, proto=61) if ip_layer == IP \
         else ip_layer(src=src_ip, dst=dst_ip)
-    ip_pkt = ip_layer(str(ip_pkt))
+    ip_pkt = ip_layer(str(ip_pkt).encode(encoding=u"utf-8"))
 
     e_pkt = sa_out.encrypt(ip_pkt)
     tx_pkt_send = (Ether(src=tx_src_mac, dst=tx_dst_mac) /
@@ -187,8 +194,7 @@ def main():
         rx_pkt_recv = rx_rxq.recv(2)
 
         if rx_pkt_recv is None:
-            raise RuntimeError(
-                '{ip} packet Rx timeout'.format(ip=ip_layer.name))
+            raise RuntimeError(f"{ip_layer.name} packet Rx timeout")
 
         if rx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
@@ -210,7 +216,7 @@ def main():
         tx_pkt_recv = tx_rxq.recv(2, sent_packets)
 
         if tx_pkt_recv is None:
-            raise RuntimeError('ESP packet Rx timeout')
+            raise RuntimeError(u"ESP packet Rx timeout")
 
         if rx_pkt_recv.haslayer(ICMPv6ND_NS):
             # read another packet in the queue if the current one is ICMPv6ND_NS
@@ -224,5 +230,5 @@ def main():
     sys.exit(0)
 
 
-if __name__ == "__main__":
+if __name__ == u"__main__":
     main()

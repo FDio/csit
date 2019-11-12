@@ -57,7 +57,7 @@ class AlertingError(PresentationError):
             format(msg=self._msg, dets=self._details, level=self._level))
 
 
-class Alerting(object):
+class Alerting:
     """Class implementing the alerting mechanism.
     """
 
