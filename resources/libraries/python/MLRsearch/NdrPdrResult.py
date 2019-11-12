@@ -34,11 +34,11 @@ class NdrPdrResult(object):
         # TODO: Type checking is not very pythonic,
         # perhaps users can fix wrong usage without it?
         if not isinstance(ndr_interval, ReceiveRateInterval):
-            raise TypeError("ndr_interval, is not a ReceiveRateInterval: "
-                            "{ndr!r}".format(ndr=ndr_interval))
+            raise TypeError(
+                f"ndr_interval, is not a ReceiveRateInterval: {ndr_interval!r}")
         if not isinstance(pdr_interval, ReceiveRateInterval):
-            raise TypeError("pdr_interval, is not a ReceiveRateInterval: "
-                            "{pdr!r}".format(pdr=pdr_interval))
+            raise TypeError(
+                f"pdr_interval, is not a ReceiveRateInterval: {pdr_interval!r}")
         self.ndr_interval = ndr_interval
         self.pdr_interval = pdr_interval
 
@@ -51,16 +51,14 @@ class NdrPdrResult(object):
         :returns: Message containing NDR and PDR widths in goals.
         :rtype: str
         """
-        return "ndr {ndr_in_goals}; pdr {pdr_in_goals}".format(
-            ndr_in_goals=self.ndr_interval.width_in_goals(relative_width_goal),
-            pdr_in_goals=self.pdr_interval.width_in_goals(relative_width_goal))
+        return f"ndr {self.ndr_interval.width_in_goals(relative_width_goal)};" \
+            f" pdr {self.pdr_interval.width_in_goals(relative_width_goal)}"
 
     def __str__(self):
         """Return string as tuple of named values."""
-        return "NDR={ndr!s};PDR={pdr!s}".format(
-            ndr=self.ndr_interval, pdr=self.pdr_interval)
+        return f"NDR={self.ndr_interval!s};PDR={self.pdr_interval!s}"
 
     def __repr__(self):
         """Return string evaluable as a constructor call."""
-        return "NdrPdrResult(ndr_interval={ndr!r},pdr_interval={pdr!r})".format(
-            ndr=self.ndr_interval, pdr=self.pdr_interval)
+        return (f"NdrPdrResult(ndr_interval={self.ndr_interval!r},"
+                f"pdr_interval={self.pdr_interval!r})")

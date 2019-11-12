@@ -13,8 +13,8 @@
 
 """SPAN setup library"""
 
-from resources.libraries.python.topology import Topology
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
+from resources.libraries.python.topology import Topology
 
 
 class SPAN(object):
@@ -31,24 +31,23 @@ class SPAN(object):
         Used by Honeycomb.
 
         :param node: DUT node.
+        :param is_l2: True if required L2 span configuration else False.
         :type node: dict
-
+        :type is_l2: bool
         :returns: Full SPAN configuration as list. One list entry for every
             source/destination interface pair.
         :rtype: list of dict
         """
-        cmd = "sw_interface_span_dump"
-        args = dict(
-            is_l2=1 if is_l2 else 0
-        )
+        cmd = u"sw_interface_span_dump"
+        args = dict(is_l2=1 if is_l2 else 0)
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details()
 
         return details
 
     @staticmethod
-    def vpp_get_span_configuration_by_interface(node, dst_interface,
-                                                ret_format="sw_if_index"):
+    def vpp_get_span_configuration_by_interface(
+            node, dst_interface, ret_format=u"sw_if_index"):
         """Get a list of all interfaces currently being mirrored
         to the specified interface.
 
@@ -68,13 +67,13 @@ class SPAN(object):
         data = SPAN.vpp_get_span_configuration(node)
 
         dst_int = Topology.convert_interface_reference(
-            node, dst_interface, "sw_if_index")
+            node, dst_interface, u"sw_if_index")
         src_interfaces = []
         for item in data:
-            if item["sw_if_index_to"] == dst_int:
-                src_interfaces.append(item["sw_if_index_from"])
+            if item[u"sw_if_index_to"] == dst_int:
+                src_interfaces.append(item[u"sw_if_index_from"])
 
-        if ret_format != "sw_if_index":
+        if ret_format != u"sw_if_index":
             src_interfaces = [
                 Topology.convert_interface_reference(
                     node, interface, ret_format
