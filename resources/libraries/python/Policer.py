@@ -81,7 +81,7 @@ class DSCP(IntEnum):
     D_EF = 46
 
 
-class Policer(object):
+class Policer:
     """Policer utilities."""
 
     # pylint: disable=too-many-arguments, too-many-locals
@@ -128,7 +128,7 @@ class Policer(object):
         :type exceed_dscp: str
         :type violate_dscp: str
         """
-        cmd = 'policer_add_del'
+        cmd = u"policer_add_del"
         args = dict(
             is_add=int(is_add),
             name=str(policer_name),
@@ -138,40 +138,39 @@ class Policer(object):
             eb=int(ebs),
             rate_type=getattr(PolicerRateType, rate_type.upper()).value,
             round_type=getattr(
-                PolicerRoundType, 'ROUND_TO_{rt}'.format(
-                    rt=round_type.upper())).value,
-            type=getattr(PolicerType, 'TYPE_{pt}'.format(
-                pt=policer_type.upper())).value,
+                PolicerRoundType, f"ROUND_TO_{round_type.upper()}"
+            ).value,
+            type=getattr(PolicerType, f"TYPE_{policer_type.upper()}").value,
             conform_action_type=getattr(
-                PolicerAction, conform_action_type.upper()).value,
-            conform_dscp=getattr(DSCP, 'D_{dscp}'.format(
-                dscp=conform_dscp.upper())).value
+                PolicerAction, conform_action_type.upper()
+            ).value,
+            conform_dscp=getattr(DSCP, f"D_{conform_dscp.upper()}").value
             if
             conform_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.name
             else 0,
             exceed_action_type=getattr(
-                PolicerAction, exceed_action_type.upper()).value,
-            exceed_dscp=getattr(DSCP, 'D_{dscp}'.format(
-                dscp=exceed_dscp.upper())).value
+                PolicerAction, exceed_action_type.upper()
+            ).value,
+            exceed_dscp=getattr(DSCP, f"D_{exceed_dscp.upper()}").value
             if
             exceed_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.name
             else 0,
             violate_action_type=getattr(
-                PolicerAction, violate_action_type.upper()).value,
-            violate_dscp=getattr(DSCP, 'D_{dscp}'.format(
-                dscp=violate_dscp.upper())).value
+                PolicerAction, violate_action_type.upper()
+            ).value,
+            violate_dscp=getattr(DSCP, f"D_{violate_dscp.upper()}").value
             if
             violate_action_type.upper() == PolicerAction.MARK_AND_TRANSMIT.name
             else 0,
-            color_aware=1 if color_aware == "'ca'" else 0
+            color_aware=1 if color_aware == u"'ca'" else 0
         )
-        err_msg = 'Failed to configure policer {pn} on host {host}'.format(
-            pn=policer_name, host=node['host'])
+        err_msg = f"Failed to configure policer {policer_name} " \
+            f"on host {node['host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             reply = papi_exec.add(cmd, **args).get_reply(err_msg)
 
-        return reply['policer_index']
+        return reply[u"policer_index"]
 
     @staticmethod
     def policer_classify_set_interface(
@@ -196,13 +195,12 @@ class Policer(object):
         :type ip6_table_index: int
         :type l2_table_index: int
         """
-        if isinstance(interface, basestring):
+        if isinstance(interface, str):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
         else:
             sw_if_index = interface
 
-        cmd = 'policer_classify_set_interface'
-
+        cmd = u"policer_classify_set_interface"
         args = dict(
             is_add=int(is_add),
             sw_if_index=sw_if_index,
@@ -210,8 +208,8 @@ class Policer(object):
             ip6_table_index=int(ip6_table_index),
             l2_table_index=int(l2_table_index)
         )
-        err_msg = 'Failed to set/unset policer classify interface {ifc} ' \
-                  'on host {host}'.format(ifc=interface, host=node['host'])
+        err_msg = f"Failed to set/unset policer classify interface " \
+            f"{interface} on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -236,4 +234,4 @@ class Policer(object):
         :returns: DSCP numeric value.
         :rtype: int
         """
-        return getattr(DSCP, 'D_{dscp}'.format(dscp=dscp.upper())).value
+        return getattr(DSCP, f"D_{dscp.upper()}").value
