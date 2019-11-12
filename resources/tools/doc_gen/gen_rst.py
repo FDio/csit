@@ -16,52 +16,52 @@ from os import walk, listdir
 from os.path import isfile, isdir, join, getsize
 
 # Temporary working directory. It is created and deleted by run_doc.sh
-WORKING_DIR = "tmp"
+WORKING_DIR = u"tmp"
 
 # Directory with resources to be documented.
-RESOURCES_DIR = "resources"
+RESOURCES_DIR = u"resources"
 
 # Directory with libraries (python, robot) to be documented.
-LIB_DIR = "libraries"
+LIB_DIR = u"libraries"
 
 # Directory with tests (func, perf) to be documented.
-TESTS_DIR = "tests"
+TESTS_DIR = u"tests"
 
-PY_EXT = ".py"
-RF_EXT = ".robot"
+PY_EXT = u".py"
+RF_EXT = u".robot"
 
-PATH_PY_LIBS = join(WORKING_DIR, RESOURCES_DIR, LIB_DIR, "python")
-PATH_RF_LIBS = join(WORKING_DIR, RESOURCES_DIR, LIB_DIR, "robot")
+PATH_PY_LIBS = join(WORKING_DIR, RESOURCES_DIR, LIB_DIR, u"python")
+PATH_RF_LIBS = join(WORKING_DIR, RESOURCES_DIR, LIB_DIR, u"robot")
 PATH_TESTS = join(WORKING_DIR, TESTS_DIR)
 
 # Sections in rst files
-rst_toc = """
+rst_toc = u"""
 .. toctree::
 """
 
-rst_py_module = """
+rst_py_module = u"""
 .. automodule:: {}.{}
     :members:
     :undoc-members:
     :show-inheritance:
 """
 
-rst_rf_suite_setup = """
+rst_rf_suite_setup = u"""
 .. robot-settings::
    :source: {}
 """
 
-rst_rf_variables = """
+rst_rf_variables = u"""
 .. robot-variables::
    :source: {}
 """
 
-rst_rf_keywords = """
+rst_rf_keywords = u"""
 .. robot-keywords::
    :source: {}
 """
 
-rst_rf_tests = """
+rst_rf_tests = u"""
 .. robot-tests::
    :source: {}
 """
@@ -95,7 +95,6 @@ def create_file_name(path, start):
     """Create the name of rst file.
 
     Example:
-    resources.libraries.python.honeycomb.rst
     tests.perf.rst
 
     :param path: Path to a module to be documented.
@@ -105,9 +104,9 @@ def create_file_name(path, start):
     :returns: File name.
     :rtype: str
     """
-    dir_list = path.split('/')
+    dir_list = path.split(u"/")
     start_index = dir_list.index(start)
-    return ".".join(dir_list[start_index:-1]) + ".rst"
+    return u".".join(dir_list[start_index:-1]) + u".rst"
 
 
 def create_rst_file_names_set(files, start):
@@ -140,7 +139,7 @@ def scan_dir(path):
     dirs = list()
     items = listdir(path)
     for item in items:
-        if isfile(join(path, item)) and "__init__" not in item:
+        if isfile(join(path, item)) and u"__init__" not in item:
             files.append(item)
         elif isdir(join(path, item)):
             dirs.append(item)
@@ -159,7 +158,7 @@ def write_toc(fh, path, dirs):
     """
     fh.write(rst_toc)
     for dir in dirs:
-        fh.write("    {}.{}\n".format('.'.join(path), dir))
+        fh.write(f"    {u'.'.join(path)}.{dir}\n")
 
 
 def write_module_title(fh, module_name):
@@ -171,20 +170,20 @@ def write_module_title(fh, module_name):
     :type fh: BinaryIO
     :type module_name: str
     """
-    title = "{} suite".format(module_name)
-    fh.write("\n{}\n{}\n".format(title, '-' * len(title)))
+    title = f"{module_name} suite"
+    fh.write(f"\n{title}\n{u'-' * len(title)}")
 
 
 def generate_py_rst_files():
     """Generate all rst files for all python modules."""
 
-    dirs_ignore_list = ["__pycache__", ]
+    dirs_ignore_list = [u"__pycache__", ]
 
     py_libs = get_files(PATH_PY_LIBS, PY_EXT)
     file_names = create_rst_file_names_set(py_libs, RESOURCES_DIR)
 
     for file_name in file_names:
-        path = join(WORKING_DIR, *file_name.split('.')[:-1])
+        path = join(WORKING_DIR, *file_name.split(u".")[:-1])
         dirs, files = scan_dir(path)
 
         for item in dirs_ignore_list:
@@ -195,23 +194,25 @@ def generate_py_rst_files():
                     break
 
         full_path = join(WORKING_DIR, file_name)
-        with open(full_path, mode='a') as fh:
+        with open(full_path, mode="a") as fh:
             if getsize(full_path) == 0:
-                package = file_name.split('.')[-2]
-                fh.write("{}\n".format(package))
-                fh.write('=' * len("{}".format(package)))
-            module_path = file_name.split('.')[:-1]
+                package = file_name.split(u".")[-2]
+                fh.write(f"{package}\n")
+                fh.write(u"=" * len(f"{package}"))
+            module_path = file_name.split(u".")[:-1]
             if dirs:
                 write_toc(fh, module_path, dirs)
             for file in files:
-                module_name = file.split('.')[0]
+                module_name = file.split(u".")[0]
                 write_module_title(fh, module_name)
-                fh.write(rst_py_module.format('.'.join(module_path),
-                                              module_name))
+                fh.write(rst_py_module.format(
+                    u".".join(module_path), module_name)
+                )
 
 
-def generate_rf_rst_files(file_names, incl_tests=True, incl_keywords=True,
-                          incl_suite_setup=False, incl_variables=False):
+def generate_rf_rst_files(
+        file_names, incl_tests=True, incl_keywords=True, incl_suite_setup=False,
+        incl_variables=False):
     """Generate rst files for the given robot modules.
 
     :param file_names: List of file names to be included in the documentation
@@ -231,20 +232,20 @@ def generate_rf_rst_files(file_names, incl_tests=True, incl_keywords=True,
     """
 
     for file_name in file_names:
-        path = join(WORKING_DIR, *file_name.split('.')[:-1])
+        path = join(WORKING_DIR, *file_name.split(u".")[:-1])
         dirs, files = scan_dir(path)
 
         full_path = join(WORKING_DIR, file_name)
-        with open(full_path, mode='a') as fh:
+        with open(full_path, mode="a") as fh:
             if getsize(full_path) == 0:
-                package = file_name.split('.')[-2]
-                fh.write("{}\n".format(package))
-                fh.write('=' * len("{}".format(package)) + '\n')
-            module_path = file_name.split('.')[:-1]
+                package = file_name.split(u".")[-2]
+                fh.write(f"{package}\n")
+                fh.write(u"=" * len(f"{package}") + u"\n")
+            module_path = file_name.split(u".")[:-1]
             if dirs:
                 write_toc(fh, module_path, dirs)
             for file in files:
-                module_name = file.split('.')[0]
+                module_name = file.split(u".")[0]
                 write_module_title(fh, module_name)
                 path = join(join(*module_path), module_name + RF_EXT)
                 if incl_suite_setup:
@@ -274,12 +275,12 @@ def generate_tests_rst_files():
     tests = get_files(PATH_TESTS, RF_EXT)
     file_names = create_rst_file_names_set(tests, TESTS_DIR)
 
-    generate_rf_rst_files(file_names,
-                          incl_suite_setup=True,
-                          incl_variables=True)
+    generate_rf_rst_files(
+        file_names, incl_suite_setup=True, incl_variables=True
+    )
 
 
-if __name__ == '__main__':
+if __name__ == u"__main__":
 
     # Generate all rst files:
     generate_py_rst_files()
