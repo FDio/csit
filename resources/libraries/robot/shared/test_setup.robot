@@ -15,27 +15,29 @@
 
 *** Settings ***
 | Library | resources.libraries.python.PapiHistory
-| ...
+|
 | Documentation | Test Setup keywords.
 
 *** Keywords ***
 | Setup test
 | | [Documentation]
 | | ... | Common test setup for tests.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ${actions} - Additional setup action. Type: list
-| | ...
+| |
 | | [Arguments] | @{actions}
-| | ...
+| |
 | | Reset PAPI History On All DUTs | ${nodes}
 | | Create base startup configuration of VPP on all DUTs
-| | :FOR | ${action} | IN | @{actions}
+| | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Test Setup Action For ${action}
+| | END
 
 | Additional Test Setup Action For namespace
 | | [Documentation]
 | | ... | Additional Setup for tests which uses namespace.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
+| |
+| | FOR | ${dut} | IN | @{duts}
 | | | Clean Up Namespaces | ${nodes['${dut}']}
+| | END

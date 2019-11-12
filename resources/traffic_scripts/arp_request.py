@@ -17,7 +17,7 @@
 
 import sys
 
-from scapy.all import Ether, ARP
+from scapy.layers.l2 import ARP, Ether
 
 from resources.libraries.python.PacketVerifier import Interface
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
@@ -28,17 +28,19 @@ def parse_arguments():
 
     :return: tuple of parsed arguments
     """
-    args = TrafficScriptArg(['src_if', 'src_mac', 'dst_mac',
-                             'src_ip', 'dst_ip'])
+    args = TrafficScriptArg(
+        [u"src_if", u"src_mac", u"dst_mac" u"src_ip", u"dst_ip"]
+    )
 
     # check for mandatory parameters
-    params = (args.get_arg('tx_if'),
-              args.get_arg('src_mac'),
-              args.get_arg('dst_mac'),
-              args.get_arg('src_ip'),
-              args.get_arg('dst_ip'))
+    params = (args.get_arg(u"tx_if"),
+              args.get_arg(u"src_mac"),
+              args.get_arg(u"dst_mac"),
+              args.get_arg(u"src_ip"),
+              args.get_arg(u"dst_ip")
+              )
     if None in params:
-        raise Exception('Missing mandatory parameter(s)!')
+        raise Exception(u"Missing mandatory parameter(s)!")
 
     return params
 
@@ -55,9 +57,11 @@ def arp_request_test():
     interface = Interface(src_if)
 
     # build an ARP request
-    arp_request = (Ether(src=src_mac, dst='ff:ff:ff:ff:ff:ff') /
-                   ARP(psrc=src_ip, hwsrc=src_mac, pdst=dst_ip,
-                       hwdst='ff:ff:ff:ff:ff:ff'))
+    arp_request = (
+            Ether(src=src_mac, dst=u"ff:ff:ff:ff:ff:ff") /
+            ARP(psrc=src_ip, hwsrc=src_mac, pdst=dst_ip,
+                hwdst=u"ff:ff:ff:ff:ff:ff")
+    )
 
     # send the request
     interface.send_pkt(arp_request)
@@ -67,44 +71,42 @@ def arp_request_test():
         ether = interface.recv_pkt()
 
         if not ether:
-            raise RuntimeError("ARP reply timeout")
+            raise RuntimeError(u"ARP reply timeout")
 
         # verify received packet
 
         if not ether.haslayer(ARP):
-            raise RuntimeError('Unexpected packet: does not contain ARP ' +
-                               'header "{}"'.format(ether.__repr__()))
+            raise RuntimeError(
+                f"Unexpected packet: does not contain ARP header '{ether!r}'"
+            )
 
         arp = ether['ARP']
         arp_reply = 2
 
         if arp.op != arp_reply:
-            raise RuntimeError('expected op={}, received {}'.format(arp_reply,
-                                                                    arp.op))
+            raise RuntimeError(f"expected op={arp_reply}, received {op}")
         if arp.ptype != 0x800:
-            raise RuntimeError('expected ptype=0x800, received {}'.
-                               format(arp.ptype))
+            raise RuntimeError(f"expected ptype=0x800, received {ptype}")
         if arp.hwlen != 6:
-            raise RuntimeError('expected hwlen=6, received {}'.
-                               format(arp.hwlen))
+            raise RuntimeError(f"expected hwlen=6, received {arp.hwlen}")
         if arp.plen != 4:
-            raise RuntimeError('expected plen=4, received {}'.format(arp.plen))
+            raise RuntimeError(f"expected plen=4, received {arp.plen}")
         if arp.hwsrc != dst_mac:
-            raise RuntimeError('expected hwsrc={}, received {}'.
-                               format(dst_mac, arp.hwsrc))
+            raise RuntimeError(
+                f"expected hwsrc={dst_mac}, received {arp.hwsrc}"
+            )
         if arp.psrc != dst_ip:
-            raise RuntimeError('expected psrc={}, received {}'.
-                               format(dst_ip, arp.psrc))
+            raise RuntimeError(f"expected psrc={dst_ip}, received {arp.psrc}")
         if arp.hwdst != src_mac:
-            raise RuntimeError('expected hwdst={}, received {}'.
-                               format(src_mac, arp.hwdst))
+            raise RuntimeError(
+                f"expected hwdst={src_mac}, received {arp.hwdst}"
+            )
         if arp.pdst != src_ip:
-            raise RuntimeError('expected pdst={}, received {}'.
-                               format(src_ip, arp.pdst))
+            raise RuntimeError(f"expected pdst={src_ip}, received {arp.pdst}")
         test_passed = True
 
     except RuntimeError as ex:
-        print 'Error occurred: {}'.format(ex)
+        print(f"Error occurred: {ex}")
 
     return test_passed
 
@@ -116,5 +118,6 @@ def main():
     else:
         sys.exit(1)
 
-if __name__ == '__main__':
+
+if __name__ == u"__main__":
     main()
