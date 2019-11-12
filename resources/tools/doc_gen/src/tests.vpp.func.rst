@@ -1,3 +1,0 @@
-VPP Functional Tests
-====================
-

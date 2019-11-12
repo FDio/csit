@@ -91,9 +91,10 @@
 | | ...
 | | [Arguments] | ${crypto_type} | ${numvfs} | ${force_init}=${False}
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Crypto Device Verify | ${nodes['${dut}']} | ${crypto_type}
 | | | ... | ${numvfs} | force_init=${force_init}
+| | END
 
 | Configure kernel module on all DUTs
 | | [Documentation] | Verify if specific kernel module is loaded on all DUTs.
@@ -115,7 +116,7 @@
 | Create base startup configuration of VPP on all DUTs
 | | [Documentation] | Create base startup configuration of VPP to all DUTs.
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Import Library | resources.libraries.python.VppConfigGenerator
 | | | ... | WITH NAME | ${dut}
 | | | Run keyword | ${dut}.Set Node |  ${nodes['${dut}']}
@@ -132,6 +133,7 @@
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
 | | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
 | | | Run keyword | ${dut}.Add IP Heap Size | 4G
+| | END
 
 | Add worker threads to all DUTs
 | | [Documentation] | Setup worker threads in vpp startup configuration on all
@@ -160,7 +162,7 @@
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
 | | ${rxd_count_int}= | Set variable | ${rxd}
 | | ${txd_count_int}= | Set variable | ${txd}
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
 | | | @{if_list}= | Run Keyword If | '${if1_status}' == 'PASS'
@@ -201,6 +203,7 @@
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
+| | END
 | | Set Test Variable | ${smt_used}
 | | Set Test Variable | ${thr_count_int}
 | | Set Test Variable | ${cpu_count_int}
@@ -212,7 +215,7 @@
 | | [Documentation]
 | | ... | Add PCI devices to VPP configuration file.
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
 | | | ${if1_pci}= | Run Keyword If | '${if1_status}' == 'PASS'
@@ -250,12 +253,14 @@
 | | | ... | Set Test Variable | ${${dut}_if2_1_pci} | ${if2_1_pci}
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | Set Test Variable | ${${dut}_if2_2_pci} | ${if2_2_pci}
+| | END
 
 | Add DPDK no PCI to all DUTs
 | | [Documentation] | Add DPDK no-pci to VPP startup configuration to all DUTs.
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK no PCI
+| | END
 
 | Add VLAN strip offload switch off between DUTs in 3-node single link topology
 | | [Documentation]
@@ -284,14 +289,16 @@
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add NAT
+| | END
 
 | Write startup configuration on all VPP DUTs
 | | [Documentation] | Write VPP startup configuration without restarting VPP.
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Write Config
+| | END
 
 | Apply startup configuration on all VPP DUTs
 | | [Documentation] | Write VPP startup configuration and restart VPP on all
@@ -306,10 +313,11 @@
 | | ...
 | | [Arguments] | ${with_trace}=${False}
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Apply Config
 | | | Add New Socket | ${nodes['${dut}']} | PAPI | ${dut} | ${SOCKSVR_PATH}
 | | | Add New Socket | ${nodes['${dut}']} | STATS | ${dut} | ${SOCKSTAT_PATH}
+| | END
 | | Save VPP PIDs
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
@@ -323,9 +331,10 @@
 | | ${setup_vpp_pids}= | Get VPP PIDs | ${nodes}
 | | ${keys}= | Get Dictionary Keys | ${setup_vpp_pids}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${key} | IN | @{keys}
+| | FOR | ${key} | IN | @{keys}
 | | | ${pid}= | Get From Dictionary | ${setup_vpp_pids} | ${key}
 | | | Run Keyword If | $pid is None | FAIL | No VPP PID found on node ${key}
+| | END
 | | Set Test Variable | ${setup_vpp_pids}
 
 | Verify VPP PID in Teardown
@@ -355,9 +364,10 @@
 | | Update All Interface Data On All Nodes | ${nodes}
 | | Reset PAPI History On All DUTs | ${nodes}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Add New Socket | ${nodes['${dut}']} | PAPI | ${dut} | ${SOCKSVR_PATH}
 | | | Add New Socket | ${nodes['${dut}']} | STATS | ${dut} | ${SOCKSTAT_PATH}
+| | END
 
 # TODO: Cleanup when VIRL is gone.
 | Tear down functional test
