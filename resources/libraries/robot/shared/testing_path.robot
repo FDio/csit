@@ -19,16 +19,16 @@
 | Configure path in 2-node circular topology
 | | [Documentation] | Compute path for testing on two given nodes in circular
 | | ...             | topology and set corresponding test case variables.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ${tg_node} - TG node. Type: dictionary
 | | ... | - ${dut_node} - DUT node. Type: dictionary
 | | ... | - ${tg2_node} - Node where the path ends. Must be the same as TG node
 | | ... |   parameter in circular topology. Type: dictionary
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | _NOTE:_ This KW sets following test case variables:
 | | ... | - ${tg_node} - TG node.
 | | ... | - ${tg_to_dut_if1} - 1st TG interface towards DUT.
@@ -40,12 +40,12 @@
 | | ... | - ${tg_to_dut_if2_mac}
 | | ... | - ${dut_to_tg_if1_mac}
 | | ... | - ${dut_to_tg_if2_mac}
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Given Configure path in 2-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['TG']} \|
-| | ...
+| |
 | | [Arguments] | ${tg_node} | ${dut_node} | ${tg2_node}
 | | Should Be Equal | ${tg_node} | ${tg2_node}
 | | Append Nodes | ${tg_node} | ${dut_node} | ${tg_node}
@@ -73,22 +73,22 @@
 | | [Documentation] | Set UP state on interfaces in 2-node path on nodes and
 | | ...             | wait for all interfaces are ready. Requires more than
 | | ...             | one link between nodes.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - No arguments.
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned.
-| | ...
+| |
 | | ... | _NOTE:_ This KW uses test variables sets in
 | | ... |         "Configure path in 2-node circular topology" KW.
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Given Configure path in 2-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['TG']} \|
 | | ... | \| And Set interfaces in 2-node circular topology up \|
-| | ...
+| |
 | | Set Interface State | ${tg_node} | ${tg_to_dut_if1} | up
 | | Set Interface State | ${tg_node} | ${tg_to_dut_if2} | up
 | | Set Interface State | ${dut_node} | ${dut_to_tg_if1} | up
@@ -98,14 +98,14 @@
 | Configure path in 3-node circular topology
 | | [Documentation] | Compute path for testing on three given nodes in circular
 | | ...             | topology and set corresponding test case variables.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ${tg_node} - TG node. Type: dictionary
 | | ... | - ${dut1_node} - DUT1 node. Type: dictionary
 | | ... | - ${dut2_node} - DUT2 node. Type: dictionary
 | | ... | - ${tg2_node} - Node where the path ends. Must be the same as TG node
 | | ... |   parameter in circular topology. Type: dictionary
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
 | | ... |
@@ -125,12 +125,12 @@
 | | ... | - ${dut1_to_dut2_mac}
 | | ... | - ${dut2_to_tg_mac}
 | | ... | - ${dut2_to_dut1_mac}
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Given Configure path in 3-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['DUT2']} \| ${nodes['TG']} \|
-| | ...
+| |
 | | [Arguments] | ${tg_node} | ${dut1_node} | ${dut2_node} | ${tg2_node}
 | | Should Be Equal | ${tg_node} | ${tg2_node}
 | | Append Nodes | ${tg_node} | ${dut1_node} | ${dut2_node} | ${tg_node}
@@ -167,22 +167,22 @@
 | | [Documentation]
 | | ... | Set UP state on interfaces in 3-node path on nodes and \
 | | ... | wait until all interfaces are ready.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - No arguments.
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned.
-| | ...
+| |
 | | ... | _NOTE:_ This KW uses test variables sets in
 | | ... |         "Configure path in 3-node circular topology" KW.
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Given Configure path in 3-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['TG']} \|
 | | ... | \| And Set interfaces in 3-node circular topology up \|
-| | ...
+| |
 | | Set Interface State | ${tg_node} | ${tg_to_dut1} | up
 | | Set Interface State | ${tg_node} | ${tg_to_dut2} | up
 | | Set Interface State | ${dut1_node} | ${dut1_to_tg} | up
@@ -197,14 +197,14 @@
 | | ... | Compute path for testing on three given nodes in circular \
 | | ... | topology with double link and set corresponding \
 | | ... | test case variables.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ${tg_node} - TG node. Type: dictionary
 | | ... | - ${dut1_node} - DUT1 node. Type: dictionary
 | | ... | - ${dut2_node} - DUT2 node. Type: dictionary
 | | ... | - ${tg2_node} - Node where the path ends. Must be the same as TG node
 | | ... |   parameter in circular topology. Type: dictionary
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned.
 | | ... |
@@ -236,12 +236,12 @@
 | | ... | - ${dut2_to_dut1_if2} - DUT2 interface towards DUT1 interface 2.
 | | ... | - ${dut2_to_dut1_mac_if1} - DUT2 towards DUT1 MAC address interface 1.
 | | ... | - ${dut2_to_dut1_mac_if2} - DUT2 towards DUT1 MAC address interface 2.
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure path in double-link 3-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['DUT2']} \| ${nodes['TG']} \|
-| | ...
+| |
 | | [Arguments] | ${tg_node} | ${dut1_node} | ${dut2_node} | ${tg2_node}
 | | Should Be Equal | ${tg_node} | ${tg2_node}
 | | # Compute path TG - DUT1 with two links in between
@@ -321,22 +321,22 @@
 | | [Documentation]
 | | ... | Set UP state on interfaces in 3-node double link path \
 | | ... | wait until all interfaces are ready.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - No arguments.
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned.
-| | ...
+| |
 | | ... | _NOTE:_ This KW uses test variables sets in
 | | ... | "Configure path in double-link 3-node circular topology" KW.
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure path in double-link 3-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['TG']} \|
 | | ... | \| Interfaces in Double-Link 3-node testing are UP \|
-| | ...
+| |
 | | Set Interface State | ${tg_node} | ${tg_to_dut1_if1} | up
 | | Set Interface State | ${tg_node} | ${tg_to_dut1_if2} | up
 | | Set Interface State | ${tg_node} | ${tg_to_dut2_if1} | up
@@ -356,24 +356,24 @@
 | | [Documentation]
 | | ... | Set UP state on interfaces in 2-node or 3-node path on nodes and \
 | | ... | wait until all interfaces are ready.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - No arguments.
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned.
-| | ...
+| |
 | | ... | _NOTE:_ This KW uses test variables sets in\
 | | ... | "Configure path in 2-node circular topology" or\
 | | ... | "Configure path in 3-node circular topology" KW.
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure interfaces in path up \|
-| | ...
+| |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
-| | ...
+| |
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Set interfaces in 3-node circular topology up
 | | ... | ELSE

@@ -19,7 +19,7 @@
 | Configure SR LocalSID on DUT
 | | [Documentation] | Create SRv6 LocalSID and binds it to a particular\
 | | ... | behavior on the given DUT node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node where to create localSID on. Type: dictionary
 | | ... | - local_sid - LocalSID IPv6 address. Type: string
@@ -42,9 +42,9 @@
 | | ... | to SR-unaware appliance via static proxy). Type: string
 | | ... | - sid_list - SID list (Optional, default value: []; required for SRv6
 | | ... | endpoint to SR-unaware appliance via static proxy). Type: list
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure SR LocalSID on DUT \| ${nodes['DUT1']} \| B:: \| end \|
 | | ... | \| Configure SR LocalSID on DUT \| ${nodes['DUT1']} \| C:: \
 | | ... | \| end.dx2 \| interface=GigabitEthernet0/10/0 \|
@@ -58,12 +58,12 @@
 | | ... | \| Configure SR LocalSID on DUT \| ${nodes['DUT2']} \| E:: \
 | | ... | \| end.as \| next_hop=10.0.0.1 \| out_if=DUT2_VHOST1 \
 | | ... | \| in_if=DUT2_VHOST2 \| src_addr=B:: \| sid_list=['C::', 'D::'] \|
-| | ...
+| |
 | | [Arguments] | ${dut_node} | ${local_sid} | ${behavior}
 | | ... | ${interface}=${None} | ${next_hop}=${None} | ${fib_table}=${None}
 | | ... | ${out_if}=${None} | ${in_if}=${None} | ${src_addr}=${None}
 | | ... | @{sid_list}
-| | ...
+| |
 | | Configure SR LocalSID | ${dut_node} | ${local_sid} | ${behavior}
 | | ... | interface=${interface} | next_hop=${next_hop} | fib_table=${fib_table}
 | | ... | out_if=${out_if} | in_if=${in_if} | src_addr=${src_addr}
@@ -71,55 +71,55 @@
 
 | Show SR LocalSIDs on DUT
 | | [Documentation] | Show SRv6 LocalSIDs on the given DUT node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node where to show SR localSIDs on. Type: dictionary
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Show SR LocalSIDs on DUT \| ${nodes['DUT1']} \|
-| | ...
+| |
 | | [Arguments] | ${dut_node}
-| | ...
+| |
 | | Show SR LocalSIDs | ${dut_node}
 
 | Configure SR Policy on DUT
 | | [Documentation] | Create SRv6 policy on the given DUT node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node where to create SRv6 policy on. Type: dictionary
 | | ... | - bsid - BindingSID - local SID IPv6 address. Type: string
 | | ... | - mode - Encapsulation / insertion mode. Type: string
 | | ... | - sid_list - SID list. Type: list
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure SR Policy on DUT \| ${nodes['DUT2']} \| A:: \| encap \
 | | ... | \| B::\| C:: \|
 | | ... | \| Configure SR Policy on DUT \| ${nodes['DUT2']} \| D:: \| insert \
 | | ... | \| E::\| F:: \|
-| | ...
+| |
 | | [Arguments] | ${dut_node} | ${bsid} | ${mode} | @{sid_list}
-| | ...
+| |
 | | Configure SR Policy | ${dut_node} | ${bsid} | ${sid_list} | mode=${mode}
 
 | Show SR Policies on DUT
 | | [Documentation] | Show SRv6 policies on the given DUT node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node where to show SR policies on. Type: dictionary
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Show SR Policies on DUT \| ${nodes['DUT1']} \|
-| | ...
+| |
 | | [Arguments] | ${dut_node}
-| | ...
+| |
 | | Show SR Policies | ${dut_node}
 
 | Configure SR Steer on DUT
 | | [Documentation] | Create SRv6 steering policy on the given DUT node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node where to create SR steering policy on.
 | | ... | Type: dictionary
@@ -131,99 +131,102 @@
 | | ... | in case of L3 mode). Type: string
 | | ... | - prefix - IP address prefix (Optional, default value: None; required
 | | ... | for L3 mode). Type: integer
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure SR Steer on DUT \| ${nodes['DUT1']} \| L2 \| B:: \
 | | ... | \| interface=GigabitEthernet0/10/0 \|
 | | ... | \| Configure SR Steer on DUT \| ${nodes['DUT1']} \| L3 \| C:: \
 | | ... | \| ip_address=2001::1 \| prefix=64 \|
-| | ...
+| |
 | | [Arguments] | ${dut_node} | ${mode} | ${bsid}
 | | ... | ${interface}=${None} | ${ip_addr}=${None} | ${prefix}=${None}
-| | ...
+| |
 | | Configure SR Steer | ${dut_node} | ${mode} | ${bsid}
 | | ... | interface=${interface} | ip_addr=${ip_addr} | prefix=${prefix}
 
 | Show SR Steering Policies on DUT
 | | [Documentation] | Show SRv6 steering policies on the given DUT node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node where to show SR steering policies on.
 | | ... | Type: dictionary
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Show SR Steering Policies on DUT \| ${nodes['DUT1']} \|
-| | ...
+| |
 | | [Arguments] | ${dut_node}
-| | ...
+| |
 | | Show SR Steering Policies | ${dut_node}
 
 | Set SR Encaps Source Address on DUT
 | | [Documentation] | Set SRv6 encapsulation source address on the given DUT
 | | ... | node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node where to set SRv6 encapsulation source address
 | | ... | on. Type: dictionary
 | | ... | - ip6_addr - Local SID IPv6 address. Type: string
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Set SR Encaps Source Address on DUT \| ${nodes['DUT1']} \| B:: \|
-| | ...
+| |
 | | [Arguments] | ${dut_node} | ${ip6_addr}
-| | ...
+| |
 | | Set SR Encaps Source Address | ${dut_node} | ip6_addr=${ip6_addr}
 
 | Show SR Policies on all DUTs
 | | [Documentation] | Show SRv6 policies on all DUT nodes in topology.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - nodes - Topology. Type: dictionary
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Show SR Policies on all DUTs \| ${nodes} \|
-| | ...
+| |
 | | [Arguments] | ${nodes}
-| | ...
+| |
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Show SR Policies | ${nodes['${dut}']}
+| | END
 
 | Show SR Steering Policies on all DUTs
 | | [Documentation] | Show SRv6 steering policies on all DUT nodes in topology.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - nodes - Topology. Type: dictionary
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Show SR Steering Policies on all DUTs \| ${nodes} \|
-| | ...
+| |
 | | [Arguments] | ${nodes}
-| | ...
+| |
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Show SR Steering Policies | ${nodes['${dut}']}
+| | END
 
 | Show SR LocalSIDs on all DUTs
 | | [Documentation] | Show SRv6 LocalSIDs on all DUT nodes in topology.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - nodes - Topology. Type: dictionary
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Show SR LocalSIDs on all DUTs \| ${nodes} \|
-| | ...
+| |
 | | [Arguments] | ${nodes}
-| | ...
+| |
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Show SR LocalSIDs | ${nodes['${dut}']}
+| | END
 
 | Initialize IPv6 forwarding over SRv6 with encapsulation with '${n}' x SID '${prepos}' decapsulation in 3-node circular topology
 | | [Documentation]
@@ -232,7 +235,7 @@
 | | ... | VPP interfaces. Setup IPv6 addresses on all interfaces. Set segment
 | | ... | routing for IPv6 for required number of SIDs and configure IPv6 routes
 | | ... | on both DUT nodes.
-| | ...
+| |
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip6} | ${prefix}
 | | VPP Interface Set IP Address
@@ -242,12 +245,13 @@
 | | VPP Interface Set IP Address
 | | ... | ${dut2} | ${dut2_if2} | ${dut2_if2_ip6} | ${prefix}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
-| | :FOR | ${number} | IN RANGE | 2 | ${dst_addr_nr}+2
+| | FOR | ${number} | IN RANGE | 2 | ${dst_addr_nr}+2
 | | | ${hexa_nr}= | Convert To Hex | ${number}
 | | | VPP Add IP Neighbor | ${dut1}
 | | | ... | ${dut1_if1} | ${tg_if1_ip6_subnet}${hexa_nr} | ${tg_if1_mac}
 | | | VPP Add IP Neighbor | ${dut2}
 | | | ... | ${dut2_if2} | ${tg_if2_ip6_subnet}${hexa_nr} | ${tg_if2_mac}
+| | END
 | | VPP Add IP Neighbor
 | | ... | ${dut1} | ${dut1_if2} | ${dut2_if1_ip6} | ${dut2_if1_mac}
 | | VPP Add IP Neighbor
@@ -314,11 +318,11 @@
 | | ... | interfaces. Setup IPv6 addresses on all interfaces. Set segment
 | | ... | routing for IPv6 with defined behaviour function and configure IPv6
 | | ... | routes on both DUT nodes.
-| | ...
+| |
 | | ... | *Note:*
 | | ... | KW uses test variable rxq_count_int set by KW Add worker threads
 | | ... | and rxqueues to all DUTs
-| | ...
+| |
 | | ${sock1}= | Set Variable | memif-DUT1_CNF
 | | ${sock2}= | Set Variable | memif-DUT2_CNF
 | | Set up memif interfaces on DUT node | ${dut1} | ${sock1} | ${sock1}
@@ -331,8 +335,9 @@
 | | ... | ${rxq_count_int}
 | | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if1}
 | | VPP Set interface MTU | ${dut2} | ${dut2-memif-1-if2}
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Show Memif | ${nodes['${dut}']}
+| | END
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if1_ip6} | ${prefix}
 | | VPP Interface Set IP Address
