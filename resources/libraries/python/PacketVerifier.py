@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -67,28 +67,33 @@
 import os
 import select
 
-from scapy.config import conf
 from scapy.all import ETH_P_IP, ETH_P_IPV6, ETH_P_ALL, ETH_P_ARP
+from scapy.config import conf
 from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether, ARP
+from scapy.packet import Raw
 
 # Enable libpcap's L2listen
 conf.use_pcap = True
 import scapy.arch.pcapdnet  # pylint: disable=C0413, unused-import
 
-__all__ = ['RxQueue', 'TxQueue', 'Interface', 'create_gratuitous_arp_request',
-           'auto_pad', 'checksum_equal']
+__all__ = [
+    u"RxQueue", u"TxQueue", u"Interface", u"create_gratuitous_arp_request",
+    u"auto_pad", u"checksum_equal"
+]
 
 # TODO: http://stackoverflow.com/questions/320232/
 # ensuring-subprocesses-are-dead-on-exiting-python-program
 
 
-class PacketVerifier(object):
+class PacketVerifier:
     """Base class for TX and RX queue objects for packet verifier."""
     def __init__(self, interface_name):
-        os.system('sudo echo 1 > /proc/sys/net/ipv6/conf/{0}/disable_ipv6'
-                  .format(interface_name))
-        os.system('sudo ip link set {0} up promisc on'.format(interface_name))
+        os.system(
+            f"sudo echo 1 > /proc/sys/net/ipv6/conf/{interface_name}/"
+            f"disable_ipv6"
+        )
+        os.system(f"sudo ip link set {interface_name} up promisc on")
         self._ifname = interface_name
 
 
@@ -111,8 +116,7 @@ def extract_one_packet(buf):
     try:
         ether_type = Ether(buf[0:14]).type
     except AttributeError:
-        raise RuntimeError(
-            'No EtherType in packet {0}'.format(buf.__repr__()))
+        raise RuntimeError(f"No EtherType in packet {buf!r}")
 
     if ether_type == ETH_P_IP:
         # 14 is Ethernet fame header size.
@@ -124,17 +128,16 @@ def extract_one_packet(buf):
             return None
     elif ether_type == ETH_P_IPV6:
         if not Ether(buf[0:14+6]).haslayer(IPv6):
-            raise RuntimeError(
-                'Invalid IPv6 packet {0}'.format(buf.__repr__()))
+            raise RuntimeError(f"Invalid IPv6 packet {buf!r}")
         # ... to add to the above, 40 bytes is the length of IPV6 header.
         #   The ipv6.len only contains length of the payload and not the header
-        pkt_len = Ether(buf)['IPv6'].plen + 14 + 40
+        pkt_len = Ether(buf)[u"IPv6"].plen + 14 + 40
         if len(buf) < 60:
             return None
     elif ether_type == ETH_P_ARP:
         pkt = Ether(buf[:20])
         if not pkt.haslayer(ARP):
-            raise RuntimeError('Incomplete ARP packet')
+            raise RuntimeError(u"Incomplete ARP packet")
         # len(eth) + arp(2 hw addr type + 2 proto addr type
         #                + 1b len + 1b len + 2b operation)
 
@@ -146,10 +149,10 @@ def extract_one_packet(buf):
     elif ether_type == 32821:  # RARP (Reverse ARP)
         pkt = Ether(buf[:20])
         pkt.type = ETH_P_ARP  # Change to ARP so it works with scapy
-        pkt = Ether(str(pkt))
+        pkt = Ether(pkt)
         if not pkt.haslayer(ARP):
             pkt.show()
-            raise RuntimeError('Incomplete RARP packet')
+            raise RuntimeError(u"Incomplete RARP packet")
 
         # len(eth) + arp(2 hw addr type + 2 proto addr type
         #                + 1b len + 1b len + 2b operation)
@@ -159,7 +162,7 @@ def extract_one_packet(buf):
 
         del pkt
     else:
-        raise RuntimeError('Unknown protocol {0}'.format(ether_type))
+        raise RuntimeError(f"Unknown protocol {ether_type}")
 
     if pkt_len < 60:
         pkt_len = 60
@@ -222,25 +225,23 @@ class RxQueue(PacketVerifier):
         if ignore is not None:
             for ig_pkt in ignore:
                 # Auto pad all packets in ignore list
-                ignore_list.append(auto_pad(ig_pkt))
+                ignore_list.append(str(auto_pad(ig_pkt)))
         while True:
-            (rlist, _, _) = select.select([self._sock], [], [], timeout)
+            rlist, _, _ = select.select([self._sock], [], [], timeout)
             if self._sock not in rlist:
                 return None
 
             pkt = self._sock.recv(0x7fff)
-            pkt_pad = auto_pad(pkt)
-            print 'Received packet on {0} of len {1}'\
-                .format(self._ifname, len(pkt))
+            pkt_pad = str(auto_pad(pkt))
+            print(f"Received packet on {self._ifname} of len {len(pkt)}")
             if verbose:
                 pkt.show2()  # pylint: disable=no-member
-                print
+                print()
             if pkt_pad in ignore_list:
                 ignore_list.remove(pkt_pad)
-                print 'Received packet ignored.'
+                print(u"Received packet ignored.")
                 continue
-            else:
-                return pkt
+            return pkt
 
 
 class TxQueue(PacketVerifier):
@@ -259,21 +260,20 @@ class TxQueue(PacketVerifier):
         """Send packet out of the bound interface.
 
         :param pkt: Packet to send.
-        :param verbose: Used to supress detailed logging of sent packets.
+        :param verbose: Used to suppress detailed logging of sent packets.
         :type pkt: string or scapy Packet derivative.
         :type verbose: bool
         """
-        print 'Sending packet out of {0} of len {1}'.format(self._ifname,
-                                                            len(pkt))
+        pkt = auto_pad(pkt)
+        print(f"Sending packet out of {self._ifname} of len {len(pkt)}")
         if verbose:
-            Ether(str(pkt)).show2()
-            print
+            pkt.show2()
+            print()
 
-        pkt = auto_pad(str(pkt))
         self._sock.send(pkt)
 
 
-class Interface(object):
+class Interface:
     """Class for network interfaces. Contains methods for sending and receiving
      packets."""
     def __init__(self, if_name):
@@ -305,16 +305,17 @@ class Interface(object):
 
 def create_gratuitous_arp_request(src_mac, src_ip):
     """Creates scapy representation of gratuitous ARP request."""
-    return (Ether(src=src_mac, dst='ff:ff:ff:ff:ff:ff') /
-            ARP(psrc=src_ip, hwsrc=src_mac, pdst=src_ip))
+    return (Ether(src=src_mac, dst=u"ff:ff:ff:ff:ff:ff") /
+            ARP(psrc=src_ip, hwsrc=src_mac, pdst=src_ip)
+            )
 
 
 def auto_pad(packet):
     """Pads zeroes at the end of the packet if the total len < 60 bytes."""
-    padded = str(packet)
-    if len(padded) < 60:
-        padded += ('\0' * (60 - len(padded)))
-    return padded
+    # padded = str(packet)
+    if len(packet) < 60:
+        packet[Raw].load += (b"\0" * (60 - len(packet)))
+    return packet
 
 
 def checksum_equal(chksum1, chksum2):
