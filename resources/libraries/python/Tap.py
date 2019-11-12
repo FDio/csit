@@ -23,7 +23,7 @@ from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import Topology
 
 
-class Tap(object):
+class Tap:
     """Tap utilities."""
 
     @staticmethod

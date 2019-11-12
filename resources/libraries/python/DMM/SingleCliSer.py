@@ -25,7 +25,7 @@ from resources.libraries.python.ssh import exec_cmd, exec_cmd_no_error
 from resources.libraries.python.DMM.DMMConstants import DMMConstants as con
 from resources.libraries.python.topology import Topology
 
-class SingleCliSer(object):
+class SingleCliSer:
     """Test DMM with single client-server topology."""
 
     @staticmethod

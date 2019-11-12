@@ -26,7 +26,7 @@ from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VPPUtil import VPPUtil
 
-__all__ = ['VppConfigGenerator']
+__all__ = [u"VppConfigGenerator"]
 
 
 def pci_dev_check(pci_dev):
@@ -38,33 +38,35 @@ def pci_dev_check(pci_dev):
     :rtype: bool
     :raises ValueError: If PCI address is in incorrect format.
     """
-    pattern = re.compile("^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:"
-                         "[0-9A-Fa-f]{2}\\.[0-9A-Fa-f]$")
-    if not pattern.match(pci_dev):
-        raise ValueError('PCI address {addr} is not in valid format '
-                         'xxxx:xx:xx.x'.format(addr=pci_dev))
+    pattern = re.compile(
+        r"^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:[0-9A-Fa-f]{2}\.[0-9A-Fa-f]$"
+    )
+    if not re.match(pattern, pci_dev):
+        raise ValueError(
+            f"PCI address {pci_dev} is not in valid format xxxx:xx:xx.x"
+        )
     return True
 
 
-class VppConfigGenerator(object):
+class VppConfigGenerator:
     """VPP Configuration File Generator."""
 
     def __init__(self):
         """Initialize library."""
         # VPP Node to apply configuration on
-        self._node = ''
+        self._node = u""
         # VPP Hostname
-        self._hostname = ''
+        self._hostname = u""
         # VPP Configuration
-        self._nodeconfig = {}
+        self._nodeconfig = dict()
         # Serialized VPP Configuration
-        self._vpp_config = ''
+        self._vpp_config = u""
         # VPP Service name
-        self._vpp_service_name = 'vpp'
+        self._vpp_service_name = u"vpp"
         # VPP Logfile location
-        self._vpp_logfile = '/tmp/vpe.log'
+        self._vpp_logfile = u"/tmp/vpe.log"
         # VPP Startup config location
-        self._vpp_startup_conf = '/etc/vpp/startup.conf'
+        self._vpp_startup_conf = u"/etc/vpp/startup.conf"
         # VPP Startup config backup location
         self._vpp_startup_conf_backup = None
 
@@ -75,9 +77,10 @@ class VppConfigGenerator(object):
         :type node: dict
         :raises RuntimeError: If Node type is not DUT.
         """
-        if node['type'] != NodeType.DUT:
-            raise RuntimeError('Startup config can only be applied to DUT'
-                               'node.')
+        if node[u"type"] != NodeType.DUT:
+            raise RuntimeError(
+                u"Startup config can only be applied to DUTnode."
+            )
         self._node = node
         self._hostname = Topology.get_node_hostname(node)
 
@@ -89,7 +92,7 @@ class VppConfigGenerator(object):
         """
         self._vpp_logfile = logfile
 
-    def set_vpp_startup_conf_backup(self, backup='/etc/vpp/startup.backup'):
+    def set_vpp_startup_conf_backup(self, backup=u"/etc/vpp/startup.backup"):
         """Set VPP startup configuration backup.
 
         :param backup: VPP logfile location.
@@ -120,10 +123,10 @@ class VppConfigGenerator(object):
             config[path[0]] = value
             return
         if path[0] not in config:
-            config[path[0]] = {}
+            config[path[0]] = dict()
         elif isinstance(config[path[0]], str):
-            config[path[0]] = {} if config[path[0]] == '' \
-                else {config[path[0]]: ''}
+            config[path[0]] = dict() if config[path[0]] == u"" \
+                else {config[path[0]]: u""}
         self.add_config_item(config[path[0]], value, path[1:])
 
     def dump_config(self, obj, level=-1):
@@ -135,23 +138,21 @@ class VppConfigGenerator(object):
         :type level: int
         :returns: nothing
         """
-        indent = '  '
+        indent = u"  "
         if level >= 0:
-            self._vpp_config += '{}{{\n'.format((level) * indent)
+            self._vpp_config += f"{level * indent}{{\n"
         if isinstance(obj, dict):
             for key, val in obj.items():
-                if hasattr(val, '__iter__'):
-                    self._vpp_config += '{}{}\n'.format((level + 1) * indent,
-                                                        key)
+                if hasattr(val, u"__iter__"):
+                    self._vpp_config += f"{(level + 1) * indent}{key}\n"
                     self.dump_config(val, level + 1)
                 else:
-                    self._vpp_config += '{}{} {}\n'.format((level + 1) * indent,
-                                                           key, val)
+                    self._vpp_config += f"{(level + 1) * indent}{key} {val}\n"
         else:
             for val in obj:
-                self._vpp_config += '{}{}\n'.format((level + 1) * indent, val)
+                self._vpp_config += f"{(level + 1) * indent}{val}\n"
         if level >= 0:
-            self._vpp_config += '{}}}\n'.format(level * indent)
+            self._vpp_config += f"{level * indent}}}\n"
 
     def add_unix_log(self, value=None):
         """Add UNIX log configuration.
@@ -159,56 +160,56 @@ class VppConfigGenerator(object):
         :param value: Log file.
         :type value: str
         """
-        path = ['unix', 'log']
+        path = [u"unix", u"log"]
         if value is None:
             value = self._vpp_logfile
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_unix_cli_listen(self, value='/run/vpp/cli.sock'):
+    def add_unix_cli_listen(self, value=u"/run/vpp/cli.sock"):
         """Add UNIX cli-listen configuration.
 
         :param value: CLI listen address and port or path to CLI socket.
         :type value: str
         """
-        path = ['unix', 'cli-listen']
+        path = [u"unix", u"cli-listen"]
         self.add_config_item(self._nodeconfig, value, path)
 
-    def add_unix_gid(self, value='vpp'):
+    def add_unix_gid(self, value=u"vpp"):
         """Add UNIX gid configuration.
 
         :param value: Gid.
         :type value: str
         """
-        path = ['unix', 'gid']
+        path = [u"unix", u"gid"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_unix_nodaemon(self):
         """Add UNIX nodaemon configuration."""
-        path = ['unix', 'nodaemon']
-        self.add_config_item(self._nodeconfig, '', path)
+        path = [u"unix", u"nodaemon"]
+        self.add_config_item(self._nodeconfig, u"", path)
 
     def add_unix_coredump(self):
         """Add UNIX full-coredump configuration."""
-        path = ['unix', 'full-coredump']
-        self.add_config_item(self._nodeconfig, '', path)
+        path = [u"unix", u"full-coredump"]
+        self.add_config_item(self._nodeconfig, u"", path)
 
     def add_unix_exec(self, value):
         """Add UNIX exec configuration."""
-        path = ['unix', 'exec']
+        path = [u"unix", u"exec"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_socksvr(self, socket=Constants.SOCKSVR_PATH):
         """Add socksvr configuration."""
-        path = ['socksvr', 'socket-name']
+        path = ['socksvr', u"socket-name"]
         self.add_config_item(self._nodeconfig, socket, path)
 
-    def add_api_segment_gid(self, value='vpp'):
+    def add_api_segment_gid(self, value=u"vpp"):
         """Add API-SEGMENT gid configuration.
 
         :param value: Gid.
         :type value: str
         """
-        path = ['api-segment', 'gid']
+        path = [u"api-segment", u"gid"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_api_segment_global_size(self, value):
@@ -217,7 +218,7 @@ class VppConfigGenerator(object):
         :param value: Global size.
         :type value: str
         """
-        path = ['api-segment', 'global-size']
+        path = [u"api-segment", u"global-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_api_segment_api_size(self, value):
@@ -226,7 +227,7 @@ class VppConfigGenerator(object):
         :param value: API size.
         :type value: str
         """
-        path = ['api-segment', 'api-size']
+        path = [u"api-segment", u"api-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_buffers_per_numa(self, value):
@@ -235,7 +236,7 @@ class VppConfigGenerator(object):
         :param value: Number of buffers allocated.
         :type value: int
         """
-        path = ['buffers', 'buffers-per-numa']
+        path = [u"buffers", u"buffers-per-numa"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_dev(self, *devices):
@@ -246,8 +247,8 @@ class VppConfigGenerator(object):
         """
         for device in devices:
             if pci_dev_check(device):
-                path = ['dpdk', 'dev {0}'.format(device)]
-                self.add_config_item(self._nodeconfig, '', path)
+                path = [u"dpdk", f"dev {device}"]
+                self.add_config_item(self._nodeconfig, u"", path)
 
     def add_dpdk_dev_parameter(self, device, parameter, value):
         """Add parameter for DPDK device.
@@ -260,7 +261,7 @@ class VppConfigGenerator(object):
         :type value: str
         """
         if pci_dev_check(device):
-            path = ['dpdk', 'dev {0}'.format(device), parameter]
+            path = [u"dpdk", f"dev {device}", parameter]
             self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_cryptodev(self, count):
@@ -271,11 +272,10 @@ class VppConfigGenerator(object):
         """
         cryptodev = Topology.get_cryptodev(self._node)
         for i in range(count):
-            cryptodev_config = 'dev {0}'.format(
-                re.sub(r'\d.\d$', '1.'+str(i), cryptodev))
-            path = ['dpdk', cryptodev_config]
-            self.add_config_item(self._nodeconfig, '', path)
-        self.add_dpdk_uio_driver('vfio-pci')
+            cryptodev_config = re.sub(r"\d.\d$", f"1.{str(i)}", cryptodev)
+            path = [u"dpdk", f"dev {cryptodev_config}"]
+            self.add_config_item(self._nodeconfig, u"", path)
+        self.add_dpdk_uio_driver(u"vfio-pci")
 
     def add_dpdk_sw_cryptodev(self, sw_pmd_type, socket_id, count):
         """Add DPDK SW Crypto device configuration.
@@ -288,10 +288,10 @@ class VppConfigGenerator(object):
         :type count: int
         """
         for _ in range(count):
-            cryptodev_config = 'vdev cryptodev_{0}_pmd,socket_id={1}'.\
-                format(sw_pmd_type, str(socket_id))
-            path = ['dpdk', cryptodev_config]
-            self.add_config_item(self._nodeconfig, '', path)
+            cryptodev_config = f"vdev cryptodev_{sw_pmd_type}_pmd," \
+                f"socket_id={str(socket_id)}"
+            path = [u"dpdk", cryptodev_config]
+            self.add_config_item(self._nodeconfig, u"", path)
 
     def add_dpdk_eth_bond_dev(self, ethbond_id, mode, xmit_policy, *slaves):
         """Add DPDK Eth_bond device configuration.
@@ -305,16 +305,13 @@ class VppConfigGenerator(object):
         :type xmit_policy: str
         :type slaves: list
         """
-        slaves_config = ',slave=' + \
-                        ',slave='.join(slave if pci_dev_check(slave) else ''
-                                       for slave in slaves)
-        ethbond_config = 'vdev eth_bond{id},mode={mode}{slaves},' \
-                         'xmit_policy={xmit_pol}'.format(id=ethbond_id,
-                                                         mode=mode,
-                                                         slaves=slaves_config,
-                                                         xmit_pol=xmit_policy)
-        path = ['dpdk', ethbond_config]
-        self.add_config_item(self._nodeconfig, '', path)
+        slaves_config = u"slave=" + u",slave=".join(
+            slave if pci_dev_check(slave) else u"" for slave in slaves
+        )
+        ethbond_config = f"vdev eth_bond{ethbond_id}," \
+            f"mode={mode}{slaves_config},xmit_policy={xmit_policy}"
+        path = [u"dpdk", ethbond_config]
+        self.add_config_item(self._nodeconfig, u"", path)
 
     def add_dpdk_dev_default_rxq(self, value):
         """Add DPDK dev default rxq configuration.
@@ -322,7 +319,7 @@ class VppConfigGenerator(object):
         :param value: Default number of rxqs.
         :type value: str
         """
-        path = ['dpdk', 'dev default', 'num-rx-queues']
+        path = [u"dpdk", u"dev default", u"num-rx-queues"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_dev_default_txq(self, value):
@@ -331,7 +328,7 @@ class VppConfigGenerator(object):
         :param value: Default number of txqs.
         :type value: str
         """
-        path = ['dpdk', 'dev default', 'num-tx-queues']
+        path = [u"dpdk", u"dev default", u"num-tx-queues"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_dev_default_rxd(self, value):
@@ -340,7 +337,7 @@ class VppConfigGenerator(object):
         :param value: Default number of rxds.
         :type value: str
         """
-        path = ['dpdk', 'dev default', 'num-rx-desc']
+        path = [u"dpdk", u"dev default", u"num-rx-desc"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_dev_default_txd(self, value):
@@ -349,7 +346,7 @@ class VppConfigGenerator(object):
         :param value: Default number of txds.
         :type value: str
         """
-        path = ['dpdk', 'dev default', 'num-tx-desc']
+        path = [u"dpdk", u"dev default", u"num-tx-desc"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_log_level(self, value):
@@ -358,25 +355,25 @@ class VppConfigGenerator(object):
         :param value: Log level.
         :type value: str
         """
-        path = ['dpdk', 'log-level']
+        path = [u"dpdk", u"log-level"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_dpdk_no_pci(self):
         """Add DPDK no-pci."""
-        path = ['dpdk', 'no-pci']
-        self.add_config_item(self._nodeconfig, '', path)
+        path = [u"dpdk", u"no-pci"]
+        self.add_config_item(self._nodeconfig, u"", path)
 
     def add_dpdk_uio_driver(self, value=None):
         """Add DPDK uio-driver configuration.
 
         :param value: DPDK uio-driver configuration. By default, driver will be
-                      loaded automatically from Topology file, still leaving
-                      option to manually override by parameter.
+            loaded automatically from Topology file, still leaving option
+            to manually override by parameter.
         :type value: str
         """
         if value is None:
             value = Topology.get_uio_driver(self._node)
-        path = ['dpdk', 'uio-driver']
+        path = [u"dpdk", u"uio-driver"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_cpu_main_core(self, value):
@@ -385,7 +382,7 @@ class VppConfigGenerator(object):
         :param value: Main core option.
         :type value: str
         """
-        path = ['cpu', 'main-core']
+        path = [u"cpu", u"main-core"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_cpu_corelist_workers(self, value):
@@ -394,7 +391,7 @@ class VppConfigGenerator(object):
         :param value: Corelist-workers option.
         :type value: str
         """
-        path = ['cpu', 'corelist-workers']
+        path = [u"cpu", u"corelist-workers"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_heapsize(self, value):
@@ -403,13 +400,13 @@ class VppConfigGenerator(object):
         :param value: Amount of heapsize.
         :type value: str
         """
-        path = ['heapsize']
+        path = [u"heapsize"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_api_trace(self):
         """Add API trace configuration."""
-        path = ['api-trace', 'on']
-        self.add_config_item(self._nodeconfig, '', path)
+        path = [u"api-trace", u"on"]
+        self.add_config_item(self._nodeconfig, u"", path)
 
     def add_ip6_hash_buckets(self, value):
         """Add IP6 hash buckets configuration.
@@ -417,7 +414,7 @@ class VppConfigGenerator(object):
         :param value: Number of IP6 hash buckets.
         :type value: str
         """
-        path = ['ip6', 'hash-buckets']
+        path = [u"ip6", u"hash-buckets"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_ip6_heap_size(self, value):
@@ -426,7 +423,7 @@ class VppConfigGenerator(object):
         :param value: IP6 Heapsize amount.
         :type value: str
         """
-        path = ['ip6', 'heap-size']
+        path = [u"ip6", u"heap-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_ip_heap_size(self, value):
@@ -435,7 +432,7 @@ class VppConfigGenerator(object):
         :param value: IP Heapsize amount.
         :type value: str
         """
-        path = ['ip', 'heap-size']
+        path = [u"ip", u"heap-size"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_statseg_size(self, value):
@@ -444,7 +441,7 @@ class VppConfigGenerator(object):
         :param value: Stats heapsize amount.
         :type value: str
         """
-        path = ['statseg', 'size']
+        path = [u"statseg", u"size"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_statseg_per_node_counters(self, value):
@@ -453,7 +450,7 @@ class VppConfigGenerator(object):
         :param value: "on" to switch the counters on.
         :type value: str
         """
-        path = ['statseg', 'per-node-counters']
+        path = [u"statseg", u"per-node-counters"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_plugin(self, state, *plugins):
@@ -465,26 +462,26 @@ class VppConfigGenerator(object):
         :type plugins: list
         """
         for plugin in plugins:
-            path = ['plugins', 'plugin {0}'.format(plugin), state]
-            self.add_config_item(self._nodeconfig, ' ', path)
+            path = [u"plugins", f"plugin {plugin}", state]
+            self.add_config_item(self._nodeconfig, u" ", path)
 
     def add_dpdk_no_multi_seg(self):
         """Add DPDK no-multi-seg configuration."""
-        path = ['dpdk', 'no-multi-seg']
-        self.add_config_item(self._nodeconfig, '', path)
+        path = [u"dpdk", u"no-multi-seg"]
+        self.add_config_item(self._nodeconfig, u"", path)
 
     def add_dpdk_no_tx_checksum_offload(self):
         """Add DPDK no-tx-checksum-offload configuration."""
-        path = ['dpdk', 'no-tx-checksum-offload']
-        self.add_config_item(self._nodeconfig, '', path)
+        path = [u"dpdk", u"no-tx-checksum-offload"]
+        self.add_config_item(self._nodeconfig, u"", path)
 
-    def add_nat(self, value='deterministic'):
+    def add_nat(self, value=u"deterministic"):
         """Add NAT configuration.
 
         :param value: NAT mode.
         :type value: str
         """
-        path = ['nat']
+        path = [u"nat"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_tcp_preallocated_connections(self, value):
@@ -493,7 +490,7 @@ class VppConfigGenerator(object):
         :param value: The number of pre-allocated connections.
         :type value: int
         """
-        path = ['tcp', 'preallocated-connections']
+        path = [u"tcp", u"preallocated-connections"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_tcp_preallocated_half_open_connections(self, value):
@@ -502,7 +499,7 @@ class VppConfigGenerator(object):
         :param value: The number of pre-allocated half open connections.
         :type value: int
         """
-        path = ['tcp', 'preallocated-half-open-connections']
+        path = [u"tcp", u"preallocated-half-open-connections"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_session_event_queue_length(self, value):
@@ -511,7 +508,7 @@ class VppConfigGenerator(object):
         :param value: Session event queue length.
         :type value: int
         """
-        path = ['session', 'event-queue-length']
+        path = [u"session", u"event-queue-length"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_session_preallocated_sessions(self, value):
@@ -520,7 +517,7 @@ class VppConfigGenerator(object):
         :param value: Number of pre-allocated sessions.
         :type value: int
         """
-        path = ['session', 'preallocated-sessions']
+        path = [u"session", u"preallocated-sessions"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_session_v4_session_table_buckets(self, value):
@@ -529,7 +526,7 @@ class VppConfigGenerator(object):
         :param value: Number of v4 session table buckets.
         :type value: int
         """
-        path = ['session', 'v4-session-table-buckets']
+        path = [u"session", u"v4-session-table-buckets"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_session_v4_session_table_memory(self, value):
@@ -538,7 +535,7 @@ class VppConfigGenerator(object):
         :param value: Size of v4 session table memory.
         :type value: str
         """
-        path = ['session', 'v4-session-table-memory']
+        path = [u"session", u"v4-session-table-memory"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_session_v4_halfopen_table_buckets(self, value):
@@ -547,7 +544,7 @@ class VppConfigGenerator(object):
         :param value: Number of v4 halfopen table buckets.
         :type value: int
         """
-        path = ['session', 'v4-halfopen-table-buckets']
+        path = [u"session", u"v4-halfopen-table-buckets"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_session_v4_halfopen_table_memory(self, value):
@@ -556,7 +553,7 @@ class VppConfigGenerator(object):
         :param value: Size of v4 halfopen table memory.
         :type value: str
         """
-        path = ['session', 'v4-halfopen-table-memory']
+        path = [u"session", u"v4-halfopen-table-memory"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_session_local_endpoints_table_buckets(self, value):
@@ -565,7 +562,7 @@ class VppConfigGenerator(object):
         :param value: Number of local endpoints table buckets.
         :type value: int
         """
-        path = ['session', 'local-endpoints-table-buckets']
+        path = [u"session", u"local-endpoints-table-buckets"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def add_session_local_endpoints_table_memory(self, value):
@@ -574,7 +571,7 @@ class VppConfigGenerator(object):
         :param value: Size of local endpoints table memory.
         :type value: str
         """
-        path = ['session', 'local-endpoints-table-memory']
+        path = [u"session", u"local-endpoints-table-memory"]
         self.add_config_item(self._nodeconfig, value, path)
 
     def write_config(self, filename=None):
@@ -592,15 +589,15 @@ class VppConfigGenerator(object):
             filename = self._vpp_startup_conf
 
         if self._vpp_startup_conf_backup is not None:
-            cmd = ('cp {src} {dest}'.format(
-                src=self._vpp_startup_conf, dest=self._vpp_startup_conf_backup))
+            cmd = f"cp {self._vpp_startup_conf} {self._vpp_startup_conf_backup}"
             exec_cmd_no_error(
-                self._node, cmd, sudo=True, message='Copy config file failed!')
+                self._node, cmd, sudo=True, message=u"Copy config file failed!"
+            )
 
-        cmd = ('echo "{config}" | sudo tee {filename}'.format(
-            config=self._vpp_config, filename=filename))
+        cmd = f"echo \"{self._vpp_config}\" | sudo tee {filename}"
         exec_cmd_no_error(
-            self._node, cmd, message='Writing config file failed!')
+            self._node, cmd, message=u"Writing config file failed!"
+        )
 
     def apply_config(self, filename=None, verify_vpp=True):
         """Generate and write VPP startup configuration to file and restart VPP.
@@ -621,7 +618,7 @@ class VppConfigGenerator(object):
 
     def restore_config(self):
         """Restore VPP startup.conf from backup."""
-        cmd = ('cp {src} {dest}'.format(
-            src=self._vpp_startup_conf_backup, dest=self._vpp_startup_conf))
+        cmd = f"cp {self._vpp_startup_conf_backup} {self._vpp_startup_conf}"
         exec_cmd_no_error(
-            self._node, cmd, sudo=True, message='Copy config file failed!')
+            self._node, cmd, sudo=True, message=u"Copy config file failed!"
+        )
