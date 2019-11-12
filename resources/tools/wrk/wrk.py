@@ -66,18 +66,18 @@ def check_wrk(tg_node):
         command is not availble.
     """
 
-    if tg_node['type'] != NodeType.TG:
-        raise RuntimeError('Node type is not a TG.')
+    if tg_node[u"type"] != NodeType.TG:
+        raise RuntimeError(u"Node type is not a TG.")
 
     ssh = SSH()
     ssh.connect(tg_node)
 
     ret, _, _ = ssh.exec_command(
-        "sudo -E "
-        "sh -c '{0}/resources/tools/wrk/wrk_utils.sh installed'".
-        format(Constants.REMOTE_FW_DIR))
+        f"sudo -E sh -c '{Constants.REMOTE_FW_DIR}/resources/tools/"
+        f"wrk/wrk_utils.sh installed'"
+    )
     if int(ret) != 0:
-        raise RuntimeError('WRK is not installed on TG node.')
+        raise RuntimeError(u"WRK is not installed on TG node.")
 
 
 def run_wrk(tg_node, profile_name, tg_numa, test_type, warm_up=False):
@@ -98,102 +98,103 @@ def run_wrk(tg_node, profile_name, tg_numa, test_type, warm_up=False):
     :raises: RuntimeError if node type is not a TG.
     """
 
-    if tg_node['type'] != NodeType.TG:
-        raise RuntimeError('Node type is not a TG.')
+    if tg_node[u"type"] != NodeType.TG:
+        raise RuntimeError(u"Node type is not a TG.")
 
     # Parse and validate the profile
-    profile_path = ("resources/traffic_profiles/wrk/{0}.yaml".
-                    format(profile_name))
+    profile_path = f"resources/traffic_profiles/wrk/{profile_name}.yaml"
     profile = WrkTrafficProfile(profile_path).traffic_profile
 
     cores = CpuUtils.cpu_list_per_node(tg_node, tg_numa)
-    first_cpu = cores[profile["first-cpu"]]
+    first_cpu = cores[profile[u"first-cpu"]]
 
-    if len(profile["urls"]) == 1 and profile["cpus"] == 1:
+    if len(profile[u"urls"]) == 1 and profile[u"cpus"] == 1:
         params = [
-            "traffic_1_url_1_core",
+            u"traffic_1_url_1_core",
             str(first_cpu),
-            str(profile["nr-of-threads"]),
-            str(profile["nr-of-connections"]),
-            "{0}s".format(profile["duration"]),
-            "'{0}'".format(profile["header"]),
-            str(profile["timeout"]),
-            str(profile["script"]),
-            str(profile["latency"]),
-            "'{0}'".format(" ".join(profile["urls"]))
+            str(profile[u"nr-of-threads"]),
+            str(profile[u"nr-of-connections"]),
+            f"{profile[u'duration']}s",
+            f"'{profile[u'header']}'",
+            str(profile[u"timeout"]),
+            str(profile[u"script"]),
+            str(profile[u"latency"]),
+            f"'{u' '.join(profile[u'urls'])}'"
         ]
         if warm_up:
             warm_up_params = deepcopy(params)
-            warm_up_params[4] = "10s"
-    elif len(profile["urls"]) == profile["cpus"]:
+            warm_up_params[4] = u"10s"
+    elif len(profile[u"urls"]) == profile[u"cpus"]:
         params = [
-            "traffic_n_urls_n_cores",
+            u"traffic_n_urls_n_cores",
             str(first_cpu),
-            str(profile["nr-of-threads"]),
-            str(profile["nr-of-connections"]),
-            "{0}s".format(profile["duration"]),
-            "'{0}'".format(profile["header"]),
-            str(profile["timeout"]),
-            str(profile["script"]),
-            str(profile["latency"]),
-            "'{0}'".format(" ".join(profile["urls"]))
+            str(profile[u"nr-of-threads"]),
+            str(profile[u"nr-of-connections"]),
+            f"{profile[u'duration']}s",
+            f"'{profile[u'header']}'",
+            str(profile[u"timeout"]),
+            str(profile[u"script"]),
+            str(profile[u"latency"]),
+            f"'{u' '.join(profile[u'urls'])}'"
         ]
         if warm_up:
             warm_up_params = deepcopy(params)
-            warm_up_params[4] = "10s"
+            warm_up_params[4] = u"10s"
     else:
         params = [
-            "traffic_n_urls_m_cores",
+            u"traffic_n_urls_m_cores",
             str(first_cpu),
-            str(profile["cpus"] / len(profile["urls"])),
-            str(profile["nr-of-threads"]),
-            str(profile["nr-of-connections"]),
-            "{0}s".format(profile["duration"]),
-            "'{0}'".format(profile["header"]),
-            str(profile["timeout"]),
-            str(profile["script"]),
-            str(profile["latency"]),
-            "'{0}'".format(" ".join(profile["urls"]))
+            str(profile[u"cpus"] // len(profile[u"urls"])),
+            str(profile[u"nr-of-threads"]),
+            str(profile[u"nr-of-connections"]),
+            f"{profile[u'duration']}s",
+            f"'{profile[u'header']}'",
+            str(profile[u"timeout"]),
+            str(profile[u"script"]),
+            str(profile[u"latency"]),
+            f"'{u' '.join(profile[u'urls'])}'"
         ]
         if warm_up:
             warm_up_params = deepcopy(params)
-            warm_up_params[5] = "10s"
+            warm_up_params[5] = u"10s"
 
-    args = " ".join(params)
+    args = u" ".join(params)
 
     ssh = SSH()
     ssh.connect(tg_node)
 
     if warm_up:
-        warm_up_args = " ".join(warm_up_params)
+        warm_up_args = u" ".join(warm_up_params)
         ret, _, _ = ssh.exec_command(
-            "{0}/resources/tools/wrk/wrk_utils.sh {1}".
-            format(Constants.REMOTE_FW_DIR, warm_up_args), timeout=1800)
+            f"{Constants.REMOTE_FW_DIR}/resources/tools/wrk/wrk_utils.sh "
+            f"{warm_up_args}", timeout=1800
+        )
         if int(ret) != 0:
-            raise RuntimeError('wrk runtime error.')
+            raise RuntimeError(u"wrk runtime error.")
         sleep(60)
 
     ret, stdout, _ = ssh.exec_command(
-        "{0}/resources/tools/wrk/wrk_utils.sh {1}".
-        format(Constants.REMOTE_FW_DIR, args), timeout=1800)
+        f"{Constants.REMOTE_FW_DIR}/resources/tools/wrk/wrk_utils.sh {args}",
+        timeout=1800
+    )
     if int(ret) != 0:
         raise RuntimeError('wrk runtime error.')
 
     stats = _parse_wrk_output(stdout)
 
-    log_msg = "\nMeasured values:\n"
-    if test_type == "cps":
-        log_msg += "Connections/sec: Avg / Stdev / Max  / +/- Stdev\n"
-        for item in stats["rps-stats-lst"]:
-            log_msg += "{0} / {1} / {2} / {3}\n".format(*item)
-        log_msg += "Total cps: {0}cps\n".format(stats["rps-sum"])
-    elif test_type == "rps":
-        log_msg += "Requests/sec: Avg / Stdev / Max  / +/- Stdev\n"
-        for item in stats["rps-stats-lst"]:
-            log_msg += "{0} / {1} / {2} / {3}\n".format(*item)
-        log_msg += "Total rps: {0}rps\n".format(stats["rps-sum"])
-    elif test_type == "bw":
-        log_msg += "Transfer/sec: {0}Bps".format(stats["bw-sum"])
+    log_msg = u"\nMeasured values:\n"
+    if test_type == u"cps":
+        log_msg += u"Connections/sec: Avg / Stdev / Max  / +/- Stdev\n"
+        for item in stats[u"rps-stats-lst"]:
+            log_msg += f"{0} / {1} / {2} / {3}\n".format(*item)
+        log_msg += f"Total cps: {stats[u'rps-sum']}cps\n"
+    elif test_type == u"rps":
+        log_msg += u"Requests/sec: Avg / Stdev / Max  / +/- Stdev\n"
+        for item in stats[u"rps-stats-lst"]:
+            log_msg += f"{0} / {1} / {2} / {3}\n".format(*item)
+        log_msg += f"Total rps: {stats[u'rps-sum']}rps\n"
+    elif test_type == u"bw":
+        log_msg += f"Transfer/sec: {stats[u'bw-sum']}Bps"
 
     logger.info(log_msg)
 
@@ -210,47 +211,52 @@ def _parse_wrk_output(msg):
     :raises: WrkError if the message does not include the results.
     """
 
-    if "Thread Stats" not in msg:
-        raise WrkError("The output of wrk does not include the results.")
+    if u"Thread Stats" not in msg:
+        raise WrkError(u"The output of wrk does not include the results.")
 
     msg_lst = msg.splitlines(False)
 
     stats = {
-        "latency-dist-lst": list(),
-        "latency-stats-lst": list(),
-        "rps-stats-lst": list(),
-        "rps-lst": list(),
-        "bw-lst": list(),
-        "rps-sum": 0,
-        "bw-sum": None
+        u"latency-dist-lst": list(),
+        u"latency-stats-lst": list(),
+        u"rps-stats-lst": list(),
+        u"rps-lst": list(),
+        u"bw-lst": list(),
+        u"rps-sum": 0,
+        u"bw-sum": None
     }
 
     for line in msg_lst:
-        if "Latency Distribution" in line:
+        if u"Latency Distribution" in line:
             # Latency distribution - 50%, 75%, 90%, 99%
             pass
-        elif "Latency" in line:
+        elif u"Latency" in line:
             # Latency statistics - Avg, Stdev, Max, +/- Stdev
             pass
-        elif "Req/Sec" in line:
+        elif u"Req/Sec" in line:
             # rps statistics - Avg, Stdev, Max, +/- Stdev
-            stats["rps-stats-lst"].append((
-                _evaluate_number(re.search(REGEX_RPS_STATS, line).group(1)),
-                _evaluate_number(re.search(REGEX_RPS_STATS, line).group(2)),
-                _evaluate_number(re.search(REGEX_RPS_STATS, line).group(3)),
-                _evaluate_number(re.search(REGEX_RPS_STATS, line).group(4))))
-        elif "Requests/sec:" in line:
+            stats[u"rps-stats-lst"].append(
+                (
+                    _evaluate_number(re.search(REGEX_RPS_STATS, line).group(1)),
+                    _evaluate_number(re.search(REGEX_RPS_STATS, line).group(2)),
+                    _evaluate_number(re.search(REGEX_RPS_STATS, line).group(3)),
+                    _evaluate_number(re.search(REGEX_RPS_STATS, line).group(4))
+                )
+            )
+        elif u"Requests/sec:" in line:
             # rps (cps)
-            stats["rps-lst"].append(
-                _evaluate_number(re.search(REGEX_RPS, line).group(1)))
-        elif "Transfer/sec:" in line:
+            stats[u"rps-lst"].append(
+                _evaluate_number(re.search(REGEX_RPS, line).group(1))
+            )
+        elif u"Transfer/sec:" in line:
             # BW
-            stats["bw-lst"].append(
-                _evaluate_number(re.search(REGEX_BW, line).group(1)))
+            stats[u"bw-lst"].append(
+                _evaluate_number(re.search(REGEX_BW, line).group(1))
+            )
 
-    for item in stats["rps-stats-lst"]:
-        stats["rps-sum"] += item[0]
-    stats["bw-sum"] = sum(stats["bw-lst"])
+    for item in stats[u"rps-stats-lst"]:
+        stats[u"rps-sum"] += item[0]
+    stats[u"bw-sum"] = sum(stats[u"bw-lst"])
 
     return stats
 
@@ -270,23 +276,24 @@ def _evaluate_number(num):
     try:
         val_num = float(val.group(1))
     except ValueError:
-        raise WrkError("The output of wrk does not include the results "
-                       "or the format of results has changed.")
+        raise WrkError(
+            u"The output of wrk does not include the results or the format "
+            u"of results has changed."
+        )
     val_mul = val.group(2).lower()
     if val_mul:
-        if "k" in val_mul:
+        if u"k" in val_mul:
             val_num *= 1000
-        elif "m" in val_mul:
+        elif u"m" in val_mul:
             val_num *= 1000000
-        elif "g" in val_mul:
+        elif u"g" in val_mul:
             val_num *= 1000000000
-        elif "b" in val_mul:
+        elif u"b" in val_mul:
             pass
-        elif "%" in val_mul:
+        elif u"%" in val_mul:
             pass
-        elif "" in val_mul:
+        elif u"" in val_mul:
             pass
         else:
-            raise WrkError("The multiplicand {0} is not defined.".
-                           format(val_mul))
+            raise WrkError(f"The multiplicand {val_mul} is not defined.")
     return val_num
