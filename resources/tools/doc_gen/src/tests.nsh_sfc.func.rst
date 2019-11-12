@@ -1,3 +1,0 @@
-NSH SFC Functional Tests
-========================
-
