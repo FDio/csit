@@ -20,7 +20,7 @@
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.tools.wrk.wrk
-| ...
+|
 | Documentation | Suite setup keywords.
 
 *** Keywords ***
@@ -31,7 +31,7 @@
 | | ... | Compute path for testing on two given nodes in circular topology
 | | ... | based on interface model provided as an argument and set
 | | ... | corresponding suite variables.
-| | ...
+| |
 | | ... | _NOTE:_ This KW sets following suite variables:
 | | ... | - duts - List of DUT nodes
 | | ... | - duts_count - Number of DUT nodes.
@@ -45,21 +45,22 @@
 | | ... | - dut{n}_if1_mac - 1st DUT interface MAC address.
 | | ... | - dut{n}_if2 - 2nd DUT interface.
 | | ... | - dut{n}_if2_mac - 2nd DUT interface MAC address.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ${actions} - Additional setup action. Type: list
-| | ...
+| |
 | | [Arguments] | @{actions}
-| | ...
+| |
 | | ${nic_model_list}= | Create list | ${nic_name}
 | | Append Node | ${nodes['TG']}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Append Node | ${nodes['${dut}']} | filter_list=${nic_model_list}
+| | END
 | | Append Node | ${nodes['TG']}
 | | Compute Path | always_same_link=${FALSE}
 | | ${tg_if1} | ${tg}= | Next Interface
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | ${dutx_if1} | ${dutx}= | Next Interface
 | | | ${dutx_if2} | ${dutx}= | Next Interface
 | | | ${dutx_if1_mac}= | Get Interface MAC | ${dutx} | ${dutx_if1}
@@ -70,6 +71,7 @@
 | | | Set Suite Variable | ${${dut_str}_if2} | ${dutx_if2}
 | | | Set Suite Variable | ${${dut_str}_if1_mac} | ${dutx_if1_mac}
 | | | Set Suite Variable | ${${dut_str}_if2_mac} | ${dutx_if2_mac}
+| | END
 | | ${tg_if2} | ${tg}= | Next Interface
 | | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
@@ -81,8 +83,9 @@
 | | Set Suite Variable | ${tg_if1_mac}
 | | Set Suite Variable | ${tg_if2}
 | | Set Suite Variable | ${tg_if2_mac}
-| | :FOR | ${action} | IN | @{actions}
+| | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Suite setup Action For ${action}
+| | END
 
 | Setup suite double link
 | | [Documentation]
@@ -91,10 +94,10 @@
 | | ... | Compute path for testing on three given nodes in circular topology
 | | ... | with double link between DUTs based on interface model provided as an
 | | ... | argument and set corresponding suite variables.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ${actions} - Additional setup action. Type: list
-| | ...
+| |
 | | ... | _NOTE:_ This KW sets following suite variables:
 | | ... | - duts - List of DUT nodes
 | | ... | - duts_count - Number of DUT nodes.
@@ -111,9 +114,9 @@
 | | ... | - dut2_if1_1 - DUT2 interface 1 towards DUT1.
 | | ... | - dut2_if1_2 - DUT2 interface 2 towards DUT1.
 | | ... | - dut2_if2 - DUT2 interface towards TG.
-| | ...
+| |
 | | [Arguments] | @{actions}
-| | ...
+| |
 | | ${nic_model_list}= | Create list | ${nic_name}
 | | # Compute path TG - DUT1 with single link in between
 | | Append Node | ${nodes['TG']}
@@ -160,13 +163,14 @@
 | | Set Suite Variable | ${dut2_if1_1}
 | | Set Suite Variable | ${dut2_if1_2}
 | | Set Suite Variable | ${dut2_if2}
-| | :FOR | ${action} | IN | @{actions}
+| | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Suite setup Action For ${action}
+| | END
 
 | Additional Suite Setup Action For performance
 | | [Documentation]
 | | ... | Additional Setup for suites which uses performance measurement.
-| | ...
+| |
 | | Run Keyword If | ${duts_count} == 1
 | | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${osi_layer}
@@ -177,32 +181,34 @@
 | Additional Suite Setup Action For scapy
 | | [Documentation]
 | | ... | Additional Setup for suites which uses scapy as Traffic generator.
-| | ...
+| |
 | | Set Interface State | ${tg} | ${tg_if1} | up
 | | Set Interface State | ${tg} | ${tg_if2} | up
 
 | Additional Suite Setup Action For dpdk
 | | [Documentation]
 | | ... | Additional Setup for suites which uses dpdk.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
+| |
+| | FOR | ${dut} | IN | @{duts}
 | | | ${dut_str}= | Convert To Lowercase | ${dut}
 | | | Initialize DPDK Environment | ${nodes['${dut}']}
 | | | ... | ${${dut_str}_if1} | ${${dut_str}_if2}
+| | END
 
 | Additional Suite Setup Action For performance_avf
 | | [Documentation]
 | | ... | Additional Setup for suites which uses performance measurement over
 | | ... | SRIOV AVF.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
+| |
+| | FOR | ${dut} | IN | @{duts}
 | | | ${if1_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if1}
 | | | ... | numvfs=${1} | osi_layer=${osi_layer}
 | | | ${if2_avf_arr}= | Init AVF interface | ${nodes['${dut}']} | ${${dut}_if2}
 | | | ... | numvfs=${1} | osi_layer=${osi_layer}
-# Currently only one AVF is supported.
+| | # Currently only one AVF is supported.
 | | | Set Suite Variable | ${${dut}_if1_vf0} | ${if1_avf_arr[0]}
 | | | Set Suite Variable | ${${dut}_if2_vf0} | ${if2_avf_arr[0]}
+| | END
 | | Run Keyword If | ${duts_count} == 1
 | | ... | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ... | ${dut1} | ${dut1_if1_vf0} | ${dut1} | ${dut1_if2_vf0} | ${osi_layer}
@@ -213,16 +219,17 @@
 | Additional Suite Setup Action For avf
 | | [Documentation]
 | | ... | Additional Setup for suites which uses SRIOV AVF.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
-# Currently only one AVF is supported.
+| |
+| | FOR | ${dut} | IN | @{duts}
+| | # Currently only one AVF is supported.
 | | | Set Suite Variable | ${${dut}_if1_vf0} | ${${dut}_if1}
 | | | Set Suite Variable | ${${dut}_if2_vf0} | ${${dut}_if2}
+| | END
 
 | Additional Suite Setup Action For ipsechw
 | | [Documentation]
 | | ... | Additional Setup for suites which uses QAT HW.
-| | ...
+| |
 | | ${numvfs}= | Set Variable If
 | | ... | '${crypto_type}' == 'HW_DH895xcc' | ${32}
 | | ... | '${crypto_type}' == 'HW_C3xxx' | ${16}
@@ -233,7 +240,7 @@
 | Additional Suite Setup Action For wrk
 | | [Documentation]
 | | ... | Additional Setup for suites which uses WRK TG.
-| | ...
+| |
 | | Iface update numa node | ${tg}
 # Make sure TRex is stopped
 | | ${running}= | Is TRex running | ${tg}
