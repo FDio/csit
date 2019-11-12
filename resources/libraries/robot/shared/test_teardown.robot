@@ -18,19 +18,19 @@
 | Library | resources.libraries.python.PapiHistory
 | Library | resources.libraries.python.topology.Topology
 | Variables | resources/libraries/python/Constants.py
-| ...
+|
 | Documentation | Test teardown keywords.
 
 *** Keywords ***
 | Tear down test
 | | [Documentation]
 | | ... | Common test teardown for tests.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ${actions} - Additional teardown action. Type: list
-| | ...
+| |
 | | [Arguments] | @{actions}
-| | ...
+| |
 | | Remove All Added Ports On All DUTs From Topology | ${nodes}
 | | Show PAPI History On All DUTs | ${nodes}
 | | Show Log On All DUTs | ${nodes}
@@ -38,14 +38,15 @@
 | | ... | Get Core Files on All Nodes | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Verify VPP PID in Teardown
-| | :FOR | ${action} | IN | @{actions}
+| | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Test Tear Down Action For ${action}
+| | END
 | | Clean Sockets On All Nodes | ${nodes}
 
 | Additional Test Tear Down Action For performance
 | | [Documentation]
 | | ... | Additional teardown for tests which uses performance measurement.
-| | ...
+| |
 | | Run Keyword If Test Failed
 | | ... | Send traffic at specified rate | ${PERF_TRIAL_DURATION} | 10000pps
 | | ... | ${frame_size} | ${traffic_profile} | pkt_trace=${True}
@@ -53,20 +54,21 @@
 | Additional Test Tear Down Action For packet_trace
 | | [Documentation]
 | | ... | Additional teardown for tests which uses packet trace.
-| | ...
+| |
 | | Show Packet Trace on All DUTs | ${nodes}
 
 | Additional Test Tear Down Action For container
 | | [Documentation]
 | | ... | Additional teardown for tests which uses containers.
-| | ...
-| | :FOR | ${container_group} | IN | @{container_groups}
+| |
+| | FOR | ${container_group} | IN | @{container_groups}
 | | | Destroy all '${container_group}' containers
+| | END
 
 | Additional Test Tear Down Action For vhost
 | | [Documentation]
 | | ... | Additional teardown for tests which uses vhost(s) and VM(s).
-| | ...
+| |
 | | Show VPP vhost on all DUTs | ${nodes}
 | | ${vnf_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Keyword Should Exist | vnf_manager.Kill All VMs
@@ -75,29 +77,32 @@
 | Additional Test Tear Down Action For nat
 | | [Documentation]
 | | ... | Additional teardown for tests which uses NAT feature.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
+| |
+| | FOR | ${dut} | IN | @{duts}
 | | | Run Keyword If Test Failed
 | | | ... | Show NAT verbose | ${nodes['${dut}']}
+| | END
 
 | Additional Test Tear Down Action For namespace
 | | [Documentation]
 | | ... | Additional teardown for tests which uses namespace.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
+| |
+| | FOR | ${dut} | IN | @{duts}
 | | | Clean Up Namespaces | ${nodes['${dut}']}
+| | END
 
 | Additional Test Tear Down Action For linux_bridge
 | | [Documentation]
 | | ... | Additional teardown for tests which uses linux_bridge.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
+| |
+| | FOR | ${dut} | IN | @{duts}
 | | | Linux Del Bridge | ${nodes['${dut}']} | ${bid_TAP}
+| | END
 
 | Additional Test Tear Down Action For acl
 | | [Documentation]
 | | ... | Additional teardown for tests which uses ACL feature.
-| | ...
+| |
 | | Run Keyword If Test Failed
 | | ... | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed
@@ -106,7 +111,7 @@
 | Additional Test Tear Down Action For macipacl
 | | [Documentation]
 | | ... | Additional teardown for tests which uses MACIP ACL feature.
-| | ...
+| |
 | | Run Keyword If Test Failed
 | | ... | Vpp Log Macip Acl Settings | ${dut1}
 | | Run Keyword If Test Failed
@@ -115,14 +120,14 @@
 | Additional Test Tear Down Action For classify
 | | [Documentation]
 | | ... | Additional teardown for tests which uses classify tables.
-| | ...
+| |
 | | Run Keyword If Test Failed
 | | ... | Show Classify Tables Verbose on all DUTs | ${nodes}
 
 | Additional Test Tear Down Action For srv6
 | | [Documentation]
 | | ... | Additional teardown for tests which uses SRv6.
-| | ...
+| |
 | | Run Keyword If Test Failed
 | | ... | Show SR Policies on all DUTs | ${nodes}
 | | Run Keyword If Test Failed

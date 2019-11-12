@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,8 +15,8 @@
 DUT nodes.
 """
 
-from resources.libraries.python.ssh import SSH
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -24,8 +24,8 @@ class L2fwdTest(object):
     """Setup the DPDK for l2fwd performance test."""
 
     @staticmethod
-    def start_the_l2fwd_test(dut_node, cpu_cores, nb_cores, queue_nums,
-                             jumbo_frames):
+    def start_the_l2fwd_test(
+            dut_node, cpu_cores, nb_cores, queue_nums, jumbo_frames):
         """
         Execute the l2fwd on the dut_node.
 
@@ -42,19 +42,18 @@ class L2fwdTest(object):
         :type jumbo_frames: bool
         :raises RuntimeError: If the script "run_l2fwd.sh" fails.
         """
-        if dut_node['type'] == NodeType.DUT:
+        if dut_node[u"type"] == NodeType.DUT:
             ssh = SSH()
             ssh.connect(dut_node)
 
             arch = Topology.get_node_arch(dut_node)
-            jumbo = 'yes' if jumbo_frames else 'no'
-            cmd = '{fwdir}/tests/dpdk/dpdk_scripts/run_l2fwd.sh {cpu_cores} ' \
-                  '{nb_cores} {queues} {jumbo} {arch}'.\
-                  format(fwdir=Constants.REMOTE_FW_DIR, cpu_cores=cpu_cores,
-                         nb_cores=nb_cores, queues=queue_nums,
-                         jumbo=jumbo, arch=arch)
+            jumbo = u"yes" if jumbo_frames else u"no"
+            cmd = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
+                f"/run_l2fwd.sh {cpu_cores} {nb_cores} {queue_nums} {jumbo} " \
+                f"{arch}"
 
             ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
             if ret_code != 0:
-                raise RuntimeError('Failed to execute l2fwd test at node '
-                                   '{name}'.format(name=dut_node['host']))
+                raise RuntimeError(
+                    f"Failed to execute l2fwd test at node {dut_node['host']}"
+                )

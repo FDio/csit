@@ -13,44 +13,39 @@
 
 """Module defining utilities for test directory regeneration."""
 
-from __future__ import print_function
+import sys
 
 from glob import glob
+from io import open
 from os import getcwd
-import sys
+
 
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.autogen.Testcase import Testcase
 
 
 PROTOCOL_TO_MIN_FRAME_SIZE = {
-    "ip4": 64,
-    "ip6": 78,
-    "ethip4vxlan": 114,  # What is the real minimum for latency stream?
-    "dot1qip4vxlan": 118
+    u"ip4": 64,
+    u"ip6": 78,
+    u"ethip4vxlan": 114,  # What is the real minimum for latency stream?
+    u"dot1qip4vxlan": 118
 }
-MIN_FRAME_SIZE_VALUES = PROTOCOL_TO_MIN_FRAME_SIZE.values()
-
-
-# Copied from https://stackoverflow.com/a/14981125
-def eprint(*args, **kwargs):
-    """Print to stderr."""
-    print(*args, file=sys.stderr, **kwargs)
+MIN_FRAME_SIZE_VALUES = list(PROTOCOL_TO_MIN_FRAME_SIZE.values())
 
 
 def replace_defensively(
         whole, to_replace, replace_with, how_many, msg, in_filename):
-    """Replace substrings while checking the number of occurences.
+    """Replace substrings while checking the number of occurrences.
 
     Return edited copy of the text. Assuming "whole" is really a string,
     or something else with .replace not affecting it.
 
     :param whole: The text to perform replacements on.
-    :param to_replace: Substring occurences of which to replace.
-    :param replace_with: Substring to replace occurences with.
-    :param how_many: Number of occurences to expect.
+    :param to_replace: Substring occurrences of which to replace.
+    :param replace_with: Substring to replace occurrences with.
+    :param how_many: Number of occurrences to expect.
     :param msg: Error message to raise.
-    :param in_filename: File name in which the error occured.
+    :param in_filename: File name in which the error occurred.
     :type whole: str
     :type to_replace: str
     :type replace_with: str
@@ -59,11 +54,11 @@ def replace_defensively(
     :type in_filename: str
     :return: The whole text after replacements are done.
     :rtype: str
-    :raise ValueError: If number of occurences does not match.
+    :raise ValueError: If number of occurrences does not match.
     """
     found = whole.count(to_replace)
     if found != how_many:
-        raise ValueError(in_filename + ": " + msg)
+        raise ValueError(f"{in_filename}: {msg}")
     return whole.replace(to_replace, replace_with)
 
 
@@ -73,18 +68,18 @@ def get_iface_and_suite_id(filename):
     Interface ID is the part of suite name
     which should be replaced for other NIC.
     Suite ID is the part os suite name
-    which si appended to testcase names.
+    which si appended to test case names.
 
     :param filename: Suite file.
     :type filename: str
     :returns: Interface ID, Suite ID.
     :rtype: (str, str)
     """
-    dash_split = filename.split("-", 1)
+    dash_split = filename.split(u"-", 1)
     if len(dash_split[0]) <= 4:
         # It was something like "2n1l", we need one more split.
-        dash_split = dash_split[1].split("-", 1)
-    return dash_split[0], dash_split[1].split(".", 1)[0]
+        dash_split = dash_split[1].split(u"-", 1)
+    return dash_split[0], dash_split[1].split(u".", 1)[0]
 
 
 def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
@@ -106,32 +101,32 @@ def add_default_testcases(testcase, iface, suite_id, file_out, tc_kwargs_list):
     for num, kwargs in enumerate(tc_kwargs_list, start=1):
         # TODO: Is there a better way to disable some combinations?
         emit = True
-        if kwargs["frame_size"] == 9000:
-            if "vic1227" in iface:
+        if kwargs[u"frame_size"] == 9000:
+            if u"vic1227" in iface:
                 # Not supported in HW.
                 emit = False
-            if "vic1385" in iface:
+            if u"vic1385" in iface:
                 # Not supported in HW.
                 emit = False
-            if "ipsec" in suite_id:
+            if u"ipsec" in suite_id:
                 # IPsec code does not support chained buffers.
                 # Tracked by Jira ticket VPP-1207.
                 emit = False
-        if "-16vm2t-" in suite_id or "-16dcr2t-" in suite_id:
-            if kwargs["phy_cores"] > 3:
+        if u"-16vm2t-" in suite_id or u"-16dcr2t-" in suite_id:
+            if kwargs[u"phy_cores"] > 3:
                 # CSIT lab only has 28 (physical) core processors,
                 # so these test would fail when attempting to assign cores.
                 emit = False
-        if "-24vm1t-" in suite_id or "-24dcr1t-" in suite_id:
-            if kwargs["phy_cores"] > 3:
+        if u"-24vm1t-" in suite_id or u"-24dcr1t-" in suite_id:
+            if kwargs[u"phy_cores"] > 3:
                 # CSIT lab only has 28 (physical) core processors,
                 # so these test would fail when attempting to assign cores.
                 emit = False
-        if "soak" in suite_id:
+        if u"soak" in suite_id:
             # Soak test take too long, do not risk other than tc01.
-            if kwargs["phy_cores"] != 1:
+            if kwargs[u"phy_cores"] != 1:
                 emit = False
-            if kwargs["frame_size"] not in MIN_FRAME_SIZE_VALUES:
+            if kwargs[u"frame_size"] not in MIN_FRAME_SIZE_VALUES:
                 emit = False
         if emit:
             file_out.write(testcase.generate(num=num, **kwargs))
@@ -163,52 +158,61 @@ def write_default_files(in_filename, in_prolog, kwargs_list):
     """
     for suite_type in Constants.PERF_TYPE_TO_KEYWORD:
         tmp_filename = replace_defensively(
-            in_filename, "ndrpdr", suite_type, 1,
-            "File name should contain suite type once.", in_filename)
+            in_filename, u"ndrpdr", suite_type, 1,
+            u"File name should contain suite type once.", in_filename
+        )
         tmp_prolog = replace_defensively(
-            in_prolog, "ndrpdr".upper(), suite_type.upper(), 1,
-            "Suite type should appear once in uppercase (as tag).",
-            in_filename)
+            in_prolog, u"ndrpdr".upper(), suite_type.upper(), 1,
+            u"Suite type should appear once in uppercase (as tag).",
+            in_filename
+        )
         tmp_prolog = replace_defensively(
             tmp_prolog,
-            "Find NDR and PDR intervals using optimized search",
+            u"Find NDR and PDR intervals using optimized search",
             Constants.PERF_TYPE_TO_KEYWORD[suite_type], 1,
-            "Main search keyword should appear once in suite.",
-            in_filename)
+            u"Main search keyword should appear once in suite.",
+            in_filename
+        )
         tmp_prolog = replace_defensively(
             tmp_prolog,
-            Constants.PERF_TYPE_TO_SUITE_DOC_VER["ndrpdr"],
+            Constants.PERF_TYPE_TO_SUITE_DOC_VER[u"ndrpdr"],
             Constants.PERF_TYPE_TO_SUITE_DOC_VER[suite_type],
-            1, "Exact suite type doc not found.", in_filename)
+            1, u"Exact suite type doc not found.", in_filename
+        )
         tmp_prolog = replace_defensively(
             tmp_prolog,
-            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER["ndrpdr"],
+            Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[u"ndrpdr"],
             Constants.PERF_TYPE_TO_TEMPLATE_DOC_VER[suite_type],
-            1, "Exact template type doc not found.", in_filename)
+            1, u"Exact template type doc not found.", in_filename
+        )
         _, suite_id = get_iface_and_suite_id(tmp_filename)
         testcase = Testcase.default(suite_id)
         for nic_name in Constants.NIC_NAME_TO_CODE:
             out_filename = replace_defensively(
-                tmp_filename, "10ge2p1x710",
+                tmp_filename, u"10ge2p1x710",
                 Constants.NIC_NAME_TO_CODE[nic_name], 1,
-                "File name should contain NIC code once.", in_filename)
+                u"File name should contain NIC code once.", in_filename
+            )
             out_prolog = replace_defensively(
-                tmp_prolog, "Intel-X710", nic_name, 2,
-                "NIC name should appear twice (tag and variable).",
-                in_filename)
-            if out_prolog.count("HW_") == 2:
+                tmp_prolog, u"Intel-X710", nic_name, 2,
+                u"NIC name should appear twice (tag and variable).",
+                in_filename
+            )
+            if out_prolog.count(u"HW_") == 2:
                 # TODO CSIT-1481: Crypto HW should be read
                 # from topology file instead.
                 if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW:
                     out_prolog = replace_defensively(
-                        out_prolog, "HW_DH895xcc",
+                        out_prolog, u"HW_DH895xcc",
                         Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
-                        "HW crypto name should appear.", in_filename)
+                        u"HW crypto name should appear.", in_filename
+                    )
             iface, suite_id = get_iface_and_suite_id(out_filename)
-            with open(out_filename, "w") as file_out:
+            with open(out_filename, "wt") as file_out:
                 file_out.write(out_prolog)
                 add_default_testcases(
-                    testcase, iface, suite_id, file_out, kwargs_list)
+                    testcase, iface, suite_id, file_out, kwargs_list
+                )
 
 
 def write_reconf_files(in_filename, in_prolog, kwargs_list):
@@ -229,26 +233,30 @@ def write_reconf_files(in_filename, in_prolog, kwargs_list):
     testcase = Testcase.default(suite_id)
     for nic_name in Constants.NIC_NAME_TO_CODE:
         out_filename = replace_defensively(
-            in_filename, "10ge2p1x710",
+            in_filename, u"10ge2p1x710",
             Constants.NIC_NAME_TO_CODE[nic_name], 1,
-            "File name should contain NIC code once.", in_filename)
+            u"File name should contain NIC code once.", in_filename
+        )
         out_prolog = replace_defensively(
-            in_prolog, "Intel-X710", nic_name, 2,
-            "NIC name should appear twice (tag and variable).",
-            in_filename)
-        if out_prolog.count("HW_") == 2:
+            in_prolog, u"Intel-X710", nic_name, 2,
+            u"NIC name should appear twice (tag and variable).",
+            in_filename
+        )
+        if out_prolog.count(u"HW_") == 2:
             # TODO CSIT-1481: Crypto HW should be read
             # from topology file instead.
-            if nic_name in Constants.NIC_NAME_TO_CRYPTO_HW.keys():
+            if nic_name in list(Constants.NIC_NAME_TO_CRYPTO_HW.keys()):
                 out_prolog = replace_defensively(
-                    out_prolog, "HW_DH895xcc",
+                    out_prolog, u"HW_DH895xcc",
                     Constants.NIC_NAME_TO_CRYPTO_HW[nic_name], 1,
-                    "HW crypto name should appear.", in_filename)
+                    u"HW crypto name should appear.", in_filename
+                )
         iface, suite_id = get_iface_and_suite_id(out_filename)
-        with open(out_filename, "w") as file_out:
+        with open(out_filename, "wt") as file_out:
             file_out.write(out_prolog)
             add_default_testcases(
-                testcase, iface, suite_id, file_out, kwargs_list)
+                testcase, iface, suite_id, file_out, kwargs_list
+            )
 
 
 def write_tcp_files(in_filename, in_prolog, kwargs_list):
@@ -266,14 +274,16 @@ def write_tcp_files(in_filename, in_prolog, kwargs_list):
     testcase = Testcase.tcp(suite_id)
     for nic_name in Constants.NIC_NAME_TO_CODE:
         out_filename = replace_defensively(
-            in_filename, "10ge2p1x710",
+            in_filename, u"10ge2p1x710",
             Constants.NIC_NAME_TO_CODE[nic_name], 1,
-            "File name should contain NIC code once.", in_filename)
+            u"File name should contain NIC code once.", in_filename
+        )
         out_prolog = replace_defensively(
-            in_prolog, "Intel-X710", nic_name, 2,
-            "NIC name should appear twice (tag and variable).",
-            in_filename)
-        with open(out_filename, "w") as file_out:
+            in_prolog, u"Intel-X710", nic_name, 2,
+            u"NIC name should appear twice (tag and variable).",
+            in_filename
+        )
+        with open(out_filename, "wt") as file_out:
             file_out.write(out_prolog)
             add_tcp_testcases(testcase, file_out, kwargs_list)
 
@@ -289,15 +299,15 @@ class Regenerator(object):
         """
         self.quiet = quiet
 
-    def regenerate_glob(self, pattern, protocol="ip4"):
+    def regenerate_glob(self, pattern, protocol=u"ip4"):
         """Regenerate files matching glob pattern based on arguments.
 
         In the current working directory, find all files matching
         the glob pattern. Use testcase template according to suffix
-        to regenerate test cases, autonumbering them,
+        to regenerate test cases, auto-numbering them,
         taking arguments from list.
 
-        Log-like prints are emited to sys.stderr.
+        Log-like prints are emitted to sys.stderr.
 
         :param pattern: Glob pattern to select files. Example: *-ndrpdr.robot
         :param protocol: String determining minimal frame size. Default: "ip4"
@@ -306,45 +316,50 @@ class Regenerator(object):
         :raises RuntimeError: If invalid source suite is encountered.
         """
         if not self.quiet:
-            eprint("Regenerator starts at {cwd}".format(cwd=getcwd()))
+            print(f"Regenerator starts at {getcwd()}", file=sys.stderr)
 
         min_frame_size = PROTOCOL_TO_MIN_FRAME_SIZE[protocol]
         default_kwargs_list = [
-            {"frame_size": min_frame_size, "phy_cores": 1},
-            {"frame_size": min_frame_size, "phy_cores": 2},
-            {"frame_size": min_frame_size, "phy_cores": 4},
-            {"frame_size": 1518, "phy_cores": 1},
-            {"frame_size": 1518, "phy_cores": 2},
-            {"frame_size": 1518, "phy_cores": 4},
-            {"frame_size": 9000, "phy_cores": 1},
-            {"frame_size": 9000, "phy_cores": 2},
-            {"frame_size": 9000, "phy_cores": 4},
-            {"frame_size": "IMIX_v4_1", "phy_cores": 1},
-            {"frame_size": "IMIX_v4_1", "phy_cores": 2},
-            {"frame_size": "IMIX_v4_1", "phy_cores": 4}
+            {u"frame_size": min_frame_size, u"phy_cores": 1},
+            {u"frame_size": min_frame_size, u"phy_cores": 2},
+            {u"frame_size": min_frame_size, u"phy_cores": 4},
+            {u"frame_size": 1518, u"phy_cores": 1},
+            {u"frame_size": 1518, u"phy_cores": 2},
+            {u"frame_size": 1518, u"phy_cores": 4},
+            {u"frame_size": 9000, u"phy_cores": 1},
+            {u"frame_size": 9000, u"phy_cores": 2},
+            {u"frame_size": 9000, u"phy_cores": 4},
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 1},
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 2},
+            {u"frame_size": u"IMIX_v4_1", u"phy_cores": 4}
         ]
-        tcp_kwargs_list = [{"phy_cores": i, "frame_size": 0} for i in (1, 2, 4)]
+        tcp_kwargs_list = [
+            {u"phy_cores": i, u"frame_size": 0} for i in (1, 2, 4)
+                           ]
         for in_filename in glob(pattern):
             if not self.quiet:
-                eprint("Regenerating in_filename:", in_filename)
+                print(
+                    u"Regenerating in_filename:", in_filename, file=sys.stderr
+                )
             iface, _ = get_iface_and_suite_id(in_filename)
-            if not iface.endswith("10ge2p1x710"):
+            if not iface.endswith(u"10ge2p1x710"):
                 raise RuntimeError(
-                    "Error in {fil}: non-primary NIC found.".format(
-                        fil=in_filename))
-            with open(in_filename, "r") as file_in:
-                in_prolog = "".join(
-                    file_in.read().partition("*** Test Cases ***")[:-1])
-            if in_filename.endswith("-ndrpdr.robot"):
+                    f"Error in {in_filename}: non-primary NIC found."
+                )
+            with open(in_filename, "rt") as file_in:
+                in_prolog = u"".join(
+                    file_in.read().partition("*** Test Cases ***")[:-1]
+                )
+            if in_filename.endswith(u"-ndrpdr.robot"):
                 write_default_files(in_filename, in_prolog, default_kwargs_list)
-            elif in_filename.endswith("-reconf.robot"):
+            elif in_filename.endswith(u"-reconf.robot"):
                 write_reconf_files(in_filename, in_prolog, default_kwargs_list)
-            elif in_filename[-10:] in ("-cps.robot", "-rps.robot"):
+            elif in_filename[-10:] in (u"-cps.robot", u"-rps.robot"):
                 write_tcp_files(in_filename, in_prolog, tcp_kwargs_list)
             else:
                 raise RuntimeError(
-                    "Error in {fil}: non-primary suite type found.".format(
-                        fil=in_filename))
+                    f"Error in {in_filename}: non-primary suite type found."
+                )
         if not self.quiet:
-            eprint("Regenerator ends.")
-        eprint()  # To make autogen check output more readable.
+            print(u"Regenerator ends.", file=sys.stderr)
+        print(file=sys.stderr)  # To make autogen check output more readable.

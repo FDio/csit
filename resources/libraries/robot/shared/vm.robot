@@ -21,7 +21,7 @@
 | | [Documentation]
 | | ... | Start 1..N chains of 1..N QEMU guests (VNFs) with two vhost-user\
 | | ... | interfaces and interconnecting NF.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - nf_chains - Number of chains of NFs. Type: integer
 | | ... | - nf_nodes - Number of NFs nodes per chain. Type: integer
@@ -34,16 +34,16 @@
 | | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ... | - vnf - Network function as a payload. Type: string
 | | ... | - pinning - Whether to pin QEMU VMs to specific cores
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure chains of VMs connected via vhost-user
 | | ... | \| 1 \| 1 \| False \| 1024 \| False \| False \| vpp \| True \|
-| | ...
+| |
 | | [Arguments] | ${nf_chains}=${1} | ${nf_nodes}=${1} | ${jumbo}=${False}
 | | ... | ${perf_qemu_qsz}=${1024} | ${use_tuned_cfs}=${False}
 | | ... | ${auto_scale}=${True} | ${vnf}=vpp | ${pinning}=${True}
-| | ...
+| |
 | | Import Library | resources.libraries.python.QemuManager | ${nodes}
 | | ... | WITH NAME | vnf_manager
 | | Run Keyword | vnf_manager.Construct VMs on all nodes
@@ -61,7 +61,7 @@
 | | [Documentation]
 | | ... | Start 1..N chains of 1..N QEMU guests (VNFs) with two vhost-user\
 | | ... | interfaces and interconnecting NF on single DUT node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - node - DUT node. Type: dictionary
 | | ... | - nf_chains - Number of chains of NFs. Type: integer
@@ -75,18 +75,18 @@
 | | ... | in containers as vswitch, otherwise use single RXQ. Type: boolean
 | | ... | - vnf - Network function as a payload. Type: string
 | | ... | - pinning - Whether to pin QEMU VMs to specific cores
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure chains of NFs connected via vhost-user on single node
 | | ... | \| DUT1 \| 1 \| 1 \| False \| 1024 \| False \| False \| vpp \|
 | | ... | True \|
-| | ...
+| |
 | | [Arguments] | ${node} | ${nf_chains}=${1} | ${nf_nodes}=${1}
 | | ... | ${jumbo}=${False} | ${perf_qemu_qsz}=${1024}
 | | ... | ${use_tuned_cfs}=${False} | ${auto_scale}=${True} | ${vnf}=vpp
 | | ... | ${pinning}=${True}
-| | ...
+| |
 | | Import Library | resources.libraries.python.QemuManager | ${nodes}
 | | ... | WITH NAME | vnf_manager
 | | Run Keyword | vnf_manager.Initialize
