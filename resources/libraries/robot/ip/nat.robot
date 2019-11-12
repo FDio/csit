@@ -13,32 +13,32 @@
 
 *** Settings ***
 | Library | resources.libraries.python.NATUtil
-| ...
+|
 | Documentation | Keywords for NAT feature in VPP.
 
 *** Keywords ***
 | Configure inside and outside interfaces
 | | [Documentation] | Configure inside and outside interfaces for NAT44.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - node - DUT node to set NAT44 interfaces on. Type: dictionary
 | | ... | - int_in - Inside interface. Type: string
 | | ... | - int_out - Outside interface. Type: string
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure inside and outside interfaces \| ${nodes['DUT1']} \
 | | ... | \| FortyGigabitEtherneta/0/0 \| FortyGigabitEtherneta/0/1 \|
-| | ...
+| |
 | | [Arguments] | ${node} | ${int_in} | ${int_out}
-| | ...
+| |
 | | ${int_in_name}= | Set variable | ${node['interfaces']['${int_in}']['name']}
 | | ${int_out_name}= | Set variable | ${node['interfaces']['${int_out}']['name']}
 | | Set NAT44 Interfaces | ${node} | ${int_in_name} | ${int_out_name}
 
 | Configure deterministic mode for NAT44
 | | [Documentation] | Set deterministic behaviour of NAT44.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - node - DUT node to set deterministic mode for NAT44 on.
 | | ... | Type: dictionary
@@ -46,29 +46,29 @@
 | | ... | - subnet_in - Inside IP subnet. Type: string
 | | ... | - ip_out - Outside IP. Type: string
 | | ... | - subnet_out - Outside IP subnet. Type: string
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Configure deterministic mode for NAT44 \| ${nodes['DUT1']} \
 | | ... | \| 100.0.0.0 \| 12 \| 12.1.1.0 \| 24 \|
-| | ...
+| |
 | | [Arguments] | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
-| | ...
+| |
 | | Set NAT44 deterministic | ${node} | ${ip_in} | ${subnet_in} | ${ip_out}
 | | ... | ${subnet_out}
 
 | Show NAT verbose
 | | [Documentation] | Get the NAT settings on the node.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - node - DUT node to show NAT. Type: dictionary
-| | ...
+| |
 | | ... | *Example:*
-| | ...
+| |
 | | ... | \| Show NAT verbose \| ${nodes['DUT1']} \|
-| | ...
+| |
 | | [Arguments] | ${node}
-| | ...
+| |
 | | Show NAT | ${node}
 
 | Initialize NAT44 in circular topology
@@ -79,12 +79,12 @@
 | | ... | - set ARP
 | | ... | - create routes
 | | ... | - set NAT44 - only on DUT1
-| | ...
+| |
 | | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${dut2}
-| | ...
+| |
 | | Set interfaces in path up
-| | ...
+| |
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1} | 10.0.0.1 | 20
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Interface Set IP Address | ${dut1} | ${dut1_if2}
@@ -99,7 +99,7 @@
 | | ... | Set Variable | ${dut2_if2}
 | | ... | ELSE | Set Variable | ${dut1_if2}
 | | VPP Interface Set IP Address | ${dut} | ${dut_if2} | 12.0.0.1 | 20
-| | ...
+| |
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.0.0.2 | ${tg_if1_mac}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | VPP Add IP Neighbor
@@ -108,7 +108,7 @@
 | | ... | VPP Add IP Neighbor
 | | ... | ${dut2} | ${dut2_if1} | 11.0.0.1 | ${dut1_if2_mac}
 | | VPP Add IP Neighbor | ${dut} | ${dut_if2} | 12.0.0.2 | ${tg_if2_mac}
-| | ...
+| |
 | | Vpp Route Add | ${dut1} | 20.0.0.0 | 18 | gateway=10.0.0.2
 | | ... | interface=${dut1_if1}
 | | Run Keyword If | '${dut2_status}' == 'PASS'
@@ -120,7 +120,7 @@
 | | Run Keyword If | '${dut2_status}' == 'PASS'
 | | ... | Vpp Route Add | ${dut2} | 200.0.0.0 | 30 | gateway=11.0.0.1
 | | ... | interface=${dut2_if1}
-| | ...
+| |
 | | Configure inside and outside interfaces
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Configure deterministic mode for NAT44

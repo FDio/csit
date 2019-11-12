@@ -26,7 +26,7 @@ from resources.libraries.python.ssh import SSH
 from resources.libraries.python.TLDK.TLDKConstants import TLDKConstants as con
 from resources.libraries.python.topology import Topology
 
-class UdpTest(object):
+class UdpTest:
     """Test the TLDK UDP function."""
 
     @staticmethod

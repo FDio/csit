@@ -26,7 +26,7 @@ from utils import get_last_successful_build_number
 from utils import get_last_completed_build_number
 
 
-class Specification(object):
+class Specification:
     """Specification of Presentation and analytics layer.
 
     - based on specification specified in the specification YAML file
