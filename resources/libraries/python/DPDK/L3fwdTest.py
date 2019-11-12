@@ -15,8 +15,8 @@
 This module exists to provide the l3fwd test for DPDK on topology nodes.
 """
 
-from resources.libraries.python.ssh import SSH
 from resources.libraries.python.Constants import Constants
+from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType, Topology
 
 
@@ -24,8 +24,9 @@ class L3fwdTest(object):
     """Test the DPDK l3fwd performance."""
 
     @staticmethod
-    def start_the_l3fwd_test(nodes_info, dut_node, dut_if1, dut_if2,
-                             nb_cores, lcores_list, queue_nums, jumbo_frames):
+    def start_the_l3fwd_test(
+            nodes_info, dut_node, dut_if1, dut_if2, nb_cores, lcores_list,
+            queue_nums, jumbo_frames):
         """
         Execute the l3fwd on the dut_node.
 
@@ -47,9 +48,9 @@ class L3fwdTest(object):
         :type queue_nums: str
         :type jumbo_frames: bool
         """
-        if dut_node['type'] == NodeType.DUT:
-            adj_mac0, adj_mac1 = L3fwdTest.get_adj_mac(nodes_info, dut_node,
-                                                       dut_if1, dut_if2)
+        if dut_node["type"] == NodeType.DUT:
+            adj_mac0, adj_mac1 = L3fwdTest.get_adj_mac(
+                nodes_info, dut_node,dut_if1, dut_if2)
 
             list_cores = [int(item) for item in lcores_list.split(',')]
 
@@ -60,23 +61,21 @@ class L3fwdTest(object):
             for port in range(0, 2):
                 for queue in range(0, int(queue_nums)):
                     index = 0 if nb_cores == 1 else index
-                    port_config += '({port}, {queue}, {core}),'.\
-                        format(port=port, queue=queue, core=list_cores[index])
+                    port_config += f"({port}, {queue}, {list_cores[index]}),"
                     index += 1
 
             ssh = SSH()
             ssh.connect(dut_node)
 
-            cmd = '{fwdir}/tests/dpdk/dpdk_scripts/run_l3fwd.sh ' \
-                  '"{lcores}" "{ports}" {mac1} {mac2} {jumbo}'.\
-                  format(fwdir=Constants.REMOTE_FW_DIR, lcores=lcores_list,
-                         ports=port_config.rstrip(','), mac1=adj_mac0,
-                         mac2=adj_mac1, jumbo='yes' if jumbo_frames else 'no')
+            cmd = f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts" \
+                f"/run_l3fwd.sh '{lcores_list}' '{port_config.rstrip(',')}' " \
+                f"{adj_mac0} {adj_mac1} {'yes' if jumbo_frames else 'no'}"
 
             ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=600)
             if ret_code != 0:
-                raise Exception('Failed to execute l3fwd test at node {name}'
-                                .format(name=dut_node['host']))
+                raise Exception(
+                    f"Failed to execute l3fwd test at node {dut_node['host']}"
+                )
 
     @staticmethod
     def get_adj_mac(nodes_info, dut_node, dut_if1, dut_if2):
@@ -102,12 +101,12 @@ class L3fwdTest(object):
         # detect which is the port 0
         if min(if_pci0, if_pci1) != if_pci0:
             if_key0, if_key1 = if_key1, if_key0
-            L3fwdTest.patch_l3fwd(dut_node, 'patch_l3fwd_flip_routes')
+            L3fwdTest.patch_l3fwd(dut_node, u"patch_l3fwd_flip_routes")
 
-        adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface( \
-                                 nodes_info, dut_node, if_key0)
-        adj_node1, adj_if_key1 = Topology.get_adjacent_node_and_interface( \
-                                 nodes_info, dut_node, if_key1)
+        adj_node0, adj_if_key0 = Topology.get_adjacent_node_and_interface(
+            nodes_info, dut_node, if_key0)
+        adj_node1, adj_if_key1 = Topology.get_adjacent_node_and_interface(
+            nodes_info, dut_node, if_key1)
 
         adj_mac0 = Topology.get_interface_mac(adj_node0, adj_if_key0)
         adj_mac1 = Topology.get_interface_mac(adj_node1, adj_if_key1)
@@ -131,11 +130,9 @@ class L3fwdTest(object):
         ssh.connect(node)
 
         ret_code, _, _ = ssh.exec_command(
-            '{fwdir}/tests/dpdk/dpdk_scripts/patch_l3fwd.sh {arch} '
-            '{fwdir}/tests/dpdk/dpdk_scripts/{patch}'.
-            format(fwdir=Constants.REMOTE_FW_DIR, arch=arch, patch=patch),
+            f"{Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts/patch_l3fwd.sh "
+            f"{arch} {Constants.REMOTE_FW_DIR}/tests/dpdk/dpdk_scripts/{patch}",
             timeout=600)
 
         if ret_code != 0:
-            raise RuntimeError('Patch of l3fwd failed.')
-
+            raise RuntimeError(u"Patch of l3fwd failed.")

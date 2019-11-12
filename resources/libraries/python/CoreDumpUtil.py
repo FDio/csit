@@ -13,13 +13,11 @@
 
 """Core dump library."""
 
-from time import time
-
 from resources.libraries.python.Constants import Constants
 from resources.libraries.python.DUTSetup import DUTSetup
 from resources.libraries.python.LimitUtil import LimitUtil
 from resources.libraries.python.SysctlUtil import SysctlUtil
-from resources.libraries.python.ssh import exec_cmd_no_error, scp_node
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType
 
 __all__ = ["CoreDumpUtil"]
@@ -31,7 +29,7 @@ class CoreDumpUtil(object):
     # Use one instance of class for all tests. If the functionality should
     # be enabled per suite or per test case, change the scope to "TEST SUITE" or
     # "TEST CASE" respectively.
-    ROBOT_LIBRARY_SCOPE = 'GLOBAL'
+    ROBOT_LIBRARY_SCOPE = u"GLOBAL"
 
     def __init__(self):
         """Initialize CoreDumpUtil class."""
@@ -72,9 +70,9 @@ class CoreDumpUtil(object):
             # environment, and either have a core dump pipe handler that knows
             # to treat privileged core dumps with care, or specific directory
             # defined for catching core dumps. If a core dump happens without a
-            # pipe handler or fully qualifid path, a message will be emitted to
+            # pipe handler or fully qualified path, a message will be emitted to
             # syslog warning about the lack of a correct setting.
-            SysctlUtil.set_sysctl_value(node, 'fs.suid_dumpable', 2)
+            SysctlUtil.set_sysctl_value(node, u"fs.suid_dumpable", 2)
 
             # Specify a core dumpfile pattern name (for the output filename).
             # %p    pid
@@ -84,8 +82,9 @@ class CoreDumpUtil(object):
             # %t    UNIX time of dump
             # %h    hostname
             # %e    executable filename (may be shortened)
-            SysctlUtil.set_sysctl_value(node, 'kernel.core_pattern',
-                                        Constants.KERNEL_CORE_PATTERN)
+            SysctlUtil.set_sysctl_value(
+                node, u"kernel.core_pattern", Constants.KERNEL_CORE_PATTERN
+            )
 
         self._corekeeper_configured = True
 
@@ -100,10 +99,10 @@ class CoreDumpUtil(object):
         """
         if isinstance(pid, list):
             for item in pid:
-                LimitUtil.set_pid_limit(node, item, 'core', 'unlimited')
+                LimitUtil.set_pid_limit(node, item, u"core", u"unlimited")
                 LimitUtil.get_pid_limit(node, item)
         else:
-            LimitUtil.set_pid_limit(node, pid, 'core', 'unlimited')
+            LimitUtil.set_pid_limit(node, pid,  u"core", u"unlimited")
             LimitUtil.get_pid_limit(node, pid)
 
     def enable_coredump_limit_vpp_on_all_duts(self, nodes):
@@ -114,7 +113,7 @@ class CoreDumpUtil(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.DUT and self.is_core_limit_enabled():
+            if node[u"type"] == NodeType.DUT and self.is_core_limit_enabled():
                 vpp_pid = DUTSetup.get_vpp_pid(node)
                 self.enable_coredump_limit(node, vpp_pid)
 
@@ -129,18 +128,19 @@ class CoreDumpUtil(object):
         :type disable_on_success: bool
         """
         for node in nodes.values():
-            command = ('for f in {dir}/*.core; do '
-                       'sudo gdb /usr/bin/vpp ${{f}} '
-                       '--eval-command="set pagination off" '
-                       '--eval-command="thread apply all bt" '
-                       '--eval-command="quit"; '
-                       'sudo rm -f ${{f}}; done'
-                       .format(dir=Constants.CORE_DUMP_DIR))
+            command = (
+                f"for f in {Constants.CORE_DUMP_DIR}/*.core; do "
+                f"sudo gdb /usr/bin/vpp ${{f}} "
+                f"--eval-command='set pagination off' "
+                f"--eval-command='thread apply all bt' "
+                f"--eval-command='quit'; "
+                f"sudo rm -f ${{f}}; done"
+            )
             try:
                 exec_cmd_no_error(node, command, timeout=3600)
                 if disable_on_success:
                     self.set_core_limit_disabled()
             except RuntimeError:
-                # If compress was not sucessfull ignore error and skip further
+                # If compress was not successful ignore error and skip further
                 # processing.
                 continue

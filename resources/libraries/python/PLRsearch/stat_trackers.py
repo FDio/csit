@@ -61,13 +61,12 @@ class ScalarStatTracker(object):
     def __repr__(self):
         """Return string, which interpreted constructs state of self.
 
-        :returns: Expression contructing an equivalent instance.
+        :returns: Expression constructing an equivalent instance.
         :rtype: str
         """
-        return ("ScalarStatTracker(log_sum_weight={lsw!r},average={a!r},"
-                "log_variance={lv!r})".format(
-                    lsw=self.log_sum_weight, a=self.average,
-                    lv=self.log_variance))
+        return (
+            f"ScalarStatTracker(log_sum_weight={self.log_sum_weight!r},"
+            f"average={self.average!r},log_variance={self.log_variance!r})")
 
     def copy(self):
         """Return new ScalarStatTracker instance with the same state as self.
@@ -179,13 +178,12 @@ class ScalarDualStatTracker(ScalarStatTracker):
         """
         sec = self.secondary
         return (
-            "ScalarDualStatTracker(log_sum_weight={lsw!r},average={a!r},"
-            "log_variance={lv!r},log_sum_secondary_weight={lssw!r},"
-            "secondary_average={sa!r},log_secondary_variance={lsv!r},"
-            "max_log_weight={mlw!r})".format(
-                lsw=self.log_sum_weight, a=self.average, lv=self.log_variance,
-                lssw=sec.log_sum_weight, sa=sec.average, lsv=sec.log_variance,
-                mlw=self.max_log_weight))
+            f"ScalarDualStatTracker(log_sum_weight={self.log_sum_weight!r},"
+            f"average={self.average!r},log_variance={self.log_variance!r},"
+            f"log_sum_secondary_weight={sec.log_sum_weight!r},"
+            f"secondary_average={sec.average!r},"
+            f"log_secondary_variance={sec.log_variance!r},"
+            f"max_log_weight={self.max_log_weight!r})")
 
     def add(self, scalar_value, log_weight=0.0):
         """Return updated both stats after addition of another sample.
@@ -208,7 +206,6 @@ class ScalarDualStatTracker(ScalarStatTracker):
             self.secondary.add(scalar_value, log_weight)
         primary.add(scalar_value, log_weight)
         return self
-
 
     def get_pessimistic_variance(self):
         """Return estimate of variance reflecting weight effects.
@@ -248,11 +245,11 @@ class VectorStatTracker(object):
     def __init__(
             self, dimension=2, log_sum_weight=None, averages=None,
             covariance_matrix=None):
-        """Initialize new tracker instance, two-dimenstional empty by default.
+        """Initialize new tracker instance, two-dimensional empty by default.
 
         If any of latter two arguments is None, it means
         the tracker state is invalid. Use reset method
-        to create empty tracker of constructed dimentionality.
+        to create empty tracker of constructed dimensionality.
 
         :param dimension: Number of scalar components of samples.
         :param log_sum_weight: Natural logarithm of sum of weights
@@ -277,10 +274,10 @@ class VectorStatTracker(object):
         :rtype: str
         """
         return (
-            "VectorStatTracker(dimension={d!r},log_sum_weight={lsw!r},"
-            "averages={a!r},covariance_matrix={cm!r})".format(
-                d=self.dimension, lsw=self.log_sum_weight, a=self.averages,
-                cm=self.covariance_matrix))
+            f"VectorStatTracker(dimension={self.dimension!r},"
+            f"log_sum_weight={self.log_sum_weight!r},"
+            f"averages={self.averages!r},"
+            f"covariance_matrix={self.covariance_matrix!r})")
 
     def copy(self):
         """Return new instance with the same state as self.
@@ -338,7 +335,7 @@ class VectorStatTracker(object):
         old_log_sum_weight = self.log_sum_weight
         old_averages = self.averages
         if not old_averages:
-            shift = [0.0 for index in range(dimension)]
+            shift = [0.0 for _ in range(dimension)]
         else:
             shift = [vector_value[index] - old_averages[index]
                      for index in range(dimension)]
@@ -375,7 +372,7 @@ class VectorStatTracker(object):
 
         If the weight of the incoming sample is far bigger
         than the weight of all the previous data together,
-        convariance matrix would suffer from underflows.
+        covariance matrix would suffer from underflow.
         To avoid that, this method manipulates both weights
         before calling add().
 

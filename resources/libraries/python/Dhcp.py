@@ -31,10 +31,9 @@ class DhcpProxy(object):
         :returns: DHCP relay data.
         :rtype: list
         """
-        cmd = 'dhcp_proxy_dump'
-        args = dict(is_ip6=1 if ip_version == 'ipv6' else 0)
-        err_msg = 'Failed to get DHCP proxy dump on host {host}'.format(
-            host=node['host'])
+        cmd = u"dhcp_proxy_dump"
+        args = dict(is_ip6=1 if ip_version == u"ipv6" else 0)
+        err_msg = f"Failed to get DHCP proxy dump on host {node[u'host']}"
 
         with PapiSocketExecutor(node) as papi_exec:
             details = papi_exec.add(cmd, **args).get_details(err_msg)

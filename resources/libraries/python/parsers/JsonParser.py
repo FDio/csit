@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,6 +14,8 @@
 """Used to parse JSON files or JSON data strings to dictionaries"""
 
 import json
+
+from io import open
 from os import uname
 
 
@@ -33,23 +35,22 @@ class JsonParser(object):
         :returns: JSON data parsed as python list.
         :rtype: list
         """
-        if "4.2.0-42-generic" in uname():
+        if u"4.2.0-42-generic" in uname():
             # TODO: remove ugly workaround
             # On Ubuntu14.04 the VAT console returns "error:misc" even after
             # some commands execute correctly. This causes problems
             # with parsing JSON data.
-            known_errors = ["sw_interface_dump error: Misc",
-                            "lisp_eid_table_dump error: Misc",
-                            "show_lisp_status error: Misc",
-                            "lisp_map_resolver_dump error: Misc",
-                            "show_lisp_pitr error: Misc",
-                            "snat_static_mapping_dump error: Misc",
-                           ]
+            known_errors = [u"sw_interface_dump error: Misc",
+                            u"lisp_eid_table_dump error: Misc",
+                            u"show_lisp_status error: Misc",
+                            u"lisp_map_resolver_dump error: Misc",
+                            u"show_lisp_pitr error: Misc",
+                            u"snat_static_mapping_dump error: Misc",
+                            ]
             for item in known_errors:
                 if item in json_data:
-                    json_data = json_data.replace(item, "")
-                    print("Removing API error: *{0}* "
-                          "from JSON output.".format(item))
+                    json_data = json_data.replace(item, u"")
+                    print(f"Removing API error: *{item}* from JSON output.")
         parsed_data = json.loads(json_data)
         return parsed_data
 
@@ -65,6 +66,6 @@ class JsonParser(object):
         :returns: JSON data parsed as python list.
         :rtype: list
         """
-        input_data = open(json_file).read()
+        input_data = open(json_file, 'rt').read()
         parsed_data = JsonParser.parse_data(input_data)
         return parsed_data
