@@ -13,18 +13,18 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | IP4FWD | BASE | MEMIF | DOCKER | DRV_VFIO_PCI
-| ...
+|
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | container
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *IPv4 routing test cases with memif interface*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
 | ... | single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for IPv4 routing on both links.
@@ -54,16 +54,16 @@
 | | ... | [Ver] Make TG send IPv4 packet in both directions between two\
 | | ... | of its interfaces to be routed by DUT to and from docker; verify\
 | | ... | all packets are received.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}

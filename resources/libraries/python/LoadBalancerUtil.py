@@ -13,12 +13,14 @@
 
 """Loadbalancer util library."""
 
-from socket import htonl
 from ipaddress import ip_address
+from socket import htonl
+
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 
-class LoadBalancerUtil(object):
+
+class LoadBalancerUtil:
     """Basic Loadbalancer parameter configuration."""
 
     @staticmethod
@@ -43,28 +45,33 @@ class LoadBalancerUtil(object):
         :returns: Nothing.
         :raises ValueError: If the node has an unknown node type.
         """
-        if node['type'] == NodeType.DUT:
-            ip4_src_addr = ip_address(unicode(kwargs.pop('ip4_src_addr',
-                                                         '255.255.255.255')))
-            ip6_src_addr = ip_address(unicode(kwargs.pop('ip6_src_addr',\
-                    'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff')))
-            flow_timeout = kwargs.pop('flow_timeout', 40)
-            sticky_buckets_per_core = kwargs.pop('buckets_per_core', 1024)
+        if node[u"type"] == NodeType.DUT:
+            ip4_src_addr = ip_address(
+                kwargs.pop(u"ip4_src_addr", u"255.255.255.255")
+            )
+            ip6_src_addr = ip_address(
+                kwargs.pop(
+                    u"ip6_src_addr", u"ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"
+                 )
+            )
+            flow_timeout = kwargs.pop(u"flow_timeout", 40)
+            sticky_buckets_per_core = kwargs.pop(u"buckets_per_core", 1024)
 
-            cmd = 'lb_conf'
-            err_msg = 'Failed to set lb conf on host {host}'.format(
-                host=node['host'])
-
-            args = dict(ip4_src_address=str(ip4_src_addr),
-                        ip6_src_address=str(ip6_src_addr),
-                        sticky_buckets_per_core=sticky_buckets_per_core,
-                        flow_timeout=flow_timeout)
+            cmd = u"lb_conf"
+            err_msg = f"Failed to set lb conf on host {node[u'host']}"
+            args = dict(
+                ip4_src_address=str(ip4_src_addr),
+                ip6_src_address=str(ip6_src_addr),
+                sticky_buckets_per_core=sticky_buckets_per_core,
+                flow_timeout=flow_timeout
+            )
 
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         else:
-            raise ValueError('Node {host} has unknown NodeType: "{type}"'
-                             .format(host=node['host'], type=node['type']))
+            raise ValueError(
+                f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
+            )
 
     @staticmethod
     def vpp_lb_add_del_vip(node, **kwargs):
@@ -91,40 +98,44 @@ class LoadBalancerUtil(object):
         :returns: Nothing.
         :raises ValueError: If the node has an unknown node type.
         """
-        if node['type'] == NodeType.DUT:
-            vip_addr = kwargs.pop('vip_addr', '0.0.0.0')
-            protocol = kwargs.pop('protocol', 255)
-            port = kwargs.pop('port', 0)
-            encap = kwargs.pop('encap', 0)
-            dscp = kwargs.pop('dscp', 0)
-            srv_type = kwargs.pop('srv_type', 0)
-            target_port = kwargs.pop('target_port', 0)
-            node_port = kwargs.pop('node_port', 0)
-            new_len = kwargs.pop('new_len', 1024)
-            is_del = kwargs.pop('is_del', 0)
+        if node[u"type"] == NodeType.DUT:
+            vip_addr = kwargs.pop(u"vip_addr", "0.0.0.0")
+            protocol = kwargs.pop(u"protocol", 255)
+            port = kwargs.pop(u"port", 0)
+            encap = kwargs.pop(u"encap", 0)
+            dscp = kwargs.pop(u"dscp", 0)
+            srv_type = kwargs.pop(u"srv_type", 0)
+            target_port = kwargs.pop(u"target_port", 0)
+            node_port = kwargs.pop(u"node_port", 0)
+            new_len = kwargs.pop(u"new_len", 1024)
+            is_del = kwargs.pop(u"is_del", 0)
 
-            cmd = 'lb_add_del_vip'
-            err_msg = 'Failed to add vip on host {host}'.format(
-                host=node['host'])
+            cmd = u"lb_add_del_vip"
+            err_msg = f"Failed to add vip on host {node[u'host']}"
 
-            vip_addr = ip_address(unicode(vip_addr)).packed
-            args = dict(pfx={'len': 128,
-                             'address': {'un': {'ip4': vip_addr}, 'af': 0}},
-                        protocol=protocol,
-                        port=port,
-                        encap=htonl(encap),
-                        dscp=dscp,
-                        type=srv_type,
-                        target_port=target_port,
-                        node_port=node_port,
-                        new_flows_table_length=int(new_len),
-                        is_del=is_del)
+            vip_addr = ip_address(vip_addr).packed
+            args = dict(
+                pfx={
+                    u"len": 128,
+                    u"address": {u"un": {u"ip": vip_addr}, u"af": 0}
+                },
+                protocol=protocol,
+                port=port,
+                encap=htonl(encap),
+                dscp=dscp,
+                type=srv_type,
+                target_port=target_port,
+                node_port=node_port,
+                new_flows_table_length=int(new_len),
+                is_del=is_del
+            )
 
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         else:
-            raise ValueError('Node {host} has unknown NodeType: "{type}"'
-                             .format(host=node['host'], type=node['type']))
+            raise ValueError(
+                f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
+            )
 
     @staticmethod
     def vpp_lb_add_del_as(node, **kwargs):
@@ -146,34 +157,38 @@ class LoadBalancerUtil(object):
         :returns: Nothing.
         :raises ValueError: If the node has an unknown node type.
         """
-        if node['type'] == NodeType.DUT:
-            cmd = 'lb_add_del_as'
-            err_msg = 'Failed to add lb as on host {host}'.format(
-                host=node['host'])
+        if node[u"type"] == NodeType.DUT:
+            cmd = u"lb_add_del_as"
+            err_msg = f"Failed to add lb as on host {node[u'host']}"
 
-            vip_addr = kwargs.pop('vip_addr', '0.0.0.0')
-            protocol = kwargs.pop('protocol', 255)
-            port = kwargs.pop('port', 0)
-            as_addr = kwargs.pop('as_addr', '0.0.0.0')
-            is_del = kwargs.pop('is_del', 0)
-            is_flush = kwargs.pop('is_flush', 0)
+            vip_addr = kwargs.pop(u"vip_addr", "0.0.0.0")
+            protocol = kwargs.pop(u"protocol", 255)
+            port = kwargs.pop(u"port", 0)
+            as_addr = kwargs.pop(u"as_addr", u"0.0.0.0")
+            is_del = kwargs.pop(u"is_del", 0)
+            is_flush = kwargs.pop(u"is_flush", 0)
 
-            vip_addr = ip_address(unicode(vip_addr)).packed
-            as_addr = ip_address(unicode(as_addr)).packed
+            vip_addr = ip_address(vip_addr).packed
+            as_addr = ip_address(as_addr).packed
 
-            args = dict(pfx={'len': 128,
-                             'address': {'un': {'ip4': vip_addr}, 'af': 0}},
-                        protocol=protocol,
-                        port=port,
-                        as_address={'un': {'ip4': as_addr}, 'af': 0},
-                        is_del=is_del,
-                        is_flush=is_flush)
+            args = dict(
+                pfx={
+                    u"len": 128,
+                    u"address": {u"un": {u"ip": vip_addr}, u"af": 0}
+                },
+                protocol=protocol,
+                port=port,
+                as_address={u"un": {u"ip": as_addr}, u"af": 0},
+                is_del=is_del,
+                is_flush=is_flush
+            )
 
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         else:
-            raise ValueError('Node {host} has unknown NodeType: "{type}"'
-                             .format(host=node['host'], type=node['type']))
+            raise ValueError(
+                f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
+            )
 
     @staticmethod
     def vpp_lb_add_del_intf_nat4(node, **kwargs):
@@ -190,18 +205,21 @@ class LoadBalancerUtil(object):
         :returns: Nothing.
         :raises ValueError: If the node has an unknown node type.
         """
-        if node['type'] == NodeType.DUT:
-            cmd = 'lb_add_del_intf_nat4'
-            err_msg = 'Failed to add interface nat4 on host {host}'.format(
-                host=node['host'])
+        if node[u"type"] == NodeType.DUT:
+            cmd = u"lb_add_del_intf_nat4"
+            err_msg = f"Failed to add interface nat4 on host {node[u'host']}"
 
-            is_add = kwargs.pop('is_add', True)
-            interface = kwargs.pop('interface', 0)
+            is_add = kwargs.pop(u"is_add", True)
+            interface = kwargs.pop(u"interface", 0)
             sw_if_index = Topology.get_interface_sw_index(node, interface)
-            args = dict(is_add=is_add, sw_if_index=sw_if_index)
+            args = dict(
+                is_add=is_add,
+                sw_if_index=sw_if_index
+            )
 
             with PapiSocketExecutor(node) as papi_exec:
                 papi_exec.add(cmd, **args).get_reply(err_msg)
         else:
-            raise ValueError('Node {host} has unknown NodeType: "{type}"'
-                             .format(host=node['host'], type=node['type']))
+            raise ValueError(
+                f"Node {node[u'host']} has unknown NodeType: '{node[u'type']}'"
+            )

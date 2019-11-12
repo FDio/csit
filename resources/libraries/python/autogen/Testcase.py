@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,7 +16,7 @@
 from string import Template
 
 
-class Testcase(object):
+class Testcase:
     """Class containing a template string and a substitution method."""
 
     def __init__(self, template_string):
@@ -52,22 +52,23 @@ class Testcase(object):
         try:
             fsize = int(frame_size)
             subst_dict = {
-                "frame_num": "${%d}" % fsize,
-                "frame_str": "%dB" % fsize
+                u"frame_num": f"${{{fsize:d}}}",
+                u"frame_str": f"{fsize:d}dB"
             }
         except ValueError:  # Assuming an IMIX string.
             subst_dict = {
-                "frame_num": str(frame_size),
-                "frame_str": "IMIX"
+                u"frame_num": str(frame_size),
+                u"frame_str": u"IMIX"
             }
         cores_str = str(phy_cores)
         cores_num = int(cores_str)
         subst_dict.update(
             {
-                "cores_num": "${%d}" % cores_num,
-                "cores_str": phy_cores,
-                "tc_num": "tc{num:02d}".format(num=num)
-            })
+                u"cores_num": f"${{{cores_num:d}}}",
+                u"cores_str": phy_cores,
+                u"tc_num": f"tc{num:02d}"
+            }
+        )
         return self.template.substitute(subst_dict)
 
     @classmethod
@@ -82,10 +83,10 @@ class Testcase(object):
         :returns: Instance for generating testcase text of this type.
         :rtype: Testcase
         """
-        template_string = r'''
-| ${tc_num}-${frame_str}-${cores_str}c-''' + suite_id + r'''
-| | [Tags] | ${frame_str} | ${cores_str}C
-| | frame_size=${frame_num} | phy_cores=${cores_num}
+        template_string = f'''
+| ${{tc_num}}-${{frame_str}}-${{cores_str}}c-{suite_id}
+| | [Tags] | ${{frame_str}} | ${{cores_str}}C
+| | frame_size=${{frame_num}} | phy_cores=${{cores_num}}
 '''
         return cls(template_string)
 
@@ -102,9 +103,9 @@ class Testcase(object):
         """
         # TODO: Choose a better frame size identifier for streamed protocols
         # (TCP, QUIC, SCTP, ...) where DUT (not TG) decides frame size.
-        template_string = r'''
-| ${tc_num}-IMIX-${cores_str}c-''' + suite_id + r'''
-| | [Tags] | ${cores_str}C
-| | phy_cores=${cores_num}
+        template_string = f'''
+| ${{tc_num}}-IMIX-${{cores_str}}c-{suite_id}
+| | [Tags] | ${{cores_str}}C
+| | phy_cores=${{cores_num}}
 '''
         return cls(template_string)

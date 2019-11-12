@@ -16,33 +16,35 @@
 *** Settings ***
 | Library | resources.libraries.python.DPDK.DPDKTools
 | Library | resources.libraries.python.TrafficGenerator
-| ...
+|
 | Documentation | Suite teardown keywords.
 
 *** Keywords ***
 | Tear down suite
 | | [Documentation]
 | | ... | Common suite teardown for tests.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - ${actions} - Additional teardown action. Type: list
-| | ...
+| |
 | | [Arguments] | @{actions}
-| | ...
-| | :FOR | ${action} | IN | @{actions}
+| |
+| | FOR | ${action} | IN | @{actions}
 | | | Run Keyword | Additional Suite Tear Down Action For ${action}
+| | END
 | | Remove All Added VIF Ports On All DUTs From Topology | ${nodes}
 
 | Additional Suite Tear Down Action For performance
 | | [Documentation]
 | | ... | Additional teardown for suites which uses performance measurement.
-| | ...
+| |
 | | Teardown traffic generator | ${tg}
 
 | Additional Suite Tear Down Action For dpdk
 | | [Documentation]
 | | ... | Additional teardown for suites which uses dpdk.
-| | ...
-| | :FOR | ${dut} | IN | @{duts}
+| |
+| | FOR | ${dut} | IN | @{duts}
 | | | Cleanup DPDK Environment
 | | | ... | ${nodes['${dut}']} | ${${dut}_if1} | ${${dut}_if2}
+| | END
