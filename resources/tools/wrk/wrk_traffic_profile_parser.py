@@ -26,7 +26,7 @@ from robot.api import logger
 from resources.tools.wrk.wrk_errors import WrkError
 
 
-class WrkTrafficProfile(object):
+class WrkTrafficProfile:
     """The wrk traffic profile.
     """
 
