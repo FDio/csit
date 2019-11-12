@@ -28,9 +28,11 @@ Functionality:
 
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.61/scripts/automation/"+\
-                   "trex_control_plane/interactive/")
+sys.path.insert(
+    0, u"/opt/trex-core-2.61/scripts/automation/trex_control_plane/interactive/"
+)
 from trex.stl.api import *
+
 
 def main():
     """Check server info and quit."""
@@ -48,5 +50,5 @@ def main():
         client.disconnect()
 
 
-if __name__ == "__main__":
+if __name__ == u"__main__":
     main()
