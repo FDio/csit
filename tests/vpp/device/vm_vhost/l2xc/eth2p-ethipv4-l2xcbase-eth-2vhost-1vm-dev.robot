@@ -13,18 +13,18 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
-| ...
+|
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | DEVICETEST | HW_ENV | DCR_ENV | SCAPY
 | ... | NIC_Virtual | ETH | L2XCFWD | BASE | VHOST | 1VM | DRV_VFIO_PCI
-| ...
+|
 | Suite Setup | Setup suite single link | scapy
 | Test Setup | Setup test
 | Test Teardown | Tear down test | packet_trace | vhost
-| ...
+|
 | Test Template | Local Template
-| ...
+|
 | Documentation | *L2 cross-connect test cases with vhost user interface*
-| ...
+|
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology with \
 | ... | VM and single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
@@ -58,16 +58,16 @@
 | | ... | TG send IPv4 packets in both directions between two of its \
 | | ... | i/fs to be switched by DUT to and from VM; verify all packets \
 | | ... | are received. [Ref]
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - frame_size - Framesize in Bytes in integer. Type: integer
 | | ... | - phy_cores - Number of physical cores. Type: integer
 | | ... | - rxq - Number of RX queues, default value: ${None}. Type: integer
-| | ...
+| |
 | | [Arguments] | ${frame_size} | ${phy_cores} | ${rxq}=${None}
-| | ...
+| |
 | | Set Test Variable | \${frame_size}
-| | ...
+| |
 | | Given Set Max Rate And Jumbo
 | | And Add worker threads to all DUTs | ${phy_cores} | ${rxq}
 | | And Pre-initialize layer driver | ${nic_driver}

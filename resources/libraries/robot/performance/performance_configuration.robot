@@ -18,25 +18,25 @@
 | Initialize LISP IPv4 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG \
 | | ... | Don`t set route.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut1_dut2_address - Ip address from DUT1 to DUT2. Type: string
 | | ... | - dut1_tg_address - Ip address from DUT1 to tg. Type: string
 | | ... | - dut2_dut1_address - Ip address from DUT2 to DUT1. Type: string
 | | ... | - dut1_tg_address - Ip address from DUT1 to tg. Type: string
 | | ... | - duts_prefix - ip prefix. Type: int
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Initialize LISP IPv4 forwarding in 3-node circular topology \
 | | ... | \| ${dut1_dut2_address} \| ${dut1_tg_address} \
 | | ... | \| ${dut2_dut1_address} \| ${dut2_tg_address} \| ${duts_prefix} \|
-| | ...
+| |
 | | [Arguments] | ${dut1_dut2_address} | ${dut1_tg_address}
 | | ... | ${dut2_dut1_address} | ${dut2_tg_address} | ${duts_prefix}
-| | ...
+| |
 | | Set interfaces in path up
 | | VPP Add IP Neighbor | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg_if1_mac}
 | | VPP Add IP Neighbor
@@ -55,20 +55,20 @@
 
 | Initialize LISP GPE IPv4 over IPsec in 3-node circular topology
 | | [Documentation] | Setup Lisp GPE IPv4 forwarding over IPsec.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - encr_alg - Encryption algorithm. Type: string
 | | ... | - auth_alg - Authentication algorithm. Type: string
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Initialize LISP GPE IPv4 over IPsec in 3-node circular topology\
 | | ... | \| ${encr_alg} \| ${auth_alg}
-| | ...
+| |
 | | [Arguments] | ${encr_alg} | ${auth_alg}
-| | ...
+| |
 | | Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
@@ -90,25 +90,25 @@
 | Initialize LISP IPv6 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv6 topology on all DUT nodes \
 | | ... | Don`t set route.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut1_dut2_address - Ip address from DUT1 to DUT2. Type: string
 | | ... | - dut1_tg_address - Ip address from DUT1 to tg. Type: string
 | | ... | - dut2_dut1_address - Ip address from DUT2 to DUT1. Type: string
 | | ... | - dut1_tg_address - Ip address from DUT1 to tg. Type: string
 | | ... | - duts_prefix - ip prefix. Type: int
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Initialize LISP IPv6 forwarding in 3-node circular topology \
 | | ... | \| ${dut1_dut2_address} \| ${dut1_tg_address} \
 | | ... | \| ${dut2_dut1_address} \| ${dut2_tg_address} \| ${duts_prefix} \|
-| | ...
+| |
 | | [Arguments] | ${dut1_dut2_address} | ${dut1_tg_address}
 | | ... | ${dut2_dut1_address} | ${dut2_tg_address} | ${prefix}
-| | ...
+| |
 | | Set interfaces in path up
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_tg_address} | ${prefix}
@@ -129,7 +129,7 @@
 | Initialize LISP IPv4 over IPv6 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 over IPv6 topology on all DUT nodes \
 | | ... | Don`t set route.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut1_dut2_ip6_address - IPv6 address from DUT1 to DUT2.
 | | ... | Type: string
@@ -139,20 +139,20 @@
 | | ... | - dut1_tg_ip4_address - IPv4 address from DUT1 to tg. Type: string
 | | ... | - prefix4 - IPv4 prefix. Type: int
 | | ... | - prefix6 - IPv6 prefix. Type: int
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Lisp IPv4 over IPv6 forwarding initialized in a 3-node circular \
 | | ... | topology \| ${dut1_dut2_ip6_address} \| ${dut1_tg_ip4_address} \
 | | ... | \| ${dut2_dut1_ip6_address} \| ${dut2_tg_ip4_address} \
 | | ... | \| ${prefix4} \| ${prefix6} \|
-| | ...
+| |
 | | [Arguments] | ${dut1_dut2_ip6_address} | ${dut1_tg_ip4_address}
 | | ... | ${dut2_dut1_ip6_address} | ${dut2_tg_ip4_address}
 | | ... | ${prefix4} | ${prefix6}
-| | ...
+| |
 | | Set interfaces in path up
 | | VPP Interface Set IP Address | ${dut1} | ${dut1_if1}
 | | ... | ${dut1_tg_ip4_address} | ${prefix4}
@@ -173,7 +173,7 @@
 | Initialize LISP IPv6 over IPv4 forwarding in 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 over IPv6 topology on all DUT nodes \
 | | ... | Don`t set route.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut1_dut2_ip4_address - IPv4 address from DUT1 to DUT2.
 | | ... | Type: string
@@ -183,20 +183,20 @@
 | | ... | - dut1_tg_ip6_address - IPv6 address from DUT1 to tg. Type: string
 | | ... | - prefix4 - IPv4 prefix. Type: int
 | | ... | - prefix6 - IPv6 prefix. Type: int
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Lisp IPv6 over IPv4 forwarding initialized in a 3-node circular \
 | | ... | topology \| ${dut1_dut2_ip4_address} \| ${dut1_tg_ip6_address} \
 | | ... | \| ${dut2_dut1_ip4_address} \| ${dut2_tg_ip6_address} \
 | | ... | \| ${prefix6} \| ${prefix4} \|
-| | ...
+| |
 | | [Arguments] | ${dut1_dut2_ip4_address} | ${dut1_tg_ip6_address}
 | | ... | ${dut2_dut1_ip4_address} | ${dut2_tg_ip6_address}
 | | ... | ${prefix6} | ${prefix4}
-| | ...
+| |
 | | Set interfaces in path up
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_tg_ip6_address} | ${prefix6}

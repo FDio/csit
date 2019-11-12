@@ -19,7 +19,7 @@ from resources.libraries.python.PapiExecutor import PapiSocketExecutor
 from resources.libraries.python.topology import NodeType
 
 
-class IPv6Util(object):
+class IPv6Util:
     """IPv6 utilities"""
 
     @staticmethod
@@ -31,12 +31,13 @@ class IPv6Util(object):
         :type node: dict
         :type interface: str
         """
-        cmd = 'sw_interface_ip6nd_ra_config'
+        cmd = u"sw_interface_ip6nd_ra_config"
         args = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
-            suppress=1)
-        err_msg = 'Failed to suppress ICMPv6 router advertisement message on ' \
-                  'interface {ifc}'.format(ifc=interface)
+            suppress=1
+        )
+        err_msg = f"Failed to suppress ICMPv6 router advertisement message " \
+            f"on interface {interface}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -53,12 +54,13 @@ class IPv6Util(object):
         :type interface: str
         :type interval: int
         """
-        cmd = 'sw_interface_ip6nd_ra_config'
+        cmd = u"sw_interface_ip6nd_ra_config"
         args = dict(
             sw_if_index=InterfaceUtil.get_interface_index(node, interface),
-            initial_interval=int(interval))
-        err_msg = 'Failed to set router advertisement interval on ' \
-                  'interface {ifc}'.format(ifc=interface)
+            initial_interval=int(interval)
+        )
+        err_msg = f"Failed to set router advertisement interval " \
+            f"on interface {interface}"
 
         with PapiSocketExecutor(node) as papi_exec:
             papi_exec.add(cmd, **args).get_reply(err_msg)
@@ -72,10 +74,11 @@ class IPv6Util(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.TG:
+            if node[u"type"] == NodeType.TG:
                 continue
-            for port_k in node['interfaces'].keys():
+            for port_k in node[u"interfaces"].keys():
                 ip6_addr_list = IPUtil.vpp_get_interface_ip_addresses(
-                    node, port_k, 'ipv6')
+                    node, port_k, u"ipv6"
+                )
                 if ip6_addr_list:
                     IPv6Util.vpp_ra_suppress_link_layer(node, port_k)
