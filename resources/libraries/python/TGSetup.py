@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,8 +13,8 @@
 
 """TG Setup library."""
 
-from resources.libraries.python.topology import NodeType
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
+from resources.libraries.python.topology import NodeType
 
 
 class TGSetup(object):
@@ -28,5 +28,5 @@ class TGSetup(object):
         :type nodes: dict
         """
         for node in nodes.values():
-            if node['type'] == NodeType.TG:
+            if node[u"type"] == NodeType.TG:
                 InterfaceUtil.tg_set_interfaces_default_driver(node)

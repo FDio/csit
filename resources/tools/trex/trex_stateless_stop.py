@@ -28,12 +28,14 @@ Functionality:
 """
 
 import argparse
-from collections import OrderedDict  # Needed to parse xstats representation.
-import sys
 import json
+import sys
 
-sys.path.insert(0, "/opt/trex-core-2.61/scripts/automation/"+\
-                   "trex_control_plane/interactive/")
+from collections import OrderedDict  # Needed to parse xstats representation.
+
+sys.path.insert(
+    0, u"/opt/trex-core-2.61/scripts/automation/trex_control_plane/interactive/"
+)
 from trex.stl.api import *
 
 
@@ -41,9 +43,13 @@ def main():
     """Stop traffic if any is running. Report xstats."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--xstat0", type=str, default="", help="Reference xstat object if any.")
+        u"--xstat0", type=str, default=u"",
+        help=u"Reference xstat object if any."
+    )
     parser.add_argument(
-        "--xstat1", type=str, default="", help="Reference xstat object if any.")
+        u"--xstat1", type=str, default=u"",
+        help=u"Reference xstat object if any."
+    )
     args = parser.parse_args()
 
     client = STLClient()
@@ -71,26 +77,27 @@ def main():
     finally:
         client.disconnect()
 
-    print("##### statistics port 0 #####")
-    print(json.dumps(xstats0, indent=4, separators=(',', ': ')))
-    print("##### statistics port 1 #####")
-    print(json.dumps(xstats1, indent=4, separators=(',', ': ')))
+    print(u"##### statistics port 0 #####")
+    print(json.dumps(xstats0, indent=4, separators=(u",", u": ")))
+    print(u"##### statistics port 1 #####")
+    print(json.dumps(xstats1, indent=4, separators=(u",", u": ")))
 
-    tx_0, rx_0 = xstats0["tx_good_packets"], xstats0["rx_good_packets"]
-    tx_1, rx_1 = xstats1["tx_good_packets"], xstats1["rx_good_packets"]
+    tx_0, rx_0 = xstats0[u"tx_good_packets"], xstats0[u"rx_good_packets"]
+    tx_1, rx_1 = xstats1[u"tx_good_packets"], xstats1[u"rx_good_packets"]
     lost_a, lost_b = tx_0 - rx_1, tx_1 - rx_0
 
-    print("\npackets lost from 0 --> 1:   {0} pkts".format(lost_a))
-    print("packets lost from 1 --> 0:   {0} pkts".format(lost_b))
+    print(f"\npackets lost from 0 --> 1:   {lost_a} pkts")
+    print(f"packets lost from 1 --> 0:   {lost_b} pkts")
 
     total_rcvd, total_sent = rx_0 + rx_1, tx_0 + tx_1
     total_lost = total_sent - total_rcvd
     # TODO: Add latency.
     print(
-        "rate='unknown', totalReceived={rec}, totalSent={sen}, frameLoss={los},"
-        " latencyStream0(usec)=-1/-1/-1, latencyStream1(usec)=-1/-1/-1,"
-        " targetDuration='manual'".format(
-            rec=total_rcvd, sen=total_sent, los=total_lost))
+        f"rate='unknown', totalReceived={total_rcvd}, totalSent={total_sent}, "
+        f"frameLoss={total_lost}, latencyStream0(usec)=-1/-1/-1, "
+        f"latencyStream1(usec)=-1/-1/-1, targetDuration='manual'"
+    )
 
-if __name__ == "__main__":
+
+if __name__ == u"__main__":
     main()
