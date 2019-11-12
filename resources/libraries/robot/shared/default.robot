@@ -20,57 +20,57 @@
 | Library | OperatingSystem
 | Library | String
 | ...
-| Library | resources.libraries.python.Classify
-| Library | resources.libraries.python.CpuUtils
-| Library | resources.libraries.python.CoreDumpUtil
-| Library | resources.libraries.python.Cop
-| Library | resources.libraries.python.DUTSetup
-| Library | resources.libraries.python.L2Util
-| Library | resources.libraries.python.InterfaceUtil
-| Library | resources.libraries.python.IPUtil
-| Library | resources.libraries.python.IPv6Util
-| Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.Namespaces
-| Library | resources.libraries.python.PapiHistory
-| Library | resources.libraries.python.SchedUtils
-| Library | resources.libraries.python.Tap
-| Library | resources.libraries.python.TestConfig
-| Library | resources.libraries.python.TGSetup
-| Library | resources.libraries.python.topology.Topology
-| Library | resources.libraries.python.Trace
-| Library | resources.libraries.python.VppCounters
-| Library | resources.libraries.python.VPPUtil
+| Library | resources/libraries/python/Classify.py
+| Library | resources/libraries/python/CpuUtils.py
+| Library | resources/libraries/python/CoreDumpUtil.py
+| Library | resources/libraries/python/Cop.py
+| Library | resources/libraries/python/DUTSetup.py
+| Library | resources/libraries/python/L2Util.py
+| Library | resources/libraries/python/InterfaceUtil.py
+| Library | resources/libraries/python/IPUtil.py
+| Library | resources/libraries/python/IPv6Util.py
+| Library | resources/libraries/python/NodePath.py
+| Library | resources/libraries/python/Namespaces.py
+| Library | resources/libraries/python/PapiHistory.py
+| Library | resources/libraries/python/SchedUtils.py
+| Library | resources/libraries/python/Tap.py
+| Library | resources/libraries/python/TestConfig.py
+| Library | resources/libraries/python/TGSetup.py
+| Library | resources/libraries/python/topology.Topology.py
+| Library | resources/libraries/python/Trace.py
+| Library | resources/libraries/python/VppCounters.py
+| Library | resources/libraries/python/VPPUtil.py
 | ...
-| Resource | resources/libraries/robot/lb/load_balancer.robot
-| Resource | resources/libraries/robot/crypto/ipsec.robot
-| Resource | resources/libraries/robot/features/acl.robot
-| Resource | resources/libraries/robot/features/gbp.robot
-| Resource | resources/libraries/robot/features/policer.robot
-| Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/ip/ip6.robot
-| Resource | resources/libraries/robot/ip/nat.robot
-| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
-| Resource | resources/libraries/robot/l2/l2_patch.robot
-| Resource | resources/libraries/robot/l2/l2_traffic.robot
-| Resource | resources/libraries/robot/l2/l2_xconnect.robot
-| Resource | resources/libraries/robot/l2/tagging.robot
-| Resource | resources/libraries/robot/overlay/srv6.robot
-| Resource | resources/libraries/robot/overlay/lisp.robot
-| Resource | resources/libraries/robot/overlay/lispgpe.robot
-| Resource | resources/libraries/robot/overlay/lisp_api.robot
-| Resource | resources/libraries/robot/performance/performance_configuration.robot
-| Resource | resources/libraries/robot/performance/performance_limits.robot
-| Resource | resources/libraries/robot/performance/performance_utils.robot
-| Resource | resources/libraries/robot/shared/interfaces.robot
-| Resource | resources/libraries/robot/shared/container.robot
-| Resource | resources/libraries/robot/shared/memif.robot
-| Resource | resources/libraries/robot/shared/suite_teardown.robot
-| Resource | resources/libraries/robot/shared/suite_setup.robot
-| Resource | resources/libraries/robot/shared/test_teardown.robot
-| Resource | resources/libraries/robot/shared/test_setup.robot
-| Resource | resources/libraries/robot/shared/testing_path.robot
-| Resource | resources/libraries/robot/shared/traffic.robot
-| Resource | resources/libraries/robot/shared/vm.robot
+#| Resource | resources/libraries/robot/lb/load_balancer.robot
+#| Resource | resources/libraries/robot/crypto/ipsec.robot
+#| Resource | resources/libraries/robot/features/acl.robot
+#| Resource | resources/libraries/robot/features/gbp.robot
+#| Resource | resources/libraries/robot/features/policer.robot
+#| Resource | resources/libraries/robot/ip/ip4.robot
+#| Resource | resources/libraries/robot/ip/ip6.robot
+#| Resource | resources/libraries/robot/ip/nat.robot
+#| Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
+#| Resource | resources/libraries/robot/l2/l2_patch.robot
+#| Resource | resources/libraries/robot/l2/l2_traffic.robot
+#| Resource | resources/libraries/robot/l2/l2_xconnect.robot
+#| Resource | resources/libraries/robot/l2/tagging.robot
+#| Resource | resources/libraries/robot/overlay/srv6.robot
+#| Resource | resources/libraries/robot/overlay/lisp.robot
+#| Resource | resources/libraries/robot/overlay/lispgpe.robot
+#| Resource | resources/libraries/robot/overlay/lisp_api.robot
+#| Resource | resources/libraries/robot/performance/performance_configuration.robot
+#| Resource | resources/libraries/robot/performance/performance_limits.robot
+#| Resource | resources/libraries/robot/performance/performance_utils.robot
+#| Resource | resources/libraries/robot/shared/interfaces.robot
+#| Resource | resources/libraries/robot/shared/container.robot
+#| Resource | resources/libraries/robot/shared/memif.robot
+#| Resource | resources/libraries/robot/shared/suite_teardown.robot
+#| Resource | resources/libraries/robot/shared/suite_setup.robot
+#| Resource | resources/libraries/robot/shared/test_teardown.robot
+#| Resource | resources/libraries/robot/shared/test_setup.robot
+#| Resource | resources/libraries/robot/shared/testing_path.robot
+#| Resource | resources/libraries/robot/shared/traffic.robot
+#| Resource | resources/libraries/robot/shared/vm.robot
 
 *** Keywords ***
 | Configure crypto device on all DUTs
@@ -91,9 +91,10 @@
 | | ...
 | | [Arguments] | ${crypto_type} | ${numvfs} | ${force_init}=${False}
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Crypto Device Verify | ${nodes['${dut}']} | ${crypto_type}
 | | | ... | ${numvfs} | force_init=${force_init}
+| | END
 
 | Configure kernel module on all DUTs
 | | [Documentation] | Verify if specific kernel module is loaded on all DUTs.
@@ -115,8 +116,8 @@
 | Create base startup configuration of VPP on all DUTs
 | | [Documentation] | Create base startup configuration of VPP to all DUTs.
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
-| | | Import Library | resources.libraries.python.VppConfigGenerator
+| | FOR | ${dut} | IN | @{duts}
+| | | Import Library | resources/libraries/python/VppConfigGenerator.py
 | | | ... | WITH NAME | ${dut}
 | | | Run keyword | ${dut}.Set Node |  ${nodes['${dut}']}
 | | | Run keyword | ${dut}.Add Unix Log
@@ -132,6 +133,7 @@
 | | | Run keyword | ${dut}.Add IP6 Hash Buckets | 2000000
 | | | Run keyword | ${dut}.Add IP6 Heap Size | 4G
 | | | Run keyword | ${dut}.Add IP Heap Size | 4G
+| | END
 
 | Add worker threads to all DUTs
 | | [Documentation] | Setup worker threads in vpp startup configuration on all
@@ -160,7 +162,7 @@
 | | ${thr_count_int} | Convert to Integer | ${phy_cores}
 | | ${rxd_count_int}= | Set variable | ${rxd}
 | | ${txd_count_int}= | Set variable | ${txd}
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
 | | | @{if_list}= | Run Keyword If | '${if1_status}' == 'PASS'
@@ -201,6 +203,7 @@
 | | | Run keyword if | ${thr_count_int} > 1
 | | | ... | Set Tags | MTHREAD | ELSE | Set Tags | STHREAD
 | | | Set Tags | ${thr_count_int}T${cpu_count_int}C
+| | END
 | | Set Test Variable | ${smt_used}
 | | Set Test Variable | ${thr_count_int}
 | | Set Test Variable | ${cpu_count_int}
@@ -212,7 +215,7 @@
 | | [Documentation]
 | | ... | Add PCI devices to VPP configuration file.
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | ${if1_status} | ${value}= | Run Keyword And Ignore Error
 | | | ... | Variable Should Exist | ${${dut}_if1}
 | | | ${if1_pci}= | Run Keyword If | '${if1_status}' == 'PASS'
@@ -250,12 +253,14 @@
 | | | ... | Set Test Variable | ${${dut}_if2_1_pci} | ${if2_1_pci}
 | | | Run Keyword Unless | '${if2_status}' == 'PASS'
 | | | ... | Set Test Variable | ${${dut}_if2_2_pci} | ${if2_2_pci}
+| | END
 
 | Add DPDK no PCI to all DUTs
 | | [Documentation] | Add DPDK no-pci to VPP startup configuration to all DUTs.
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK no PCI
+| | END
 
 | Add VLAN strip offload switch off between DUTs in 3-node single link topology
 | | [Documentation]
@@ -284,14 +289,16 @@
 | Add NAT to all DUTs
 | | [Documentation] | Add NAT configuration to all DUTs.
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add NAT
+| | END
 
 | Write startup configuration on all VPP DUTs
 | | [Documentation] | Write VPP startup configuration without restarting VPP.
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Write Config
+| | END
 
 | Apply startup configuration on all VPP DUTs
 | | [Documentation] | Write VPP startup configuration and restart VPP on all
@@ -306,10 +313,11 @@
 | | ...
 | | [Arguments] | ${with_trace}=${False}
 | | ...
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Apply Config
 | | | Add New Socket | ${nodes['${dut}']} | PAPI | ${dut} | ${SOCKSVR_PATH}
 | | | Add New Socket | ${nodes['${dut}']} | STATS | ${dut} | ${SOCKSTAT_PATH}
+| | END
 | | Save VPP PIDs
 | | Enable Coredump Limit VPP on All DUTs | ${nodes}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
@@ -323,9 +331,10 @@
 | | ${setup_vpp_pids}= | Get VPP PIDs | ${nodes}
 | | ${keys}= | Get Dictionary Keys | ${setup_vpp_pids}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${key} | IN | @{keys}
+| | FOR | ${key} | IN | @{keys}
 | | | ${pid}= | Get From Dictionary | ${setup_vpp_pids} | ${key}
 | | | Run Keyword If | $pid is None | FAIL | No VPP PID found on node ${key}
+| | END
 | | Set Test Variable | ${setup_vpp_pids}
 
 | Verify VPP PID in Teardown
@@ -355,9 +364,10 @@
 | | Update All Interface Data On All Nodes | ${nodes}
 | | Reset PAPI History On All DUTs | ${nodes}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
+| | FOR | ${dut} | IN | @{duts}
 | | | Add New Socket | ${nodes['${dut}']} | PAPI | ${dut} | ${SOCKSVR_PATH}
 | | | Add New Socket | ${nodes['${dut}']} | STATS | ${dut} | ${SOCKSTAT_PATH}
+| | END
 
 # TODO: Cleanup when VIRL is gone.
 | Tear down functional test
