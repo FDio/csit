@@ -23,10 +23,10 @@
 *** Keywords ***
 | Configure topology for IPv4 LISP testing
 | | [Documentation] | Setup topology for IPv4 LISP testing.
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Configure topology for IPv4 LISP testing \|
-| | ...
+| |
 | | Set interfaces in path up
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut_if1_ip4} | ${ip4_plen}
@@ -41,10 +41,10 @@
 
 | Configure topology for IPv6 LISP testing
 | | [Documentation] | Setup topology fo IPv6 LISP testing.
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Configure topology for IPv6 LISP testing \|
-| | ...
+| |
 | | Set interfaces in path up
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut_if1_ip6} | ${ip6_plen}
@@ -59,7 +59,7 @@
 
 | Configure LISP in 2-node circular topology
 | | [Documentation] | Configure LISP topology in 2-node circular topology.
-| | ...
+| |
 | | ... | *Arguments:*
 | | ... | - dut1 - DUT1 node. Type: dictionary
 | | ... | - dut1_if - DUT1 node interface. Type: string
@@ -70,27 +70,27 @@
 | | ... | - is_gpe - To enable GPE. Other than zero to enable Type: integer
 | | ... | - vni_table - vni table Eid Table Mapping Type: integer
 | | ... | - vrf_table - vrf table Eid Table Mapping Type: integer
-| | ...
+| |
 | | ... | *Return:*
 | | ... | - No value returned
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Configure LISP in 2-node circular topology \
 | | ... | \| ${dut1} \| ${interface_name} \
 | | ... | \| None \| ${locator_set} \| ${dut1_eid} \
 | | ... | \| ${dut1_static_adjacency} \|
-| | ...
+| |
 | | [Arguments]
 | | ... | ${dut1} | ${dut1_if} | ${dut1_int_index}
 | | ... | ${locator_set} | ${dut1_eid}
 | | ... | ${dut1_static_adjacency}
 | | ... | ${is_gpe}=0
 | | ... | ${vni_table}=0 | ${vrf_table}=0
-| | ...
-# DUT1 settings:
+| |
+| | # DUT1 settings:
 | | ${dut1_int_index}= | Run Keyword If | ${dut1_int_index} is None
-| |  ... | Get Interface Sw Index | ${dut1} | ${dut1_if}
-| |  ... | ELSE | Set Variable | ${dut1_int_index}
+| | ... | Get Interface Sw Index | ${dut1} | ${dut1_if}
+| | ... | ELSE | Set Variable | ${dut1_int_index}
 | | Enable Lisp | ${dut1}
 | | Run keyword if | ${is_gpe} != 0
 | | ... | Enable Lisp GPE | ${dut1}
@@ -118,10 +118,10 @@
 
 | Configure topology for IPv6 LISPoIP4 testing
 | | [Documentation] | Setup topology fo IPv6 LISPoIPV4 testing.
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Configure topology for IPv6 LISPoIP4 testing \|
-| | ...
+| |
 | | Set interfaces in path up
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut_if1_ip6} | ${ip6_plen}
@@ -136,10 +136,10 @@
 
 | Configure topology for IPv4 LISPoIP6 testing
 | | [Documentation] | Setup topology fo IPv4 LISPoIPV6 testing.
-| | ...
+| |
 | | ... | *Example:*
 | | ... | \| Configure topology for IPv4 LISPoIP6 testing \|
-| | ...
+| |
 | | Set interfaces in path up
 | | VPP Interface Set IP Address
 | | ... | ${dut1} | ${dut1_if1} | ${dut_if1_ip4} | ${ip4_plen}

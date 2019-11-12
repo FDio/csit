@@ -15,7 +15,7 @@
 
 from resources.libraries.python.ssh import exec_cmd_no_error
 
-__all__ = ["SysctlUtil"]
+__all__ = [u"SysctlUtil"]
 
 
 class SysctlUtil(object):
@@ -30,10 +30,8 @@ class SysctlUtil(object):
         :type node: dict
         :type key: str
         """
-        command = 'sysctl {key}'.format(key=key)
-
-        message = 'Node {host} failed to run: {command}'.\
-            format(host=node['host'], command=command)
+        command = f"sysctl {key}"
+        message = f"Node {node[u'host']} failed to run: {command}"
 
         exec_cmd_no_error(node, command, sudo=True, message=message)
 
@@ -48,10 +46,7 @@ class SysctlUtil(object):
         :type key: str
         :type value: str
         """
-        command = 'sysctl -w {key}={value}'.format(key=key, value=value)
-
-        message = 'Node {host} failed to run: {command}'.\
-            format(host=node['host'], command=command)
+        command = f"sysctl -w {key}={value}"
+        message = f"Node {node[u'host']} failed to run: {command}"
 
         exec_cmd_no_error(node, command, sudo=True, message=message)
-

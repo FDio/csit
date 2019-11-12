@@ -17,7 +17,7 @@
 class OptionString(object):
     """Class serving as a builder for option strings.
 
-    Motivation: Both manual contatenation and .join() methods
+    Motivation: Both manual concatenation and .join() methods
     are prone to leaving superfluous spaces if some parts of options
     are optional (missing, empty).
 
@@ -36,7 +36,7 @@ class OptionString(object):
     the best fitting one, without much logic near the call site.
     """
 
-    def __init__(self, parts=tuple(), prefix=""):
+    def __init__(self, parts=tuple(), prefix=u""):
         """Create instance with listed strings as parts to use.
 
         Prefix will be converted to string and stripped.
@@ -44,8 +44,8 @@ class OptionString(object):
 
         TODO: Support users calling with parts being a string?
 
-        :param parts: List of of stringifiable objects to become parts.
-        :param prefix: Subtring to prepend to every parameter (not value).
+        :param parts: List of stringifiable objects to become parts.
+        :param prefix: Substring to prepend to every parameter (not value).
         :type parts: Iterable of object
         :type prefix: object
         """
@@ -58,8 +58,7 @@ class OptionString(object):
         :returns: Executable constructor call as string.
         :rtype: str
         """
-        return "OptionString(parts={parts!r},prefix={prefix!r})".format(
-            parts=self.parts, prefix=self.prefix)
+        return f"OptionString(parts={self.parts!r},prefix={self.prefix!r})"
 
     # TODO: Would we ever need a copy() method?
     # Currently, superstring "master" is mutable but unique,
@@ -106,7 +105,7 @@ class OptionString(object):
         :returns: The converted part without prefix, empty means not added.
         :rtype: str
         """
-        part = "" if part is None else str(part).strip()
+        part = u"" if part is None else str(part).strip()
         if part:
             prefixed_part = self.prefix + part if prefixed else part
             self.parts.append(prefixed_part)
@@ -120,7 +119,7 @@ class OptionString(object):
         Parameter is prefixed before adding.
 
         :param parameter: Parameter object, usually a word starting with dash.
-        :type variable: object
+        :type parameter: object
         :returns: Self, to enable method chaining.
         :rtype: OptionString
         """
@@ -137,7 +136,7 @@ class OptionString(object):
 
         :param parameter: Parameter object, usually a word starting with dash.
         :param condition: Do not add if truth value of this is false.
-        :type variable: object
+        :type parameter: object
         :type condition: object
         :returns: Self, to enable method chaining.
         :rtype: OptionString
@@ -155,7 +154,7 @@ class OptionString(object):
 
         :param parameter: Parameter object, usually a word starting with dash.
         :param value: Value object. Prefix is never added.
-        :type variable: object
+        :type parameter: object
         :type value: object
         :returns: Self, to enable method chaining.
         :rtype: OptionString
@@ -178,7 +177,7 @@ class OptionString(object):
 
         :param parameter: Parameter object, usually a word starting with dash.
         :param value: Value object. Prefix is never added.
-        :type variable: object
+        :type parameter: object
         :type value: object
         :returns: Self, to enable method chaining.
         :rtype: OptionString
@@ -187,7 +186,7 @@ class OptionString(object):
         # pylint: disable=protected-access
         if temp._check_and_add(parameter, prefixed=True):
             if temp._check_and_add(value, prefixed=False):
-                self.parts.append("=".join(temp.parts))
+                self.parts.append(u"=".join(temp.parts))
         return self
 
     def add_with_value_if(self, parameter, value, condition):
@@ -201,7 +200,7 @@ class OptionString(object):
         :param parameter: Parameter object, usually a word starting with dash.
         :param value: Value object. Prefix is never added.
         :param condition: Do not add if truth value of this is false.
-        :type variable: object
+        :type parameter: object
         :type value: object
         :type condition: object
         :returns: Self, to enable method chaining.
@@ -222,7 +221,7 @@ class OptionString(object):
         :param parameter: Parameter object, usually a word starting with dash.
         :param value: Value object. Prefix is never added.
         :param condition: Do not add if truth value of this is false.
-        :type variable: object
+        :type parameter: object
         :type value: object
         :type condition: object
         :returns: Self, to enable method chaining.
@@ -232,7 +231,7 @@ class OptionString(object):
             self.add_equals(parameter, value)
         return self
 
-    def add_with_value_from_dict(self, parameter, key, mapping, default=""):
+    def add_with_value_from_dict(self, parameter, key, mapping, default=u""):
         """Add parameter with value from dict under key, or default.
 
         If key is missing, default is used as value.
@@ -254,7 +253,7 @@ class OptionString(object):
         value = mapping.get(key, default)
         return self.add_with_value(parameter, value)
 
-    def add_equals_from_dict(self, parameter, key, mapping, default=""):
+    def add_equals_from_dict(self, parameter, key, mapping, default=u""):
         """Add parameter=value to options where value is from dict.
 
         If key is missing, default is used as value.
@@ -276,7 +275,7 @@ class OptionString(object):
         value = mapping.get(key, default)
         return self.add_equals(parameter, value)
 
-    def add_if_from_dict(self, parameter, key, mapping, default="False"):
+    def add_if_from_dict(self, parameter, key, mapping, default=u"False"):
         """Add parameter based on if the condition in dict is true.
 
         If key is missing, default is used as condition.
@@ -300,7 +299,7 @@ class OptionString(object):
         return self.add_if(parameter, condition)
 
     def add_with_value_if_from_dict(
-            self, parameter, value, key, mapping, default="False"):
+            self, parameter, value, key, mapping, default=u"False"):
         """Add parameter and value based on condition in dict.
 
         If key is missing, default is used as condition.
@@ -326,7 +325,7 @@ class OptionString(object):
         return self.add_with_value_if(parameter, value, condition)
 
     def add_equals_if_from_dict(
-            self, parameter, value, key, mapping, default="False"):
+            self, parameter, value, key, mapping, default=u"False"):
         """Add parameter=value based on condition in dict.
 
         If key is missing, default is used as condition.
@@ -361,4 +360,4 @@ class OptionString(object):
         :returns: Space separated string of options.
         :rtype: str
         """
-        return " ".join(self.parts)
+        return u" ".join(self.parts)
