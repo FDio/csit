@@ -963,7 +963,7 @@ class IPsecUtil(object):
                 is_add=True,
                 del_all=False,
                 prefix=IPUtil.create_prefix_object(
-                    if2_ip - 1, 96 if if2_ip.version == 6 else 24)
+                    if1_ip, 128 if if1_ip.version == 6 else 32)
             )
             err_msg = 'Failed to set IP address on interface {ifc} on host ' \
                       '{host}'.format(ifc=if1_key, host=nodes['DUT1']['host'])
@@ -1006,11 +1006,11 @@ class IPsecUtil(object):
                     ikeys.append(
                         gen_key(IPsecUtil.get_integ_alg_key_len(integ_alg)))
                 args1['prefix'] = IPUtil.create_prefix_object(
-                    if1_ip + i * addr_incr, 128 if if1_ip.version == 6 else 32)
+                    if1_ip + (i+1) * addr_incr, 128 if if1_ip.version == 6 else 32)
                 args2['local_spi'] = spi_1 + i
                 args2['remote_spi'] = spi_2 + i
                 args2['local_ip'] = IPUtil.create_ip_address_object(
-                    if1_ip + i * addr_incr)
+                    if1_ip + (i+1) * addr_incr)
                 args2['remote_ip'] = IPUtil.create_ip_address_object(if2_ip)
                 args2['local_crypto_key_len'] = len(ckeys[i])
                 args2['local_crypto_key'] = ckeys[i]
@@ -1105,7 +1105,7 @@ class IPsecUtil(object):
                 args2['remote_spi'] = spi_1 + i
                 args2['local_ip'] = IPUtil.create_ip_address_object(if2_ip)
                 args2['remote_ip'] = IPUtil.create_ip_address_object(
-                    if1_ip + i * addr_incr)
+                    if1_ip + (i+1) * addr_incr)
                 args2['local_crypto_key_len'] = len(ckeys[i])
                 args2['local_crypto_key'] = ckeys[i]
                 args2['remote_crypto_key_len'] = len(ckeys[i])
