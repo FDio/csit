@@ -303,6 +303,8 @@ class PapiSocketExecutor(object):
                 break
         else:
             raise RuntimeError("Failed to connect to VPP over a socket.")
+        logger.trace(vpp_instance.dump_message_table())
+        logger.trace(vpp_instance.dump_message_table_filtered([u"sw_interface_add_del_mac_address"]))
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
