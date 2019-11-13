@@ -8,10 +8,7 @@
   tags: kill-containers
 
 - name: Kill container - Remove all Docker containers
-  become: yes
-  docker_container:
-    name: "{{ item }}"
-    state: absent
+  shell: "docker rm --force {{ item }}"
   with_items: "{{ running_containers.stdout_lines }}"
   tags: kill-containers
 
@@ -22,9 +19,6 @@
   tags: kill-containers
 
 - name: Kill container - Remove all LXC containers
-  become: yes
-  lxc_container:
-    name: '{{ item }}'
-    state: absent
+  shell: "lxc-destroy --force -n {{ item }}"
   with_items: "{{ running_containers.stdout_lines }}"
   tags: kill-containers
