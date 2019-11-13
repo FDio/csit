@@ -133,18 +133,16 @@
     # ^^ tc01-64B-1c-avf-eth-l2patch-mrr # currently failing after calls
     # ^ l2patchANDdrv_avf
     # l2fib_add_del / reply # unused L1 keyword: vpp_add_l2fib_entry
-    lb_conf: '0x22ddb739'  # perf
-    lb_conf_reply: '0xe8d4e804'  # perf
-    lb_add_del_vip: '0xd15b7ddc'  # perf
-    lb_add_del_vip_reply: '0xe8d4e804'  # perf
-    lb_add_del_as: '0x78628987'  # perf
-    lb_add_del_as_reply: '0xe8d4e804'  # perf
-    # 6x^ tc01-64B-1c-ethip4-loadbalancer-maglev
-    # ^ 2n: loadbalancer
-    lb_add_del_intf_nat4: '0x47d6e753'  # perf
-    lb_add_del_intf_nat4_reply: '0xe8d4e804'  # perf
-    # ^^ tc01-64B-1c-ethip4-loadbalancer-nat4
-    # ^^ loadbalancer-nat4
+    lb_conf: '0' # '0x22ddb739'  # perf
+    lb_conf_reply: '0' # '0xe8d4e804'  # perf
+    lb_add_del_vip: '0' # '0xd15b7ddc'  # perf
+    lb_add_del_vip_reply: '0' # '0xe8d4e804'  # perf
+    lb_add_del_as: '0' # '0x78628987'  # perf
+    lb_add_del_as_reply: '0' # '0xe8d4e804'  # perf
+    lb_add_del_intf_nat4: '0' # '0x47d6e753'  # perf
+    lb_add_del_intf_nat4_reply: '0' # '0xe8d4e804'  # perf
+    # 8x^ tc01-64B-1c-ethip4-loadbalancer-nat4
+    # ^ 2n: loadbalancer_nat4
     lisp_add_del_adjacency: '0xf047390d'  # dev
     lisp_add_del_adjacency_reply: '0xe8d4e804'  # dev
     lisp_add_del_local_eid: '0xe6d00717'  # dev
@@ -374,18 +372,16 @@
     # ^^ tc01-64B-1c-avf-eth-l2patch-mrr # currently failing after calls
     # ^ l2patchANDdrv_avf
     # l2fib_add_del / reply # unused L1 keyword: vpp_add_l2fib_entry
-    lb_conf: '0x22ddb739'  # perf
-    lb_conf_reply: '0xe8d4e804'  # perf
-    lb_add_del_vip: '0xd15b7ddc'  # perf
-    lb_add_del_vip_reply: '0xe8d4e804'  # perf
-    lb_add_del_as: '0x78628987'  # perf
-    lb_add_del_as_reply: '0xe8d4e804'  # perf
-    # 6x^ tc01-64B-1c-ethip4-loadbalancer-maglev
-    # ^ 2n: loadbalancer
-    lb_add_del_intf_nat4: '0x47d6e753'  # perf
-    lb_add_del_intf_nat4_reply: '0xe8d4e804'  # perf
-    # ^^ tc01-64B-1c-ethip4-loadbalancer-nat4
-    # ^^ loadbalancer-nat4
+    lb_conf: '0' # '0x22ddb739'  # perf
+    lb_conf_reply: '0' # '0xe8d4e804'  # perf
+    lb_add_del_vip: '0' # '0xd15b7ddc'  # perf
+    lb_add_del_vip_reply: '0' # '0xe8d4e804'  # perf
+    lb_add_del_as: '0' # '0x78628987'  # perf
+    lb_add_del_as_reply: '0' # '0xe8d4e804'  # perf
+    lb_add_del_intf_nat4: '0' # '0x47d6e753'  # perf
+    lb_add_del_intf_nat4_reply: '0' # '0xe8d4e804'  # perf
+    # 8x^ tc01-64B-1c-ethip4-loadbalancer-nat4
+    # ^ 2n: loadbalancer_nat4
     lisp_add_del_adjacency: '0xf047390d'  # dev
     lisp_add_del_adjacency_reply: '0xe8d4e804'  # dev
     lisp_add_del_local_eid: '0xe6d00717'  # dev
@@ -530,7 +526,7 @@
 # mrrAND1cAND64bANDnic_intel-x710ANDdot1adANDl2xcfwd
 # mrrAND1cAND64bANDnic_intel-x710ANDipsecANDlispgpe
 # csit-2n-skx-perftest
-# mrrAND1cAND64bANDnic_intel-x710ANDloadbalancer
+# mrrAND1cAND64bANDnic_intel-x710ANDloadbalancer_nat4
 # mrrAND1cAND64bANDnic_intel-x710ANDl2patchANDdrv_avf
 
 # TODO: Once device job has complete API coverage,
