@@ -513,13 +513,14 @@ class PapiSocketExecutor(object):
             papi_fn = getattr(vpp_instance.api, api_name)
             try:
                 try:
+                    logger.debug("PAPI: {cmd}".format(cmd=command))
                     reply = papi_fn(**command["api_args"])
                 except (IOError, struct.error) as err:
                     # Ocassionally an error happens, try reconnect.
                     logger.warn("Reconnect after error: {err!r}".format(
                         err=err))
                     self.vpp_instance.disconnect()
-                    # Testing showes immediate reconnect fails.
+                    # Testing shows immediate reconnect fails.
                     time.sleep(1)
                     self.vpp_instance.connect_sync("csit_socket")
                     logger.trace("Reconnected.")

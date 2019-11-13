@@ -821,10 +821,14 @@ class IPsecUtil(object):
                     'exec create loopback interface\n'
                     'exec set interface state loop0 up\n'
                     'exec set interface ip address {uifc} {iaddr}/{mask}\n'
+                    'exec set ip arp {uifc} {raddr}/32 {rmac} static\n'
                     .format(
                         iaddr=if2_ip - 1,
+                        raddr=if2_ip,
                         uifc=Topology.get_interface_name(
                             nodes['DUT1'], if1_key),
+                        rmac=Topology.get_interface_mac(
+                            nodes['DUT2'], if2_key),
                         mask=96 if if2_ip.version == 6 else 24))
                 tmp_f2.write(
                     'exec set interface ip address {uifc} {iaddr}/{mask}\n'
