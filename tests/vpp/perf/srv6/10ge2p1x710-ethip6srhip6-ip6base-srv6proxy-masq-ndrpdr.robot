@@ -50,7 +50,8 @@
 | ... | draft 3 and Segment Routing for Service Chaining - internet draft 01.
 
 *** Variables ***
-| @{plugins_to_enable}= | dpdk_plugin.so | memif_plugin.so | srv6am_plugin.so
+| @{plugins_to_enable}= | dpdk_plugin.so | ip6_nd_plugin.so | memif_plugin.so
+| ... | srv6am_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci

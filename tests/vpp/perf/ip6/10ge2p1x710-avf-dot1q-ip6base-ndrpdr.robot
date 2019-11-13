@@ -48,7 +48,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| @{plugins_to_enable}= | avf_plugin.so
+| @{plugins_to_enable}= | avf_plugin.so | ip6_nd_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | avf
