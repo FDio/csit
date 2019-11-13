@@ -52,7 +52,7 @@
 
 *** Variables ***
 | @{plugins_to_enable}= | dpdk_plugin.so | crypto_ia32_plugin.so
-| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so
+| ... | crypto_ipsecmb_plugin.so | crypto_openssl_plugin.so | ping_plugin.so
 | ${crypto_type}= | ${None}
 | ${nic_name}= | Intel-X710
 | ${nic_driver}= | vfio-pci
