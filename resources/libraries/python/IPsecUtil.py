@@ -963,7 +963,7 @@ class IPsecUtil(object):
                 is_add=True,
                 del_all=False,
                 prefix=IPUtil.create_prefix_object(
-                    if2_ip - 1, 96 if if2_ip.version == 6 else 24)
+                    if1_ip, 128 if if1_ip.version == 6 else 32)
             )
             err_msg = 'Failed to set IP address on interface {ifc} on host ' \
                       '{host}'.format(ifc=if1_key, host=nodes['DUT1']['host'])
