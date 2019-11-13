@@ -524,7 +524,7 @@ class PapiSocketExecutor(object):
                     self.vpp_instance.connect_sync("csit_socket")
                     logger.trace("Reconnected.")
                     reply = papi_fn(**command["api_args"])
-            except (AttributeError, IOError, struct.error) as err:
+            except (AttributeError, IOError) as err:
                 raise_from(AssertionError(err_msg), err, level="INFO")
             # *_dump commands return list of objects, convert, ordinary reply.
             if not isinstance(reply, list):
