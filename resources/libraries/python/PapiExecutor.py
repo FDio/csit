@@ -206,6 +206,7 @@ class PapiSocketExecutor(object):
                 read_timeout=14, logger=FilteredLogger(logger, "INFO"))
             # Cannot use loglevel parameter, robot.api.logger lacks support.
             # TODO: Stop overriding read_timeout when VPP-1722 is fixed.
+            logger.trace(cls.vpp_instance.dump_message_table())
         finally:
             shutil.rmtree(tmp_dir)
             if sys.path[-1] == package_path:
