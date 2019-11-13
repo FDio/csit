@@ -129,13 +129,3 @@
 | | ... | Show SR Steering Policies on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Show SR LocalSIDs on all DUTs | ${nodes}
-
-| Additional Test Tear Down Action For ligato
-| | [Documentation]
-| | ... | Additional teardown for performance tests with Ligato.
-| | ...
-| | Run Keyword If Test Failed
-| | ... | Get Kubernetes logs on all DUTs | ${nodes} | csit
-| | Run Keyword If Test Failed
-| | ... | Describe Kubernetes resource on all DUTs | ${nodes} | csit
-| | Delete Kubernetes resource on all DUTs | ${nodes} | csit

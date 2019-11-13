@@ -39,19 +39,3 @@
 | | ...
 | | :FOR | ${dut} | IN | @{duts}
 | | | Clean Up Namespaces | ${nodes['${dut}']}
-
-| Additional Test Setup Action For ligato
-| | [Documentation]
-| | ... | Additional Setup for tests which uses Ligato Kubernetes.
-| | ...
-| | Apply Kubernetes resource on all duts | ${nodes} | namespaces/csit.yaml
-| | Apply Kubernetes resource on all duts | ${nodes} | pods/kafka.yaml
-| | Apply Kubernetes resource on all duts | ${nodes} | pods/etcdv3.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | configmaps/vswitch-agent-cfg.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | configmaps/vnf-agent-cfg.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | pods/contiv-sfc-controller.yaml
-| | Apply Kubernetes resource on all duts | ${nodes}
-| | ... | pods/contiv-vswitch.yaml

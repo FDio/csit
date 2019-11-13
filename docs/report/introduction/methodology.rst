@@ -26,5 +26,4 @@ Test Methodology
     methodology_trex_traffic_generator
 
 ..
-    methodology_k8s_container_memif
     methodology_http_tcp_with_wrk_tool

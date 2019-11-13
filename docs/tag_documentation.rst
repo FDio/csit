@@ -767,20 +767,6 @@ Client-Workload Tags
 Container Orchestration Tags
 ----------------------------
 
-.. topic:: K8S
-
-    All test cases which use Kubernetes for orchestration.
-
-.. topic:: SFC_CONTROLLER
-
-    All test cases which use ligato/sfc_controller for driving configuration
-    of vpp inside container.
-
-.. topic:: VPP_AGENT
-
-    All test cases which use Golang implementation of a control/management plane
-    for VPP
-
 .. topic:: 1VSWITCH
 
     VPP running in Docker container acting as VSWITCH.
