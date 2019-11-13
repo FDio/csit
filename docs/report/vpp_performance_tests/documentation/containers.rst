@@ -111,8 +111,6 @@ Current CSIT testing framework integrates following Linux container
 orchestration mechanisms:
 
 - LXC/Docker for complete VPP container lifecycle control.
-- Combination of Kubernetes (container orchestration), Docker (container
-  images) and Ligato (container networking).
 
 LXC
 ~~~
@@ -162,31 +160,6 @@ containerized applications used in CSIT performance tests.
 - Data plane thread pinning to CPU cores - Docker CLI and/or Docker
   configuration file controls the range of CPU cores the Docker image
   must run on. VPP thread pinning defined vpp startup.conf.
-
-Kubernetes
-~~~~~~~~~~
-
-Kubernetes [k8sdoc]_, or K8s, is a production-grade container orchestration
-platform for automating the deployment, scaling and operating
-application containers. Kubernetes groups containers that make up an
-application into logical units, pods, for easy management and discovery.
-K8s pod definitions including compute resource allocation is provided in
-.yaml files.
-
-CSIT uses K8s and its infrastructure components like etcd to control all
-phases of container based virtualized network topologies.
-
-Ligato
-~~~~~~
-
-Ligato [ligato]_ is an open-source project developing a set of cloud-native
-tools for orchestrating container networking. Ligato integrates with FD.io VPP
-using goVPP [govpp]_ and vpp-agent [vppagent]_.
-
-**Known Issues**
-
-- Currently using a separate LF Jenkins job for building csit-centric
-  prod_vpp_agent docker images vs. dockerhub/ligato ones.
 
 Implementation
 --------------
@@ -386,109 +359,29 @@ correct cpu placement. See documentation for the full reference.
 Kubernetes
 ~~~~~~~~~~
 
-Kubernetes is implemented as separate library ``KubernetesUtils.py``,
-with a class with the same name. This utility provides an API for L2
-Robot Keywords to control ``kubectl`` installed on each of DUTs. One
-time initialization script, ``resources/libraries/bash/k8s_setup.sh``
-does reset/init kubectl, applies Calico v2.6.3 and initializes the
-``csit`` namespace. CSIT namespace is required to not to interfere with
-existing setups and it further simplifies apply/get/delete
-Pod/ConfigMap operations on SUTs.
+For the future use, Kubernetes is implemented as separate library
+``KubernetesUtils.py``, with a class with the same name. This utility provides
+an API for L2 Robot Keywords to control ``kubectl`` installed on each of DUTs.
+One time initialization script, ``resources/libraries/bash/k8s_setup.sh``
+does reset/init kubectl, and initializes the ``csit`` namespace. CSIT
+namespace is required to not to interfere with existing setups and it
+further simplifies apply/get/delete Pod/ConfigMap operations on SUTs.
 
 Kubernetes utility is based on YAML templates to avoid crafting the huge
 YAML configuration files, what would lower the readability of code and
-requires complicated algorithms. The templates can be found in
-``resources/templates/kubernetes`` and can be leveraged in the future
-for other separate tasks.
+requires complicated algorithms.
 
 Two types of YAML templates are defined:
 
 - Static - do not change between deployments, that is infrastructure
   containers like Kafka, Calico, ETCD.
 
-- Dynamic - per test suite/case topology YAML files e.g. SFC_controller,
-  VNF, VSWITCH.
+- Dynamic - per test suite/case topology YAML files.
 
 Making own python wrapper library of ``kubectl`` instead of using the
 official Python package allows to control and deploy environment over
 the SSH library without the need of using isolated driver running on
 each of DUTs.
-
-Ligato
-~~~~~~
-
-Ligato integration does require to compile the ``vpp-agent`` tool and build the
-bundled Docker image. Compilation of ``vpp-agent`` depends on specific VPP. In
-``ligato/vpp-agent`` repository there are well prepared scripts for building the
-Docker image. Building docker image is possible via series of commands:
-
-::
-
-  git clone https://github.com/ligato/vpp-agent
-  cd vpp_agent/docker/dev_vpp_agent
-  sudo docker build -t dev_vpp_agent --build-arg AGENT_COMMIT=<agent commit id>\
-      --build-arg VPP_COMMIT=<vpp commit id> --no-cache .
-  sudo ./shrink.sh
-  cd ../prod_vpp_agent
-  sudo ./build.sh
-  sudo ./shrink.sh
-
-CSIT requires Docker image to include the desired VPP version (per patch
-testing, nightly testing, on demand testing).
-
-The entire build process of building ``dev_vpp_agent`` image heavily depends
-on internet connectivity and also takes a significant amount of time (~1-1.5h
-based on internet bandwidth and allocated resources). The optimal solution would
-be to build the image on jenkins slave, transfer the Docker image to DUTs and
-execute separate suite of tests.
-
-To adress the amount of time required to build ``dev_vpp_agent`` image, we can
-pull existing specific version of ```dev_vpp_agent``` and exctract the
-```vpp-agent``` from it.
-
-We created separate sets of Jenkins jobs, that will be executing following:
-
-1. Clone latest CSIT and Ligato repositaries.
-2. Pull specific version of ``dev_vpp_agent`` image from Dockerhub.
-3. Extract VPP API (from ``.deb`` package) and copy into ``dev_vpp_agent``
-   image
-4. Rebuild vpp-agent and extract outside image.
-5. Build ``prod_vpp_image`` Docker image from ``dev_vpp_agent`` image.
-6. Transfer ``prod_vpp_agent`` image to DUTs.
-7. Execute subset of performance tests designed for Ligato testing.
-
-::
-
- +-----------------------------------------------+
- |                  ubuntu:16.04                 <-----| Base image on Dockerhub
- +------------------------^----------------------+
-                          |
-                          |
- +------------------------+----------------------+
- |               ligato/dev_vpp_agent            <------| Pull this image from
- +------------------------^----------------------+      | Dockerhub ligato/dev_vpp_agent:<version>
-                          |
-                          | Rebuild and extract agent.tar.gz from dev_vpp_agent
- +------------------------+----------------------+
- |                 prod_vpp_agent                <------| Build by passing own
- +-----------------------------------------------+      | vpp.tar.gz (from nexus
-                                                        | or built by JJB) and
-                                                        | agent.tar.gz extracted
-                                                        | from ligato/dev_vpp_agent
-
-
-Approximate size of vnf-agent docker images:
-
-::
-
-  REPOSITORY            TAG       IMAGE ID        CREATED        SIZE
-  dev-vpp-agent         latest    78c53bd57e2     6 weeks ago    9.79GB
-  prod_vpp_agent        latest    f68af5afe601    5 weeks ago    443MB
-
-In CSIT we need to create separate performance suite under
-``tests/kubernetes/perf`` which contains modified Suite setup in comparison
-to standard perf tests. This is due to reason that VPP will act as vswitch in
-Docker image and not as standalone installed service.
 
 Tested Topologies
 ~~~~~~~~~~~~~~~~~
@@ -509,19 +402,6 @@ Following container networking topologies are tested in |csit-release|:
   - eth-l2xcbase-eth-2memif-1docker.
   - eth-l2xcbase-eth-1memif-1docker
 
-- Kubernetes/Ligato topologies:
-
-  - eth-1drcl2bdbasemaclrn-eth-2memif-1drcl2xc-1paral
-  - eth-1drcl2bdbasemaclrn-eth-2memif-2drcl2xc-1horiz
-  - eth-1drcl2bdbasemaclrn-eth-2memif-4drcl2xc-1horiz
-  - eth-1drcl2bdbasemaclrn-eth-4memif-2drcl2xc-1chain
-  - eth-1drcl2bdbasemaclrn-eth-8memif-4drcl2xc-1chain
-  - eth-1drcl2xcbase-eth-2memif-1drcl2xc-1paral
-  - eth-1drcl2xcbase-eth-2memif-2drcl2xc-1horiz
-  - eth-1drcl2xcbase-eth-2memif-4drcl2xc-1horiz
-  - eth-1drcl2xcbase-eth-4memif-2drcl2xc-1chain
-  - eth-1drcl2xcbase-eth-8memif-4drcl2xc-1chain
-
 References
 ~~~~~~~~~~
 
@@ -539,7 +419,3 @@ References
 .. [seccomp] `SECure COMPuting with filters <https://www.kernel.org/doc/Documentation/prctl/seccomp_filter.txt>`_.
 .. [docker] `Docker <https://www.docker.com/what-docker>`_.
 .. [k8sdoc] `Kubernetes documentation <https://kubernetes.io/docs/home/>`_.
-.. [ligato] `Ligato <https://github.com/ligato>`_.
-.. [govpp] `FD.io goVPP project <https://wiki.fd.io/view/GoVPP>`_.
-.. [vppagent] `Ligato vpp-agent <https://github.com/ligato/vpp-agent>`_.
-.. [imagevar] Image parameter is required in initial commit version. There is plan to implement container build class to build Docker/LXC image.

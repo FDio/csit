@@ -34,7 +34,7 @@ function gather_build () {
     # Functions called:
     # - die - Print to stderr and exit, defined in common.sh
     # - gather_os - Parse os parameter for OS/distro name.
-    # - gather_dpdk, gather_vpp, gather_ligato - See their definitions.
+    # - gather_dpdk, gather_vpp - See their definitions.
     # Multiple other side effects are possible,
     # see functions called from here for their current description.
 
@@ -52,10 +52,6 @@ function gather_build () {
         *"vpp"*)
             DUT="vpp"
             gather_vpp || die "The function should have died on error."
-            ;;
-        *"ligato"*)
-            DUT="kubernetes"
-            gather_ligato || die "The function should have died on error."
             ;;
         *"dpdk"*)
             DUT="dpdk"
@@ -115,133 +111,6 @@ function gather_dpdk () {
 }
 
 
-function gather_ligato () {
-
-    # Build docker image (with vpp, ligato and vpp-agent),
-    # and put it to ${DOWNLOAD_DIR}/.
-    #
-    # Access rights needed for:
-    # - "wget", "git clone", "dpdk -x", "cd" above ${CSIT_DIR}.
-    # - "sudo" without password.
-    # - With sudo:
-    #   - "dpdk -i" is allowed.
-    #   - "docker" commands have everything they needs.
-    # Variables read:
-    # - DOWNLOAD_DIR - Path to directory pybot takes the build to test from.
-    # - CSIT_DIR - Path to existing root of local CSIT git repository.
-    # Files read:
-    # - ${CSIT_DIR}/VPP_AGENT_STABLE_VER - Vpp agent version to use.
-    # Directories updated:
-    # - ${DOWNLOAD_DIR} - Docker image stored, VPP *.deb stored and deleted.
-    # - /tmp/vpp - VPP is unpacked there, not cleaned afterwards.
-    # - ${CSIT_DIR}/vpp-agent - Created, vpp-agent git repo si cloned there.
-    #   - Also, various temporary files are stored there.
-    # System consequences:
-    # - Docker package is installed.
-    # - Presumably dockerd process is started.
-    # - The ligato/dev-vpp-agent docker image is downloaded.
-    # - Results of subsequent image manipulation are probably left lingering.
-    # Other hardcoded values:
-    # - Docker .deb file name to download and install.
-    # Functions called:
-    # - die - Print to stderr and exit, defined in common_functions.sh
-    # - gather_vpp - See eponymous fragment file assumend to be sourced already.
-    # TODO: What is the best order of description items?
-
-    # TODO: Many of the following comments act as abstraction.
-    #   But the abstracted blocks are mostly one-liners (plus "|| die"),
-    #   so maybe it is not worth introducing fragments/functions for the blocks.
-    # TODO: This fragment is too long anyway, split it up.
-
-    set -exuo pipefail
-
-    gather_vpp || die "The function should have died on error."
-
-    mkdir -p /tmp/vpp && rm -f /tmp/vpp/* || {
-        die "Failed to create temporary directory!"
-    }
-    dpkg -x "${DOWNLOAD_DIR}/vpp_"*".deb" "/tmp/vpp" || {
-        die "Failed to extract VPP packages for kubernetes!"
-    }
-
-    ligato_repo_url="https://github.com/ligato/"
-    vpp_agent_stable_ver="$(< "${CSIT_DIR}/VPP_AGENT_STABLE_VER")" || {
-        die "Failed to read vpp-agent stable version!"
-    }
-
-    # Clone & checkout stable vpp-agent.
-    cd "${CSIT_DIR}" || die "Change directory failed!"
-    git clone -b master --single-branch \
-        "${ligato_repo_url}/vpp-agent" "vpp-agent" || {
-        die "Failed to run: git clone ${ligato_repo_url}/vpp-agent!"
-    }
-    cd "vpp-agent" || die "Change directory failed!"
-
-    # Install Docker.
-    curl -fsSL https://get.docker.com | sudo bash || {
-        die "Failed to install Docker package!"
-    }
-
-    # Pull ligato/dev_vpp_agent docker image and re-tag as local.
-    sudo docker pull "ligato/dev-vpp-agent:${vpp_agent_stable_ver}" || {
-        die "Failed to pull Docker image!"
-    }
-    params=(ligato/dev-vpp-agent:${vpp_agent_stable_ver} dev_vpp_agent:latest)
-    sudo docker tag "${params[@]}" || {
-        die "Failed to tag Docker image!"
-    }
-
-    # Start dev_vpp_agent container as daemon.
-    sudo docker run --rm -itd --name "agentcnt" "dev_vpp_agent" bash || {
-        die "Failed to run Docker image!"
-    }
-
-    # Copy latest vpp api into running container.
-    sudo docker exec agentcnt rm -rf "agentcnt:/usr/share/vpp/api" || {
-        die "Failed to remove previous API!"
-    }
-    sudo docker cp "/tmp/vpp/usr/share/vpp/api" "agentcnt:/usr/share/vpp" || {
-        die "Failed to copy files Docker image!"
-    }
-
-    # Recompile vpp-agent.
-    script_arg=". ~/.bashrc; cd /go/src/github.com/ligato/vpp-agent"
-    script_arg+=" && make generate && make install"
-    sudo docker exec -i agentcnt script -qec "${script_arg}" || {
-        die "Failed to recompile vpp-agent in Docker image!"
-    }
-    # Make sure .deb files of other version are not present.
-    rm_cmd="rm -vf /opt/vpp-agent/dev/vpp/build-root/vpp*.deb /opt/vpp/*.deb"
-    sudo docker exec agentcnt bash -c "${rm_cmd}" || {
-        die "Failed to remove VPP debian packages!"
-    }
-    for f in "${DOWNLOAD_DIR}"/*; do
-        sudo docker cp "$f" "agentcnt:/opt/vpp-agent/dev/vpp/build-root"/ || {
-            die "Failed to copy files to Docker image!"
-        }
-    done
-    # Save container state.
-    sudo docker commit "$(sudo docker ps -q)" "dev_vpp_agent:latest" || {
-        die "Failed to commit state of Docker image!"
-    }
-
-    # Build prod_vpp_agent docker image.
-    cd "docker/prod" || die "Change directory failed."
-    sudo docker build --tag "prod_vpp_agent" --no-cache "." || {
-        die "Failed to build Docker image!"
-    }
-    # Export Docker image.
-    sudo docker save "prod_vpp_agent" | gzip > "prod_vpp_agent.tar.gz" || {
-        die "Failed to save Docker image!"
-    }
-    docker_image="$(readlink -e "prod_vpp_agent.tar.gz")" || {
-        die "Failed to get Docker image path!"
-    }
-    rm -r "${DOWNLOAD_DIR}/vpp"* || die "Failed to remove VPP packages!"
-    mv "${docker_image}" "${DOWNLOAD_DIR}"/ || die "Failed to move image!"
-}
-
-
 function gather_vpp () {
 
     # Variables read:
@@ -269,7 +138,6 @@ function gather_vpp () {
     set -exuo pipefail
 
     case "${TEST_CODE}" in
-        # Not csit-vpp as this code is re-used by ligato gathering.
         "csit-"*)
             # Use downloaded packages with specific version.
             if [[ "${TEST_CODE}" == *"daily"* ]] || \
