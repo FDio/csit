@@ -544,6 +544,8 @@ class PapiSocketExecutor(object):
         local_list = self._api_command_list
         # Clear first as execution may fail.
         self._api_command_list = list()
+        logger.trace(local_list)
+        logger.trace(repr(local_list))
         replies = list()
         for command in local_list:
             api_name = command["api_name"]
@@ -561,7 +563,7 @@ class PapiSocketExecutor(object):
                     self.vpp_instance.connect_sync("csit_socket")
                     logger.trace("Reconnected.")
                     reply = papi_fn(**command["api_args"])
-            except (AttributeError, IOError, struct.error) as err:
+            except (AttributeError, IOError) as err:
                 raise_from(AssertionError(err_msg), err, level="INFO")
             # *_dump commands return list of objects, convert, ordinary reply.
             if not isinstance(reply, list):
