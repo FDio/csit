@@ -22,6 +22,7 @@ from enum import Enum, IntEnum
 from ipaddress import ip_network, ip_address
 
 from resources.libraries.python.IPUtil import IPUtil
+from resources.libraries.python.L2Util import L2Util
 from resources.libraries.python.InterfaceUtil import InterfaceUtil, \
     InterfaceStatusFlags
 from resources.libraries.python.PapiExecutor import PapiSocketExecutor
@@ -821,10 +822,14 @@ class IPsecUtil(object):
                     'exec create loopback interface\n'
                     'exec set interface state loop0 up\n'
                     'exec set interface ip address {uifc} {iaddr}/{mask}\n'
+                    'exec set ip arp {uifc} {raddr}/32 {rmac} static\n'
                     .format(
                         iaddr=if2_ip - 1,
+                        raddr=if2_ip,
                         uifc=Topology.get_interface_name(
                             nodes['DUT1'], if1_key),
+                        rmac=Topology.get_interface_mac(
+                            nodes['DUT2'], if2_key),
                         mask=96 if if2_ip.version == 6 else 24))
                 tmp_f2.write(
                     'exec set interface ip address {uifc} {iaddr}/{mask}\n'
@@ -967,6 +972,22 @@ class IPsecUtil(object):
             )
             err_msg = 'Failed to set IP address on interface {ifc} on host ' \
                       '{host}'.format(ifc=if1_key, host=nodes['DUT1']['host'])
+            papi_exec.add(cmd1, **args1).get_reply(err_msg)
+            cmd1 = 'ip_neighbor_add_del'
+            args1 = dict(
+                is_add=True,
+                neighbor=dict(
+                    sw_if_index=InterfaceUtil.get_interface_index(
+                        nodes['DUT1'], if1_key),
+                    ),
+                    flags=0,
+                    mac_address=L2Util.mac_to_bin(
+                        Topology.get_interface_mac(nodes['DUT2'], if2_key)),
+                    ip_address = IPUtil.create_prefix_object(
+                        if2_ip, 128 if if2_ip.version == 6 else 32)
+                )
+            err_msg = 'Failed to add ARP on interface on host {host}'.\
+                format(host=nodes['DUT1']['host'])
             papi_exec.add(cmd1, **args1).get_reply(err_msg)
             # Configure IPsec tunnel interfaces
             args1 = dict(
