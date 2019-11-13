@@ -303,6 +303,7 @@ class PapiSocketExecutor(object):
                 break
         else:
             raise RuntimeError("Failed to connect to VPP over a socket.")
+        logger.trace(cls.vpp_instance.dump_message_table())
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
