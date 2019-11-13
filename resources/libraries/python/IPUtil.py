@@ -425,7 +425,7 @@ class IPUtil(object):
 
         neighbor = dict(
             sw_if_index=Topology.get_interface_sw_index(node, iface_key),
-            flags=0,
+            flags=1,
             mac_address=str(mac_address),
             ip_address=str(dst_ip))
         cmd = 'ip_neighbor_add_del'
