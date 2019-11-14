@@ -74,7 +74,6 @@ A brief bottom-up description is provided here:
      - VPP;
      - Honeycomb;
      - NSH_SFC;
-     - DMM;
      - TLDK;
    - Performance tests using physical testbed environment:
      - VPP;
@@ -95,8 +94,6 @@ A brief bottom-up description is provided here:
 ```
 .
 └── tests
-    ├── dmm
-    │   └── func                    # DMM functional VIRL tests
     ├── dpdk
     │   ├── dpdk_scripts            # DPDK helper scripts
     │   └── perf                    # DPDK performance tests

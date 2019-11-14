@@ -9,7 +9,6 @@ Contents
     overview
     resources.libraries.python
     resources.libraries.robot
-    tests.dmm.func
     tests.dpdk.perf
     tests.nsh_sfc.func
     tests.tldk.func

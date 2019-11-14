@@ -129,16 +129,6 @@ available for download.
      test case grouping and selection.
 
 ..
-    #. DMM FUNCTIONAL: DMM functional tests executed in
-       virtual FD.io testbeds.
-
-       - **Overview**: Tested virtual topologies, test coverage and naming
-         specifics;
-       - **Release Notes**: Changes in |csit-release|, known issues.
-       - **Test Environment**: Functional test environment configuration.
-       - **Documentation**: Pointers to CSIT source code documentation for
-         DMM functional tests.
-
     #. NSH_SFC FUNCTIONAL: NSH_SFC functional tests executed in
        virtual FD.io testbeds.
 
