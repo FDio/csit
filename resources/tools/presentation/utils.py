@@ -28,8 +28,8 @@ from shutil import move, Error
 from datetime import datetime
 from pandas import Series
 
-from resources.libraries.python import jumpavg
-from .errors import PresentationError
+import jumpavg
+from errors import PresentationError
 
 
 def mean(items):

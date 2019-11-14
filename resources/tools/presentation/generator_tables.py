@@ -23,14 +23,13 @@ import plotly.graph_objects as go
 import plotly.offline as ploff
 import pandas as pd
 
-from string import replace
 from collections import OrderedDict
 from numpy import nan, isnan
 from xml.etree import ElementTree as ET
 from datetime import datetime as dt
 from datetime import timedelta
 
-from .utils import mean, stdev, relative_change, classify_anomalies, \
+from utils import mean, stdev, relative_change, classify_anomalies, \
     convert_csv_to_pretty_txt, relative_change_stdev
 
 
@@ -89,7 +88,7 @@ def table_details(table, input_data):
         logging.error("    No data available. The table will not be generated.")
         return
 
-    for suite_longname, suite in suites.iteritems():
+    for suite_longname, suite in suites.items():
         # Generate data
         suite_name = suite["name"]
         table_lst = list()
@@ -102,8 +101,7 @@ def table_details(table, input_data):
                                        split(" ")[1]]).replace('"', '""')
                         if column["data"].split(" ")[1] in ("conf-history",
                                                             "show-run"):
-                            col_data = replace(col_data, " |br| ", "",
-                                               maxreplace=1)
+                            col_data = col_data.replace(" |br| ", "", )
                             col_data = " |prein| {0} |preout| ".\
                                 format(col_data[:-5])
                         row_lst.append('"{0}"'.format(col_data))
@@ -155,7 +153,7 @@ def table_merged_details(table, input_data):
     for column in table["columns"]:
         header.append('"{0}"'.format(str(column["title"]).replace('"', '""')))
 
-    for _, suite in suites.iteritems():
+    for suite in suites.values():
         # Generate data
         suite_name = suite["name"]
         table_lst = list()
@@ -166,12 +164,11 @@ def table_merged_details(table, input_data):
                     try:
                         col_data = str(data[test][column["data"].
                                        split(" ")[1]]).replace('"', '""')
-                        col_data = replace(col_data, "No Data",
-                                           "Not Captured     ")
+                        col_data = col_data.replace("No Data",
+                                                    "Not Captured     ")
                         if column["data"].split(" ")[1] in ("conf-history",
                                                             "show-run"):
-                            col_data = replace(col_data, " |br| ", "",
-                                               maxreplace=1)
+                            col_data = col_data.replace(" |br| ", "", 1)
                             col_data = " |prein| {0} |preout| ".\
                                 format(col_data[:-5])
                         row_lst.append('"{0}"'.format(col_data))
@@ -398,7 +395,7 @@ def table_performance_comparison(table, input_data):
     for job, builds in table["reference"]["data"].items():
         topo = "2n-skx" if "2n-skx" in job else ""
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = _tpc_modify_test_name(tst_name)
                 if "across topologies" in table["title"].lower():
                     tst_name_mod = tst_name_mod.replace("2n1l-", "")
@@ -419,7 +416,7 @@ def table_performance_comparison(table, input_data):
 
     for job, builds in table["compare"]["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = _tpc_modify_test_name(tst_name)
                 if "across topologies" in table["title"].lower():
                     tst_name_mod = tst_name_mod.replace("2n1l-", "")
@@ -445,7 +442,7 @@ def table_performance_comparison(table, input_data):
             table, data=replacement, continue_on_error=True)
         for job, builds in replacement.items():
             for build in builds:
-                for tst_name, tst_data in rpl_data[job][str(build)].iteritems():
+                for tst_name, tst_data in rpl_data[job][str(build)].items():
                     tst_name_mod = _tpc_modify_test_name(tst_name)
                     if "across topologies" in table["title"].lower():
                         tst_name_mod = tst_name_mod.replace("2n1l-", "")
@@ -470,7 +467,7 @@ def table_performance_comparison(table, input_data):
         for item in history:
             for job, builds in item["data"].items():
                 for build in builds:
-                    for tst_name, tst_data in data[job][str(build)].iteritems():
+                    for tst_name, tst_data in data[job][str(build)].items():
                         tst_name_mod = _tpc_modify_test_name(tst_name)
                         if "across topologies" in table["title"].lower():
                             tst_name_mod = tst_name_mod.replace("2n1l-", "")
@@ -631,7 +628,7 @@ def table_performance_comparison_nic(table, input_data):
     for job, builds in table["reference"]["data"].items():
         topo = "2n-skx" if "2n-skx" in job else ""
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 if table["reference"]["nic"] not in tst_data["tags"]:
                     continue
                 tst_name_mod = _tpc_modify_test_name(tst_name)
@@ -652,7 +649,7 @@ def table_performance_comparison_nic(table, input_data):
 
     for job, builds in table["compare"]["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 if table["compare"]["nic"] not in tst_data["tags"]:
                     continue
                 tst_name_mod = _tpc_modify_test_name(tst_name)
@@ -678,7 +675,7 @@ def table_performance_comparison_nic(table, input_data):
             table, data=replacement, continue_on_error=True)
         for job, builds in replacement.items():
             for build in builds:
-                for tst_name, tst_data in rpl_data[job][str(build)].iteritems():
+                for tst_name, tst_data in rpl_data[job][str(build)].items():
                     if table["compare"]["nic"] not in tst_data["tags"]:
                         continue
                     tst_name_mod = _tpc_modify_test_name(tst_name)
@@ -705,7 +702,7 @@ def table_performance_comparison_nic(table, input_data):
         for item in history:
             for job, builds in item["data"].items():
                 for build in builds:
-                    for tst_name, tst_data in data[job][str(build)].iteritems():
+                    for tst_name, tst_data in data[job][str(build)].items():
                         if item["nic"] not in tst_data["tags"]:
                             continue
                         tst_name_mod = _tpc_modify_test_name(tst_name)
@@ -860,7 +857,7 @@ def table_nics_comparison(table, input_data):
     tbl_dict = dict()
     for job, builds in table["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = tst_name.replace("-ndrpdrdisc", "").\
                     replace("-ndrpdr", "").replace("-pdrdisc", "").\
                     replace("-ndrdisc", "").replace("-pdr", "").\
@@ -968,7 +965,7 @@ def table_soak_vs_ndr(table, input_data):
     tbl_dict = dict()
     for job, builds in table["compare"]["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 if tst_data["type"] == "SOAK":
                     tst_name_mod = tst_name.replace("-soak", "")
                     if tbl_dict.get(tst_name_mod, None) is None:
@@ -991,7 +988,7 @@ def table_soak_vs_ndr(table, input_data):
     # Add corresponding NDR test results:
     for job, builds in table["reference"]["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = tst_name.replace("-ndrpdr", "").\
                     replace("-mrr", "")
                 if tst_name_mod in tests_lst:
@@ -1077,6 +1074,8 @@ def table_performance_trending_dashboard(table, input_data):
                  format(table.get("type", ""), table.get("title", "")))
     data = input_data.filter_data(table, continue_on_error=True)
 
+    logging.info(data)
+
     # Prepare the header of the tables
     header = ["Test Case",
               "Trend [Mpps]",
@@ -1091,7 +1090,7 @@ def table_performance_trending_dashboard(table, input_data):
     tbl_dict = dict()
     for job, builds in table["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 if tst_name.lower() in table.get("ignore-list", list()):
                     continue
                 if tbl_dict.get(tst_name, None) is None:
@@ -1425,8 +1424,8 @@ def table_last_failed_tests(table, input_data):
     data = input_data.filter_data(table, continue_on_error=True)
 
     if data is None or data.empty:
-        logging.warn("    No data for the {0} '{1}'.".
-                     format(table.get("type", ""), table.get("title", "")))
+        logging.warning("    No data for the {0} '{1}'.".
+                        format(table.get("type", ""), table.get("title", "")))
         return
 
     tbl_list = list()
@@ -1435,6 +1434,12 @@ def table_last_failed_tests(table, input_data):
             build = str(build)
             try:
                 version = input_data.metadata(job, build).get("version", "")
+                logging.info("metadata")
+                logging.info(input_data.metadata(job, build))
+                logging.info(type(input_data.metadata(job, build)))
+                logging.info("version")
+                logging.info(version)
+                logging.info(type(version))
             except KeyError:
                 logging.error("Data for {job}: {build} is not present.".
                               format(job=job, build=build))
@@ -1444,7 +1449,7 @@ def table_last_failed_tests(table, input_data):
             failed_tests = list()
             passed = 0
             failed = 0
-            for tst_name, tst_data in data[job][build].iteritems():
+            for tst_name, tst_data in data[job][build].items():
                 if tst_data["status"] != "FAIL":
                     passed += 1
                     continue
@@ -1462,6 +1467,8 @@ def table_last_failed_tests(table, input_data):
     logging.info("    Writing file: '{0}'".format(file_name))
     with open(file_name, "w") as file_handler:
         for test in tbl_list:
+            logging.info(test)
+            logging.info(type(test))
             file_handler.write(test + '\n')
 
 
@@ -1500,7 +1507,7 @@ def table_failed_tests(table, input_data):
     for job, builds in table["data"].items():
         for build in builds:
             build = str(build)
-            for tst_name, tst_data in data[job][build].iteritems():
+            for tst_name, tst_data in data[job][build].items():
                 if tst_name.lower() in table.get("ignore-list", list()):
                     continue
                 if tbl_dict.get(tst_name, None) is None:
