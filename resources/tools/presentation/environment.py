@@ -19,9 +19,10 @@ specification YAML file.
 
 import os
 import shutil
-import logging
 
-from .errors import PresentationError
+from robot.api import logger
+
+from errors import PresentationError
 
 
 class Environment(object):
@@ -60,34 +61,34 @@ class Environment(object):
         """
 
         if self._force:
-            logging.info("Removing old build(s) ...")
+            logger.info("Removing old build(s) ...")
             for directory in self._env["build-dirs"]:
                 dir_to_remove = self._env["paths"][directory]
                 if os.path.isdir(dir_to_remove):
                     try:
                         shutil.rmtree(dir_to_remove)
-                        logging.info("  Removed: {}".format(dir_to_remove))
+                        logger.info("  Removed: {}".format(dir_to_remove))
                     except OSError:
                         raise PresentationError("Cannot remove the directory "
                                                 "'{}'".format(dir_to_remove))
-            logging.info("Done.")
+            logger.info("Done.")
 
-        logging.info("Making directories ...")
+        logger.info("Making directories ...")
 
         for directory in self._env["make-dirs"]:
             dir_to_make = self._env["paths"][directory]
             try:
                 if os.path.isdir(dir_to_make):
-                    logging.warning("The directory '{}' exists, skipping.".
-                                    format(dir_to_make))
+                    logger.warning("The directory '{}' exists, skipping.".
+                                   format(dir_to_make))
                 else:
                     os.makedirs(dir_to_make)
-                    logging.info("  Created: {}".format(dir_to_make))
+                    logger.info("  Created: {}".format(dir_to_make))
             except OSError:
                 raise PresentationError("Cannot make the directory '{}'".
                                         format(dir_to_make))
 
-        logging.info("Done.")
+        logger.info("Done.")
 
     def set_environment(self):
         """Set the environment.
@@ -104,25 +105,25 @@ def clean_environment(env):
     :raises: PresentationError if it is not possible to remove a directory.
     """
 
-    logging.info("Cleaning the environment ...")
+    logger.info("Cleaning the environment ...")
 
     if not env["remove-dirs"]:  # None or empty
-        logging.info("  No directories to remove.")
+        logger.info("  No directories to remove.")
         return
 
     for directory in env["remove-dirs"]:
         dir_to_remove = env["paths"][directory]
-        logging.info("  Removing the working directory {} ...".
-                     format(dir_to_remove))
+        logger.info("  Removing the working directory {} ...".
+                    format(dir_to_remove))
         if os.path.isdir(dir_to_remove):
             try:
                 shutil.rmtree(dir_to_remove)
             except OSError as err:
-                logging.warning("Cannot remove the directory '{}'".
-                                format(dir_to_remove))
-                logging.debug(str(err))
+                logger.warning("Cannot remove the directory '{}'".
+                               format(dir_to_remove))
+                logger.debug(str(err))
         else:
-            logging.warning("The directory '{}' does not exist.".
-                            format(dir_to_remove))
+            logger.warning("The directory '{}' does not exist.".
+                           format(dir_to_remove))
 
-    logging.info("Done.")
+    logger.info("Done.")

@@ -17,13 +17,14 @@ Parsing of the specification YAML file.
 """
 
 
-import logging
 from yaml import load, YAMLError
 from pprint import pformat
 
-from .errors import PresentationError
-from .utils import (
-    get_last_successful_build_number, get_last_completed_build_number)
+from robot.api import logger
+
+from errors import PresentationError
+from utils import get_last_successful_build_number, \
+    get_last_completed_build_number
 
 
 class Specification(object):
@@ -350,7 +351,7 @@ class Specification(object):
         """Parse environment specification in the specification YAML file.
         """
 
-        logging.info("Parsing specification file: environment ...")
+        logger.info("Parsing specification file: environment ...")
 
         idx = self._get_type_index("environment")
         if idx is None:
@@ -398,18 +399,18 @@ class Specification(object):
         except KeyError:
             self._specification["environment"]["testbeds"] = None
 
-        logging.info("Done.")
+        logger.info("Done.")
 
     def _parse_configuration(self):
         """Parse configuration of PAL in the specification YAML file.
         """
 
-        logging.info("Parsing specification file: configuration ...")
+        logger.info("Parsing specification file: configuration ...")
 
         idx = self._get_type_index("configuration")
         if idx is None:
-            logging.warning("No configuration information in the specification "
-                            "file.")
+            logger.warning("No configuration information in the specification "
+                           "file.")
             return None
 
         try:
@@ -462,11 +463,11 @@ class Specification(object):
         mapping_file_name = self._specification["configuration"].\
             get("mapping-file", None)
         if mapping_file_name:
-            logging.debug("Mapping file: '{0}'".format(mapping_file_name))
+            logger.debug("Mapping file: '{0}'".format(mapping_file_name))
             try:
                 with open(mapping_file_name, 'r') as mfile:
                     mapping = load(mfile)
-                logging.debug("Loaded mapping table:\n{0}".format(mapping))
+                logger.debug("Loaded mapping table:\n{0}".format(mapping))
             except (YAMLError, IOError) as err:
                 raise PresentationError(
                     msg="An error occurred while parsing the mapping file "
@@ -475,7 +476,7 @@ class Specification(object):
         # Make sure everything is lowercase
         if mapping:
             self._specification["configuration"]["mapping"] = \
-                {key.lower(): val.lower() for key, val in mapping.iteritems()}
+                {key.lower(): val.lower() for key, val in mapping.items()}
         else:
             self._specification["configuration"]["mapping"] = dict()
 
@@ -484,11 +485,11 @@ class Specification(object):
         ignore_list_name = self._specification["configuration"].\
             get("ignore-list", None)
         if ignore_list_name:
-            logging.debug("Ignore list file: '{0}'".format(ignore_list_name))
+            logger.debug("Ignore list file: '{0}'".format(ignore_list_name))
             try:
                 with open(ignore_list_name, 'r') as ifile:
                     ignore = load(ifile)
-                logging.debug("Loaded ignore list:\n{0}".format(ignore))
+                logger.debug("Loaded ignore list:\n{0}".format(ignore))
             except (YAMLError, IOError) as err:
                 raise PresentationError(
                     msg="An error occurred while parsing the ignore list file "
@@ -501,7 +502,7 @@ class Specification(object):
         else:
             self._specification["configuration"]["ignore"] = list()
 
-        logging.info("Done.")
+        logger.info("Done.")
 
     def _parse_input(self):
         """Parse input specification in the specification YAML file.
@@ -509,7 +510,7 @@ class Specification(object):
         :raises: PresentationError if there are no data to process.
         """
 
-        logging.info("Parsing specification file: input ...")
+        logger.info("Parsing specification file: input ...")
 
         idx = self._get_type_index("input")
         if idx is None:
@@ -537,13 +538,13 @@ class Specification(object):
                             append({"build": build, "status": None})
 
                 else:
-                    logging.warning("No build is defined for the job '{}'. "
-                                    "Trying to continue without it.".
+                    logger.warning("No build is defined for the job '{}'. "
+                                   "Trying to continue without it.".
                                     format(job))
         except KeyError:
             raise PresentationError("No data to process.")
 
-        logging.info("Done.")
+        logger.info("Done.")
 
     def _parse_output(self):
         """Parse output specification in the specification YAML file.
@@ -551,7 +552,7 @@ class Specification(object):
         :raises: PresentationError if there is no output defined.
         """
 
-        logging.info("Parsing specification file: output ...")
+        logger.info("Parsing specification file: output ...")
 
         idx = self._get_type_index("output")
         if idx is None:
@@ -562,18 +563,18 @@ class Specification(object):
         except (KeyError, IndexError):
             raise PresentationError("No output defined.")
 
-        logging.info("Done.")
+        logger.info("Done.")
 
     def _parse_static(self):
         """Parse specification of the static content in the specification YAML
         file.
         """
 
-        logging.info("Parsing specification file: static content ...")
+        logger.info("Parsing specification file: static content ...")
 
         idx = self._get_type_index("static")
         if idx is None:
-            logging.warning("No static content specified.")
+            logger.warning("No static content specified.")
 
         for key, value in self._cfg_yaml[idx].items():
             if isinstance(value, str):
@@ -585,14 +586,14 @@ class Specification(object):
 
         self._specification["static"] = self._cfg_yaml[idx]
 
-        logging.info("Done.")
+        logger.info("Done.")
 
     def _parse_elements(self):
         """Parse elements (tables, plots) specification in the specification
         YAML file.
         """
 
-        logging.info("Parsing specification file: elements ...")
+        logger.info("Parsing specification file: elements ...")
 
         count = 1
         for element in self._cfg_yaml:
@@ -621,7 +622,7 @@ class Specification(object):
                                             format(data_set))
 
             if element["type"] == "table":
-                logging.info("  {:3d} Processing a table ...".format(count))
+                logger.info("  {:3d} Processing a table ...".format(count))
                 try:
                     element["template"] = self._replace_tags(
                         element["template"],
@@ -663,7 +664,7 @@ class Specification(object):
                 count += 1
 
             elif element["type"] == "plot":
-                logging.info("  {:3d} Processing a plot ...".format(count))
+                logger.info("  {:3d} Processing a plot ...".format(count))
 
                 # Add layout to the plots:
                 layout = element["layout"].get("layout", None)
@@ -681,7 +682,7 @@ class Specification(object):
                 count += 1
 
             elif element["type"] == "file":
-                logging.info("  {:3d} Processing a file ...".format(count))
+                logger.info("  {:3d} Processing a file ...".format(count))
                 try:
                     element["dir-tables"] = self._replace_tags(
                         element["dir-tables"],
@@ -692,8 +693,8 @@ class Specification(object):
                 count += 1
 
             elif element["type"] == "cpta":
-                logging.info("  {:3d} Processing Continuous Performance "
-                             "Trending and Analysis ...".format(count))
+                logger.info("  {:3d} Processing Continuous Performance "
+                            "Trending and Analysis ...".format(count))
 
                 for plot in element["plots"]:
                     # Add layout to the plots:
@@ -720,7 +721,7 @@ class Specification(object):
                 self._specification["cpta"] = element
                 count += 1
 
-        logging.info("Done.")
+        logger.info("Done.")
 
     def read_specification(self):
         """Parse specification in the specification YAML file.
@@ -742,5 +743,4 @@ class Specification(object):
         self._parse_static()
         self._parse_elements()
 
-        logging.debug("Specification: \n{}".
-                      format(pformat(self._specification)))
+        logger.debug("Specification: \n{}".format(pformat(self._specification)))

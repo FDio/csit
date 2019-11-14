@@ -16,7 +16,6 @@
 
 
 import re
-import logging
 import pandas as pd
 import plotly.offline as ploff
 import plotly.graph_objs as plgo
@@ -25,7 +24,9 @@ from plotly.exceptions import PlotlyError
 from collections import OrderedDict
 from copy import deepcopy
 
-from .utils import mean, stdev
+from robot.api import logger
+
+from utils import mean, stdev
 
 
 COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
@@ -47,18 +48,18 @@ def generate_plots(spec, data):
     :type data: InputData
     """
 
-    logging.info("Generating the plots ...")
+    logger.info("Generating the plots ...")
     for index, plot in enumerate(spec.plots):
         try:
-            logging.info("  Plot nr {0}: {1}".format(index + 1,
-                                                     plot.get("title", "")))
+            logger.info("  Plot nr {0}: {1}".
+                        format(index + 1, plot.get("title", "")))
             plot["limits"] = spec.configuration["limits"]
             eval(plot["algorithm"])(plot, data)
-            logging.info("  Done.")
+            logger.info("  Done.")
         except NameError as err:
-            logging.error("Probably algorithm '{alg}' is not defined: {err}".
-                          format(alg=plot["algorithm"], err=repr(err)))
-    logging.info("Done.")
+            logger.error("Probably algorithm '{alg}' is not defined: {err}".
+                         format(alg=plot["algorithm"], err=repr(err)))
+    logger.info("Done.")
 
 
 def plot_service_density_reconf_box_name(plot, input_data):
@@ -73,12 +74,12 @@ def plot_service_density_reconf_box_name(plot, input_data):
 
     # Transform the data
     plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot_title))
     data = input_data.filter_tests_by_name(
         plot, params=["result", "parent", "tags", "type"])
     if data is None:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     # Prepare the data for the plot
@@ -139,13 +140,13 @@ def plot_service_density_reconf_box_name(plot, input_data):
 
         # Export Plot
         file_type = plot.get("output-file-type", ".html")
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], file_type))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], file_type))
         ploff.plot(plpl, show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"], file_type))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(repr(err).replace("\n", " ")))
         return
 
 
@@ -161,12 +162,12 @@ def plot_performance_box_name(plot, input_data):
 
     # Transform the data
     plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot_title))
     data = input_data.filter_tests_by_name(
         plot, params=["throughput", "parent", "tags", "type"])
     if data is None:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     # Prepare the data for the plot
@@ -220,7 +221,7 @@ def plot_performance_box_name(plot, input_data):
                    plural='s' if nr_of_samples[i] > 1 else '',
                    name=tst_name)
 
-        logging.debug(name)
+        logger.debug(name)
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=[y / 1000000 if y else None for y in df[col]],
                                name=name,
@@ -228,7 +229,7 @@ def plot_performance_box_name(plot, input_data):
         try:
             val_max = max(df[col])
         except ValueError as err:
-            logging.error(repr(err))
+            logger.error(repr(err))
             continue
         if val_max:
             y_max.append(int(val_max / 1000000) + 2)
@@ -245,13 +246,13 @@ def plot_performance_box_name(plot, input_data):
 
         # Export Plot
         file_type = plot.get("output-file-type", ".html")
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], file_type))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], file_type))
         ploff.plot(plpl, show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"], file_type))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(repr(err).replace("\n", " ")))
         return
 
 
@@ -267,12 +268,12 @@ def plot_latency_error_bars_name(plot, input_data):
 
     # Transform the data
     plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot_title))
     data = input_data.filter_tests_by_name(
         plot, params=["latency", "parent", "tags", "type"])
     if data is None:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     # Prepare the data for the plot
@@ -281,10 +282,10 @@ def plot_latency_error_bars_name(plot, input_data):
         for build in job:
             for test in build:
                 try:
-                    logging.debug("test['latency']: {0}\n".
-                                  format(test["latency"]))
+                    logger.debug("test['latency']: {0}\n".
+                                 format(test["latency"]))
                 except ValueError as err:
-                    logging.warning(repr(err))
+                    logger.warning(repr(err))
                 if y_tmp_vals.get(test["parent"], None) is None:
                     y_tmp_vals[test["parent"]] = [
                         list(),  # direction1, min
@@ -301,8 +302,8 @@ def plot_latency_error_bars_name(plot, input_data):
                         elif "-ndr" in plot_title.lower():
                             ttype = "NDR"
                         else:
-                            logging.warning("Invalid test type: {0}".
-                                            format(test["type"]))
+                            logger.warning("Invalid test type: {0}".
+                                           format(test["type"]))
                             continue
                         y_tmp_vals[test["parent"]][0].append(
                             test["latency"][ttype]["direction1"]["min"])
@@ -317,11 +318,11 @@ def plot_latency_error_bars_name(plot, input_data):
                         y_tmp_vals[test["parent"]][5].append(
                             test["latency"][ttype]["direction2"]["max"])
                     else:
-                        logging.warning("Invalid test type: {0}".
-                                        format(test["type"]))
+                        logger.warning("Invalid test type: {0}".
+                                       format(test["type"]))
                         continue
                 except (KeyError, TypeError) as err:
-                    logging.warning(repr(err))
+                    logger.warning(repr(err))
 
     x_vals = list()
     y_vals = list()
@@ -409,8 +410,8 @@ def plot_latency_error_bars_name(plot, input_data):
     try:
         # Create plot
         file_type = plot.get("output-file-type", ".html")
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], file_type))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], file_type))
         layout = deepcopy(plot["layout"])
         if layout.get("title", None):
             layout["title"] = "<b>Latency:</b> {0}".\
@@ -423,8 +424,8 @@ def plot_latency_error_bars_name(plot, input_data):
                    show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"], file_type))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(str(err).replace("\n", " ")))
         return
 
 
@@ -441,12 +442,12 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
 
     # Transform the data
     plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot_title))
     data = input_data.filter_tests_by_name(
         plot, params=["throughput", "parent", "tags", "type"])
     if data is None:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     y_vals = OrderedDict()
@@ -478,8 +479,8 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
                     pass
 
     if not y_vals:
-        logging.warning("No data for the plot '{}'".
-                        format(plot.get("title", "")))
+        logger.warning("No data for the plot '{}'".
+                       format(plot.get("title", "")))
         return
 
     y_1c_max = dict()
@@ -523,7 +524,7 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
                 try:
                     val_max = max(vals[name]["val"])
                 except ValueError as err:
-                    logging.error(repr(err))
+                    logger.error(repr(err))
                     continue
                 if val_max:
                     y_max.append(val_max)
@@ -537,8 +538,8 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
                     vals[name]["diff"][2] = \
                         (y_val_4 - vals[name]["ideal"][2]) * 100 / y_val_4
         except IndexError as err:
-            logging.warning("No data for '{0}'".format(test_name))
-            logging.warning(repr(err))
+            logger.warning("No data for '{0}'".format(test_name))
+            logger.warning(repr(err))
 
         # Limits:
         if "x520" in test_name:
@@ -578,7 +579,7 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
     try:
         threshold = 1.1 * max(y_max)  # 10%
     except ValueError as err:
-        logging.error(err)
+        logger.error(err)
         return
     nic_limit /= 1000000.0
     traces.append(plgo.Scatter(
@@ -675,7 +676,7 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
 
     # Perfect and measured:
     cidx = 0
-    for name, val in vals.iteritems():
+    for name, val in vals.items():
         hovertext = list()
         try:
             for idx in range(len(val["val"])):
@@ -721,14 +722,14 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
                                        ))
             cidx += 1
         except (IndexError, ValueError, KeyError) as err:
-            logging.warning("No data for '{0}'".format(name))
-            logging.warning(repr(err))
+            logger.warning("No data for '{0}'".format(name))
+            logger.warning(repr(err))
 
     try:
         # Create plot
         file_type = plot.get("output-file-type", ".html")
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], file_type))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], file_type))
         layout = deepcopy(plot["layout"])
         if layout.get("title", None):
             layout["title"] = "<b>Speedup Multi-core:</b> {0}". \
@@ -742,8 +743,8 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
                    show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"], file_type))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(repr(err).replace("\n", " ")))
         return
 
 
@@ -761,11 +762,11 @@ def plot_performance_box(plot, input_data):
 
     # Transform the data
     plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot_title))
     data = input_data.filter_data(plot)
     if data is None:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     # Prepare the data for the plot
@@ -801,7 +802,7 @@ def plot_performance_box(plot, input_data):
         y_sorted = OrderedDict()
         y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
         for tag in order:
-            logging.debug(tag)
+            logger.debug(tag)
             for suite, tags in y_tags_l.items():
                 if "not " in tag:
                     tag = tag.split(" ")[-1]
@@ -813,9 +814,9 @@ def plot_performance_box(plot, input_data):
                 try:
                     y_sorted[suite] = y_vals.pop(suite)
                     y_tags_l.pop(suite)
-                    logging.debug(suite)
+                    logger.debug(suite)
                 except KeyError as err:
-                    logging.error("Not found: {0}".format(repr(err)))
+                    logger.error("Not found: {0}".format(repr(err)))
                 finally:
                     break
     else:
@@ -847,7 +848,7 @@ def plot_performance_box(plot, input_data):
                    plural='s' if nr_of_samples[i] > 1 else '',
                    name=tst_name)
 
-        logging.debug(name)
+        logger.debug(name)
         traces.append(plgo.Box(x=[str(i + 1) + '.'] * len(df[col]),
                                y=[y / 1000000 if y else None for y in df[col]],
                                name=name,
@@ -855,7 +856,7 @@ def plot_performance_box(plot, input_data):
         try:
             val_max = max(df[col])
         except ValueError as err:
-            logging.error(repr(err))
+            logger.error(repr(err))
             continue
         if val_max:
             y_max.append(int(val_max / 1000000) + 2)
@@ -871,14 +872,14 @@ def plot_performance_box(plot, input_data):
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], plot["output-file-type"]))
         ploff.plot(plpl, show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"],
                                             plot["output-file-type"]))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(repr(err).replace("\n", " ")))
         return
 
 
@@ -894,11 +895,11 @@ def plot_soak_bars(plot, input_data):
 
     # Transform the data
     plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot_title))
     data = input_data.filter_data(plot)
     if data is None:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     # Prepare the data for the plot
@@ -923,7 +924,7 @@ def plot_soak_bars(plot, input_data):
         y_sorted = OrderedDict()
         y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
         for tag in order:
-            logging.debug(tag)
+            logger.debug(tag)
             for suite, tags in y_tags_l.items():
                 if "not " in tag:
                     tag = tag.split(" ")[-1]
@@ -935,9 +936,9 @@ def plot_soak_bars(plot, input_data):
                 try:
                     y_sorted[suite] = y_vals.pop(suite)
                     y_tags_l.pop(suite)
-                    logging.debug(suite)
+                    logger.debug(suite)
                 except KeyError as err:
-                    logging.error("Not found: {0}".format(repr(err)))
+                    logger.error("Not found: {0}".format(repr(err)))
                 finally:
                     break
     else:
@@ -991,14 +992,14 @@ def plot_soak_bars(plot, input_data):
             layout["yaxis"]["range"] = [0, y_max + 1]
         plpl = plgo.Figure(data=traces, layout=layout)
         # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], plot["output-file-type"]))
         ploff.plot(plpl, show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"],
                                             plot["output-file-type"]))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(repr(err).replace("\n", " ")))
         return
 
 
@@ -1014,11 +1015,11 @@ def plot_soak_boxes(plot, input_data):
 
     # Transform the data
     plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot_title))
     data = input_data.filter_data(plot)
     if data is None:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     # Prepare the data for the plot
@@ -1043,7 +1044,7 @@ def plot_soak_boxes(plot, input_data):
         y_sorted = OrderedDict()
         y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
         for tag in order:
-            logging.debug(tag)
+            logger.debug(tag)
             for suite, tags in y_tags_l.items():
                 if "not " in tag:
                     tag = tag.split(" ")[-1]
@@ -1055,9 +1056,9 @@ def plot_soak_boxes(plot, input_data):
                 try:
                     y_sorted[suite] = y_vals.pop(suite)
                     y_tags_l.pop(suite)
-                    logging.debug(suite)
+                    logger.debug(suite)
                 except KeyError as err:
-                    logging.error("Not found: {0}".format(repr(err)))
+                    logger.error("Not found: {0}".format(repr(err)))
                 finally:
                     break
     else:
@@ -1112,14 +1113,14 @@ def plot_soak_boxes(plot, input_data):
             layout["yaxis"]["range"] = [0, y_max + 1]
         plpl = plgo.Figure(data=traces, layout=layout)
         # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], plot["output-file-type"]))
         ploff.plot(plpl, show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"],
                                             plot["output-file-type"]))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(repr(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(repr(err).replace("\n", " ")))
         return
 
 
@@ -1137,11 +1138,11 @@ def plot_latency_error_bars(plot, input_data):
 
     # Transform the data
     plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot_title))
     data = input_data.filter_data(plot)
     if data is None:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     # Prepare the data for the plot
@@ -1151,10 +1152,10 @@ def plot_latency_error_bars(plot, input_data):
         for build in job:
             for test in build:
                 try:
-                    logging.debug("test['latency']: {0}\n".
+                    logger.debug("test['latency']: {0}\n".
                                  format(test["latency"]))
                 except ValueError as err:
-                    logging.warning(repr(err))
+                    logger.warning(repr(err))
                 if y_tmp_vals.get(test["parent"], None) is None:
                     y_tmp_vals[test["parent"]] = [
                         list(),  # direction1, min
@@ -1172,8 +1173,8 @@ def plot_latency_error_bars(plot, input_data):
                         elif "-ndr" in plot_title.lower():
                             ttype = "NDR"
                         else:
-                            logging.warning("Invalid test type: {0}".
-                                            format(test["type"]))
+                            logger.warning("Invalid test type: {0}".
+                                           format(test["type"]))
                             continue
                         y_tmp_vals[test["parent"]][0].append(
                             test["latency"][ttype]["direction1"]["min"])
@@ -1188,12 +1189,12 @@ def plot_latency_error_bars(plot, input_data):
                         y_tmp_vals[test["parent"]][5].append(
                             test["latency"][ttype]["direction2"]["max"])
                     else:
-                        logging.warning("Invalid test type: {0}".
-                                        format(test["type"]))
+                        logger.warning("Invalid test type: {0}".
+                                       format(test["type"]))
                         continue
                 except (KeyError, TypeError) as err:
-                    logging.warning(repr(err))
-    logging.debug("y_tmp_vals: {0}\n".format(y_tmp_vals))
+                    logger.warning(repr(err))
+    logger.debug("y_tmp_vals: {0}\n".format(y_tmp_vals))
 
     # Sort the tests
     order = plot.get("sort", None)
@@ -1201,7 +1202,7 @@ def plot_latency_error_bars(plot, input_data):
         y_sorted = OrderedDict()
         y_tags_l = {s: [t.lower() for t in ts] for s, ts in y_tags.items()}
         for tag in order:
-            logging.debug(tag)
+            logger.debug(tag)
             for suite, tags in y_tags_l.items():
                 if "not " in tag:
                     tag = tag.split(" ")[-1]
@@ -1213,15 +1214,15 @@ def plot_latency_error_bars(plot, input_data):
                 try:
                     y_sorted[suite] = y_tmp_vals.pop(suite)
                     y_tags_l.pop(suite)
-                    logging.debug(suite)
+                    logger.debug(suite)
                 except KeyError as err:
-                    logging.error("Not found: {0}".format(repr(err)))
+                    logger.error("Not found: {0}".format(repr(err)))
                 finally:
                     break
     else:
         y_sorted = y_tmp_vals
 
-    logging.debug("y_sorted: {0}\n".format(y_sorted))
+    logger.debug("y_sorted: {0}\n".format(y_sorted))
     x_vals = list()
     y_vals = list()
     y_mins = list()
@@ -1241,11 +1242,11 @@ def plot_latency_error_bars(plot, input_data):
         y_maxs.append(mean(val[5]) if val[5] else None)
         nr_of_samples.append(len(val[3]) if val[3] else 0)
 
-    logging.debug("x_vals :{0}\n".format(x_vals))
-    logging.debug("y_vals :{0}\n".format(y_vals))
-    logging.debug("y_mins :{0}\n".format(y_mins))
-    logging.debug("y_maxs :{0}\n".format(y_maxs))
-    logging.debug("nr_of_samples :{0}\n".format(nr_of_samples))
+    logger.debug("x_vals :{0}\n".format(x_vals))
+    logger.debug("y_vals :{0}\n".format(y_vals))
+    logger.debug("y_mins :{0}\n".format(y_mins))
+    logger.debug("y_maxs :{0}\n".format(y_maxs))
+    logger.debug("nr_of_samples :{0}\n".format(nr_of_samples))
     traces = list()
     annotations = list()
 
@@ -1274,9 +1275,9 @@ def plot_latency_error_bars(plot, input_data):
             arrayminus = [y_vals[idx] - y_mins[idx], ]
         else:
             arrayminus = [None, ]
-        logging.debug("y_vals[{1}] :{0}\n".format(y_vals[idx], idx))
-        logging.debug("array :{0}\n".format(array))
-        logging.debug("arrayminus :{0}\n".format(arrayminus))
+        logger.debug("y_vals[{1}] :{0}\n".format(y_vals[idx], idx))
+        logger.debug("array :{0}\n".format(array))
+        logger.debug("arrayminus :{0}\n".format(arrayminus))
         traces.append(plgo.Scatter(
             x=[idx, ],
             y=[y_vals[idx], ],
@@ -1315,8 +1316,8 @@ def plot_latency_error_bars(plot, input_data):
 
     try:
         # Create plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], plot["output-file-type"]))
         layout = deepcopy(plot["layout"])
         if layout.get("title", None):
             layout["title"] = "<b>Latency:</b> {0}".\
@@ -1330,8 +1331,8 @@ def plot_latency_error_bars(plot, input_data):
                    filename='{0}{1}'.format(plot["output-file"],
                                             plot["output-file-type"]))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(str(err).replace("\n", " ")))
         return
 
 
@@ -1350,11 +1351,11 @@ def plot_throughput_speedup_analysis(plot, input_data):
 
     # Transform the data
     plot_title = plot.get("title", "")
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot_title))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot_title))
     data = input_data.filter_data(plot)
     if data is None:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     y_vals = dict()
@@ -1388,8 +1389,8 @@ def plot_throughput_speedup_analysis(plot, input_data):
                     pass
 
     if not y_vals:
-        logging.warning("No data for the plot '{}'".
-                        format(plot.get("title", "")))
+        logger.warning("No data for the plot '{}'".
+                       format(plot.get("title", "")))
         return
 
     y_1c_max = dict()
@@ -1434,7 +1435,7 @@ def plot_throughput_speedup_analysis(plot, input_data):
                     # val_max = max(max(vals[name]["val"], vals[name]["ideal"]))
                     val_max = max(vals[name]["val"])
                 except ValueError as err:
-                    logging.error(err)
+                    logger.error(err)
                     continue
                 if val_max:
                     # y_max.append(int((val_max / 10) + 1) * 10)
@@ -1449,8 +1450,8 @@ def plot_throughput_speedup_analysis(plot, input_data):
                     vals[name]["diff"][2] = \
                         (y_val_4 - vals[name]["ideal"][2]) * 100 / y_val_4
         except IndexError as err:
-            logging.warning("No data for '{0}'".format(test_name))
-            logging.warning(repr(err))
+            logger.warning("No data for '{0}'".format(test_name))
+            logger.warning(repr(err))
 
         # Limits:
         if "x520" in test_name:
@@ -1497,7 +1498,7 @@ def plot_throughput_speedup_analysis(plot, input_data):
                         y_sorted[name] = vals.pop(name)
                         y_tags_l.pop(test)
                     except KeyError as err:
-                        logging.error("Not found: {0}".format(err))
+                        logger.error("Not found: {0}".format(err))
                     finally:
                         break
     else:
@@ -1511,7 +1512,7 @@ def plot_throughput_speedup_analysis(plot, input_data):
     try:
         threshold = 1.1 * max(y_max)  # 10%
     except ValueError as err:
-        logging.error(err)
+        logger.error(err)
         return
     nic_limit /= 1000000.0
     # if nic_limit < threshold:
@@ -1612,7 +1613,7 @@ def plot_throughput_speedup_analysis(plot, input_data):
 
     # Perfect and measured:
     cidx = 0
-    for name, val in y_sorted.iteritems():
+    for name, val in y_sorted.items():
         hovertext = list()
         try:
             for idx in range(len(val["val"])):
@@ -1657,13 +1658,13 @@ def plot_throughput_speedup_analysis(plot, input_data):
                                        ))
             cidx += 1
         except (IndexError, ValueError, KeyError) as err:
-            logging.warning("No data for '{0}'".format(name))
-            logging.warning(repr(err))
+            logger.warning("No data for '{0}'".format(name))
+            logger.warning(repr(err))
 
     try:
         # Create plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], plot["output-file-type"]))
         layout = deepcopy(plot["layout"])
         if layout.get("title", None):
             layout["title"] = "<b>Speedup Multi-core:</b> {0}". \
@@ -1679,8 +1680,8 @@ def plot_throughput_speedup_analysis(plot, input_data):
                    filename='{0}{1}'.format(plot["output-file"],
                                             plot["output-file-type"]))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(str(err).replace("\n", " ")))
         return
 
 
@@ -1695,11 +1696,11 @@ def plot_http_server_performance_box(plot, input_data):
     """
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot.get("title", "")))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot.get("title", "")))
     data = input_data.filter_data(plot)
     if data is None:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     # Prepare the data for the plot
@@ -1755,14 +1756,14 @@ def plot_http_server_performance_box(plot, input_data):
         plpl = plgo.Figure(data=traces, layout=plot["layout"])
 
         # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], plot["output-file-type"]))
         ploff.plot(plpl, show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"],
                                             plot["output-file-type"]))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(str(err).replace("\n", " ")))
         return
 
 
@@ -1786,11 +1787,11 @@ def plot_service_density_heatmap(plot, input_data):
     vals = dict()
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot.get("title", "")))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot.get("title", "")))
     data = input_data.filter_data(plot, continue_on_error=True)
     if data is None or data.empty:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     for job in data:
@@ -1836,7 +1837,7 @@ def plot_service_density_heatmap(plot, input_data):
                     vals[c][n]["vals"].append(result)
 
     if not vals:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     for key_c in vals.keys():
@@ -2026,8 +2027,8 @@ def plot_service_density_heatmap(plot, input_data):
     try:
         layout = deepcopy(plot["layout"])
     except KeyError as err:
-        logging.error("Finished with error: No layout defined")
-        logging.error(repr(err))
+        logger.error("Finished with error: No layout defined")
+        logger.error(repr(err))
         return
 
     layout["annotations"] = annotations
@@ -2038,14 +2039,14 @@ def plot_service_density_heatmap(plot, input_data):
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], plot["output-file-type"]))
         ploff.plot(plpl, show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"],
                                             plot["output-file-type"]))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(str(err).replace("\n", " ")))
         return
 
 
@@ -2070,11 +2071,11 @@ def plot_service_density_heatmap_compare(plot, input_data):
     vals = dict()
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(plot.get("type", ""), plot.get("title", "")))
+    logger.info("    Creating the data set for the {0} '{1}'.".
+                format(plot.get("type", ""), plot.get("title", "")))
     data = input_data.filter_data(plot, continue_on_error=True)
     if data is None or data.empty:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     for job in data:
@@ -2132,7 +2133,7 @@ def plot_service_density_heatmap_compare(plot, input_data):
                                 vals[c][n]["vals_c"].append(result)
                             break
     if not vals:
-        logging.error("No data.")
+        logger.error("No data.")
         return
 
     for key_c in vals.keys():
@@ -2481,8 +2482,8 @@ def plot_service_density_heatmap_compare(plot, input_data):
     try:
         layout = deepcopy(plot["layout"])
     except KeyError as err:
-        logging.error("Finished with error: No layout defined")
-        logging.error(repr(err))
+        logger.error("Finished with error: No layout defined")
+        logger.error(repr(err))
         return
 
     layout["annotations"] = annotations + annotations_r
@@ -2493,12 +2494,12 @@ def plot_service_density_heatmap_compare(plot, input_data):
         plpl = plgo.Figure(data=traces, layout=layout)
 
         # Export Plot
-        logging.info("    Writing file '{0}{1}'.".
-                     format(plot["output-file"], plot["output-file-type"]))
+        logger.info("    Writing file '{0}{1}'.".
+                    format(plot["output-file"], plot["output-file-type"]))
         ploff.plot(plpl, show_link=False, auto_open=False,
                    filename='{0}{1}'.format(plot["output-file"],
                                             plot["output-file-type"]))
     except PlotlyError as err:
-        logging.error("   Finished with error: {}".
-                      format(str(err).replace("\n", " ")))
+        logger.error("   Finished with error: {}".
+                     format(str(err).replace("\n", " ")))
         return
