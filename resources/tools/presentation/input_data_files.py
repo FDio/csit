@@ -17,18 +17,18 @@ Download all data.
 
 import re
 import requests
-import logging
 
 from os import rename, mkdir
 from os.path import join
 from zipfile import ZipFile, is_zipfile, BadZipfile
-from httplib import responses
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
+from http.client import responses
+from requests.adapters import HTTPAdapter, Retry
 from requests import codes, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
 
-from .errors import PresentationError
+from robot.api import logger
+
+from errors import PresentationError
 
 
 # Chunk size used for file download
@@ -235,7 +235,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
                         job=job, sep=SEPARATOR, build=build["build"],
                         name=file_name))
 
-    logging.info("Trying to download {0}".format(url))
+    logger.info("Trying to download {0}".format(url))
 
     arch = True if spec.configuration.get("archive-inputs", True) else False
     success, downloaded_name = _download_file(url, new_name, log, arch=arch)
@@ -254,7 +254,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
                             job=job, sep=SEPARATOR, build=build["build"],
                             name=file_name))
 
-        logging.info("Downloading {0}".format(url))
+        logger.info("Downloading {0}".format(url))
 
         if spec.configuration.get("archive-inputs", True):
             arch = True
@@ -285,7 +285,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
                        dir=spec.environment["urls"]["DIR[NEXUS,DOC]"],
                        file=nexus_file_name)
 
-            logging.info("Downloading {0}".format(url))
+            logger.info("Downloading {0}".format(url))
 
             success, downloaded_name = _download_file(url, new_name, log)
             if success:
@@ -313,7 +313,7 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
                         format(job=job, sep=SEPARATOR, build=build["build"],
                                name=file_name))
 
-        logging.info("Downloading {0}".format(url))
+        logger.info("Downloading {0}".format(url))
 
         success, downloaded_name = _download_file(url, new_name, log)
 

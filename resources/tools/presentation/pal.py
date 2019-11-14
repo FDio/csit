@@ -16,19 +16,20 @@
 
 import sys
 import argparse
-import logging
 
-from .errors import PresentationError
-from .environment import Environment, clean_environment
-from .specification_parser import Specification
-from .input_data_parser import InputData
-from .generator_tables import generate_tables
-from .generator_plots import generate_plots
-from .generator_files import generate_files
-from .static_content import prepare_static_content
-from .generator_report import generate_report
-from .generator_CPTA import generate_cpta
-from .generator_alerts import Alerting, AlertingError
+from robot.api import logger
+
+from errors import PresentationError
+from environment import Environment, clean_environment
+from specification_parser import Specification
+from input_data_parser import InputData
+from generator_tables import generate_tables
+from generator_plots import generate_plots
+from generator_files import generate_files
+from static_content import prepare_static_content
+from generator_report import generate_report
+from generator_CPTA import generate_cpta
+from generator_alerts import Alerting, AlertingError
 
 
 def parse_args():
@@ -54,8 +55,7 @@ def parse_args():
                         type=str,
                         help="Calendar week when the report is published.")
     parser.add_argument("-l", "--logging",
-                        choices=["DEBUG", "INFO", "WARNING",
-                                 "ERROR", "CRITICAL"],
+                        choices=["DEBUG", "INFO", "WARN", "ERROR"],
                         default="ERROR",
                         help="Logging level.")
     parser.add_argument("-f", "--force",
@@ -68,29 +68,22 @@ def parse_args():
 def main():
     """Main function."""
 
-    log_levels = {"NOTSET": logging.NOTSET,
-                  "DEBUG": logging.DEBUG,
-                  "INFO": logging.INFO,
-                  "WARNING": logging.WARNING,
-                  "ERROR": logging.ERROR,
-                  "CRITICAL": logging.CRITICAL}
-
     args = parse_args()
-    logging.basicConfig(format='%(asctime)s: %(levelname)s: %(message)s',
-                        datefmt='%Y/%m/%d %H:%M:%S',
-                        level=log_levels[args.logging])
+    logger.basicConfig(format='%(asctime)s: %(levelname)s: %(message)s',
+                       datefmt='%Y/%m/%d %H:%M:%S',
+                       level=args.logger)
 
-    logging.info("Application started.")
+    logger.info("Application started.")
     try:
         spec = Specification(args.specification)
         spec.read_specification()
     except PresentationError:
-        logging.critical("Finished with error.")
+        logger.error("Finished with error.")
         return 1
 
     if spec.output["output"] not in ("report", "CPTA"):
-        logging.critical("The output '{0}' is not supported.".
-                         format(spec.output["output"]))
+        logger.error("The output '{0}' is not supported.".
+                     format(spec.output["output"]))
         return 1
 
     # ret_code = 1
@@ -109,29 +102,29 @@ def main():
 
     if spec.output["output"] == "report":
         generate_report(args.release, spec, args.week)
-        logging.info("Successfully finished.")
+        logger.info("Successfully finished.")
     elif spec.output["output"] == "CPTA":
         sys.stdout.write(generate_cpta(spec, data))
         try:
             alert = Alerting(spec)
             alert.generate_alerts()
         except AlertingError as err:
-            logging.warning(repr(err))
-        logging.info("Successfully finished.")
+            logger.warn(repr(err))
+        logger.info("Successfully finished.")
     ret_code = 0
 
     # except AlertingError as err:
-    #     logging.critical("Finished with an alerting error.")
-    #     logging.critical(repr(err))
+    #     logger.error("Finished with an alerting error.")
+    #     logger.error(repr(err))
     # except PresentationError as err:
-    #     logging.critical("Finished with an PAL error.")
-    #     logging.critical(repr(err))
+    #     logger.error("Finished with an PAL error.")
+    #     logger.error(repr(err))
     # except (KeyError, ValueError) as err:
-    #     logging.critical("Finished with an error.")
-    #     logging.critical(repr(err))
+    #     logger.error("Finished with an error.")
+    #     logger.error(repr(err))
     # except Exception as err:
-    #     logging.critical("Finished with an unexpected error.")
-    #     logging.critical(repr(err))
+    #     logger.error("Finished with an unexpected error.")
+    #     logger.error(repr(err))
     # finally:
     #     if spec is not None:
     #         clean_environment(spec.environment)
