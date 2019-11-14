@@ -23,20 +23,19 @@ import copy
 import re
 import resource
 import pandas as pd
-import logging
+# import logging
 import prettytable
 
-from robot.api import ExecutionResult, ResultVisitor
+from robot.api import logger, ExecutionResult, ResultVisitor
 from robot import errors
 from collections import OrderedDict
-from string import replace
 from os import remove
 from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
 
-from resources.libraries.python import jumpavg
-from .input_data_files import download_and_unzip_data_file
+import jumpavg
+from input_data_files import download_and_unzip_data_file
 
 
 # Separator used in file names
@@ -401,8 +400,8 @@ class ExecutionChecker(ResultVisitor):
                 self._data["tests"][self._test_ID]["conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          "VAT command history:", "", msg.message, count=1). \
+            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
+                          r"VAT command history:", "", msg.message, count=1). \
                 replace("\n\n", "\n").replace('\n', ' |br| ').\
                 replace('\r', '').replace('"', "'")
 
@@ -423,8 +422,8 @@ class ExecutionChecker(ResultVisitor):
                 self._data["tests"][self._test_ID]["conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          "PAPI command history:", "", msg.message, count=1). \
+            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
+                          r"PAPI command history:", "", msg.message, count=1). \
                 replace("\n\n", "\n").replace('\n', ' |br| ').\
                 replace('\r', '').replace('"', "'")
 
@@ -655,9 +654,9 @@ class ExecutionChecker(ResultVisitor):
 
         doc_str = suite.doc.replace('"', "'").replace('\n', ' ').\
             replace('\r', '').replace('*[', ' |br| *[').replace("*", "**")
-        doc_str = replace(doc_str, ' |br| *[', '*[', maxreplace=1)
+        doc_str = doc_str.replace(' |br| *[', '*[', 1)
 
-        self._data["suites"][suite.longname.lower().replace('"', "'").
+        self._data["suites"][suite.longname.lower().replace('"', "'").\
             replace(" ", "_")] = {
                 "name": suite.name.lower(),
                 "doc": doc_str,
@@ -708,7 +707,7 @@ class ExecutionChecker(ResultVisitor):
         longname = self._mapping.get(longname_orig, None)
         if longname is not None:
             name = longname.split('.')[-1]
-            logging.debug("{0}\n{1}\n{2}\n{3}".format(
+            logger.debug("{0}\n{1}\n{2}\n{3}".format(
                 self._data["metadata"], longname_orig, longname, name))
         else:
             longname = longname_orig
@@ -723,7 +722,7 @@ class ExecutionChecker(ResultVisitor):
         test_result["tags"] = tags
         doc_str = test.doc.replace('"', "'").replace('\n', ' '). \
             replace('\r', '').replace('[', ' |br| [')
-        test_result["doc"] = replace(doc_str, ' |br| [', '[', maxreplace=1)
+        test_result["doc"] = doc_str.replace(' |br| [', '[', 1)
         test_result["msg"] = test.message.replace('\n', ' |br| '). \
             replace('\r', '').replace('"', "'")
         test_result["type"] = "FUNC"
@@ -755,9 +754,9 @@ class ExecutionChecker(ResultVisitor):
                 else:
                     test_result["status"] = "FAIL"
                     self._data["tests"][self._test_ID] = test_result
-                    logging.debug("The test '{0}' has no or more than one "
-                                  "multi-threading tags.".format(self._test_ID))
-                    logging.debug("Tags: {0}".format(test_result["tags"]))
+                    logger.debug("The test '{0}' has no or more than one "
+                                 "multi-threading tags.".format(self._test_ID))
+                    logger.debug("Tags: {0}".format(test_result["tags"]))
                     return
 
         if test.status == "PASS" and ("NDRPDRDISC" in tags or
@@ -835,7 +834,7 @@ class ExecutionChecker(ResultVisitor):
                     items_float = [float(item.strip()) for item
                                    in items_str.split(",")]
                     # Use whole list in CSIT-1180.
-                    stats = jumpavg.AvgStdevStats.for_data(items_float)
+                    stats = jumpavg.AvgStdevStats.for_runs(items_float)
                     test_result["result"]["receive-rate"] = stats.avg
                 else:
                     groups = re.search(self.REGEX_MRR, test.message)
@@ -1243,15 +1242,15 @@ class InputData(object):
 
         for level, line in logs:
             if level == "INFO":
-                logging.info(line)
+                logger.info(line)
             elif level == "ERROR":
-                logging.error(line)
+                logger.error(line)
             elif level == "DEBUG":
-                logging.debug(line)
+                logger.debug(line)
             elif level == "CRITICAL":
-                logging.critical(line)
+                logger.critical(line)
             elif level == "WARNING":
-                logging.warning(line)
+                logger.warning(line)
 
         return {"data": data, "state": state, "job": job, "build": build}
 
@@ -1264,7 +1263,7 @@ class InputData(object):
         :type repeat: int
         """
 
-        logging.info("Downloading and parsing input files ...")
+        logger.info("Downloading and parsing input files ...")
 
         for job, builds in self._cfg.builds.items():
             for build in builds:
@@ -1292,10 +1291,10 @@ class InputData(object):
 
                 self._cfg.set_input_state(job, build_nr, result["state"])
 
-                logging.info("Memory allocation: {0:,d}MB".format(
+                logger.info("Memory allocation: {0:.0f}MB".format(
                     resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000))
 
-        logging.info("Done.")
+        logger.info("Done.")
 
     @staticmethod
     def _end_of_tag(tag_filter, start=0, closer="'"):
@@ -1379,9 +1378,9 @@ class InputData(object):
                 cond = "True"
             else:
                 cond = InputData._condition(element["filter"])
-            logging.debug("   Filter: {0}".format(cond))
+            logger.debug("   Filter: {0}".format(cond))
         except KeyError:
-            logging.error("  No filter defined.")
+            logger.error("  No filter defined.")
             return None
 
         if params is None:
@@ -1397,15 +1396,16 @@ class InputData(object):
                 for build in builds:
                     data[job][str(build)] = pd.Series()
                     try:
-                        data_iter = self.data[job][str(build)][data_set].\
-                            iteritems()
+                        data_iter = self.data[job][str(build)][data_set].items()
+                        logger.info(data_iter)
                     except KeyError:
                         if continue_on_error:
                             continue
                         else:
                             return None
                     for test_ID, test_data in data_iter:
-                        if eval(cond, {"tags": test_data.get("tags", "")}):
+                        logger.info(test_data[0])
+                        if eval(cond, {"tags": test_data[0].get("tags", "")}):
                             data[job][str(build)][test_ID] = pd.Series()
                             if params is None:
                                 for param, val in test_data.items():
@@ -1421,14 +1421,15 @@ class InputData(object):
             return data
 
         except (KeyError, IndexError, ValueError) as err:
-            logging.error("   Missing mandatory parameter in the element "
-                          "specification: {0}".format(err))
+            logger.error("   Missing mandatory parameter in the element "
+                         "specification: {0}".format(err))
             return None
-        except AttributeError:
+        except AttributeError as err:
+            logger.error(repr(err))
             return None
         except SyntaxError:
-            logging.error("   The filter '{0}' is not correct. Check if all "
-                          "tags are enclosed by apostrophes.".format(cond))
+            logger.error("   The filter '{0}' is not correct. Check if all "
+                         "tags are enclosed by apostrophes.".format(cond))
             return None
 
     def filter_tests_by_name(self, element, params=None, data_set="tests",
@@ -1469,7 +1470,7 @@ class InputData(object):
 
         include = element.get("include", None)
         if not include:
-            logging.warning("No tests to include, skipping the element.")
+            logger.warning("No tests to include, skipping the element.")
             return None
 
         if params is None:
@@ -1505,7 +1506,7 @@ class InputData(object):
                                                 data[job][str(build)][test_ID]\
                                                     [param] = "No Data"
                         except KeyError as err:
-                            logging.error("{err!r}".format(err=err))
+                            logger.error("{err!r}".format(err=err))
                             if continue_on_error:
                                 continue
                             else:
@@ -1513,11 +1514,11 @@ class InputData(object):
             return data
 
         except (KeyError, IndexError, ValueError) as err:
-            logging.error("Missing mandatory parameter in the element "
-                          "specification: {err!r}".format(err=err))
+            logger.error("Missing mandatory parameter in the element "
+                         "specification: {err!r}".format(err=err))
             return None
         except AttributeError as err:
-            logging.error("{err!r}".format(err=err))
+            logger.error("{err!r}".format(err=err))
             return None
 
 
@@ -1542,12 +1543,12 @@ class InputData(object):
         :rtype: pandas.Series
         """
 
-        logging.info("    Merging data ...")
+        logger.info("    Merging data ...")
 
         merged_data = pd.Series()
-        for _, builds in data.iteritems():
-            for _, item in builds.iteritems():
-                for ID, item_data in item.iteritems():
+        for builds in data.values():
+            for item in builds.values():
+                for ID, item_data in item.items():
                     merged_data[ID] = item_data
 
         return merged_data
