@@ -25,7 +25,7 @@ from plotly.exceptions import PlotlyError
 from collections import OrderedDict
 from copy import deepcopy
 
-from .utils import mean, stdev
+from utils import mean, stdev
 
 
 COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
@@ -675,7 +675,7 @@ def plot_throughput_speedup_analysis_name(plot, input_data):
 
     # Perfect and measured:
     cidx = 0
-    for name, val in vals.iteritems():
+    for name, val in vals.items():
         hovertext = list()
         try:
             for idx in range(len(val["val"])):
@@ -1612,7 +1612,7 @@ def plot_throughput_speedup_analysis(plot, input_data):
 
     # Perfect and measured:
     cidx = 0
-    for name, val in y_sorted.iteritems():
+    for name, val in y_sorted.items():
         hovertext = list()
         try:
             for idx in range(len(val["val"])):

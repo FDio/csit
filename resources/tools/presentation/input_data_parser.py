@@ -29,14 +29,13 @@ import prettytable
 from robot.api import ExecutionResult, ResultVisitor
 from robot import errors
 from collections import OrderedDict
-from string import replace
 from os import remove
 from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
 
-from resources.libraries.python import jumpavg
-from .input_data_files import download_and_unzip_data_file
+import jumpavg
+from input_data_files import download_and_unzip_data_file
 
 
 # Separator used in file names
@@ -401,8 +400,8 @@ class ExecutionChecker(ResultVisitor):
                 self._data["tests"][self._test_ID]["conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          "VAT command history:", "", msg.message, count=1). \
+            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
+                          r"VAT command history:", "", msg.message, count=1). \
                 replace("\n\n", "\n").replace('\n', ' |br| ').\
                 replace('\r', '').replace('"', "'")
 
@@ -423,8 +422,8 @@ class ExecutionChecker(ResultVisitor):
                 self._data["tests"][self._test_ID]["conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          "PAPI command history:", "", msg.message, count=1). \
+            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
+                          r"PAPI command history:", "", msg.message, count=1). \
                 replace("\n\n", "\n").replace('\n', ' |br| ').\
                 replace('\r', '').replace('"', "'")
 
@@ -655,9 +654,9 @@ class ExecutionChecker(ResultVisitor):
 
         doc_str = suite.doc.replace('"', "'").replace('\n', ' ').\
             replace('\r', '').replace('*[', ' |br| *[').replace("*", "**")
-        doc_str = replace(doc_str, ' |br| *[', '*[', maxreplace=1)
+        doc_str = doc_str.replace(' |br| *[', '*[', 1)
 
-        self._data["suites"][suite.longname.lower().replace('"', "'").
+        self._data["suites"][suite.longname.lower().replace('"', "'").\
             replace(" ", "_")] = {
                 "name": suite.name.lower(),
                 "doc": doc_str,
@@ -723,7 +722,7 @@ class ExecutionChecker(ResultVisitor):
         test_result["tags"] = tags
         doc_str = test.doc.replace('"', "'").replace('\n', ' '). \
             replace('\r', '').replace('[', ' |br| [')
-        test_result["doc"] = replace(doc_str, ' |br| [', '[', maxreplace=1)
+        test_result["doc"] = doc_str.replace(' |br| [', '[', 1)
         test_result["msg"] = test.message.replace('\n', ' |br| '). \
             replace('\r', '').replace('"', "'")
         test_result["type"] = "FUNC"
@@ -835,7 +834,7 @@ class ExecutionChecker(ResultVisitor):
                     items_float = [float(item.strip()) for item
                                    in items_str.split(",")]
                     # Use whole list in CSIT-1180.
-                    stats = jumpavg.AvgStdevStats.for_data(items_float)
+                    stats = jumpavg.AvgStdevStats.for_runs(items_float)
                     test_result["result"]["receive-rate"] = stats.avg
                 else:
                     groups = re.search(self.REGEX_MRR, test.message)
@@ -1272,16 +1271,35 @@ class InputData(object):
                 result = self._download_and_parse_build(job, build, repeat)
                 build_nr = result["build"]["build"]
 
+                logging.info("metadata")
+                logging.info(result["data"]["metadata"])
+
+                # logging.info("suites")
+                # logging.info(result["data"]["suites"])
+
                 if result["data"]:
                     data = result["data"]
+
+                    logging.info("metadata - keys")
+                    logging.info(data["metadata"].keys())
+
+                    logging.info("metadata - values")
+                    logging.info(data["metadata"].values())
+
                     build_data = pd.Series({
                         "metadata": pd.Series(
-                            data["metadata"].values(),
-                            index=data["metadata"].keys()),
+                            list(data["metadata"].values()),
+                            index=list(data["metadata"].keys())),
                         "suites": pd.Series(data["suites"].values(),
                                             index=data["suites"].keys()),
                         "tests": pd.Series(data["tests"].values(),
                                            index=data["tests"].keys())})
+
+                    logging.info("metadata")
+                    logging.info(build_data["metadata"])
+
+                    # logging.info("suites")
+                    # logging.info(build_data["suites"])
 
                     if self._input_data.get(job, None) is None:
                         self._input_data[job] = pd.Series()
@@ -1292,7 +1310,7 @@ class InputData(object):
 
                 self._cfg.set_input_state(job, build_nr, result["state"])
 
-                logging.info("Memory allocation: {0:,d}MB".format(
+                logging.info("Memory allocation: {0:.0f}MB".format(
                     resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000))
 
         logging.info("Done.")
@@ -1397,35 +1415,38 @@ class InputData(object):
                 for build in builds:
                     data[job][str(build)] = pd.Series()
                     try:
-                        data_iter = self.data[job][str(build)][data_set].\
-                            iteritems()
+                        data_dict = dict(
+                            self.data[job][str(build)][data_set].items())
                     except KeyError:
                         if continue_on_error:
                             continue
                         else:
                             return None
-                    for test_ID, test_data in data_iter:
-                        if eval(cond, {"tags": test_data.get("tags", "")}):
+
+                    for test_ID, test_data in data_dict.items():
+                        test_data_dict = list(test_data)[0]
+                        if eval(cond, {"tags": test_data_dict.get("tags", "")}):
                             data[job][str(build)][test_ID] = pd.Series()
                             if params is None:
-                                for param, val in test_data.items():
+                                for param, val in test_data_dict.items():
                                     data[job][str(build)][test_ID][param] = val
                             else:
                                 for param in params:
                                     try:
                                         data[job][str(build)][test_ID][param] =\
-                                            test_data[param]
+                                            test_data_dict[param]
                                     except KeyError:
                                         data[job][str(build)][test_ID][param] =\
                                             "No Data"
             return data
 
-        except (KeyError, IndexError, ValueError) as err:
-            logging.error("   Missing mandatory parameter in the element "
-                          "specification: {0}".format(err))
-            return None
-        except AttributeError:
-            return None
+        # except (KeyError, IndexError, ValueError) as err:
+        #     logging.error("   Missing mandatory parameter in the element "
+        #                   "specification: {0}".format(repr(err)))
+        #     return None
+        # except AttributeError as err:
+        #     logging.error(repr(err))
+        #     return None
         except SyntaxError:
             logging.error("   The filter '{0}' is not correct. Check if all "
                           "tags are enclosed by apostrophes.".format(cond))
@@ -1486,11 +1507,11 @@ class InputData(object):
                     for test in include:
                         try:
                             reg_ex = re.compile(str(test).lower())
-                            for test_ID in self.data[job][str(build)]\
-                                    [data_set].keys():
+                            for test_ID in self.data[job][
+                                    str(build)][data_set].keys():
                                 if re.match(reg_ex, str(test_ID).lower()):
-                                    test_data = self.data[job][str(build)]\
-                                        [data_set][test_ID]
+                                    test_data = self.data[job][
+                                        str(build)][data_set][test_ID]
                                     data[job][str(build)][test_ID] = pd.Series()
                                     if params is None:
                                         for param, val in test_data.items():
@@ -1499,11 +1520,12 @@ class InputData(object):
                                     else:
                                         for param in params:
                                             try:
-                                                data[job][str(build)][test_ID]\
-                                                    [param] = test_data[param]
+                                                data[job][str(build)][
+                                                    test_ID][param] = \
+                                                    test_data[param]
                                             except KeyError:
-                                                data[job][str(build)][test_ID]\
-                                                    [param] = "No Data"
+                                                data[job][str(build)][
+                                                    test_ID][param] = "No Data"
                         except KeyError as err:
                             logging.error("{err!r}".format(err=err))
                             if continue_on_error:
@@ -1545,9 +1567,9 @@ class InputData(object):
         logging.info("    Merging data ...")
 
         merged_data = pd.Series()
-        for _, builds in data.iteritems():
-            for _, item in builds.iteritems():
-                for ID, item_data in item.iteritems():
+        for builds in data.values():
+            for item in builds.values():
+                for ID, item_data in item.items():
                     merged_data[ID] = item_data
 
         return merged_data
