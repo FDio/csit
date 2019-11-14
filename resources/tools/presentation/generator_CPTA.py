@@ -25,7 +25,7 @@ from collections import OrderedDict
 from datetime import datetime
 from copy import deepcopy
 
-from .utils import archive_input_data, execute_command, classify_anomalies
+from utils import archive_input_data, execute_command, classify_anomalies
 
 
 # Command to build the html format of the report
@@ -215,7 +215,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         "progression": 1.0
     }
     if anomaly_classification:
-        for idx, (key, value) in enumerate(data_pd.iteritems()):
+        for idx, (key, value) in enumerate(data_pd.items()):
             if anomaly_classification[idx] in \
                     ("outlier", "regression", "progression"):
                 anomalies[key] = value
@@ -345,7 +345,7 @@ def _generate_all_charts(spec, input_data):
 
         chart_data = dict()
         chart_tags = dict()
-        for job, job_data in data.iteritems():
+        for job, job_data in data.items():
             if job != job_name:
                 continue
             for index, bld in job_data.items():
@@ -591,11 +591,11 @@ def _generate_all_charts(spec, input_data):
     # Evaluate result:
     if anomaly_classifications:
         result = "PASS"
-        for job_name, job_data in anomaly_classifications.iteritems():
+        for job_name, job_data in anomaly_classifications.items():
             file_name = "{0}-regressions-{1}.txt".\
                 format(spec.cpta["output-file"], job_name)
             with open(file_name, 'w') as txt_file:
-                for test_name, classification in job_data.iteritems():
+                for test_name, classification in job_data.items():
                     if classification == "regression":
                         txt_file.write(test_name + '\n')
                     if classification == "regression" or \
@@ -604,7 +604,7 @@ def _generate_all_charts(spec, input_data):
             file_name = "{0}-progressions-{1}.txt".\
                 format(spec.cpta["output-file"], job_name)
             with open(file_name, 'w') as txt_file:
-                for test_name, classification in job_data.iteritems():
+                for test_name, classification in job_data.items():
                     if classification == "progression":
                         txt_file.write(test_name + '\n')
     else:
