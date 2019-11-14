@@ -18,12 +18,12 @@ Parsing of the specification YAML file.
 
 
 import logging
-from yaml import load, YAMLError
+from yaml import load, FullLoader, YAMLError
 from pprint import pformat
 
-from .errors import PresentationError
-from .utils import (
-    get_last_successful_build_number, get_last_completed_build_number)
+from errors import PresentationError
+from utils import get_last_successful_build_number, \
+    get_last_completed_build_number
 
 
 class Specification(object):
@@ -465,7 +465,7 @@ class Specification(object):
             logging.debug("Mapping file: '{0}'".format(mapping_file_name))
             try:
                 with open(mapping_file_name, 'r') as mfile:
-                    mapping = load(mfile)
+                    mapping = load(mfile, Loader=FullLoader)
                 logging.debug("Loaded mapping table:\n{0}".format(mapping))
             except (YAMLError, IOError) as err:
                 raise PresentationError(
@@ -475,7 +475,7 @@ class Specification(object):
         # Make sure everything is lowercase
         if mapping:
             self._specification["configuration"]["mapping"] = \
-                {key.lower(): val.lower() for key, val in mapping.iteritems()}
+                {key.lower(): val.lower() for key, val in mapping.items()}
         else:
             self._specification["configuration"]["mapping"] = dict()
 
@@ -487,7 +487,7 @@ class Specification(object):
             logging.debug("Ignore list file: '{0}'".format(ignore_list_name))
             try:
                 with open(ignore_list_name, 'r') as ifile:
-                    ignore = load(ifile)
+                    ignore = load(ifile, Loader=FullLoader)
                 logging.debug("Loaded ignore list:\n{0}".format(ignore))
             except (YAMLError, IOError) as err:
                 raise PresentationError(
@@ -729,7 +729,7 @@ class Specification(object):
         specification file.
         """
         try:
-            self._cfg_yaml = load(self._cfg_file)
+            self._cfg_yaml = load(self._cfg_file, Loader=FullLoader)
         except YAMLError as err:
             raise PresentationError(msg="An error occurred while parsing the "
                                         "specification file.",
