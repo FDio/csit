@@ -57,9 +57,6 @@ Brief overview of test scenarios covered in this report:
        FD.io testbeds demonstrating a single server (DUT1) and single
        client (DUT2) scenario using DMM framework and Linux kernel TCP/IP
        stack.
-    #. **NSH_SFC Functional**: NSH_SFC functional tests are executed in
-       virtual FD.io testbeds focusing on VPP nsh-plugin data plane
-       functionality. Scapy is used as a traffic generator.
 
 All CSIT test data included in this report is auto-
 generated from :abbr:`RF (Robot Framework)` :file:`output.xml` files
