@@ -23,14 +23,13 @@ import plotly.graph_objects as go
 import plotly.offline as ploff
 import pandas as pd
 
-from string import replace
 from collections import OrderedDict
 from numpy import nan, isnan
 from xml.etree import ElementTree as ET
 from datetime import datetime as dt
 from datetime import timedelta
 
-from .utils import mean, stdev, relative_change, classify_anomalies, \
+from utils import mean, stdev, relative_change, classify_anomalies, \
     convert_csv_to_pretty_txt, relative_change_stdev
 
 
@@ -102,8 +101,7 @@ def table_details(table, input_data):
                                        split(" ")[1]]).replace('"', '""')
                         if column["data"].split(" ")[1] in ("conf-history",
                                                             "show-run"):
-                            col_data = replace(col_data, " |br| ", "",
-                                               maxreplace=1)
+                            col_data = col_data.replace(" |br| ", "", )
                             col_data = " |prein| {0} |preout| ".\
                                 format(col_data[:-5])
                         row_lst.append('"{0}"'.format(col_data))
@@ -166,12 +164,11 @@ def table_merged_details(table, input_data):
                     try:
                         col_data = str(data[test][column["data"].
                                        split(" ")[1]]).replace('"', '""')
-                        col_data = replace(col_data, "No Data",
-                                           "Not Captured     ")
+                        col_data = col_data.replace("No Data",
+                                                    "Not Captured     ")
                         if column["data"].split(" ")[1] in ("conf-history",
                                                             "show-run"):
-                            col_data = replace(col_data, " |br| ", "",
-                                               maxreplace=1)
+                            col_data = col_data.replace(" |br| ", "", 1)
                             col_data = " |prein| {0} |preout| ".\
                                 format(col_data[:-5])
                         row_lst.append('"{0}"'.format(col_data))
