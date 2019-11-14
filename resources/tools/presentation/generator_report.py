@@ -14,12 +14,13 @@
 """Report generation.
 """
 
-import logging
 import datetime
 
 from shutil import make_archive
 
-from .utils import get_files, execute_command, archive_input_data
+from robot.api import logger
+
+from utils import get_files, execute_command, archive_input_data
 
 
 # .css file for the html format of the report
@@ -116,7 +117,7 @@ def generate_report(release, spec, report_week):
     :type report_week: str
     """
 
-    logging.info("Generating the report ...")
+    logger.info("Generating the report ...")
 
     report = {
         "html": generate_html_report,
@@ -128,7 +129,7 @@ def generate_report(release, spec, report_week):
 
     archive_input_data(spec)
 
-    logging.info("Done.")
+    logger.info("Done.")
 
 
 def generate_html_report(release, spec, versions, report_version):
@@ -144,8 +145,7 @@ def generate_html_report(release, spec, versions, report_version):
     :type report_version: str
     """
 
-    logging.info("  Generating the html report, give me a few minutes, please "
-                 "...")
+    logger.info("  Generating the html report, give me a few minutes, please..")
 
     working_dir = spec.environment["paths"]["DIR[WORKING,SRC]"]
 
@@ -168,7 +168,7 @@ def generate_html_report(release, spec, versions, report_version):
             css_file:
         css_file.write(THEME_OVERRIDES)
 
-    logging.info("  Done.")
+    logger.info("  Done.")
 
 
 def generate_pdf_report(release, spec, versions, report_week):
@@ -184,8 +184,7 @@ def generate_pdf_report(release, spec, versions, report_week):
     :type report_week: str
     """
 
-    logging.info("  Generating the pdf report, give me a few minutes, please "
-                 "...")
+    logger.info("  Generating the pdf report, give me a few minutes, please...")
 
     working_dir = spec.environment["paths"]["DIR[WORKING,SRC]"]
 
@@ -202,7 +201,7 @@ def generate_pdf_report(release, spec, versions, report_week):
                            "html"))
     for plot in plots:
         file_name = "{0}.pdf".format(plot.rsplit(".", 1)[0])
-        logging.info("Converting '{0}' to '{1}'".format(plot, file_name))
+        logger.info("Converting '{0}' to '{1}'".format(plot, file_name))
         execute_command(convert_plots.format(html=plot, pdf=file_name))
 
     # Generate the LaTeX documentation
@@ -235,7 +234,7 @@ def generate_pdf_report(release, spec, versions, report_week):
     for cmd in cmds:
         execute_command(cmd)
 
-    logging.info("  Done.")
+    logger.info("  Done.")
 
 
 def archive_report(spec):
@@ -245,13 +244,13 @@ def archive_report(spec):
     :type spec: Specification
     """
 
-    logging.info("  Archiving the report ...")
+    logger.info("  Archiving the report ...")
 
     make_archive("csit.report",
                  "gztar",
                  base_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
 
-    logging.info("  Done.")
+    logger.info("  Done.")
 
 
 def _convert_all_svg_to_pdf(path):
@@ -266,5 +265,5 @@ def _convert_all_svg_to_pdf(path):
     svg_files = get_files(path, "svg", full_path=True)
     for svg_file in svg_files:
         pdf_file = "{0}.pdf".format(svg_file.rsplit('.', 1)[0])
-        logging.info("Converting '{0}' to '{1}'".format(svg_file, pdf_file))
+        logger.info("Converting '{0}' to '{1}'".format(svg_file, pdf_file))
         execute_command(cmd.format(svg=svg_file, pdf=pdf_file))

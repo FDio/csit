@@ -33,7 +33,7 @@ source ${DIR[WORKING]}/env/bin/activate
 # Install python dependencies:
 pip3 install -r requirements.txt
 
-export PYTHONPATH=`pwd`
+export PYTHONPATH=`pwd`:`pwd`/../../libraries/python
 
 python pal.py \
     --specification specification.yaml \
