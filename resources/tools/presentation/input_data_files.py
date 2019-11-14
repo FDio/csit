@@ -22,13 +22,12 @@ import logging
 from os import rename, mkdir
 from os.path import join
 from zipfile import ZipFile, is_zipfile, BadZipfile
-from httplib import responses
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
+from http.client import responses
+from requests.adapters import HTTPAdapter, Retry
 from requests import codes, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
 
-from .errors import PresentationError
+from errors import PresentationError
 
 
 # Chunk size used for file download
