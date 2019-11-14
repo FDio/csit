@@ -17,7 +17,7 @@
 
 import logging
 
-from .utils import get_files, get_rst_title_char
+from utils import get_files, get_rst_title_char
 
 RST_INCLUDE_TABLE = ("\n.. only:: html\n\n"
                      "    .. csv-table::\n"
@@ -105,7 +105,7 @@ def file_test_results(file_spec, input_data):
 
     with open(file_name, "w") as file_handler:
         file_handler.write(rst_header)
-        for suite_longname, suite in suites.iteritems():
+        for suite_longname, suite in suites.items():
             if len(suite_longname.split(".")) <= file_spec["data-start-level"]:
                 continue
 
