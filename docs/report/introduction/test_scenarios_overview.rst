@@ -53,10 +53,6 @@ Brief overview of test scenarios covered in this report:
        virtual FD.io testbeds, focusing on Honeycomb management and
        programming functionality of VPP. Tests cover a range of CRUD
        operations executed against VPP.
-    #. **DMM Functional**: DMM functional tests are executed in virtual
-       FD.io testbeds demonstrating a single server (DUT1) and single
-       client (DUT2) scenario using DMM framework and Linux kernel TCP/IP
-       stack.
 
 All CSIT test data included in this report is auto-
 generated from :abbr:`RF (Robot Framework)` :file:`output.xml` files
