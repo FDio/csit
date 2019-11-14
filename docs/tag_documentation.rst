@@ -320,10 +320,6 @@ Test Type Tags
 
     Functional test cases for TLDK.
 
-.. topic:: DMM
-
-    Functional test cases for DMM.
-
 .. topic:: TCP
 
     Tests which use TCP.

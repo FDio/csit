@@ -45,7 +45,6 @@
     DIR[DTR,FUNC,VPP,UBUNTU]: "{DIR[DTR]}/vpp_functional_results_ubuntu"
     DIR[DTR,FUNC,VPP,CENTOS]: "{DIR[DTR]}/vpp_functional_results_centos"
     DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
-    DIR[DTR,FUNC,DMM]: "{DIR[DTR]}/dmm_functional_results"
     DIR[DTR,PERF,VPP,IMPRV]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
 
     # Detailed test configurations
@@ -3668,25 +3667,6 @@
   - "parent"
   - "name"
   - "conf-history"
-
-## Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw
-#- type: "table"
-#  title: "Detailed Test Results - Container Orchestrated Topologies Performance Results 3n-hsw"
-#  algorithm: "table_details"
-#  output-file-ext: ".csv"
-#  output-file: "{DIR[DTR,PERF,COT,3N,HSW]}/cot_performance_results_3n_hsw"
-#  columns:
-#  - title: "Name"
-#    data: "data name"
-#  - title: "Status"
-#    data: "data msg"
-#  rows: "generated"
-#  data: "ligato-perf-results-3n-hsw"
-#  filter: "all"
-#  parameters:
-#  - "name"
-#  - "parent"
-#  - "msg"
 
 # Detailed Test Results - VPP Device Results - Ubuntu
 - type: "table"
