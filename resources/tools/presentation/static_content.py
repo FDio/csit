@@ -22,7 +22,7 @@ from os import makedirs
 from os.path import isdir
 from shutil import rmtree, copytree, Error
 
-from .errors import PresentationError
+from errors import PresentationError
 
 
 def prepare_static_content(spec):
