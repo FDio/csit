@@ -21,7 +21,7 @@ import os
 import shutil
 import logging
 
-from .errors import PresentationError
+from errors import PresentationError
 
 
 class Environment(object):
