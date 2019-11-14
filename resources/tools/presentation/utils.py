@@ -18,7 +18,6 @@ import multiprocessing
 import subprocess
 import math
 import numpy as np
-import logging
 import csv
 import prettytable
 
@@ -27,9 +26,11 @@ from os.path import join, isdir
 from shutil import move, Error
 from datetime import datetime
 from pandas import Series
+import jumpavg
 
-from resources.libraries.python import jumpavg
-from .errors import PresentationError
+from robot.api import logger
+
+from errors import PresentationError
 
 
 def mean(items):
@@ -159,12 +160,12 @@ def execute_command(cmd):
     stdout, stderr = proc.communicate()
 
     if stdout:
-        logging.info(stdout)
+        logger.info(stdout)
     if stderr:
-        logging.info(stderr)
+        logger.info(stderr)
 
     if proc.returncode != 0:
-        logging.error("    Command execution failed.")
+        logger.error("    Command execution failed.")
     return proc.returncode, stdout, stderr
 
 
@@ -233,7 +234,7 @@ def archive_input_data(spec):
     :raises PresentationError: If it is not possible to archive the input data.
     """
 
-    logging.info("    Archiving the input data files ...")
+    logger.info("    Archiving the input data files ...")
 
     extension = spec.input["arch-file-format"]
     data_files = list()
@@ -241,21 +242,21 @@ def archive_input_data(spec):
         data_files.extend(get_files(
             spec.environment["paths"]["DIR[WORKING,DATA]"], extension=ext))
     dst = spec.environment["paths"]["DIR[STATIC,ARCH]"]
-    logging.info("      Destination: {0}".format(dst))
+    logger.info("      Destination: {0}".format(dst))
 
     try:
         if not isdir(dst):
             makedirs(dst)
 
         for data_file in data_files:
-            logging.info("      Moving the file: {0} ...".format(data_file))
+            logger.info("      Moving the file: {0} ...".format(data_file))
             move(data_file, dst)
 
     except (Error, OSError) as err:
         raise PresentationError("Not possible to archive the input data.",
                                 str(err))
 
-    logging.info("    Done.")
+    logger.info("    Done.")
 
 
 def classify_anomalies(data):
