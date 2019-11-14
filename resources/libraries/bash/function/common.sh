@@ -510,13 +510,11 @@ function get_test_tag_string () {
             *"perf"*)
                 # On parsing error, ${trigger} stays empty.
                 comment="${GERRIT_EVENT_COMMENT_TEXT}"
-                # As "perftest" can be followed by something, we substitute it.
-                comment="${comment/perftest-2n/perftest}"
-                comment="${comment/perftest-3n/perftest}"
-                comment="${comment/perftest-hsw/perftest}"
-                comment="${comment/perftest-skx/perftest}"
-                comment="${comment/perftest-dnv/perftest}"
-                comment="${comment/perftest-tsh/perftest}"
+                # Ignore lines not containing "perftest".
+                comment=$(fgrep perftest <<< "${comment}")
+                # vpp-csit triggers trail stuff we are not interested in
+                cmd=("sed" "-E" 's/perftest-[0-9]n-[a-z0-9]{3}/perftest/')
+                comment=$("${cmd[@]}" <<< "${comment}")
                 tag_string="$(echo "${comment}" \
                     | grep -oE '(perftest$|perftest[[:space:]].+$)' || true)"
                 # Set test tags as string.
