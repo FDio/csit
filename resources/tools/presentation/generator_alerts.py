@@ -19,8 +19,8 @@ from email.mime.multipart import MIMEMultipart
 from os.path import isdir
 from collections import OrderedDict
 
-from .utils import get_last_completed_build_number
-from .errors import PresentationError
+from utils import get_last_completed_build_number
+from errors import PresentationError
 
 
 class AlertingError(PresentationError):
@@ -86,7 +86,7 @@ class Alerting(object):
         self.configs = self._spec_alert.get("configurations", None)
         if not self.configs:
             raise AlertingError("No alert configuration is specified.")
-        for config_type, config_data in self.configs.iteritems():
+        for config_type, config_data in self.configs.items():
             if config_type == "email":
                 if not config_data.get("server", None):
                     raise AlertingError("Parameter 'server' is missing.")
@@ -109,7 +109,7 @@ class Alerting(object):
         self.alerts = self._spec_alert.get("alerts", None)
         if not self.alerts:
             raise AlertingError("No alert is specified.")
-        for alert, alert_data in self.alerts.iteritems():
+        for alert, alert_data in self.alerts.items():
             if not alert_data.get("title", None):
                 raise AlertingError("Parameter 'title' is missing.")
             if not alert_data.get("type", None) in self._ALERTS:
@@ -143,7 +143,7 @@ class Alerting(object):
         """Generate alert(s) using specified way(s).
         """
 
-        for alert, alert_data in self.alerts.iteritems():
+        for alert, alert_data in self.alerts.items():
             if alert_data["way"] == "jenkins":
                 self._generate_email_body(alert_data)
             else:
