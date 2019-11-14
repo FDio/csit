@@ -25,7 +25,7 @@ from plotly.exceptions import PlotlyError
 from collections import OrderedDict
 from copy import deepcopy
 
-from .utils import mean, stdev
+from utils import mean, stdev
 
 
 COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
