@@ -19,7 +19,7 @@ import datetime
 
 from shutil import make_archive
 
-from .utils import get_files, execute_command, archive_input_data
+from utils import get_files, execute_command, archive_input_data
 
 
 # .css file for the html format of the report

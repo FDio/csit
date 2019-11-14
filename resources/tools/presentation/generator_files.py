@@ -17,7 +17,7 @@
 
 import logging
 
-from .utils import get_files, get_rst_title_char
+from utils import get_files, get_rst_title_char
 
 RST_INCLUDE_TABLE = ("\n.. only:: html\n\n"
                      "    .. csv-table::\n"
