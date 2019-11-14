@@ -28,8 +28,8 @@ from shutil import move, Error
 from datetime import datetime
 from pandas import Series
 
-from resources.libraries.python import jumpavg
-from .errors import PresentationError
+import jumpavg
+from errors import PresentationError
 
 
 def mean(items):
@@ -273,7 +273,7 @@ def classify_anomalies(data):
     # Nan means something went wrong.
     # Use 0.0 to cause that being reported as a severe regression.
     bare_data = [0.0 if np.isnan(sample) else sample
-                 for sample in data.itervalues()]
+                 for sample in data.values()]
     # TODO: Make BitCountingGroupList a subclass of list again?
     group_list = jumpavg.classify(bare_data).group_list
     group_list.reverse()  # Just to use .pop() for FIFO.
@@ -282,7 +282,7 @@ def classify_anomalies(data):
     active_group = None
     values_left = 0
     avg = 0.0
-    for sample in data.itervalues():
+    for sample in data.values():
         if np.isnan(sample):
             classification.append("outlier")
             avgs.append(sample)
