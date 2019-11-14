@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9565a5da_fc38eefd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-14T13:49:44Z",
+      "side": 1,
+      "message": "Moved to vfio-pci only.",
+      "range": {
+        "startLine": 14,
+        "startChar": 16,
+        "endLine": 14,
+        "endChar": 43
+      },
+      "revId": "202e840a94549c377a0071cfdbca9d6b893d0a77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cbe2fb21_ae998926",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-14T13:49:44Z",
+      "side": 1,
+      "message": "Rebased over https://gerrit.fd.io/r/c/csit/+/23404",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "202e840a94549c377a0071cfdbca9d6b893d0a77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
