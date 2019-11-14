@@ -25,7 +25,7 @@ from collections import OrderedDict
 from datetime import datetime
 from copy import deepcopy
 
-from .utils import archive_input_data, execute_command, classify_anomalies
+from utils import archive_input_data, execute_command, classify_anomalies
 
 
 # Command to build the html format of the report

@@ -28,7 +28,7 @@ from requests.packages.urllib3.util.retry import Retry
 from requests import codes, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
 
-from .errors import PresentationError
+from errors import PresentationError
 
 
 # Chunk size used for file download

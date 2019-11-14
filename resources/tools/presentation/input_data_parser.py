@@ -36,7 +36,7 @@ from datetime import timedelta
 from json import loads
 
 from resources.libraries.python import jumpavg
-from .input_data_files import download_and_unzip_data_file
+from input_data_files import download_and_unzip_data_file
 
 
 # Separator used in file names

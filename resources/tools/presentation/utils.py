@@ -29,7 +29,7 @@ from datetime import datetime
 from pandas import Series
 
 from resources.libraries.python import jumpavg
-from .errors import PresentationError
+from resources.tools.presentation.errors import PresentationError
 
 
 def mean(items):

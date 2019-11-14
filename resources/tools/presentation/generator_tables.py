@@ -30,7 +30,7 @@ from xml.etree import ElementTree as ET
 from datetime import datetime as dt
 from datetime import timedelta
 
-from .utils import mean, stdev, relative_change, classify_anomalies, \
+from utils import mean, stdev, relative_change, classify_anomalies, \
     convert_csv_to_pretty_txt, relative_change_stdev
 
 
