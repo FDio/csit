@@ -172,7 +172,6 @@ The structure of the section "Environment" is as follows (example):
         DIR[DTR,PERF,HC]: "{DIR[DTR]}/honeycomb_performance_results"
         DIR[DTR,FUNC,VPP]: "{DIR[DTR]}/vpp_functional_results"
         DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
-        DIR[DTR,FUNC,NSHSFC]: "{DIR[DTR]}/nshsfc_functional_results"
         DIR[DTR,PERF,VPP,IMPRV]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
 
         # Detailed test configurations
@@ -367,10 +366,6 @@ The structure of the section "Debug" is as follows (example):
         -
           build: 9
           file: "csit-dpdk-perf-1707-all__9.xml"
-        csit-nsh_sfc-verify-func-1707-ubuntu1604-virl:
-        -
-          build: 2
-          file: "csit-nsh_sfc-verify-func-1707-ubuntu1604-virl-2.xml"
         csit-vpp-functional-1707-ubuntu1604-virl:
         -
           build: lastSuccessfulBuild
@@ -473,9 +468,6 @@ The structure of the section "Input" is as follows (example from 17.07 report):
         - 9
         hc2vpp-csit-integration-1707-ubuntu1604:
         - lastSuccessfulBuild
-        csit-nsh_sfc-verify-func-1707-ubuntu1604-virl:
-        - 2
-
 
 Section: Output
 '''''''''''''''

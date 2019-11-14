@@ -73,7 +73,6 @@ A brief bottom-up description is provided here:
    - Functional tests using VIRL environment:
      - VPP;
      - Honeycomb;
-     - NSH_SFC;
      - DMM;
      - TLDK;
    - Performance tests using physical testbed environment:
@@ -105,9 +104,6 @@ A brief bottom-up description is provided here:
     │   └── perf                    # Honeycomb functional performance tests
     ├── kubernetes
     │   └── perf                    # VPP K8S orchestration performance tests
-    ├── nsh_sfc
-    │   ├── func                    # NSH_SFC functional tests
-    │   └── sfc_scripts             # NSH_SFC helper scripts
     ├── tldk
     │   ├── func                    # TLDK functional VIRL tests
     │   ├── tldk_scripts            # TLDK helper scripts

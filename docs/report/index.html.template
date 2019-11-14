@@ -73,16 +73,6 @@ CSIT-1908
 ..
     .. toctree::
         :maxdepth: 2
-        :caption: NSH_SFC Functional
-
-        nsh_sfc_functional_tests/overview
-        nsh_sfc_functional_tests/csit_release_notes
-        nsh_sfc_functional_tests/test_environment
-        nsh_sfc_functional_tests/documentation
-
-..
-    .. toctree::
-        :maxdepth: 2
         :caption: DMM Functional
 
         dmm_functional_tests/overview
@@ -103,7 +93,6 @@ CSIT-1908
 ..
     detailed_test_results/honeycomb_functional_results/index
     detailed_test_results/dmm_functional_results/index
-    detailed_test_results/nshsfc_functional_results/index
 
 .. toctree::
     :maxdepth: 2

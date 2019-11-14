@@ -46,7 +46,6 @@
     DIR[DTR,FUNC,VPP,CENTOS]: "{DIR[DTR]}/vpp_functional_results_centos"
     DIR[DTR,FUNC,VPP,DEVICE,UBUNTU]: "{DIR[DTR]}/vpp_device_results_ubuntu"
     DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
-    DIR[DTR,FUNC,NSHSFC]: "{DIR[DTR]}/nshsfc_functional_results"
     DIR[DTR,FUNC,DMM]: "{DIR[DTR]}/dmm_functional_results"
     DIR[DTR,PERF,VPP,IMPRV]: "{DIR[WORKING,SRC]}/vpp_performance_tests/performance_improvements"
 
