@@ -662,6 +662,14 @@ Feature Tags
 
     ACL plugin configured and tested in stateful mode (permit+reflect action).
 
+.. topic:: MACIP_ACL1
+
+    MACIP ACL configured and tested with 1 not-hitting ACL.
+
+.. topic:: MACIP_ACL10
+
+    MACIP ACL configured and tested with 10 non-hitting ACL.
+
 .. topic:: ACL1
 
     ACL plugin configured and tested with 1 not-hitting ACE.
