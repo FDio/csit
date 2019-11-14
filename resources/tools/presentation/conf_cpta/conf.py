@@ -45,7 +45,7 @@ master_doc = u'index'
 
 # General information about the project.
 project = u'FD.io CSIT'
-copyright = u'2018, FD.io'
+copyright = u'2020, FD.io'
 author = u'FD.io CSIT'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -98,9 +98,10 @@ html_static_path = [u'../_tmp/src/_static']
 
 html_context = {
     u'css_files': [
-        u'_static/theme_overrides.css',  # overrides for wide tables in RTD theme
-        ],
-    }
+        # overrides for wide tables in RTD theme
+        u'_static/theme_overrides.css',
+    ],
+}
 
 # If false, no module index is generated.
 html_domain_indices = True
