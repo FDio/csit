@@ -29,14 +29,13 @@ import prettytable
 from robot.api import ExecutionResult, ResultVisitor
 from robot import errors
 from collections import OrderedDict
-from string import replace
 from os import remove
 from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
 
-from resources.libraries.python import jumpavg
-from .input_data_files import download_and_unzip_data_file
+import jumpavg
+from input_data_files import download_and_unzip_data_file
 
 
 # Separator used in file names
@@ -401,8 +400,8 @@ class ExecutionChecker(ResultVisitor):
                 self._data["tests"][self._test_ID]["conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          "VAT command history:", "", msg.message, count=1). \
+            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
+                          r"VAT command history:", "", msg.message, count=1). \
                 replace("\n\n", "\n").replace('\n', ' |br| ').\
                 replace('\r', '').replace('"', "'")
 
@@ -423,8 +422,8 @@ class ExecutionChecker(ResultVisitor):
                 self._data["tests"][self._test_ID]["conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          "PAPI command history:", "", msg.message, count=1). \
+            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
+                          r"PAPI command history:", "", msg.message, count=1). \
                 replace("\n\n", "\n").replace('\n', ' |br| ').\
                 replace('\r', '').replace('"', "'")
 
@@ -655,9 +654,9 @@ class ExecutionChecker(ResultVisitor):
 
         doc_str = suite.doc.replace('"', "'").replace('\n', ' ').\
             replace('\r', '').replace('*[', ' |br| *[').replace("*", "**")
-        doc_str = replace(doc_str, ' |br| *[', '*[', maxreplace=1)
+        doc_str = doc_str.replace(' |br| *[', '*[', 1)
 
-        self._data["suites"][suite.longname.lower().replace('"', "'").
+        self._data["suites"][suite.longname.lower().replace('"', "'").\
             replace(" ", "_")] = {
                 "name": suite.name.lower(),
                 "doc": doc_str,
@@ -723,7 +722,7 @@ class ExecutionChecker(ResultVisitor):
         test_result["tags"] = tags
         doc_str = test.doc.replace('"', "'").replace('\n', ' '). \
             replace('\r', '').replace('[', ' |br| [')
-        test_result["doc"] = replace(doc_str, ' |br| [', '[', maxreplace=1)
+        test_result["doc"] = doc_str.replace(' |br| [', '[', 1)
         test_result["msg"] = test.message.replace('\n', ' |br| '). \
             replace('\r', '').replace('"', "'")
         test_result["type"] = "FUNC"
@@ -1397,8 +1396,7 @@ class InputData(object):
                 for build in builds:
                     data[job][str(build)] = pd.Series()
                     try:
-                        data_iter = self.data[job][str(build)][data_set].\
-                            iteritems()
+                        data_iter = self.data[job][str(build)][data_set].items()
                     except KeyError:
                         if continue_on_error:
                             continue
@@ -1545,9 +1543,9 @@ class InputData(object):
         logging.info("    Merging data ...")
 
         merged_data = pd.Series()
-        for _, builds in data.iteritems():
-            for _, item in builds.iteritems():
-                for ID, item_data in item.iteritems():
+        for builds in data.values():
+            for item in builds.values():
+                for ID, item_data in item.items():
                     merged_data[ID] = item_data
 
         return merged_data
