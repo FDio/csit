@@ -854,16 +854,20 @@
 | | Set single interfaces in path up
 | | Show Memif on all DUTs | ${nodes}
 
-| Initialize L2 bridge domain with MACIP ACLs on DUT1 in 3-node circular topology
+| Initialize L2 bridge domain with MACIP ACLs
 | | [Documentation]
 | | ... | Setup L2BD topology by adding two interfaces on DUT1 into bridge
 | | ... | domain that is created automatically with index 1. Learning is
 | | ... | enabled. Interfaces are brought up. Apply required MACIP ACL rules to
 | | ... | DUT1 interfaces.
 | | ...
+| | ${dut2_status} | ${value}= | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${dut2}
+| | ...
 | | Set interfaces in path up
 | | VPP Add L2 Bridge Domain | ${dut1} | ${1} | ${dut1_if1} | ${dut1_if2}
-| | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | Run Keyword If | '${dut2_status}' == 'PASS'
+| | ... | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | Configure MACIP ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Initialize L2 bridge domain with IPv4 ACLs on DUT1 in 3-node circular topology
@@ -877,3 +881,4 @@
 | | VPP Add L2 Bridge Domain | ${dut1} | ${1} | ${dut1_if1} | ${dut1_if2}
 | | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
+
