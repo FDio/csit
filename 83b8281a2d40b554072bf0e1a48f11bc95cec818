@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cc204eaa_ffd8d6cb",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-acllistbase-aclpermitreflect-dev.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-14T16:29:17Z",
+      "side": 1,
+      "message": "typo.",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 1
+      },
+      "revId": "83b8281a2d40b554072bf0e1a48f11bc95cec818",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6ab6a2b5_7e723fc2",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-acllistbase-aclpermitreflect-dev.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-14T16:29:17Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 1
+      },
+      "revId": "83b8281a2d40b554072bf0e1a48f11bc95cec818",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "57ff7cec_8177e40e",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-acllistdenybase-dev.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-14T16:29:17Z",
+      "side": 1,
+      "message": "No negative tests please, + tests should follow PERF tests",
+      "revId": "83b8281a2d40b554072bf0e1a48f11bc95cec818",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
