@@ -70,10 +70,6 @@ A brief bottom-up description is provided here:
      - Test setup, test teardown;
 1. Tests - Robot
    - Test suites with test cases;
-   - Functional tests using VIRL environment:
-     - VPP;
-     - DMM;
-     - TLDK;
    - Performance tests using physical testbed environment:
      - VPP;
      - DPDK-Testpmd;
@@ -92,13 +88,9 @@ A brief bottom-up description is provided here:
 ```
 .
 └── tests
-    ├── dmm
-    │   └── func                    # DMM functional VIRL tests
     ├── dpdk
     │   ├── dpdk_scripts            # DPDK helper scripts
     │   └── perf                    # DPDK performance tests
-    ├── kubernetes
-    │   └── perf                    # VPP K8S orchestration performance tests
     ├── tldk
     │   ├── func                    # TLDK functional VIRL tests
     │   ├── tldk_scripts            # TLDK helper scripts
@@ -119,7 +111,6 @@ resources
     │   ├── config
     │   ├── entry                   # Main bootstrap entry directory
     │   ├── function                # Bootstrap function library
-    │   ├── qemu_patches            # Custom QEMU patches (see KVM methodology)
     │   └── shell                   # Various functions
     ├── python                      # Python L1 KWs
     └── robot                       # Robot Framework L2 KWs
@@ -146,7 +137,6 @@ resources
 │   │   ├── topology                # Helper scripts for topology manipulation
 │   │   ├── trex                    # TRex driver
 │   │   ├── vagrant                 # VPP device vagrant environment
-│   │   ├── virl                    # VIRL helper scripts
 │   │   └── wrk                     # WRK driver
 │   ├── topology_schemas
 │   ├── traffic_profiles            # Performance tests traffic profiles
