@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/shared/default.robot
 | ...
 | Force Tags | 2_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDR
-| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | VM
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | VM | DRV_VFIO_PCI
 | ... | VHOST_1024 | NF_DENSITY | NF_VPPIP4 | CHAIN | 2R1C | 2VM2T
 | ...
 | Suite Setup | Setup suite single link | performance
