@@ -15,7 +15,8 @@
 """
 
 import sys
-import logging
+
+from robot.api import logger
 
 
 class PresentationError(Exception):
@@ -29,13 +30,12 @@ class PresentationError(Exception):
      - relevant data if there are any collected (optional parameter details).
     """
 
-    log_exception = {"DEBUG": logging.debug,
-                     "INFO": logging.info,
-                     "WARNING": logging.warning,
-                     "ERROR": logging.error,
-                     "CRITICAL": logging.critical}
+    log_exception = {"DEBUG": logger.debug,
+                     "INFO": logger.info,
+                     "WARN": logger.warn,
+                     "ERROR": logger.error}
 
-    def __init__(self, msg, details='', level="CRITICAL"):
+    def __init__(self, msg, details='', level="ERROR"):
         """Sets the exception message and the level.
 
         :param msg: Short description of the encountered problem.
@@ -43,7 +43,7 @@ class PresentationError(Exception):
         from caught exception (optional parameter details), or relevant data if
         there are any collected (optional parameter details).
         :param level: Level of the error, possible choices are: "DEBUG", "INFO",
-        "WARNING", "ERROR" and "CRITICAL".
+        "WARN", and "ERROR".
         :type msg: str
         :type details: str
         :type level: str

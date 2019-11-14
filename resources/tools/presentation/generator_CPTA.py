@@ -14,7 +14,6 @@
 """Generation of Continuous Performance Trending and Analysis.
 """
 
-import logging
 import csv
 import prettytable
 import plotly.offline as ploff
@@ -25,7 +24,9 @@ from collections import OrderedDict
 from datetime import datetime
 from copy import deepcopy
 
-from .utils import archive_input_data, execute_command, classify_anomalies
+from robot.api import logger
+
+from utils import archive_input_data, execute_command, classify_anomalies
 
 
 # Command to build the html format of the report
@@ -116,8 +117,7 @@ def generate_cpta(spec, data):
     :type data: InputData
     """
 
-    logging.info("Generating the Continuous Performance Trending and Analysis "
-                 "...")
+    logger.info("Generating Continuous Performance Trending and Analysis...")
 
     ret_code = _generate_all_charts(spec, data)
 
@@ -138,7 +138,7 @@ def generate_cpta(spec, data):
     if spec.configuration.get("archive-inputs", True):
         archive_input_data(spec)
 
-    logging.info("Done.")
+    logger.info("Done.")
 
     return ret_code
 
@@ -215,7 +215,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         "progression": 1.0
     }
     if anomaly_classification:
-        for idx, (key, value) in enumerate(data_pd.iteritems()):
+        for idx, (key, value) in enumerate(data_pd.items()):
             if anomaly_classification[idx] in \
                     ("outlier", "regression", "progression"):
                 anomalies[key] = value
@@ -340,12 +340,12 @@ def _generate_all_charts(spec, input_data):
                      format(graph.get("type", ""), graph.get("title", ""))))
         data = input_data.filter_data(graph, continue_on_error=True)
         if data is None:
-            logging.error("No data.")
+            logger.error("No data.")
             return
 
         chart_data = dict()
         chart_tags = dict()
-        for job, job_data in data.iteritems():
+        for job, job_data in data.items():
             if job != job_name:
                 continue
             for index, bld in job_data.items():
@@ -380,7 +380,7 @@ def _generate_all_charts(spec, input_data):
                 for tag in group:
                     for tst_name, test_data in chart_data.items():
                         if not test_data:
-                            logs.append(("WARNING",
+                            logs.append(("WARN",
                                          "No data for the test '{0}'".
                                          format(tst_name)))
                             continue
@@ -398,7 +398,7 @@ def _generate_all_charts(spec, input_data):
                             except IndexError:
                                 message = "Out of colors: {}".format(message)
                                 logs.append(("ERROR", message))
-                                logging.error(message)
+                                logger.error(message)
                                 index += 1
                                 continue
                             traces.extend(trace)
@@ -410,7 +410,7 @@ def _generate_all_charts(spec, input_data):
         else:
             for tst_name, test_data in chart_data.items():
                 if not test_data:
-                    logs.append(("WARNING", "No data for the test '{0}'".
+                    logs.append(("WARN", "No data for the test '{0}'".
                                  format(tst_name)))
                     continue
                 message = "index: {index}, test: {test}".format(
@@ -425,7 +425,7 @@ def _generate_all_charts(spec, input_data):
                 except IndexError:
                     message = "Out of colors: {}".format(message)
                     logs.append(("ERROR", message))
-                    logging.error(message)
+                    logger.error(message)
                     index += 1
                     continue
                 traces.extend(trace)
@@ -437,8 +437,8 @@ def _generate_all_charts(spec, input_data):
             try:
                 layout = deepcopy(graph["layout"])
             except KeyError as err:
-                logging.error("Finished with error: No layout defined")
-                logging.error(repr(err))
+                logger.error("Finished with error: No layout defined")
+                logger.error(repr(err))
                 return
             if groups:
                 show = list()
@@ -490,19 +490,10 @@ def _generate_all_charts(spec, input_data):
                 ploff.plot(plpl, show_link=False, auto_open=False,
                            filename=name_file)
             except plerr.PlotlyEmptyDataError:
-                logs.append(("WARNING", "No data for the plot. Skipped."))
+                logs.append(("WARN", "No data for the plot. Skipped."))
 
         for level, line in logs:
-            if level == "INFO":
-                logging.info(line)
-            elif level == "ERROR":
-                logging.error(line)
-            elif level == "DEBUG":
-                logging.debug(line)
-            elif level == "CRITICAL":
-                logging.critical(line)
-            elif level == "WARNING":
-                logging.warning(line)
+            logger.write(line, level=level)
 
         return {"job_name": job_name, "csv_table": csv_tbl, "results": res}
 
@@ -581,8 +572,8 @@ def _generate_all_charts(spec, input_data):
                     try:
                         txt_table.add_row(row)
                     except Exception as err:
-                        logging.warning("Error occurred while generating TXT "
-                                        "table:\n{0}".format(err))
+                        logger.warn("Error occurred while generating TXT "
+                                    "table:\n{0}".format(err))
                 line_nr += 1
             txt_table.align["Build Number:"] = "l"
         with open("{0}.txt".format(file_name), "w") as txt_file:
@@ -591,11 +582,11 @@ def _generate_all_charts(spec, input_data):
     # Evaluate result:
     if anomaly_classifications:
         result = "PASS"
-        for job_name, job_data in anomaly_classifications.iteritems():
+        for job_name, job_data in anomaly_classifications.items():
             file_name = "{0}-regressions-{1}.txt".\
                 format(spec.cpta["output-file"], job_name)
             with open(file_name, 'w') as txt_file:
-                for test_name, classification in job_data.iteritems():
+                for test_name, classification in job_data.items():
                     if classification == "regression":
                         txt_file.write(test_name + '\n')
                     if classification == "regression" or \
@@ -604,13 +595,13 @@ def _generate_all_charts(spec, input_data):
             file_name = "{0}-progressions-{1}.txt".\
                 format(spec.cpta["output-file"], job_name)
             with open(file_name, 'w') as txt_file:
-                for test_name, classification in job_data.iteritems():
+                for test_name, classification in job_data.items():
                     if classification == "progression":
                         txt_file.write(test_name + '\n')
     else:
         result = "FAIL"
 
-    logging.info("Partial results: {0}".format(anomaly_classifications))
-    logging.info("Result: {0}".format(result))
+    logger.info("Partial results: {0}".format(anomaly_classifications))
+    logger.info("Result: {0}".format(result))
 
     return result

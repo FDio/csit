@@ -12,15 +12,16 @@
 # limitations under the License.
 
 import smtplib
-import logging
 
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from os.path import isdir
 from collections import OrderedDict
 
-from .utils import get_last_completed_build_number
-from .errors import PresentationError
+from robot.api import logger
+
+from utils import get_last_completed_build_number
+from errors import PresentationError
 
 
 class AlertingError(PresentationError):
@@ -34,7 +35,7 @@ class AlertingError(PresentationError):
      - relevant data if there are any collected (optional parameter details).
     """
 
-    def __init__(self, msg, details='', level="CRITICAL"):
+    def __init__(self, msg, details='', level="ERROR"):
         """Sets the exception message and the level.
 
         :param msg: Short description of the encountered problem.
@@ -42,7 +43,7 @@ class AlertingError(PresentationError):
             from caught exception (optional parameter details), or relevant data
             if there are any collected (optional parameter details).
         :param level: Level of the error, possible choices are: "DEBUG", "INFO",
-            "WARNING", "ERROR" and "CRITICAL".
+            "WARN" and "ERROR".
         :type msg: str
         :type details: str
         :type level: str
@@ -78,7 +79,7 @@ class Alerting(object):
         except KeyError as err:
             raise  AlertingError("Alerting is not configured, skipped.",
                                  repr(err),
-                                 "WARNING")
+                                 "WARN")
 
         self._path_failed_tests = spec.environment["paths"]["DIR[STATIC,VPP]"]
 
@@ -86,7 +87,7 @@ class Alerting(object):
         self.configs = self._spec_alert.get("configurations", None)
         if not self.configs:
             raise AlertingError("No alert configuration is specified.")
-        for config_type, config_data in self.configs.iteritems():
+        for config_type, config_data in self.configs.items():
             if config_type == "email":
                 if not config_data.get("server", None):
                     raise AlertingError("Parameter 'server' is missing.")
@@ -109,7 +110,7 @@ class Alerting(object):
         self.alerts = self._spec_alert.get("alerts", None)
         if not self.alerts:
             raise AlertingError("No alert is specified.")
-        for alert, alert_data in self.alerts.iteritems():
+        for alert, alert_data in self.alerts.items():
             if not alert_data.get("title", None):
                 raise AlertingError("Parameter 'title' is missing.")
             if not alert_data.get("type", None) in self._ALERTS:
@@ -143,7 +144,7 @@ class Alerting(object):
         """Generate alert(s) using specified way(s).
         """
 
-        for alert, alert_data in self.alerts.iteritems():
+        for alert, alert_data in self.alerts.items():
             if alert_data["way"] == "jenkins":
                 self._generate_email_body(alert_data)
             else:
@@ -183,11 +184,11 @@ class Alerting(object):
 
         smtp_server = None
         try:
-            logging.info("Trying to send alert '{0}' ...".format(subject))
-            logging.debug("SMTP Server: {0}".format(server))
-            logging.debug("From: {0}".format(addr_from))
-            logging.debug("To: {0}".format(", ".join(addr_to)))
-            logging.debug("Message: {0}".format(msg.as_string()))
+            logger.info("Trying to send alert '{0}' ...".format(subject))
+            logger.debug("SMTP Server: {0}".format(server))
+            logger.debug("From: {0}".format(addr_from))
+            logger.debug("To: {0}".format(", ".join(addr_to)))
+            logger.debug("Message: {0}".format(msg.as_string()))
             smtp_server = smtplib.SMTP(server)
             smtp_server.sendmail(addr_from, addr_to, msg.as_string())
         except smtplib.SMTPException as err:
@@ -280,8 +281,8 @@ class Alerting(object):
                     if cores not in failed_tests[name]["cores"]:
                         failed_tests[name]["cores"].append(cores)
         except IOError:
-            logging.error("No such file or directory: {file}".
-                          format(file=file_path))
+            logger.error("No such file or directory: {file}".
+                         format(file=file_path))
             return None, None, None, None, None
         if sort:
             sorted_failed_tests = OrderedDict()
@@ -386,7 +387,7 @@ class Alerting(object):
                         else:
                             reg_file.write("No regressions")
             except IOError as err:
-                logging.warning(repr(err))
+                logger.warn(repr(err))
 
             # Add list of progressions:
             file_name = "{0}/cpta-progressions-{1}.txt".\
@@ -403,17 +404,17 @@ class Alerting(object):
                         else:
                             pro_file.write("No progressions")
             except IOError as err:
-                logging.warning(repr(err))
+                logger.warn(repr(err))
 
         text += "\nFor detailed information visit: {url}\n".\
             format(url=alert["url-details"])
         file_name = "{0}/{1}".format(config["output-dir"],
                                      config["output-file"])
-        logging.info("Writing the file '{0}.txt' ...".format(file_name))
+        logger.info("Writing the file '{0}.txt' ...".format(file_name))
 
         try:
             with open("{0}.txt".format(file_name), 'w') as txt_file:
                 txt_file.write(text)
         except IOError:
-            logging.error("Not possible to write the file '{0}.txt'.".
-                          format(file_name))
+            logger.error("Not possible to write the file '{0}.txt'.".
+                         format(file_name))

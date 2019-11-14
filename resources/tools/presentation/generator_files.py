@@ -15,9 +15,9 @@
 """
 
 
-import logging
+from robot.api import logger
 
-from .utils import get_files, get_rst_title_char
+from utils import get_files, get_rst_title_char
 
 RST_INCLUDE_TABLE = ("\n.. only:: html\n\n"
                      "    .. csv-table::\n"
@@ -39,14 +39,14 @@ def generate_files(spec, data):
     :type data: InputData
     """
 
-    logging.info("Generating the files ...")
+    logger.info("Generating the files ...")
     for file_spec in spec.files:
         try:
             eval(file_spec["algorithm"])(file_spec, data)
         except NameError as err:
-            logging.error("Probably algorithm '{alg}' is not defined: {err}".
-                          format(alg=file_spec["algorithm"], err=repr(err)))
-    logging.info("Done.")
+            logger.error("Probably algorithm '{alg}' is not defined: {err}".
+                         format(alg=file_spec["algorithm"], err=repr(err)))
+    logger.info("Done.")
 
 
 def _tests_in_suite(suite_name, tests):
@@ -81,23 +81,23 @@ def file_test_results(file_spec, input_data):
                                 file_spec["output-file-ext"])
     rst_header = file_spec["file-header"]
 
-    logging.info("  Generating the file {0} ...".format(file_name))
+    logger.info("  Generating the file {0} ...".format(file_name))
 
     table_lst = get_files(file_spec["dir-tables"], ".csv", full_path=True)
     if len(table_lst) == 0:
-        logging.error("  No tables to include in '{0}'. Skipping.".
-                      format(file_spec["dir-tables"]))
+        logger.error("  No tables to include in '{0}'. Skipping.".
+                     format(file_spec["dir-tables"]))
         return None
 
-    logging.info("    Writing file '{0}'".format(file_name))
+    logger.info("    Writing file '{0}'".format(file_name))
 
-    logging.info("    Creating the 'tests' data set for the {0} '{1}'.".
-                 format(file_spec.get("type", ""), file_spec.get("title", "")))
+    logger.info("    Creating the 'tests' data set for the {0} '{1}'.".
+                format(file_spec.get("type", ""), file_spec.get("title", "")))
     tests = input_data.filter_data(file_spec)
     tests = input_data.merge_data(tests)
 
-    logging.info("    Creating the 'suites' data set for the {0} '{1}'.".
-                 format(file_spec.get("type", ""), file_spec.get("title", "")))
+    logger.info("    Creating the 'suites' data set for the {0} '{1}'.".
+                format(file_spec.get("type", ""), file_spec.get("title", "")))
     file_spec["filter"] = "all"
     suites = input_data.filter_data(file_spec, data_set="suites")
     suites = input_data.merge_data(suites)
@@ -105,7 +105,7 @@ def file_test_results(file_spec, input_data):
 
     with open(file_name, "w") as file_handler:
         file_handler.write(rst_header)
-        for suite_longname, suite in suites.iteritems():
+        for suite_longname, suite in suites.items():
             if len(suite_longname.split(".")) <= file_spec["data-start-level"]:
                 continue
 
@@ -132,4 +132,4 @@ def file_test_results(file_spec, input_data):
                                 file_latex=tbl_file,
                                 file_html=tbl_file.split("/")[-1]))
 
-    logging.info("  Done.")
+    logger.info("  Done.")
