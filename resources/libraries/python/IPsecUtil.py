@@ -1011,6 +1011,8 @@ class IPsecUtil(object):
                 local_integ_key=None,
                 remote_integ_key_len=0,
                 remote_integ_key=None,
+                renumber=1,
+                show_instance=0,
                 tx_table_id=0
             )
             err_msg = 'Failed to add IPsec tunnel interfaces on host {host}'.\
@@ -1040,6 +1042,7 @@ class IPsecUtil(object):
                     args2['local_integ_key'] = ikeys[i]
                     args2['remote_integ_key_len'] = len(ikeys[i])
                     args2['remote_integ_key'] = ikeys[i]
+                args2['show_instance'] = i
                 history = False if 1 < i < n_tunnels - 1 else True
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2)
