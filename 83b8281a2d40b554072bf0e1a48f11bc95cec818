@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "25e5f6c4_58c40ad5",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-acllistbase-aclpermitreflect-dev.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1822
+      },
+      "writtenOn": "2019-11-15T05:47:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cc204eaa_ffd8d6cb",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 1
+      },
+      "revId": "83b8281a2d40b554072bf0e1a48f11bc95cec818",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6ab6a2b5_7e723fc2",
         "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-acllistbase-aclpermitreflect-dev.robot",
         "patchSetId": 6
@@ -45,6 +69,30 @@
       "revId": "83b8281a2d40b554072bf0e1a48f11bc95cec818",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b90994cd_50e78dac",
+        "filename": "tests/vpp/device/ip4/eth2p-ethip4-ip4base-acllistbase-aclpermitreflect-dev.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1822
+      },
+      "writtenOn": "2019-11-15T05:47:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6ab6a2b5_7e723fc2",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 1
+      },
+      "revId": "83b8281a2d40b554072bf0e1a48f11bc95cec818",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
