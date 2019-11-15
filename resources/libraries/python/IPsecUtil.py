@@ -863,7 +863,8 @@ class IPsecUtil(object):
                         'remote_crypto_key {remote_crypto_key} '
                         '{integ} '
                         'local_ip {laddr} '
-                        'remote_ip {raddr}\n'
+                        'remote_ip {raddr} '
+                        'instance {i}\n'
                         .format(
                             local_spi=spi_1 + i,
                             remote_spi=spi_2 + i,
@@ -872,7 +873,8 @@ class IPsecUtil(object):
                             remote_crypto_key=ckey,
                             integ=integ,
                             laddr=if1_ip + i * addr_incr,
-                            raddr=if2_ip))
+                            raddr=if2_ip,
+                            i=i))
                     tmp_f2.write(
                         'ipsec_tunnel_if_add_del '
                         'local_spi {local_spi} '
@@ -882,7 +884,8 @@ class IPsecUtil(object):
                         'remote_crypto_key {remote_crypto_key} '
                         '{integ} '
                         'local_ip {laddr} '
-                        'remote_ip {raddr}\n'
+                        'remote_ip {raddr} '
+                        'instance {i}\n'
                         .format(
                             local_spi=spi_2 + i,
                             remote_spi=spi_1 + i,
@@ -891,7 +894,8 @@ class IPsecUtil(object):
                             remote_crypto_key=ckey,
                             integ=integ,
                             laddr=if2_ip,
-                            raddr=if1_ip + i * addr_incr))
+                            raddr=if1_ip + i * addr_incr,
+                            i=i))
             vat.execute_script(
                 tmp_fn1, nodes['DUT1'], timeout=1800, json_out=False,
                 copy_on_execute=True,
@@ -1011,6 +1015,8 @@ class IPsecUtil(object):
                 local_integ_key=None,
                 remote_integ_key_len=0,
                 remote_integ_key=None,
+                renumber=1,
+                show_instance=0,
                 tx_table_id=0
             )
             err_msg = 'Failed to add IPsec tunnel interfaces on host {host}'.\
@@ -1040,6 +1046,7 @@ class IPsecUtil(object):
                     args2['local_integ_key'] = ikeys[i]
                     args2['remote_integ_key_len'] = len(ikeys[i])
                     args2['remote_integ_key'] = ikeys[i]
+                args2['show_instance'] = i
                 history = False if 1 < i < n_tunnels - 1 else True
                 papi_exec.add(cmd1, history=history, **args1).\
                     add(cmd2, history=history, **args2)
