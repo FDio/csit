@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f95c454_01e11ce5",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst-rnd10000.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-15T07:34:14Z",
+      "side": 1,
+      "message": "lines too long per pylint",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 77
+      },
+      "revId": "a75135392560705054a1610276acdee1de000f0e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8ec4d0da_8ff935a1",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst-rnd100000.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-15T07:34:14Z",
+      "side": 1,
+      "message": "lines too long",
+      "revId": "a75135392560705054a1610276acdee1de000f0e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42ae7f22_112e58de",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst-rnd1000000.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-15T07:34:14Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 53
+      },
+      "revId": "a75135392560705054a1610276acdee1de000f0e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d3ffeab5_92801856",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale200k-rnd-ndrpdr.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-15T07:34:14Z",
+      "side": 1,
+      "message": "line too long \u003e80ch",
+      "range": {
+        "startLine": 18,
+        "startChar": 1,
+        "endLine": 18,
+        "endChar": 81
+      },
+      "revId": "a75135392560705054a1610276acdee1de000f0e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f3e973a4_6ee770a2",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale200k-rnd-ndrpdr.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-15T07:34:14Z",
+      "side": 1,
+      "message": "i am missing description of random flows.",
+      "revId": "a75135392560705054a1610276acdee1de000f0e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
