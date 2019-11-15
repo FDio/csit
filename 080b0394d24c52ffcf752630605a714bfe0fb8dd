@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "81974786_fd86b3fd",
+        "filename": "resources/tools/scripts/topo_reservation.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-15T15:35:12Z",
+      "side": 0,
+      "message": "Better (without /*) in both cases:\n$ rm -rf a; mkdir a\n$ ls a\n$ ls a/*\nls: cannot access \u0027a/*\u0027: No such file or directory\n$ touch a/a\n$ ls a\na\n$ ls a/*\na/a",
+      "range": {
+        "startLine": 114,
+        "startChar": 47,
+        "endLine": 114,
+        "endChar": 49
+      },
+      "revId": "080b0394d24c52ffcf752630605a714bfe0fb8dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
