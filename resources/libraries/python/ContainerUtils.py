@@ -651,6 +651,8 @@ class LXC(ContainerEngine):
                     '{options} 0 0'.format(
                         host_dir=host_dir, guest_dir=guest_dir[1:],
                         options=options)
+                self.container.ssh.exec_command_sudo(
+                    "sh -c 'mkdir -p {host_dir}'".format(host_dir=host_dir))
                 ret, _, _ = self.container.ssh.exec_command_sudo(
                     "sh -c 'echo \"{e}\" >> /var/lib/lxc/{c.name}/config'".
                     format(e=entry, c=self.container))
