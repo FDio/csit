@@ -105,13 +105,14 @@ def main():
     # Before critical section, output can be outdated already.
     print("Diagnostic commands:")
     # -d and * are to supress "total <size>", see https://askubuntu.com/a/61190
-    diag_cmd(node, "ls --full-time -cd '{dir}'/*".format(dir=RESERVATION_DIR))
+    diag_cmd(node, "ls --full-time -ac '{dir}' | tail -n +2".format(
+        dir=RESERVATION_DIR))
     print("Attempting testbed reservation.")
     # Entering critical section.
     ret, _, _ = exec_cmd(node, "mkdir '{dir}'".format(dir=RESERVATION_DIR))
     # Critical section is over.
     if ret:
-        _, stdo, _ = exec_cmd(node, "ls '{dir}'/*".format(dir=RESERVATION_DIR))
+        _, stdo, _ = exec_cmd(node, "ls '{dir}'".format(dir=RESERVATION_DIR))
         print("Testbed already reserved by:\n{stdo}".format(stdo=stdo))
         return 2
     # Here the script knows it is the only owner of the testbed.
