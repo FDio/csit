@@ -490,41 +490,32 @@ function get_test_tag_string () {
     # - TEST_CODE - The test selection string from environment or argument.
     # Variables set:
     # - TEST_TAG_STRING - The string following trigger word in gerrit comment.
-    #   May be empty, not set on event types not adding comment.
+    #   May be empty, or even not set on event types not adding comment.
 
     # TODO: ci-management scripts no longer need to perform this.
 
     set -exuo pipefail
 
-    trigger=""
     if [[ "${GERRIT_EVENT_TYPE-}" == "comment-added" ]]; then
         case "${TEST_CODE}" in
             *"device"*)
-                # On parsing error, ${trigger} stays empty.
-                trigger="$(echo "${GERRIT_EVENT_COMMENT_TEXT}" \
-                    | grep -oE '(devicetest$|devicetest[[:space:]].+$)' \
-                    || true)"
-                # Set test tags as string.
-                TEST_TAG_STRING="${trigger#$"devicetest"}"
+                trigger="devicetest"
                 ;;
             *"perf"*)
-                # On parsing error, ${trigger} stays empty.
-                comment="${GERRIT_EVENT_COMMENT_TEXT}"
-                # As "perftest" can be followed by something, we substitute it.
-                comment="${comment/perftest-2n/perftest}"
-                comment="${comment/perftest-3n/perftest}"
-                comment="${comment/perftest-hsw/perftest}"
-                comment="${comment/perftest-skx/perftest}"
-                comment="${comment/perftest-dnv/perftest}"
-                comment="${comment/perftest-tsh/perftest}"
-                tag_string="$(echo "${comment}" \
-                    | grep -oE '(perftest$|perftest[[:space:]].+$)' || true)"
-                # Set test tags as string.
-                TEST_TAG_STRING="${tag_string#$"perftest"}"
+                trigger="perftest"
                 ;;
             *)
                 die "Unknown specification: ${TEST_CODE}"
         esac
+        # Ignore lines not containing the ase word.
+        comment=$(fgrep "${trigger}" <<< "${GERRIT_EVENT_COMMENT_TEXT}")
+        # vpp-csit triggers trail stuff we are not interested in
+        cmd=("sed" "-E" "s/${trigger}-[0-9]n-[a-z0-9]{3}/${trigger}/")
+        comment=$("${cmd[@]}" <<< "${comment}")
+        # Removing trigger word, see https://unix.stackexchange.com/a/13472
+        cmd=("grep" "-oP" "${trigger} \K\w+")
+        # On parsing error, TEST_TAG_STRING stays empty.
+        TEST_TAG_STRING="$("${cmd[@]}" <<< "${comment}" || true)"
     fi
 }
 
