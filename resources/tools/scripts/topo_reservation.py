@@ -105,7 +105,7 @@ def main():
     # Before critical section, output can be outdated already.
     print("Diagnostic commands:")
     # -d and * are to supress "total <size>", see https://askubuntu.com/a/61190
-    diag_cmd(node, "ls --full-time -cd '{dir}'/*".format(dir=RESERVATION_DIR))
+    diag_cmd(node, "ls --full-time -ac '{dir}'".format(dir=RESERVATION_DIR))
     print("Attempting testbed reservation.")
     # Entering critical section.
     ret, _, _ = exec_cmd(node, "mkdir '{dir}'".format(dir=RESERVATION_DIR))
