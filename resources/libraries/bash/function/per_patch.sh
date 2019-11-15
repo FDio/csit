@@ -109,10 +109,7 @@ function compare_test_results () {
 
     cd "${VPP_DIR}" || die "Change directory operation failed."
     # Reusing CSIT main virtualenv.
-    pip install -r "${PYTHON_SCRIPTS_DIR}/perpatch_requirements.txt" || {
-        die "Perpatch Python requirements installation failed."
-    }
-    python "${PYTHON_SCRIPTS_DIR}/compare_perpatch.py"
+    python "${TOOLS_DIR}/integrated/compare_perpatch.py"
     # The exit code determines the vote result.
 }
 
