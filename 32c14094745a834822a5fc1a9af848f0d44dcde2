@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "37eea1e1_e845097c",
+        "filename": "resources/libraries/bash/function/common.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-15T13:07:44Z",
+      "side": 1,
+      "message": "The devicetest trigger worked, but perftest failed due to dash (in nic_intel-x710) is not part of what \\w matches.",
+      "range": {
+        "startLine": 515,
+        "startChar": 51,
+        "endLine": 515,
+        "endChar": 53
+      },
+      "revId": "32c14094745a834822a5fc1a9af848f0d44dcde2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
