@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b14d8ddc_b39ed225",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-18T16:11:55Z",
+      "side": 1,
+      "message": "bytes\n\nAnd this is an unexpected change, explain in commit message.",
+      "range": {
+        "startLine": 32,
+        "startChar": 38,
+        "endLine": 32,
+        "endChar": 47
+      },
+      "revId": "78f428bf6b6e77acb161c23be0a694729428e03d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7199a7f1_b1d4999e",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-18T16:11:55Z",
+      "side": 1,
+      "message": "I wanted to nitpick abut ur\" but I do not see [1] that combination being supported, so all is good.\n\n[1] https://docs.python.org/3.6/reference/lexical_analysis.html#string-and-bytes-literals",
+      "range": {
+        "startLine": 619,
+        "startChar": 35,
+        "endLine": 619,
+        "endChar": 37
+      },
+      "revId": "78f428bf6b6e77acb161c23be0a694729428e03d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f25350ae_03b8cc6a",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-18T16:11:55Z",
+      "side": 1,
+      "message": "u\"\n\nBut looking at the number of edits, I am now maybe preferring the plain \" for unicode-strings, because there is not many bytes-strings in CSIT.",
+      "range": {
+        "startLine": 181,
+        "startChar": 49,
+        "endLine": 181,
+        "endChar": 50
+      },
+      "revId": "78f428bf6b6e77acb161c23be0a694729428e03d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
