@@ -31,17 +31,49 @@ RESERVATION_DIR = "/tmp/reservation_dir"
 RESERVATION_NODE = "TG"
 
 
-def diag_cmd(node, cmd):
-    """Execute cmd, print cmd and stdout, ignore stderr and rc; return None.
+def diagnose(node, res_dir):
+    """Run a ls command, print processed output; return None.
 
     :param node: Node object as parsed from topology file to execute cmd on.
-    :param cmd: Command to execute.
+    :param cmd: Reservation directory to investigate.
     :type ssh: dict
     :type cmd: str
     """
-    print('+ {cmd}'.format(cmd=cmd))
-    _, stdout, _ = exec_cmd(node, cmd)
-    print(stdout)
+    command = "ls --full-time -ac -I .. '{d}' 2>&1 | tail -n 1".format(d=res_dir)
+    ret, stdout, _ = exec_cmd(node, command)
+    print("DEBUG  Command: {c!r}".format(c=command))
+    print("DEBUG  RC: {r!r}".format(r=ret))
+    print("DEBUG  Stdout: {s!r}".format(s=stdout))
+    print("DEBUG  Stderr: {s!r}".format(s=_))
+    command = "ls --full-time -ac -I .. '{d}' | tail -n 1".format(d=res_dir)
+    ret, stdout, _ = exec_cmd(node, command)
+    print("DEBUG  Command: {c!r}".format(c=command))
+    print("DEBUG  RC: {r!r}".format(r=ret))
+    print("DEBUG  Stdout: {s!r}".format(s=stdout))
+    print("DEBUG  Stderr: {s!r}".format(s=_))
+    if ret:
+        print("Reservation dir not found, the testbed appears to be free.")
+        return
+    try:
+        _, filename = stdout.rstrip('\n').rsplit(" ", 1)
+    except ValueError:
+        print("ls output is not parseable. More info:")
+        print("  Command: {c}".format(c=command))
+        print("  Stdout: {s}".format(s=stdout))
+        return
+    if filename == ".":
+        print("Reservation dir present but empty. More info:")
+        print("  Command: {c}".format(c=command))
+        print("  Stdout: {s}".format(s=stdout))
+        return
+    print("Testbed appears to be reserved by: {f}".format(f=filename))
+    dash_parts = filename.split("-")
+    if len(dash_parts) < 3:
+        return
+    if dash_parts[0] != "jenkins":
+        return
+    print("URL: https://jenkins.fd.io/job/{j}/{n}".format(
+        j="-".join(dash_parts[1:-1]), n=dash_parts[-1]))
 
 
 def main():
@@ -103,16 +135,14 @@ def main():
             print("Cancellation unsuccessful:\n{err}".format(err=err))
         return ret
     # Before critical section, output can be outdated already.
-    print("Diagnostic commands:")
-    # -d and * are to supress "total <size>", see https://askubuntu.com/a/61190
-    diag_cmd(node, "ls --full-time -cd '{dir}'/*".format(dir=RESERVATION_DIR))
+    print("Diagnosing the testbed.")
+    diagnose(node, RESERVATION_DIR)
     print("Attempting testbed reservation.")
     # Entering critical section.
     ret, _, _ = exec_cmd(node, "mkdir '{dir}'".format(dir=RESERVATION_DIR))
     # Critical section is over.
     if ret:
-        _, stdo, _ = exec_cmd(node, "ls '{dir}'/*".format(dir=RESERVATION_DIR))
-        print("Testbed already reserved by:\n{stdo}".format(stdo=stdo))
+        print("Testbed already reserved, see the diagnostic output above.")
         return 2
     # Here the script knows it is the only owner of the testbed.
     print("Reservation success, writing additional info to reservation dir.")
