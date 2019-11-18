@@ -7,25 +7,13 @@
     ansible_distribution == 'Ubuntu'
   tags: remove-package
 
-- name: Remove package - Check if {{ package }} is installed
-  shell: >
-    "dpkg-query -W -f='${Status}' {{ package }} | grep 'install ok installed'"
-  register: package_is_installed
-  failed_when: no
-  changed_when: no
-  when: >
-    ansible_distribution == 'Ubuntu'
-  tags: remove-package
-
 - name: Remove package - {{ package }}
   apt:
     name: '{{ package }}'
     force: yes
     purge: yes
     state: absent
+  failed_when: no
   when: >
-    package is defined and
-    package != '' and
-    package_is_installed.rc == 0 and
-    ansible_distribution|lower == 'ubuntu'
+    ansible_distribution == 'Ubuntu'
   tags: remove-package
