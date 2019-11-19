@@ -105,6 +105,18 @@ class VPPUtil:
         exec_cmd_no_error(node, cmd, message=u"VPP is not installed!")
 
     @staticmethod
+    def adjust_privileges(node):
+        """Adjust privileges to control VPP without sudo.
+
+        :param node: Topology node.
+        :type node: dict
+        """
+        cmd = 'chmod -R o+rwx /run/vpp'
+        exec_cmd_no_error(
+            node, cmd, sudo=True, message='Failed to adjust privileges!',
+            retries=120)
+
+    @staticmethod
     def verify_vpp_started(node):
         """Verify that VPP is started on the specified topology node.
 
@@ -113,8 +125,12 @@ class VPPUtil:
         """
         cmd = u"echo \"show pci\" | sudo socat - UNIX-CONNECT:/run/vpp/cli.sock"
         exec_cmd_no_error(
+<<<<<<< HEAD
             node, cmd, sudo=False, message=u"VPP failed to start!", retries=120
         )
+=======
+            node, cmd, message='VPP failed to start!', retries=120)
+>>>>>>> Telemetry: Add more operational data
 
         cmd = u"vppctl show pci 2>&1 | fgrep -v \"Connection refused\" | " \
               u"fgrep -v \"No such file or directory\""
@@ -125,7 +141,7 @@ class VPPUtil:
     @staticmethod
     def verify_vpp(node):
         """Verify that VPP is installed and started on the specified topology
-        node.
+        node. Adjust privileges so user can connect without sudo.
 
         :param node: Topology node.
         :type node: dict
@@ -135,6 +151,11 @@ class VPPUtil:
         try:
             # Verify responsiveness of vppctl.
             VPPUtil.verify_vpp_started(node)
+<<<<<<< HEAD
+=======
+            # Adjust privileges.
+            VPPUtil.adjust_privileges(node)
+>>>>>>> Telemetry: Add more operational data
             # Verify responsiveness of PAPI.
             VPPUtil.show_log(node)
             VPPUtil.vpp_show_version(node)
