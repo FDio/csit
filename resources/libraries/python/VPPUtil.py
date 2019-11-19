@@ -105,6 +105,18 @@ class VPPUtil:
         exec_cmd_no_error(node, cmd, message=u"VPP is not installed!")
 
     @staticmethod
+    def adjust_privileges(node):
+        """Adjust privileges to control VPP without sudo.
+
+        :param node: Topology node.
+        :type node: dict
+        """
+        cmd = u"chmod -R o+rwx /run/vpp"
+        exec_cmd_no_error(
+            node, cmd, sudo=True, message=u"Failed to adjust privileges!",
+            retries=120)
+
+    @staticmethod
     def verify_vpp_started(node):
         """Verify that VPP is started on the specified topology node.
 
@@ -125,7 +137,7 @@ class VPPUtil:
     @staticmethod
     def verify_vpp(node):
         """Verify that VPP is installed and started on the specified topology
-        node.
+        node. Adjust privileges so user can connect without sudo.
 
         :param node: Topology node.
         :type node: dict
@@ -135,6 +147,8 @@ class VPPUtil:
         try:
             # Verify responsiveness of vppctl.
             VPPUtil.verify_vpp_started(node)
+            # Adjust privileges.
+            VPPUtil.adjust_privileges(node)
             # Verify responsiveness of PAPI.
             VPPUtil.show_log(node)
             VPPUtil.vpp_show_version(node)

@@ -89,7 +89,6 @@ class PapiSocketExecutor:
     The reconnection is logged at WARN level, so it is prominently shown
     in log.html, so we can see how frequently it happens.
 
-    TODO: Support sockets in NFs somehow.
     TODO: Support handling of retval!=0 without try/except in caller.
 
     Note: Use only with "with" statement, e.g.:
@@ -222,6 +221,7 @@ class PapiSocketExecutor:
         :returns: self
         :rtype: PapiSocketExecutor
         """
+        time_enter = time.time()
         # Parsing takes longer than connecting, prepare instance before tunnel.
         vpp_instance = self.vpp_instance
         node = self._node
@@ -244,16 +244,11 @@ class PapiSocketExecutor:
         # Even if ssh can perhaps reuse this file,
         # we need to remove it for readiness detection to work correctly.
         run([u"rm", u"-rvf", self._local_vpp_socket])
-        # On VIRL, the ssh user is not added to "vpp" group,
-        # so we need to change remote socket file access rights.
-        exec_cmd_no_error(
-            node, u"chmod o+rwx " + self._remote_vpp_socket, sudo=True
-        )
-        # We use sleep command. The ssh command will exit in 10 second,
+        # We use sleep command. The ssh command will exit in 30 second,
         # unless a local socket connection is established,
         # in which case the ssh command will exit only when
         # the ssh connection is closed again (via control socket).
-        # The log level is to supress "Warning: Permanently added" messages.
+        # The log level is to suppress "Warning: Permanently added" messages.
         ssh_cmd = [
             u"ssh", u"-S", ssh_socket, u"-M",
             u"-o", u"LogLevel=ERROR", u"-o", u"UserKnownHostsFile=/dev/null",
@@ -261,7 +256,7 @@ class PapiSocketExecutor:
             u"-o", u"ExitOnForwardFailure=yes",
             u"-L", self._local_vpp_socket + u":" + self._remote_vpp_socket,
             u"-p", str(node[u"port"]), node[u"username"] + u"@" + node[u"host"],
-            u"sleep", u"10"
+            u"sleep", u"30"
         ]
         priv_key = node.get(u"priv_key")
         if priv_key:
@@ -311,6 +306,9 @@ class PapiSocketExecutor:
                 break
         else:
             raise RuntimeError(u"Failed to connect to VPP over a socket.")
+        logger.trace(
+            f"Establishing socket connection took {time.time()-time_enter}s"
+        )
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
