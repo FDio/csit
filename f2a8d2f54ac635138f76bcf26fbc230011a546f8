@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "f924a3d4_7fd3fe91",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1822
+      },
+      "writtenOn": "2019-11-19T07:37:27Z",
+      "side": 1,
+      "message": "According to https://wiki.fd.io/view/VPP/SecurityGroups, i am seeing API \"acl_interface_add_del\" allows to append/delete one input or output ACL (here it is not ACL, i guess it ACE) to the list of the ACLs applied to an interface.\nTo differentiate  this API and \"acl_interface_set_acl_list\", I introduced new TAG.\nBut Now it is clear we can Use IACL to LIST and in case required we can add IACE for \"acl_interface_add_del\" is that fine for you ?",
+      "parentUuid": "94ba0fa8_6f439c6b",
+      "range": {
+        "startLine": 659,
+        "startChar": 46,
+        "endLine": 659,
+        "endChar": 65
+      },
+      "revId": "f2a8d2f54ac635138f76bcf26fbc230011a546f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "6c88e09a_4b9d1bad",
         "filename": "resources/libraries/python/Classify.py",
         "patchSetId": 7
@@ -45,6 +69,30 @@
       "revId": "f2a8d2f54ac635138f76bcf26fbc230011a546f8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1a552aae_0c2ba5ec",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1822
+      },
+      "writtenOn": "2019-11-19T07:37:27Z",
+      "side": 1,
+      "message": "Ack, Agreed we will change and submit new patch.",
+      "parentUuid": "6c88e09a_4b9d1bad",
+      "range": {
+        "startLine": 769,
+        "startChar": 36,
+        "endLine": 769,
+        "endChar": 57
+      },
+      "revId": "f2a8d2f54ac635138f76bcf26fbc230011a546f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
