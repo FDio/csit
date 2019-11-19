@@ -114,7 +114,7 @@ class VppCounters:
                     )
 
     @staticmethod
-    def vpp_show_runtime_counters_on_all_duts(nodes):
+    def vpp_show_runtime_on_all_duts(nodes):
         """Clear VPP runtime counters on all DUTs.
 
         :param nodes: VPP nodes.
@@ -125,8 +125,8 @@ class VppCounters:
                 VppCounters.vpp_show_runtime(node)
 
     @staticmethod
-    def vpp_show_hardware_verbose(node):
-        """Run "show hardware-interfaces verbose" debug CLI command.
+    def vpp_show_interface(node):
+        """Run "show interface" debug CLI command.
 
         :param node: Node to run command on.
         :type node: dict
@@ -144,9 +144,20 @@ class VppCounters:
         :param node: Node to run command on.
         :type node: dict
         """
-        PapiSocketExecutor.run_cli_cmd(
+        PapiSocketExecutor.run_cli_cmd_on_all_sockets(
             node, u"show memory verbose api-segment stats-segment main-heap"
         )
+
+    @staticmethod
+    def vpp_show_memory_on_all_duts(nodes):
+        """Run "show memory" on all DUTs.
+
+        :param nodes: VPP nodes.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node[u"type"] == NodeType.DUT:
+                VppCounters.vpp_show_memory(node)
 
     @staticmethod
     def vpp_clear_runtime(node):
@@ -160,7 +171,7 @@ class VppCounters:
         )
 
     @staticmethod
-    def vpp_clear_runtime_counters_on_all_duts(nodes):
+    def vpp_clear_runtime_on_all_duts(nodes):
         """Run "clear runtime" CLI command on all DUTs.
 
         :param nodes: VPP nodes.
@@ -171,8 +182,8 @@ class VppCounters:
                 VppCounters.vpp_clear_runtime(node)
 
     @staticmethod
-    def vpp_clear_hardware_counters(node):
-        """Run "clear hardware" CLI command.
+    def vpp_clear_interfaces(node):
+        """Run "clear interfaces" CLI command.
 
         :param node: Node to run command on.
         :type node: dict
@@ -180,22 +191,22 @@ class VppCounters:
         :rtype: dict
         """
         PapiSocketExecutor.run_cli_cmd_on_all_sockets(
-            node, u"clear hardware", log=False
+            node, 'clear interfaces', log=False
         )
 
     @staticmethod
-    def vpp_clear_hardware_counters_on_all_duts(nodes):
-        """Clear hardware counters on all DUTs.
+    def vpp_clear_interfaces_on_all_duts(nodes):
+        """Clear interfaces on all DUTs.
 
         :param nodes: VPP nodes.
         :type nodes: dict
         """
         for node in nodes.values():
-            if node[u"type"] == NodeType.DUT:
-                VppCounters.vpp_clear_hardware_counters(node)
+            if node[u'type'] == NodeType.DUT:
+                VppCounters.vpp_clear_interfaces(node)
 
     @staticmethod
-    def vpp_clear_errors_counters(node):
+    def vpp_clear_errors(node):
         """Run "clear errors" CLI command.
 
         :param node: Node to run command on.
@@ -206,7 +217,7 @@ class VppCounters:
         )
 
     @staticmethod
-    def vpp_clear_error_counters_on_all_duts(nodes):
+    def vpp_clear_errors_on_all_duts(nodes):
         """Clear VPP errors counters on all DUTs.
 
         :param nodes: VPP nodes.
@@ -214,7 +225,7 @@ class VppCounters:
         """
         for node in nodes.values():
             if node[u"type"] == NodeType.DUT:
-                VppCounters.vpp_clear_errors_counters(node)
+                VppCounters.vpp_clear_errors(node)
 
     @staticmethod
     def show_vpp_statistics(node):
@@ -224,9 +235,7 @@ class VppCounters:
         :type node: dict
         """
         VppCounters.vpp_show_errors(node)
-        VppCounters.vpp_show_hardware_verbose(node)
-        VppCounters.vpp_show_runtime(node)
-        VppCounters.vpp_show_memory(node)
+        VppCounters.vpp_show_interface(node)
 
     @staticmethod
     def show_statistics_on_all_duts(nodes):
@@ -246,9 +255,8 @@ class VppCounters:
         :param node: VPP node.
         :type node: dict
         """
-        VppCounters.vpp_clear_errors_counters(node)
-        VppCounters.vpp_clear_hardware_counters(node)
-        VppCounters.vpp_clear_runtime(node)
+        VppCounters.vpp_clear_errors(node)
+        VppCounters.vpp_clear_interfaces(node)
 
     @staticmethod
     def clear_statistics_on_all_duts(nodes):
