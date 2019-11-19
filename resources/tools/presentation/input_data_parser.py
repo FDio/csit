@@ -924,7 +924,7 @@ class ExecutionChecker(ResultVisitor):
         :type test_kw: Keyword
         :returns: Nothing.
         """
-        if test_kw.name.count("Show Runtime Counters On All Duts"):
+        if test_kw.name.count("Show Runtime On All Duts"):
             self._lookup_kw_nr += 1
             self._show_run_lookup_nr = 0
             self._msg_type = "test-show-runtime"
