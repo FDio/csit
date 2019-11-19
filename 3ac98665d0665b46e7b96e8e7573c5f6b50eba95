@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1f5aae9c_f4a42e56",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-11-19T16:40:26Z",
+      "side": 1,
+      "message": "Done. I probably had something longer in there at some point, which looked bad crammed.",
+      "parentUuid": "a1d848ec_05d3d69e",
+      "range": {
+        "startLine": 453,
+        "startChar": 16,
+        "endLine": 453,
+        "endChar": 17
+      },
+      "revId": "3ac98665d0665b46e7b96e8e7573c5f6b50eba95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a0dd6d15_7bb7ad9b",
         "filename": "resources/tools/scripts/topo_container_copy.py",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "3ac98665d0665b46e7b96e8e7573c5f6b50eba95",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f9a5b814_975882ec",
+        "filename": "resources/tools/scripts/topo_container_copy.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-11-19T16:40:26Z",
+      "side": 1,
+      "message": "This file was removed recently. \nI moved it to stderr because exec_cmd_no_error uses stderr output in its default error message.\nBut there were prints that indicated stdout might be more important. Anyway, both would be logged.",
+      "parentUuid": "a0dd6d15_7bb7ad9b",
+      "range": {
+        "startLine": 64,
+        "startChar": 45,
+        "endLine": 64,
+        "endChar": 48
+      },
+      "revId": "3ac98665d0665b46e7b96e8e7573c5f6b50eba95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
