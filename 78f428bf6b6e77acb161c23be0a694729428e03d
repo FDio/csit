@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0a983e17_8a9ce8ea",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-19T09:33:59Z",
+      "side": 1,
+      "message": "Well, I would say it is forced change to optimize code. In fact, previous implementation in Python 2.7 was bytes-like form of string as VPP API requires bytes format for some parameters.",
+      "parentUuid": "b14d8ddc_b39ed225",
+      "range": {
+        "startLine": 32,
+        "startChar": 38,
+        "endLine": 32,
+        "endChar": 47
+      },
+      "revId": "78f428bf6b6e77acb161c23be0a694729428e03d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7199a7f1_b1d4999e",
         "filename": "resources/libraries/python/Classify.py",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "da1cf36e_f6b54d10",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-19T09:33:59Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7199a7f1_b1d4999e",
+      "range": {
+        "startLine": 619,
+        "startChar": 35,
+        "endLine": 619,
+        "endChar": 37
+      },
+      "revId": "78f428bf6b6e77acb161c23be0a694729428e03d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f25350ae_03b8cc6a",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 1
@@ -68,6 +116,30 @@
       "revId": "78f428bf6b6e77acb161c23be0a694729428e03d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0540851a_608f1b13",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-19T09:33:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f25350ae_03b8cc6a",
+      "range": {
+        "startLine": 181,
+        "startChar": 49,
+        "endLine": 181,
+        "endChar": 50
+      },
+      "revId": "78f428bf6b6e77acb161c23be0a694729428e03d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
