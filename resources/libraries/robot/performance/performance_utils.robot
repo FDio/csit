@@ -15,10 +15,7 @@
 | Library | Collections
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.DpdkUtil
 | Library | resources.libraries.python.InterfaceUtil
-| Library | resources.libraries.python.KubernetesUtils
-| Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.OptimizedSearch
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
@@ -38,11 +35,6 @@
 | | ... | Input rates are understood as uni-directional,
 | | ... | reported result contains aggregate rates.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
-| | ...
-| | ... | TODO: Should the trial duration of the additional
-| | ... | measurements be configurable?
-| | ...
-| | ... | Some inputs are read from variables to streamline suites.
 | | ...
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
@@ -84,27 +76,16 @@
 | | Check NDRPDR interval validity | ${result.pdr_interval}
 | | ... | ${packet_loss_ratio}
 | | Check NDRPDR interval validity | ${result.ndr_interval}
-| | Perform additional measurements based on NDRPDR result
-| | ... | ${result} | ${frame_size} | ${traffic_profile}
-
-| Display Reconfig Test Message
-| | [Documentation]
-| | ... | Display the number of packets lost (bidirectionally)
-| | ... | due to reconfiguration under traffic.
-| | ...
-| | ... | *Arguments:*
-| | ... | - result - Result of bidirectional measurtement.
-| | ... |   Type: ReceiveRateMeasurement
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Display Reconfig Test Message \| \${result} \|
-| | ...
-| | [Arguments] | ${result}
-| | ...
-| | Set Test Message | Packets lost due to reconfig: ${result.loss_count}
-| | ${time_lost} = | Evaluate | ${result.loss_count} / ${result.target_tr}
-| | Set Test Message | ${\n}Implied time lost: ${time_lost} | append=yes
+| | ${rate_sum}= | Set Variable | ${result.ndr_interval.measured_low.target_tr}
+| | ${rate_per_stream}= | Evaluate | ${rate_sum} / float(${traffic_directions})
+| | Send traffic at specified rate
+| | ... | ${2.0} | ${rate_per_stream}pps | ${framesize} | ${traffic_profile}
+| | ... | traffic_directions=${traffic_directions}
+| | ${rate_sum}= | Set Variable | ${result.pdr_interval.measured_low.target_tr}
+| | ${rate_per_stream}= | Evaluate | ${rate_sum} / float(${traffic_directions})
+| | Send traffic at specified rate
+| | ... | ${2.0} | ${rate_per_stream}pps | ${framesize} | ${traffic_profile}
+| | ... | traffic_directions=${traffic_directions}
 
 | Find Throughput Using MLRsearch
 | | [Documentation]
@@ -112,11 +93,6 @@
 | | ... | aggregate throughput using MLRsearch algorithm.
 | | ... | Input rates are understood as uni-directional.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
-| | ...
-| | ... | TODO: Should the trial duration of the additional
-| | ... | measurements be configurable?
-| | ...
-| | ... | Some inputs are read from variables to streamline suites.
 | | ...
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
@@ -168,7 +144,6 @@
 | | ... | Input rates are understood as uni-directional,
 | | ... | reported result contains aggregate rates.
 | | ... | Currently, the min_rate value is hardcoded to match test teardowns.
-| | ... | Some inputs are read from variables to streamline suites.
 | | ...
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
@@ -232,6 +207,25 @@
 | | Set Test Message | ${\n}LATENCY [min/avg/max/hdrh] per stream: ${latency}
 | | ... | append=yes
 
+| Display Reconfig Test Message
+| | [Documentation]
+| | ... | Display the number of packets lost (bidirectionally)
+| | ... | due to reconfiguration under traffic.
+| | ...
+| | ... | *Arguments:*
+| | ... | - result - Result of bidirectional measurtement.
+| | ... |   Type: ReceiveRateMeasurement
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Display Reconfig Test Message \| \${result} \|
+| | ...
+| | [Arguments] | ${result}
+| | ...
+| | Set Test Message | Packets lost due to reconfig: ${result.loss_count}
+| | ${time_lost} = | Evaluate | ${result.loss_count} / ${result.target_tr}
+| | Set Test Message | ${\n}Implied time lost: ${time_lost} | append=yes
+
 | Display result of NDRPDR search
 | | [Documentation]
 | | ... | Display result of NDR+PDR search, both quantities, both bounds,
@@ -275,8 +269,6 @@
 | | ... | Sum of measured rates over streams
 | | ... | Bandwidth is calculated as:
 | | ... | (Throughput * (L2 Frame Size + IPG) * 8)
-| | ... | TODO: Do we want to report some latency data,
-| | ... | even if not measured at the reported bounds?.
 | | ...
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
@@ -330,68 +322,9 @@
 | | ... | ${message}${\n}${message_zero} | ${message}${\n}${message_other}
 | | Fail | ${message}
 
-| Perform additional measurements based on NDRPDR result
-| | [Documentation]
-| | ... | Perform any additional measurements which are not directly needed
-| | ... | for determining NDR nor PDR, but which are needed for gathering
-| | ... | additional data for debug purposes.
-| | ... | Currently, just "Traffic should pass with no loss" is called.
-| | ... | TODO: Move latency measurements from optimized search here.
-| | ...
-| | ... | *Arguments:*
-| | ... | - result - Measured result data per stream [pps]. Type: NdrPdrResult
-| | ... | - frame_size - L2 Frame Size [B] or IMIX string. Type: int or str
-| | ... | - traffic_profile - Topology profile. Type: string
-| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: int
-| | ...
-| | ... | *Example:*
-| | ... | \| Perform additional measurements based on NDRPDR result \
-| | ... | \| \${result} \| \${64} \| 3-node-IPv4 \| \${2} \|
-| | ...
-| | [Arguments] | ${result} | ${framesize} | ${traffic_profile}
-| | ... | ${traffic_directions}=${2}
-| | ...
-| | ${duration}= | Set Variable | ${2.0}
-| | ${rate_sum}= | Set Variable | ${result.ndr_interval.measured_low.target_tr}
-| | ${rate_per_stream}= | Evaluate | ${rate_sum} / float(${traffic_directions})
-| | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
-| | ... | ${framesize} | ${traffic_profile} | fail_on_loss=${False}
-| | ... | traffic_directions=${traffic_directions}
-
-| Traffic should pass with no loss
-| | [Documentation]
-| | ... | Send traffic at specified rate. No packet loss is accepted at loss
-| | ... | evaluation.
-| | ...
-| | ... | *Arguments:*
-| | ... | - duration - Duration of traffic run [s]. Type: integer
-| | ... | - rate - Rate for sending packets. Type: string
-| | ... | - frame_size - L2 Frame Size [B] or IMIX_v4_1. Type: integer/string
-| | ... | - traffic_profile - Name of module defining traffc for measurements.
-| | ... | Type: string
-| | ... | - fail_on_loss - If True, the keyword fails if loss occurred.
-| | ... | Type: boolean
-| | ... | - traffic_directions - Bi- (2) or uni- (1) directional traffic.
-| | ... | Type: int
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Traffic should pass with no loss \| \${10} \| 4.0mpps \| \${64} \
-| | ... | \| 3-node-IPv4 \| \${2} \|
-| | ...
-| | [Arguments] | ${duration} | ${rate} | ${frame_size} | ${traffic_profile}
-| | ... | ${fail_on_loss}=${True} | ${traffic_directions}=${2}
-| | ...
-| | Send traffic at specified rate | ${duration} | ${rate} | ${frame_size}
-| | ... | ${traffic_profile} | traffic_directions=${traffic_directions}
-| | Run Keyword If | ${fail_on_loss} | No traffic loss occurred
-
 | Traffic should pass with maximum rate
 | | [Documentation]
 | | ... | Send traffic at maximum rate.
-| | ...
-| | ... | Some inputs are read from variables to streamline suites.
 | | ...
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
@@ -424,8 +357,6 @@
 | | Set Test Message | ${\n}Maximum Receive Rate trial results
 | | Set Test Message | in packets per second: ${results}
 | | ... | append=yes
-| | # TODO: Should we also report the percentage relative to transmit rate,
-| | # so that people looking at console can decide how close to 100% it is?
 | | Run Keyword If | ${fail_no_traffic} | Fail if no traffic forwarded
 
 | Send traffic at specified rate
@@ -515,21 +446,17 @@
 | | ... | traffic_directions=${traffic_directions} | tx_port=${tx_port}
 | | ... | rx_port=${rx_port}
 | | Run Keyword If | ${dut_stats}==${True}
-| | ... | VPP clear runtime counters on all DUTs | ${nodes}
+| | ... | VPP clear runtime on all DUTs | ${nodes}
 | | Sleep | ${duration}
 | | Run Keyword If | ${dut_stats}==${True}
-| | ... | VPP show runtime counters on all DUTs | ${nodes}
+| | ... | VPP show runtime on all DUTs | ${nodes}
 | | Stop traffic on tg
 
 | Start Traffic on Background
 | | [Documentation]
 | | ... | Start traffic at specified rate then return control to Robot.
-| | ...
 | | ... | This keyword is useful if the test needs to do something
 | | ... | while traffic is running.
-| | ... | Just a wrapper around L1 keyword.
-| | ... |
-| | ... | TODO: How to make sure the traffic is stopped on any failure?
 | | ...
 | | ... | *Test (or broader scope) variables read:*
 | | ... | - traffic_profile - Name of module defining traffc for measurements.
@@ -560,10 +487,6 @@
 | | [Documentation]
 | | ... | Stop the running traffic, return measurement result.
 | | ... | For bidirectional traffic, the reported values are bi-directional.
-| | ...
-| | ... | Just a wrapper around L1 keyword.
-| | ... |
-| | ... | TODO: Tolerate if traffic was not started.
 | | ...
 | | ... | *Returns:*
 | | ... | - Measurement result. Type: ReceiveRateMeasurement

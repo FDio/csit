@@ -91,7 +91,6 @@ class PapiSocketExecutor(object):
     The reconnection is logged at WARN level, so it is prominently shown
     in log.html, so we can see how frequently it happens.
 
-    TODO: Support sockets in NFs somehow.
     TODO: Support handling of retval!=0 without try/except in caller.
 
     Note: Use only with "with" statement, e.g.:
@@ -221,6 +220,7 @@ class PapiSocketExecutor(object):
         :returns: self
         :rtype: PapiSocketExecutor
         """
+        time_enter = time.time()
         # Parsing takes longer than connecting, prepare instance before tunnel.
         vpp_instance = self.vpp_instance
         node = self._node
@@ -241,10 +241,6 @@ class PapiSocketExecutor(object):
         # Even if ssh can perhaps reuse this file,
         # we need to remove it for readiness detection to work correctly.
         run(["rm", "-rvf", self._local_vpp_socket])
-        # On VIRL, the ssh user is not added to "vpp" group,
-        # so we need to change remote socket file access rights.
-        exec_cmd_no_error(
-            node, "chmod o+rwx " + self._remote_vpp_socket, sudo=True)
         # We use sleep command. The ssh command will exit in 10 second,
         # unless a local socket connection is established,
         # in which case the ssh command will exit only when
@@ -256,7 +252,7 @@ class PapiSocketExecutor(object):
             "-o", "StrictHostKeyChecking=no", "-o", "ExitOnForwardFailure=yes",
             "-L", self._local_vpp_socket + ':' + self._remote_vpp_socket,
             "-p", str(node['port']), node['username'] + "@" + node['host'],
-            "sleep", "10"]
+            "sleep", "30"]
         priv_key = node.get("priv_key")
         if priv_key:
             # This is tricky. We need a file to pass the value to ssh command.
@@ -303,6 +299,8 @@ class PapiSocketExecutor(object):
                 break
         else:
             raise RuntimeError("Failed to connect to VPP over a socket.")
+        logger.trace("Establishing socket connection took {time} seconds".
+                     format(time=time.time()-time_enter))
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
