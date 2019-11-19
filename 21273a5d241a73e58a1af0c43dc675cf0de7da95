@@ -22,6 +22,30 @@
       "revId": "21273a5d241a73e58a1af0c43dc675cf0de7da95",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d0e80e49_5703a2b2",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1848
+      },
+      "writtenOn": "2019-11-19T16:30:08Z",
+      "side": 1,
+      "message": "Interesting, no idea how I ended up with this structure.\nAnyway, does it actually happen that a connection has been established yet the transport isn\u0027t active? Except for the first attempt at reuse of a previous connection, I mean.\n\nI\u0027ve added a disconnect, destroy the previous client in disconnect, and moved the active/attempt/sleep to the end of this loop. Hope that does it, please check.\n\nI also made some changes of a map/reduce I think, so this may count as a python3 thing too...",
+      "parentUuid": "6691809e_a8007194",
+      "range": {
+        "startLine": 194,
+        "startChar": 12,
+        "endLine": 194,
+        "endChar": 22
+      },
+      "revId": "21273a5d241a73e58a1af0c43dc675cf0de7da95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
