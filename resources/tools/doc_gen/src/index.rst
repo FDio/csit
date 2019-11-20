@@ -10,7 +10,6 @@ Contents
     resources.libraries.python
     resources.libraries.robot
     tests.dpdk.perf
-    tests.tldk.func
     tests.vpp.device
     tests.vpp.perf
     indices
