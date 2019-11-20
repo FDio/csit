@@ -19,7 +19,7 @@ import datetime
 
 from shutil import make_archive
 
-from .utils import get_files, execute_command, archive_input_data
+from utils import get_files, execute_command, archive_input_data
 
 
 # .css file for the html format of the report
@@ -149,9 +149,7 @@ def generate_html_report(release, spec, versions, report_version):
 
     working_dir = spec.environment["paths"]["DIR[WORKING,SRC]"]
 
-    cmd = 'cd {working_dir} && mv -f index.html.template index.rst'.\
-        format(working_dir=working_dir)
-    execute_command(cmd)
+    execute_command(f"cd {working_dir} && mv -f index.html.template index.rst")
 
     cmd = HTML_BUILDER.format(
         release=release,
@@ -189,9 +187,7 @@ def generate_pdf_report(release, spec, versions, report_week):
 
     working_dir = spec.environment["paths"]["DIR[WORKING,SRC]"]
 
-    cmd = 'cd {working_dir} && mv -f index.pdf.template index.rst'.\
-        format(working_dir=working_dir)
-    execute_command(cmd)
+    execute_command(f"cd {working_dir} && mv -f index.pdf.template index.rst")
 
     _convert_all_svg_to_pdf(spec.environment["paths"]["DIR[WORKING,SRC]"])
 
@@ -201,8 +197,8 @@ def generate_pdf_report(release, spec, versions, report_week):
     plots.extend(get_files(spec.environment["paths"]["DIR[STATIC,DPDK]"],
                            "html"))
     for plot in plots:
-        file_name = "{0}.pdf".format(plot.rsplit(".", 1)[0])
-        logging.info("Converting '{0}' to '{1}'".format(plot, file_name))
+        file_name = f"{plot.rsplit('.', 1)[0]}.pdf"
+        logging.info(f"Converting {plot} to {file_name}")
         execute_command(convert_plots.format(html=plot, pdf=file_name))
 
     # Generate the LaTeX documentation
@@ -261,10 +257,10 @@ def _convert_all_svg_to_pdf(path):
     :type path: str
     """
 
-    cmd = "inkscape -D -z --file={svg} --export-pdf={pdf}"
-
     svg_files = get_files(path, "svg", full_path=True)
     for svg_file in svg_files:
-        pdf_file = "{0}.pdf".format(svg_file.rsplit('.', 1)[0])
-        logging.info("Converting '{0}' to '{1}'".format(svg_file, pdf_file))
-        execute_command(cmd.format(svg=svg_file, pdf=pdf_file))
+        pdf_file = f"{svg_file.rsplit('.', 1)[0]}.pdf"
+        logging.info(f"Converting {svg_file} to {pdf_file}")
+        execute_command(
+            f"inkscape -D -z --file={svg_file} --export-pdf={pdf_file}"
+        )
