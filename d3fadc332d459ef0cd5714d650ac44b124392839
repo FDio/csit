@@ -886,6 +886,29 @@
     },
     {
       "key": {
+        "uuid": "cf34daaa_6a3d397e",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-20T09:24:17Z",
+      "side": 1,
+      "message": "use f\"...{suite_id}...\"",
+      "range": {
+        "startLine": 86,
+        "startChar": 45,
+        "endLine": 86,
+        "endChar": 54
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a74cfbd4_fc0389bf",
         "filename": "resources/libraries/python/autogen/Testcase.py",
         "patchSetId": 3
