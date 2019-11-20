@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "6dfe7884_5d547a65",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2019-11-20T15:54:30Z",
+      "side": 1,
+      "message": "I agree with Jan, we can use empty line to visually split \"import\" and \"from ...\"",
+      "parentUuid": "23891965_2150b781",
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "361b8e19_73a0c38a",
         "filename": "resources/libraries/python/Classify.py",
         "patchSetId": 3
