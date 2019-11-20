@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Cisco and/or its affiliates.
+# Copyright (c) 2019 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -64,8 +64,9 @@ class PresentationError(Exception):
 
     def __repr__(self):
         return (
-            "PresentationError(msg={msg!r},details={dets!r},level={level!r})".
-            format(msg=self._msg, dets=self._details, level=self._level))
+            f"PresentationError(msg={self._msg!r},details={self._details!r},"
+            f"level={self._level!r})"
+        )
 
     def __str__(self):
         return str(self._msg)
