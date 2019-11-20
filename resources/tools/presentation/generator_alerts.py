@@ -11,6 +11,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Generator of alerts:
+- failed tests
+- regressions
+- progressions
+"""
+
+
 import smtplib
 import logging
 
@@ -19,8 +26,8 @@ from email.mime.multipart import MIMEMultipart
 from os.path import isdir
 from collections import OrderedDict
 
-from .utils import get_last_completed_build_number
-from .errors import PresentationError
+from utils import get_last_completed_build_number
+from errors import PresentationError
 
 
 class AlertingError(PresentationError):
@@ -48,13 +55,13 @@ class AlertingError(PresentationError):
         :type level: str
         """
 
-        super(AlertingError, self).__init__(
-            "Alerting: {0}".format(msg), details, level)
+        super(AlertingError, self).__init__(f"Alerting: {msg}", details, level)
 
     def __repr__(self):
         return (
-            "AlertingError(msg={msg!r},details={dets!r},level={level!r})".
-            format(msg=self._msg, dets=self._details, level=self._level))
+            f"AlertingError(msg={self._msg!r},details={self._details!r},"
+            f"level={self._level!r})"
+        )
 
 
 class Alerting(object):
@@ -69,16 +76,16 @@ class Alerting(object):
         """
 
         # Implemented alerts:
-        self._ALERTS = ("failed-tests", )
+        self._implemented_alerts = ("failed-tests", )
 
         self._spec = spec
 
         try:
             self._spec_alert = spec.alerting
         except KeyError as err:
-            raise  AlertingError("Alerting is not configured, skipped.",
-                                 repr(err),
-                                 "WARNING")
+            raise AlertingError("Alerting is not configured, skipped.",
+                                repr(err),
+                                "WARNING")
 
         self._path_failed_tests = spec.environment["paths"]["DIR[STATIC,VPP]"]
 
@@ -86,7 +93,7 @@ class Alerting(object):
         self.configs = self._spec_alert.get("configurations", None)
         if not self.configs:
             raise AlertingError("No alert configuration is specified.")
-        for config_type, config_data in self.configs.iteritems():
+        for config_type, config_data in self.configs.items():
             if config_type == "email":
                 if not config_data.get("server", None):
                     raise AlertingError("Parameter 'server' is missing.")
@@ -103,16 +110,17 @@ class Alerting(object):
                 if not config_data.get("output-file", None):
                     raise AlertingError("Parameter 'output-file' is missing.")
             else:
-                raise AlertingError("Alert of type '{0}' is not implemented.".
-                                    format(config_type))
+                raise AlertingError(
+                    f"Alert of type '{config_type}' is not implemented."
+                )
 
         self.alerts = self._spec_alert.get("alerts", None)
         if not self.alerts:
             raise AlertingError("No alert is specified.")
-        for alert, alert_data in self.alerts.iteritems():
+        for alert_data in self.alerts.values():
             if not alert_data.get("title", None):
                 raise AlertingError("Parameter 'title' is missing.")
-            if not alert_data.get("type", None) in self._ALERTS:
+            if not alert_data.get("type", None) in self._implemented_alerts:
                 raise AlertingError("Parameter 'failed-tests' is missing or "
                                     "incorrect.")
             if not alert_data.get("way", None) in self.configs.keys():
@@ -127,8 +135,7 @@ class Alerting(object):
         :returns: Readable description.
         :rtype: str
         """
-        return "configs={configs}, alerts={alerts}".format(
-            configs=self.configs, alerts=self.alerts)
+        return f"configs={self.configs}, alerts={self.alerts}"
 
     def __repr__(self):
         """Return string executable as Python constructor call.
@@ -136,19 +143,19 @@ class Alerting(object):
         :returns: Executable constructor call.
         :rtype: str
         """
-        return "Alerting(spec={spec})".format(
-            spec=self._spec)
+        return f"Alerting(spec={self._spec})"
 
     def generate_alerts(self):
         """Generate alert(s) using specified way(s).
         """
 
-        for alert, alert_data in self.alerts.iteritems():
+        for alert_data in self.alerts.values():
             if alert_data["way"] == "jenkins":
                 self._generate_email_body(alert_data)
             else:
-                raise AlertingError("Alert with way '{0}' is not implemented.".
-                                    format(alert_data["way"]))
+                raise AlertingError(
+                    f"Alert with way {alert_data['way']} is not implemented."
+                )
 
     @staticmethod
     def _send_email(server, addr_from, addr_to, subject, text=None, html=None):
@@ -183,11 +190,11 @@ class Alerting(object):
 
         smtp_server = None
         try:
-            logging.info("Trying to send alert '{0}' ...".format(subject))
-            logging.debug("SMTP Server: {0}".format(server))
-            logging.debug("From: {0}".format(addr_from))
-            logging.debug("To: {0}".format(", ".join(addr_to)))
-            logging.debug("Message: {0}".format(msg.as_string()))
+            logging.info(f"Trying to send alert '{subject}' ...")
+            logging.debug(f"SMTP Server: {server}")
+            logging.debug(f"From: {addr_from}")
+            logging.debug(f"To: {', '.join(addr_to)}")
+            logging.debug(f"Message: {msg.as_string()}")
             smtp_server = smtplib.SMTP(server)
             smtp_server.sendmail(addr_from, addr_to, msg.as_string())
         except smtplib.SMTPException as err:
@@ -244,7 +251,7 @@ class Alerting(object):
 
         directory = self.configs[alert["way"]]["output-dir"]
         failed_tests = OrderedDict()
-        file_path = "{0}/{1}.txt".format(directory, test_set)
+        file_path = f"{directory}/{test_set}.txt"
         version = ""
         try:
             with open(file_path, 'r') as f_txt:
@@ -263,9 +270,6 @@ class Alerting(object):
                         continue
                     try:
                         test = line[:-1].split('-')
-                        nic = test[0]
-                        framesize = test[1]
-                        cores = test[2]
                         name = '-'.join(test[3:-1])
                     except IndexError:
                         continue
@@ -273,15 +277,14 @@ class Alerting(object):
                         failed_tests[name] = dict(nics=list(),
                                                   framesizes=list(),
                                                   cores=list())
-                    if nic not in failed_tests[name]["nics"]:
-                        failed_tests[name]["nics"].append(nic)
-                    if framesize not in failed_tests[name]["framesizes"]:
-                        failed_tests[name]["framesizes"].append(framesize)
-                    if cores not in failed_tests[name]["cores"]:
-                        failed_tests[name]["cores"].append(cores)
+                    if test[0] not in failed_tests[name]["nics"]:
+                        failed_tests[name]["nics"].append(test[0])
+                    if test[1] not in failed_tests[name]["framesizes"]:
+                        failed_tests[name]["framesizes"].append(test[1])
+                    if test[2] not in failed_tests[name]["cores"]:
+                        failed_tests[name]["cores"].append(test[2])
         except IOError:
-            logging.error("No such file or directory: {file}".
-                          format(file=file_path))
+            logging.error(f"No such file or directory: {file_path}")
             return None, None, None, None, None
         if sort:
             sorted_failed_tests = OrderedDict()
@@ -290,8 +293,8 @@ class Alerting(object):
             for key in keys:
                 sorted_failed_tests[key] = failed_tests[key]
             return build, version, passed, failed, sorted_failed_tests
-        else:
-            return build, version, passed, failed, failed_tests
+
+        return build, version, passed, failed, failed_tests
 
     def _generate_email_body(self, alert):
         """Create the file which is used in the generated alert.
@@ -301,8 +304,9 @@ class Alerting(object):
         """
 
         if alert["type"] != "failed-tests":
-            raise AlertingError("Alert of type '{0}' is not implemented.".
-                                format(alert["type"]))
+            raise AlertingError(
+                f"Alert of type {alert['type']} is not implemented."
+            )
 
         config = self.configs[alert["way"]]
 
@@ -316,37 +320,26 @@ class Alerting(object):
                     alert["urls"][idx].split('/')[-1])
                 if ret_code != 0:
                     build_nr = ''
-                text += "\n\nNo input data available for '{set}'. See CSIT " \
-                        "build {link}/{build} for more information.\n".\
-                    format(set='-'.join(test_set.split('-')[-2:]),
-                           link=alert["urls"][idx],
-                           build=build_nr)
+                text += (
+                    f"\n\nNo input data available for "
+                    f"{'-'.join(test_set.split('-')[-2:])}. See CSIT build "
+                    f"{alert['urls'][idx]}/{build_nr} for more information.\n"
+                )
                 continue
-            text += ("\n\n{topo}-{arch}, "
-                     "{failed} tests failed, "
-                     "{passed} tests passed, "
-                     "CSIT build: {link}/{build}, "
-                     "VPP version: {version}\n\n".
-                     format(topo=test_set.split('-')[-2],
-                            arch=test_set.split('-')[-1],
-                            failed=failed,
-                            passed=passed,
-                            link=alert["urls"][idx],
-                            build=build,
-                            version=version))
-            regression_hdr = ("\n\n{topo}-{arch}, "
-                              "CSIT build: {link}/{build}, "
-                              "VPP version: {version}\n\n"
-                              .format(topo=test_set.split('-')[-2],
-                                      arch=test_set.split('-')[-1],
-                                      link=alert["urls"][idx],
-                                      build=build,
-                                      version=version
-                                      ))
-            max_len_name = 0
-            max_len_nics = 0
-            max_len_framesizes = 0
-            max_len_cores = 0
+            text += (
+                f"\n\n{test_set.split('-')[-2]}-{test_set.split('-')[-1]}, "
+                f"{failed} tests failed, "
+                f"{passed} tests passed, CSIT build: "
+                f"{alert['urls'][idx]}/{build}, VPP version: {version}\n\n"
+            )
+            regression_hdr = (
+                f"\n\n{test_set.split('-')[-2]}-{test_set.split('-')[-1]}, "
+                f"CSIT build: {alert['urls'][idx]}/{build}, "
+                f"VPP version: {version}\n\n"
+            )
+
+            max_len_name, max_len_nics, max_len_framesizes, max_len_cores = \
+                (0, 0, 0, 0)
             for name, params in failed_tests.items():
                 failed_tests[name]["nics"] = ",".join(sorted(params["nics"]))
                 failed_tests[name]["framesizes"] = \
@@ -362,23 +355,27 @@ class Alerting(object):
                     max_len_cores = len(failed_tests[name]["cores"])
 
             for name, params in failed_tests.items():
-                text += "{name}  {nics}  {frames}  {cores}\n".format(
-                    name=name + " " * (max_len_name - len(name)),
-                    nics=params["nics"] +
-                        " " * (max_len_nics - len(params["nics"])),
-                    frames=params["framesizes"] + " " *
-                        (max_len_framesizes - len(params["framesizes"])),
-                    cores=params["cores"] +
-                        " " * (max_len_cores - len(params["cores"])))
+                text += (
+                    f"{name + ' ' * (max_len_name - len(name))}  "
+                    f"{params['nics']}"
+                    f"{' ' * (max_len_nics - len(params['nics']))}  "
+                    f"{params['framesizes']}"
+                    f"{' ' * (max_len_framesizes-len(params['framesizes']))}  "
+                    f"{params['cores']}"
+                    f"{' ' * (max_len_cores - len(params['cores']))}\n"
+                )
 
             # Add list of regressions:
-            file_name = "{0}/cpta-regressions-{1}.txt".\
-                format(config["output-dir"], alert["urls"][idx].split('/')[-1])
+            file_name = (
+                f"{config['output-dir']}/"
+                f"cpta-regressions-{alert['urls'][idx].split('/')[-1]}.txt"
+            )
+
             try:
                 with open(file_name, 'r') as txt_file:
                     file_content = txt_file.read()
-                    reg_file_name = "{dir}/trending-regressions.txt". \
-                        format(dir=config["output-dir"])
+                    reg_file_name = \
+                        f"{config['output-dir']}/trending-regressions.txt"
                     with open(reg_file_name, 'a+') as reg_file:
                         reg_file.write(regression_hdr)
                         if file_content:
@@ -389,13 +386,15 @@ class Alerting(object):
                 logging.warning(repr(err))
 
             # Add list of progressions:
-            file_name = "{0}/cpta-progressions-{1}.txt".\
-                format(config["output-dir"], alert["urls"][idx].split('/')[-1])
+            file_name = (
+                f"{config['output-dir']}/"
+                f"cpta-progressions-{alert['urls'][idx].split('/')[-1]}.txt"
+            )
             try:
                 with open(file_name, 'r') as txt_file:
                     file_content = txt_file.read()
-                    pro_file_name = "{dir}/trending-progressions.txt". \
-                        format(dir=config["output-dir"])
+                    pro_file_name = \
+                        f"{config['output-dir']}/trending-progressions.txt"
                     with open(pro_file_name, 'a+') as pro_file:
                         pro_file.write(regression_hdr)
                         if file_content:
@@ -405,15 +404,12 @@ class Alerting(object):
             except IOError as err:
                 logging.warning(repr(err))
 
-        text += "\nFor detailed information visit: {url}\n".\
-            format(url=alert["url-details"])
-        file_name = "{0}/{1}".format(config["output-dir"],
-                                     config["output-file"])
-        logging.info("Writing the file '{0}.txt' ...".format(file_name))
+        text += f"\nFor detailed information visit: {alert['url-details']}\n"
+        file_name = f"{config['output-dir']}/{config['output-file']}"
+        logging.info(f"Writing the file {file_name}.txt ...")
 
         try:
-            with open("{0}.txt".format(file_name), 'w') as txt_file:
+            with open(f"{file_name}.txt", 'w') as txt_file:
                 txt_file.write(text)
         except IOError:
-            logging.error("Not possible to write the file '{0}.txt'.".
-                          format(file_name))
+            logging.error(f"Not possible to write the file {file_name}.txt.")
