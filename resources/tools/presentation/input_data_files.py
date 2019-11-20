@@ -16,26 +16,27 @@ Download all data.
 """
 
 import re
-import requests
 import logging
 
 from os import rename, mkdir
 from os.path import join
+from http.client import responses
 from zipfile import ZipFile, is_zipfile, BadZipfile
-from httplib import responses
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
-from requests import codes, RequestException, Timeout, TooManyRedirects, \
-    HTTPError, ConnectionError
 
-from .errors import PresentationError
+import requests
+
+from requests.adapters import HTTPAdapter, Retry
+from requests.exceptions import RequestException
+from requests import codes
+
+from pal_errors import PresentationError
 
 
 # Chunk size used for file download
 CHUNK_SIZE = 512
 
 # Separator used in file names
-SEPARATOR = "__"
+SEPARATOR = u"__"
 
 REGEX_RELEASE = re.compile(r'(\D*)(\d{4}|master)(\D*)')
 
@@ -81,74 +82,65 @@ def _download_file(url, file_name, log, arch=False):
         )
         adapter = HTTPAdapter(max_retries=retry)
         session = requests.Session()
-        session.mount('http://', adapter)
-        session.mount('https://', adapter)
+        session.mount(u"http://", adapter)
+        session.mount(u"https://", adapter)
         return session
 
     success = False
     session = None
     try:
-        log.append(("INFO", "    Connecting to '{0}' ...".format(url)))
+        log.append((u"INFO", f"    Connecting to {url} ..."))
         session = requests_retry_session()
         response = session.get(url, stream=True)
         code = response.status_code
-        log.append(("INFO", "    {0}: {1}".format(code, responses[code])))
+        log.append((u"INFO", f"    {code}: {responses[code]}"))
 
-        if code != codes["OK"]:
+        if code != codes[u"OK"]:
             if session:
                 session.close()
-            url = url.replace("_info", "")
-            log.append(("INFO", "    Connecting to '{0}' ...".format(url)))
+            url = url.replace(u"_info", u"")
+            log.append((u"INFO", f"    Connecting to {url} ..."))
             session = requests_retry_session()
             response = session.get(url, stream=True)
             code = response.status_code
-            log.append(("INFO", "    {0}: {1}".format(code, responses[code])))
-            if code != codes["OK"]:
+            log.append((u"INFO", f"    {code}: {responses[code]}"))
+            if code != codes[u"OK"]:
                 return False, file_name
-            file_name = file_name.replace("_info", "")
+            file_name = file_name.replace(u"_info", u"")
 
-        dst_file_name = file_name.replace(".gz", "")
-        log.append(("INFO", "    Downloading the file '{0}' to '{1}' ...".
-                    format(url, dst_file_name)))
+        dst_file_name = file_name.replace(u".gz", u"")
+        log.append(
+            (u"INFO", f"    Downloading the file {url} to {dst_file_name} ...")
+        )
         with open(dst_file_name, "wb") as file_handle:
             for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
                 if chunk:
                     file_handle.write(chunk)
 
-        if arch and ".gz" in file_name:
+        if arch and u".gz" in file_name:
             if session:
                 session.close()
-            log.append(("INFO", "    Downloading the file '{0}' to '{1}' ...".
-                        format(url, file_name)))
+            log.append(
+                (u"INFO", f"    Downloading the file {url} to {file_name} ...")
+            )
             session = requests_retry_session()
             response = session.get(url, stream=True)
-            if response.status_code == codes["OK"]:
-                with open(file_name, "wb") as file_handle:
+            if response.status_code == codes[u"OK"]:
+                with open(file_name, u"wb") as file_handle:
                     file_handle.write(response.raw.read())
             else:
-                log.append(("ERROR", "Not possible to download the file '{0}' "
-                                     "to '{1}' ...".format(url, file_name)))
+                log.append(
+                    (u"ERROR", f"Not possible to download the file {url} to "
+                               f"{file_name} ...")
+                )
 
         success = True
-    except ConnectionError as err:
-        log.append(("ERROR", "Not possible to connect to '{0}'.".format(url)))
-        log.append(("DEBUG", repr(err)))
-    except HTTPError as err:
-        log.append(("ERROR", "Invalid HTTP response from '{0}'.".format(url)))
-        log.append(("DEBUG", repr(err)))
-    except TooManyRedirects as err:
-        log.append(("ERROR", "Request exceeded the configured number "
-                             "of maximum re-directions."))
-        log.append(("DEBUG", repr(err)))
-    except Timeout as err:
-        log.append(("ERROR", "Request timed out."))
-        log.append(("DEBUG", repr(err)))
     except RequestException as err:
-        log.append(("ERROR", "Unexpected HTTP request exception."))
-        log.append(("DEBUG", repr(err)))
+        log.append(
+            (u"ERROR", f"HTTP Request exception:\n{repr(err)}")
+        )
     except (IOError, ValueError, KeyError) as err:
-        log.append(("ERROR", "Download failed."))
-        log.append(("DEBUG", repr(err)))
+        log.append((u"ERROR", f"Download failed.\n{repr(err)}"))
     finally:
         if session:
             session.close()
@@ -170,39 +162,41 @@ def _unzip_file(spec, build, pid, log):
     :rtype: bool
     """
 
-    file_name = build["file-name"]
-    if ".zip" in file_name:
-        data_file = spec.input["zip-extract"]
+    file_name = build[u"file-name"]
+    if u".zip" in file_name:
+        data_file = spec.input[u"zip-extract"]
     else:
-        data_file = spec.input["extract"]
+        data_file = spec.input[u"extract"]
 
-    directory = spec.environment["paths"]["DIR[WORKING,DATA]"]
+    directory = spec.environment[u"paths"][u"DIR[WORKING,DATA]"]
     tmp_dir = join(directory, str(pid))
     try:
         mkdir(tmp_dir)
     except OSError:
         pass
-    new_name = "{0}{1}{2}".format(file_name.rsplit('.')[-2],
-                                  SEPARATOR,
-                                  data_file.split("/")[-1])
+    new_name = \
+        f"{file_name.rsplit(u'.')[-2]}{SEPARATOR}{data_file.split(u'/')[-1]}"
 
-    log.append(("INFO", "    Unzipping: '{0}' from '{1}'.".
-                format(data_file, file_name)))
+    log.append((u"INFO", f"    Unzipping: {data_file} from {file_name}."))
     try:
-        with ZipFile(file_name, 'r') as zip_file:
+        with ZipFile(file_name, u'r') as zip_file:
             zip_file.extract(data_file, tmp_dir)
-        log.append(("INFO", "    Renaming the file '{0}' to '{1}'".
-                    format(join(tmp_dir, data_file), new_name)))
+        log.append(
+            (u"INFO", f"    Renaming the file {join(tmp_dir, data_file)} to "
+                      f"{new_name}")
+        )
         rename(join(tmp_dir, data_file), new_name)
-        build["file-name"] = new_name
+        build[u"file-name"] = new_name
         return True
     except (BadZipfile, RuntimeError) as err:
-        log.append(("ERROR", "Failed to unzip the file '{0}': {1}.".
-                    format(file_name, str(err))))
+        log.append(
+            (u"ERROR", f"Failed to unzip the file {file_name}: {repr(err)}.")
+        )
         return False
     except OSError as err:
-        log.append(("ERROR", "Failed to rename the file '{0}': {1}.".
-                    format(data_file, str(err))))
+        log.append(
+            (u"ERROR", f"Failed to rename the file {data_file}: {repr(err)}.")
+        )
         return False
 
 
@@ -225,38 +219,42 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
 
     # Try to download .gz from logs.fd.io
 
-    file_name = spec.input["file-name"]
-    url = "{0}/{1}".format(
-        spec.environment["urls"]["URL[NEXUS,LOG]"],
-        spec.input["download-path"].format(
-            job=job, build=build["build"], filename=file_name))
-    new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
-                    "{job}{sep}{build}{sep}{name}".format(
-                        job=job, sep=SEPARATOR, build=build["build"],
-                        name=file_name))
+    file_name = spec.input[u"file-name"]
+    url = u"{0}/{1}".format(
+        spec.environment[u'urls'][u'URL[NEXUS,LOG]'],
+        spec.input[u'download-path'].format(
+            job=job, build=build[u'build'], filename=file_name
+        )
+    )
+    new_name = join(
+        spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
+        f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+    )
 
-    logging.info("Trying to download {0}".format(url))
+    logging.info(f"Trying to download {url}")
 
-    arch = True if spec.configuration.get("archive-inputs", True) else False
+    arch = True if spec.configuration.get(u"archive-inputs", True) else False
     success, downloaded_name = _download_file(url, new_name, log, arch=arch)
 
     if not success:
 
         # Try to download .gz from docs.fd.io
 
-        file_name = spec.input["file-name"]
-        url = "{0}/{1}".format(
-            spec.environment["urls"]["URL[NEXUS,DOC]"],
-            spec.input["download-path"].format(
-                job=job, build=build["build"], filename=file_name))
-        new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
-                        "{job}{sep}{build}{sep}{name}".format(
-                            job=job, sep=SEPARATOR, build=build["build"],
-                            name=file_name))
+        file_name = spec.input[u"file-name"]
+        url = u"{0}/{1}".format(
+            spec.environment[u"urls"][u"URL[NEXUS,DOC]"],
+            spec.input[u"download-path"].format(
+                job=job, build=build[u"build"], filename=file_name
+            )
+        )
+        new_name = join(
+            spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
+            f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+        )
 
-        logging.info("Downloading {0}".format(url))
+        logging.info(f"Downloading {url}")
 
-        if spec.configuration.get("archive-inputs", True):
+        if spec.configuration.get(u"archive-inputs", True):
             arch = True
         success, downloaded_name = _download_file(url, new_name, log, arch=arch)
 
@@ -264,28 +262,28 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
 
         # Try to download .zip from docs.fd.io
 
-        file_name = spec.input["zip-file-name"]
-        new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
-                        "{job}{sep}{build}{sep}{name}".format(
-                            job=job, sep=SEPARATOR, build=build["build"],
-                            name=file_name))
+        file_name = spec.input[u"zip-file-name"]
+        new_name = join(
+            spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
+            f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+        )
         release = re.search(REGEX_RELEASE, job).group(2)
-        for rls in (release, "master"):
-            nexus_file_name = "{job}{sep}{build}{sep}{name}". \
-                format(job=job, sep=SEPARATOR, build=build["build"],
-                       name=file_name)
+        for rls in (release, u"master"):
+            nexus_file_name = \
+                f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
             try:
-                rls = "rls{0}".format(int(rls))
+                rls = f"rls{int(rls)}"
             except ValueError:
                 # It is 'master'
                 pass
-            url = "{url}/{release}/{dir}/{file}". \
-                format(url=spec.environment["urls"]["URL[NEXUS,DOC]"],
-                       release=rls,
-                       dir=spec.environment["urls"]["DIR[NEXUS,DOC]"],
-                       file=nexus_file_name)
+            url = (
+                f"{spec.environment[u'urls'][u'URL[NEXUS,DOC]']}/"
+                f"{rls}/"
+                f"{spec.environment[u'urls'][u'DIR[NEXUS,DOC]']}/"
+                f"{nexus_file_name}"
+            )
 
-            logging.info("Downloading {0}".format(url))
+            logging.info(f"Downloading {url}")
 
             success, downloaded_name = _download_file(url, new_name, log)
             if success:
@@ -295,41 +293,40 @@ def download_and_unzip_data_file(spec, job, build, pid, log):
 
         # Try to download .zip from jenkins.fd.io
 
-        file_name = spec.input["zip-file-name"]
-        download_path = spec.input["zip-download-path"]
-        if job.startswith("csit-"):
-            url = spec.environment["urls"]["URL[JENKINS,CSIT]"]
-        elif job.startswith("hc2vpp-"):
-            url = spec.environment["urls"]["URL[JENKINS,HC]"]
+        file_name = spec.input[u"zip-file-name"]
+        download_path = spec.input[u"zip-download-path"]
+        if job.startswith(u"csit-"):
+            url = spec.environment[u"urls"][u"URL[JENKINS,CSIT]"]
+        elif job.startswith(u"hc2vpp-"):
+            url = spec.environment[u"urls"][u"URL[JENKINS,HC]"]
         else:
-            raise PresentationError(
-                "No url defined for the job '{}'.".format(job))
+            raise PresentationError(f"No url defined for the job {job}.")
 
         full_name = download_path.format(
-            job=job, build=build["build"], filename=file_name)
-        url = "{0}/{1}".format(url, full_name)
-        new_name = join(spec.environment["paths"]["DIR[WORKING,DATA]"],
-                        "{job}{sep}{build}{sep}{name}".
-                        format(job=job, sep=SEPARATOR, build=build["build"],
-                               name=file_name))
+            job=job, build=build[u"build"], filename=file_name
+        )
+        url = u"{0}/{1}".format(url, full_name)
+        new_name = join(
+            spec.environment[u"paths"][u"DIR[WORKING,DATA]"],
+            f"{job}{SEPARATOR}{build[u'build']}{SEPARATOR}{file_name}"
+        )
 
-        logging.info("Downloading {0}".format(url))
+        logging.info(f"Downloading {url}")
 
         success, downloaded_name = _download_file(url, new_name, log)
 
-    if success and downloaded_name.endswith(".zip"):
+    if success and downloaded_name.endswith(u".zip"):
         if not is_zipfile(downloaded_name):
-            log.append(("ERROR",
-                        "Zip file '{0}' is corrupted.".format(new_name)))
+            log.append((u"ERROR", f"Zip file {new_name} is corrupted."))
             success = False
 
     if success:
-        build["file-name"] = downloaded_name
+        build[u"file-name"] = downloaded_name
 
-        if file_name.endswith(".gz"):
-            build["file-name"] = downloaded_name[:-3]
+        if file_name.endswith(u".gz"):
+            build[u"file-name"] = downloaded_name[:-3]
 
-        if downloaded_name.endswith(".zip"):
+        if downloaded_name.endswith(u".zip"):
             success = _unzip_file(spec, build, pid, log)
 
     return success
