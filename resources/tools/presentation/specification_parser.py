@@ -18,12 +18,12 @@ Parsing of the specification YAML file.
 
 
 import logging
-from yaml import load, YAMLError
+from yaml import load, FullLoader, YAMLError
 from pprint import pformat
 
-from .errors import PresentationError
-from .utils import (
-    get_last_successful_build_number, get_last_completed_build_number)
+from errors import PresentationError
+from utils import get_last_successful_build_nr, \
+    get_last_completed_build_number
 
 
 class Specification(object):
@@ -204,12 +204,15 @@ class Specification(object):
                     build["status"] = state
                     break
             else:
-                raise PresentationError("Build '{}' is not defined for job '{}'"
-                                        " in specification file.".
-                                        format(build_nr, job))
+                raise PresentationError(
+                    f"Build {build_nr} is not defined for job {job} in "
+                    f"specification file."
+                )
         except KeyError:
-            raise PresentationError("Job '{}' and build '{}' is not defined in "
-                                    "specification file.".format(job, build_nr))
+            raise PresentationError(
+                f"Job {job} and build {build_nr} is not defined in "
+                f"specification file."
+            )
 
     def set_input_file_name(self, job, build_nr, file_name):
         """Set the state of input
@@ -226,12 +229,15 @@ class Specification(object):
                     build["file-name"] = file_name
                     break
             else:
-                raise PresentationError("Build '{}' is not defined for job '{}'"
-                                        " in specification file.".
-                                        format(build_nr, job))
+                raise PresentationError(
+                    f"Build {build_nr} is not defined for job {job} in "
+                    f"specification file."
+                )
         except KeyError:
-            raise PresentationError("Job '{}' and build '{}' is not defined in "
-                                    "specification file.".format(job, build_nr))
+            raise PresentationError(
+                f"Job {job} and build {build_nr} is not defined in "
+                f"specification file."
+            )
 
     def _get_build_number(self, job, build_type):
         """Get the number of the job defined by its name:
@@ -252,15 +258,14 @@ class Specification(object):
         # defined as a range <start, end>
         if build_type == "lastSuccessfulBuild":
             # defined as a range <start, lastSuccessfulBuild>
-            ret_code, build_nr, _ = get_last_successful_build_number(
+            ret_code, build_nr, _ = get_last_successful_build_nr(
                 self.environment["urls"]["URL[JENKINS,CSIT]"], job)
         elif build_type == "lastCompletedBuild":
             # defined as a range <start, lastCompletedBuild>
             ret_code, build_nr, _ = get_last_completed_build_number(
                 self.environment["urls"]["URL[JENKINS,CSIT]"], job)
         else:
-            raise PresentationError("Not supported build type: '{0}'".
-                                    format(build_type))
+            raise PresentationError(f"Not supported build type: {build_type}")
         if ret_code != 0:
             raise PresentationError("Not possible to get the number of the "
                                     "build number.")
@@ -268,8 +273,10 @@ class Specification(object):
             build_nr = int(build_nr)
             return build_nr
         except ValueError as err:
-            raise PresentationError("Not possible to get the number of the "
-                                    "build number.\nReason: {0}".format(err))
+            raise PresentationError(
+                f"Not possible to get the number of the build number. Reason:\n"
+                f"{repr(err)}"
+            )
 
     def _get_type_index(self, item_type):
         """Get index of item type (environment, input, output, ...) in
@@ -337,8 +344,9 @@ class Specification(object):
                         data[key] = value.replace(tag, src_data[tag[1:-1]])
                         counter += 1
                     except KeyError:
-                        raise PresentationError("Not possible to replace the "
-                                                "tag '{}'".format(tag))
+                        raise PresentationError(
+                            f"Not possible to replace the tag {tag}"
+                        )
             if counter:
                 self._replace_tags(data, src_data)
         else:
@@ -453,8 +461,9 @@ class Specification(object):
                             new_set[key] = val
                     except KeyError:
                         raise PresentationError(
-                            "Data set {0} is not defined in "
-                            "the configuration section.".format(item))
+                            f"Data set {item} is not defined in "
+                            f"the configuration section."
+                        )
                 self.configuration["data-sets"][set_name] = new_set
 
         # Mapping table:
@@ -462,20 +471,21 @@ class Specification(object):
         mapping_file_name = self._specification["configuration"].\
             get("mapping-file", None)
         if mapping_file_name:
-            logging.debug("Mapping file: '{0}'".format(mapping_file_name))
+            logging.debug(f"Mapping file: {mapping_file_name}")
             try:
                 with open(mapping_file_name, 'r') as mfile:
-                    mapping = load(mfile)
-                logging.debug("Loaded mapping table:\n{0}".format(mapping))
+                    mapping = load(mfile, Loader=FullLoader)
+                logging.debug(f"Loaded mapping table:\n{mapping}")
             except (YAMLError, IOError) as err:
                 raise PresentationError(
-                    msg="An error occurred while parsing the mapping file "
-                        "'{0}'.".format(mapping_file_name),
-                    details=repr(err))
+                    msg=f"An error occurred while parsing the mapping file "
+                        f"{mapping_file_name}",
+                    details=repr(err)
+                )
         # Make sure everything is lowercase
         if mapping:
             self._specification["configuration"]["mapping"] = \
-                {key.lower(): val.lower() for key, val in mapping.iteritems()}
+                {key.lower(): val.lower() for key, val in mapping.items()}
         else:
             self._specification["configuration"]["mapping"] = dict()
 
@@ -484,16 +494,17 @@ class Specification(object):
         ignore_list_name = self._specification["configuration"].\
             get("ignore-list", None)
         if ignore_list_name:
-            logging.debug("Ignore list file: '{0}'".format(ignore_list_name))
+            logging.debug(f"Ignore list file: {ignore_list_name}")
             try:
                 with open(ignore_list_name, 'r') as ifile:
-                    ignore = load(ifile)
-                logging.debug("Loaded ignore list:\n{0}".format(ignore))
+                    ignore = load(ifile, Loader=FullLoader)
+                logging.debug(f"Loaded ignore list:\n{ignore}")
             except (YAMLError, IOError) as err:
                 raise PresentationError(
-                    msg="An error occurred while parsing the ignore list file "
-                        "'{0}'.".format(ignore_list_name),
-                    details=repr(err))
+                    msg=f"An error occurred while parsing the ignore list file "
+                        f"{ignore_list_name}.",
+                    details=repr(err)
+                )
         # Make sure everything is lowercase
         if ignore:
             self._specification["configuration"]["ignore"] = \
@@ -537,9 +548,10 @@ class Specification(object):
                             append({"build": build, "status": None})
 
                 else:
-                    logging.warning("No build is defined for the job '{}'. "
-                                    "Trying to continue without it.".
-                                    format(job))
+                    logging.warning(
+                        f"No build is defined for the job {job}. Trying to "
+                        f"continue without it."
+                    )
         except KeyError:
             raise PresentationError("No data to process.")
 
@@ -616,12 +628,13 @@ class Specification(object):
                 try:
                     element["data"] = self.configuration["data-sets"][data_set]
                 except KeyError:
-                    raise PresentationError("Data set {0} is not defined in "
-                                            "the configuration section.".
-                                            format(data_set))
+                    raise PresentationError(
+                        f"Data set {data_set} is not defined in the "
+                        f"configuration section."
+                    )
 
             if element["type"] == "table":
-                logging.info("  {:3d} Processing a table ...".format(count))
+                logging.info(f"  {count:3d} Processing a table ...")
                 try:
                     element["template"] = self._replace_tags(
                         element["template"],
@@ -656,14 +669,15 @@ class Specification(object):
                                     self.configuration["data-sets"][data_set]
 
                 except KeyError:
-                    raise PresentationError("Wrong data set used in {0}.".
-                                            format(element.get("title", "")))
+                    raise PresentationError(
+                        f"Wrong data set used in {element.get('title', '')}."
+                    )
 
                 self._specification["tables"].append(element)
                 count += 1
 
             elif element["type"] == "plot":
-                logging.info("  {:3d} Processing a plot ...".format(count))
+                logging.info(f"  {count:3d} Processing a plot ...")
 
                 # Add layout to the plots:
                 layout = element["layout"].get("layout", None)
@@ -674,14 +688,15 @@ class Specification(object):
                                          [layout].items()):
                             element["layout"][key] = val
                     except KeyError:
-                        raise PresentationError("Layout {0} is not defined in "
-                                                "the configuration section.".
-                                                format(layout))
+                        raise PresentationError(
+                            f"Layout {layout} is not defined in the "
+                            f"configuration section."
+                        )
                 self._specification["plots"].append(element)
                 count += 1
 
             elif element["type"] == "file":
-                logging.info("  {:3d} Processing a file ...".format(count))
+                logging.info(f"  {count:3d} Processing a file ...")
                 try:
                     element["dir-tables"] = self._replace_tags(
                         element["dir-tables"],
@@ -692,8 +707,10 @@ class Specification(object):
                 count += 1
 
             elif element["type"] == "cpta":
-                logging.info("  {:3d} Processing Continuous Performance "
-                             "Trending and Analysis ...".format(count))
+                logging.info(
+                    f"  {count:3d} Processing Continuous Performance Trending "
+                    f"and Analysis ..."
+                )
 
                 for plot in element["plots"]:
                     # Add layout to the plots:
@@ -704,8 +721,9 @@ class Specification(object):
                                 self.configuration["plot-layouts"][layout]
                         except KeyError:
                             raise PresentationError(
-                                "Layout {0} is not defined in the "
-                                "configuration section.".format(layout))
+                                f"Layout {layout} is not defined in the "
+                                f"configuration section."
+                            )
                     # Add data sets:
                     if isinstance(plot.get("data", None), str):
                         data_set = plot["data"]
@@ -714,9 +732,9 @@ class Specification(object):
                                 self.configuration["data-sets"][data_set]
                         except KeyError:
                             raise PresentationError(
-                                "Data set {0} is not defined in "
-                                "the configuration section.".
-                                format(data_set))
+                                f"Data set {data_set} is not defined in "
+                                f"the configuration section."
+                            )
                 self._specification["cpta"] = element
                 count += 1
 
@@ -729,7 +747,7 @@ class Specification(object):
         specification file.
         """
         try:
-            self._cfg_yaml = load(self._cfg_file)
+            self._cfg_yaml = load(self._cfg_file, Loader=FullLoader)
         except YAMLError as err:
             raise PresentationError(msg="An error occurred while parsing the "
                                         "specification file.",
@@ -742,5 +760,4 @@ class Specification(object):
         self._parse_static()
         self._parse_elements()
 
-        logging.debug("Specification: \n{}".
-                      format(pformat(self._specification)))
+        logging.debug(f"Specification: \n{pformat(self._specification)}")
