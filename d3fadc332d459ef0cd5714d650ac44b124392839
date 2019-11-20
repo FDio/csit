@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "23891965_2150b781",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "No. We are splitting imports to three main parts:\n1. standard library imports, \n2. related third party imports, \n3. local application/library specific imports.\n\nBut in every import part we are splitting also \u0027import xx\u0027 and \u0027from xx import xx\u0027 parts.\n\nMaybe Tibor could comment here too.",
+      "parentUuid": "5d356f40_d61bb86e",
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "361b8e19_73a0c38a",
         "filename": "resources/libraries/python/Classify.py",
         "patchSetId": 3
@@ -39,6 +57,30 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46c98d35_1d738d41",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "361b8e19_73a0c38a",
+      "range": {
+        "startLine": 700,
+        "startChar": 62,
+        "endLine": 700,
+        "endChar": 68
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "494ca909_6e4e0e63",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8bd1242_3046916a",
+      "range": {
+        "startLine": 705,
+        "startChar": 44,
+        "endLine": 705,
+        "endChar": 62
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ca9ca020_37045412",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 3
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "8ad272d5_44d7b633",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca9ca020_37045412",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 2
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a877484b_4edf13f6",
         "filename": "resources/libraries/python/ContainerUtils.py",
         "patchSetId": 3
@@ -99,6 +189,30 @@
       "writtenOn": "2019-11-20T09:24:17Z",
       "side": 1,
       "message": "three \u0027\u0027\u0027 typo\nalso i am not sure if \u0027\u0027 will work in bash. we need to test.",
+      "range": {
+        "startLine": 440,
+        "startChar": 19,
+        "endLine": 440,
+        "endChar": 30
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1658a960_5f3bb26d",
+        "filename": "resources/libraries/python/ContainerUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 440,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "To be honest, I\u0027m not sure too. But we will see during the test.",
+      "parentUuid": "a877484b_4edf13f6",
       "range": {
         "startLine": 440,
         "startChar": 19,
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "862c3ebe_e8f86aa5",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1d5a250_a1cc4304",
+      "range": {
+        "startLine": 278,
+        "startChar": 49,
+        "endLine": 278,
+        "endChar": 56
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1c5a4a4d_be1199c9",
         "filename": "resources/libraries/python/DUTSetup.py",
         "patchSetId": 3
@@ -154,6 +292,30 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bf5fd397_f19c6c1f",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c5a4a4d_be1199c9",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 2
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -180,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "80698e53_27b64e2f",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c3799fb_49851821",
+      "range": {
+        "startLine": 265,
+        "startChar": 28,
+        "endLine": 265,
+        "endChar": 38
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62af12a1_cdd9b1d3",
         "filename": "resources/libraries/python/DropRateSearch.py",
         "patchSetId": 3
@@ -200,6 +386,30 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "70c2e058_a1b7c567",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62af12a1_cdd9b1d3",
+      "range": {
+        "startLine": 274,
+        "startChar": 18,
+        "endLine": 274,
+        "endChar": 28
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -226,6 +436,30 @@
     },
     {
       "key": {
+        "uuid": "17139887_d318b431",
+        "filename": "resources/libraries/python/GBP.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce896db0_3fa0ab54",
+      "range": {
+        "startLine": 318,
+        "startChar": 21,
+        "endLine": 318,
+        "endChar": 45
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf7db856_e5f32f48",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 3
@@ -246,6 +480,30 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5080104c_8cb4a9ca",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf7db856_e5f32f48",
+      "range": {
+        "startLine": 46,
+        "startChar": 15,
+        "endLine": 46,
+        "endChar": 21
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -272,6 +530,30 @@
     },
     {
       "key": {
+        "uuid": "a55d2d88_a1040531",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6f22313_211e1f0e",
+      "range": {
+        "startLine": 47,
+        "startChar": 16,
+        "endLine": 47,
+        "endChar": 23
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5bced271_21380205",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 3
@@ -295,6 +577,30 @@
     },
     {
       "key": {
+        "uuid": "356d6594_3b850e6e",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bced271_21380205",
+      "range": {
+        "startLine": 48,
+        "startChar": 16,
+        "endLine": 48,
+        "endChar": 23
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7563a1a1_c72579ec",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 3
@@ -312,6 +618,24 @@
     },
     {
       "key": {
+        "uuid": "495651a0_1795cf36",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "IntEnum is contained in standard enum library in Python 3. Moving to the first import part (standard libs import).",
+      "parentUuid": "7563a1a1_c72579ec",
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "035e36f0_dc655b03",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 3
@@ -326,6 +650,24 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9862761a_a9c23718",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "035e36f0_dc655b03",
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -352,6 +694,30 @@
     },
     {
       "key": {
+        "uuid": "fd7a3008_a1bccaf4",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e63dd5a5_25ea7538",
+      "range": {
+        "startLine": 693,
+        "startChar": 8,
+        "endLine": 693,
+        "endChar": 29
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1808b880_6b9e7ddb",
         "filename": "resources/libraries/python/KubernetesUtils.py",
         "patchSetId": 3
@@ -375,6 +741,30 @@
     },
     {
       "key": {
+        "uuid": "af149f9c_6564e9e1",
+        "filename": "resources/libraries/python/KubernetesUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1808b880_6b9e7ddb",
+      "range": {
+        "startLine": 26,
+        "startChar": 12,
+        "endLine": 26,
+        "endChar": 27
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c08c4596_daafb28d",
         "filename": "resources/libraries/python/L2Util.py",
         "patchSetId": 3
@@ -389,6 +779,24 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "72bd41e8_fb82fe4d",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c08c4596_daafb28d",
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -415,6 +823,30 @@
     },
     {
       "key": {
+        "uuid": "74687343_0cc06be3",
+        "filename": "resources/libraries/python/LimitUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ded5948_0241b1d3",
+      "range": {
+        "startLine": 18,
+        "startChar": 12,
+        "endLine": 18,
+        "endChar": 21
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bd0ed626_09e42432",
         "filename": "resources/libraries/python/LoadBalancerUtil.py",
         "patchSetId": 3
@@ -429,6 +861,24 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2419fee8_38febe25",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd0ed626_09e42432",
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -455,6 +905,30 @@
     },
     {
       "key": {
+        "uuid": "368620f4_1faac19c",
+        "filename": "resources/libraries/python/LoadBalancerUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70e72641_e3687d4b",
+      "range": {
+        "startLine": 176,
+        "startChar": 21,
+        "endLine": 176,
+        "endChar": 23
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a4b9748_c40dbf8c",
         "filename": "resources/libraries/python/MLRsearch/NdrPdrResult.py",
         "patchSetId": 3
@@ -475,6 +949,30 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "cafda8f8_23fb24e6",
+        "filename": "resources/libraries/python/MLRsearch/NdrPdrResult.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a4b9748_c40dbf8c",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 61
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -501,6 +999,30 @@
     },
     {
       "key": {
+        "uuid": "8171c9fc_2ed0f94e",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a2fdce1_c87c6673",
+      "range": {
+        "startLine": 121,
+        "startChar": 37,
+        "endLine": 121,
+        "endChar": 42
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "202823cd_4d2c5926",
         "filename": "resources/libraries/python/PLRsearch/stat_trackers.py",
         "patchSetId": 3
@@ -512,6 +1034,30 @@
       "writtenOn": "2019-11-20T09:24:17Z",
       "side": 1,
       "message": "Ok, so can we agree on unified way of multiline strings?\n\n1) \nsomething \u003d (\n    u\"\"\n    u\"\"\n    )\n\n2) \nsomething \u003d u\"\"\\\n    u\"\"",
+      "range": {
+        "startLine": 67,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 76
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be614a2f_a60af5cc",
+        "filename": "resources/libraries/python/PLRsearch/stat_trackers.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Oh, yes. I vote for option 2.",
+      "parentUuid": "202823cd_4d2c5926",
       "range": {
         "startLine": 67,
         "startChar": 15,
@@ -547,6 +1093,30 @@
     },
     {
       "key": {
+        "uuid": "2a1e545e_46c6d909",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fc8c701_571d1dba",
+      "range": {
+        "startLine": 79,
+        "startChar": 12,
+        "endLine": 80,
+        "endChar": 39
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fe8007c4_44f86e11",
         "filename": "resources/libraries/python/PapiExecutor.py",
         "patchSetId": 3
@@ -567,6 +1137,30 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e88cbfbd_62d4ad22",
+        "filename": "resources/libraries/python/PapiExecutor.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe8007c4_44f86e11",
+      "range": {
+        "startLine": 498,
+        "startChar": 42,
+        "endLine": 498,
+        "endChar": 48
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -593,6 +1187,30 @@
     },
     {
       "key": {
+        "uuid": "9424554c_b12b5bf7",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcab0cdf_80f15d84",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 43
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8ff6668b_c6ca913f",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 3
@@ -613,6 +1231,30 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e2423a8_254954d5",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ff6668b_c6ca913f",
+      "range": {
+        "startLine": 110,
+        "startChar": 17,
+        "endLine": 110,
+        "endChar": 19
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -639,6 +1281,30 @@
     },
     {
       "key": {
+        "uuid": "78d686df_5674d870",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c045637_0271d741",
+      "range": {
+        "startLine": 122,
+        "startChar": 23,
+        "endLine": 122,
+        "endChar": 32
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d0ac918c_cf940458",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 3
@@ -659,6 +1325,30 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be6914e5_e86de762",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0ac918c_cf940458",
+      "range": {
+        "startLine": 127,
+        "startChar": 23,
+        "endLine": 127,
+        "endChar": 32
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -685,6 +1375,30 @@
     },
     {
       "key": {
+        "uuid": "c64b1b3d_9baf0d38",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88686de3_a2e74c7b",
+      "range": {
+        "startLine": 133,
+        "startChar": 23,
+        "endLine": 133,
+        "endChar": 32
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3bcdd403_97b4d813",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 3
@@ -708,6 +1422,30 @@
     },
     {
       "key": {
+        "uuid": "224c2b5f_34cfb206",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bcdd403_97b4d813",
+      "range": {
+        "startLine": 135,
+        "startChar": 23,
+        "endLine": 135,
+        "endChar": 33
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a534d6c_081d97e0",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 3
@@ -719,6 +1457,24 @@
       "writtenOn": "2019-11-20T09:24:17Z",
       "side": 1,
       "message": "not sure if this is also u\"\"",
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ad8fcf6_75e4f783",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "I\u0027m not sure too so decided not to use u\"\" there.\nBut will give a try when all files migrated to Python 3 and tests are working.",
+      "parentUuid": "9a534d6c_081d97e0",
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
@@ -748,6 +1504,30 @@
     },
     {
       "key": {
+        "uuid": "fede7ed6_05654d10",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0769b7ad_e142d003",
+      "range": {
+        "startLine": 325,
+        "startChar": 12,
+        "endLine": 325,
+        "endChar": 18
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93752604_4390a901",
         "filename": "resources/libraries/python/autogen/Regenerator.py",
         "patchSetId": 3
@@ -768,6 +1548,30 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4a2be90_28abe78a",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93752604_4390a901",
+      "range": {
+        "startLine": 368,
+        "startChar": 12,
+        "endLine": 368,
+        "endChar": 18
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -794,6 +1598,30 @@
     },
     {
       "key": {
+        "uuid": "aa1287b1_3d6aed46",
+        "filename": "resources/libraries/python/autogen/Regenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eea0e32a_56f9f87b",
+      "range": {
+        "startLine": 369,
+        "startChar": 8,
+        "endLine": 369,
+        "endChar": 14
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45804dd3_a5a34fa3",
         "filename": "resources/libraries/python/autogen/Testcase.py",
         "patchSetId": 3
@@ -817,6 +1645,30 @@
     },
     {
       "key": {
+        "uuid": "a4ffedbb_52f93f31",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45804dd3_a5a34fa3",
+      "range": {
+        "startLine": 55,
+        "startChar": 30,
+        "endLine": 55,
+        "endChar": 31
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4d6d8328_af981f00",
         "filename": "resources/libraries/python/autogen/Testcase.py",
         "patchSetId": 3
@@ -837,6 +1689,30 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "adc4fc0c_ab973bde",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4d6d8328_af981f00",
+      "range": {
+        "startLine": 56,
+        "startChar": 30,
+        "endLine": 56,
+        "endChar": 31
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -886,6 +1762,30 @@
     },
     {
       "key": {
+        "uuid": "b5c7ef95_5e80e71e",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63cf42a0_797e2be7",
+      "range": {
+        "startLine": 85,
+        "startChar": 26,
+        "endLine": 85,
+        "endChar": 27
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf34daaa_6a3d397e",
         "filename": "resources/libraries/python/autogen/Testcase.py",
         "patchSetId": 3
@@ -906,6 +1806,30 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6f5d3e18_debe2cef",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf34daaa_6a3d397e",
+      "range": {
+        "startLine": 86,
+        "startChar": 45,
+        "endLine": 86,
+        "endChar": 54
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     },
     {
       "key": {
@@ -932,6 +1856,30 @@
     },
     {
       "key": {
+        "uuid": "67a4e9a0_bdc69124",
+        "filename": "resources/libraries/python/autogen/Testcase.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a74cfbd4_fc0389bf",
+      "range": {
+        "startLine": 105,
+        "startChar": 1,
+        "endLine": 108,
+        "endChar": 26
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bf50c4a6_ec91436b",
         "filename": "resources/libraries/python/parsers/JsonParser.py",
         "patchSetId": 3
@@ -955,6 +1903,30 @@
     },
     {
       "key": {
+        "uuid": "727eb417_fefd69aa",
+        "filename": "resources/libraries/python/parsers/JsonParser.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf50c4a6_ec91436b",
+      "range": {
+        "startLine": 38,
+        "startChar": 1,
+        "endLine": 53,
+        "endChar": 76
+      },
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "145a99db_1d7f420c",
         "filename": "resources/libraries/python/telemetry/SPAN.py",
         "patchSetId": 3
@@ -969,6 +1941,24 @@
       "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "290935b7_c6c28a6f",
+        "filename": "resources/libraries/python/telemetry/SPAN.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2019-11-20T15:12:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "145a99db_1d7f420c",
+      "revId": "d3fadc332d459ef0cd5714d650ac44b124392839",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
