@@ -21,7 +21,7 @@ import os
 import shutil
 import logging
 
-from .errors import PresentationError
+from errors import PresentationError
 
 
 class Environment(object):
@@ -66,10 +66,11 @@ class Environment(object):
                 if os.path.isdir(dir_to_remove):
                     try:
                         shutil.rmtree(dir_to_remove)
-                        logging.info("  Removed: {}".format(dir_to_remove))
+                        logging.info(f"  Removed: {dir_to_remove}")
                     except OSError:
-                        raise PresentationError("Cannot remove the directory "
-                                                "'{}'".format(dir_to_remove))
+                        raise PresentationError(
+                            f"Cannot remove the directory '{dir_to_remove}'"
+                        )
             logging.info("Done.")
 
         logging.info("Making directories ...")
@@ -78,14 +79,16 @@ class Environment(object):
             dir_to_make = self._env["paths"][directory]
             try:
                 if os.path.isdir(dir_to_make):
-                    logging.warning("The directory '{}' exists, skipping.".
-                                    format(dir_to_make))
+                    logging.warning(
+                        f"The directory '{dir_to_make}' exists, skipping."
+                    )
                 else:
                     os.makedirs(dir_to_make)
-                    logging.info("  Created: {}".format(dir_to_make))
+                    logging.info(f"  Created: {dir_to_make}")
             except OSError:
-                raise PresentationError("Cannot make the directory '{}'".
-                                        format(dir_to_make))
+                raise PresentationError(
+                    f"Cannot make the directory '{dir_to_make}'"
+                )
 
         logging.info("Done.")
 
@@ -112,17 +115,16 @@ def clean_environment(env):
 
     for directory in env["remove-dirs"]:
         dir_to_remove = env["paths"][directory]
-        logging.info("  Removing the working directory {} ...".
-                     format(dir_to_remove))
+        logging.info(f"  Removing the working directory {dir_to_remove} ...")
         if os.path.isdir(dir_to_remove):
             try:
                 shutil.rmtree(dir_to_remove)
             except OSError as err:
-                logging.warning("Cannot remove the directory '{}'".
-                                format(dir_to_remove))
+                logging.warning(
+                    f"Cannot remove the directory '{dir_to_remove}'"
+                )
                 logging.debug(str(err))
         else:
-            logging.warning("The directory '{}' does not exist.".
-                            format(dir_to_remove))
+            logging.warning(f"The directory '{dir_to_remove}' does not exist.")
 
     logging.info("Done.")
