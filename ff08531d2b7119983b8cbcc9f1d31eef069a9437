@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "15de4d2f_27dd1d16",
+        "filename": "resources/traffic_profiles/trex/trex-sl-2n-ethip4-ip4dst-rnd10000.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-20T07:25:13Z",
+      "side": 1,
+      "message": "I would do this for avoid \u003e80ch:\n\n\n        vm1 \u003d STLScVmRaw(\n            [STLVmFlowVarRepeatableRandom(name\u003d\"dst\",\n                                          min_value\u003dself.p1_dst_start_ip,\n                                          max_value\u003dself.p1_dst_end_ip,\n                                          size\u003d4,\n                                          limit\u003d10000,\n                                          seed\u003d0x0000),\n\t     STLVmWrFlowVar(fv_name\u003d\"dst\",\n                            pkt_offset\u003d\"IP.dst\"),\n\t                    STLVmFixIpv4(offset\u003d\"IP\")])",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 53
+      },
+      "revId": "ff08531d2b7119983b8cbcc9f1d31eef069a9437",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abcf460e_dc1b7598",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale200k-rnd-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-20T07:25:13Z",
+      "side": 1,
+      "message": "you accidentally removed TAGs",
+      "revId": "ff08531d2b7119983b8cbcc9f1d31eef069a9437",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5094b00b_7d3905ef",
+        "filename": "tests/vpp/perf/ip4/2n1l-10ge2p1x710-ethip4-ip4scale200k-rnd-ndrpdr.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2019-11-20T07:25:13Z",
+      "side": 1,
+      "message": "I am missing single note that it is randomized.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 44
+      },
+      "revId": "ff08531d2b7119983b8cbcc9f1d31eef069a9437",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": true
+    }
+  ]
+}
