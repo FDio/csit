@@ -16,16 +16,17 @@
 
 import logging
 import csv
-import prettytable
-import plotly.offline as ploff
-import plotly.graph_objs as plgo
-import plotly.exceptions as plerr
 
 from collections import OrderedDict
 from datetime import datetime
 from copy import deepcopy
 
-from .utils import archive_input_data, execute_command, classify_anomalies
+import prettytable
+import plotly.offline as ploff
+import plotly.graph_objs as plgo
+import plotly.exceptions as plerr
+
+from utils import archive_input_data, execute_command, classify_anomalies
 
 
 # Command to build the html format of the report
@@ -91,19 +92,20 @@ THEME_OVERRIDES = """/* override table width restrictions */
 }
 """
 
-COLORS = ["SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
-          "Chocolate", "Brown", "Magenta", "Cyan", "Orange", "Black",
-          "Violet", "Blue", "Yellow", "BurlyWood", "CadetBlue", "Crimson",
-          "DarkBlue", "DarkCyan", "DarkGreen", "Green", "GoldenRod",
-          "LightGreen", "LightSeaGreen", "LightSkyBlue", "Maroon",
-          "MediumSeaGreen", "SeaGreen", "LightSlateGrey",
-          "SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
-          "Chocolate", "Brown", "Magenta", "Cyan", "Orange", "Black",
-          "Violet", "Blue", "Yellow", "BurlyWood", "CadetBlue", "Crimson",
-          "DarkBlue", "DarkCyan", "DarkGreen", "Green", "GoldenRod",
-          "LightGreen", "LightSeaGreen", "LightSkyBlue", "Maroon",
-          "MediumSeaGreen", "SeaGreen", "LightSlateGrey"
-          ]
+COLORS = [
+    "SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
+    "Chocolate", "Brown", "Magenta", "Cyan", "Orange", "Black",
+    "Violet", "Blue", "Yellow", "BurlyWood", "CadetBlue", "Crimson",
+    "DarkBlue", "DarkCyan", "DarkGreen", "Green", "GoldenRod",
+    "LightGreen", "LightSeaGreen", "LightSkyBlue", "Maroon",
+    "MediumSeaGreen", "SeaGreen", "LightSlateGrey",
+    "SkyBlue", "Olive", "Purple", "Coral", "Indigo", "Pink",
+    "Chocolate", "Brown", "Magenta", "Cyan", "Orange", "Black",
+    "Violet", "Blue", "Yellow", "BurlyWood", "CadetBlue", "Crimson",
+    "DarkBlue", "DarkCyan", "DarkGreen", "Green", "GoldenRod",
+    "LightGreen", "LightSeaGreen", "LightSkyBlue", "Maroon",
+    "MediumSeaGreen", "SeaGreen", "LightSlateGrey"
+]
 
 
 def generate_cpta(spec, data):
@@ -123,15 +125,15 @@ def generate_cpta(spec, data):
 
     cmd = HTML_BUILDER.format(
         date=datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'),
-        working_dir=spec.environment["paths"]["DIR[WORKING,SRC]"],
-        build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
+        working_dir=spec.environment['paths']['DIR[WORKING,SRC]'],
+        build_dir=spec.environment['paths']['DIR[BUILD,HTML]'])
     execute_command(cmd)
 
-    with open(spec.environment["paths"]["DIR[CSS_PATCH_FILE]"], "w") as \
+    with open(spec.environment['paths']['DIR[CSS_PATCH_FILE]'], 'w') as \
             css_file:
         css_file.write(THEME_OVERRIDES)
 
-    with open(spec.environment["paths"]["DIR[CSS_PATCH_FILE2]"], "w") as \
+    with open(spec.environment['paths']['DIR[CSS_PATCH_FILE2]'], 'w') as \
             css_file:
         css_file.write(THEME_OVERRIDES)
 
@@ -215,7 +217,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         "progression": 1.0
     }
     if anomaly_classification:
-        for idx, (key, value) in enumerate(data_pd.iteritems()):
+        for idx, (key, value) in enumerate(data_pd.items()):
             if anomaly_classification[idx] in \
                     ("outlier", "regression", "progression"):
                 anomalies[key] = value
@@ -229,13 +231,13 @@ def _generate_trending_traces(in_data, job_name, build_info,
     trace_samples = plgo.Scatter(
         x=xaxis,
         y=[y for y in data_y],  # Was: y.avg
-        mode='markers',
+        mode="markers",
         line={
             "width": 1
         },
         showlegend=True,
         legendgroup=name,
-        name="{name}".format(name=name),
+        name=f"{name}",
         marker={
             "size": 5,
             "color": color,
@@ -250,7 +252,7 @@ def _generate_trending_traces(in_data, job_name, build_info,
         trace_trend = plgo.Scatter(
             x=xaxis,
             y=avgs,
-            mode='lines',
+            mode="lines",
             line={
                 "shape": "linear",
                 "width": 1,
@@ -258,20 +260,20 @@ def _generate_trending_traces(in_data, job_name, build_info,
             },
             showlegend=False,
             legendgroup=name,
-            name='{name}'.format(name=name),
-            text=["trend: {0:,}".format(int(avg)) for avg in avgs],
+            name=f"{name}",
+            text=[f"trend: {int(avg):,}" for avg in avgs],
             hoverinfo="text+name"
         )
         traces.append(trace_trend)
 
     trace_anomalies = plgo.Scatter(
-        x=anomalies.keys(),
+        x=list(anomalies.keys()),
         y=anomalies_avgs,
-        mode='markers',
+        mode="markers",
         hoverinfo="none",
         showlegend=False,
         legendgroup=name,
-        name="{name}-anomalies".format(name=name),
+        name=f"{name}-anomalies",
         marker={
             "size": 15,
             "symbol": "circle-open",
@@ -308,8 +310,8 @@ def _generate_trending_traces(in_data, job_name, build_info,
 
     if anomaly_classification:
         return traces, anomaly_classification[-1]
-    else:
-        return traces, None
+
+    return traces, None
 
 
 def _generate_all_charts(spec, input_data):
@@ -327,25 +329,30 @@ def _generate_all_charts(spec, input_data):
 
         logs = list()
 
-        logs.append(("INFO", "  Generating the chart '{0}' ...".
-                     format(graph.get("title", ""))))
+        logs.append(
+            ("INFO", f"  Generating the chart {graph.get('title', '')} ...")
+        )
 
-        job_name = graph["data"].keys()[0]
+        job_name = list(graph["data"].keys())[0]
 
         csv_tbl = list()
         res = dict()
 
         # Transform the data
-        logs.append(("INFO", "    Creating the data set for the {0} '{1}'.".
-                     format(graph.get("type", ""), graph.get("title", ""))))
+        logs.append(
+            ("INFO",
+             f"    Creating the data set for the {graph.get('type', '')} "
+             f"{graph.get('title', '')}."
+            )
+        )
         data = input_data.filter_data(graph, continue_on_error=True)
         if data is None:
             logging.error("No data.")
-            return
+            return dict()
 
         chart_data = dict()
         chart_tags = dict()
-        for job, job_data in data.iteritems():
+        for job, job_data in data.items():
             if job != job_name:
                 continue
             for index, bld in job_data.items():
@@ -366,7 +373,7 @@ def _generate_all_charts(spec, input_data):
                 itm = tst_data.get(int(bld), '')
                 # CSIT-1180: Itm will be list, compute average.
                 tst_lst.append(str(itm))
-            csv_tbl.append("{0},".format(tst_name) + ",".join(tst_lst) + '\n')
+            csv_tbl.append(f"{tst_name}," + ",".join(tst_lst) + '\n')
 
         # Generate traces:
         traces = list()
@@ -380,13 +387,12 @@ def _generate_all_charts(spec, input_data):
                 for tag in group:
                     for tst_name, test_data in chart_data.items():
                         if not test_data:
-                            logs.append(("WARNING",
-                                         "No data for the test '{0}'".
-                                         format(tst_name)))
+                            logs.append(
+                                ("WARNING", f"No data for the test {tst_name}")
+                            )
                             continue
                         if tag in chart_tags[tst_name]:
-                            message = "index: {index}, test: {test}".format(
-                                index=index, test=tst_name)
+                            message = f"index: {index}, test: {tst_name}"
                             try:
                                 trace, rslt = _generate_trending_traces(
                                     test_data,
@@ -396,9 +402,10 @@ def _generate_all_charts(spec, input_data):
                                                   split('-')[2:-1]),
                                     color=COLORS[index])
                             except IndexError:
-                                message = "Out of colors: {}".format(message)
-                                logs.append(("ERROR", message))
-                                logging.error(message)
+                                logs.append(
+                                    ("ERROR", f"Out of colors: {message}")
+                                )
+                                logging.error(f"Out of colors: {message}")
                                 index += 1
                                 continue
                             traces.extend(trace)
@@ -410,11 +417,9 @@ def _generate_all_charts(spec, input_data):
         else:
             for tst_name, test_data in chart_data.items():
                 if not test_data:
-                    logs.append(("WARNING", "No data for the test '{0}'".
-                                 format(tst_name)))
+                    logs.append(("WARNING", f"No data for the test {tst_name}"))
                     continue
-                message = "index: {index}, test: {test}".format(
-                    index=index, test=tst_name)
+                message = f"index: {index}, test: {tst_name}"
                 try:
                     trace, rslt = _generate_trending_traces(
                         test_data,
@@ -423,9 +428,8 @@ def _generate_all_charts(spec, input_data):
                         name='-'.join(tst_name.split('.')[-1].split('-')[2:-1]),
                         color=COLORS[index])
                 except IndexError:
-                    message = "Out of colors: {}".format(message)
-                    logs.append(("ERROR", message))
-                    logging.error(message)
+                    logs.append(("ERROR", f"Out of colors: {message}"))
+                    logging.error(f"Out of colors: {message}")
                     index += 1
                     continue
                 traces.extend(trace)
@@ -439,14 +443,14 @@ def _generate_all_charts(spec, input_data):
             except KeyError as err:
                 logging.error("Finished with error: No layout defined")
                 logging.error(repr(err))
-                return
+                return dict()
             if groups:
                 show = list()
                 for i in range(len(visibility)):
                     visible = list()
-                    for r in range(len(visibility)):
-                        for _ in range(len(visibility[r])):
-                            visible.append(i == r)
+                    for vis_idx, _ in enumerate(visibility):
+                        for _ in range(len(visibility[vis_idx])):
+                            visible.append(i == vis_idx)
                     show.append(visible)
 
                 buttons = list()
@@ -459,7 +463,7 @@ def _generate_all_charts(spec, input_data):
                     try:
                         label = graph["group-names"][i]
                     except (IndexError, KeyError):
-                        label = "Group {num}".format(num=i + 1)
+                        label = f"Group {i + 1}"
                     buttons.append(dict(
                         label=label,
                         method="update",
@@ -479,12 +483,11 @@ def _generate_all_charts(spec, input_data):
                     )
                 ])
 
-            name_file = "{0}-{1}{2}".format(spec.cpta["output-file"],
-                                            graph["output-file-name"],
-                                            spec.cpta["output-file-type"])
+            name_file = (
+                f"{spec.cpta['output-file']}-{graph['output-file-name']}"
+                f"{spec.cpta['output-file-type']}")
 
-            logs.append(("INFO", "    Writing the file '{0}' ...".
-                         format(name_file)))
+            logs.append(("INFO", f"    Writing the file {name_file} ..."))
             plpl = plgo.Figure(data=traces, layout=layout)
             try:
                 ploff.plot(plpl, show_link=False, auto_open=False,
@@ -537,7 +540,7 @@ def _generate_all_charts(spec, input_data):
 
     # Create the header:
     csv_tables = dict()
-    for job_name in builds_dict.keys():
+    for job_name in builds_dict:
         if csv_tables.get(job_name, None) is None:
             csv_tables[job_name] = list()
         header = "Build Number:," + ",".join(builds_dict[job_name]) + '\n'
@@ -551,6 +554,8 @@ def _generate_all_charts(spec, input_data):
 
     for chart in spec.cpta["plots"]:
         result = _generate_chart(chart)
+        if not result:
+            continue
 
         csv_tables[result["job_name"]].extend(result["csv_table"])
 
@@ -561,11 +566,11 @@ def _generate_all_charts(spec, input_data):
     # Write the tables:
     for job_name, csv_table in csv_tables.items():
         file_name = spec.cpta["output-file"] + "-" + job_name + "-trending"
-        with open("{0}.csv".format(file_name), 'w') as file_handler:
+        with open(f"{file_name}.csv", 'w') as file_handler:
             file_handler.writelines(csv_table)
 
         txt_table = None
-        with open("{0}.csv".format(file_name), 'rb') as csv_file:
+        with open(f"{file_name}.csv", 'rt') as csv_file:
             csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
             line_nr = 0
             for row in csv_content:
@@ -580,37 +585,38 @@ def _generate_all_charts(spec, input_data):
                                 pass
                     try:
                         txt_table.add_row(row)
+                    # PrettyTable raises Exception
                     except Exception as err:
-                        logging.warning("Error occurred while generating TXT "
-                                        "table:\n{0}".format(err))
+                        logging.warning(
+                            f"Error occurred while generating TXT table:\n{err}"
+                        )
                 line_nr += 1
             txt_table.align["Build Number:"] = "l"
-        with open("{0}.txt".format(file_name), "w") as txt_file:
+        with open(f"{file_name}.txt", "w") as txt_file:
             txt_file.write(str(txt_table))
 
     # Evaluate result:
     if anomaly_classifications:
         result = "PASS"
-        for job_name, job_data in anomaly_classifications.iteritems():
-            file_name = "{0}-regressions-{1}.txt".\
-                format(spec.cpta["output-file"], job_name)
+        for job_name, job_data in anomaly_classifications.items():
+            file_name = f"{spec.cpta['output-file']}-regressions-{job_name}.txt"
             with open(file_name, 'w') as txt_file:
-                for test_name, classification in job_data.iteritems():
+                for test_name, classification in job_data.items():
                     if classification == "regression":
                         txt_file.write(test_name + '\n')
                     if classification == "regression" or \
                             classification == "outlier":
                         result = "FAIL"
-            file_name = "{0}-progressions-{1}.txt".\
-                format(spec.cpta["output-file"], job_name)
+            file_name = \
+                f"{spec.cpta['output-file']}-progressions-{job_name}.txt"
             with open(file_name, 'w') as txt_file:
-                for test_name, classification in job_data.iteritems():
+                for test_name, classification in job_data.items():
                     if classification == "progression":
                         txt_file.write(test_name + '\n')
     else:
         result = "FAIL"
 
-    logging.info("Partial results: {0}".format(anomaly_classifications))
-    logging.info("Result: {0}".format(result))
+    logging.info(f"Partial results: {anomaly_classifications}")
+    logging.info(f"Result: {result}")
 
     return result
