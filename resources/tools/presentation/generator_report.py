@@ -19,11 +19,11 @@ import datetime
 
 from shutil import make_archive
 
-from utils import get_files, execute_command, archive_input_data
+from pal_utils import get_files, execute_command, archive_input_data
 
 
 # .css file for the html format of the report
-THEME_OVERRIDES = """/* override table width restrictions */
+THEME_OVERRIDES = u"""/* override table width restrictions */
 @media screen and (min-width: 767px) {
     .wy-table-responsive table td, .wy-table-responsive table th {
         white-space: normal !important;
@@ -87,22 +87,22 @@ THEME_OVERRIDES = """/* override table width restrictions */
 """
 
 # Command to build the html format of the report
-HTML_BUILDER = 'sphinx-build -v -c . -a ' \
-               '-b html -E ' \
-               '-t html ' \
-               '-D release={release} ' \
-               '-D version="Test Report {date}" ' \
-               '{working_dir} ' \
-               '{build_dir}/'
+HTML_BUILDER = u'sphinx-build -v -c . -a ' \
+               u'-b html -E ' \
+               u'-t html ' \
+               u'-D release={release} ' \
+               u'-D version="Test Report {date}" ' \
+               u'{working_dir} ' \
+               u'{build_dir}/'
 
 # Command to build the pdf format of the report
-PDF_BUILDER = 'sphinx-build -v -c . -a ' \
-              '-b latex -E ' \
-              '-t latex ' \
-              '-D release={release} ' \
-              '-D version="Test Report {date}" ' \
-              '{working_dir} ' \
-              '{build_dir}'
+PDF_BUILDER = u'sphinx-build -v -c . -a ' \
+              u'-b latex -E ' \
+              u'-t latex ' \
+              u'-D release={release} ' \
+              u'-D version="Test Report {date}" ' \
+              u'{working_dir} ' \
+              u'{build_dir}'
 
 
 def generate_report(release, spec, report_week):
@@ -116,126 +116,115 @@ def generate_report(release, spec, report_week):
     :type report_week: str
     """
 
-    logging.info("Generating the report ...")
+    logging.info(u"Generating the report ...")
 
     report = {
-        "html": generate_html_report,
-        "pdf": generate_pdf_report
+        u"html": generate_html_report,
+        u"pdf": generate_pdf_report
     }
 
-    for report_format, versions in spec.output["format"].items():
-        report[report_format](release, spec, versions, report_week)
+    for report_format in spec.output[u"format"]:
+        report[report_format](release, spec, report_week)
 
     archive_input_data(spec)
 
-    logging.info("Done.")
+    logging.info(u"Done.")
 
 
-def generate_html_report(release, spec, versions, report_version):
+def generate_html_report(release, spec, report_version):
     """Generate html format of the report.
 
     :param release: Release string of the product.
     :param spec: Specification read from the specification file.
-    :param versions: List of versions to generate.
     :param report_version: Version of the report.
     :type release: str
     :type spec: Specification
-    :type versions: list
     :type report_version: str
     """
 
-    logging.info("  Generating the html report, give me a few minutes, please "
-                 "...")
+    _ = report_version
 
-    working_dir = spec.environment["paths"]["DIR[WORKING,SRC]"]
+    logging.info(u"  Generating the html report, give me a few minutes, please "
+                 u"...")
 
-    cmd = 'cd {working_dir} && mv -f index.html.template index.rst'.\
-        format(working_dir=working_dir)
-    execute_command(cmd)
+    working_dir = spec.environment[u"paths"][u"DIR[WORKING,SRC]"]
+
+    execute_command(f"cd {working_dir} && mv -f index.html.template index.rst")
 
     cmd = HTML_BUILDER.format(
         release=release,
-        date=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'),
+        date=datetime.datetime.utcnow().strftime(u'%Y-%m-%d %H:%M UTC'),
         working_dir=working_dir,
-        build_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
+        build_dir=spec.environment[u"paths"][u"DIR[BUILD,HTML]"])
     execute_command(cmd)
 
-    with open(spec.environment["paths"]["DIR[CSS_PATCH_FILE]"], "w") as \
+    with open(spec.environment[u"paths"][u"DIR[CSS_PATCH_FILE]"], u"w") as \
             css_file:
         css_file.write(THEME_OVERRIDES)
 
-    with open(spec.environment["paths"]["DIR[CSS_PATCH_FILE2]"], "w") as \
+    with open(spec.environment[u"paths"][u"DIR[CSS_PATCH_FILE2]"], u"w") as \
             css_file:
         css_file.write(THEME_OVERRIDES)
 
-    logging.info("  Done.")
+    logging.info(u"  Done.")
 
 
-def generate_pdf_report(release, spec, versions, report_week):
+def generate_pdf_report(release, spec, report_week):
     """Generate html format of the report.
 
     :param release: Release string of the product.
     :param spec: Specification read from the specification file.
-    :param versions: List of versions to generate. Not implemented yet.
     :param report_week: Calendar week when the report is published.
     :type release: str
     :type spec: Specification
-    :type versions: list
     :type report_week: str
     """
 
-    logging.info("  Generating the pdf report, give me a few minutes, please "
-                 "...")
+    logging.info(u"  Generating the pdf report, give me a few minutes, please "
+                 u"...")
 
-    working_dir = spec.environment["paths"]["DIR[WORKING,SRC]"]
+    working_dir = spec.environment[u"paths"][u"DIR[WORKING,SRC]"]
 
-    cmd = 'cd {working_dir} && mv -f index.pdf.template index.rst'.\
-        format(working_dir=working_dir)
-    execute_command(cmd)
+    execute_command(f"cd {working_dir} && mv -f index.pdf.template index.rst")
 
-    _convert_all_svg_to_pdf(spec.environment["paths"]["DIR[WORKING,SRC]"])
+    _convert_all_svg_to_pdf(spec.environment[u"paths"][u"DIR[WORKING,SRC]"])
 
     # Convert PyPLOT graphs in HTML format to PDF.
-    convert_plots = "xvfb-run -a wkhtmltopdf {html} {pdf}"
-    plots = get_files(spec.environment["paths"]["DIR[STATIC,VPP]"], "html")
-    plots.extend(get_files(spec.environment["paths"]["DIR[STATIC,DPDK]"],
-                           "html"))
+    convert_plots = u"xvfb-run -a wkhtmltopdf {html} {pdf}"
+    plots = get_files(spec.environment[u"paths"][u"DIR[STATIC,VPP]"], u"html")
+    plots.extend(
+        get_files(spec.environment[u"paths"][u"DIR[STATIC,DPDK]"], u"html")
+    )
     for plot in plots:
-        file_name = "{0}.pdf".format(plot.rsplit(".", 1)[0])
-        logging.info("Converting '{0}' to '{1}'".format(plot, file_name))
+        file_name = f"{plot.rsplit(u'.', 1)[0]}.pdf"
+        logging.info(f"Converting {plot} to {file_name}")
         execute_command(convert_plots.format(html=plot, pdf=file_name))
 
     # Generate the LaTeX documentation
-    build_dir = spec.environment["paths"]["DIR[BUILD,LATEX]"]
+    build_dir = spec.environment[u"paths"][u"DIR[BUILD,LATEX]"]
     cmd = PDF_BUILDER.format(
         release=release,
-        date=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'),
+        date=datetime.datetime.utcnow().strftime(u'%Y-%m-%d %H:%M UTC'),
         working_dir=working_dir,
         build_dir=build_dir)
     execute_command(cmd)
 
     # Build pdf documentation
-    archive_dir = spec.environment["paths"]["DIR[STATIC,ARCH]"]
+    archive_dir = spec.environment[u"paths"][u"DIR[STATIC,ARCH]"]
     cmds = [
-        'cd {build_dir} && '
-        'pdflatex -shell-escape -interaction nonstopmode csit.tex || true'.
-        format(build_dir=build_dir),
-        'cd {build_dir} && '
-        'pdflatex -interaction nonstopmode csit.tex || true'.
-        format(build_dir=build_dir),
-        'cd {build_dir} && '
-        'cp csit.pdf ../{archive_dir}/csit_{release}.{week}.pdf &&'
-        'cp csit.pdf ../{archive_dir}/csit_{release}.pdf'.
-        format(build_dir=build_dir,
-               archive_dir=archive_dir,
-               release=release,
-               week=report_week)
+        f'cd {build_dir} && '
+        f'pdflatex -shell-escape -interaction nonstopmode csit.tex || true',
+        f'cd {build_dir} && '
+        f'pdflatex -interaction nonstopmode csit.tex || true',
+        f'cd {build_dir} && '
+        f'cp csit.pdf ../{archive_dir}/csit_{release}.{report_week}.pdf &&'
+        f'cp csit.pdf ../{archive_dir}/csit_{release}.pdf'
     ]
 
     for cmd in cmds:
         execute_command(cmd)
 
-    logging.info("  Done.")
+    logging.info(u"  Done.")
 
 
 def archive_report(spec):
@@ -245,13 +234,15 @@ def archive_report(spec):
     :type spec: Specification
     """
 
-    logging.info("  Archiving the report ...")
+    logging.info(u"  Archiving the report ...")
 
-    make_archive("csit.report",
-                 "gztar",
-                 base_dir=spec.environment["paths"]["DIR[BUILD,HTML]"])
+    make_archive(
+        u"csit.report",
+        u"gztar",
+        base_dir=spec.environment[u"paths"][u"DIR[BUILD,HTML]"]
+    )
 
-    logging.info("  Done.")
+    logging.info(u"  Done.")
 
 
 def _convert_all_svg_to_pdf(path):
@@ -261,10 +252,10 @@ def _convert_all_svg_to_pdf(path):
     :type path: str
     """
 
-    cmd = "inkscape -D -z --file={svg} --export-pdf={pdf}"
-
-    svg_files = get_files(path, "svg", full_path=True)
+    svg_files = get_files(path, u"svg", full_path=True)
     for svg_file in svg_files:
-        pdf_file = "{0}.pdf".format(svg_file.rsplit('.', 1)[0])
-        logging.info("Converting '{0}' to '{1}'".format(svg_file, pdf_file))
-        execute_command(cmd.format(svg=svg_file, pdf=pdf_file))
+        pdf_file = f"{svg_file.rsplit('.', 1)[0]}.pdf"
+        logging.info(f"Converting {svg_file} to {pdf_file}")
+        execute_command(
+            f"inkscape -D -z --file={svg_file} --export-pdf={pdf_file}"
+        )
