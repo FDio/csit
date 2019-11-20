@@ -11,7 +11,6 @@ Contents
     resources.libraries.robot
     tests.dpdk.perf
     tests.nsh_sfc.func
-    tests.tldk.func
     tests.vpp.func
     tests.vpp.device
     tests.vpp.perf
