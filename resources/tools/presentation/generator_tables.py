@@ -23,14 +23,13 @@ import plotly.graph_objects as go
 import plotly.offline as ploff
 import pandas as pd
 
-from string import replace
 from collections import OrderedDict
 from numpy import nan, isnan
 from xml.etree import ElementTree as ET
 from datetime import datetime as dt
 from datetime import timedelta
 
-from .utils import mean, stdev, relative_change, classify_anomalies, \
+from utils import mean, stdev, relative_change, classify_anomalies, \
     convert_csv_to_pretty_txt, relative_change_stdev
 
 
@@ -51,8 +50,10 @@ def generate_tables(spec, data):
         try:
             eval(table["algorithm"])(table, data)
         except NameError as err:
-            logging.error("Probably algorithm '{alg}' is not defined: {err}".
-                          format(alg=table["algorithm"], err=repr(err)))
+            logging.error(
+                f"Probably algorithm {table['algorithm']} is not defined: "
+                f"{repr(err)}"
+            )
     logging.info("Done.")
 
 
@@ -66,12 +67,13 @@ def table_details(table, input_data):
     :type input_data: InputData
     """
 
-    logging.info("  Generating the table {0} ...".
-                 format(table.get("title", "")))
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(table.get("type", ""), table.get("title", "")))
+    logging.info(
+        f"    Creating the data set for the {table.get('type', '')} "
+        f"{table.get('title', '')}."
+    )
     data = input_data.filter_data(table)
 
     # Prepare the header of the tables
@@ -81,7 +83,7 @@ def table_details(table, input_data):
 
     # Generate the data for the table according to the model in the table
     # specification
-    job = table["data"].keys()[0]
+    job = list(table["data"].keys())[0]
     build = str(table["data"][job][0])
     try:
         suites = input_data.suites(job, build)
@@ -89,7 +91,7 @@ def table_details(table, input_data):
         logging.error("    No data available. The table will not be generated.")
         return
 
-    for suite_longname, suite in suites.iteritems():
+    for suite in suites.values():
         # Generate data
         suite_name = suite["name"]
         table_lst = list()
@@ -98,24 +100,22 @@ def table_details(table, input_data):
                 row_lst = list()
                 for column in table["columns"]:
                     try:
-                        col_data = str(data[job][build][test][column["data"].
-                                       split(" ")[1]]).replace('"', '""')
+                        col_data = str(data[job][build][test][column[
+                            "data"].split(" ")[1]]).replace('"', '""')
                         if column["data"].split(" ")[1] in ("conf-history",
                                                             "show-run"):
-                            col_data = replace(col_data, " |br| ", "",
-                                               maxreplace=1)
-                            col_data = " |prein| {0} |preout| ".\
-                                format(col_data[:-5])
-                        row_lst.append('"{0}"'.format(col_data))
+                            col_data = col_data.replace(" |br| ", "", )
+                            col_data = f" |prein| {col_data[:-5]} |preout| "
+                        row_lst.append(f'"{col_data}"')
                     except KeyError:
                         row_lst.append("No data")
                 table_lst.append(row_lst)
 
         # Write the data to file
         if table_lst:
-            file_name = "{0}_{1}{2}".format(table["output-file"], suite_name,
-                                            table["output-file-ext"])
-            logging.info("      Writing file: '{}'".format(file_name))
+            file_name = \
+                f"{table['output-file']}_{suite_name}{table['output-file-ext']}"
+            logging.info(f"      Writing file: {file_name}")
             with open(file_name, "w") as file_handler:
                 file_handler.write(",".join(header) + "\n")
                 for item in table_lst:
@@ -134,18 +134,20 @@ def table_merged_details(table, input_data):
     :type input_data: InputData
     """
 
-    logging.info("  Generating the table {0} ...".
-                 format(table.get("title", "")))
-
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(table.get("type", ""), table.get("title", "")))
+    logging.info(
+        f"    Creating the data set for the {table.get('type', '')} "
+        f"{table.get('title', '')}."
+    )
     data = input_data.filter_data(table, continue_on_error=True)
     data = input_data.merge_data(data)
     data.sort_index(inplace=True)
 
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(table.get("type", ""), table.get("title", "")))
+    logging.info(
+        f"    Creating the data set for the {table.get('type', '')} "
+        f"{table.get('title', '')}."
+    )
     suites = input_data.filter_data(
         table, continue_on_error=True, data_set="suites")
     suites = input_data.merge_data(suites)
@@ -155,7 +157,7 @@ def table_merged_details(table, input_data):
     for column in table["columns"]:
         header.append('"{0}"'.format(str(column["title"]).replace('"', '""')))
 
-    for _, suite in suites.iteritems():
+    for suite in suites.values:
         # Generate data
         suite_name = suite["name"]
         table_lst = list()
@@ -164,26 +166,24 @@ def table_merged_details(table, input_data):
                 row_lst = list()
                 for column in table["columns"]:
                     try:
-                        col_data = str(data[test][column["data"].
-                                       split(" ")[1]]).replace('"', '""')
-                        col_data = replace(col_data, "No Data",
-                                           "Not Captured     ")
+                        col_data = str(data[test][column[
+                            "data"].split(" ")[1]]).replace('"', '""')
+                        col_data = col_data.replace("No Data",
+                                                    "Not Captured     ")
                         if column["data"].split(" ")[1] in ("conf-history",
                                                             "show-run"):
-                            col_data = replace(col_data, " |br| ", "",
-                                               maxreplace=1)
-                            col_data = " |prein| {0} |preout| ".\
-                                format(col_data[:-5])
-                        row_lst.append('"{0}"'.format(col_data))
+                            col_data = col_data.replace(" |br| ", "", 1)
+                            col_data = f" |prein| {col_data[:-5]} |preout| "
+                        row_lst.append(f'"{col_data}"')
                     except KeyError:
                         row_lst.append('"Not captured"')
                 table_lst.append(row_lst)
 
         # Write the data to file
         if table_lst:
-            file_name = "{0}_{1}{2}".format(table["output-file"], suite_name,
-                                            table["output-file-ext"])
-            logging.info("      Writing file: '{}'".format(file_name))
+            file_name = \
+                f"{table['output-file']}_{suite_name}{table['output-file-ext']}"
+            logging.info(f"      Writing file: {file_name}")
             with open(file_name, "w") as file_handler:
                 file_handler.write(",".join(header) + "\n")
                 for item in table_lst:
@@ -193,6 +193,11 @@ def table_merged_details(table, input_data):
 
 
 def _tpc_modify_test_name(test_name):
+    """
+
+    :param test_name:
+    :return:
+    """
     test_name_mod = test_name.replace("-ndrpdrdisc", ""). \
         replace("-ndrpdr", "").replace("-pdrdisc", ""). \
         replace("-ndrdisc", "").replace("-pdr", ""). \
@@ -205,15 +210,27 @@ def _tpc_modify_test_name(test_name):
 
 
 def _tpc_modify_displayed_test_name(test_name):
+    """
+
+    :param test_name:
+    :return:
+    """
     return test_name.replace("1t1c", "1c").replace("2t1c", "1c"). \
         replace("2t2c", "2c").replace("4t2c", "2c"). \
         replace("4t4c", "4c").replace("8t4c", "4c")
 
 
 def _tpc_insert_data(target, src, include_tests):
+    """
+
+    :param target:
+    :param src:
+    :param include_tests:
+    :return:
+    """
     try:
         if include_tests == "MRR":
-            target.append(src["result"]["receive-rate"])  # .avg)
+            target.append(src["result"]["receive-rate"])
         elif include_tests == "PDR":
             target.append(src["throughput"]["PDR"]["LOWER"])
         elif include_tests == "NDR":
@@ -223,6 +240,12 @@ def _tpc_insert_data(target, src, include_tests):
 
 
 def _tpc_sort_table(table):
+    """
+
+    :param table:
+    :return:
+    """
+
     # Sort the table:
     # 1. New in CSIT-XXXX
     # 2. See footnote
@@ -282,7 +305,7 @@ def _tpc_generate_html_table(header, data, output_file_name):
     fill_color = [["#d4e4f7" if idx % 2 else "#e9f1fb"
                    for idx in range(len(df))]]
     table_header = dict(
-        values=["<b>{item}</b>".format(item=item) for item in header],
+        values=[f"<b>{item}</b>" for item in header],
         fill_color="#7eade7",
         align=["left", "center"]
     )
@@ -304,8 +327,8 @@ def _tpc_generate_html_table(header, data, output_file_name):
         )
 
     buttons = list()
-    menu_items = ["<b>{0}</b> (ascending)".format(itm) for itm in header]
-    menu_items_rev = ["<b>{0}</b> (descending)".format(itm) for itm in header]
+    menu_items = [f"<b>{itm}</b> (ascending)" for itm in header]
+    menu_items_rev = [f"<b>{itm}</b> (descending)" for itm in header]
     menu_items.extend(menu_items_rev)
     for idx, hdr in enumerate(menu_items):
         visible = [False, ] * len(menu_items)
@@ -357,12 +380,13 @@ def table_performance_comparison(table, input_data):
     :type input_data: InputData
     """
 
-    logging.info("  Generating the table {0} ...".
-                 format(table.get("title", "")))
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(table.get("type", ""), table.get("title", "")))
+    logging.info(
+        f"    Creating the data set for the {table.get('type', '')} "
+        f"{table.get('title', '')}."
+    )
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
@@ -378,18 +402,23 @@ def table_performance_comparison(table, input_data):
         if history:
             for item in history:
                 header.extend(
-                    ["{0} {1} [Mpps]".format(item["title"], hdr_param),
-                     "{0} Stdev [Mpps]".format(item["title"])])
+                    [
+                        f"{item['title']} {hdr_param} [Mpps]",
+                        f"{item['title']} Stdev [Mpps]"
+                    ]
+                )
         header.extend(
-            ["{0} {1} [Mpps]".format(table["reference"]["title"], hdr_param),
-             "{0} Stdev [Mpps]".format(table["reference"]["title"]),
-             "{0} {1} [Mpps]".format(table["compare"]["title"], hdr_param),
-             "{0} Stdev [Mpps]".format(table["compare"]["title"]),
-             "Delta [%]"])
+            [
+                "f{table['reference']['title']} {hdr_param} [Mpps]",
+                "f{table['reference']['title']} Stdev [Mpps]",
+                "f{table['compare']['title']} {hdr_param} [Mpps]",
+                "f{table['compare']['title']} Stdev [Mpps]",
+                "Delta [%]"
+            ]
+        )
         header_str = ",".join(header) + "\n"
     except (AttributeError, KeyError) as err:
-        logging.error("The model is invalid, missing parameter: {0}".
-                      format(err))
+        logging.error(f"The model is invalid, missing parameter: {repr(err)}")
         return
 
     # Prepare data to the table:
@@ -398,15 +427,14 @@ def table_performance_comparison(table, input_data):
     for job, builds in table["reference"]["data"].items():
         topo = "2n-skx" if "2n-skx" in job else ""
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = _tpc_modify_test_name(tst_name)
                 if "across topologies" in table["title"].lower():
                     tst_name_mod = tst_name_mod.replace("2n1l-", "")
                 if tbl_dict.get(tst_name_mod, None) is None:
                     groups = re.search(REGEX_NIC, tst_data["parent"])
                     nic = groups.group(0) if groups else ""
-                    name = "{0}-{1}".format(nic, "-".join(tst_data["name"].
-                                                          split("-")[:-1]))
+                    name = f"{nic}-{'-'.join(tst_data['name'].split('-')[:-1])}"
                     if "across testbeds" in table["title"].lower() or \
                             "across topologies" in table["title"].lower():
                         name = _tpc_modify_displayed_test_name(name)
@@ -419,15 +447,14 @@ def table_performance_comparison(table, input_data):
 
     for job, builds in table["compare"]["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = _tpc_modify_test_name(tst_name)
                 if "across topologies" in table["title"].lower():
                     tst_name_mod = tst_name_mod.replace("2n1l-", "")
                 if tbl_dict.get(tst_name_mod, None) is None:
                     groups = re.search(REGEX_NIC, tst_data["parent"])
                     nic = groups.group(0) if groups else ""
-                    name = "{0}-{1}".format(nic, "-".join(tst_data["name"].
-                                                          split("-")[:-1]))
+                    name = f"{nic}-{'-'.join(tst_data['name'].split('-')[:-1])}"
                     if "across testbeds" in table["title"].lower() or \
                             "across topologies" in table["title"].lower():
                         name = _tpc_modify_displayed_test_name(name)
@@ -445,13 +472,12 @@ def table_performance_comparison(table, input_data):
             table, data=replacement, continue_on_error=True)
         for job, builds in replacement.items():
             for build in builds:
-                for tst_name, tst_data in rpl_data[job][str(build)].iteritems():
+                for tst_name, tst_data in rpl_data[job][str(build)].items():
                     tst_name_mod = _tpc_modify_test_name(tst_name)
                     if "across topologies" in table["title"].lower():
                         tst_name_mod = tst_name_mod.replace("2n1l-", "")
                     if tbl_dict.get(tst_name_mod, None) is None:
-                        name = "{0}".format("-".join(tst_data["name"].
-                                                     split("-")[:-1]))
+                        name = f"{'-'.join(tst_data['name'].split('-')[:-1])}"
                         if "across testbeds" in table["title"].lower() or \
                                 "across topologies" in table["title"].lower():
                             name = _tpc_modify_displayed_test_name(name)
@@ -470,7 +496,7 @@ def table_performance_comparison(table, input_data):
         for item in history:
             for job, builds in item["data"].items():
                 for build in builds:
-                    for tst_name, tst_data in data[job][str(build)].iteritems():
+                    for tst_name, tst_data in data[job][str(build)].items():
                         tst_name_mod = _tpc_modify_test_name(tst_name)
                         if "across topologies" in table["title"].lower():
                             tst_name_mod = tst_name_mod.replace("2n1l-", "")
@@ -483,31 +509,16 @@ def table_performance_comparison(table, input_data):
                             tbl_dict[tst_name_mod]["history"][item["title"]] = \
                                 list()
                         try:
-                            # TODO: Re-work when NDRPDRDISC tests are not used
                             if table["include-tests"] == "MRR":
-                                tbl_dict[tst_name_mod]["history"][item[
-                                    "title"]].append(tst_data["result"][
-                                        "receive-rate"].avg)
+                                res = tst_data["result"]["receive-rate"]
                             elif table["include-tests"] == "PDR":
-                                if tst_data["type"] == "PDR":
-                                    tbl_dict[tst_name_mod]["history"][
-                                        item["title"]].\
-                                        append(tst_data["throughput"]["value"])
-                                elif tst_data["type"] == "NDRPDR":
-                                    tbl_dict[tst_name_mod]["history"][item[
-                                        "title"]].append(tst_data["throughput"][
-                                            "PDR"]["LOWER"])
+                                res = tst_data["throughput"]["PDR"]["LOWER"]
                             elif table["include-tests"] == "NDR":
-                                if tst_data["type"] == "NDR":
-                                    tbl_dict[tst_name_mod]["history"][
-                                        item["title"]].\
-                                        append(tst_data["throughput"]["value"])
-                                elif tst_data["type"] == "NDRPDR":
-                                    tbl_dict[tst_name_mod]["history"][item[
-                                        "title"]].append(tst_data["throughput"][
-                                            "NDR"]["LOWER"])
+                                res = tst_data["throughput"]["NDR"]["LOWER"]
                             else:
                                 continue
+                            tbl_dict[tst_name_mod]["history"][item["title"]].\
+                                append(res)
                         except (TypeError, KeyError):
                             pass
 
@@ -552,13 +563,13 @@ def table_performance_comparison(table, input_data):
     tbl_lst = _tpc_sort_table(tbl_lst)
 
     # Generate csv tables:
-    csv_file = "{0}.csv".format(table["output-file"])
+    csv_file = f"{table['output-file']}.csv"
     with open(csv_file, "w") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
             file_handler.write(",".join([str(item) for item in test]) + "\n")
 
-    txt_file_name = "{0}.txt".format(table["output-file"])
+    txt_file_name = f"{table['output-file']}.txt"
     convert_csv_to_pretty_txt(csv_file, txt_file_name)
 
     if footnote:
@@ -576,8 +587,7 @@ def table_performance_comparison(table, input_data):
             ])
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst,
-                             "{0}.html".format(table["output-file"]))
+    _tpc_generate_html_table(header, tbl_lst, f"{table['output-file']}.html")
 
 
 def table_performance_comparison_nic(table, input_data):
@@ -590,12 +600,13 @@ def table_performance_comparison_nic(table, input_data):
     :type input_data: InputData
     """
 
-    logging.info("  Generating the table {0} ...".
-                 format(table.get("title", "")))
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(table.get("type", ""), table.get("title", "")))
+    logging.info(
+        f"    Creating the data set for the {table.get('type', '')} "
+        f"{table.get('title', '')}."
+    )
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
@@ -611,18 +622,23 @@ def table_performance_comparison_nic(table, input_data):
         if history:
             for item in history:
                 header.extend(
-                    ["{0} {1} [Mpps]".format(item["title"], hdr_param),
-                     "{0} Stdev [Mpps]".format(item["title"])])
+                    [
+                        f"{item['title']} {hdr_param} [Mpps]",
+                        f"{item['title']} Stdev [Mpps]"
+                    ]
+                )
         header.extend(
-            ["{0} {1} [Mpps]".format(table["reference"]["title"], hdr_param),
-             "{0} Stdev [Mpps]".format(table["reference"]["title"]),
-             "{0} {1} [Mpps]".format(table["compare"]["title"], hdr_param),
-             "{0} Stdev [Mpps]".format(table["compare"]["title"]),
-             "Delta [%]"])
+            [
+                f"{table['reference']['title']} {hdr_param} [Mpps]",
+                f"{table['reference']['title']} Stdev [Mpps]",
+                f"{table['compare']['title']} {hdr_param} [Mpps]",
+                f"{table['compare']['title']} Stdev [Mpps]",
+                "Delta [%]"
+            ]
+        )
         header_str = ",".join(header) + "\n"
     except (AttributeError, KeyError) as err:
-        logging.error("The model is invalid, missing parameter: {0}".
-                      format(err))
+        logging.error(f"The model is invalid, missing parameter: {repr(err)}")
         return
 
     # Prepare data to the table:
@@ -631,15 +647,14 @@ def table_performance_comparison_nic(table, input_data):
     for job, builds in table["reference"]["data"].items():
         topo = "2n-skx" if "2n-skx" in job else ""
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 if table["reference"]["nic"] not in tst_data["tags"]:
                     continue
                 tst_name_mod = _tpc_modify_test_name(tst_name)
                 if "across topologies" in table["title"].lower():
                     tst_name_mod = tst_name_mod.replace("2n1l-", "")
                 if tbl_dict.get(tst_name_mod, None) is None:
-                    name = "{0}".format("-".join(tst_data["name"].
-                                                 split("-")[:-1]))
+                    name = f"{'-'.join(tst_data['name'].split('-')[:-1])}"
                     if "across testbeds" in table["title"].lower() or \
                             "across topologies" in table["title"].lower():
                         name = _tpc_modify_displayed_test_name(name)
@@ -652,15 +667,14 @@ def table_performance_comparison_nic(table, input_data):
 
     for job, builds in table["compare"]["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 if table["compare"]["nic"] not in tst_data["tags"]:
                     continue
                 tst_name_mod = _tpc_modify_test_name(tst_name)
                 if "across topologies" in table["title"].lower():
                     tst_name_mod = tst_name_mod.replace("2n1l-", "")
                 if tbl_dict.get(tst_name_mod, None) is None:
-                    name = "{0}".format("-".join(tst_data["name"].
-                                                 split("-")[:-1]))
+                    name = f"{'-'.join(tst_data['name'].split('-')[:-1])}"
                     if "across testbeds" in table["title"].lower() or \
                             "across topologies" in table["title"].lower():
                         name = _tpc_modify_displayed_test_name(name)
@@ -678,15 +692,14 @@ def table_performance_comparison_nic(table, input_data):
             table, data=replacement, continue_on_error=True)
         for job, builds in replacement.items():
             for build in builds:
-                for tst_name, tst_data in rpl_data[job][str(build)].iteritems():
+                for tst_name, tst_data in rpl_data[job][str(build)].items():
                     if table["compare"]["nic"] not in tst_data["tags"]:
                         continue
                     tst_name_mod = _tpc_modify_test_name(tst_name)
                     if "across topologies" in table["title"].lower():
                         tst_name_mod = tst_name_mod.replace("2n1l-", "")
                     if tbl_dict.get(tst_name_mod, None) is None:
-                        name = "{0}".format("-".join(tst_data["name"].
-                                                     split("-")[:-1]))
+                        name = f"{'-'.join(tst_data['name'].split('-')[:-1])}"
                         if "across testbeds" in table["title"].lower() or \
                                 "across topologies" in table["title"].lower():
                             name = _tpc_modify_displayed_test_name(name)
@@ -705,7 +718,7 @@ def table_performance_comparison_nic(table, input_data):
         for item in history:
             for job, builds in item["data"].items():
                 for build in builds:
-                    for tst_name, tst_data in data[job][str(build)].iteritems():
+                    for tst_name, tst_data in data[job][str(build)].items():
                         if item["nic"] not in tst_data["tags"]:
                             continue
                         tst_name_mod = _tpc_modify_test_name(tst_name)
@@ -720,31 +733,16 @@ def table_performance_comparison_nic(table, input_data):
                             tbl_dict[tst_name_mod]["history"][item["title"]] = \
                                 list()
                         try:
-                            # TODO: Re-work when NDRPDRDISC tests are not used
                             if table["include-tests"] == "MRR":
-                                tbl_dict[tst_name_mod]["history"][item[
-                                    "title"]].append(tst_data["result"][
-                                        "receive-rate"].avg)
+                                res = tst_data["result"]["receive-rate"]
                             elif table["include-tests"] == "PDR":
-                                if tst_data["type"] == "PDR":
-                                    tbl_dict[tst_name_mod]["history"][
-                                        item["title"]].\
-                                        append(tst_data["throughput"]["value"])
-                                elif tst_data["type"] == "NDRPDR":
-                                    tbl_dict[tst_name_mod]["history"][item[
-                                        "title"]].append(tst_data["throughput"][
-                                            "PDR"]["LOWER"])
+                                res = tst_data["throughput"]["PDR"]["LOWER"]
                             elif table["include-tests"] == "NDR":
-                                if tst_data["type"] == "NDR":
-                                    tbl_dict[tst_name_mod]["history"][
-                                        item["title"]].\
-                                        append(tst_data["throughput"]["value"])
-                                elif tst_data["type"] == "NDRPDR":
-                                    tbl_dict[tst_name_mod]["history"][item[
-                                        "title"]].append(tst_data["throughput"][
-                                            "NDR"]["LOWER"])
+                                res = tst_data["throughput"]["NDR"]["LOWER"]
                             else:
                                 continue
+                            tbl_dict[tst_name_mod]["history"][item["title"]].\
+                                append(res)
                         except (TypeError, KeyError):
                             pass
 
@@ -789,13 +787,13 @@ def table_performance_comparison_nic(table, input_data):
     tbl_lst = _tpc_sort_table(tbl_lst)
 
     # Generate csv tables:
-    csv_file = "{0}.csv".format(table["output-file"])
+    csv_file = f"{table['output-file']}.csv"
     with open(csv_file, "w") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
             file_handler.write(",".join([str(item) for item in test]) + "\n")
 
-    txt_file_name = "{0}.txt".format(table["output-file"])
+    txt_file_name = f"{table['output-file']}.txt"
     convert_csv_to_pretty_txt(csv_file, txt_file_name)
 
     if footnote:
@@ -813,8 +811,7 @@ def table_performance_comparison_nic(table, input_data):
             ])
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst,
-                             "{0}.html".format(table["output-file"]))
+    _tpc_generate_html_table(header, tbl_lst, f"{table['output-file']}.html")
 
 
 def table_nics_comparison(table, input_data):
@@ -827,12 +824,13 @@ def table_nics_comparison(table, input_data):
     :type input_data: InputData
     """
 
-    logging.info("  Generating the table {0} ...".
-                 format(table.get("title", "")))
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(table.get("type", ""), table.get("title", "")))
+    logging.info(
+        f"    Creating the data set for the {table.get('type', '')} "
+        f"{table.get('title', '')}."
+    )
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
@@ -845,22 +843,24 @@ def table_nics_comparison(table, input_data):
             hdr_param = "Thput"
 
         header.extend(
-            ["{0} {1} [Mpps]".format(table["reference"]["title"], hdr_param),
-             "{0} Stdev [Mpps]".format(table["reference"]["title"]),
-             "{0} {1} [Mpps]".format(table["compare"]["title"], hdr_param),
-             "{0} Stdev [Mpps]".format(table["compare"]["title"]),
-             "Delta [%]"])
+            [
+                f"{table['reference']['title']} {hdr_param} [Mpps]",
+                f"{table['reference']['title']} Stdev [Mpps]",
+                f"{table['compare']['title']} {hdr_param} [Mpps]",
+                f"{table['compare']['title']} Stdev [Mpps]",
+                "Delta [%]"
+            ]
+        )
         header_str = ",".join(header) + "\n"
     except (AttributeError, KeyError) as err:
-        logging.error("The model is invalid, missing parameter: {0}".
-                      format(err))
+        logging.error(f"The model is invalid, missing parameter: {repr(err)}")
         return
 
     # Prepare data to the table:
     tbl_dict = dict()
     for job, builds in table["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = tst_name.replace("-ndrpdrdisc", "").\
                     replace("-ndrpdr", "").replace("-pdrdisc", "").\
                     replace("-ndrdisc", "").replace("-pdr", "").\
@@ -876,7 +876,7 @@ def table_nics_comparison(table, input_data):
                                               "cmp-data": list()}
                 try:
                     if table["include-tests"] == "MRR":
-                        result = tst_data["result"]["receive-rate"]  # .avg
+                        result = tst_data["result"]["receive-rate"]
                     elif table["include-tests"] == "PDR":
                         result = tst_data["throughput"]["PDR"]["LOWER"]
                     elif table["include-tests"] == "NDR":
@@ -890,8 +890,7 @@ def table_nics_comparison(table, input_data):
                         elif table["compare"]["nic"] in tst_data["tags"]:
                             tbl_dict[tst_name_mod]["cmp-data"].append(result)
                 except (TypeError, KeyError) as err:
-                    logging.debug("No data for {0}".format(tst_name))
-                    logging.debug(repr(err))
+                    logging.debug(f"No data for {tst_name}\n{repr(err)}")
                     # No data in output.xml for this test
 
     tbl_lst = list()
@@ -918,17 +917,16 @@ def table_nics_comparison(table, input_data):
     tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
 
     # Generate csv tables:
-    csv_file = "{0}.csv".format(table["output-file"])
+    csv_file = f"{table['output-file']}.csv"
     with open(csv_file, "w") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
             file_handler.write(",".join([str(item) for item in test]) + "\n")
 
-    convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
+    convert_csv_to_pretty_txt(csv_file, f"{table['output-file']}.txt")
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst,
-                             "{0}.html".format(table["output-file"]))
+    _tpc_generate_html_table(header, tbl_lst, f"{table['output-file']}.html")
 
 
 def table_soak_vs_ndr(table, input_data):
@@ -941,41 +939,42 @@ def table_soak_vs_ndr(table, input_data):
     :type input_data: InputData
     """
 
-    logging.info("  Generating the table {0} ...".
-                 format(table.get("title", "")))
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(table.get("type", ""), table.get("title", "")))
+    logging.info(
+        f"    Creating the data set for the {table.get('type', '')} "
+        f"{table.get('title', '')}."
+    )
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the table
     try:
         header = [
             "Test case",
-            "{0} Thput [Mpps]".format(table["reference"]["title"]),
-            "{0} Stdev [Mpps]".format(table["reference"]["title"]),
-            "{0} Thput [Mpps]".format(table["compare"]["title"]),
-            "{0} Stdev [Mpps]".format(table["compare"]["title"]),
-            "Delta [%]", "Stdev of delta [%]"]
+            f"{table['reference']['title']} Thput [Mpps]",
+            f"{table['reference']['title']} Stdev [Mpps]",
+            f"{table['compare']['title']} Thput [Mpps]",
+            f"{table['compare']['title']} Stdev [Mpps]",
+            "Delta [%]", "Stdev of delta [%]"
+        ]
         header_str = ",".join(header) + "\n"
     except (AttributeError, KeyError) as err:
-        logging.error("The model is invalid, missing parameter: {0}".
-                      format(err))
+        logging.error(f"The model is invalid, missing parameter: {repr(err)}")
         return
 
     # Create a list of available SOAK test results:
     tbl_dict = dict()
     for job, builds in table["compare"]["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 if tst_data["type"] == "SOAK":
                     tst_name_mod = tst_name.replace("-soak", "")
                     if tbl_dict.get(tst_name_mod, None) is None:
                         groups = re.search(REGEX_NIC, tst_data["parent"])
                         nic = groups.group(0) if groups else ""
-                        name = "{0}-{1}".format(nic, "-".join(tst_data["name"].
-                                                              split("-")[:-1]))
+                        name = f"{nic}-" \
+                               f"{'-'.join(tst_data['name'].split('-')[:-1])}"
                         tbl_dict[tst_name_mod] = {
                             "name": name,
                             "ref-data": list(),
@@ -991,7 +990,7 @@ def table_soak_vs_ndr(table, input_data):
     # Add corresponding NDR test results:
     for job, builds in table["reference"]["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 tst_name_mod = tst_name.replace("-ndrpdr", "").\
                     replace("-mrr", "")
                 if tst_name_mod in tests_lst:
@@ -1045,17 +1044,16 @@ def table_soak_vs_ndr(table, input_data):
     tbl_lst.sort(key=lambda rel: rel[-1], reverse=True)
 
     # Generate csv tables:
-    csv_file = "{0}.csv".format(table["output-file"])
+    csv_file = f"{table['output-file']}.csv"
     with open(csv_file, "w") as file_handler:
         file_handler.write(header_str)
         for test in tbl_lst:
             file_handler.write(",".join([str(item) for item in test]) + "\n")
 
-    convert_csv_to_pretty_txt(csv_file, "{0}.txt".format(table["output-file"]))
+    convert_csv_to_pretty_txt(csv_file, f"{table['output-file']}.txt")
 
     # Generate html table:
-    _tpc_generate_html_table(header, tbl_lst,
-                             "{0}.html".format(table["output-file"]))
+    _tpc_generate_html_table(header, tbl_lst, f"{table['output-file']}.html")
 
 
 def table_performance_trending_dashboard(table, input_data):
@@ -1069,29 +1067,31 @@ def table_performance_trending_dashboard(table, input_data):
     :type input_data: InputData
     """
 
-    logging.info("  Generating the table {0} ...".
-                 format(table.get("title", "")))
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(table.get("type", ""), table.get("title", "")))
+    logging.info(
+        f"    Creating the data set for the {table.get('type', '')} "
+        f"{table.get('title', '')}."
+    )
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
-    header = ["Test Case",
-              "Trend [Mpps]",
-              "Short-Term Change [%]",
-              "Long-Term Change [%]",
-              "Regressions [#]",
-              "Progressions [#]"
-              ]
+    header = [
+        "Test Case",
+        "Trend [Mpps]",
+        "Short-Term Change [%]",
+        "Long-Term Change [%]",
+        "Regressions [#]",
+        "Progressions [#]"
+    ]
     header_str = ",".join(header) + "\n"
 
     # Prepare data to the table:
     tbl_dict = dict()
     for job, builds in table["data"].items():
         for build in builds:
-            for tst_name, tst_data in data[job][str(build)].iteritems():
+            for tst_name, tst_data in data[job][str(build)].items():
                 if tst_name.lower() in table.get("ignore-list", list()):
                     continue
                 if tbl_dict.get(tst_name, None) is None:
@@ -1100,8 +1100,9 @@ def table_performance_trending_dashboard(table, input_data):
                         continue
                     nic = groups.group(0)
                     tbl_dict[tst_name] = {
-                        "name": "{0}-{1}".format(nic, tst_data["name"]),
-                        "data": OrderedDict()}
+                        "name": f"{nic}-{tst_data['name']}",
+                        "data": OrderedDict()
+                    }
                 try:
                     tbl_dict[tst_name]["data"][str(build)] = \
                         tst_data["result"]["receive-rate"]
@@ -1164,17 +1165,16 @@ def table_performance_trending_dashboard(table, input_data):
             tbl_out.sort(key=lambda rel: rel[2])
             tbl_sorted.extend(tbl_out)
 
-    file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
+    file_name = f"{table['output-file']}{table['output-file-ext']}"
 
-    logging.info("    Writing file: '{0}'".format(file_name))
+    logging.info(f"    Writing file: {file_name}")
     with open(file_name, "w") as file_handler:
         file_handler.write(header_str)
         for test in tbl_sorted:
             file_handler.write(",".join([str(item) for item in test]) + '\n')
 
-    txt_file_name = "{0}.txt".format(table["output-file"])
-    logging.info("    Writing file: '{0}'".format(txt_file_name))
-    convert_csv_to_pretty_txt(file_name, txt_file_name)
+    logging.info(f"    Writing file: {table['output-file']}.txt")
+    convert_csv_to_pretty_txt(file_name, f"{table['output-file']}.txt")
 
 
 def _generate_url(base, testbed, test_name):
@@ -1341,23 +1341,26 @@ def table_performance_trending_dashboard_html(table, input_data):
 
     testbed = table.get("testbed", None)
     if testbed is None:
-        logging.error("The testbed is not defined for the table '{0}'.".
-                      format(table.get("title", "")))
+        logging.error(
+            f"The testbed is not defined for the table "
+            f"{table.get('title', '')}."
+        )
         return
 
-    logging.info("  Generating the table {0} ...".
-                 format(table.get("title", "")))
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
 
     try:
-        with open(table["input-file"], 'rb') as csv_file:
+        with open(table["input-file"], 'rt') as csv_file:
             csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
             csv_lst = [item for item in csv_content]
     except KeyError:
         logging.warning("The input file is not defined.")
         return
     except csv.Error as err:
-        logging.warning("Not possible to process the file '{0}'.\n{1}".
-                        format(table["input-file"], err))
+        logging.warning(
+            f"Not possible to process the file {table['input-file']}.\n"
+            f"{repr(err)}"
+        )
         return
 
     # Table:
@@ -1397,9 +1400,9 @@ def table_performance_trending_dashboard_html(table, input_data):
                 td.text = item
     try:
         with open(table["output-file"], 'w') as html_file:
-            logging.info("    Writing file: '{0}'".format(table["output-file"]))
+            logging.info(f"    Writing file: {table['output-file']}")
             html_file.write(".. raw:: html\n\n\t")
-            html_file.write(ET.tostring(dashboard))
+            html_file.write(str(ET.tostring(dashboard, encoding="unicode")))
             html_file.write("\n\t<p><br><br></p>\n")
     except KeyError:
         logging.warning("The output file is not defined.")
@@ -1416,17 +1419,21 @@ def table_last_failed_tests(table, input_data):
     :type input_data: InputData
     """
 
-    logging.info("  Generating the table {0} ...".
-                 format(table.get("title", "")))
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(table.get("type", ""), table.get("title", "")))
+    logging.info(
+        f"    Creating the data set for the {table.get('type', '')} "
+        f"{table.get('title', '')}."
+    )
+
     data = input_data.filter_data(table, continue_on_error=True)
 
     if data is None or data.empty:
-        logging.warn("    No data for the {0} '{1}'.".
-                     format(table.get("type", ""), table.get("title", "")))
+        logging.warning(
+            f"    No data for the {table.get('type', '')} "
+            f"{table.get('title', '')}."
+        )
         return
 
     tbl_list = list()
@@ -1436,15 +1443,14 @@ def table_last_failed_tests(table, input_data):
             try:
                 version = input_data.metadata(job, build).get("version", "")
             except KeyError:
-                logging.error("Data for {job}: {build} is not present.".
-                              format(job=job, build=build))
+                logging.error(f"Data for {job}: {build} is not present.")
                 return
             tbl_list.append(build)
             tbl_list.append(version)
             failed_tests = list()
             passed = 0
             failed = 0
-            for tst_name, tst_data in data[job][build].iteritems():
+            for tst_name, tst_data in data[job][build].items():
                 if tst_data["status"] != "FAIL":
                     passed += 1
                     continue
@@ -1453,13 +1459,13 @@ def table_last_failed_tests(table, input_data):
                 if not groups:
                     continue
                 nic = groups.group(0)
-                failed_tests.append("{0}-{1}".format(nic, tst_data["name"]))
+                failed_tests.append(f"{nic}-{tst_data['name']}")
             tbl_list.append(str(passed))
             tbl_list.append(str(failed))
             tbl_list.extend(failed_tests)
 
-    file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
-    logging.info("    Writing file: '{0}'".format(file_name))
+    file_name = f"{table['output-file']}{table['output-file-ext']}"
+    logging.info(f"    Writing file: {file_name}")
     with open(file_name, "w") as file_handler:
         for test in tbl_list:
             file_handler.write(test + '\n')
@@ -1475,12 +1481,13 @@ def table_failed_tests(table, input_data):
     :type input_data: InputData
     """
 
-    logging.info("  Generating the table {0} ...".
-                 format(table.get("title", "")))
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
 
     # Transform the data
-    logging.info("    Creating the data set for the {0} '{1}'.".
-                 format(table.get("type", ""), table.get("title", "")))
+    logging.info(
+        f"    Creating the data set for the {table.get('type', '')} "
+        f"{table.get('title', '')}."
+    )
     data = input_data.filter_data(table, continue_on_error=True)
 
     # Prepare the header of the tables
@@ -1500,7 +1507,7 @@ def table_failed_tests(table, input_data):
     for job, builds in table["data"].items():
         for build in builds:
             build = str(build)
-            for tst_name, tst_data in data[job][build].iteritems():
+            for tst_name, tst_data in data[job][build].items():
                 if tst_name.lower() in table.get("ignore-list", list()):
                     continue
                 if tbl_dict.get(tst_name, None) is None:
@@ -1509,8 +1516,9 @@ def table_failed_tests(table, input_data):
                         continue
                     nic = groups.group(0)
                     tbl_dict[tst_name] = {
-                        "name": "{0}-{1}".format(nic, tst_data["name"]),
-                        "data": OrderedDict()}
+                        "name": f"{nic}-{tst_data['name']}",
+                        "data": OrderedDict()
+                    }
                 try:
                     generated = input_data.metadata(job, build).\
                         get("generated", "")
@@ -1524,8 +1532,7 @@ def table_failed_tests(table, input_data):
                             input_data.metadata(job, build).get("version", ""),
                             build)
                 except (TypeError, KeyError) as err:
-                    logging.warning("tst_name: {} - err: {}".
-                                    format(tst_name, repr(err)))
+                    logging.warning(f"tst_name: {tst_name} - err: {repr(err)}")
 
     max_fails = 0
     tbl_lst = list()
@@ -1542,28 +1549,31 @@ def table_failed_tests(table, input_data):
                 fails_last_csit = val[3]
         if fails_nr:
             max_fails = fails_nr if fails_nr > max_fails else max_fails
-            tbl_lst.append([tst_data["name"],
-                            fails_nr,
-                            fails_last_date,
-                            fails_last_vpp,
-                            "mrr-daily-build-{0}".format(fails_last_csit)])
+            tbl_lst.append(
+                [
+                    tst_data["name"],
+                    fails_nr,
+                    fails_last_date,
+                    fails_last_vpp,
+                    f"mrr-daily-build-{fails_last_csit}"
+                ]
+            )
 
     tbl_lst.sort(key=lambda rel: rel[2], reverse=True)
     tbl_sorted = list()
     for nrf in range(max_fails, -1, -1):
         tbl_fails = [item for item in tbl_lst if item[1] == nrf]
         tbl_sorted.extend(tbl_fails)
-    file_name = "{0}{1}".format(table["output-file"], table["output-file-ext"])
 
-    logging.info("    Writing file: '{0}'".format(file_name))
+    file_name = f"{table['output-file']}{table['output-file-ext']}"
+    logging.info(f"    Writing file: {file_name}")
     with open(file_name, "w") as file_handler:
         file_handler.write(",".join(header) + "\n")
         for test in tbl_sorted:
             file_handler.write(",".join([str(item) for item in test]) + '\n')
 
-    txt_file_name = "{0}.txt".format(table["output-file"])
-    logging.info("    Writing file: '{0}'".format(txt_file_name))
-    convert_csv_to_pretty_txt(file_name, txt_file_name)
+    logging.info(f"    Writing file: {table['output-file']}.txt")
+    convert_csv_to_pretty_txt(file_name, f"{table['output-file']}.txt")
 
 
 def table_failed_tests_html(table, input_data):
@@ -1578,23 +1588,26 @@ def table_failed_tests_html(table, input_data):
 
     testbed = table.get("testbed", None)
     if testbed is None:
-        logging.error("The testbed is not defined for the table '{0}'.".
-                      format(table.get("title", "")))
+        logging.error(
+            f"The testbed is not defined for the table "
+            f"{table.get('title', '')}."
+        )
         return
 
-    logging.info("  Generating the table {0} ...".
-                 format(table.get("title", "")))
+    logging.info(f"  Generating the table {table.get('title', '')} ...")
 
     try:
-        with open(table["input-file"], 'rb') as csv_file:
+        with open(table["input-file"], 'rt') as csv_file:
             csv_content = csv.reader(csv_file, delimiter=',', quotechar='"')
             csv_lst = [item for item in csv_content]
     except KeyError:
         logging.warning("The input file is not defined.")
         return
     except csv.Error as err:
-        logging.warning("Not possible to process the file '{0}'.\n{1}".
-                        format(table["input-file"], err))
+        logging.warning(
+            f"Not possible to process the file {table['input-file']}.\n"
+            f"{repr(err)}"
+        )
         return
 
     # Table:
@@ -1626,9 +1639,9 @@ def table_failed_tests_html(table, input_data):
                 td.text = item
     try:
         with open(table["output-file"], 'w') as html_file:
-            logging.info("    Writing file: '{0}'".format(table["output-file"]))
+            logging.info(f"    Writing file: {table['output-file']}")
             html_file.write(".. raw:: html\n\n\t")
-            html_file.write(ET.tostring(failed_tests))
+            html_file.write(str(ET.tostring(failed_tests, encoding="unicode")))
             html_file.write("\n\t<p><br><br></p>\n")
     except KeyError:
         logging.warning("The output file is not defined.")

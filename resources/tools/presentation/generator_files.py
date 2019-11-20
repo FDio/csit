@@ -17,7 +17,7 @@
 
 import logging
 
-from .utils import get_files, get_rst_title_char
+from utils import get_files, get_rst_title_char
 
 RST_INCLUDE_TABLE = ("\n.. only:: html\n\n"
                      "    .. csv-table::\n"
@@ -27,7 +27,7 @@ RST_INCLUDE_TABLE = ("\n.. only:: html\n\n"
                      "        :file: {file_html}\n"
                      "\n.. only:: latex\n\n"
                      "\n  .. raw:: latex\n\n"
-                     "      \csvautolongtable{{{file_latex}}}\n\n")
+                     "      \\csvautolongtable{{{file_latex}}}\n\n")
 
 
 def generate_files(spec, data):
@@ -44,8 +44,10 @@ def generate_files(spec, data):
         try:
             eval(file_spec["algorithm"])(file_spec, data)
         except NameError as err:
-            logging.error("Probably algorithm '{alg}' is not defined: {err}".
-                          format(alg=file_spec["algorithm"], err=repr(err)))
+            logging.error(
+                f"Probably algorithm {file_spec['algorithm']} is not defined: "
+                f"{repr(err)}"
+            )
     logging.info("Done.")
 
 
@@ -77,27 +79,31 @@ def file_test_results(file_spec, input_data):
     :type input_data: InputData
     """
 
-    file_name = "{0}{1}".format(file_spec["output-file"],
-                                file_spec["output-file-ext"])
+    file_name = f"{file_spec['output-file']}{file_spec['output-file-ext']}"
     rst_header = file_spec["file-header"]
 
-    logging.info("  Generating the file {0} ...".format(file_name))
+    logging.info(f"  Generating the file {file_name} ...")
 
     table_lst = get_files(file_spec["dir-tables"], ".csv", full_path=True)
     if len(table_lst) == 0:
-        logging.error("  No tables to include in '{0}'. Skipping.".
-                      format(file_spec["dir-tables"]))
-        return None
+        logging.error(
+            "  No tables to include in {file_spec['dir-tables']}. Skipping."
+        )
+        return
 
-    logging.info("    Writing file '{0}'".format(file_name))
+    logging.info(f"    Writing file {file_name}")
 
-    logging.info("    Creating the 'tests' data set for the {0} '{1}'.".
-                 format(file_spec.get("type", ""), file_spec.get("title", "")))
+    logging.info(
+        f"    Creating the tests data set for the {file_spec.get('type', '')} "
+        f"{file_spec.get('title', '')}."
+    )
     tests = input_data.filter_data(file_spec)
     tests = input_data.merge_data(tests)
 
-    logging.info("    Creating the 'suites' data set for the {0} '{1}'.".
-                 format(file_spec.get("type", ""), file_spec.get("title", "")))
+    logging.info(
+        f"    Creating the suites data set for the {file_spec.get('type', '')} "
+        f"{file_spec.get('title', '')}."
+    )
     file_spec["filter"] = "all"
     suites = input_data.filter_data(file_spec, data_set="suites")
     suites = input_data.merge_data(suites)
@@ -105,28 +111,27 @@ def file_test_results(file_spec, input_data):
 
     with open(file_name, "w") as file_handler:
         file_handler.write(rst_header)
-        for suite_longname, suite in suites.iteritems():
+        for suite_longname, suite in suites.items():
             if len(suite_longname.split(".")) <= file_spec["data-start-level"]:
                 continue
 
+            title_line = \
+                get_rst_title_char(
+                    suite['level'] - file_spec['data-start-level'] - 1
+                ) * len(suite['name'])
             if not ("-ndrpdr" in suite["name"] or
                     "-mrr" in suite["name"] or
                     "-func" in suite["name"] or
                     "-device" in suite["name"]):
-                file_handler.write("\n{0}\n{1}\n".format(
-                    suite["name"], get_rst_title_char(
-                        suite["level"] - file_spec["data-start-level"] - 1) *
-                                len(suite["name"])))
+                file_handler.write(f"\n{suite['name']}\n{title_line}\n")
 
             if _tests_in_suite(suite["name"], tests):
-                file_handler.write("\n{0}\n{1}\n".format(
-                    suite["name"], get_rst_title_char(
-                        suite["level"] - file_spec["data-start-level"] - 1) *
-                                   len(suite["name"])))
-                file_handler.write("\n{0}\n".format(
-                    suite["doc"].replace('|br|', '\n\n -')))
+                file_handler.write(f"\n{suite['name']}\n{title_line}\n")
+                file_handler.write(
+                    f"\n{suite['doc']}\n".replace('|br|', '\n\n -')
+                )
                 for tbl_file in table_lst:
-                    if suite["name"] in tbl_file:
+                    if suite['name'] in tbl_file:
                         file_handler.write(
                             RST_INCLUDE_TABLE.format(
                                 file_latex=tbl_file,
