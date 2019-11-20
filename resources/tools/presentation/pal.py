@@ -18,17 +18,17 @@ import sys
 import argparse
 import logging
 
-from .errors import PresentationError
-from .environment import Environment, clean_environment
-from .specification_parser import Specification
-from .input_data_parser import InputData
-from .generator_tables import generate_tables
-from .generator_plots import generate_plots
-from .generator_files import generate_files
-from .static_content import prepare_static_content
-from .generator_report import generate_report
-from .generator_CPTA import generate_cpta
-from .generator_alerts import Alerting, AlertingError
+from errors import PresentationError
+from environment import Environment, clean_environment
+from specification_parser import Specification
+from input_data_parser import InputData
+from generator_tables import generate_tables
+from generator_plots import generate_plots
+from generator_files import generate_files
+from static_content import prepare_static_content
+from generator_report import generate_report
+from generator_cpta import generate_cpta
+from generator_alerts import Alerting, AlertingError
 
 
 def parse_args():
@@ -89,8 +89,9 @@ def main():
         return 1
 
     if spec.output["output"] not in ("report", "CPTA"):
-        logging.critical("The output '{0}' is not supported.".
-                         format(spec.output["output"]))
+        logging.critical(
+            f"The output {spec.output['output']} is not supported."
+        )
         return 1
 
     # ret_code = 1
