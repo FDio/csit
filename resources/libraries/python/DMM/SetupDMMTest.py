@@ -28,10 +28,31 @@ from robot.libraries.BuiltIn import BuiltIn
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.DMM.DMMConstants import DMMConstants as con
 from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.TLDK.SetupTLDKTest import copy_tarball_to_node,\
-     delete_local_tarball
 
 __all__ = ["SetupDMMTest"]
+
+
+def copy_tarball_to_node(tarball, node):
+    """Copy tarball file from local host to remote node.
+    :param tarball: Path to tarball to upload.
+    :param node: Dictionary created from topology.
+    :type tarball: str
+    :type node: dict
+    :returns: nothing.
+    """
+    logger.console('Copying tarball to {0}'.format(node['host']))
+    ssh = SSH()
+    ssh.connect(node)
+    ssh.scp(tarball, "/tmp/")
+
+
+def delete_local_tarball(tarball):
+    """Delete local tarball to prevent disk pollution.
+    :param tarball: Path to tarball to upload.
+    :type tarball: str
+    :returns: nothing.
+    """
+    call(split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
 
 
 def pack_framework_dir():
