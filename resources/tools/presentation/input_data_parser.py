@@ -19,24 +19,25 @@
 - filter the data using tags,
 """
 
-import copy
 import re
+import copy
 import resource
-import pandas as pd
 import logging
-import prettytable
 
-from robot.api import ExecutionResult, ResultVisitor
-from robot import errors
 from collections import OrderedDict
-from string import replace
 from os import remove
 from datetime import datetime as dt
 from datetime import timedelta
 from json import loads
 
-from resources.libraries.python import jumpavg
-from .input_data_files import download_and_unzip_data_file
+import prettytable
+import pandas as pd
+
+from robot.api import ExecutionResult, ResultVisitor
+from robot import errors
+
+import jumpavg
+from input_data_files import download_and_unzip_data_file
 
 
 # Separator used in file names
@@ -200,9 +201,6 @@ class ExecutionChecker(ResultVisitor):
     .. note:: ID is the lowercase full path to the test.
     """
 
-    # TODO: Remove when definitely no NDRPDRDISC tests are used:
-    REGEX_RATE = re.compile(r'^[\D\d]*FINAL_RATE:\s(\d+\.\d+)\s(\w+)')
-
     REGEX_PLR_RATE = re.compile(r'PLRsearch lower bound::?\s(\d+.\d+).*\n'
                                 r'PLRsearch upper bound::?\s(\d+.\d+)')
 
@@ -288,7 +286,7 @@ class ExecutionChecker(ResultVisitor):
 
         # Test ID of currently processed test- the lowercase full path to the
         # test
-        self._test_ID = None
+        self._test_id = None
 
         # The main data structure
         self._data = {
@@ -398,16 +396,16 @@ class ExecutionChecker(ResultVisitor):
         if msg.message.count("VAT command history:"):
             self._conf_history_lookup_nr += 1
             if self._conf_history_lookup_nr == 1:
-                self._data["tests"][self._test_ID]["conf-history"] = str()
+                self._data["tests"][self._test_id]["conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          "VAT command history:", "", msg.message, count=1). \
+            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
+                          r"VAT command history:", "", msg.message, count=1). \
                 replace("\n\n", "\n").replace('\n', ' |br| ').\
                 replace('\r', '').replace('"', "'")
 
-            self._data["tests"][self._test_ID]["conf-history"] += " |br| "
-            self._data["tests"][self._test_ID]["conf-history"] += \
+            self._data["tests"][self._test_id]["conf-history"] += " |br| "
+            self._data["tests"][self._test_id]["conf-history"] += \
                 "**DUT" + str(self._conf_history_lookup_nr) + ":** " + text
 
     def _get_papi_history(self, msg):
@@ -420,16 +418,16 @@ class ExecutionChecker(ResultVisitor):
         if msg.message.count("PAPI command history:"):
             self._conf_history_lookup_nr += 1
             if self._conf_history_lookup_nr == 1:
-                self._data["tests"][self._test_ID]["conf-history"] = str()
+                self._data["tests"][self._test_id]["conf-history"] = str()
             else:
                 self._msg_type = None
-            text = re.sub("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
-                          "PAPI command history:", "", msg.message, count=1). \
+            text = re.sub(r"\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3} "
+                          r"PAPI command history:", "", msg.message, count=1). \
                 replace("\n\n", "\n").replace('\n', ' |br| ').\
                 replace('\r', '').replace('"', "'")
 
-            self._data["tests"][self._test_ID]["conf-history"] += " |br| "
-            self._data["tests"][self._test_ID]["conf-history"] += \
+            self._data["tests"][self._test_id]["conf-history"] += " |br| "
+            self._data["tests"][self._test_id]["conf-history"] += \
                 "**DUT" + str(self._conf_history_lookup_nr) + ":** " + text
 
     def _get_show_run(self, msg):
@@ -440,18 +438,19 @@ class ExecutionChecker(ResultVisitor):
         :type msg: Message
         :returns: Nothing.
         """
-        if not "show-run" in self._data["tests"][self._test_ID].keys():
-            self._data["tests"][self._test_ID]["show-run"] = str()
+        if not "show-run" in self._data["tests"][self._test_id].keys():
+            self._data["tests"][self._test_id]["show-run"] = str()
 
         if msg.message.count("stats runtime"):
-            host = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).\
+            host = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).
                        group(1))
-            socket = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).\
+            socket = str(re.search(self.REGEX_TC_PAPI_CLI, msg.message).
                          group(2))
-            message = str(msg.message).replace(' ', '').replace('\n', '').\
-                replace("'", '"').replace('b"', '"').replace('u"', '"').\
-                split(":",1)[1]
-            runtime = loads(message)
+            runtime = loads(
+                str(msg.message).replace(' ', '').replace('\n', '').
+                replace("'", '"').replace('b"', '"').replace('u"', '"').
+                split(":", 1)[1]
+            )
             try:
                 threads_nr = len(runtime[0]["clocks"])
             except (IndexError, KeyError):
@@ -487,9 +486,8 @@ class ExecutionChecker(ResultVisitor):
                         ])
             text = ""
             for idx in range(threads_nr):
-                text += "Thread {idx} ".format(idx=idx)
-                text += "vpp_main\n" if idx == 0 else \
-                    "vpp_wk_{idx}\n".format(idx=idx-1)
+                text += f"Thread {idx} "
+                text += "vpp_main\n" if idx == 0 else f"vpp_wk_{idx-1}\n"
                 txt_table = None
                 for row in table[idx]:
                     if txt_table is None:
@@ -506,11 +504,10 @@ class ExecutionChecker(ResultVisitor):
                 txt_table.align["Vectors/Calls"] = "r"
 
                 text += txt_table.get_string(sortby="Name") + '\n'
-            text = (" \n **DUT: {host}/{socket}** \n {text}".
-                    format(host=host, socket=socket, text=text))
+            text = f" \n **DUT: {host}/{socket}** \n {text}"
             text = text.replace('\n', ' |br| ').replace('\r', '').\
                 replace('"', "'")
-            self._data["tests"][self._test_ID]["show-run"] += text
+            self._data["tests"][self._test_id]["show-run"] += text
 
     def _get_ndrpdr_throughput(self, msg):
         """Get NDR_LOWER, NDR_UPPER, PDR_LOWER and PDR_UPPER from the test
@@ -655,9 +652,9 @@ class ExecutionChecker(ResultVisitor):
 
         doc_str = suite.doc.replace('"', "'").replace('\n', ' ').\
             replace('\r', '').replace('*[', ' |br| *[').replace("*", "**")
-        doc_str = replace(doc_str, ' |br| *[', '*[', maxreplace=1)
+        doc_str = doc_str.replace(' |br| *[', '*[', 1)
 
-        self._data["suites"][suite.longname.lower().replace('"', "'").
+        self._data["suites"][suite.longname.lower().replace('"', "'").\
             replace(" ", "_")] = {
                 "name": suite.name.lower(),
                 "doc": doc_str,
@@ -708,14 +705,15 @@ class ExecutionChecker(ResultVisitor):
         longname = self._mapping.get(longname_orig, None)
         if longname is not None:
             name = longname.split('.')[-1]
-            logging.debug("{0}\n{1}\n{2}\n{3}".format(
-                self._data["metadata"], longname_orig, longname, name))
+            logging.debug(
+                f"{self._data['metadata']}\n{longname_orig}\n{longname}\n{name}"
+            )
         else:
             longname = longname_orig
             name = test.name.lower()
 
         # Remove TC number from the TC long name (backward compatibility):
-        self._test_ID = re.sub(self.REGEX_TC_NUMBER, "", longname)
+        self._test_id = re.sub(self.REGEX_TC_NUMBER, "", longname)
         # Remove TC number from the TC name (not needed):
         test_result["name"] = re.sub(self.REGEX_TC_NUMBER, "", name)
 
@@ -723,7 +721,7 @@ class ExecutionChecker(ResultVisitor):
         test_result["tags"] = tags
         doc_str = test.doc.replace('"', "'").replace('\n', ' '). \
             replace('\r', '').replace('[', ' |br| [')
-        test_result["doc"] = replace(doc_str, ' |br| [', '[', maxreplace=1)
+        test_result["doc"] = doc_str.replace(' |br| [', '[', 1)
         test_result["msg"] = test.message.replace('\n', ' |br| '). \
             replace('\r', '').replace('"', "'")
         test_result["type"] = "FUNC"
@@ -733,7 +731,7 @@ class ExecutionChecker(ResultVisitor):
             # Replace info about cores (e.g. -1c-) with the info about threads
             # and cores (e.g. -1t1c-) in the long test case names and in the
             # test case names if necessary.
-            groups = re.search(self.REGEX_TC_NAME_OLD, self._test_ID)
+            groups = re.search(self.REGEX_TC_NAME_OLD, self._test_id)
             if not groups:
                 tag_count = 0
                 tag_tc = str()
@@ -744,20 +742,22 @@ class ExecutionChecker(ResultVisitor):
                         tag_tc = tag
 
                 if tag_count == 1:
-                    self._test_ID = re.sub(self.REGEX_TC_NAME_NEW,
-                                           "-{0}-".format(tag_tc.lower()),
-                                           self._test_ID,
+                    self._test_id = re.sub(self.REGEX_TC_NAME_NEW,
+                                           f"-{tag_tc.lower()}-",
+                                           self._test_id,
                                            count=1)
                     test_result["name"] = re.sub(self.REGEX_TC_NAME_NEW,
-                                                 "-{0}-".format(tag_tc.lower()),
+                                                 f"-{tag_tc.lower()}-",
                                                  test_result["name"],
                                                  count=1)
                 else:
                     test_result["status"] = "FAIL"
-                    self._data["tests"][self._test_ID] = test_result
-                    logging.debug("The test '{0}' has no or more than one "
-                                  "multi-threading tags.".format(self._test_ID))
-                    logging.debug("Tags: {0}".format(test_result["tags"]))
+                    self._data["tests"][self._test_id] = test_result
+                    logging.debug(
+                        f"The test {self._test_id} has no or more than one "
+                        f"multi-threading tags.\n"
+                        f"Tags: {test_result['tags']}"
+                    )
                     return
 
         if test.status == "PASS" and ("NDRPDRDISC" in tags or
@@ -767,13 +767,7 @@ class ExecutionChecker(ResultVisitor):
                                       "MRR" in tags or
                                       "BMRR" in tags or
                                       "RECONF" in tags):
-            # TODO: Remove when definitely no NDRPDRDISC tests are used:
-            if "NDRDISC" in tags:
-                test_result["type"] = "NDR"
-            # TODO: Remove when definitely no NDRPDRDISC tests are used:
-            elif "PDRDISC" in tags:
-                test_result["type"] = "PDR"
-            elif "NDRPDR" in tags:
+            if "NDRPDR" in tags:
                 test_result["type"] = "NDRPDR"
             elif "SOAK" in tags:
                 test_result["type"] = "SOAK"
@@ -787,33 +781,10 @@ class ExecutionChecker(ResultVisitor):
                 test_result["type"] = "RECONF"
             else:
                 test_result["status"] = "FAIL"
-                self._data["tests"][self._test_ID] = test_result
+                self._data["tests"][self._test_id] = test_result
                 return
 
-            # TODO: Remove when definitely no NDRPDRDISC tests are used:
-            if test_result["type"] in ("NDR", "PDR"):
-                try:
-                    rate_value = str(re.search(
-                        self.REGEX_RATE, test.message).group(1))
-                except AttributeError:
-                    rate_value = "-1"
-                try:
-                    rate_unit = str(re.search(
-                        self.REGEX_RATE, test.message).group(2))
-                except AttributeError:
-                    rate_unit = "-1"
-
-                test_result["throughput"] = dict()
-                test_result["throughput"]["value"] = \
-                    int(rate_value.split('.')[0])
-                test_result["throughput"]["unit"] = rate_unit
-                test_result["latency"] = \
-                    self._get_latency(test.message, test_result["type"])
-                if test_result["type"] == "PDR":
-                    test_result["lossTolerance"] = str(re.search(
-                        self.REGEX_TOLERANCE, test.message).group(1))
-
-            elif test_result["type"] in ("NDRPDR", ):
+            if test_result["type"] in ("NDRPDR", ):
                 test_result["throughput"], test_result["status"] = \
                     self._get_ndrpdr_throughput(test.message)
                 test_result["latency"], test_result["status"] = \
@@ -835,7 +806,7 @@ class ExecutionChecker(ResultVisitor):
                     items_float = [float(item.strip()) for item
                                    in items_str.split(",")]
                     # Use whole list in CSIT-1180.
-                    stats = jumpavg.AvgStdevStats.for_data(items_float)
+                    stats = jumpavg.AvgStdevStats.for_runs(items_float)
                     test_result["result"]["receive-rate"] = stats.avg
                 else:
                     groups = re.search(self.REGEX_MRR, test.message)
@@ -854,7 +825,7 @@ class ExecutionChecker(ResultVisitor):
                 except (AttributeError, IndexError, ValueError, TypeError):
                     test_result["status"] = "FAIL"
 
-        self._data["tests"][self._test_ID] = test_result
+        self._data["tests"][self._test_id] = test_result
 
     def end_test(self, test):
         """Called when test ends.
@@ -1158,8 +1129,10 @@ class InputData(object):
             try:
                 result = ExecutionResult(data_file)
             except errors.DataError as err:
-                log.append(("ERROR", "Error occurred while parsing output.xml: "
-                                     "{0}".format(err)))
+                log.append(
+                    ("ERROR", f"Error occurred while parsing output.xml: "
+                              f"{repr(err)}")
+                )
                 return None
         checker = ExecutionChecker(metadata, self._cfg.mapping,
                                    self._cfg.ignore)
@@ -1185,8 +1158,9 @@ class InputData(object):
 
         logs = list()
 
-        logs.append(("INFO", "  Processing the job/build: {0}: {1}".
-                     format(job, build["build"])))
+        logs.append(
+            ("INFO", f"  Processing the job/build: {job}: {build['build']}")
+        )
 
         state = "failed"
         success = False
@@ -1199,26 +1173,34 @@ class InputData(object):
                 break
             do_repeat -= 1
         if not success:
-            logs.append(("ERROR", "It is not possible to download the input "
-                                  "data file from the job '{job}', build "
-                                  "'{build}', or it is damaged. Skipped.".
-                         format(job=job, build=build["build"])))
+            logs.append(
+                ("ERROR",
+                 f"It is not possible to download the input data file from the "
+                 f"job {job}, build {build['build']}, or it is damaged. "
+                 f"Skipped.")
+            )
         if success:
-            logs.append(("INFO", "    Processing data from the build '{0}' ...".
-                         format(build["build"])))
+            logs.append(
+                ("INFO",
+                 f"    Processing data from the build {build['build']} ...")
+            )
             data = self._parse_tests(job, build, logs)
             if data is None:
-                logs.append(("ERROR", "Input data file from the job '{job}', "
-                                      "build '{build}' is damaged. Skipped.".
-                             format(job=job, build=build["build"])))
+                logs.append(
+                    ("ERROR",
+                     f"Input data file from the job {job}, build "
+                     f"{build['build']} is damaged. Skipped.")
+                )
             else:
                 state = "processed"
 
             try:
                 remove(build["file-name"])
             except OSError as err:
-                logs.append(("ERROR", "Cannot remove the file '{0}': {1}".
-                             format(build["file-name"], repr(err))))
+                logs.append(
+                    ("ERROR", f"Cannot remove the file {build['file-name']}: "
+                              f"{repr(err)}")
+                )
 
         # If the time-period is defined in the specification file, remove all
         # files which are outside the time period.
@@ -1237,8 +1219,9 @@ class InputData(object):
                         data = None
                         logs.append(
                             ("INFO",
-                             "    The build {job}/{build} is outdated, will be "
-                             "removed".format(job=job, build=build["build"])))
+                             f"    The build {job}/{build['build']} is "
+                             f"outdated, will be removed.")
+                        )
         logs.append(("INFO", "  Done."))
 
         for level, line in logs:
@@ -1276,12 +1259,12 @@ class InputData(object):
                     data = result["data"]
                     build_data = pd.Series({
                         "metadata": pd.Series(
-                            data["metadata"].values(),
-                            index=data["metadata"].keys()),
-                        "suites": pd.Series(data["suites"].values(),
-                                            index=data["suites"].keys()),
-                        "tests": pd.Series(data["tests"].values(),
-                                           index=data["tests"].keys())})
+                            list(data["metadata"].values()),
+                            index=list(data["metadata"].keys())),
+                        "suites": pd.Series(list(data["suites"].values()),
+                                            index=list(data["suites"].keys())),
+                        "tests": pd.Series(list(data["tests"].values()),
+                                           index=list(data["tests"].keys()))})
 
                     if self._input_data.get(job, None) is None:
                         self._input_data[job] = pd.Series()
@@ -1292,8 +1275,9 @@ class InputData(object):
 
                 self._cfg.set_input_state(job, build_nr, result["state"])
 
-                logging.info("Memory allocation: {0:,d}MB".format(
-                    resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000))
+                mem_alloc = \
+                    resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1000
+                logging.info(f"Memory allocation: {mem_alloc:.0f}MB")
 
         logging.info("Done.")
 
@@ -1379,7 +1363,7 @@ class InputData(object):
                 cond = "True"
             else:
                 cond = InputData._condition(element["filter"])
-            logging.debug("   Filter: {0}".format(cond))
+            logging.debug(f"   Filter: {cond}")
         except KeyError:
             logging.error("  No filter defined.")
             return None
@@ -1397,38 +1381,44 @@ class InputData(object):
                 for build in builds:
                     data[job][str(build)] = pd.Series()
                     try:
-                        data_iter = self.data[job][str(build)][data_set].\
-                            iteritems()
+                        data_dict = dict(
+                            self.data[job][str(build)][data_set].items())
                     except KeyError:
                         if continue_on_error:
                             continue
                         else:
                             return None
-                    for test_ID, test_data in data_iter:
+
+                    for test_id, test_data in data_dict.items():
                         if eval(cond, {"tags": test_data.get("tags", "")}):
-                            data[job][str(build)][test_ID] = pd.Series()
+                            data[job][str(build)][test_id] = pd.Series()
                             if params is None:
                                 for param, val in test_data.items():
-                                    data[job][str(build)][test_ID][param] = val
+                                    data[job][str(build)][test_id][param] = val
                             else:
                                 for param in params:
                                     try:
-                                        data[job][str(build)][test_ID][param] =\
+                                        data[job][str(build)][test_id][param] =\
                                             test_data[param]
                                     except KeyError:
-                                        data[job][str(build)][test_ID][param] =\
+                                        data[job][str(build)][test_id][param] =\
                                             "No Data"
             return data
 
         except (KeyError, IndexError, ValueError) as err:
-            logging.error("   Missing mandatory parameter in the element "
-                          "specification: {0}".format(err))
+            logging.error(
+                f"Missing mandatory parameter in the element specification: "
+                f"{repr(err)}"
+            )
             return None
-        except AttributeError:
+        except AttributeError as err:
+            logging.error(repr(err))
             return None
-        except SyntaxError:
-            logging.error("   The filter '{0}' is not correct. Check if all "
-                          "tags are enclosed by apostrophes.".format(cond))
+        except SyntaxError as err:
+            logging.error(
+                f"The filter {cond} is not correct. Check if all tags are "
+                f"enclosed by apostrophes.\n{repr(err)}"
+            )
             return None
 
     def filter_tests_by_name(self, element, params=None, data_set="tests",
@@ -1486,26 +1476,27 @@ class InputData(object):
                     for test in include:
                         try:
                             reg_ex = re.compile(str(test).lower())
-                            for test_ID in self.data[job][str(build)]\
-                                    [data_set].keys():
-                                if re.match(reg_ex, str(test_ID).lower()):
-                                    test_data = self.data[job][str(build)]\
-                                        [data_set][test_ID]
-                                    data[job][str(build)][test_ID] = pd.Series()
+                            for test_id in self.data[job][
+                                    str(build)][data_set].keys():
+                                if re.match(reg_ex, str(test_id).lower()):
+                                    test_data = self.data[job][
+                                        str(build)][data_set][test_id]
+                                    data[job][str(build)][test_id] = pd.Series()
                                     if params is None:
                                         for param, val in test_data.items():
-                                            data[job][str(build)][test_ID]\
+                                            data[job][str(build)][test_id]\
                                                 [param] = val
                                     else:
                                         for param in params:
                                             try:
-                                                data[job][str(build)][test_ID]\
-                                                    [param] = test_data[param]
+                                                data[job][str(build)][
+                                                    test_id][param] = \
+                                                    test_data[param]
                                             except KeyError:
-                                                data[job][str(build)][test_ID]\
-                                                    [param] = "No Data"
+                                                data[job][str(build)][
+                                                    test_id][param] = "No Data"
                         except KeyError as err:
-                            logging.error("{err!r}".format(err=err))
+                            logging.error(repr(err))
                             if continue_on_error:
                                 continue
                             else:
@@ -1513,13 +1504,14 @@ class InputData(object):
             return data
 
         except (KeyError, IndexError, ValueError) as err:
-            logging.error("Missing mandatory parameter in the element "
-                          "specification: {err!r}".format(err=err))
+            logging.error(
+                f"Missing mandatory parameter in the element "
+                f"specification: {repr(err)}"
+            )
             return None
         except AttributeError as err:
-            logging.error("{err!r}".format(err=err))
+            logging.error(repr(err))
             return None
-
 
     @staticmethod
     def merge_data(data):
@@ -1545,9 +1537,9 @@ class InputData(object):
         logging.info("    Merging data ...")
 
         merged_data = pd.Series()
-        for _, builds in data.iteritems():
-            for _, item in builds.iteritems():
-                for ID, item_data in item.iteritems():
-                    merged_data[ID] = item_data
+        for builds in data.values:
+            for item in builds.values:
+                for item_id, item_data in item.items():
+                    merged_data[item_id] = item_data
 
         return merged_data
