@@ -22,7 +22,7 @@ from os import makedirs
 from os.path import isdir
 from shutil import rmtree, copytree, Error
 
-from errors import PresentationError
+from pal_errors import PresentationError
 
 
 def prepare_static_content(spec):
@@ -34,16 +34,16 @@ def prepare_static_content(spec):
     content.
     """
 
-    src = spec.static.get("src-path", None)
-    dst = spec.static.get("dst-path", None)
+    src = spec.static.get(u"src-path", None)
+    dst = spec.static.get(u"dst-path", None)
     if src is None or dst is None:
-        logging.warning("No static content specified, skipping")
+        logging.warning(u"No static content specified, skipping")
         return
 
     # Copy all the static content to the build directory:
-    logging.info("Copying the static content ...")
-    logging.info("  Source:      {0}".format(src))
-    logging.info("  Destination: {0}".format(dst))
+    logging.info(u"Copying the static content ...")
+    logging.info(f"  Source:      {src}")
+    logging.info(f"  Destination: {dst}")
 
     try:
         if isdir(dst):
@@ -51,10 +51,12 @@ def prepare_static_content(spec):
 
         copytree(src, dst)
 
-        makedirs(spec.environment["paths"]["DIR[WORKING,SRC,STATIC]"])
+        makedirs(spec.environment[u"paths"][u"DIR[WORKING,SRC,STATIC]"])
 
     except (Error, OSError) as err:
-        raise PresentationError("Not possible to process the static content.",
-                                str(err))
+        raise PresentationError(
+            u"Not possible to process the static content.",
+            repr(err)
+        )
 
-    logging.info("Done.")
+    logging.info(u"Done.")
