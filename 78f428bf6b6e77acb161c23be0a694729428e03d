@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9b5dac7b_1f5f5f2a",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1263
+      },
+      "writtenOn": "2019-11-20T19:09:41Z",
+      "side": 1,
+      "message": "I believe the reason for hexstring was the old PAPI executor (bytes are not JSON friendly), and we are still using that for stats.\nI guess stats have zero intersection with MAC addresses, so this could be okay as an optimization. But I would feel better if it is outside the main Python 3 migration change (before or after, whatever is easier for you).\nIn the meantime, I still do not see \"I would say it is forced change to optimize code\" in the commit message.",
+      "parentUuid": "0a983e17_8a9ce8ea",
+      "range": {
+        "startLine": 32,
+        "startChar": 38,
+        "endLine": 32,
+        "endChar": 47
+      },
+      "revId": "78f428bf6b6e77acb161c23be0a694729428e03d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7199a7f1_b1d4999e",
         "filename": "resources/libraries/python/Classify.py",
         "patchSetId": 1
